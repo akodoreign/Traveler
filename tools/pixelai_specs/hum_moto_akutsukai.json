@@ -1,0 +1,187 @@
+{
+ "key": "moto_akutsukai",
+ "name": "Moto Akutsukai",
+ "kind": "enemy",
+ "sheet": "hum_moto_akutsukai.png",
+ "prompt": "1boy, male focus, man, Moto Akutsukai, lavender skin, grey hair, mane hair, dark grey lacquered lamellar armor, blue-grey kimono, dark brown hakama, a naginata polearm with a black shaft and a curved steel blade, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#c8c4ba",
+   "ramp": [
+    "#2f2e3c",
+    "#737287",
+    "#c8c4ba",
+    "#ebebeb",
+    "#ffffff"
+   ],
+   "detect": [
+    "#2f2e3c",
+    "#737287",
+    "#c8c4ba",
+    "#ebebeb",
+    "#ffffff"
+   ]
+  },
+  "hair": {
+   "base": "#96969c",
+   "ramp": [
+    "#21212b",
+    "#595967",
+    "#96969c",
+    "#bfbfbf",
+    "#dedede"
+   ],
+   "detect": [
+    "#21212b",
+    "#595967",
+    "#96969c",
+    "#bfbfbf",
+    "#dedede"
+   ]
+  },
+  "top": {
+   "base": "#5a3c78",
+   "ramp": [
+    "#050207",
+    "#2f1b43",
+    "#593c78",
+    "#875d9b",
+    "#b086ba"
+   ],
+   "detect": [
+    "#050207",
+    "#2f1b43",
+    "#593c78",
+    "#875d9b",
+    "#b086ba"
+   ]
+  },
+  "lower": {
+   "base": "#322446",
+   "ramp": [
+    "#040207",
+    "#0b0711",
+    "#322446",
+    "#594069",
+    "#7f6488"
+   ],
+   "detect": [
+    "#040207",
+    "#0b0711",
+    "#322446",
+    "#594069",
+    "#7f6488"
+   ]
+  },
+  "armor": {
+   "base": "#463c50",
+   "ramp": [
+    "#060407",
+    "#17121b",
+    "#463c50",
+    "#6e6273",
+    "#918d92"
+   ],
+   "detect": [
+    "#060407",
+    "#17121b",
+    "#463c50",
+    "#6e6273",
+    "#918d92"
+   ]
+  },
+  "accent": {
+   "base": "#a096aa",
+   "ramp": [
+    "#302839",
+    "#695c75",
+    "#a096aa",
+    "#cccacd",
+    "#ececec"
+   ],
+   "detect": [
+    "#302839",
+    "#695c75",
+    "#a096aa",
+    "#cccacd",
+    "#ececec"
+   ]
+  },
+  "lace": {
+   "base": "#a096aa",
+   "ramp": [
+    "#302839",
+    "#695c75",
+    "#a096aa",
+    "#cccacd",
+    "#ececec"
+   ],
+   "detect": [
+    "#302839",
+    "#695c75",
+    "#a096aa",
+    "#cccacd",
+    "#ececec"
+   ]
+  },
+  "glow": {
+   "base": "#9650ff",
+   "ramp": [
+    "#47138e",
+    "#6d2bca",
+    "#9650ff",
+    "#c169ff",
+    "#df88ff"
+   ],
+   "detect": [
+    "#47138e",
+    "#6d2bca",
+    "#9650ff",
+    "#c169ff",
+    "#df88ff"
+   ]
+  }
+ }
+}

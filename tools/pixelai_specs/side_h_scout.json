@@ -1,0 +1,153 @@
+{
+ "key": "h_scout",
+ "name": "Hiruma Scout",
+ "kind": "side",
+ "sheet": "side_h_scout.png",
+ "prompt": "1girl, woman, Hiruma Scout, light tan skin, black hair, ponytail hair, dark green kimono, black hakama, jingasa, a tall yumi longbow, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#e2b088",
+   "ramp": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ],
+   "detect": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ]
+  },
+  "hair": {
+   "base": "#282228",
+   "ramp": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ],
+   "detect": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ]
+  },
+  "top": {
+   "base": "#3c423a",
+   "ramp": [
+    "#050706",
+    "#0a0d0b",
+    "#3c423a",
+    "#646563",
+    "#848484"
+   ],
+   "detect": [
+    "#050706",
+    "#0a0d0b",
+    "#3c423a",
+    "#646563",
+    "#848484"
+   ]
+  },
+  "lower": {
+   "base": "#2c302c",
+   "ramp": [
+    "#050706",
+    "#060706",
+    "#2c302c",
+    "#535353",
+    "#727272"
+   ],
+   "detect": [
+    "#050706",
+    "#060706",
+    "#2c302c",
+    "#535353",
+    "#727272"
+   ]
+  },
+  "hat_col": {
+   "base": "#3c4048",
+   "ramp": [
+    "#040507",
+    "#0e0f13",
+    "#3c4048",
+    "#64686b",
+    "#8a8a8a"
+   ],
+   "detect": [
+    "#040507",
+    "#0e0f13",
+    "#3c4048",
+    "#64686b",
+    "#8a8a8a"
+   ]
+  },
+  "accent": {
+   "base": "#78966e",
+   "ramp": [
+    "#14251a",
+    "#3e6140",
+    "#78966e",
+    "#a4b99a",
+    "#d2d8ce"
+   ],
+   "detect": [
+    "#14251a",
+    "#3e6140",
+    "#78966e",
+    "#a4b99a",
+    "#d2d8ce"
+   ]
+  }
+ }
+}

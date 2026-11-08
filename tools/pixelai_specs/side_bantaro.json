@@ -1,0 +1,136 @@
+{
+ "key": "bantaro",
+ "name": "Soshi Bantaro",
+ "kind": "side",
+ "sheet": "side_bantaro.png",
+ "prompt": "1boy, male focus, man, Soshi Bantaro, fair skin, black hair, chonmage hair, red kimono, black hakama, a folding fan, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#fae2cc",
+   "ramp": [
+    "#895957",
+    "#c59b8d",
+    "#fae2cc",
+    "#fff4e9",
+    "#ffffff"
+   ],
+   "detect": [
+    "#895957",
+    "#c59b8d",
+    "#fae2cc",
+    "#fff4e9",
+    "#ffffff"
+   ]
+  },
+  "hair": {
+   "base": "#282228",
+   "ramp": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ],
+   "detect": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ]
+  },
+  "top": {
+   "base": "#961e2c",
+   "ramp": [
+    "#250010",
+    "#610922",
+    "#961e2b",
+    "#b9373d",
+    "#d85b5a"
+   ],
+   "detect": [
+    "#250010",
+    "#610922",
+    "#961e2b",
+    "#b9373d",
+    "#d85b5a"
+   ]
+  },
+  "lower": {
+   "base": "#2a222c",
+   "ramp": [
+    "#060407",
+    "#070507",
+    "#2a222c",
+    "#4f454f",
+    "#6e6d6e"
+   ],
+   "detect": [
+    "#060407",
+    "#070507",
+    "#2a222c",
+    "#4f454f",
+    "#6e6d6e"
+   ]
+  },
+  "mask_col": {
+   "base": "#8c141e",
+   "ramp": [
+    "#1b000a",
+    "#570319",
+    "#8c131d",
+    "#af2a2c",
+    "#ce4f4a"
+   ],
+   "detect": [
+    "#1b000a",
+    "#570319",
+    "#8c131d",
+    "#af2a2c",
+    "#ce4f4a"
+   ]
+  }
+ }
+}

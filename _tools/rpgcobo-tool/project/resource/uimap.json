@@ -1,0 +1,218 @@
+{
+	"dialog":{
+		"#0#":{
+			"baseui":"/presetui/dialog_choices.ui",
+			"en":{"desc":"","name":"Choice dialog","useidx":-1},
+			"ja":{"desc":"","name":"選択ダイアログ","useidx":-1},
+			"uilist":[]
+		},
+		"#1#":{
+			"baseui":"/presetui/dialog_choices2.ui",
+			"en":{"desc":"","name":"Choice dialog(S)","useidx":-1},
+			"ja":{"desc":"","name":"選択ダイアログ(小)","useidx":-1},
+			"uilist":[]
+		},
+		"#2#":{
+			"baseui":"/presetui/dialog_choices3.ui",
+			"en":{"desc":"","name":"Choice dialog(3cols)","useidx":-1},
+			"ja":{"desc":"","name":"選択ダイアログ(3列)","useidx":-1},
+			"uilist":[]
+		},
+		"#3#":{
+			"baseui":"/presetui/dialog_confirm.ui",
+			"en":{"desc":"","name":"Confirm dialog","useidx":-1},
+			"ja":{"desc":"","name":"確認ダイアログ","useidx":-1},
+			"uilist":[]
+		},
+		"#4#":{
+			"baseui":"/presetui/dialog_selchara.ui",
+			"en":{"desc":"","name":"Chara select dialog","useidx":-1},
+			"ja":{"desc":"","name":"キャラ選択ダイアログ","useidx":-1},
+			"uilist":[]
+		},
+		"#5#":{
+			"baseui":"/presetui/store_item.ui",
+			"en":{"desc":"","name":"Item shop dialog","useidx":-1},
+			"ja":{"desc":"","name":"アイテム購入ダイアログ","useidx":-1},
+			"uilist":[]
+		},
+		"#6#":{
+			"baseui":"/presetui/misc_levelup.ui",
+			"en":{"desc":"","name":"Level-up dialog","useidx":-1},
+			"ja":{"desc":"","name":"レベルアップダイアログ","useidx":-1},
+			"uilist":[]
+		},
+		"#7#":{
+			"baseui":"/presetui/dialog_buyitem.ui",
+			"en":{"desc":"","name":"Item buy / sell popup","useidx":-1},
+			"ja":{"desc":"","name":"アイテム売買ポップアップ","useidx":-1},
+			"uilist":[]
+		}
+	},
+	"etc":{
+		"#0#":{
+			"baseui":"/presetui/misc_waitclick.ui",
+			"en":{"desc":"","name":"Wait click","useidx":-1},
+			"ja":{"desc":"","name":"クリック待ち","useidx":-1},
+			"uilist":[]
+		}
+	},
+	"info":{
+		"#0#":{
+			"baseui":"/presetui/info_top.ui",
+			"en":{"desc":"","name":"Top info bar","useidx":-1},
+			"ja":{"desc":"","name":"トップ情報","useidx":-1},
+			"uilist":[]
+		},
+		"#1#":{
+			"baseui":"/presetui/info_toplr.ui",
+			"en":{"desc":"","name":"L/R info","useidx":-1},
+			"ja":{"desc":"","name":"左右情報","useidx":-1},
+			"uilist":[]
+		},
+		"#2#":{
+			"baseui":"/presetui/victory.ui",
+			"en":{"desc":"","name":"Reward info","useidx":-1},
+			"ja":{"desc":"","name":"報酬表示","useidx":-1},
+			"uilist":[]
+		},
+		"#3#":{
+			"baseui":"/presetui/pop_search.ui",
+			"en":{"desc":"","name":"Search popup","useidx":-1},
+			"ja":{"desc":"","name":"調べる表示","useidx":-1},
+			"uilist":[]
+		},
+		"#4#":{
+			"baseui":"/presetui/parts/popstr.ui",
+			"en":{"desc":"","name":"Damage pop","useidx":-1},
+			"ja":{"desc":"","name":"ダメージ表示","useidx":-1},
+			"uilist":[]
+		},
+		"#5#":{
+			"baseui":"/presetui/parts/popstr2.ui",
+			"en":{"desc":"","name":"Damage pop(big)","useidx":-1},
+			"ja":{"desc":"","name":"ダメージ表示(強)","useidx":-1},
+			"uilist":[]
+		}
+	},
+	"menu":{
+		"#0#":{
+			"baseui":"/presetui/menu_main.ui",
+			"en":{"desc":"","name":"Main menu","useidx":-1},
+			"ja":{"desc":"","name":"メインメニュー","useidx":-1},
+			"uilist":[]
+		},
+		"#1#":{
+			"baseui":"/presetui/menu_item.ui",
+			"en":{"desc":"","name":"Items / Skills menu","useidx":-1},
+			"ja":{"desc":"","name":"アイテム／スキルメニュー","useidx":-1},
+			"uilist":[]
+		},
+		"#2#":{
+			"baseui":"/presetui/menu_equip.ui",
+			"en":{"desc":"","name":"Equip menu","useidx":-1},
+			"ja":{"desc":"","name":"装備メニュー","useidx":-1},
+			"uilist":[]
+		},
+		"#3#":{
+			"baseui":"/presetui/menu_job.ui",
+			"en":{"desc":"","name":"Job menu","useidx":-1},
+			"ja":{"desc":"","name":"ジョブメニュー","useidx":-1},
+			"uilist":[]
+		},
+		"#4#":{
+			"baseui":"/presetui/menu_saveload.ui",
+			"en":{"desc":"","name":"Save / Load menu","useidx":-1},
+			"ja":{"desc":"","name":"セーブ／ロードメニュー","useidx":-1},
+			"uilist":[]
+		},
+		"#5#":{
+			"baseui":"/presetui/menu_config.ui",
+			"en":{"desc":"","name":"Config menu","useidx":-1},
+			"ja":{"desc":"","name":"コンフィグメニュー","useidx":-1},
+			"uilist":[]
+		}
+	},
+	"message":{
+		"#0#":{
+			"baseui":"/presetui/message_talk.ui",
+			"en":{"desc":"","name":"Talk Message","useidx":-1},
+			"ja":{"desc":"","name":"会話メッセージ","useidx":-1},
+			"uilist":[]
+		},
+		"#1#":{
+			"baseui":"/presetui/message_talk_pic.ui",
+			"en":{"desc":"","name":"Talk Message(Pic)","useidx":-1},
+			"ja":{"desc":"","name":"会話メッセージ(ピクチャ)","useidx":-1},
+			"uilist":[]
+		},
+		"#2#":{
+			"baseui":"/presetui/message_big.ui",
+			"en":{"desc":"","name":"Big Message","useidx":-1},
+			"ja":{"desc":"","name":"大画面メッセージ","useidx":-1},
+			"uilist":[]
+		},
+		"#3#":{
+			"baseui":"/presetui/message_log.ui",
+			"en":{"desc":"","name":"Log Message","useidx":-1},
+			"ja":{"desc":"","name":"ログメッセージ","useidx":-1},
+			"uilist":[]
+		}
+	},
+	"screen":{
+		"#0#":{
+			"baseui":"/presetui/title.ui",
+			"en":{"desc":"","name":"Title screen","useidx":-1},
+			"ja":{"desc":"","name":"タイトル画面","useidx":-1},
+			"uilist":[]
+		},
+		"#1#":{
+			"baseui":"/presetui/splash.ui",
+			"en":{"desc":"","name":"Splash screen","useidx":-1},
+			"ja":{"desc":"","name":"スプラッシュ画面","useidx":-1},
+			"uilist":[]
+		},
+		"#2#":{
+			"baseui":"/presetui/gameover.ui",
+			"en":{"desc":"","name":"Gameover screen","useidx":-1},
+			"ja":{"desc":"","name":"ゲームオーバー画面","useidx":-1},
+			"uilist":[]
+		},
+		"#3#":{
+			"baseui":"/presetui/paused.ui",
+			"en":{"desc":"","name":"Paused screen","useidx":-1},
+			"ja":{"desc":"","name":"ポーズ画面","useidx":-1},
+			"uilist":[]
+		},
+		"#4#":{
+			"baseui":"/presetui/battleui.ui",
+			"en":{"desc":"","name":"Turn-battle UI","useidx":-1},
+			"ja":{"desc":"","name":"ターンバトルUI","useidx":-1},
+			"uilist":[]
+		},
+		"#6#":{
+			"baseui":"/presetui/stage.ui",
+			"en":{"desc":"","name":"Stage UI","useidx":-1},
+			"ja":{"desc":"","name":"ステージUI","useidx":-1},
+			"uilist":[]
+		},
+		"#7#":{
+			"baseui":"/presetui/virtualpad.ui",
+			"en":{"desc":"","name":"Virtual pad","useidx":-1},
+			"ja":{"desc":"","name":"バーチャルパッド","useidx":-1},
+			"uilist":[]
+		},
+		"#8#":{
+			"baseui":"/presetui/rpgroot.ui",
+			"en":{"desc":"","name":"Game root UI","useidx":-1},
+			"ja":{"desc":"","name":"ゲームルートUI","useidx":-1},
+			"uilist":[]
+		},
+		"#9#":{
+			"baseui":"/presetui/rpgroot_deck.ui",
+			"en":{"desc":"","name":"Game root UI(SteamDeckl)","useidx":-1},
+			"ja":{"desc":"","name":"ゲームルートUI(SteamDeckl)","useidx":-1},
+			"uilist":[]
+		}
+	}
+}

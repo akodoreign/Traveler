@@ -1,0 +1,1966 @@
+{
+	"K000": {
+		"MAXLV": 0,
+		"ani": {
+			"id": "die",
+			"mdlid": "CV000",
+			"part": 6,
+			"spd": 1.0
+		},
+		"anime": null,
+		"condtype": 1,
+		"deadtype": 2,
+		"desc": "",
+		"doa": 1,
+		"efx_cont": null,
+		"efx_start": null,
+		"exg": [
+			0,
+			100
+		],
+		"icon": "",
+		"name": "Down",
+		"option": [],
+		"rem_battle": false,
+		"rem_die": false,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": [
+			2,
+			256
+		],
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": false,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": 0
+	},
+	"K001": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": "FX010",
+		"icon": "",
+		"name": "Poison",
+		"option": [
+			{
+				"LV": 1,
+				"dmgtype": 1,
+				"dmgval": 10.0,
+				"efx": "FX098",
+				"opttype": "opt_turndmg",
+				"relative": true,
+				"when": "postturn"
+			},
+			{
+				"LV": 1,
+				"cnt": 4,
+				"dmgtype": 1,
+				"dmgval": 4.0,
+				"efx": "FX098",
+				"opttype": "opt_walkdmg",
+				"relative": false,
+				"snd": null
+			}
+		],
+		"rem_battle": false,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 1,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K002": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": "FX005",
+		"icon": "",
+		"name": "Blind",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": -50,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": false,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 3,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K003": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": "FX012",
+		"icon": "",
+		"name": "Silence",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_skillseal",
+				"skillbits": [
+					0,
+					59736,
+					5632
+				]
+			}
+		],
+		"rem_battle": false,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 5,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K004": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": "FX006",
+		"icon": "",
+		"name": "Confuse",
+		"option": [
+			{
+				"LV": 1,
+				"condbits": 16,
+				"elembits": 4095,
+				"formbits": 25,
+				"opttype": "opt_remcond",
+				"rate": 1.0,
+				"when": 1,
+				"whom": 1
+			},
+			{
+				"LV": 1,
+				"cmdtgt": 15,
+				"opttype": "opt_skillreplace",
+				"order": 0,
+				"rate": 1.0,
+				"sealbits": 0,
+				"skillbits": 1,
+				"skillid": null,
+				"skillset": false
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			5
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 32,
+		"resistg": 4,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": 32
+	},
+	"K005": {
+		"MAXLV": 0,
+		"ani": {
+			"id": "sick",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "Asleep: can't act for a while. A physical hit wakes them.",
+		"efx_cont": null,
+		"efx_start": "FX013",
+		"icon": "",
+		"name": "Sleep",
+		"option": [
+			{
+				"LV": 1,
+				"flagbits": 51,
+				"opttype": "opt_skillflagseal"
+			},
+			{
+				"LV": 1,
+				"condbits": 32,
+				"elembits": 4095,
+				"formbits": 25,
+				"opttype": "opt_remcond",
+				"rate": 0.5,
+				"when": 1,
+				"whom": 1
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			2,
+			6
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 2,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": 0
+	},
+	"K006": {
+		"MAXLV": 0,
+		"ani": {
+			"id": "sick",
+			"mdlid": "CV000",
+			"part": 4,
+			"spd": 1.0
+		},
+		"condtype": 1,
+		"deadtype": 1,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": "FX009",
+		"icon": "",
+		"name": "Paralysis",
+		"option": [
+			{
+				"LV": 1,
+				"flagbits": 204,
+				"opttype": "opt_skillflagseal"
+			}
+		],
+		"rem_battle": false,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			12,
+			20
+		],
+		"remcondbits": [
+			304,
+			512
+		],
+		"resistg": 3,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": [
+			304,
+			512
+		]
+	},
+	"K007": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Terror: may lose the turn, and can't Boost. Jade gear and courage resist it.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Fear",
+		"option": [],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			2,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 4,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K008": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 1,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Charm",
+		"option": [
+			{
+				"LV": 1,
+				"flagbits": 48,
+				"opttype": "opt_skillflagseal"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 2,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": 0
+	},
+	"K009": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Sealed",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_skillseal",
+				"skillbits": [
+					0,
+					0,
+					0,
+					16
+				]
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 4,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K010": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Curse",
+		"option": [],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			1,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 5,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K011": {
+		"MAXLV": 0,
+		"ani": {
+			"id": "sick",
+			"mdlid": "CV000",
+			"part": 4,
+			"spd": 1.0
+		},
+		"condtype": 0,
+		"deadtype": 2,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Stone",
+		"option": [],
+		"rem_battle": false,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": 0
+	},
+	"K012": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 1,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Undead",
+		"option": [
+			{
+				"LV": 1,
+				"flagbits": 51,
+				"opttype": "opt_skillflagseal"
+			},
+			{
+				"LV": 1,
+				"cmdtgt": 15,
+				"opttype": "opt_skillreplace",
+				"order": 0,
+				"rate": 1.0,
+				"sealbits": 0,
+				"skillbits": 1,
+				"skillid": null,
+				"skillset": false
+			}
+		],
+		"rem_battle": false,
+		"rem_die": false,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 1,
+		"resistg": 1,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": 0
+	},
+	"K020": {
+		"MAXLV": 2,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "ATK Up",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 30,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 2,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": "K021",
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K021": {
+		"MAXLV": 2,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": "FX011",
+		"icon": "",
+		"name": "ATK Down",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": -30,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 2,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": -30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": "K020",
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K022": {
+		"MAXLV": 2,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "DEF Up",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 30,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 2,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": "K023",
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K023": {
+		"MAXLV": 2,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": "FX008",
+		"icon": "",
+		"name": "DEF Down",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": -30,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 2,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": -30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": "K022",
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K040": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Regen",
+		"option": [
+			{
+				"LV": 1,
+				"dmgtype": 2,
+				"dmgval": 8,
+				"efx": "FX016",
+				"opttype": "opt_turndmg",
+				"relative": true,
+				"when": "postturn"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K041": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Berserk",
+		"option": [
+			{
+				"LV": 1,
+				"cmdtgt": 2,
+				"opttype": "opt_skillreplace",
+				"order": 100,
+				"rate": 1.0,
+				"sealbits": 0,
+				"skillbits": 1,
+				"skillid": null,
+				"skillset": false
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 50,
+				"valtype": "baserate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 50,
+				"valtype": "baserate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 4,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": 0
+	},
+	"K042": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Auto-Revive",
+		"option": [
+			{
+				"LV": 1,
+				"cmdtgt": 13,
+				"countrem": {
+					"condid": "K042",
+					"val": 1
+				},
+				"opttype": "opt_dyingskill",
+				"rate": 1.0,
+				"sealbits": 0,
+				"skillid": "S190"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": false,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K043": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Reflect",
+		"option": [
+			{
+				"LV": 1,
+				"countrem": {
+					"condid": "K043",
+					"val": 1
+				},
+				"dmgrate": 1.0,
+				"elembits": 4088,
+				"formbits": 2,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"opttype": "opt_reflect",
+				"successrate": 1.0
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": false,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"_meta": {
+		"caps": 100,
+		"version": 1
+	},
+	"K030": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "Off balance: loses its actions and takes extra damage until its Resolve returns.",
+		"efx_cont": null,
+		"efx_start": "FX005",
+		"icon": "",
+		"name": "Suki",
+		"option": [],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			2,
+			2
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": 0
+	},
+	"K024": {
+		"MAXLV": 2,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "A blank scroll held up against the kami: E.DEF up.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Void Guard",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 30,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 2,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K025": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "Reading a scandalous letter about itself. Too shocked to act.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Scandalized",
+		"option": [],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			2,
+			2
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K028": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "Tangled in a fishing net. It spends its turn getting out.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Netted",
+		"option": [],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			1,
+			1
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K029": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "Knocked flat by the earth kami: DEF down, and a boulder hits it twice as hard.",
+		"efx_cont": null,
+		"efx_start": "FX008",
+		"icon": "",
+		"name": "Prone",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": -30,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 2,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": -30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			2,
+			2
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K026": {
+		"MAXLV": 5,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "Shadowlands corruption. Max HP -6% per stack (to 5). At 4 stacks the bearer is weak to Jade. Cleansed by a Jade Pouch or a shrine.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Taint",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MAXHP",
+				"val": -6,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 2,
+				"opttype": "opt_status",
+				"propid": "MAXHP",
+				"val": -6,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 3,
+				"opttype": "opt_status",
+				"propid": "MAXHP",
+				"val": -6,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 4,
+				"opttype": "opt_status",
+				"propid": "MAXHP",
+				"val": -6,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_status",
+				"propid": "MAXHP",
+				"val": -6,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 4,
+				"opttype": "opt_elemdef",
+				"EDR.11": -50
+			}
+		],
+		"rem_battle": false,
+		"rem_die": false,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 1,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K027": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "The Mountain Does Not Move: braced, she takes half damage.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "The Mountain",
+		"option": [],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K044": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "A false White Squid charm. Break the wearer (Suki) to shatter it.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Charm: Evasion",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"valtype": "supply",
+				"LV": 1,
+				"val": 30
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K047": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "A false White Squid charm. Break the wearer (Suki) to shatter it.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Charm: Evasion (warded)",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"valtype": "supply",
+				"LV": 1,
+				"val": 15
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K045": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "A false White Squid charm. Break the wearer (Suki) to shatter it.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Charm: Fury",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"valtype": "totalrate",
+				"LV": 1,
+				"val": 16
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K048": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "A false White Squid charm. Break the wearer (Suki) to shatter it.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Charm: Fury (warded)",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"valtype": "totalrate",
+				"LV": 1,
+				"val": 8
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K046": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "A false White Squid charm. Break the wearer (Suki) to shatter it.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Charm: Mending",
+		"option": [
+			{
+				"LV": 1,
+				"dmgtype": 2,
+				"dmgval": 8,
+				"efx": "FX016",
+				"opttype": "opt_turndmg",
+				"relative": true,
+				"when": "postturn"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K049": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "A false White Squid charm. Break the wearer (Suki) to shatter it.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Charm: Mending (warded)",
+		"option": [
+			{
+				"LV": 1,
+				"dmgtype": 2,
+				"dmgval": 4,
+				"efx": "FX016",
+				"opttype": "opt_turndmg",
+				"relative": true,
+				"when": "postturn"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			0,
+			0
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K050": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "The charm broke, and its wearer's nerve with it. Loses its actions.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Shattered",
+		"option": [],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K051": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "Soaked and battered by the sea. Speed down.",
+		"efx_cont": null,
+		"efx_start": "FX011",
+		"icon": "",
+		"name": "Slowed",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": -30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K052": {
+		"MAXLV": 1,
+		"ani": {
+			"id": "sick",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "The eel's shock. Loses the next turn.",
+		"efx_cont": null,
+		"efx_start": "FX013",
+		"icon": "",
+		"name": "Shocked",
+		"option": [
+			{
+				"LV": 1,
+				"flagbits": 51,
+				"opttype": "opt_skillflagseal"
+			},
+			{
+				"LV": 1,
+				"condbits": 32,
+				"elembits": 4095,
+				"formbits": 25,
+				"opttype": "opt_remcond",
+				"rate": 0.5,
+				"when": 1,
+				"whom": 1
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			1,
+			1
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 2,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": 0
+	},
+	"K053": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "The falcon's eye: accuracy and critical hits up.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Watchful Falcon",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": 15,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 15,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 0,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K054": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "Licked by a lantern. Confused for a moment.",
+		"efx_cont": null,
+		"efx_start": "FX006",
+		"icon": "",
+		"name": "Dazed",
+		"option": [
+			{
+				"LV": 1,
+				"condbits": 16,
+				"elembits": 4095,
+				"formbits": 25,
+				"opttype": "opt_remcond",
+				"rate": 1.0,
+				"when": 1,
+				"whom": 1
+			},
+			{
+				"LV": 1,
+				"cmdtgt": 15,
+				"opttype": "opt_skillreplace",
+				"order": 0,
+				"rate": 1.0,
+				"sealbits": 0,
+				"skillbits": 1,
+				"skillid": null,
+				"skillset": false
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			1,
+			2
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 32,
+		"resistg": 4,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": 32
+	},
+	"K055": {
+		"MAXLV": 0,
+		"ani": null,
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "Paper cuts. A little HP lost each turn, for three turns.",
+		"efx_cont": null,
+		"efx_start": "FX010",
+		"icon": "",
+		"name": "Bleeding",
+		"option": [
+			{
+				"LV": 1,
+				"dmgtype": 1,
+				"dmgval": 5.0,
+				"efx": "FX098",
+				"opttype": "opt_turndmg",
+				"relative": true,
+				"when": "postturn"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 1,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K056": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "A Moto's death-mask calm: immune to Terror and charm.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Death Trance",
+		"option": [],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			2,
+			2
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K057": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "A Tamori ward against fire: Fire damage halved.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Heat-Ward",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_elemdef",
+				"EDR.6": 50
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K058": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Tamotsu saw it coming. The next Wail or song can't take you; DEF up.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Veiled",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 30,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 2,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K059": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Faster than the current: Speed up.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Wind Technique",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 25,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K060": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Sayo stands in front of you: DEF up for a turn.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Shared Guard",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 30,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 2,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			1,
+			1
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K061": {
+		"MAXLV": 1,
+		"ani": {
+			"id": "sick",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"condtype": 1,
+		"deadtype": 0,
+		"desc": "Knocked off the log, soaked, climbing out. Loses two turns.",
+		"efx_cont": null,
+		"efx_start": "FX013",
+		"icon": "",
+		"name": "In the Canal",
+		"option": [
+			{
+				"LV": 1,
+				"flagbits": 51,
+				"opttype": "opt_skillflagseal"
+			},
+			{
+				"LV": 1,
+				"condbits": 32,
+				"elembits": 4095,
+				"formbits": 25,
+				"opttype": "opt_remcond",
+				"rate": 0.5,
+				"when": 1,
+				"whom": 1
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			2,
+			2
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 2,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": true,
+		"xcondbits": 0
+	},
+	"K062": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Out of her guard like a released spring: Speed up for a turn.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Hasten the Blade",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 60,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			2,
+			2
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	}
+}

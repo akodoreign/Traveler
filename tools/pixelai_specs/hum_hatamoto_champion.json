@@ -1,0 +1,187 @@
+{
+ "key": "hatamoto_champion",
+ "name": "Hatamoto's Champion",
+ "kind": "enemy",
+ "sheet": "hum_hatamoto_champion.png",
+ "prompt": "1boy, male focus, man, Hatamoto's Champion, fair skin, black hair, short hair, dark red lacquered lamellar armor, dark red kimono, dark brown hakama, kabuto, a katana with a steel blade and a black hilt, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#f6ceaa",
+   "ramp": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ],
+   "detect": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ]
+  },
+  "hair": {
+   "base": "#282228",
+   "ramp": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ],
+   "detect": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ]
+  },
+  "top": {
+   "base": "#8c2828",
+   "ramp": [
+    "#1b020a",
+    "#57101d",
+    "#8c2828",
+    "#af4a43",
+    "#ce7368"
+   ],
+   "detect": [
+    "#1b020a",
+    "#57101d",
+    "#8c2828",
+    "#af4a43",
+    "#ce7368"
+   ]
+  },
+  "lower": {
+   "base": "#3c2828",
+   "ramp": [
+    "#070305",
+    "#070405",
+    "#3c2828",
+    "#5f4a49",
+    "#7e716f"
+   ],
+   "detect": [
+    "#070305",
+    "#070405",
+    "#3c2828",
+    "#5f4a49",
+    "#7e716f"
+   ]
+  },
+  "armor": {
+   "base": "#782828",
+   "ramp": [
+    "#070103",
+    "#430f19",
+    "#782828",
+    "#9b4843",
+    "#ba7067"
+   ],
+   "detect": [
+    "#070103",
+    "#430f19",
+    "#782828",
+    "#9b4843",
+    "#ba7067"
+   ]
+  },
+  "helm": {
+   "base": "#3c3c46",
+   "ramp": [
+    "#050507",
+    "#0d0d11",
+    "#3c3c46",
+    "#666569",
+    "#888888"
+   ],
+   "detect": [
+    "#050507",
+    "#0d0d11",
+    "#3c3c46",
+    "#666569",
+    "#888888"
+   ]
+  },
+  "accent": {
+   "base": "#dcbe50",
+   "ramp": [
+    "#6b2c13",
+    "#a76b2c",
+    "#dcbe50",
+    "#ffe176",
+    "#ffe894"
+   ],
+   "detect": [
+    "#6b2c13",
+    "#a76b2c",
+    "#dcbe50",
+    "#ffe176",
+    "#ffe894"
+   ]
+  },
+  "lace": {
+   "base": "#dcbe5a",
+   "ramp": [
+    "#6b2e18",
+    "#a76d33",
+    "#dcbe5a",
+    "#ffe281",
+    "#ffe9a0"
+   ],
+   "detect": [
+    "#6b2e18",
+    "#a76d33",
+    "#dcbe5a",
+    "#ffe281",
+    "#ffe9a0"
+   ]
+  }
+ }
+}

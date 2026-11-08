@@ -1,0 +1,265 @@
+//
+//	Rokugan Traveler dialog busts (Octopath / mobile-JRPG style): a painted head-and-shoulders portrait of the speaker
+//	stands bottom-left, behind the dialog box, while she talks. Images: resource/bust/<key>/<emotion>.png and
+//	<variant>_<emotion>.png (tools/gen_busts.py, made with ComfyUI); the name -> key table is RokuganBustData.sk.
+//
+//	Which bust:  the message's speaker name (cmd.name; "Hiruma Natsuko", "Natsuko", "Shosuro Mitsue (thinking)" all
+//	             resolve). Narration (empty name) and speakers without a bust show none.
+//	Emotion:     1. a leading tag in the text, stripped before display: "[angry] Get away from the cart!"
+//	                (neutral happy angry sad surprised worried determined hurt)
+//	             2. or a field on the message command: { cmd = "cmd_showmsg", ..., emo = "angry" }
+//	             3. else guessed from the line (keywords and punctuation: ::Rokugan.bustGuess)
+//	Scene look:  a leading tag naming a variant ("[bath]", "[bath happy]"), a field bustvar = "bath", or the sticky
+//	             scene look ::Rokugan.bustScene( "bath") from a cmd_script (cleared on every map change), or the map's
+//	             own look (::Rokugan.bustmapscene, from gen_busts.py MAP_SCENES: the Winter Court floors -> "court").
+//	             Variants a character has no images for fall back to her default look.
+//	-rtfast logs "[RT] BUST <key>/<file>" for each line instead of drawing it.
+//
+::Rokugan.bustscene <- null;
+::Rokugan.bustScene <- function( v){ this.bustscene = v; printf( "[RT] bust scene %S\n", v); };
+::Rokugan.busttex <- {};
+::Rokugan.bustview <- null;
+::Rokugan.bustfile <- null;
+::Rokugan.bustkey <- null;
+::Rokugan.busthold <- {};		//	key -> emotion held across a stretch of dialogue instead of guessing line by line
+::Rokugan.bustHold <- function( key, emo = null){ this.busthold[key] <- emo; };
+::Rokugan.bustoff <- ::arguments.indexOf( "-rtnobust") >= 0;
+
+local EMOS = ["neutral", "happy", "angry", "sad", "surprised", "worried", "determined", "hurt"];
+local BUST_H = 640.0;			//	smallest on-screen height (720-line screen)
+local BUST_X = 0.0;
+local BUST_CHIN = 380.0;		//	the chin sits here: above the box's name tab (top ~392), so the whole face shows
+local BUST_DROP = 12.0;			//	at least this much of the image goes below the bottom edge (no gap under the bust)
+
+//	The speaker's bust key, or null.
+::Rokugan.bustKey <- function( name){
+	if( !name || name == "") return null;
+	local t = ::Rokugan.bustnames;
+	if( name in t) return t[name];
+	local p = name.indexOf( " (");
+	if( p > 0){
+		local n = name.substring( 0, p);
+		if( n in t) return t[n];
+	}
+	local g = ::Rokugan.bustgeneric;				//	a stand-in until this speaker has a bust of their own (tools/gen_bust_generics.py)
+	return (name in g) ? g[name] : null;
+};
+
+//	Keyword / punctuation guess for an untagged line (lower-cased text). Order matters: pain beats shock beats anger...
+local KW = [
+	["hurt",       ["ugh", "argh", "agh!", "nngh", "ngh", "gah", "my arm", "i'm hit", "bleeding", "it hurts", "wound"]],
+	["surprised",  ["?!", "!?", "what?", "impossible", "how can", "you're alive", "no way", "eh?", "huh?"]],
+	["angry",      ["damn", "curse", "bastard", "how dare", "fool", "coward", "enough!", "get out", "silence!", "liar", "dishonor", "dishonour", "kill you"]],
+	["sad",        ["sorry", "forgive me", "i failed", "dead", "died", "grief", "mourn", "alas", "lost him", "lost her", "never came back", "gone."]],
+	["worried",    ["careful", "afraid", "i fear", "worry", "worried", "i hope", "danger", "taint", "what if", "something's wrong", "something is wrong", "be safe"]],
+	["happy",      ["thank", "ha!", "haha", "heh", "glad", "wonderful", "well done", "good work", "welcome", "delicious", "beautiful", "my friend", "fortunes smile"]],
+	["determined", ["i will", "i'll ", "we must", "i must", "let's go", "we go", "on my honor", "on my honour", "i swear", "stand fast", "follow me", "the wall"]],
+];
+::Rokugan.bustGuess <- function( text){
+	local s = text.toLowerCase();
+	foreach( e in KW){
+		foreach( k in e[1]) if( s.indexOf( k) >= 0) return e[0];
+	}
+	local n = length( s);
+	if( n && s[n-1] == '!') return "determined";
+	if( n >= 3 && s.substring( n - 3) == "...") return "worried";
+	return "neutral";
+};
+
+//	Leading "[a b]" tags: returns [emo, variant, text without the tag]; anything that isn't an emotion or a variant of
+//	this character is left alone (RichText tags like [p] stay).
+local takeTag = function( key, text){
+	local emo = null, vr = null;
+	if( typeof( text) != SS_STRING || !length( text) || text[0] != '[') return [null, null, text];
+	local e = text.indexOf( "]");
+	if( e < 0) return [null, null, text];
+	local vars = ::Rokugan.bustvars[key] || [];
+	local ok = true;
+	foreach( w in text.substring( 1, e).split( " ")){
+		if( w == "") continue;
+		if( EMOS.indexOf( w) >= 0) emo = w;
+		else if( vars.indexOf( w) >= 0 || w == "base") vr = w;
+		else ok = false;
+	}
+	if( !ok || (!emo && !vr)) return [null, null, text];
+	local rest = text.substring( e + 1);
+	while( length( rest) && rest[0] == ' ') rest = rest.substring( 1);
+	return [emo, vr, rest];
+};
+
+//	Strip a leading emotion / variant tag from any text (also for speakers without a bust: the tag never shows).
+local stripAnyTag = function( text){
+	if( typeof( text) != SS_STRING || !length( text) || text[0] != '[') return text;
+	local e = text.indexOf( "]");
+	if( e < 0) return text;
+	local words = text.substring( 1, e).split( " ").filter( @( w) w != "");
+	if( !length( words)) return text;
+	foreach( w in words) if( EMOS.indexOf( w) < 0 && ["travel", "court", "bath", "night", "base"].indexOf( w) < 0) return text;
+	local rest = text.substring( e + 1);
+	while( length( rest) && rest[0] == ' ') rest = rest.substring( 1);
+	return rest;
+};
+
+::Rokugan.bustTexture <- function( path){
+	local tex = this.busttex[path];
+	if( tex) return tex;
+	try{
+		local img = ::getResource( path).getContent();
+		img.premultAlpha();
+		tex = Texture();
+		tex.load( img, 0);
+	}catch( ex){
+		printf( "[RT] bust missing %S\n", path);
+		return null;
+	}
+	this.busttex[path] <- tex;
+	return tex;
+};
+
+//	Pick the file for this line: [key, file path] or null.
+::Rokugan.bustFor <- function( cmd, text){
+	local key = this.bustKey( cmd["name"]);
+	if( !key) return null;
+	local t = takeTag( key, text);
+	local emo = t[0] || this.busthold[key] || cmd["emo"] || this.bustGuess( t[2]);
+	local vars = this.bustvars[key] || [];
+	local st = ::rpgstage, ms = st ? this.bustmapscene[st["mapid"]] : null;
+	local vr = t[1] || cmd["bustvar"] || this.bustscene || ms;
+	if( vr == "base" || vars.indexOf( vr) < 0) vr = null;
+	local emos = this.bustemos[key] || [];
+	if( emos.indexOf( emo) < 0) emo = "neutral";
+	local f = "/resource/bust/" .. key .. "/" .. (vr ? vr .. "_" : "") .. emo .. ".png";
+	local fc = this.bustfaces[key];
+	return [key, f, t[2], fc ? (fc[vr || "base"] || fc["base"]) : null];
+};
+
+//	The view: an image in the "message" layer, inserted first so the dialog box draws over it. It fades out by itself
+//	once no dialog box has been up for a moment (end of the conversation, a narration line, a menu).
+class RTBustView extends SKImageView
+{
+	idle = 0.0;
+	alpha = 0.0;
+	target = 1.0;
+
+	constructor( tex){
+		super( Sprite( tex));						//	(super must be the constructor's first statement)
+		sp.blend = SK_PMAMIX;
+		name = "rt_bust";
+		enabled = false;
+		setColor( 0xffffff00);
+		addUpdateFunc( this.tick.bindenv( this));
+	}
+
+	//	face = [centre x, face top y, chin y] as fractions of the image (RokuganBustData.sk bustfaces): the chin goes to
+	//	BUST_CHIN and the bust is scaled up until its bottom still reaches below the screen edge.
+	function place( tex, face){
+		local sp = Sprite( tex);
+		sp.blend = SK_PMAMIX;
+		setSprite( sp);
+		local lyr = parent;
+		local sh = lyr ? lyr.bnd.h : 720.0, k = sh / 720.0;
+		local chin = face ? face[2] : 0.58;			//	(no face data: assume a lower chin, so the face errs upward)
+		local cy = BUST_CHIN * k;
+		local h = Math.max( BUST_H * k, (sh + BUST_DROP * k - cy) / (1.0 - chin));
+		local w = h * tex.width / tex.height;
+		setRect( BUST_X, cy - chin * h, w, h);
+		setColor( 0xffffff00 | int( alpha * 255));
+	}
+
+	function tick( dt){
+		local msg = parent ? parent.findChild( "message_talk") : null;
+		if( msg && target > 0.0) idle = 0.0; else idle += dt;
+		if( idle > 180.0) target = 0.0;
+		local step = dt / 160.0;
+		if( alpha < target) alpha = Math.min( target, alpha + step);
+		else if( alpha > target) alpha = Math.max( target, alpha - step);
+		setColor( 0xffffff00 | int( alpha * 255));
+		if( alpha <= 0.0 && target <= 0.0){
+			if( ::Rokugan.bustview == this){ ::Rokugan.bustview = null; ::Rokugan.bustfile = null; ::Rokugan.bustkey = null; }
+			removeFromParent();
+			return false;
+		}
+		return true;
+	}
+}
+
+::RTBustView <- RTBustView;
+
+::Rokugan.bustShow <- function( key, file, face = null){
+	local tex = this.bustTexture( file);
+	if( !tex) return this.bustHide();
+	local lyr = ::rootview.findChild( "message");
+	if( !lyr) return;
+	local v = this.bustview;
+	if( v && (v.parent != lyr || v.target <= 0.0 || key != this.bustkey)){	//	gone with a map change, fading, or another speaker
+		if( v.parent) v.removeFromParent();
+		v = this.bustview = null;
+	}
+	if( !v){
+		v = this.bustview = ::RTBustView( tex);
+		lyr.insertChild( 0, v);
+	}
+	v.target = 1.0;
+	v.idle = 0.0;
+	if( this.bustfile != file) v.place( tex, face);
+	this.bustfile = file;
+	this.bustkey = key;
+};
+
+::Rokugan.bustHide <- function(){
+	local v = this.bustview;
+	if( v) v.target = 0.0;
+};
+
+local bustShowMessage = function( cmd){
+	if( cmd["key"] == "message_talk" && !cmd["op"]){
+		local c = this.replaceTemplate( cmd);
+		local text = c["text"] || "";
+		local b = ::Rokugan.bustFor( c, text);
+		local clean = b ? b[2] : stripAnyTag( text);
+		::Rokugan.ui.msgLines( clean);
+		if( clean != text){ cmd = clone cmd; cmd.text = clean; }
+		if( ::Rokugan.rtfast){
+			if( b) printf( "[RT] BUST %S\n", b[1].substring( 15));
+		}else if( b && !::Rokugan.bustoff){
+			::Rokugan.bustShow( b[0], b[1], b[3]);
+		}else{
+			::Rokugan.bustHide();
+		}
+	}
+	return this._rt_bust_showMessage( cmd);
+};
+foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]){
+	cls._rt_bust_showMessage <- cls.showMessage;
+	cls.showMessage <- bustShowMessage;
+}
+
+//	The scene look lasts one map: cleared on every stage launch (a bathhouse scene sets it again on arrival).
+::RPGStage._rt_bust_launch <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	::Rokugan.bustscene = null;
+	::Rokugan.bustview = null;
+	::Rokugan.bustfile = null;
+	return _rt_bust_launch( opt);
+};
+
+//	-rtbustdemo "<name>|<text>" (test flag): 2.5 s after the first map loads, show that line as a dialog with its bust,
+//	the same way an event line would (tags, guess, scene look). For screenshots with -rtshot; tools/testbust.py.
+{
+	local i = ::arguments.indexOf( "-rtbustdemo");
+	if( i >= 0 && i + 1 < length( ::arguments)){
+		local a = ::arguments[i+1].split( "|");
+		newthread().start( @(){
+			while( !::rpgstage || !::rootview.findChild( "message")) sleep( 200);
+			sleep( 2500);
+			if( a[0] == "?spot"){ ::Rokugan.spotlight( a[1]); return; }
+			if( a[0] == "?choice"){ local l = []; foreach( i, s in a) if( i) l .. s; ::RPGMain.showUI( { key = "dialog_choices", list = l }); return; }
+			local nm = a[0], tx = length( a) > 1 ? a[1] : "...";
+			if( nm == "?hold"){ ::Rokugan.bustHold( a[1], a[2]); nm = a[3]; tx = a[4]; }
+			local cmd = { key = "message_talk", name = nm, text = tx, uiclose = 1 };
+			local b = ::Rokugan.bustFor( cmd, cmd.text);
+			if( b){ cmd.text = b[2]; ::Rokugan.bustShow( b[0], b[1], b[3]); printf( "[RT] BUST %S\n", b[1].substring( 15)); }
+			::RPGMain.showUI( cmd);
+		});
+	}
+}

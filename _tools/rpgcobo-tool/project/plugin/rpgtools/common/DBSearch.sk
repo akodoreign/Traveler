@@ -1,0 +1,210 @@
+import VirtualKeyCode;
+import ModifiersMask;
+
+////////////////////////////////////////////////////////////////////////////////
+//	
+//	Ctrl+Kでデータベースのキーワード検索。ProjectSearchPopupの機能拡張。
+//	検索は全てwstringに変換して行う。
+//	
+//	・各DBのname, desc, memo。
+//	・マップのイベント内の全てのコマンドに含まれる文字列, ---
+//	・dictの値
+//	・storeの要素？
+//	・タイプ
+//	・マクロ内のコマンド
+//	・グローバル変数
+//	・.uiは検索むりかな。
+//	
+
+local srcdir = dirname( callee().getSourceName());
+
+//	検索は部分一致。nameとdescに分離して、nameは常にDB項目名、descはヒットした文字列が入る（nameがヒットした場合はdesc）。
+//	スコアは算出しにくいが、name, desc, その他の順になる。あとは単純にヒット順か。
+//	
+class GotoDBSearch
+{
+	static searchdbtypes = ["player","job","cond","skill","item","weapon","armor","enemy","map","quest","store","macro"];
+	static ITEMUIPATH = srcdir .. "/ui/dbsearchitem.ui"
+
+	popup = null;			//	ProjectSearchPopup
+
+	constructor( p){
+		popup = p;
+	}
+
+	function activate(){
+		popup.textedit.setDefaultText( "$T.search_gotodb");
+		local list = popup.list;
+		list.listview.setRowCount( 0);
+		list.listview.setRowPath( ITEMUIPATH);
+		
+		local hlfunc( lbl, str, k){
+			local tb = lbl.textbox, a0 = lbl.fontattr;
+			local a1 = with (clone a0){ flags |= 2; color = 0x00ccffff; }
+			local ws = wstring( str), wk = wstring( k);
+			local klen = length( ws);
+			local i = ws.indexOf( wk);
+			tb.setAttribute( a1, i, i+length( wk));
+		}
+		
+		list.setviewfunc = @( la, v, i){
+			local val = i[0], k = i[1], sc = i[2]%100000.0;
+			local dirlbl = v.findChild( "dir");
+			local namelbl = v.findChild( "name");
+			local desc = val.desc;	//	descが長くなり過ぎないように。。。
+			if( length( desc) >= 32){
+				local wd = wstring( desc), wk = wstring( k), dlen = length( wd);
+				local i = sc<100000.0? -1 : wd.indexOf( wk), e;
+				if( i >= 0){
+					i = Math.clamp( Math.min( i, dlen-24), 0, dlen);
+					e = Math.min( i+24, dlen-i);
+					desc = string( wd.substring( i, e));
+				}else{
+					e = Math.min( 32, dlen);
+					desc = dlen<=32 ? wd : string( wd.substring( 0, 32)) .. "…";
+				}
+			}
+			dirlbl.resetAttribute(); dirlbl.setText( desc);
+			namelbl.resetAttribute(); namelbl.setText( val.name);
+			v.setValue( "icon", val.icon || "");
+			v.findChild( "hist").setVisible( false);
+			if( sc >= 10000.0){
+				hlfunc( namelbl, val.name, k);
+			}else
+			if( sc >= 5000.0){
+				hlfunc( namelbl, val.id, k.toUpperCase());
+			}else
+			if( sc >= 0.0){
+				hlfunc( dirlbl, desc, k);
+			}
+		};
+		defaultlist();
+	}
+
+	function textevent( e){
+		local k = popup.textedit.getText();
+		if( k==""){
+			defaultlist();
+		}else{
+			search( k);
+		}
+	}
+
+	function listevent( e){
+	}
+	
+	//	openhistoryを元に。
+	function defaultlist(){
+		// local a = ::skstudio.openhistory.map( @( v){
+		// 	local r = ::getResource( v);
+		// 	if( !r) return undefined;
+		// 	return ( r, "", 100000.0);
+		// });
+		// popup.list.setListItems( a);
+		popup.list.setListItems( []);
+	}
+
+	//	
+	function _searchdb( dbtype, db, k, a){
+		local uk = k.toUpperCase();
+		foreach( i, v in db){
+			if( i[0]=='_') continue;
+			local sc = 0.0;
+			local name = v["name"]||"", desc = v["desc"]||"";
+			if( name.contains( k)) sc = 10000.0;
+			else if( i.contains( uk)) sc = 5000.0;
+			else if( desc.contains( k)) sc = 1000.0;
+			else if( v["memo"] && v.memo.contains( k)){ sc = 100.0; desc = memo; }
+			if( sc > 0.0){
+				a .. [ { name="%S: %S"%(i,name), desc=desc, icon=v["icon"], id=i, focus=null }, k, sc];
+			}
+		}
+	}
+
+	function _searchgvar( gvar, k, a){
+		foreach( i, v in gvar){
+			if( i[0]=='_') continue;
+			local sc = 0.0;
+			local name = v["name"]||"", desc = string( v["defval"]);
+			if( name.contains( k)) sc = 10000.0;
+			else if( desc.contains( k)) sc = 1000.0;
+			else if( v["memo"] && v.memo.contains( k)){ sc = 100.0; desc = memo; }
+			if( sc > 0.0){
+				a .. [ { name="%S: %S"%(i,name), desc=desc, icon=v["icon"], path="/.x/game/gvar", focus=i }, k, sc];
+			}
+		}
+	}
+
+	//	マップのイベント
+	function _searchev( mapid, map, k, a){
+		if( mapid[0]=='_') return;
+		local chkmap = #{
+			"name":1, "text":1, "desc":1, "msg":1, "title":1, "texts":1, "text0":1, "text1":1, "text2":1, "text3":1, "text4":1, "text5":1, "text6":1, "text7":1, 
+		};
+		local fn( ev, evid, t){
+			foreach( i, v in t){
+				if( typeof( v)==SS_STRING && chkmap[i] && v.contains( k)){
+					local sc = 10.0;
+					a .. [ { name="%S: %S %S"%(mapid,map.name,ev.name), desc=v, icon=null, id=mapid, focus=evid, }, k, sc]
+					return true;
+				}
+			}
+			foreach( v in t){
+				if( typeof( v)>=SS_TABLE && fn( ev, evid, v)) return true;
+			}
+		}
+		//	
+		foreach( evid, ev in map.event){
+			fn( ev, evid, ev);
+		}
+		foreach( mkid, mk in map.marker){
+			fn( mk, mkid, mk);
+		}
+	}
+
+	//	リストだけ取得
+	//	
+	function _search( k, conf){
+		local a = [];
+		foreach( i in searchdbtypes){
+			_searchdb( i, ::conf[i], k, a);
+		}
+		_searchgvar( ::conf.gvar, k, a);
+		foreach( mapid, map in ::conf.map){
+			_searchev( mapid, map, k, a);
+		}
+		a.sort( @( v) -v[2]);
+		return a;
+	}
+
+	//	最大200件まで
+	//	
+	function search( k){
+		local a = _search( k, ::conf);
+		if( length( a) > 500) a.resize( 500);
+		popup.list.setListItems( a);
+		if( length( a)) popup.list.setSelectedIndex( 0);
+	}
+
+	//	
+	function gotoResult( r){
+		local path;
+		if( r[0]["path"]){
+			path = r[0].path;
+		}else{
+			local dataid = r[0].id;
+			local datatype = ::RPGData.getDataType( dataid);
+			path = ".x/%S/%S" % (datatype, dataid);
+		}
+		::skstudio.openEditor( path);
+		::skstudio.syncToSideView( path, true);
+	}
+}
+
+
+::skstudio.registerMenu( {
+	uid="search_gotodb", parentid="menu_view", block="*2", lbl="$T.search_gotodb", icon="\uea19", defkey="^K"
+	func = @( mi){
+		ProjectSearchPopup.run( GotoDBSearch);
+	}
+});

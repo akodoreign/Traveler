@@ -1,0 +1,119 @@
+{
+ "key": "oharu",
+ "name": "Kitsuki Oharu",
+ "kind": "side",
+ "sheet": "side_oharu.png",
+ "prompt": "1girl, woman, Kitsuki Oharu, fair skin, sage green hair, bun hair, sage green kimono, green hakama, a folding fan, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#f6ceaa",
+   "ramp": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ],
+   "detect": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ]
+  },
+  "hair": {
+   "base": "#9c9ca4",
+   "ramp": [
+    "#272733",
+    "#5f5f6f",
+    "#9c9ca4",
+    "#c7c7c7",
+    "#e6e6e6"
+   ],
+   "detect": [
+    "#272733",
+    "#5f5f6f",
+    "#9c9ca4",
+    "#c7c7c7",
+    "#e6e6e6"
+   ]
+  },
+  "top": {
+   "base": "#96aa6e",
+   "ramp": [
+    "#39301a",
+    "#757540",
+    "#96aa6e",
+    "#becd99",
+    "#e4eccc"
+   ],
+   "detect": [
+    "#39301a",
+    "#757540",
+    "#96aa6e",
+    "#becd99",
+    "#e4eccc"
+   ]
+  },
+  "lower": {
+   "base": "#606e46",
+   "ramp": [
+    "#070603",
+    "#39391f",
+    "#606e46",
+    "#86916b",
+    "#a9b096"
+   ],
+   "detect": [
+    "#070603",
+    "#39391f",
+    "#606e46",
+    "#86916b",
+    "#a9b096"
+   ]
+  }
+ }
+}

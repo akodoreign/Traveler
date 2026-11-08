@@ -1,0 +1,210 @@
+{
+	"J000": {
+		"MAXLV": 10,
+		"desc": "A traveler on the roads of Rokugan.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [],
+		"name": "Traveler",
+		"option": [
+			{
+				"CDR.0": 10,
+				"CDR.1": 0,
+				"CDR.2": 0,
+				"CDR.3": 0,
+				"opttype": "opt_conddef"
+			}
+		]
+	},
+	"J001": {
+		"MAXLV": 10,
+		"desc": "選ばれたもののみが就くことが出来る特別な職業。",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": 0,
+		"jobslotbits": 1,
+		"lvoption": [],
+		"name": "Champion",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 10,
+				"valtype": "baserate"
+			},
+			{
+				"opttype": "opt_status",
+				"propid": "MAXHP",
+				"val": 20,
+				"valtype": "baserate"
+			},
+			{
+				"eqflag": 0,
+				"opttype": "opt_eqflag"
+			},
+			{
+				"CDR.0": 0,
+				"CDR.1": 0,
+				"CDR.2": 0,
+				"CDR.3": 0,
+				"CDR.4": 30,
+				"CDR.5": 0,
+				"CDR.6": 0,
+				"CDR.7": 0,
+				"opttype": "opt_conddef"
+			}
+		]
+	},
+	"J100": {
+		"MAXLV": 1,
+		"desc": "",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Righteous Heart",
+		"option": [
+			{
+				"condid": "K040",
+				"opttype": "opt_autocond",
+				"req": "hp25"
+			}
+		]
+	},
+	"J101": {
+		"MAXLV": 1,
+		"desc": "いかなる状況にも動じない鉄の心を持つ。\n精神系の状態異常に耐性が付く。",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Iron Will",
+		"option": [
+			{
+				"CDR.0": 0,
+				"CDR.1": 0,
+				"CDR.2": 30,
+				"CDR.3": 0,
+				"CDR.4": 30,
+				"CDR.5": 0,
+				"CDR.6": 0,
+				"CDR.7": 30,
+				"opttype": "opt_conddef"
+			}
+		]
+	},
+	"J102": {
+		"MAXLV": 1,
+		"desc": "弱った見方をかばう。",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Bushido",
+		"option": [
+			{
+				"CDR.0": 0,
+				"CDR.1": 0,
+				"CDR.2": 30,
+				"CDR.3": 0,
+				"CDR.4": 30,
+				"CDR.5": 0,
+				"CDR.6": 0,
+				"CDR.7": 30,
+				"opttype": "opt_conddef"
+			}
+		]
+	},
+	"J103": {
+		"MAXLV": 1,
+		"desc": "",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Light Fingers",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "STL",
+				"val": 30,
+				"valtype": "baserate"
+			}
+		]
+	},
+	"J104": {
+		"MAXLV": 1,
+		"desc": "軽やかなステップで敵の攻撃をかわす。",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Wind Step",
+		"option": [
+			{
+				"elembits": 7,
+				"formbits": 1,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"opttype": "opt_parry",
+				"successrate": 0.15
+			}
+		]
+	},
+	"J105": {
+		"MAXLV": 1,
+		"desc": "Attack up at the start of each battle.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Strike First",
+		"option": [
+			{
+				"condid": "K020",
+				"opttype": "opt_autocond",
+				"req": "turn1"
+			}
+		]
+	},
+	"_meta": {
+		"caps": 200,
+		"version": 1
+	}
+}

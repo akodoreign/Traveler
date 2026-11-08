@@ -1,0 +1,5374 @@
+{
+	"I000": {
+		"consume": 1,
+		"desc": "A useless thing.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Pebble",
+		"option": [],
+		"price": 5,
+		"skilltype": "unusable",
+		"stacknum": 99
+	},
+	"I001": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "10",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Restores HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Healing Herb",
+		"occasion": 3,
+		"option": [],
+		"price": 5,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I004": {
+		"HACT": null,
+		"acttest": null,
+		"aimani": null,
+		"cmdtgt": 0,
+		"consume": 1,
+		"desc": "A night's rest in the open: restores the whole party's HP and MP. Not usable in dangerous places.",
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"macroid_battle": null,
+		"macroid_menu": "X017",
+		"name": "Travel Tent",
+		"occasion": 2,
+		"option": [],
+		"price": 100,
+		"skilltype": "macro",
+		"spdrate": 1.0,
+		"stacknum": 10,
+		"useact": {
+			"id": "noop",
+			"scp": null
+		},
+		"warg": null
+	},
+	"I010": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "30",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Restores HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Tonic",
+		"occasion": 3,
+		"option": [],
+		"price": 5,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I011": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "300",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Restores HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Strong Tonic",
+		"occasion": 3,
+		"option": [],
+		"price": 5,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I016": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "30",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Revives a fallen ally.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 636,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Revival Draught",
+		"occasion": 3,
+		"option": [],
+		"price": 5,
+		"remconds": 1,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I018": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "0",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Cures Poison.",
+		"dmgform": 5,
+		"dmgtype": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX020",
+			"hitsnd": "SE224",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Antidote",
+		"occasion": 3,
+		"option": [],
+		"price": 5,
+		"remconds": 2,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I019": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "0",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "毒、麻痺、盲目、封印を直す。",
+		"dmgform": 5,
+		"dmgtype": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX020",
+			"hitsnd": "SE224",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Panacea",
+		"occasion": 3,
+		"option": [],
+		"price": 5,
+		"remconds": 590,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I020": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "0",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "睡眠、混乱、魅了を直す。",
+		"dmgform": 5,
+		"dmgtype": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX021",
+			"hitsnd": "SE225",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Waking Bell",
+		"occasion": 1,
+		"option": [],
+		"price": 5,
+		"remconds": 304,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"_meta": {
+		"caps": 100,
+		"version": 1
+	},
+	"I100": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "20",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "A Wall ration wrapped in leaves. Restores some HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Rice Ball",
+		"occasion": 3,
+		"option": [],
+		"price": 20,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I101": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "40",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Bitter green paste. Restores a good deal of HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Herbal Salve",
+		"occasion": 3,
+		"option": [],
+		"price": 60,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I102": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "15",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Two zeni, or one if you smile.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Salt Herring",
+		"occasion": 3,
+		"option": [],
+		"price": 2,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I103": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "0",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Cures Blind.",
+		"dmgform": 5,
+		"dmgtype": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX020",
+			"hitsnd": "SE224",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Eye Drops",
+		"occasion": 3,
+		"option": [],
+		"price": 15,
+		"remconds": 4,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I104": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "45",
+		"cmdtgt": 1,
+		"consume": 1,
+		"desc": "A pinch of powdered jade. Burns the Tainted (Jade damage).",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Jade Dust",
+		"occasion": 1,
+		"option": [],
+		"price": 80,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 2048
+	},
+	"I110": {
+		"consume": 1,
+		"desc": "A child's signal mirror, found in the Egg Caves. Return it in Hoshi-no-Ichi.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Kite Mirror",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I111": {
+		"consume": 1,
+		"desc": "A carved fish with careful fins. Gonta's boy made it.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Wooden Fish",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I112": {
+		"consume": 1,
+		"desc": "A cheap, pretty hairpin. Kiyo's, by the look of it.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Pearl Hairpin",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I113": {
+		"consume": 1,
+		"desc": "A shugenja's field scroll (Water). Haruki can learn it.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Scroll: Summon Fog",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I114": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "0",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Daubed with a child's nightmare. Cracking it cures Silence. (Ryozo's)",
+		"dmgform": 5,
+		"dmgtype": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX020",
+			"hitsnd": "SE224",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Painted Egg",
+		"occasion": 3,
+		"option": [],
+		"price": 30,
+		"remconds": 8,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I190": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "70",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "A bitter root tonic from the year-400 market. Restores most of your HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ginseng Tonic",
+		"occasion": 3,
+		"option": [],
+		"price": 400,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I115": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "30",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "No egg. Just the drop. Very pure. Very Crab. Kiyo's thank-you.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Drop Soup",
+		"occasion": 3,
+		"option": [],
+		"price": 0,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I116": {
+		"consume": 1,
+		"desc": "A carved fish, the twin of the one you returned. Gonta will come once if you ask (Crab Ch2).",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Hidden Ones' Thanks",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I117": {
+		"consume": 1,
+		"desc": "Glossy and black. The kite child swears it brings luck. Merchants pay a little.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Crow Feather",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I120": {
+		"consume": 1,
+		"desc": "Takakana's third flare. Blue: something none of us has seen before.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Blue Flare",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I121": {
+		"consume": 1,
+		"desc": "From the troll's chains. The cut is clean and bright: a rasp, not a struggle.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Filed Chain Link",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I122": {
+		"consume": 1,
+		"desc": "From Kuhime's room. Silk from the Crane coast, not the Phoenix.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Blue-Silk Veil Thread",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I123": {
+		"consume": 1,
+		"desc": "Keiyomi's ribbon from the Tunnel of Quiescent Flame.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Unicorn Dance Ribbon",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I124": {
+		"consume": 1,
+		"desc": "A forge-master's plan. Sells for a fortune, or trade it at a Kaiu forge.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Kaiu Tetsubo Blueprint",
+		"option": [],
+		"price": 1500,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I140": {
+		"consume": 1,
+		"desc": "Heaven's Glory Reflected in the Soul's Steel: a Kakita wakizashi. Look at it and you measure yourself against the ideal samurai. (Key item)",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Heaven's Glory",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I141": {
+		"consume": 1,
+		"desc": "Lord Goroso's taxes on the village, year by year. They have tripled.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Pleasant Eaves Tax Ledger",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I142": {
+		"consume": 1,
+		"desc": "A letter inside, to his mother. Never sent.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Morishu's Inro",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I143": {
+		"consume": 1,
+		"desc": "The harbour master's chart: the land-bridge is open at low tide, dawn and dusk.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Tide Chart",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I144": {
+		"consume": 1,
+		"desc": "From Chihaya's sash: a Lion patron pays the White Squid to bleed the Crane coast. Signed Matsu Tadanobu.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Tadanobu's Letters",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I145": {
+		"consume": 1,
+		"desc": "The stolen tribute: a lacquered screen for the Emperor's winter palace. Slightly damp.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Emperor's Screen",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I147": {
+		"consume": 1,
+		"desc": "A noh play, banned four hundred years. Written by \"a survivor of the court of Komatsu\". It knows Doji Nashiko's weaknesses. (Key item)",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Empress of Nothing",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I149": {
+		"consume": 1,
+		"desc": "Misfiled for four centuries. It mentions \"the bride who never blinked\".",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Komatsu's Steward's Diary",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I151": {
+		"consume": 1,
+		"desc": "From the tea house's back room: troop counts on Lord Hiruto's border, in a Crane hand.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Crane Spy's Note",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I152": {
+		"consume": 1,
+		"desc": "Isawa Hoju forged them to bind O-Tamai. The lock grows cold when it faces the spirit. (Key item: a compass)",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Jade Chains",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I155": {
+		"consume": 1,
+		"desc": "O-Tamai's ring, slid off a borrowed finger. Cold, and it hums. (Lore)",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Bloodspeaker's Ring",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I157": {
+		"consume": 1,
+		"desc": "The painting contest's prize: a scroll in a judge's hand, praising a snowflake on a sword blade.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Scroll of Acclaim",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I158": {
+		"consume": 1,
+		"desc": "Letters between Akodo Kafu and Akodo Nishi. The oni read them aloud in his own voice.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Kafu's Love Letters",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I159": {
+		"consume": 1,
+		"desc": "Toturi's message for the old man of Kaze-no-Tani, sealed with the Champion's mon. Cracked by the cold. \"Kill these messengers.\"",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Lacquered Tube",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I160": {
+		"consume": 1,
+		"desc": "A Miya travel writ, and a letter to a Crane general in the same hand: \"the Lion will attack at the river by the next moon\". The Lion have no such plan.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Miya Letters",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I164": {
+		"consume": 1,
+		"desc": "Matsu Rokuro's own sword-knot, given in the shallows. \"I was so frightened. Thank you.\"",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Rokuro's Gratitude",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I165": {
+		"consume": 1,
+		"desc": "A charred crate lid from the Magonojo warehouses, stamped with Crane army supply marks. The Phoenix were feeding the Crane.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Stamped Crate Lid",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I166": {
+		"consume": 1,
+		"desc": "Isawa Hoju's unfinished history of a family that doesn't want one. \"In the third year, the family's shugenja bound a grave evil in the west.\"",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Hoju's History",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I167": {
+		"consume": 1,
+		"desc": "A child's folded note from under the Jade Chains, in Haruki's own handwriting. He hasn't unfolded it.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "A Folded Note",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I169": {
+		"consume": 1,
+		"desc": "Ikoma Sadahisa's scroll: an undying dark side of the Phoenix, reborn in its greatest shugenja. Written in fear, by a gentle hand: Mieko's.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "\"The Consumer\"",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I171": {
+		"consume": 1,
+		"desc": "An Isawa field scroll from the treaty archive: Tremor shakes loose what is stuck in stone. (Field spell)",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Scroll: Tremor",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I172": {
+		"consume": 1,
+		"desc": "From the Silent Court's masters, for the boy who refused to forget. Haruki knows the spell now.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Scroll: Courage of the Seven Thunders",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I173": {
+		"consume": 1,
+		"desc": "A dying healer's scroll. \"It won't cure this. It'll teach you what cure means.\" Haruki knows the spell now.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Scroll: Hand of Jurojin",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I174": {
+		"consume": 1,
+		"desc": "A secret of Air from Isawa Uona: walking in another's dreams. \"I think you'll need it soon.\"",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Scroll: Dreamwalker",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I176": {
+		"consume": 1,
+		"desc": "A black go stone from Mieko's childhood room. A captured stone, once.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "A Child's Go Stone",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I178": {
+		"consume": 1,
+		"desc": "Kitsuki Oharu's magistrate seal, pressed into a junior yoriki's hand. \"They won't respect it in your hands. Use it anyway.\"",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Oharu's Seal",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I179": {
+		"consume": 1,
+		"desc": "A ferry token for Tortoise Island, from the beach. Kumpei's sail went that way.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Tortoise Ferry Token",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I180": {
+		"consume": 1,
+		"desc": "Oiled paper from the hollow in the Gusai wall: \"Ayaru. Then Jotaro. Then Nobue. Each of us has followed the old man.\" Togashi Akuro.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Monks' Notes",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I181": {
+		"consume": 1,
+		"desc": "From Kakita Kumpei's paint box: the same rare blue as the stolen tattoos' ink.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Rare Blue Pigment",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I182": {
+		"consume": 1,
+		"desc": "Dragon work, Tamori-style: an alembic from the new house on Tortoise Island. Our own clan's tools, in a murderer's kitchen.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Tamori Alembic",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I183": {
+		"consume": 1,
+		"desc": "A Dragon star-chart from the new house, marked in an old man's hand: dates, not stars. A map of when.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Brass Star-chart",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I184": {
+		"consume": 1,
+		"desc": "From the paint scraps in the cove: a pot of the same rare blue, still wet. It moves when you aren't looking.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Kumpei's Ink Pot",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I187": {
+		"consume": 1,
+		"desc": "The old Mirumoto's short blade. \"Clerks know the second stroke corrects the first.\" (Daisho Technique)",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Koshi's Wakizashi",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I188": {
+		"consume": 1,
+		"desc": "Three lacquered invitations from three gozoku lords. Three dinners, all at the same hour.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Three Invitations",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I189": {
+		"consume": 1,
+		"desc": "Small silvered mirrors, bought back from Kakita Miyoshi. They won't exist here for two hundred years. (She kept one.)",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Gaijin Mirrors",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I191": {
+		"consume": 1,
+		"desc": "Doji Tomeko's gift: a fan painted with the Crane's first wards. Lore, and worth a great deal to a collector.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Crane Ward Fan",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I193": {
+		"consume": 1,
+		"desc": "Gendo's copy of the coast burned into Shiro Izumida's floor: landing points, dates, arrows. An invasion plan.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Scorched Map",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I194": {
+		"consume": 1,
+		"desc": "The last vial of kami-ichor (Togashi's blood), saved from Kumpei's hip before it went over the rail.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Kami-ichor Vial",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I195": {
+		"consume": 1,
+		"desc": "Iron. Plain. A finger long. It once held the heart of Iuchiban, and it hums like a heartbeat through a wall. No tool we own can break it. (Cursed: Mitsue starts every battle with no Void)",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Iron Box",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I196": {
+		"consume": 1,
+		"desc": "A blood-red jasper scorpion. Shosuro Norie owes the bearer one impossible thing. Forgeries shorten lives.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Scorpion \"Favor\"",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I401": {
+		"consume": 1,
+		"desc": "Miya Hatomu's map of a city that didn't exist. Every street. Every one.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Hatomu's Map",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I402": {
+		"consume": 1,
+		"desc": "Rolled up inside Giseiki's mask: travel papers under the chop of a Scorpion lord three hundred years dead.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Antique Travel Papers",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I403": {
+		"consume": 1,
+		"desc": "A ceramic bell the size of a baby's fist, with no clapper. Gochu was paid five koku to shake it whenever Akodo Rin was alone.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Clapperless Bell",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I404": {
+		"consume": 1,
+		"desc": "Folded very small. \"...the war was set moving from Kyuden Bayushi. By the Champion's own hand. A distraction.\" Tell no one.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "General Furayaru's Letter",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I405": {
+		"consume": 1,
+		"desc": "Beeswax, warmed in the hand. Whatever you don't hear can't get into you. (Covered Ears)",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Wax Earplugs",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I406": {
+		"consume": 1,
+		"desc": "Small blood-red jasper scorpions: Mitsue's own Favors. One impossible thing each, from a nobody. Don't waste them on dinner.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Jasper Scorpions",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I407": {
+		"consume": 1,
+		"desc": "Smooth from twenty years in a pocket. Naohida paid for rice cakes with it when they were nine. Tamotsu took it.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "A Grey Pebble",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I408": {
+		"consume": 1,
+		"desc": "The tribunal's strongbox notes on eight grievances, in three hands. Tsune's says \"Scorpion\" in the margin of every page.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Case Notes",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I413": {
+		"consume": 1,
+		"desc": "The jade mine's last ledger. The final page is an order to close the mine to everyone but the old master's men, in Kurosho's own hand.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Foreman's Ledger",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I414": {
+		"consume": 1,
+		"desc": "\"My son goes to the castle. Bring him home, if there is a home.\" Folded small, next to the pebble.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Nihime's Note",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I416": {
+		"consume": 1,
+		"desc": "An iron fork that hums one note forever. Karasu says a song sung backwards against it comes out the right way round.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Karasu's Tuning Fork",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I417": {
+		"consume": 1,
+		"desc": "A letter for Kurosho, in a courtesan's perfect hand, carried by a Yotomo pigeon. Three words: Look at me.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Pigeon's Letter",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I425": {
+		"consume": 1,
+		"desc": "\"Payment, Daigoro's band.\" Stamped with a Sono household seal. The judge's family is paying the murderer's friends.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Sono Chit",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I426": {
+		"consume": 1,
+		"desc": "A love poem from Mibu Ieko to the poet O-Sode, never delivered. The brushwork is terrible. The feeling isn't.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Ieko's Love Poem",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I427": {
+		"consume": 1,
+		"desc": "Four goblin baskets: offering coins, paper prayers, a bronze bell, a biwa, two large radishes.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Pilgrims' Loot",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I430": {
+		"consume": 1,
+		"desc": "Jinnai's prayer beads. One bead is a tiny carved snake. \"The mountain is yours.\" The Mountain of the White Snow.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Snake Beads",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I431": {
+		"consume": 1,
+		"desc": "An iron ring from an enforcer's pack, a snake swallowing its tail. Inside the band, very small: \"The line must stay true.\"",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Snake Ring",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I432": {
+		"consume": 1,
+		"desc": "An Ikoma travel writ, sealed in gold wax, fluttered off a young lord's saddle. Lion checkpoints wave its bearer through.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Sadanobu's Travel Writ",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I435": {
+		"consume": 1,
+		"desc": "A Yasuki chit, signed with a flourish: \"Ten off, for the matchmaker.\" Floating Flowers shops sell for less.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Kanemori's Discount",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I437": {
+		"consume": 1,
+		"desc": "Iron spikes that strap to straw sandals. Pilfered from an outfitter who charges pilgrims double. The ice ledges hold for them.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Climbing Spikes",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I438": {
+		"consume": 1,
+		"desc": "A baby's rattle of silver, chrysanthemums worked into it, from a frozen nursery. It has not been shaken in three hundred years.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Silver Rattle",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I440": {
+		"consume": 1,
+		"desc": "Two swords, drawn in a few strokes of ink, moving like a storm. Hikaru left it in the snow. Someday a Mirumoto student might read it.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Hikaru's Kata Scroll",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I441": {
+		"consume": 1,
+		"desc": "Lifted from a pilgrim's sleeve. Under the cipher, in a careless hand: \"Poison the eta well before the ascension.\"",
+		"icon": "",
+		"itemtype": 1,
+		"name": "The Cipher Letter",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I442": {
+		"consume": 1,
+		"desc": "An iron key as long as a hand, from the old priest who sweeps the lower shrine. The crater shrine's back gate, above the last switchback.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Back-gate Key",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I443": {
+		"consume": 1,
+		"desc": "Old Lion work, a single word cut deep: DUTY. Stolen from Shiro Akodo and nailed to a tree in the Shinomen to be laughed at. Shizue carries it now.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "\"Duty\" Plaque",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I177": {
+		"consume": 1,
+		"desc": "The Phoenix book of every ward against the Bloodspeakers, a hundred years in the writing. One page is marked with a dried camellia petal: \"On the Bride of Fu Leng, who wears the faces of the beloved...\"",
+		"icon": "",
+		"itemtype": 1,
+		"name": "\"Against the Bloodspeakers\"",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I125": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "30",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Restores SP.",
+		"dmgform": 5,
+		"dmgtype": 4,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Fine Sake",
+		"occasion": 3,
+		"option": [],
+		"price": 120,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I126": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "0",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "A temple stick. +1 VP now.",
+		"dmgform": 5,
+		"dmgtype": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX020",
+			"hitsnd": "SE224",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Incense Stick",
+		"occasion": 3,
+		"option": [],
+		"price": 90,
+		"remconds": 2,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I127": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "0",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Cures Terror.",
+		"dmgform": 5,
+		"dmgtype": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX020",
+			"hitsnd": "SE224",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Calming Tea",
+		"occasion": 3,
+		"option": [],
+		"price": 40,
+		"remconds": 128,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I168": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "25",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "A Phoenix temple tea. Restores some SP.",
+		"dmgform": 5,
+		"dmgtype": 4,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Rejuvenating Tea",
+		"occasion": 3,
+		"option": [],
+		"price": 50,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I128": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "10",
+		"cmdtgt": 3,
+		"consume": 1,
+		"desc": "Scattered underfoot: every enemy slows.",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Kaiu Iron Caltrops",
+		"occasion": 1,
+		"option": [],
+		"price": 150,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 0
+	},
+	"I146": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "1",
+		"cmdtgt": 3,
+		"consume": 1,
+		"desc": "An Asahina ward on a paper strip. Burns the false charms off every enemy.",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ward-paper Strip",
+		"occasion": 1,
+		"option": [],
+		"price": 180,
+		"remconds": 1108307720798208,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 0
+	},
+	"I148": {
+		"consume": 1,
+		"desc": "A Doji crest in silver thread. Sells.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Doji Mon Charm",
+		"option": [],
+		"price": 500,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I150": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "90",
+		"cmdtgt": 1,
+		"consume": 1,
+		"desc": "The real jade stone Hojiki bound to his wound, found on the bathhouse floor. Thrown, it burns what possesses the living. (Jade)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Hojiki's Jade Stone",
+		"occasion": 1,
+		"option": [],
+		"price": 0,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 2048
+	},
+	"I153": {
+		"consume": 1,
+		"desc": "Isawa Hoju's tea set. He kept it with his histories. Sells; or a cook in Kamatori might like it back.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Hoju's Tea Set",
+		"option": [],
+		"price": 500,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I154": {
+		"consume": 1,
+		"desc": "A link of Hoju's jade chain, cracked in the binding. A smith could set it in a blade. (Sells)",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Jade Chain Fragment",
+		"option": [],
+		"price": 800,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I444": {
+		"consume": 1,
+		"desc": "A pearl black as deep water, left in a Naga shrine by someone who once lowered a spear. It remembers the sea. (Sells)",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Spawn Pearl",
+		"option": [],
+		"price": 1200,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I156": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "220",
+		"cmdtgt": 1,
+		"consume": 1,
+		"desc": "A jade-headed flesh-cutter arrow, the history dinner's prize. Thrown by hand if you must. (Jade)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Jade Flesh-cutter Arrow",
+		"occasion": 1,
+		"option": [],
+		"price": 0,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 2064
+	},
+	"I130": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "0",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "A pinch of jade rubbed into the skin. Cleanses all Taint from one ally.",
+		"dmgform": 5,
+		"dmgtype": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX020",
+			"hitsnd": "SE224",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Jade Pouch",
+		"occasion": 3,
+		"option": [],
+		"price": 120,
+		"remconds": 67108864,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I131": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "60",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "A Kaiu field tonic. Restores a great deal of HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ginseng Tonic",
+		"occasion": 3,
+		"option": [],
+		"price": 240,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I161": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "60",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "A Seppun duelist's medicine case. Restores a great deal of HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Duelist's Inro",
+		"occasion": 3,
+		"option": [],
+		"price": 300,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I162": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "260",
+		"cmdtgt": 1,
+		"consume": 0,
+		"desc": "A black, glassy blade a \"Crane deserter\" sold Gusai. It strips a Fear-demon's guard (3 shields). It eats the hand that holds it: every strike Taints the user. (The Jade Finger wards it.)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Obsidian Blade",
+		"occasion": 1,
+		"option": [],
+		"price": 0,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 0,
+		"rt_obsidian": true
+	},
+	"I163": {
+		"consume": 1,
+		"desc": "Imperial seal wax, lifted and pressed again more than once. Yachiko's. (Sells)",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Miya Seal Wax",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I170": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "180",
+		"cmdtgt": 1,
+		"consume": 1,
+		"desc": "A bottle of Hioninmaru's tattoo-ink. It burns like oil when thrown, and smells worse. (Fire, one enemy)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Bloodspeaker Tattoo-ink",
+		"occasion": 1,
+		"option": [],
+		"price": 400,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 64
+	},
+	"I175": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "220",
+		"cmdtgt": 1,
+		"consume": 1,
+		"desc": "A black pearl from the oni's heart, warm as a fever. Crushed and thrown, it sickens what it hits. (Void, one enemy)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Fever-black Pearl",
+		"occasion": 1,
+		"option": [],
+		"price": 600,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 1024
+	},
+	"I132": {
+		"consume": 1,
+		"desc": "An old Hiruma patrol horn. Sells well to collectors.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Signal Horn",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I133": {
+		"consume": 1,
+		"desc": "A patrol's whetstone, worn hollow. Sells.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Old Whetstone",
+		"option": [],
+		"price": 60,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I134": {
+		"consume": 1,
+		"desc": "A Hida banner's crab mon, cut free on the road home. Sells.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Hida Mon Charm",
+		"option": [],
+		"price": 500,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I135": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "70",
+		"cmdtgt": 1,
+		"consume": 1,
+		"desc": "A breath of bottled storm spirit. Air damage to one enemy.",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Kansen Mist",
+		"occasion": 1,
+		"option": [],
+		"price": 200,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 256
+	},
+	"I136": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "70",
+		"cmdtgt": 1,
+		"consume": 1,
+		"desc": "It smokes in the jar. Fire damage to one enemy.",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Oni Ichor",
+		"occasion": 1,
+		"option": [],
+		"price": 200,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 64
+	},
+	"I197": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "110",
+		"cmdtgt": 1,
+		"consume": 1,
+		"desc": "A shard of Miya relic crystal. Crystal cuts what steel only annoys: a Kansen, a spirit. (Crystal damage to one enemy)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Crystal Shard",
+		"occasion": 1,
+		"option": [],
+		"price": 400,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 8192
+	},
+	"I199": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "45",
+		"cmdtgt": 1,
+		"consume": 1,
+		"desc": "Spring water blessed at Kudo's Inari shrine. Corrupted kami hate clean water. (Water damage to one enemy)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Inari Spring Water",
+		"occasion": 1,
+		"option": [],
+		"price": 60,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 128
+	},
+	"I410": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "220",
+		"cmdtgt": 1,
+		"consume": 1,
+		"desc": "A lump of uncut jade from the Iuchi mines, still gritty. Thrown hard, it burns the dead and the Tainted. (Jade damage, one enemy)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Raw Jade",
+		"occasion": 1,
+		"option": [],
+		"price": 0,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 2048
+	},
+	"I412": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "25",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "A carrot from a woodchuck's hoard. The woodchuck has been informed. Restores a little HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Carrot",
+		"occasion": 3,
+		"option": [],
+		"price": 10,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I415": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "0",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "A twist of beeswax. In battle: put the wax back in an ally's ears (Covered Ears again).",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Spare Wax",
+		"occasion": 3,
+		"option": [],
+		"price": 30,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I418": {
+		"consume": 1,
+		"desc": "Remedy base (Earth): heal. It smells like dirt because it remembers the dirt.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ginseng Root",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I419": {
+		"consume": 1,
+		"desc": "Remedy base (Water): purge. Cures what's in the blood.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Rhubarb",
+		"option": [],
+		"price": 20,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I420": {
+		"consume": 1,
+		"desc": "Remedy base (Fire): burst. Firework powder, native herbs, quite legal.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Hanabi Powder",
+		"option": [],
+		"price": 40,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I421": {
+		"consume": 1,
+		"desc": "Remedy catalyst (Water): stronger.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Rice Wine",
+		"option": [],
+		"price": 15,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I422": {
+		"consume": 1,
+		"desc": "Remedy catalyst (Fire): it spreads - to every ally, or every enemy.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Moxa",
+		"option": [],
+		"price": 25,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I423": {
+		"consume": 1,
+		"desc": "Remedy catalyst (Earth): and a guard (DEF up).",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Willow Bark",
+		"option": [],
+		"price": 15,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I428": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "30",
+		"cmdtgt": 1,
+		"consume": 1,
+		"desc": "A burning stick from the fire pit. Thrown, it sets things alight. (Fire damage, one enemy)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Firebrand",
+		"occasion": 1,
+		"option": [],
+		"price": 0,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 64
+	},
+	"I424": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "100",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Tomie Cho's tea. It really is very good tea. Restores all HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Old Woman's Tea",
+		"occasion": 3,
+		"option": [],
+		"price": 0,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I439": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "35",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "A pounded rice cake from the Village of the Wounded Lion. The villagers leave them on the snow mounds and won't say why. Restores some HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Rice Cake",
+		"occasion": 3,
+		"option": [],
+		"price": 40,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I429": {
+		"consume": 1,
+		"desc": "Remedy catalyst (Water): it keeps on healing (Regen). From the Phoenix mountains, by way of a Yasuki.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Snow-Lotus",
+		"option": [],
+		"price": 60,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I433": {
+		"consume": 1,
+		"desc": "A scale of solid shadow from the snake den. Cold. A Yasuki will pay well, and ask nothing.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Shadow Scale",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I434": {
+		"consume": 1,
+		"desc": "A fang still wet with shadow-venom. Sell it. Don't lick it.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Shadow-snake Fang",
+		"option": [],
+		"price": 400,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I436": {
+		"consume": 1,
+		"desc": "Mountain honey in a stoppered gourd. With willow bark, Ume-baa's cure for a cough that won't go.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Wild Honey",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I409": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "90",
+		"cmdtgt": 7,
+		"consume": 1,
+		"desc": "Gaijin pepper in a clay pot, a fuse in the neck. Forbidden by the Emperor. (Fire damage, all enemies)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Powder Bomb",
+		"occasion": 1,
+		"option": [],
+		"price": 0,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 64
+	},
+	"I400": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "160",
+		"cmdtgt": 7,
+		"consume": 1,
+		"desc": "A shadow hunter's rosary of crystal beads, flung apart. (Crystal damage, all enemies)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Crystal Rosary",
+		"occasion": 1,
+		"option": [],
+		"price": 1500,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 8192
+	},
+	"I198": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "1",
+		"cmdtgt": 7,
+		"consume": 1,
+		"desc": "A Shosuro clay pellet of soot and pepper. (Blind chance, all enemies)",
+		"dmgform": 1,
+		"dmgtype": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Smoke Pellet",
+		"occasion": 1,
+		"option": [
+			{
+				"condid": "K002",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 0.5,
+				"showmiss": true,
+				"when": 0,
+				"whom": 0
+			}
+		],
+		"price": 50,
+		"remconds": 0,
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"elembits": 0
+	},
+	"I185": {
+		"consume": 1,
+		"desc": "A lacquered theatre mask from the Kyuden Bayushi mask-maker. Sells well anywhere there is a stage.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Actor's Mask",
+		"option": [],
+		"price": 150,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I186": {
+		"consume": 1,
+		"desc": "Somebody's purse, stolen by a bandit, stolen back. Sells.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Bandit's Purse",
+		"option": [],
+		"price": 60,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I137": {
+		"consume": 1,
+		"desc": "Her father's map, the first leg marked in charcoal. Kage carries it now.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Map of the Road Home",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I138": {
+		"consume": 1,
+		"desc": "A rib from Oni no Tsukakoro's cage, still warm. Kaiu smiths pay well for it.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Bone-cage Fragment",
+		"option": [],
+		"price": 2000,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I200": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Goblin Knife",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I201": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Shiny Trinket",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I202": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Beetle Shell",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I203": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Viper Skin",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I204": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Venom Sac",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I205": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "15",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Food. Restores a little HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Crab Meat",
+		"occasion": 3,
+		"option": [],
+		"price": 15,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I206": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Shell",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I207": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Spirit Flame",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I208": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "25",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Food. Restores a little HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Boar Meat",
+		"occasion": 3,
+		"option": [],
+		"price": 15,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I209": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Tusk",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I210": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Bandit's Bandana",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I211": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Captain's Purse",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I212": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Kolat Coin",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I213": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Straw Hat",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I214": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ronin's Inro",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I215": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Chipped Tsuba",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I216": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Duelist's Cord",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I217": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Sake Gourd",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I218": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Fine Katana Fragment",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I219": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ronin's Writ",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I220": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Cheap Sake",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I221": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Gaudy Fan",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I222": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Honor Token",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I223": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Lacquered Inro",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I224": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Clan Mon Charm",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I225": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Fine Hilt-wrap",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I226": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Champion's Sageo",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I227": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Glory Scroll",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I228": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Rice Ration",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I229": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Straw Sandals",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I230": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Patrol Writ",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I231": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ration Tin",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I232": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Lacquered Jingasa",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I233": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Plate Scale",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I234": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Armour Cord",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I235": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "25",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Food. Restores a little HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Fish Stew",
+		"occasion": 3,
+		"option": [],
+		"price": 15,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I236": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Rope",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I237": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "0",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Purifying salt, the Shinto way. Cleanses all Taint from one ally.",
+		"dmgform": 5,
+		"dmgtype": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX020",
+			"hitsnd": "SE224",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Sea Salt",
+		"occasion": 3,
+		"option": [],
+		"price": 60,
+		"remconds": 67108864,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I238": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Pirate Charm",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I239": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Storm Kama",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I240": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Pearl",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I241": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Storm Legion Token",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I242": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Gaijin Coin",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I243": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ink Pot",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I244": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "False Tattoo Brush",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I245": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Bloodstained Scroll",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I246": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Old Paper",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I247": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Purity Charm",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I248": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Maho Fetish",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I249": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Bloodspeaker Sigil",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I250": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Obsidian Shard",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I251": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ninja-to Shard",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I252": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Poison Kit",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I253": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Kolat Cipher",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I254": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Shosuro Powder",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I255": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Rusty Blade",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I256": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Bat Guano",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I257": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ghost Lock of Hair",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I258": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Troll Hide",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I259": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Grave Dirt",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I260": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Onikage Hoof",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I261": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ogre Tooth",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I262": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Poppy Seed",
+		"option": [],
+		"price": 1200,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I263": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Bone Wing",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I264": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Tainted Spur",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I265": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Tainted Armour Scale",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I266": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Goblin Saddle",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I267": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Tainted Fang",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I268": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Wolf Pelt",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I269": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "30",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Food. Restores a little HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Eel",
+		"occasion": 3,
+		"option": [],
+		"price": 150,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I270": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ghost Lantern",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I271": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Fever Ash",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I272": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Rice Offering",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I273": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Spider Silk",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I274": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Venom Gland",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I275": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "25",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Food. Restores a little HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Cucumber",
+		"occasion": 3,
+		"option": [],
+		"price": 60,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I276": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Kappa Plate",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I277": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Antique Tsuba",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I278": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Musket Ball",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I279": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Gusai Sash",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I280": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Python Hide",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I281": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "30",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Food. Restores a little HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Hornet Honey",
+		"occasion": 3,
+		"option": [],
+		"price": 60,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I282": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Stinger",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I283": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Winter Pelt",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I284": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Silver Fang",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I285": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Thick Pelt",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I286": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Wolf Fang",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I287": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Frost Shard",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I288": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Snow Hide",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I289": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Tengu Feather",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I290": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ember Core",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I291": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Wax Plug",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I292": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Frozen Badge",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I293": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Oni Horn",
+		"option": [],
+		"price": 1200,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I294": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Oni Blood",
+		"option": [],
+		"price": 1200,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I295": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Kumo Silk",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I296": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Naga Pearl",
+		"option": [],
+		"price": 1200,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I297": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Lava Seed",
+		"option": [],
+		"price": 1200,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I445": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "dst.MAXMP*0.25+6",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Burned before a prayer. Restores some MP.",
+		"dmgform": 5,
+		"dmgtype": 4,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Sakaki Incense",
+		"occasion": 3,
+		"option": [],
+		"price": 50,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I446": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "dst.MAXMP*0.5+12",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Blessed at a great shrine. Restores a good deal of MP.",
+		"dmgform": 5,
+		"dmgtype": 4,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Temple Incense",
+		"occasion": 3,
+		"option": [],
+		"price": 150,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I447": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "dst.MAXTP*0.25+6",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Strong enough to stand a spoon in. Restores some TP.",
+		"dmgform": 5,
+		"dmgtype": 6,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Bitter Green Tea",
+		"occasion": 3,
+		"option": [],
+		"price": 40,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I448": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "dst.MAXTP*0.5+12",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "One cup before the charge. Restores a good deal of TP.",
+		"dmgform": 5,
+		"dmgtype": 6,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Warrior's Sake",
+		"occasion": 3,
+		"option": [],
+		"price": 130,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	}
+}

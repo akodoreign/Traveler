@@ -1,0 +1,360 @@
+//
+//	Auto Battle for the party: plays like a sensible player instead of "attack a random enemy".
+//	- Heal: anyone under half HP gets the best heal the character knows (Haruki: Path to Inner Peace).
+//	- Tank: with a boss-arena hazard in the room (the troll), Natsuko keeps Razor's Edge up so it smashes her.
+//	- Attack: the skill + target pair that scores best: a weakness hit x2, an open (Suki) foe x1.5, spells x1.3 over the
+//	  plain weapon; foes the party has learned are untouchable (a "HAZARD" hit) are skipped, unless the skill is Jade.
+//	Enemies keep the engine's AI pages, with two fixes at the end of this file (weighted action choice, sensible heals).
+//
+local log( s){ printf( "[RT] %S\n", s); }
+
+::Rokugan.immune <- {};
+::Rokugan.dustround <- -1;
+::Rokugan.crystalround <- -1;
+
+::Rokugan.usable <- function( pc, sid){
+	local sk = ::conf.skill[sid];
+	if( sk && sk["rt_voice"] && ("covered" in ::Rokugan) && ::Rokugan.covered( pc)) return null;	//	wax in (Unicorn Ch3)
+	return sk && pc.hasSkill( sid) && pc.canConsumeForSkill( sk) ? sk : null;
+};
+
+::Rokugan.knownSkills <- function( pc){
+	local out = [];
+	foreach( sid, sk in ::conf.skill){
+		if( typeof( sid) != SS_STRING || sid[0] != 'S' || !sk || !sk["addlist"] || sk["rt_noauto"]) continue;
+		if( sk["rt_voice"] && ("covered" in ::Rokugan) && ::Rokugan.covered( pc)) continue;		//	wax in: no voice
+		if( pc.hasSkill( sid) && pc.canConsumeForSkill( sk)) out.append( sk);
+	}
+	if( this.given( pc.name) == "Sayo" && ("RECIPES" in ::Rokugan))			//	auto: her healing Remedies, while
+		foreach( sid in ::Rokugan.RECIPES){									//	the bag holds the ingredients
+			local sk = ::conf.skill[sid];
+			if( sk && sk["rt_recipe"] && sk["rt_heal"] && ::Rokugan.recipeCount( sk) > 0) out.append( sk);
+		}
+	return out;
+};
+
+::Rokugan.smartCommand <- function( runner, pc){
+	local b = runner;
+	if( this.attbattle != b){ this.attbattle = b; this.attention = {}; this.immune = {}; this.dustround = -1; this.crystalround = -1; }
+	local party = b.members.filter( @( v) v && !v.isDead());
+	local foes = b.enemies.filter( @( v) v && !v.isDead() && !v.escaped && !v.data["rt_watcher"] && !v.data["rt_keg"] &&
+		!v.data["rt_untouchable"]);															//	(Akuro: hits do nothing)
+	if( !length( foes)) return null;
+	local skills = this.knownSkills( pc);
+	//	auto battle uses the finale's exploits (phase 3, under Call) while they're there: once each
+	foreach( sk in this.exploitsFor( pc)){
+		if( this.usesLeft( pc, sk) > 0 && !(sk.rt_exploit == "bait" && this.state( foes[0]).broken)){
+			local dsts = b.getCommandTargets( pc, foes[0], sk.cmdtgt, false);
+			if( length( dsts)){ log( "auto: %S calls %S" % (pc.name, sk.name)); return SkillCommand( pc, sk, dsts); }
+		}
+	}
+	//	test hook (-rtguest): auto battle calls the current guest while uses remain (players call guests by hand)
+	if( ::arguments.indexOf( "-rtguest") >= 0 && b.turn >= 4){				//	(after any opening duel)
+		local gs = this.guestSkill();
+		if( gs && this.usesLeft( pc, gs) > 0){
+			local tgt = (gs.cmdtgt == 11) ? pc : foes[0];
+			local dsts = b.getCommandTargets( pc, tgt, gs.cmdtgt, false);
+			if( length( dsts)){ log( "auto: %S calls %S" % (pc.name, gs.name)); return SkillCommand( pc, gs, dsts); }
+		}
+	}
+	//	test hook (-rthire): auto battle calls the hireling while charges remain, Boost 2 when it can (Earth Becomes Jade)
+	if( ::arguments.indexOf( "-rthire") >= 0 && pc == b.members.find( @( v) v && !v.isDead())){	//	the leader calls
+		local hs = this.hireSkill();
+		local hurt = party.find( @( m) float( m.HP) / Math.max( 1, m.MAXHP) < 0.5);
+		if( hs && this.hireCharges() > 0 && (hs["skilltype"] != "heal" || hurt)){	//	a healer only when needed
+			if( hs["rt_jade_raise"] && this.getBP( pc) >= 2) this.state( pc).boostsel = 2;
+			local tgt = (hs.cmdtgt == 11 || hs.cmdtgt == 13) ? pc : foes[0];
+			local dsts = b.getCommandTargets( pc, tgt, hs.cmdtgt, false);
+			if( length( dsts)){ log( "auto: %S calls %S" % (pc.name, hs.name)); return SkillCommand( pc, hs, dsts); }
+		}
+	}
+	//	test hook (-rtember): the Ember Charm's wearer Sparks the first foe from round 2 (Ronin Ch4; one use a battle,
+	//	shared with Rekindle - the second try must come back NO USES LEFT)
+	if( ::arguments.indexOf( "-rtember") >= 0 && b.turn >= 2 && pc.hasSkill( "S615")){
+		local sk = ::conf.skill["S615"];
+		log( "auto: %S tries %S (%d left)" % (pc.name, sk.name, this.usesLeft( pc, sk)));
+		if( b.turn <= 3) return SkillCommand( pc, sk, [foes[0]]);
+	}
+	//	test hook (-rtdiag): Sayo's Diagnosis on herself in round 2, Ginseng + Rice Wine on herself in round 3 (Anatomy)
+	if( ::arguments.indexOf( "-rtdiag") >= 0 && this.given( pc.name) == "Sayo" && (b.turn == 2 || b.turn == 3))
+		return SkillCommand( pc, ::conf.skill[b.turn == 2 ? "S609" : "S573"], [pc]);
+	//	test hook (-rtcopy): Mitsue's Many Faces: Copy on the first foe that has used a skill (Scorpion Ch1)
+	if( ::arguments.indexOf( "-rtcopy") >= 0 && this.given( pc.name) == "Mitsue"){
+		local box = foes.find( @( e) e.data["rt_ritual"]);
+		if( box && ::rpgvar["G866"] && !::rpgvar["G867"]) return SkillCommand( pc, ::conf.skill["S125"], [box]);
+		local src = foes.find( @( e) "lastsk" in ::Rokugan.state( e));
+		if( src) return SkillCommand( pc, ::conf.skill["S505"], [src]);
+	}
+	//	test hook (-rtbribe): Tamotsu's Barter Coin: Bribe on the first foe for hire (Unicorn Ch1)
+	if( ::arguments.indexOf( "-rtbribe") >= 0 && this.given( pc.name) == "Tamotsu"){
+		local hire = foes.find( @( e) e.data["rt_bribe"]);
+		if( hire) return SkillCommand( pc, ::conf.skill["S541"], [hire]);
+	}
+	//	test hook (-rtiai [n]): Rensei Focuses to n stacks (default 3, full), then Strikes (Iaijutsu stacks)
+	local ia = ::arguments.indexOf( "-rtiai");
+	if( ia >= 0 && this.given( pc.name) == "Rensei" && b.turn <= 3){			//	the opening duel
+		local want = (ia + 1 < length( ::arguments) && ::arguments[ia + 1].len() == 1) ? int( ::arguments[ia + 1]) : 3;
+		local n = this.state( pc).focus, sk = ::conf.skill[n >= want ? "S121" : "S120"];
+		local dsts = n >= want ? b.getCommandTargets( pc, foes[0], sk.cmdtgt, false) : [pc];	//	Focus: no target type
+		if( length( dsts)) return SkillCommand( pc, sk, dsts);
+	}
+	//	revive (Return the Soul: a heal that cures Down) a fallen ally, then a party heal when two or more are hurt
+	local fallen = b.members.find( @( m) m && m.isDead());
+	local rv = fallen ? skills.find( @( sk) sk["skilltype"] == "heal" && ((sk["remconds"] || 0) & 1) && sk["dmgform"]) : null;
+	if( rv){
+		local dsts = b.getCommandTargets( pc, fallen, rv.cmdtgt, false);
+		if( length( dsts)){ log( "auto: %S revives %S with %S" % (pc.name, fallen.name, rv.name)); return SkillCommand( pc, rv, dsts); }
+	}
+	local hurt2 = party.filter( @( m) float( m.HP) / Math.max( 1, m.MAXHP) < 0.5);
+	local phs = length( hurt2) >= 2 ? skills.filter( @( sk) sk["skilltype"] == "heal" && sk.cmdtgt == 11 && !((sk["remconds"] || 0) & 1)) : [];
+	local ph = phs.find( @( sk) !(sk["option"] || []).find( @( o) o["condid"] == "K040")) || (length( phs) ? phs[0] : null);	//	an instant heal before a heal-over-time
+	if( ph){
+		local dsts = b.getCommandTargets( pc, pc, ph.cmdtgt, false);
+		if( length( dsts)){ log( "auto: %S heals the party with %S" % (pc.name, ph.name)); return SkillCommand( pc, ph, dsts); }
+	}
+	//	a party ward against Terror (Stillness of the Void: puts K058) once someone is Terrified and nobody is warded
+	if( party.find( @( m) m.hasCondition( "K007")) && !party.find( @( m) m.hasCondition( "K058"))){
+		local wd = skills.find( @( sk) sk.cmdtgt == 11 && (sk["option"] || []).find( @( o) o["condid"] == "K058"));
+		if( wd && this.getBP( pc) >= (wd["rt_vp"] || 0)){
+			local dsts = b.getCommandTargets( pc, pc, wd.cmdtgt, false);
+			if( length( dsts)){ log( "auto: %S wards the party with %S" % (pc.name, wd.name)); return SkillCommand( pc, wd, dsts); }
+		}
+	}
+	//	heal
+	local low = null, lr = 1.0;
+	foreach( m in party){
+		local r = float( m.HP) / Math.max( 1, m.MAXHP);
+		if( r < lr){ lr = r; low = m; }
+	}
+	if( low && lr < 0.5){
+		local best = null, bp = -1;
+		foreach( sk in skills){
+			if( sk["skilltype"] != "heal" || sk["remconds"] && !sk["dmgform"] || ((sk["remconds"] || 0) & 1)) continue;
+			local pw = sk["rt_heal"] ?? 0.3;			//	heal strength (share of max HP; gen_data), not the formula text
+			if( pw > bp){ bp = pw; best = sk; }
+		}
+		if( best){
+			local dsts = b.getCommandTargets( pc, low, best.cmdtgt, false);
+			if( length( dsts)){
+				log( "auto: %S heals %S (%d%%) with %S" % (pc.name, low.name, int( lr * 100), best.name));
+				return SkillCommand( pc, best, dsts);
+			}
+		}
+	}
+	//	guard skills (gen_data rt_guard = the condition they put, e.g. Sachiko's The Mountain Does Not Move): keep it up
+	//	against a boss, or once hurt
+	local big = foes.find( @( e) e.MAXHP >= pc.MAXHP * 4);
+	if( big || float( pc.HP) / Math.max( 1, pc.MAXHP) < 0.7){
+		foreach( sk in skills){
+			local gc = sk["rt_guard"];
+			if( !gc || pc.hasCondition( gc)) continue;
+			log( "auto: %S braces: %S" % (pc.name, sk.name));
+			return SkillCommand( pc, sk, [pc]);
+		}
+	}
+	//	tank the hazard
+	local hazard = foes.find( @( e) e.name in { Troll = 1 });
+	if( hazard && this.given( pc.name) == "Natsuko" && this.state( pc).taunt <= 0){
+		local tid = this.talentFor( pc), tk = tid && ::conf.skill[tid];
+		if( tk) return SkillCommand( pc, tk, [pc]);
+	}
+	//	a kappa still on its feet: bow to it (rt_bow, Dragon Ch2), then hit it while it's open
+	local kappa = foes.find( @( e) e.data["rt_kappa"] && !::Rokugan.state( e).broken);
+	local bow = kappa && skills.find( @( sk) sk["rt_bow"]);
+	if( bow){
+		log( "auto: %S bows to %S" % (pc.name, kappa.name));
+		return SkillCommand( pc, bow, [kappa]);
+	}
+	//	Seppun Ushimo (Dragon Ch2): answer his draw with Daisho Technique; once he kneels, Subdue him
+	local ush = foes.find( @( e) e.data["rt_ushimo"]);
+	if( ush){
+		local d = this.ushimoDuel();
+		local want = d.kneel ? skills.find( @( sk) sk["rt_subdue"]) : !d.done ? skills.find( @( sk) sk["rt_daisho"]) : null;
+		if( want && pc.MP >= (want.consume[1] | 0)){
+			log( "auto: %S uses %S on %S" % (pc.name, want.name, ush.name));
+			return SkillCommand( pc, want, [ush]);
+		}
+	}
+	//	attack: best (skill, target)
+	local cands = [ pc.getAttackSkill() ];
+	foreach( sk in skills) if( sk["skilltype"] == "attack" && (sk.cmdtgt == 1 || sk.cmdtgt == 7)) cands.append( sk);
+	//	a warded foe (Tsukakoro) with no jade in hand: one traveler a round throws Jade Dust to open the ward
+	local warded = foes.find( @( e) e in ::Rokugan.immune), dust = ::conf.item["I104"];
+	if( warded && dust && pc.canConsumeForSkill( dust) && !cands.find( @( sk) (sk["elembits"] | 0) & (1 << 11))
+		&& this.dustround != b.turn){
+		local dsts = b.getCommandTargets( pc, warded, dust.cmdtgt, false);
+		if( length( dsts)){
+			this.dustround = b.turn;
+			log( "auto: %S throws Jade Dust at %S" % (pc.name, warded.name));
+			return SkillCommand( pc, dust, dsts);
+		}
+	}
+	//	a Kansen (Scorpion Ch1, enemy field rt_crystal) not yet broken: one traveler a round throws a Crystal Shard
+	local kan = foes.find( @( e) e.data["rt_crystal"] && !::Rokugan.state( e).broken), shard = ::conf.item["I197"];
+	if( kan && shard && pc.canConsumeForSkill( shard) && this.crystalround != b.turn){
+		local dsts = b.getCommandTargets( pc, kan, shard.cmdtgt, false);
+		if( length( dsts)){
+			this.crystalround = b.turn;
+			log( "auto: %S throws a Crystal Shard at %S" % (pc.name, kan.name));
+			return SkillCommand( pc, shard, dsts);
+		}
+	}
+	local best = null, bt = null, bs = -1.0;
+	foreach( sk in cands){
+		local bits = sk["elembits"] | 0, jade = bits & (1 << 11);
+		foreach( e in foes){
+			if( (e in this.immune) && !jade) continue;
+			local sc = (sk == cands[0]) ? 1.0 : 1.3;
+			if( bits & this.weakbits( e)) sc *= 2.0;
+			if( this.state( e).broken) sc *= 1.5;
+			if( jade) sc *= 1.08;									//	jade burns the Tainted: prefer it on a tie
+			sc *= 1.0 + 0.2 * (1.0 - float( e.HP) / Math.max( 1, e.MAXHP));		//	finish the wounded
+			if( sk.cmdtgt == 7) sc *= 0.8 + 0.2 * length( foes);
+			if( sc > bs){ bs = sc; best = sk; bt = e; }
+		}
+	}
+	if( !best) return null;
+	local dsts = b.getCommandTargets( pc, bt, best.cmdtgt, false);
+	if( !length( dsts)) return null;
+	if( best != cands[0]) log( "auto: %S casts %S at %S" % (pc.name, best.name, bt.name));
+	return SkillCommand( pc, best, dsts);
+};
+
+::TurnBattleRunner._rt_auto <- ::TurnBattleRunner.chooseAutoCommands;
+::TurnBattleRunner.chooseAutoCommands <- function( pc){
+	if( (pc instanceof ::RPGPlayer) && pc.isCommandable()){
+		local cmd = null;
+		try{ cmd = ::Rokugan.smartCommand( this, pc); }catch( ex){ printexception( ex); }
+		if( cmd) return [cmd];
+	}
+	return this._rt_auto( pc);
+};
+
+//	Guest signature skills have uses per battle (skill field rt_uses; story/04 A1 "limited number of uses per battle").
+//	A guest's call skill (field rt_guest) shares one count across the whole party (Octopath II "Call Guest").
+::Rokugan.guestuses <- { battle = null, uses = {} };
+::Rokugan.usesState <- function( pc, sk){
+	if( !sk["rt_guest"]){
+		local st = this.state( pc);
+		if( !("uses" in st)) st.uses <- {};
+		return st;
+	}
+	local g = this.guestuses, b = ::rpgstage["battle"];
+	if( g.battle != b){ g.battle = b; g.uses = {}; }
+	return g;
+};
+::Rokugan.usesKey <- function( sk){						//	skills with the same rt_usekey share one count (the
+	return sk["rt_usekey"] || sk.name;						//	Ember Charm's Spark and Rekindle, Ronin Ch4)
+};
+::Rokugan.usesLeft <- function( pc, sk){
+	local n = sk["rt_uses"];
+	if( !n) return 99;
+	return n - (this.usesState( pc, sk).uses[this.usesKey( sk)] || 0);
+};
+::Rokugan._rt_pre_uses <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill;
+	if( (pc instanceof ::RPGPlayer) && sk && sk["rt_uses"]){
+		if( this.usesLeft( pc, sk) <= 0){
+			this.pop( pc, "NO USES LEFT", 0xff8080ff);
+			cmd.skill = pc.getAttackSkill();
+		}else{
+			local st = this.usesState( pc, sk);
+			local k = this.usesKey( sk);
+			st.uses[k] <- (st.uses[k] || 0) + 1;
+			log( "%S uses %S (%d left)" % (pc.name, sk.name, this.usesLeft( pc, sk)));
+		}
+	}
+	this._rt_pre_uses( cmd);
+};
+::Rokugan._rt_known <- ::Rokugan.knownSkills;
+::Rokugan.knownSkills <- function( pc){
+	return this._rt_known( pc).filter( @( sk) ::Rokugan.usesLeft( pc, sk) > 0);
+};
+
+//	Mirumoto (user: "Dragon should hit the most times"): from Lv 22, when Kitsuki Gendo's Mirumoto training starts
+//	(stats.md schedule), his plain weapon attack strikes twice at 65% each (130% total, and two chances to hit a
+//	weakness or chip Resolve). Boost adds its hits on top.
+::Rokugan._rt_pre_miru <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill;
+	if( (pc instanceof ::RPGPlayer) && sk && this.given( pc.name) == "Gendo" && pc.LV >= 22 &&
+			sk["skilltype"] == "attack" && sk["flags"] == 255){
+		local nsk = clone sk, na = sk["atknum"] || [1, 1], r = sk["dmgrate"] || [1.0, 1.0];
+		nsk["atknum"] <- [na[0] + 1, na[1] + 1];
+		nsk["dmgrate"] <- [r[0] * 0.65, r[1] * 0.65];
+		cmd.skill = nsk;
+	}
+	this._rt_pre_miru( cmd);
+};
+
+//	Shosuro denial (user: "Scorpion should be more about attack denial"): every enemy Mitsue hits is pushed to the
+//	back of next turn's order, and 20% of the time it loses its queued action this turn ("lost the thread").
+::Rokugan._rt_att_den <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local src = dmg.src, dst = dmg.dst;
+	if( (src instanceof ::RPGPlayer) && (dst instanceof ::RPGEnemy) && !dmg.miss && this.given( src.name) == "Mitsue"){
+		this.nextf[dst] <- 0.2;
+		if( ::rnd.nextf() < 0.2){
+			this.state( dst).denied <- true;
+			this.pop( dst, "LOST THE THREAD", 0xd0a0ffff);
+		}
+	}
+	this._rt_att_den( dmg);
+};
+::Rokugan._rt_sc_den <- ::Rokugan.onSkillChange;
+::Rokugan.onSkillChange <- function( cmd){
+	local e = cmd.src;
+	if( (e instanceof ::RPGEnemy) && ("denied" in this.state( e)) && this.state( e).denied){
+		this.state( e).denied = false;
+		cmd.skill = ::conf.skill["S000"];
+		log( "%S loses its action (Shosuro denial)" % e.name);
+		return;
+	}
+	this._rt_sc_den( cmd);
+};
+
+//	Enemy action choice. The engine orders a page's commands by rate x rnd(0.3..1), so a rate-60 action wins ~88% of
+//	picks against a rate-40 one; gen_data's rates are shares (60 = 60% of turns). Order them by a weighted draw instead
+//	(key = rnd ^ (1/rate)). Heals (Rally, Egg Rite, Blood Ward, Grave Feast) go to the most wounded living ally and are
+//	skipped while nobody is under 80% (the nezumi used to spend whole fights rallying friends at full HP).
+::Rokugan.healTarget <- function( runner, pc, skill){
+	local best = null, br = 0.8;
+	foreach( dst in runner.charas){
+		if( !dst || dst.isDead() || !::isCommandTarget( pc, dst, skill.cmdtgt)) continue;
+		local r = float( dst.HP) / Math.max( 1, dst.MAXHP);
+		if( r < br){ br = r; best = dst; }
+	}
+	return best;
+};
+::TurnBattleRunner.chooseAICommand <- function( pc, ai){
+	if( pc.escaped) return [];											//	surrendered / freed / fled: out of the fight
+	local cmds = [];
+	for( local l = 0; l < 10; l ++){
+		local page = ai[pc.aipage];
+		if( !page || pc.aiturn >= page["turn"][1] || (pc.aiturn >= page["turn"][0] && rnd( 1.0) >= 0.5)){
+			pc.aiturn = 0;
+			pc.aipage = chooseAIPage( pc, ai);
+			page = ai[pc.aipage];
+			if( !page) break;
+		}
+		local turnbits = 1 << (pc.aiturn % 12);
+		++pc.aiturn;
+		local keyed = [];
+		foreach( v in page.cmds){
+			if( !(v.turnbits & turnbits)) continue;
+			keyed.append( { cmd = v, k = Math.pow( Math.max( 0.000001, ::rnd.nextf()), 1.0 / Math.max( 1, v.rate)) });
+		}
+		keyed.sort( @( v) -v.k);
+		foreach( kv in keyed){
+			local cmd = kv.cmd, skill = ::conf.skill[cmd.skillid] || pc.getAttackSkill();
+			local dst = (skill["skilltype"] == "heal") ? ::Rokugan.healTarget( this, pc, skill)
+				: chooseAITarget( skill, pc, page, cmd, charas);
+			local dsts = dst && getCommandTargets( pc, dst, skill.cmdtgt, false);
+			if( dsts && length( dsts)){ cmds.append( SkillCommand( pc, skill, dsts)); break; }
+		}
+		local n = ::rnd( page.actnum[0], page.actnum[1] + 1);
+		if( length( cmds) >= n) break;
+	}
+	return cmds;
+};

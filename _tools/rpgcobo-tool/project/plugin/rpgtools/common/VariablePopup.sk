@@ -1,0 +1,529 @@
+import VirtualKeyCode;
+import ModifiersMask;
+
+local srcdir = dirname( callee().getSourceName());
+
+//	ダミーのアクセッサ。VariableVarPopupでのみ使う。
+class EventVarAccessor
+{
+	name = "$T.var_event";
+	icon = "\uf809";
+
+	varbits = 3;
+
+	constructor( vb){
+		varbits = vb;
+	}
+
+	function list(){
+		local vb = varbits;
+		return ::RPGVarAccessor.evarinfos.filter( @( v) v.varbits&vb);
+	}
+
+	function info( key){
+		return ::RPGVarAccessor.evarinfos.find( @( v) v.key==key);
+	}
+}
+
+//	変数IDの指定用ポップアップ
+//	
+//	
+class VariableVarPopup extends Popup
+{
+	static POPUPUIPATH = srcdir .. "/ui/dataselectpopup.ui";	//	データID選択と同じポップアップui
+
+	varbits = 31;				//	ワーク、イベント、システム、グローバル、クエリー
+	writable = 0;				//	書き込み可能のみ
+	varaccs = null;				//	VarAccsessor[]
+
+	typelist = null;			//	ListBehavior
+	datalist = null;			//	ListBehavior
+	pager = null;				//	PagerBehavior
+	searchedit = null;			//	GPUITextEdit
+
+	allitems = null;			//	全項目。100項目ごとにページに分かれる
+	page = 0;					//	
+	pagenum = 1;				//	
+	curtype = null;				//	0-n
+	searchitems = null;			//	searcheditの検索結果
+	
+	varkey = null;				//	結果の代入用var
+
+	static function run( e, varbits, var, writable=0){
+		local p = VariableVarPopup( ::loadSKView( POPUPUIPATH), varbits, var, writable);
+		p.show( null, e.src);
+		return p.ret ? p.varkey : null;
+	}
+
+	static function setvarview( la, v, i){
+		local lbl = v.findChild( "lbl"), icon = v.findChild( "icon"), sep = v.findChild( "sep");
+		v.setValue( "dataid", i.key);
+		if( i["icon"]){
+			v.setValue( "lbl", i.icon..i.name);
+		}else{
+			v.setValue( "lbl", i.name);
+		}
+		v.pickable = false;
+	}
+
+	//	
+	constructor( v, varbits, var, wr){
+		super( v);
+		writable = wr;
+		typelist = ListBehavior( v.findChild( "typelist"), []);
+		typelist.setviewfunc = DataSelectPopup.settypeview;
+		typelist.listview.addEventListener( ITEM_EVENT, typeevent);
+		datalist = ListBehavior( v.findChild( "datalist"), []);
+		datalist.setviewfunc = setvarview;
+		datalist.listview.addEventListener( ITEM_EVENT, dataevent);
+		datalist.listview.addEventListener( ACTION_EVENT, dataevent);
+		pager = PagerBehavior( v.findChild( "pager"));
+		searchedit = view.findChild( "searchedit");
+		searchedit.addEventListener( TEXT_EVENT, searchevent);
+		view.findChild( "btn_rem").setVisible( false);
+		//
+		local eva = EventVarAccessor( varbits);
+		varaccs = [];
+		if( varbits&3) varaccs .. {lbl=eva.name,icon="",va=eva};	//	eva.icon
+		foreach( va in RPGSystem.varaccs){
+			varaccs .. {
+				lbl=va.name, icon="", va=va, disable = !(va.varbits & varbits),	//	va.icon
+			};
+		}
+		typelist.setListItems( varaccs);
+		typelist.setSelectedIndex( 0);
+		if( var){
+			varkey = var;
+			local type = varaccs.find( @( v) v.va.info( var));
+			typelist.setSelectedItem( type);
+			setType( type);
+			local i = allitems.findi( @( v) v.key==var);
+			setPage( i/100);
+			datalist.setSelectedIndex( i%100);
+			datalist.scrollIndexToVisible( i%100);
+		}else{
+			setType( varaccs[0]);
+			setPage( 0);
+		}
+	}
+
+	function setType( t){
+		curtype = t;
+		if( t == "search"){
+			allitems = searchitems;
+		}else{
+			allitems = t.va.list();
+		}
+		if( writable){
+			allitems = allitems.map( @( v){
+				if( v["readonly"]) return undefined;// {...v, disable=true};
+				return v;
+			});
+		}
+		pagenum = (length( allitems)+99) / 100;
+		pager.setPageNum( pagenum);
+		pager.setPage( 0);
+	}
+
+	function setPage( p){
+		if( !allitems) return;
+		page = p;
+		local items = allitems.slice( p*100, Math.min( p*100+100, length( allitems)));
+		datalist.setListItems( items);
+	}
+
+	function typeevent( e){
+		e.consume();
+		switch( e.id){
+		case ITEM_SELECTED:
+			local v = e.actioncmd;
+			if( v["type"] != "*"){
+				setType( v);
+				setPage( 0);
+			}
+			break;
+		}
+	}
+
+	function dataevent( e){
+		e.consume();
+		switch( e.id){
+		case ITEM_SELECTED:
+			varkey = e.actioncmd.key;
+			break;
+		case ACTION_PERFORMED:
+			if( e.isMouseDown( BUTTON1_MASK)){
+				ret = 1;
+				close();
+			}
+			break;
+		}
+	}
+
+	function searchevent( e){
+	}
+	
+	function actionevent( e){
+		switch( e.src["name"]){
+		case "pager":
+			e.consume();
+			break;
+		default:
+			return super.actionevent( e);
+		}
+	}
+
+	function enterClose(){
+		return super.enterClose();
+	}
+}
+
+//	
+//	
+class VariableBehavior
+{
+	view = null;
+	prop = null;
+
+	constbits = 31;				//	
+	varbits = 63;				//	
+	nullable = 0;				//	
+	anytype = 0;
+	writable = 0;				//	書き込み可能のみ
+	datatype = null;			//	
+	datafilter = null;			//	
+	
+	typeicon = null;			//	SKLabelView
+	varlbl = null;				//	SKLabelView
+	g = null;					//	SKView[4]
+	varbtn = null;
+	offbtn = null;
+	onbtn = null;
+	numval = null;
+	textedit = null;
+	scpedit = null;
+	scpchk = null;				//	scpeditで入力されたテキストがコンパイルを通るかチェック
+	fpchk = null;
+	minval = null;
+	maxval = null;
+
+	var = null;					//	結果の代入用var
+
+	constructor( v, prop){
+		view = v;
+		setProperties( prop);
+		//
+		typeicon = v.findChild( "typeicon");
+		varlbl = v.findChild( "varlbl");
+		g = [];
+		for( local l = 0;l < 5;l ++) g .. v.findChild( "g"..l);
+		varbtn = v.findChild( "varbtn");
+		offbtn = v.findChild( "offbtn");
+		onbtn = v.findChild( "onbtn");
+		numval = createNumInputBehavior( v.findChild( "numval"));
+		textedit = v.findChild( "textedit");
+		scpedit = v.findChild( "scpedit");
+		fpchk = v.findChild( "fpchk");
+		minval = createNumInputBehavior( v.findChild( "minval"));
+		maxval = createNumInputBehavior( v.findChild( "maxval"));
+		minval.setRange( -99999999, 99999999, 1);
+		maxval.setRange( -99999999, 99999999, 1);
+		minval.setBarRange( -100, 100, 1);
+		maxval.setBarRange( -100, 100, 1);
+		view.addEventListener( ACTION_EVENT, actionevent);
+		view.addEventListener( TEXT_EVENT, textevent);
+	}
+
+	function setProperties( p){
+		prop = p;
+		constbits = prop["constbits"] || 0;
+		varbits = prop["varbits"] || 0;
+		datatype = prop["datatype"] || null;
+		datafilter = prop["filter"] || null;
+		nullable = prop["nullable"] || 0;
+		anytype = prop["anytype"] || 0;
+		writable = prop["writable"] || 0;
+	}
+
+	function setVar( v){
+		var = v;
+		switch( typeof( var)){
+		case SS_NULL:
+		case SS_UNDEFINED:
+			setTab( -1);
+			varlbl.setText( "$T.lbl_notset");
+			typeicon.setText( "\ue15d");
+			break;
+		case SS_TABLE:	//	便宜上anytype
+			setTab( -1);
+			varlbl.setText( "$T.lbl_anytype");
+			typeicon.setText( "\ue41d");
+			break;
+		case SS_INTEGER: case SS_FLOAT:
+			setTab( 1);
+			setNumType( typeof( var));
+			numval.setValue( var);
+			typeicon.setText( "\ue0bc");
+			break;
+		case SS_STRING:	//	\tXXXX ならスクリプト、 'XXXX なら文字列、 .XXXX ならデータID
+			switch( var[0]){
+			case '\t':
+				setTab( 3); scpedit.setText( var.substring( 1)); checkScript();
+				typeicon.setText( "\ueb8e");
+				break;
+			case '\'':
+				setTab( 2); textedit.setText( var.substring( 1));
+				typeicon.setText( "\ue167");
+				break;
+			case '.':
+				setTab( -1);
+				local dataid = var.substring( 1), data = rpgdata[dataid];
+				local s = sprintf( "[C][b]{ %S }\n[O][i][#def][-2]%S", dataid, data.name);
+				local rt = RichText( s);
+				varlbl.setText( rt);
+				typeicon.setText( data["icon"] || "\uf120");
+				break;
+			case '\r':
+			{
+				setTab( 4);
+				local i = var.indexOf( ','), mi = int( var.substring( 5, i)), ma = int( var.substring( i+1));
+				minval.setValue( mi);
+				maxval.setValue( ma-1);
+				typeicon.setText( "\ueb40");
+				break;
+			}
+			default:
+				setTab( -1);
+				local vi = ::RPGVarAccessor.getVarInfo( var);
+				local n = length( vi.key)>=3 ? "\n":" ";
+				local s = sprintf( "[C][b]{ %S }%S[O][i][#def][-2]%S", vi.key, n, vi.name);
+				local rt = RichText( s);
+				varlbl.setText( rt);
+				typeicon.setText( vi["icon"] ||"\ue322");
+				break;
+			}
+			break;
+		case SS_BOOL:
+		default:				//	他のタイプの場合はboolにしちゃったらいいかな
+			setTab( 0);
+			(var?onbtn:offbtn).setSelected( true);
+			(!var?onbtn:offbtn).setSelected( false);
+			typeicon.setText( "\ue9f6");
+			break;
+		}
+	}
+
+	//	
+	static function setVarView( var, varlbl, typeicon){
+		switch( typeof( var)){
+		case SS_INTEGER: case SS_FLOAT:
+			numval.setValue( var);
+			typeicon?.setText( "\ue0bc");
+			break;
+		case SS_STRING:	//	\tXXXX ならスクリプト、 'XXXX なら文字列、 .XXXX ならデータID
+			switch( var[0]){
+			case '\t':
+				varlbl.setText( var.substring( 1));
+				typeicon?.setText( "\ueb8e");
+				break;
+			case '\'':
+				varlbl.setText( var.substring( 1));
+				typeicon?.setText( "\ue167");
+				break;
+			case '.':
+				local dataid = var.substring( 1), data = rpgdata[dataid];
+				local s = sprintf( "[C][b]%S\n[O][i][#def][-2]%S", dataid, data.name);
+				local rt = RichText( s);
+				varlbl.setText( rt);
+				typeicon?.setText( data["icon"] || "\uf120");
+				break;
+			case '\r':
+			{
+				local i = var.indexOf( ','), mi = int( var.substring( 5, i)), ma = int( var.substring( i+1));
+				varlbl.setText( sprintf( "Rand(%d,%d)", mi, ma-1));
+				typeicon?.setText( "\ueb40");
+				break;
+			}
+			default:
+				local vi = ::RPGVarAccessor.getVarInfo( var);
+				local n = length( vi.key)>=3 ? "\n":" ";
+				local s = sprintf( "[C][b]%S%S[O][i][#def][-2]%S", vi.key, n, vi.name);
+				local rt = RichText( s);
+				varlbl.setText( rt);
+				typeicon?.setText( vi["icon"] ||"\ue322");
+				break;
+			}
+			break;
+		case SS_TABLE:	//	便宜上anytype
+			break;
+		case SS_BOOL:
+		default:				//	他のタイプの場合はboolにしちゃったらいいかな
+			// (var?onbtn:offbtn).setSelected( true);
+			// (!var?onbtn:offbtn).setSelected( false);
+			typeicon?.setText( "\ue9f6");
+			break;
+		}
+	}
+
+	function setTab( t){
+		foreach( i,v in g){
+			if( i==t) v.layerflags |= 1; else v.layerflags &= ~1;
+		}
+		if( t==-1){
+			varbtn.layerflags |= 1;
+			varbtn.enabled = true;
+		}else{
+			varbtn.layerflags &= ~1;
+			varbtn.enabled = false;
+		}
+		view.repaint();
+	}
+
+	function setNumType( t){	//	0:int 1:float
+		if( t){
+			numval.setRange( -999999.0, 999999.0, 100);
+			fpchk.setSelected( true);
+		}else{
+			numval.setRange( -99999999, 99999999, 1);
+			fpchk.setSelected( false);
+		}
+	}
+
+	function checkScript(){
+
+	}
+
+	function textevent( e){
+		switch( e.src["name"]){
+		case "scpedit":
+			e.consume();
+			var = "\t" .. e.src.getText();
+			view.postActionEvent( var);
+			break;
+		case "textedit":
+			e.consume();
+			var = "'" .. e.src.getText();
+			view.postActionEvent( var);
+			break;
+		}
+	}
+	
+	function actionevent( e){
+		if( e.src == view) return;
+		//
+		switch( e.src["name"]){
+		case "typemenu":
+			e.consume();
+			if( selectType( e)){
+				view.postActionEvent( var);
+			}
+			break;
+		case "varbtn":
+			e.consume();
+			local v;
+			if( var == null) break;
+			if( typeof( var) == SS_TABLE) break;	//	anytypeも入力不可
+			if( var[0] == '.'){
+				v = DataSelectPopup.run( e, { datatype=datatype, filter=datafilter});
+				if( v) v = "."..v;
+			}else{
+				v = VariableVarPopup.run( e, varbits, var, writable);
+			}
+			if( v && v!=var){
+				setVar( v);
+				view.postActionEvent( var);
+			}
+			break;
+		case "offbtn":
+		case "onbtn":
+			e.consume();
+			setVar( e.src.name=="onbtn");
+			view.postActionEvent( var);
+			return;
+		case "numval":
+			e.consume();
+			var = numval.getValue();
+			view.postActionEvent( var);
+			return;
+		case "textedit":
+			e.consume();
+			var = "'" .. e.src.getText();
+			view.postActionEvent( var);
+			return;
+		case "minval":
+		case "maxval":
+			e.consume();
+			local a = (minval.getValue(),maxval.getValue()).sort();
+			var = "\rrnd(%d,%d)" % (a[0], a[1]+1);
+			view.postActionEvent( var);
+			return;
+		case "scpedit":
+			e.consume();
+			var = "\t" .. e.src.getText();
+			view.postActionEvent( var);
+			return;
+		case "fpchk":
+			e.consume();
+			setNumType( fpchk.isSelected()?1:0);
+			numval.setValue( numval.getValue());
+			var = numval.getValue();
+			view.postActionEvent( var);
+			return;
+		}
+	}
+
+	function selectType( e){
+		local v1 = showTypeMenu( prop, e?varbtn : null, var);
+		if( v1 != undefined){
+			setVar( v1);
+			return true;
+		}
+	}
+
+	static function showTypeMenu( prop, cv, v0){
+		local constbits = prop["constbits"];
+		local varbits = prop["varbits"];
+		local datatype = prop["datatype"];
+		local nullable = prop["nullable"];
+		local anytype = prop["anytype"];
+		local bits = constbits | (varbits?256:0) | (datatype?512:0) | (anytype?1024:0) | (nullable?2048:0);
+		local menudata = [
+			{ val=0, lbl="$T.lbl_input_bool", icon="\ue9f6", checked=typeof( v0)==SS_BOOL},
+			{ val=1, lbl="$T.lbl_input_number", icon="\ue0bc", checked=typeof( v0)<=SS_FLOAT},
+			{ val=2, lbl="$T.lbl_input_string", icon="\ue167", checked=v0[0]=='\''},
+			{ val=4, lbl="$T.lbl_input_random", icon="\ueb40", checked=v0[0]=='\r'},
+			{ val=3, lbl="$T.lbl_input_script", icon="\ueb8e", checked=v0[0]=='\t'},
+			//
+			{ val=8, lbl="$T.lbl_input_var", icon="\ue322", checked=v0[0] && !".'\t\r".contains( v0[0])},
+			{ val=9, lbl="$T.lbl_input_dataid", icon="\uf120", checked=v0[0]=='.'},
+			{ val=10, lbl="$T.lbl_anytype", icon="\ue41d", checked=typeof( v0)==SS_TABLE},
+			{ val=11, lbl="$T.lbl_notset", icon="\ue15d", checked=v0==null},
+		].filter( @( v) (1<<v.val) & bits );
+		if( prop["unlinkmenu"]){
+			menudata[0] <- { val=-1, lbl="$T.lbl_dontlink_var", icon="\ue16f", checked=v0==undefined};
+			menudata[1] <- "-";
+		}
+		local ret = cv ? MenuPopup.pulldown( menudata, cv) : MenuPopup.run( menudata);
+		switch( ret["val"]){
+		case -1: return "***DONOTLINK***";
+		case 0: return ( true);
+		case 1: return ( 1);
+		case 2: return ( "'ABC");
+		case 3: return ( "\t" .. (prop["defscp"]||"W"));
+		case 4: return ( "\rrnd(0,100)");
+		//
+		case 8: 
+			local v = (varbits&1) ? "W" : (varbits&2) ? "A" : (varbits&4) ? "G000" : "MONEY";
+			v = VariableVarPopup.run( {src=::getMousePos( 0)}, varbits, v, writable);
+			if( v) return ( v);
+			break;
+		case 9:
+			local v = DataSelectPopup.run( {src=::getMousePos( 0)}, { datatype=datatype, filter=prop["datafilter"]}, "I000");
+			if( v) return ( "."..v);
+			break;
+		case 10: return ( {});
+		case 11: return ( null);
+		}
+		return undefined;
+	}
+}

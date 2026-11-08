@@ -1,0 +1,1307 @@
+{
+    "side_abbot":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_actor_a":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_actor_b":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_actor_c":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_adoru":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_akari":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b",
+                       "walk",
+                       "walk_f",
+                       "walk_b"
+                   ],
+    "side_akuja":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_akuro":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_asahina":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_atsuki":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_atsuko":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_bantaro":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_bargeman":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_bayushiguard":  [
+                              "stand",
+                              "stand_f",
+                              "stand_b"
+                          ],
+    "side_bayushikei":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_beggar":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_beggarmonk":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_benjiro":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_campfollower":  [
+                              "stand",
+                              "stand_f",
+                              "stand_b"
+                          ],
+    "side_cartdriver":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b",
+                            "walk",
+                            "walk_f",
+                            "walk_b"
+                        ],
+    "side_censorclerk":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_censormonk":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_charmseller":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_chihaya":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_chuto":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_citizen":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_clerk":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_courier":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_courtier":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_crabboy":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_craneduellist":  [
+                               "stand",
+                               "stand_f",
+                               "stand_b"
+                           ],
+    "side_daidoji_general":  [
+                                 "stand",
+                                 "stand_f",
+                                 "stand_b"
+                             ],
+    "side_daiyu":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_depura":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_dojiaoi":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_doorman":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_dorin":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_drummer":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_drunkactor":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_drunksailor":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_ebisu":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_empress":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_eriko":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_ferryman":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_ff_boatman":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_ff_fisherman":  [
+                              "stand",
+                              "stand_f",
+                              "stand_b"
+                          ],
+    "side_fishseller":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_fishwife":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_fujio":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_fumi":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_gaijintrader":  [
+                              "stand",
+                              "stand_f",
+                              "stand_b"
+                          ],
+    "side_gatekeeper":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_gesshin":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_gochu":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_gonbei":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_gontaboy":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_goroso":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_grandmother":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_hagane":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_hagi":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_hana":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b",
+                      "walk",
+                      "walk_f",
+                      "walk_b"
+                  ],
+    "side_hatomu":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_herald":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_herbseller":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_hidaren":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_hidden1":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_hidden2":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_hikaru":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_himeko":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_hiro":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b",
+                      "walk",
+                      "walk_f",
+                      "walk_b"
+                  ],
+    "side_hiroichi":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_hisae":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_hitoro":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_hojato":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_hojiki":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_hoju":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_hostess":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_hyobe":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_iami":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_ichihito":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_ijako":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_imuro":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_incense":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_innkeeper":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_itami":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_iuchifarmer":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_iuchisoldier":  [
+                              "stand",
+                              "stand_f",
+                              "stand_b"
+                          ],
+    "side_jadeclerk":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_jinnai":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_kafu":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_kage":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_kagemaro":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_kakita_sensei":  [
+                               "stand",
+                               "stand_f",
+                               "stand_b"
+                           ],
+    "side_kamasari":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_kanbe":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_kanemori":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_karasu":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_karo":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_kasamashi":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_katsuo":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_katsutoshi":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_keiki":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_keiyomi":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_kenshai":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_kiku":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_kisada":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_kitchengirl":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_kitechild":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_kitsukiclerk":  [
+                              "stand",
+                              "stand_f",
+                              "stand_b"
+                          ],
+    "side_kitsuneboy":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_kiyo":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_kosai":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_koshi":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_kuhime":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_kumpei":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_kurako":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_kurosho":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_kusada":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_kusuri":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_kyumi":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_lionsergeant":  [
+                              "stand",
+                              "stand_f",
+                              "stand_b"
+                          ],
+    "side_magistrate":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_mai":  [
+                     "stand",
+                     "stand_f",
+                     "stand_b"
+                 ],
+    "side_makeup":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_mami":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_mamoru":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_mantisenvoy":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_masakazu":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_masanori":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_maskmaker":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_mayumi":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_mcaptain":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_megu":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_merchant":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_meyako":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_mieko":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_miko":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_mirumotosen":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_mirumotosentry":  [
+                                "stand",
+                                "stand_f",
+                                "stand_b"
+                            ],
+    "side_mitsue_maid":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_miyahana":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_miyako":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_miyoshi":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_miyubi":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_mizochi":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_mobleader":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_momo":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_morishu":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_mosuke":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_muika":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_muledriver":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_munashii":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_musician":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_mutsuye":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_nagai":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_naname":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_naohida":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_nashiko":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_netmender":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_nihime":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_nishi":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_noburo":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_norie":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_oharu":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_oldpilgrim":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_onaka":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_oracle":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_oshito":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_osuko":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_outfitter":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_oyuki":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_palecourtier":  [
+                              "stand",
+                              "stand_f",
+                              "stand_b"
+                          ],
+    "side_pedlar":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_pigeonkeeper":  [
+                              "stand",
+                              "stand_f",
+                              "stand_b"
+                          ],
+    "side_pilgrim":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_pilgrimgirl":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_quartermaster":  [
+                               "stand",
+                               "stand_f",
+                               "stand_b"
+                           ],
+    "side_riichi":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_rika":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_rokuro":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_roninchef":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_rteacher":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_rujo":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_ryohei":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_ryuzoji":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_sabu":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_sakeseller":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_sakura":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_sanae":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_sariko":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_satomi":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_seigen":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_seikidera":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_senior_student":  [
+                                "stand",
+                                "stand_f",
+                                "stand_b"
+                            ],
+    "side_seoko":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_seppunguard":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_sergeant":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_servant":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_shahai":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_shigeru":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_shiko":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_shinken":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_shinobu":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_shipmaster":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_shiruko":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_shoju":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_shrinepeasant":  [
+                               "stand",
+                               "stand_f",
+                               "stand_b"
+                           ],
+    "side_smithboy":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_snakeelder":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_sonoservant":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_soshi":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_soshienvoy":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_soshiofficer":  [
+                              "stand",
+                              "stand_f",
+                              "stand_b"
+                          ],
+    "side_sumi":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_swordsmith":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_tabezu":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_tadaka":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_tadayasu":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_taira":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_takakana":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_takanobu":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_takeo":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_tama":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_tamorimonk":  [
+                            "stand",
+                            "stand_f",
+                            "stand_b"
+                        ],
+    "side_taneo":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_tatanko":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_taxman":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_tbeggar":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_tessai":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_thundermonk":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_togashi":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_tokubei":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_tomeko":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_tomoe":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_torishigawa":  [
+                             "stand",
+                             "stand_f",
+                             "stand_b"
+                         ],
+    "side_toturi":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_townguard":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_tsuhime":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_tsukaru":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_tsune":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_uji":  [
+                     "stand",
+                     "stand_f",
+                     "stand_b"
+                 ],
+    "side_ukita":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_umebaa":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_uona":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_uyojimbo":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_veteran":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b",
+                         "walk",
+                         "walk_f",
+                         "walk_b"
+                     ],
+    "side_xue":  [
+                     "stand",
+                     "stand_f",
+                     "stand_b"
+                 ],
+    "side_yachiko":  [
+                         "stand",
+                         "stand_f",
+                         "stand_b"
+                     ],
+    "side_yakamo":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_yasu":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_yasurugi":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_yodo":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_yoritomo":  [
+                          "stand",
+                          "stand_f",
+                          "stand_b"
+                      ],
+    "side_yoshi":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ],
+    "side_yosuke":  [
+                        "stand",
+                        "stand_f",
+                        "stand_b"
+                    ],
+    "side_youngsayo":  [
+                           "stand",
+                           "stand_f",
+                           "stand_b"
+                       ],
+    "side_yuko":  [
+                      "stand",
+                      "stand_f",
+                      "stand_b"
+                  ],
+    "side_zhang":  [
+                       "stand",
+                       "stand_f",
+                       "stand_b"
+                   ]
+}

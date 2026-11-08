@@ -1,0 +1,561 @@
+//	Modified for the Rokugan Traveler fan project (2026). Original: RPG-Cobo, Apache-2.0.
+/////////////////////////////////////////////////////////////////////////////
+//	テストプレイ
+
+local args = ::arguments, i;
+
+//	言語選択。workspaceから設定取ってきちゃうかな～
+local sysset = loadconf( "/data/setting.json");
+local lt = sysset.projlang;
+if( (i=args.indexOf( "-lang")) >= 0) lt = args[i+1];
+::lang = Language( chooseLanguage( lt));
+
+local applytrans(){
+	if( lang.code != sysset.projlang){
+		local tres = getResource( `/data/trans/${lang.code}.trns`);
+		if( tres){
+			local trans = decodeJSON( tres.loadData());
+			override( conf._map, trans.transdict, false);
+		}
+		local f = FileRef( "tmp/x.json");
+		local bb = encodeJSON( conf._map, 5, ByteBuffer()); bb.pos = 0;
+		f.save( bb);
+	}
+}
+
+local loadworkdata( wd){
+	override( conf._map, wd["conf"], true);
+	foreach( path, v in wd["res"]){
+		local r = getResource( path);
+		if( r){
+			local f = r["file"];
+			r.file = {
+				load = @() v
+				refresh = @(){ if( f){ r.file = f; f.refresh(); }}
+			};
+		}
+	}
+}
+
+//	シェーダーの事前予約を行う関数
+function preReserveShaders( glob=null){
+	try{
+		local osname = skGetOSName();
+		local f = FileRef( "tmp/skfxload.json");
+		if( !f.exists()){
+			printf( "skfxload.json not found!!! Prereserving Shaders skipped.\n");
+			return;
+		}
+		printf( "preReserveShaders glob=%S start.\n", glob);
+		//
+		local cdir = FileRef( "tmp/shaderbin");
+		local apilv = skGetAPILevel();
+		local skfxload = decodeJSON( f.load()), tecbits = skfxload[apilv];
+		local t0 = skGetTime(), t1 = t0;
+		local tmpbb = TempBuffer( 256*1024);
+		foreach( tecname, passes in tecbits){
+			if( glob && !globMatch( glob, tecname)) continue;
+			local tec = skFXFindTechnique( tecname);
+			if( !tec) continue;
+			foreach( i, bitslist in passes){
+				local ss = tec.getShaderSource( i);
+				if( !ss) continue;
+				local sshash = ss.hash64();
+				foreach( bits in bitslist){
+					if( skGetTime( t1) >= 100){
+						printf( "preReserveShaders suspend...\n");
+						suspend(); suspend(); t1 = skGetTime();
+					}
+					if( ss.isProgramLoaded( bits)){	//	すでに読まれてるシェーダーはスキップ
+						continue;
+					}
+					//	キャッシュヒットチェック。1つずつ別ファイルなのは非効率か
+					local fn = sprintf( "%d-%S-%S-%S.bin", apilv, tecname, i, bits);
+					local cf = FileRef( cdir, fn);
+					if( cf.exists()){
+						local cbuf = cf.load( tmpbb);
+						local hash = long( cbuf.geti(), cbuf.geti());
+						if( !(sshash <> hash)){
+							if( ss.reserveProgramBinary( bits, cbuf)){
+								printf( "Shader Cache HIT! %S\n", fn);
+								continue;
+							}
+						}else{
+							printf( "ShaderSource hash incompatible %S!=%S  cf=%S\n", sshash, hash, fn);
+							cf.deleteFile();
+						}
+					}else{
+						printf( "Shader Cache not found.... %S\n", fn);
+					}
+				}
+			}
+		}
+		printf( "preReserveShaders done. total time=%d\n", skGetTime( t0));
+	}catch( e){
+		printf( "preReserveShaders error: %S\n", e);
+		printexception( e);
+	}
+}
+
+
+module.hookAction( "conf_postload", applytrans, -100);
+
+//	作業中のデータを復元。翻訳前に
+
+if( (i=args.indexOf( "-wd")) >= 0){
+	local wd = ObjectInput.decode( FileRef( args[i+1]).load());
+	module.hookAction( "conf_postload", @() loadworkdata( wd), -200);
+}
+
+//	テストプレイ環境はWindowsでProgram Files外にあるはずなので、カレント/savedataに保存する
+::savedir <- FileRef( skGetCurrentDir().."/savedata"); ::savedir.mkdirs();
+
+runsk( "/ClientConfig.sk");
+::clientconf = ClientConfig.load();
+::isfullscreen <- ::clientconf.screen.fullscreen;
+if( !skGetScreenSize( [0,0])[0]){	//	skRestart時にはウィンドウは既にできている
+	if( !clientconf.screen.fullscreen){
+		local wh = clientconf.screen.reso_window.split( "x");	//	"1920x1080"のような文字列
+		skCreateScreen( "RPG-Cobo TestPlay", int( wh[0]), int( wh[1]), 5|16);
+	}else{
+		local wh = clientconf.screen.reso_screen.split( "x");
+		if( !skSupportsDisplaySize( int( wh[0]), int( wh[1]))) wh = ["1280","720"];
+		skCreateScreen( "RPG-Cobo TestPlay", int( wh[0]), int( wh[1]), 0);
+	}
+}else{
+	module.hookAction( "conf_postload", @(){
+		if( skGetAppActiveState() != AppActiveState.APPACTIVE_ACTIVE){
+			::soundmanager.checkctx();
+			::soundmanager.ctx[SoundID.SK_SND_GAIN] = 0.2;
+		}
+	}, 990);
+}
+
+skBeginRender();
+skClearParam( #ClearParam( 0.0, 0.0, 0.0, 1.0));
+
+runsk( "/load.sk");
+runsk( "/plugin/rpgtools/common/IPCConnection.sk");	//	ツールとの通信のためにIPCConnectionだけロード
+
+if( args.contains( "-debugtouch")) GPUI.emuosname <- "Android";		//	タッチデバッグの時はAndroidってことにする
+::soundmanager.setBGMVolume( clientconf.sound.bgmvol * 0.008);	//	BGMはちょっと小さめに。。。
+::soundmanager.setSEVolume( clientconf.sound.sevol * 0.012);	//	SEは大き目。。。
+::renderhint.set( ClientConfig.renderhints[clientconf["render"]["quality"]]);	//	保存されたレンダリング品質を設定
+
+RPGMain.setupUI();
+::rootview.setValue( "apptitle", conf.setting.title);
+{
+	local sc = skGetScreenSize( [0,0]);
+	::rootview.stretchSize( sc[0], sc[1]);
+	(::ipcserv <- IPCConnection()).bind();	//	ツールとの通信のためにIPCConnectionをバインド
+}
+
+//	ロゴから起動しない。設定を直に読み込んで
+RPGMain.loadSetting();
+
+preReserveShaders();
+
+local recfx = arguments.contains( "-recfx");	//	使用したシェーダーを記録
+local prof = null;
+if( ::arguments.contains( "-skprof")) (prof = SKProfiler()).start();
+
+//	デバッグ用の設定を適用
+local applydebugpref(){
+	local i;
+	if( args.contains( "-debugitems")) rpgstat.addAllItems();
+	if( (i=args.indexOf( "-debuglv")) >= 0){
+		foreach( pc in rpgstat.playermap){
+			if( pc){
+				pc.setLV( int( args[i+1]));
+				pc.HP = pc.MAXHP;
+				pc.MP = pc.MAXMP;
+			}
+		}
+	}
+}
+
+{
+	//	起動モードの判定
+	local slot = -2;
+	if( (i=args.indexOf( "-slot")) >= 0){
+		slot = int( args[i+1]);
+	}
+	switch( slot){
+	case -2:	//	title
+		if( !args.contains( "-map") && !args.contains( "-battle") && !args.contains( "-event")){
+			RPGMain.goTitle();
+			applydebugpref();
+			goto SKIP;
+		}
+		// pass throuth
+	case -1:	//	newgame
+		(::rpgstat = RPGState()).newGame();
+		local d = ::conf.setting.inimap;
+		local sstat = ::rpgstat.stagemap[d.mapid] <- RPGStageState();
+		sstat.enter( d.mapid, d, rpgvar.REMAPID);
+		break;
+	default:	//	save slot
+		local f = RPGMain._savefile( slot);
+		local ns = ObjectInput.decode( f.load());
+		ns.saveslot = slot;
+		ns.savetime = f.lastmodified;
+		::rpgstat = ns;
+		break;
+	}
+	applydebugpref();
+	
+	//	
+	if( (i=args.indexOf( "-map")) >= 0){
+		local mapid = args[i+1], pos = decodeJSON( args[i+2]);
+		local portal = { mapid=mapid, pos=pos};
+		local sstat = ::rpgstat.stagemap[mapid] <- RPGStageState();		//	RPGStageStateは毎回初期化。
+		sstat.enter( mapid, portal, ++rpgvar.REMAPID);
+		::rpgstat.mapid = mapid;
+		local stg = RPGStage( rpgstat.mapid);
+		stg.launch();
+	}else
+	if( (i=args.indexOf( "-battle")) >= 0){
+		local emapid = args[i+1], gid = int( args[i+2]);
+		local cmd = ::conf.map[emapid].encount.find( @( v) v.gid==gid);
+		local mapid = cmd.mapid;
+		local skillid = ((i=args.indexOf( "-skill")) >= 0) ? args[i+1] : null;
+		local enemyid = ((i=args.indexOf( "-enemy")) >= 0) ? args[i+1] : null;
+		if( enemyid){
+			cmd.enemies[0].id = enemyid;
+		}
+		//	
+		//	コマンドを拡張してマップ移動をバトルにする
+		local cmd_ = {
+			...cmd,	//	enemies, escape, bgm など必要な情報のために展開しておく
+			//	マップ移動先指定
+			dest = { mapid=cmd.mapid, pos=(8,null,8), },
+			//	以下バトル起動用の関数類。
+			startfunc = @( st, opt){	//	opt==cmd_自身
+				st.battle = skillid? SkillTestBattleRunner( st, {...opt, skillid=skillid}) : RPGMain.createBattleRunner( ::conf.setting.battletype, st, opt);
+				st.battle.start( st);
+			},
+			//	バトル終了時のコールバック
+			endfunc = @( bt){
+				skExit( 0);
+			},
+		};
+		local sstat = ::rpgstat.stagemap[mapid];
+		if( !sstat) sstat = ::rpgstat.stagemap[mapid] <- RPGStageState();
+		sstat.enter( mapid, cmd_.dest, rpgvar.REMAPID);
+		sstat.statmap.bgmid = cmd["bgmid"] || ::conf.map[mapid].bgmid;	//	RT: the group's battle theme (moveMap does this in play)
+		local stg = RPGStage( cmd_.mapid);
+		stg.launch( cmd_);
+	}else
+	if( (i=args.indexOf( "-event")) >= 0){
+		local mapid = args[i+1], evid = int( args[i+2]), evpage = int( args[i+3]);
+		local map = ::conf.map[mapid], ev = map.event[evid], r = (ev.pos[3]+2)&3, v = Vector3D(0,0,-2).rotate( r*Math.PI/2, 0, 0).add( ev.pos).scale( 0.5);
+		local portal = { mapid=mapid, pos=[v.x,v.y,v.z,r]};
+		local sstat = ::rpgstat.stagemap[mapid] <- RPGStageState();
+		sstat.enter( mapid, portal, ++rpgvar.REMAPID);
+		::rpgstat.mapid = mapid;
+		local stg = RPGStage( rpgstat.mapid);
+		local cmd_ = {
+			startfunc = @( st, opt){
+				local p = ev.page[evpage];
+				if( !p["pararun"]){	//	メインイベント実行
+					st.mainevent = #{evid="wait"};	
+					newthread().start( @(){
+						sleep( 300);
+						st.mainevent = null;
+						local ev = st.getEvent( evid);
+						ev.forceTrigger( evpage)
+					}, st);
+				}
+			},
+		}
+		stg.launch( cmd_);
+	}else{
+		local stg = RPGStage( rpgstat.mapid);
+		stg.launch();
+	}
+SKIP:
+	;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//	デバッグ用API
+
+
+//	DBの内容だけ部分的に変更を適用する。また、rpgstatとrpgstageに反映される。
+//	翻訳は適用されない。また、リソースの差し替えは行われない。confの内容だけを変更する。
+//	※バトルから戻り先のマップは変化しない！それが必要な場合はgetclassinstances( RPGStage)で回す。
+//	
+function hotReload( wdpath){
+	printf( "hotReload START!!!!!!!!!!!: wdpath=%S\n", wdpath);
+	//	ロードしてconfに反映
+	::getResource( "/data").flush();	//	データ・リソースのキャッシュをクリア。保存されたuiやマップのリソースは再ロードされる。ただし表示中のものは変化しない。
+	::getResource( "/resource").flush();
+	conf._map = loadconf( "/conf/load.conf");	//	conf丸ごと入れ替え！
+	if( wdpath){
+		local wd = ObjectInput.decode( FileRef( wdpath).load());
+		loadworkdata( wd);
+	}
+	module.dispatchAction( "game_hotload");		//	ホットロードされたフック。プラグインで必要に応じてフック。
+	applytrans();
+	local rpgobjs = getclassinstances( RPGObject, true);	//	サブクラス含むすべてのRPGObjectを取得
+	//	まずはdataを更新。
+	foreach( v in rpgobjs){
+		v.data = ::rpgdata[v.dataid];
+		// printf( "hotReload: updated RPGObject %S => %S\n", v.dataid, v);
+	}
+	//	次にプレイヤー、エネミーのステータスを更新。
+	foreach( v in rpgobjs){
+		if( v["updateBaseScore"]) v.updateBaseScore();	//	ベースステータスの再計算(enemy)
+		if( v["updateOptions"]){ v.updateOptions(); v.updateScoreMap(); }	//	オプション、ステータスの再計算(pc)
+	}
+	//	現在ステージ反映
+	local stg = ::rpgstage;
+	stg.map = ::conf.map[stg.mapid];	//	RPGStageStateは変化させない
+	//	BlockWorld変更・・・できるかな
+	local now = Date.currentTime();
+	local bwf = FileRef( ::getResource( "/data/mapdata/%S.bw" % stg.mapid).file.path);
+	if( bwf.lastmodified >= now-3){	//	3秒以内に更新されていたら
+		local bw = ObjectInput.decode( bwf.load());	//	ファイルの方から取ってきちゃう
+		stg.bw = bw;
+		stg.createBlockWorld3D( bw);
+	}
+	//	イベントの反映。追加・削除・変更を反映する。
+	foreach( er in stg.events){
+		if( !(er.evid in stg.map.event)){
+			er.despawn();
+			// printf( "hotReload: removed RPGStageEvent %S => %S\n", er.evid, er);
+			removei;
+		}
+	}
+	foreach( evid, v in stg.map.event){
+		local er = stg.getEvent( evid);
+		if( er){
+			er.data = v;
+			local p = er.data.pos;
+			er.spawnpos = (p[0]*0.5, p[1]*0.5, p[2]*0.5, p[3]*Math.HPI);	//	リスポーン位置は強制設定
+			er.spawndist = er.data.spawndist;
+			local pageidx = er.pagelist.indexOf( er.page);
+			er.pagelist = er.data["page"] || RPGSystem.eventrole[er.data["role"]]["defpage"];
+			//	スカウトモード時でスポーン中のみ即時適用される
+			local pagereset = false;
+			if( er.mode==1 && er.rp3d){
+				er.despawn();
+				er.setPage( er.pagelist[pageidx] || null);
+				pagereset = true;
+			}
+			// printf( "hotReload: updated RPGStageEvent %S => %S pagereset=%S\n", er.evid, er, pagereset);
+		}else{	//	追加されたイベントも追加するか。。。
+			er = RPGStageEventRunner( evid, v, stg, null);
+			stg.events .. er;
+			er.start();
+			// printf( "hotReload: added RPGStageEvent %S => %S\n", er.evid, er);
+		}
+	}
+	//	オートマクロ反映
+	foreach( ma in automacrolist()){
+		local mid = ma.id;
+		local mr = stg.automacros.find( @( v) v.macroid==mid);
+		if( mr){
+			mr.data = ma.data;
+		}else{
+			mr = RPGMacroEventRunner( stg, mid, ma.data);
+			stg.automacros .. mr;
+		}
+	}
+	//	バトルでなんかやることあるかな？
+}
+
+//	デバッグを再起動。
+function restartDebug(){
+	newthread().start( @(){
+		suspend();
+		suspend();
+		skRestart();
+	}, this);
+	return true;
+}
+
+//	MCPからデバッグ中のゲームに対して、スクリーンショットを取得する。
+function getDebugScreenShot(){
+	local sp = ::rootview.capture(), tex = sp.tex0;
+	local img = RGBAImage( tex.width, tex.height);
+	local old = skGetRenderTarget();
+	skSetRenderTarget( tex);
+	skReadPixels( 0, 0, img.width, img.height, img);
+	skSetRenderTarget( old);
+	local bb = img.encodePNG(); bb.pos = 0;
+	return bb;
+}
+
+function getDebugStatus(){
+	local stg = ::rpgstage;
+	return [
+		"Paused: "..!!::RPGMain.pause,
+		"MapID: "..stg.mapid,
+		"MainEvent: ".. (stg.mainevent["evid"]||null),
+		"Is Battle: "..!!stg.battle,
+		"FPS: "..RPGMain.fps.fps,
+	];
+}
+
+//	ウィンドウが背面になると音量を下げる
+::rootview.addEventListener( APP_EVENT, @( e){
+	switch( e.id){
+	case ACTIVESTATE_CHANGED:
+		if( e.keycode == AppActiveState.APPACTIVE_ACTIVE){
+			::soundmanager.ctx[SoundID.SK_SND_GAIN] = 1.0;
+		}else{
+			::soundmanager.ctx[SoundID.SK_SND_GAIN] = 0.25;
+		}
+		break;
+	}
+});
+
+//	flush log
+newthread().start( @(){
+	local paused = false, peerchk = skGetTime();
+	for( ;;){
+		flushStdOut(); suspend();
+		if( !paused != !::RPGMain.pause && ::ipcserv.peerpid){
+			paused = !paused;
+			::ipcserv.invokeIPCScript( "::debugsession?.pauseChanged( %S);" % paused, 0);	//	notify
+		}
+		if( skGetTime( peerchk) > 500){	//	0.5秒ごとにpeerpidが生きているか確認する
+			peerchk = skGetTime();
+			if( ::ipcserv.peerpid){
+				local wnd = ::Win32.findWindow( ::ipcserv.peerpid);
+				if( !wnd){
+					printf( "IPCConnection: peer process %S is dead. ShuttingDown...\n", ::ipcserv.peerpid);
+					::rootview.quit = true;
+				}
+			}
+		}
+	}
+}, this);
+
+//	debug shortcut
+import VirtualKeyCode;
+
+local revertRenderSkip( s){
+	local v = ::rootview.findChild( s);
+	v.layerflags = v.layerflags ^ 0x8000;
+}
+
+local rootevent( e){
+	if( e.id != KEY_PRESSED) return;
+	switch( e.keycode){
+	case VK_F2:
+		if( !::RPGMain.pause){
+			revertRenderSkip( "info");
+			revertRenderSkip( "btninfog");
+			revertRenderSkip( "stageui");
+			revertRenderSkip( "message");
+			revertRenderSkip( "menu");
+		}
+		break;
+	case VK_ENTER:
+		if( e.isCommandDown()){
+			::ipcserv.invokeIPCScript( "skMoveScreen( { flags=MoveScreenFlags.MOVESCREEN_FRONT });", 0);
+		}
+		break;
+	}
+}
+
+::rootview.addPostEventListener( KEY_EVENT, rootevent);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+RPGMain.mainloop();
+
+if( prof){
+	prof.stop();
+	local fs = FileRef( "log/prof.json").open( "w");
+	prof.write( fs);
+	fs.close();
+}
+
+//	
+{
+	local tecmap = {};
+	local f = FileRef( "tmp/skfxload.json");
+	if( f.exists()) tecmap = decodeJSON( f.load());	//	前回の結果を上書き。消えたシェーダーが残り続ける問題あり。
+	local cdir = FileRef( "tmp/shaderbin");
+	cdir.mkdirs();
+	local apilv = skGetAPILevel();
+	local tecbits = tecmap[apilv] || (tecmap[apilv]<-{});	//	tecbitsはapilvごとに分ける。OpenGL ES 2.0と3.0でシェーダーのコンパイル結果が違うため。
+	local tmpbb = TempBuffer( 512*1024);
+	foreach( efx in skFXGetEffects()){
+		foreach( tec in efx){
+			local tecname = tec.name, tb = tecbits[tecname] || [], bitsnum = 0;
+			for( local l = 0; tec.getShaderSource( l); l ++){
+				local ss = tec.getShaderSource( l);
+				local sshash = ss.hash64();
+				local sb = tb[l]; if( !sb) tb .. (sb=[]);
+				foreach( bits in ss.getCompiledShaderBits()){
+					local ct = ss.getCompiledTime( bits);	// = compile time [vs,fs,link,total]
+					if( ct[3] <= 5) continue;	//	コンパイル時間が十分短い場合はキャッシュしない
+					if( sb.indexOf( bits) < 0) sb .. bits;
+					//	キャッシュのバージョンが古くて消されている場合もある
+					local fn = sprintf( "%d-%S-%S-%S.bin", apilv, tecname, l, bits);
+					local cf = FileRef( cdir, fn);
+					if( cf.exists()) continue;	//	ある場合は書かない
+					local bb = ss.getProgramBinary( bits, tmpbb);
+					if( bb){
+						local cmpbb = ByteBuffer();
+						cmpbb.puti( sshash[0]);
+						cmpbb.puti( sshash[1]);
+						cmpbb.putBuffer( bb);
+						cmpbb.pos = 0;
+						try{
+							cf.save( cmpbb);
+							printf( "Shader Cache saved %S. filesize=%S compile time=%S\n", fn, cmpbb.size, encodeJSON( ct));
+						}catch( ex){
+							printexception( ex);
+							cf.deleteFile();
+						}
+					}
+				}
+				sb.sort();
+				bitsnum += length( sb);
+			}
+			if( bitsnum){
+				tecbits[tecname] <- tb;
+			}
+		}
+	}
+	local bb = encodeJSON( tecmap, 5, ByteBuffer());
+	bb.pos = 0;
+	f.save( bb);
+}
+
+
+//	使用したシェーダーを記録。gamemainのpreloaShaders()で読み込む。
+if( recfx){
+	local tecmap = {};
+	local f = FileRef( skGetCodebase() .. "/resource/skfxload.json");
+	if( f.exists()) tecmap = decodeJSON( f.load());	//	前回の結果を上書き。消えたシェーダーが残り続ける問題あり。
+	local apilv = skGetAPILevel();
+	local tecbits = tecmap[apilv] || (tecmap[apilv]<-{});	//	tecbitsはapilvごとに分ける。OpenGL ES 2.0と3.0でシェーダーのコンパイル結果が違うため。
+	foreach( efx in skFXGetEffects()){
+		foreach( tec in efx){
+			local tecname = tec.name, tb = tecbits[tecname] || [], bitsnum = 0;
+			for( local l = 0; tec.getShaderSource( l); l ++){
+				local ss = tec.getShaderSource( l);
+				local sb = tb[l]; if( !sb) tb .. (sb=[]);
+				foreach( bits in ss.getCompiledShaderBits()){
+					if( sb.indexOf( bits) < 0) sb .. bits;
+				}
+				sb.sort();
+				bitsnum += length( sb);
+			}
+			if( bitsnum){
+				tecbits[tecname] <- tb;
+			}
+		}
+	}
+	local bb = encodeJSON( tecmap, 5, ByteBuffer());
+	bb.pos = 0;
+	f.save( bb);
+}
+
+skEndRender();

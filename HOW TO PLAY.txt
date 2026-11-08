@@ -1,0 +1,34 @@
+ROKUGAN TRAVELER - how to play (alpha)
+
+START
+  Double-click "Play Rokugan Traveler.bat" (in this folder, or the shortcut on your desktop).
+  The title screen opens: New Game, Continue, Config, Exit Game.
+
+NEW GAME
+  The prologue asks which traveler you begin with. Each New Game follows one traveler's road:
+    Hiruma Natsuko (Crab), Kakita Rensei (Crane), Kitsuki Gendo (Dragon), Akodo Shizue (Lion),
+    Isawa Haruki (Phoenix), Shosuro Mitsue (Scorpion), Ide Tamotsu (Unicorn), Sayo (Ronin).
+  Each road is four chapters. At the end of Chapter 4 a road-marker (or a letter) points to the Plains of
+  Thunder: the finale, where all eight travelers meet. After the credits, the clear save returns to the
+  Shrine of Osano-Wo and the post-game opens (the deep Shadowlands, Shiro Hiruma, the Orochi).
+  Alpha note: there is no single save that walks all eight roads yet; the finale joins the other seven in
+  for you, brought up to your level.
+
+CONTROLS (keyboard)
+  Arrow keys   move (a gamepad should work too)
+  Z            confirm / talk / examine ("Check")
+  X            back / jump
+  C            menu (party, items, equipment)
+  Esc          pause
+  (The game shows these prompts in the corner of the screen.)
+  In battle: Attack, Skill, Boost (spend VP for extra hits / stronger spells), Item, Defend, Talent, Call
+  (a guest or hireling, and the finale's exploits), Flee.
+
+SAVING
+  Save at shrines, waystones and inns (the menu's Save, or the save prompts after big scenes).
+  Saves are kept in _tools\rpgcobo-tool\savedata.
+
+KNOWN ALPHA LIMITS
+  The game runs in RPG-Cobo's test-play mode (no packaged .exe yet).
+  Some optional content listed in NOTES.md is not built yet (post-game P4: Hikaru's Endless Strike, Purity of
+  Shinsei). Report anything odd and where it happened.

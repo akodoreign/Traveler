@@ -1,0 +1,136 @@
+{
+ "key": "katsuo",
+ "name": "Katsuo the White Brother",
+ "kind": "side",
+ "sheet": "side_katsuo.png",
+ "prompt": "1boy, male focus, man, Katsuo the White Brother, white skin, white hair, long hair, white kimono, white hakama, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#fceee8",
+   "ramp": [
+    "#575570",
+    "#9e9bbb",
+    "#fceee8",
+    "#ffffff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#575570",
+    "#9e9bbb",
+    "#fceee8",
+    "#ffffff",
+    "#ffffff"
+   ]
+  },
+  "hair": {
+   "base": "#f4f4f8",
+   "ramp": [
+    "#5b596c",
+    "#a5a4b7",
+    "#f4f4f8",
+    "#ffffff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#5b596c",
+    "#a5a4b7",
+    "#f4f4f8",
+    "#ffffff",
+    "#ffffff"
+   ]
+  },
+  "top": {
+   "base": "#f8f8f4",
+   "ramp": [
+    "#5b596c",
+    "#a5a4b7",
+    "#f8f8f4",
+    "#ffffff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#5b596c",
+    "#a5a4b7",
+    "#f8f8f4",
+    "#ffffff",
+    "#ffffff"
+   ]
+  },
+  "lower": {
+   "base": "#e8e6e2",
+   "ramp": [
+    "#4c4b5c",
+    "#9594a7",
+    "#e8e6e2",
+    "#ffffff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#4c4b5c",
+    "#9594a7",
+    "#e8e6e2",
+    "#ffffff",
+    "#ffffff"
+   ]
+  },
+  "accent": {
+   "base": "#aa1e28",
+   "ramp": [
+    "#390016",
+    "#750923",
+    "#aa1e27",
+    "#cd3839",
+    "#ec645d"
+   ],
+   "detect": [
+    "#390016",
+    "#750923",
+    "#aa1e27",
+    "#cd3839",
+    "#ec645d"
+   ]
+  }
+ }
+}

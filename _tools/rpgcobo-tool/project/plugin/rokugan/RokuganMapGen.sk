@@ -1,0 +1,119 @@
+//
+//	RokuganMapGen.sk : offline map builder for tools/gen_maps.py.
+//	If tmp/rt_mapgen/job.json exists when the first stage launches, every listed map is built as a BlockWorld from
+//	Python-made specs and saved as a .bw, then the app quits. Spec per map:
+//	  cells : PNG, one pixel per column: block id = R | G<<8 (page | index<<5), top height y = B. Block 0 = empty.
+//	  objs  : [{t="fill", x,y,z,w,h,d, blk}, {t="blk", x,y,z, blk}, {t="fb", x,y,z, rot, fbtype, fbparam},
+//	           {t="asset", id="MA038", x,y,z, rot}]   (fb / asset y = the ground cell they stand on, +1)
+//	  bed   : block id under water cells (water stays one block deep; liquid isn't floor, so a full water column
+//	          dropped anyone who got onto it out of the world)
+//	  barrier : true (default) = invisible walls (BlockWorld.bmp no-entry columns) on open water cells
+//	  walls : [[x, z], ...] extra no-entry cells
+//
+import BlockFlagID;
+
+::RokuganMapGen <- {
+	assets = {}
+
+	function asset( id){
+		if( id in this.assets) return this.assets[id];
+		local ba = ::conf._resource.map_asset[id];
+		local aw = (ba && ba["bw64"]) ? ObjectInput.decode( uncompressZSTD( decodeBASE64( ba.bw64))) : null;
+		this.assets[id] <- aw;
+		return aw;
+	}
+
+	function build( m){
+		local img = skLoadImage( FileRef( m.cells).load());
+		local w = img.width, d = img.height;
+		local bw = BlockWorld( w, m["hgt"] ?? 64, d);
+		local r = IRect3D();
+		local bed = m["bed"] || 0, wet = [];		//	water cells: [x, z, surface y]
+		for( local z = 0; z < d; z++){
+			for( local x = 0; x < w; x++){
+				local v = img[x + z * w];
+				local blk = v & 0xffff, y = (v >>> 16) & 0xff;
+				if( !blk) continue;
+				if( ::Block.getFlags( blk) & BLK_LIQUID){
+					//	Water is not floor: a full water column let anyone who got onto it fall out of the world.
+					//	Solid bed underneath, one block of water on top (water at y 0 has no room for a bed: the
+					//	barrier below keeps everyone out of it).
+					wet .. [x, z, y];
+					if( bed && y > 0){
+						r.set( x, 0, z, 1, y, 1);
+						bw.fillBlock( r, bed);
+						r.set( x, y, z, 1, 1, 1);
+						bw.fillBlock( r, blk);
+						continue;
+					}
+				}
+				r.set( x, 0, z, 1, y + 1, 1);
+				bw.fillBlock( r, blk);
+			}
+		}
+		local n = 0;
+		foreach( o in (m["objs"] || [])){
+			switch( o.t){
+			case "fill":
+				r.set( o.x, o.y, o.z, o.w, o.h, o.d);
+				bw.fillBlock( r, o.blk);
+				break;
+			case "blk":
+				bw.placeBlock( (o.x, o.y, o.z), o.blk, 0);
+				break;
+			case "fb":
+				local fb = FreeBlock.create( { fbtype = o.fbtype, fbparam = o.fbparam });
+				bw.placeFreeBlock( o.fbtype, o.fbparam, IPos( o.x, o.y + fb.br.h / 2, o.z, o["rot"] || 0), 0);
+				break;
+			case "asset":
+				local aw = asset( o.id);
+				if( !aw){ printf( "RTMAPGEN missing asset %S\n", o.id); break; }
+				local mm = IMat( o.x, o.y, o.z).rotate( o["rot"] || 0).translate( -aw.w / 2, 0, -aw.d / 2);
+				bw.drawWorld( aw, mm);
+				break;
+			}
+			n++;
+		}
+		//	Invisible walls (the engine's barrier bitmap, a full-height no-entry column): every open water cell, unless
+		//	something solid stands over the water (a pier, a bridge, a boat).
+		local nb = 0;
+		if( m["barrier"] ?? true){
+			local bmp = Bitmap( w, d);
+			foreach( c in wet){
+				local x = c[0], z = c[1], over = false;
+				for( local y = c[2] + 1; y < bw.h && !over; y++){
+					over = !!(::Block.getFlags( bw.blockat( x, y, z)) & (BLK_SOLID|BLK_SOLIDFB));
+				}
+				if( over) continue;
+				bmp.set( x, z, 1);
+				nb++;
+			}
+			foreach( c in (m["walls"] || [])){		//	extra no-entry cells from the spec: [x, z]
+				bmp.set( c[0], c[1], 1);
+				nb++;
+			}
+			if( nb) bw.bmp = bmp;
+		}
+		local bb = ObjectOutput.encode( bw);
+		bb.pos = 0;
+		FileRef( m.out).save( bb);
+		printf( "RTMAPGEN built %S %dx%d objs=%d water=%d barrier=%d -> %S\n", m.id, w, d, n, length( wet), nb, m.out);
+	}
+
+	//	Returns true when a job ran (the caller should stop launching).
+	function run(){
+		local jf = FileRef( "tmp/rt_mapgen/job.json");
+		if( !jf.exists()) return false;
+		local job = decodeJSON( jf.load());
+		foreach( m in job.maps){
+			try{
+				build( m);
+			}catch( e){
+				printf( "RTMAPGEN error %S: %S\n", m.id, e);
+			}
+		}
+		printf( "RTMAPGEN done\n");
+		skExit( 0);
+		return true;
+	}
+};

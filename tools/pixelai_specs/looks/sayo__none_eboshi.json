@@ -1,0 +1,204 @@
+{
+ "key": "sayo__none_eboshi",
+ "name": "Sayo",
+ "kind": "traveler",
+ "sheet": "trav_sayo.png",
+ "prompt": "1girl, young woman ronin herbalist, tan skin, freckles, long brown hair, worn brown kimono, green obi, herb basket on the back, wearing eboshi, tall black lacquered court cap, unarmed, empty hands, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes, drinking straw, mascot, creature on hat, face on hat, eyes on hat, emblem on hat",
+ "seed": 11,
+ "candidates": 3,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#e2b088",
+   "ramp": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ],
+   "detect": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ]
+  },
+  "hair": {
+   "base": "#462c20",
+   "ramp": [
+    "#070202",
+    "#110706",
+    "#462c20",
+    "#694b3a",
+    "#886d5c"
+   ],
+   "detect": [
+    "#070202",
+    "#110706",
+    "#462c20",
+    "#694b3a",
+    "#886d5c"
+   ]
+  },
+  "top": {
+   "base": "#967854",
+   "ramp": [
+    "#25100e",
+    "#613c2d",
+    "#967854",
+    "#b99e7a",
+    "#d8c4a8"
+   ],
+   "detect": [
+    "#25100e",
+    "#613c2d",
+    "#967854",
+    "#b99e7a",
+    "#d8c4a8"
+   ]
+  },
+  "lower": {
+   "base": "#62503e",
+   "ramp": [
+    "#070303",
+    "#2d1e18",
+    "#62503e",
+    "#857461",
+    "#a4998c"
+   ],
+   "detect": [
+    "#070303",
+    "#2d1e18",
+    "#62503e",
+    "#857461",
+    "#a4998c"
+   ]
+  },
+  "pcol": {
+   "base": "#806446",
+   "ramp": [
+    "#0f0605",
+    "#4b2d21",
+    "#806446",
+    "#a38969",
+    "#c2ae95"
+   ],
+   "detect": [
+    "#0f0605",
+    "#4b2d21",
+    "#806446",
+    "#a38969",
+    "#c2ae95"
+   ]
+  },
+  "accent": {
+   "base": "#467048",
+   "ramp": [
+    "#030705",
+    "#1f3b29",
+    "#467047",
+    "#6d936b",
+    "#9ab296"
+   ],
+   "detect": [
+    "#030705",
+    "#1f3b29",
+    "#467047",
+    "#6d936b",
+    "#9ab296"
+   ]
+  },
+  "cord": {
+   "base": "#c4463c",
+   "ramp": [
+    "#530a1e",
+    "#8f1d2a",
+    "#c4463b",
+    "#e76f5e",
+    "#ff9a86"
+   ],
+   "detect": [
+    "#530a1e",
+    "#8f1d2a",
+    "#c4463b",
+    "#e76f5e",
+    "#ff9a86"
+   ]
+  },
+  "lining": {
+   "base": "#78966e",
+   "ramp": [
+    "#14251a",
+    "#3e6140",
+    "#78966e",
+    "#a4b99a",
+    "#d2d8ce"
+   ],
+   "detect": [
+    "#14251a",
+    "#3e6140",
+    "#78966e",
+    "#a4b99a",
+    "#d2d8ce"
+   ]
+  },
+  "hat0": {
+   "base": "#28262e",
+   "ramp": [
+    "#050407",
+    "#060507",
+    "#28262e",
+    "#4e4b51",
+    "#707070"
+   ],
+   "detect": [
+    "#050407",
+    "#060507",
+    "#28262e",
+    "#4e4b51",
+    "#707070"
+   ]
+  }
+ }
+}

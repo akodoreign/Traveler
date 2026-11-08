@@ -1,0 +1,2101 @@
+{
+	"A000": {
+		"MDEF": 0,
+		"PDEF": 2,
+		"desc": "木製の粗末な盾",
+		"eqflag": -1,
+		"eqtype": 8,
+		"icon": "",
+		"mdlid": "EV022",
+		"name": "木の盾",
+		"option": [
+			{
+				"LV": 1,
+				"dmgrate": 0.5,
+				"elembits": 7,
+				"formbits": 127,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"needshield": true,
+				"opttype": "opt_shield",
+				"successrate": 0.5
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 40
+	},
+	"A001": {
+		"MDEF": 0,
+		"PDEF": 5,
+		"desc": "木製の粗末な盾",
+		"eqflag": -1,
+		"eqtype": 8,
+		"icon": "",
+		"mdlid": "EV022",
+		"name": "甲羅の盾",
+		"option": [
+			{
+				"LV": 1,
+				"dmgrate": 0.5,
+				"elembits": 7,
+				"formbits": 127,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"needshield": true,
+				"opttype": "opt_shield",
+				"successrate": 0.2
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 140
+	},
+	"A002": {
+		"MDEF": 0,
+		"PDEF": 12,
+		"desc": "安価な割に丈夫な盾。",
+		"eqflag": -1,
+		"eqtype": 9,
+		"icon": "",
+		"mdlid": "EV009",
+		"name": "鉄の盾",
+		"option": [
+			{
+				"LV": 1,
+				"dmgrate": 0.5,
+				"elembits": 7,
+				"formbits": 127,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"needshield": true,
+				"opttype": "opt_shield",
+				"successrate": 0.2
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 370
+	},
+	"A003": {
+		"MDEF": 0,
+		"PDEF": 15,
+		"desc": "頑丈な盾",
+		"eqflag": -1,
+		"eqtype": 9,
+		"icon": "",
+		"mdlid": "EV004",
+		"name": "大盾",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": -5,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"dmgrate": 0.5,
+				"elembits": 7,
+				"formbits": 127,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"needshield": true,
+				"opttype": "opt_shield",
+				"successrate": 0.3
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 870
+	},
+	"A004": {
+		"MDEF": 4,
+		"PDEF": 12,
+		"desc": "不思議な力で属性攻撃を軽減。",
+		"eqflag": -1,
+		"eqtype": 8,
+		"icon": "",
+		"mdlid": "EV009",
+		"name": "守りの盾",
+		"option": [
+			{
+				"EDR.0": 0,
+				"EDR.1": 20,
+				"EDR.2": -10,
+				"EDR.3": 0,
+				"EDR.4": 0,
+				"LV": 1,
+				"opttype": "opt_elemdef"
+			},
+			{
+				"LV": 1,
+				"dmgrate": 0.5,
+				"elembits": 7,
+				"formbits": 127,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"needshield": true,
+				"opttype": "opt_shield",
+				"successrate": 0.2
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 1210
+	},
+	"A005": {
+		"MDEF": 4,
+		"PDEF": 18,
+		"desc": "騎士の用いる高性能な盾。",
+		"eqflag": -1,
+		"eqtype": 9,
+		"icon": "",
+		"mdlid": "EV019",
+		"name": "ナイトシールド",
+		"option": [
+			{
+				"LV": 1,
+				"dmgrate": 0.5,
+				"elembits": 7,
+				"formbits": 127,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"needshield": true,
+				"opttype": "opt_shield",
+				"successrate": 0.3
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 3300
+	},
+	"A006": {
+		"MDEF": 0,
+		"PDEF": 23,
+		"desc": "とても重く頑丈な盾",
+		"eqflag": -1,
+		"eqtype": 9,
+		"icon": "",
+		"mdlid": "EV020",
+		"name": "ヘビーシールド",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": -5,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"dmgrate": 0.5,
+				"elembits": 7,
+				"formbits": 127,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"needshield": true,
+				"opttype": "opt_shield",
+				"successrate": 0.3
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 3000
+	},
+	"A007": {
+		"MDEF": 10,
+		"PDEF": 21,
+		"desc": "騎士の用いる高性能な盾。",
+		"eqflag": -1,
+		"eqtype": 9,
+		"icon": "",
+		"mdlid": "EV009",
+		"name": "ミラーシールド",
+		"option": [
+			{
+				"LV": 1,
+				"dmgrate": 0.5,
+				"elembits": 7,
+				"formbits": 127,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"needshield": true,
+				"opttype": "opt_shield",
+				"successrate": 0.3
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 5300
+	},
+	"A008": {
+		"MDEF": 16,
+		"PDEF": 23,
+		"desc": "騎士の用いる高性能な盾。",
+		"eqflag": -1,
+		"eqtype": 8,
+		"icon": "",
+		"mdlid": "EV009",
+		"name": "女神の盾",
+		"option": [
+			{
+				"LV": 1,
+				"dmgrate": 0.5,
+				"elembits": 7,
+				"formbits": 127,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"needshield": true,
+				"opttype": "opt_shield",
+				"successrate": 0.3
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 6400
+	},
+	"A009": {
+		"MDEF": 12,
+		"PDEF": 36,
+		"desc": "騎士の用いる高性能な盾。",
+		"eqflag": 0,
+		"eqtype": 9,
+		"icon": "",
+		"mdlid": "EV019",
+		"name": "勇者の盾",
+		"option": [
+			{
+				"LV": 1,
+				"dmgrate": 0.5,
+				"elembits": 7,
+				"formbits": 127,
+				"hitact": {
+					"hitani": null,
+					"hitefx": null,
+					"hitsnd": null
+				},
+				"needshield": true,
+				"opttype": "opt_shield",
+				"successrate": 0.3
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 13000
+	},
+	"A020": {
+		"MDEF": 0,
+		"PDEF": 4,
+		"desc": "普段着としても使える上着。",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "レザーベスト",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 60
+	},
+	"A021": {
+		"MDEF": 3,
+		"PDEF": 7,
+		"desc": "厚手の綿で守りも堅いローブ。",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "木綿のローブ",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 120
+	},
+	"A022": {
+		"MDEF": 0,
+		"PDEF": 14,
+		"desc": "軽くて頑丈。",
+		"eqflag": -1,
+		"eqtype": 14,
+		"icon": "",
+		"mdlid": null,
+		"name": "鎖かたびら",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 330
+	},
+	"A023": {
+		"MDEF": 0,
+		"PDEF": 13,
+		"desc": "格闘家のための服。",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "武道着",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 5,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 350
+	},
+	"A024": {
+		"MDEF": 8,
+		"PDEF": 12,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "修道服",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 290
+	},
+	"A025": {
+		"MDEF": 0,
+		"PDEF": 20,
+		"desc": "軽くて頑丈。",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "アイアンメイル",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 740
+	},
+	"A026": {
+		"MDEF": 0,
+		"PDEF": 18,
+		"desc": "軽くて頑丈。",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "忍び装束",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 980
+	},
+	"A027": {
+		"MDEF": 0,
+		"PDEF": 30,
+		"desc": "軽くて頑丈。",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "プレートアーマー",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 3500
+	},
+	"A028": {
+		"MDEF": 12,
+		"PDEF": 18,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "魔道の衣",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 2800
+	},
+	"A029": {
+		"MDEF": 0,
+		"PDEF": 45,
+		"desc": "軽くて頑丈。",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "ドラゴンメイル",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 11500
+	},
+	"A030": {
+		"MDEF": 5,
+		"PDEF": 34,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "タイガーベスト",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 6700
+	},
+	"A040": {
+		"MDEF": 2,
+		"PDEF": 2,
+		"desc": "軽くて頑丈。",
+		"eqflag": -1,
+		"eqtype": 10,
+		"icon": "",
+		"mdlid": null,
+		"name": "皮の帽子",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 40
+	},
+	"A041": {
+		"MDEF": 3,
+		"PDEF": 6,
+		"desc": "軽くて頑丈。",
+		"eqflag": -1,
+		"eqtype": 11,
+		"icon": "",
+		"mdlid": null,
+		"name": "アイアンヘルム",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 140
+	},
+	"A042": {
+		"MDEF": 4,
+		"PDEF": 4,
+		"desc": "軽くて頑丈。",
+		"eqflag": -1,
+		"eqtype": 10,
+		"icon": "",
+		"mdlid": null,
+		"name": "ベレー帽",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 110
+	},
+	"A043": {
+		"MDEF": 6,
+		"PDEF": 10,
+		"desc": "軽くて頑丈。",
+		"eqflag": -1,
+		"eqtype": 11,
+		"icon": "",
+		"mdlid": null,
+		"name": "ナイトヘルム",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 260
+	},
+	"A044": {
+		"MDEF": 12,
+		"PDEF": 6,
+		"desc": "軽くて頑丈。",
+		"eqflag": -1,
+		"eqtype": 10,
+		"icon": "",
+		"mdlid": null,
+		"name": "マジックハット",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 320
+	},
+	"A045": {
+		"MDEF": 9,
+		"PDEF": 15,
+		"desc": "軽くて頑丈。",
+		"eqflag": -1,
+		"eqtype": 11,
+		"icon": "",
+		"mdlid": null,
+		"name": "ダイヤヘルム",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 540
+	},
+	"A050": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "魔除けの数珠",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A051": {
+		"MDEF": 0,
+		"PDEF": 3,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "魔寄せの数珠",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A052": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "命のペンダント",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A053": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "祝福の指輪",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A054": {
+		"MDEF": 0,
+		"PDEF": 8,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 17,
+		"icon": "",
+		"mdlid": null,
+		"name": "安全靴",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A055": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "アミュレット",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A056": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "ガントレット",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A057": {
+		"MDEF": 1,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "金の髪飾り",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A058": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "明鏡止水",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A059": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "七色のオーブ",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A060": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "風の守り",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A061": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "風の守り",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A062": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "風の守り",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A063": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "風の守り",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A064": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "戦士の首飾り",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A065": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "天使の羽",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A066": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "魔神の小手",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A067": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "ラバーバンド",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A068": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "メガネ",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A069": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "魂の数珠",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"A070": {
+		"MDEF": 0,
+		"PDEF": 1,
+		"desc": "",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "妖魔の角",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 100
+	},
+	"_meta": {
+		"caps": 100,
+		"version": 1
+	},
+	"A100": {
+		"MDEF": 0,
+		"PDEF": 8,
+		"desc": "Sturdy hemp and a good cloak. Light; no penalty to speed.",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "Travelling Clothes",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 80
+	},
+	"A101": {
+		"MDEF": 0,
+		"PDEF": 14,
+		"desc": "Laced iron scales of the Wall's foot soldiers. Heavy but honest.",
+		"eqflag": -1,
+		"eqtype": 14,
+		"icon": "",
+		"mdlid": null,
+		"name": "Ashigaru Lamellar",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 220
+	},
+	"A102": {
+		"MDEF": 2,
+		"PDEF": 3,
+		"desc": "A lacquered conical hat. Keeps off rain, sun and the occasional arrow.",
+		"eqflag": -1,
+		"eqtype": 10,
+		"icon": "",
+		"mdlid": null,
+		"name": "Jingasa",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 60,
+		"rt_look": "jingasa"
+	},
+	"A103": {
+		"MDEF": 2,
+		"PDEF": 7,
+		"desc": "An Imperial guard's hat, polished every day. Ryozo kept it. DEF +4 over a plain jingasa.",
+		"eqflag": -1,
+		"eqtype": 10,
+		"icon": "",
+		"mdlid": null,
+		"name": "Seppun Guard's Jingasa",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 300,
+		"rt_look": "jingasa"
+	},
+	"A104": {
+		"MDEF": 5,
+		"PDEF": 0,
+		"desc": "A knot of string, a bead and a whisker. Squeak says it finds things. It does.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Squeak's Charm",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A107": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A strip of the puppet's veil. Somehow you dodge women better. (A joke item.)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Torn Veil",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 60
+	},
+	"A108": {
+		"MDEF": 0,
+		"PDEF": 32,
+		"desc": "Heavy laced plate of the Hida. Built for the Wall, not for court.",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Crab Plate",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 900
+	},
+	"A110": {
+		"MDEF": 3,
+		"PDEF": 6,
+		"desc": "A ridged iron helmet with a neck guard. Def +6.",
+		"eqflag": -1,
+		"eqtype": 11,
+		"icon": "",
+		"mdlid": null,
+		"name": "Kabuto",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 360,
+		"rt_look": "kabuto"
+	},
+	"A111": {
+		"MDEF": 3,
+		"PDEF": 10,
+		"desc": "A priest's over-robe, ofuda sewn into the lining. E.Def and SP up.",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "Shugenja's Haori",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 520
+	},
+	"A109": {
+		"MDEF": 0,
+		"PDEF": 20,
+		"desc": "O-Shito's spare: black lacquer, purple cords. Light for its strength.",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Lacquered Do-maru",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 700
+	},
+	"A106": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A Wall veteran's jade bead, worn smooth. Taint finds it harder to take hold.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Old Jade Bead",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 200
+	},
+	"A105": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "The shaman's rattle of tiny bones. It still clicks when something is hidden nearby.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Nezumi Bone Charm",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 120
+	},
+	"A112": {
+		"MDEF": 0,
+		"PDEF": 46,
+		"desc": "The Hida's thickest laced plate. A Wall in a suit.",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Hida Heavy Plate",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 1600
+	},
+	"A113": {
+		"MDEF": 3,
+		"PDEF": 9,
+		"desc": "A fallen scout's hat, lined with jade grit. Taint takes hold half as often.",
+		"eqflag": -1,
+		"eqtype": 11,
+		"icon": "",
+		"mdlid": null,
+		"name": "Hiruma Scout's Jingasa",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 0,
+		"rt_look": "jingasa"
+	},
+	"A115": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "A finger of carved jade on a cord, the Crab's old ward. Its wearer can't be Tainted.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Jade Finger",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 1500
+	},
+	"A116": {
+		"MDEF": 0,
+		"PDEF": 60,
+		"desc": "Kaiu-forged scales laced in Hida blue. The Wall's best, sold to its best.",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Kaiu Lamellar",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 2600
+	},
+	"A114": {
+		"MDEF": 5,
+		"PDEF": 4,
+		"desc": "The oni's second face, dried. Whoever wears it can't be swapped with anyone.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Kommei Mask",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A117": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Silk hilt-wrap, wound tight and never used. Critical hits come a little easier.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Yasurugi's Spare Hilt-wrap",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 10,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A118": {
+		"MDEF": 5,
+		"PDEF": 3,
+		"desc": "An iron war fan, dropped by a general who woke up. Def +3; a Daidoji's guard.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Daidoji War Fan",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A119": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Sun-script on mulberry paper, from the Temples of the Sun. False charms on nearby enemies work at half strength.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Asahina Ward-paper",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A120": {
+		"MDEF": 0,
+		"PDEF": 34,
+		"desc": "Imported: lacquered plates sewn onto heavy silk. Light, and nearly as good as steel.",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Scorpion Silk Armour",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 1500
+	},
+	"A121": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A pirate charm, false and Bloodspeaker-made. It works anyway. (Evasion +10)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Chihaya's Charm",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 10,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A122": {
+		"MDEF": 5,
+		"PDEF": 3,
+		"desc": "From the deep pool under Katsuo's shrine. Cold, and it hums. (Water damage halved)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "White Squid Pearl",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_elemdef",
+				"EDR.7": 50
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A123": {
+		"MDEF": 5,
+		"PDEF": 0,
+		"desc": "Katsuo's brush. The bristles are stiff and brown. (E.Atk +15%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Blood-ink Brush",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MATK",
+				"val": 15,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A124": {
+		"MDEF": 3,
+		"PDEF": 22,
+		"desc": "White and gold temple robes, ofuda in the hems. E.Def and SP up.",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "Asahina Robes",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 1300
+	},
+	"A125": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "A ship's master's oiled cape. The sea gets in less. (Water damage -25%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Sailor's Oilskin",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_elemdef",
+				"EDR.7": 25
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 600
+	},
+	"A126": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "New white silk, wound by someone who knows how. There was no note. (Critical +15)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Father's Hilt-wrap",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 15,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A127": {
+		"MDEF": 0,
+		"PDEF": 44,
+		"desc": "Dark silk over thin lacquered plates. A courtier's armour that looks like a robe.",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Shadow Cloth",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 2600
+	},
+	"A128": {
+		"MDEF": 3,
+		"PDEF": 30,
+		"desc": "A shugenja's mantle, misfiled in the sealed stacks. E.Def and SP up.",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "Elemental Master's Mantle",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A129": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Lord Hiruto's own go stones, worn smooth. The black ones. You see the whole board. (Speed +10%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Hiruto's Go Stones",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 10,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A130": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "An illuminated copy of Akodo's Leadership, the debate's prize. (ATK +6%, Critical +5)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Akodo's Leadership",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 6,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 5,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A131": {
+		"MDEF": 5,
+		"PDEF": 3,
+		"desc": "The dance contest's prize: war fans with jade in the ribs. Terror finds it hard to take hold of you (60%). (Jade)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Jade-inlaid War Fans",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A132": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A tooth from Oni no Ianwa's ring of teeth. Running away is easier with it. (Speed +8%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Coward's Tooth",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 8,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A133": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Shogen's teaching, folded into a go-stone pouch: see the board before the stones fall. (Speed +8%, Critical +8)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Strategist's Eye",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 8,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 8,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A134": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A scrap of the Fear-demon's shadow, caught in a cord. Its wearer can't be Terrified. It drinks a little of you in return. (Terror immunity; max HP -10%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Demon's Shadow",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MAXHP",
+				"val": -10,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A135": {
+		"MDEF": 0,
+		"PDEF": 64,
+		"desc": "Kaiu-forged scales laced in Hida blue. The Wall's best, sold to its best.",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Matsu Lamellar",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 2800
+	},
+	"A139": {
+		"MDEF": 5,
+		"PDEF": 3,
+		"desc": "A sea-serpent's scale from a drowned sailor's box. Water gathers to it. (Water: Magic +10%, Water damage taken -50%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Orochi Scale",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MATK",
+				"val": 10,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_elemdef",
+				"EDR.7": 50
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A140": {
+		"MDEF": 3,
+		"PDEF": 24,
+		"desc": "An Isawa robe from Shiba Katsutoshi's storeroom, the kind the page Sanro will grow into. (SP +15)",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "Isawa Robe",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MAXMP",
+				"val": 15,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A141": {
+		"MDEF": 0,
+		"PDEF": 36,
+		"desc": "Light and sturdy.",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Antique Do-maru",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 1800
+	},
+	"A142": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "A cherry blossom from the year 400, pressed in Gendo's notebook. It shouldn't exist. (ATK, Magic +5%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Pressed Cherry Blossom",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 5,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MATK",
+				"val": 5,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A143": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "Doji Seikidera's headband, from the Champion's chest. It still smells of incense. (Critical +10%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Seikidera's Hachimaki",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 10,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A144": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "A Kitsune charm-box left in the river mud when the oni dissolved. Fox magic turns aside the unseen. (Magic DEF +15%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Fox Charm",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 15,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A145": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Kaiu Naname's mask, beaten from a hot sheet while you waited. Metal: wood fears it, fire melts it.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Iron Mask",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 10,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A146": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Ichiro Itami's carving, light and fragrant. Wood: earth fears it, metal cuts it.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Cedar Mask",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 6,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A147": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Togashi Sumi's tattoo-ink mask, painted on and lacquered. Water: fire fears it, earth drinks it. It washes off. Mostly.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Ink Mask",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 10,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A148": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Bayushi Shiruko's silk, soft as breath. Stone fears it. It fears nothing but stone.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Silk Mask",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 8,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A149": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Yasuki Kasamashi's own mask, carved from one piece of real jade. \"That's why I still remember my name.\" (Taint resist)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Jade Mask",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 15,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A150": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Red and black, warm like skin. Soshi Giseiki is inside it, apologising.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Giseiki's Mask",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MATK",
+				"val": 15,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A151": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "The abbot's plain wooden mask, worn smooth. No more having to choose who. (It remembers your courage.)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Munashii's Mask",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 10,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A156": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "An iron mine-lantern three hundred years old. Its flame never goes out. (Fire resist 30%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Guardian's Lantern",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_elemdef",
+				"EDR.6": 30
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A161": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A long black feather, dropped by a sulking crow-tengu. It still wants to be somewhere else. (Speed +8)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Tengu Feather",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 8,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A163": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A red stone from the broken basin, gone grey and cold. It remembers what it was made of. (Its wearer starts every battle with 1 more VP)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Bloodstone Shard",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A164": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "An ember from the crater, caught in a twist of iron. It won't make you anything. It'll just keep you warm. (Once a battle: Spark, a small Fire hit, or Rekindle, a small revive)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Ember Charm",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_getskill",
+				"skillid": "S615"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_getskill",
+				"skillid": "S616"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A165": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "A pearl the size of a quail's egg, cool as deep water, left on the stair where the champion coiled aside. (Water damage halved)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Naga Pearl",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_elemdef",
+				"EDR.7": 50
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A169": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Grey spider silk, woven fine as smoke by something with too many legs. Things slide off it. (Evasion +12)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Kumo Silk",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 12,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 2400
+	},
+	"A166": {
+		"MDEF": 0,
+		"PDEF": 84,
+		"desc": "Hida plate with a champion's crest, walked up from the Wall with the jade carts. Heavy enough to stand in a gate with. (T5)",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Crab Champion Plate",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 4200
+	},
+	"A167": {
+		"MDEF": 3,
+		"PDEF": 42,
+		"desc": "A shugenja's robe embroidered with the five elements in five threads. The kami like the look of it. (T5; MP +25)",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "Robe of the Five Rings",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MAXMP",
+				"val": 25,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 3800
+	},
+	"A168": {
+		"MDEF": 0,
+		"PDEF": 70,
+		"desc": "Light lacquered scales of the Osano-Wo lay guard, made for running along a stockade. (T5)",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Thunder-plain Lamellar",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 3600
+	},
+	"A162": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A fang the length of a finger, tied with grass. The old woman was very hungry. (Critical +10)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Tiger's Fang",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 10,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A157": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A refugee grandmother's gift: the saddle Persimmon will tolerate. Tamotsu rides lighter. (Speed +12)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Persimmon's Saddle",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 12,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A158": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A shard of the stillness the Shuten Doji left behind. Nothing can make its wearer silent, or make them someone else. (Immune to Silence and possession)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Regret's Silence",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A159": {
+		"MDEF": 0,
+		"PDEF": 52,
+		"desc": "Riding armour, lacquered purple, cut for the saddle. Unicorn T4.",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Unicorn Lamellar",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 3200
+	},
+	"A160": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "An Emerald Legion officer's helmet, green-laced. Its owner won't need it. (DEF +10%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Legion Kabuto",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 10,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A155": {
+		"MDEF": 0,
+		"PDEF": 12,
+		"desc": "Lacquered leather in Unicorn purple, cut for the saddle. Light; it doesn't slow you down.",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Unicorn Riding Armour",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 320
+	},
+	"A152": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "A Tamori ward-paper sewn into a cord of red hemp. Its wearer walks Tamori's Furnace without burning. (No heat damage; Fire damage taken -50%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Tamori Heat-Ward",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_elemdef",
+				"EDR.6": 50
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 1800
+	},
+	"A153": {
+		"MDEF": 0,
+		"PDEF": 52,
+		"desc": "A Tamori monk's heavy robe, ward-script in every seam, left on a ledge over the lava. (No heat damage; Fire damage taken -25%)",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Tamori Ward-Robe",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_elemdef",
+				"EDR.6": 25
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A154": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A hand mirror of black glass. Whatever face looks into it, it shows Mitsue's. (E.Def +12%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Bloodspeaker's Mirror",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 12,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A137": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "An Earth charm of mountain stone, for pilgrims on steep roads. Its wearer can't be knocked Off-Balance. (Oni no Kuzushi's Unbalancing Breath)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Mountain's-Feet Charm",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 900
+	},
+	"A138": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "A shard of the cellar's jade seal, whole again in Haruki's hand. (Earth: Defence +10%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Cracked Seal Shard",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 10,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A136": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "A bead of grey glass from the silent hurricane. The wind still turns inside it. (Air: Speed +8%, Air damage taken -25%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Hurricane Bead",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 8,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_elemdef",
+				"EDR.8": 25
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A170": {
+		"MDEF": 2,
+		"PDEF": 2,
+		"desc": "A wide sandogasa of woven straw. Pilgrims, peddlers and ronin hide under it from sun and rain.",
+		"eqflag": -1,
+		"eqtype": 10,
+		"icon": "",
+		"mdlid": null,
+		"name": "Straw Kasa",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 40,
+		"rt_look": "kasa"
+	},
+	"A171": {
+		"MDEF": 2,
+		"PDEF": 1,
+		"desc": "A courtier's tall black lacquered cap. Nobody hits a man in an eboshi first. (E.Def +5%)",
+		"eqflag": -1,
+		"eqtype": 10,
+		"icon": "",
+		"mdlid": null,
+		"name": "Eboshi",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 5,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 160,
+		"rt_look": "eboshi"
+	},
+	"A172": {
+		"MDEF": 2,
+		"PDEF": 1,
+		"desc": "A plain white headband, tied tight before a hard day. (Critical +3)",
+		"eqflag": -1,
+		"eqtype": 10,
+		"icon": "",
+		"mdlid": null,
+		"name": "Hachimaki",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 3,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 50,
+		"rt_look": "hachimaki"
+	}
+}

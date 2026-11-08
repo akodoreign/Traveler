@@ -1,0 +1,5241 @@
+{
+	"G000": {
+		"defval": false,
+		"name": "ぐろーばる000",
+		"type": 1
+	},
+	"G001": {
+		"defval": 0,
+		"name": "ぐろーばる001",
+		"type": 2
+	},
+	"_meta": {
+		"caps": 200,
+		"version": 1
+	},
+	"G010": {
+		"defval": false,
+		"name": "S01 watchtower opening done",
+		"type": 1
+	},
+	"G011": {
+		"defval": false,
+		"name": "S02 leave ordered",
+		"type": 1
+	},
+	"G012": {
+		"defval": false,
+		"name": "S03 Hoshi-no-Ichi arrival",
+		"type": 1
+	},
+	"G013": {
+		"defval": false,
+		"name": "S03 drop soup (noodle stall)",
+		"type": 1
+	},
+	"G014": {
+		"defval": false,
+		"name": "S04 quarry arrival",
+		"type": 1
+	},
+	"G015": {
+		"defval": false,
+		"name": "hidden_ones_cleared",
+		"type": 1
+	},
+	"G016": {
+		"defval": false,
+		"name": "quarry_left",
+		"type": 1
+	},
+	"G017": {
+		"defval": false,
+		"name": "talked_satomi",
+		"type": 1
+	},
+	"G018": {
+		"defval": false,
+		"name": "S03b Satomi first talk",
+		"type": 1
+	},
+	"G021": {
+		"defval": false,
+		"name": "S04 resolved (Sumai won or left)",
+		"type": 1
+	},
+	"G022": {
+		"defval": false,
+		"name": "S05 night theft at the inn",
+		"type": 1
+	},
+	"G024": {
+		"defval": false,
+		"name": "S05 Squeak at the cave mouth",
+		"type": 1
+	},
+	"G025": {
+		"defval": false,
+		"name": "S05 P1 prints",
+		"type": 1
+	},
+	"G026": {
+		"defval": false,
+		"name": "S05 P2 hairpin",
+		"type": 1
+	},
+	"G027": {
+		"defval": false,
+		"name": "S05 P3 smell",
+		"type": 1
+	},
+	"G040": {
+		"defval": false,
+		"name": "S06 cave 1 stolen things",
+		"type": 1
+	},
+	"G041": {
+		"defval": false,
+		"name": "b_cave_nezumi_a won",
+		"type": 1
+	},
+	"G042": {
+		"defval": false,
+		"name": "b_cave_beetles won",
+		"type": 1
+	},
+	"G043": {
+		"defval": false,
+		"name": "S06 cave 3 armour",
+		"type": 1
+	},
+	"G044": {
+		"defval": false,
+		"name": "b_cave_nezumi_b won",
+		"type": 1
+	},
+	"G045": {
+		"defval": false,
+		"name": "S07 altar scene",
+		"type": 1
+	},
+	"G046": {
+		"defval": false,
+		"name": "ryo_a",
+		"type": 1
+	},
+	"G047": {
+		"defval": false,
+		"name": "ryo_b",
+		"type": 1
+	},
+	"G048": {
+		"defval": false,
+		"name": "ryozo_talked_down",
+		"type": 1
+	},
+	"G049": {
+		"defval": false,
+		"name": "S08 boss won",
+		"type": 1
+	},
+	"G050": {
+		"defval": false,
+		"name": "oni_named_ryozo",
+		"type": 1
+	},
+	"G051": {
+		"defval": false,
+		"name": "nezumi_friends",
+		"type": 1
+	},
+	"G052": {
+		"defval": false,
+		"name": "seppun_tanto_taken",
+		"type": 1
+	},
+	"G053": {
+		"defval": false,
+		"name": "S09 done",
+		"type": 1
+	},
+	"G054": {
+		"defval": false,
+		"name": "S10 chapter complete",
+		"type": 1
+	},
+	"G056": {
+		"defval": false,
+		"name": "C2 Tremor wall chest",
+		"type": 1
+	},
+	"G057": {
+		"defval": false,
+		"name": "S06 cave 1 entry",
+		"type": 1
+	},
+	"G058": {
+		"defval": false,
+		"name": "S06 cave 2 entry",
+		"type": 1
+	},
+	"G030": {
+		"defval": false,
+		"name": "Hoshi townsfolk talked: Kiyo",
+		"type": 1
+	},
+	"G031": {
+		"defval": false,
+		"name": "Hoshi townsfolk talked: Gonbei",
+		"type": 1
+	},
+	"G032": {
+		"defval": false,
+		"name": "Hoshi townsfolk talked: Kanbe",
+		"type": 1
+	},
+	"G033": {
+		"defval": false,
+		"name": "Hoshi townsfolk talked: Satomi",
+		"type": 1
+	},
+	"G034": {
+		"defval": false,
+		"name": "Hoshi townsfolk talked: Fishwife",
+		"type": 1
+	},
+	"G035": {
+		"defval": false,
+		"name": "Hoshi townsfolk talked: Wall veteran",
+		"type": 1
+	},
+	"G036": {
+		"defval": false,
+		"name": "Hoshi townsfolk talked: Kite child",
+		"type": 1
+	},
+	"G037": {
+		"defval": false,
+		"name": "Hoshi townsfolk talked: Taneo",
+		"type": 1
+	},
+	"G019": {
+		"defval": 0,
+		"name": "Hoshi townsfolk talked (count; 3 opens the quarry)",
+		"type": 2
+	},
+	"G055": {
+		"defval": 0,
+		"name": "S07 tries to reach Ryozo (count)",
+		"type": 2
+	},
+	"G060": {
+		"defval": 0,
+		"name": "Honor (story changes, +/-)",
+		"type": 2
+	},
+	"G200": {
+		"defval": false,
+		"name": "Crab Ch2 started (chapter icon)",
+		"type": 1
+	},
+	"G201": {
+		"defval": false,
+		"name": "S01 audience + flares",
+		"type": 1
+	},
+	"G202": {
+		"defval": false,
+		"name": "S02 Mutsuye",
+		"type": 1
+	},
+	"G203": {
+		"defval": false,
+		"name": "S02 Kuhime",
+		"type": 1
+	},
+	"G204": {
+		"defval": false,
+		"name": "S02 Keiyomi",
+		"type": 1
+	},
+	"G205": {
+		"defval": false,
+		"name": "S02 archery",
+		"type": 1
+	},
+	"G206": {
+		"defval": false,
+		"name": "S02 Akiko",
+		"type": 1
+	},
+	"G207": {
+		"defval": false,
+		"name": "S02 Shiko rumour",
+		"type": 1
+	},
+	"G208": {
+		"defval": false,
+		"name": "wall_crab_trust",
+		"type": 1
+	},
+	"G209": {
+		"defval": false,
+		"name": "S02b the dance",
+		"type": 1
+	},
+	"G210": {
+		"defval": false,
+		"name": "S03 wall_mud_clue",
+		"type": 1
+	},
+	"G212": {
+		"defval": false,
+		"name": "S05 donjon",
+		"type": 1
+	},
+	"G213": {
+		"defval": false,
+		"name": "b_donjon_goblins won",
+		"type": 1
+	},
+	"G214": {
+		"defval": false,
+		"name": "S06 boss won",
+		"type": 1
+	},
+	"G215": {
+		"defval": false,
+		"name": "puppet_spared",
+		"type": 1
+	},
+	"G216": {
+		"defval": false,
+		"name": "S07 Crab Ch2 complete",
+		"type": 1
+	},
+	"G217": {
+		"defval": false,
+		"name": "blue_flare_held",
+		"type": 1
+	},
+	"G218": {
+		"defval": false,
+		"name": "Squeak's rat-way",
+		"type": 1
+	},
+	"G221": {
+		"defval": false,
+		"name": "S02 Shigeru & Taira",
+		"type": 1
+	},
+	"G222": {
+		"defval": false,
+		"name": "S02 Kage",
+		"type": 1
+	},
+	"G223": {
+		"defval": false,
+		"name": "Wall-stair Crab Plate",
+		"type": 1
+	},
+	"G224": {
+		"defval": false,
+		"name": "S05 donjon entry scene",
+		"type": 1
+	},
+	"G225": {
+		"defval": false,
+		"name": "trap catacombs roller",
+		"type": 1
+	},
+	"G226": {
+		"defval": false,
+		"name": "trap catacombs jade line",
+		"type": 1
+	},
+	"G227": {
+		"defval": false,
+		"name": "S06 boss scene",
+		"type": 1
+	},
+	"G228": {
+		"defval": false,
+		"name": "Keiyomi's ribbon returned",
+		"type": 1
+	},
+	"G229": {
+		"defval": false,
+		"name": "S03 shrine scene",
+		"type": 1
+	},
+	"G230": {
+		"defval": false,
+		"name": "S04 accusation scene",
+		"type": 1
+	},
+	"G231": {
+		"defval": false,
+		"name": "Keiyomi gave Natsuko her ribbon",
+		"type": 1
+	},
+	"G232": {
+		"defval": 0,
+		"name": "current guest (0 none, 1 Kitsu Takeo, 2 Yogo Mai, 3 Ide Fujio, 4 Daidoji Sakura)",
+		"type": 2
+	},
+	"G233": {
+		"defval": false,
+		"name": "SS Takeo 'The Silent Ancestors' done",
+		"type": 1
+	},
+	"G234": {
+		"defval": false,
+		"name": "SS Mai 'The Sweet Yogo' done",
+		"type": 1
+	},
+	"G235": {
+		"defval": false,
+		"name": "SS Fujio 'Letters to Everyone' done",
+		"type": 1
+	},
+	"G236": {
+		"defval": false,
+		"name": "SS Sakura 'The Deserter' done",
+		"type": 1
+	},
+	"G240": {
+		"defval": false,
+		"name": "Crab Ch3 started (S01 at the Wall gate)",
+		"type": 1
+	},
+	"G241": {
+		"defval": false,
+		"name": "S02 trap tunnels' far mouth",
+		"type": 1
+	},
+	"G242": {
+		"defval": false,
+		"name": "S03 landmark 1 (tar chasm)",
+		"type": 1
+	},
+	"G243": {
+		"defval": false,
+		"name": "S03 landmark 2 (lava trees)",
+		"type": 1
+	},
+	"G244": {
+		"defval": false,
+		"name": "S03 b_sl_goblins won",
+		"type": 1
+	},
+	"G245": {
+		"defval": false,
+		"name": "S03 b_sl_onikage won",
+		"type": 1
+	},
+	"G246": {
+		"defval": false,
+		"name": "S03 the ridge: map marked",
+		"type": 1
+	},
+	"G247": {
+		"defval": false,
+		"name": "S04 the broken guard",
+		"type": 1
+	},
+	"G248": {
+		"defval": false,
+		"name": "guard_rescued",
+		"type": 1
+	},
+	"G249": {
+		"defval": false,
+		"name": "S05 Kage found (follows)",
+		"type": 1
+	},
+	"G250": {
+		"defval": false,
+		"name": "S06 the plain",
+		"type": 1
+	},
+	"G251": {
+		"defval": false,
+		"name": "S06 hide failed (b_sl_akutsukai)",
+		"type": 1
+	},
+	"G252": {
+		"defval": false,
+		"name": "S06 the Ryozo rider",
+		"type": 1
+	},
+	"G253": {
+		"defval": false,
+		"name": "kage_fought",
+		"type": 1
+	},
+	"G254": {
+		"defval": false,
+		"name": "S07 Kommei defeated",
+		"type": 1
+	},
+	"G255": {
+		"defval": false,
+		"name": "S08 Crab Ch3 complete",
+		"type": 1
+	},
+	"G256": {
+		"defval": false,
+		"name": "Squeak joined (Ch3)",
+		"type": 1
+	},
+	"G257": {
+		"defval": false,
+		"name": "Gonta joined (Ch3)",
+		"type": 1
+	},
+	"G258": {
+		"defval": false,
+		"name": "SL2 scout's bones",
+		"type": 1
+	},
+	"G259": {
+		"defval": false,
+		"name": "Ch3 point of no return crossed",
+		"type": 1
+	},
+	"G260": {
+		"defval": false,
+		"name": "S02 the traps (Natsuko's line)",
+		"type": 1
+	},
+	"G261": {
+		"defval": false,
+		"name": "SL2 hanging root climbed (Fine Katana)",
+		"type": 1
+	},
+	"G270": {
+		"defval": false,
+		"name": "Crab Ch4 started",
+		"type": 1
+	},
+	"G271": {
+		"defval": false,
+		"name": "S01 the wedding",
+		"type": 1
+	},
+	"G272": {
+		"defval": false,
+		"name": "S02 the siege begins",
+		"type": 1
+	},
+	"G273": {
+		"defval": false,
+		"name": "b_siege_breach_a won",
+		"type": 1
+	},
+	"G274": {
+		"defval": false,
+		"name": "b_siege_breach_b fought",
+		"type": 1
+	},
+	"G275": {
+		"defval": false,
+		"name": "S03 the barrel",
+		"type": 1
+	},
+	"G276": {
+		"defval": false,
+		"name": "F1 maid passed",
+		"type": 1
+	},
+	"G277": {
+		"defval": false,
+		"name": "F2 guard passed",
+		"type": 1
+	},
+	"G278": {
+		"defval": false,
+		"name": "F2 Akiko passed",
+		"type": 1
+	},
+	"G279": {
+		"defval": false,
+		"name": "nashiko_unmasked",
+		"type": 1
+	},
+	"G280": {
+		"defval": false,
+		"name": "S05 the chase",
+		"type": 1
+	},
+	"G281": {
+		"defval": false,
+		"name": "flare_fired",
+		"type": 1
+	},
+	"G284": {
+		"defval": false,
+		"name": "S06 Tsukakoro defeated",
+		"type": 1
+	},
+	"G285": {
+		"defval": false,
+		"name": "kage_told_truth",
+		"type": 1
+	},
+	"G286": {
+		"defval": false,
+		"name": "Crab Ch4 complete",
+		"type": 1
+	},
+	"G287": {
+		"defval": false,
+		"name": "split up on F1",
+		"type": 1
+	},
+	"G288": {
+		"defval": false,
+		"name": "split up on F2",
+		"type": 1
+	},
+	"G289": {
+		"defval": false,
+		"name": "split up on F3",
+		"type": 1
+	},
+	"G290": {
+		"defval": false,
+		"name": "test made on the current stalk NPC",
+		"type": 1
+	},
+	"G292": {
+		"defval": false,
+		"name": "Goro SS2 The Bent Sword done",
+		"type": 1
+	},
+	"G295": {
+		"defval": false,
+		"name": "boar hollow found (Crab Ch1 coast road, Hunting)",
+		"type": 1
+	},
+	"G296": {
+		"defval": false,
+		"name": "beach ledge climbed (Crab Ch1 coast road, Athletics)",
+		"type": 1
+	},
+	"G297": {
+		"defval": false,
+		"name": "Hoshi storehouse lacquer box opened",
+		"type": 1
+	},
+	"G298": {
+		"defval": false,
+		"name": "Toshi no Kijo troll's hoard taken (Crab Ch3)",
+		"type": 1
+	},
+	"G300": {
+		"defval": false,
+		"name": "Crane Ch1 started (Rensei chosen as the starter)",
+		"type": 1
+	},
+	"G301": {
+		"defval": false,
+		"name": "S01 graduation done",
+		"type": 1
+	},
+	"G302": {
+		"defval": false,
+		"name": "S02 road_west done (Seigen joined)",
+		"type": 1
+	},
+	"G303": {
+		"defval": false,
+		"name": "S03 Ebisu scene done",
+		"type": 1
+	},
+	"G305": {
+		"defval": false,
+		"name": "Matsu Kiku joined",
+		"type": 1
+	},
+	"G306": {
+		"defval": false,
+		"name": "S04 forest: the ghost maiden",
+		"type": 1
+	},
+	"G307": {
+		"defval": false,
+		"name": "rope R1 cut",
+		"type": 1
+	},
+	"G308": {
+		"defval": false,
+		"name": "rope R2 cut (the pit revealed)",
+		"type": 1
+	},
+	"G309": {
+		"defval": false,
+		"name": "rope R3 cut (the ghost maiden)",
+		"type": 1
+	},
+	"G310": {
+		"defval": false,
+		"name": "b_forest_bandits_a won",
+		"type": 1
+	},
+	"G311": {
+		"defval": false,
+		"name": "forest_village_spared",
+		"type": 1
+	},
+	"G312": {
+		"defval": false,
+		"name": "S04 clearing: the death letter",
+		"type": 1
+	},
+	"G313": {
+		"defval": false,
+		"name": "S05 the Green Ronin's village",
+		"type": 1
+	},
+	"G314": {
+		"defval": false,
+		"name": "b_forest_bandits_b won",
+		"type": 1
+	},
+	"G315": {
+		"defval": false,
+		"name": "S06 castle hall",
+		"type": 1
+	},
+	"G316": {
+		"defval": false,
+		"name": "depura_seen",
+		"type": 1
+	},
+	"G317": {
+		"defval": false,
+		"name": "seoko_charmed",
+		"type": 1
+	},
+	"G318": {
+		"defval": false,
+		"name": "tatanko_charmed",
+		"type": 1
+	},
+	"G320": {
+		"defval": false,
+		"name": "S08 Yasurugi defeated",
+		"type": 1
+	},
+	"G321": {
+		"defval": false,
+		"name": "Crane Ch1 complete",
+		"type": 1
+	},
+	"G322": {
+		"defval": false,
+		"name": "waterfall glade found (Ebisu leads)",
+		"type": 1
+	},
+	"G323": {
+		"defval": false,
+		"name": "boar hollow (road_west, Hunting)",
+		"type": 1
+	},
+	"G324": {
+		"defval": false,
+		"name": "headman's storehouse box opened",
+		"type": 1
+	},
+	"G325": {
+		"defval": false,
+		"name": "bruised youth apologised",
+		"type": 1
+	},
+	"G326": {
+		"defval": false,
+		"name": "old woman follows (Green Ronin's Blessing)",
+		"type": 1
+	},
+	"G327": {
+		"defval": false,
+		"name": "TB-crane1-a Spilled Tea seen",
+		"type": 1
+	},
+	"G328": {
+		"defval": false,
+		"name": "fell into the pit chamber",
+		"type": 1
+	},
+	"G329": {
+		"defval": false,
+		"name": "S07 the dawn choice made",
+		"type": 1
+	},
+	"G331": {
+		"defval": false,
+		"name": "prologue: starter chosen",
+		"type": 1
+	},
+	"G332": {
+		"defval": false,
+		"name": "S01 graduation scene started",
+		"type": 1
+	},
+	"G333": {
+		"defval": false,
+		"name": "S02 road scene started",
+		"type": 1
+	},
+	"G334": {
+		"defval": false,
+		"name": "road_west: four days of road",
+		"type": 1
+	},
+	"G335": {
+		"defval": false,
+		"name": "S03 Pleasant Eaves scene started",
+		"type": 1
+	},
+	"G336": {
+		"defval": false,
+		"name": "a forest bandit was killed (not spared)",
+		"type": 1
+	},
+	"G337": {
+		"defval": false,
+		"name": "waterfall glade: Morishu's inro",
+		"type": 1
+	},
+	"G338": {
+		"defval": false,
+		"name": "S04 forest scene started",
+		"type": 1
+	},
+	"G339": {
+		"defval": false,
+		"name": "S04 clearing scene started",
+		"type": 1
+	},
+	"G340": {
+		"defval": false,
+		"name": "forest_2 training post: the Kozuka",
+		"type": 1
+	},
+	"G341": {
+		"defval": false,
+		"name": "S05 village scene started",
+		"type": 1
+	},
+	"G343": {
+		"defval": false,
+		"name": "S06 castle hall scene",
+		"type": 1
+	},
+	"G344": {
+		"defval": false,
+		"name": "S06 corridor: Depura",
+		"type": 1
+	},
+	"G345": {
+		"defval": false,
+		"name": "S08 the boss scene started",
+		"type": 1
+	},
+	"G346": {
+		"defval": false,
+		"name": "Crane Ch2 started",
+		"type": 1
+	},
+	"G347": {
+		"defval": false,
+		"name": "S01 the lantern garden",
+		"type": 1
+	},
+	"G348": {
+		"defval": false,
+		"name": "tadaka_lie_heard",
+		"type": 1
+	},
+	"G349": {
+		"defval": false,
+		"name": "eriko_close",
+		"type": 1
+	},
+	"G350": {
+		"defval": false,
+		"name": "Kakita Yumi charmed (info)",
+		"type": 1
+	},
+	"G351": {
+		"defval": false,
+		"name": "S02 Yasuki Yashiki",
+		"type": 1
+	},
+	"G352": {
+		"defval": false,
+		"name": "S03 same method twice",
+		"type": 1
+	},
+	"G354": {
+		"defval": false,
+		"name": "b_camp_sentries_a won",
+		"type": 1
+	},
+	"G355": {
+		"defval": false,
+		"name": "b_camp_sentries_b won",
+		"type": 1
+	},
+	"G357": {
+		"defval": false,
+		"name": "S04 Uji and Yakamo",
+		"type": 1
+	},
+	"G358": {
+		"defval": false,
+		"name": "S05 the Iron Cranes",
+		"type": 1
+	},
+	"G359": {
+		"defval": false,
+		"name": "an Iron Crane general was killed (worse epilogue)",
+		"type": 1
+	},
+	"G361": {
+		"defval": false,
+		"name": "S06 same_woman_proven",
+		"type": 1
+	},
+	"G362": {
+		"defval": false,
+		"name": "Crane Ch2 complete",
+		"type": 1
+	},
+	"G363": {
+		"defval": false,
+		"name": "Tide Chart",
+		"type": 1
+	},
+	"G364": {
+		"defval": false,
+		"name": "land_bridge tide pool",
+		"type": 1
+	},
+	"G365": {
+		"defval": false,
+		"name": "harbour office box",
+		"type": 1
+	},
+	"G366": {
+		"defval": false,
+		"name": "Yasuki warehouse",
+		"type": 1
+	},
+	"G367": {
+		"defval": false,
+		"name": "TB-crossroads1 seen",
+		"type": 1
+	},
+	"G368": {
+		"defval": false,
+		"name": "Hiruma Goro on the guest roster",
+		"type": 1
+	},
+	"G369": {
+		"defval": false,
+		"name": "Rensei: Rank 2",
+		"type": 1
+	},
+	"G371": {
+		"defval": false,
+		"name": "S01 garden intro played",
+		"type": 1
+	},
+	"G372": {
+		"defval": false,
+		"name": "harbour office box opened",
+		"type": 1
+	},
+	"G373": {
+		"defval": false,
+		"name": "GS docks chest",
+		"type": 1
+	},
+	"G374": {
+		"defval": false,
+		"name": "Tadaka scene played",
+		"type": 1
+	},
+	"G376": {
+		"defval": false,
+		"name": "low tide now",
+		"type": 1
+	},
+	"G377": {
+		"defval": false,
+		"name": "S02 the land-bridge",
+		"type": 1
+	},
+	"G378": {
+		"defval": false,
+		"name": "S02 the Yasuki hall",
+		"type": 1
+	},
+	"G379": {
+		"defval": false,
+		"name": "S03 Sanae's rooms scene",
+		"type": 1
+	},
+	"G380": {
+		"defval": false,
+		"name": "S04 camp entry",
+		"type": 1
+	},
+	"G381": {
+		"defval": false,
+		"name": "S05 boss scene",
+		"type": 1
+	},
+	"G382": {
+		"defval": false,
+		"name": "the Daidoji War Fan picked up",
+		"type": 1
+	},
+	"G383": {
+		"defval": false,
+		"name": "S06 the six doors",
+		"type": 1
+	},
+	"G384": {
+		"defval": false,
+		"name": "S07 the ending",
+		"type": 1
+	},
+	"G385": {
+		"defval": false,
+		"name": "Crane Ch3 started (S01)",
+		"type": 1
+	},
+	"G386": {
+		"defval": false,
+		"name": "S01 first sailing",
+		"type": 1
+	},
+	"G387": {
+		"defval": false,
+		"name": "tessai_ally",
+		"type": 1
+	},
+	"G388": {
+		"defval": false,
+		"name": "S02 Tessai choice made",
+		"type": 1
+	},
+	"G389": {
+		"defval": false,
+		"name": "sea: Cove Fort revealed",
+		"type": 1
+	},
+	"G390": {
+		"defval": false,
+		"name": "S03 Chihaya defeated",
+		"type": 1
+	},
+	"G391": {
+		"defval": false,
+		"name": "tadanobu_letters",
+		"type": 1
+	},
+	"G392": {
+		"defval": false,
+		"name": "sea: Temples of the Sun revealed",
+		"type": 1
+	},
+	"G393": {
+		"defval": false,
+		"name": "S04 the Asahina ward-paper",
+		"type": 1
+	},
+	"G394": {
+		"defval": false,
+		"name": "sea: the south isles revealed",
+		"type": 1
+	},
+	"G395": {
+		"defval": false,
+		"name": "S05 Yosuke defeated",
+		"type": 1
+	},
+	"G396": {
+		"defval": false,
+		"name": "S06 Ryohei met",
+		"type": 1
+	},
+	"G397": {
+		"defval": false,
+		"name": "ryohei_released",
+		"type": 1
+	},
+	"G398": {
+		"defval": false,
+		"name": "the Emperor's screen found",
+		"type": 1
+	},
+	"G399": {
+		"defval": false,
+		"name": "S07 shrine entered",
+		"type": 1
+	},
+	"G400": {
+		"defval": false,
+		"name": "S08 Katsuo defeated",
+		"type": 1
+	},
+	"G401": {
+		"defval": false,
+		"name": "katsuo_alive",
+		"type": 1
+	},
+	"G402": {
+		"defval": false,
+		"name": "S09 the ending",
+		"type": 1
+	},
+	"G403": {
+		"defval": false,
+		"name": "Crane Ch3 complete",
+		"type": 1
+	},
+	"G405": {
+		"defval": false,
+		"name": "Shinken's clerk charmed (info)",
+		"type": 1
+	},
+	"G406": {
+		"defval": false,
+		"name": "Crane port docks chest",
+		"type": 1
+	},
+	"G407": {
+		"defval": false,
+		"name": "Crane port customs-house crates",
+		"type": 1
+	},
+	"G408": {
+		"defval": false,
+		"name": "Cove Fort lookout (Athletics)",
+		"type": 1
+	},
+	"G409": {
+		"defval": false,
+		"name": "S07 the deep water",
+		"type": 1
+	},
+	"G410": {
+		"defval": false,
+		"name": "shrine: Tessai's chest 1",
+		"type": 1
+	},
+	"G411": {
+		"defval": false,
+		"name": "shrine: Tessai's chest 2",
+		"type": 1
+	},
+	"G412": {
+		"defval": false,
+		"name": "Katsuo's paint box",
+		"type": 1
+	},
+	"G413": {
+		"defval": false,
+		"name": "S05 storm scene played",
+		"type": 1
+	},
+	"G414": {
+		"defval": false,
+		"name": "S08 boss scene played",
+		"type": 1
+	},
+	"G415": {
+		"defval": false,
+		"name": "S09 port scene played",
+		"type": 1
+	},
+	"G417": {
+		"defval": false,
+		"name": "Crane Ch4 started (S01)",
+		"type": 1
+	},
+	"G418": {
+		"defval": false,
+		"name": "S02 censor-monk passed",
+		"type": 1
+	},
+	"G419": {
+		"defval": false,
+		"name": "b_archive_spirits won",
+		"type": 1
+	},
+	"G420": {
+		"defval": false,
+		"name": "b_archive_guardian won",
+		"type": 1
+	},
+	"G422": {
+		"defval": false,
+		"name": "Scene 1 read (the Mirror)",
+		"type": 1
+	},
+	"G423": {
+		"defval": false,
+		"name": "Scene 2 read (the Blade)",
+		"type": 1
+	},
+	"G424": {
+		"defval": false,
+		"name": "Scene 3 read (the Title + margin note)",
+		"type": 1
+	},
+	"G425": {
+		"defval": false,
+		"name": "the play found",
+		"type": 1
+	},
+	"G426": {
+		"defval": false,
+		"name": "S03 rehearsal done",
+		"type": 1
+	},
+	"G427": {
+		"defval": false,
+		"name": "rehearsal_quality good",
+		"type": 1
+	},
+	"G428": {
+		"defval": false,
+		"name": "S04 father's answer",
+		"type": 1
+	},
+	"G429": {
+		"defval": false,
+		"name": "play_handed_over",
+		"type": 1
+	},
+	"G430": {
+		"defval": false,
+		"name": "S05 the duel fought",
+		"type": 1
+	},
+	"G431": {
+		"defval": false,
+		"name": "duel_won",
+		"type": 1
+	},
+	"G432": {
+		"defval": false,
+		"name": "S06 sanae_answer given",
+		"type": 1
+	},
+	"G433": {
+		"defval": false,
+		"name": "sanae_answer: the Empire",
+		"type": 1
+	},
+	"G434": {
+		"defval": false,
+		"name": "Crane Ch4 complete",
+		"type": 1
+	},
+	"G435": {
+		"defval": false,
+		"name": "archives 1 misfiled box",
+		"type": 1
+	},
+	"G436": {
+		"defval": false,
+		"name": "archives 2 steward's diary",
+		"type": 1
+	},
+	"G437": {
+		"defval": false,
+		"name": "the night-before save offered",
+		"type": 1
+	},
+	"G439": {
+		"defval": false,
+		"name": "S06 court scene played",
+		"type": 1
+	},
+	"G440": {
+		"defval": false,
+		"name": "S04 scene played",
+		"type": 1
+	},
+	"G441": {
+		"defval": false,
+		"name": "Shizue chosen (Lion path)",
+		"type": 1
+	},
+	"G442": {
+		"defval": false,
+		"name": "S01 the raid played",
+		"type": 1
+	},
+	"G443": {
+		"defval": false,
+		"name": "shrine_broken",
+		"type": 1
+	},
+	"G444": {
+		"defval": false,
+		"name": "S02 the Phoenix arrive",
+		"type": 1
+	},
+	"G445": {
+		"defval": false,
+		"name": "Haruki recruited (Phoenix traveler)",
+		"type": 1
+	},
+	"G446": {
+		"defval": false,
+		"name": "S02 scene played",
+		"type": 1
+	},
+	"G447": {
+		"defval": false,
+		"name": "C1 Hoju's ghost",
+		"type": 1
+	},
+	"G448": {
+		"defval": false,
+		"name": "C2 the lying ghost",
+		"type": 1
+	},
+	"G449": {
+		"defval": false,
+		"name": "C3 the real jade",
+		"type": 1
+	},
+	"G450": {
+		"defval": false,
+		"name": "C4 Ozaki's statue",
+		"type": 1
+	},
+	"G451": {
+		"defval": false,
+		"name": "C5 Ryuzoji's wound",
+		"type": 1
+	},
+	"G452": {
+		"defval": false,
+		"name": "C6 Yachiko's cipher",
+		"type": 1
+	},
+	"G454": {
+		"defval": false,
+		"name": "escalation 2: Crane banners",
+		"type": 1
+	},
+	"G455": {
+		"defval": false,
+		"name": "escalation 3: Togawa",
+		"type": 1
+	},
+	"G456": {
+		"defval": false,
+		"name": "Ijako met (guest)",
+		"type": 1
+	},
+	"G457": {
+		"defval": false,
+		"name": "escalation 4: Nagai + the Ashimita duel",
+		"type": 1
+	},
+	"G458": {
+		"defval": false,
+		"name": "night (the ghost walks)",
+		"type": 1
+	},
+	"G460": {
+		"defval": false,
+		"name": "Ozaki dueled",
+		"type": 1
+	},
+	"G461": {
+		"defval": false,
+		"name": "Gusai dueled",
+		"type": 1
+	},
+	"G462": {
+		"defval": false,
+		"name": "Ashimita on the guest roster",
+		"type": 1
+	},
+	"G463": {
+		"defval": false,
+		"name": "five clues",
+		"type": 1
+	},
+	"G464": {
+		"defval": false,
+		"name": "S03a Ijako scene",
+		"type": 1
+	},
+	"G465": {
+		"defval": false,
+		"name": "tea house back room",
+		"type": 1
+	},
+	"G466": {
+		"defval": false,
+		"name": "castle town well",
+		"type": 1
+	},
+	"G467": {
+		"defval": false,
+		"name": "the road east open (after S05)",
+		"type": 1
+	},
+	"G468": {
+		"defval": false,
+		"name": "S05 Hojiki's custody decided",
+		"type": 1
+	},
+	"G469": {
+		"defval": false,
+		"name": "hojiki_custody: phoenix",
+		"type": 1
+	},
+	"G470": {
+		"defval": false,
+		"name": "S06 the Jade Chains",
+		"type": 1
+	},
+	"G471": {
+		"defval": false,
+		"name": "compass S1",
+		"type": 1
+	},
+	"G472": {
+		"defval": false,
+		"name": "compass S2",
+		"type": 1
+	},
+	"G473": {
+		"defval": false,
+		"name": "compass S3",
+		"type": 1
+	},
+	"G474": {
+		"defval": false,
+		"name": "compass S4: Ice (the west tower)",
+		"type": 1
+	},
+	"G475": {
+		"defval": false,
+		"name": "Kamatori: the Shiba guard dueled",
+		"type": 1
+	},
+	"G476": {
+		"defval": false,
+		"name": "road: Hoju's waystone",
+		"type": 1
+	},
+	"G477": {
+		"defval": false,
+		"name": "road: river bank (Athletics)",
+		"type": 1
+	},
+	"G478": {
+		"defval": false,
+		"name": "Kamatori: Hoju's storeroom",
+		"type": 1
+	},
+	"G479": {
+		"defval": false,
+		"name": "S06 study scene played",
+		"type": 1
+	},
+	"G480": {
+		"defval": false,
+		"name": "S07 played",
+		"type": 1
+	},
+	"G481": {
+		"defval": false,
+		"name": "climax_route A (bind)",
+		"type": 1
+	},
+	"G482": {
+		"defval": false,
+		"name": "climax_route B (duel)",
+		"type": 1
+	},
+	"G483": {
+		"defval": false,
+		"name": "climax_route C (protect)",
+		"type": 1
+	},
+	"G484": {
+		"defval": false,
+		"name": "S08 O-Tamai bound",
+		"type": 1
+	},
+	"G485": {
+		"defval": false,
+		"name": "yachiko_suspected",
+		"type": 1
+	},
+	"G486": {
+		"defval": false,
+		"name": "Lion Ch1 complete",
+		"type": 1
+	},
+	"G487": {
+		"defval": false,
+		"name": "S07 scene flag",
+		"type": 1
+	},
+	"G488": {
+		"defval": false,
+		"name": "S09 scene flag",
+		"type": 1
+	},
+	"G489": {
+		"defval": false,
+		"name": "S01 arrival played",
+		"type": 1
+	},
+	"G490": {
+		"defval": false,
+		"name": "met_nishi",
+		"type": 1
+	},
+	"G491": {
+		"defval": false,
+		"name": "Beat 1 done",
+		"type": 1
+	},
+	"G493": {
+		"defval": false,
+		"name": "escalation 1: the Duty plaque",
+		"type": 1
+	},
+	"G495": {
+		"defval": false,
+		"name": "Beat 2 done",
+		"type": 1
+	},
+	"G496": {
+		"defval": false,
+		"name": "heard_history",
+		"type": 1
+	},
+	"G497": {
+		"defval": false,
+		"name": "escalation 2: the banner",
+		"type": 1
+	},
+	"G498": {
+		"defval": false,
+		"name": "Beat 3 done",
+		"type": 1
+	},
+	"G499": {
+		"defval": false,
+		"name": "toturi_knows_name",
+		"type": 1
+	},
+	"G500": {
+		"defval": false,
+		"name": "the sword clue (swordsmith)",
+		"type": 1
+	},
+	"G501": {
+		"defval": false,
+		"name": "S06 the South Dojo at night",
+		"type": 1
+	},
+	"G502": {
+		"defval": false,
+		"name": "b_fear_shades won",
+		"type": 1
+	},
+	"G503": {
+		"defval": false,
+		"name": "Beat 4 done",
+		"type": 1
+	},
+	"G504": {
+		"defval": false,
+		"name": "escalation 4: the seal",
+		"type": 1
+	},
+	"G506": {
+		"defval": false,
+		"name": "S07 Atsuko in the cells",
+		"type": 1
+	},
+	"G507": {
+		"defval": false,
+		"name": "S08 Benjiro on the guest roster",
+		"type": 1
+	},
+	"G508": {
+		"defval": false,
+		"name": "kafu_joins",
+		"type": 1
+	},
+	"G509": {
+		"defval": false,
+		"name": "S09 Ianwa fled",
+		"type": 1
+	},
+	"G510": {
+		"defval": false,
+		"name": "Lion Ch2 complete",
+		"type": 1
+	},
+	"G511": {
+		"defval": false,
+		"name": "under-dojo chest 1",
+		"type": 1
+	},
+	"G512": {
+		"defval": false,
+		"name": "under-dojo chest 2",
+		"type": 1
+	},
+	"G513": {
+		"defval": false,
+		"name": "S06 voices heard",
+		"type": 1
+	},
+	"G514": {
+		"defval": false,
+		"name": "S09 scene flag",
+		"type": 1
+	},
+	"G515": {
+		"defval": false,
+		"name": "S10 scene flag",
+		"type": 1
+	},
+	"G516": {
+		"defval": false,
+		"name": "winter road bear den",
+		"type": 1
+	},
+	"G517": {
+		"defval": false,
+		"name": "Nishi's go game",
+		"type": 1
+	},
+	"G518": {
+		"defval": false,
+		"name": "sake house cellar",
+		"type": 1
+	},
+	"G519": {
+		"defval": false,
+		"name": "Lion Ch3 started (S01)",
+		"type": 1
+	},
+	"G520": {
+		"defval": false,
+		"name": "S02 the ford duel won",
+		"type": 1
+	},
+	"G521": {
+		"defval": false,
+		"name": "S02 the ford crossed",
+		"type": 1
+	},
+	"G522": {
+		"defval": false,
+		"name": "S02 the inspector",
+		"type": 1
+	},
+	"G523": {
+		"defval": false,
+		"name": "Ijako joins (Ch3)",
+		"type": 1
+	},
+	"G524": {
+		"defval": false,
+		"name": "the toll box decided",
+		"type": 1
+	},
+	"G525": {
+		"defval": false,
+		"name": "S03 the tube cracked",
+		"type": 1
+	},
+	"G526": {
+		"defval": false,
+		"name": "S03 scene flag",
+		"type": 1
+	},
+	"G528": {
+		"defval": false,
+		"name": "S05B the karo's answer",
+		"type": 1
+	},
+	"G529": {
+		"defval": false,
+		"name": "S04 b_pass_ronin won",
+		"type": 1
+	},
+	"G530": {
+		"defval": false,
+		"name": "yachiko_letters",
+		"type": 1
+	},
+	"G531": {
+		"defval": false,
+		"name": "S05A Shogen's test",
+		"type": 1
+	},
+	"G532": {
+		"defval": false,
+		"name": "shogen_joined",
+		"type": 1
+	},
+	"G533": {
+		"defval": false,
+		"name": "S06 the killers beaten",
+		"type": 1
+	},
+	"G534": {
+		"defval": false,
+		"name": "duelist_spared",
+		"type": 1
+	},
+	"G535": {
+		"defval": false,
+		"name": "route B: the hermitage coda",
+		"type": 1
+	},
+	"G536": {
+		"defval": false,
+		"name": "S07 Toturi",
+		"type": 1
+	},
+	"G537": {
+		"defval": false,
+		"name": "Lion Ch3 complete",
+		"type": 1
+	},
+	"G538": {
+		"defval": false,
+		"name": "west road: granary loft",
+		"type": 1
+	},
+	"G539": {
+		"defval": false,
+		"name": "pass: hunter's cache",
+		"type": 1
+	},
+	"G540": {
+		"defval": false,
+		"name": "pass: frozen courier",
+		"type": 1
+	},
+	"G541": {
+		"defval": false,
+		"name": "Shogen's plum wine",
+		"type": 1
+	},
+	"G542": {
+		"defval": false,
+		"name": "S01 scene flag",
+		"type": 1
+	},
+	"G543": {
+		"defval": false,
+		"name": "S06 scene flag",
+		"type": 1
+	},
+	"G544": {
+		"defval": false,
+		"name": "S05B scene flag",
+		"type": 1
+	},
+	"G545": {
+		"defval": false,
+		"name": "S07 scene flag (route A)",
+		"type": 1
+	},
+	"G546": {
+		"defval": false,
+		"name": "S02 Ijako scene flag",
+		"type": 1
+	},
+	"G547": {
+		"defval": false,
+		"name": "Lion Ch4 started (S01)",
+		"type": 1
+	},
+	"G548": {
+		"defval": false,
+		"name": "Old Lion's Counsel (+10% damage)",
+		"type": 1
+	},
+	"G549": {
+		"defval": false,
+		"name": "the victory stone read (wave 1)",
+		"type": 1
+	},
+	"G550": {
+		"defval": false,
+		"name": "road: the watchtower yari",
+		"type": 1
+	},
+	"G551": {
+		"defval": false,
+		"name": "S02 night at the camp",
+		"type": 1
+	},
+	"G552": {
+		"defval": false,
+		"name": "S02 the courier",
+		"type": 1
+	},
+	"G553": {
+		"defval": false,
+		"name": "S02 the sentry",
+		"type": 1
+	},
+	"G554": {
+		"defval": false,
+		"name": "Yachiko's tent",
+		"type": 1
+	},
+	"G555": {
+		"defval": false,
+		"name": "S02 same method twice",
+		"type": 1
+	},
+	"G557": {
+		"defval": false,
+		"name": "rensei_recruited (the crossroads; not built)",
+		"type": 1
+	},
+	"G558": {
+		"defval": false,
+		"name": "S03 the go-between",
+		"type": 1
+	},
+	"G559": {
+		"defval": false,
+		"name": "gusai_held",
+		"type": 1
+	},
+	"G560": {
+		"defval": false,
+		"name": "obsidian_blade_taken",
+		"type": 1
+	},
+	"G561": {
+		"defval": false,
+		"name": "S04 dawn",
+		"type": 1
+	},
+	"G562": {
+		"defval": false,
+		"name": "wave 1 held",
+		"type": 1
+	},
+	"G563": {
+		"defval": false,
+		"name": "wave 2 held",
+		"type": 1
+	},
+	"G564": {
+		"defval": false,
+		"name": "wave 3 held",
+		"type": 1
+	},
+	"G565": {
+		"defval": false,
+		"name": "wave 4 held",
+		"type": 1
+	},
+	"G566": {
+		"defval": false,
+		"name": "wave 5 held",
+		"type": 1
+	},
+	"G567": {
+		"defval": false,
+		"name": "the mist lifts (save)",
+		"type": 1
+	},
+	"G568": {
+		"defval": false,
+		"name": "S06 Rokuro freed",
+		"type": 1
+	},
+	"G569": {
+		"defval": false,
+		"name": "report_truth",
+		"type": 1
+	},
+	"G570": {
+		"defval": false,
+		"name": "three_clan_truce",
+		"type": 1
+	},
+	"G571": {
+		"defval": false,
+		"name": "phoenix_supply_proof (Phoenix Ch1; not built)",
+		"type": 1
+	},
+	"G572": {
+		"defval": false,
+		"name": "the courtier's tent",
+		"type": 1
+	},
+	"G573": {
+		"defval": false,
+		"name": "Lion Ch4 complete",
+		"type": 1
+	},
+	"G574": {
+		"defval": false,
+		"name": "camp: the berserker's duel",
+		"type": 1
+	},
+	"G575": {
+		"defval": false,
+		"name": "camp: Yachiko's baggage",
+		"type": 1
+	},
+	"G576": {
+		"defval": false,
+		"name": "camp: the chest",
+		"type": 1
+	},
+	"G577": {
+		"defval": false,
+		"name": "a berserker killed",
+		"type": 1
+	},
+	"G578": {
+		"defval": false,
+		"name": "riverbank: the scout's kit",
+		"type": 1
+	},
+	"G579": {
+		"defval": false,
+		"name": "S04 Rokuro at night (scene)",
+		"type": 1
+	},
+	"G580": {
+		"defval": false,
+		"name": "S01 scene flag",
+		"type": 1
+	},
+	"G581": {
+		"defval": false,
+		"name": "S02 scene flag",
+		"type": 1
+	},
+	"G582": {
+		"defval": false,
+		"name": "S06 scene flag",
+		"type": 1
+	},
+	"G583": {
+		"defval": false,
+		"name": "S07 tent scene flag",
+		"type": 1
+	},
+	"G584": {
+		"defval": false,
+		"name": "the shield-line (Hold)",
+		"type": 1
+	},
+	"G585": {
+		"defval": false,
+		"name": "Phoenix start: Haruki",
+		"type": 1
+	},
+	"G586": {
+		"defval": false,
+		"name": "S01 scene",
+		"type": 1
+	},
+	"G587": {
+		"defval": false,
+		"name": "apology_note_found",
+		"type": 1
+	},
+	"G588": {
+		"defval": false,
+		"name": "spirit wasteland (spells -25%)",
+		"type": 1
+	},
+	"G589": {
+		"defval": false,
+		"name": "shrine_spirit_blessed",
+		"type": 1
+	},
+	"G590": {
+		"defval": false,
+		"name": "S02 Hoju dies",
+		"type": 1
+	},
+	"G591": {
+		"defval": false,
+		"name": "S03 the embassy musters",
+		"type": 1
+	},
+	"G593": {
+		"defval": false,
+		"name": "garden: Commune",
+		"type": 1
+	},
+	"G594": {
+		"defval": false,
+		"name": "hall: Summon",
+		"type": 1
+	},
+	"G595": {
+		"defval": false,
+		"name": "study: Sense",
+		"type": 1
+	},
+	"G597": {
+		"defval": false,
+		"name": "S05 the Magonojo ruins",
+		"type": 1
+	},
+	"G598": {
+		"defval": false,
+		"name": "S06 the broken shrine",
+		"type": 1
+	},
+	"G600": {
+		"defval": false,
+		"name": "Phoenix at Hiruto's castle",
+		"type": 1
+	},
+	"G601": {
+		"defval": false,
+		"name": "S07 Ashimoshi freed",
+		"type": 1
+	},
+	"G602": {
+		"defval": false,
+		"name": "S08 O-Tamai (Phoenix)",
+		"type": 1
+	},
+	"G603": {
+		"defval": false,
+		"name": "S09 the note",
+		"type": 1
+	},
+	"G604": {
+		"defval": false,
+		"name": "Phoenix Ch1 complete",
+		"type": 1
+	},
+	"G605": {
+		"defval": false,
+		"name": "Kamatori: the old nun blessed",
+		"type": 1
+	},
+	"G606": {
+		"defval": false,
+		"name": "west tower: the blade rack",
+		"type": 1
+	},
+	"G607": {
+		"defval": false,
+		"name": "Togashi Yosai met",
+		"type": 1
+	},
+	"G608": {
+		"defval": false,
+		"name": "Togashi Yosai in the party",
+		"type": 1
+	},
+	"G609": {
+		"defval": false,
+		"name": "Togashi Yosai stepped aside for a duel",
+		"type": 1
+	},
+	"G610": {
+		"defval": false,
+		"name": "Phoenix Ch2 started (S01)",
+		"type": 1
+	},
+	"G611": {
+		"defval": false,
+		"name": "Matsu Hisae answered",
+		"type": 1
+	},
+	"G612": {
+		"defval": false,
+		"name": "Hisae blessed",
+		"type": 1
+	},
+	"G613": {
+		"defval": false,
+		"name": "memory_ritual_refused",
+		"type": 1
+	},
+	"G614": {
+		"defval": false,
+		"name": "S02 b_pass_cultists won",
+		"type": 1
+	},
+	"G615": {
+		"defval": false,
+		"name": "Yosai cameo",
+		"type": 1
+	},
+	"G616": {
+		"defval": false,
+		"name": "S03 Treaty City",
+		"type": 1
+	},
+	"G617": {
+		"defval": false,
+		"name": "Mieko met",
+		"type": 1
+	},
+	"G618": {
+		"defval": false,
+		"name": "the murder",
+		"type": 1
+	},
+	"G619": {
+		"defval": false,
+		"name": "the historian's ghost blessed",
+		"type": 1
+	},
+	"G620": {
+		"defval": false,
+		"name": "the scroll under the floor",
+		"type": 1
+	},
+	"G621": {
+		"defval": false,
+		"name": "the handwriting matched",
+		"type": 1
+	},
+	"G622": {
+		"defval": false,
+		"name": "mieko_midnight_seen",
+		"type": 1
+	},
+	"G623": {
+		"defval": false,
+		"name": "told_keiki",
+		"type": 1
+	},
+	"G624": {
+		"defval": false,
+		"name": "S05 the debate",
+		"type": 1
+	},
+	"G625": {
+		"defval": false,
+		"name": "torii_saved",
+		"type": 1
+	},
+	"G627": {
+		"defval": false,
+		"name": "rested until night (S06)",
+		"type": 1
+	},
+	"G628": {
+		"defval": false,
+		"name": "S06 Hioninmaru beaten",
+		"type": 1
+	},
+	"G629": {
+		"defval": false,
+		"name": "consumer_scroll_kept",
+		"type": 1
+	},
+	"G630": {
+		"defval": false,
+		"name": "Phoenix Ch2 complete",
+		"type": 1
+	},
+	"G631": {
+		"defval": false,
+		"name": "sub-story: the same dojo",
+		"type": 1
+	},
+	"G632": {
+		"defval": false,
+		"name": "sub-story: the archive at night",
+		"type": 1
+	},
+	"G633": {
+		"defval": false,
+		"name": "sub-story: sober by dusk",
+		"type": 1
+	},
+	"G634": {
+		"defval": false,
+		"name": "Zumiki: the chest",
+		"type": 1
+	},
+	"G635": {
+		"defval": false,
+		"name": "Zumiki: watchtower",
+		"type": 1
+	},
+	"G636": {
+		"defval": false,
+		"name": "pass: the avalanche shelf",
+		"type": 1
+	},
+	"G637": {
+		"defval": false,
+		"name": "pass: the wolf den",
+		"type": 1
+	},
+	"G638": {
+		"defval": false,
+		"name": "Courage of the Seven Thunders taught (story skill)",
+		"type": 1
+	},
+	"G639": {
+		"defval": false,
+		"name": "S04 scene",
+		"type": 1
+	},
+	"G640": {
+		"defval": false,
+		"name": "S05 scene",
+		"type": 1
+	},
+	"G641": {
+		"defval": false,
+		"name": "S06 scene",
+		"type": 1
+	},
+	"G642": {
+		"defval": false,
+		"name": "S07 scene",
+		"type": 1
+	},
+	"G643": {
+		"defval": false,
+		"name": "dojo: Hida spoken",
+		"type": 1
+	},
+	"G644": {
+		"defval": false,
+		"name": "dojo: Shiba spoken",
+		"type": 1
+	},
+	"G645": {
+		"defval": false,
+		"name": "S03 scene",
+		"type": 1
+	},
+	"G646": {
+		"defval": false,
+		"name": "the magistrates",
+		"type": 1
+	},
+	"G651": {
+		"defval": false,
+		"name": "Phoenix Ch3 started (S01)",
+		"type": 1
+	},
+	"G652": {
+		"defval": false,
+		"name": "sick: Goemon's wife",
+		"type": 1
+	},
+	"G653": {
+		"defval": false,
+		"name": "sick: Hana",
+		"type": 1
+	},
+	"G654": {
+		"defval": false,
+		"name": "sick: the charcoal-burner",
+		"type": 1
+	},
+	"G655": {
+		"defval": false,
+		"name": "sick: the priestess",
+		"type": 1
+	},
+	"G656": {
+		"defval": false,
+		"name": "Hand of Jurojin taught (story skill)",
+		"type": 1
+	},
+	"G657": {
+		"defval": false,
+		"name": "sick: the Lion deserter",
+		"type": 1
+	},
+	"G658": {
+		"defval": false,
+		"name": "sick: the twins",
+		"type": 1
+	},
+	"G659": {
+		"defval": false,
+		"name": "sick: the ronin bodyguard",
+		"type": 1
+	},
+	"G660": {
+		"defval": false,
+		"name": "the leave choice",
+		"type": 1
+	},
+	"G661": {
+		"defval": false,
+		"name": "stayed_extra_day",
+		"type": 1
+	},
+	"G662": {
+		"defval": false,
+		"name": "S03 the Council",
+		"type": 1
+	},
+	"G663": {
+		"defval": false,
+		"name": "the refugee blessed",
+		"type": 1
+	},
+	"G664": {
+		"defval": false,
+		"name": "S04 the circle",
+		"type": 1
+	},
+	"G665": {
+		"defval": false,
+		"name": "S05 forest spirits",
+		"type": 1
+	},
+	"G666": {
+		"defval": false,
+		"name": "estate: the go board",
+		"type": 1
+	},
+	"G667": {
+		"defval": false,
+		"name": "estate: the screen",
+		"type": 1
+	},
+	"G668": {
+		"defval": false,
+		"name": "estate: the courtyard",
+		"type": 1
+	},
+	"G669": {
+		"defval": false,
+		"name": "S05 dark Mieko",
+		"type": 1
+	},
+	"G670": {
+		"defval": false,
+		"name": "showed_scroll",
+		"type": 1
+	},
+	"G671": {
+		"defval": false,
+		"name": "S06 Kuzushi beaten",
+		"type": 1
+	},
+	"G672": {
+		"defval": false,
+		"name": "S07 the sealed library",
+		"type": 1
+	},
+	"G673": {
+		"defval": false,
+		"name": "Phoenix Ch3 complete",
+		"type": 1
+	},
+	"G674": {
+		"defval": false,
+		"name": "the hospital rest used",
+		"type": 1
+	},
+	"G675": {
+		"defval": false,
+		"name": "road chests",
+		"type": 1
+	},
+	"G676": {
+		"defval": false,
+		"name": "forest: woodcutter's hut",
+		"type": 1
+	},
+	"G677": {
+		"defval": false,
+		"name": "forest: web shrine",
+		"type": 1
+	},
+	"G678": {
+		"defval": false,
+		"name": "forest: fever shrine",
+		"type": 1
+	},
+	"G679": {
+		"defval": false,
+		"name": "estate: Mieko's room",
+		"type": 1
+	},
+	"G680": {
+		"defval": false,
+		"name": "Kyuden Isawa chest",
+		"type": 1
+	},
+	"G681": {
+		"defval": false,
+		"name": "the dying healer",
+		"type": 1
+	},
+	"G682": {
+		"defval": false,
+		"name": "sick: the ferryman (Remedy)",
+		"type": 1
+	},
+	"G683": {
+		"defval": false,
+		"name": "Phoenix Ch4 started (S01)",
+		"type": 1
+	},
+	"G685": {
+		"defval": false,
+		"name": "echo: the camellias",
+		"type": 1
+	},
+	"G686": {
+		"defval": false,
+		"name": "echo: the counting song",
+		"type": 1
+	},
+	"G687": {
+		"defval": false,
+		"name": "echo: the Consumer",
+		"type": 1
+	},
+	"G688": {
+		"defval": false,
+		"name": "shadows a",
+		"type": 1
+	},
+	"G689": {
+		"defval": false,
+		"name": "shadows b",
+		"type": 1
+	},
+	"G690": {
+		"defval": false,
+		"name": "S03 the last shrine",
+		"type": 1
+	},
+	"G692": {
+		"defval": false,
+		"name": "dream key 1",
+		"type": 1
+	},
+	"G693": {
+		"defval": false,
+		"name": "dream key 2",
+		"type": 1
+	},
+	"G694": {
+		"defval": false,
+		"name": "dream key 3 (wake)",
+		"type": 1
+	},
+	"G695": {
+		"defval": false,
+		"name": "S04 the dark half beaten",
+		"type": 1
+	},
+	"G696": {
+		"defval": false,
+		"name": "whole (Void -1, passive Whole)",
+		"type": 1
+	},
+	"G698": {
+		"defval": false,
+		"name": "Phoenix Ch4 complete",
+		"type": 1
+	},
+	"G699": {
+		"defval": false,
+		"name": "the drowned sailor blessed",
+		"type": 1
+	},
+	"G700": {
+		"defval": false,
+		"name": "the jetty box",
+		"type": 1
+	},
+	"G701": {
+		"defval": false,
+		"name": "S06 scene",
+		"type": 1
+	},
+	"G702": {
+		"defval": false,
+		"name": "the dream (arrival)",
+		"type": 1
+	},
+	"G703": {
+		"defval": false,
+		"name": "cliff: wrecked shrine-boat",
+		"type": 1
+	},
+	"G704": {
+		"defval": false,
+		"name": "S04 scene",
+		"type": 1
+	},
+	"G705": {
+		"defval": false,
+		"name": "S05 scene",
+		"type": 1
+	},
+	"G706": {
+		"defval": false,
+		"name": "Dragon start: Gendo",
+		"type": 1
+	},
+	"G707": {
+		"defval": false,
+		"name": "S01 scene",
+		"type": 1
+	},
+	"G708": {
+		"defval": false,
+		"name": "S01 Discern the captain",
+		"type": 1
+	},
+	"G709": {
+		"defval": false,
+		"name": "S01 the dock brawl",
+		"type": 1
+	},
+	"G710": {
+		"defval": false,
+		"name": "S02 the hall",
+		"type": 1
+	},
+	"G711": {
+		"defval": false,
+		"name": "oharu_poisoned",
+		"type": 1
+	},
+	"G712": {
+		"defval": false,
+		"name": "S03 the dump (Yosai)",
+		"type": 1
+	},
+	"G713": {
+		"defval": false,
+		"name": "S04 the school",
+		"type": 1
+	},
+	"G714": {
+		"defval": false,
+		"name": "riichi_trusts",
+		"type": 1
+	},
+	"G715": {
+		"defval": false,
+		"name": "momo_joined",
+		"type": 1
+	},
+	"G716": {
+		"defval": false,
+		"name": "ruins: the fourth step",
+		"type": 1
+	},
+	"G717": {
+		"defval": false,
+		"name": "ruins: stone 1",
+		"type": 1
+	},
+	"G718": {
+		"defval": false,
+		"name": "ruins: stone 2",
+		"type": 1
+	},
+	"G719": {
+		"defval": false,
+		"name": "ruins: stone 3",
+		"type": 1
+	},
+	"G720": {
+		"defval": false,
+		"name": "thugs a",
+		"type": 1
+	},
+	"G721": {
+		"defval": false,
+		"name": "thugs b",
+		"type": 1
+	},
+	"G722": {
+		"defval": false,
+		"name": "S05 the notes",
+		"type": 1
+	},
+	"G723": {
+		"defval": false,
+		"name": "S06 Kumpei",
+		"type": 1
+	},
+	"G724": {
+		"defval": false,
+		"name": "kumpei_accused",
+		"type": 1
+	},
+	"G725": {
+		"defval": false,
+		"name": "kumpei_watched",
+		"type": 1
+	},
+	"G726": {
+		"defval": false,
+		"name": "S07 the tide",
+		"type": 1
+	},
+	"G727": {
+		"defval": false,
+		"name": "Dragon Ch1 complete",
+		"type": 1
+	},
+	"G728": {
+		"defval": false,
+		"name": "Discern: the net-mender",
+		"type": 1
+	},
+	"G729": {
+		"defval": false,
+		"name": "Discern: Kosai",
+		"type": 1
+	},
+	"G730": {
+		"defval": false,
+		"name": "Discern: Muika",
+		"type": 1
+	},
+	"G731": {
+		"defval": false,
+		"name": "Discern: the Storm Legion thug",
+		"type": 1
+	},
+	"G732": {
+		"defval": false,
+		"name": "pier crate",
+		"type": 1
+	},
+	"G733": {
+		"defval": false,
+		"name": "the tax shed",
+		"type": 1
+	},
+	"G734": {
+		"defval": false,
+		"name": "ruins: the Gusai banner",
+		"type": 1
+	},
+	"G735": {
+		"defval": false,
+		"name": "hill path: the viper nest",
+		"type": 1
+	},
+	"G736": {
+		"defval": false,
+		"name": "the paint box",
+		"type": 1
+	},
+	"G737": {
+		"defval": false,
+		"name": "S08 scene",
+		"type": 1
+	},
+	"G738": {
+		"defval": false,
+		"name": "ruins: the fallen pillar",
+		"type": 1
+	},
+	"G739": {
+		"defval": false,
+		"name": "ruins: the hostage's cell",
+		"type": 1
+	},
+	"G740": {
+		"defval": false,
+		"name": "Dragon Ch2 started (Tortoise Island)",
+		"type": 1
+	},
+	"G741": {
+		"defval": false,
+		"name": "S01 the house (the quake)",
+		"type": 1
+	},
+	"G742": {
+		"defval": false,
+		"name": "mirumoto_school (S02)",
+		"type": 1
+	},
+	"G743": {
+		"defval": false,
+		"name": "cove: the crabs",
+		"type": 1
+	},
+	"G744": {
+		"defval": false,
+		"name": "cove: the guards",
+		"type": 1
+	},
+	"G745": {
+		"defval": false,
+		"name": "S03 the portal (crossed)",
+		"type": 1
+	},
+	"G746": {
+		"defval": false,
+		"name": "jumped_first",
+		"type": 1
+	},
+	"G747": {
+		"defval": false,
+		"name": "S04 the orchard (History shown)",
+		"type": 1
+	},
+	"G749": {
+		"defval": false,
+		"name": "S05 Ushimo subdued",
+		"type": 1
+	},
+	"G750": {
+		"defval": false,
+		"name": "ushimo_lead",
+		"type": 1
+	},
+	"G751": {
+		"defval": false,
+		"name": "S06 the court (invitations)",
+		"type": 1
+	},
+	"G752": {
+		"defval": false,
+		"name": "Dragon Ch2 complete (the Ink Door)",
+		"type": 1
+	},
+	"G753": {
+		"defval": false,
+		"name": "Discern: the villager",
+		"type": 1
+	},
+	"G754": {
+		"defval": false,
+		"name": "cove: the ledge",
+		"type": 1
+	},
+	"G755": {
+		"defval": false,
+		"name": "cove: Kumpei's paint scraps",
+		"type": 1
+	},
+	"G756": {
+		"defval": false,
+		"name": "cove: the clay city",
+		"type": 1
+	},
+	"G757": {
+		"defval": false,
+		"name": "cove: the Bow",
+		"type": 1
+	},
+	"G758": {
+		"defval": false,
+		"name": "house: the cat",
+		"type": 1
+	},
+	"G759": {
+		"defval": false,
+		"name": "Togashi Yosai lost in the ink (Dragon Ch2-4)",
+		"type": 1
+	},
+	"G760": {
+		"defval": false,
+		"name": "the Tortoise ferry",
+		"type": 1
+	},
+	"G761": {
+		"defval": false,
+		"name": "S04 limbo",
+		"type": 1
+	},
+	"G762": {
+		"defval": false,
+		"name": "S05 scene",
+		"type": 1
+	},
+	"G763": {
+		"defval": false,
+		"name": "dojo: the sparring post",
+		"type": 1
+	},
+	"G764": {
+		"defval": false,
+		"name": "TB-dragon2-b (the window)",
+		"type": 1
+	},
+	"G765": {
+		"defval": false,
+		"name": "the Ink Door scene",
+		"type": 1
+	},
+	"G766": {
+		"defval": false,
+		"name": "S06 the orchard",
+		"type": 1
+	},
+	"G767": {
+		"defval": false,
+		"name": "cove 2 scene",
+		"type": 1
+	},
+	"G768": {
+		"defval": false,
+		"name": "house: the study",
+		"type": 1
+	},
+	"G769": {
+		"defval": false,
+		"name": "Dragon Ch3 started (S01 the garden)",
+		"type": 1
+	},
+	"G771": {
+		"defval": false,
+		"name": "S02 the dinner held",
+		"type": 1
+	},
+	"G772": {
+		"defval": false,
+		"name": "the guard's tip (Ushimo's house)",
+		"type": 1
+	},
+	"G773": {
+		"defval": false,
+		"name": "tsuhime_helped",
+		"type": 1
+	},
+	"G774": {
+		"defval": false,
+		"name": "mirrors_recovered",
+		"type": 1
+	},
+	"G775": {
+		"defval": false,
+		"name": "S03 Ushimo's house",
+		"type": 1
+	},
+	"G776": {
+		"defval": false,
+		"name": "Miyoshi met",
+		"type": 1
+	},
+	"G777": {
+		"defval": false,
+		"name": "road: the scout camp",
+		"type": 1
+	},
+	"G778": {
+		"defval": false,
+		"name": "Izumida: the musketeers",
+		"type": 1
+	},
+	"G779": {
+		"defval": false,
+		"name": "S04 the scorched map",
+		"type": 1
+	},
+	"G780": {
+		"defval": false,
+		"name": "Izumida: a musket taken",
+		"type": 1
+	},
+	"G781": {
+		"defval": false,
+		"name": "Izumida: the powder store taken",
+		"type": 1
+	},
+	"G782": {
+		"defval": false,
+		"name": "S05 the war council",
+		"type": 1
+	},
+	"G783": {
+		"defval": false,
+		"name": "S06 the parley",
+		"type": 1
+	},
+	"G784": {
+		"defval": false,
+		"name": "Dragon Ch3 complete",
+		"type": 1
+	},
+	"G785": {
+		"defval": false,
+		"name": "Bayushi: refused",
+		"type": 1
+	},
+	"G786": {
+		"defval": false,
+		"name": "Bayushi: agreed",
+		"type": 1
+	},
+	"G787": {
+		"defval": false,
+		"name": "the bad future seen",
+		"type": 1
+	},
+	"G789": {
+		"defval": false,
+		"name": "the gaijin trader: glass",
+		"type": 1
+	},
+	"G790": {
+		"defval": false,
+		"name": "Discern: the gaijin trader",
+		"type": 1
+	},
+	"G791": {
+		"defval": false,
+		"name": "Discern: the scorched map's dates",
+		"type": 1
+	},
+	"G792": {
+		"defval": false,
+		"name": "TB-dragon3-b (Sanro, the window)",
+		"type": 1
+	},
+	"G793": {
+		"defval": false,
+		"name": "Seppun Ushimo travels with Gendo",
+		"type": 1
+	},
+	"G794": {
+		"defval": false,
+		"name": "S04 the ridge",
+		"type": 1
+	},
+	"G795": {
+		"defval": false,
+		"name": "Izumida: the musket balls",
+		"type": 1
+	},
+	"G796": {
+		"defval": false,
+		"name": "S07 scene",
+		"type": 1
+	},
+	"G797": {
+		"defval": false,
+		"name": "road: the burned waystation",
+		"type": 1
+	},
+	"G798": {
+		"defval": false,
+		"name": "Dragon Ch4 started (S01 the war camp)",
+		"type": 1
+	},
+	"G800": {
+		"defval": false,
+		"name": "Discern: the Crane veteran",
+		"type": 1
+	},
+	"G801": {
+		"defval": false,
+		"name": "the land front fought",
+		"type": 1
+	},
+	"G802": {
+		"defval": false,
+		"name": "the land front won",
+		"type": 1
+	},
+	"G803": {
+		"defval": false,
+		"name": "the Mantis front settled",
+		"type": 1
+	},
+	"G804": {
+		"defval": false,
+		"name": "the Mantis front won",
+		"type": 1
+	},
+	"G805": {
+		"defval": false,
+		"name": "the lighthouse front fought",
+		"type": 1
+	},
+	"G806": {
+		"defval": false,
+		"name": "the lighthouse front won",
+		"type": 1
+	},
+	"G808": {
+		"defval": false,
+		"name": "Sanro fell",
+		"type": 1
+	},
+	"G809": {
+		"defval": false,
+		"name": "S03 the tunnels",
+		"type": 1
+	},
+	"G810": {
+		"defval": false,
+		"name": "tunnels: the musketeers",
+		"type": 1
+	},
+	"G811": {
+		"defval": false,
+		"name": "tunnels: a barrel used",
+		"type": 1
+	},
+	"G812": {
+		"defval": false,
+		"name": "tunnels: the smuggler's cache",
+		"type": 1
+	},
+	"G813": {
+		"defval": false,
+		"name": "S04 the flagship",
+		"type": 1
+	},
+	"G814": {
+		"defval": false,
+		"name": "kumpei_spared",
+		"type": 1
+	},
+	"G815": {
+		"defval": false,
+		"name": "vial_saved",
+		"type": 1
+	},
+	"G816": {
+		"defval": false,
+		"name": "the vial thrown",
+		"type": 1
+	},
+	"G817": {
+		"defval": false,
+		"name": "S05 the offer",
+		"type": 1
+	},
+	"G818": {
+		"defval": false,
+		"name": "glory_refused",
+		"type": 1
+	},
+	"G819": {
+		"defval": false,
+		"name": "history_final: saviour (accepted)",
+		"type": 1
+	},
+	"G820": {
+		"defval": false,
+		"name": "S06 home (the cove)",
+		"type": 1
+	},
+	"G821": {
+		"defval": false,
+		"name": "S06 Kitsuki Yasu's hall",
+		"type": 1
+	},
+	"G823": {
+		"defval": false,
+		"name": "S06 the prophecy",
+		"type": 1
+	},
+	"G824": {
+		"defval": false,
+		"name": "Ushimo leads the relief",
+		"type": 1
+	},
+	"G825": {
+		"defval": false,
+		"name": "TB-dragon4-b",
+		"type": 1
+	},
+	"G826": {
+		"defval": false,
+		"name": "the gangway save",
+		"type": 1
+	},
+	"G830": {
+		"defval": false,
+		"name": "Dragon Ch4 complete (the Ink Door closed)",
+		"type": 1
+	},
+	"G831": {
+		"defval": false,
+		"name": "Scorpion start: Mitsue",
+		"type": 1
+	},
+	"G832": {
+		"defval": false,
+		"name": "S01 the memorial",
+		"type": 1
+	},
+	"G834": {
+		"defval": false,
+		"name": "eavesdrop: the koi-pond courtiers",
+		"type": 1
+	},
+	"G835": {
+		"defval": false,
+		"name": "eavesdrop: the Mantis envoy",
+		"type": 1
+	},
+	"G836": {
+		"defval": false,
+		"name": "eavesdrop: the pale courtier",
+		"type": 1
+	},
+	"G837": {
+		"defval": false,
+		"name": "S01 the incense burns down",
+		"type": 1
+	},
+	"G838": {
+		"defval": false,
+		"name": "S02 the willow teahouse",
+		"type": 1
+	},
+	"G839": {
+		"defval": false,
+		"name": "the servants' gate",
+		"type": 1
+	},
+	"G840": {
+		"defval": false,
+		"name": "S03 the grove bandits",
+		"type": 1
+	},
+	"G841": {
+		"defval": false,
+		"name": "grove: the traitor's purse",
+		"type": 1
+	},
+	"G842": {
+		"defval": false,
+		"name": "Shutai: Noburo",
+		"type": 1
+	},
+	"G843": {
+		"defval": false,
+		"name": "Shutai: Megu's room",
+		"type": 1
+	},
+	"G844": {
+		"defval": false,
+		"name": "eavesdrop: the Shutai innkeeper",
+		"type": 1
+	},
+	"G845": {
+		"defval": false,
+		"name": "S04 Kudo (Rui)",
+		"type": 1
+	},
+	"G846": {
+		"defval": false,
+		"name": "eavesdrop: Suzume Rika",
+		"type": 1
+	},
+	"G847": {
+		"defval": false,
+		"name": "eavesdrop: Kasuga Yodo",
+		"type": 1
+	},
+	"G848": {
+		"defval": false,
+		"name": "eavesdrop: the governor at night",
+		"type": 1
+	},
+	"G849": {
+		"defval": false,
+		"name": "governor_fake (S04b)",
+		"type": 1
+	},
+	"G850": {
+		"defval": false,
+		"name": "the dock-hand (the iron box)",
+		"type": 1
+	},
+	"G852": {
+		"defval": false,
+		"name": "Kitsune Hana (not himself)",
+		"type": 1
+	},
+	"G853": {
+		"defval": false,
+		"name": "S05 the nudge",
+		"type": 1
+	},
+	"G854": {
+		"defval": false,
+		"name": "S05 the Kommei brood",
+		"type": 1
+	},
+	"G855": {
+		"defval": false,
+		"name": "S06 the barge",
+		"type": 1
+	},
+	"G856": {
+		"defval": false,
+		"name": "S06 the leeches",
+		"type": 1
+	},
+	"G857": {
+		"defval": false,
+		"name": "the Miya relics (crystal)",
+		"type": 1
+	},
+	"G859": {
+		"defval": false,
+		"name": "hana_saved",
+		"type": 1
+	},
+	"G860": {
+		"defval": false,
+		"name": "iron_box_held",
+		"type": 1
+	},
+	"G861": {
+		"defval": false,
+		"name": "Scorpion Ch1 complete",
+		"type": 1
+	},
+	"G862": {
+		"defval": false,
+		"name": "Kudo: the beating stopped",
+		"type": 1
+	},
+	"G863": {
+		"defval": false,
+		"name": "Kudo: the old women",
+		"type": 1
+	},
+	"G864": {
+		"defval": false,
+		"name": "Kudo: the Kitsune boy",
+		"type": 1
+	},
+	"G865": {
+		"defval": false,
+		"name": "Yoritomo Rui travels with Mitsue",
+		"type": 1
+	},
+	"G866": {
+		"defval": false,
+		"name": "the box dropped (Hana broken)",
+		"type": 1
+	},
+	"G867": {
+		"defval": false,
+		"name": "the box stolen in battle",
+		"type": 1
+	},
+	"G868": {
+		"defval": false,
+		"name": "the Oracle rose (ritual 10)",
+		"type": 1
+	},
+	"G869": {
+		"defval": false,
+		"name": "grove: the posts counted",
+		"type": 1
+	},
+	"G870": {
+		"defval": false,
+		"name": "castle town: the beggar",
+		"type": 1
+	},
+	"G874": {
+		"defval": false,
+		"name": "Shutai: the priest",
+		"type": 1
+	},
+	"G875": {
+		"defval": false,
+		"name": "Kudo: the Inari priestess (the Kansen counter)",
+		"type": 1
+	},
+	"G876": {
+		"defval": false,
+		"name": "Kudo: Rui's briefing",
+		"type": 1
+	},
+	"G877": {
+		"defval": false,
+		"name": "S08 dawn",
+		"type": 1
+	},
+	"G873": {
+		"defval": false,
+		"name": "marsh: the dead tree",
+		"type": 1
+	},
+	"G878": {
+		"defval": false,
+		"name": "suspect: Rui's briefing",
+		"type": 1
+	},
+	"G879": {
+		"defval": false,
+		"name": "Scorpion Ch2 started (the plains road)",
+		"type": 1
+	},
+	"G880": {
+		"defval": false,
+		"name": "Hisatu Kensu: the mask dream",
+		"type": 1
+	},
+	"G881": {
+		"defval": false,
+		"name": "giseiki_mask_held (S02 the dying scout)",
+		"type": 1
+	},
+	"G882": {
+		"defval": false,
+		"name": "S03 the city gate",
+		"type": 1
+	},
+	"G884": {
+		"defval": false,
+		"name": "mask: iron",
+		"type": 1
+	},
+	"G885": {
+		"defval": false,
+		"name": "mask: cedar",
+		"type": 1
+	},
+	"G886": {
+		"defval": false,
+		"name": "mask: ink",
+		"type": 1
+	},
+	"G887": {
+		"defval": false,
+		"name": "mask: silk",
+		"type": 1
+	},
+	"G888": {
+		"defval": false,
+		"name": "the sake-seller (iron)",
+		"type": 1
+	},
+	"G889": {
+		"defval": false,
+		"name": "Kakita Yuko (ink)",
+		"type": 1
+	},
+	"G890": {
+		"defval": false,
+		"name": "Miya Hatomu (cedar)",
+		"type": 1
+	},
+	"G891": {
+		"defval": false,
+		"name": "the temple gatekeeper (silk): the Temple District open",
+		"type": 1
+	},
+	"G892": {
+		"defval": false,
+		"name": "history: pair 1",
+		"type": 1
+	},
+	"G894": {
+		"defval": false,
+		"name": "history: pair 2",
+		"type": 1
+	},
+	"G895": {
+		"defval": false,
+		"name": "history: pair 3",
+		"type": 1
+	},
+	"G893": {
+		"defval": false,
+		"name": "S05 the shadow hunters (Kasiko joins)",
+		"type": 1
+	},
+	"G896": {
+		"defval": false,
+		"name": "Giseiki's mask given to Osuko",
+		"type": 1
+	},
+	"G897": {
+		"defval": false,
+		"name": "mitsue_wore_giseiki",
+		"type": 1
+	},
+	"G898": {
+		"defval": false,
+		"name": "Doji Siko's ambush",
+		"type": 1
+	},
+	"G899": {
+		"defval": false,
+		"name": "the market collapse",
+		"type": 1
+	},
+	"G900": {
+		"defval": false,
+		"name": "Kitsu Kenshai",
+		"type": 1
+	},
+	"G901": {
+		"defval": false,
+		"name": "Kasamashi: the jade mask",
+		"type": 1
+	},
+	"G902": {
+		"defval": false,
+		"name": "Togashi Sumi's riddle",
+		"type": 1
+	},
+	"G903": {
+		"defval": false,
+		"name": "S06 b_stitched_monks_a",
+		"type": 1
+	},
+	"G904": {
+		"defval": false,
+		"name": "S06 b_stitched_monks_b",
+		"type": 1
+	},
+	"G906": {
+		"defval": false,
+		"name": "S07 Munashii",
+		"type": 1
+	},
+	"G907": {
+		"defval": false,
+		"name": "city_freed",
+		"type": 1
+	},
+	"G908": {
+		"defval": false,
+		"name": "city_sealed",
+		"type": 1
+	},
+	"G909": {
+		"defval": false,
+		"name": "Scorpion Ch2 complete",
+		"type": 1
+	},
+	"G910": {
+		"defval": false,
+		"name": "eavesdrop: the bath attendant",
+		"type": 1
+	},
+	"G911": {
+		"defval": false,
+		"name": "Ide Xue",
+		"type": 1
+	},
+	"G912": {
+		"defval": false,
+		"name": "temple: the cracked wall",
+		"type": 1
+	},
+	"G913": {
+		"defval": false,
+		"name": "temple: the scriptorium",
+		"type": 1
+	},
+	"G914": {
+		"defval": false,
+		"name": "Giseiki's counter-word used",
+		"type": 1
+	},
+	"G915": {
+		"defval": false,
+		"name": "eavesdrop: Agasha Kusuri",
+		"type": 1
+	},
+	"G916": {
+		"defval": false,
+		"name": "Giseiki: \"I did\" (the history)",
+		"type": 1
+	},
+	"G917": {
+		"defval": false,
+		"name": "S07 the monastery",
+		"type": 1
+	},
+	"G918": {
+		"defval": false,
+		"name": "Scorpion Ch3 started (the Ojatara road)",
+		"type": 1
+	},
+	"G919": {
+		"defval": false,
+		"name": "S01 the tribunal (Rin joins)",
+		"type": 1
+	},
+	"G920": {
+		"defval": false,
+		"name": "grievance: the Jiochi well",
+		"type": 1
+	},
+	"G921": {
+		"defval": false,
+		"name": "grievance: the Shosuro troupe",
+		"type": 1
+	},
+	"G922": {
+		"defval": false,
+		"name": "grievance: Katsu's funeral",
+		"type": 1
+	},
+	"G923": {
+		"defval": false,
+		"name": "grievance: the padded armies",
+		"type": 1
+	},
+	"G925": {
+		"defval": false,
+		"name": "mitsue_knows_shoju_war (the seppuku letter)",
+		"type": 1
+	},
+	"G926": {
+		"defval": false,
+		"name": "S02 Rin is followed",
+		"type": 1
+	},
+	"G927": {
+		"defval": false,
+		"name": "S02 Gochu and the bell",
+		"type": 1
+	},
+	"G928": {
+		"defval": false,
+		"name": "gochu_family_fed",
+		"type": 1
+	},
+	"G929": {
+		"defval": false,
+		"name": "S03 Nihime",
+		"type": 1
+	},
+	"G930": {
+		"defval": false,
+		"name": "nihime_told",
+		"type": 1
+	},
+	"G931": {
+		"defval": false,
+		"name": "the grave path: the sealed mine gate",
+		"type": 1
+	},
+	"G932": {
+		"defval": false,
+		"name": "S04 the hit squad",
+		"type": 1
+	},
+	"G933": {
+		"defval": false,
+		"name": "S05 the verdict",
+		"type": 1
+	},
+	"G934": {
+		"defval": false,
+		"name": "verdict: both",
+		"type": 1
+	},
+	"G935": {
+		"defval": false,
+		"name": "verdict: soshi",
+		"type": 1
+	},
+	"G936": {
+		"defval": false,
+		"name": "Scorpion Ch3 complete",
+		"type": 1
+	},
+	"G937": {
+		"defval": false,
+		"name": "Shosuro Mayumi",
+		"type": 1
+	},
+	"G938": {
+		"defval": false,
+		"name": "eavesdrop: the Soshi officers",
+		"type": 1
+	},
+	"G939": {
+		"defval": false,
+		"name": "the child's grave",
+		"type": 1
+	},
+	"G940": {
+		"defval": false,
+		"name": "the ridge watchers",
+		"type": 1
+	},
+	"G941": {
+		"defval": false,
+		"name": "eavesdrop: the quartermaster",
+		"type": 1
+	},
+	"G942": {
+		"defval": false,
+		"name": "the hit squad's silence bubble popped",
+		"type": 1
+	},
+	"G943": {
+		"defval": false,
+		"name": "S03 Perfume Petal Blossom",
+		"type": 1
+	},
+	"G944": {
+		"defval": false,
+		"name": "Scorpion Ch4 started (S01 the box talks)",
+		"type": 1
+	},
+	"G945": {
+		"defval": false,
+		"name": "S02 the pilgrim troupe's guide",
+		"type": 1
+	},
+	"G946": {
+		"defval": false,
+		"name": "courier_heard (S03)",
+		"type": 1
+	},
+	"G947": {
+		"defval": false,
+		"name": "togashi_heard (S04 the garden)",
+		"type": 1
+	},
+	"G948": {
+		"defval": false,
+		"name": "S05 duty's knife",
+		"type": 1
+	},
+	"G949": {
+		"defval": false,
+		"name": "gendo_keeps_secret",
+		"type": 1
+	},
+	"G950": {
+		"defval": false,
+		"name": "b_furnace_elementals won",
+		"type": 1
+	},
+	"G951": {
+		"defval": false,
+		"name": "b_ash_ghouls won",
+		"type": 1
+	},
+	"G952": {
+		"defval": false,
+		"name": "S07 the stolen face beaten",
+		"type": 1
+	},
+	"G953": {
+		"defval": false,
+		"name": "box_destroyed (S08; Scorpion Ch4 complete)",
+		"type": 1
+	},
+	"G954": {
+		"defval": false,
+		"name": "Tamori Haku travels with Mitsue",
+		"type": 1
+	},
+	"G955": {
+		"defval": false,
+		"name": "eavesdrop: the Kitsuki clerk",
+		"type": 1
+	},
+	"G956": {
+		"defval": false,
+		"name": "the procession tip heard",
+		"type": 1
+	},
+	"G957": {
+		"defval": false,
+		"name": "the lava-step jump (Ward-Robe)",
+		"type": 1
+	},
+	"G958": {
+		"defval": false,
+		"name": "the courier's pack left alone",
+		"type": 1
+	},
+	"G959": {
+		"defval": false,
+		"name": "S04 the procession on the road",
+		"type": 1
+	},
+	"G960": {
+		"defval": false,
+		"name": "S06 the box screams",
+		"type": 1
+	},
+	"G961": {
+		"defval": false,
+		"name": "S06 the Tamori monks' welcome",
+		"type": 1
+	},
+	"G962": {
+		"defval": false,
+		"name": "Mitsue Rank 3 (The Shadow Has No Form)",
+		"type": 1
+	},
+	"G963": {
+		"defval": false,
+		"name": "gendo_in_party (S02)",
+		"type": 1
+	},
+	"G964": {
+		"defval": false,
+		"name": "the stolen face taken back (boss)",
+		"type": 1
+	},
+	"G965": {
+		"defval": false,
+		"name": "Yosai guides Mitsue (stand-in)",
+		"type": 1
+	},
+	"G966": {
+		"defval": false,
+		"name": "the Dragon road signpost (Buried Leaves)",
+		"type": 1
+	},
+	"G967": {
+		"defval": false,
+		"name": "Unicorn start: Tamotsu",
+		"type": 1
+	},
+	"G968": {
+		"defval": false,
+		"name": "S01 a seat at the small table",
+		"type": 1
+	},
+	"G969": {
+		"defval": false,
+		"name": "S02 the camps (the rice)",
+		"type": 1
+	},
+	"G970": {
+		"defval": false,
+		"name": "camps_fed",
+		"type": 1
+	},
+	"G971": {
+		"defval": false,
+		"name": "b_camp_thugs won",
+		"type": 1
+	},
+	"G972": {
+		"defval": false,
+		"name": "case 1: the assassins",
+		"type": 1
+	},
+	"G973": {
+		"defval": false,
+		"name": "case 2: the salted fields",
+		"type": 1
+	},
+	"G974": {
+		"defval": false,
+		"name": "case 3: the Temple of Jizo",
+		"type": 1
+	},
+	"G976": {
+		"defval": false,
+		"name": "Shiro no Soshi court",
+		"type": 1
+	},
+	"G977": {
+		"defval": false,
+		"name": "S04 Miyahana",
+		"type": 1
+	},
+	"G978": {
+		"defval": false,
+		"name": "S05 the bombing (rin_joined)",
+		"type": 1
+	},
+	"G979": {
+		"defval": false,
+		"name": "S06 Yotomo: Sabu",
+		"type": 1
+	},
+	"G980": {
+		"defval": false,
+		"name": "b_cave_guerrillas won",
+		"type": 1
+	},
+	"G981": {
+		"defval": false,
+		"name": "S07 Naohida escapes",
+		"type": 1
+	},
+	"G982": {
+		"defval": false,
+		"name": "S08 judge the living (Unicorn Ch1 complete)",
+		"type": 1
+	},
+	"G983": {
+		"defval": false,
+		"name": "naohida_named",
+		"type": 1
+	},
+	"G984": {
+		"defval": false,
+		"name": "the rice bartered",
+		"type": 1
+	},
+	"G985": {
+		"defval": false,
+		"name": "Gaijin Spyglass (Hiroichi's telescope)",
+		"type": 1
+	},
+	"G986": {
+		"defval": false,
+		"name": "the supply ledger bartered",
+		"type": 1
+	},
+	"G987": {
+		"defval": false,
+		"name": "Hitoro's testimony",
+		"type": 1
+	},
+	"G988": {
+		"defval": false,
+		"name": "Daiyu's carrot",
+		"type": 1
+	},
+	"G989": {
+		"defval": false,
+		"name": "the camp grandmother",
+		"type": 1
+	},
+	"G990": {
+		"defval": false,
+		"name": "Unicorn Ch2: S01 the benches (Tamotsu)",
+		"type": 1
+	},
+	"G991": {
+		"defval": false,
+		"name": "the seppuku as news",
+		"type": 1
+	},
+	"G992": {
+		"defval": false,
+		"name": "the troupe's props bartered",
+		"type": 1
+	},
+	"G993": {
+		"defval": false,
+		"name": "verdict iuchi",
+		"type": 1
+	},
+	"G994": {
+		"defval": false,
+		"name": "Unicorn Ch2 complete",
+		"type": 1
+	},
+	"G995": {
+		"defval": false,
+		"name": "Persimmon's afternoon with the swing judge",
+		"type": 1
+	},
+	"G996": {
+		"defval": false,
+		"name": "the Jiochi water-carrier",
+		"type": 1
+	},
+	"G997": {
+		"defval": false,
+		"name": "the padded armies' ledgers",
+		"type": 1
+	},
+	"G998": {
+		"defval": false,
+		"name": "Unicorn Ch3: S01 the star field (karasu_joined)",
+		"type": 1
+	},
+	"G999": {
+		"defval": false,
+		"name": "Covered Ears (wax in)",
+		"type": 1
+	},
+	"G1000": {
+		"defval": false,
+		"name": "S02 shahai_trusts",
+		"type": 1
+	},
+	"G1001": {
+		"defval": false,
+		"name": "b_tower_servants won",
+		"type": 1
+	},
+	"G1002": {
+		"defval": false,
+		"name": "S03 the woods (Daiyu)",
+		"type": 1
+	},
+	"G1003": {
+		"defval": false,
+		"name": "daiyu_state shattered (else comforted)",
+		"type": 1
+	},
+	"G1004": {
+		"defval": false,
+		"name": "S04 the Dragon ride",
+		"type": 1
+	},
+	"G1005": {
+		"defval": false,
+		"name": "mirumoto_terms honour (else jade)",
+		"type": 1
+	},
+	"G1006": {
+		"defval": false,
+		"name": "S05 the mine graves (Karasu)",
+		"type": 1
+	},
+	"G1007": {
+		"defval": false,
+		"name": "b_mine_dead_a won",
+		"type": 1
+	},
+	"G1008": {
+		"defval": false,
+		"name": "b_mine_dead_b won",
+		"type": 1
+	},
+	"G1009": {
+		"defval": false,
+		"name": "S06 the mine guardian laid to rest",
+		"type": 1
+	},
+	"G1010": {
+		"defval": false,
+		"name": "S07 Unicorn Ch3 complete",
+		"type": 1
+	},
+	"G1012": {
+		"defval": false,
+		"name": "the wind-shaft ledge",
+		"type": 1
+	},
+	"G1013": {
+		"defval": false,
+		"name": "the foreman's ledger",
+		"type": 1
+	},
+	"G1014": {
+		"defval": false,
+		"name": "raw jade node 1",
+		"type": 1
+	},
+	"G1015": {
+		"defval": false,
+		"name": "raw jade node 2",
+		"type": 1
+	},
+	"G1016": {
+		"defval": false,
+		"name": "raw jade node 3",
+		"type": 1
+	},
+	"G1017": {
+		"defval": false,
+		"name": "raw jade node 4",
+		"type": 1
+	},
+	"G1018": {
+		"defval": false,
+		"name": "raw jade node 5",
+		"type": 1
+	},
+	"G1019": {
+		"defval": false,
+		"name": "raw jade node 6",
+		"type": 1
+	},
+	"G1020": {
+		"defval": false,
+		"name": "Iuchi Karasu: guest",
+		"type": 1
+	},
+	"G1021": {
+		"defval": false,
+		"name": "the tower's first note",
+		"type": 1
+	},
+	"G1022": {
+		"defval": false,
+		"name": "Unicorn Ch4: S01 Naohida under the white flag",
+		"type": 1
+	},
+	"G1023": {
+		"defval": false,
+		"name": "truce_bought",
+		"type": 1
+	},
+	"G1025": {
+		"defval": false,
+		"name": "S02 the tunnel mouth",
+		"type": 1
+	},
+	"G1026": {
+		"defval": false,
+		"name": "b_tunnel_legion won",
+		"type": 1
+	},
+	"G1027": {
+		"defval": false,
+		"name": "S03 the stairs (Shahai)",
+		"type": 1
+	},
+	"G1028": {
+		"defval": false,
+		"name": "shahai_kept_close",
+		"type": 1
+	},
+	"G1029": {
+		"defval": false,
+		"name": "S04 Regret banished",
+		"type": 1
+	},
+	"G1030": {
+		"defval": false,
+		"name": "settlement heir (else treaty)",
+		"type": 1
+	},
+	"G1031": {
+		"defval": false,
+		"name": "Unicorn Ch4 complete (Tamotsu's path)",
+		"type": 1
+	},
+	"G1032": {
+		"defval": false,
+		"name": "the pigeon's letter bartered",
+		"type": 1
+	},
+	"G1033": {
+		"defval": false,
+		"name": "the grandmother's saddle",
+		"type": 1
+	},
+	"G1034": {
+		"defval": false,
+		"name": "Hiroichi's chest",
+		"type": 1
+	},
+	"G1035": {
+		"defval": false,
+		"name": "the wind-ledge",
+		"type": 1
+	},
+	"G1036": {
+		"defval": false,
+		"name": "Naohida: guest",
+		"type": 1
+	},
+	"G1037": {
+		"defval": false,
+		"name": "the Jade Toll (mirumoto_terms jade, after the chapter)",
+		"type": 1
+	},
+	"G1038": {
+		"defval": false,
+		"name": "Ronin start: Sayo",
+		"type": 1
+	},
+	"G1040": {
+		"defval": false,
+		"name": "S01 the docks",
+		"type": 1
+	},
+	"G1041": {
+		"defval": false,
+		"name": "S02 Kagemaro's task",
+		"type": 1
+	},
+	"G1042": {
+		"defval": false,
+		"name": "sono_link (the chit)",
+		"type": 1
+	},
+	"G1043": {
+		"defval": false,
+		"name": "S03a the alley ambush won",
+		"type": 1
+	},
+	"G1044": {
+		"defval": false,
+		"name": "monk_riddle",
+		"type": 1
+	},
+	"G1045": {
+		"defval": false,
+		"name": "S04 the eta village (Hiro)",
+		"type": 1
+	},
+	"G1046": {
+		"defval": false,
+		"name": "Akari cameo",
+		"type": 1
+	},
+	"G1047": {
+		"defval": false,
+		"name": "S05 b_tengu_bridge won",
+		"type": 1
+	},
+	"G1048": {
+		"defval": false,
+		"name": "S06 b_bakemono won",
+		"type": 1
+	},
+	"G1049": {
+		"defval": false,
+		"name": "loot_returned",
+		"type": 1
+	},
+	"G1050": {
+		"defval": false,
+		"name": "the loot kept",
+		"type": 1
+	},
+	"G1051": {
+		"defval": false,
+		"name": "Grandmother Cedar's Gift",
+		"type": 1
+	},
+	"G1052": {
+		"defval": false,
+		"name": "S07 the old woman fought",
+		"type": 1
+	},
+	"G1053": {
+		"defval": false,
+		"name": "hut_burned",
+		"type": 1
+	},
+	"G1054": {
+		"defval": false,
+		"name": "S07 Tomie Cho falls",
+		"type": 1
+	},
+	"G1055": {
+		"defval": false,
+		"name": "S08 clean hands (Ronin Ch1 complete)",
+		"type": 1
+	},
+	"G1056": {
+		"defval": false,
+		"name": "Hiro: guest",
+		"type": 1
+	},
+	"G1057": {
+		"defval": false,
+		"name": "pilfered: the Sono servant's purse",
+		"type": 1
+	},
+	"G1058": {
+		"defval": false,
+		"name": "pilfered: the herb seller",
+		"type": 1
+	},
+	"G1059": {
+		"defval": false,
+		"name": "pilfered: the bargeman",
+		"type": 1
+	},
+	"G1060": {
+		"defval": false,
+		"name": "the loot choice made",
+		"type": 1
+	},
+	"G1061": {
+		"defval": false,
+		"name": "the beggar-monk met",
+		"type": 1
+	},
+	"G1062": {
+		"defval": false,
+		"name": "S01 the memory: Ume-baa",
+		"type": 1
+	},
+	"G1063": {
+		"defval": false,
+		"name": "Ronin Ch2: the river road",
+		"type": 1
+	},
+	"G1064": {
+		"defval": false,
+		"name": "S01 b_retainers_road won",
+		"type": 1
+	},
+	"G1065": {
+		"defval": false,
+		"name": "writ_pilfered",
+		"type": 1
+	},
+	"G1066": {
+		"defval": false,
+		"name": "S02 the barge (Jinnai joins)",
+		"type": 1
+	},
+	"G1067": {
+		"defval": false,
+		"name": "S03 Floating Flowers (the poster)",
+		"type": 1
+	},
+	"G1068": {
+		"defval": false,
+		"name": "S04 night 1: the storm",
+		"type": 1
+	},
+	"G1069": {
+		"defval": false,
+		"name": "retainers_spared",
+		"type": 1
+	},
+	"G1070": {
+		"defval": false,
+		"name": "the retainers driven into the river",
+		"type": 1
+	},
+	"G1071": {
+		"defval": false,
+		"name": "S05 night 2: Jinnai gone",
+		"type": 1
+	},
+	"G1072": {
+		"defval": false,
+		"name": "S06 the sand room",
+		"type": 1
+	},
+	"G1074": {
+		"defval": false,
+		"name": "S07 the Voice",
+		"type": 1
+	},
+	"G1075": {
+		"defval": false,
+		"name": "S08 the enforcers (Jinnai stops it)",
+		"type": 1
+	},
+	"G1076": {
+		"defval": false,
+		"name": "order_promise kept",
+		"type": 1
+	},
+	"G1077": {
+		"defval": false,
+		"name": "order_promise refused",
+		"type": 1
+	},
+	"G1078": {
+		"defval": false,
+		"name": "S09 Ronin Ch2 complete",
+		"type": 1
+	},
+	"G1079": {
+		"defval": false,
+		"name": "Jinnai: guest",
+		"type": 1
+	},
+	"G1080": {
+		"defval": false,
+		"name": "Oyuki's cough",
+		"type": 1
+	},
+	"G1081": {
+		"defval": false,
+		"name": "Kanemori's secret",
+		"type": 1
+	},
+	"G1082": {
+		"defval": false,
+		"name": "Kanemori asks (Kanemori's Discount)",
+		"type": 1
+	},
+	"G1083": {
+		"defval": false,
+		"name": "the spy's lantern pilfered",
+		"type": 1
+	},
+	"G1084": {
+		"defval": false,
+		"name": "pilfered: the fisherman",
+		"type": 1
+	},
+	"G1085": {
+		"defval": false,
+		"name": "Madame Hagi's secret bought",
+		"type": 1
+	},
+	"G1086": {
+		"defval": false,
+		"name": "the den alcove",
+		"type": 1
+	},
+	"G1087": {
+		"defval": false,
+		"name": "the fox shrine",
+		"type": 1
+	},
+	"G1088": {
+		"defval": false,
+		"name": "Tokubei's office",
+		"type": 1
+	},
+	"G1089": {
+		"defval": false,
+		"name": "the boatman's warning",
+		"type": 1
+	},
+	"G1090": {
+		"defval": false,
+		"name": "the enforcer's pack (Snake Ring)",
+		"type": 1
+	},
+	"G1091": {
+		"defval": false,
+		"name": "the writ choice made",
+		"type": 1
+	},
+	"G1093": {
+		"defval": false,
+		"name": "S05 the den (Jinnai ahead)",
+		"type": 1
+	},
+	"G1094": {
+		"defval": false,
+		"name": "Ronin Ch3: the road north",
+		"type": 1
+	},
+	"G1095": {
+		"defval": false,
+		"name": "S00 the checkpoint (the writ)",
+		"type": 1
+	},
+	"G1096": {
+		"defval": false,
+		"name": "S00 b_lion_checkpoint won / toll paid",
+		"type": 1
+	},
+	"G1097": {
+		"defval": false,
+		"name": "S01 the village (the climbers)",
+		"type": 1
+	},
+	"G1098": {
+		"defval": false,
+		"name": "S02 the climb begins (Hanae joins)",
+		"type": 1
+	},
+	"G1099": {
+		"defval": false,
+		"name": "S02 stage 1: the Crane grave",
+		"type": 1
+	},
+	"G1100": {
+		"defval": false,
+		"name": "S02 stage 2: the scorched gate",
+		"type": 1
+	},
+	"G1101": {
+		"defval": false,
+		"name": "S02 stage 3: the Mirumoto armour",
+		"type": 1
+	},
+	"G1102": {
+		"defval": false,
+		"name": "S02 the castle gate",
+		"type": 1
+	},
+	"G1103": {
+		"defval": false,
+		"name": "replay 1: the kidnapping",
+		"type": 1
+	},
+	"G1104": {
+		"defval": false,
+		"name": "replay 2: the fight",
+		"type": 1
+	},
+	"G1105": {
+		"defval": false,
+		"name": "replay 3: the gate",
+		"type": 1
+	},
+	"G1106": {
+		"defval": false,
+		"name": "replay 4: the flight",
+		"type": 1
+	},
+	"G1107": {
+		"defval": false,
+		"name": "replay 5: the basin",
+		"type": 1
+	},
+	"G1108": {
+		"defval": false,
+		"name": "the kneeling Lion (I have failed)",
+		"type": 1
+	},
+	"G1109": {
+		"defval": false,
+		"name": "S03 the truth (the basin door)",
+		"type": 1
+	},
+	"G1110": {
+		"defval": false,
+		"name": "S04 the basin broken",
+		"type": 1
+	},
+	"G1111": {
+		"defval": false,
+		"name": "hikaru_spoke",
+		"type": 1
+	},
+	"G1112": {
+		"defval": false,
+		"name": "climbers_told",
+		"type": 1
+	},
+	"G1113": {
+		"defval": false,
+		"name": "S06 the descent",
+		"type": 1
+	},
+	"G1114": {
+		"defval": false,
+		"name": "mosuke_knows",
+		"type": 1
+	},
+	"G1115": {
+		"defval": false,
+		"name": "S06 Mosuke (choice made)",
+		"type": 1
+	},
+	"G1116": {
+		"defval": false,
+		"name": "S07 Ronin Ch3 complete",
+		"type": 1
+	},
+	"G1117": {
+		"defval": false,
+		"name": "rope point 1",
+		"type": 1
+	},
+	"G1118": {
+		"defval": false,
+		"name": "rope point 2",
+		"type": 1
+	},
+	"G1119": {
+		"defval": false,
+		"name": "rope point 3",
+		"type": 1
+	},
+	"G1120": {
+		"defval": false,
+		"name": "the rock shelter (the frozen yari)",
+		"type": 1
+	},
+	"G1121": {
+		"defval": false,
+		"name": "pilfered: the Climbing Spikes",
+		"type": 1
+	},
+	"G1122": {
+		"defval": false,
+		"name": "the spiked ledge",
+		"type": 1
+	},
+	"G1123": {
+		"defval": false,
+		"name": "the nursery (Silver Rattle)",
+		"type": 1
+	},
+	"G1124": {
+		"defval": false,
+		"name": "the hero shrine storeroom",
+		"type": 1
+	},
+	"G1125": {
+		"defval": false,
+		"name": "the frozen shrine on the road",
+		"type": 1
+	},
+	"G1126": {
+		"defval": false,
+		"name": "Hida Ren's grin",
+		"type": 1
+	},
+	"G1127": {
+		"defval": false,
+		"name": "the snow mounds (Mosuke)",
+		"type": 1
+	},
+	"G1128": {
+		"defval": false,
+		"name": "S02 Hikaru first seen",
+		"type": 1
+	},
+	"G1129": {
+		"defval": false,
+		"name": "Mirumoto Hikaru: guest",
+		"type": 1
+	},
+	"G1130": {
+		"defval": false,
+		"name": "S03 the fortress (arrival)",
+		"type": 1
+	},
+	"G1131": {
+		"defval": false,
+		"name": "S00 the checkpoint (first visit)",
+		"type": 1
+	},
+	"G1132": {
+		"defval": false,
+		"name": "Ronin Ch4: the oracle road",
+		"type": 1
+	},
+	"G1134": {
+		"defval": false,
+		"name": "S01 Akari (the fire talks to me)",
+		"type": 1
+	},
+	"G1135": {
+		"defval": false,
+		"name": "the cipher letter (pilfered)",
+		"type": 1
+	},
+	"G1136": {
+		"defval": false,
+		"name": "the pilgrims calmed (route bonus)",
+		"type": 1
+	},
+	"G1137": {
+		"defval": false,
+		"name": "the back-gate key",
+		"type": 1
+	},
+	"G1138": {
+		"defval": false,
+		"name": "S03 the eta quarter (Anatomy)",
+		"type": 1
+	},
+	"G1139": {
+		"defval": false,
+		"name": "Hiro SS2 unlocked (The Tiger in the Blood)",
+		"type": 1
+	},
+	"G1140": {
+		"defval": false,
+		"name": "S04 b_well_agents won",
+		"type": 1
+	},
+	"G1141": {
+		"defval": false,
+		"name": "well_cleansed",
+		"type": 1
+	},
+	"G1142": {
+		"defval": false,
+		"name": "sayo_saw_nashiko",
+		"type": 1
+	},
+	"G1143": {
+		"defval": false,
+		"name": "S05 the offer",
+		"type": 1
+	},
+	"G1145": {
+		"defval": false,
+		"name": "S06 the race begins",
+		"type": 1
+	},
+	"G1146": {
+		"defval": false,
+		"name": "race battle 1 (the rooftops)",
+		"type": 1
+	},
+	"G1147": {
+		"defval": false,
+		"name": "race battle 2 (the alley; Hiro stays)",
+		"type": 1
+	},
+	"G1148": {
+		"defval": false,
+		"name": "race battle 3 (the switchback)",
+		"type": 1
+	},
+	"G1149": {
+		"defval": false,
+		"name": "race battle 4 (cliff)",
+		"type": 1
+	},
+	"G1150": {
+		"defval": false,
+		"name": "race battle 5 (cliff)",
+		"type": 1
+	},
+	"G1151": {
+		"defval": false,
+		"name": "the crater lantern",
+		"type": 1
+	},
+	"G1152": {
+		"defval": false,
+		"name": "S07 the champion",
+		"type": 1
+	},
+	"G1153": {
+		"defval": false,
+		"name": "naga_talked_down",
+		"type": 1
+	},
+	"G1154": {
+		"defval": false,
+		"name": "S08 Ronin Ch4 complete",
+		"type": 1
+	},
+	"G1155": {
+		"defval": false,
+		"name": "the lava tube den",
+		"type": 1
+	},
+	"G1156": {
+		"defval": false,
+		"name": "the snake scout",
+		"type": 1
+	},
+	"G1157": {
+		"defval": false,
+		"name": "S04 the well (scene)",
+		"type": 1
+	},
+	"G1158": {
+		"defval": false,
+		"name": "S08 the ascension (scene)",
+		"type": 1
+	},
+	"G1161": {
+		"defval": false,
+		"name": "finale: the Plains of Thunder road",
+		"type": 1
+	},
+	"G1162": {
+		"defval": false,
+		"name": "F01 eight roads (the join-up)",
+		"type": 1
+	},
+	"G1163": {
+		"defval": false,
+		"name": "F02 wave 1",
+		"type": 1
+	},
+	"G1164": {
+		"defval": false,
+		"name": "F02 wave 2",
+		"type": 1
+	},
+	"G1165": {
+		"defval": false,
+		"name": "F02 wave 3",
+		"type": 1
+	},
+	"G1166": {
+		"defval": false,
+		"name": "F02 wave 4",
+		"type": 1
+	},
+	"G1167": {
+		"defval": false,
+		"name": "F02 wave 5",
+		"type": 1
+	},
+	"G1168": {
+		"defval": false,
+		"name": "F02 wave 6",
+		"type": 1
+	},
+	"G1169": {
+		"defval": false,
+		"name": "F02 wave 7",
+		"type": 1
+	},
+	"G1170": {
+		"defval": false,
+		"name": "F03 the herald (Act 1 complete)",
+		"type": 1
+	},
+	"G1171": {
+		"defval": false,
+		"name": "the thunder-split rock (Moonlit Yumi)",
+		"type": 1
+	},
+	"G1172": {
+		"defval": false,
+		"name": "the burned village",
+		"type": 1
+	},
+	"G1173": {
+		"defval": false,
+		"name": "the shrine defence (in progress)",
+		"type": 1
+	},
+	"G1174": {
+		"defval": false,
+		"name": "Ryozo's name given back",
+		"type": 1
+	},
+	"G1175": {
+		"defval": false,
+		"name": "Kage's Hiruma came a wave early (the flare)",
+		"type": 1
+	},
+	"G1176": {
+		"defval": false,
+		"name": "the abbot saved",
+		"type": 1
+	},
+	"G1177": {
+		"defval": false,
+		"name": "the finale road-marker read",
+		"type": 1
+	},
+	"G1178": {
+		"defval": false,
+		"name": "F04 Stich'Kik freed (the guide)",
+		"type": 1
+	},
+	"G1179": {
+		"defval": false,
+		"name": "F05 the Naga marks",
+		"type": 1
+	},
+	"G1180": {
+		"defval": false,
+		"name": "F05 the carved mock",
+		"type": 1
+	},
+	"G1181": {
+		"defval": false,
+		"name": "b_shinomen_a",
+		"type": 1
+	},
+	"G1182": {
+		"defval": false,
+		"name": "the Naga shrine (root-wall)",
+		"type": 1
+	},
+	"G1183": {
+		"defval": false,
+		"name": "b_shinomen_b",
+		"type": 1
+	},
+	"G1184": {
+		"defval": false,
+		"name": "F06 Mamoru's fire",
+		"type": 1
+	},
+	"G1185": {
+		"defval": false,
+		"name": "mamoru_hint (Two Voices)",
+		"type": 1
+	},
+	"G1186": {
+		"defval": false,
+		"name": "b_kumo_spiders (rude to Mamoru)",
+		"type": 1
+	},
+	"G1187": {
+		"defval": false,
+		"name": "F07 the glade (the Duty plaque)",
+		"type": 1
+	},
+	"G1188": {
+		"defval": false,
+		"name": "a Naga scout killed",
+		"type": 1
+	},
+	"G1190": {
+		"defval": false,
+		"name": "F08 the debate (the Empress rises)",
+		"type": 1
+	},
+	"G1191": {
+		"defval": false,
+		"name": "F08 the debate (scene)",
+		"type": 1
+	},
+	"G1192": {
+		"defval": false,
+		"name": "F09 phase 1 won (the Bride)",
+		"type": 1
+	},
+	"G1193": {
+		"defval": false,
+		"name": "F09 phase 2 won (Body of Damned Time)",
+		"type": 1
+	},
+	"G1194": {
+		"defval": false,
+		"name": "F09 phase 3 won (she flees)",
+		"type": 1
+	},
+	"G1195": {
+		"defval": false,
+		"name": "F09 the final battle (scene)",
+		"type": 1
+	},
+	"G1196": {
+		"defval": false,
+		"name": "F09 the best four chosen (menu)",
+		"type": 1
+	},
+	"G1197": {
+		"defval": false,
+		"name": "F11 she is dead (the glade is just a glade)",
+		"type": 1
+	},
+	"G1198": {
+		"defval": false,
+		"name": "E01 coda: Natsuko",
+		"type": 1
+	},
+	"G1199": {
+		"defval": false,
+		"name": "E01 coda: Rensei",
+		"type": 1
+	},
+	"G1200": {
+		"defval": false,
+		"name": "E01 coda: Gendo",
+		"type": 1
+	},
+	"G1201": {
+		"defval": false,
+		"name": "E01 coda: Shizue",
+		"type": 1
+	},
+	"G1202": {
+		"defval": false,
+		"name": "E01 coda: Haruki",
+		"type": 1
+	},
+	"G1203": {
+		"defval": false,
+		"name": "E01 coda: Tamotsu",
+		"type": 1
+	},
+	"G1204": {
+		"defval": false,
+		"name": "E01 coda: Sayo",
+		"type": 1
+	},
+	"G1205": {
+		"defval": false,
+		"name": "E01 coda: Mitsue",
+		"type": 1
+	},
+	"G1206": {
+		"defval": false,
+		"name": "E02 the final image",
+		"type": 1
+	},
+	"G1207": {
+		"defval": false,
+		"name": "the finale cleared (post-game)",
+		"type": 1
+	},
+	"G1208": {
+		"defval": false,
+		"name": "E01 leaving the glade",
+		"type": 1
+	},
+	"G1209": {
+		"defval": false,
+		"name": "post-game: back at the shrine (the clear save)",
+		"type": 1
+	},
+	"G1210": {
+		"defval": false,
+		"name": "F02 wave 5: the escort (in battle)",
+		"type": 1
+	},
+	"G1211": {
+		"defval": false,
+		"name": "F02 wave 5: the abbot fell",
+		"type": 1
+	},
+	"G1212": {
+		"defval": false,
+		"name": "Hiruma Kage: guest (the finale)",
+		"type": 1
+	},
+	"G1213": {
+		"defval": false,
+		"name": "inquisitors_hunt_done (SS-TEAM)",
+		"type": 1
+	},
+	"G1214": {
+		"defval": false,
+		"name": "benjiro_father_home (Benjiro SS2)",
+		"type": 1
+	},
+	"G1215": {
+		"defval": false,
+		"name": "post-game: Shiro Hiruma sighted",
+		"type": 1
+	},
+	"G1216": {
+		"defval": false,
+		"name": "post-game: the outer bailey (the map)",
+		"type": 1
+	},
+	"G1217": {
+		"defval": false,
+		"name": "post-game: Oni no Okura (the hall)",
+		"type": 1
+	},
+	"G1218": {
+		"defval": false,
+		"name": "post-game: Shiro Hiruma cleared",
+		"type": 1
+	},
+	"G1219": {
+		"defval": false,
+		"name": "post-game: the Hiruma tablets set up (the keep)",
+		"type": 1
+	},
+	"G1220": {
+		"defval": false,
+		"name": "post-game: the Orochi (scene)",
+		"type": 1
+	},
+	"G1221": {
+		"defval": false,
+		"name": "post-game: the Orochi yielded",
+		"type": 1
+	},
+	"G1222": {
+		"defval": false,
+		"name": "post-game: the Orochi killed (a killing blow)",
+		"type": 1
+	},
+	"G1223": {
+		"defval": false,
+		"name": "the shifting waste: the last move was south",
+		"type": 1
+	},
+	"G1160": {
+		"defval": 0,
+		"name": "finale Party B (bitmask over P100-P107)",
+		"type": 2
+	},
+	"G1189": {
+		"defval": 0,
+		"name": "finale: Nashiko's shields broken in the debate (0-8)",
+		"type": 2
+	},
+	"G1092": {
+		"defval": 0,
+		"name": "ronin_technique_second (Ronin Ch2 Rank 2: 1-3 another school's R1, 4 Punish the Arrogant, 5 Taking the Measure, 6 Will Not Flesh)",
+		"type": 2
+	},
+	"G1133": {
+		"defval": 0,
+		"name": "ronin_technique_third (Ronin Ch4 Rank 3: 1-6 an R1/R2 she lacks, 7 Desperate Speed, 8 Strike Like Wind, 9 Hasten the Blade)",
+		"type": 2
+	},
+	"G1144": {
+		"defval": 0,
+		"name": "race_route (Ronin Ch4: 1 the pilgrim road, 2 the cliff path)",
+		"type": 2
+	},
+	"G1073": {
+		"defval": 0,
+		"name": "crawl_results (Ronin Ch2 sand room: +1 Sayo crawled, +2 Yosai crawled)",
+		"type": 2
+	},
+	"G304": {
+		"defval": 0,
+		"name": "ebisu_saved_how (1 charm, 2 steel, 3 coin)",
+		"type": 2
+	},
+	"G833": {
+		"defval": 0,
+		"name": "rumours_found (Scorpion Ch1 S01, 0-3)",
+		"type": 2
+	},
+	"G851": {
+		"defval": 0,
+		"name": "Kudo suspects heard (Scorpion Ch1 S04)",
+		"type": 2
+	},
+	"G883": {
+		"defval": 0,
+		"name": "masks_got (Scorpion Ch2, 0-4)",
+		"type": 2
+	},
+	"G905": {
+		"defval": 0,
+		"name": "souls freed (Scorpion Ch2 stitched monks, Honor +1 each up to 3)",
+		"type": 2
+	},
+	"G924": {
+		"defval": 0,
+		"name": "grievances proven (Scorpion Ch3, 0-4)",
+		"type": 2
+	},
+	"G975": {
+		"defval": 0,
+		"name": "cases_done (Unicorn Ch1, 0-3)",
+		"type": 2
+	},
+	"G1011": {
+		"defval": 0,
+		"name": "singing servants woken (Unicorn Ch3, Honor +1 each up to 3)",
+		"type": 2
+	},
+	"G1039": {
+		"defval": 0,
+		"name": "ronin_school_first (Ronin Ch1: 1 warrior, 2 duelist, 3 yojimbo)",
+		"type": 2
+	},
+	"G319": {
+		"defval": 0,
+		"name": "dawn_route (1 blade, 2 law, 3 bandits, 4 challenge)",
+		"type": 2
+	},
+	"G330": {
+		"defval": 3,
+		"name": "Pleasant Eaves standing (failed Charms cost it; 0 = refuses)",
+		"type": 2
+	},
+	"G342": {
+		"defval": 3,
+		"name": "Goroso's castle standing (failed Charms cost it; 0 = refuses)",
+		"type": 2
+	},
+	"G353": {
+		"defval": 0,
+		"name": "camp_split (1 split, 2 together)",
+		"type": 2
+	},
+	"G356": {
+		"defval": 0,
+		"name": "uji_won_by (1 argument, 2 tadaka)",
+		"type": 2
+	},
+	"G360": {
+		"defval": 0,
+		"name": "Iron Crane generals freed (0-3)",
+		"type": 2
+	},
+	"G370": {
+		"defval": 3,
+		"name": "Garden Under Shadow standing (failed Charms cost it)",
+		"type": 2
+	},
+	"G404": {
+		"defval": 3,
+		"name": "Crane port standing (failed Charms cost it)",
+		"type": 2
+	},
+	"G416": {
+		"defval": 3,
+		"name": "Kyuden Doji standing (failed Charms cost it)",
+		"type": 2
+	},
+	"G421": {
+		"defval": 0,
+		"name": "play_known_scenes (0-3)",
+		"type": 2
+	},
+	"G438": {
+		"defval": 0,
+		"name": "rehearsal score (0-5)",
+		"type": 2
+	},
+	"G453": {
+		"defval": 0,
+		"name": "clues_found (Lion Ch1, 0-6)",
+		"type": 2
+	},
+	"G527": {
+		"defval": 0,
+		"name": "message_route (1 deliver, 2 ask the karo)",
+		"type": 2
+	},
+	"G556": {
+		"defval": 0,
+		"name": "go_between (1 Rensei, 2 Atsuko, 3 Shizue)",
+		"type": 2
+	},
+	"G626": {
+		"defval": 0,
+		"name": "torii debate: strong answers",
+		"type": 2
+	},
+	"G650": {
+		"defval": 0,
+		"name": "sick_treated (0-10)",
+		"type": 2
+	},
+	"G684": {
+		"defval": 0,
+		"name": "echoes_blessed (0-3)",
+		"type": 2
+	},
+	"G691": {
+		"defval": 0,
+		"name": "dream_keys (0-3)",
+		"type": 2
+	},
+	"G697": {
+		"defval": 0,
+		"name": "mieko_answer (1 yet, 2 eight)",
+		"type": 2
+	},
+	"G807": {
+		"defval": 0,
+		"name": "fronts_won (0-3)",
+		"type": 2
+	},
+	"G770": {
+		"defval": 0,
+		"name": "dinner (1 Bayushi, 2 Doji, 3 Shiba)",
+		"type": 2
+	},
+	"G748": {
+		"defval": 100,
+		"name": "History meter (Dragon Ch2-4, 0-100; anachronisms lower it)",
+		"type": 2
+	},
+	"G492": {
+		"defval": 0,
+		"name": "painting_answer (1 best .. 4)",
+		"type": 2
+	},
+	"G494": {
+		"defval": 0,
+		"name": "bracket_result (0 lost, 1 won)",
+		"type": 2
+	},
+	"G505": {
+		"defval": 0,
+		"name": "atsuko_promise (0 none, 1 honest, 2 lie)",
+		"type": 2
+	},
+	"G211": {
+		"defval": 0,
+		"name": "accusation (1 Mutsuye, 2 Shigeru, 3 one more night)",
+		"type": 2
+	},
+	"G219": {
+		"defval": 0,
+		"name": "archery choice (1 win, 2 lose politely, 3 the goblin's hat)",
+		"type": 2
+	},
+	"G282": {
+		"defval": 0,
+		"name": "dread_count (Crab Ch4 stalk, 0-3)",
+		"type": 2
+	},
+	"G283": {
+		"defval": 0,
+		"name": "travelers knocked out by Nashiko (Crab Ch4)",
+		"type": 2
+	},
+	"G293": {
+		"defval": 0,
+		"name": "current hireling (tools/hirelings.py; 0 none)",
+		"type": 2
+	},
+	"G294": {
+		"defval": 0,
+		"name": "hireling charges left",
+		"type": 2
+	},
+	"G291": {
+		"defval": 0,
+		"name": "courtiers hurt by the cellar ogre (Crab Ch4)",
+		"type": 2
+	},
+	"G100": {
+		"defval": false,
+		"name": "visited: Kaiu Wall (KW)",
+		"type": 1
+	},
+	"G101": {
+		"defval": false,
+		"name": "visited: Hoshi-no-Ichi (HI)",
+		"type": 1
+	},
+	"G102": {
+		"defval": false,
+		"name": "visited: Kyuden Hida (KH)",
+		"type": 1
+	},
+	"G061": {
+		"defval": 3,
+		"name": "Hoshi-no-Ichi standing (failed chance path actions lower it; 0 = refused)",
+		"type": 2
+	},
+	"G062": {
+		"defval": false,
+		"name": "Sumai: the Wall veteran beaten",
+		"type": 1
+	},
+	"G063": {
+		"defval": false,
+		"name": "Kite Mirror returned",
+		"type": 1
+	},
+	"G064": {
+		"defval": false,
+		"name": "Wooden Fish returned",
+		"type": 1
+	},
+	"G065": {
+		"defval": false,
+		"name": "Pearl Hairpin returned",
+		"type": 1
+	},
+	"G020": {
+		"defval": 0,
+		"name": "S04 Sumai losses vs Gonta (2 = he lets her win)",
+		"type": 2
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"money": {
+		"en": " zeni",
+		"ja": " zeni"
+	},
+	"stealok": {
+		"en": "Stole $v!",
+		"ja": "Stole $v!"
+	},
+	"stealfail": {
+		"en": "Couldn't steal anything...",
+		"ja": "Couldn't steal anything..."
+	},
+	"noitems": {
+		"en": "Nothing to take!",
+		"ja": "Nothing to take!"
+	}
+}

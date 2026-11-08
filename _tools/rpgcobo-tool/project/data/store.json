@@ -1,0 +1,4260 @@
+{
+	"R000": {
+		"desc": "",
+		"icon": "",
+		"items": [
+			{
+				"dataid": "W001",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W010",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W030",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A000",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I010",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I019",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I016",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I004",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		],
+		"name": "町の道具屋",
+		"type": 0
+	},
+	"R001": {
+		"desc": "",
+		"icon": "",
+		"items": [
+			{
+				"dataid": "S002",
+				"needown": true,
+				"reqfail": 1,
+				"reqs": null
+			}
+		],
+		"name": "白魔法",
+		"type": 1
+	},
+	"R034": {
+		"desc": "",
+		"icon": "",
+		"items": [
+			{
+				"dataid": "S000",
+				"needown": true,
+				"reqfail": 1,
+				"reqs": null
+			}
+		],
+		"name": "ｇｇｇｐｐ",
+		"type": 1
+	},
+	"_meta": {
+		"caps": 100,
+		"version": 1
+	},
+	"R100": {
+		"desc": "",
+		"icon": "",
+		"name": "Garrison Armoury",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W103",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A172",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R101": {
+		"desc": "",
+		"icon": "",
+		"name": "Jade Store",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R102": {
+		"desc": "",
+		"icon": "",
+		"name": "Hoshi-no-Ichi Arms",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W105",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A170",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R103": {
+		"desc": "",
+		"icon": "",
+		"name": "Hoshi-no-Ichi Goods",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I103",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R110": {
+		"desc": "",
+		"icon": "",
+		"name": "Kaiu Forge",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W112",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W113",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W114",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W116",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W117",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R111": {
+		"desc": "",
+		"icon": "",
+		"name": "Hida Armoury",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "A108",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A109",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R112": {
+		"desc": "",
+		"icon": "",
+		"name": "Jade Merchant",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I126",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I103",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R118": {
+		"desc": "",
+		"icon": "",
+		"name": "Yasuki Market (Crab T2)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W113",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A108",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R119": {
+		"desc": "",
+		"icon": "",
+		"name": "Crane Port Armoury (Crane T3)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W121",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W132",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A120",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R120": {
+		"desc": "",
+		"icon": "",
+		"name": "Crane Port Chandler",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I125",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I126",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R121": {
+		"desc": "",
+		"icon": "",
+		"name": "Ship's Master (sea gear)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "A125",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I237",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I125",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R122": {
+		"desc": "",
+		"icon": "",
+		"name": "Asahina Charm-house",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "A124",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I146",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I130",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I126",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R123": {
+		"desc": "",
+		"icon": "",
+		"name": "Doji Silk House (Crane T4)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "A127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A124",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A125",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A171",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R124": {
+		"desc": "",
+		"icon": "",
+		"name": "Kakita Sword Gallery (Crane T4)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W134",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W133",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W135",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R125": {
+		"desc": "",
+		"icon": "",
+		"name": "Kyuden Doji Apothecary",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I125",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I136",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I130",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R126": {
+		"desc": "",
+		"icon": "",
+		"name": "Lord Hiruto's Armoury (Lion T1)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A172",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R127": {
+		"desc": "",
+		"icon": "",
+		"name": "Rice Merchant",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R128": {
+		"desc": "",
+		"icon": "",
+		"name": "Kamatori Temple-smith (Phoenix T1)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W105",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A172",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R129": {
+		"desc": "",
+		"icon": "",
+		"name": "Shiro Akodo Armoury (Lion T2)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A108",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A109",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R130": {
+		"desc": "",
+		"icon": "",
+		"name": "Shiro Akodo Apothecary",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R131": {
+		"desc": "",
+		"icon": "",
+		"name": "Refugee Market",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R132": {
+		"desc": "",
+		"icon": "",
+		"name": "Lion Camp Quartermaster (Lion T4)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W138",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W134",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W126",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A135",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R133": {
+		"desc": "",
+		"icon": "",
+		"name": "Camp Sutler",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I130",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I125",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R134": {
+		"desc": "",
+		"icon": "",
+		"name": "Zumiki Village Store (Phoenix T2)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "A111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R135": {
+		"desc": "",
+		"icon": "",
+		"name": "Treaty City Market (Lion + Phoenix T2)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I126",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R136": {
+		"desc": "",
+		"icon": "",
+		"name": "Kyuden Isawa Temple-smith (Phoenix T3)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "A137",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R137": {
+		"desc": "",
+		"icon": "",
+		"name": "Coast Outfitter (Phoenix T4)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "A128",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W123",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A137",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R138": {
+		"desc": "",
+		"icon": "",
+		"name": "Silk Chandler (Mantis isles T1)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W105",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A170",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R139": {
+		"desc": "",
+		"icon": "",
+		"name": "Tortoise Net Shop (Mantis T2)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W114",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A109",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I126",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R142": {
+		"desc": "",
+		"icon": "",
+		"name": "War Camp Quartermaster (year 400, T4)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W134",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W143",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A135",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I190",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R143": {
+		"desc": "",
+		"icon": "",
+		"name": "Kitsuki Outfitter (Dragon T4)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W144",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A124",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I126",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I190",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R144": {
+		"desc": "",
+		"icon": "",
+		"name": "Kyuden Bayushi Outfitter (Scorpion T1)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W112",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I198",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A171",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R145": {
+		"desc": "",
+		"icon": "",
+		"name": "Kyuden Bayushi Apothecary",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I198",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R146": {
+		"desc": "",
+		"icon": "",
+		"name": "Shutai General Store",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R147": {
+		"desc": "",
+		"icon": "",
+		"name": "Kudo Fishmonger",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R148": {
+		"desc": "",
+		"icon": "",
+		"name": "Kudo Inari Shrine",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I199",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I130",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R149": {
+		"desc": "",
+		"icon": "",
+		"name": "Hisatu Kensu Unicorn Trader (Unicorn T2)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W114",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A109",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R150": {
+		"desc": "",
+		"icon": "",
+		"name": "The Sweet Cup's Back Room (Osuko's hunters)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I197",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I400",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I198",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R151": {
+		"desc": "",
+		"icon": "",
+		"name": "Akodo Tadoshi's Weapons (the Crab forge)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W137",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W114",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A120",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A109",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R152": {
+		"desc": "",
+		"icon": "",
+		"name": "Buried Leaves Scorpion Trader (Scorpion T3)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W140",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W133",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A120",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I198",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R153": {
+		"desc": "",
+		"icon": "",
+		"name": "Buried Leaves Unicorn Trader (Unicorn T3)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W132",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W121",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A141",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I190",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R154": {
+		"desc": "",
+		"icon": "",
+		"name": "Togashi Outfitter (Dragon T4)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W147",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W144",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W137",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A152",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A124",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R155": {
+		"desc": "",
+		"icon": "",
+		"name": "Incense-seller",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I126",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I130",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R156": {
+		"desc": "",
+		"icon": "",
+		"name": "Buried Leaves Unicorn Trader (Unicorn T1)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A155",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A170",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R157": {
+		"desc": "",
+		"icon": "",
+		"name": "Rice Merchant (triple prices)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R158": {
+		"desc": "",
+		"icon": "",
+		"name": "Mirumoto Quartermaster (Dragon T3)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W121",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W123",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W137",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A141",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R161": {
+		"desc": "",
+		"icon": "",
+		"name": "Cakon Herb Seller (Remedy)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I418",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I419",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I420",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I421",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I422",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I423",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R162": {
+		"desc": "",
+		"icon": "",
+		"name": "Cakon Crane Armoury (Crane T1)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A170",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R163": {
+		"desc": "",
+		"icon": "",
+		"name": "Cakon Chandler",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I103",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I421",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R164": {
+		"desc": "",
+		"icon": "",
+		"name": "Floating Flowers Market (T2)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "W111",
+				"price": 450,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "W114",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "W114",
+				"price": 414,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "W100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "W100",
+				"price": 270,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "A109",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "A109",
+				"price": 630,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "A101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "A101",
+				"price": 198,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "I101",
+				"price": 54,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "I018",
+				"price": 4,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "I100",
+				"price": 18,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R166": {
+		"desc": "",
+		"icon": "",
+		"name": "Wounded Lion Outfitter (Lion T3, climbing gear)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W134",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W144",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A141",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A135",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A137",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R167": {
+		"desc": "",
+		"icon": "",
+		"name": "Old Mosuke's Rice Cakes",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I439",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R170": {
+		"desc": "",
+		"icon": "",
+		"name": "Shrine Smith of Osano-Wo (T5)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W151",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W156",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W152",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W154",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W155",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A166",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A167",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A159",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R171": {
+		"desc": "",
+		"icon": "",
+		"name": "Pilgrim Hall Stores (jade)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I130",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I190",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R168": {
+		"desc": "",
+		"icon": "",
+		"name": "Crater Temple Outfitter (T4, jade)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W147",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W134",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W138",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W135",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W144",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A152",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A141",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I190",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R169": {
+		"desc": "",
+		"icon": "",
+		"name": "Pilgrim Herb Stall (Remedy)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I418",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I419",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I420",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I421",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I422",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I423",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I429",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R165": {
+		"desc": "",
+		"icon": "",
+		"name": "Kanemori's Yasuki Goods",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I418",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "I418",
+				"price": 27,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "I419",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "I419",
+				"price": 18,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "I420",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "I420",
+				"price": 36,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "I421",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "I421",
+				"price": 13,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "I422",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "I422",
+				"price": 22,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "I423",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "I423",
+				"price": 13,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "I429",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "I429",
+				"price": 54,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"dataid": "I436",
+				"price": null,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"dataid": "I436",
+				"price": 27,
+				"reqfail": 0,
+				"reqs": [
+					{
+						"lvar": "G1082",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			}
+		]
+	},
+	"R159": {
+		"desc": "",
+		"icon": "",
+		"name": "Siege Camp Quartermaster (Unicorn + Dragon T4)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W135",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A159",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W144",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W128",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I415",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I190",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R160": {
+		"desc": "",
+		"icon": "",
+		"name": "Mirumoto Quartermaster (Dragon T3; the Jade Toll)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W121",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W123",
+				"price": 950,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W137",
+				"price": 875,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A141",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I104",
+				"price": 100,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R141": {
+		"desc": "",
+		"icon": "",
+		"name": "Year-400 Armourer (T3)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W143",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W140",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A141",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W132",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I190",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R140": {
+		"desc": "",
+		"icon": "",
+		"name": "Antique Market (the year 400)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W139",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A109",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I126",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I168",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R116": {
+		"desc": "",
+		"icon": "",
+		"name": "Daidoji Armoury (Crane T2)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A109",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A110",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W114",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R117": {
+		"desc": "",
+		"icon": "",
+		"name": "Garden Under Shadow Fish Market",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "I101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I125",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I126",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R115": {
+		"desc": "",
+		"icon": "",
+		"name": "Pleasant Eaves Peddler (Lion goods)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W102",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A101",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I100",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I018",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R114": {
+		"desc": "",
+		"icon": "",
+		"name": "Kyuden Hida Arms (T4)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "W127",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W128",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W125",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W126",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A116",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I130",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	},
+	"R113": {
+		"desc": "",
+		"icon": "",
+		"name": "Wall Quartermaster (T3)",
+		"type": 0,
+		"items": [
+			{
+				"dataid": "A115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I130",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W120",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W122",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W123",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "A112",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I131",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I104",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I128",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I445",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I447",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I446",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "I448",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			}
+		]
+	}
+}

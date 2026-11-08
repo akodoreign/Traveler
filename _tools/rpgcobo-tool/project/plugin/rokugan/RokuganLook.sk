@@ -1,0 +1,108 @@
+//
+//	Rokugan Traveler: equipment you can see (user: "dynamic weapons for equipping (and hats) so when players change
+//	up their stuff it's visible").
+//	Every traveler has a pre-drawn sprite sheet per weapon look x head look (tools/gen_sprites2d.py look_variant,
+//	EP2000+; the traveler's own look keeps EP200-207). RokuganLookData.sk (generated) maps
+//	"<weapon look>|<head look>" -> enemy_pic id per player id. Weapon look = the weapon's eqtype (or the item's
+//	rt_look, e.g. the gaijin musket); head look = the head item's rt_look (armor.json, gen_data), "" = none.
+//	Hooks:
+//	- RPG3DObject.create3DObject: a traveler's model (battle members, the field leader) is built from the look.
+//	- partyFollow (RokuganField.sk) asks ::Rokugan.lookFor / lookSig for the followers.
+//	- the field leader is rebuilt when the look changes (after the equipment menu), outside cutscenes.
+//
+local srcdir = dirname( callee().getSourceName());
+runsk( srcdir .. "/RokuganLookData.sk");
+
+::Rokugan.lookWeapon <- function( pc){
+	local w = pc.getWeapon();
+	if( !w) return "none";
+	local d = w["data"];
+	if( !d) return "none";
+	if( d["rt_look"]) return d.rt_look;
+	local et = d["eqtype"];
+	return (et != null && (et in this.LOOK_EQTYPE)) ? this.LOOK_EQTYPE[et] : "none";
+};
+::Rokugan.lookHead <- function( pc){
+	foreach( e in pc.equips){
+		local d = e ? e["data"] : null;
+		if( d && (d["eqtype"] == 10 || d["eqtype"] == 11)) return d["rt_look"] ?? "";
+	}
+	return "";
+};
+//	The enemy_pic id for a player object (RPGPlayer), or null to keep the database model.
+::Rokugan.lookFor <- function( pc){
+	if( !pc || !(pc.dataid in this.LOOKS)) return null;
+	local t = this.LOOKS[pc.dataid], w = this.lookWeapon( pc), h = this.lookHead( pc);
+	return t[w .. "|" .. h] ?? t[w .. "|"] ?? null;
+};
+::Rokugan.lookSig <- function( pc){
+	local id = null;
+	try{ id = this.lookFor( pc); }catch( ex){}
+	return pc.dataid .. "=" .. (id ?? "");
+};
+//	A conf.player table -> its RPGPlayer (only the travelers have looks).
+::Rokugan.lookPlayerOf <- function( v){
+	if( !v || !::rpgstat) return null;
+	foreach( pid, t in this.LOOKS){
+		if( ::conf.player[pid] == v) return ::rpgstat.playermap[pid];
+	}
+	return null;
+};
+
+::RPG3DObject._rt_create_look <- ::RPG3DObject.create3DObject;
+::RPG3DObject.create3DObject <- function( v){
+	local id = null;
+	try{
+		if( v && !v["mdl"] && v["mdlid"]){
+			local pc = ::Rokugan.lookPlayerOf( v);
+			if( pc) id = ::Rokugan.lookFor( pc);
+			if( id && (id == v.mdlid || !::rpgres[id])) id = null;
+		}
+	}catch( ex){ printexception( ex); id = null; }
+	return ::RPG3DObject._rt_create_look( id ? { mdlid = id } : v);
+};
+
+//	Field leader: rebuild the sprite when its look changes (the equipment menu), never during a scene.
+::Rokugan.lookcur <- { stage = null, sig = "" };
+::Rokugan.lookCheck <- function( st){
+	local pl = st["player3d"];
+	if( st["battle"] || !pl || st.mainevent) return;
+	local pc = pl["rpgobj"];
+	if( !pc || !(pc.dataid in this.LOOKS)) return;
+	local sig = this.lookSig( pc), c = this.lookcur;
+	if( c.stage != st){ c.stage = st; c.sig = sig; return; }
+	if( sig == c.sig) return;
+	c.sig = sig;
+	printf( "[RT] look change: %S\n", sig);
+	pl.rpgobj = null;							//	changePlayer3D skips the rebuild when the same player is shown
+	st.changePlayer3D( st.stat.statmap.playermodel);
+};
+::RPGStage._rt_body_look <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	this._rt_body_look( dt);
+	try{ ::Rokugan.lookCheck( this); }catch( ex){ printexception( ex); }
+};
+
+//	Animation ids added by the v4 sheets (gen_sprites2d animap_for) fall back to an old id on sheets drawn before
+//	them (monsters, nezumi, old enemy sheets), so scripts and skills can use the new ids on anyone.
+local ATK_FB = [ "slash1", "punch1", "atk", "stick1" ];
+local ANI_FALLBACK = { item = ["magic1", "spell"], chant = ["spell", "magic1"], collapse = ["die"],
+	victory_in = ["victory"], run = ["walk"], idle = ["stand"],
+	atk_slash = ATK_FB, atk_thrust = ATK_FB, atk_overhead = ATK_FB, atk_draw = ATK_FB, atk_main = ATK_FB,
+	talk = ["stand"], nod = ["stand"], rei = ["stand"], rei_full = ["stand"], seiza = ["stand"], sit = ["stand"],
+	seiza_rei = ["stand"], think = ["stand"], surprise = ["damage"], laugh = ["victory", "stand"] };
+::RPG3DPicture._rt_anime2_fb <- ::RPG3DPicture.anime2;
+::RPG3DPicture.anime2 <- function( t){
+	local id = t["id"];
+	if( id && animemap && !animemap[id] && (id in ANI_FALLBACK)){
+		foreach( alt in ANI_FALLBACK[id]){
+			if( !animemap[alt]) continue;
+			local t2 = clone t;
+			t2.id = alt;
+			return _rt_anime2_fb( t2);
+		}
+	}
+	return _rt_anime2_fb( t);
+};
+
+printf( "Rokugan look plugin loaded\n");

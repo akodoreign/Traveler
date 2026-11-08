@@ -1,0 +1,221 @@
+{
+ "key": "mitsue__yumi_kasa",
+ "name": "Shosuro Mitsue",
+ "kind": "traveler",
+ "sheet": "trav_mitsue.png",
+ "prompt": "1girl, young woman ninja agent, long black hair, crimson kimono with a black diamond pattern, dark red cloth half-mask over the mouth, wearing sugegasa, wide conical woven rice-straw travel hat, plain hat, holding a tall yumi longbow, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, drinking straw, mascot, creature on hat, face on hat, eyes on hat, emblem on hat",
+ "seed": 11,
+ "candidates": 3,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#f6ceaa",
+   "ramp": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ],
+   "detect": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ]
+  },
+  "hair": {
+   "base": "#221a26",
+   "ramp": [
+    "#060307",
+    "#060407",
+    "#221a26",
+    "#473949",
+    "#675e68"
+   ],
+   "detect": [
+    "#060307",
+    "#060407",
+    "#221a26",
+    "#473949",
+    "#675e68"
+   ]
+  },
+  "top": {
+   "base": "#a81e2e",
+   "ramp": [
+    "#370017",
+    "#730927",
+    "#a81e2d",
+    "#cb383f",
+    "#ea5e5d"
+   ],
+   "detect": [
+    "#370017",
+    "#730927",
+    "#a81e2d",
+    "#cb383f",
+    "#ea5e5d"
+   ]
+  },
+  "lower": {
+   "base": "#2a222c",
+   "ramp": [
+    "#060407",
+    "#070507",
+    "#2a222c",
+    "#4f454f",
+    "#6e6d6e"
+   ],
+   "detect": [
+    "#060407",
+    "#070507",
+    "#2a222c",
+    "#4f454f",
+    "#6e6d6e"
+   ]
+  },
+  "mask_col": {
+   "base": "#761e2a",
+   "ramp": [
+    "#070003",
+    "#410a1a",
+    "#761e2a",
+    "#99363c",
+    "#b85758"
+   ],
+   "detect": [
+    "#070003",
+    "#410a1a",
+    "#761e2a",
+    "#99363c",
+    "#b85758"
+   ]
+  },
+  "pcol": {
+   "base": "#781422",
+   "ramp": [
+    "#070003",
+    "#430417",
+    "#781321",
+    "#9b2931",
+    "#ba4849"
+   ],
+   "detect": [
+    "#070003",
+    "#430417",
+    "#781321",
+    "#9b2931",
+    "#ba4849"
+   ]
+  },
+  "accent": {
+   "base": "#d4aa46",
+   "ramp": [
+    "#63210e",
+    "#9f5a24",
+    "#d4aa46",
+    "#f7ce6a",
+    "#ffde8c"
+   ],
+   "detect": [
+    "#63210e",
+    "#9f5a24",
+    "#d4aa46",
+    "#f7ce6a",
+    "#ffde8c"
+   ]
+  },
+  "cord": {
+   "base": "#d4aa46",
+   "ramp": [
+    "#63210e",
+    "#9f5a24",
+    "#d4aa46",
+    "#f7ce6a",
+    "#ffde8c"
+   ],
+   "detect": [
+    "#63210e",
+    "#9f5a24",
+    "#d4aa46",
+    "#f7ce6a",
+    "#ffde8c"
+   ]
+  },
+  "lining": {
+   "base": "#281e28",
+   "ramp": [
+    "#070407",
+    "#070407",
+    "#281e28",
+    "#4b404a",
+    "#6a6769"
+   ],
+   "detect": [
+    "#070407",
+    "#070407",
+    "#281e28",
+    "#4b404a",
+    "#6a6769"
+   ]
+  },
+  "hat0": {
+   "base": "#d0b26e",
+   "ramp": [
+    "#5f2e21",
+    "#9b6942",
+    "#d0b26e",
+    "#f3d899",
+    "#ffecbe"
+   ],
+   "detect": [
+    "#5f2e21",
+    "#9b6942",
+    "#d0b26e",
+    "#f3d899",
+    "#ffecbe"
+   ]
+  }
+ }
+}

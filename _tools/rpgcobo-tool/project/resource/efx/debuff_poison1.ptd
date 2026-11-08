@@ -1,0 +1,139 @@
+////////////////////////////////////////////////////////
+//   ParticleData
+////////////////////////////////////////////////////////
+parentcoord <- false
+currentgroup <- 0
+prof <- {"showbnd":[-0.03388,0.179035,-0.117173,1.283642,1.530793,1.350855],"maxbnd":[-0.136284,0.026596,-0.055003,1.458448,1.92075,1.609338],"showtime":864,"wholebnd":[0.001946,-0.016369,-0.064079,1.68261,1.963716,1.704345]}
+groups <- [
+	with ParticleGroupData(){
+		name = "smoke"
+		enabled = true
+		aimtype = 1
+		localcoord = true
+		emitter = with ParticleEmitter(){
+			num = 10
+			start = 0, start_spr = 300
+			life = 700, life_spr = 200
+			posx = 0.0, posy = 0.35, posz = 0.0
+			pos_sprx = 0.0, pos_spry = 0.3, pos_sprz = 0.0
+			dirx = 0.0, diry = 0.0, dirz = 0.0
+			dir_sprx = 3.141593, dir_spry = 3.141593, dir_sprz = 0.0
+			linearbits = 0
+		},
+		shapetype = 0
+		shapedata = {"axis":0,"r":0.0,"w":0.4,"h":0.4}
+		texture = "/resource/efx/tex/smoke1.webp"
+		color = 0xffffffff
+		blendmode = 5
+		blend = 1
+		tec = "decal.softptc"
+		overlay = 0.12
+		Ka = 0x808080ff
+		Ks = 0x00000000
+		mod = [
+		{"color":[1169425015,128717685,8525164,5836374],"classid":"ptcmod_color"},
+		{"vel":0.5,"classid":"ptcmod_vel","vel_spr":0.1},
+		{"axisid":1,"classid":"ptcmod_acc","acc_spr":0.0,"coord":0,"acc":-0.03},
+		{"classid":"ptcmod_texanime","frame":[0.0,7.738095]},
+		]
+	},
+	with ParticleGroupData(){
+		name = "bubble"
+		enabled = true
+		aimtype = 1
+		localcoord = true
+		emitter = with ParticleEmitter(){
+			num = 20
+			start = 0, start_spr = 1200
+			life = 600, life_spr = 200
+			posx = 0.0, posy = 0.8, posz = 0.0
+			pos_sprx = 0.0, pos_spry = 0.0, pos_sprz = 0.0
+			dirx = 0.0, diry = 0.0, dirz = 0.0
+			dir_sprx = 3.141593, dir_spry = 3.141593, dir_sprz = 0.0
+			linearbits = 0
+		},
+		shapetype = 0
+		shapedata = {"axis":0,"r":0.0,"w":0.1,"h":0.1}
+		texture = "/resource/efx/tex/bubble1.webp"
+		color = 0xffffffff
+		blendmode = 5
+		blend = 1
+		tec = "decal.softptc"
+		overlay = 0.31
+		Ka = 0x808080ff
+		Ks = 0x00000000
+		mod = [
+		{"color":[1169425151,145490175,5836318,5836288],"classid":"ptcmod_color"},
+		{"xyz":7,"scale":[0.764706,1.088235,1.029412,1.294118,1.235294,2.0],"classid":"ptcmod_scale"},
+		{"vel":0.2,"classid":"ptcmod_vel","vel_spr":0.4},
+		{"axisid":1,"classid":"ptcmod_acc","acc_spr":0.0,"coord":1,"acc":0.05},
+		{"color":0,"scale":2.0,"classid":"ptcmod_rnd","b":1.0,"p":0.0,"h":0.0},
+		{"classid":"ptcmod_texanime","frame":[0.0,10.0]},
+		]
+	},
+	with ParticleGroupData(){
+		name = "aura"
+		enabled = true
+		aimtype = 1
+		localcoord = true
+		emitter = with ParticleEmitter(){
+			num = 4
+			start = 0, start_spr = 900
+			life = 1000, life_spr = 400
+			posx = 0.0, posy = 0.0, posz = 0.0
+			pos_sprx = 0.5, pos_spry = 0.5, pos_sprz = 0.5
+			dirx = 0.0, diry = 0.0, dirz = 0.0
+			dir_sprx = 0.0, dir_spry = 0.0, dir_sprz = 0.0
+			linearbits = 0
+		},
+		shapetype = 0
+		shapedata = {"axis":0,"r":0.0,"w":0.2,"h":0.2}
+		texture = "/resource/efx/tex/shockwave_smoke1.webp"
+		color = 0xffffffff
+		blendmode = 5
+		blend = 1
+		tec = "decal.softptc"
+		Ka = 0x808080ff
+		Ks = 0x00000000
+		mod = [
+		{"color":[128717568,128717666,128717588,128717578,128717568],"classid":"ptcmod_color"},
+		{"xyz":7,"scale":[0.735294,1.529412,1.823529,2.0],"classid":"ptcmod_scale"},
+		{"color":0,"scale":2.0,"classid":"ptcmod_rnd","b":10.0,"p":0.0,"h":0.0},
+		{"scale":0.698132,"classid":"ptcmod_rot","rot":[-1.0,1.0],"axisid":2},
+		]
+	},
+	with ParticleGroupData(){
+		name = "aura"
+		enabled = true
+		aimtype = 1
+		localcoord = true
+		emitter = with ParticleEmitter(){
+			num = 4
+			start = 0, start_spr = 900
+			life = 1000, life_spr = 400
+			posx = 0.0, posy = 0.0, posz = 0.0
+			pos_sprx = 0.5, pos_spry = 0.5, pos_sprz = 0.5
+			dirx = 0.0, diry = 0.0, dirz = 0.0
+			dir_sprx = 0.0, dir_spry = 0.0, dir_sprz = 0.0
+			linearbits = 0
+		},
+		shapetype = 0
+		shapedata = {"axis":0,"r":0.0,"w":0.2,"h":0.3}
+		texture = "/resource/efx/tex/shockwave_smoke2.webp"
+		color = 0xffffffff
+		blendmode = 5
+		blend = 1
+		tec = "decal.softptc"
+		Ka = 0x808080ff
+		Ks = 0x00000000
+		mod = [
+		{"color":[128717568,128717666,128717588,128717578,128717568],"classid":"ptcmod_color"},
+		{"xyz":7,"scale":[0.735294,1.529412,1.823529,2.0],"classid":"ptcmod_scale"},
+		{"color":0,"scale":2.0,"classid":"ptcmod_rnd","b":10.0,"p":0.0,"h":0.0},
+		{"scale":0.698132,"classid":"ptcmod_rot","rot":[1.0,-1.0],"axisid":2},
+		]
+	},
+]
+actions <- [
+	{"acttype":"emitall","time":0}
+]

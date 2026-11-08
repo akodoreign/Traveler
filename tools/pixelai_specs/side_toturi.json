@@ -1,0 +1,136 @@
+{
+ "key": "toturi",
+ "name": "Akodo Toturi",
+ "kind": "side",
+ "sheet": "side_toturi.png",
+ "prompt": "1boy, male focus, man, Akodo Toturi, fair skin, tan hair, mane hair, light brown kimono, brown hakama, a katana with a steel blade and a black hilt, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#fae2cc",
+   "ramp": [
+    "#895957",
+    "#c59b8d",
+    "#fae2cc",
+    "#fff4e9",
+    "#ffffff"
+   ],
+   "detect": [
+    "#895957",
+    "#c59b8d",
+    "#fae2cc",
+    "#fff4e9",
+    "#ffffff"
+   ]
+  },
+  "hair": {
+   "base": "#e2ba54",
+   "ramp": [
+    "#712a15",
+    "#ad682f",
+    "#e2ba53",
+    "#ffd978",
+    "#ffe296"
+   ],
+   "detect": [
+    "#712a15",
+    "#ad682f",
+    "#e2ba53",
+    "#ffd978",
+    "#ffe296"
+   ]
+  },
+  "top": {
+   "base": "#785432",
+   "ramp": [
+    "#070201",
+    "#432115",
+    "#785431",
+    "#9b7650",
+    "#ba9a76"
+   ],
+   "detect": [
+    "#070201",
+    "#432115",
+    "#785431",
+    "#9b7650",
+    "#ba9a76"
+   ]
+  },
+  "lower": {
+   "base": "#604228",
+   "ramp": [
+    "#070101",
+    "#2b140d",
+    "#604127",
+    "#836344",
+    "#a28567"
+   ],
+   "detect": [
+    "#070101",
+    "#2b140d",
+    "#604127",
+    "#836344",
+    "#a28567"
+   ]
+  },
+  "accent": {
+   "base": "#e2ba54",
+   "ramp": [
+    "#712a15",
+    "#ad682f",
+    "#e2ba53",
+    "#ffd978",
+    "#ffe296"
+   ],
+   "detect": [
+    "#712a15",
+    "#ad682f",
+    "#e2ba53",
+    "#ffd978",
+    "#ffe296"
+   ]
+  }
+ }
+}

@@ -1,0 +1,119 @@
+{
+ "key": "zhang",
+ "name": "Moto Zhang",
+ "kind": "side",
+ "sheet": "side_zhang.png",
+ "prompt": "1boy, male focus, man, Moto Zhang, light tan skin, brown hair, mane hair, purple kimono, dark grey hakama, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#e2b088",
+   "ramp": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ],
+   "detect": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ]
+  },
+  "hair": {
+   "base": "#5a4632",
+   "ramp": [
+    "#070302",
+    "#251611",
+    "#5a4632",
+    "#7d6952",
+    "#9c8c79"
+   ],
+   "detect": [
+    "#070302",
+    "#251611",
+    "#5a4632",
+    "#7d6952",
+    "#9c8c79"
+   ]
+  },
+  "top": {
+   "base": "#6e508c",
+   "ramp": [
+    "#120a1b",
+    "#402957",
+    "#6e508c",
+    "#9d75af",
+    "#c6a3ce"
+   ],
+   "detect": [
+    "#120a1b",
+    "#402957",
+    "#6e508c",
+    "#9d75af",
+    "#c6a3ce"
+   ]
+  },
+  "lower": {
+   "base": "#463c50",
+   "ramp": [
+    "#060407",
+    "#17121b",
+    "#463c50",
+    "#6e6273",
+    "#918d92"
+   ],
+   "detect": [
+    "#060407",
+    "#17121b",
+    "#463c50",
+    "#6e6273",
+    "#918d92"
+   ]
+  }
+ }
+}

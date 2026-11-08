@@ -1,0 +1,98 @@
+////////////////////////////////////////////////////////
+//   ParticleData (Rokugan Traveler spell effect, tools/gen_spellfx.py)
+////////////////////////////////////////////////////////
+parentcoord <- false
+currentgroup <- 0
+prof <- {"showbnd":[0,0.5,0,1.5,1.5,1.5],"maxbnd":[0,0.5,0,2.0,2.0,2.0],"showtime":900,"wholebnd":[0,0.5,0,2.0,2.0,2.0]}
+groups <- [
+	with ParticleGroupData(){
+		name = "main"
+		enabled = true
+		aimtype = 1
+		localcoord = true
+		emitter = with ParticleEmitter(){
+			num = 1
+			start = 0, start_spr = 0
+			life = 900, life_spr = 300
+			posx = 0.0, posy = 0.400, posz = 0.0
+			pos_sprx = 0.000, pos_spry = 0.000, pos_sprz = 0.000
+			dirx = 0.0, diry = 0.0, dirz = 0.0
+			dir_sprx = 0.000000, dir_spry = 0.000000, dir_sprz = 0.0
+			linearbits = 0
+		},
+		shapetype = 0
+		shapedata = {"axis":0,"r":0.0,"w":1.500,"h":1.500}
+		texture = "/resource/efx/rt/FX494.png"
+		color = 0xffffffff
+		blendmode = 5
+		blend = 5
+		Ka = 0x808080ff
+		Ks = 0x00000000
+		mod = [
+		{"classid":"ptcmod_texanime","frame":[0,8]},
+		{"xyz":7,"scale":[0.9,1.0,1.05,1.1],"classid":"ptcmod_scale"},
+		{"color":[-335937537,-335937537,-335937592,-335937792],"classid":"ptcmod_color"},
+		]
+	},
+	with ParticleGroupData(){
+		name = "glow"
+		enabled = true
+		aimtype = 1
+		localcoord = true
+		emitter = with ParticleEmitter(){
+			num = 2
+			start = 0, start_spr = 150
+			life = 900, life_spr = 300
+			posx = 0.0, posy = 0.400, posz = 0.0
+			pos_sprx = 0.000, pos_spry = 0.000, pos_sprz = 0.000
+			dirx = 0.0, diry = 0.0, dirz = 0.0
+			dir_sprx = 0.000000, dir_spry = 0.000000, dir_sprz = 0.0
+			linearbits = 0
+		},
+		shapetype = 0
+		shapedata = {"axis":0,"r":0.0,"w":1.350,"h":1.350}
+		texture = "/resource/efx/tex/glow1.webp"
+		color = 0xffffffff
+		blendmode = 5
+		blend = 5
+		Ka = 0x808080ff
+		Ks = 0x00000000
+		mod = [
+		{"xyz":7,"scale":[0.6,1.4,1.8],"classid":"ptcmod_scale"},
+		{"color":[-1764163680,1016131694,339847680],"classid":"ptcmod_color"},
+		]
+	},
+	with ParticleGroupData(){
+		name = "sparks"
+		enabled = true
+		aimtype = 1
+		localcoord = true
+		emitter = with ParticleEmitter(){
+			num = 14
+			start = 0, start_spr = 300
+			life = 720, life_spr = 240
+			posx = 0.0, posy = 0.400, posz = 0.0
+			pos_sprx = 0.500, pos_spry = 0.500, pos_sprz = 0.500
+			dirx = 0.0, diry = 0.0, dirz = 0.0
+			dir_sprx = 3.141593, dir_spry = 3.141593, dir_sprz = 0.0
+			linearbits = 0
+		},
+		shapetype = 0
+		shapedata = {"axis":0,"r":0.0,"w":0.080,"h":0.080}
+		texture = "/resource/efx/tex/square2.webp"
+		color = 0xffffffff
+		blendmode = 5
+		blend = 5
+		Ka = 0x808080ff
+		Ks = 0x00000000
+		mod = [
+		{"vel":0.6,"classid":"ptcmod_vel","vel_spr":0.24},
+		{"axisid":1,"classid":"ptcmod_acc","acc_spr":0.2,"coord":0,"acc":1.2},
+		{"color":[-335937537,-1764163585,1016131764,339847680],"classid":"ptcmod_color"},
+		{"xyz":7,"scale":[1.0,1.2,0.5,0.0],"classid":"ptcmod_scale"},
+		]
+	},
+]
+actions <- [
+	{"acttype":"emitall","time":0}
+]

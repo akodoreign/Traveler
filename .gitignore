@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+_tools/rpgcobo-tool/tmp/
+_tools/rpgcobo-tool/log/
+_tools/rpgcobo-tool/savedata/
+_tools/rpgcobo-tool/backup/
+_tools/rpgcobo-tool/build/

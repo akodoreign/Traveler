@@ -1,0 +1,119 @@
+{
+ "key": "yoritomo",
+ "name": "Yoritomo",
+ "kind": "side",
+ "sheet": "side_yoritomo.png",
+ "prompt": "1boy, male focus, man, Yoritomo, light tan skin, black hair, mane hair, green kimono, dark green hakama, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#e2b088",
+   "ramp": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ],
+   "detect": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ]
+  },
+  "hair": {
+   "base": "#282228",
+   "ramp": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ],
+   "detect": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ]
+  },
+  "top": {
+   "base": "#3c7846",
+   "ramp": [
+    "#020705",
+    "#1b432d",
+    "#3c7846",
+    "#5d9b60",
+    "#87ba86"
+   ],
+   "detect": [
+    "#020705",
+    "#1b432d",
+    "#3c7846",
+    "#5d9b60",
+    "#87ba86"
+   ]
+  },
+  "lower": {
+   "base": "#285032",
+   "ramp": [
+    "#020706",
+    "#0b1b13",
+    "#285032",
+    "#45734b",
+    "#69926b"
+   ],
+   "detect": [
+    "#020706",
+    "#0b1b13",
+    "#285032",
+    "#45734b",
+    "#69926b"
+   ]
+  }
+ }
+}

@@ -1,0 +1,221 @@
+{
+ "key": "rensei__tanto_eboshi",
+ "name": "Kakita Rensei",
+ "kind": "traveler",
+ "sheet": "trav_rensei.png",
+ "prompt": "1boy, young samurai duelist, fair skin, long white hair with a topknot, pale blue haori over a white kimono, hakama, wearing eboshi, tall black lacquered court cap, holding a short tanto dagger, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, blonde hair, red skin, orange skin, red outline, red clothes, drinking straw, mascot, creature on hat, face on hat, eyes on hat, emblem on hat",
+ "seed": 11,
+ "candidates": 3,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#f6ceaa",
+   "ramp": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ],
+   "detect": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ]
+  },
+  "hair": {
+   "base": "#e2e8f4",
+   "ramp": [
+    "#525068",
+    "#9896b3",
+    "#e2e8f4",
+    "#ffffff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#525068",
+    "#9896b3",
+    "#e2e8f4",
+    "#ffffff",
+    "#ffffff"
+   ]
+  },
+  "top": {
+   "base": "#eceef6",
+   "ramp": [
+    "#57556a",
+    "#9f9db5",
+    "#eceef6",
+    "#ffffff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#57556a",
+    "#9f9db5",
+    "#eceef6",
+    "#ffffff",
+    "#ffffff"
+   ]
+  },
+  "lower": {
+   "base": "#d6dcec",
+   "ramp": [
+    "#4a4860",
+    "#8e8cab",
+    "#d6dcec",
+    "#ffffff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#4a4860",
+    "#8e8cab",
+    "#d6dcec",
+    "#ffffff",
+    "#ffffff"
+   ]
+  },
+  "haori": {
+   "base": "#96bee6",
+   "ramp": [
+    "#374875",
+    "#6280b1",
+    "#96bee6",
+    "#bfedff",
+    "#defbff"
+   ],
+   "detect": [
+    "#374875",
+    "#6280b1",
+    "#96bee6",
+    "#bfedff",
+    "#defbff"
+   ]
+  },
+  "pcol": {
+   "base": "#c8def6",
+   "ramp": [
+    "#546185",
+    "#8a9ec1",
+    "#c8def6",
+    "#e8f8ff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#546185",
+    "#8a9ec1",
+    "#c8def6",
+    "#e8f8ff",
+    "#ffffff"
+   ]
+  },
+  "accent": {
+   "base": "#3c60aa",
+   "ramp": [
+    "#091039",
+    "#1d3175",
+    "#3b5faa",
+    "#5d9ccd",
+    "#87d1ec"
+   ],
+   "detect": [
+    "#091039",
+    "#1d3175",
+    "#3b5faa",
+    "#5d9ccd",
+    "#87d1ec"
+   ]
+  },
+  "cord": {
+   "base": "#3c60aa",
+   "ramp": [
+    "#091039",
+    "#1d3175",
+    "#3b5faa",
+    "#5d9ccd",
+    "#87d1ec"
+   ],
+   "detect": [
+    "#091039",
+    "#1d3175",
+    "#3b5faa",
+    "#5d9ccd",
+    "#87d1ec"
+   ]
+  },
+  "lining": {
+   "base": "#d2e4f8",
+   "ramp": [
+    "#5a6587",
+    "#92a4c3",
+    "#d1e3f8",
+    "#f1faff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#5a6587",
+    "#92a4c3",
+    "#d1e3f8",
+    "#f1faff",
+    "#ffffff"
+   ]
+  },
+  "hat0": {
+   "base": "#28262e",
+   "ramp": [
+    "#050407",
+    "#060507",
+    "#28262e",
+    "#4e4b51",
+    "#707070"
+   ],
+   "detect": [
+    "#050407",
+    "#060507",
+    "#28262e",
+    "#4e4b51",
+    "#707070"
+   ]
+  }
+ }
+}

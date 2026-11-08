@@ -1,0 +1,153 @@
+{
+ "key": "gaijin_musketeer",
+ "name": "Gaijin Musketeer",
+ "kind": "enemy",
+ "sheet": "hum_gaijin_musketeer.png",
+ "prompt": "1boy, male focus, man, Gaijin Musketeer, fair skin, tan hair, short hair, red kimono, dark brown hakama, jingasa, a matchlock musket, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#ecc8b4",
+   "ramp": [
+    "#7b474a",
+    "#b78279",
+    "#ecc8b4",
+    "#ffe9db",
+    "#fffcfa"
+   ],
+   "detect": [
+    "#7b474a",
+    "#b78279",
+    "#ecc8b4",
+    "#ffe9db",
+    "#fffcfa"
+   ]
+  },
+  "hair": {
+   "base": "#be9650",
+   "ramp": [
+    "#4d1c12",
+    "#894f2c",
+    "#be9650",
+    "#e1bb75",
+    "#ffdfa3"
+   ],
+   "detect": [
+    "#4d1c12",
+    "#894f2c",
+    "#be9650",
+    "#e1bb75",
+    "#ffdfa3"
+   ]
+  },
+  "top": {
+   "base": "#962e2c",
+   "ramp": [
+    "#25040e",
+    "#61121f",
+    "#962e2c",
+    "#b95249",
+    "#d87c6f"
+   ],
+   "detect": [
+    "#25040e",
+    "#61121f",
+    "#962e2c",
+    "#b95249",
+    "#d87c6f"
+   ]
+  },
+  "lower": {
+   "base": "#463c38",
+   "ramp": [
+    "#070405",
+    "#110c0c",
+    "#463b38",
+    "#69625f",
+    "#888888"
+   ],
+   "detect": [
+    "#070405",
+    "#110c0c",
+    "#463b38",
+    "#69625f",
+    "#888888"
+   ]
+  },
+  "hat_col": {
+   "base": "#b0b2ba",
+   "ramp": [
+    "#25242e",
+    "#696879",
+    "#b0b2ba",
+    "#dddddd",
+    "#fcfcfc"
+   ],
+   "detect": [
+    "#25242e",
+    "#696879",
+    "#b0b2ba",
+    "#dddddd",
+    "#fcfcfc"
+   ]
+  },
+  "accent": {
+   "base": "#c8aa5a",
+   "ramp": [
+    "#572617",
+    "#936033",
+    "#c8aa5a",
+    "#ebcf81",
+    "#ffe8aa"
+   ],
+   "detect": [
+    "#572617",
+    "#936033",
+    "#c8aa5a",
+    "#ebcf81",
+    "#ffe8aa"
+   ]
+  }
+ }
+}

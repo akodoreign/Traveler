@@ -1,0 +1,1286 @@
+{
+	"X000": {
+		"cmdblock": [],
+		"desc": "何も実行しない",
+		"name": "何もしない",
+		"runatmenu": false,
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"X001": {
+		"cmdblock": [
+			{
+				"cmd": "cmd_if",
+				"cmdblocks": [
+					[
+						{
+							"cmd": "cmd_screenfxon",
+							"color": -1431655681,
+							"num": 1,
+							"pow": 6,
+							"sfxid": "raster0",
+							"time": 200
+						}
+					],
+					[
+						{
+							"cmd": "cmd_screenfxoff",
+							"sfxbits": 2,
+							"time": 400
+						}
+					]
+				],
+				"reqs": [
+					{
+						"key": "varcmp",
+						"lvar": "W",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			}
+		],
+		"desc": "メインメニューを開く／閉じるときに呼び出されます。\nW=ON : 開く\nW=OFF : 閉じる",
+		"name": "メニュー開閉",
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"X002": {
+		"cmdblock": [
+			{
+				"bgmid": "MU000",
+				"cmd": "cmd_bgm",
+				"fadetime": 1500,
+				"restore": false
+			},
+			{
+				"action": "show",
+				"cmd": "cmd_customui",
+				"idx": 0,
+				"layer": "menu",
+				"op": "show",
+				"pos": {
+					"down": 0,
+					"left": 0,
+					"right": 0,
+					"up": 0
+				},
+				"uipath": "/presetui/gameover.ui",
+				"wait": true
+			},
+			{
+				"cmd": "cmd_wait",
+				"time": 1200
+			},
+			{
+				"bgmid": "MU017",
+				"cmd": "cmd_bgm",
+				"fadetime": 0,
+				"restore": false
+			},
+			{
+				"cmd": "cmd_wait",
+				"time": 1800
+			},
+			{
+				"cmd": "cmd_showui",
+				"key": "misc_waitclick"
+			},
+			{
+				"bgmid": "MU000",
+				"cmd": "cmd_bgm",
+				"fadetime": 1000,
+				"restore": false
+			},
+			{
+				"action": "blackout",
+				"cmd": "cmd_customui",
+				"idx": 0,
+				"op": "action",
+				"wait": false
+			},
+			{
+				"cmd": "cmd_wait",
+				"time": 1000
+			},
+			{
+				"cmd": "cmd_gotitle"
+			}
+		],
+		"desc": "バトルで全滅した際に呼ばれる。\nゲームオーバーにしたり、回復してワープしたり処理を書くことが出来る。",
+		"name": "ゲームオーバー",
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"X003": {
+		"cmdblock": [
+			{
+				"ch": 0,
+				"cmd": "cmd_snd",
+				"sndid": "SE015",
+				"vol": 100,
+				"who": 0
+			},
+			{
+				"cmd": "cmd_screenfxon",
+				"color": -1,
+				"num": 1,
+				"pow": 8,
+				"sfxid": "raster1",
+				"time": 300
+			},
+			{
+				"cmd": "cmd_wait",
+				"time": 100
+			},
+			{
+				"_var": {
+					"gid": "X",
+					"mapid": "W"
+				},
+				"bgmid": null,
+				"cmd": "cmd_battle1",
+				"gid": 1,
+				"losefunc": 0,
+				"mapid": "M001"
+			},
+			{
+				"cmd": "cmd_screenfxoff",
+				"sfxbits": 2,
+				"time": 0
+			}
+		],
+		"desc": "ランダムエンカウント、シンボルエンカウントからバトルを開始したときに呼ばれる。",
+		"name": "グループエンカウント",
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"X004": {
+		"cmdblock": [
+			{
+				"cmd": "cmd_if",
+				"cmdblocks": [
+					[],
+					[
+						{
+							"cmd": "cmd_showmsg",
+							"icon": "",
+							"key": "message_log",
+							"text": "Couldn't get away!"
+						},
+						{
+							"_var": {
+								"who": "ATKCHR"
+							},
+							"ani": {
+								"id": "damage",
+								"part": 0,
+								"spd": 1.0
+							},
+							"cmd": "cmd_anime",
+							"who": 1
+						},
+						{
+							"cmd": "cmd_wait",
+							"time": 400
+						},
+						{
+							"cmd": "cmd_ret"
+						}
+					]
+				],
+				"reqs": [
+					{
+						"key": "varcmp",
+						"lvar": "RND99",
+						"op": "<=",
+						"rvar": 50
+					},
+					{
+						"key": "varcmp",
+						"lvar": "ESCAPABLE",
+						"op": "==",
+						"rvar": true
+					}
+				]
+			},
+			{
+				"cmd": "cmd_iterate",
+				"cmdblocks": [
+					[
+						{
+							"_var": {
+								"charaid": "W"
+							},
+							"charaid": "P000",
+							"cmd": "cmd_charainfo",
+							"key": "commandable",
+							"retvar": "X"
+						},
+						{
+							"cmd": "cmd_if",
+							"cmdblocks": [
+								[
+									{
+										"_var": {
+											"who": "W"
+										},
+										"cmd": "cmd_move",
+										"movespd": 7.0,
+										"movetype": "dash",
+										"playani": true,
+										"pos": [
+											8,
+											0
+										],
+										"wait": false,
+										"who": 2
+									}
+								]
+							],
+							"reqs": [
+								{
+									"key": "varcmp",
+									"lvar": "X",
+									"op": "==",
+									"rvar": true
+								}
+							]
+						}
+					]
+				],
+				"itervar": "MEMBERS",
+				"keyset": null,
+				"skipnull": true,
+				"valset": "W"
+			},
+			{
+				"_var": {
+					"who": "ATKCHR"
+				},
+				"ch": 0,
+				"cmd": "cmd_snd",
+				"sndid": "SE110",
+				"vol": 100,
+				"who": 0
+			},
+			{
+				"cmd": "cmd_battleend",
+				"result": 0
+			}
+		],
+		"desc": "「逃げる」のスキルを使用したときに呼ばれる。成功したらバトルは引分けで終了。",
+		"name": "逃げるスキル",
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"X005": {
+		"cmdblock": [
+			{
+				"cmd": "cmd_compute",
+				"lvar": "X",
+				"op": "=",
+				"rvar": "\tW[\"rp3d\"]"
+			},
+			{
+				"cmd": "cmd_compute",
+				"lvar": "Y",
+				"op": "=",
+				"rvar": "\tW[\"type\"]==\"enemy\""
+			},
+			{
+				"_var": {
+					"who": "W"
+				},
+				"ani": {
+					"id": "die",
+					"part": 0,
+					"spd": 1.0
+				},
+				"cmd": "cmd_anime",
+				"who": 1
+			},
+			{
+				"cmd": "cmd_compute",
+				"lvar": "Z",
+				"op": "=",
+				"rvar": "\tW[\"data\"][\"dietype\"]||0"
+			},
+			{
+				"cmd": "cmd_if",
+				"cmdblocks": [
+					[
+						{
+							"cmd": "cmd_if",
+							"cmdblocks": [
+								[
+									{
+										"cmd": "cmd_screenfxon",
+										"color": -1,
+										"freq": 40,
+										"num": 1,
+										"pow": 3,
+										"sfxid": "flash0",
+										"time": 400,
+										"vert": false
+									},
+									{
+										"_var": {
+											"who": "W"
+										},
+										"ch": 0,
+										"cmd": "cmd_snd",
+										"sndid": "SE111",
+										"vol": 100,
+										"who": 2
+									},
+									{
+										"_var": {
+											"who": "W"
+										},
+										"cmd": "cmd_efx",
+										"efxid": "FX078",
+										"pos": [
+											0.0,
+											0.0,
+											0.0
+										],
+										"wait": false,
+										"who": 1
+									},
+									{
+										"cmd": "cmd_wait",
+										"time": 400
+									},
+									{
+										"cmd": "cmd_script",
+										"code": "X.picfx( \"die\");",
+										"desc": "SCRIPT"
+									},
+									{
+										"cmd": "cmd_wait",
+										"time": 1000
+									}
+								],
+								[
+									{
+										"_var": {
+											"who": "W"
+										},
+										"ch": 0,
+										"cmd": "cmd_snd",
+										"sndid": "SE111",
+										"vol": 100,
+										"who": 2
+									},
+									{
+										"cmd": "cmd_script",
+										"code": "X.picfx( \"die\");",
+										"desc": "SCRIPT"
+									}
+								]
+							],
+							"reqs": [
+								{
+									"key": "varcmp",
+									"lvar": "Z",
+									"op": ">=",
+									"rvar": 1
+								}
+							]
+						}
+					],
+					[
+						{
+							"cmd": "cmd_if",
+							"cmdblocks": [
+								[
+									{
+										"cmd": "cmd_wait",
+										"time": 300
+									},
+									{
+										"_var": {
+											"who": "W"
+										},
+										"cmd": "cmd_opacity",
+										"fade": 400,
+										"loop": false,
+										"opacity": [
+											1.0,
+											0.5,
+											0.0
+										],
+										"wait": false,
+										"who": 1
+									},
+									{
+										"_var": {
+											"who": "W"
+										},
+										"cmd": "cmd_efx",
+										"efxid": "FX079",
+										"pos": [
+											0.0,
+											0.0,
+											0.0
+										],
+										"wait": true,
+										"who": 2
+									}
+								]
+							],
+							"reqs": [
+								{
+									"key": "varcmp",
+									"lvar": "Y",
+									"op": "==",
+									"rvar": true
+								}
+							]
+						}
+					]
+				],
+				"reqs": [
+					{
+						"key": "script",
+						"rvar": "\tX instanceof RPG3DPicture"
+					}
+				]
+			}
+		],
+		"desc": "バトルで死亡した際のアニメーションやエフェクト表示を行う。\nWには死亡演出を行うキャラの参照を渡す。",
+		"name": "死亡演出",
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"X011": {
+		"cmdblock": [
+			{
+				"_var": {
+					"LV": "Y",
+					"itemid": "W",
+					"num": "X"
+				},
+				"cmd": "cmd_itemop",
+				"itemid": "I000",
+				"num": 1,
+				"op": 0
+			},
+			{
+				"cmd": "cmd_script",
+				"code": "W = tmpl(::T[X>1?\"gotitem_n\":\"gotitem\"],{v=dataname(W,Y), n=commanum(X)})"
+			},
+			{
+				"_var": {
+					"text": "W"
+				},
+				"cmd": "cmd_showmsg",
+				"icon": "",
+				"key": "message_log",
+				"text": "*message_log*"
+			},
+			{
+				"ch": 0,
+				"cmd": "cmd_snd",
+				"sndid": "SE017",
+				"vol": 100,
+				"who": 0
+			},
+			{
+				"cmd": "cmd_compute",
+				"lvar": "W",
+				"op": "=",
+				"rvar": true
+			}
+		],
+		"desc": "宝箱のイベントロールを調べたときに呼ばれる。",
+		"name": "宝箱を開ける",
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"X012": {
+		"cmdblock": [
+			{
+				"cmd": "cmd_facetoface",
+				"who": 4
+			},
+			{
+				"cmd": "cmd_wait",
+				"time": 100
+			},
+			{
+				"_var": {
+					"text": "W"
+				},
+				"cmd": "cmd_showui",
+				"key": "message_talk",
+				"op": null,
+				"pos": {
+					"bottom": 40
+				},
+				"text": "*message_talk*",
+				"uiclose": 2,
+				"uipath": "message_talk.ui",
+				"name": ""
+			}
+		],
+		"desc": "村人のイベントロールに話しかけた時に呼ばれる。",
+		"name": "村人と会話",
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"X013": {
+		"cmdblock": [
+			{
+				"cmd": "cmd_facetoface",
+				"who": 4
+			},
+			{
+				"cmd": "cmd_wait",
+				"time": 100
+			},
+			{
+				"cmd": "cmd_showui",
+				"key": "info_money",
+				"op": null,
+				"pos": {
+					"right": 100,
+					"top": 100
+				},
+				"uiclose": 1
+			},
+			{
+				"cmd": "cmd_showmsg",
+				"key": "message_talk",
+				"name": "",
+				"text": "Welcome, welcome! Take a look - honest goods at honest prices.",
+				"uiclose": 1
+			},
+			{
+				"cmd": "cmd_if",
+				"cmdblocks": [
+					[
+						{
+							"_var": {
+								"text": "W"
+							},
+							"cmd": "cmd_showui",
+							"key": "message_talk",
+							"op": "hide",
+							"pos": {
+								"bottom": 40
+							},
+							"text": "*message_talk*",
+							"uiclose": 1,
+							"uipath": "message_talk.ui",
+							"who": ""
+						},
+						{
+							"cmd": "cmd_screenfxon",
+							"color": -2004317953,
+							"num": 1,
+							"pow": 4,
+							"sfxid": "raster0",
+							"time": 100
+						},
+						{
+							"_var": {
+								"storeid": "X"
+							},
+							"cmd": "cmd_showui",
+							"key": "store_item",
+							"showmoney": true,
+							"storeid": "R000"
+						},
+						{
+							"cmd": "cmd_screenfxoff",
+							"sfxbits": 7,
+							"time": 400
+						}
+					],
+					[
+						{
+							"cmd": "cmd_loop",
+							"cmdblocks": [
+								[
+									{
+										"backenable": true,
+										"cmd": "cmd_choices",
+										"cmdblocks": [
+											[
+												{
+													"_var": {
+														"text": "W"
+													},
+													"cmd": "cmd_showui",
+													"key": "message_talk",
+													"op": "hide",
+													"pos": {
+														"bottom": 40
+													},
+													"text": "*message_talk*",
+													"uiclose": 1,
+													"uipath": "message_talk.ui",
+													"who": ""
+												},
+												{
+													"cmd": "cmd_screenfxon",
+													"color": -2004317953,
+													"num": 1,
+													"pow": 4,
+													"sfxid": "raster0",
+													"time": 100
+												},
+												{
+													"_var": {
+														"storeid": "X"
+													},
+													"cmd": "cmd_showui",
+													"key": "store_item",
+													"showmoney": false,
+													"storeid": "R000"
+												},
+												{
+													"cmd": "cmd_screenfxoff",
+													"sfxbits": 7,
+													"time": 400
+												}
+											],
+											[
+												{
+													"_var": {
+														"text": "W"
+													},
+													"cmd": "cmd_showui",
+													"key": "message_talk",
+													"op": "hide",
+													"pos": {
+														"bottom": 40
+													},
+													"text": "*message_talk*",
+													"uiclose": 1,
+													"uipath": "message_talk.ui",
+													"who": ""
+												},
+												{
+													"cmd": "cmd_screenfxon",
+													"color": -2004317953,
+													"num": 1,
+													"pow": 4,
+													"sfxid": "raster0",
+													"time": 100
+												},
+												{
+													"cmd": "cmd_showui",
+													"key": "store_sellitem"
+												},
+												{
+													"cmd": "cmd_screenfxoff",
+													"sfxbits": 7,
+													"time": 400
+												}
+											],
+											[
+												{
+													"cmd": "cmd_jump",
+													"label": "END"
+												}
+											]
+										],
+										"text0": "$T.buy",
+										"text1": "$T.sell",
+										"text2": "$T.back"
+									}
+								]
+							],
+							"reqs": []
+						}
+					]
+				],
+				"reqs": [
+					{
+						"key": "varcmp",
+						"lvar": "Y",
+						"op": "==",
+						"rvar": false
+					}
+				]
+			},
+			{
+				"cmd": "cmd_label",
+				"label": "END"
+			},
+			{
+				"cmd": "cmd_showmsg",
+				"key": "message_talk",
+				"name": "",
+				"text": "Come again! May the Fortunes smile on your road.",
+				"uiclose": 1
+			}
+		],
+		"desc": "店員のイベントロールに話しかけた時に呼ばれる。",
+		"name": "ショップ店員",
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"X014": {
+		"cmdblock": [
+			{
+				"cmd": "cmd_facetoface",
+				"who": 4
+			},
+			{
+				"cmd": "cmd_wait",
+				"time": 100
+			},
+			{
+				"cmd": "cmd_showui",
+				"key": "info_money",
+				"op": null,
+				"pos": {
+					"right": 100,
+					"top": 100
+				},
+				"uiclose": 1
+			},
+			{
+				"cmd": "cmd_showmsg",
+				"key": "message_talk",
+				"name": "",
+				"text": "Welcome, traveler. A night's rest is [b]$W$T.money[n]. Will you stay?",
+				"uiclose": 1
+			},
+			{
+				"backenable": true,
+				"cmd": "cmd_choices",
+				"cmdblocks": [
+					[
+						{
+							"cmd": "cmd_if",
+							"cmdblocks": [
+								[
+									{
+										"cmd": "cmd_showmsg",
+										"key": "message_talk",
+										"name": "",
+										"text": "$T.nomoney",
+										"uiclose": 2
+									},
+									{
+										"cmd": "cmd_ret"
+									}
+								]
+							],
+							"reqs": [
+								{
+									"key": "varcmp",
+									"lvar": "MONEY",
+									"op": "<",
+									"rvar": "W"
+								}
+							]
+						},
+						{
+							"cmd": "cmd_showmsg",
+							"key": "message_talk",
+							"name": "",
+							"text": "Then rest well. The bath is hot and the futon is clean.",
+							"uiclose": 2
+						},
+						{
+							"cmd": "cmd_showui",
+							"key": "info_money",
+							"op": "hide",
+							"pos": {
+								"right": 100,
+								"top": 100
+							},
+							"uiclose": 1
+						},
+						{
+							"bgmid": "MU022",
+							"cmd": "cmd_bgm",
+							"fadetime": 300,
+							"restore": true
+						},
+						{
+							"cmd": "cmd_screenfxon",
+							"color": 657231871,
+							"num": 1,
+							"sfxid": "color0",
+							"time": 1200
+						},
+						{
+							"cmd": "cmd_wait",
+							"time": 1200
+						},
+						{
+							"cmd": "cmd_screenfxon",
+							"color": 255,
+							"num": 1,
+							"sfxid": "color0",
+							"time": 1600
+						},
+						{
+							"cmd": "cmd_wait",
+							"time": 2000
+						},
+						{
+							"cmd": "cmd_settingget",
+							"pid": "hotelheal",
+							"retvar": "W"
+						},
+						{
+							"cmd": "cmd_if",
+							"cmdblocks": [
+								[
+									{
+										"_var": {
+											"ignoredead": "\tW!=2"
+										},
+										"charaid": "P000",
+										"cmd": "cmd_condop",
+										"cmdtgt": 11,
+										"condbits": 1,
+										"ignoredead": true,
+										"op": 2,
+										"showpop": false
+									}
+								]
+							],
+							"reqs": [
+								{
+									"key": "varcmp",
+									"lvar": "W",
+									"op": "==",
+									"rvar": true
+								}
+							]
+						},
+						{
+							"_var": {
+								"amount": "W"
+							},
+							"amount": 100,
+							"cmd": "cmd_moneyop",
+							"op": 1
+						},
+						{
+							"charaid": "P000",
+							"cmd": "cmd_hpmp",
+							"cmdtgt": 11,
+							"hp1": true,
+							"op": 1,
+							"pid": "HP",
+							"val": 100
+						},
+						{
+							"charaid": "P000",
+							"cmd": "cmd_hpmp",
+							"cmdtgt": 11,
+							"hp1": true,
+							"op": 1,
+							"pid": "MP",
+							"val": 100
+						},
+						{
+							"cmd": "cmd_screenfxoff",
+							"sfxbits": 7,
+							"time": 1151
+						},
+						{
+							"cmd": "cmd_wait",
+							"time": 1000
+						},
+						{
+							"cmd": "cmd_showmsg",
+							"key": "message_talk",
+							"name": "",
+							"text": "Good morning! Safe travels - and do come back.",
+							"uiclose": 2
+						},
+						{
+							"cmd": "cmd_script",
+							"desc": "RT reserve rest",
+							"code": "foreach( p in ::Rokugan.fReserve()){ p.HP = p.MAXHP; p.MP = p.MAXMP; }"
+						}
+					],
+					[]
+				],
+				"text0": "$T.yes",
+				"text1": "$T.no"
+			}
+		],
+		"desc": "宿屋店員に話しかけた時に呼ばれる。",
+		"name": "宿屋店員",
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"X015": {
+		"cmdblock": [
+			{
+				"cmd": "cmd_showui",
+				"key": "info_money",
+				"op": null,
+				"pos": {
+					"right": 100,
+					"top": 100
+				},
+				"uiclose": 1
+			},
+			{
+				"cmd": "cmd_showmsg",
+				"key": "message_talk",
+				"name": "",
+				"text": "Next, please.\nNow then, let me have a look at you.",
+				"uiclose": 2
+			},
+			{
+				"cmd": "cmd_compute",
+				"lvar": "X",
+				"op": "=",
+				"rvar": 0
+			},
+			{
+				"cmd": "cmd_compute",
+				"lvar": "Y",
+				"op": "=",
+				"rvar": 0
+			},
+			{
+				"cmd": "cmd_iterate",
+				"cmdblocks": [
+					[
+						{
+							"_var": {
+								"charaid": "W"
+							},
+							"charaid": "P000",
+							"cmd": "cmd_charainfo",
+							"condbits": 6145,
+							"key": "cond",
+							"retvar": "Z"
+						},
+						{
+							"cmd": "cmd_if",
+							"cmdblocks": [
+								[
+									{
+										"cmd": "cmd_compute",
+										"lvar": "X",
+										"op": "+=",
+										"rvar": 100
+									}
+								]
+							],
+							"reqs": [
+								{
+									"key": "varcmp",
+									"lvar": "Z",
+									"op": "==",
+									"rvar": true
+								}
+							]
+						},
+						{
+							"_var": {
+								"charaid": "W"
+							},
+							"charaid": "P000",
+							"cmd": "cmd_charainfo",
+							"condbits": 1758,
+							"key": "cond",
+							"retvar": "Z"
+						},
+						{
+							"cmd": "cmd_if",
+							"cmdblocks": [
+								[
+									{
+										"cmd": "cmd_compute",
+										"lvar": "X",
+										"op": "+=",
+										"rvar": 20
+									}
+								]
+							],
+							"reqs": [
+								{
+									"key": "varcmp",
+									"lvar": "Z",
+									"op": "==",
+									"rvar": true
+								}
+							]
+						},
+						{
+							"cmd": "cmd_if",
+							"cmdblocks": [
+								[
+									{
+										"cmd": "cmd_compute",
+										"lvar": "X",
+										"op": "+=",
+										"rvar": 20
+									}
+								]
+							],
+							"reqs": [
+								{
+									"key": "script",
+									"rvar": "\tW.chr.hprate() + W.chr.mprate() < 200"
+								}
+							]
+						}
+					]
+				],
+				"itervar": "MEMBERS",
+				"keyset": null,
+				"skipnull": true,
+				"valset": "W"
+			},
+			{
+				"cmd": "cmd_if",
+				"cmdblocks": [
+					[
+						{
+							"cmd": "cmd_showmsg",
+							"key": "message_talk",
+							"name": "",
+							"text": "Nothing wrong with you that I can see.\nTake care of yourself.",
+							"uiclose": 2
+						},
+						{
+							"cmd": "cmd_ret"
+						}
+					]
+				],
+				"reqs": [
+					{
+						"key": "varcmp",
+						"lvar": "X",
+						"op": "==",
+						"rvar": 0
+					}
+				]
+			},
+			{
+				"cmd": "cmd_showmsg",
+				"key": "message_talk",
+				"name": "",
+				"text": "That comes to $X $T.money, please.",
+				"uiclose": 2
+			},
+			{
+				"backenable": true,
+				"cmd": "cmd_choices",
+				"cmdblocks": [
+					[],
+					[
+						{
+							"cmd": "cmd_showmsg",
+							"key": "message_talk",
+							"name": "",
+							"text": "Don't push yourself too hard.",
+							"uiclose": 2
+						},
+						{
+							"cmd": "cmd_ret"
+						}
+					]
+				],
+				"text0": "$T.yes",
+				"text1": "$T.no"
+			},
+			{
+				"charaid": "P000",
+				"cmd": "cmd_condop",
+				"cmdtgt": 11,
+				"condbits": 1,
+				"ignoredead": false,
+				"op": 2,
+				"showpop": true
+			},
+			{
+				"ch": 0,
+				"cmd": "cmd_snd",
+				"sndid": "SE224",
+				"vol": 100,
+				"who": 1
+			},
+			{
+				"cmd": "cmd_efx",
+				"efxid": "FX020",
+				"pos": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"wait": true,
+				"who": 1
+			},
+			{
+				"charaid": "P000",
+				"cmd": "cmd_hpmp",
+				"cmdtgt": 11,
+				"hp1": true,
+				"op": 1,
+				"pid": "HP",
+				"val": 100
+			},
+			{
+				"charaid": "P000",
+				"cmd": "cmd_hpmp",
+				"cmdtgt": 11,
+				"hp1": true,
+				"op": 1,
+				"pid": "MP",
+				"val": 100
+			}
+		],
+		"desc": "医者のイベントロールに話しかけた時に呼ばれる。",
+		"name": "医者",
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"X017": {
+		"cmdblock": [
+			{
+				"cmd": "cmd_showui",
+				"key": "menu_main",
+				"op": "darken"
+			},
+			{
+				"backenable": true,
+				"cmd": "cmd_choices",
+				"cmdblocks": [
+					[],
+					[
+						{
+							"cmd": "cmd_showui",
+							"key": "menu_main",
+							"op": "lighten"
+						},
+						{
+							"cmd": "cmd_ret"
+						}
+					]
+				],
+				"text0": "Rest in the tent",
+				"text1": "Back"
+			},
+			{
+				"cmd": "cmd_lockui",
+				"lock": true
+			},
+			{
+				"cmd": "cmd_screenfxoff",
+				"sfxbits": 7,
+				"time": 400
+			},
+			{
+				"cmd": "cmd_showui",
+				"key": "info_top",
+				"op": "hide",
+				"pos": {
+					"top": 32
+				},
+				"text": "INFO...",
+				"time": 0,
+				"uipath": "info_top.ui"
+			},
+			{
+				"cmd": "cmd_showui",
+				"key": "menu_main",
+				"op": "hide"
+			},
+			{
+				"cmd": "cmd_wait",
+				"time": 400
+			},
+			{
+				"bgmid": "MU022",
+				"cmd": "cmd_bgm",
+				"fadetime": 300,
+				"restore": true
+			},
+			{
+				"cmd": "cmd_screenfxon",
+				"color": 657231871,
+				"num": 1,
+				"sfxid": "color0",
+				"time": 1200
+			},
+			{
+				"cmd": "cmd_wait",
+				"time": 1200
+			},
+			{
+				"cmd": "cmd_screenfxon",
+				"color": 255,
+				"num": 1,
+				"sfxid": "color0",
+				"time": 1600
+			},
+			{
+				"cmd": "cmd_wait",
+				"time": 2000
+			},
+			{
+				"charaid": "P000",
+				"cmd": "cmd_hpmp",
+				"cmdtgt": 11,
+				"hp1": true,
+				"op": 1,
+				"pid": "HP",
+				"val": 100
+			},
+			{
+				"charaid": "P000",
+				"cmd": "cmd_hpmp",
+				"cmdtgt": 11,
+				"hp1": true,
+				"op": 1,
+				"pid": "MP",
+				"val": 100
+			},
+			{
+				"cmd": "cmd_screenfxoff",
+				"sfxbits": 7,
+				"time": 1151
+			},
+			{
+				"cmd": "cmd_wait",
+				"time": 1000
+			},
+			{
+				"cmd": "cmd_showmsg",
+				"key": "message_talk",
+				"name": "",
+				"text": "(You rested well in the tent.)",
+				"uiclose": 2
+			}
+		],
+		"desc": "テントのアイテムをメニューで使用したときに呼ばれる。",
+		"name": "テント使用",
+		"runmode": 0,
+		"runrepeat": false,
+		"runreqs": []
+	},
+	"_meta": {
+		"caps": 100,
+		"version": 1
+	}
+}

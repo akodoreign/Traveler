@@ -1,0 +1,13 @@
+{
+	"rpgtools": {
+		"enable": true,
+		"lock": true,
+		"prop1": 1234
+	},
+	"rokugan": {
+		"enable": true,
+		"bpmax": 5,
+		"boostmax": 3,
+		"sukirate": 50
+	}
+}

@@ -1,0 +1,170 @@
+{
+ "key": "mountain_bandit",
+ "name": "Mountain Bandit",
+ "kind": "enemy",
+ "sheet": "hum_mountain_bandit.png",
+ "prompt": "1boy, male focus, man, Mountain Bandit, light tan skin, black hair, ponytail hair, light brown kimono, light brown haori, dark grey hakama, hachimaki, a tall yumi longbow, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#e2b088",
+   "ramp": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ],
+   "detect": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ]
+  },
+  "hair": {
+   "base": "#282228",
+   "ramp": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ],
+   "detect": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ]
+  },
+  "top": {
+   "base": "#76684e",
+   "ramp": [
+    "#070403",
+    "#413025",
+    "#76684e",
+    "#998d74",
+    "#b8b1a2"
+   ],
+   "detect": [
+    "#070403",
+    "#413025",
+    "#76684e",
+    "#998d74",
+    "#b8b1a2"
+   ]
+  },
+  "lower": {
+   "base": "#564e3e",
+   "ramp": [
+    "#070404",
+    "#211a15",
+    "#564e3e",
+    "#797263",
+    "#98958f"
+   ],
+   "detect": [
+    "#070404",
+    "#211a15",
+    "#564e3e",
+    "#797263",
+    "#98958f"
+   ]
+  },
+  "haori": {
+   "base": "#6e543c",
+   "ramp": [
+    "#070302",
+    "#392119",
+    "#6e543c",
+    "#91785e",
+    "#b09c86"
+   ],
+   "detect": [
+    "#070302",
+    "#392119",
+    "#6e543c",
+    "#91785e",
+    "#b09c86"
+   ]
+  },
+  "accent": {
+   "base": "#785a3c",
+   "ramp": [
+    "#070202",
+    "#43251b",
+    "#78593c",
+    "#9b7d5d",
+    "#baa286"
+   ],
+   "detect": [
+    "#070202",
+    "#43251b",
+    "#78593c",
+    "#9b7d5d",
+    "#baa286"
+   ]
+  },
+  "band": {
+   "base": "#a03228",
+   "ramp": [
+    "#2f030e",
+    "#6b1019",
+    "#a03228",
+    "#c35644",
+    "#e2806a"
+   ],
+   "detect": [
+    "#2f030e",
+    "#6b1019",
+    "#a03228",
+    "#c35644",
+    "#e2806a"
+   ]
+  }
+ }
+}

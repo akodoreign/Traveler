@@ -1,0 +1,118 @@
+//
+//	Rumble meter: the Crab Ch1 Egg Caves gimmick (production crab-ch1.md S06; bosses.md b_boss_grasping_paw).
+//	Active in battles fought on a cave backdrop (RUMBLE_MAPS). Big attacks shake the roof: an action that hits
+//	several targets adds 30, a Boost adds 15 per level. At 100 the roof comes down after that action: everyone
+//	loses 20% of max HP (travelers keep at least 1), the Nezumi Shaman is knocked open (Suki), and the meter empties.
+//	Shown as a bar at the top right (images from tools/gen_portraits.py: _rumble, _rumble_bar, _rumble_fill).
+//
+local RUMBLE_MAPS = { M813 = true };
+local AREA_GAIN = 30, BOOST_GAIN = 15, CAVEIN_PCT = 0.20;
+local log( s){ printf( "[RT] %S\n", s); }
+
+::Rokugan.rumble <- { battle = null, on = false, val = 0, warned = false, fill = null, views = [], x = 0, y = 0 };
+
+::Rokugan.rumbleState <- function(){
+	local b = ::rpgstage["battle"], r = this.rumble;
+	if( b != r.battle){
+		foreach( v in r.views) v.removeFromParent();
+		r.views = [];
+		r.fill = null;
+		r.battle = b;
+		r.val = 0;
+		r.warned = false;
+		r.on = !!b && (::rpgstage["mapid"] in RUMBLE_MAPS);
+		if( r.on){
+			this.buildRumble();
+			log( "rumble meter on (%S)" % ::rpgstage.mapid);
+		}
+	}
+	return r;
+};
+
+::Rokugan.buildRumble <- function(){
+	local sv = ::rpgstage["view"], r = this.rumble;
+	if( !sv) return;
+	local b = sv.bnd, x = b.w - 300, y = 14;
+	r.x = x; r.y = y;
+	local tag = this.tagSprite( "_rumble"), bar = this.tagSprite( "_rumble_bar"), fill = this.tagSprite( "_rumble_fill");
+	foreach( sp_rect in [ [tag, x, y, 88, 26], [bar, x + 94, y + 5, 192, 16] ]){
+		if( !sp_rect[0]) continue;
+		local iv = ::SKImageView( sp_rect[0]);
+		iv.enabled = false;
+		iv.setRect( sp_rect[1], sp_rect[2], sp_rect[3], sp_rect[4]);
+		sv.insertChild( 2, iv);
+		r.views.append( iv);
+	}
+	if( fill){
+		local iv = ::SKImageView( fill);
+		iv.enabled = false;
+		sv.insertChild( 2, iv);
+		r.views.append( iv);
+		r.fill = iv;
+	}
+	this.drawRumble();
+};
+
+::Rokugan.drawRumble <- function(){
+	local r = this.rumble;
+	if( !r.fill) return;
+	local w = int( 184 * Math.min( r.val, 100) / 100.0);
+	r.fill.setRect( r.x + 98, r.y + 9, Math.max( w, 0), 8);
+	r.fill.setColor( r.val >= 75 ? 0xffffffff : 0xd8d8d8ff);
+};
+
+::Rokugan.addRumble <- function( n, why){
+	local r = this.rumbleState();
+	if( !r.on || n <= 0) return;
+	r.val = Math.min( r.val + n, 100);
+	log( "rumble +%d (%S) -> %d" % (n, why, r.val));
+	this.drawRumble();
+	if( r.val >= 75 && !r.warned){
+		r.warned = true;
+		::playSound( "SE201");
+		foreach( m in r.battle.members){
+			if( m && !m.isDead() && this.given( m.name) == "Squeak"){ this.pop( m, "Roof go crack-crack!", 0xffc080ff); break; }
+		}
+	}
+};
+
+//	precommand: count the action's size (after Boost has been applied by onPreCommand).
+::Rokugan._rt_pre <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local st = this.state( cmd.src), bp0 = st.bp;
+	this._rt_pre( cmd);
+	local r = this.rumbleState();
+	if( !r.on) return;
+	local spent = bp0 - st.bp;
+	if( st.boosted && spent > 0) this.addRumble( BOOST_GAIN * spent, "boost x" .. spent);
+	if( cmd.dsts && length( cmd.dsts) > 1) this.addRumble( AREA_GAIN, "area");
+};
+
+::Rokugan._rt_preturn <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this.rumbleState();
+	this._rt_preturn( chr);
+};
+
+//	postcommand: the roof comes down.
+::Rokugan.onPostCommand <- function( cmd){
+	local r = this.rumbleState();
+	if( !r.on || r.val < 100) return;
+	r.val = 0;
+	r.warned = false;
+	this.drawRumble();
+	log( "CAVE-IN!");
+	::playSound( "SE201");
+	local b = r.battle;
+	foreach( list in [b.members, b.enemies]){
+		foreach( c in list){
+			if( !c || c.isDead()) continue;
+			local d = Math.max( 1, int( c.MAXHP * CAVEIN_PCT));
+			c.HP = Math.max( 1, c.HP - d);
+			this.pop( c, "CAVE-IN! -" .. d, 0xffa060ff);
+			if( (c instanceof ::RPGEnemy) && c.name == "Nezumi Shaman" && !this.state( c).broken) this.breakEnemy( c);
+			if( this.given( c.name) == "Natsuko" && b.enemies.find( @( e) e && e.name == "Nezumi Shaman"))
+				this.pop( c, "Well. That's one way to win.", 0xffffffff);
+		}
+	}
+};

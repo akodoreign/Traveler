@@ -1,0 +1,400 @@
+//	Battle screen restyle (modern JRPG look; art from tools/gen_battleui_art.py). Runs after RokuganBattle.
+//	Bottom panel: smaller, ink + gold hairline. Party rows: name, Void Point gems, HP and MP bars.
+//	Enemy box (bottom left): name, Resolve shields and weakness slots (black dot = unknown, symbol = found).
+local WEAK = ["katana", "yari", "tanto", "tetsubo", "yumi", "bo", "fire", "water", "air", "earth", "void", "jade", "unarmed", "crystal"];
+local UI = { tex = {}, erows = [], ebox = null, rows = [], b = null, hint = null, multis = [], singles = [], lastchr = null, sktinted = false, panelspr = "panel", intgt = false, tgtwait = false };
+local PANEL_SCALE = 0.84;
+local CLAN_FLAT = { scorpion = true };	//	a solid band: black would vanish in the fading one
+local CLAN_LINE = { scorpion = 0xc83a32ff };	//	an inner line inside the band
+//	Party rows: a light band in the character's clan colour, behind the name and fading to the right (player field rt_clan).
+local CLAN_COL = { crab = 0xa8adb5ff, lion = 0xd9b44aff, ronin = 0xb08a62ff, crane = 0x8fc7e8ff, dragon = 0x7ec48aff, phoenix = 0xe86f42ff,
+	scorpion = 0x000000b8, unicorn = 0xa98fd6ff, mantis = 0x63c0a8ff, imperial = 0xe6dcb8ff };
+
+UI.spr <- function( name){
+	local tex = UI.tex[name];
+	if( !tex){
+		local img = ::getResource( "/resource/efx/battleui/" .. name .. ".png").getContent();
+		img.premultAlpha();
+		tex = Texture();
+		tex.load( img, 0);
+		UI.tex[name] <- tex;
+	}
+	local sp = Sprite( tex);
+	sp.blend = SK_PMAMIX;
+	return sp;
+};
+
+UI.img <- function( parent, name, x, y, w, h, col = 0xffffffff){
+	local iv = ::SKImageView( UI.spr( name));
+	iv.enabled = false;
+	iv.setRect( x, y, w, h);
+	iv.setColor( col);
+	parent.addChild( iv);
+	return iv;
+};
+
+UI.lbl <- function( parent, x, y, w, h, size, col){
+	local v = SKLabelView( "", FontAttribute( Fonts.get( "ui"), size, col, SK_FONT_BOLD));
+	v.enabled = false;
+	v.bnd.set( x, y, w, h);
+	parent.addChild( v);
+	return v;
+};
+
+//	--- enemy box (bottom left): name, Resolve shields, weakness slots
+//	A long name goes on two lines, the title smaller: "Katsuo" over "the White Brother".
+UI.splitName <- function( name){
+	if( length( name) <= 21) return [name, null];
+	foreach( sep in [" the ", ": ", ", ", " of ", " no "]){
+		local i = name.indexOf( sep);
+		if( i > 0) return sep[0] == ' ' ? [name.substring( 0, i), name.substring( i + 1)] : [name.substring( 0, i), name.substring( i + length( sep))];
+	}
+	local parts = name.split( " "), a = "", n = 0;
+	foreach( w in parts){
+		if( n && length( a) + length( w) > length( name) / 2) break;
+		a = n ? a .. " " .. w : w;
+		n++;
+	}
+	return [a, name.substring( length( a) + 1)];
+};
+
+UI.buildEnemyRow <- function( r){
+	local h = r.h;
+	foreach( k in r.kids) k.removeFromParent();
+	r.kids = [];
+	local e = r.e, v = UI.ebox;
+	r.name.setColor( e.isDead() ? 0x808080ff : 0xf4ead2ff);
+	if( r.sub) r.sub.setColor( e.isDead() ? 0x707070ff : 0xc9a86aff);
+	if( e.isDead()) return;
+	local st = ::Rokugan.state( e), x = 212.0;
+	if( ::arguments.indexOf( "-rtuireveal") >= 0 && e == UI.b.enemies[0]) st.known = ::Rokugan.weakbits( e);	//	test: the first enemy's symbols
+	local y = r.y + (h - 20) * 0.5;
+	if( st.broken){
+		local t = UI.lbl( v, x, r.y, 80, h, 18, 0xffb060ff);
+		t.setText( "SUKI!");
+		r.kids.append( t);
+		return;
+	}
+	r.kids.append( UI.img( v, "shield", x, y, 20, 20));
+	local t = UI.lbl( v, x + 23, r.y, 26, h, 17, 0xf4ead2ff);
+	t.setText( "" .. st.res);
+	r.kids.append( t);
+	x += st.res >= 10 ? 50 : 42;
+	local wb = ::Rokugan.weakbits( e), n = 0;
+	foreach( i, nm in WEAK) if( wb & (1 << i)) n++;
+	local step = n > 0 ? Math.min( 22.0, (400.0 - x) / n) : 22.0;
+	foreach( i, nm in WEAK){
+		if( !(wb & (1 << i))) continue;
+		r.kids.append( UI.img( v, (st.known & (1 << i)) ? "w_" .. nm : "w_unknown", x, y, 20, 20));
+		x += step;
+	}
+};
+
+UI.tickEnemies <- function( b){
+	local n = length( b.enemies);
+	if( n != length( UI.erows)){
+		foreach( r in UI.erows){
+			foreach( k in r.kids) k.removeFromParent();
+			r.bg.removeFromParent();
+			r.name.removeFromParent();
+			if( r.sub) r.sub.removeFromParent();
+		}
+		UI.erows = [];
+		local parts = b.enemies.map( @( e) UI.splitName( e.name)), tot = 0.0;
+		foreach( s in parts) tot += s[1] ? 44.0 : 28.0;
+		local k = Math.min( 1.0, 156.0 / Math.max( tot, 1.0)), y = 9.0;
+		foreach( i, e in b.enemies){
+			local s = parts[i], h = (s[1] ? 44.0 : 28.0) * k;
+			local bg = UI.img( UI.ebox, "white", 8, y, 396, h, 0x00000000);
+			local nm = UI.lbl( UI.ebox, 16, y, 192, s[1] ? h * 0.56 : h, n > 6 ? 15 : 18, 0xf4ead2ff);
+			nm.setText( s[0]);
+			local sub = null;
+			if( s[1]){
+				sub = UI.lbl( UI.ebox, 16, y + h * 0.52, 192, h * 0.44, 13, 0xc9a86aff);
+				sub.setText( s[1]);
+			}
+			UI.erows.append( { e = e, y = y, h = h, bg = bg, name = nm, sub = sub, kids = [], sig = null });
+			y += h;
+		}
+	}
+	foreach( r in UI.erows){
+		local e = r.e, st = ::Rokugan.state( e);
+		local sig = sprintf( "%d/%d/%d/%d/%d", st.res, st.known, ::Rokugan.weakbits( e), st.broken ? 1 : 0, e.isDead() ? 1 : 0);
+		if( sig != r.sig){ r.sig = sig; UI.buildEnemyRow( r); }
+		local rp = b.getChara3D( e);
+		r.bg.setColor( rp && rp["selbits"] && !e.isDead() ? 0xc9a86a48 : 0x00000000);
+	}
+};
+
+//	--- party rows (row-local coordinates at the panel's own scale)
+local BAR_H = 8, HP_X = 330, MP_X = 456, TP_X = 570, HP_W = 116, MP_W = 104, TP_W = 96;
+UI.styleRows <- function( b){
+	foreach( r in UI.rows) foreach( v in r.own) v.removeFromParent();
+	UI.rows = [];
+	local list = b.battleui.findChild( "memberlist");
+	foreach( i, m in b.members){
+		if( !m) continue;
+		local row = list.findChild( "memberlist" .. i);
+		if( !row) continue;
+		local llbl = row.children.filter( @( c) c["name"] == "llbl");
+		foreach( n in llbl) n.setVisible( false);
+		local place = @( nm, x, y){ local c = row.findChild( nm); c.pos.x = x; c.pos.y = y; c.matdirty = true; };
+		place( "hp", HP_X + HP_W - 66, 5);
+		place( "mp", MP_X + MP_W - 48, 5);
+		place( "tp", TP_X + TP_W - 44, 5);
+		place( "name", 19, 3);
+		place( "conds", 214, 11);
+		local own = [];
+		local clan = m.data["rt_clan"];
+		if( clan && (clan in CLAN_COL)){
+			local band = ::SKImageView( UI.spr( CLAN_FLAT[clan] ? "white" : "band"));
+			band.enabled = false;
+			band.setRect( 2, 2, 678, 44);
+			band.setColor( CLAN_COL[clan]);
+			row.insertChild( 1, band);						//	above the row's own backing, under every label
+			own.append( band);
+			if( CLAN_LINE[clan]) foreach( q in [[6, 5, 670, 2], [6, 43, 670, 2], [6, 5, 2, 40], [674, 5, 2, 40]]){
+				local ln = ::SKImageView( UI.spr( "white"));
+				ln.enabled = false;
+				ln.setRect( q[0], q[1], q[2], q[3]);
+				ln.setColor( CLAN_LINE[clan]);
+				row.insertChild( 2, ln);
+				own.append( ln);
+			}
+		}
+		local bar = @( x, w, col){
+			own.append( UI.img( row, "white", x, 34, w, BAR_H, 0x000000a0));
+			local f = UI.img( row, "white", x, 34, w, BAR_H, col);
+			own.append( f);
+			return f;
+		};
+		local hp = bar( HP_X, HP_W, 0x7cc46eff), mp = bar( MP_X, MP_W, 0x5b9de0ff), tp = bar( TP_X, TP_W, 0xe0a040ff);
+		foreach( tag in [["HP", HP_X], ["MP", MP_X], ["TP", TP_X]]){
+			local l = UI.lbl( row, tag[1], 11, 36, 20, 15, 0xc9a86aff);
+			l.setText( tag[0]);
+			own.append( l);
+		}
+		local gems = [];
+		for( local g = 0; g < 8; g++){
+			local iv = UI.img( row, "gem_off", 19 + g * 18, 29, 15, 15);
+			own.append( iv);
+			gems.append( iv);
+		}
+		UI.rows.append( { m = m, row = row, hp = hp, mp = mp, tp = tp, gems = gems, own = own, bp = -1 });
+	}
+};
+
+UI.tickRows <- function(){
+	foreach( r in UI.rows){
+		local m = r.m;
+		local a = m.MAXHP > 0 ? Math.clamp( m.HP * 1.0 / m.MAXHP, 0.0, 1.0) : 0.0;
+		r.hp.setRect( HP_X, 34, HP_W * a, BAR_H);
+		r.hp.setColor( a > 0.5 ? 0x7cc46eff : a > 0.25 ? 0xe0b84eff : 0xd8584aff);
+		r.mp.setRect( MP_X, 34, MP_W * (m.MAXMP > 0 ? Math.clamp( m.MP * 1.0 / m.MAXMP, 0.0, 1.0) : 0.0), BAR_H);
+		r.tp.setRect( TP_X, 34, TP_W * (m.MAXTP > 0 ? Math.clamp( m.TP * 1.0 / m.MAXTP, 0.0, 1.0) : 0.0), BAR_H);
+		local bp = ::Rokugan.getBP( m);
+		local cap = Math.max( ::Rokugan.vpMax( m), bp), sig = bp * 100 + cap;
+		if( sig != r.bp){
+			r.bp = sig;
+			foreach( g, iv in r.gems){
+				iv.setVisible( g < cap);
+				iv.setSprite( UI.spr( g < bp ? "gem_on" : "gem_off"));
+			}
+		}
+	}
+};
+
+//	--- the panel follows what the bottom area is showing
+UI.tickPanel <- function( b){
+	local ui = b.battleui, sk = ui.findChild( "skilllist"), el = ui.findChild( "enemylist");
+	local tgt = el.visible, choosing = !!b["cmdchr"];
+	if( tgt) el.setVisible( false);						//	the enemy box replaces this list
+	UI.hint.setVisible( UI.tgtshown( tgt) && choosing);
+	if( sk.visible && !UI.sktinted){ UI.sktinted = true; UI.tint( sk); }
+	if( !sk.visible) UI.sktinted = false;
+	local chr = b["cmdchr"];
+	if( chr != UI.lastchr){							//	the command buttons are bound when a character's turn starts
+		UI.lastchr = chr;
+		if( chr) UI.tint( ui.findChild( "cmdlist"));
+	}
+	foreach( v in UI.singles) v.setColor( 0xffffffff);
+	foreach( v in UI.multis){
+		if( v.spcolor != 0xffffffff){ v.spcolor = 0xffffffff; v.updateColor(); }
+	}
+	local want = sk.visible ? "panel_wide" : (UI.tgtshown( tgt) && !choosing) ? "panel_party" : "panel";
+	if( want != UI.panelspr){
+		UI.panelspr = want;
+		ui.findChild( "window").setSprite( UI.spr( want));
+	}
+};
+//	(the engine's action shows the list once per phase and it is hidden here, so remember the phase until the commands return)
+UI.tgtshown <- function( tgt){
+	if( tgt) UI.intgt = true;
+	else if( UI.b && UI.b.battleui.findChild( "cmdlist").visible && UI.b["cmdchr"] && !UI.tgtwait) UI.intgt = false;
+	return UI.intgt;
+};
+UI.tint <- function( v){
+	local n = v["name"];
+	if( n == "b" || n == "member_b" || n == "item_gb" || false){
+		if( v instanceof ::SKMultiImageView){							//	their teal tint comes back with every focus animation: tickPanel
+			if( UI.multis.indexOf( v) < 0) UI.multis.append( v);
+		}else if( UI.singles.indexOf( v) < 0) UI.singles.append( v);
+	}
+	if( n == "bar" || n == "knob"){
+		if( v instanceof ::SKMultiImageView){ v.spcolor = 0xc9a86a90; v.updateColor(); }
+		else try{ v.setColor( 0xc9a86a90); }catch( ex){}
+	}
+	if( ::arguments.indexOf( "-rtuidump") >= 0) print( "[UITINT] " .. (n ?? "-"));
+	local ch = v["children"];
+	if( ch) foreach( c in ch) UI.tint( c);
+};
+
+//	--- the panel
+UI.style <- function( b){
+	UI.b = b;
+	UI.erows = [];
+	UI.rows = [];
+	local ui = b.battleui, g = ui.findChild( "g");
+	local win = ui.findChild( "window");
+	win.setSprite( UI.spr( "panel"));
+	win.setColor( 0xffffffff);
+	ui.findChild( "frame").setVisible( false);
+	ui.findChild( "_white").setVisible( false);
+	ui.findChild( "infollbl").setVisible( false);
+	g.scale.x = PANEL_SCALE;
+	g.scale.y = PANEL_SCALE;
+	g.pos.y += 32;
+	g.pos.x += 208;
+	g.matdirty = true;
+	foreach( m in b.members){							//	TP starts full (the engine starts it at 0), once per character
+		if( m && !m.etc["rt_tpfull"]){ m.etc["rt_tpfull"] <- true; m.TP = m.MAXTP; }
+	}
+	UI.ebox = ::SKImageView( UI.spr( "enemybox"));
+	UI.ebox.enabled = false;
+	UI.ebox.setRect( 14, 516, 412, 173);
+	ui.insertChild( 0, UI.ebox);
+	local pop = ui.findChild( "dialog");				//	skill popover: full name, description, cost for the highlighted entry
+	pop.setSprite( UI.spr( "popover"));
+	pop.setColor( 0xffffffff);
+	b.showskillinfo = true;
+	UI.hint = UI.lbl( ui, 470, 590, 200, 28, 20, 0xc9a86aff);
+	UI.hint.setText( "Choose a target");
+	UI.hint.setVisible( false);
+	UI.panelspr = "panel";
+	UI.intgt = false;
+	UI.tgtwait = false;
+	UI.multis = [];
+	UI.singles = [];
+	UI.lastchr = null;
+	UI.tint( ui.findChild( "cmdlist"));
+	UI.tint( ui.findChild( "memberlist"));
+	UI.styleRows( b);
+	win.addUpdateFunc( function( dt){
+		try{
+			UI.tickEnemies( b);
+			UI.tickPanel( b);
+			UI.tickRows();
+		}catch( ex){ printexception( ex); return false; }
+		return true;
+	});
+	if( ::arguments.indexOf( "-rtuidump") >= 0){
+		print( sprintf( "\n[UIPOS] g %f %f win %f %f\n", g.pos.x, g.pos.y, win.pos.x, win.pos.y));
+		local row = ui.findChild( "memberlist0");
+		foreach( c in row.children) print( sprintf( "[UIPOS] %s pos %f %f bnd %f %f %f %f\n", c["name"] ?? "-", c.pos.x, c.pos.y, c.bnd.x, c.bnd.y, c.bnd.w, c.bnd.h));
+	}
+};
+::Rokugan.ui <- UI;
+
+//	Our red highlight everywhere it is used (commands, skill lists, choice menus): the stock teal tint would turn it near black.
+::SKMultiImageView._rt_updateColor <- ::SKMultiImageView.updateColor;
+::SKMultiImageView.updateColor <- function(){
+	local r = splist[0].ref;
+	if( r && typeof( r[0]) == SS_STRING && r[0].indexOf( "bctl_") >= 0) spcolor = 0xffffffff;
+	return _rt_updateColor();
+};
+
+local _setup = ::TurnBattleRunner.setupBattleUI;
+::TurnBattleRunner.setupBattleUI <- function(){
+	_setup();
+	::Rokugan.ui.style( this);
+};
+
+//	Names only now: order is on the turn bar, shields and weaknesses in the enemy box, VP on the gems.
+::Rokugan.enemyLabel <- function( e){
+	return (!e.isDead() && ::Rokugan.state( e).broken) ? e.name .. "  SUKI!" : e.name;
+};
+::Rokugan.memberLabel <- function( pc){
+	local b = ::Rokugan.state( pc).boostsel;
+	return pc.name .. (b ? "  +" .. b : "");
+};
+
+//	Test: -rtuicmd N picks the Nth battle command by itself, so a screenshot can show the skill list or the target choice.
+local _uic = ::arguments.indexOf( "-rtuicmd");
+if( _uic >= 0){
+	local want = int( ::arguments[_uic + 1]), once = { done = false, back = false };
+	local _loop = ::RPGMain.uiLoop;
+	::RPGMain.uiLoop <- function( funcmap){
+		local b = ::rpgstage ? ::rpgstage["battle"] : null;
+		if( !once.done && b && b["cmdchr"]){
+			once.done = true;
+			local item = b.cmdchr.getBattleCommandList()[want];
+			return { ...item };
+		}
+		if( once.done && !once.back && ::arguments.indexOf( "-rtuipick") >= 0){
+			once.back = true;
+			return { val = ::conf.skill["S110"] };
+		}
+		if( once.done && !once.back && ::arguments.indexOf( "-rtuiback") >= 0){
+			once.back = true;
+			
+			return funcmap.back( {});
+		}
+		return _loop( funcmap);
+	};
+}
+
+//	Dialog box: smaller, drawn at its real size so the corners stay round. Up to 3 lines fit; a longer line gets the tall box.
+UI.msgv <- null;
+UI.msgtall <- false;
+UI.wanttall <- false;
+UI.msgLines <- function( text){
+	local n = 0;
+	if( typeof( text) != SS_STRING) text = "";
+	foreach( s in text.split( "\n")) n += Math.max( 1, (length( s) + 91) / 92);
+	UI.wanttall = n > 3;
+	local v = ::rootview.findChild( "message_talk");
+	if( v) UI.fitMsg( v);
+};
+UI.fitMsg <- function( v){
+	if( v == UI.msgv && UI.wanttall == UI.msgtall) return;
+	local first = v != UI.msgv;
+	UI.msgv = v;
+	UI.msgtall = UI.wanttall;
+	local h = UI.msgtall ? 232 : 160, top = 292 - h;
+	local win = v.findChild( "window");
+	win.setSprite( UI.spr( UI.msgtall ? "msgbox_tall" : "msgbox"));
+	win.setRect( 20, top, 920, h);
+	v.findChild( "text").setRect( 60, top + 24, 836, h - 40);
+	local ng = v.findChild( "nameg");
+	ng.pos.x = 186;
+	ng.pos.y = top - 4;
+	ng.matdirty = true;
+	if( first){
+		v.findChild( "frame").setVisible( false);
+		v.findChild( "_white").setVisible( false);
+		local plate = v.findChild( "nameplate");
+		plate.setSprite( UI.spr( "namepill"));
+		plate.setRect( 0, 0, 292, 44);
+		local nm = v.findChild( "name");
+		nm.pos.y = 2;
+		nm.matdirty = true;
+		v.pos.y += 14;
+		v.matdirty = true;
+	}
+};
+::RPGMain._rt_showView <- ::RPGMain.showView;
+::RPGMain.showView <- function( prms){
+	local v = _rt_showView( prms);
+	if( (prms["uipath"] || "") == "message_talk.ui" && v.findChild( "window")) ::Rokugan.ui.fitMsg( v);
+	return v;
+};

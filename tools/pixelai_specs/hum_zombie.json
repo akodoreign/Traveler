@@ -1,0 +1,170 @@
+{
+ "key": "zombie",
+ "name": "Zombie",
+ "kind": "enemy",
+ "sheet": "hum_zombie.png",
+ "prompt": "1boy, male focus, man, Zombie, grey skin, black hair, mane hair, dark grey kimono, brown hakama, headcloth, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#96a080",
+   "ramp": [
+    "#2f291d",
+    "#6b6b4b",
+    "#96a080",
+    "#bec3b0",
+    "#e2e2e2"
+   ],
+   "detect": [
+    "#2f291d",
+    "#6b6b4b",
+    "#96a080",
+    "#bec3b0",
+    "#e2e2e2"
+   ]
+  },
+  "hair": {
+   "base": "#282228",
+   "ramp": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ],
+   "detect": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ]
+  },
+  "top": {
+   "base": "#5c5644",
+   "ramp": [
+    "#070504",
+    "#272019",
+    "#5c5644",
+    "#7f7a6b",
+    "#9e9c97"
+   ],
+   "detect": [
+    "#070504",
+    "#272019",
+    "#5c5644",
+    "#7f7a6b",
+    "#9e9c97"
+   ]
+  },
+  "lower": {
+   "base": "#464236",
+   "ramp": [
+    "#070504",
+    "#110e0c",
+    "#464236",
+    "#69665c",
+    "#888887"
+   ],
+   "detect": [
+    "#070504",
+    "#110e0c",
+    "#464236",
+    "#69665c",
+    "#888887"
+   ]
+  },
+  "cloth": {
+   "base": "#544e40",
+   "ramp": [
+    "#070504",
+    "#1f1915",
+    "#544e40",
+    "#777267",
+    "#969593"
+   ],
+   "detect": [
+    "#070504",
+    "#1f1915",
+    "#544e40",
+    "#777267",
+    "#969593"
+   ]
+  },
+  "accent": {
+   "base": "#3c3228",
+   "ramp": [
+    "#070303",
+    "#070504",
+    "#3c3228",
+    "#5f5549",
+    "#7e776f"
+   ],
+   "detect": [
+    "#070303",
+    "#070504",
+    "#3c3228",
+    "#5f5549",
+    "#7e776f"
+   ]
+  },
+  "glow": {
+   "base": "#96dc6e",
+   "ramp": [
+    "#226b35",
+    "#45a743",
+    "#96dc6e",
+    "#c5ff99",
+    "#daffb7"
+   ],
+   "detect": [
+    "#226b35",
+    "#45a743",
+    "#96dc6e",
+    "#c5ff99",
+    "#daffb7"
+   ]
+  }
+ }
+}

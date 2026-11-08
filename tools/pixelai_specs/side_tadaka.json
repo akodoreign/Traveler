@@ -1,0 +1,136 @@
+{
+ "key": "tadaka",
+ "name": "Ikoma Tadaka",
+ "kind": "side",
+ "sheet": "side_tadaka.png",
+ "prompt": "1boy, male focus, man, Ikoma Tadaka, light tan skin, sage green hair, chonmage hair, gold kimono, light brown haori, light brown hakama, a folding fan, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#e2b088",
+   "ramp": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ],
+   "detect": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ]
+  },
+  "hair": {
+   "base": "#9c9ca4",
+   "ramp": [
+    "#272733",
+    "#5f5f6f",
+    "#9c9ca4",
+    "#c7c7c7",
+    "#e6e6e6"
+   ],
+   "detect": [
+    "#272733",
+    "#5f5f6f",
+    "#9c9ca4",
+    "#c7c7c7",
+    "#e6e6e6"
+   ]
+  },
+  "top": {
+   "base": "#d6a638",
+   "ramp": [
+    "#651c08",
+    "#a1541a",
+    "#d6a638",
+    "#f9ca5a",
+    "#ffd87a"
+   ],
+   "detect": [
+    "#651c08",
+    "#a1541a",
+    "#d6a638",
+    "#f9ca5a",
+    "#ffd87a"
+   ]
+  },
+  "lower": {
+   "base": "#80562c",
+   "ramp": [
+    "#0f0302",
+    "#4b2112",
+    "#80562c",
+    "#a37848",
+    "#c29b6d"
+   ],
+   "detect": [
+    "#0f0302",
+    "#4b2112",
+    "#80562c",
+    "#a37848",
+    "#c29b6d"
+   ]
+  },
+  "haori": {
+   "base": "#965c28",
+   "ramp": [
+    "#250403",
+    "#612310",
+    "#965c27",
+    "#b97e44",
+    "#d8a269"
+   ],
+   "detect": [
+    "#250403",
+    "#612310",
+    "#965c27",
+    "#b97e44",
+    "#d8a269"
+   ]
+  }
+ }
+}

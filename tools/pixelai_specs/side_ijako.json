@@ -1,0 +1,136 @@
+{
+ "key": "ijako",
+ "name": "Akodo Ijako",
+ "kind": "side",
+ "sheet": "side_ijako.png",
+ "prompt": "1girl, woman, Akodo Ijako, fair skin, brown hair, long hair, light brown kimono, light brown hakama, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#f6ceaa",
+   "ramp": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ],
+   "detect": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ]
+  },
+  "hair": {
+   "base": "#5c3c26",
+   "ramp": [
+    "#070101",
+    "#27110c",
+    "#5c3c25",
+    "#7f5c41",
+    "#9e7e64"
+   ],
+   "detect": [
+    "#070101",
+    "#27110c",
+    "#5c3c25",
+    "#7f5c41",
+    "#9e7e64"
+   ]
+  },
+  "top": {
+   "base": "#967846",
+   "ramp": [
+    "#250e0a",
+    "#613a23",
+    "#967846",
+    "#b99c69",
+    "#d8c094"
+   ],
+   "detect": [
+    "#250e0a",
+    "#613a23",
+    "#967846",
+    "#b99c69",
+    "#d8c094"
+   ]
+  },
+  "lower": {
+   "base": "#6e5634",
+   "ramp": [
+    "#070202",
+    "#392115",
+    "#6e5633",
+    "#917853",
+    "#b09b7a"
+   ],
+   "detect": [
+    "#070202",
+    "#392115",
+    "#6e5633",
+    "#917853",
+    "#b09b7a"
+   ]
+  },
+  "glow": {
+   "base": "#c8dcff",
+   "ramp": [
+    "#555f8e",
+    "#8a9bca",
+    "#c8dcff",
+    "#e1f2ff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#555f8e",
+    "#8a9bca",
+    "#c8dcff",
+    "#e1f2ff",
+    "#ffffff"
+   ]
+  }
+ }
+}

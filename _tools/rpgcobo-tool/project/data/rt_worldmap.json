@@ -1,0 +1,217 @@
+{
+ "KT": {
+  "name": "Kyuden Togashi",
+  "x": 313,
+  "y": 94
+ },
+ "OV": {
+  "name": "Oracle's volcano",
+  "x": 646,
+  "y": 94
+ },
+ "RT": {
+  "name": "Red torii cliff",
+  "x": 967,
+  "y": 94
+ },
+ "TF": {
+  "name": "Tamori's Furnace",
+  "x": 363,
+  "y": 126
+ },
+ "DM": {
+  "name": "Dragon mtn town",
+  "x": 412,
+  "y": 158
+ },
+ "KI": {
+  "name": "Kyuden Isawa",
+  "x": 720,
+  "y": 158
+ },
+ "CT": {
+  "name": "Coast temple",
+  "x": 1004,
+  "y": 158
+ },
+ "SI": {
+  "name": "Shiro Iuchi",
+  "x": 92,
+  "y": 190
+ },
+ "SK": {
+  "name": "Shiro Kitsuki",
+  "x": 412,
+  "y": 190
+ },
+ "IM": {
+  "name": "Isawa Mori",
+  "x": 720,
+  "y": 190
+ },
+ "KM": {
+  "name": "Shiro no Kamatori",
+  "x": 720,
+  "y": 222
+ },
+ "WL": {
+  "name": "Wounded Lion",
+  "x": 313,
+  "y": 254
+ },
+ "ZU": {
+  "name": "Zumiki",
+  "x": 720,
+  "y": 254
+ },
+ "TC": {
+  "name": "Treaty City",
+  "x": 1041,
+  "y": 254
+ },
+ "OJ": {
+  "name": "Ojatara",
+  "x": 92,
+  "y": 286
+ },
+ "SA": {
+  "name": "Shiro Akodo",
+  "x": 461,
+  "y": 286
+ },
+ "BB": {
+  "name": "Burned Bridge",
+  "x": 745,
+  "y": 286
+ },
+ "HC": {
+  "name": "Hiruto's castle",
+  "x": 1053,
+  "y": 286
+ },
+ "KZ": {
+  "name": "Kaze-no-Tani",
+  "x": 301,
+  "y": 318
+ },
+ "TR": {
+  "name": "Toshi Ranbo",
+  "x": 609,
+  "y": 318
+ },
+ "MR": {
+  "name": "Magonojo",
+  "x": 917,
+  "y": 318
+ },
+ "SP": {
+  "name": "Sorrow's Path",
+  "x": 387,
+  "y": 350
+ },
+ "OU": {
+  "name": "Otosan Uchi",
+  "x": 831,
+  "y": 350
+ },
+ "PT": {
+  "name": "Plains of Thunder",
+  "x": 153,
+  "y": 382
+ },
+ "VP": {
+  "name": "Beiden Pass",
+  "x": 523,
+  "y": 382
+ },
+ "CM": {
+  "name": "City of Masks",
+  "x": 437,
+  "y": 414
+ },
+ "KA": {
+  "name": "Kakita Academy",
+  "x": 745,
+  "y": 414
+ },
+ "KD": {
+  "name": "Kyuden Doji",
+  "x": 1016,
+  "y": 414
+ },
+ "SS": {
+  "name": "Shiro no Soshi",
+  "x": 252,
+  "y": 446
+ },
+ "CP": {
+  "name": "Crane port",
+  "x": 1028,
+  "y": 446
+ },
+ "KB": {
+  "name": "Kyuden Bayushi",
+  "x": 424,
+  "y": 478
+ },
+ "CK": {
+  "name": "Cakon",
+  "x": 967,
+  "y": 478
+ },
+ "RO": {
+  "name": "Ryoko Owari",
+  "x": 350,
+  "y": 510
+ },
+ "KU": {
+  "name": "Kudo",
+  "x": 301,
+  "y": 542
+ },
+ "FF": {
+  "name": "Floating Flowers",
+  "x": 683,
+  "y": 542
+ },
+ "GS": {
+  "name": "Garden Under Shadow",
+  "x": 1004,
+  "y": 542
+ },
+ "YY": {
+  "name": "Yasuki Yashiki",
+  "x": 782,
+  "y": 574
+ },
+ "KW": {
+  "name": "Kaiu Wall",
+  "x": 92,
+  "y": 606
+ },
+ "KH": {
+  "name": "Kyuden Hida",
+  "x": 387,
+  "y": 606
+ },
+ "HI": {
+  "name": "Hoshi-no-Ichi",
+  "x": 671,
+  "y": 606
+ },
+ "TI": {
+  "name": "Tortoise Isle",
+  "x": 1016,
+  "y": 606
+ },
+ "IS": {
+  "name": "Isle of Silk",
+  "x": 1016,
+  "y": 638
+ },
+ "KG": {
+  "name": "Kyuden Gusai",
+  "x": 1028,
+  "y": 670
+ }
+}

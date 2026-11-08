@@ -1,0 +1,374 @@
+import VirtualKeyCode;
+import ModifiersMask;
+import PropertyType;
+import RPGPropertyType;
+
+/////////////////////////////////////////////////////////////////////////////////
+//	
+//	イベントコマンドエディタでのみ使用される。コマンドに_var機能を追加し、
+//	
+//	
+
+local srcdir = dirname( callee().getSourceName());
+
+class PropertyEditPopupV extends PropertyEditPopup
+{
+	function setupProperties(){
+		if( !length( data["_var"])) return super.setupProperties();
+		//
+		local d = clone data;
+		local props = clone fget( propdef, "props", propdef, data);
+		setDefaultProperties( props, data);
+		foreach( pid, v in data["_var"]){
+			local pi = props.findi( @( v) v.pid==pid);
+			if( pi >= 0){
+				local prop = clone props[pi];
+				prop.type = VARIABLE;
+				if( !("constbits" in prop)) prop.constbits <- 8;
+				if( !("varbits" in prop)) prop.varbits <- 1|2|4;
+				prop.varchk <- true;
+				prop.cnt <- "cntv.ui";
+				props[pi] = prop;
+				d[prop.pid] <- v;
+			}
+		}
+		proplist.bindProperties( props);
+		proplist.setParameters( d);
+	}
+
+	function actionevent( e){
+		return super.actionevent( e);
+	}
+
+	function showVarMenu( e){
+		local cmd = e.actioncmd, pid = cmd.prop.pid, data = this.data;
+		local prop = clone cmd.prop;
+		if( !("constbits" in prop)) prop.constbits <- 8;
+		if( !("varbits" in prop)) prop.varbits <- 1|2|4;
+		prop.unlinkmenu <- true;
+		//
+		local v0 = data["_var"][pid];
+		local v1 = VariableBehavior.showTypeMenu( prop, null, v0);
+		if( v1 == undefined) return;
+		if( v1 == "***DONOTLINK***") v1 = undefined;
+		local self = this;
+		local defval = cmd.prop["defval"];	//	defvalを定義しとけば元値のdeleteが可能
+		local redo = [@(){
+			if( v1 == undefined){
+				delete data["_var"][pid];
+				if( !length( data["_var"])) delete data["_var"];
+				if( defval != undefined) data[pid] <- defval;
+			}else{
+				if( !data["_var"]) data._var <- {};
+				data._var[pid] <- v1;
+			}
+			self.setupProperties();
+			self.updateViewSize();
+		}];
+		local undo = [@(){
+			if( v0 == undefined){
+				delete data["_var"][pid];
+				if( !length( data["_var"])) delete data["_var"];
+			}else{
+				if( !data["_var"]) data._var <- {};
+				data._var[pid] <- v0;
+				if( defval != undefined) delete data[pid];
+			}
+			self.setupProperties();
+			self.updateViewSize();
+		}];
+		submitOp( redo, undo, null);
+	}
+	
+	function propevent( e){
+		e.consume();
+		local cmd = e.actioncmd;
+		if( cmd.cmd == "varchk"){
+			local pid = cmd.prop.pid;
+			if( cmd.prop.variable == 2) return;
+			local data = this.data;
+			local defval = cmd.prop["defval"];	//	defvalを定義しとけば元値のdeleteが可能
+			showVarMenu( e);
+			/*
+			if( pid in data["_var"]){
+				if( MenuPopup.run( [{ lbl="$T.lbl_unlink_var", icon="\ue16f", val=0, }])){
+					local self = this, oldvar = data._var[pid];
+					local redo = [@(){
+						delete data._var[pid];
+						if( !length( data._var)) delete data._var;
+						if( defval != undefined) data[pid] <- defval;
+						self.setupProperties();
+						self.updateViewSize();
+					}];
+					local undo = [@(){
+						if( !data["_var"]) data._var <- {};
+						data._var[pid] <- oldvar;
+						if( defval != undefined) delete data[pid];
+						self.setupProperties();
+						self.updateViewSize();
+					}];
+					submitOp( redo, undo, null);
+				}
+			}else{
+				if( MenuPopup.run( [{ lbl="$T.lbl_link_var", icon="\ue157", val=0, }])){
+					local self = this;
+					local oldval = data[pid];
+					local redo = [@(){
+						if( !data["_var"]) data._var <- {};
+						data._var[pid] <- "A";
+						if( defval != undefined) delete data[pid];
+						self.setupProperties();
+						self.updateViewSize();
+					}];
+					local undo = [@(){
+						delete data._var[pid];
+						if( !length( data._var)) delete data._var;
+						data[pid] <- oldval;
+						self.setupProperties();
+						self.updateViewSize();
+					}];
+					submitOp( redo, undo, null);
+				}
+			}
+			*/
+		}else
+		if( cmd.cmd == "prop"){
+			setParamOp( cmd.prop, cmd.val);
+		}
+	}
+
+	function setParamOp( prop, val){
+		local self = this;
+		local data = this.data, oldval = data["_var"][prop.pid] ?? ::getProperty( prop, data);
+		local makefn = @( v, d) @(){
+			if( prop["varchk"]){
+				data._var[prop.pid] = v;
+			}else{
+				::setProperty( prop, data, v);
+			}
+			if( d) Table.clear( data) ... d;
+			if( self.propdef["setprop"]) self.propdef.setprop( prop, data, v, self);
+			if( prop["refresh"]){
+				self.setupProperties();
+			}else{
+				self.proplist.setParam( prop.pid, v);
+			}
+			self.updateViewSize();
+		}
+		local redo = [makefn( val, null)];
+		local undo = [makefn( oldval, prop["refresh"] && deepclone( data))];
+		submitOp( redo, undo, null);	//	trk無し
+	}
+}
+
+
+//	ピクチャ配置用。
+//	posを調整可能。
+//	
+class PicPropertyEditPopupV extends PropertyEditPopupV
+{
+	static POPUPUIPATH = srcdir .. "/ui/picproppopup.ui";
+
+	pic = null;		//	EventPicView
+	canvas = null;
+	minheight = 398;
+
+	pmx = 0;
+	pmy = 0;
+
+	function init( v){
+		super.init( v);
+		canvas = v.findChild( "canvas");
+		pic = EventPicView();
+		canvas.addChild( pic);
+		pic.enabled = true;
+		pic.addEventListener( MOUSE_EVENT, picevent);
+	}
+	
+	function setupProperties(){
+		super.setupProperties();
+		updatePicture();
+	}
+
+	function refresh(){
+		updatePicture();
+	}
+
+	function updatePicture(){
+		local v = data;
+		if( v.op == 0){
+			if( v.picid != pic.picid) pic.setPicID( v.picid);
+			pic.pos( v.pos[0], v.pos[1], 0);
+			pic.scale( v.scale*0.01);
+			if( v["flipx"]) pic.scale.x *= -1.0;
+			pic.rot.z = v.rot * Math.DTOR;
+			pic.matdirty = true;
+			pic.repaint();
+			pic.setVisible( true);
+		}else{
+			pic.setVisible( false);
+		}
+	}
+	
+	function propevent( e){
+		super.propevent( e);
+		local cmd = e.actioncmd;
+		switch( cmd["prop"]["pid"]){
+		case "picid": case "pos": case "scale": case "rot": case "color": case "flipx":
+			updatePicture();
+			break;
+		}
+	}
+
+	function picevent( e){
+		switch( e.id){
+		case MOUSE_ENTERED:
+			pic.sp.colormat = Matrix.fromHSV( 0, 1.0, 1.1);
+			pic.repaint();
+			break;
+		case MOUSE_EXITED:
+			pic.sp.colormat = null;
+			pic.repaint();
+			break;
+		case MOUSE_PRESSED:
+			e.computeLocal( canvas.getInvMatrix());
+			pmx = e.lx; pmy = e.ly;
+			break;
+		case MOUSE_DRAGGED:
+			e.computeLocal( canvas.getInvMatrix());
+			local dx = e.lx-pmx, dy = e.ly-pmy;
+			pmx = e.lx; pmy = e.ly;
+			local px = (pic.pos.x+dx)|0, py = (pic.pos.y+dy)|0;
+			pic.pos( px, py, 0.0);
+			pic.matdirty = true;
+			pic.repaint();
+			proplist.setParam( "pos", data.pos=[px,py]);
+			break;
+		}
+	}
+}
+
+//	オーバーレイFX用。
+//	
+//	
+class OVFXPropertyEditPopupV extends PropertyEditPopupV
+{
+	static POPUPUIPATH = srcdir .. "/ui/ovfxproppopup.ui";
+
+	preview = null;
+	rp3d = null;
+
+	constructor( v, p, d, ref){
+		super( v, p, d, ref);
+		preview = CanvasBehavior( v.findChild( "preview"), null);
+		preview.view.renderer.setEnvironment( ::RenderSettings.getEnvironment( "pbr_fw"));
+		
+		rp3d = RPG3DObject.create3DObject( { mdlid= fget( propdef, "mdlid") || "CV000" });
+		rp3d.setDir( Math.PI);
+		preview.scn.addObject( rp3d);
+
+		preview.view.addEventListener( MOUSE_EVENT, previewevent);
+		preview.view.addEventListener( KEY_EVENT, previewevent);
+	}
+
+	function shown(){
+		preview.view.requestFocus();
+	}
+
+	function startOvfx(){
+		rp3d.overlay( data);
+	}
+
+	function propevent( e){
+		super.propevent( e);
+		startOvfx();
+	}
+
+	function previewevent( e){
+		switch( e.id){
+		case MOUSE_PRESSED:
+			if( e.isMouseDown( BUTTON1_MASK)){
+				startOvfx();
+				preview.view.requestFocus();
+			}
+			break;
+		case KEY_PRESSED:
+			if( e.keycode == VK_SPACE){
+				startOvfx();
+			}
+			break;
+		}
+	}
+}
+
+
+//	キャラ揺れ用。
+//	
+//	
+class VibePropertyEditPopupV extends OVFXPropertyEditPopupV
+{
+	static POPUPUIPATH = srcdir .. "/ui/ovfxproppopup.ui";
+
+	function startOvfx(){
+		rp3d.vibe( data);
+	}
+}
+
+//	汎用3Dプレビュー用。
+//	
+//	
+class SK3DPropertyEditPopupV extends PropertyEditPopupV
+{
+	static POPUPUIPATH = srcdir .. "/ui/ovfxproppopup.ui";
+
+	preview = null;
+	camwork = null;		//	preview.camwork
+
+	bw = null;			//	BlockWorld: nullの場合はマッププレビューなしでグリッド表示
+	bw3d = null;		//	SK3DBlockWorld
+	
+	constructor( v, p, d, ref){
+		super( v, p, d, ref);
+		preview = CanvasBehavior( v.findChild( "preview"), null);
+		preview.view.renderer.setEnvironment( ::RenderSettings.getEnvironment( "pbr_fw"));
+		camwork = preview.camwork;
+		
+		preview.view.addEventListener( MOUSE_EVENT, previewevent);
+		preview.view.addEventListener( KEY_EVENT, previewevent);
+	}
+
+	function shown(){
+		preview.view.requestFocus();
+	}
+
+	function reset3d(){
+		fget( propdef, "reset3d", this, data, propdef);
+	}
+
+	function startPreview(){
+		fget( propdef, "start3d", this, data, propdef);
+	}
+
+	function propevent( e){
+		super.propevent( e);
+		reset3d();
+	}
+
+	function previewevent( e){
+		switch( e.id){
+		case MOUSE_PRESSED:
+			if( e.isMouseDown( BUTTON1_MASK)){
+				startPreview();
+				preview.view.requestFocus();
+			}
+			break;
+		case KEY_PRESSED:
+			if( e.keycode == VK_SPACE){
+				startPreview();
+			}
+			break;
+		}
+	}
+}
+
+

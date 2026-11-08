@@ -1,0 +1,54 @@
+//
+//	Rokugan Traveler battle plugin (fan project, non-commercial)
+//	Octopath-style battle layer on top of RPG-Cobo's TurnBattleRunner:
+//	- Suki : enemies carry Resolve shields (enemy prop RES). Hits whose element/weapon bit is a weakness (EDR<0)
+//	         chip a shield. At 0 the enemy is open (Suki): it loses its pending and next action and takes extra damage.
+//	- Void Points (VP) : +1 per turn (not the turn after boosting), start at 1, max 5.
+//	- Boost : "Boost" battle command cycles 0..min(3,VP); the next command gets extra hits (attacks) or power (skills).
+//	Design docs: docs/OCTOPATH-FIT.md §5, docs/DESIGN.md §5.
+//
+import PropertyType;
+
+local srcdir = dirname( callee().getSourceName());
+
+pluginfo <- {
+	name : { "ja":"ロクガン・トラベラー 戦闘システム", "en":"Rokugan Traveler Battle System" }
+	author : "Rokugan Traveler fan project"
+	ver : "0.1.0"
+	tags : ["battle"]
+	order : 20
+	desc : { "ja":"スキ（盾・ブレイク）、虚空点（VP）とブーストを追加します。", "en":"Adds Suki (Resolve shields / break), Void Points (VP) and Boost." }
+	props : [
+		{ pid = "bpmax", lbl = { "ja":"VP上限", "en":"Max Void Points (VP)" }, type = SCALAR, range = (1,9), defval = 5 },
+		{ pid = "boostmax", lbl = { "ja":"ブースト上限", "en":"Max Boost" }, type = SCALAR, range = (1,5), defval = 3 },
+		{ pid = "log", lbl = { "ja":"デバッグログ", "en":"Debug log" }, type = BOOL, defval = true },
+		{ pid = "sukirate", lbl = { "ja":"スキ時の被ダメージ増加(%)", "en":"Suki damage bonus (%)" }, type = SCALAR, range = (0,200), defval = 50 },
+	]
+}
+
+function loadPlugin( args, opt){
+	::RokuganOpt <- opt;
+	//	The engine passes at most 13 command-line arguments. Test flags can be packed into one:
+	//	-rt "walk 5,3500,3000;equip P100+4+A115;taint100" -> -rtwalk 5,3500,3000 -rtequip P100+4+A115 -rttaint100
+	local i = ::arguments.indexOf( "-rt");
+	if( i >= 0 && i + 1 < length( ::arguments)){
+		foreach( part in ::arguments[i+1].split( ";")){
+			local kv = part.split( " ");
+			if( !length( kv) || kv[0] == "") continue;
+			::arguments.append( "-rt" .. kv[0]);
+			if( length( kv) > 1) ::arguments.append( kv[1]);
+		}
+	}
+	runsk( srcdir .. "/RokuganMapGen.sk");
+	runsk( srcdir .. "/RokuganBattle.sk");
+	runsk( srcdir .. "/RokuganBattleUI.sk");
+	runsk( srcdir .. "/RokuganRumble.sk");
+	runsk( srcdir .. "/RokuganHazard.sk");
+	runsk( srcdir .. "/RokuganAI.sk");
+	runsk( srcdir .. "/RokuganField.sk");
+	runsk( srcdir .. "/RokuganLook.sk");		//	equipment you can see (after RokuganField: wraps updateStageBody)
+	runsk( srcdir .. "/RokuganBustGeneric.sk");	//	stand-in busts for speakers without one
+	runsk( srcdir .. "/RokuganBustData.sk");	//	dialog busts: name -> images (tools/gen_busts.py)
+	runsk( srcdir .. "/RokuganBust.sk");		//	dialog busts behind the message box (after RokuganField: wraps showMessage)
+	return true;
+}

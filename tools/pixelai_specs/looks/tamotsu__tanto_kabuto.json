@@ -1,0 +1,221 @@
+{
+ "key": "tamotsu__tanto_kabuto",
+ "name": "Ide Tamotsu",
+ "kind": "traveler",
+ "sheet": "trav_tamotsu.png",
+ "prompt": "1boy, stocky jovial man, brown hair topknot, full brown beard, purple coat with a white fur collar over an off-white kimono, wearing kabuto samurai helmet with a gold disc crest, holding a short tanto dagger, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes, drinking straw, mascot, creature on hat, face on hat, eyes on hat, emblem on hat",
+ "seed": 11,
+ "candidates": 3,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#f6ceaa",
+   "ramp": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ],
+   "detect": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ]
+  },
+  "hair": {
+   "base": "#5e3c26",
+   "ramp": [
+    "#070101",
+    "#29110c",
+    "#5e3c25",
+    "#815c41",
+    "#a07e64"
+   ],
+   "detect": [
+    "#070101",
+    "#29110c",
+    "#5e3c25",
+    "#815c41",
+    "#a07e64"
+   ]
+  },
+  "top": {
+   "base": "#ece4d6",
+   "ramp": [
+    "#4a4860",
+    "#8e8cab",
+    "#ece4d6",
+    "#ffffff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#4a4860",
+    "#8e8cab",
+    "#ece4d6",
+    "#ffffff",
+    "#ffffff"
+   ]
+  },
+  "lower": {
+   "base": "#ccc6d6",
+   "ramp": [
+    "#3a394a",
+    "#7f7d95",
+    "#ccc6d6",
+    "#f9f9f9",
+    "#ffffff"
+   ],
+   "detect": [
+    "#3a394a",
+    "#7f7d95",
+    "#ccc6d6",
+    "#f9f9f9",
+    "#ffffff"
+   ]
+  },
+  "haori": {
+   "base": "#76489e",
+   "ramp": [
+    "#1d0c2d",
+    "#492569",
+    "#76489e",
+    "#a96bc1",
+    "#d597e0"
+   ],
+   "detect": [
+    "#1d0c2d",
+    "#492569",
+    "#76489e",
+    "#a96bc1",
+    "#d597e0"
+   ]
+  },
+  "accent": {
+   "base": "#e0b848",
+   "ramp": [
+    "#6f270f",
+    "#ab6426",
+    "#e0b847",
+    "#ffd86b",
+    "#ffe08a"
+   ],
+   "detect": [
+    "#6f270f",
+    "#ab6426",
+    "#e0b847",
+    "#ffd86b",
+    "#ffe08a"
+   ]
+  },
+  "cord": {
+   "base": "#aa2832",
+   "ramp": [
+    "#390318",
+    "#750f29",
+    "#aa2831",
+    "#cd4446",
+    "#ec716b"
+   ],
+   "detect": [
+    "#390318",
+    "#750f29",
+    "#aa2831",
+    "#cd4446",
+    "#ec716b"
+   ]
+  },
+  "lining": {
+   "base": "#e0b848",
+   "ramp": [
+    "#6f270f",
+    "#ab6426",
+    "#e0b847",
+    "#ffd86b",
+    "#ffe08a"
+   ],
+   "detect": [
+    "#6f270f",
+    "#ab6426",
+    "#e0b847",
+    "#ffd86b",
+    "#ffe08a"
+   ]
+  },
+  "hat0": {
+   "base": "#545662",
+   "ramp": [
+    "#050507",
+    "#22232d",
+    "#545662",
+    "#807f85",
+    "#a4a4a4"
+   ],
+   "detect": [
+    "#050507",
+    "#22232d",
+    "#545662",
+    "#807f85",
+    "#a4a4a4"
+   ]
+  },
+  "hat1": {
+   "base": "#e2be50",
+   "ramp": [
+    "#712b13",
+    "#ad6a2c",
+    "#e2be50",
+    "#ffdc73",
+    "#ffe492"
+   ],
+   "detect": [
+    "#712b13",
+    "#ad6a2c",
+    "#e2be50",
+    "#ffdc73",
+    "#ffe492"
+   ]
+  }
+ }
+}

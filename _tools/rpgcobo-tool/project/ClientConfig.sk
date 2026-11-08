@@ -1,0 +1,170 @@
+
+////////////////////////////////////////////////////////////////////////////////
+//	
+//	クライアント側で設定、保存されるコンフィグ
+//	セーブデータと同じフォルダにclient.jsonで保存される。
+//	初期化時には、OSやディスプレイのサイズ、CPU/GPU性能などを指標化してデフォルト値を設定する
+//	※このクラスはゲーム起動時の最初に読まれるため、プロジェクトのルートに置く
+
+import VirtualKeyCode;
+import ModifiersMask;
+import GamepadButtonCode;
+
+//	起動時点のディスプレイ解像度を取得する
+local dispsize = skGetDisplaySize( []);	//	w, h, xdpi, ydpi, fps
+
+class ClientConfig
+{
+	static resolist = ["3840x2160","2560x1440","1920x1080","1600x900","1280x720"];	//	大きい順
+	static aspect = 9.0/16.0;
+
+	//	デフォルト設定定義。この内screen,renderは環境で書き換わる。
+	static defaultconf = {
+		game = {
+			lang = null,				//	conf.sk
+			savecurs = 0,				//	コマンドを記憶
+			battlespeed = 4,			//	バトルスピード
+			btnhelp = 1,				//	ボタンのヘルプ表示
+		},
+		screen = {
+			reso_window = "1920x1080",	//	Windows用。1920x1080のウィンドウで表示する。
+			reso_screen = "1920x1080",	//	フルスクリーン時はディスプレイ最大解像度。
+			fullscreen = 0,				//	ゲーム起動時のフルスクリーン設定。F10で切り替え可能。
+		},
+		render = {
+			quality = 2,				//	大雑把な描画品質
+			//	以下RenderHint
+			maxreso = 1080;				//	最大解像度。これ以上はアップスケールで対応。
+			antialias = 1;				//	none, fxaa, smaa。
+			upscale = 1;				//	bilinear, sgsr。
+			ssao_reso = 0;				//	SSAOの解像度。半分、等倍
+			ssao_qua = 1;				//	fast, normal, quality
+			ssgi_reso = 0;				//	SSGIの解像度。半分、等倍。※等倍はとても重いのでSS撮影用
+			ssgi_qua = 1;				//	fast, normal, quality
+			shadow_qua = 1;				//	シャドウの品質はどう設定させようか？ブラー、解像度、
+			blur_qua = 1;				//	色々なところで掛かるブラーの品質を指定。最大サンプリング数。
+			pbr_qua = 1;				//	gblurをやったり
+		},
+		sound = {
+			bgmvol = 90,				//	
+			sevol = 90,				//	
+			vovol = 90,				//	
+		},
+		control = {
+			usegamepad = 2,				//	ゲームパッドを常に使用
+			usevirtualpad = 1,			//	他デバイスの接続が無ければバーチャルパッドを使用
+		},
+		keyboard_menu = {				//	キーマップは変化のあるもののみ定義。
+		},
+		keyboard_action = {
+		},
+		gamepad_menu = {
+		},
+		gamepad_action = {
+		},
+	};
+
+	//	qualityによるスクリーン解像度の制限。Android, iOS, WebGLで使用可能。
+	static screenresos = [ 720, 900, 1080, 1440, 2160, ];
+
+	static renderhints = [
+		{ maxreso= 640, antialias=1, upscale=1, ssao_reso=0, ssao_qua=0, ssgi_reso=0, ssgi_qua=0, shadow_qua=0, blur_qua=0, pbr_qua=0 },
+		{ maxreso= 720, antialias=1, upscale=1, ssao_reso=0, ssao_qua=1, ssgi_reso=0, ssgi_qua=1, shadow_qua=1, blur_qua=1, pbr_qua=1 },
+		{ maxreso= 900, antialias=2, upscale=1, ssao_reso=0, ssao_qua=2, ssgi_reso=0, ssgi_qua=2, shadow_qua=1, blur_qua=2, pbr_qua=2 },
+		{ maxreso=1080, antialias=2, upscale=1, ssao_reso=1, ssao_qua=1, ssgi_reso=1, ssgi_qua=1, shadow_qua=2, blur_qua=2, pbr_qua=2 },
+		{ maxreso=2160, antialias=2, upscale=1, ssao_reso=1, ssao_qua=2, ssgi_reso=1, ssgi_qua=2, shadow_qua=2, blur_qua=2, pbr_qua=2 },
+	];
+
+	static def_keybtnmap = {
+		[BTN_START] = [VK_ENTER],
+		[BTN_BACK] = [VK_ESCAPE],
+		[BTN_A] = [VK_Z, VK_SPACE],
+		[BTN_B] = [VK_X, VK_SHIFT],
+		[BTN_X] = [VK_C, VK_TAB],
+		[BTN_Y] = [VK_V, ],
+		[BTN_LB] = [VK_A],
+		[BTN_RB] = [VK_D],
+	};
+
+	//	デバイスのGPU性能を取得し、LVにして返す。
+	static function detectGPULV(){
+		switch( skGetOSName()){
+		case "Android": return 1;
+		case "iOS": return 2;
+		case "Windows": return 2;
+		}
+		return 2;
+	}
+
+	function getResolutionBits(){
+		local resobits = 16;
+		if( skSupportsDisplaySize( 3840, 2160)) { resobits = 31; }
+		else if( skSupportsDisplaySize( 2560, 1440)){ resobits = 30; }
+		else if( skSupportsDisplaySize( 1920, 1080)){ resobits = 28; }
+		else if( skSupportsDisplaySize( 1600, 900)){ resobits = 24; }
+		return resobits;
+	}
+
+	//	現在のディスプレイ解像度を元に最大で表示できるウィンドウ幅を返す
+	function getAvailableWindowSizes(){
+		local d = dispsize;
+		return resolist.filter( @( v){
+			local wh = v.split( "x"), w = int( wh[0]), h = int( wh[1]);
+			return (w<d[0]-320 && h<d[1]-128);
+		});
+	}
+	
+	//	
+	function getAvailableDisplaySizes(){
+		local b = getResolutionBits();
+		return [
+			...resolist.map( @( v, i){
+				return ( b & (1<<i)) ? v : undefined;
+			})
+		];
+	}
+
+	//	実行環境に合わせてclientconfを作成する。
+	static function new(){
+		local gpulv = detectGPULV();
+		local t = deepclone( defaultconf);
+		//	ウィンドウサイズ(Windowsのみ)
+		t.screen.reso_window = getAvailableWindowSizes()[0];
+		//	フルスクリーンサイズ。Windowsならディスプレイ解像度。
+		//	スマホなら最大で1080p。GPUレベルによってここも変える。
+		local d = getAvailableDisplaySizes();	//	w, h, xdpi, ydpi, fps
+		t.screen.reso_screen = d[0] || "1280x720";
+		//	レンダリング品質。PCなら2, スマホなら1程度を想定。
+		t.render.quality <- gpulv;
+		t.render ... ClientConfig.renderhints[gpulv];
+		return t;
+	}
+	
+	//	
+	static function load(){
+		local f = FileRef( ::savedir, "client.json");
+		if( f.exists()){
+			local t = decodeJSON( f.load());
+			return t;
+		}
+		return new();
+	}
+
+	//	::clientconfをセーブする。暗号化するような内容は無いのでそのままjsonに。
+	static function save(){
+		local f = FileRef( ::savedir, "client.json");
+		local bb = encodeJSON( ::clientconf, 5, ByteBuffer()); bb.pos = 0;
+		f.save( bb);
+	}
+
+	//	スクリーン解像度の最大縦幅を設定する。(Portfolio時は横幅)
+	//	Android, iOS, WebGL でのみ有効。Windowsのフルスクリーンでもやりたいができる？
+	//	render.qualityが変化したときに呼び出す
+	function setScreenResolutionLimit( h){
+		local w = (h * 16 + 4) / 9;	//	仮に横幅も16:9で設定する
+		skMoveScreen( { flags=MoveScreenFlags.MOVESCREEN_MAXRESO, w=w, h=h});
+	}
+}
+
+//	clientconfは、プログラムの最初期にロードされるので既に存在している可能性が高い。
+::clientconf <- null;

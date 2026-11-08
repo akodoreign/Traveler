@@ -1,0 +1,136 @@
+{
+ "key": "fishwife",
+ "name": "Fishwife",
+ "kind": "side",
+ "sheet": "side_fishwife.png",
+ "prompt": "1girl, woman, Fishwife, light tan skin, brown hair, bun hair, slate blue kimono, light brown hakama, headcloth, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#e2b088",
+   "ramp": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ],
+   "detect": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ]
+  },
+  "hair": {
+   "base": "#5c3c26",
+   "ramp": [
+    "#070101",
+    "#27110c",
+    "#5c3c25",
+    "#7f5c41",
+    "#9e7e64"
+   ],
+   "detect": [
+    "#070101",
+    "#27110c",
+    "#5c3c25",
+    "#7f5c41",
+    "#9e7e64"
+   ]
+  },
+  "top": {
+   "base": "#5a7896",
+   "ramp": [
+    "#0f1525",
+    "#304361",
+    "#5a7896",
+    "#81a9b9",
+    "#b1d3d8"
+   ],
+   "detect": [
+    "#0f1525",
+    "#304361",
+    "#5a7896",
+    "#81a9b9",
+    "#b1d3d8"
+   ]
+  },
+  "lower": {
+   "base": "#6e645a",
+   "ramp": [
+    "#070504",
+    "#392d29",
+    "#6e645a",
+    "#918c85",
+    "#b0b0b0"
+   ],
+   "detect": [
+    "#070504",
+    "#392d29",
+    "#6e645a",
+    "#918c85",
+    "#b0b0b0"
+   ]
+  },
+  "cloth": {
+   "base": "#466e96",
+   "ramp": [
+    "#0a1225",
+    "#233b61",
+    "#466e96",
+    "#69a2b9",
+    "#94d0d8"
+   ],
+   "detect": [
+    "#0a1225",
+    "#233b61",
+    "#466e96",
+    "#69a2b9",
+    "#94d0d8"
+   ]
+  }
+ }
+}

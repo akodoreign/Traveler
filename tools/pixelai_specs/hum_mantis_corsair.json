@@ -1,0 +1,170 @@
+{
+ "key": "mantis_corsair",
+ "name": "Mantis Corsair",
+ "kind": "enemy",
+ "sheet": "hum_mantis_corsair.png",
+ "prompt": "1boy, male focus, man, Mantis Corsair, light tan skin, black hair, long hair, green lacquered lamellar armor, green kimono, dark green hakama, a kama sickle, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#e2b088",
+   "ramp": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ],
+   "detect": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ]
+  },
+  "hair": {
+   "base": "#282228",
+   "ramp": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ],
+   "detect": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ]
+  },
+  "top": {
+   "base": "#468c60",
+   "ramp": [
+    "#081b18",
+    "#235744",
+    "#468c60",
+    "#69af7a",
+    "#94ce9d"
+   ],
+   "detect": [
+    "#081b18",
+    "#235744",
+    "#468c60",
+    "#69af7a",
+    "#94ce9d"
+   ]
+  },
+  "lower": {
+   "base": "#285440",
+   "ramp": [
+    "#020707",
+    "#0c1f1b",
+    "#285440",
+    "#447759",
+    "#689676"
+   ],
+   "detect": [
+    "#020707",
+    "#0c1f1b",
+    "#285440",
+    "#447759",
+    "#689676"
+   ]
+  },
+  "armor": {
+   "base": "#3c785a",
+   "ramp": [
+    "#020707",
+    "#1b4339",
+    "#3c7859",
+    "#5d9b73",
+    "#86ba93"
+   ],
+   "detect": [
+    "#020707",
+    "#1b4339",
+    "#3c7859",
+    "#5d9b73",
+    "#86ba93"
+   ]
+  },
+  "accent": {
+   "base": "#d6ba50",
+   "ramp": [
+    "#652b13",
+    "#a1692c",
+    "#d6ba50",
+    "#f9de76",
+    "#ffe997"
+   ],
+   "detect": [
+    "#652b13",
+    "#a1692c",
+    "#d6ba50",
+    "#f9de76",
+    "#ffe997"
+   ]
+  },
+  "lace": {
+   "base": "#d6ba50",
+   "ramp": [
+    "#652b13",
+    "#a1692c",
+    "#d6ba50",
+    "#f9de76",
+    "#ffe997"
+   ],
+   "detect": [
+    "#652b13",
+    "#a1692c",
+    "#d6ba50",
+    "#f9de76",
+    "#ffe997"
+   ]
+  }
+ }
+}

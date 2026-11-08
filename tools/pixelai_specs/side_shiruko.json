@@ -1,0 +1,136 @@
+{
+ "key": "shiruko",
+ "name": "Bayushi Shiruko",
+ "kind": "side",
+ "sheet": "side_shiruko.png",
+ "prompt": "1girl, woman, Bayushi Shiruko, fair skin, black hair, long hair, red kimono, dark brown hakama, a folding fan, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#f6ceaa",
+   "ramp": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ],
+   "detect": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ]
+  },
+  "hair": {
+   "base": "#282228",
+   "ramp": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ],
+   "detect": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ]
+  },
+  "top": {
+   "base": "#b4283c",
+   "ramp": [
+    "#43021f",
+    "#7f0f31",
+    "#b4283c",
+    "#d7454f",
+    "#f66c6e"
+   ],
+   "detect": [
+    "#43021f",
+    "#7f0f31",
+    "#b4283c",
+    "#d7454f",
+    "#f66c6e"
+   ]
+  },
+  "lower": {
+   "base": "#3c1e28",
+   "ramp": [
+    "#070205",
+    "#070305",
+    "#3c1e28",
+    "#5f3942",
+    "#7e5a61"
+   ],
+   "detect": [
+    "#070205",
+    "#070305",
+    "#3c1e28",
+    "#5f3942",
+    "#7e5a61"
+   ]
+  },
+  "mask_col": {
+   "base": "#dcd2c8",
+   "ramp": [
+    "#3e3c50",
+    "#817f9b",
+    "#dcd2c8",
+    "#ffffff",
+    "#ffffff"
+   ],
+   "detect": [
+    "#3e3c50",
+    "#817f9b",
+    "#dcd2c8",
+    "#ffffff",
+    "#ffffff"
+   ]
+  }
+ }
+}

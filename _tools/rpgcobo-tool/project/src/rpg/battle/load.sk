@@ -1,0 +1,6 @@
+//	
+runsk( "BattleSystem.sk");
+runsk( "BattleRunnerBase.sk");
+runsk( "TurnBattleRunner.sk");
+runsk( "RealtimeBattleRunner.sk");
+runsk( "SkillTestBattleRunner.sk");

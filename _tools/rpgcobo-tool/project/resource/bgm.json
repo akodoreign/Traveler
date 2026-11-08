@@ -1,0 +1,814 @@
+{
+	"MU000": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 22050,
+			"length": 220500
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "Silence",
+			"ja": "無音"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/silence.ogg"
+	},
+	"MU001": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3877665
+		},
+		"looppoint": 600000,
+		"name": {
+			"ja": "にぎやかな街"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/town1.ogg"
+	},
+	"MU002": {
+		"endpoint": 7633000,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 7683249
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "夕暮れの街"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/town2.ogg"
+	},
+	"MU003": {
+		"endpoint": 4004100,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 4178435
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "のどかな街"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/town3.ogg"
+	},
+	"MU004": {
+		"endpoint": 2842240,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 2931964
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "秘境の村"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/town4.ogg"
+	},
+	"MU005": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 7998319
+		},
+		"looppoint": 60000,
+		"name": {
+			"ja": "お買い物"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/shop.ogg"
+	},
+	"MU006": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3056664
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "遥かな草原"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/field1.ogg"
+	},
+	"MU007": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 7832368
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "憂いの森"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/field2.ogg"
+	},
+	"MU008": {
+		"endpoint": -1,
+		"gain": 0.9,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 4012891
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "荒野を征く"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/field3.ogg"
+	},
+	"MU009": {
+		"endpoint": -1,
+		"gain": 0.9,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 8490383
+		},
+		"looppoint": 522085,
+		"name": {
+			"ja": "希望の道のり"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/field4.ogg"
+	},
+	"MU011": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 7197120
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "地下迷宮"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/dungeon1.ogg"
+	},
+	"MU012": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 6350400
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "敵の拠点を叩け"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/dungeon2.ogg"
+	},
+	"MU013": {
+		"endpoint": 3393000,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3501600
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "大迷宮"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/dungeon3.ogg"
+	},
+	"MU014": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 4722070
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "闇の神殿"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/lastdungeon.ogg"
+	},
+	"MU015": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 8273477
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "緊迫な場面"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/event1.ogg"
+	},
+	"MU016": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 7461531
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "脱力な場面"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/event2.ogg"
+	},
+	"MU017": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 1136800
+		},
+		"looppoint": 784000,
+		"name": {
+			"en": "The Fall",
+			"ja": "The Fall"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_fall.ogg",
+		"memo": "tools/gen_music.py (the engine's cue, re-pointed)"
+	},
+	"MU018": {
+		"endpoint": -1,
+		"gain": 0.82,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 8132969
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "通常バトル"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/battle1.ogg"
+	},
+	"MU019": {
+		"endpoint": -1,
+		"gain": 0.9,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3361976
+		},
+		"looppoint": 0,
+		"name": {
+			"ja": "難敵バトル"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/battle2.ogg"
+	},
+	"MU020": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 2645259
+		},
+		"looppoint": 40000,
+		"name": {
+			"ja": "宿敵バトル"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/battle3.ogg"
+	},
+	"MU021": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 1142899
+		},
+		"looppoint": 328745,
+		"name": {
+			"en": "Victory",
+			"ja": "Victory"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_victory.ogg",
+		"memo": "tools/gen_music.py (the engine's cue, re-pointed)"
+	},
+	"MU022": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 957600
+		},
+		"looppoint": 604800,
+		"name": {
+			"en": "A Night's Rest",
+			"ja": "A Night's Rest"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_inn.ogg",
+		"memo": "tools/gen_music.py (the engine's cue, re-pointed)"
+	},
+	"_meta": {
+		"caps": 100
+	},
+	"MU101": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3386880
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "Village Lanterns",
+			"ja": "Village Lanterns"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_town.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU102": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 4536000
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "The Long Road",
+			"ja": "The Long Road"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_road.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU103": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 4233600
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "Beneath the Stone",
+			"ja": "Beneath the Stone"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_cave.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU104": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 2886545
+		},
+		"looppoint": 240545,
+		"name": {
+			"en": "Steel Drawn",
+			"ja": "Steel Drawn"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_battle.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU105": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3342316
+		},
+		"looppoint": 278526,
+		"name": {
+			"en": "The Fortunes Turn Away",
+			"ja": "The Fortunes Turn Away"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_boss.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU106": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3024000
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "Halls of the Gozoku",
+			"ja": "Halls of the Gozoku"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_court.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU107": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 2822400
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "Incense and Bells",
+			"ja": "Incense and Bells"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_shrine.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU108": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3681391
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "Salt Wind",
+			"ja": "Salt Wind"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_sea.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU109": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 2919724
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "Moon Over the Paddies",
+			"ja": "Moon Over the Paddies"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_night.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU110": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 2565818
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "Ink Between the Years",
+			"ja": "Ink Between the Years"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_past.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU111": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3969000
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "Where the Kami Do Not Go",
+			"ja": "Where the Kami Do Not Go"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_shadow.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU112": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 1142899
+		},
+		"looppoint": 328745,
+		"name": {
+			"en": "Victory",
+			"ja": "Victory"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_victory.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU113": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 957600
+		},
+		"looppoint": 604800,
+		"name": {
+			"en": "A Night's Rest",
+			"ja": "A Night's Rest"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_inn.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU114": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 1136800
+		},
+		"looppoint": 784000,
+		"name": {
+			"en": "The Fall",
+			"ja": "The Fall"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_fall.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU115": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3374609
+		},
+		"looppoint": 306783,
+		"name": {
+			"en": "Teeth of the Shadowlands",
+			"ja": "Teeth of the Shadowlands"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_boss_oni.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU116": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 2772000
+		},
+		"looppoint": 252000,
+		"name": {
+			"en": "Two Breaths, One Cut",
+			"ja": "Two Breaths, One Cut"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_duel.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU117": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3681391
+		},
+		"looppoint": 230087,
+		"name": {
+			"en": "Smiles Behind the Fan",
+			"ja": "Smiles Behind the Fan"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_intrigue.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU118": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 1955739
+		},
+		"looppoint": 115043,
+		"name": {
+			"en": "Blades in the Way",
+			"ja": "Blades in the Way"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_miniboss.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU119": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 4116000
+		},
+		"looppoint": 588000,
+		"name": {
+			"en": "The Bride in White",
+			"ja": "The Bride in White"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_final1.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU120": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3704400
+		},
+		"looppoint": 246960,
+		"name": {
+			"en": "Body of Damned Time",
+			"ja": "Body of Damned Time"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_final2.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU121": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 6350400
+		},
+		"looppoint": 529200,
+		"name": {
+			"en": "The Empress of Nothing",
+			"ja": "The Empress of Nothing"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_final3.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU122": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3696000
+		},
+		"looppoint": 336000,
+		"name": {
+			"en": "Eight Heads Beneath the Waves",
+			"ja": "Eight Heads Beneath the Waves"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_orochi.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU123": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 4884923
+		},
+		"looppoint": 407077,
+		"name": {
+			"en": "Akuma's Daughter",
+			"ja": "Akuma's Daughter"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_okura.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU124": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3780000
+		},
+		"looppoint": 378000,
+		"name": {
+			"en": "Eight Roads, One Dawn",
+			"ja": "Eight Roads, One Dawn"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_travelers.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU125": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 5880000
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "Lanterns on the River",
+			"ja": "Lanterns on the River"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_ending.ogg",
+		"memo": "tools/gen_music.py"
+	}
+}

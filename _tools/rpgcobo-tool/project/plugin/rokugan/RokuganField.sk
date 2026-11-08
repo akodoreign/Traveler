@@ -1,0 +1,1093 @@
+//
+//	Rokugan Traveler field plugin: escort followers.
+//	moveaction "rt_follow": the event walks the trail of a leader (the player, or the event whose id number is in
+//	data.lead), data.gap metres behind it. It starts behind the leader on spawn and catches up by teleport when it falls
+//	far behind (after a portal, a battle or a cutscene), so an escorted cart never gets stranded.
+//	Used by tools/gen_maps.py for the Crab Ch1 cart escort (S02 -> S03).
+//
+import BlockFlagID;
+
+local v_0 = Vector3D();
+
+//	Resource ids past three digits (the side cast's EP1100+, the human enemies' EP1300+): the engine's
+//	RPGResource.getResourceType accepts only five-character ids ("EP123"), so a model id like "EP1129" resolved to
+//	nothing and the map event or battle sprite became an invisible ghost. ::rpgres (used by create3DObject) is
+//	swapped for a lookup that also takes longer all-digit ids.
+class RTResource
+{
+	function _get( resid){
+		local t = ::RPGResource.getResourceType( resid);
+		if( !t && resid && length( resid) > 5){
+			local ok = true;
+			for( local i = 2; i < length( resid); i++) if( !::RPGResource.nums.contains( resid[i])) ok = false;
+			if( ok && (resid.substring( 0, 2) in ::RPGResource.typemap)) t = ::RPGResource.typemap[resid.substring( 0, 2)];
+		}
+		return t ? ::conf._resource[t][resid] : null;
+	}
+}
+::rpgres <- RTResource();
+
+//	The floor under (x, z), swept from y0 down by dy (negative) with rp3d's body, or null when there is none - or when
+//	it is water (liquid isn't floor) or a no-entry cell (BlockWorld.bmp barrier: RokuganMapGen walls open water).
+::Rokugan.floorAt <- function( rp3d, x, z, y0, dy){
+	local bw = ::rpgstage.bw, bx = int( x * 2.0), bz = int( z * 2.0);
+	if( x < 0.0 || z < 0.0 || bx >= bw.w || bz >= bw.d) return null;
+	if( bw.bmp && bw.bmp.get( bx, bz)) return null;
+	local r = rp3d.groundTest( Vector3D( x, y0, z), dy);
+	if( !r) return null;
+	local gy = r[0];
+	if( ::Block.getFlags( bw.blockat( bx, int( gy * 2.0 + 0.5), bz)) & BLK_LIQUID) return null;
+	return gy;
+};
+
+//	Open ground (user: "rescue code can move them to the next open space"): the surface found must be the top of the
+//	map's own blocks in that column. Trees and props are placed objects, so a canopy or roof sits well above it.
+::Rokugan.openGround <- function( px, pz, gy){
+	local bw = ::rpgstage.bw, bx = int( px * 2.0), bz = int( pz * 2.0), top = -1;
+	for( local y = bw.h - 1; y >= 0; y --){
+		if( bw.blockat( bx, y, bz) & 0xffff){ top = y; break; }
+	}
+	if( top < 0 || Math.abs( gy - (top + 1) * 0.5) >= 0.6) return false;
+	for( local y = top - 1; y >= 0; y --){					//	solid below: not a roof over a room
+		if( !(bw.blockat( bx, y, bz) & 0xffff)) return false;
+	}
+	return true;
+};
+
+//	The nearest real, open floor to (x, z), searching outward cell by cell (up to 16 m). Vector3D or null.
+//	With ny (the height she was last walking at), floor within 1 m of it wins: not a roof beside the road.
+::Rokugan.nearestFloor <- function( rp3d, x, z, ny = null){
+	if( ny != null){
+		local r = this._nearest( rp3d, x, z, ny);
+		if( r) return r;
+	}
+	return this._nearest( rp3d, x, z, null);
+};
+::Rokugan._nearest <- function( rp3d, x, z, ny){
+	local cx = int( x * 2.0), cz = int( z * 2.0);
+	for( local k = 0; k <= 32; k ++){
+		local best = null, bd = 999999;					//	the closest hit on the first ring that has one
+		for( local dz = -k; dz <= k; dz ++){
+			for( local dx = -k; dx <= k; dx ++){
+				if( Math.max( Math.abs( dx), Math.abs( dz)) != k) continue;
+				local dd = dx * dx + dz * dz;
+				if( dd >= bd) continue;
+				local px = (cx + dx + 0.5) * 0.5, pz = (cz + dz + 0.5) * 0.5;
+				local gy = ::Rokugan.floorAt( rp3d, px, pz, 30.0, -40.0);
+				if( gy != null && gy >= 0.0 && (ny == null || Math.abs( gy - ny) <= 1.0) && ::Rokugan.openGround( px, pz, gy)){
+					best = Vector3D( px, gy, pz); bd = dd;
+				}
+			}
+		}
+		if( best) return best;
+	}
+	return null;
+};
+
+class RTFollowAction extends EventMoveAction
+{
+	rp3d = null;
+	evdata = null;
+	mvfunc = null;
+	moving = false;
+	colmask = null;
+	trail = null;
+
+	constructor( p){
+		rp3d = p;
+		evdata = p.event.data;
+		local b = rp3d["b3body"];
+		if( b){									//	walk through the party, not through the scenery
+			colmask = b.mask;
+			b.setCollisionFilter( b.group, colmask & ~0x100);
+		}
+		snapBehind();
+	}
+
+	function finish(){
+		local b = rp3d["b3body"];
+		if( b && colmask != null) b.setCollisionFilter( b.group, colmask);
+	}
+
+	function leader(){
+		local id = evdata["lead"];
+		if( !id) return ::rpgstage.player3d;
+		local e = ::rpgstage.getEvent( int( id));
+		return e ? e["rp3d"] : null;
+	}
+
+	//	Can a follower stand at (x, z), on a floor near the leader's height y? Not over a drop (nor water / no-entry:
+	//	::Rokugan.floorAt). Returns the floor y or null.
+	function standable( x, z, y){
+		local gy = ::Rokugan.floorAt( rp3d, x, z, y + 0.6, -1.4);
+		return (gy != null && gy >= y - 0.6) ? gy : null;
+	}
+
+	//	Put the follower gap metres behind its leader along the player's heading (a chain of followers lines up
+	//	behind the party even before anyone has moved), and restart the breadcrumb trail. If behind is water or a
+	//	drop (the player just walked up from a river bank), fan out to the sides, then in front, then the leader's own
+	//	spot: a follower never lands where there's no floor (user: "they keep falling through the floor").
+	function snapBehind(){
+		if( !::rpgstage) return;
+		local ld = leader();
+		if( !ld) return;
+		local gap = evdata["gap"] ?? 1.6, d = ::rpgstage.player3d.dir;
+		local p = null, py = ld.pos.y;
+		foreach( a in [0.0, 0.785, -0.785, 1.571, -1.571, 2.356, -2.356, 3.1416]){
+			local q = v_0( 0, 0, -gap).rotate( d + a, 0, 0).add( ld.pos);
+			local gy = standable( q.x, q.z, ld.pos.y);
+			if( gy != null){ p = Vector3D( q.x, gy, q.z); py = gy; break; }
+		}
+		if( !p) p = Vector3D( ld.pos);
+		printf( "[RT] FOLLOW snap %S -> %.2f %.2f %.2f (leader %.2f %.2f %.2f)\n", evdata["name"], p.x, py, p.z,
+		        ld.pos.x, ld.pos.y, ld.pos.z);
+		rp3d.pos( p.x, py, p.z);
+		rp3d.dir = d;
+		rp3d.matdirty = true;
+		trail = [ Vector3D( p.x, py, p.z), Vector3D( ld.pos)];
+	}
+
+	//	Record where the leader walks; return the trail point gap metres back from the leader (null = close enough).
+	function trailTarget( ld, gap){
+		local last = trail.last();
+		if( last.hypot( ld.pos) > 0.15){
+			trail .. Vector3D( ld.pos);
+			if( length( trail) > 80) trail = trail.slice( 20);		//	(arrays here have no remove())
+		}
+		local acc = 0.0, prev = ld.pos;
+		for( local i = length( trail) - 1; i >= 0; i --){
+			local q = trail[i];
+			acc += q.hypot( prev);
+			prev = q;
+			if( acc >= gap) return rp3d.pos.hypot( q) > 0.2 ? q : null;
+		}
+		return null;
+	}
+
+	function setAni( id){
+		local am = rp3d["animemap"];
+		if( id == "walk" && !(am && am["walk"])) id = "stand";
+		rp3d.anime2( { id = id });
+	}
+
+	function updateAction( dt){
+		if( !::rpgstage) return;
+		local ld = leader();
+		if( !ld) return;
+		local gap = evdata["gap"] ?? 1.6;
+		if( !trail) snapBehind();				//	the leader had not spawned yet when this one did
+		local dx = ld.pos.x - rp3d.pos.x, dz = ld.pos.z - rp3d.pos.z;
+		local r = Math.sqrt( dx*dx + dz*dz);
+		if( r > 9.0 || rp3d.pos.y < ld.pos.y - 3.0){	//	left behind (map arrival, battle return) or fell: catch up
+			snapBehind();
+			mvfunc = null;
+			if( moving){ moving = false; setAni( "stand"); }
+			return;
+		}
+		if( mvfunc){
+			mvfunc = mvfunc( dt);
+			if( mvfunc) return;
+		}
+		if( ::rpgstage.mainevent){				//	cutscenes and talk: stand still
+			if( moving){ moving = false; setAni( "stand"); }
+			return;
+		}
+		local tp = trailTarget( ld, gap);
+		if( tp){
+			local far = rp3d.pos.hypot( tp);
+			rp3d.dir = aimdir( rp3d.pos, tp);
+			if( !moving){ moving = true; setAni( "walk"); }
+			mvfunc = rp3d.walkTo( { target = tp, spd = Math.max( evdata["movespd"] ?? 4.0, far * 4.0) })( dt);
+			if( !mvfunc && r > gap + 1.5) snapBehind();		//	blocked by scenery: hop to the leader
+		}else if( moving){
+			moving = false;
+			setAni( "stand");
+		}
+	}
+
+	function resetAction(){
+		mvfunc = null;
+	}
+
+	function isNewtral(){
+		return rp3d.landed;
+	}
+}
+
+::RPGSystem.moveaction .. {
+	key = "rt_follow"
+	name = { "ja":"追従（護衛）", "en":"Follow (escort)" }
+	icon = ""
+	desc = ""
+	cls = RTFollowAction
+	props = []
+}
+
+//	Playtest helper: rpgcobo.exe -testplay -map M102 "[x,y,z,d]" -rtvar G010,G011,G061=0 sets those globals (true, or n)
+//	before the first stage launches (jump straight into a mid-chapter state).
+::RPGStage._rt_launch2 <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	local args = ::arguments, i = args.indexOf( "-rtvar");
+	if( !("rtargs_done" in ::Rokugan)){
+		::Rokugan.rtargs_done <- true;
+		foreach( k, a in args) printf( "[RT] arg %d %S\n", k, a);
+	}
+	if( i >= 0 && !("rtvar_done" in ::Rokugan)){
+		::Rokugan.rtvar_done <- true;
+		foreach( k in args[i+1].split( ",")){				//	G011 = true, G061=0 = a number
+			local kv = k.split( "=");
+			::rpgvar[kv[0]] = length( kv) > 1 ? int( kv[1]) : true;
+		}
+	}
+	//	-rtparty P123,P124,P120: those join the party (as companions do in a chapter) at Natsuko's level, so a -battle
+	//	test fights with the chapter's real party.
+	i = args.indexOf( "-rtlv");							//	-rtlv 20: the party starts at that level
+	if( i >= 0 && i + 1 < length( args) && !("rtlv_done" in ::Rokugan)){
+		::Rokugan.rtlv_done <- true;
+		local lv = int( args[i+1]);
+		foreach( p in ::rpgstat.members) if( p && p.LV < lv){ p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP; }
+	}
+	i = args.indexOf( "-rtequip");						//	-rtequip P100+4+A115 (slot 4 = accessory)
+	if( i >= 0 && i + 1 < length( args) && !("rtequip_done" in ::Rokugan)){
+		::Rokugan.rtequip_done <- true;
+		foreach( e in args[i+1].split( ",")){
+			local a = e.split( "+"), p = ::rpgstat.playermap[a[0]];
+			if( p){ p.setEquip( int( a[1]), RPGObject.create( a[2])); printf( "[RT] equip %S slot %S: %S\n", p.name, a[1], a[2]); }
+		}
+	}
+	i = args.indexOf( "-rtitem");						//	-rtitem I104x5,I001x2: put items in the bag
+	if( i >= 0 && i + 1 < length( args) && !("rtitem_done" in ::Rokugan)){
+		::Rokugan.rtitem_done <- true;
+		foreach( e in args[i+1].split( ",")){
+			local a = e.split( "x");
+			::rpgstat.addItemID( a[0], length( a) > 1 ? int( a[1]) : 1);
+			printf( "[RT] item %S x%S\n", a[0], length( a) > 1 ? a[1] : "1");
+		}
+	}
+	i = args.indexOf( "-rtmoney");						//	-rtmoney 5000: zeni in the purse
+	if( i >= 0 && i + 1 < length( args) && !("rtmoney_done" in ::Rokugan)){
+		::Rokugan.rtmoney_done <- true;
+		::rpgstat.money = int( args[i+1]);
+		printf( "[RT] money %d\n", ::rpgstat.money);
+	}
+	i = args.indexOf( "-rtlead");										//	-rtlead P101: another starter leads
+	if( i >= 0 && i + 1 < length( args) && !("rtlead_done" in ::Rokugan)){
+		::Rokugan.rtlead_done <- true;
+		local p = ::rpgstat.playermap[args[i+1]], k = ::rpgstat.members.findi( @( v) v);
+		if( p && k >= 0){
+			p.setLV( ::rpgstat.members[k].LV);
+			::rpgstat.members[k] = p;
+			printf( "[RT] lead %S LV%d\n", p.name, p.LV);
+			foreach( i, v in ::rpgstat.members) printf( "[RT] member %d %S\n", i, v ? v.dataid : "-");
+		}
+	}
+	i = args.indexOf( "-rtparty");
+	if( i >= 0 && i + 1 < length( args) && !("rtparty_done" in ::Rokugan)){
+		::Rokugan.rtparty_done <- true;
+		local lead = ::rpgstat.members.find( @( v) v);
+		foreach( pid in args[i+1].split( ",")){
+			local p = ::rpgstat.playermap[pid], k = ::rpgstat.members.findi( @( v) !v);
+			if( !p || k < 0 || ::rpgstat.members.indexOf( p) >= 0) continue;
+			::rpgstat.members[k] = p;
+			if( lead && p.LV < lead.LV) p.setLV( lead.LV);
+			printf( "[RT] party + %S LV%d\n", p.name, p.LV);
+		}
+	}
+	return _rt_launch2( opt);
+};
+
+//	Sumai (Natsuko's path action): the bout is fought bare-handed. sumaiBegin swaps the traveler's weapon for
+//	W106 Bare Hands (Throw = Unarmed bit, the bit Sumai opponents are weak to); sumaiEnd puts the weapon back.
+//	Called from cmd_script around the bout's cmd_battle1 (tools/gen_maps.py sumai()).
+::Rokugan.sumai_saved <- {};
+::Rokugan.sumaiBegin <- function( pid){
+	local p = ::rpgstat.playermap[pid];
+	if( !p) return;
+	local i = p.equips.findi( @( v) v && ::isWeapon( v.data["eqtype"]));
+	if( i == null || i < 0) i = 0;
+	::Rokugan.sumai_saved[pid] <- [i, p.equips[i]];
+	p.setEquip( i, RPGObject.create( "W106"));
+	local sv = ::Rokugan.sumai_saved[pid][1];
+	printf( "[RT] sumai begin %S: slot %d %S -> W106\n", pid, i, sv ? sv.dataid : null);
+};
+::Rokugan.sumaiEnd <- function( pid){
+	local p = ::rpgstat.playermap[pid], sv = ::Rokugan.sumai_saved[pid];
+	if( !p || !sv) return;
+	p.setEquip( sv[0], sv[1]);
+	delete ::Rokugan.sumai_saved[pid];
+	printf( "[RT] sumai end %S: slot %d restored %S\n", pid, sv[0], sv[1] ? sv[1].dataid : null);
+};
+
+//	Scripted playtests: -rtchoice 0,1,1 answers the next choice menus from the list (then normally);
+//	-rtfast logs each message ("[RT] MSG name: text") instead of waiting for a key. Combined with Auto Battle (V,
+//	persistent) a whole branch runs unattended, deterministically.
+::Rokugan.rtq <- null;
+::Rokugan.rtqi <- 0;
+::Rokugan.rtfast <- ::arguments.indexOf( "-rtfast") >= 0;
+{
+	local i = ::arguments.indexOf( "-rtchoice");
+	if( i >= 0) ::Rokugan.rtq = ::arguments[i+1].split( ",").map( @( v) int( v));
+}
+local rtShowChoices = function( cmd){
+	local q = ::Rokugan.rtq;
+	if( q && ::Rokugan.rtqi < length( q)){
+		local v = q[::Rokugan.rtqi];
+		::Rokugan.rtqi += 1;
+		local c = this.replaceTemplate( cmd);						//	(the log shows what the player sees)
+		printf( "[RT] CHOICE %d: %S\n", v, c["text" .. v]);
+		return v;
+	}
+	return this._rt_showChoices( cmd);
+};
+local rtShowMessage = function( cmd){
+	if( ::Rokugan.rtfast){
+		local c = this.replaceTemplate( cmd);
+		printf( "[RT] MSG %S: %S\n", c["name"] || "", c["text"] || "");
+		return;
+	}
+	return this._rt_showMessage( cmd);
+};
+foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]){
+	cls._rt_showChoices <- cls.showChoices;
+	cls._rt_showMessage <- cls.showMessage;
+	cls.showChoices <- rtShowChoices;
+	cls.showMessage <- rtShowMessage;
+}
+
+//	-rtauto: every battle starts in Auto Battle (unattended playtests).
+::Rokugan.rtauto <- ::arguments.indexOf( "-rtauto") >= 0;
+//	-rttank: the party is topped up to 9999 HP every turn (music / look tests that should run long).
+::Rokugan.rttank <- ::arguments.indexOf( "-rttank") >= 0;
+::Rokugan._rt_preturn2 <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	local b = ::rpgstage["battle"];
+	if( this.rtauto && b && !b.isauto) b.setAutoBattle( true);
+	this._rt_preturn2( chr);
+};
+//	-rttank: before every hit on a party member, HP back to full and the hit capped below it (nobody falls).
+::Rokugan._rt_tankattack <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( arg){
+	local r = this._rt_tankattack( arg);
+	local d = arg["dst"];
+	if( this.rttank && d && !(d instanceof ::RPGEnemy) && !d.isDead()){
+		d.HP = d.MAXHP;
+		if( ("val" in arg) && arg.val >= d.MAXHP) arg.val = d.MAXHP - 1;
+	}
+	return r;
+};
+
+//	-rtfast also skips the battle result's level-up panels and the final click wait.
+::RPGMain._rt_showUI <- ::RPGMain.showUI;
+::RPGMain.showUI <- function( t){
+	if( ::Rokugan.rtfast && (t.key == "misc_levelup" || t.key == "misc_waitclick")){
+		printf( "[RT] skip %S\n", t.key);
+		return null;
+	}
+	return this._rt_showUI( t);
+};
+
+//	Chance path actions: ::Rokugan.roll( pct). The engine's ::rnd is seeded from the clock at boot, so its first draws
+//	are nearly the same every launch; skip ahead by the millisecond timer before rolling.
+::Rokugan.roll <- function( pct){
+	local n = skGetTime() % 97;
+	for( local i = 0; i < n; i++) ::rnd.nextf();
+	local r = ::rnd.nextf( 0.0, 100.0);
+	printf( "[RT] roll %.1f vs %d\n", r, pct);
+	return r < pct;
+};
+
+//	World map fast travel (Octopath's map screen). gen_maps.py puts a road-map signpost in each town; examining it shows
+//	the painted map (EP360, gen_worldmap.py) and calls this with the node table. Only visited nodes (their G flag set
+//	by a silent arrival event) other than this one are offered.
+::Rokugan.travel <- function( runner, here, nodes){
+	local opts = nodes.filter( @( n) n.code != here && ::rpgvar[n.flag]);
+	::RPGMain.showPicture( { idx = 0, op = 0, picid = "EP360", pos = [640, 360], scale = 100, rot = 0, fade = 300,
+		flipx = false, col = 0xffffffff, easing = 0, aniid = null });
+	sleep( 320);
+	if( !length( opts)){
+		runner.showMessage( { key = "message_talk", name = "", uiclose = 2,
+			text = "The road map. You haven't been anywhere else yet." });
+		::RPGMain.showPicture( { idx = 0, op = 1, fade = 200 });
+		return;
+	}
+	local cmd = { backenable = true, cmdblocks = [] };
+	foreach( i, n in opts){ cmd["text" .. i] <- n.name; cmd.cmdblocks.append( []); }
+	cmd["text" .. length( opts)] <- "Stay here.";
+	cmd.cmdblocks.append( []);
+	local r = runner.showChoices( cmd);
+	::RPGMain.showPicture( { idx = 0, op = 1, fade = 200 });
+	if( r == null || r < 0 || r >= length( opts)) return;
+	local n = opts[r];
+	local mapid = n.mapid, pos = n.pos;
+	if( n["altflag"] && ::rpgvar[n.altflag]){ mapid = n.altmap; pos = n.altpos; }	//	e.g. Kyuden Hida in summer
+	printf( "[RT] travel %S -> %S (%S)\n", here, n.code, mapid);
+	runner.moveMap( { dest = { mapid = mapid, pos = pos }, wipe = 1, remap = true });
+};
+
+//	-rtshot <path.raw> <ms>: the game saves its own screenshot (works unfocused / behind other windows): <ms> after the
+//	first stage launch it renders the root view into a texture, reads the pixels and writes raw RGBA (prefixed by
+//	width, height as two little-endian ints). tools/snapmaps.py converts it to PNG.
+::Rokugan.rtshot <- function( path){
+	try{
+		local sp = ::rootview.capture();
+		local tex = sp.tex0, w = tex.width, h = tex.height;
+		local pb = PixelBuffer();
+		local n = 0;
+		while( !pb.readPixels( tex, 0, 0, w, h)){				//	busy: retry next frame
+			if( ++n > 120) throw "readPixels never started";
+			suspend();
+		}
+		while( !pb.isDone()) suspend();
+		{
+			local bb = pb.getData();
+			local out = ByteBuffer();
+			out.endian = 0;
+			out.puti( w);
+			out.puti( h);
+			out.putBuffer( bb);
+			out.pos = 0;
+			FileRef( path).save( out);
+			printf( "[RT] shot %S %dx%d\n", path, w, h);
+		}
+	}catch( ex){
+		printf( "[RT] shot failed\n");
+		printexception( ex);
+	}
+};
+{
+	local i = ::arguments.indexOf( "-rtshot");
+	if( i >= 0){
+		local path = ::arguments[i+1], ms = int( ::arguments[i+2]);
+		newthread().start( @(){
+			sleep( ms);
+			::Rokugan.rtshot( path);
+		});
+	}
+}
+
+//	-rtwalk <cdir>,<ms>[,<delay>[,<jump>]]: unattended movement test. After <delay> ms (default 3000) the stick is held
+//	in direction <cdir> (1-16, camera-relative, as PlayerMoveAction.cdir) for <ms> ms, jumping every <jump> ms when
+//	> 0; the player's position is logged ("[RT] POS x y z landed") every 250 ms. Checks invisible walls without keys.
+::Rokugan.rtwalk <- null;
+{
+	local i = ::arguments.indexOf( "-rtwalk");
+	if( i >= 0 && i + 1 < length( ::arguments)){
+		local a = ::arguments[i+1].split( ",").map( @( v) int( v));
+		::Rokugan.rtwalk = [a[0], float( a[1]), length( a) > 2 ? float( a[2]) : 3000.0, 0.0, 0.0,
+		                    length( a) > 3 ? float( a[3]) : 0.0, 0.0];
+	}
+}
+//	Safety net (user: "they keep falling through the floor"): remember the last spot the player stood on real floor
+//	(not water, not a no-entry cell); if she ever drops below the world (y < -1: a hole the map missed, a spawn on
+//	water), put her back there - or, with no such spot yet, on the nearest real floor.
+//	The spot belongs to the stage it was saved on: a battle arena's spot used on the map after the battle dropped her
+//	into a tree, over and over. A second rescue within 3 s means the spot itself is bad: drop it and search instead.
+::Rokugan.safepos <- null;
+::Rokugan.safestage <- null;
+::Rokugan.safecheck <- 0.0;
+::Rokugan.lastrescue <- 0;
+::Rokugan.dropt <- 0.0;
+::Rokugan.lastgy <- null;
+::PlayerMoveAction._rt_body <- ::PlayerMoveAction.updateActionBody;
+::PlayerMoveAction.updateActionBody <- function( dt){
+	local p = rp3d.pos, st = ::rpgstage;
+	if( ::Rokugan.safestage != st){ ::Rokugan.safepos = null; ::Rokugan.lastgy = null; ::Rokugan.safestage = st; }
+	if( st && st["battle"]) return this._rt_body( dt);			//	battle arenas: no safety net needed
+	if( !("rtdrop_done" in ::Rokugan) && ::arguments.indexOf( "-rtdrop") >= 0 && (::Rokugan.dropt += dt) > 2000.0){
+		::Rokugan.rtdrop_done <- true;						//	test flag -rtdrop: fall through the world once
+		::Rokugan.safepos = null;
+		rp3d.pos( p.x, -5.0, p.z);
+		rp3d.matdirty = true;
+		printf( "[RT] DROP at %.2f %.2f\n", p.x, p.z);
+	}
+	if( landed && p.y >= 0.0){
+		if( (::Rokugan.safecheck += dt) >= 200.0){			//	a sweep test 5x a second is plenty
+			::Rokugan.safecheck = 0.0;
+			::Rokugan.lastgy = p.y;
+			if( ::Rokugan.floorAt( rp3d, p.x, p.z, p.y + 0.3, -0.8) != null) ::Rokugan.safepos = Vector3D( p);
+		}
+	}else if( p.y < -1.0){
+		if( !::Rokugan.safepos && (::Rokugan.safecheck += dt) < 1000.0) return this._rt_body( dt);	//	search 1x/s
+		::Rokugan.safecheck = 0.0;
+		if( ::Rokugan.safepos && skGetTime( ::Rokugan.lastrescue) < 3000){
+			printf( "[RT] RESCUE spot %.2f %.2f failed: searching for floor\n", ::Rokugan.safepos.x, ::Rokugan.safepos.z);
+			::Rokugan.safepos = null;
+		}
+		::Rokugan.lastrescue = skGetTime();
+		local s = ::Rokugan.safepos || ::Rokugan.nearestFloor( rp3d, p.x, p.z, ::Rokugan.lastgy);
+		if( !s) printf( "[RT] RESCUE fell at %.2f %.2f -> nowhere\n", p.x, p.z);
+		if( s){
+			printf( "[RT] RESCUE fell at %.2f %.2f -> %.2f %.2f %.2f\n", p.x, p.z, s.x, s.y, s.z);
+			::Rokugan.safepos = Vector3D( s);
+			rp3d.pos( s.x, s.y, s.z);
+			rp3d.matdirty = true;
+			vec( 0.0);
+			landed = true;
+		}
+	}
+	local w = ::Rokugan.rtwalk;
+	if( w){
+		w[3] += dt;
+		if( w[3] >= w[2] && w[3] < w[2] + w[1]){
+			cdir = w[0];
+			if( w[5] > 0.0 && (w[6] += dt) >= w[5] && landed && !crimbing){
+				w[6] = 0.0;
+				local vy = getJumpHeight();
+				if( vy){ landed = false; vec.y = vy; printf( "[RT] JUMP\n"); }
+			}
+			if( (w[4] += dt) >= 250.0){
+				w[4] = 0.0;
+				printf( "[RT] POS %.2f %.2f %.2f %S\n", rp3d.pos.x, rp3d.pos.y, rp3d.pos.z, landed);
+			}
+		}
+	}
+	return this._rt_body( dt);
+};
+
+//	Taint (rules/enemies.md "Taint"; storyboard crab-ch3 "Taint tiles"): condition K026, stacks to 5 (the engine shows
+//	"Taint+n"), -6% max HP per stack, persists outside battle (gen_data). Shadowlands maps list their corrupted
+//	tiles in map.json "rt_taint" = { blocks = [block ids], pct = chance per step } (tools/gen_maps.py TAINT_TILES):
+//	each step on one may Taint a random party member. Jade Pouch (item) and Hiruma waystones cleanse it.
+::Rokugan.TAINT <- "K026";
+::RPGStage._rt_steps <- ::RPGStage.updateSteps;
+::Rokugan.clock <- 0.0;										//	frame clock for the rehearsal cues (sum of dt)
+::RPGStage.updateSteps <- function( dt){
+	::Rokugan.clock += dt;
+	local s0 = ::rpgvar.STEPCNT;
+	this._rt_steps( dt);
+	if( ::rpgvar.STEPCNT != s0 && !mainevent) ::Rokugan.taintStep( this);
+};
+::Rokugan.wears <- function( pc, id){
+	return !!pc.equips.find( @( q) q && q.dataid == id);
+};
+//	The Jade Finger (A115; user: "taint should be negated by holding jade finger as an accessory") makes its wearer
+//	immune to Taint from any source: Taint tiles, Command the Taint, maho.
+::RPGPlayer._rt_putCond <- ::RPGPlayer.putCondition;
+::RPGPlayer.putCondition <- function( condid){
+	if( condid == ::Rokugan.TAINT && (::Rokugan.wears( this, "A115") || ::Rokugan.wears( this, "A149"))){
+		printf( "[RT] Jade Finger: %S is not Tainted\n", this.name);
+		if( ::rpgstage && ::rpgstage["battle"]) ::Rokugan.pop( this, "Jade Finger", 0x80ff9cff);
+		return;
+	}
+	return this._rt_putCond( condid);
+};
+::Rokugan.taintStep <- function( st){
+	local tt = st.map["rt_taint"];
+	if( !tt) return;
+	local p = st.player3d.pos, bx = int( p.x * 2.0), bz = int( p.z * 2.0), by = int( p.y * 2.0 + 0.01) - 1;
+	if( by < 0 || bx < 0 || bz < 0 || bx >= st.bw.w || bz >= st.bw.d) return;
+	local b = st.bw.blockat( bx, by, bz) & 0xffff;
+	if( this.rtwalk) printf( "[RT] STEP %d,%d,%d block %d taint %S\n", bx, by, bz, b, tt.blocks.indexOf( b) >= 0);
+	local pct = ::arguments.indexOf( "-rttaint100") >= 0 ? 100 : tt.pct;	//	test flag: every Taint step hits
+	if( tt.blocks.indexOf( b) < 0 || !this.roll( pct)) return;
+	local live = ::rpgstat.members.filter( @( v) v && !v.isDead() && !::Rokugan.wears( v, "A115"));	//	Jade Finger
+	if( !length( live)) return;
+	local m = live[int( ::rnd.nextf( length( live))) % length( live)];
+	if( (this.wears( m, "A113") || this.wears( m, "A106")) && this.roll( 50)){	//	Scout's Jingasa, Old Jade Bead
+		printf( "[RT] TAINT warded off (%S)\n", m.name);
+		return;
+	}
+	m.putCondition( this.TAINT);
+	local lv = m.getConditionLV( this.TAINT);
+	st.player3d.popupDamage( "%S: Taint %d" % (this.given( m.name), lv), 0xc070ffff, 0);
+	::playSound( "SE224");
+	printf( "[RT] TAINT %S -> %d (MAXHP %d)\n", m.name, lv, m.MAXHP);
+};
+//	Heat tiles (Scorpion Ch4, Tamori's Furnace; storyboard scorpion-ch4 F-3: a status-tile rule like Taint, not the
+//	chapter gimmick). map.json "rt_heat" = { blocks = [block ids], pct = chance per step, dmg = % of max HP } (tools/
+//	gen_maps.py HEAT_TILES): a step on one may scorch every party member without a Tamori ward (A152 Heat-Ward, A153
+//	Ward-Robe), never below 1 HP. The mountain town's outfitter sells the ward; the Tamori apprentice tells you why.
+::RPGStage._rt_steps_heat <- ::RPGStage.updateSteps;
+::RPGStage.updateSteps <- function( dt){
+	local s0 = ::rpgvar.STEPCNT;
+	this._rt_steps_heat( dt);
+	if( ::rpgvar.STEPCNT != s0 && !mainevent) ::Rokugan.heatStep( this);
+};
+::Rokugan.heatStep <- function( st){
+	local ht = st.map["rt_heat"];
+	if( !ht) return;
+	local p = st.player3d.pos, bx = int( p.x * 2.0), bz = int( p.z * 2.0), by = int( p.y * 2.0 + 0.01) - 1;
+	if( by < 0 || bx < 0 || bz < 0 || bx >= st.bw.w || bz >= st.bw.d) return;
+	local b = st.bw.blockat( bx, by, bz) & 0xffff;
+	local pct = ::arguments.indexOf( "-rtheat100") >= 0 ? 100 : ht.pct;		//	test flag: every heat step scorches
+	if( ht.blocks.indexOf( b) < 0 || !this.roll( pct)) return;
+	local n = 0;
+	foreach( m in ::rpgstat.members){
+		if( !m || m.isDead() || this.wears( m, "A152") || this.wears( m, "A153")) continue;
+		local k = Math.max( 1, int( m.MAXHP * ht.dmg * 0.01));
+		m.HP = Math.max( 1, m.HP - k);
+		printf( "[RT] HEAT %S -%d (HP %d)\n", m.name, k, m.HP);
+		n++;
+	}
+	if( !n) return;
+	st.player3d.popupDamage( "Heat! (a Tamori heat-ward stops it)", 0xff8040ff, 0);
+	::playSound( "SE224");
+};
+//	Gale tiles (Unicorn Ch4, the wind tunnel to Shiro Iuchi; storyboard unicorn-ch4 F-3: a traversal texture like
+//	Taint, not the chapter gimmick). map.json "rt_gale" = { blocks = [block ids] } (tools/gen_maps.py GALE_TILES). The
+//	wind gusts and lulls on a two-beat rhythm (0.9 s each); a step onto a gale tile during a gust shoves the party back
+//	to the step before. Walk in the lull. Test flag -rtgale100: every gale step is a gust.
+::Rokugan.galeprev <- null;
+::Rokugan.galestage <- null;
+::RPGStage._rt_steps_gale <- ::RPGStage.updateSteps;
+::RPGStage.updateSteps <- function( dt){
+	local s0 = ::rpgvar.STEPCNT;
+	this._rt_steps_gale( dt);
+	if( ::rpgvar.STEPCNT != s0 && !mainevent) ::Rokugan.galeStep( this);
+};
+::Rokugan.galeStep <- function( st){
+	local gt = st.map["rt_gale"], r = st.player3d;
+	if( this.galestage != st){ this.galestage = st; this.galeprev = null; }
+	if( !gt || !r) return;
+	local p = r.pos, bx = int( p.x * 2.0), bz = int( p.z * 2.0), by = int( p.y * 2.0 + 0.01) - 1;
+	local gust = ::arguments.indexOf( "-rtgale100") >= 0 || ((skGetTime() / 900) % 2) == 0;
+	local on = by >= 0 && bx >= 0 && bz >= 0 && bx < st.bw.w && bz < st.bw.d
+		&& gt.blocks.indexOf( st.bw.blockat( bx, by, bz) & 0xffff) >= 0;
+	if( on && gust && this.galeprev){
+		local q = this.galeprev;
+		r.pos( q.x, q.y, q.z);
+		r.matdirty = true;
+		r.popupDamage( "The wind shoves you back! (walk in the lull)", 0xc0e0ffff, 0);
+		::playSound( "SE224");
+		printf( "[RT] GALE back to %.2f %.2f\n", q.x, q.z);
+		return;
+	}
+	this.galeprev = Vector3D( p);
+};
+//	Side-story skill upgrades (guests SS2 "[UPGRADE ...]"): the event grants the new skill as a permanent own option
+//	(::Rokugan.learn); once it is known, the old version leaves the skill list.
+local UPGRADES = { S172 = "S139" };			//	Goro SS2 The Bent Sword: Troll-Breaker -> 3 uses, ignores armour
+::Rokugan.learn <- function( pid, sid){
+	local p = ::rpgstat.playermap[pid];
+	if( !p || p.hasSkill( sid)) return;
+	if( !p.ownoptions) p.ownoptions = [];
+	p.ownoptions .. RPGOption( { LV = 1, opttype = "opt_getskill", skillid = sid });
+	p.updateOptions();
+	printf( "[RT] learn %S: %S\n", p.name, sid);
+	if( sid in UPGRADES) printf( "[RT]   replaces %S: %S\n", UPGRADES[sid], p.hasSkill( UPGRADES[sid]) ? "still listed" : "gone");
+};
+//	(Overriding RPGPlayer.udpateOwnLists, even as a bare pass-through, stops every battle from starting: the bit is set
+//	at the start of the player's turn instead. The spells taught this way are battle spells.)
+::Rokugan._rt_preturn_story <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_story( chr);
+	if( !(chr instanceof ::RPGPlayer)) return;
+	local id = chr.dataid;
+	if( !(id in this.STORY_SKILLS)) return;
+	foreach( fs in this.STORY_SKILLS[id])
+		if( ::rpgvar[fs[0]] && !chr.hasSkill( fs[1])) chr.skillbits = ::bitset( chr.skillbits, int( fs[1].substring( 1)));
+};
+
+//	Squeak's Dark-ways (storyboard crab-ch3: "reveals the map's chests"; Rats always know the dark-ways): while Squeak
+//	(P122) travels with Natsuko, arriving on a map pops how many unopened chests it holds, and every chest that has
+//	spawned (on screen) glints every 2 s.
+::Rokugan.dwlast <- 0;
+::Rokugan.darkwaysChests <- function( st){
+	local sq = ::rpgstat.playermap["P122"];
+	if( st["battle"] || !st["player3d"] || !sq || ::rpgstat.members.indexOf( sq) < 0) return [];
+	return st.events.filter( @( er) er.data["role"] == "itemchest" && !er.evar["A"]);
+};
+::Rokugan.darkwaysArrive <- function( st){
+	local n = length( this.darkwaysChests( st));
+	if( !n) return;
+	st.player3d.popupDamage( n == 1 ? "Squeak: shiny-box here!" : "Squeak: %d shiny-boxes here!" % n, 0xffe080ff, 0);
+	printf( "[RT] Dark-ways: %d chests on %S\n", n, st.mapid);
+};
+::Rokugan.darkwaysGlint <- function( st){
+	if( skGetTime( this.dwlast) < 2000) return;
+	this.dwlast = skGetTime();
+	foreach( er in this.darkwaysChests( st)) if( er["rp3d"]) er.rp3d.effect( { id = "FX020", pos = [0.0, 0.5, 0.0] });
+};
+//	Waystones and shrines: cleanse the whole party (returns how many stacks were lifted).
+::Rokugan.cleanseTaint <- function(){
+	local n = 0;
+	foreach( m in ::rpgstat.members){
+		if( m && m.hasCondition( this.TAINT)){ n += m.getConditionLV( this.TAINT); m.removeCondition( this.TAINT); }
+	}
+	printf( "[RT] cleanse: %d Taint lifted\n", n);
+	return n;
+};
+
+//	See-through bubble (user: "a cutout effect like a bubble around the player for when they are behind things"):
+//	the block shader (src/shader/vox.skfx rt_cut, backup in _tools/data_orig) drops dithered pixels of anything
+//	standing between the camera and the player. It reads the player's feet from env.worldpos (uniform WORLDPOS);
+//	zero turns it off (battles, cutscene cameras that don't follow her).
+::RPGStage._rt_body2 <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	this._rt_body2( dt);
+	::Rokugan.darkwaysGlint( this);
+	local env = view3d ? view3d.renderer.env : null;
+	if( !env) return;
+	if( this["battle"] || !player3d || ::arguments.indexOf( "-rtnocut") >= 0) env.worldpos = Vector3D( 0.0, 0.0, 0.0);
+	else env.worldpos = Vector3D( player3d.pos.x, player3d.pos.y, player3d.pos.z);
+};
+
+//	The rehearsal's timing prompts (Crane Ch4 S03, gen_maps REHEARSAL): cueStart() just before the "NOW!" message,
+//	cueEnd( ms) right after the player closes it; W = closed within ms. Date().getTime() only has whole seconds, so
+//	the elapsed time is the per-frame clock (the sum of updateSteps dt).
+local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716)
+::Rokugan.cueT0 <- null;
+::Rokugan.cueStart <- function(){
+	this.cueT0 = this.clock;
+	printf( "[RT] cue start clock %d\n", int( this.clock * 1000));
+};
+::Rokugan.cueEnd <- function( ms){
+	local dt = this.cueT0 == null ? 0.0 : this.clock - this.cueT0;
+	printf( "[RT] cue end clock %d (dt x1000 %d, limit %d)\n", int( this.clock * 1000), int( dt * 1000), ms);
+	return dt <= ms * CUE_UNIT;
+};
+
+//	Random encounters per path (maps shared by two chapters: the Lion/Phoenix shrine road). A group with rt_if rolls
+//	only while that rpgvar is set; rt_ifnot only while it is clear (tools/gen_maps.py ENCOUNTERS, 4th field).
+::RPGStage._rt_raiseEnc <- ::RPGStage.raiseEncounter;
+::RPGStage.raiseEncounter <- function(){
+	local all = map.encount, keep = [];
+	foreach( v in all){
+		local a = ("rt_if" in v) ? v.rt_if : null, b = ("rt_ifnot" in v) ? v.rt_ifnot : null;
+		if( (a && !::rpgvar[a]) || (b && ::rpgvar[b])) continue;
+		keep.append( v);
+	}
+	map.encount = keep;
+	try{ this._rt_raiseEnc(); }catch( ex){ map.encount = all; throw ex; }
+	map.encount = all;
+};
+
+//	Story-taught skills (a scroll given in a chapter, before the level curve would teach it): rpgvar flag -> skill id per
+//	player. Phoenix Ch2: Courage of the Seven Thunders (S368) from the Silent Court (G638).
+::Rokugan.STORY_SKILLS <- { P104 = [["G638", "S368"], ["G656", "S316"]],
+	P102 = [["G740", "S482"], ["G757", "S483"], ["G742", "S481"]],
+	P106 = [["G985", "S545"]] };										//	+ Unicorn Ch1: Hiroichi's telescope	//	+ Dragon Ch2: Subdue, the Bow, Daisho Technique	//	+ Phoenix Ch3: Hand of Jurojin
+::RPGPlayer._rt_ownlists <- ::RPGPlayer.udpateOwnLists;
+::RPGPlayer.udpateOwnLists <- function(){
+	this._rt_ownlists();
+	local id = this["dataid"];
+	if( !id || !(id in ::Rokugan.STORY_SKILLS)) return;
+	foreach( fs in ::Rokugan.STORY_SKILLS[id]) if( ::rpgvar[fs[0]]) skillbits = ::bitset( skillbits, int( fs[1].substring( 1)));
+};
+
+//	Every special skill names itself in the banner at the top, with its element (user: "not clear what is happening
+//	when the aoe attack goes off" / "I like it when spells show up at the top and show what element they are using,
+//	like Path to Inner Peace does"). The engine already shows "icon name" for skills whose flags bit 0 is off (the
+//	heal and buff spells); this shows "icon name - Element" for the rest, except plain weapon strikes. gen_data also
+//	gives area skills a cast and a spell effect (rt_aoe).
+::Rokugan.ELEM_NAMES <- ["Katana", "Yari", "Tanto", "Tetsubo", "Yumi", "Bo", "Fire", "Water", "Air", "Earth", "Void",
+	"Jade", "Unarmed", "Crystal"];
+::Rokugan.elemName <- function( bits){
+	if( bits & (1 << 13)) return this.ELEM_NAMES[13];								//	Crystal (Scorpion Ch1)
+	for( local i = 6; i <= 11; i++) if( bits & (1 << i)) return this.ELEM_NAMES[i];	//	the elements first
+	for( local i = 0; i <= 5; i++) if( bits & (1 << i)) return this.ELEM_NAMES[i];	//	then the weapon
+	return null;
+};
+::Rokugan._rt_pre_aoe <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local sk = cmd["skill"], src = cmd.src;
+	if( sk && src && ("flags" in sk) && (sk.flags & 1) && sk.name != "Strike"){
+		local plain = (src instanceof ::RPGPlayer) && sk == src.getAttackSkill();
+		if( !plain){
+			local el = this.elemName( sk["elembits"] | 0);
+			::RPGMain.showUI( { key = "info_top", time = 1200,
+				text = (sk["icon"] || "") + " " + sk.name + (el ? "  -  " + el : "") });
+			printf( "[RT] banner: %S uses %S (%S)\n", src.name, sk.name, el || "-");
+		}
+	}
+	return this._rt_pre_aoe( cmd);
+};
+
+//	Dragon Ch2-4: the History meter (rpgvar G748, 100 at the start; anachronisms lower it). It shows top-left on the
+//	year-400 maps once the orchard has taught it (G747). Events that change it call ::Rokugan.historyHUD().
+::Rokugan.HISTORY_MAPS <- { M321 = 1, M322 = 1, M323 = 1, M324 = 1, M325 = 1, M326 = 1, M327 = 1, M328 = 1,
+	M329 = 1, M330 = 1, M331 = 1, M332 = 1, M333 = 1, M334 = 1, M335 = 1, M336 = 1,		//	+ Dragon Ch3
+	M337 = 1, M339 = 1, M340 = 1, M341 = 1, M342 = 1 };										//	+ Dragon Ch4
+::Rokugan.historyHUD <- function(){
+	if( !::rootview) return;
+	local st = ::rpgstage, v = ::rootview.findChild( "rt_history");
+	local on = st && !st["battle"] && ::rpgvar["G747"] && (st["mapid"] in this.HISTORY_MAPS);
+	if( !on){
+		if( v) v.setVisible( false);
+		return;
+	}
+	local root = ::rootview.findChild( "stageui");
+	if( !v){
+		if( !root) return;
+		v = SKLabelView( "", FontAttribute( Fonts.get( "ui"), 20, 0xf0e0b0ff, SK_FONT_BOLD));
+		v.name = "rt_history";
+		v.bnd.set( 28, 22, 360, 30);
+		root.addChild( v);
+	}
+	v.setVisible( true);
+	v.setText( "History: %d%%" % int( ::rpgvar["G748"] || 0));
+	printf( "[RT] History HUD %d%%\n", int( ::rpgvar["G748"] || 0));
+};
+::RPGStage._rt_launch_hist <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	local r = _rt_launch_hist( opt);
+	try{ ::Rokugan.historyHUD(); }catch( ex){ printexception( ex); }
+	return r;
+};
+
+//	Scorpion Ch2 "City of Masks" (production: the mask gate). In the city's districts every masked traveler loses 5%
+//	of max SP each time a new district is entered (the masks drink the soul a little at a time). A district shrine
+//	takes the masks off (gen_maps mask_shrine: back to the bag, SP restored).
+::Rokugan.MASK_MAPS <- { M362 = 1, M364 = 1, M365 = 1, M366 = 1, M367 = 1 };
+::Rokugan.MASKS <- { A145 = 1, A146 = 1, A147 = 1, A148 = 1, A149 = 1, A150 = 1 };
+::Rokugan.maskmap <- null;
+::Rokugan.maskDrain <- function(){
+	local st = ::rpgstage;
+	if( !st || st["battle"]) return;
+	local mid = st["mapid"];
+	if( mid == this.maskmap) return;
+	this.maskmap = mid;
+	if( !(mid in this.MASK_MAPS)) return;
+	foreach( m in ::rpgstat.members){
+		if( !m) continue;
+		local eq = m.equips[4];
+		if( !eq || !(eq.dataid in this.MASKS)) continue;
+		local n = Math.max( 1, int( m.MAXMP * 0.05));
+		m.MP = Math.max( 0, m.MP - n);
+		printf( "[RT] MASK %S: SP -%d (%d/%d)\n", m.name, n, m.MP, m.MAXMP);
+		if( st["player3d"]) st.player3d.popupDamage( "%S's mask drinks: SP -%d" % (this.given( m.name), n), 0xd0a0ffff, 0);
+	}
+};
+::Rokugan.removeMasks <- function( keepGiseiki = false){
+	local n = 0;
+	foreach( m in ::rpgstat.members){
+		if( !m) continue;
+		local eq = m.equips[4];
+		if( eq && (eq.dataid in this.MASKS) && !(keepGiseiki && eq.dataid == "A150")){ ::rpgstat.addItem( eq); m.setEquip( 4, null); n++; }
+	}
+	printf( "[RT] masks removed: %d\n", n);
+	return n;
+};
+::Rokugan.wearsMask <- function( pid, aid){				//	gen_maps talk gates: is the leader wearing this mask?
+	local p = ::rpgstat.playermap[pid];
+	local eq = p ? p.equips[4] : null;
+	return eq ? (aid == null ? (eq.dataid in this.MASKS) : eq.dataid == aid) : false;
+};
+::RPGStage._rt_launch_mask <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	local r = _rt_launch_mask( opt);
+	try{ ::Rokugan.maskDrain(); }catch( ex){ printexception( ex); }
+	return r;
+};
+
+//	Music log (the soundtrack is unheard by the tools): every BGM change prints its id and file.
+::_rt_playBGMID <- ::playBGMID;
+::playBGMID <- function( bgmid){
+	local t = ::conf._resource.bgm[bgmid];
+	printf( "[RT] BGM %S %S\n", bgmid, t ? t["wav"] : "(missing)");
+	return ::_rt_playBGMID( bgmid);
+};
+::_rt_fadeBGMID <- ::fadeBGMID;
+::fadeBGMID <- function( bgmid, fadetime){
+	local t = ::conf._resource.bgm[bgmid];
+	printf( "[RT] BGM %S %S (fade)\n", bgmid, t ? t["wav"] : "(missing)");
+	return ::_rt_fadeBGMID( bgmid, fadetime);
+};
+
+//	The finale (production/finale.md, OCTOPATH-FIT §1): the eight travelers in two parties of four. Party A is
+//	::rpgstat.members (the battle takes every member); Party B waits in the reserve, a bitmask in G1160 (bit i =
+//	TRAVELERS[i]). The swap screen at the stockade gate / inn (tools/gen_maps.py PARTY_MENU) shows these labels.
+//	Whoever steps in is brought up to the best traveler's level (OT2: the bench shares the road's experience).
+::Rokugan.TRAVELERS <- ["P100", "P101", "P102", "P103", "P104", "P105", "P106", "P107"];
+::Rokugan.FKIT <- { P100 = ["W127", "A116"], P101 = ["W131", "A141"], P102 = ["W144", "A141"], P103 = ["W134", "A135"],
+	P104 = ["W144", "A140"], P105 = ["W147", "A127"], P106 = ["W135", "A159"], P107 = ["W134", "A141"] };
+::Rokugan.fpick <- -1;
+::Rokugan.fBits <- function(){ local b = ::rpgvar["G1160"]; return b ? int( b) : 0; };
+::Rokugan.fReserve <- function(){							//	Party B, in TRAVELERS order
+	local b = this.fBits(), a = [];
+	foreach( i, pid in this.TRAVELERS) if( (b >> i) & 1) a.append( ::rpgstat.playermap[pid]);
+	return a;
+};
+::Rokugan.fTopLV <- function(){
+	local lv = 1;
+	foreach( pid in this.TRAVELERS){ local p = ::rpgstat.playermap[pid]; if( p && p.LV > lv) lv = p.LV; }
+	return lv;
+};
+::Rokugan.fCatchUp <- function( p){
+	local lv = this.fTopLV();
+	if( p.LV < lv){ p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP; }
+	local w = p.equips[0], kit = this.FKIT[p.dataid];		//	a traveler whose own road wasn't walked in this save
+	if( kit && (!w || w.dataid <= "W106")){					//	arrives with road-worn gear of their own school
+		p.setEquip( 0, RPGObject.create( kit[0]));
+		if( !p.equips[3]) p.setEquip( 3, RPGObject.create( kit[1]));
+		printf( "[RT] finale kit %S: %S %S\n", p.name, kit[0], kit[1]);
+	}
+};
+::Rokugan.fRefresh <- function(){
+	foreach( p in ::rpgstat.members) if( p) ::rpgstat.discoverPlayer( p.dataid);
+	::rpgstage.changePlayer3D( ::rpgstage.stat.statmap.playermodel);
+	local a = ::rpgstat.members.filter( @( v) v).map( @( v) v.dataid), b = this.fReserve().map( @( v) v.dataid);
+	printf( "[RT] party A %S | B %S\n", a.join( ","), b.join( ","));
+};
+//	F01: everyone arrives. Story companions go home (Yosai to the Guest call); Party A = the traveler who walked here
+//	plus the next three; the rest wait in Party B.
+::Rokugan.fJoinAll <- function(){
+	local T = this.TRAVELERS, lead = ::rpgstat.members.find( @( v) v && T.indexOf( v.dataid) >= 0) || ::rpgstat.playermap["P100"];
+	for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = null;
+	local order = [lead];
+	foreach( pid in this.TRAVELERS){ local p = ::rpgstat.playermap[pid]; if( p != lead) order.append( p); }
+	local b = 0;
+	foreach( k, p in order){
+		this.fCatchUp( p);
+		if( k < 4) ::rpgstat.members[k] = p;
+		else b = b | (1 << this.TRAVELERS.indexOf( p.dataid));
+	}
+	::rpgvar["G1160"] = b;
+	this.fRefresh();
+};
+//	The epilogue (E01): one traveler walks their coda alone; the other seven wait in the reserve.
+::Rokugan.fLead <- function( pid){
+	local p = ::rpgstat.playermap[pid], b = 0;
+	foreach( i, t in this.TRAVELERS) if( t != pid) b = b | (1 << i);
+	for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = i == 0 ? p : null;
+	::rpgvar["G1160"] = b;
+	this.fRefresh();
+};
+::Rokugan.fSwapAll <- function(){
+	local a = ::rpgstat.members.filter( @( v) v), r = this.fReserve(), b = 0;
+	if( !length( r)) return;									//	nobody waiting: keep Party A
+	for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = i < length( r) ? r[i] : null;
+	foreach( p in r) this.fCatchUp( p);
+	foreach( p in a) b = b | (1 << this.TRAVELERS.indexOf( p.dataid));
+	::rpgvar["G1160"] = b;
+	this.fRefresh();
+};
+::Rokugan.fTrade <- function( ia, ib){						//	Party A slot ia <-> Party B entry ib
+	local r = this.fReserve();
+	if( ia < 0 || ia >= length( ::rpgstat.members) || ib < 0 || ib >= length( r)) return false;
+	local out = ::rpgstat.members[ia], inn = r[ib], b = this.fBits();
+	b = b & ~(1 << this.TRAVELERS.indexOf( inn.dataid));
+	if( out) b = b | (1 << this.TRAVELERS.indexOf( out.dataid));
+	this.fCatchUp( inn);
+	::rpgstat.members[ia] = inn;
+	::rpgvar["G1160"] = b;
+	this.fRefresh();
+	return true;
+};
+::Rokugan.fLabelA <- function( i){
+	local p = i < length( ::rpgstat.members) ? ::rpgstat.members[i] : null;
+	return p ? sprintf( "%S (Lv %d)", p.name, p.LV) : "(an empty place)";
+};
+::Rokugan.fLabelB <- function( i){
+	local r = this.fReserve();
+	return i < length( r) ? sprintf( "%S (Lv %d)", r[i].name, r[i].LV) : "(nobody)";
+};
+::Rokugan.fFight <- function(){								//	the final battle: who fights, who waits
+	local a = ::rpgstat.members.filter( @( v) v).map( @( v) v.name), b = this.fReserve().map( @( v) v.name);
+	return "Fighting: " .. a.join( ", ") .. ".\nWaiting: " .. b.join( ", ") .. ".";
+};
+::Rokugan.fSummary <- function(){
+	local a = ::rpgstat.members.filter( @( v) v).map( @( v) v.name), b = this.fReserve().map( @( v) v.name);
+	return "Party A: " .. a.join( ", ") .. ".\nParty B: " .. b.join( ", ") .. ".";
+};
+
+//	Party followers (user: "followers (companions etc) should start following you on screen as soon as you recruit
+//	em"): every party member after the leader walks the leader's trail, one step apart. They are sprites made here,
+//	not map events, so they always show whoever is in the party right now; rebuilt when the party changes (a join or a
+//	leave mid-scene shows at once) or a new map loads. No body: they never block a doorway. Escort followers that are
+//	map events (the supply cart, Kage in the Shadowlands) are separate (moveaction rt_follow above).
+::Rokugan.pfol <- { stage = null, sig = "", objs = [], trail = [], walking = [] };
+::Rokugan.PFOL_GAP <- 1.1;
+::Rokugan.partyFollow <- function( st){
+	local f = this.pfol, pl = st["player3d"];
+	if( st["battle"] || !pl || !st["scn"]) return;
+	local mem = ::rpgstat.members.filter( @( v) v);
+	local sig = mem.map( @( v) ("lookSig" in ::Rokugan) ? ::Rokugan.lookSig( v) : v.dataid).join( ",");	//	(+ equipment looks)
+	if( f.stage != st || f.sig != sig){
+		if( f.stage == st) foreach( o in f.objs) try{ st.scn.removeObject( o); }catch( ex){}
+		f.stage = st; f.sig = sig; f.objs = []; f.walking = [];
+		local d = pl.dir;
+		f.trail = [];
+		for( local j = 6; j >= 1; j --){				//	a starting trail straight behind the leader
+			local q = Vector3D( 0, 0, -this.PFOL_GAP * j * 0.75).rotate( d, 0, 0).add( pl.pos);
+			local gy = ::Rokugan.floorAt( pl, q.x, q.z, pl.pos.y + 0.6, -1.4);
+			f.trail .. (gy != null ? Vector3D( q.x, gy, q.z) : Vector3D( pl.pos));
+		}
+		f.trail .. Vector3D( pl.pos);
+		for( local i = 1; i < length( mem) && i < 4; i ++){
+			local cp = ::conf.player[mem[i].dataid], mdl = cp ? cp["mdlid"] : null;
+			if( "lookFor" in ::Rokugan){ local lk = null; try{ lk = ::Rokugan.lookFor( mem[i]); }catch( ex){} if( lk) mdl = lk; }
+			if( !mdl) continue;
+			try{
+				local o = RPG3DObject.create3DObject( { mdlid = mdl });
+				st.scn.addObject( o);
+				o.pos( pl.pos.x, pl.pos.y, pl.pos.z);
+				f.objs .. o;
+				f.walking .. false;
+			}catch( ex){ printexception( ex); }
+		}
+		printf( "[RT] party followers: %S\n", sig);
+	}
+	local last = f.trail.last();
+	if( last.hypot( pl.pos) > 0.12){
+		f.trail .. Vector3D( pl.pos);
+		if( length( f.trail) > 120) f.trail = f.trail.slice( 20);		//	(arrays here have no remove())
+	}
+	foreach( k, o in f.objs){
+		local want = this.PFOL_GAP * (k + 1), acc = 0.0, prev = pl.pos, tp = null;
+		for( local i = length( f.trail) - 1; i >= 0; i --){		//	the trail point (k+1) steps back
+			acc += f.trail[i].hypot( prev);
+			prev = f.trail[i];
+			if( acc >= want){ tp = f.trail[i]; break; }
+		}
+		if( !tp) tp = f.trail[0];
+		local dx = tp.x - o.pos.x, dz = tp.z - o.pos.z, r = Math.sqrt( dx * dx + dz * dz);
+		local moving = r > 0.02;
+		if( r > 6.0){ o.pos( tp.x, tp.y, tp.z); }				//	left behind (a cutscene warp): catch up
+		else if( moving){
+			local s = Math.min( 1.0, 0.25 + r);				//	ease toward it
+			o.pos( o.pos.x + dx * s, o.pos.y + (tp.y - o.pos.y) * s, o.pos.z + dz * s);
+			o.dir = aimdir( o.pos, tp);
+		}
+		o.matdirty = true;
+		if( moving != f.walking[k]){
+			f.walking[k] = moving;
+			try{ o.anime2( { id = moving ? "walk" : "stand" }); }catch( ex){}
+		}
+	}
+};
+::RPGStage._rt_body_pf <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	this._rt_body_pf( dt);
+	try{ ::Rokugan.partyFollow( this); }catch( ex){ printexception( ex); }
+};
+
+//	Closed roads (tools/gen_maps.py mark_exits): a barricade is map events with memo "barricade", shown while a flag
+//	says the road is closed. If that flag changes while the player is on the map (a scene just opened the road), the
+//	map reloads in place once the scene is over, so the barricade is simply gone (user: "just have it refresh the map
+//	without the barricades when the road does open").
+::Rokugan.barri <- { stage = null, flags = {} };
+::Rokugan.barricadeCheck <- function( st){
+	local b = this.barri;
+	if( st["battle"] || !st["player3d"]) return;
+	if( b.stage != st){
+		b.stage = st; b.flags = {};
+		local map = ::conf.map[st.mapid];
+		if( map && map["event"]) foreach( e in map.event){
+			if( e && e["memo"] == "barricade" && e["reqs0"]) foreach( r in e.reqs0) b.flags[r.lvar] <- ::rpgvar[r.lvar];
+		}
+		return;
+	}
+	if( st.mainevent || !length( b.flags)) return;
+	foreach( k, v in b.flags){
+		if( ::rpgvar[k] != v){
+			local p = st.player3d.pos;
+			printf( "[RT] road opened (%S): reloading %S\n", k, st.mapid);
+			b.flags = {};
+			::RPGMain.moveMap( { dest = { mapid = st.mapid, pos = (p.x, null, p.z, st.player3d.dir) }, wipe = 1, remap = true });
+			return;
+		}
+	}
+};
+::RPGStage._rt_body_bar <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	this._rt_body_bar( dt);
+	try{ ::Rokugan.barricadeCheck( this); }catch( ex){ printexception( ex); }
+};
+
+//	Outline one map character by model id for a scene ("" clears). The prologue's introductions.
+::Rokugan.spotlight <- function( mdl){
+	foreach( e in ::rpgstage.events){
+		if( e.rp3d) e.rp3d.setSelected( e.data["mdlid"] == mdl ? 1 : 0);
+	}
+};

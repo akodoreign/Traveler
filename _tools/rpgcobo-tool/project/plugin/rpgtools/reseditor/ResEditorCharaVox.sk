@@ -1,0 +1,382 @@
+//***LicenseHere
+
+import VirtualKeyCode;
+import ModifiersMask;
+import PropertyType;
+import RPGPropertyType;
+
+local srcdir = dirname( callee().getSourceName());
+
+////////////////////////////////////////////////////////////////////////////////
+//	
+//	ResEditorCharaVox : 装備ボクセルの編集。
+//	プロパティは特に特別なことはないので標準プロパティ編集。
+//	プレビューは持ち方タイプによってアニメを変えられる
+//	
+//	
+//	武器、盾、左手武器(=弓)
+//	
+
+local colshplist = [
+	{ lbl="BOX", icon="\ue3e0", val=SK_SHAPE_BOX },
+	{ lbl="SPHERE", icon="\ue836", val=SK_SHAPE_SPHERE },
+	{ lbl="CAPSULE", icon="\ue0d4", val=SK_SHAPE_CAPSULE },
+	{ lbl="CYLINDER", icon="\ue71c", val=SK_SHAPE_CYLINDER },
+];
+
+local charataglist = [
+	{ lbl="$T.charavox_player", icon="\uf250", val=0 },
+	{ lbl="$T.charavox_mob", icon="\uf251", val=1 },
+	{ lbl="$T.charavox_enemy", icon="\uf252", val=2 },
+	{ lbl="$T.charavox_box", icon="\uf255", val=3 },
+	{ lbl="$T.charavox_animal", icon="\uf823", val=4 },
+];
+
+//	
+class ResEditorCharaVox extends ResEditor
+{
+	static props = [
+		{ pid="name", lbl="$T.lbl_name", type=LANGSTRING, defval=null }
+		{ pid="tags", lbl="$T.lbl_tags", type=CHECKBITS, list=charataglist, defval=3 }
+		{ pid="vox", lbl="$T.lbl_model", type=GRAPHIC, dir="/resource/vox/chara", restype="chara_vox", defval=null }
+		{ pid="mot", lbl="$T.lbl_motion", type=LIST, list=@( pl) pl.ref.motlist, defval=null }
+		{ pid="pal", lbl="$T.lbl_palette", type=PALETTEMAP, cnt="cnt6.ui",
+			inipal=@( pl) pl.ref.getIniPalette(),
+			palchange=@( palmod) ::skstudio.editor.paletteChanged( palmod)
+		}
+
+		{ pid="vox_itemr", lbl="$T.equip ($T.weapon)", type=RESID, restype=["equip_vox"], defval=null, nullable=true, get=@( prop, data) data[prop.pid]??null }
+		{ pid="vox_iteml", lbl="$T.equip ($T.shield)", type=RESID, restype=["equip_vox"], defval=null, nullable=true, get=@( prop, data) data[prop.pid]??null }
+
+		{ pid="colshp",	lbl="$T.lbl_collision",	type=LIST, list=colshplist, defval=SK_SHAPE_CAPSULE },
+		{ pid="colsize", lbl="$T.lbl_size", type=VEC3, range=(0.01,1.5),q=100, defval=(0.4,0.8,0.4) },
+		{ pid="animap", lbl="$T.lbl_anime", type=ANIMEMAP, defval=[], cnt="cnt6.ui", },
+		{ pid="memo", lbl="$T.lbl_memo", type=STRING, multiline=true, cnt="cnt6.ui", },
+	];
+
+	static titlelbl = "$T.lbl_resedit : $T.side_res_chara_vox";
+	
+	motlist = null;
+
+	function init( path){
+		super.init( path);
+		motlist = [];
+		resdirpath = ::resroot.file.path .. "/resource/vox/chara";
+	}
+	
+	function itemSelected( v){
+		local d = v.data;
+		if( !d) d = v.data = data[v.id] <- { name=""};
+		setDefaultProperties( props, d);
+	//	motion list
+		local vc = ::getResourceContent( d.vox), mottype = vc["meta"]["mot"];
+		motlist = setupMotionList( mottype);
+		//
+		proplist.bindProperties( props);
+		proplist.setParameters( d);
+		//	
+		preview.setResourceData( v.id, d);
+		preview.setAnimations();
+	}
+
+	function updateItemView( resid, d){
+		super.updateItemView( resid, d);
+		if( resid == selitem.id){
+			preview.setResourceData( resid, d);
+			preview.setAnimations();
+		}
+	}
+	
+	function isValidData( d){
+		return !!d["name"] && !!d["vox"] && d["mot"];
+	}
+
+	function propevent( e){
+		local cmd = e.actioncmd;
+		if( cmd.cmd != "prop") return;
+		local pid = cmd.prop.pid, val = cmd.val;
+		switch( pid){
+		case "vox":	// vox変更によって、名前、パレット、中心点
+			setVoxParamOp( val);
+			break;
+		default:
+			setParamOp( selitem.id, cmd.prop, val);
+			break;
+		}
+	}
+
+	function getIniPalette( vox=null){
+		if( !vox) vox = data[selitem.id].vox;
+		local vc = ::getResourceContent( vox), vcpal = vc.pal;
+		local ca = vc.getUsingColors();		//	パレット
+		local palmod = [];
+		foreach( v in ca){
+			if( v<249) palmod .. v .. vcpal[v];
+		}
+		return palmod;
+	}
+
+	function setupMotionList( mottype){
+		local a = [];
+		foreach( r in ::getResource( "/resource/mot/"..mottype)?.getList()){
+			a .. { lbl:r.name, icon:"\ue7d0", val:r.path };
+		}
+		return a;
+	}
+
+	function setVoxParamOp( val){
+		local vc = ::getResourceContent( val);
+		local palmod = getIniPalette( val);
+		local resid = selitem.id, d = data[resid], self = this;
+		local oldvox = d["vox"], oldpal = d["pal"], oldname = d["name"], oldmot = d["mot"];
+		local changename = !length( d.name), changemot = false, mot;
+		local name = val.substring( val.lastIndexOf( "/")+1, val.lastIndexOf( "."));
+		//	motion
+		local mottype = vc.meta["mot"];
+		motlist = setupMotionList( mottype);
+		if( !motlist.find( @( v) v.val==oldmot )){
+			changemot = true;
+			mot = motlist[0]["val"];
+		}
+		//	
+		local redo = [@(){
+			if( changename) d.name <- {[::lang.code]=name};
+			if( changemot) d.mot <- mot;
+			d.vox <- val;
+			d.pal <- palmod;
+			self.updateItemView( resid, d);
+		}];
+		local undo = [@(){
+			if( changename) d.name <- oldname;
+			if( changemot) d.mot <- oldmot;
+			d.vox <- oldvox;
+			d.pal <- oldpal;
+			self.updateItemView( resid, d);
+		}];
+		submitOp( redo, undo, null);	//	trk無し
+		refresh();
+	}
+
+	function itemAction( e){
+		// local d = e.actioncmd["data"];
+		// if( d["vox"]) editVox( d.vox);
+	}
+
+	function showItemContextMenu( e){
+		local cbdata = getClipboard( "resitem");	//	開くたびにクリップボード取得しちゃうけどまーだいじょぶかな
+		local d = selitem.data;
+		local motok = d["mot"] && getMotionBlendFile( d.mot).exists();
+		//
+		local menudata = [
+			{ id="editvox", lbl="$T.lbl_editvox", icon="\ue745" },
+			{ id="editmot", lbl="$T.lbl_editmot", icon="\ue566" },
+			{ id="dup", lbl="$T.lbl_duplicate", icon="\ue2bd", submenu=[
+				{ id="dup_voxel", lbl="$T.lbl_voxel - %S"   % (!d["vox"]? "$T.lbl_none"  : d.vox.substring( d.vox.lastIndexOf( "/")+1)), icon="\uf11c", disable=!d.vox },
+				{ id="dup_motion", lbl="$T.lbl_motion - %S" % (!motok? "$T.lbl_disabled" : d.mot.substring( d.mot.lastIndexOf( "/")+1)), icon="\ue566", disable=!motok},
+			]}
+			"-"
+			{ id="copy", lbl="$T.menu_edit_copy", icon="\ue14d" },
+			{ id="paste", lbl="$T.menu_edit_paste", icon="\ue14f", disable=!isPastable( cbdata)},
+			{ id="delete", lbl="$T.lbl_delete", icon="\ue872", disable=!isValidData( selitem["data"])},
+			"-",
+			{ id="sort", lbl="$T.lbl_idsort", icon="\ue240"},
+			{ id="dir", lbl="$T.lbl_openresdir", icon="\ue89e"},
+			{ id="motdir", lbl="$T.lbl_openmotdir", icon="\ue89e"},
+		]
+		local ret = MenuPopup.run( menudata);
+		switch( ret["id"]){
+		case "editvox": return editVox( d.vox);
+		case "editmot": return editMotion( selitem);
+		case "copy": return copy();
+		case "paste": return paste( cbdata);
+		case "delete": return deleteItem( selitem);
+		case "sort": return showIDSortDialog();
+		case "dir": return skOpenURL( "dir://"..resdirpath);
+		case "motdir": 
+			local d = selitem["data"];
+			local workpath = d.mot.substring( 14, length( d.mot)-4) + ".blend";
+			local f = FileRef( "work/mot/"+workpath);
+			return skOpenURL( "dir://"..f.path);
+		case "dup_voxel": return showDuplicateVoxel( selitem);
+		case "dup_motion": return showDuplicateMotion( selitem);
+		}
+	}
+
+	function showDuplicateVoxel( item){
+		local d = item.data;
+		local vn = d.vox.substring( 0, d.vox.lastIndexOf( ".")), i = 1, vpath;
+		for( ;;i ++){
+			vpath = `$vn-$i`;
+			local f = FileRef( ::resroot.file.path .. vpath .. ".vox");
+			if( !f.exists()) break;
+		}
+		local vdir = vpath.substring( 0, vpath.lastIndexOf( "/"));
+		local propdef = {
+			name = "$T.lbl_duplicate: $T.lbl_voxel", icon = "\uf11c",
+			props = [
+				{ pid="vn", lbl="$T.lbl_file", type=STRING, cnt="cnt.ui", },
+			],
+		}
+		local ret = PropertyEditPopup_OK.run( null, propdef, { vn=vpath.substring( length( vdir)+1)});
+		if( ret){
+			local newvox = `$vdir/${ret.vn}.vox`, oldvox = d.vox, self = this;
+			local f0 = FileRef( ::resroot.file.path .. oldvox);
+			local f1 = FileRef( ::resroot.file.path .. newvox);
+			//	ファイルコピーはundo不能
+			printf( "voxel copy %S => %S\n", f0.path, f1.path);
+			f0.copyTo( f1);
+			::skstudio.fileview.refreshDir( vdir);
+			//	itemのvoxを変更。これはundo操作。
+			local redo = [@(){ d.vox = newvox; self.updateItemView( item.id, d); }];
+			local undo = [@(){ d.vox = oldvox; self.updateItemView( item.id, d); }];
+			submitOp( redo, undo, null);
+			refresh();
+			Popups.showInfo( "$T.pop_vox_copied");
+		}
+	}
+
+	function showDuplicateMotion( item){
+		local d = item.data;
+		local mn = d.mot.substring( 0, d.mot.lastIndexOf( ".")), i = 1, mpath;
+		for( ;;i ++){
+			mpath = `$mn-$i`;
+			local f = FileRef( ::resroot.file.path .. mpath .. ".mot");
+			if( !f.exists()) break;
+		}
+		local mdir = mpath.substring( 0, mpath.lastIndexOf( "/"));
+		local propdef = {
+			name = "$T.lbl_duplicate: $T.lbl_motion", icon = "\ue566",
+			props = [
+				{ pid="mn", lbl="$T.lbl_file", type=STRING, cnt="cnt.ui", },
+			],
+		}
+		local ret = PropertyEditPopup_OK.run( null, propdef, { mn=mpath.substring( length( mdir)+1)});
+		if( ret){
+			local newmot = `$mdir/${ret.mn}.mot`, oldmot = d.mot, self = this;
+			local b0 = getMotionBlendFile( oldmot);
+			local b1 = getMotionBlendFile( newmot);
+			local f0 = FileRef( ::resroot.file.path .. oldmot);
+			local f1 = FileRef( ::resroot.file.path .. newmot);
+			//	ファイルコピーはundo不能。blendも一緒にコピーしないと編集できない。。。
+			printf( "blend copy %S => %S\n", b0.path, b1.path);
+			b0.copyTo( b1);
+			printf( "motion copy %S => %S\n", f0.path, f1.path);
+			f0.copyTo( f1);
+			::skstudio.fileview.refreshDir( mdir);
+			//	itemのvoxを変更。これはundo操作。
+			local redo = [@(){ d.mot = newmot; self.updateItemView( item.id, d); }];
+			local undo = [@(){ d.mot = oldmot; self.updateItemView( item.id, d); }];
+			submitOp( redo, undo, null);
+			refresh();
+			Popups.showInfo( "$T.pop_mot_copied");
+		}
+	}
+
+	function editVox( voxpath){
+		local fn = voxpath.substring( 10);	//	MagicaVoxelからのパス
+		local prm = {
+			name = "MagicaVoxel"
+			exe = FileRef( "tools/magicavoxel_open.ps1")
+			args = [fn]
+		};
+		Dialogs.launchTool( prm);
+	}
+
+	function getMotionBlendFile( mot){
+		local workpath = mot.substring( 14, length( mot)-4) + ".blend";
+		return FileRef( "work/mot/"+workpath);
+	}
+	
+	function editMotion( item){
+		local d = item["data"];		//"mot":"/resource/mot/leg2_man/man_1.mot",
+		local f = getMotionBlendFile( d.mot);
+		if( f.exists()){
+			local prm = {
+				name = "Blender"
+				exe = FileRef( "tools/blender_open.ps1")
+				args = f.path
+			};
+			Dialogs.launchTool( prm);
+		}
+	}
+
+	//	カラー選択パレットの変更をプレビューに反映
+	function paletteChanged( palmod){
+		local vc = ::getResourceContent( data[selitem.id].vox);
+		if( !vc) return;
+		local pal = vc.pal.getModPalette( palmod);
+		local tex = pal.getTexture();
+		local sk3d = preview.sk3d;
+		foreach( m in sk3d.getMaterials()){
+			m.tex2 = tex;	//	もし武器が付いてたらそのパレットも変わっちゃうな
+		}
+	}
+}
+
+class ResEditorCharaVox.ResPreview extends ResEditor.ResPreview
+{
+	skcol = null;
+
+	constructor( v, e){
+		super( v, e);
+		local scn = view3d.scn, b3world = scn.getB3World();
+		skcol = SK3DCollisionPreview( b3world);
+		scn.addObject( skcol);
+		pntchk.setSelected( true);
+		anig.setVisible( true);
+	}
+
+	function setResourceData( id, val){
+		super.setResourceData( id, val);
+		if( !skcol.scn){
+			view3d.scn.addObject( skcol);	//	clearされちゃってたら追加
+			skcol?.setVisible( pntchk.isSelected());
+		}
+		if( sk3d){
+			if( !sk3d.hasEquipVox( "item_R")) sk3d.setEquipVox( conf._resource.equip_vox["EV000"], "item_R");
+			if( !sk3d.hasEquipVox( "item_L")) sk3d.setEquipVox( conf._resource.equip_vox["EV004"], "item_L");
+		}
+	}
+
+	function setAnimations(){
+		local animelist = sk3d["animelist"];
+		local selid = animenu.selitem["id"] || "stand";
+		if( animelist){
+			local menudata = animelist.map( @( v){
+				return { lbl = "$T.anim_"..v.id, icon = v["icon"]||"\uf2c0", id = v.id, val = v }
+			});
+			// menudata[0] <- { lbl = "$T.lbl_pause", val = { st:0, }, icon="\ue034", }
+			animenu.setMenu( menudata);
+			animenu.selectItem( @( v) v.id==selid);
+		}else{
+			animenu.setMenu( [{lbl="$T.lbl_none", val = null}]);
+		}
+	}
+
+	function actionevent( e){
+		switch( e.src["name"]){
+		case "playbtn":
+			local v = animenu.selitem.val;
+			if( sk3d) sk3d.tanime( v);
+			break;
+		case "stopbtn":
+			if( sk3d) sk3d.tanime( { st=0});
+			break;
+		case "pntchk":
+			if( sk3d) skcol?.setVisible( pntchk.isSelected());
+		case "animenu":
+			local v = animenu.selitem.val;
+			if( sk3d) sk3d.tanime( v);
+			break;
+		case "rbtn":
+		case "lbtn":
+			local i = animenu.menuitems.indexOf( animenu.selitem);
+			i = Math.clamp( i+(e.src.name=="rbtn"?1:-1), 0, length( animenu.menuitems)-1);
+			local v = animenu.menuitems[i];
+			animenu.selectItem( v);
+			if( sk3d) sk3d.tanime( v.val);
+			break;
+		}
+		if( !e.consumed) super.actionevent( e);
+	}
+}

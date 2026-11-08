@@ -1,0 +1,348 @@
+{
+	"_meta": {
+		"version": 1
+	},
+	"dmgform": [
+		{
+			"formula": "atk:@() src.PATK*rnd(2.0,2.2)\ndef:@() dst.PDEF\nhit:@() src.PHIT-dst.PEVA\ncri:@() src.CRI-dst.CEVA",
+			"icon": "",
+			"name": "Physical attack"
+		},
+		{
+			"formula": "atk:@() src.MATK+pow\ndef:@() dst.MDEF",
+			"icon": "",
+			"name": "Magic attack"
+		},
+		{
+			"formula": "atk:@() src.MATK+pow\ndef:@() dst.MDEF/16\neva:@() 1.0",
+			"icon": "",
+			"name": "Healing magic"
+		},
+		{
+			"formula": "atk:@() src.MATK+pow\ndef:@() dst.PDEF",
+			"icon": "",
+			"name": "Physical magic"
+		},
+		{
+			"formula": "atk:@() 100\ndef:@() (dst.PDEF+dst.MDEF)/4",
+			"icon": "",
+			"name": "Attack item"
+		},
+		{
+			"formula": "atk:@() 100",
+			"icon": "",
+			"name": "Healing item"
+		},
+		{
+			"formula": "hit:@() { return debuffRate( dst, skill.putconds, skill.hitrate); }",
+			"icon": "",
+			"name": "Debuff"
+		},
+		{
+			"name": "Rokugan heal",
+			"icon": "",
+			"formula": "atk:@() src.MATK*1.2+pow+dst.MAXHP*pow/300.0\ndef:@() 0\neva:@() 1.0"
+		}
+	],
+	"elem": [
+		{
+			"icon": "",
+			"name": "Katana"
+		},
+		{
+			"icon": "",
+			"name": "Yari"
+		},
+		{
+			"icon": "",
+			"name": "Tanto"
+		},
+		{
+			"icon": "",
+			"name": "Tetsubo"
+		},
+		{
+			"icon": "",
+			"name": "Yumi"
+		},
+		{
+			"icon": "",
+			"name": "Bo"
+		},
+		{
+			"icon": "",
+			"name": "Fire"
+		},
+		{
+			"icon": "",
+			"name": "Water"
+		},
+		{
+			"icon": "",
+			"name": "Air"
+		},
+		{
+			"icon": "",
+			"name": "Earth"
+		},
+		{
+			"icon": "",
+			"name": "Void"
+		},
+		{
+			"icon": "",
+			"name": "Jade"
+		},
+		{
+			"icon": "",
+			"name": "Unarmed"
+		},
+		{
+			"icon": "",
+			"name": "Crystal"
+		}
+	],
+	"eqflag": [
+		{
+			"icon": "",
+			"name": "Traveler's gear"
+		},
+		{
+			"icon": "",
+			"name": "Women's gear"
+		},
+		{
+			"icon": "",
+			"name": "Elven gear"
+		},
+		{
+			"icon": "",
+			"name": "Heavy gear"
+		}
+	],
+	"eqslot": [
+		{
+			"eqtypebits": 255,
+			"icon": "",
+			"name": "Weapon"
+		},
+		{
+			"eqtypebits": 768,
+			"icon": "",
+			"name": "Shield"
+		},
+		{
+			"eqtypebits": 3072,
+			"icon": "",
+			"name": "Head"
+		},
+		{
+			"eqtypebits": 57344,
+			"icon": "",
+			"name": "Body"
+		},
+		{
+			"eqtypebits": 196608,
+			"icon": "",
+			"name": "Accessory"
+		}
+	],
+	"eqtype": [
+		{
+			"eqctg": 0,
+			"icon": "",
+			"name": "Unarmed"
+		},
+		{
+			"eqctg": 0,
+			"icon": "",
+			"name": "Tanto"
+		},
+		{
+			"eqctg": 0,
+			"icon": "",
+			"name": "Katana"
+		},
+		{
+			"eqctg": 0,
+			"icon": "",
+			"name": "Yari"
+		},
+		{
+			"eqctg": 0,
+			"icon": "",
+			"name": "Axe"
+		},
+		{
+			"eqctg": 0,
+			"icon": "",
+			"name": "Bo"
+		},
+		{
+			"eqctg": 0,
+			"icon": "",
+			"name": "Yumi"
+		},
+		{
+			"eqctg": 0,
+			"icon": "",
+			"name": "Tetsubo"
+		},
+		{
+			"eqctg": 1,
+			"icon": "",
+			"name": "Light Shield"
+		},
+		{
+			"eqctg": 1,
+			"icon": "",
+			"name": "Heavy Shield"
+		},
+		{
+			"eqctg": 2,
+			"icon": "",
+			"name": "Hat"
+		},
+		{
+			"eqctg": 2,
+			"icon": "",
+			"name": "Helmet"
+		},
+		{
+			"eqctg": 2,
+			"icon": "",
+			"name": "Hair Ornament"
+		},
+		{
+			"eqctg": 2,
+			"icon": "",
+			"name": "Clothes"
+		},
+		{
+			"eqctg": 2,
+			"icon": "",
+			"name": "Light Armour"
+		},
+		{
+			"eqctg": 2,
+			"icon": "",
+			"name": "Heavy Armour"
+		},
+		{
+			"eqctg": 2,
+			"icon": "",
+			"name": "Accessory"
+		},
+		{
+			"eqctg": 2,
+			"icon": "",
+			"name": "Accessory"
+		}
+	],
+	"jobflag": [
+		{
+			"icon": "",
+			"name": "Hero's mark"
+		},
+		{
+			"icon": "",
+			"name": "Royal blood"
+		}
+	],
+	"jobslot": [
+		{
+			"icon": "",
+			"lock": 1,
+			"name": "School"
+		},
+		{
+			"icon": "",
+			"lock": 0,
+			"name": "Trait"
+		}
+	],
+	"resistg": [
+		{
+			"icon": "",
+			"name": "Death resist"
+		},
+		{
+			"icon": "",
+			"name": "Poison resist"
+		},
+		{
+			"icon": "",
+			"name": "Sleep resist"
+		},
+		{
+			"icon": "",
+			"name": "Paralysis resist"
+		},
+		{
+			"icon": "",
+			"name": "Mind resist"
+		},
+		{
+			"icon": "",
+			"name": "Curse resist"
+		},
+		{
+			"icon": "",
+			"name": "Exhaustion resist"
+		},
+		{
+			"icon": "",
+			"name": "Focus resist"
+		}
+	],
+	"tribe": [
+		{
+			"icon": "",
+			"name": "Human"
+		},
+		{
+			"icon": "",
+			"name": "Male"
+		},
+		{
+			"icon": "",
+			"name": "Female"
+		},
+		{
+			"icon": "",
+			"name": "Flying"
+		},
+		{
+			"icon": "",
+			"name": "Construct"
+		},
+		{
+			"icon": "",
+			"name": "Undead"
+		},
+		{
+			"icon": "",
+			"name": "Insect"
+		},
+		{
+			"icon": "",
+			"name": "Demon"
+		},
+		{
+			"icon": "",
+			"name": "Beast"
+		},
+		{
+			"icon": "",
+			"name": "Spirit"
+		},
+		{
+			"icon": "",
+			"name": "Dragon"
+		},
+		{
+			"icon": "",
+			"name": "Aquatic"
+		}
+	]
+}

@@ -1,0 +1,136 @@
+{
+ "key": "kiyo",
+ "name": "Kiyo",
+ "kind": "side",
+ "sheet": "side_kiyo.png",
+ "prompt": "1girl, woman, Kiyo, fair skin, black hair, bun hair, light tan kimono, light brown hakama, headcloth, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#f6ceaa",
+   "ramp": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ],
+   "detect": [
+    "#854644",
+    "#c18572",
+    "#f6cea9",
+    "#ffe4c9",
+    "#fff4e8"
+   ]
+  },
+  "hair": {
+   "base": "#282228",
+   "ramp": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ],
+   "detect": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ]
+  },
+  "top": {
+   "base": "#d2aa78",
+   "ramp": [
+    "#612c26",
+    "#9d644a",
+    "#d2aa77",
+    "#f5d3a4",
+    "#ffe9c9"
+   ],
+   "detect": [
+    "#612c26",
+    "#9d644a",
+    "#d2aa77",
+    "#f5d3a4",
+    "#ffe9c9"
+   ]
+  },
+  "lower": {
+   "base": "#966e50",
+   "ramp": [
+    "#250d0d",
+    "#61352a",
+    "#966e50",
+    "#b99475",
+    "#d8bca2"
+   ],
+   "detect": [
+    "#250d0d",
+    "#61352a",
+    "#966e50",
+    "#b99475",
+    "#d8bca2"
+   ]
+  },
+  "cloth": {
+   "base": "#c85046",
+   "ramp": [
+    "#570e22",
+    "#932431",
+    "#c85046",
+    "#eb7b6a",
+    "#ffa491"
+   ],
+   "detect": [
+    "#570e22",
+    "#932431",
+    "#c85046",
+    "#eb7b6a",
+    "#ffa491"
+   ]
+  }
+ }
+}

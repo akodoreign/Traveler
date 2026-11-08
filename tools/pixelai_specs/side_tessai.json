@@ -1,0 +1,153 @@
+{
+ "key": "tessai",
+ "name": "Yasuki Tessai",
+ "kind": "side",
+ "sheet": "side_tessai.png",
+ "prompt": "1boy, male focus, man, Yasuki Tessai, light tan skin, black hair, chonmage hair, slate blue kimono, light brown haori, dark grey hakama, a folding fan, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#e2b088",
+   "ramp": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ],
+   "detect": [
+    "#71302f",
+    "#ad6957",
+    "#e2b088",
+    "#ffd6b2",
+    "#ffe7d1"
+   ]
+  },
+  "hair": {
+   "base": "#282228",
+   "ramp": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ],
+   "detect": [
+    "#070507",
+    "#070507",
+    "#282228",
+    "#4b474b",
+    "#6a6a6a"
+   ]
+  },
+  "top": {
+   "base": "#605478",
+   "ramp": [
+    "#050307",
+    "#322843",
+    "#5f5478",
+    "#8d7c9b",
+    "#b5abba"
+   ],
+   "detect": [
+    "#050307",
+    "#322843",
+    "#5f5478",
+    "#8d7c9b",
+    "#b5abba"
+   ]
+  },
+  "lower": {
+   "base": "#3c3e50",
+   "ramp": [
+    "#040407",
+    "#12121b",
+    "#3c3d50",
+    "#646273",
+    "#8f8d92"
+   ],
+   "detect": [
+    "#040407",
+    "#12121b",
+    "#3c3d50",
+    "#646273",
+    "#8f8d92"
+   ]
+  },
+  "haori": {
+   "base": "#96783c",
+   "ramp": [
+    "#250d08",
+    "#61391d",
+    "#96783c",
+    "#b99b5c",
+    "#d8be86"
+   ],
+   "detect": [
+    "#250d08",
+    "#61391d",
+    "#96783c",
+    "#b99b5c",
+    "#d8be86"
+   ]
+  },
+  "accent": {
+   "base": "#d6b040",
+   "ramp": [
+    "#65220c",
+    "#a15e20",
+    "#d6b040",
+    "#f9d463",
+    "#ffe084"
+   ],
+   "detect": [
+    "#65220c",
+    "#a15e20",
+    "#d6b040",
+    "#f9d463",
+    "#ffe084"
+   ]
+  }
+ }
+}

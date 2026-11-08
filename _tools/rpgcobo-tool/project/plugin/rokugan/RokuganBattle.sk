@@ -1,0 +1,1022 @@
+//
+//	RokuganBattle.sk : Suki + Void Points + Boost (see plugin.sk)
+//
+import PropertyType;
+
+local opt = ::RokuganOpt;
+local SUKI_COND = "K030";							//	cond.json: "Suki" (uncommandable, removed after 2 turn-ends)
+local BP_MAX = opt["bpmax"] || 5;
+local VP_BY_CLASS = { shugenja = 6, monk = 5, other = 3, samurai = 2 };
+local BOOST_MAX = opt["boostmax"] || 3;
+local IAI_MAX = 3;									//	Iaijutsu Focus stacks (Rensei; production crane-ch1)
+local SUKI_RATE = 1.0 + (opt["sukirate"] ?? 50) * 0.01;
+local LOG = !!(opt["log"] ?? 1);
+local log( s){ if( LOG) printf( "[RT] %S\n", s); }
+
+::Rokugan <- {
+	states = {}				//	RPGCharaBase -> battle state. Reset whenever ::rpgstage.battle changes.
+	curbattle = null
+
+	//	Per-battle state for a character (lazy; not saved).
+	function state( chr){
+		local battle = ::rpgstage["battle"];
+		if( battle != this.curbattle){
+			this.curbattle = battle;
+			this.states = {};
+		}
+		local st = this.states[chr];
+		if( !st){
+			st = { started = false, boosted = false, boostsel = 0, bp = 1, res = 0, maxres = 0, known = 0, broken = false,
+				taunt = 0, focus = 0, attune = false };
+			if( chr instanceof ::RPGEnemy){
+				st.maxres = st.res = Math.max( int( chr.RES || 2), 1);
+			}else if( this.isShugenja( chr)){
+				st.bp = 2;								//	shugenja live closest to the Void (user): +1 VP at the start
+			}else if( this.given( chr.name) == "Mitsue" && ::rpgstat.countItems( "I195", false) > 0){
+				st.bp = 0;								//	the Iron Box (Scorpion Ch1-4): it drinks her first breath
+			}
+			if( (chr instanceof ::RPGPlayer) && ::Rokugan.wears( chr, "A163")) st.bp++;	//	the Bloodstone Shard (Ronin Ch3)
+			this.states[chr] <- st;
+		}
+		return st;
+	}
+
+	//	Shugenja (Isawa Haruki, the companion Isawa Michio): the highest Void. Start with 2 VP, hold up to max + 1.
+	function isShugenja( chr){
+		local g = this.given( chr.name);
+		return g == "Haruki" || g == "Michio" || g == "Kasiko";
+	}
+	//	Max Void raised by what the character wears (armor/weapon field rt_maxvoid) or by a condition on them (rt_maxvoid).
+	function vpBonus( chr){
+		local n = 0;
+		if( chr instanceof ::RPGPlayer) foreach( e in chr.equips){
+			if( e && e["data"]) n += e.data["rt_maxvoid"] || 0;
+		}
+		foreach( c in chr.conds) n += c.data["rt_maxvoid"] || 0;
+		return n;
+	}
+	function vpMax( chr){											//	Phoenix Ch4: Haruki gives part of his Void
+		local whole = ::rpgvar["G696"] && this.given( chr.name) == "Haruki";		//	(Void -1): no shugenja +1
+		local scar = ::rpgvar["G897"] && !::rpgvar["G909"] && this.given( chr.name) == "Mitsue";	//	Scorpion Ch2: she
+		local cls = (chr instanceof ::RPGPlayer) ? chr.data["rt_class"] : null;
+		local base = cls ? VP_BY_CLASS[cls] : BP_MAX;				//	shugenja 6, monk 5, other 3, samurai 2 (tools/apply_resources.py)
+		return base - (whole ? 1 : 0) - (scar ? 1 : 0) + this.vpBonus( chr);		//	wore Giseiki (Void -1)
+	}
+
+	//	Element/weapon bits the enemy is weak to (EDR < 0, set with opt_elemdef).
+	function weakbits( e){
+		local edr = e.EDR, b = 0;
+		if( edr) foreach( i, v in edr){ if( v < 0) b = b | (1 << i); }
+		return b;
+	}
+
+	function pop( chr, text, color = 0xffd040ff){
+		local battle = ::rpgstage["battle"];
+		if( !battle) return;
+		local rp3d = battle.getChara3D( chr);
+		if( rp3d && rp3d["manuaction"]){
+			rp3d.manuaction.act( @(){
+				popdamage( text, color);
+				wait( 300);
+			});
+		}
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	//	Suki
+
+	//	"attack" (dmg) : weakness hits chip shields; open enemies take extra damage.
+	function onAttack( dmg){
+		local e = dmg.dst;
+		if( !(e instanceof ::RPGEnemy)) return;
+		if( dmg.miss || dmg.skip || dmg.heal) return;
+		local st = state( e);
+		local hit = (dmg.skill["elembits"] | 0) & weakbits( e);
+		local obs = dmg.skill["rt_obsidian"] && e.data["rt_obsidian_weak"];	//	Lion Ch4: obsidian vs a Fear-demon
+		if( hit) st.known = st.known | hit;			//	weakness revealed
+		if( st.broken){
+			dmg.cval.baserate *= SUKI_RATE;
+			return;
+		}
+		if( (hit || obs) && st.res > 0){
+			local n = (::rpgvar["G1173"] && ::rpgvar["G570"]) ? 2 : 1;	//	finale waves: the three-clan truce
+			st.res = obs ? (st.res > 3 ? st.res - 3 : 0) : (st.res > n ? st.res - n : 0);	//	(+1 Resolve damage)
+			log( "weak hit %S by %S -> shields %d/%d" % (e.name, dmg.skill["name"], st.res, st.maxres));
+			if( st.res <= 0) breakEnemy( e);
+		}
+	}
+
+	//	Suki look: desaturate + darken the broken enemy's sprite; restore the saved colour matrices on recovery.
+	function tintBroken( e, on){
+		local battle = ::rpgstage["battle"];
+		if( !battle) return;
+		local p3 = battle.getChara3D( e);
+		if( !p3) return;
+		try{
+			local mats = p3.getMaterials();
+			if( on){
+				local saved = [];
+				foreach( m in mats) saved.append( m.colormat);
+				this.savedcm[p3] <- saved;
+				p3.setHSV( [0, -75, -40]);
+			}else if( this.savedcm[p3]){
+				local saved = this.savedcm[p3];
+				foreach( i, m in mats) m.colormat = saved[i];
+				delete this.savedcm[p3];
+			}
+		}catch( ex){
+			log( "tint skipped: %S" % ex);
+		}
+	}
+
+	function breakEnemy( e){
+		local st = state( e);
+		st.broken = true;
+		st.res = 0;
+		tintBroken( e, true);
+		e.putCondition( SUKI_COND);
+		log( "SUKI! %S is open" % e.name);
+		::playSound( "SE209");
+		pop( e, "SUKI!", 0xffd040ff);
+		if( "onBroken" in ::Rokugan) ::Rokugan.onBroken( e);		//	RokuganHazard: charmed foes are freed
+	}
+
+	//	"skillchange" (cmd) : an open enemy loses an action already queued this turn.
+	function onSkillChange( cmd){
+		local e = cmd.src;
+		if( !(e instanceof ::RPGEnemy)) return;
+		if( state( e).broken && cmd.skill["skilltype"] != "noop"){
+			cmd.skill = ::conf.skill["S000"];
+			log( "%S loses its action (Suki)" % e.name);
+		}else if( e.hasCondition( "K025") && cmd.skill["skilltype"] != "noop"){	//	Ide Fujio's Scandalous Letter
+			cmd.skill = ::conf.skill["S000"];
+			pop( e, "Scandalized!", 0xffb0e0ff);
+			log( "%S loses its action (Scandalized)" % e.name);
+		}else if( e.hasCondition( "K028") && cmd.skill["skilltype"] != "noop"){	//	the Hoshi fisherman's net
+			cmd.skill = ::conf.skill["S000"];
+			pop( e, "Netted!", 0xb0d8ffff);
+			log( "%S loses its action (Netted)" % e.name);
+		}else if( e.hasCondition( "K050") && cmd.skill["skilltype"] != "noop"){	//	a shattered false charm
+			cmd.skill = ::conf.skill["S000"];
+			pop( e, "Shattered!", 0xffa0a0ff);
+			log( "%S loses its action (Shattered)" % e.name);
+		}
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	//	Void Points (VP; Octopath's BP)
+
+	function getBP( pc){ return state( pc).bp; }
+	function getBoost( pc){ return state( pc).boostsel; }
+
+	//	"preturn" : players gain 1 VP (not on the turn after a boost); enemies recover shields after Suki ends.
+	function onPreTurn( chr){
+		rollOrder();
+		local st = state( chr);
+		if( chr instanceof ::RPGEnemy){
+			if( st.broken && !chr.hasCondition( SUKI_COND)){
+				st.broken = false;
+				st.res = st.maxres;
+				tintBroken( chr, false);
+				pop( chr, "RESOLVE", 0x9fd8ffff);
+				log( "%S recovers: shields %d" % (chr.name, st.res));
+			}
+			return;
+		}
+		if( st.taunt > 0) st.taunt--;
+		if( st.started && !st.boosted) st.bp = Math.min( st.bp + 1, this.vpMax( chr));
+		st.started = true;
+		st.boosted = false;
+		log( "%S VP %d" % (chr.name, st.bp));
+	}
+
+	//	Boost command: cycle 0..min(BOOST_MAX, VP).
+	function cycleBoost( pc){
+		local st = state( pc);
+		local cap = Math.min( BOOST_MAX, st.bp);
+		st.boostsel = (cap <= 0) ? 0 : ((st.boostsel + 1) % (cap + 1));
+		return st.boostsel;
+	}
+
+	//	"precommand" (cmd) : apply the pending boost to the command about to run.
+	//	Razor's Edge: enemy single-target actions are drawn to a taunting traveler.
+	function applyTaunt( cmd){
+		local b = ::rpgstage["battle"];
+		if( !b || !cmd.dsts || length( cmd.dsts) != 1 || !(cmd.dsts[0] instanceof ::RPGPlayer)) return;
+		foreach( m in b.members){
+			if( m && !m.isDead() && state( m).taunt > 0 && cmd.dsts[0] != m){
+				log( "%S is drawn to %S (Razor's Edge)" % (cmd.src.name, m.name));
+				cmd.dsts = [m];
+				return;
+			}
+		}
+	}
+
+	//	Talents (skills S110, S120-S127; gen_data.py). Identified by name: Boost may clone the skill table.
+	function onTalent( cmd){
+		local pc = cmd.src, st = state( pc), nm = cmd.skill["name"], b = ::rpgstage["battle"];
+		if( nm && (nm == "Razor's Edge" || nm.indexOf( "Iaijutsu") >= 0 || nm == "Deduce" || nm == "Command" ||
+				nm == "Attune" || nm.indexOf( "Many Faces") >= 0 || nm == "Barter Coin" || nm == "Ume-baa's Poultice"))
+			log( "talent %S by %S" % (nm, pc.name));
+		if( nm == "Razor's Edge" || nm == "Cover" || nm == "Guardian's Vow"){	//	(Cover: Akodo Rin; the Vow: Shinjo Ryuko)
+			st.taunt = 2;
+			pop( pc, nm == "Cover" ? "COVER" : nm == "Guardian's Vow" ? "GUARDIAN'S VOW" : "RAZOR'S EDGE", 0xff9070ff);
+		}else if( nm == "Iaijutsu: Focus"){
+			st.focus = Math.min( IAI_MAX, st.focus + 1);
+			pop( pc, "FOCUS %d/%d" % (st.focus, IAI_MAX), 0x9fd8ffff);
+		}else if( nm == "Iaijutsu: Strike"){
+			//	production crane-ch1 tutorial: each Focus stack adds 0.75x; only a full-Focus Strike always crits
+			local n = st.focus, nsk = clone cmd.skill, r = 1.0 + 0.75 * n;
+			nsk["dmgrate"] <- [r, r];
+			if( n >= IAI_MAX) nsk["option"] <- [ ...(nsk["option"] || []),
+				{ opttype = "opt_status", propid = "CRI", val = 100, valtype = "supply" } ];
+			cmd.skill = nsk;
+			st.focus = 0;
+			log( "%S strikes at %d/%d Focus (x%.2f%S)" % (pc.name, n, IAI_MAX, r, n >= IAI_MAX ? ", critical" : ""));
+			if( n < IAI_MAX && ::Rokugan["iaitutor"]) pop( pc, "Patience.", 0xc0c0c0ff);
+		}else if( nm && nm.indexOf( "Evidence") >= 0 && b){				//	Kitsuki Seigen (guest): every foe's weaknesses
+			foreach( d in b.enemies){								//	and the move it has queued this turn
+				if( !d || d.isDead()) continue;
+				state( d).known = state( d).known | weakbits( d);
+				local nx = d["skill"];
+				pop( d, nx ? "NEXT: " .. nx.name : "DEDUCED", 0xffe080ff);
+				log( "evidence: %S next %S" % (d.name, nx ? nx.name : "-"));
+			}
+		}else if( nm == "Many Faces: Copy"){						//	Scorpion Ch1: be the enemy for a moment
+			local d = cmd.dsts && length( cmd.dsts) ? cmd.dsts[0] : null;
+			local sd = (d instanceof ::RPGEnemy) ? state( d) : null;
+			local sk = (sd && ("lastsk" in sd)) ? sd.lastsk : null;
+			if( !sk){
+				pop( pc, "NOTHING TO COPY YET", 0xc0c0c0ff);
+				cmd.skill = ::conf.skill["S000"];
+			}else{
+				local nsk = clone sk;
+				nsk["consume"] <- [0, 0];
+				local mine = sk["skilltype"] != "attack";				//	a heal or a buff: on her own side
+				local tg = b ? b.getCommandTargets( pc, mine ? pc : d, nsk.cmdtgt, false) : null;
+				if( tg && length( tg)) cmd.dsts = tg;
+				cmd.skill = nsk;
+				pop( pc, "COPIED: " .. sk.name, 0xff9fb0ff);
+				log( "%S copies %S from %S" % (pc.name, sk.name, d.name));
+			}
+		}else if( nm == "Deduce"){
+			foreach( d in (cmd.dsts || [])){
+				if( d instanceof ::RPGEnemy){
+					state( d).known = state( d).known | weakbits( d);
+					pop( d, "DEDUCED", 0xffe080ff);
+				}
+			}
+		}else if( nm == "Command" || nm == "The Clouds Part"){
+			if( b) foreach( m in b.members){ if( m && !m.isDead()) this.nextf[m] <- 1.5; }	//	act first next turn
+			pop( pc, "COMMAND", 0xffd040ff);
+		}else if( nm == "Attune"){
+			st.attune = true;
+			pop( pc, "ATTUNED", 0x9fd8ffff);
+		}else if( nm == "Barter Coin"){
+			local money = ::rpgstat.money;
+			local spend = Math.min( money, Math.max( 50, int( money * 0.05)));
+			::rpgstat.money = money - spend;
+			local nsk = clone cmd.skill;
+			local r = 1.0 + spend / 120.0;
+			nsk["dmgrate"] <- [r, r];
+			cmd.skill = nsk;
+			pop( pc, "-" .. spend .. " zeni", 0xffe080ff);
+			log( "%S spends %d zeni (x%.2f)" % (pc.name, spend, r));
+		}
+		//	Attune: the next MP-costing spell is 50% stronger
+		local cons = cmd.skill["consume"];
+		if( st.attune && nm != "Attune" && cons && cons[1] > 0){
+			local nsk = clone cmd.skill;
+			local r = nsk["dmgrate"] || [1.0, 1.0];
+			nsk["dmgrate"] <- [r[0] * 1.5, r[1] * 1.5];
+			cmd.skill = nsk;
+			st.attune = false;
+			log( "%S: attuned spell x1.5" % pc.name);
+		}
+	}
+
+	//	Given name from "Family Given" (travelers are named family name first; ronin and commoners have one name).
+	function given( name){
+		local i = name ? name.lastIndexOf( " ") : -1;
+		return i >= 0 ? name.substring( i + 1) : name;
+	}
+
+	function talentFor( pc){
+		local st = state( pc);
+		switch( given( pc.name)){
+		case "Natsuko": return "S110";
+		case "Rensei": return st.focus <= 0 ? "S120" : st.focus >= IAI_MAX ? "S121" : "iai";	//	"iai": pick
+		case "Gendo": return "S122";
+		case "Shizue": return "S123";
+		case "Haruki": return "S124";
+		case "Mitsue": return "faces";						//	Many Faces: Steal or Copy (a pick, like Rensei's)
+		case "Tamotsu": return "coin";						//	Barter Coin: hire a strike, or bribe (a pick)
+		case "Sayo": return "remedy";						//	Remedy: Ume-baa's Poultice or a recipe (a pick)
+		}
+		return null;
+	}
+
+	function onPreCommand( cmd){
+		local pc = cmd.src;
+		if( pc instanceof ::RPGEnemy){
+			applyTaunt( cmd);
+			local b = ::rpgstage["battle"];
+			if( b && cmd.skill && cmd.skill["name"] == "Pack Bite"){	//	Grey Wolf: +25% per other wolf still standing
+				local n = b.enemies.filter( @( v) v && v != pc && !v.isDead() && v.name == pc.name).len();
+				if( n){
+					local nsk = clone cmd.skill, r = nsk["dmgrate"] || [1.0, 1.0];
+					nsk["dmgrate"] <- [r[0] * (1.0 + 0.25 * n), r[1] * (1.0 + 0.25 * n)];
+					cmd.skill = nsk;
+					log( "%S: Pack Bite x%.2f (%d other wolves)" % (pc.name, 1.0 + 0.25 * n, n));
+				}
+			}
+			return;
+		}
+		//	Void spells: pay VP (skill field rt_vp from gen_data); Drawing the Void grants +1 VP (may exceed the cap)
+		if( cmd.skill){
+			local st0 = state( pc), vp = cmd.skill["rt_vp"];
+			if( cmd.skill["name"] == "Drawing the Void"){
+				local most = (::rpgvar["G696"] && given( pc.name) == "Haruki") ? 2 : 1;	//	once per battle (Ch1);
+				st0.drawn <- (("drawn" in st0) ? st0.drawn : 0) + 1;						//	twice when Whole (Ch4)
+				if( st0.drawn > most){
+					pop( pc, "THE VOID IS DRAWN ALREADY", 0xff8080ff);
+					cmd.skill = ::conf.skill["S000"];
+					return;
+				}
+				st0.bp += 1;
+				pop( pc, "+1 VP", 0xc0a0ffff);
+				log( "%S draws the Void: VP %d" % (pc.name, st0.bp));
+			}else if( vp){
+				if( st0.bp < vp){
+					pop( pc, "NOT ENOUGH VP", 0xff8080ff);
+					cmd.skill = ::conf.skill["S000"];
+					return;
+				}
+				st0.bp -= vp;
+				log( "%S spends %d VP on %S (VP %d)" % (pc.name, vp, cmd.skill["name"], st0.bp));
+			}
+		}
+		if( cmd.skill) onTalent( cmd);
+		local st = state( pc);
+		if( ::rpgstage.battle["isauto"] && st.bp >= this.vpMax( pc)) st.boostsel = BOOST_MAX;	//	auto battle: spend BP when full
+		local b = Math.min( st.boostsel, st.bp);
+		st.boostsel = 0;
+		local sk = cmd.skill;
+		if( b <= 0 || !sk) return;
+		local stype = sk["skilltype"];
+		if( stype == "noop" || stype == "macro") return;		//	defend/escape can't be boosted
+		st.bp -= b;
+		st.boosted = true;
+		local nsk = clone sk;
+		if( stype == "attack" && sk["flags"] == 255){			//	normal weapon attack: extra hits
+			local na = sk["atknum"] || [1, 1];
+			nsk["atknum"] <- [na[0] + b, na[1] + b];
+		}else{												//	skills/spells: more power
+			local r = sk["dmgrate"] || [1.0, 1.0];
+			nsk["dmgrate"] <- [r[0] * (1 + b), r[1] * (1 + b)];
+		}
+		if( sk["rt_jade_raise"] && b >= 2){					//	Earth Becomes Sky, 2 Raises: the boulders are jade
+			nsk["elembits"] <- (sk["elembits"] | 0) | (1 << 11);
+			nsk["name"] <- "Earth Becomes Jade";
+			log( "the boulder is jade (Earth Becomes Jade)");
+		}
+		cmd.skill = nsk;
+		log( "%S boosts x%d with %S (VP left %d)" % (pc.name, b, sk["name"], st.bp));
+		pop( pc, "BOOST x%d" % b, 0x80c0ffff);
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	//	Turn order (Octopath-style): the engine orders actions by (10 + AGI*spdrate) * rnd(0.6,1.0). We roll each
+	//	combatant's random factor at the start of the turn, use it in SkillCommand.calcCommandOrder, and show the
+	//	resulting rank (#1 = acts first) in the party / enemy labels, so the shown order is the real one.
+	savedcm = {}
+	ordf = {}
+	nextf = {}
+	nextbattle = null
+	rank = {}
+	rolledturn = -1
+	rolledbattle = null
+
+	function rollOrder(){
+		local b = ::rpgstage["battle"];
+		if( !b) return;
+		if( this.rolledbattle == b && this.rolledturn == b.turn) return;
+		this.rolledbattle = b;
+		this.rolledturn = b.turn;
+		local pre = (this.nextbattle == b) ? this.nextf : {};                   // factors pre-rolled last turn
+		this.ordf = {};
+		this.rank = {};
+		this.nextf = {};
+		this.nextbattle = b;
+		local all = [];
+		foreach( v in b.members){ if( v && !v.isDead()) all.append( v); }
+		foreach( v in b.enemies){ if( v && !v.isDead()) all.append( v); }
+		foreach( v in all){
+			this.ordf[v] <- pre[v] ? pre[v] : 0.6 + 0.4 * ::rnd.nextf();
+			this.nextf[v] <- 0.6 + 0.4 * ::rnd.nextf();
+		}
+		local f = this.ordf, nf = this.nextf;
+		local nxt = clone all;
+		all.sort( @( v) -(10.0 + v.AGI) * f[v]);
+		nxt.sort( @( v) -(10.0 + v.AGI) * nf[v]);
+		foreach( i, v in all) this.rank[v] <- i + 1;
+		buildBar( all, nxt);
+		if( LOG){
+			local s1 = "", s2 = "";
+			foreach( v in all) s1 = s1 .. v.name .. ">";
+			foreach( v in nxt) s2 = s2 .. v.name .. ">";
+			log( "order now: " .. s1);
+			log( "order next: " .. s2);
+		}
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	//	Turn-order bar: portraits (resource/efx/portrait/<sheet>.png, tools/gen_portraits.py) along the top of the
+	//	battle screen in this turn's real order. Current actor drops down and brightens; acted / fallen dim.
+	bar = []
+	barviews = []
+	texcache = {}
+	BAR_X = 22
+	BAR_Y = 12
+	BAR_STEP = 50
+	BAR_SIZE = 46
+
+	function portraitSprite( chr){
+		local b = ::rpgstage["battle"];
+		local p3 = b ? b.getChara3D( chr) : null;
+		if( !p3 || !(p3 instanceof ::RPG3DPicture) || !p3.pic) return null;
+		local pic = p3.pic["pic3d"];
+		if( !pic) return null;
+		local path = "/resource/efx/portrait/" .. pic.substring( pic.lastIndexOf( "/") + 1);
+		local tex = this.texcache[path];
+		if( !tex){
+			try{
+				local img = ::getResource( path).getContent();
+				img.premultAlpha();
+				tex = Texture();
+				tex.load( img, 0);
+			}catch( ex){
+				return null;
+			}
+			this.texcache[path] <- tex;
+		}
+		local sp = Sprite( tex);
+		sp.blend = SK_PMAMIX;
+		return sp;
+	}
+
+	function tagSprite( name){
+		local path = "/resource/efx/portrait/" .. name .. ".png";
+		local tex = this.texcache[path];
+		if( !tex){
+			try{
+				local img = ::getResource( path).getContent();
+				img.premultAlpha();
+				tex = Texture();
+				tex.load( img, 0);
+			}catch( ex){
+				return null;
+			}
+			this.texcache[path] <- tex;
+		}
+		local sp = Sprite( tex);
+		sp.blend = SK_PMAMIX;
+		return sp;
+	}
+
+	function addView( sv, sp, x, y, w, h){
+		local iv = ::SKImageView( sp);
+		iv.enabled = false;
+		iv.setRect( x, y, w, h);
+		sv.insertChild( 2, iv);
+		this.barviews.append( iv);
+		return iv;
+	}
+
+	function buildBar( order, nxt = null){
+		local sv = ::rpgstage["view"];
+		if( !sv) return;
+		foreach( v in this.barviews) v.removeFromParent();
+		this.barviews = [];
+		this.bar = [];
+		local t = tagSprite( "_now");
+		if( t) addView( sv, t, BAR_X, BAR_Y - 2, 120, 13);
+		local n = 0;
+		foreach( chr in order){
+			local sp = portraitSprite( chr);
+			if( !sp) continue;
+			local iv = addView( sv, sp, BAR_X + n * BAR_STEP, BAR_Y + 12, BAR_SIZE, BAR_SIZE);
+			this.bar.append( { chr = chr, iv = iv, n = n, acted = false });
+			n++;
+		}
+		if( !nxt) return;
+		local ny = BAR_Y + 12 + BAR_SIZE + 14;
+		t = tagSprite( "_next");
+		if( t) addView( sv, t, BAR_X, ny - 2, 64, 13);
+		n = 0;
+		foreach( chr in nxt){
+			local sp = portraitSprite( chr);
+			if( !sp) continue;
+			local iv = addView( sv, sp, BAR_X + n * 36, ny + 12, 32, 32);
+			iv.setColor( 0xb0b0b0ff);
+			n++;
+		}
+	}
+
+	function onActing( chr){
+		foreach( e in this.bar){
+			local cur = e.chr == chr;
+			if( cur) e.acted = true;
+			local dim = (e.acted && !cur) || e.chr.isDead();
+			e.iv.setColor( dim ? 0x6a6a6aff : 0xffffffff);
+			e.iv.setRect( BAR_X + e.n * BAR_STEP, BAR_Y + 12 + (cur ? 8 : 0), BAR_SIZE, BAR_SIZE);
+		}
+	}
+
+
+	function orderFactor( chr){
+		local f = this.ordf[chr];
+		return f ? f : 0.6 + 0.4 * ::rnd.nextf();
+	}
+
+	function rankOf( chr){
+		return this.rank[chr];
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	//	UI labels
+
+	function enemyLabel( e){
+		if( e.isDead()) return e.name;
+		local st = state( e);
+		local r = rankOf( e);
+		local pre = r ? "#" .. r .. " " : "";
+		if( st.broken) return pre .. e.name .. "  SUKI!";
+		local s = pre .. e.name .. "  [" .. st.res .. "]";
+		local wb = weakbits( e);
+		foreach( i, el in ::conf.type.elem){
+			if( wb & (1 << i)) s = s .. " " .. ((st.known & (1 << i)) ? el.name : "?");
+		}
+		return s;
+	}
+
+	function memberLabel( pc){
+		local st = state( pc), b = st.boostsel;
+		local r = rankOf( pc);
+		return (r ? "#" .. r .. " " : "") .. pc.name .. "  VP" .. st.bp .. (b ? " +" .. b : "");
+	}
+};
+
+///////////////////////////////////////////////////////////////////////////////////
+//	Enemy property: RES (Resolve shields). Editable in the enemy database.
+::RPGSystem.enemyprops .. {
+	proptype = "score"
+	pid = "RES"
+	lbl = { "ja":"スキ盾", "en":"Resolve (shields)" }
+	type = SCALAR
+	range = (1,99)
+	defval = 2
+};
+
+///////////////////////////////////////////////////////////////////////////////////
+//	Battle-event option attached to every player and enemy.
+::RPGSystem.option .. {
+	category = -1,				//	not addable in the editor
+	key = "opt_rokugan_battle",
+	name = { "ja":"ロクガン戦闘", "en":"Rokugan battle core" },
+	icon = "",
+	order = 50,
+	desc = "",
+	action = @( opd, id, arg, self){
+		switch( id){
+		case "preturn":		::Rokugan.onPreTurn( self); break;
+		case "attack":		if( arg.dst == self) ::Rokugan.onAttack( arg); break;
+		//	logged on "recoil", not "condchk": opt_putcond returns true from condchk, which ends emitOption's chain, so a
+		//	hit that puts a condition (Prone, Poison, Blind...) never reached a condchk logger
+		case "recoil":		if( arg.dst == self && LOG)
+								printf( "[RT] dmg %S -> %S %S %d%S (HP %d/%d)\n", arg.src.name, self.name, arg.skill["name"],
+									arg.val, arg.miss ? " MISS" : "", self.HP, self.MAXHP);
+							if( arg.dst == self && ("onRecoil" in ::Rokugan)) ::Rokugan.onRecoil( arg);	//	HP is pre-hit
+							break;
+		case "skillchange":	if( arg.src == self) ::Rokugan.onSkillChange( arg); break;
+		//	surrendered foes (RokuganHazard) left the fight alive; count them back in for exp and drops
+		case "dying":		if( arg.self == self && ("surrenderDying" in ::Rokugan)) return ::Rokugan.surrenderDying( self, arg);
+							break;
+		case "victory":		if( (self instanceof ::RPGEnemy) && ("surrendered" in ::Rokugan.state( self))) self.escaped = false;
+							break;
+		case "precommand":	if( arg.src == self){ ::Rokugan.onActing( self); ::Rokugan.onPreCommand( arg); } break;
+		case "postcommand":	if( arg.src == self && ("onPostCommand" in ::Rokugan)) ::Rokugan.onPostCommand( arg); break;
+		}
+	}
+};
+
+local rtopd = { opttype = "opt_rokugan_battle", order = 50 };
+
+local _pbase = ::RPGPlayer.getBaseOptions;
+::RPGPlayer.getBaseOptions <- @(){
+	local o = [ ..._pbase() ];
+	o .. ::RPGOption( rtopd);
+	return o;
+};
+local _ebase = ::RPGEnemy.getBaseOptions;
+::RPGEnemy.getBaseOptions <- @(){
+	local o = [ ...(_ebase() || []) ];
+	o .. ::RPGOption( rtopd);
+	return o;
+};
+
+///////////////////////////////////////////////////////////////////////////////////
+//	Battle command: Boost (put "boost" in a battlecmd slot of setting.json).
+::RPGSystem.battlecmd .. {
+	key = "boost"
+	name = "Boost"
+	icon = ""
+	props = []
+
+	function isDisabled( bcmd, pc){
+		return ::Rokugan.getBP( pc) <= 0;
+	}
+
+	//	Returning false keeps the command menu open (like the engine's formation command).
+	function selectSkill( bcmd, pc){
+		local b = ::Rokugan.cycleBoost( pc);
+		::playSound( b ? "SE013" : "SE004");
+		::rpgstage.battle.battleui.bindValue( "inforlbl", "VP %d   Boost %d" % (::Rokugan.getBP( pc), b));
+		return false;
+	}
+};
+
+///////////////////////////////////////////////////////////////////////////////////
+//	Battle command: Spell (battlecmd2) -> spells and kiho, paid with MP.
+//	Battle command: School (battlecmd5) -> the traveler's own talent, then school techniques and kata, paid with TP.
+::Rokugan.ownedSkills <- function( pc, school){
+	return Table.map( ::conf.skill, @( v, i){
+		if( !v["addlist"] || !pc.hasSkill( i) || !((v["occasion"] || 0) & 1) || (!!v["rt_school"] != school)) return undefined;
+		local disable = @() !pc.isSkillUseable( i);
+		return { idx = i, val = v, disable = disable, lbl = v.icon .. v.name, rlbl = ::rtf( ::RPGSystem.getSkillListInfo( pc, v)),
+			grayout = @() disable() ? "on" : "off" };
+	}).sort( @( v) v.idx);
+};
+::Rokugan.schoolList <- function( pc, first){
+	local have = first.map( @( v) v.val), items = first ... ::Rokugan.ownedSkills( pc, true).filter( @( v) have.indexOf( v.val) < 0);
+	foreach( i, v in items) v._name <- "i" .. i;
+	return ::showSkillList( pc, items) || false;
+};
+::RPGSystem.battlecmd .. {
+	key = "spell"
+	name = "Spell"
+	icon = ""
+	props = []
+
+	function isDisabled( bcmd, pc){
+		return !length( ::Rokugan.ownedSkills( pc, false));
+	}
+
+	function selectSkill( bcmd, pc){
+		playSound( "SE013");
+		local items = ::Rokugan.ownedSkills( pc, false);
+		foreach( i, v in items) v._name <- "i" .. i;
+		return ::showSkillList( pc, items);
+	}
+};
+
+::RPGSystem.battlecmd .. {
+	key = "talent"
+	name = "School"
+	icon = ""
+	props = []
+
+	function isDisabled( bcmd, pc){
+		return !::Rokugan.talentFor( pc) && !length( ::Rokugan.ownedSkills( pc, true));
+	}
+
+	function selectSkill( bcmd, pc){
+		local id = ::Rokugan.talentFor( pc);
+		if( id == "iai"){											//	Rensei between 1 and IAI_MAX-1 stacks
+			local n = ::Rokugan.state( pc).focus;
+			playSound( "SE013");
+			local items = [ ::conf.skill["S120"], ::conf.skill["S121"] ].map( @( sk, i)({ idx = i, val = sk,
+				disable = false, _name = "i" .. i, lbl = sk.name, grayout = "off",
+				rlbl = i == 0 ? "%d/%d" % (n, IAI_MAX) : "x%.2f" % (1.0 + 0.75 * n) }));
+			return ::Rokugan.schoolList( pc, items);
+		}
+		if( id == "coin"){										//	Tamotsu: hire a strike, or bribe (Unicorn Ch1)
+			playSound( "SE013");
+			local items = [ ::conf.skill["S126"], ::conf.skill["S541"] ].map( @( sk, i)({ idx = i, val = sk,
+				disable = false, _name = "c" .. i, lbl = sk.name, grayout = "off", rlbl = "" }));
+			return ::Rokugan.schoolList( pc, items);
+		}
+		if( id == "remedy"){									//	Sayo: base + catalyst (Ronin Ch1, sayo-remedy.md); a
+																//	recipe with rt_learn (a flag) shows once it is taught
+			playSound( "SE013");
+			local items = ::Rokugan.RECIPES.filter( @( sid) !::conf.skill[sid]["rt_learn"] || ::rpgvar[::conf.skill[sid]["rt_learn"]])
+				.map( @( sid, i)( { sk = ::conf.skill[sid], n = ::Rokugan.recipeCount( ::conf.skill[sid]) }))
+				.map( @( v, i)({ idx = i, val = v.sk, disable = v.n <= 0, _name = "r" .. i, lbl = v.sk.name,
+					grayout = v.n <= 0 ? "on" : "off", rlbl = v.sk["rt_recipe"] ? "x%d" % v.n : "" }));
+			return ::Rokugan.schoolList( pc, items);
+		}
+		if( id == "faces"){										//	Mitsue: Steal, or Copy the target's last skill
+			playSound( "SE013");
+			local items = [ ::conf.skill["S125"], ::conf.skill["S505"] ].map( @( sk, i)({ idx = i, val = sk,
+				disable = false, _name = "f" .. i, lbl = sk.name, grayout = "off", rlbl = "" }));
+			return ::Rokugan.schoolList( pc, items);
+		}
+		local extra = ::Rokugan.ownedSkills( pc, true).filter( @( v) v.idx != id);
+		playSound( "SE013");
+		local sk = id ? ::conf.skill[id] : null;
+		return ::Rokugan.schoolList( pc, sk ? [{ idx = id, val = sk, disable = false, lbl = sk.icon .. sk.name, grayout = "off",
+			rlbl = ::rtf( ::RPGSystem.getSkillListInfo( pc, sk)) }] : []);
+	}
+};
+
+///////////////////////////////////////////////////////////////////////////////////
+//	Battle command: Guest (battlecmd7) -> the current guest's call skill. Octopath II guests: one at a time (rpgvar
+//	G232 = the guest's number, 0 = none; set by the side stories in tools/gen_maps.py), limited uses per battle shared
+//	by the whole party (skill fields rt_uses + rt_guest, RokuganAI.sk). The guest is called in, not seated: they take
+//	no party slot.
+::Rokugan.GUEST_SKILLS <- [null, "S143", "S144", "S145", "S146", "S400", "S401", "S406", "S429", "S430", "S439",
+	"S478", "S559", "S565", "S588", "S596", "S602", "S633"];								//	+ 17 Hiruma Kage (the finale)																	//	+ 11 Kitsuki Momo (Dragon Ch1)	//	Takeo, Mai, Fujio, Sakura, Seigen,
+																					//	Kiku (gen_maps GUESTS)
+::Rokugan.guestSkill <- function(){
+	local n = int( ::rpgvar["G232"] || 0);
+	if( n == 10 && ::rpgvar["G1214"]) return ::conf.skill["S634"];		//	Benjiro SS2 done: Death Trance, 3 uses
+	return (n > 0 && n < length( this.GUEST_SKILLS)) ? ::conf.skill[this.GUEST_SKILLS[n]] : null;
+};
+//	Hireables (tools/hirelings.py; memory hireables): rpgvar G293 = the hireling's number, G294 = charges left. Their
+//	call skill (gen_data S173+) carries the roster: rt_hire, rt_hname, rt_hmdl, rt_hcharges, rt_hhome.
+::Rokugan.hireSkill <- function(){
+	local n = int( ::rpgvar["G293"] || 0);
+	if( n <= 0) return null;
+	foreach( sid, sk in ::conf.skill){ if( sk && sk["rt_hire"] == n) return sk; }
+	return null;
+};
+::Rokugan.hireCharges <- function(){ return int( ::rpgvar["G294"] || 0); };
+
+//	Battle command: Call (battlecmd7, the old Guest slot) -> the guest's action and the hireling's action. With one of
+//	them it runs at once; with both, a small list (uses left on the right).
+::Rokugan.callables <- function( pc){
+	local a = [], g = this.guestSkill(), h = this.hireSkill();
+	if( g) a .. { sk = g, left = this.usesLeft( pc, g) };
+	if( h) a .. { sk = h, left = this.hireCharges() };
+	foreach( sk in this.exploitsFor( pc)) a .. { sk = sk, left = this.usesLeft( pc, sk) };	//	the finale (Hazard)
+	return a;
+};
+::RPGSystem.battlecmd .. {
+	key = "guest"
+	name = "Call"
+	icon = ""
+	props = []
+
+	function isDisabled( bcmd, pc){
+		return !::Rokugan.callables( pc).find( @( v) v.left > 0);
+	}
+
+	function selectSkill( bcmd, pc){
+		local a = ::Rokugan.callables( pc).filter( @( v) v.left > 0);
+		if( length( a) == 1) return a[0].sk;
+		playSound( "SE013");
+		local items = a.map( @( v, i)({ idx = i, val = v.sk, disable = false, _name = "i" .. i,
+			lbl = v.sk.name, rlbl = "x%d" % v.left, grayout = "off" }));
+		return ::showSkillList( pc, items) || false;
+	}
+};
+
+//	Spending a charge. The last one: the hireling says so, and walks home after the fight (launch wrapper below).
+::Rokugan._rt_pre_hire <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local sk = cmd.skill;
+	if( sk && sk["rt_hire"] && (cmd.src instanceof ::RPGPlayer) && this.hireCharges() <= 0){
+		cmd.skill = ::conf.skill["S000"];						//	two calls queued for the last charge: one fizzles
+		this.pop( cmd.src, "%S is spent" % sk.rt_hname, 0xc0c0c0ff);
+		return;
+	}
+	this._rt_pre_hire( cmd);
+	sk = cmd.skill;
+	if( !sk || !sk["rt_hire"] || !(cmd.src instanceof ::RPGPlayer)) return;
+	local left = Math.max( 0, this.hireCharges() - 1);
+	::rpgvar["G294"] = left;
+	log( "hireling %S acts (%d charges left)" % (sk.rt_hname, left));
+	local h3d = this["hire3d"];
+	if( h3d && h3d["manuaction"]){
+		local txt = left > 0 ? sk.rt_hname : "%S: last one!" % sk.rt_hname;
+		h3d.manuaction.act( @(){ popdamage( txt, 0xffe080ff); wait( 200); });
+	}
+};
+
+//	Back on the field with no charges left: the hireling heads home (their hire NPC shows there again: G293 != n).
+::Rokugan.hireCheck <- function( st){
+	local sk = this.hireSkill();
+	if( !sk || this.hireCharges() > 0 || st["battle"] || !st["player3d"]) return;
+	::rpgvar["G293"] = 0;
+	st.player3d.popupDamage( "%S heads back to %S." % (sk.rt_hname, sk.rt_hhome), 0xffe080ff, 0);
+	printf( "[RT] hireling %S goes home to %S\n", sk.rt_hname, sk.rt_hhome);
+};
+
+//	The back row: the hireling stands behind the party (visual only: not a member, never targeted).
+::Rokugan.hire3d <- null;
+::TurnBattleRunner._rt_setup_h <- ::TurnBattleRunner.setupCharas;
+::TurnBattleRunner.setupCharas <- function(){
+	this._rt_setup_h();
+	::Rokugan.hire3d = null;
+	local sk = ::Rokugan.hireSkill();
+	if( !sk || !sk["rt_hmdl"]) return;
+	try{
+		local m = stage.getLocation( "*memberloc");
+		local back = Vector3D( 1.6, 0, -1.9).rotate( m.dir, 0, 0);
+		local p = Vector3D( m.pos).add( back.x, back.y, back.z);
+		local rp3d = RPG3DObject.create3DObject( { mdlid = sk.rt_hmdl });
+		rp3d.manuaction = ManualMoveAction( rp3d);
+		stage.scn.addObject( rp3d);
+		rp3d.setPosition( (p.x, p.y, p.z, m.dir));
+		::Rokugan.hire3d = rp3d;
+		log( "hireling in the back row: %S (%d charges)" % (sk.rt_hname, ::Rokugan.hireCharges()));
+	}catch( ex){ printexception( ex); }
+};
+
+///////////////////////////////////////////////////////////////////////////////////
+//	UI: per-enemy list with shields and weakness slots; VP on the party list.
+//	Set on the concrete runner classes (derived classes copy base methods at definition time).
+local syncEnemyListUI = function(){
+	local self = this;
+	local enemylist = battleui.findChild( "enemylist");
+	enemylist.bindValue( enemies.map( @( v)({
+		lbl = @() ::Rokugan.enemyLabel( v),
+		grayout = @() v.isDead() ? "on" : "off",
+		sel = @() (self.getChara3D( v)["selbits"]) ? "on" : "off"
+	})));
+};
+
+local syncMemberListUI = function(){
+	local memberlist = battleui.findChild( "memberlist");
+	local self = this;
+	memberlist.bindValue( members.map( @( v) v ? {
+		name = @() ::Rokugan.memberLabel( v)
+		isdead = @() v.isDead() ? 1 : 0
+		hp = @() v.HP
+		mp = @() v.MP
+		tp = @() v.TP
+		cmdgauge = @() v.isDead() ? -1 : v.cmdgauge <= 0 ? -1 : v.cmdgauge >= 100 ? 11 : (v.cmdgauge * 0.1)
+		sel = @() (v.selected || self.getChara3D( v)["selbits"]) ? "on" : "off"
+		conds = @() ::RPGSystem.getConditionString( v.conds)
+	} : {
+		g = ptr({ hide = true })
+	}));
+};
+
+::TurnBattleRunner.syncEnemyListUI <- syncEnemyListUI;
+::TurnBattleRunner.syncMemberListUI <- syncMemberListUI;
+
+///////////////////////////////////////////////////////////////////////////////////
+//	HD-2D sprites for party members: picture models (RPG3DPicture) carry no voxel equipment or bones.
+::RPG3DPicture.setEquipVox <- function( wv, place = "item_R"){};
+
+//	Turn order uses the factor rolled at the start of the turn (see ::Rokugan.rollOrder).
+::SkillCommand.calcCommandOrder <- function( src, skill){
+	return (10 + src.AGI * (skill["spdrate"] ?? 1.0)) * ::Rokugan.orderFactor( src) * -1.0;
+};
+
+//	Four-way field sprites (gen_sprites2d frames: side, *_f front, *_b back). Heading dir: 0 = away from the
+//	camera (back view), PI = toward it (front), +PI/2 = east, -PI/2 = west. Battle keeps the engine's billboard.
+local _q1 = Quaternion(), _q2 = Quaternion(), _m1 = Matrix(), _v1 = Vector3D(), _v2 = Vector3D();
+local FACE_IDS = { stand = 1, walk = 1, run = 1, dash = 1, sick = 1, talk = 1, nod = 1, rei = 1 };	//	(talk/nod/rei: v4 sheets have _f/_b frames)
+::Rokugan.face <- {};
+::Rokugan.baseani <- {};
+::Rokugan.facing <- function( obj){
+	local d = unitdir( obj.dir);
+	if( Math.abs( d) < Math.PI * 0.25) return "b";
+	if( Math.abs( d) > Math.PI * 0.75) return "f";
+	return d > 0 ? "e" : "w";
+};
+::RPG3DPicture._rt_anime2 <- ::RPG3DPicture.anime2;
+::RPG3DPicture.anime2 <- function( t){
+	local id = t["id"];
+	if( id && (id in FACE_IDS) && !::rpgstage["battle"]){
+		::Rokugan.baseani[this] <- id;
+		local f = ::Rokugan.facing( this);
+		::Rokugan.face[this] <- f;
+		if( (f == "f" || f == "b") && animemap && animemap[id .. "_" .. f]){
+			local t2 = clone t;
+			t2.id = id .. "_" .. f;
+			return _rt_anime2( t2);
+		}
+	}else if( id){
+		if( this in ::Rokugan.baseani) delete ::Rokugan.baseani[this];
+	}
+	return _rt_anime2( t);
+};
+::RPG3DPicture.updateSRT <- function(){
+	local cam = scn.maincamera;
+	local q = _m1.set( cam.viewmat).lscale( 1,1,-1).getRotation( _q1);
+	local s = _v2( scale);
+	if( ::rpgstage && ::rpgstage["battle"]){
+		local v = _v1( 0, 0, 1).transform0( _m1);
+		if( v.x >= 0.000001) q = _q2.setHPB( Math.PI, 0, 0).synthesize( q);
+	}else{
+		local f = ::Rokugan.facing( this);
+		if( f != ::Rokugan.face[this] && (this in ::Rokugan.baseani)) anime2( { id = ::Rokugan.baseani[this] });
+		local nativeeast = !(pic && pic["flipx"]);
+		if( (f == "e" && !nativeeast) || (f == "w" && nativeeast)) q = _q2.setHPB( Math.PI, 0, 0).synthesize( q);
+	}
+	q.w *= -1;
+	srttf.setSRT( pos, s, q);
+};
+
+//	HD-2D colour grade: a little more saturation, warm highlights, cooler blues (colour matrix on the deferred
+//	output pass; rows = input R,G,B -> output R,G,B). Re-applied whenever the stage rebuilds its render pass.
+local GRADE = Matrix( 1.1275, -0.0359, -0.0341, 0.0,  -0.0733, 1.0496, -0.0669, 0.0,  -0.0142, -0.0137, 1.0510, 0.0,
+	0.0, 0.0, 0.0, 1.0);
+local applyGrade = function( stage){
+	local v = stage["view3d"];
+	local mp = v ? v.renderer["mainpass"] : null;
+	local dp = mp ? mp["drawpass"] : null;
+	if( dp) dp.setColorMatrix( GRADE);
+};
+//	HD-2D vignette: a full-screen image between the 3D view (stage3d) and the stage UI (resource/efx/rt_vignette.png,
+//	made by tools/gen_render.py).
+local addVignette = function( stage){
+	local sv = stage["view"];
+	if( !sv || sv.findChild( "rt_vignette")) return;
+	try{
+		local img = ::getResource( "/resource/efx/rt_vignette.png").getContent();
+		img.premultAlpha();
+		local tex = Texture(); tex.load( img, 0);
+		local sp = Sprite( tex);
+		sp.blend = SK_PMAMIX;
+		local iv = ::SKImageView( sp);
+		iv.name = "rt_vignette";
+		iv.enabled = false;
+		local b = sv.bnd;
+		iv.setRect( b.x, b.y, b.w, b.h);
+		sv.insertChild( 1, iv);
+	}catch( e){
+		log( "vignette skipped: %S" % e);
+	}
+};
+
+//	launch() suspends (coroutine), so the original must be called as a method, not through native .call().
+::RPGStage._rt_launch <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	if( ::RokuganMapGen.run()) return null;			//	offline map build job (tools/gen_maps.py)
+	::Rokugan.face = {};
+	::Rokugan.baseani = {};
+	local r = _rt_launch( opt);
+	if( this["player3d"]) log( "ARRIVE %S pos=%.2f,%.2f,%.2f" % (this.mapid, player3d.pos.x, player3d.pos.y, player3d.pos.z));
+	applyGrade( this);
+	addVignette( this);
+	try{ ::Rokugan.darkwaysArrive( this); ::Rokugan.hireCheck( this); }catch( ex){ printexception( ex); }
+	return r;
+};
+::RPGStage._rt_chrset <- ::RPGStage.changeRenderSetting;
+::RPGStage.changeRenderSetting <- function( rsetid){
+	_rt_chrset( rsetid);
+	applyGrade( this);
+};
+
+//	The stock normal-attack script returns early for picture models ("if( ispic) return wait( 100);"), so sprite
+//	travelers and enemies never played their attack frames. Play atkani for every model type.
+::skillscriptmap.atk_normal <-
+`anime( atkani);
+wait( atkdelay);
+efx( atkefx);
+snd( atksnd);
+`;
+
+//	Octopath boss intro: as a boss fight opens, a white flash, a heavy shake and the boss's brush-ink name banner
+//	(tools/gen_bossart.py, EP450-455) over the party's battle stance; it fades as the first turn begins.
+local BOSS_BANNER = { ["Oni no Okura"] = "EP197", ["The Orochi"] = "EP199", ["Nezumi Shaman"] = "EP450", Troll = "EP451", ["Moto Akutsukai"] = "EP452",
+	["Oni no Kommei"] = "EP453", ["Cellar Ogre"] = "EP454", ["Oni no Tsukakoro"] = "EP455",
+	["Wall Troll"] = "EP456", ["Kakita Yasurugi"] = "EP457", ["Doji Miyako"] = "EP458",
+	["Chihaya the Quick"] = "EP520", ["Yosuke the Bold"] = "EP521", ["Katsuo the White Brother"] = "EP522",
+	["Kakita Masanori"] = "EP523", ["Shelf Kami"] = "EP524", ["O-Tamai"] = "EP525", ["Red-shadow Oni"] = "EP526",
+	["Possessed Matsu Nagai"] = "EP527", ["Oni no Ianwa"] = "EP528", ["Seppun-trained Duelist"] = "EP529",
+	["Matsu Rokuro"] = "EP530", Ashimoshi = "EP531", Hioninmaru = "EP532", ["Oni no Kuzushi"] = "EP533",
+	["Mieko (dark half)"] = "EP534", ["Seppun Ushimo"] = "EP535", ["Togashi Akuro"] = "EP536",
+	["Kakita Kumpei"] = "EP537", ["Kansen-Hana"] = "EP538",
+	["Abbot Munashii"] = "EP539", ["Bloodspeaker Remnant"] = "EP149", Naohida = "EP151",
+	["Mine Guardian"] = "EP153", ["Shuten Doji of Regret"] = "EP155",
+	["Crow-Tengu"] = "EP159", ["Tomie Cho"] = "EP183", ["Enforcer of the Order"] = "EP177",
+	["Shade of the Crab Lord"] = "EP179", ["The Naga's Champion"] = "EP185", ["\"Ryozo\""] = "EP187",
+	["Many-Legged Horror"] = "EP189", ["Doji Nashiko"] = "EP191", ["Body of Damned Time"] = "EP193",
+	["The Empress of Nothing"] = "EP195" };		//	(EP525+ were drawn but missing here until
+																	//	Scorpion Ch1; gen_bossart BANNER_EP)
+::TurnBattleRunner._rt_bstart <- ::TurnBattleRunner.battleStart;
+::TurnBattleRunner.battleStart <- function(){
+	local boss = enemies.find( @( e) e && (e.name in BOSS_BANNER));
+	if( boss){
+		try{
+			::rpgstage.screenfx.screenEffectOn( { sfxid = "flash0", time = 400, color = 0xffffffff, num = 1 });
+			::rpgstage.screenfx.screenEffectOn( { sfxid = "quake0", time = 700, pow = 8, freq = 40, vert = true });
+			::playSound( "SE111");
+			::RPGMain.showPicture( { idx = 5, op = 0, picid = BOSS_BANNER[boss.name], pos = [640, 210], scale = 100,
+				rot = 0, fade = 300, flipx = false, col = 0xffffffff, easing = 0, aniid = null });
+			log( "boss intro: %S" % boss.name);
+		}catch( ex){ printexception( ex); boss = null; }
+	}
+	this._rt_bstart();
+	if( boss){
+		sleep( 700);
+		::RPGMain.showPicture( { idx = 5, op = 1, fade = 400 });
+	}
+};
+
+printf( "Rokugan battle plugin loaded: Suki cond=%S VPmax=%d Boostmax=%d\n", SUKI_COND, BP_MAX, BOOST_MAX);

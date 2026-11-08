@@ -1,0 +1,3090 @@
+//
+//	Boss-arena hazards. The troll (Crab Ch2 b_boss_puppet_troll; bosses.md):
+//	- untouchable while the Maho Puppet stands (hits on it deal nothing: "HAZARD");
+//	- each turn it smashes whoever draws the most attention (hits dealt, boosted hits count double); Razor's Edge
+//	  draws it to Natsuko (the existing taunt rule runs after this);
+//	- while the puppet is open (Suki) the troll turns on the puppet instead;
+//	- when the puppet falls, the troll, sated and confused, sits down: it leaves the battle.
+//
+import DamageResultType;
+
+local HAZARD = { Troll = "Maho Puppet" };		//	hazard name -> the enemy whose fall ends it
+local log( s){ printf( "[RT] %S\n", s); }
+
+::Rokugan.attention <- {};
+::Rokugan.attbattle <- null;
+
+//	Boss barks (production/crab-ch2.md S06 "Barks"): each plays once per battle, floating over the speaker.
+::Rokugan.barks <- {};
+::Rokugan.barkbattle <- null;
+::Rokugan.barkOnce <- function( key){
+	local b = ::rpgstage["battle"];
+	if( b != this.barkbattle){ this.barkbattle = b; this.barks = {}; }
+	if( key in this.barks) return false;
+	this.barks[key] <- true;
+	return true;
+};
+::Rokugan.member <- function( given){			//	a living party member by given name ("Natsuko"), or null
+	local b = ::rpgstage["battle"];
+	if( b) foreach( p in b.members){ if( p && !p.isDead() && this.given( p.name) == given) return p; }
+	return null;
+};
+::Rokugan.bark <- function( key, chr, text){
+	if( chr && this.barkOnce( key)){
+		this.pop( chr, text, 0xffffffff);
+		log( "bark %S: %S" % (chr.name, text));
+	}
+};
+
+::Rokugan.hazardMaster <- function( e){
+	local b = ::rpgstage["battle"];
+	local mname = HAZARD[e.name];
+	if( !b || !mname) return null;
+	foreach( x in b.enemies){ if( x && x.name == mname) return x; }
+	return null;
+};
+
+::Rokugan._rt_attack_h <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local b = ::rpgstage["battle"];
+	if( b != this.attbattle){ this.attbattle = b; this.attention = {}; }
+	local src = dmg.src, dst = dmg.dst;
+	if( (src instanceof ::RPGPlayer) && (dst instanceof ::RPGEnemy) && !dmg.miss){
+		this.attention[src] <- (this.attention[src] || 0) + (this.state( src).boosted ? 2 : 1);
+	}
+	if( dst instanceof ::RPGEnemy){
+		local m = this.hazardMaster( dst);
+		if( m && !m.isDead() && !(src instanceof ::RPGEnemy)){
+			if( (dmg.skill["elembits"] | 0) & (1 << 11)){		//	Jade burns Shadowlands flesh: it gets through
+				this.pop( dst, "JADE!", 0x80ff9cff);
+			}else{
+				dmg.cval.baserate = 0.0;
+				this.immune[dst] <- true;						//	the party learns: auto battle stops hitting it
+				this.pop( dst, "HAZARD", 0xc0c0c0ff);
+				return;
+			}
+		}
+	}
+	this._rt_attack_h( dmg);
+};
+
+::Rokugan._rt_pre_h <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local e = cmd.src;
+	if( (e instanceof ::RPGEnemy) && e.name == "Maho Puppet" && cmd.skill && cmd.skill["name"] == "No Pure Breaths")
+		this.bark( "hush", e, "Hush now. Hush.");
+	if( (e instanceof ::RPGEnemy) && (e.name in HAZARD) && cmd.skill && cmd.skill["skilltype"] == "attack"){
+		local m = this.hazardMaster( e), b = ::rpgstage.battle;
+		if( m && !m.isDead() && this.state( m).broken){
+			cmd.dsts = [m];								//	the open puppet is the loudest thing in the room
+			this.pop( e, "ROAR", 0xff8060ff);
+			log( "troll turns on the puppet");
+			this.bark( "turns", this.member( "Natsuko"), "That's right. He's the one you want.");
+			return;									//	no taunt redirect: the troll has its target
+		}
+		local best = null, bv = -1;
+		foreach( p in b.members){
+			if( !p || p.isDead()) continue;
+			local v = this.attention[p] || 0;
+			if( v > bv){ bv = v; best = p; }
+		}
+		if( best){
+			cmd.dsts = [best];
+			log( "troll smashes %S (attention %d)" % (best.name, bv));
+			if( this.given( best.name) != "Natsuko")		//	she calls it off an ally (the Razor's Edge hint)
+				this.bark( "moss", this.member( "Natsuko"), "Over here, you ugly heap of moss!");
+		}
+	}
+	this._rt_pre_h( cmd);
+};
+
+::Rokugan._rt_post_h <- ("onPostCommand" in ::Rokugan) ? ::Rokugan.onPostCommand : null;
+::Rokugan.onPostCommand <- function( cmd){
+	if( this._rt_post_h) this._rt_post_h( cmd);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	if( !("statlogged" in ::Rokugan) || ::Rokugan.statlogged != b){
+		::Rokugan.statlogged <- b;
+		foreach( c in b.members) if( c) log( "stat %S LV%d HP%d PATK%d PDEF%d MATK%d MDEF%d AGI%d" % (c.name, c.LV, c.MAXHP, c.PATK, c.PDEF, c.MATK, c.MDEF, c.AGI));
+		foreach( c in b.enemies) if( c) log( "stat %S LV%d HP%d PATK%d PDEF%d MATK%d MDEF%d AGI%d" % (c.name, c.LV, c.MAXHP, c.PATK, c.PDEF, c.MATK, c.MDEF, c.AGI));
+	}
+	if( (cmd.src instanceof ::RPGEnemy) && cmd.dsts)
+		foreach( d in cmd.dsts) if( d) log( "%S hit %S: HP %d/%d" % (cmd.src.name, d.name, d.HP, d.MAXHP));
+	foreach( e in b.enemies){
+		if( !e || e.isDead() || !(e.name in HAZARD)) continue;
+		local m = this.hazardMaster( e);
+		if( m && (m.isDead() || m.HP <= 0)){
+			e.HP = 0;									//	the engine's death check takes it out of the fight
+			this.pop( e, "...Hrm.", 0xc0c0c0ff);
+			log( "the troll sits down");
+		}
+	}
+};
+
+//	Oni no Kommei (Crab Ch3 boss; bosses.md b_boss_kommei): every third round it swaps two travelers' command menus
+//	(their skills, attack and talent - not their stats) for 2 rounds. "The Other Face" is a separate target: break it
+//	(Suki) or kill it and the swaps stop. A Kommei Mask (A114) makes its wearer unswappable. When the Kommei falls,
+//	the face falls with it.
+::Rokugan.swap <- { battle = null, a = null, b = null, until = -1, lastturn = -1, faceDone = false };
+::Rokugan.swapPartner <- function( pc){
+	local sw = this.swap, bt = ::rpgstage ? ::rpgstage["battle"] : null;
+	if( !bt || sw.battle != bt || !sw.a || bt.turn > sw.until) return null;
+	return pc == sw.a ? sw.b : (pc == sw.b ? sw.a : null);
+};
+::Rokugan.kommeiRound <- function(){
+	local bt = ::rpgstage["battle"];
+	if( !bt) return;
+	local sw = this.swap;
+	if( sw.battle != bt){ sw.battle = bt; sw.a = null; sw.b = null; sw.until = -1; sw.lastturn = -1; sw.faceDone = false; }
+	if( sw.lastturn == bt.turn) return;
+	sw.lastturn = bt.turn;
+	local kom = bt.enemies.find( @( e) e && !e.isDead() && e.name == "Oni no Kommei");
+	if( !kom) return;
+	local face = bt.enemies.find( @( e) e && e.name == "The Other Face");
+	if( !face || face.isDead() || this.state( face).broken){
+		if( face && !sw.faceDone){
+			sw.faceDone = true;
+			sw.until = -1;
+			this.bark( "blind", kom, "My other self! You've blinded my other self!");
+			log( "kommei: the other face is broken; no more swaps");
+		}
+		return;
+	}
+	if( (bt.turn + 1) % 3 != 0) return;					//	the 3rd, 6th, 9th... round (turn counts from 0)
+	local cands = bt.members.filter( @( v) v && !v.isDead() && !v.equips.find( @( q) q && q.dataid == "A114"));
+	local n = length( cands);
+	if( n < 2) return;
+	local i = int( ::rnd.nextf( n)) % n;
+	local j = (i + 1 + int( ::rnd.nextf( n - 1)) % (n - 1)) % n;
+	sw.a = cands[i];
+	sw.b = cands[j];
+	sw.until = bt.turn + 1;
+	this.pop( sw.a, "SWAP!", 0xc070ffff);
+	this.pop( sw.b, "SWAP!", 0xc070ffff);
+	log( "kommei swaps %S <-> %S (rounds %d-%d)" % (sw.a.name, sw.b.name, bt.turn, sw.until));
+	this.bark( "swap", kom, "Which of you is which? Do you even know?");
+	this.bark( "swap2", this.member( "Natsuko"), "I'm the one hitting you.");
+};
+::Rokugan._rt_preturn_k <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_k( chr);
+	this.kommeiRound();
+};
+::Rokugan._rt_post_k <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_k( cmd);
+	local bt = ::rpgstage["battle"];
+	if( !bt) return;
+	local kom = bt.enemies.find( @( e) e && e.name == "Oni no Kommei");
+	if( kom && (kom.isDead() || kom.HP <= 0)){
+		foreach( e in bt.enemies){
+			if( e && e.name == "The Other Face" && !e.isDead() && e.HP > 0){ e.HP = 0; log( "the other face fades"); }
+		}
+	}
+};
+//	the swapped menus: skills (Skill command, auto battle), the Attack command's weapon skill, the Talent command
+::RPGPlayer._rt_hasSkill <- ::RPGPlayer.hasSkill;
+::RPGPlayer.hasSkill <- function( id){
+	local p = ::Rokugan.swapPartner( this);
+	return p ? p._rt_hasSkill( id) : this._rt_hasSkill( id);
+};
+::RPGPlayer._rt_atkskill <- ::RPGPlayer.getAttackSkill;
+::RPGPlayer.getAttackSkill <- function(){
+	local p = ::Rokugan.swapPartner( this);
+	return p ? p._rt_atkskill() : this._rt_atkskill();
+};
+::Rokugan._rt_talentFor <- ::Rokugan.talentFor;
+::Rokugan.talentFor <- function( pc){
+	local p = this.swapPartner( pc);
+	return this._rt_talentFor( p || pc);
+};
+//	production crab-ch3 S07 bark: the swap hands Natsuko a healer's command
+::Rokugan._rt_pre_kh <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill;
+	if( (pc instanceof ::RPGPlayer) && sk && sk["skilltype"] == "heal" && this.given( pc.name) == "Natsuko" &&
+			this.swapPartner( pc))
+		this.bark( "swapheal", pc, "I don't know how to heal! ...Oh. Oh, that's nice.");
+	this._rt_pre_kh( cmd);
+};
+
+//	Crab Ch4 (bosses.md b_boss_tsukakoro, storyboard b_siege_breach_b; production crab-ch4 S06 barks).
+//	- Oni no Tsukakoro's Bounce Chain hits 2-4 travelers in a row; Natsuko's Razor's Edge (taunt) pulls every bounce
+//	  onto her.
+//	- flare_fired (G281): Crab archers on the parapet volley the oni every round (3% of its max HP).
+//	- The Cellar Ogre goes for the courtiers unless Natsuko draws it: an undrawn swing may hit them instead of the
+//	  party (counted in G291 for the scene afterwards).
+::Rokugan._rt_pre_ch4 <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local e = cmd.src, sk = cmd.skill, bt = ::rpgstage["battle"];
+	if( bt && (e instanceof ::RPGEnemy) && sk){
+		local nat = this.member( "Natsuko"), taunt = nat && this.state( nat).taunt > 0;
+		if( e.name == "Oni no Tsukakoro" && sk["name"] == "Bounce Chain"){
+			local live = bt.members.filter( @( v) v && !v.isDead());
+			local n = 2 + int( ::rnd.nextf( 3)) % 3;
+			local nsk = clone sk;
+			if( taunt){
+				cmd.dsts = [nat];
+				nsk["atknum"] <- [n, n];
+				this.bark( "bounceme", nat, "Bounce off me, then!");
+			}else{
+				local d = [];
+				for( local i = 0; i < n && length( live); i++) d.append( live[(i + int( ::rnd.nextf( 7))) % length( live)]);
+				cmd.dsts = d;
+				local other = live.find( @( v) ::Rokugan.given( v.name) != "Natsuko") || nat;
+				this.bark( "bounce", other, "It's bouncing - it's going to bounce off all of us!");
+			}
+			cmd.skill = nsk;
+			log( "bounce chain x%d%S" % (n, taunt ? " (Razor's Edge: all on Natsuko)" : ""));
+			return this._rt_pre_ch4( cmd);
+		}
+		if( e.name == "Cellar Ogre" && sk["skilltype"] == "attack" && !taunt && this.roll( 60)){
+			cmd.skill = ::conf.skill["S000"];
+			::rpgvar["G291"] = int( ::rpgvar["G291"] || 0) + 1;
+			this.pop( e, "It swings at the courtiers!", 0xff8060ff);
+			log( "cellar ogre hits the courtiers (%d)" % ::rpgvar["G291"]);
+			return this._rt_pre_ch4( cmd);
+		}
+	}
+	return this._rt_pre_ch4( cmd);
+};
+::Rokugan.volleyturn <- -1;
+::Rokugan.volleyb <- null;
+::Rokugan._rt_preturn_v <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_v( chr);
+	local bt = ::rpgstage["battle"];
+	if( !bt || !::rpgvar["G281"] || (this.volleyb == bt && this.volleyturn == bt.turn)) return;
+	local oni = bt.enemies.find( @( x) x && !x.isDead() && x.name == "Oni no Tsukakoro");
+	if( !oni) return;
+	this.volleyb = bt;
+	this.volleyturn = bt.turn;
+	local dmg = Math.max( 1, int( oni.MAXHP * 0.03));
+	oni.HP = Math.max( 1, oni.HP - dmg);
+	this.pop( oni, "VOLLEY -" .. dmg, 0x9fd8ffff);
+	this.bark( "volley", oni, "Volley! For the scout who fired the blue!");
+	log( "crab archers volley the oni: -%d" % dmg);
+};
+
+//	Boss fights, Octopath-style (user: "bosses respawn minions when they are all destroyed, minions have tricks to
+//	keep the bosses alive; big bosses without minions get their own conditions, like only 1 damage unless hit by
+//	jade that turn").
+//	- MINIONS: a boss's minions are its shield. When every one of them is down, the boss stands alone for one round
+//	  (the window to hit it); then they rise again at full HP and Resolve.
+//	- Minion tricks: skills flagged rt_minion (gen_data S164-S168: heal / shield / war chant) are aimed at the boss of
+//	  the fight, or at the most wounded ally when there is no boss (or, for a heal, when the boss is unhurt).
+//	- WARDS: a minionless boss shrugs off every hit (1 damage) until a hit of its ward element lands; then the ward
+//	  is open for the rest of that round.
+local MINIONS = {
+	["Nezumi Shaman"] = { names = { ["Nezumi Warrior"] = 1, ["Seppun Ryozo"] = 1 },
+	                      bark = "Little ones! Up-up! Fight for the Grasping Paw!" },
+	["Moto Akutsukai"] = { names = { Zombie = 1 }, bark = "The rider raises a bony hand. The dead get up." },
+	["Oni no Kommei"] = { names = { ["Maho-bujin"] = 1 }, bark = "Patrol! Fall in! (both faces laughing)" },
+	["Cellar Ogre"] = { names = { ["Maho-bujin"] = 1 }, bark = "The blood-sorcerers drag themselves up again." },
+};
+local WARDS = { ["Oni no Tsukakoro"] = 11 };			//	boss name -> ELEMS bit (11 = Jade)
+
+::Rokugan.bossOf <- function( bt){
+	foreach( e in bt.enemies){ if( e && !e.isDead() && (e.name in MINIONS || e.name in WARDS)) return e; }
+	return null;
+};
+::Rokugan._rt_pre_min <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local e = cmd.src, sk = cmd.skill, bt = ::rpgstage["battle"];
+	if( bt && (e instanceof ::RPGEnemy) && sk && sk["rt_minion"]){
+		local boss = this.bossOf( bt);
+		if( boss && sk["skilltype"] == "heal" && boss.HP >= boss.MAXHP) boss = null;	//	a full-HP boss: heal a friend
+		if( !boss){
+			local lr = 2.0;
+			foreach( x in bt.enemies){
+				if( !x || x.isDead()) continue;
+				local r = float( x.HP) / Math.max( 1, x.MAXHP);
+				if( r < lr){ lr = r; boss = x; }
+			}
+		}
+		if( boss){
+			cmd.dsts = [boss];
+			log( "%S: %S on %S" % (e.name, sk.name, boss.name));
+		}
+	}
+	return this._rt_pre_min( cmd);
+};
+
+::Rokugan.waves <- { battle = null, lastturn = -1, alone = {} };
+::Rokugan.raise <- function( bt, e){
+	e.HP = e.MAXHP;
+	e.updateDead();
+	local st = this.state( e);
+	st.res = st.maxres;
+	if( st.broken){ st.broken = false; this.tintBroken( e, false); }
+	if( e.hasCondition( "K030")) e.removeCondition( "K030");
+	local rp = bt.getChara3D( e);
+	if( rp){
+		rp.fxtype = 1; rp.fxw = 1.0; rp.fxspd = -0.0015;		//	the death dissolve, run backwards
+		rp.anime2( {id="stand"});
+	}
+	this.pop( e, "RISES", 0xc070ffff);
+};
+::Rokugan._rt_preturn_min <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_min( chr);
+	local bt = ::rpgstage["battle"], w = this.waves;
+	if( !bt) return;
+	if( w.battle != bt){ w.battle = bt; w.lastturn = -1; w.alone = {}; }
+	if( w.lastturn == bt.turn) return;
+	w.lastturn = bt.turn;
+	foreach( boss in bt.enemies){
+		if( !boss || boss.isDead() || !(boss.name in MINIONS)) continue;
+		local cfg = MINIONS[boss.name];
+		local mins = bt.enemies.filter( @( x) x && x != boss && (x.name in cfg.names));
+		if( !length( mins)) continue;
+		if( mins.find( @( x) !x.isDead())){ if( boss in w.alone) delete w.alone[boss]; continue; }
+		if( !(boss in w.alone)){
+			w.alone[boss] <- bt.turn;							//	alone: one round to hit it
+			log( "%S stands alone (round %d)" % (boss.name, bt.turn));
+			continue;
+		}
+		if( bt.turn - w.alone[boss] < 1) continue;
+		foreach( m in mins) this.raise( bt, m);
+		delete w.alone[boss];
+		bt.syncEnemyListUI();
+		this.pop( boss, cfg.bark, 0xff8060ff);
+		log( "%S raises its minions (%d)" % (boss.name, length( mins)));
+	}
+};
+
+::Rokugan.wardopen <- {};
+::Rokugan.ward1 <- {};
+::Rokugan._rt_attack_w <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local e = dmg.dst, bt = ::rpgstage["battle"];
+	if( bt && (e instanceof ::RPGEnemy) && (e.name in WARDS) && !(dmg.src instanceof ::RPGEnemy) && !dmg.miss &&
+			!dmg.heal && !dmg.skip){
+		local o = this.wardopen[e] || null;
+		local open = o && o[0] == bt && o[1] == bt.turn;
+		if( (dmg.skill["elembits"] | 0) & (1 << WARDS[e.name])){
+			if( !open){
+				this.wardopen[e] <- [bt, bt.turn];
+				if( e in this.immune) delete this.immune[e];
+				this.pop( e, "WARD BROKEN", 0x80ff9cff);
+				this.bark( "wardbroken", this.member( "Natsuko"), "Jade! It cracks! Hit it now, all of you!");
+				log( "%S: the ward is open this round" % e.name);
+			}
+		}else if( !open){
+			this.ward1[dmg] <- true;
+			this.immune[e] <- true;								//	auto battle learns: jade first
+			this.pop( e, "WARDED", 0xc0c0c0ff);
+		}
+	}
+	return this._rt_attack_w( dmg);
+};
+::Damage._rt_finish <- ::Damage.finishDamage;
+::Damage.finishDamage <- function(){
+	this._rt_finish();
+	if( this in ::Rokugan.ward1){
+		delete ::Rokugan.ward1[this];
+		if( result == DMG_HIT || result == DMG_CRITICAL) val = 1;
+	}
+	//	Hida Bushi R2 The Mountain Does Not Move (K027; 3e: brace, and the wounds don't land): hits taken are halved
+	if( (dst instanceof ::RPGPlayer) && dst.hasCondition( "K027") && (result == DMG_HIT || result == DMG_CRITICAL) &&
+			val > 1){
+		log( "%S: the mountain does not move (%d -> %d)" % (dst.name, val, val / 2));
+		val = val / 2;
+	}
+};
+
+//	Surrender (Crane Ch1 forest bandits; production crane-ch1 S04: "they surrender at low HP"; storyboard: "sparing
+//	everyone is easy"). An enemy whose data has rt_surrender (a % of max HP) gives up when a hit leaves it at or under
+//	that share: it leaves the fight alive (escaped; counted back in for exp on victory, RokuganBattle) and fades into
+//	the dark. A blow that would kill one is stayed (1 HP, surrender) unless it is a signature killing strike: a full
+//	Iaijutsu Strike or Kiku's Battle-Joy. Killing one sets rpgvar G336, so the village is not spared.
+::Rokugan.surrender <- function( b, e){
+	local st = this.state( e);
+	e.escaped = true;
+	st.surrendered <- true;
+	local mercy = e.data["rt_mercy"];									//	per foe (Lion Ch3: the pass ronin)
+	if( mercy) this.bark( "mercy", e, mercy);
+	else{
+		this.bark( "mercy", e, "Mercy! We're farmers! We're just farmers with sticks!");
+		this.bark( "sticks", this.member( "Rensei"), "...Then put the sticks down.");
+	}
+	this.pop( e, "SURRENDERS", 0xffffc0ff);
+	local rp = b.getChara3D( e);
+	if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }			//	the dissolve: off into the dark
+	log( "%S surrenders" % e.name);
+};
+::Rokugan.KILLING_BLOWS <- ["Iaijutsu: Strike", "Battle-Joy"];
+::Rokugan.surrenderDying <- function( e, arg){						//	the "dying" option event: true = no death
+	local b = ::rpgstage["battle"];
+	if( !b || !(e instanceof ::RPGEnemy) || !e.data["rt_surrender"] || e.escaped) return false;
+	local sk = arg["cmd"] ? arg.cmd["skill"] : null, nm = sk ? (sk["name"] || "") : "";
+	foreach( k in this.KILLING_BLOWS) if( nm.indexOf( k) >= 0){
+		::rpgvar[e.data["rt_killflag"] || "G336"] = true;				//	per foe (Lion Ch4: a berserker killed)
+		log( "%S was killed (%S)" % (e.name, nm));
+		return false;
+	}
+	e.HP = 1;
+	this.surrender( b, e);
+	return true;
+};
+::Rokugan._rt_post_sur <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_sur( cmd);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	foreach( e in b.enemies){
+		local pct = e ? e.data["rt_surrender"] : null;
+		if( pct && !e.escaped && !e.isDead() && e.HP <= e.MAXHP * pct * 0.01) this.surrender( b, e);
+	}
+};
+//	...and per hit: a man already down to his surrender share is not cut again (a Boost's follow-up hits are stayed).
+::Rokugan._rt_attack_sur <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local dst = dmg.dst, pct = (dst instanceof ::RPGEnemy) ? dst.data["rt_surrender"] : null;
+	if( pct && !dst.escaped && !dst.isDead() && dst.HP <= dst.MAXHP * pct * 0.01){
+		dmg.cval.baserate = 0.0;
+		this.pop( dst, "STAYED", 0xffffc0ff);
+		return;
+	}
+	this._rt_attack_sur( dmg);
+};
+
+//	Kakita Yasurugi (Crane Ch1 boss; bosses.md: phase 1 the duel, phase 2 the skirmish; production crane-ch1 S08 barks).
+//	The duel: he Focuses on his first two actions and Strikes (Kakita Iaijutsu, at Rensei) on the third. If Rensei's
+//	Iaijutsu Strike lands first, the duel is won: Yasurugi loses his strike and the skirmish begins. Focus to the full
+//	three and he cuts first (storyboard: "He Strikes first if the player over-Focuses").
+::Rokugan.yduel <- { battle = null, focus = 0, done = false, won = false, waited = false, quarter = false };
+::Rokugan.yasurugiDuel <- function(){
+	local b = ::rpgstage["battle"], d = this.yduel;
+	if( d.battle != b){ d.battle = b; d.focus = 0; d.done = false; d.won = false; d.waited = false; d.quarter = false; }
+	return d;
+};
+::Rokugan.guestSays <- function( n, text){							//	a guest's bark, if that guest is the active one
+	local r = this.member( "Rensei");
+	if( r && int( ::rpgvar["G232"] || 0) == n) this.bark( text, r, text);
+};
+::Rokugan._rt_sc_yas <- ::Rokugan.onSkillChange;
+::Rokugan.onSkillChange <- function( cmd){
+	local e = cmd.src;
+	if( (e instanceof ::RPGEnemy) && e.name == "Kakita Yasurugi"){
+		local d = this.yasurugiDuel();
+		if( d.won && !d.waited){									//	his drawn breath, wasted
+			d.waited = true;
+			cmd.skill = ::conf.skill["S000"];
+			this.pop( e, "...", 0xc0c0c0ff);
+			return;
+		}
+		if( !d.done){
+			if( d.focus < 2){
+				d.focus++;
+				cmd.skill = ::conf.skill["S000"];
+				this.pop( e, "FOCUS %d/3" % d.focus, 0x9fd8ffff);
+				log( "Yasurugi focuses %d/3" % d.focus);
+				return;
+			}
+			d.done = true;
+			local r = this.member( "Rensei");
+			cmd.skill = ::conf.skill["S403"];
+			if( r) cmd.dsts = [r];
+			this.pop( e, "IAIJUTSU", 0xff4040ff);
+			this.guestSays( 6, "Kiku: Rensei!");
+			this.bark( "hesitated", r, "You hesitated once, didn't you? With a peasant.");
+			log( "Yasurugi strikes first");
+			return;
+		}
+	}
+	this._rt_sc_yas( cmd);
+};
+::Rokugan._rt_attack_yas <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local dst = dmg.dst, sk = dmg.skill;
+	if( (dst instanceof ::RPGEnemy) && dst.name == "Kakita Yasurugi" && (dmg.src instanceof ::RPGPlayer) && sk &&
+			(sk["name"] || "").indexOf( "Iaijutsu: Strike") >= 0){
+		local d = this.yasurugiDuel();
+		if( !d.done){
+			d.done = true;
+			d.won = true;
+			this.pop( dst, "DUEL WON", 0x9fd8ffff);
+			this.bark( "hesitated", this.member( "Rensei"), "You hesitated once, didn't you? With a peasant.");
+			log( "Rensei wins the duel");
+		}
+	}
+	this._rt_attack_yas( dmg);
+};
+::Rokugan._rt_post_yas <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_yas( cmd);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	foreach( e in b.enemies){
+		if( !e || e.name != "Kakita Yasurugi" || e.isDead()) continue;
+		local d = this.yasurugiDuel();
+		if( !d.quarter && e.HP <= e.MAXHP / 4){						//	Seigen reads him: his left side
+			d.quarter = true;
+			this.guestSays( 5, "Seigen: His left side, boy. He favours it.");
+			if( int( ::rpgvar["G232"] || 0) == 5) this.state( e).known = this.state( e).known | this.weakbits( e);
+		}
+	}
+	if( (cmd.src instanceof ::RPGEnemy) && cmd.skill && cmd.skill["name"] == "Way of the Crane"){
+		this.nextf[cmd.src] <- 1.5;									//	he moves first next turn
+		this.pop( cmd.src, "WAY OF THE CRANE", 0x9fd8ffff);
+	}
+};
+
+//	Charmed foes (Crane Ch2: Miyako's seduced sentries and the Iron Cranes; production crane-ch2 S04-S05: "Damage
+//	feeds her hold - she heals them between turns. Break them (Suki) to free them"). Enemy field rt_charmed:
+//	- breaking one (Suki) frees it: it leaves the fight alive (escaped; counted back in for exp on victory);
+//	- each new turn, Miyako heals every charmed general (rt_charmed == 2) by 10% of max HP;
+//	- killing one instead sets rpgvar G359 (the worse epilogue). rpgvar G360 counts the generals freed.
+::Rokugan.FREED_BARKS <- ["...Why am I holding my sword? Who - who was I fighting?",
+	"Gods. My wife. Where's my wife?", "...The Crab never came. Did they? There was no one there."];
+::Rokugan.onBroken <- function( e){
+	local kind = e.data["rt_charmed"];
+	if( !kind || e.escaped) return;
+	local b = ::rpgstage["battle"], st = this.state( e);
+	e.escaped = true;
+	st.surrendered <- true;
+	this.pop( e, "FREED", 0x9fd8ffff);
+	if( kind == 2){
+		local n = int( ::rpgvar["G360"] || 0);
+		::rpgvar["G360"] = n + 1;
+		this.bark( "freed" .. n, e, this.FREED_BARKS[n % 3]);
+		if( n == 1 && ::rpgvar["G349"]) this.bark( "eriko", this.member( "Rensei"), "Eriko: Right here, you fool.");
+	}else this.bark( "woke", e, "The lady said - the lady said the Crab come at dawn-");
+	local rp = b ? b.getChara3D( e) : null;
+	if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+	log( "%S is freed" % e.name);
+};
+::Rokugan.hold <- { battle = null, turn = -1 };
+::Rokugan._rt_preturn_hold <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_hold( chr);
+	local b = ::rpgstage["battle"], h = this.hold;
+	if( !b) return;
+	if( h.battle != b){ h.battle = b; h.turn = -1; }
+	if( h.turn == b.turn) return;
+	h.turn = b.turn;
+	foreach( e in b.enemies){
+		if( !e || e.escaped || e.isDead() || e.data["rt_charmed"] != 2 || e.HP >= e.MAXHP) continue;
+		local v = Math.min( e.MAXHP - e.HP, e.MAXHP / 10);
+		e.HP += v;
+		this.pop( e, "+" .. v, 0xff9fd8ff);
+		local w = b.enemies.find( @( x) x && x.data["rt_watcher"] && !x.escaped);	//	she says it from the ridge
+		this.bark( "mylove", w || e, "Don't let them hurt you, my love.");
+		log( "Miyako's hold heals %S +%d" % (e.name, v));
+	}
+};
+::Rokugan._rt_dying_charm <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function( e, arg){
+	if( (e instanceof ::RPGEnemy) && e.data["rt_charmed"] == 2 && !e.escaped){
+		::rpgvar["G359"] = true;
+		log( "%S was killed (not freed)" % e.name);
+	}
+	if( (e instanceof ::RPGEnemy) && e.data["rt_charmed"] == 1 && !e.escaped){	//	a spellbound Crane sentry: a blow
+		local sk = arg["cmd"] ? arg.cmd["skill"] : null, nm = sk ? (sk["name"] || "") : "";	//	that would kill him
+		local lethal = false;																//	knocks him awake
+		foreach( k in this.KILLING_BLOWS) if( nm.indexOf( k) >= 0) lethal = true;
+		if( !lethal){
+			e.HP = 1;
+			this.onBroken( e);
+			return true;
+		}
+	}
+	return this._rt_dying_charm( e, arg);
+};
+
+//	Freed / surrendered foes are `escaped` but not dead, and the engine's targeting only skips the dead: they stayed
+//	targetable and soaked attacks after leaving. Nobody can target an escaped character.
+::_rt_isCommandTarget <- ::isCommandTarget;
+::isCommandTarget <- function( src, dst, cmdtgt){
+	if( dst && dst["escaped"]) return false;
+	return ::_rt_isCommandTarget( src, dst, cmdtgt);
+};
+
+//	A watcher (Crane Ch2: Doji Miyako on the ridge, enemy field rt_watcher): nobody can target her; she only waits
+//	(her AI) while her hold heals the generals; once no other enemy is left fighting she leaves, which ends the battle.
+::_rt_isCommandTarget2 <- ::isCommandTarget;
+::isCommandTarget <- function( src, dst, cmdtgt){
+	if( dst && (dst instanceof ::RPGEnemy) && dst.data["rt_watcher"] && (src instanceof ::RPGPlayer)) return false;
+	return ::_rt_isCommandTarget2( src, dst, cmdtgt);
+};
+::Rokugan._rt_post_watch <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_watch( cmd);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local w = b.enemies.find( @( e) e && e.data["rt_watcher"] && !e.escaped);
+	if( !w || b.enemies.find( @( e) e && !e.data["rt_watcher"] && !e.isDefeated())) return;
+	w.escaped = true;
+	this.bark( "tiresome", w, "Miyako: How tiresome.");
+	local rp = b.getChara3D( w);
+	if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+	log( "%S leaves the ridge" % w.name);
+};
+
+//	False charms (Crane Ch3 "The White Squid"; production crane-ch3 S03/S08; bosses.md b_midboss_chihaya,
+//	b_boss_katsuo). Enemy fields: rt_charm = the charm it starts with (cond id); rt_charmer = Katsuo, who at the start
+//	of every turn hands a charm to a foe without one (his crew first, himself last). Anyone in the party wearing the
+//	Asahina Ward-paper (A119) means the warded half instead. Breaking the wearer (Suki) shatters its charm: it is
+//	removed and the wearer is Shattered (K050: loses its actions one turn past Suki). Skills with rt_maho (% of max HP)
+//	cost their caster blood. rt_broadside: if Yasuki Tessai sails with Rensei (G387), his archers loose a volley on turn 2.
+::Rokugan.CHARMS <- ["K044", "K045", "K046"];
+::Rokugan.WARDED <- { K044 = "K047", K045 = "K048", K046 = "K049" };
+::Rokugan.charmOf <- function( e){
+	foreach( k in ["K044", "K045", "K046", "K047", "K048", "K049"]) if( e.hasCondition( k)) return k;
+	return null;
+};
+::Rokugan.warded <- function(){
+	local b = ::rpgstage["battle"];
+	if( b) foreach( p in b.members) if( p && !p.isDead() && this.wears( p, "A119")) return true;
+	return false;
+};
+::Rokugan.giveCharm <- function( e, k){
+	if( this.warded()) k = this.WARDED[k];
+	e.putCondition( k);
+	this.pop( e, ::conf.cond[k]["name"], 0xffe0a0ff);
+	log( "%S gets %S" % (e.name, k));
+};
+::Rokugan.charmer <- function(){
+	local b = ::rpgstage["battle"];
+	return b ? b.enemies.find( @( x) x && x.data["rt_charmer"] && !x.escaped && !x.isDead()) : null;
+};
+::Rokugan.charms <- { battle = null, turn = -1, t0 = -1 };
+::Rokugan._rt_preturn_charm <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_charm( chr);
+	local b = ::rpgstage["battle"], h = this.charms;
+	if( !b) return;
+	if( h.battle != b){
+		h.battle = b; h.turn = -1; h.t0 = b.turn;
+		foreach( e in b.enemies) if( e && e.data["rt_charm"] && !this.charmOf( e)) this.giveCharm( e, e.data["rt_charm"]);
+	}
+	if( h.turn == b.turn) return;
+	h.turn = b.turn;
+	local k = this.charmer();
+	if( k && !this.state( k).broken){
+		local pool = b.enemies.filter( @( x) x && x != k && !x.escaped && !x.isDead() && !::Rokugan.charmOf( x)
+			&& !x.hasCondition( "K050") && !::Rokugan.state( x).broken);
+		if( !length( pool) && !this.charmOf( k)) pool = [k];
+		if( length( pool)){
+			local t = pool[int( ::rnd.nextf( length( pool))) % length( pool)];
+			this.giveCharm( t, this.CHARMS[int( ::rnd.nextf( 3)) % 3]);
+			this.bark( "brave", k, "Here, brother. Be brave. It says so on the paper.");
+		}
+	}
+	if( b.turn == h.t0 + 1 && ::rpgvar["G387"]){
+		local y = b.enemies.find( @( x) x && x.data["rt_broadside"] && !x.isDead());
+		if( y){
+			foreach( e in b.enemies){
+				if( !e || e.escaped || e.isDead()) continue;
+				local v = Math.min( e.HP - 1, e.MAXHP * 12 / 100);
+				if( v > 0){ e.HP -= v; this.pop( e, "-" .. v, 0xffb060ff); }
+			}
+			this.bark( "broadside", y, "Tessai's archers: LOOSE!");
+			log( "Tessai's broadside");
+		}
+	}
+};
+::Rokugan._rt_broken_charm <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_charm( e);
+	local k = this.charmOf( e);
+	if( !k || e.escaped) return;
+	e.removeCondition( k);
+	e.putCondition( "K050");
+	this.pop( e, "SHATTERED", 0xffa0a0ff);
+	if( e.name == "Chihaya the Quick") this.bark( "guaranteed", e, "My charm! It was guaranteed!");
+	else if( this.charmer()) this.bark( "rude", this.charmer(), "You don't believe in it? How rude.");
+	else this.bark( "broke", e, "The charm - it was supposed to-!");
+	log( "%S: charm %S shattered" % (e.name, k));
+};
+::Rokugan._rt_post_maho <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_maho( cmd);
+	local src = cmd.src, sk = cmd.skill, b = ::rpgstage["battle"];
+	if( !b) return;
+	if( (src instanceof ::RPGEnemy) && sk && sk["rt_maho"] && !src.isDead()){
+		local v = Math.min( src.HP - 1, src.MAXHP * sk.rt_maho / 100);
+		if( v > 0){ src.HP -= v; this.pop( src, "-" .. v, 0xff8080ff); }
+		this.bark( "ink", src, "My blood is very good ink.");
+	}
+	if( (src instanceof ::RPGEnemy) && src.name == "Chihaya the Quick")
+		this.bark( "painting", src, "You fight like a painting, Crane! Pretty and still!");
+	if( (src instanceof ::RPGPlayer) && this.given( src.name) == "Rensei" && sk && sk["name"] == "Iaijutsu: Strike"
+		&& b.enemies.find( @( x) x && x.name == "Chihaya the Quick" && !x.isDead()))
+		this.bark( "paintings", src, "Paintings don't miss.");
+};
+//	Katsuo's 25% line (production S08 barks), on the hit that takes him there: one boosted command can go from half to
+//	dead, so a check after the command would miss it. "recoil" fires per hit, with his HP from before it.
+::Rokugan.onRecoil <- function( dmg){
+	local k = dmg.dst;
+	if( !(k instanceof ::RPGEnemy) || !k.data["rt_charmer"] || dmg.miss || dmg.heal) return;
+	if( k.HP - dmg.val > k.MAXHP / 4 || !this.barkOnce( "quarter")) return;
+	this.pop( k, "Kill me and the charms keep working. Isn't that funny? Lies outlive their makers.", 0xffffffff);
+	log( "bark %S: quarter" % k.name);
+	local r = this.member( "Rensei");
+	if( r) this.bark( "wontkill", r, "Then I won't kill you.");
+};
+//	A captain's crew gives up when he falls (enemy field rt_captain: Yosuke, Katsuo): the rest of his side surrender and
+//	leave the fight (escaped, counted back in for exp and drops on victory, like Ch1's bandits).
+::Rokugan._rt_post_captain <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_captain( cmd);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local cap = b.enemies.find( @( e) e && e.data["rt_captain"]);
+	if( !cap || !(cap.isDead() || cap.escaped)) return;				//	fell, fled or was bound
+	local any = false;
+	foreach( e in b.enemies){
+		if( !e || e == cap || e.escaped || e.isDead()) continue;
+		e.escaped = true;
+		this.state( e).surrendered <- true;
+		local rp = b.getChara3D( e);
+		if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+		any = true;
+	}
+	if( any){
+		local said = cap.data["rt_captain"], msg = "The crew throw down their weapons.";
+		if( cap.name == "Yosuke the Bold") msg = "The white ship veers away into the dark.";
+		if( said && said != true) msg = said;								//	a string: what happens when he falls
+		this.pop( cap, msg, 0xffffffff);
+		log( "%S fell: the crew gives up" % cap.name);
+	}
+};
+
+//	Kakita Masanori (Crane Ch4 b_boss_masanori; bosses.md: a formal duel, first blood; production crane-ch4 S05).
+//	Enemy field rt_firstblood. A formal duel: no seconds (the Call command is empty). Phase 1, the iaijutsu duel: he
+//	starts with more Focus than Rensei (2/4), Focuses twice more and draws on his third action; One Strike Blade puts
+//	him first in the turn while he Focuses. Rensei's Iaijutsu Strike landing first wins the exchange (he loses his
+//	drawn strike). Phase 2, kata. First blood wins the duel: break him (Suki) once, then land an Iaijutsu Strike while
+//	he is open or any critical hit. A blow that would kill him is first blood too (it stops at 1 HP). He then yields
+//	(escaped): rpgvar G431 (duel_won).
+::Rokugan.mduel <- { battle = null, focus = 2, done = false, won = false, waited = false, broke = false, blood = false };
+::Rokugan.masanoriDuel <- function(){
+	local b = ::rpgstage["battle"], d = this.mduel;
+	if( d.battle != b){ d.battle = b; d.focus = 2; d.done = false; d.won = false; d.waited = false; d.broke = false;
+		d.blood = false; }
+	return d;
+};
+::Rokugan._rt_callables_duel <- ::Rokugan.callables;
+::Rokugan.callables <- function( pc){
+	local b = ::rpgstage["battle"];
+	if( b && b.enemies.find( @( e) e && (e.data["rt_firstblood"] || e.data["rt_duel"]))) return [];	//	a duel: no seconds
+	return this._rt_callables_duel( pc);
+};
+::Rokugan._rt_sc_mas <- ::Rokugan.onSkillChange;
+::Rokugan.onSkillChange <- function( cmd){
+	local e = cmd.src;
+	if( (e instanceof ::RPGEnemy) && e.data["rt_firstblood"]){
+		local d = this.masanoriDuel();
+		if( d.won && !d.waited){
+			d.waited = true;
+			cmd.skill = ::conf.skill["S000"];
+			this.pop( e, "...", 0xc0c0c0ff);
+			return;
+		}
+		if( !d.done){
+			if( d.focus < 4){
+				d.focus++;
+				cmd.skill = ::conf.skill["S000"];
+				this.nextf[e] <- 1.5;										//	One Strike Blade: he moves first
+				this.pop( e, "FOCUS %d/4" % d.focus, 0x9fd8ffff);
+				this.bark( "again", e, "Focus. Again. Again. You'll never be faster than me.");
+				log( "Masanori focuses %d/4" % d.focus);
+				return;
+			}
+			d.done = true;
+			local r = this.member( "Rensei");
+			cmd.skill = ::conf.skill["S423"];
+			if( r) cmd.dsts = [r];
+			this.pop( e, "IAIJUTSU", 0xff4040ff);
+			log( "Masanori strikes first");
+			return;
+		}
+	}
+	this._rt_sc_mas( cmd);
+};
+::Rokugan.firstBlood <- function( e, why){
+	local d = this.masanoriDuel();
+	if( d.blood) return;
+	d.blood = true;
+	::rpgvar["G431"] = true;
+	this.pop( e, "FIRST BLOOD", 0xff6060ff);
+	local r = this.member( "Rensei");
+	if( r) this.bark( "decide", r, "Yes, Father. It's waiting for me to decide.");
+	log( "first blood (%S)" % why);
+};
+::Rokugan._rt_attack_mas <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local dst = dmg.dst, sk = dmg.skill;
+	if( (dst instanceof ::RPGEnemy) && dst.data["rt_firstblood"] && (dmg.src instanceof ::RPGPlayer) && sk &&
+			(sk["name"] || "").indexOf( "Iaijutsu: Strike") >= 0){
+		local d = this.masanoriDuel();
+		if( !d.done){
+			d.done = true;
+			d.won = true;
+			this.pop( dst, "DUEL WON", 0x9fd8ffff);
+			log( "Rensei wins the opening exchange");
+		}
+	}
+	this._rt_attack_mas( dmg);
+};
+::Rokugan._rt_broken_mas <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_mas( e);
+	if( (e instanceof ::RPGEnemy) && e.data["rt_firstblood"]){
+		this.masanoriDuel().broke = true;
+		this.bark( "open", e, "...Hm.");
+	}
+};
+::Damage._rt_finish_mas <- ::Damage.finishDamage;
+::Damage.finishDamage <- function(){
+	this._rt_finish_mas();
+	if( !(dst instanceof ::RPGEnemy) || !dst.data["rt_firstblood"] || !(src instanceof ::RPGPlayer)) return;
+	if( result != DMG_HIT && result != DMG_CRITICAL) return;
+	local d = ::Rokugan.masanoriDuel();
+	if( !d.broke) return;
+	local strike = skill && (skill["name"] || "").indexOf( "Iaijutsu: Strike") >= 0;
+	if( result == DMG_CRITICAL || (strike && ::Rokugan.state( dst).broken))
+		::Rokugan.firstBlood( dst, result == DMG_CRITICAL ? "critical" : "strike while open");
+};
+::Rokugan._rt_dying_mas <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function( e, arg){
+	if( (e instanceof ::RPGEnemy) && e.data["rt_firstblood"] && !e.escaped){
+		e.HP = 1;														//	no son kills his father at a first-blood duel
+		this.firstBlood( e, "a killing blow, stayed");
+		return true;
+	}
+	return this._rt_dying_mas( e, arg);
+};
+::Rokugan._rt_post_mas <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_mas( cmd);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local e = b.enemies.find( @( x) x && x.data["rt_firstblood"] && !x.escaped);
+	if( !e || !this.masanoriDuel().blood) return;
+	e.escaped = true;
+	this.state( e).surrendered <- true;
+	local rp = b.getChara3D( e);
+	if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+	log( "Masanori yields");
+};
+
+//	Duels (Lion: Shizue's Duel path action and the story duels; enemy field rt_duel): no seconds (above), and a blow
+//	that would kill the opponent ends the duel instead: they yield (1 HP, escaped, counted for the win).
+::Rokugan._rt_dying_duel <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function( e, arg){
+	if( (e instanceof ::RPGEnemy) && e.data["rt_duel"] && !e.escaped){
+		e.HP = 1;
+		e.escaped = true;
+		this.state( e).surrendered <- true;
+		this.pop( e, "YIELDS", 0xffffc0ff);
+		local b = ::rpgstage["battle"], rp = b ? b.getChara3D( e) : null;
+		if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+		log( "%S yields the duel" % e.name);
+		return true;
+	}
+	return this._rt_dying_duel( e, arg);
+};
+
+//	O-Tamai (Lion Ch1 / Phoenix Ch1 b_boss_otamai; production S08). Enemy field rt_chains = the chains needed: each
+//	Suki on him binds one jade chain; the last one binds him (he leaves the fight, defeated; his red shadow goes with
+//	him, rt_captain). Until then he cannot die: a killing blow leaves him at 1 HP. Skills with rt_soul are the red
+//	shadow's "soul damage": they drain SP and 1 VP from the target as well as a little HP.
+::Rokugan.chains <- { battle = null, n = 0 };
+::Rokugan.CHAIN_BARKS <- ["Cold! Cold!", "Not again - not AGAIN-", "(a scream that becomes silence)"];
+::Rokugan.chainState <- function(){
+	local b = ::rpgstage["battle"], c = this.chains;
+	if( c.battle != b){ c.battle = b; c.n = 0; }
+	return c;
+};
+::Rokugan._rt_broken_chain <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_chain( e);
+	local need = (e instanceof ::RPGEnemy) ? e.data["rt_chains"] : null;
+	if( !need || e.escaped) return;
+	local c = this.chainState();
+	c.n++;
+	this.pop( e, "JADE CHAIN %d/%d" % (c.n, need), 0x80ff9cff);
+	this.bark( "chain" .. c.n, e, this.CHAIN_BARKS[Math.min( c.n, 3) - 1]);
+	log( "jade chain %d/%d on %S" % (c.n, need, e.name));
+	if( c.n >= need){
+		e.escaped = true;
+		this.state( e).surrendered <- true;
+		local b = ::rpgstage["battle"], rp = b ? b.getChara3D( e) : null;
+		if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+		log( "%S is bound" % e.name);
+	}
+};
+::Rokugan._rt_dying_chain <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function( e, arg){
+	if( (e instanceof ::RPGEnemy) && e.data["rt_chains"] && !e.escaped){
+		e.HP = 1;
+		this.bark( "wontdie", e, "You can't kill what's already dead, Lion!");
+		local r = this.member( "Shizue");
+		if( r) this.bark( "chainhim", r, "Then we chain him. Break his guard!");
+		return true;
+	}
+	return this._rt_dying_chain( e, arg);
+};
+::Rokugan._rt_post_soul <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_soul( cmd);
+	local sk = cmd.skill;
+	if( !(cmd.src instanceof ::RPGEnemy) || !sk || !sk["rt_soul"]) return;
+	if( cmd.src.data["rt_echo_block"]){									//	Phoenix Ch4 (F-1): each echo of the gentle
+		local est = this.state( cmd.src);										//	Mieko Haruki blessed cancels one drain
+		est.eblocks <- (("eblocks" in est) ? est.eblocks : 0);
+		if( est.eblocks < (::rpgvar["G684"] || 0)){
+			est.eblocks++;
+			this.pop( cmd.src, "The gentle echo stands between you.", 0xe0f0ffff);
+			log( "echo blocks the drain (%d)" % est.eblocks);
+			return;
+		}
+	}
+	foreach( d in (cmd.dsts || [])){
+		if( !(d instanceof ::RPGPlayer) || d.isDead()) continue;
+		local mp = Math.min( d.MP, Math.max( 1, d.MAXMP / 6));
+		d.MP -= mp;
+		local st = this.state( d);
+		if( st.bp > 0) st.bp--;
+		this.pop( d, "-%d SP  -1 VP" % mp, 0xc080ffff);
+	}
+	this.bark( "breath", this.member( "Ijako") || cmd.src, "Ijako: It's eating our breath, not our blood!");
+};
+
+//	Terror (K007; Lion Ch2 S06 tutorial: "may make an ally lose their turn and stop them Boosting. Jade gear and courage
+//	skills resist it"). Until now the condition did nothing. A Terrified traveler freezes 30% of the time and can't
+//	Boost. Jade-inlaid War Fans (A131) resist it 60%; Death Trance (K056, Moto Benjiro) blocks it and Ianwa's charm.
+::RPGPlayer._rt_putCond_terror <- ::RPGPlayer.putCondition;
+::RPGPlayer.putCondition <- function( condid){
+	if( condid == "K007" && (this.hasCondition( "K056") || this.hasCondition( "K058") || ::Rokugan.wears( this, "A134")	//	Demon's Shadow
+			|| (::Rokugan.wears( this, "A131") && ::Rokugan.roll( 60)))){
+		if( ::rpgstage && ::rpgstage["battle"]) ::Rokugan.pop( this, "No fear", 0x80ff9cff);
+		printf( "[RT] %S resists Terror\n", this.name);
+		return;
+	}
+	return this._rt_putCond_terror( condid);
+};
+::Rokugan._rt_cycle_terror <- ::Rokugan.cycleBoost;
+::Rokugan.cycleBoost <- function( pc){
+	if( pc.hasCondition( "K007")){
+		this.state( pc).boostsel = 0;
+		this.pop( pc, "Too afraid to Boost", 0xc080ffff);
+		return 0;
+	}
+	return this._rt_cycle_terror( pc);
+};
+//	Oni no Ianwa (Lion Ch2 b_boss_ianwa): rt_charmer_ally = no attacks of its own; each of its turns it charms one
+//	traveler (80%; 40% if they carry jade: the Jade Tanto or the war fans; never under Death Trance). A charmed
+//	traveler's next action turns on another traveler, or, alone, is lost. rt_coward: at its first Suki it flees, and
+//	the fight is won.
+::Rokugan.ianwaCharm <- {};
+::Rokugan.hasJade <- function( p){
+	return this.wears( p, "W137") || this.wears( p, "A131");
+};
+::Rokugan._rt_post_ianwa <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_ianwa( cmd);
+	local src = cmd.src, b = ::rpgstage["battle"];
+	if( !b || !(src instanceof ::RPGEnemy) || !src.data["rt_charmer_ally"] || src.escaped || src.isDead()) return;
+	local live = b.members.filter( @( v) v && !v.isDead() && !v.hasCondition( "K056"));
+	if( !length( live)) return;
+	local t = live[int( ::rnd.nextf( length( live))) % length( live)];
+	if( !this.roll( this.hasJade( t) ? 35 : 70)){
+		this.pop( t, "The jade holds", 0x80ff9cff);
+		return;
+	}
+	this.ianwaCharm[t] <- true;
+	this.pop( t, "CHARMED", 0xffa0d0ff);
+	this.bark( "politely", src, "You would all give me everything, if I asked politely enough.");
+	log( "Ianwa charms %S" % t.name);
+};
+::Rokugan._rt_sc_ianwa <- ::Rokugan.onSkillChange;
+::Rokugan.onSkillChange <- function( cmd){
+	local p = cmd.src;
+	if( (p instanceof ::RPGPlayer) && (p in this.ianwaCharm)){
+		delete this.ianwaCharm[p];
+		local b = ::rpgstage["battle"];
+		local others = b ? b.members.filter( @( v) v && v != p && !v.isDead()) : [];
+		if( length( others)){
+			cmd.skill = p.getAttackSkill();
+			cmd.dsts = [others[int( ::rnd.nextf( length( others))) % length( others)]];
+			this.pop( p, "Charmed!", 0xffa0d0ff);
+		}else{
+			cmd.skill = ::conf.skill["S000"];
+			this.pop( p, "...lowers the blade, smiling", 0xffa0d0ff);
+		}
+		if( this.given( p.name) == "Shizue") this.bark( "rude", p, "Then I'll be rude.");
+		log( "%S acts charmed" % p.name);
+		return;
+	}
+	if( (p instanceof ::RPGPlayer) && p.hasCondition( "K007") && cmd.skill && cmd.skill["skilltype"] != "noop" &&
+			this.roll( 30)){
+		cmd.skill = ::conf.skill["S000"];
+		this.pop( p, "Frozen with terror", 0xc080ffff);
+		log( "%S freezes (Terror)" % p.name);
+		return;
+	}
+	this._rt_sc_ianwa( cmd);
+};
+::Rokugan._rt_broken_coward <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_coward( e);
+	if( !(e instanceof ::RPGEnemy) || !e.data["rt_coward"] || e.escaped) return;
+	e.escaped = true;
+	this.state( e).surrendered <- true;
+	this.pop( e, "I will return! I will devour your souls!", 0xffffffff);
+	local b = ::rpgstage["battle"], rp = b ? b.getChara3D( e) : null;
+	if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+	log( "%S flees through the floor" % e.name);
+};
+::Rokugan._rt_dying_coward <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function( e, arg){				//	the coward never dies: a lethal blow makes it flee too
+	if( (e instanceof ::RPGEnemy) && e.data["rt_coward"] && !e.escaped){
+		e.HP = 1;
+		this.onBroken( e);
+		return true;
+	}
+	return this._rt_dying_coward( e, arg);
+};
+
+//	Lion Ch4 "Sorrow's Path". Old Lion's Counsel (rpgvar G548, set when Akodo Shogen joined in Ch3): the party's blows
+//	deal +10% this chapter. The Obsidian Blade (item field rt_obsidian): against a foe with rt_obsidian_weak (Matsu
+//	Rokuro's Fear-demon) a hit strips 3 shields (RokuganBattle), and every hit Taints the one who holds it (+1; the Jade
+//	Finger wards it, RokuganField).
+::Rokugan._rt_attack_l4 <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local src = dmg.src, dst = dmg.dst;
+	if( (src instanceof ::RPGPlayer) && (dst instanceof ::RPGEnemy) && !dmg.heal && ::rpgvar["G548"])
+		dmg.cval.baserate *= 1.10;
+	this._rt_attack_l4( dmg);
+	if( (src instanceof ::RPGPlayer) && dmg.skill && dmg.skill["rt_obsidian"] && !dmg.miss && !dmg.skip){
+		src.putCondition( this.TAINT);
+		this.bark( "obsidian", src, "...That felt wrong.");
+		log( "obsidian: %S is Tainted" % src.name);
+	}
+};
+
+//	Phoenix Ch1 "The Silent Kami". The spirit wasteland (rpgvar G588, from Isawa Hoju's death until O-Tamai is bound):
+//	the kami are afraid, so the travelers' spells (MATK formulas) land at 75% ("spells are weaker here, -1 tier").
+//	Ashimoshi's Silent Wind (enemy field rt_silentwind): each of his actions flips a seal; while it is on, spells
+//	fizzle ("the silent wind smothers your voice"), and when it lifts Haruki says so.
+::Rokugan.isSpell <- function( sk){
+	local f = sk ? sk["atkform"] : null;
+	return f && ("" + f).indexOf( "MATK") >= 0;						//	(this Squirrel's strings: indexOf, not find)
+};
+::Rokugan.windSealed <- function(){
+	local b = ::rpgstage["battle"];
+	if( !b) return false;
+	foreach( e in b.enemies){
+		if( !e || !e.data["rt_silentwind"] || e.isDead() || e.escaped) continue;
+		local st = this.state( e);
+		if( ("sealed" in st) && st.sealed) return true;
+	}
+	return false;
+};
+::Rokugan._rt_attack_phx <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local src = dmg.src;
+	if( (src instanceof ::RPGPlayer) && this.isSpell( dmg.skill)){
+		if( this.windSealed()){
+			dmg.cval.baserate = 0.0;
+			this.pop( src, "SEALED", 0xc0c0ffff);
+			log( "silent wind: %S's spell fizzles" % src.name);
+		}else if( ::rpgvar["G588"]) dmg.cval.baserate *= 0.75;
+	}
+	this._rt_attack_phx( dmg);
+};
+::Rokugan._rt_post_phx <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_phx( cmd);
+	local src = cmd.src;
+	if( !(src instanceof ::RPGEnemy) || !src.data["rt_silentwind"] || src.isDead() || src.escaped) return;
+	local st = this.state( src);
+	st.sealed <- !(("sealed" in st) && st.sealed);
+	if( st.sealed){
+		this.pop( src, "SPELLS SEALED", 0xc0c0ffff);
+		log( "silent wind: spells sealed");
+	}else{
+		this.bark( "breathes", this.member( "Haruki"), "Now - while he breathes!");
+		log( "silent wind lifts");
+	}
+};
+
+//	Togashi Yosai (user: a companion on every path; "some regeneration, to counter his arrowroot tattoo"; never serious).
+//	Player field rt_regen (gen_data: P132) heals that share of max HP at the start of each of his turns. Skill field
+//	rt_selfburn costs the user that share of max HP after the skill (Dragon's Breath burns him too; Arrowroot takes
+//	the wounds onto him). Crow tattoo: he can't be Tainted.
+::Rokugan.REGEN <- { P132 = 0.07 };
+::Rokugan._rt_preturn_yosai <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_yosai( chr);
+	if( !(chr instanceof ::RPGPlayer) || chr.isDead()) return;
+	local id = chr["dataid"];
+	if( !(id in this.REGEN) || chr.HP >= chr.MAXHP) return;
+	local n = Math.max( 1, int( chr.MAXHP * this.REGEN[id]));
+	if( chr.HP + n > chr.MAXHP) n = chr.MAXHP - chr.HP;
+	chr.HP += n;
+	this.pop( chr, "+%d" % n, 0x80ff9cff);
+	log( "regen %S +%d" % (chr.name, n));
+};
+::Rokugan._rt_post_yosai <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_yosai( cmd);
+	local src = cmd.src, sk = cmd["skill"];
+	if( !src || !sk || !sk["rt_selfburn"] || src.isDead()) return;			//	(enemy maho pays HP too: Hioninmaru)
+	local n = Math.max( 1, int( src.MAXHP * sk.rt_selfburn));
+	src.HP = Math.max( 1, src.HP - n);
+	this.pop( src, "-%d" % n, 0xff9060ff);
+	log( "selfburn %S -%d" % (src.name, n));
+};
+::RPGPlayer._rt_putCond_crow <- ::RPGPlayer.putCondition;
+::RPGPlayer.putCondition <- function( condid){
+	if( condid == ::Rokugan.TAINT && this["dataid"] == "P132"){
+		printf( "[RT] Crow tattoo: %S is not Tainted\n", this.name);
+		return;
+	}
+	return this._rt_putCond_crow( condid);
+};
+
+//	Phoenix Ch2 b_boss_hioninmaru (bosses.md): a coward. When none of his cultists still stand he cries "I have gold!"
+//	and buys them back (user: "he should spawn more minions when he says I have gold"; enemy field rt_gold = how many
+//	times he can pay); once the gold is gone he loses 1 Resolve (shield) at the start of each of his turns from fear
+//	(enemy field rt_fearful).
+::Rokugan._rt_preturn_fear <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_fear( chr);
+	local b = ::rpgstage["battle"];
+	if( !b || !(chr instanceof ::RPGEnemy) || !chr.data["rt_fearful"] || chr.isDead() || chr.escaped) return;
+	if( b.enemies.find( @( e) e && e != chr && !e.isDead() && !e.escaped)) return;
+	local st = this.state( chr);
+	if( !("gold" in st)) st.gold <- chr.data["rt_gold"] || 0;
+	if( st.gold > 0){													//	(user) "I have gold!" buys more minions
+		st.gold--;
+		local fallen = b.enemies.filter( @( e) e && e != chr && e.isDead() && !e.escaped);
+		foreach( m in fallen) this.raise( b, m);
+		b.syncEnemyListUI();
+		this.pop( chr, "Wait! Wait! I have gold! Up, up - I'll pay double!", 0xff8060ff);
+		log( "%S buys more cultists (%d); gold left %d" % (chr.name, length( fallen), st.gold));
+		return;
+	}
+	if( !("res" in st) || st.res <= 0 || ("broken" in st && st.broken)) return;
+	st.res--;
+	this.bark( "gold", chr, "Wait! I have... secrets! I have secrets!");
+	this.pop( chr, "AFRAID", 0xc080ffff);
+	log( "%S loses Resolve from fear: %d" % (chr.name, st.res));
+};
+
+//	Phoenix Ch3 b_boss_oni_no_kuzushi (bosses.md): Unbalancing Breath - every 2nd turn of the oni (enemy field
+//	rt_unbalance) one traveler is knocked Off-Balance (K052: loses the next turn) and the oni regains 2 Resolve. The
+//	Mountain's-Feet Charm (A137, sold in Kyuden Isawa; Haruki names it in S04) keeps its wearer standing. The Darkfever
+//	aura (rt_fever: a share of max HP) burns every traveler at the start of the oni's turn; heals undo it.
+::Rokugan._rt_preturn_kuz <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_kuz( chr);
+	local b = ::rpgstage["battle"];
+	if( !b || !(chr instanceof ::RPGEnemy) || chr.isDead() || chr.escaped) return;
+	local live = b.members.filter( @( v) v && !v.isDead());
+	local fv = chr.data["rt_fever"];
+	if( fv){
+		foreach( p in live){
+			local n = Math.max( 1, int( p.MAXHP * fv));
+			p.HP = Math.max( 1, p.HP - n);
+			this.pop( p, "-%d" % n, 0x9070c0ff);
+		}
+		this.bark( "fever", this.member( "Haruki") || chr, "Water heals clear it - stay close to me!");
+	}
+	if( !chr.data["rt_unbalance"]) return;
+	local st = this.state( chr);
+	st.breaths <- (("breaths" in st) ? st.breaths : 0) + 1;
+	if( st.breaths % 2) return;
+	local pool = live.filter( @( p) !::Rokugan.wears( p, "A137"));
+	if( !length( pool)){
+		this.pop( chr, "They stand firm", 0xc0c0ffff);
+		return;
+	}
+	local t = pool[int( ::rnd.nextf( length( pool))) % length( pool)];
+	t.putCondition( "K052");
+	this.bark( "fall", chr, "Fall down. Everyone falls down eventually.");
+	this.pop( t, "OFF-BALANCE", 0xc080ffff);
+	if( ("res" in st) && ("maxres" in st) && !(("broken" in st) && st.broken)) st.res = Math.min( st.maxres, st.res + 2);
+	log( "unbalancing breath: %S off-balance; %S Resolve %d" % (t.name, chr.name, ("res" in st) ? st.res : -1));
+};
+//	Phoenix Ch3 b_mieko_dark_mid: she flees at half HP (enemy field rt_flee_pct), laughing (checked after each
+//	command, like surrender).
+::Rokugan._rt_post_flee <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_flee( cmd);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	foreach( e in b.enemies){
+		local pct = e ? e.data["rt_flee_pct"] : null;
+		if( !pct || e.escaped || e.isDead() || e.HP > e.MAXHP * pct * 0.01) continue;
+		e.escaped = true;
+		this.bark( "flee" + e.name, e, e.data["rt_fleebark"] || "It's waking up, little Void! Say hello for me!");
+		local rp = b.getChara3D( e);
+		if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+		log( "%S flees" % e.name);
+	}
+};
+
+//	Phoenix Ch4 "Whole" (rpgvar G696): Haruki's Water heals also cleanse one debuff from whoever they heal.
+::Rokugan.WHOLE_CLEANSE <- ["K007", "K052", "K055", "K021", "K002", "K003", "K001"];
+::Rokugan._rt_attack_whole <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_whole( dmg);
+	local src = dmg.src, dst = dmg.dst, sk = dmg.skill;
+	if( !::rpgvar["G696"] || !dmg.heal || !sk || !(src instanceof ::RPGPlayer) || this.given( src.name) != "Haruki") return;
+	if( !((sk["elembits"] | 0) & (1 << 7)) || !dst) return;			//	Water
+	foreach( c in this.WHOLE_CLEANSE){
+		if( dst.hasCondition( c)){
+			dst.removeCondition( c);
+			this.pop( dst, "Whole: cleansed", 0x80e0ffff);
+			break;
+		}
+	}
+};
+
+//	Dragon Ch1 b_boss_tide. The tide (enemy field rt_tidecaller on the hypnotised shugenja): every 3rd round while one
+//	of them still fights, the tide comes in. First Waist-deep (K051: Speed down) on every traveler, then Drowning
+//	(damage at the start of each traveler's turn). With no caller left, the tide goes out. Interrogate (skill field
+//	rt_interrogate, Gendo) reveals the target's weaknesses and, on a hypnotised foe (rt_hypno), cuts the planted
+//	sentence: he stops fighting.
+::Rokugan.tide <- { battle = null, level = 0, round = -1 };
+::Rokugan._rt_preturn_tide <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_tide( chr);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local t = this.tide;
+	if( t.battle != b){ t.battle = b; t.level = 0; t.round = -1; }
+	local callers = b.enemies.filter( @( e) e && e.data["rt_tidecaller"] && !e.isDead() && !e.escaped);
+	local any = b.enemies.find( @( e) e && e.data["rt_tidecaller"]);
+	if( !any) return;
+	if( !length( callers)){
+		if( t.level > 0){
+			t.level = 0;
+			foreach( p in b.members) if( p && p.hasCondition( "K051")) p.removeCondition( "K051");
+			this.bark( "ebb", this.member( "Gendo") || chr, "The tide's going out. Whoever was calling it has stopped.");
+			log( "the tide goes out");
+		}
+		return;
+	}
+	if( t.round != b.turn){
+		t.round = b.turn;
+		if( (b.turn + 1) % 3 == 0){										//	rounds 3, 6, 9...
+			t.level++;
+			foreach( p in b.members) if( p && !p.isDead()) p.putCondition( "K051");
+			this.bark( "tide" + t.level, this.member( "Gendo") || chr,
+				t.level == 1 ? "The water won't wait for evidence. Neither should we." : "It's over our heads - the callers first!");
+			log( "the tide comes in: level %d" % t.level);
+		}
+	}
+	if( t.level >= 2 && (chr instanceof ::RPGPlayer) && !chr.isDead()){
+		local n = Math.max( 1, int( chr.MAXHP * 0.05));
+		chr.HP = Math.max( 1, chr.HP - n);
+		this.pop( chr, "Drowning -%d" % n, 0x60a0ffff);
+	}
+};
+::Rokugan._rt_attack_interr <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_interr( dmg);
+	local sk = dmg.skill, e = dmg.dst;
+	if( !sk || !sk["rt_interrogate"] || !(e instanceof ::RPGEnemy) || e.escaped || e.isDead()) return;
+	local st = this.state( e);
+	st.known <- (("known" in st) ? st.known : 0) | this.weakbits( e);
+	this.pop( e, "SEEN THROUGH", 0xffe0a0ff);
+	if( e.data["rt_hypno"]){
+		e.escaped = true;
+		this.bark( "rope", e, "...rope... what rope...?");
+		local b = ::rpgstage["battle"], rp = b ? b.getChara3D( e) : null;
+		if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+		log( "%S wakes and stops fighting" % e.name);
+	}
+};
+
+//	Dragon Ch2 b_boss_ushimo (production dragon-ch2 S05; enemy field rt_ushimo). Phase 1, the duel: Ushimo Focuses
+//	twice and draws on his third action (S484, at Gendo). Gendo's Daisho Technique (skill field rt_daisho: the Mirumoto
+//	school, S02) landing first answers the draw, and he loses it. Phase 2, the skirmish. Don't kill him: below 25% HP
+//	he kneels and asks for it (his shields drop to 1 and he stops acting). A blow that would kill him is refused:
+//	History shudders (rpgvar G748 -10) and he is left at 1 HP. Breaking him (Suki) or a non-lethal skill (rt_subdue:
+//	Subdue) while he kneels ends it: he yields (escaped; counted for the win), rpgvar G749.
+::Rokugan.uduel <- { battle = null, focus = 0, done = false, won = false, waited = false, kneel = false };
+::Rokugan.ushimoDuel <- function(){
+	local b = ::rpgstage["battle"], d = this.uduel;
+	if( d.battle != b){ d.battle = b; d.focus = 0; d.done = false; d.won = false; d.waited = false; d.kneel = false; }
+	return d;
+};
+::Rokugan.ushimoYield <- function( e, why){
+	if( e.escaped) return;
+	local b = ::rpgstage["battle"], rp = b ? b.getChara3D( e) : null;
+	e.escaped = true;
+	this.state( e).surrendered <- true;
+	this.pop( e, "SUBDUED", 0xffffc0ff);
+	this.bark( "sentence", this.member( "Gendo"), "That's not your sentence, Ushimo. Someone put it in your mouth.");
+	if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+	::rpgvar["G749"] = true;
+	log( "Ushimo yields (%S)" % why);
+};
+::Rokugan.ushimoKneel <- function( e){
+	local d = this.ushimoDuel(), st = this.state( e);
+	if( d.kneel) return;
+	d.kneel = true;
+	if( !st.broken && st.res > 1) st.res = 1;							//	he drops his guard
+	this.pop( e, "KNEELS", 0xffffc0ff);
+	this.bark( "rope", e, "Please. Finish it. I'm at the end of my rope.");
+	log( "Ushimo kneels (HP %d/%d)" % (e.HP, e.MAXHP));
+};
+::Rokugan._rt_sc_ush <- ::Rokugan.onSkillChange;
+::Rokugan.onSkillChange <- function( cmd){
+	local e = cmd.src;
+	if( (e instanceof ::RPGEnemy) && e.data["rt_ushimo"]){
+		local d = this.ushimoDuel();
+		if( d.kneel){
+			cmd.skill = ::conf.skill["S000"];
+			this.pop( e, "(throat bared)", 0xc0c0c0ff);
+			return;
+		}
+		if( d.won && !d.waited){										//	his drawn breath, wasted
+			d.waited = true;
+			cmd.skill = ::conf.skill["S000"];
+			this.pop( e, "...", 0xc0c0c0ff);
+			return;
+		}
+		if( !d.done){
+			local g = this.member( "Gendo");
+			if( d.focus < 2){
+				d.focus++;
+				cmd.skill = ::conf.skill["S000"];
+				this.pop( e, "FOCUS %d/3" % d.focus, 0x9fd8ffff);
+				this.bark( "history", g, "(Do not change history. Do not change history.) Majesty, behind me.");
+				log( "Ushimo focuses %d/3" % d.focus);
+				return;
+			}
+			d.done = true;
+			cmd.skill = ::conf.skill["S484"];
+			if( g) cmd.dsts = [g];
+			this.pop( e, "IAIJUTSU", 0xff4040ff);
+			log( "Ushimo draws first");
+			return;
+		}
+	}
+	this._rt_sc_ush( cmd);
+};
+::Rokugan._rt_attack_ush <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local dst = dmg.dst, sk = dmg.skill;
+	if( (dst instanceof ::RPGEnemy) && dst.data["rt_ushimo"] && (dmg.src instanceof ::RPGPlayer) && sk && !dmg.miss){
+		local d = this.ushimoDuel();
+		if( sk["rt_daisho"] && !d.done){
+			d.done = true;
+			d.won = true;
+			this.pop( dst, "DRAW ANSWERED", 0x9fd8ffff);
+			this.bark( "brushes", this.member( "Gendo"), "Two brushes. The second stroke corrects the first.");
+			log( "Gendo answers the draw");
+		}
+		if( sk["rt_subdue"] && d.kneel){
+			this._rt_attack_ush( dmg);
+			this.ushimoYield( dst, "Subdue");
+			return;
+		}
+	}
+	this._rt_attack_ush( dmg);
+};
+::Rokugan._rt_broken_ush <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_ush( e);
+	if( (e instanceof ::RPGEnemy) && e.data["rt_ushimo"] && this.ushimoDuel().kneel) this.ushimoYield( e, "Suki");
+};
+::Rokugan._rt_post_ush <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_ush( cmd);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	foreach( e in b.enemies){
+		if( !e || !e.data["rt_ushimo"] || e.escaped || e.isDead() || e.HP > e.MAXHP / 4) continue;
+		this.ushimoKneel( e);
+		if( this.state( e).broken) this.ushimoYield( e, "Suki, kneeling");
+	}
+};
+::Rokugan._rt_dying_ush <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function( e, arg){
+	if( (e instanceof ::RPGEnemy) && e.data["rt_ushimo"] && !e.escaped){
+		e.HP = 1;														//	killing him would change history
+		::rpgvar["G748"] = Math.max( 0, int( ::rpgvar["G748"] || 0) - 10);
+		this.pop( e, "HISTORY SHUDDERS", 0xb0a0ffff);
+		this.bark( "shudder", this.member( "Gendo"), "(a sound like a page tearing) ...History shudders. Not like that.");
+		log( "a killing blow refused: History %d" % ::rpgvar["G748"]);
+		this.ushimoKneel( e);
+		return true;
+	}
+	return this._rt_dying_ush( e, arg);
+};
+
+//	The Bow (Dragon Ch2 cove; bestiary G "kappa: Bow"; skill field rt_bow): a kappa (enemy field rt_kappa) must bow
+//	back, spills the water from its head-dish and falls open (Suki). Nothing else is impressed.
+::Rokugan._rt_attack_bow <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_bow( dmg);
+	local sk = dmg.skill, e = dmg.dst;
+	if( !sk || !sk["rt_bow"] || !(e instanceof ::RPGEnemy) || e.escaped || e.isDead()) return;
+	if( !e.data["rt_kappa"]){
+		this.pop( e, "(doesn't bow back)", 0xc0c0c0ff);
+		return;
+	}
+	if( this.state( e).broken) return;
+	this.pop( e, "BOWS BACK", 0x9fd8ffff);
+	this.bark( "bow", e, "(it bows back, very deeply; the water spills out of its head-dish)");
+	this.breakEnemy( e);
+};
+
+//	Dragon Ch3 b_boss_parley (production dragon-ch3 S06): Togashi Akuro can't be beaten (enemy field rt_untouchable:
+//	the Crab tattoo takes every wound, so hits on him do nothing; the Wasp tattoo gives him a second action). The
+//	battle is won when the vanguard captain falls (rt_captain: the rest give up, Akuro among them). Barks on rounds 2-3.
+::Rokugan._rt_attack_untouch <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local dst = dmg.dst;
+	if( (dst instanceof ::RPGEnemy) && dst.data["rt_untouchable"] && (dmg.src instanceof ::RPGPlayer) && !dmg.heal){
+		dmg.cval.baserate = 0.0;
+		this.pop( dst, "(the Crab tattoo takes it)", 0xc0c0c0ff);
+		this.bark( "past", dst, "You can't hurt the past, little clerk. I've tried.");
+		return;
+	}
+	this._rt_attack_untouch( dmg);
+};
+::Rokugan._rt_dying_untouch <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function( e, arg){
+	if( (e instanceof ::RPGEnemy) && e.data["rt_untouchable"] && !e.escaped){
+		e.HP = Math.max( 1, e.HP);
+		return true;
+	}
+	return this._rt_dying_untouch( e, arg);
+};
+::Rokugan._rt_sc_akuro <- ::Rokugan.onSkillChange;
+::Rokugan.onSkillChange <- function( cmd){
+	local e = cmd.src, b = ::rpgstage["battle"];
+	if( b && (e instanceof ::RPGEnemy) && e.data["rt_untouchable"] && b.turn == 0){	//	the opening round: he only
+		cmd.skill = ::conf.skill["S000"];													//	lowers the pistol
+		this.pop( e, "(lowers the pistol)", 0xc0c0c0ff);
+		return;
+	}
+	this._rt_sc_akuro( cmd);
+};
+::Rokugan.akuro <- { battle = null, said = -1 };
+::Rokugan._rt_preturn_akuro <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_akuro( chr);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local a = this.akuro;
+	if( a.battle != b){ a.battle = b; a.said = -1; }
+	if( a.said == b.turn) return;
+	local ak = b.enemies.find( @( e) e && e.data["rt_untouchable"] && !e.escaped);
+	if( !ak) return;
+	a.said = b.turn;
+	if( b.turn == 1)
+		this.bark( "world", ak, "I saw how your world ends. The son becomes the dark brother. The jade clan goes black. The dead rule.");
+	else if( b.turn == 2){
+		this.bark( "thank", ak, "I'm saving you from it. You should thank me.");
+		this.bark( "filed", this.member( "Gendo"), "You're writing a history no one will ever read. I've filed a thousand of those.");
+	}
+	else if( b.turn >= 3){												//	he leaves mid-fight (script S6), unhurried
+		ak.escaped = true;
+		this.pop( ak, "(Akuro steps over the rail and is gone)", 0xc0c0c0ff);
+		local rp = b.getChara3D( ak);
+		if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+		log( "Akuro leaves the fight");
+	}
+};
+
+//	Dragon Ch4 b_front_land (production dragon-ch4 S02, "hold the line for 6 turns until the relief arrives"): enemy
+//	field rt_hold = the turns to hold. A counter pops each round; when it runs out the gaijin break and leave (escaped:
+//	the battle is won).
+::Rokugan.hold6 <- { battle = null, said = -1 };
+::Rokugan._rt_preturn_hold6 <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_hold6( chr);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local h = this.hold6;
+	if( h.battle != b){ h.battle = b; h.said = -1; }
+	if( h.said == b.turn) return;
+	local hd = b.enemies.find( @( e) e && e.data["rt_hold"] && !e.escaped && !e.isDead());
+	if( !hd) return;
+	h.said = b.turn;
+	local need = hd.data["rt_hold"];
+	if( b.turn < need){
+		this.pop( hd, "HOLD %d/%d" % (b.turn + 1, need), 0xffe0a0ff);
+		return;
+	}
+	foreach( e in b.enemies){
+		if( !e || e.escaped || e.isDead()) continue;
+		e.escaped = true;
+		local rp = b.getChara3D( e);
+		if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+	}
+	this.pop( hd, "The Dragon and Centipede banners crest the hill!", 0xffffffff);
+	log( "the line held: the relief arrives");
+};
+
+//	Dragon Ch4 b_boss_kumpei_flagship (production S04; enemy field rt_kumpei). The fronts' buffs (rpgvar): the Mantis
+//	ships' broadside (G804: he starts 15% down), the Isawa wards (G806: every traveler starts with Void Guard), the land
+//	front (G802: the cannons fire every 6 rounds instead of 3). The cannons hit every traveler for 12% of max HP. His
+//	living-ink sigil copies one traveler buff per turn. The vial: break him (Suki) before the 8th round and it is
+//	saved (G815); at the 8th round he throws it overboard (G816) and Yosai dives.
+::Rokugan.kumpei <- { battle = null, round = -1, opened = false };
+::Rokugan.KUMPEI_COPY <- ["K020", "K022", "K024", "K040"];
+::Rokugan._rt_preturn_kumpei <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_kumpei( chr);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local k = b.enemies.find( @( e) e && e.data["rt_kumpei"] && !e.escaped && !e.isDead());
+	if( !k) return;
+	local st = this.kumpei;
+	if( st.battle != b){ st.battle = b; st.round = -1; st.opened = false; }
+	if( !st.opened){
+		st.opened = true;
+		if( ::rpgvar["G804"]){
+			k.HP = Math.max( 1, k.HP - k.MAXHP * 15 / 100);
+			this.pop( k, "The Mantis ships fire a broadside!", 0x9fd8ffff);
+		}
+		if( ::rpgvar["G806"]){
+			foreach( p in b.members) if( p && !p.isDead()) p.putCondition( "K024");
+			this.pop( k, "The Isawa wards hold.", 0xb0ffd0ff);
+		}
+	}
+	if( st.round != b.turn){
+		st.round = b.turn;
+		local every = ::rpgvar["G802"] ? 6 : 3;
+		if( b.turn > 0 && (b.turn + 1) % every == 0){
+			foreach( p in b.members){
+				if( !p || p.isDead()) continue;
+				local n = Math.max( 1, int( p.MAXHP * 0.12));
+				p.HP = Math.max( 1, p.HP - n);
+				this.pop( p, "CANNON -%d" % n, 0xff9060ff);
+			}
+			this.bark( "cannons" + b.turn, this.member( "Gendo"), "CANNONS! Down!");
+			log( "the cannons fire (every %d)" % every);
+		}
+		if( b.turn == 7 && !::rpgvar["G815"] && !::rpgvar["G816"]){
+			::rpgvar["G816"] = true;
+			this.pop( k, "He hurls the vial overboard!", 0xff6060ff);
+			local y = this.member( "Yosai");
+			if( y) this.bark( "vial", y, "TWENTY-TWO!");
+			log( "the vial is thrown");
+		}
+	}
+	if( chr == k){
+		foreach( p in b.members){
+			if( !p || p.isDead()) continue;
+			foreach( c in this.KUMPEI_COPY){
+				if( p.hasCondition( c) && !k.hasCondition( c)){
+					k.putCondition( c);
+					this.pop( k, "(the sigil copies it)", 0x9fd8ffff);
+					this.bark( "painted", k, "Your courage, painted. Mine now.");
+					return;
+				}
+			}
+		}
+	}
+};
+::Rokugan._rt_broken_kumpei <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_kumpei( e);
+	local b = ::rpgstage["battle"];
+	if( b && (e instanceof ::RPGEnemy) && e.data["rt_kumpei"] && b.turn < 7 && !::rpgvar["G816"] && !::rpgvar["G815"]){
+		::rpgvar["G815"] = true;
+		this.pop( e, "THE VIAL IS SAFE", 0xffe080ff);
+		log( "the vial is saved");
+	}
+};
+
+//	Scorpion Ch1 (production scorpion-ch1). Many Faces: Copy (RokuganBattle onTalent) needs each foe's last skill.
+::Rokugan._rt_post_copy <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_copy( cmd);
+	local e = cmd.src, sk = cmd.skill;
+	if( (e instanceof ::RPGEnemy) && sk && sk["name"] != "Wait" && sk["name"] != "Defend") this.state( e).lastsk <- sk;
+};
+
+//	b_kommei_brood (S05 mid-boss; enemy field rt_kommei_once): in the second round it swaps two travelers' commands
+//	for that round, once (the Crab Ch3 Kommei's trick, foreshadowed; RokuganHazard swap above).
+::Rokugan.kbrood <- { battle = null, done = false };
+::Rokugan._rt_preturn_kbrood <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_kbrood( chr);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local kb = this.kbrood;
+	if( kb.battle != b){ kb.battle = b; kb.done = false; }
+	if( kb.done || b.turn != 1) return;
+	local oni = b.enemies.find( @( e) e && e.data["rt_kommei_once"] && !e.isDead());
+	if( !oni) return;
+	kb.done = true;
+	local live = b.members.filter( @( v) v && !v.isDead());
+	if( length( live) < 2) return;
+	local sw = this.swap;
+	sw.battle = b; sw.a = live[0]; sw.b = live[1]; sw.until = b.turn; sw.lastturn = b.turn; sw.faceDone = false;
+	this.pop( sw.a, "SWAP!", 0xc070ffff);
+	this.pop( sw.b, "SWAP!", 0xc070ffff);
+	log( "kommei brood swaps %S <-> %S (round %d)" % (sw.a.name, sw.b.name, b.turn));
+	this.bark( "kbswap", oni, "Which of you is which? Do you even know?");
+	this.bark( "kbswap2", this.member( "Mitsue"), "I'm whoever I need. You should try it.");
+};
+
+//	b_boss_kansen_hana (S07; enemy field rt_ritual). The ritual counter rises each round while she holds the Iron
+//	Box: 5 "The pit is listening!"; from 7 the Oracle of Blood half-forms (a drowning grapple: one traveler, 8% max
+//	HP); from 10 it rises fully (G868): Blood Tide, every traveler 12% max HP each round. Breaking her (Suki) drops
+//	the box: the counter stops for good (G866). Mitsue's Steal on her then takes the box (G867). Steel only annoys
+//	the Kansen (EDR +50 on weapons, gen_data); crystal and magic hurt it.
+::Rokugan.ritual <- { battle = null, round = -1, n = 0, stopped = false, steel = false };
+::Rokugan._rt_preturn_ritual <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_ritual( chr);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local h = b.enemies.find( @( e) e && e.data["rt_ritual"] && !e.isDead() && !e.escaped);
+	if( !h) return;
+	local r = this.ritual;
+	if( r.battle != b){ r.battle = b; r.round = -1; r.n = 0; r.stopped = false; r.steel = false; }
+	if( r.stopped || r.round == b.turn) return;
+	r.round = b.turn;
+	r.n++;
+	this.pop( h, "RITUAL %d/10" % r.n, r.n >= 7 ? 0xff5050ff : 0xffb0b0ff);
+	log( "ritual counter %d" % r.n);
+	local m = this.member( "Mitsue");
+	if( r.n == 5) this.bark( "pit", h, "The pit is listening!");
+	if( r.n == 7) this.bark( "nottoday", m, "Not today.");
+	local live = b.members.filter( @( v) v && !v.isDead());
+	if( !length( live)) return;
+	if( r.n >= 10){
+		if( !::rpgvar["G868"]){
+			::rpgvar["G868"] = true;
+			this.pop( h, "The Oracle of Blood rises!", 0xff3030ff);
+			this.bark( "oracle", h, "The Oracle comes. The blood rises.");
+		}
+		foreach( p in live){
+			local k = Math.max( 1, int( p.MAXHP * 0.12));
+			p.HP = Math.max( 1, p.HP - k);
+			this.pop( p, "BLOOD TIDE -%d" % k, 0xff4040ff);
+		}
+		log( "blood tide");
+	}else if( r.n >= 7){
+		local p = live[int( ::rnd.nextf( length( live))) % length( live)];
+		local k = Math.max( 1, int( p.MAXHP * 0.08));
+		p.HP = Math.max( 1, p.HP - k);
+		this.pop( p, "DROWNING GRAPPLE -%d" % k, 0xff6060ff);
+		log( "the Oracle's grapple on %S" % p.name);
+	}
+};
+::Rokugan._rt_broken_ritual <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_ritual( e);
+	if( !(e instanceof ::RPGEnemy) || !e.data["rt_ritual"]) return;
+	local r = this.ritual;
+	if( r.stopped) return;
+	r.stopped = true;
+	::rpgvar["G866"] = true;
+	this.pop( e, "THE BOX FALLS", 0xffe080ff);
+	this.bark( "mine", this.member( "Mitsue"), "Mine.");
+	log( "Hana drops the box: the ritual stops at %d" % r.n);
+};
+::Rokugan._rt_attack_ritual <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_ritual( dmg);
+	local e = dmg.dst, sk = dmg.skill;
+	if( !(e instanceof ::RPGEnemy) || !e.data["rt_ritual"] || !sk || dmg.miss) return;
+	local r = this.ritual;
+	local bits = sk["elembits"] | 0, steel = (bits & (0x3f | (1 << 12))) != 0, hurts = (bits & ((1 << 7) | (1 << 8) | (1 << 13))) != 0;
+	if( steel && !hurts && !r.steel){
+		r.steel = true;
+		this.bark( "annoys", this.member( "Mitsue"), "Crystal hurts it. Everything else just annoys it.");
+	}
+	if( sk["name"] == "Many Faces: Steal" && ::rpgvar["G866"] && !::rpgvar["G867"]){
+		::rpgvar["G867"] = true;
+		this.pop( e, "IRON BOX STOLEN", 0xffe080ff);
+		log( "Mitsue steals the Iron Box");
+	}
+};
+
+//	Scorpion Ch2 stitched-face monks (enemy field rt_freed): break one and its sewn face tears free. The soul inside
+//	escapes; the monk falls, at peace (escaped: counted for the win). rpgvar G905 counts them; the first three are
+//	Honor +1 each (G060).
+::Rokugan._rt_broken_freed <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_freed( e);
+	if( !(e instanceof ::RPGEnemy) || !e.data["rt_freed"] || e.escaped) return;
+	local b = ::rpgstage["battle"], rp = b ? b.getChara3D( e) : null;
+	e.escaped = true;
+	this.pop( e, "...thank you...", 0xffffe0ff);
+	if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+	local n = int( ::rpgvar["G905"] || 0);
+	::rpgvar["G905"] = n + 1;
+	if( n < 3) ::rpgvar["G060"] = int( ::rpgvar["G060"] || 0) + 1;
+	log( "a stitched face tears free: soul %d freed%S" % (n + 1, n < 3 ? " (Honor +1)" : ""));
+};
+
+//	b_boss_munashii (S07; enemy field rt_munashii). Under half HP he puts on his true mask (phase 2): every turn it
+//	copies one traveler buff (Kumpei's list). If Mitsue wore Giseiki (G897), Giseiki speaks the counter-word as the
+//	true mask goes on: a free Suki, once (G914). Giseiki barks through her in the fight.
+::Rokugan.munashii <- { battle = null, phase = 1, said = -1 };
+::Rokugan._rt_preturn_mun <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_mun( chr);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local m = b.enemies.find( @( e) e && e.data["rt_munashii"] && !e.isDead() && !e.escaped);
+	if( !m) return;
+	local st = this.munashii;
+	if( st.battle != b){ st.battle = b; st.phase = 1; st.said = -1; }
+	local mi = this.member( "Mitsue");
+	if( st.said != b.turn){
+		st.said = b.turn;
+		if( b.turn == 1 && ::rpgvar["G897"]) this.bark( "gis1", mi, "(two voices) Crystal, Shosuro. He fears it more than he fears me.");
+	}
+	if( st.phase == 1 && m.HP < m.MAXHP / 2){
+		st.phase = 2;
+		this.pop( m, "He puts on his true mask", 0xc0b0ffff);
+		this.bark( "true", m, "Your courage. Your speed. I'll wear those too.");
+		log( "Munashii: phase 2 (the true mask)");
+		if( ::rpgvar["G897"] && !::rpgvar["G914"]){
+			::rpgvar["G914"] = true;
+			this.bark( "word", mi, "(Giseiki, through her) Now, Shosuro - the counter-word, while he's reaching for you!");
+			this.breakEnemy( m);
+			log( "Giseiki's counter-word: Munashii is open");
+		}
+	}
+	if( st.phase == 2 && chr == m){
+		foreach( p in b.members){
+			if( !p || p.isDead()) continue;
+			foreach( c in this.KUMPEI_COPY){
+				if( p.hasCondition( c) && !m.hasCondition( c)){
+					m.putCondition( c);
+					this.pop( m, "(the true mask copies it)", 0xc0b0ffff);
+					log( "Munashii copies %S from %S" % (c, p.name));
+					return;
+				}
+			}
+		}
+	}
+};
+
+//	b_boss_iuchi_hit_squad (Scorpion Ch3 = Unicorn Ch2; enemy field rt_bubble on the amulet-bearer). Every other round
+//	the squad's silence bubble seals spells and spell-like skills (anything that costs SP): the round before, the air
+//	goes still (a warning). Breaking the amulet-bearer (Suki) or killing him pops the bubble for good (G942).
+::Rokugan.bubble <- { battle = null, round = -1, popped = false };
+::Rokugan.bubbleOn <- function(){
+	local b = ::rpgstage["battle"];
+	if( !b) return false;
+	local bb = this.bubble;
+	if( bb.battle != b){ bb.battle = b; bb.round = -1; bb.popped = false; }
+	if( bb.popped) return false;
+	local m = b.enemies.find( @( e) e && e.data["rt_bubble"]);
+	if( !m) return false;
+	if( m.isDead() || m.escaped || this.state( m).broken){
+		bb.popped = true;
+		::rpgvar["G942"] = true;
+		this.pop( m, "THE BUBBLE POPS", 0xc0ffe0ff);
+		this.bark( "birds", this.member( "Rin"), "I can hear again! Gods, I can hear the birds.");
+		log( "the silence bubble pops");
+		return false;
+	}
+	return (b.turn % 2) == 1;										//	rounds 2, 4, 6...
+};
+::Rokugan._rt_preturn_bubble <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_bubble( chr);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local m = b.enemies.find( @( e) e && e.data["rt_bubble"]);
+	if( !m) return;
+	local bb = this.bubble;
+	local on = this.bubbleOn();
+	if( bb.round == b.turn || bb.popped) return;
+	bb.round = b.turn;
+	if( on){
+		this.pop( m, "SILENCE", 0xa0a0a0ff);
+		if( this.member( "Mitsue")) this.bark( "left" + b.turn, this.member( "Mitsue"), "(mouthing it to Rin) Left.");
+		else{															//	Tamotsu's view (Unicorn Ch2)
+			this.bark( "left" + b.turn, this.member( "Rin"), "(mouthing it to Tamotsu) Left.");
+			this.bark( "lunch", this.member( "Tamotsu"), "(mouthing) ...Did you say 'lunch'?");
+		}
+		log( "silence bubble: round %d" % b.turn);
+	}else{
+		this.pop( m, "(the air goes still...)", 0xc0c0c0ff);
+	}
+};
+::Rokugan._rt_pre_bubble <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill;
+	if( (pc instanceof ::RPGPlayer) && sk && sk["consume"] && sk["consume"][1] > 0 && this.bubbleOn()){
+		cmd.skill = ::conf.skill["S000"];
+		this.pop( pc, "(no sound comes)", 0xa0a0a0ff);
+		log( "%S's %S is lost in the silence" % (pc.name, sk.name));
+	}
+	return this._rt_pre_bubble( cmd);
+};
+
+//	b_boss_stolen_face (Scorpion Ch4 "The Eve"; enemy field rt_stolenface). The Bloodspeaker remnant waits at the crater
+//	in Mitsue's own face. At two-thirds and one-third of its HP it steals a traveler's face (first a companion's if one
+//	stands, then Mitsue's again): its weaknesses become that traveler's weapon types (their attack skill's weapon, Jade
+//	and Unarmed bits; Jade/Katana/Air no longer bite), and its next action mirrors that traveler's last skill. Mitsue's
+//	Steal on it takes the face back (50%; certain if she wore Giseiki in Ch2, G897: his echo knows how), G964.
+::Rokugan.sface <- { battle = null, stage = 0, who = null, bits = 0, mirror = null, pending = false };
+::Rokugan.SF_ORIG <- (1 << 11) | (1 << 0) | (1 << 8);				//	Jade, Katana, Air (bosses.md)
+::Rokugan.SF_BARK <- {
+	Gendo = ["Two swords! How clerical.", "That's a terrible impression."],
+	Yosai = ["Oh, I'm very cheerful.", "You're not. You're doing it wrong."],
+	Haku = ["So young. So warm.", "Give that back. My mother likes that face."],
+	Mitsue = ["Yours again, Shosuro. It fits so well.", "It fits me better."]
+};
+::Rokugan.sfState <- function(){
+	local b = ::rpgstage["battle"], f = this.sface;
+	if( f.battle != b){ f.battle = b; f.stage = 0; f.who = null; f.bits = 0; f.mirror = null; f.pending = false; }
+	return f;
+};
+//	the traveler's own last real skill (no Wait/Defend, no hireling Call, no guest, no Many Faces), for the mirror
+::Rokugan._rt_post_plast <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_plast( cmd);
+	local pc = cmd.src, sk = cmd.skill;
+	if( !(pc instanceof ::RPGPlayer) || !sk) return;
+	local nm = sk["name"] || "";
+	if( nm == "Wait" || nm == "Defend" || nm == "Flee" || sk["rt_hire"] || sk["rt_guest"] || nm.indexOf( "Many Faces") >= 0) return;
+	this.state( pc).plast <- sk;
+};
+::Rokugan._rt_post_sfbark <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_sfbark( cmd);
+	local e = cmd.src, sk = cmd.skill;
+	if( (e instanceof ::RPGEnemy) && e.data["rt_stolenface"] && sk && sk["name"] == "My Blood Is a Key")
+		this.bark( "sfkey", e, "My blood is a key. Every lock opens.");
+};
+::Rokugan._rt_weak_sf <- ::Rokugan.weakbits;
+::Rokugan.weakbits <- function( e){
+	if( (e instanceof ::RPGEnemy) && e.data["rt_stolenface"]){
+		local f = this.sfState();
+		if( f.who) return f.bits;
+	}
+	return this._rt_weak_sf( e);
+};
+::Rokugan.stealFace <- function( b, e){
+	local f = this.sface, pick = null, mi = null;
+	foreach( v in b.members){
+		if( !v || v.isDead()) continue;
+		if( this.given( v.name) == "Mitsue") mi = v;
+		else if( !pick) pick = v;
+	}
+	if( f.stage == 2 || !pick) pick = mi || pick;
+	if( !pick) return;
+	local ask = pick.getAttackSkill();
+	local bits = (ask ? (ask["elembits"] | 0) : 0) & (0x3f | (1 << 11) | (1 << 12));
+	f.who = pick; f.bits = bits ? bits : (1 << 12);
+	local st = this.state( pick);
+	f.mirror = ("plast" in st) ? st.plast : ask;
+	f.pending = true;
+	this.state( e).known = this.state( e).known | f.bits;			//	its new weaknesses show: "use them"
+	local g = this.given( pick.name);
+	this.pop( e, "STEALS " .. g .. "'s FACE", 0xff9fb0ff);
+	if( g in this.SF_BARK){
+		this.bark( "sf" + f.stage + "a", e, this.SF_BARK[g][0]);
+		this.bark( "sf" + f.stage + "b", pick, this.SF_BARK[g][1]);
+	}
+	if( ::rpgvar["G897"]) this.bark( "sfgis" + f.stage, mi, "(Giseiki's echo) A borrowed face, Shosuro. You know how to take it back.");
+	log( "stolen face %d: %S (weak bits %d, mirror %S)" % (f.stage, pick.name, f.bits, f.mirror ? f.mirror.name : "-"));
+};
+::Rokugan._rt_preturn_sf <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_sf( chr);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local e = b.enemies.find( @( x) x && x.data["rt_stolenface"] && !x.isDead() && !x.escaped);
+	if( !e) return;
+	local f = this.sfState();
+	if( f.stage == 0 && e.HP <= e.MAXHP * 2 / 3){ f.stage = 1; this.stealFace( b, e); }
+	else if( f.stage == 1 && e.HP <= e.MAXHP / 3){ f.stage = 2; this.stealFace( b, e); }
+};
+::Rokugan._rt_pre_sf <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local e = cmd.src, b = ::rpgstage["battle"];
+	if( b && (e instanceof ::RPGEnemy) && e.data["rt_stolenface"] && cmd.skill && cmd.skill["skilltype"] != "noop"
+		&& !this.state( e).broken){
+		local f = this.sfState();
+		if( f.pending && f.who && f.mirror){
+			f.pending = false;
+			local sk = f.mirror, nsk = clone sk;
+			nsk["consume"] <- [0, 0];
+			local mine = sk["skilltype"] != "attack";
+			local live = b.members.filter( @( v) v && !v.isDead());
+			local tgt = mine ? e : (length( live) ? live[int( ::rnd.nextf( length( live))) % length( live)] : null);
+			local tg = tgt ? b.getCommandTargets( e, tgt, nsk.cmdtgt, false) : null;
+			if( tg && length( tg)){
+				cmd.dsts = tg;
+				cmd.skill = nsk;
+				this.pop( e, "MIRRORS: " .. sk.name, 0xff9fb0ff);
+				log( "the Bloodspeaker mirrors %S" % sk.name);
+			}
+		}
+	}
+	return this._rt_pre_sf( cmd);
+};
+::Rokugan._rt_attack_sf <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local e = dmg.dst, sk = dmg.skill;
+	if( (e instanceof ::RPGEnemy) && e.data["rt_stolenface"] && sk && !dmg.miss && !dmg.skip && !dmg.heal){
+		local f = this.sfState();
+		if( f.who && sk["name"] == "Many Faces: Steal"){
+			if( ::rpgvar["G897"] || this.roll( 50)){
+				local g = this.given( f.who.name);
+				this.pop( e, "FACE TAKEN BACK", 0xffe080ff);
+				this.bark( "sfback" + f.stage, this.member( "Mitsue"), g == "Mitsue" ? "Mine. I always give mine back."
+					: "That isn't yours. I'll give it back to its owner.");
+				f.who = null; f.bits = 0; f.pending = false;
+				::rpgvar["G964"] = true;
+				log( "Mitsue takes the face back");
+			}else{
+				this.pop( e, "(it holds on to the face)", 0xc0c0c0ff);
+			}
+		}
+		if( f.who){
+			local bits = sk["elembits"] | 0;
+			if( (bits & f.bits) && !(bits & this.SF_ORIG)) dmg.cval.baserate *= 1.5;
+			else if( (bits & this.SF_ORIG) && !(bits & f.bits)) dmg.cval.baserate /= 1.5;
+		}
+	}
+	this._rt_attack_sf( dmg);
+};
+
+//	Arrowroot (Togashi Yosai, all paths; user 2026-10-31: "it should at most heal 50% of a char's total hp"): whatever
+//	the formula, level or Boost, one Arrowroot heals at most half the target's max HP.
+::Rokugan._rt_attack_arrow <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_arrow( dmg);
+	local sk = dmg.skill, d = dmg.dst;
+	if( !sk || sk["name"] != "Arrowroot" || !d || !dmg.cval) return;
+	local cap = Math.max( 1, int( d.MAXHP * 0.5)), v = Math.abs( dmg.cval.fix());
+	if( v > cap){
+		dmg.cval.baserate *= cap * 1.0 / v;
+		log( "Arrowroot capped at %d (half of %S's max HP; was %d)" % (cap, d.name, v));
+	}
+};
+
+//	Unicorn Ch1 "Fault Lines". Ide Tamotsu's Barter Coin: Bribe (S541; production S02 tutorial "bribe an enemy to skip
+//	a turn"; battle-skills Settle the Account): coin = 10 x the target's level (at least 10 zeni). A person-for-hire
+//	(enemy field rt_bribe: camp thugs, the guerrillas) takes it and goes home; anyone else loses its next action
+//	counting it. Guerrillas (rt_surrender) put their hands up below 40% HP.
+::Rokugan.fade <- function( e){
+	local b = ::rpgstage["battle"], rp = b ? b.getChara3D( e) : null;
+	e.escaped = true;
+	if( rp){ rp.fxtype = 1; rp.fxw = 0.0; rp.fxspd = 0.0015; }
+};
+::Rokugan._rt_pre_bribe <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill;
+	if( (pc instanceof ::RPGPlayer) && sk && sk["name"] == "Barter Coin: Bribe"){
+		local d = cmd.dsts && length( cmd.dsts) ? cmd.dsts[0] : null;
+		if( d instanceof ::RPGEnemy){
+			local cost = Math.max( 10, int( d.LV) * 10), money = ::rpgstat.money;
+			if( money < cost){
+				this.pop( pc, "NOT ENOUGH ZENI (%d)" % cost, 0xc0c0c0ff);
+			}else{
+				::rpgstat.money = money - cost;
+				this.pop( pc, "-%d zeni" % cost, 0xffe080ff);
+				if( d.data["rt_bribe"]){
+					this.fade( d);
+					this.pop( d, "PAID OFF", 0xffe080ff);
+					local b = ::rpgstage["battle"];
+					local nao = b ? b.enemies.find( @( x) x && x.data["rt_naohida"] && !x.isDead() && !x.escaped) : null;
+					if( nao) this.bark( "paid" + d.name + b.turn, d, "Sorry, Naohida - he pays better than the cause!");
+					else this.bark( "paid" + b.turn, d, cost <= 20 ? "...Ten zeni? (pocketing it) I'm going home." : "(pocketing it) I was never here.");
+					log( "%S paid off for %d zeni" % (d.name, cost));
+				}else{
+					this.state( d).bribed <- true;
+					this.pop( d, "(counting the coins)", 0xffe080ff);
+					log( "%S bribed: loses its next action" % d.name);
+				}
+			}
+		}
+		cmd.skill = ::conf.skill["S000"];
+	}
+	if( (pc instanceof ::RPGEnemy) && sk && sk["skilltype"] != "noop"){
+		local st = this.state( pc);
+		if( ("bribed" in st) && st.bribed){
+			st.bribed = false;
+			cmd.skill = ::conf.skill["S000"];
+			this.pop( pc, "(still counting)", 0xffe080ff);
+		}
+	}
+	return this._rt_pre_bribe( cmd);
+};
+::Rokugan._rt_attack_surrender <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_surrender( dmg);
+	local e = dmg.dst;
+	if( !(e instanceof ::RPGEnemy) || !e.data["rt_surrender"] || e.escaped || e.isDead() || dmg.miss || dmg.heal) return;
+	if( e.HP - dmg.cval.fix() > e.MAXHP * 2 / 5) return;
+	this.fade( e);
+	this.pop( e, "SURRENDERS", 0xffe080ff);
+	this.bark( "farmers", e, "We're farmers! He taught us to make the powder! We just want them to stop!");
+	log( "%S surrenders" % e.name);
+};
+
+//	b_boss_naohida (Unicorn Ch1 S07; enemy fields rt_keg, rt_naohida). Powder kegs stand on the field: any Fire hit (from
+//	either side; Naohida's Powder Bomb too) or any blow on a keg sets one off: 20% of max HP to everyone on both sides
+//	(never below 1 HP; Naohida 5%). Below a fifth of his HP Naohida throws a bomb at the cave mouth and escapes with whoever is
+//	left (the victory).
+::Rokugan.kegs <- { battle = null, last = null };
+::Rokugan.blowKeg <- function( k){
+	local b = ::rpgstage["battle"];
+	if( !b || !k || k.escaped) return;
+	this.fade( k);
+	this.pop( k, "BOOM", 0xff8040ff);
+	::playSound( "SE111");
+	try{ ::rpgstage.screenfx.screenEffectOn( { sfxid = "quake0", time = 500, pow = 10, freq = 40, vert = true }); }catch( ex){}
+	local all = [];
+	foreach( c in b.members) all.append( c);
+	foreach( c in b.enemies) all.append( c);
+	foreach( c in all){
+		if( !c || c.isDead() || ((c instanceof ::RPGEnemy) && (c.escaped || c.data["rt_keg"]))) continue;
+		local n = Math.max( 1, int( c.MAXHP * (((c instanceof ::RPGEnemy) && c.data["rt_naohida"]) ? 0.05 : 0.2)));
+		c.HP = Math.max( 1, c.HP - n);							//	(Naohida is padded in two kimonos: 5%)
+		this.pop( c, "BLAST -%d" % n, 0xff8040ff);
+	}
+	this.bark( "wet" + b.turn, this.member( "Rin") || this.member( "Ryuko"), "Water! Something wet - anything!");
+	log( "a powder keg goes off");
+};
+::Rokugan._rt_attack_keg <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_keg( dmg);
+	local b = ::rpgstage["battle"], sk = dmg.skill, d = dmg.dst;
+	if( !b || !sk || dmg.miss || dmg.heal) return;
+	local kg = this.kegs;
+	if( kg.battle != b){ kg.battle = b; kg.last = null; }
+	if( (d instanceof ::RPGEnemy) && d.data["rt_keg"] && !d.escaped){
+		this.blowKeg( d);
+		return;
+	}
+	if( (sk["elembits"] | 0) & (1 << 6)){
+		local key = (dmg.src ? dmg.src.name : "") + b.turn + sk.name;
+		if( kg.last == key) return;									//	one keg per Fire command, not per target
+		local k = b.enemies.find( @( x) x && x.data["rt_keg"] && !x.escaped && !x.isDead());
+		if( !k) return;
+		kg.last = key;
+		this.blowKeg( k);
+	}
+};
+::Rokugan._rt_post_naohida <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_naohida( cmd);
+	local e = cmd.src, sk = cmd.skill, b = ::rpgstage["battle"];
+	if( !b) return;
+	if( (e instanceof ::RPGEnemy) && e.data["rt_naohida"] && sk && sk["name"] == "Powder Bomb")
+		this.bark( "burn" + b.turn, e, "Burn, then! Burn like Motobu burned!");
+	local n = b.enemies.find( @( x) x && x.data["rt_naohida"] && !x.isDead() && !x.escaped);
+	if( n && n.HP < n.MAXHP / 5){
+		this.pop( n, "(a bomb at the cave mouth)", 0xff8040ff);
+		this.bark( "judge", n, "Judge the living, Tamotsu! Start with them!");
+		foreach( x in b.enemies) if( x && !x.isDead() && !x.escaped) this.fade( x);
+		log( "Naohida escapes into the smoke");
+	}
+};
+
+//	Unicorn Ch3 "The Noblest Blood": Covered Ears (rpgvar G999 = the wax is in; production set-piece). The servants of
+//	the Shuten Doji of Regret possess by hearing. With the wax in, nobody hears their Hum (skill field rt_hum: Silence on
+//	every traveler whose ears are open) and nobody can be heard either: voice skills (rt_voice: Words of Peace, Song of
+//	the Ki-Rin, The Clouds Part) are lost. Their grab at the wax (rt_pullwax) uncovers one traveler for the rest of the
+//	battle (Fortune's Lost: they pull the hands away from the ears). Breaking a servant (rt_singing) wakes it: it
+//	leaves the fight, non-lethal; the first three are Honor +1 each (G1011, G060). Using a voice skill with the wax
+//	in pulls it out first (the skill works; the speaker is uncovered for the rest of the battle); Spare Wax (I415)
+//	puts it back. Veiled (K058, Tamotsu's When the Veil Moves) and Regret's Silence (A158) keep the song out anyway.
+::Rokugan.unhearing <- function( p){
+	return p.hasCondition( "K058") || this.wears( p, "A158");
+};
+::Rokugan.covered <- function( p){
+	if( !::rpgvar["G999"]) return false;
+	local st = this.state( p);
+	return !(("unplugged" in st) && st.unplugged);
+};
+::Rokugan._rt_pre_ears <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill, b = ::rpgstage["battle"];
+	if( b && sk && (pc instanceof ::RPGPlayer) && sk["rt_voice"] && this.covered( pc)){
+		this.state( pc).unplugged <- true;							//	production Ch4: "Uncover to use them -
+		this.pop( pc, "(pulls the wax out to speak)", 0xffe0c0ff);	//	but the Wail can reach you."
+		log( "%S pulls the wax out for %S" % (pc.name, sk.name));
+	}
+	if( b && sk && (pc instanceof ::RPGEnemy) && sk["rt_hum"]){
+		cmd.skill = ::conf.skill["S000"];
+		local heard = 0;
+		foreach( p in b.members){
+			if( !p || p.isDead() || this.covered( p) || this.unhearing( p)) continue;
+			p.putCondition( "K003");
+			this.pop( p, "HEARS THE SONG", 0xc0c0ffff);
+			heard++;
+		}
+		this.pop( pc, heard ? "(hums)" : "(its mouth moves; you hear nothing)", 0xa0a0a0ff);
+		log( "%S hums: %d traveler(s) hear it" % (pc.name, heard));
+	}
+	if( b && sk && (pc instanceof ::RPGEnemy) && pc.data["rt_guardian"] && sk["name"] == "Stay With Us")
+		this.bark( "stay", pc, "Stay! Stay with us! The dark is quiet!");
+	if( b && sk && (pc instanceof ::RPGPlayer) && sk["name"] == "Raw Jade"
+		&& b.enemies.find( @( e) e && e.data["rt_guardian"] && !e.isDead()))
+		this.bark( "catch", this.member( "Tamotsu") || pc, "Ancestor - forgive the rudeness - catch!");
+	if( b && sk && sk["name"] == "Iuchi Karasu: Jade Strike")
+		this.bark( "oni" + b.turn, pc, "(Karasu) I learned this one from a very angry oni. He was a terrible teacher.");
+	return this._rt_pre_ears( cmd);
+};
+::Rokugan._rt_attack_wax <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_wax( dmg);
+	local sk = dmg.skill, d = dmg.dst;
+	if( !sk || !sk["rt_pullwax"] || !(d instanceof ::RPGPlayer) || dmg.miss || !::rpgvar["G999"]) return;
+	local st = this.state( d);
+	if( ("unplugged" in st) && st.unplugged) return;
+	st.unplugged <- true;
+	this.pop( d, "WAX PULLED OUT", 0xffc0c0ff);
+	log( "%S's wax is pulled out" % d.name);
+};
+::Rokugan._rt_broken_wake <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_wake( e);
+	if( !(e instanceof ::RPGEnemy) || !e.data["rt_singing"] || e.escaped) return;
+	this.fade( e);
+	this.pop( e, "(wakes, blinking)", 0xffffe0ff);
+	local n = int( ::rpgvar["G1011"] || 0);
+	::rpgvar["G1011"] = n + 1;
+	if( n < 3) ::rpgvar["G060"] = int( ::rpgvar["G060"] || 0) + 1;
+	this.bark( "woken", this.member( "Tamotsu"), "(writing it on his palm for the servant) GOOD MORNING. SORRY.");
+	log( "a singing servant wakes%S" % (n < 3 ? " (Honor +1)" : ""));
+};
+
+//	Unicorn Ch4 "Regret". Spare Wax (I415) re-covers an ally's ears. Regret's Silence (A158) blocks Silence and
+//	possession (Confuse). b_tunnel_legion (rt_legion): with mirumoto_terms honour (G1005) the Dragon hold the door and
+//	the Legion start a shield down. b_boss_kurosho_regret: the Doji (rt_wail, rt_doji) wails every third round (the
+//	round before, "the storm draws breath"): any traveler whose ears are open - not Veiled, not wearing Regret's
+//	Silence - is possessed (Confuse) unless they resist (50%). Tamotsu pulls out one plug as it starts ("He needs his
+//	voice"). At half the Doji's HP, Nihime's curse (nihime_told G930, or the pigeon's letter I417, read by Naohida):
+//	Kurosho's shields break for one breath. With shahai_kept_close (G1028) and Karasu's fork (I416) the first Wail is
+//	turned back: Shahai sings it backwards and the Doji loses its turn. Barter Coin: Bribe at the Doji, once: "take
+//	mine instead" - it loses its next turn and two shields. When the Doji falls the wind stops, and Kurosho with it.
+::RPGPlayer._rt_putCond_silence <- ::RPGPlayer.putCondition;
+::RPGPlayer.putCondition <- function( condid){
+	if( (condid == "K003" || condid == "K004") && ::Rokugan.wears( this, "A158")){
+		::Rokugan.pop( this, "(Regret's Silence)", 0xe0e0ffff);
+		return null;
+	}
+	return this._rt_putCond_silence( condid);
+};
+::Rokugan.regret <- { battle = null, round = -1, cursed = false, sung = false, paid = false, legion = false,
+	plug = false, stilled = false };
+::Rokugan.regretState <- function(){
+	local b = ::rpgstage["battle"], r = this.regret;
+	if( r.battle != b){
+		r.battle = b; r.round = -1; r.cursed = false; r.sung = false; r.paid = false; r.legion = false;
+		r.plug = false; r.stilled = false;
+	}
+	return r;
+};
+::Rokugan._rt_pre_regret <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill, b = ::rpgstage["battle"];
+	if( b && sk && (pc instanceof ::RPGPlayer) && sk["name"] == "Spare Wax"){
+		local d = cmd.dsts && length( cmd.dsts) ? cmd.dsts[0] : pc;
+		if( d instanceof ::RPGPlayer){
+			this.state( d).unplugged <- false;
+			this.pop( d, "WAX IN", 0xe0e0ffff);
+			log( "%S: the wax goes back in" % d.name);
+		}
+	}
+	if( b && sk && (pc instanceof ::RPGPlayer) && sk["name"] == "Barter Coin: Bribe"){
+		local d = cmd.dsts && length( cmd.dsts) ? cmd.dsts[0] : null;
+		if( (d instanceof ::RPGEnemy) && d.data["rt_kurosho"]){
+			this.pop( d, "(he doesn't look at the coins)", 0xc0c0c0ff);
+			cmd.skill = ::conf.skill["S000"];
+		}else if( (d instanceof ::RPGEnemy) && d.data["rt_doji"]){
+			local r = this.regretState();
+			cmd.skill = ::conf.skill["S000"];
+			if( r.paid){
+				this.pop( d, "(it wants more than money now)", 0xc0c0c0ff);
+			}else{
+				local cost = Math.max( 10, int( d.LV) * 10);
+				if( ::rpgstat.money < cost){
+					this.pop( pc, "NOT ENOUGH ZENI (%d)" % cost, 0xc0c0c0ff);
+				}else{
+					r.paid = true;
+					::rpgstat.money -= cost;
+					this.pop( pc, "-%d zeni" % cost, 0xffe080ff);
+					this.bark( "paid1", pc, "He's paid enough! Here - take mine instead - and get out.");
+					local st = this.state( d);
+					st.bribed <- true;
+					st.res = Math.max( 0, st.res - 2);
+					this.pop( d, "(it loses its concentration)", 0xffe080ff);
+					log( "Tamotsu pays the Shuten Doji: it loses a turn and two shields");
+				}
+			}
+		}
+	}
+	return this._rt_pre_regret( cmd);
+};
+::Rokugan._rt_preturn_regret <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_regret( chr);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local r = this.regretState();
+	if( !r.legion && ::rpgvar["G1005"]){
+		local hit = null;
+		foreach( e in b.enemies){
+			if( !e || !e.data["rt_legion"]) continue;
+			local st = this.state( e);
+			st.res = Math.max( 1, st.res - 1);
+			st.maxres = Math.max( 1, st.maxres - 1);
+			hit = e;
+		}
+		r.legion = true;
+		if( hit){
+			this.pop( hit, "(the Dragon hold the door: shields -1)", 0xc0ffc0ff);
+			log( "the Dragon hold the door: Legion shields -1");
+		}
+	}
+	local doji = b.enemies.find( @( e) e && e.data["rt_doji"]);
+	if( !doji) return;
+	local kuro = b.enemies.find( @( e) e && e.data["rt_kurosho"]);
+	if( !r.plug){
+		r.plug = true;
+		local t = this.member( "Tamotsu");
+		if( t){
+			this.state( t).unplugged <- true;
+			this.bark( "plug", t, "(pulling out one plug) Kurosho-sama! I've come to buy you back, my lord.");
+		}
+	}
+	if( (doji.isDead() || doji.escaped) && kuro && !kuro.isDead() && !kuro.escaped && !r.stilled){
+		r.stilled = true;
+		this.fade( kuro);
+		this.pop( kuro, "(the wind stops, all at once)", 0xffffffff);
+		log( "Regret banished: Kurosho falls");
+		return;
+	}
+	if( doji.isDead() || doji.escaped || r.round == b.turn) return;
+	r.round = b.turn;
+	local phase = b.turn % 3;
+	if( phase == 1){
+		this.pop( doji, "(the storm draws breath...)", 0xc0c0c0ff);
+		return;
+	}
+	if( phase != 2) return;
+	if( ::rpgvar["G1028"] && !r.sung && ::rpgstat.countItems( "I416", false) > 0){
+		r.sung = true;
+		this.bark( "fork", this.member( "Tamotsu") || doji, "(Karasu strikes the fork; Shahai sings it backwards, small and brave) ...dlrow eht fo dne eht ta...");
+		this.bark( "stop", doji, "STOP THAT!");
+		this.state( doji).bribed <- true;
+		log( "the reversed song: the Wail turned back, the Doji loses its turn");
+		return;
+	}
+	this.bark( "wail" + b.turn, doji, "SAY IT AGAIN. SAY YOU'RE SORRY. AGAIN. AGAIN.");
+	::playSound( "SE224");
+	local n = 0;
+	foreach( p in b.members){
+		if( !p || p.isDead()) continue;
+		if( this.covered( p) || this.unhearing( p)){ this.pop( p, "(hears nothing)", 0xa0a0a0ff); continue; }
+		if( this.roll( 50)){ this.pop( p, "RESISTS", 0xe0e0ffff); continue; }
+		p.putCondition( "K004");
+		this.bark( "sorry" + p.name + b.turn, p, "I'm sorry - I'm sorry - I'm sorry -");
+		n++;
+	}
+	log( "the Wail: %d possessed" % n);
+};
+::Rokugan._rt_attack_regret <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_regret( dmg);
+	local d = dmg.dst, b = ::rpgstage["battle"];
+	if( !b || !(d instanceof ::RPGEnemy) || !d.data["rt_doji"] || dmg.miss || dmg.heal) return;
+	local r = this.regretState();
+	if( r.cursed || d.HP - dmg.cval.fix() > d.MAXHP / 2) return;
+	local letter = ::rpgstat.countItems( "I417", false) > 0;
+	if( !::rpgvar["G930"] && !letter) return;
+	r.cursed = true;
+	local kuro = b.enemies.find( @( e) e && e.data["rt_kurosho"] && !e.isDead() && !e.escaped);
+	if( ::rpgvar["G930"]) this.bark( "nihime", kuro || d, "(Soshi Nihime, in the doorway, unveiled) Kurosho. Look at me.");
+	else this.bark( "nihime", kuro || d, "(Naohida reads the pigeon's letter aloud) Look at me, Kurosho.");
+	if( kuro){
+		this.breakEnemy( kuro);
+		this.bark( "sorry_k", kuro, "Nihime? ...I'm sorry. I'm so sorry. I should have -");
+	}
+	this.bark( "again", d, "Yes. Say it again. Again.");
+	log( "Nihime's curse: Kurosho wakes for one breath");
+};
+
+//	Ronin Ch1 "What's Eating the Eta". Sayo's Remedy (rules/sayo-remedy.md): her Talent is a pick list (RokuganBattle
+//	"remedy"): Ume-baa's Poultice (no ingredients) and the recipes (skill field rt_recipe = [base, catalyst] item ids),
+//	greyed out when the bag lacks either. Using one spends one of each; if they ran out since, it fizzles.
+::Rokugan.RECIPES <- ["S127", "S573", "S574", "S575", "S576", "S577", "S578", "S579", "S595", "S594", "S609"];
+::Rokugan.recipeCount <- function( sk){							//	two ingredients, or three (Ronin Ch2's story brew)
+	local r = sk["rt_recipe"];
+	if( !r) return 99;
+	local n = 99;
+	foreach( id in r) n = Math.min( n, ::rpgstat.countItems( id, false));
+	return n;
+};
+::Rokugan._rt_pre_remedy <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill, b = ::rpgstage["battle"];
+	if( b && sk && (pc instanceof ::RPGPlayer) && sk["rt_recipe"]){
+		local r = sk["rt_recipe"];
+		if( this.recipeCount( sk) <= 0){
+			cmd.skill = ::conf.skill["S000"];
+			this.pop( pc, "(out of ingredients)", 0xc0c0c0ff);
+		}else{
+			foreach( id in r) ::rpgstat.reduceItemID( id, 1);
+			this.pop( pc, "REMEDY: " + sk.name, 0xc0ffc0ff);
+			local spent = "";
+			foreach( i, id in r) spent += (i ? " + " : "") + id;
+			log( "Remedy %S: spent %S" % (sk.name, spent));
+		}
+	}
+	return this._rt_pre_remedy( cmd);
+};
+
+//	Sayo's first ronin school (schools.md R1, production S01 choice; rpgvar G1039: 1 Warrior, 2 Duelist, 3 Yojimbo).
+//	Warrior - The Wolf's Technique: her blows on any enemy that targeted her this round deal x1.3. Duelist - The Wind
+//	Technique: Speed up for the whole battle (K059). Yojimbo - The Way of Sacrifice: when she Defends, the ally with the
+//	least HP shares her guard (K060, DEF up for a turn).
+//	Rank 2 (Ronin Ch2 S09; schools.md "mix and match": her school's R2 or another school's R1): rpgvar G1092 = 1-3 the
+//	other R1s as above, 4 Punish the Arrogant, 5 Taking the Measure, 6 Will Not Flesh. ronin( t) = she holds technique t.
+//	Rank 3 (Ronin Ch4 start, Lv 41): G1133 = 1-6 an R1/R2 she lacked, 7 Desperate Speed, 8 Strike Like Wind, 9 Hasten
+//	the Blade.
+::Rokugan.ronin <- function( t){
+	return int( ::rpgvar["G1039"] || 0) == t || int( ::rpgvar["G1092"] || 0) == t || int( ::rpgvar["G1133"] || 0) == t;
+};
+::Rokugan._rt_pre_school <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill, b = ::rpgstage["battle"];
+	if( b && this.ronin( 1) && (pc instanceof ::RPGEnemy) && cmd.dsts){
+		foreach( d in cmd.dsts) if( (d instanceof ::RPGPlayer) && this.given( d.name) == "Sayo") this.state( pc).wolf <- b.turn;
+	}
+	if( b && this.ronin( 3) && sk && (pc instanceof ::RPGPlayer) && this.given( pc.name) == "Sayo" && sk["name"] == "Defend"){
+		local low = null;
+		foreach( p in b.members) if( p && p != pc && !p.isDead() && (!low || p.HP * 1.0 / p.MAXHP < low.HP * 1.0 / low.MAXHP)) low = p;
+		if( low){
+			low.putCondition( "K060");
+			this.pop( low, "WAY OF SACRIFICE", 0xc0e0ffff);
+			log( "Way of Sacrifice: %S shares Sayo's guard" % low.name);
+		}
+	}
+	return this._rt_pre_school( cmd);
+};
+::Rokugan._rt_preturn_school <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_school( chr);
+	if( !this.ronin( 2) || !(chr instanceof ::RPGPlayer) || this.given( chr.name) != "Sayo") return;
+	local st = this.state( chr);
+	if( ("wind" in st) && st.wind) return;
+	st.wind <- true;
+	chr.putCondition( "K059");
+	this.pop( chr, "WIND TECHNIQUE", 0xc0e0ffff);
+	log( "Wind Technique: Sayo's speed up");
+};
+::Rokugan._rt_attack_school <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_school( dmg);
+	local b = ::rpgstage["battle"], s = dmg.src, d = dmg.dst;
+	if( !b || !s || !d || dmg.miss || dmg.heal || !dmg.cval || !this.ronin( 1)) return;
+	if( !(s instanceof ::RPGPlayer) || this.given( s.name) != "Sayo" || !(d instanceof ::RPGEnemy)) return;
+	local st = this.state( d);
+	if( !("wolf" in st) || st.wolf != b.turn) return;
+	dmg.cval.baserate *= 1.3;
+	this.pop( s, "WOLF'S TECHNIQUE", 0xffc080ff);
+	log( "Wolf's Technique: x1.3 on %S" % d.name);
+};
+
+//	Sayo's Rank 2 techniques (schools.md "Sayo's techniques -> Octopath", simplified). Punish the Arrogant (4): an enemy
+//	that wounds her is marked; her next blow on it hits x1.25. Taking the Measure (5): every blow on the same foe adds a
+//	stack of study (max 2, +15% each); a new target starts over. Will Not Flesh (6): once a round, a single blow meant
+//	for an ally is taken by Sayo instead.
+::Rokugan._rt_attack_r2 <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_r2( dmg);
+	local b = ::rpgstage["battle"], s = dmg.src, d = dmg.dst;
+	if( !b || !s || !d || dmg.miss || dmg.heal || !dmg.cval) return;
+	if( this.ronin( 4) && (s instanceof ::RPGEnemy) && (d instanceof ::RPGPlayer) && this.given( d.name) == "Sayo"){
+		this.state( d).punish <- s;
+	}
+	if( !(s instanceof ::RPGPlayer) || this.given( s.name) != "Sayo" || !(d instanceof ::RPGEnemy)) return;
+	local st = this.state( s);
+	if( this.ronin( 4) && ("punish" in st) && st.punish == d){
+		dmg.cval.baserate *= 1.25;
+		st.punish = null;
+		this.pop( s, "PUNISH THE ARROGANT", 0xffa080ff);
+		log( "Punish the Arrogant: x1.25 on %S" % d.name);
+	}
+	if( this.ronin( 5)){
+		if( !("measure" in st) || st.measure != d){ st.measure <- d; st.stacks <- 0; }
+		if( st.stacks > 0){
+			dmg.cval.baserate *= 1.0 + 0.15 * st.stacks;
+			this.pop( s, "TAKING THE MEASURE x%d" % st.stacks, 0xc0e0ffff);
+			log( "Taking the Measure: x%.2f on %S" % (1.0 + 0.15 * st.stacks, d.name));
+		}
+		if( st.stacks < 2) st.stacks++;
+	}
+};
+::Rokugan.wnf <- { battle = null, turn = -1 };
+::Rokugan._rt_pre_wnf <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local e = cmd.src, b = ::rpgstage["battle"], w = this.wnf;
+	if( b && this.ronin( 6) && (e instanceof ::RPGEnemy) && cmd.dsts && length( cmd.dsts) == 1){
+		local d = cmd.dsts[0], sayo = this.member( "Sayo");
+		if( w.battle != b){ w.battle = b; w.turn = -1; }
+		if( sayo && !sayo.isDead() && (d instanceof ::RPGPlayer) && d != sayo && w.turn != b.turn){
+			w.turn = b.turn;
+			cmd.dsts = [sayo];
+			this.pop( sayo, "WILL NOT FLESH", 0xc0e0ffff);
+			log( "Will Not Flesh: Sayo takes the blow meant for %S" % d.name);
+		}
+	}
+	return this._rt_pre_wnf( cmd);
+};
+
+//	Foes who fight to half and go (enemy field rt_flee: Tetsuo, the disguised Lion, the crow-tengu; Honor and Eta
+//	"fight until half damage, then flee"; their line in rt_fleebark).
+::Rokugan._rt_attack_flee <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_flee( dmg);
+	local e = dmg.dst;
+	if( !(e instanceof ::RPGEnemy) || !e.data["rt_flee"] || e.escaped || e.isDead() || dmg.miss || dmg.heal) return;
+	if( e.HP - dmg.cval.fix() > e.MAXHP / 2) return;
+	this.fade( e);
+	this.pop( e, "FLEES", 0xffe080ff);
+	this.bark( "flee" + e.name + e.HP, e, e.data["rt_fleebark"] || "...");
+	log( "%S flees at half" % e.name);
+};
+
+//	b_tengu_bridge (production S05): a heavy hit (a quarter of the target's max HP) knocks a fighter off the log into
+//	the canal (K061: two turns lost), on either side. Compliment (S581) makes a crow-tengu lose its next turn preening.
+::Rokugan._rt_attack_log <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_log( dmg);
+	local b = ::rpgstage["battle"], s = dmg.src, d = dmg.dst;
+	if( !b || !s || !d || dmg.miss || dmg.heal || !dmg.cval) return;
+	if( !b.enemies.find( @( e) e && e.data["rt_tengu"])) return;
+	local v = Math.abs( dmg.cval.fix());
+	if( v < d.MAXHP / 4 || d.isDead() || ((d instanceof ::RPGEnemy) && d.escaped) || d.hasCondition( "K061")) return;
+	d.putCondition( "K061");
+	this.pop( d, "SPLASH! (into the canal)", 0x80c0ffff);
+	if( (d instanceof ::RPGPlayer) && this.given( d.name) == "Sayo")
+		this.bark( "wet" + b.turn, d, "(spluttering in the canal) Fine! I'm wet now! I'm angrier!");
+	log( "%S is knocked into the canal" % d.name);
+};
+::Rokugan._rt_pre_compliment <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill, b = ::rpgstage["battle"];
+	if( b && sk && (pc instanceof ::RPGPlayer) && sk["name"] == "Compliment"){
+		local d = cmd.dsts && length( cmd.dsts) ? cmd.dsts[0] : null;
+		cmd.skill = ::conf.skill["S000"];
+		if( (d instanceof ::RPGEnemy) && d.data["rt_tengu"]){
+			this.bark( "glossy" + b.turn, pc, "Your feathers are very glossy.");
+			this.bark( "preen" + b.turn, d, "...They are, aren't they.");
+			this.state( d).bribed <- true;
+			this.pop( d, "(preening)", 0xffe080ff);
+		}else if( d){
+			this.pop( d, "(it doesn't care)", 0xc0c0c0ff);
+		}
+	}
+	return this._rt_pre_compliment( cmd);
+};
+
+//	b_boss_tomie_old / b_boss_tomie_cho (production S07, three forms; Honor and Eta: she won't leave the hut unless it
+//	burns). Form 1, the old woman inside the hut (rt_tomie_old): the walls take two thirds of every blow, until Fire
+//	touches her - a Hanabi remedy, the firebrand, a hired rocket: the hut burns (G1053) and she bursts out (the battle
+//	ends; the tiger fight follows). Forms 2-3, the weretiger (rt_tomie): at half HP the last of the old woman goes out of
+//	her - the tiger: shields back to 9, ATK and Speed up. Hiro's No-dachi Sweep does double damage to her (both forms).
+::Rokugan._rt_attack_tomie <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_tomie( dmg);
+	local b = ::rpgstage["battle"], s = dmg.src, d = dmg.dst, sk = dmg.skill;
+	if( !b || !(d instanceof ::RPGEnemy) || dmg.miss || dmg.heal || !dmg.cval) return;
+	if( !d.data["rt_tomie_old"] && !d.data["rt_tomie"]) return;
+	if( sk && sk["name"] == "Hiro: No-dachi Sweep"){
+		dmg.cval.baserate *= 2.0;
+		this.bark( "brother", this.member( "Sayo") || s, "(Hiro) For my brother.");
+	}
+	if( d.data["rt_tomie_old"] && !d.escaped){
+		if( sk && ((sk["elembits"] | 0) & (1 << 6))){
+			::rpgvar["G1053"] = true;
+			this.fade( d);
+			this.pop( d, "THE HUT BURNS", 0xff8040ff);
+			this.bark( "house", d, "My house! You little - !");
+			log( "the hut burns: Tomie Cho is flushed out");
+		}else{
+			dmg.cval.baserate *= 0.35;
+			this.pop( d, "(behind the hut walls)", 0xc0c0c0ff);
+		}
+	}
+	if( d.data["rt_tomie"]){
+		local st = this.state( d);
+		if( !("tiger" in st) && d.HP - dmg.cval.fix() <= d.MAXHP / 2 && d.HP - dmg.cval.fix() > 0){
+			st.tiger <- true;
+			st.res = st.maxres = 9;
+			d.putCondition( "K020");
+			d.putCondition( "K059");
+			this.pop( d, "THE TIGER", 0xffa040ff);
+			this.bark( "tiger", d, "(no words left in her now: a roar)");
+			log( "Tomie Cho: the tiger form");
+		}
+	}
+};
+::Rokugan._rt_preturn_tomie <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_tomie( chr);
+	local b = ::rpgstage["battle"];
+	if( !b || !(chr instanceof ::RPGPlayer) || this.given( chr.name) != "Sayo") return;
+	if( b.enemies.find( @( e) e && e.data["rt_tomie"] && !e.isDead())){
+		this.bark( "drift", chr, "I was born on a river. I don't run. I drift.");
+	}
+};
+
+//	Ronin Ch2 "The Noble and the Ronin". b_boss_snake_enforcers (bosses.md; production S08): the shadow-snakes (enemy
+//	field rt_shadow) are the enforcers' (rt_enforcer) summons - every second round the fallen ones rise again ("Rise,
+//	children of the den!"). When the first enforcer is broken, Jinnai steps between them and the fight ends ("She passed
+//	the judgement!"): everyone in the den stands down. Jinnai's Freezing the Lifeblood has his line for a brother of the
+//	Order. Chi Protection (kiho.md; the guest's second art): once a battle, while Jinnai answers the Guest call (G232 =
+//	15), the first time Sayo falls under a third of her HP he catches her - a heal, and poison and paralysis gone.
+::Rokugan.den <- { battle = null, lastturn = -1 };
+::Rokugan._rt_preturn_den <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_den( chr);
+	local b = ::rpgstage["battle"], d = this.den;
+	if( !b || !(chr instanceof ::RPGEnemy) || !chr.data["rt_enforcer"] || chr.isDead() || chr.escaped) return;
+	if( d.battle != b){ d.battle = b; d.lastturn = -1; }
+	if( d.lastturn == b.turn || b.turn < 2 || b.turn % 2) return;
+	d.lastturn = b.turn;
+	local fallen = b.enemies.filter( @( e) e && e.data["rt_shadow"] && e.isDead() && !e.escaped);
+	if( !length( fallen)) return;
+	foreach( m in fallen) this.raise( b, m);
+	b.syncEnemyListUI();
+	this.bark( "rise" + b.turn, chr, "Rise, children of the den!");
+	log( "the enforcer raises %d shadow-snakes (round %d)" % (length( fallen), b.turn));
+};
+::Rokugan._rt_broken_den <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_den( e);
+	local b = ::rpgstage["battle"];
+	if( !b || !(e instanceof ::RPGEnemy) || !e.data["rt_enforcer"] || e.escaped) return;
+	local sayo = this.member( "Sayo");
+	this.bark( "enough", sayo || e, "(Jinnai, stepping between them) Enough! She passed the judgement! The Voice spoke to her!");
+	foreach( x in b.enemies){
+		if( !x || x.escaped || x.isDead()) continue;
+		this.fade( x);
+		this.pop( x, x.data["rt_shadow"] ? "(sinks back into the wall)" : "(stands down)", 0xc0e0c0ff);
+	}
+	::rpgvar["G1075"] = true;
+	log( "Jinnai stops the fight: an enforcer is broken");
+};
+::Rokugan._rt_dying_den <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function( e, arg){				//	a blow that would kill an enforcer: Jinnai steps in all the
+	if( (e instanceof ::RPGEnemy) && e.data["rt_enforcer"] && !e.escaped){	//	same (nobody dies in the den)
+		e.HP = 1;
+		this.onBroken( e);
+		return true;
+	}
+	return this._rt_dying_den( e, arg);
+};
+::Rokugan._rt_pre_jinnai <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local sk = cmd.skill, b = ::rpgstage["battle"];
+	if( b && sk && sk["name"] == "Jinnai: Freezing the Lifeblood"){
+		local d = cmd.dsts && length( cmd.dsts) ? cmd.dsts[0] : null;
+		this.bark( "freeze" + b.turn, this.member( "Sayo") || cmd.src, ((d instanceof ::RPGEnemy) && d.data["rt_enforcer"]) ?
+		           "(Jinnai) Forgive me, brother. Lie still a moment." : "(Jinnai) Lie still. You'll thank me later.");
+	}
+	return this._rt_pre_jinnai( cmd);
+};
+::Rokugan.chi <- { battle = null };
+::Rokugan._rt_post_chi <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_chi( cmd);
+	local b = ::rpgstage["battle"];
+	if( !b || int( ::rpgvar["G232"] || 0) != 15 || this.chi.battle == b) return;
+	local p = this.member( "Sayo");
+	if( !p || p.isDead() || p.HP * 3 > p.MAXHP) return;
+	this.chi.battle = b;
+	local n = int( p.MAXHP * 0.4);
+	p.HP = Math.min( p.MAXHP, p.HP + n);
+	foreach( k in ["K001", "K006"]) if( p.hasCondition( k)) p.removeCondition( k);
+	this.pop( p, "CHI PROTECTION +%d" % n, 0x80ffc0ff);
+	this.bark( "chi", p, "(Jinnai, a palm flat on her back) Breathe, wave-girl. In through the nose.");
+	log( "Chi Protection: Sayo +%d" % n);
+};
+
+//	Ronin Ch3 "The Village of the Wounded Lion". b_boss_ghost_guard_basin (bosses.md; production S04): the bloodstone
+//	basin (enemy field rt_basin) raises the dead - every second round, while it stands, the fallen ghost-guards and the
+//	Crab lord's shade (rt_ghostguard) rise again ("The prince - the prince must not come down -"). At half its HP the red
+//	stones start going grey. Broken (Suki) or destroyed, the basin ends it: the guards lower their swords and fade,
+//	bowing to the empty basin.
+::Rokugan.basin <- { battle = null, lastturn = -1 };
+::Rokugan._rt_preturn_basin <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_basin( chr);
+	local b = ::rpgstage["battle"], d = this.basin;
+	if( !b || !(chr instanceof ::RPGEnemy) || !chr.data["rt_basin"] || chr.isDead() || chr.escaped) return;
+	if( d.battle != b){ d.battle = b; d.lastturn = -1; }
+	if( d.lastturn == b.turn || b.turn < 2 || b.turn % 2) return;
+	d.lastturn = b.turn;
+	local fallen = b.enemies.filter( @( e) e && e.data["rt_ghostguard"] && e.isDead() && !e.escaped);
+	if( !length( fallen)) return;
+	foreach( m in fallen) this.raise( b, m);
+	b.syncEnemyListUI();
+	this.bark( "rise" + b.turn, fallen[0], "The prince - the prince must not come down -");
+	log( "the basin raises %d ghost-guards (round %d)" % (length( fallen), b.turn));
+};
+::Rokugan.basinEnds <- function( e){
+	local b = ::rpgstage["battle"];
+	local st = this.state( e);
+	if( !b || ("rtdone" in st)) return;
+	st.rtdone <- true;
+	foreach( x in b.enemies){
+		if( !x || x.escaped || x.isDead()) continue;
+		this.fade( x);
+		if( x != e) this.pop( x, "(lowers the sword; bows to the basin)", 0xd0f0f0ff);
+	}
+	this.pop( e, "THE BASIN BREAKS", 0xc0c0c0ff);
+	::rpgvar["G1110"] = true;
+	log( "the bloodstone basin breaks: the ghost-guards fade");
+};
+::Rokugan._rt_broken_basin <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_basin( e);
+	if( (e instanceof ::RPGEnemy) && e.data["rt_basin"] && !e.escaped) this.basinEnds( e);
+};
+::Rokugan._rt_dying_basin <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function( e, arg){
+	if( (e instanceof ::RPGEnemy) && e.data["rt_basin"] && !e.escaped){
+		e.HP = 1;
+		this.basinEnds( e);
+		return true;
+	}
+	return this._rt_dying_basin( e, arg);
+};
+::Rokugan._rt_attack_basin <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_basin( dmg);
+	local d = dmg.dst;
+	if( !(d instanceof ::RPGEnemy) || !d.data["rt_basin"] || dmg.miss || dmg.heal || !dmg.cval) return;
+	local st = this.state( d);
+	if( !("cracked" in st) && d.HP - dmg.cval.fix() <= d.MAXHP / 2){
+		st.cracked <- true;
+		this.pop( d, "(the red stones go grey, one by one)", 0xc0c0c0ff);
+		log( "the basin cracks");
+	}
+};
+
+
+//	Ronin Ch4 "The Oracle's Choice". Sayo's Rank 3 (schools.md; G1133 via ronin( t)): Desperate Speed (7, Warrior) - her
+//	plain weapon strike lands one more blow (x0.75 each); Strike Like Wind (8, Duelist) - one more blow (x0.7 each) that
+//	never misses; Hasten the Blade (9, Yojimbo) - when she Defends, she is fast next turn (K062).
+::Rokugan._rt_pre_r3 <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill;
+	if( (pc instanceof ::RPGPlayer) && sk && this.given( pc.name) == "Sayo"){
+		if( (this.ronin( 7) || this.ronin( 8)) && sk["skilltype"] == "attack" && sk["flags"] == 255){
+			local nsk = clone sk, na = sk["atknum"] || [1, 1], r = sk["dmgrate"] || [1.0, 1.0];
+			local f = this.ronin( 7) ? 0.75 : 0.7;
+			nsk["atknum"] <- [na[0] + 1, na[1] + 1];
+			nsk["dmgrate"] <- [r[0] * f, r[1] * f];
+			if( this.ronin( 8)) nsk["hitrate"] <- 1.0;
+			cmd.skill = nsk;
+		}
+		if( this.ronin( 9) && sk["name"] == "Defend"){
+			pc.putCondition( "K062");
+			this.pop( pc, "HASTEN THE BLADE", 0xc0e0ffff);
+			log( "Hasten the Blade: Sayo will move first");
+		}
+	}
+	return this._rt_pre_r3( cmd);
+};
+
+//	Anatomy (Ume-baa's low knowledge; sayo-remedy.md §4): Diagnosis (S609, skill field rt_diag, in the Remedy list once
+//	G1138) marks the ally it touches; the next Remedy on them - a recipe, or Ume-baa's Poultice - is one tier
+//	stronger (x1.5), and the mark is spent.
+::Rokugan.isRemedy <- function( sk){
+	return sk && !sk["rt_diag"] && (sk["rt_recipe"] || sk["name"] == "Ume-baa's Poultice");
+};
+::Rokugan._rt_attack_diag <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_diag( dmg);
+	local s = dmg.src, d = dmg.dst, sk = dmg.skill;
+	if( !s || !d || !sk || dmg.miss || !(s instanceof ::RPGPlayer) || this.given( s.name) != "Sayo") return;
+	local st = this.state( d);
+	if( sk["rt_diag"]){
+		st.diag <- true;
+		this.pop( d, "DIAGNOSED", 0xc0ffc0ff);
+		log( "Diagnosis: %S" % d.name);
+	}else if( this.isRemedy( sk) && ("diag" in st) && st.diag && dmg.cval){
+		st.diag = false;
+		dmg.cval.baserate *= 1.5;
+		this.pop( d, "ANATOMY: +1 TIER", 0xc0ffc0ff);
+		log( "Anatomy: %S on %S x1.5" % (sk.name, d.name));
+	}
+};
+
+//	b_boss_naga_champion (bosses.md; production S07): the Great Naga's champion (enemy field rt_naga) is not evil. At
+//	half HP he speaks ("You fight like one with no line"); broken (Suki), he listens: Sayo talks him down, he lowers his
+//	spear and coils aside (naga_talked_down G1153; the event gives Honor +1). A blow that would kill him: he yields
+//	anyway and coils aside, but not talked down.
+::Rokugan.nagaEnds <- function( e, talked){
+	local b = ::rpgstage["battle"];
+	local st = this.state( e);
+	if( !b || ("rtdone" in st)) return;
+	st.rtdone <- true;
+	if( talked){
+		::rpgvar["G1153"] = true;
+		this.bark( "naga_down", this.member( "Sayo") || e, "Of no line. Free to carry what no line can. ...Well. "
+			+ "I'm carrying her.");
+		this.pop( e, "(a long, slow breath, like a tide going out) ...So the Voice said.", 0xd0f0ffff);
+	}else{
+		this.pop( e, "(sinks onto his coils) ...Pass.", 0xd0f0ffff);
+	}
+	this.fade( e);
+	log( "the Naga's champion coils aside%S" % (talked ? " (talked down)" : ""));
+};
+::Rokugan._rt_attack_naga <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_attack_naga( dmg);
+	local d = dmg.dst;
+	if( !(d instanceof ::RPGEnemy) || !d.data["rt_naga"] || dmg.miss || dmg.heal || !dmg.cval || d.escaped) return;
+	if( d.HP - dmg.cval.fix() <= d.MAXHP / 2){
+		this.bark( "naga_half", d, "You fight like one with no line. No one taught you.");
+		this.bark( "sayo_half", this.member( "Sayo"), "Everyone taught me. Eta, barge-folk, a monk, a tiger. I just "
+			+ "didn't have a dojo.");
+	}
+};
+::Rokugan._rt_broken_naga <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_naga( e);
+	if( (e instanceof ::RPGEnemy) && e.data["rt_naga"] && !e.escaped) this.nagaEnds( e, true);
+};
+//	Naga Scouts (the finale's Shinomen; bestiary B2 "not evil: talk-down possible on Suki"; enemy field rt_yield_broken):
+//	broken, the scout listens, lowers its spear and leaves (the surrender path, with its own rt_mercy line).
+::Rokugan._rt_broken_yield <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_yield( e);
+	local b = ::rpgstage["battle"];
+	if( b && (e instanceof ::RPGEnemy) && e.data["rt_yield_broken"] && !e.escaped && !e.isDead()) this.surrender( b, e);
+};
+::Rokugan._rt_dying_naga <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function( e, arg){
+	if( (e instanceof ::RPGEnemy) && e.data["rt_naga"] && !e.escaped){
+		e.HP = 1;
+		this.nagaEnds( e, false);
+		return true;
+	}
+	return this._rt_dying_naga( e, arg);
+};
+//	The champion's blood is the sea's: poison (K001) never takes on him (the engine's CDR is not read on option-borne
+//	conditions, so it is refused here).
+::RPGEnemy._rt_putCond_naga <- ::RPGEnemy.putCondition;
+::RPGEnemy.putCondition <- function( condid){
+	if( condid == "K001" && this.data && this.data["rt_naga"]){
+		if( ::rpgstage && ::rpgstage["battle"]) ::Rokugan.pop( this, "(the poison runs off him like seawater)", 0xc0e0ffff);
+		return;
+	}
+	return this._rt_putCond_naga( condid);
+};
+
+//	The finale, Act 4 "The Empress of Nothing" (production finale F09; script ACT 4; gen_data E583-E586, groups
+//	167-169). Phase 1, the Bride (enemy field rt_bride): she vanishes into smoke every third round (one round
+//	unseen; nashiko_unmasked G279: Natsuko knows her tells, so not on the first). Hits on her then find nothing,
+//	unless they are jade or crystal: that reveals her. Blood Shouting: while one of her seduced champions
+//	(rt_bloodshout) stands, her wounds open on him instead (her shields still crack). The Phoenix book "Against the
+//	Bloodspeakers" (I177) breaks the ward. Broken (Suki) or beaten down, a champion is freed, not killed.
+//	same_woman_proven (G361): "We know your face" - four of her 20 shields are gone before she starts.
+::Rokugan.fin <- { battle = null, round = -1, hidden = false, back = -1, ward = true, skip = 0, staggered = -1 };
+::Rokugan.finState <- function(){
+	local b = ::rpgstage["battle"], f = this.fin;
+	if( f.battle != b){
+		f.battle = b; f.round = -1; f.hidden = false; f.back = -1; f.ward = true; f.skip = 0; f.staggered = -1;
+	}
+	return f;
+};
+::Rokugan.finBoss <- function( field){
+	local b = ::rpgstage["battle"];
+	return b ? b.enemies.find( @( e) e && e.data[field] && !e.escaped && !e.isDead()) : null;
+};
+::Rokugan.finVanish <- function( e, on){
+	local f = this.finState(), b = ::rpgstage["battle"];
+	f.hidden = on;
+	this.tintBroken( e, on);
+	if( on){
+		f.back = b.turn + 1;
+		this.pop( e, "(she is smoke, and then she isn't there)", 0xc0c0d0ff);
+	}else{
+		f.back = -1;
+		this.pop( e, "REVEALED", 0x80ff9cff);
+	}
+	log( "the Bride %S" % (on ? "vanishes" : "is revealed"));
+};
+::Rokugan.freeChampion <- function( e){
+	if( e.escaped) return;
+	this.fade( e);
+	this.pop( e, "FREED", 0x9fd8ffff);
+	this.bark( "freed" + this.finState().round, e, "...Who was I fighting? Why is my sword out?");
+	log( "a seduced champion is freed");
+};
+::Rokugan._rt_preturn_fin <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_fin( chr);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	local f = this.finState();
+	if( f.round == b.turn) return;
+	f.round = b.turn;
+	local bride = this.finBoss( "rt_bride"), time = this.finBoss( "rt_aging"), tf = this.finBoss( "rt_trueform");
+	if( bride) this.brideRound( b, f, bride);
+	if( time) this.agingRound( b, f, time);
+	if( tf) this.trueRound( b, f, tf);
+};
+::Rokugan.brideRound <- function( b, f, e){
+	local st = this.state( e);
+	if( b.turn == 0){
+		if( ::rpgstat.countItems( "I177", false) > 0){
+			f.ward = false;
+			this.bark( "book", this.member( "Haruki") || e, "Mieko's book - the ward on the third page! - It's broken!");
+			log( "Blood Shouting broken by the Phoenix book");
+		}
+		if( ::rpgvar["G361"]){
+			st.res = st.maxres = Math.max( 1, st.maxres - 4);
+			this.bark( "face", this.member( "Rensei") || e, "We know your face. All of them.");
+			log( "same_woman_proven: the Bride starts at %d shields" % st.res);
+		}
+		if( ::rpgvar["G279"]){
+			this.bark( "tells", this.member( "Natsuko") || e, "(watching her shoulders) Not yet, you don't. I know your tells.");
+			return;
+		}
+	}
+	if( f.hidden && b.turn >= f.back) this.finVanish( e, false);
+	else if( !f.hidden && b.turn % 3 == 0 && !st.broken) this.finVanish( e, true);
+};
+::Rokugan._rt_attack_bride <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local src = dmg.src, d = dmg.dst;
+	if( (d instanceof ::RPGEnemy) && d.data["rt_bride"] && (src instanceof ::RPGPlayer) && !dmg.heal && !dmg.miss){
+		local f = this.finState();
+		if( f.hidden){
+			if( (dmg.skill["elembits"] | 0) & ((1 << 11) | (1 << 13))) this.finVanish( d, false);		//	jade, crystal
+			else{
+				dmg.cval.baserate = 0.0;
+				this.pop( d, "(nothing there)", 0xc0c0c0ff);
+				return;
+			}
+		}
+		local b = ::rpgstage["battle"];
+		local ch = f.ward && b ? b.enemies.find( @( x) x && x.data["rt_bloodshout"] && !x.escaped && !x.isDead()) : null;
+		if( ch && dmg.cval){
+			local n = dmg.cval.fix();
+			dmg.cval.baserate = 0.0;
+			ch.HP = Math.max( 1, ch.HP - n);
+			this.pop( ch, "-%d (BLOOD SHOUTING)" % n, 0xff6060ff);
+			this.bark( "shout", ch, "(her wound opening on him) For you, my lady-");
+			log( "Blood Shouting: %d to %S (HP %d)" % (n, ch.name, ch.HP));
+			if( ch.HP <= 1) this.freeChampion( ch);
+		}
+	}
+	this._rt_attack_bride( dmg);
+};
+::Rokugan._rt_broken_fin <- ::Rokugan.onBroken;
+::Rokugan.onBroken <- function( e){
+	this._rt_broken_fin( e);
+	if( (e instanceof ::RPGEnemy) && e.data["rt_bloodshout"]) this.freeChampion( e);
+};
+::Rokugan._rt_dying_fin <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function( e, arg){
+	if( (e instanceof ::RPGEnemy) && e.data["rt_bloodshout"] && !e.escaped){
+		e.HP = 1;
+		this.freeChampion( e);
+		return true;
+	}
+	if( (e instanceof ::RPGEnemy) && e.data["rt_bride"] && !e.escaped){		//	she isn't done: she rises out of reach
+		local b = ::rpgstage["battle"];
+		e.HP = 1;
+		if( this.finState().hidden) this.tintBroken( e, false);
+		this.bark( "end", e, "Enough. Let me show you how you END.");
+		if( b) foreach( x in b.enemies) if( x && x.data["rt_bloodshout"] && !x.escaped) this.freeChampion( x);
+		this.fade( e);
+		log( "the Bride rises out of reach: phase 1 over");
+		return true;
+	}
+	if( (e instanceof ::RPGEnemy) && e.data["rt_trueform"] && !e.escaped){	//	she flees at 10% (rt_flee_pct)
+		e.HP = 1;
+		return true;
+	}
+	return this._rt_dying_fin( e, arg);
+};
+
+//	Phase 2, Body of Damned Time (rt_aging): an inky starfield. From the second round, every traveler still standing
+//	ages a year a round (state.aged): -6% to their blows and +6% to the blows they take per year, up to -50% / +60%.
+//	Whole (G696): Haruki's Water heals take two years back off whoever they heal.
+::Rokugan.agingRound <- function( b, f, e){
+	if( b.turn == 0){
+		this.bark( "wall", this.member( "Natsuko"), "(looking at her own death, unbothered) Huh. Old. On the Wall. I'll take it.");
+		if( ::rpgvar["G696"]) this.bark( "whole", this.member( "Haruki"), "Water heals cleanse it - stay with me!");
+		return;
+	}
+	foreach( p in b.members){
+		if( !p || p.isDead()) continue;
+		local st = this.state( p);
+		st.aged <- (("aged" in st) ? st.aged : 0) + 1;
+		this.pop( p, "AGED %d" % st.aged, 0xd0d0e0ff);
+	}
+	log( "Body of Damned Time: the party ages (round %d)" % b.turn);
+};
+::Rokugan.agedOf <- function( c){
+	local st = this.state( c);
+	return ("aged" in st) ? st.aged : 0;
+};
+::Rokugan._rt_attack_aging <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local src = dmg.src, d = dmg.dst, b = ::rpgstage["battle"];
+	if( b && dmg.cval && !dmg.miss && b.enemies.find( @( x) x && x.data["rt_aging"])){
+		if( dmg.heal){
+			local sk = dmg.skill;
+			if( ::rpgvar["G696"] && (src instanceof ::RPGPlayer) && this.given( src.name) == "Haruki" && sk &&
+					((sk["elembits"] | 0) & (1 << 7)) && (d instanceof ::RPGPlayer) && this.agedOf( d) > 0){
+				local st = this.state( d);
+				st.aged = Math.max( 0, st.aged - 2);
+				this.pop( d, "YOUNGER (%d)" % st.aged, 0x80e0ffff);
+			}
+		}else if( (src instanceof ::RPGPlayer) && this.agedOf( src) > 0){
+			dmg.cval.baserate *= Math.max( 0.5, 1.0 - 0.06 * this.agedOf( src));
+		}else if( (d instanceof ::RPGPlayer) && this.agedOf( d) > 0){
+			dmg.cval.baserate *= Math.min( 1.6, 1.0 + 0.06 * this.agedOf( d));
+		}
+	}
+	this._rt_attack_aging( dmg);
+};
+
+//	Phase 3, True Form (rt_trueform): Resolve 28 minus the shields broken in the debate (G1189), and the play's "WHAT
+//	PLAY?" (play_known_scenes G421) takes two more (one if play_handed_over G429: Rensei only knows Sanae's copy).
+//	Weak to jade, crystal and obsidian (rt_obsidian_weak). The exploits from the eight stories are commands under Call (exploitsFor; skills S635-S638, once a battle each):
+//	- "Empress" Bait (rehearsal_quality good G427, Rensei): her guard drops (Suki); halved with G429;
+//	- Two Voices (Mamoru's word, G1185; anyone, with a second traveler standing): her next action is wasted;
+//	- the smooth stone decoy (Sayo; she's colour-blind): she snatches the pebble and loses a turn;
+//	- The Immovable Hand of Peace (Tamotsu at Rank 5, Lv 61+): she's locked for a turn;
+//	- automatic: a critical hit to the face (a Disfiguring Strike, at most once a round) staggers her.
+//	A blow that would kill her leaves her at 1 HP: at 10% she flees (rt_flee_pct; F10).
+::Rokugan.trueRound <- function( b, f, e){
+	local st = this.state( e);
+	if( b.turn == 0){
+		local n = 28 - int( ::rpgvar["G1189"] || 0);
+		if( int( ::rpgvar["G421"] || 0) >= 1) n -= ::rpgvar["G429"] ? 1 : 2;
+		st.res = st.maxres = Math.max( 4, n);
+		log( "the true form: Resolve %d (debate shields %d)" % (st.res, int( ::rpgvar["G1189"] || 0)));
+	}
+};
+::Rokugan.exploitsFor <- function( pc){
+	local a = [], b = ::rpgstage["battle"];
+	if( !b || !(pc instanceof ::RPGPlayer) || !this.finBoss( "rt_trueform")) return a;
+	local g = this.given( pc.name), live = b.members.filter( @( p) p && !p.isDead());
+	if( g == "Rensei" && ::rpgvar["G427"]) a.append( ::conf.skill["S635"]);
+	if( ::rpgvar["G1185"] && length( live) >= 2) a.append( ::conf.skill["S636"]);
+	if( g == "Sayo") a.append( ::conf.skill["S637"]);
+	if( g == "Tamotsu" && pc.LV >= 61) a.append( ::conf.skill["S638"]);
+	return a;
+};
+::Rokugan._rt_pre_exploit <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	this._rt_pre_exploit( cmd);								//	(uses are counted first: none left -> a plain attack)
+	local sk = cmd.skill, pc = cmd.src, e = this.finBoss( "rt_trueform");
+	if( !sk || !sk["rt_exploit"] || !(pc instanceof ::RPGPlayer) || !e) return;
+	local f = this.finState(), st = this.state( e), k = sk.rt_exploit, b = ::rpgstage["battle"];
+	if( k == "bait"){
+		this.bark( "bait", pc, "(with awe, exactly as rehearsed) ...Empress.");
+		if( ::rpgvar["G429"]){
+			this.bark( "father", pc, "(to himself) I should have kept it, Father.");
+			st.res = Math.max( 1, st.res / 2);
+			this.pop( e, "(her guard slips)", 0xffe080ff);
+		}else if( !st.broken) this.breakEnemy( e);
+	}else if( k == "voices"){
+		local other = b.members.find( @( p) p && p != pc && !p.isDead());
+		this.bark( "v1", pc, "Nashiko-");
+		if( other) this.bark( "v2", other, "-Empress!");
+		this.pop( e, "(two voices: she can't answer both)", 0xffe080ff);
+		f.skip++;
+	}else if( k == "stone"){
+		this.bark( "stone", pc, "Here, Empress. A present.");
+		this.pop( e, "(she snatches the grey pebble: a jewel, surely)", 0xffe080ff);
+		f.skip++;
+	}else if( k == "hand"){
+		this.bark( "hand", pc, "I won't strike you. And so you won't strike me.");
+		this.pop( e, "THE IMMOVABLE HAND OF PEACE", 0xffe080ff);
+		f.skip++;
+	}
+	log( "exploit %S by %S" % (k, pc.name));
+};
+::Damage._rt_finish_fin <- ::Damage.finishDamage;
+::Damage.finishDamage <- function(){
+	this._rt_finish_fin();
+	if( !(dst instanceof ::RPGEnemy) || !dst.data["rt_trueform"] || !(src instanceof ::RPGPlayer)) return;
+	if( result != DMG_CRITICAL) return;
+	local f = ::Rokugan.finState(), b = ::rpgstage["battle"];
+	if( !b || f.staggered == b.turn || f.skip > 0) return;
+	f.staggered = b.turn;
+	f.skip++;
+	::Rokugan.pop( dst, "(a blow to the face: she staggers, shrieking, hands over it)", 0xffe080ff);
+	printf( "[RT] Disfiguring Strike\n");
+};
+::Rokugan._rt_sc_fin <- ::Rokugan.onSkillChange;
+::Rokugan.onSkillChange <- function( cmd){
+	local e = cmd.src;
+	if( (e instanceof ::RPGEnemy) && e.data["rt_trueform"]){
+		local f = this.finState();
+		if( f.skip > 0){
+			f.skip--;
+			cmd.skill = ::conf.skill["S000"];
+			this.pop( e, "(she loses the moment)", 0xc0c0c0ff);
+			log( "the Empress loses a turn");
+			return;
+		}
+	}
+	this._rt_sc_fin( cmd);
+};
+
+//	The finale, wave 5 (production F02 "Save the abbot (escort)"): while G1210 is set, each raider's action has a 40%
+//	chance to go for the abbot instead of the party (the action is spent; he loses 12-16 of 100). Jinnai's Freezing the
+//	Lifeblood spends the first raider's first action. At 0 the abbot falls (G1211; tools/gen_maps.py WAVE[5]).
+::Rokugan.esc <- { battle = null, hp = 100, frozen = null, fell = false };
+::Rokugan.escState <- function(){
+	local b = ::rpgstage["battle"], s = this.esc;
+	if( s.battle != b){
+		s.battle = b; s.hp = 100; s.fell = false;
+		s.frozen = b ? b.enemies.find( @( e) e && !e.isDead() && !e.escaped) : null;
+	}
+	return s;
+};
+::Rokugan._rt_sc_esc <- ::Rokugan.onSkillChange;
+::Rokugan.onSkillChange <- function( cmd){
+	local e = cmd.src;
+	if( ::rpgvar["G1210"] && (e instanceof ::RPGEnemy)){
+		local s = this.escState();
+		if( e == s.frozen){
+			s.frozen = null;
+			cmd.skill = ::conf.skill["S000"];
+			this.pop( e, "(frozen mid-leap: Freezing the Lifeblood)", 0x9fd8ffff);
+			log( "Jinnai freezes %S" % e.name);
+			return;
+		}
+		if( !s.fell && rnd( 1.0) < 0.4){
+			s.hp = Math.max( 0, s.hp - 12 - int( rnd( 1.0) * 5));
+			cmd.skill = ::conf.skill["S000"];
+			if( s.hp <= 0){
+				s.fell = true;
+				::rpgvar["G1211"] = true;
+				this.pop( e, "THE ABBOT FALLS", 0xff8080ff);
+			}else this.pop( e, "goes for the abbot! (abbot " .. s.hp .. "/100)", 0xffc080ff);
+			printf( "[RT] %S goes for the abbot: %d\n", e.name, s.hp);
+			return;
+		}
+	}
+	this._rt_sc_esc( cmd);
+};
