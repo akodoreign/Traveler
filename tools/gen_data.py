@@ -939,7 +939,7 @@ def crab_stores(st):
     store("R138", "Silk Chandler (Mantis isles T1)", ["W104", "W105", "A100", "A102", "I100", "I101", "I018"])
     store("R139", "Tortoise Net Shop (Mantis T2)", ["W111", "W114", "W115", "A109", "I101", "I126", "I168"])
     store("R142", "War Camp Quartermaster (year 400, T4)", ["W134", "W131", "W143", "A135", "A127", "I190", "I168"])
-    store("R143", "Kitsuki Outfitter (Dragon T4)", ["W144", "W115", "A124", "A111", "I126", "I190", "I168"])
+    store("R143", "Kitsuki Outfitter (Dragon T4)", ["W159", "W144", "W115", "A124", "A111", "I126", "I190", "I168"])
     store("R144", "Kyuden Bayushi Outfitter (Scorpion T1)", ["W102", "W104", "W112", "A100", "A102", "I198"])
     store("R145", "Kyuden Bayushi Apothecary", ["I018", "I101", "I100", "I198"])
     store("R146", "Shutai General Store", ["I100", "I101", "I018", "W101", "A101"])
@@ -951,13 +951,13 @@ def crab_stores(st):
     store("R152", "Buried Leaves Scorpion Trader (Scorpion T3)", ["W140", "W133", "A120", "A127", "I198", "I168"])
     store("R153", "Buried Leaves Unicorn Trader (Unicorn T3)", ["W132", "W121", "A141", "I101", "I131", "I190"])
     # Scorpion Ch4: the Dragon mountain town (Dragon T4; storyboard "Togashi outfitter W/A", "incense-seller S")
-    store("R154", "Togashi Outfitter (Dragon T4)", ["W147", "W144", "W137", "A152", "A124", "A127"])
+    store("R154", "Togashi Outfitter (Dragon T4)", ["W159", "W147", "W144", "W137", "A152", "A124", "A127"])
     store("R155", "Incense-seller", ["I126", "I168", "I127", "I131", "I130", "I101"])
     # Unicorn Ch1: the Town of Buried Leaves in autumn (Unicorn T1) and the camps' rice merchant
     store("R156", "Buried Leaves Unicorn Trader (Unicorn T1)", ["W104", "W101", "A100", "A155", "I100", "I101"])
     store("R157", "Rice Merchant (triple prices)", ["I100", "I101", "I018"])
     # Unicorn Ch3: the Mirumoto war-camp's quartermaster (storyboard: Dragon T3, jade T3)
-    store("R158", "Mirumoto Quartermaster (Dragon T3)", ["W121", "W123", "W137", "W115", "A141", "I131", "I104",
+    store("R158", "Mirumoto Quartermaster (Dragon T3)", ["W159", "W121", "W123", "W137", "W115", "A141", "I131", "I104",
                                                          "I127"])
     # Unicorn Ch4: the siege camp (storyboard: Unicorn + Dragon T4) and, after the chapter, the Jade Toll (production
     # S05: mirumoto_terms jade -> jade-variant prices +25% in the valley shops)
@@ -987,7 +987,7 @@ def crab_stores(st):
     # Ronin Ch4: the Oracle's shrine town (storyboard T: the temple outfitter W/A/S, T4 + Jade; the pilgrim herb stall
     # for Sayo's Remedy - the well's brew is Rhubarb + Moxa)
     # The finale: the shrine smith of Osano-Wo (storyboard T: T5 W/A) and the pilgrim hall's stores (jade, remedies)
-    store("R170", "Shrine Smith of Osano-Wo (T5)", ["W151", "W156", "W152", "W154", "W155", "A166", "A167", "A168",
+    store("R170", "Shrine Smith of Osano-Wo (T5)", ["W160", "W151", "W156", "W152", "W154", "W155", "A166", "A167", "A168",
                                                      "A159"])
     store("R171", "Pilgrim Hall Stores (jade)", ["I130", "I190", "I131", "I104", "I018"])
     store("R168", "Crater Temple Outfitter (T4, jade)",["W147", "W134", "W138", "W135", "W144", "A152", "A127",
@@ -1792,6 +1792,10 @@ def main():
     th.update({"name": "Throw", "desc": "Sumai. Grip the belt, drop the hips, throw. (Unarmed)",
                "elembits": B["Unarmed"]})
     s["S106"] = th
+    cw = copy.deepcopy(th)                                                       # claw weapons: unarmed art, so they ride the Unarmed bit
+    cw.update({"name": "Claw Strike", "desc": "Iron claws over the knuckles. (Unarmed)"})
+    assert "S690" not in s
+    s["S690"] = cw
     def putcond_skill(sid, src, name, cond, desc, rate=1.0, **kw):
         k = copy.deepcopy(src)
         k.update({"name": name, "desc": desc, "enemyuse": True, "addlist": True, "eqtypebits": 2047})
@@ -2824,7 +2828,7 @@ def main():
         "W127": "A Kaiu-forged spear with a long cross-blade.",
         "W128": "A Kaiu War Spear set with jade along the blade. (Jade)",
         "W129": "A Kaiu smith bound Tsukakoro's rib into an iron club. It still twitches when oni are near.",
-        "W106": "No weapon. Sumai is a wrestler's art: belts, hips and the ground. (Swapped in for Sumai bouts.)",
+        "W106": "No weapon. In a monk's hands, fists grow with every level and end up the deadliest thing in the Empire.",
         # the finale: the shrine smith of Osano-Wo (T5), and the thunder-split rock on the Plains of Thunder
         "W151": "The shrine smith's own blade, forged in a thunderstorm on purpose. He says the lightning tempers it. "
                 "He may be joking. (T5)",
@@ -2833,6 +2837,8 @@ def main():
                 "night. (T5)",
         "W154": "A thunder monk's staff, iron-shod, struck by lightning twice. The monks call that a blessing. (T5)",
         "W158": "The Crab's sacred sword, born in the Great Forge. Steel a shade darker than any other, and it has never once needed a whetstone.",
+        "W159": "Iron claws strapped across the knuckles. A monk's answer to a sword, until the fists catch up. (Unarmed)",
+        "W160": "Claws forged at the shrine of the Thunder, still warm. Better than most swords. (Unarmed)",
         "W155": "A blade too thin to see edge-on. The smith won't say who ordered it, or why they never collected. (T5)",
         "W156": "The smith's master katana with a seam of Wall jade along the back of the blade. (T5, Katana + Jade)",
         "W157": "A katana with a running hare on the tsuba, found on the throne of Shiro Hiruma. How a Usagi blade came "
@@ -2876,7 +2882,8 @@ def main():
              ("W155", "Whisper Blade", 1, "S102", "EV016", 152),
              ("W156", "Jade-seamed Master Katana", 2, "S562", "EV000", 146),
              ("W157", "The Hare Sword", 2, "S100", "EV000", 176),
-             ("W158", "Kaiu Blade", 2, "S100", "EV000", 126)]
+             ("W158", "Kaiu Blade", 2, "S100", "EV000", 126),
+             ("W159", "Iron Nekode", 0, "S690", "EV001", 64), ("W160", "Thunder Claws", 0, "S690", "EV001", 140)]
     for wid, name, et, sid, mdl, atk in wlist:
         x = copy.deepcopy(wbase)
         x.update({"name": name, "eqtype": et, "skillid": sid, "mdlid": mdl, "PATK": atk, "price": atk * 10,
@@ -2949,6 +2956,9 @@ def main():
     enemy("E120", "Gonta", "EP342", 5, 300, 17, 10, 7, 3, ["Unarmed"],
           "A mountain of a ronin. Doesn't talk to Crab dogs. Wrestles them.", exp=40, money=0)
     e["E120"]["item0"]["itemid"] = e["E120"]["item1"]["itemid"] = None          # a wrestling match, not a mugging
+    # (user) the Sumai match: one enemy, renamed, redressed and scaled to Natsuko at run time (plugin ::Rokugan.sumaiMatch)
+    enemy("E121", "Wrestler", "EP342", 5, 300, 17, 10, 7, 3, ["Unarmed"], "Belt, hips and the ground.", exp=0, money=0)
+    e["E121"]["item0"]["itemid"] = e["E121"]["item1"]["itemid"] = None
     # Training target for automated Suki/Boost tests
     enemy("E190", "Straw-Hat Brute (training)", "EP100", 8, 30000, 14, 12, 6, 3, ["Yari", "Bo", "Fire"],
           "A sturdy test goblin for battle-system checks.", exp=1, money=1)
@@ -4451,6 +4461,8 @@ def main():
     g6 = copy.deepcopy(groups[0])
     g6.update({"name": "Sumai: Gonta (b_hidden_ones_sumai)", "rate": 0, "gid": 6, "mapid": "M812",
                "enemies": [{"id": "E120", "x": -0.6, "z": 0.0}]})
+    g_sumai = copy.deepcopy(g6)
+    g_sumai.update({"name": "Sumai match (set up by ::Rokugan.sumaiMatch)", "gid": 900, "enemies": [{"id": "E121", "x": -0.6, "z": 0.0}]})
     cave = []
     for gid, nm, foes in ((7, "b_cave_nezumi_a", ["E102", "E102", "E102"]),
                           (8, "b_cave_beetles", ["E103", "E103", "E103"]),
@@ -4715,7 +4727,7 @@ def main():
     for g in ch2:                                       # coast (map.json is rebuilt here, so ask gen_maps)
         if g["mapid"] not in mp and g["mapid"] not in _gm.MAPS:
             g["mapid"] = "M826"
-    mp["M001"]["encount"] = [g1, g2, g3, g4, g5, g6] + cave + [g12] + ch2
+    mp["M001"]["encount"] = [g1, g2, g3, g4, g5, g6, g_sumai] + cave + [g12] + ch2
     import gen_music as _mu                             # the soundtrack (user: "more medieval Japanese"): each boss
     for g in mp["M001"]["encount"]:                     # gets its theme (gen_music BATTLE_MUSIC: standard, oni, duel,
         g["bgmid"] = _mu.battle_music(g.get("name"))    # intrigue, mini-boss, the finale's three, the superbosses)

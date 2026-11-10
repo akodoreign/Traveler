@@ -553,29 +553,44 @@ def honor(n):
     return [setf("G060", abs(n), "+=" if n > 0 else "-="), narrate("(Honor %+d)" % n)]
 
 
-def sumai(name, chance, win, taunt, refuse=None):
-    """The Sumai branch: refusal, or a roll at `chance` percent (win -> `win`, loss -> standing -1 + `taunt`)."""
+SUMAI_GID = 900                                        # M001 group: one wrestler, set up at run time (::Rokugan.sumaiMatch)
+SUMAI_MDL = {"Wall veteran": "veteran"}
+
+
+def sumai_match(name, mdl, chance, win, lose):
+    """(user) A real bout: Natsuko alone and bare-handed against this NPC, who is scaled to her; `chance` sets how long they last."""
+    return [script('::Rokugan.sumaiMatch( "P100", "%s", "%s", %d);' % (name, mdl, chance)),
+            dict(battle("M001", SUMAI_GID), losefunc=1),
+            script('::Rokugan.sumaiEnd( "P100");'),
+            if_([{"lvar": "RESULT", "op": "==", "rvar": 1}], win, lose)]
+
+
+def sumai(name, chance, win, taunt, refuse=None, match=False):
+    """The Sumai branch: refusal, or a bout (match=True), or a roll at `chance` percent. Win -> `win`, loss -> standing -1 + `taunt`."""
     if refuse:
         return [say("Natsuko", "Wrestle me."), say(name, refuse)]
+    won = [narrate("Natsuko takes the belt, drops her hips, and throws.")] + win
+    lost = [narrate("Natsuko goes for the belt and ends up in the dust."), say(name, taunt),
+            setf("G061", 1, "-="),
+            if_([{"lvar": "G061", "op": "<=", "rvar": 0}],
+                [narrate("Word gets around. Hoshi-no-Ichi has had enough of the Crab who wrestles "
+                         "everyone. (Make amends at the inn.)")],
+                [narrate("(Hoshi-no-Ichi thinks a little less of you.)")])]
     return [if_([{"lvar": "G061", "op": "<=", "rvar": 0}],
                 [say(name, "You again? Half the town has your footprints on it. Go away, Crab.")],
-                [say("Natsuko", "Wrestle me."),
-                 script("W = ::Rokugan.roll( %d);" % chance),
-                 if_([flag("W")], [narrate("Natsuko takes the belt, drops her hips, and throws.")] + win,
-                     [narrate("Natsuko goes for the belt and ends up in the dust."), say(name, taunt),
-                      setf("G061", 1, "-="),
-                      if_([{"lvar": "G061", "op": "<=", "rvar": 0}],
-                          [narrate("Word gets around. Hoshi-no-Ichi has had enough of the Crab who wrestles "
-                                   "everyone. (Make amends at the inn.)")],
-                          [narrate("(Hoshi-no-Ichi thinks a little less of you.)")])])])]
+                [say("Natsuko", "Wrestle me.")] + (sumai_match(name, EP[SUMAI_MDL[name]], chance, won, lost) if match else [
+                 script("W = ::Rokugan.roll( %d);" % chance), if_([flag("W")], won, lost)]))]
 
 
 def with_sumai(pages, name, chance, win, taunt, done=None, refuse=None):
     """Wrap an NPC's default talk page in Talk / Sumai (chance%) / Leave while Natsuko is in the party."""
     talk = pages[0][1]
-    label = "Sumai (%d%%)" % chance if not refuse else "Sumai"
-    menu = [in_party(), if_([flag("W")], [choices(("Talk", talk), (label, sumai(name, chance, win, taunt, refuse)),
-                                                  ("Leave", []))], talk)]
+    if refuse:
+        opts = [("Talk", talk), ("Sumai", sumai(name, chance, win, taunt, refuse)), ("Leave", [])]
+    else:
+        opts = [("Talk", talk), ("Sumai match", sumai(name, chance, win, taunt, match=True)),
+                ("Quick throw (%d%%)" % chance, sumai(name, chance, win, taunt)), ("Leave", [])]
+    menu = [in_party(), if_([flag("W")], [choices(*opts)], talk)]
     out = [(pages[0][0], menu)] + pages[1:]
     if done:                                               # after the win: just talk
         out.append(([flag(done)], talk))
@@ -963,6 +978,19 @@ def sumai_bout():
                      say("Natsuko", "...You let me do that."),
                      say("Gonta", "Prove it.")] + honor(-1) + S04_WIN,
                     [say("Gonta", "Ground's soft here, Crab dog. Get up and try again.")])])]
+
+
+def WALL_WON():
+    return [narrate("Natsuko takes the veteran's belt and puts him in the sawdust.")] + \
+        ch2("S02", start_at="WALL VETERAN: (on his back", stop_at="[SET wall_crab_trust]") + \
+        hub_done("G208") + join("P120", "Hida Sachiko", [
+            say("Sachiko", "Filed chains, and a Hiruma on the hunt. Court just got interesting."),
+            say("Sachiko", "I'm coming with you. Don't argue. I'm bigger.")])
+
+
+def WALL_LOST():
+    return [narrate("The veteran plants his feet like the Wall itself. Natsuko bounces off."),
+            say("Sachiko", "Ha! Again, Hiruma! The sake's not going anywhere.")]
 
 
 def gonta_menu():
@@ -1655,15 +1683,8 @@ def castle_1f():
         ev.inn(5, 13, EP_SERVICE["quartermaster"], 0)
         ev.talk(8, 9, EP["sachiko"], [(None, ch2("S02", start_at="(HIDA SACHIKO and three",
                                                  stop_at="[PA Sumai") + [
-            choices(("Sumai with the Wall Crabs.", [
-                script("W = ::Rokugan.roll( 60);"),
-                if_([flag("W")], [narrate("Natsuko takes the veteran's belt and puts him in the sawdust.")] +
-                    ch2("S02", start_at="WALL VETERAN: (on his back", stop_at="[SET wall_crab_trust]") +
-                    hub_done("G208") + join("P120", "Hida Sachiko", [
-                        say("Sachiko", "Filed chains, and a Hiruma on the hunt. Court just got interesting."),
-                        say("Sachiko", "I'm coming with you. Don't argue. I'm bigger.")]),
-                    [narrate("The veteran plants his feet like the Wall itself. Natsuko bounces off."),
-                     say("Sachiko", "Ha! Again, Hiruma! The sake's not going anywhere.")])]),
+            choices(("Sumai match with the Wall Crabs.", sumai_match("Wall Crab veteran", EP["veteran"], 60, WALL_WON(), WALL_LOST())),
+                    ("Quick throw (60%).", [script("W = ::Rokugan.roll( 60);"), if_([flag("W")], WALL_WON(), WALL_LOST())]),
                 ("Not now.", []))]),
             ([flag("G208")], [say("Sachiko", "Filed chains, he says. Filed! Court gets stranger every winter.")])])
         ev.npc(11, 9, EP["veteran"], "Forty years on the Wall, and they invite me to court. I'm wrestling for sake.")
@@ -18184,12 +18205,11 @@ def hire_npc(ev, x, z, h):
                  [say(name, h["taunt"]), setf(h["town"], 1, "-="),
                   narrate("(%s thinks a little less of the stiff young Crane.)" % town)])])]))
     elif h["sumai"]:
-        opts.append(("Sumai to recruit (%d%%)." % h["sumai"], [
-            say("Natsuko", "Wrestle me. If I win, you come for nothing."),
-            script("W = ::Rokugan.roll( %d);" % h["sumai"]),
-            if_([flag("W")], [narrate("Natsuko takes the belt, drops her hips, and throws."),
-                              say(name, "...Fair's fair. I'll come.")] + hire_join(h),
-                [narrate("Natsuko goes for the belt and ends up in the dust."), say(name, h["taunt"])] + honor(-1))]))
+        won = [narrate("Natsuko takes the belt, drops her hips, and throws."), say(name, "...Fair's fair. I'll come.")] + hire_join(h)
+        lost = [narrate("Natsuko goes for the belt and ends up in the dust."), say(name, h["taunt"])] + honor(-1)
+        ask = say("Natsuko", "Wrestle me. If I win, you come for nothing.")
+        opts.append(("Sumai match to recruit.", [ask] + sumai_match(name, SC[h["key"]], h["sumai"], won, lost)))
+        opts.append(("Quick throw to recruit (%d%%)." % h["sumai"], [ask, script("W = ::Rokugan.roll( %d);" % h["sumai"]), if_([flag("W")], won, lost)]))
     elif h.get("leader", "Natsuko") == "Natsuko":
         opts.append(("Sumai to recruit.", [say("Natsuko", "Wrestle me."), say(name, h["refuse"])]))
     opts.append(("Leave.", []))

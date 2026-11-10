@@ -4350,6 +4350,14 @@ variants (70% of all frames). Restarted with tools/start_pixeldrive.ps1; finishe
 way was rebuilt from the 1,229 candidates in _art/busts/*/review (names only where the speaker is still unpicked).
 Still to draw at the bust stage: 924 candidates. Six finished travelers + Gonta are NOT installed yet (user decides).
 
+## 2026-11-10: Sumai matches, monk fists (user)
+- Sumai menus are Talk / Sumai match / Quick throw (n%) / Leave (Wall Crabs and hirelings likewise). `sumai_match()` (gen_maps) = M001 group 900, enemy E121. `::Rokugan.sumaiMatch` (RokuganField) takes the party down to Natsuko, swaps W106 in, gives E121 the NPC's name and sprite and scales it to her: 3 to 8 throws, fewer at higher quick-throw odds. `sumaiEnd` restores party, weapon, HP/MP/TP. Same rewards and penalties as the roll. Gonta's story bout is unchanged. Hirelings can't be called during a match.
+- Monks (rt_class monk) with W106 or an empty hand: `getBaseScoreMap` wrapper in RokuganLook adds LV*LV*0.0447 PATK. Passes Thunder Monk's Bo around Lv 55-60. Engine: Yosai Lv 90 PATK 586 fists vs 356 Thunder Bo.
+- New Unarmed-type claws: W159 Iron Nekode 64 (R143, R154, R158), W160 Thunder Claws 140 (R170), skill S690 Claw Strike. Drawn as the "none" look, so no new sprites.
+
+## 2026-11-10: GitHub refresh
+`python -E tools/sync_licensed.py [--dry]` updates D:/RokuganTraveler-licensed from this folder (boss and banner placeholders kept, engine license marks kept, `.gitattributes` keeps every file byte-exact). Then commit there and `git push origin licensed-demo:main` (akodoreign/Traveler). Test a fresh clone first: title, a boss with tools/snapui.py, a cave with tools/snapmaps.py (make `_art/preview/agents/ui` in the clone).
+
 ## 2026-11-10: Caves force the route through the new space (user: "force the travelers through a good part of each level")
 tools/cave_sprawl.py reworked. `necks()` finds every narrow spot that is the only way between two parts of a cave with no event on it (round plug or thin wall). `sprawl()` runs up to 3 passes: wall off a neck, build galleries joining its two sides, so the only way on is through them. Swapping a bridge for a longer bridge keeps story order. `event_groups` rolls a pass back if anything gets cut off. Maps now grow both east and south when free. Sprawling caves: wall rims 5+ (too high to jump), final pass raises anything climbable.
 Result: required walk across 21 caves 1120 -> 2288 steps; 20 of 21 forced by the check (M320 forced only past its last scene; M130's far goal unchanged in length). Sheet: `_art/preview/caves_forced.png`. walkcheck: only the 3 known flags (M147, M215, M456).

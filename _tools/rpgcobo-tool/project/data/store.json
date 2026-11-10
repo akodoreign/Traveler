@@ -1732,6 +1732,12 @@
 		"type": 0,
 		"items": [
 			{
+				"dataid": "W159",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
 				"dataid": "W144",
 				"price": null,
 				"reqfail": 0,
@@ -2300,6 +2306,12 @@
 		"type": 0,
 		"items": [
 			{
+				"dataid": "W159",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
 				"dataid": "W147",
 				"price": null,
 				"reqfail": 0,
@@ -2535,6 +2547,12 @@
 		"name": "Mirumoto Quartermaster (Dragon T3)",
 		"type": 0,
 		"items": [
+			{
+				"dataid": "W159",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
 			{
 				"dataid": "W121",
 				"price": null,
@@ -3113,6 +3131,12 @@
 		"name": "Shrine Smith of Osano-Wo (T5)",
 		"type": 0,
 		"items": [
+			{
+				"dataid": "W160",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
 			{
 				"dataid": "W151",
 				"price": null,

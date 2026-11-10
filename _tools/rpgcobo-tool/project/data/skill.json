@@ -2677,6 +2677,79 @@
 		},
 		"rt_heal": 0.1
 	},
+	"S690": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "punch1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Iron claws over the knuckles. (Unarmed)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 4096,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": true,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE201",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Claw Strike",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
 	"S130": {
 		"H1": null,
 		"addlist": true,

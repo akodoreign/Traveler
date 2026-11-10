@@ -932,7 +932,7 @@
 		"MATK": 0,
 		"PATK": 18,
 		"PMTK": 0,
-		"desc": "No weapon. Sumai is a wrestler's art: belts, hips and the ground. (Swapped in for Sumai bouts.)",
+		"desc": "No weapon. In a monk's hands, fists grow with every level and end up the deadliest thing in the Empire.",
 		"eqflag": -1,
 		"eqtype": 0,
 		"icon": "",
@@ -1684,5 +1684,35 @@
 		"price": 1260,
 		"skillid": "S100",
 		"rt_only_clan": "crab"
+	},
+	"W159": {
+		"MATK": 0,
+		"PATK": 64,
+		"PMTK": 0,
+		"desc": "Iron claws strapped across the knuckles. A monk's answer to a sword, until the fists catch up. (Unarmed)",
+		"eqflag": -1,
+		"eqtype": 0,
+		"icon": "",
+		"mdlid": "EV001",
+		"name": "Iron Nekode",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 640,
+		"skillid": "S690"
+	},
+	"W160": {
+		"MATK": 0,
+		"PATK": 140,
+		"PMTK": 0,
+		"desc": "Claws forged at the shrine of the Thunder, still warm. Better than most swords. (Unarmed)",
+		"eqflag": -1,
+		"eqtype": 0,
+		"icon": "",
+		"mdlid": "EV001",
+		"name": "Thunder Claws",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 1400,
+		"skillid": "S690"
 	}
 }

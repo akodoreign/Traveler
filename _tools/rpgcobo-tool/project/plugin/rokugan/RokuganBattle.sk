@@ -746,7 +746,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 //	call skill (gen_data S173+) carries the roster: rt_hire, rt_hname, rt_hmdl, rt_hcharges, rt_hhome.
 ::Rokugan.hireSkill <- function(){
 	local n = int( ::rpgvar["G293"] || 0);
-	if( n <= 0) return null;
+	if( n <= 0 || ::Rokugan["sumai_party"]) return null;				//	a Sumai match is one on one
 	foreach( sid, sk in ::conf.skill){ if( sk && sk["rt_hire"] == n) return sk; }
 	return null;
 };

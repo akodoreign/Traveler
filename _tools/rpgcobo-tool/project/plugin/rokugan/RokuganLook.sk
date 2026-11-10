@@ -29,6 +29,17 @@ runsk( srcdir .. "/RokuganLookData.sk");
 	}
 	return "";
 };
+//	(user) A monk's bare fists scale: past the mid game they out-hit every weapon. Bo and claws stay as they are.
+::RPGPlayer._rt_basescore <- ::RPGPlayer.getBaseScoreMap;
+::RPGPlayer.getBaseScoreMap <- function(){
+	local bp = _rt_basescore();
+	if( data["rt_class"] == "monk" && equips){
+		local w = equips.find( @( v) v && ::isWeapon( v.data["eqtype"]));
+		if( !w || w.dataid == "W106") bp.PATK += int( LV * LV * 0.0447) + (w ? 0 : 18);
+	}
+	return bp;
+};
+
 //	(user) Clan-only gear: a weapon with rt_only_clan can only be equipped by a player of that rt_clan (the Kakita blades).
 //	The engine eqflag check cannot do it: getEquipFlagBits always returns 0.
 ::RPGPlayer._rt_equipable <- ::RPGPlayer.getEquipableItems;

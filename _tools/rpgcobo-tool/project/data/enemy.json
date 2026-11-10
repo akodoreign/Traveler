@@ -4747,7 +4747,7 @@
 		"MHIT": 1.0,
 		"MTK": 100,
 		"PATK": 38,
-		"PDEF": 26,
+		"PDEF": 33,
 		"ai": [
 			{
 				"actnum": [
@@ -4758,17 +4758,9 @@
 				"cmds": [
 					{
 						"affecttgr": true,
-						"rate": 40,
+						"rate": 50,
 						"rndwgt": 20,
 						"skillid": null,
-						"target": "random",
-						"turnbits": 4095
-					},
-					{
-						"affecttgr": true,
-						"rate": 60,
-						"rndwgt": 20,
-						"skillid": "S131",
 						"target": "random",
 						"turnbits": 4095
 					}
@@ -4783,7 +4775,7 @@
 			}
 		],
 		"defskillid": "S003",
-		"desc": "An Imperial guardsman painting eggs in the dark. His Egg Rite works because they believe.",
+		"desc": "Belt, hips and the ground.",
 		"exp": 105,
 		"item0": {
 			"issteal": false,
@@ -4806,18 +4798,17 @@
 			"rate": 50.0
 		},
 		"jxp": 4,
-		"mdlid": "EP748",
+		"mdlid": "EP742",
 		"money": 119,
-		"name": "Seppun Ryozo",
+		"name": "Wrestler",
 		"option": [
 			{
 				"opttype": "opt_elemdef",
-				"EDR.0": -50,
-				"EDR.7": -50
+				"EDR.12": -50
 			}
 		],
 		"tribebits": 0,
-		"RES": 4
+		"RES": 3
 	},
 	"E120": {
 		"AGI": 7,

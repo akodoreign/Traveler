@@ -686,6 +686,23 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
+						"id": "E121",
+						"x": -0.6,
+						"z": 0.0
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 900,
+				"mapid": "M812",
+				"name": "Sumai match (set up by ::Rokugan.sumaiMatch)",
+				"rate": 0
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
 						"id": "E102",
 						"x": -1.5,
 						"z": -0.25
@@ -764120,6 +764137,138 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiMatch( \"P100\", \"Ashigaru Archer\", \"EP387\", 45);"
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M001",
+											"gid": 900,
+											"losefunc": 1,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiEnd( \"P100\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko takes the belt, drops her hips, and throws.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "...Fair's fair. I'll come.",
+														"name": "Ashigaru Archer",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G293",
+																"op": ">=",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Your current hireling heads home.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															]
+														]
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G293",
+														"op": "=",
+														"rvar": 1
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G294",
+														"op": "=",
+														"rvar": 3
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Point me at it. Three volleys, then I'm back to my post.",
+														"name": "Ashigaru Archer",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Ashigaru Archer follows Natsuko. (In battle: Call. 3 uses, then home to the Kaiu Wall.)",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko goes for the belt and ends up in the dust.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Ha! Pay me, then. Wrestling's extra.",
+														"name": "Ashigaru Archer",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G060",
+														"op": "-=",
+														"rvar": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "(Honor -1)",
+														"name": "",
+														"uiclose": 2
+													}
+												]
+											]
+										}
+									],
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Wrestle me. If I win, you come for nothing.",
+											"name": "Hiruma Natsuko",
+											"uiclose": 2,
+											"emo": "determined"
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.roll( 45);"
 										},
 										{
@@ -764235,8 +764384,9 @@
 									"y": 380
 								},
 								"text0": "Hire (200 zeni, 3 uses).",
-								"text1": "Sumai to recruit (45%).",
-								"text2": "Leave."
+								"text1": "Sumai match to recruit.",
+								"text2": "Quick throw to recruit (45%).",
+								"text3": "Leave."
 							}
 						]
 					}
@@ -770629,6 +770779,164 @@
 																{
 																	"cmd": "cmd_script",
 																	"desc": "SCRIPT",
+																	"code": "::Rokugan.sumaiMatch( \"P100\", \"Wall veteran\", \"EP334\", 55);"
+																},
+																{
+																	"cmd": "cmd_battle1",
+																	"mapid": "M001",
+																	"gid": 900,
+																	"losefunc": 1,
+																	"bgmid": null,
+																	"keeprset": false
+																},
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "::Rokugan.sumaiEnd( \"P100\");"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "RESULT",
+																			"op": "==",
+																			"rvar": 1
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Natsuko takes the belt, drops her hips, and throws.",
+																				"name": "",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Hah! Hah-hah! Forty years and a little Hiruma puts me on my back.",
+																				"name": "Wall veteran",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Here. My old jade. It kept the Taint off me on the Wall. Might as well keep it off you.",
+																				"name": "Wall veteran",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_itemop",
+																				"itemid": "A106",
+																				"op": 0,
+																				"num": 1,
+																				"LV": 1
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Got the Old Jade Bead.",
+																				"name": "",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_compute",
+																				"lvar": "G062",
+																				"op": "=",
+																				"rvar": true
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Natsuko goes for the belt and ends up in the dust.",
+																				"name": "",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Ha! Forty years on the Wall, girl. I'm made of stone and sake.",
+																				"name": "Wall veteran",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_compute",
+																				"lvar": "G061",
+																				"op": "-=",
+																				"rvar": 1
+																			},
+																			{
+																				"cmd": "cmd_if",
+																				"reqs": [
+																					{
+																						"lvar": "G061",
+																						"op": "<=",
+																						"rvar": 0
+																					}
+																				],
+																				"cmdblocks": [
+																					[
+																						{
+																							"cmd": "cmd_showmsg",
+																							"key": "message_talk",
+																							"text": "Word gets around. Hoshi-no-Ichi has had enough of the Crab who wrestles everyone. (Make amends at the inn.)",
+																							"name": "",
+																							"uiclose": 2
+																						}
+																					],
+																					[
+																						{
+																							"cmd": "cmd_showmsg",
+																							"key": "message_talk",
+																							"text": "(Hoshi-no-Ichi thinks a little less of you.)",
+																							"name": "",
+																							"uiclose": 2
+																						}
+																					]
+																				]
+																			}
+																		]
+																	]
+																}
+															]
+														]
+													}
+												],
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G061",
+																"op": "<=",
+																"rvar": 0
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "You again? Half the town has your footprints on it. Go away, Crab.",
+																	"name": "Wall veteran",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Wrestle me.",
+																	"name": "Hiruma Natsuko",
+																	"uiclose": 2,
+																	"emo": "determined"
+																},
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
 																	"code": "W = ::Rokugan.roll( 55);"
 																},
 																{
@@ -770750,8 +771058,9 @@
 												"y": 380
 											},
 											"text0": "Talk",
-											"text1": "Sumai (55%)",
-											"text2": "Leave"
+											"text1": "Sumai match",
+											"text2": "Quick throw (55%)",
+											"text3": "Leave"
 										}
 									],
 									[
@@ -772187,6 +772496,138 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiMatch( \"P100\", \"Hoshi Fisherman\", \"EP391\", 55);"
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M001",
+											"gid": 900,
+											"losefunc": 1,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiEnd( \"P100\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko takes the belt, drops her hips, and throws.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "...Fair's fair. I'll come.",
+														"name": "Hoshi Fisherman",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G293",
+																"op": ">=",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Your current hireling heads home.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															]
+														]
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G293",
+														"op": "=",
+														"rvar": 5
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G294",
+														"op": "=",
+														"rvar": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Two good nets. After that I'm back on the quay.",
+														"name": "Hoshi Fisherman",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Hoshi Fisherman follows Natsuko. (In battle: Call. 2 uses, then home to Hoshi-no-Ichi.)",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko goes for the belt and ends up in the dust.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "You throw like a wave! Pay me, then.",
+														"name": "Hoshi Fisherman",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G060",
+														"op": "-=",
+														"rvar": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "(Honor -1)",
+														"name": "",
+														"uiclose": 2
+													}
+												]
+											]
+										}
+									],
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Wrestle me. If I win, you come for nothing.",
+											"name": "Hiruma Natsuko",
+											"uiclose": 2,
+											"emo": "determined"
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.roll( 55);"
 										},
 										{
@@ -772302,8 +772743,9 @@
 									"y": 380
 								},
 								"text0": "Hire (80 zeni, 2 uses).",
-								"text1": "Sumai to recruit (55%).",
-								"text2": "Leave."
+								"text1": "Sumai match to recruit.",
+								"text2": "Quick throw to recruit (55%).",
+								"text3": "Leave."
 							}
 						]
 					}
@@ -776159,6 +776601,138 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiMatch( \"P100\", \"Gonta\", \"EP342\", 35);"
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M001",
+											"gid": 900,
+											"losefunc": 1,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiEnd( \"P100\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko takes the belt, drops her hips, and throws.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "...Fair's fair. I'll come.",
+														"name": "Gonta",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G293",
+																"op": ">=",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Your current hireling heads home.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															]
+														]
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G293",
+														"op": "=",
+														"rvar": 7
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G294",
+														"op": "=",
+														"rvar": 3
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Three hillsides, Crab. Then I go home and eat something that isn't bark.",
+														"name": "Gonta",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Gonta follows Natsuko. (In battle: Call. 3 uses, then home to the Hidden Ones' quarry.)",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko goes for the belt and ends up in the dust.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Ground's soft here, Crab dog. Pay or try again.",
+														"name": "Gonta",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G060",
+														"op": "-=",
+														"rvar": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "(Honor -1)",
+														"name": "",
+														"uiclose": 2
+													}
+												]
+											]
+										}
+									],
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Wrestle me. If I win, you come for nothing.",
+											"name": "Hiruma Natsuko",
+											"uiclose": 2,
+											"emo": "determined"
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.roll( 35);"
 										},
 										{
@@ -776275,8 +776849,9 @@
 								},
 								"text0": "Call in the debt. (Free)",
 								"text1": "Hire (600 zeni, 3 uses).",
-								"text2": "Sumai to recruit (35%).",
-								"text3": "Leave."
+								"text2": "Sumai match to recruit.",
+								"text3": "Quick throw to recruit (35%).",
+								"text4": "Leave."
 							}
 						]
 					}
@@ -829779,6 +830354,201 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiMatch( \"P100\", \"Wall Crab veteran\", \"EP334\", 60);"
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M001",
+											"gid": 900,
+											"losefunc": 1,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiEnd( \"P100\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko takes the veteran's belt and puts him in the sawdust.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Fine! You want a secret? The troll in the basement - its chains were filed.",
+														"name": "Wall Veteran",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Not broken. Filed. Somebody's been visiting it with a rasp.",
+														"name": "Wall Veteran",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G208",
+														"op": "=",
+														"rvar": true
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G202",
+																"op": "==",
+																"rvar": true
+															},
+															{
+																"lvar": "G203",
+																"op": "==",
+																"rvar": true
+															},
+															{
+																"lvar": "G204",
+																"op": "==",
+																"rvar": true
+															},
+															{
+																"lvar": "G205",
+																"op": "==",
+																"rvar": true
+															},
+															{
+																"lvar": "G209",
+																"op": "==",
+																"rvar": false
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Objective: the dance contest tonight, in the great hall (4F).",
+																	"name": "",
+																	"uiclose": 2
+																}
+															]
+														]
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Filed chains, and a Hiruma on the hunt. Court just got interesting.",
+														"name": "Hida Sachiko",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I'm coming with you. Don't argue. I'm bigger.",
+														"name": "Hida Sachiko",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_script",
+														"desc": "SCRIPT",
+														"code": "local p = ::rpgstat.playermap[\"P132\"], l = ::rpgstat.members[0]; W = !!::rpgstat.members.find( @( v) v && v == p) && !(l && (l.dataid == \"P104\" || l.dataid == \"P106\"));"
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "W",
+																"op": "==",
+																"rvar": true
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_memberop",
+																	"playerid": "P132",
+																	"op": 0,
+																	"slot": null
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G608",
+																	"op": "=",
+																	"rvar": false
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"name": "Togashi Yosai",
+																	"uiclose": 2,
+																	"text": "Company! Then I'll wait at the next inn and recount my enemies. It's a long list. I'm very popular."
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"name": "",
+																	"uiclose": 2,
+																	"text": "(Togashi Yosai waits beside the inns. Ask him along again when no one else travels with you.)"
+																}
+															]
+														]
+													},
+													{
+														"cmd": "cmd_memberop",
+														"playerid": "P120",
+														"op": 0,
+														"slot": -1
+													},
+													{
+														"cmd": "cmd_script",
+														"desc": "SCRIPT",
+														"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv);"
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Hida Sachiko joins the party.",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "The veteran plants his feet like the Wall itself. Natsuko bounces off.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Ha! Again, Hiruma! The sake's not going anywhere.",
+														"name": "Hida Sachiko",
+														"uiclose": 2
+													}
+												]
+											]
+										}
+									],
+									[
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.roll( 60);"
 										},
 										{
@@ -829960,12 +830730,13 @@
 									[]
 								],
 								"pos": {
-									"left": 430,
-									"right": 430,
+									"left": 429,
+									"right": 429,
 									"y": 380
 								},
-								"text0": "Sumai with the Wall Crabs.",
-								"text1": "Not now."
+								"text0": "Sumai match with the Wall Crabs.",
+								"text1": "Quick throw (60%).",
+								"text2": "Not now."
 							}
 						]
 					},
@@ -849856,6 +850627,138 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiMatch( \"P100\", \"Kaiu Engineer\", \"EP389\", 50);"
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M001",
+											"gid": 900,
+											"losefunc": 1,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiEnd( \"P100\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko takes the belt, drops her hips, and throws.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "...Fair's fair. I'll come.",
+														"name": "Kaiu Engineer",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G293",
+																"op": ">=",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Your current hireling heads home.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															]
+														]
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G293",
+														"op": "=",
+														"rvar": 3
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G294",
+														"op": "=",
+														"rvar": 3
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Three barricades, then I'm back to the town wall. It leans, you know.",
+														"name": "Kaiu Engineer",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Kaiu Engineer follows Natsuko. (In battle: Call. 3 uses, then home to Kyuden Hida.)",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko goes for the belt and ends up in the dust.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Fine, fine. You argue like a load-bearing beam.",
+														"name": "Kaiu Engineer",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G060",
+														"op": "-=",
+														"rvar": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "(Honor -1)",
+														"name": "",
+														"uiclose": 2
+													}
+												]
+											]
+										}
+									],
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Wrestle me. If I win, you come for nothing.",
+											"name": "Hiruma Natsuko",
+											"uiclose": 2,
+											"emo": "determined"
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.roll( 50);"
 										},
 										{
@@ -849971,8 +850874,9 @@
 									"y": 380
 								},
 								"text0": "Hire (500 zeni, 3 uses).",
-								"text1": "Sumai to recruit (50%).",
-								"text2": "Leave."
+								"text1": "Sumai match to recruit.",
+								"text2": "Quick throw to recruit (50%).",
+								"text3": "Leave."
 							}
 						]
 					}
@@ -850111,6 +851015,138 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiMatch( \"P100\", \"Hida Veteran\", \"EP392\", 30);"
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M001",
+											"gid": 900,
+											"losefunc": 1,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiEnd( \"P100\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko takes the belt, drops her hips, and throws.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "...Fair's fair. I'll come.",
+														"name": "Hida Veteran",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G293",
+																"op": ">=",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Your current hireling heads home.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															]
+														]
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G293",
+														"op": "=",
+														"rvar": 6
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G294",
+														"op": "=",
+														"rvar": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Two good swings left in these arms. Make them count.",
+														"name": "Hida Veteran",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Hida Veteran follows Natsuko. (In battle: Call. 2 uses, then home to Kyuden Hida.)",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko goes for the belt and ends up in the dust.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Thirty years, girl. Come back with coin.",
+														"name": "Hida Veteran",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G060",
+														"op": "-=",
+														"rvar": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "(Honor -1)",
+														"name": "",
+														"uiclose": 2
+													}
+												]
+											]
+										}
+									],
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Wrestle me. If I win, you come for nothing.",
+											"name": "Hiruma Natsuko",
+											"uiclose": 2,
+											"emo": "determined"
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.roll( 30);"
 										},
 										{
@@ -850226,8 +851262,9 @@
 									"y": 380
 								},
 								"text0": "Hire (800 zeni, 2 uses).",
-								"text1": "Sumai to recruit (30%).",
-								"text2": "Leave."
+								"text1": "Sumai match to recruit.",
+								"text2": "Quick throw to recruit (30%).",
+								"text3": "Leave."
 							}
 						]
 					}
@@ -869540,6 +870577,138 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiMatch( \"P100\", \"Hiruma Scout\", \"EP393\", 40);"
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M001",
+											"gid": 900,
+											"losefunc": 1,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiEnd( \"P100\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko takes the belt, drops her hips, and throws.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "...Fair's fair. I'll come.",
+														"name": "Hiruma Scout",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G293",
+																"op": ">=",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Your current hireling heads home.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															]
+														]
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G293",
+														"op": "=",
+														"rvar": 8
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G294",
+														"op": "=",
+														"rvar": 3
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Three volleys of jade. Then I go back to my tree and wait for the next fool.",
+														"name": "Hiruma Scout",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Hiruma Scout follows Natsuko. (In battle: Call. 3 uses, then home to the lava trees.)",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko goes for the belt and ends up in the dust.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Not out here, cousin. Pay, or walk.",
+														"name": "Hiruma Scout",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G060",
+														"op": "-=",
+														"rvar": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "(Honor -1)",
+														"name": "",
+														"uiclose": 2
+													}
+												]
+											]
+										}
+									],
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Wrestle me. If I win, you come for nothing.",
+											"name": "Hiruma Natsuko",
+											"uiclose": 2,
+											"emo": "determined"
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.roll( 40);"
 										},
 										{
@@ -869655,8 +870824,9 @@
 									"y": 380
 								},
 								"text0": "Hire (700 zeni, 3 uses).",
-								"text1": "Sumai to recruit (40%).",
-								"text2": "Leave."
+								"text1": "Sumai match to recruit.",
+								"text2": "Quick throw to recruit (40%).",
+								"text3": "Leave."
 							}
 						]
 					}
@@ -886241,6 +887411,138 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiMatch( \"P100\", \"Kaiu Engineer\", \"EP389\", 50);"
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M001",
+											"gid": 900,
+											"losefunc": 1,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiEnd( \"P100\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko takes the belt, drops her hips, and throws.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "...Fair's fair. I'll come.",
+														"name": "Kaiu Engineer",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G293",
+																"op": ">=",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Your current hireling heads home.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															]
+														]
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G293",
+														"op": "=",
+														"rvar": 3
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G294",
+														"op": "=",
+														"rvar": 3
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Three barricades, then I'm back to the town wall. It leans, you know.",
+														"name": "Kaiu Engineer",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Kaiu Engineer follows Natsuko. (In battle: Call. 3 uses, then home to Kyuden Hida.)",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko goes for the belt and ends up in the dust.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Fine, fine. You argue like a load-bearing beam.",
+														"name": "Kaiu Engineer",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G060",
+														"op": "-=",
+														"rvar": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "(Honor -1)",
+														"name": "",
+														"uiclose": 2
+													}
+												]
+											]
+										}
+									],
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Wrestle me. If I win, you come for nothing.",
+											"name": "Hiruma Natsuko",
+											"uiclose": 2,
+											"emo": "determined"
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.roll( 50);"
 										},
 										{
@@ -886356,8 +887658,9 @@
 									"y": 380
 								},
 								"text0": "Hire (500 zeni, 3 uses).",
-								"text1": "Sumai to recruit (50%).",
-								"text2": "Leave."
+								"text1": "Sumai match to recruit.",
+								"text2": "Quick throw to recruit (50%).",
+								"text3": "Leave."
 							}
 						]
 					}
@@ -886496,6 +887799,138 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiMatch( \"P100\", \"Hida Veteran\", \"EP392\", 30);"
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M001",
+											"gid": 900,
+											"losefunc": 1,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiEnd( \"P100\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko takes the belt, drops her hips, and throws.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "...Fair's fair. I'll come.",
+														"name": "Hida Veteran",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G293",
+																"op": ">=",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Your current hireling heads home.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															]
+														]
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G293",
+														"op": "=",
+														"rvar": 6
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G294",
+														"op": "=",
+														"rvar": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Two good swings left in these arms. Make them count.",
+														"name": "Hida Veteran",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Hida Veteran follows Natsuko. (In battle: Call. 2 uses, then home to Kyuden Hida.)",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko goes for the belt and ends up in the dust.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Thirty years, girl. Come back with coin.",
+														"name": "Hida Veteran",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G060",
+														"op": "-=",
+														"rvar": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "(Honor -1)",
+														"name": "",
+														"uiclose": 2
+													}
+												]
+											]
+										}
+									],
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Wrestle me. If I win, you come for nothing.",
+											"name": "Hiruma Natsuko",
+											"uiclose": 2,
+											"emo": "determined"
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.roll( 30);"
 										},
 										{
@@ -886611,8 +888046,9 @@
 									"y": 380
 								},
 								"text0": "Hire (800 zeni, 2 uses).",
-								"text1": "Sumai to recruit (30%).",
-								"text2": "Leave."
+								"text1": "Sumai match to recruit.",
+								"text2": "Quick throw to recruit (30%).",
+								"text3": "Leave."
 							}
 						]
 					}
@@ -890622,6 +892058,138 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiMatch( \"P100\", \"Kaiu Sapper\", \"EP395\", 45);"
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M001",
+											"gid": 900,
+											"losefunc": 1,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.sumaiEnd( \"P100\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko takes the belt, drops her hips, and throws.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "...Fair's fair. I'll come.",
+														"name": "Kaiu Sapper",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G293",
+																"op": ">=",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Your current hireling heads home.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															]
+														]
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G293",
+														"op": "=",
+														"rvar": 10
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G294",
+														"op": "=",
+														"rvar": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Two rollers left that the saboteurs didn't jam. Pick your goblins.",
+														"name": "Kaiu Sapper",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Kaiu Sapper follows Natsuko. (In battle: Call. 2 uses, then home to the outer yard.)",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko goes for the belt and ends up in the dust.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "A Hiruma! Of course. Pay me in coin, then.",
+														"name": "Kaiu Sapper",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G060",
+														"op": "-=",
+														"rvar": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "(Honor -1)",
+														"name": "",
+														"uiclose": 2
+													}
+												]
+											]
+										}
+									],
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Wrestle me. If I win, you come for nothing.",
+											"name": "Hiruma Natsuko",
+											"uiclose": 2,
+											"emo": "determined"
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.roll( 45);"
 										},
 										{
@@ -890737,8 +892305,9 @@
 									"y": 380
 								},
 								"text0": "Hire (600 zeni, 2 uses).",
-								"text1": "Sumai to recruit (45%).",
-								"text2": "Leave."
+								"text1": "Sumai match to recruit.",
+								"text2": "Quick throw to recruit (45%).",
+								"text3": "Leave."
 							}
 						]
 					}

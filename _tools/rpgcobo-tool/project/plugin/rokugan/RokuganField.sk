@@ -310,8 +310,32 @@ class RTFollowAction extends EventMoveAction
 	local sv = ::Rokugan.sumai_saved[pid][1];
 	printf( "[RT] sumai begin %S: slot %d %S -> W106\n", pid, i, sv ? sv.dataid : null);
 };
+//	(user) The Sumai match: Natsuko alone, bare-handed, against this NPC. One enemy (E121) takes the NPC's name and sprite and is
+//	scaled to her: the higher the quick-throw odds, the fewer throws it takes. Her HP, MP and TP come back afterwards.
+::Rokugan.sumai_party <- null;
+::Rokugan.sumaiMatch <- function( pid, name, mdl, chance){
+	local p = ::rpgstat.playermap[pid];
+	this.sumaiBegin( pid);
+	if( !p) return;
+	this.sumai_party = [clone ::rpgstat.members, p.HP, p.MP, p.TP];
+	for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = i == 0 ? p : null;
+	p.HP = p.MAXHP;
+	local hits = Math.clamp( 3 + (100 - chance) / 14, 3, 8), d = ::rpgdata["E121"];
+	local def = int( p.PATK * 0.6), dmg = Math.max( 1, p.PATK * 2.1 - def);
+	d.name = name; d.mdlid = mdl; d.LV = p.LV; d.AGI = p.AGI;
+	d.PDEF = def; d.MAXHP = int( dmg * hits * 2);		//	*2: every throw lands on the Unarmed weakness
+	d.PATK = int( (p.MAXHP / (hits + 3.0) + p.PDEF) / 2.1);
+	printf( "[RT] sumai solo: %d in the party\n", length( ::rpgstat.members.filter( @( v) v)));
+	printf( "[RT] sumai match %S: HP %d PATK %d PDEF %d (%d throws)\n", name, d.MAXHP, d.PATK, d.PDEF, hits);
+};
 ::Rokugan.sumaiEnd <- function( pid){
-	local p = ::rpgstat.playermap[pid], sv = ::Rokugan.sumai_saved[pid];
+	local p = ::rpgstat.playermap[pid], sv = ::Rokugan.sumai_saved[pid], pt = this.sumai_party;
+	if( p && pt){
+		for( local i = 0; i < length( pt[0]); i++) ::rpgstat.members[i] = pt[0][i];
+		p.HP = pt[1]; p.MP = pt[2]; p.TP = pt[3];
+		this.sumai_party = null;
+		printf( "[RT] sumai party restored: %d members\n", length( ::rpgstat.members.filter( @( v) v)));
+	}
 	if( !p || !sv) return;
 	p.setEquip( sv[0], sv[1]);
 	delete ::Rokugan.sumai_saved[pid];
