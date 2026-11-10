@@ -2803,12 +2803,13 @@ def draw_weapon(cv, T, P, R):
     elif w in ("katana", "nodachi"):
         rust = w == "nodachi" and T.get("rusty")
         hl = 6 if w == "nodachi" else 4
-        line(cv, at(-hl), at(2), R["dark"], 2, hi=False)
+        kak = T.get("kakita_blade")                                              # white silk grip, gold guard, mirror steel
+        line(cv, at(-hl), at(2), ramp((236, 232, 222)) if kak else R["dark"], 2, hi=False)
         for k in range(-hl + 1, 2, 2):                                           # tsuka-ito wrap diamonds
-            cv.px(*at(k), R["collar"][2])
+            cv.px(*at(k), ramp((214, 176, 84))[2] if kak else R["collar"][2])
         tsuba = m_ellipse(at(2.4)[0] + 0.5, at(2.4)[1] + 0.5, 1.7, 1.7)
-        cv.paste(tsuba, shade_rows(tsuba), R["accent"])
-        forge_blade(cv, at, dx, dy, 3, 28 if w == "nodachi" else 19, R["rust"] if rust else R["metal"],
+        cv.paste(tsuba, shade_rows(tsuba), ramp((214, 176, 84)) if kak else R["accent"])
+        forge_blade(cv, at, dx, dy, 3, 28 if w == "nodachi" else 19, R["rust"] if rust else ramp((232, 240, 250)) if kak else R["metal"],
               width=2.4 if w == "nodachi" else 2.1, sori=0.07)
         hb = m_capsule(at(2.6), at(3.6), 1.2)[0]                                 # habaki (blade collar)
         cv.paste(hb, shade_rows(hb, outline=False), R["accent"])
@@ -4535,10 +4536,12 @@ def sheet(T):
 # Look keys: weapon by the item's eqtype (type.json: 0 Unarmed 1 Tanto 2 Katana 3 Yari 5 Bo 6 Yumi 7 Tetsubo; a
 # weapon's "rt_look" overrides, e.g. W142 the gaijin musket), head item by the armour's "rt_look" ("" = nothing on the
 # head: the traveler's own headwear). Ids are fixed: EP(2000 + traveler*64 + weapon*8 + hat), never reused.
-LOOK_WEAPONS = ["none", "tanto", "katana", "yari", "bo", "yumi", "tetsubo", "musket"]
+LOOK_WEAPONS = ["none", "tanto", "katana", "yari", "bo", "yumi", "tetsubo", "musket", "kakita"]
 LOOK_HATS = ["", "jingasa", "kasa", "kabuto", "eboshi", "hachimaki"]
-LOOK_EXTRA = {"gendo": ["musket"]}                 # weapon looks only one traveler can come by
+LOOK_NOT_DRAWN = {"kasa", "hachimaki"}                               # (user) fewer pages to draw: the Kasa shares the Jingasa sheet, a Hachimaki is not drawn
+LOOK_EXTRA = {"gendo": ["musket"], "rensei": ["kakita"]}                 # weapon looks only one traveler can come by
 LOOK_BASE_EP = 2000
+KAKITA_EP = 2512                                    # past the 8 travelers x 8 weapon looks x 8 head looks block
 EQTYPE_LOOK = {0: "none", 1: "tanto", 2: "katana", 3: "yari", 4: "none", 5: "bo", 6: "yumi", 7: "tetsubo"}
 PLUGIN_DIR = os.path.join(HERE, "..", "_tools", "rpgcobo-tool", "project", "plugin", "rokugan")
 PIDS = ["P100", "P101", "P102", "P103", "P104", "P105", "P106", "P107"]
@@ -4555,6 +4558,9 @@ def look_variant(T, wkey, hat):
         if isinstance(v, tuple):
             V[k] = v
     w = wkey
+    if wkey == "kakita":                                   # (user) the Kakita blade: a katana that looks like nothing else
+        w = "katana"
+        V["kakita_blade"] = True
     if wkey == "bo" and T["weapon"] == "shakujo":
         w = "shakujo"                                      # Haruki's staff is his ringed shakujo
     V["weapon"] = w
@@ -4588,10 +4594,16 @@ def look_combos(ti, T):
     out = []
     bw, _ = base_look(T)
     for wi, w in enumerate(LOOK_WEAPONS):
-        if w == "musket" and w not in LOOK_EXTRA.get(T["key"], []):
+        if w in ("musket", "kakita") and w not in LOOK_EXTRA.get(T["key"], []):
             continue
         for hi, h in enumerate(LOOK_HATS):
+            if h in LOOK_NOT_DRAWN:                            # (kept in LOOK_HATS so the ids of the others never move)
+                continue
+            if h and w != bw:                                  # (user) hats only with the traveler's own weapon type; any
+                continue                                       # other weapon + hat shows the weapon and the own head (plugin lookFor)
             ep = "EP%03d" % (200 + ti) if (w, h) == (bw, "") else "EP%d" % (LOOK_BASE_EP + ti * 64 + wi * 8 + hi)
+            if w == "kakita":
+                ep = "EP%d" % (KAKITA_EP + hi)
             out.append(("%s|%s" % (w, h), ep, w, h))
     return out
 
@@ -4626,7 +4638,8 @@ def write_look_table(tables):
 def main():
     args = sys.argv[1:]
     base_only = "--base-only" in args
-    only = set(a for a in args if not a.startswith("--"))
+    pick = args[args.index("--weapon") + 1] if "--weapon" in args else None   # one new weapon look only: never touches a
+    only = set(a for a in args if not a.startswith("--") and a != pick)       # base sheet (it may be an installed AI sheet)
     jpath = os.path.join(RES, "enemy_pic.json")
     j = json.load(open(jpath, encoding="utf-8"))
     tmpl = j["EP000"]
@@ -4638,6 +4651,15 @@ def main():
         combos = look_combos(idx, T)
         tables.append((PIDS[idx], [(k, ep) for k, ep, _, _ in combos]))
         if only and T["key"] not in only:
+            continue
+        if pick:
+            for key, ep, w, h in combos:
+                if w == pick:
+                    V = look_variant(T, w, h)
+                    vname = "trav_%s__%s_%s" % (T["key"], w, h or "own")
+                    sheet(V).save(os.path.join(PIC, vname + ".png"), optimize=True)
+                    j[ep] = sheet_entry(tmpl, V, T["name"], vname, "traveler look %s (tools/gen_sprites2d.py look_variant)" % key)
+                    print("  look", vname, ep)
             continue
         sh = sheet(T)
         fname = "trav_%s" % T["key"]

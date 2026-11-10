@@ -4287,3 +4287,93 @@ Coin carriers (apply_resources COIN: bandits, ronin, gaki, thugs, ruffians, pira
 
 ## Caves redone, MP/TP items (user, 2026-11-08)
 tools/cave_sprawl.py runs in gen_maps.make() on cave_map() maps whose name reads as a cave (21 maps). Maps grow east (or south) where they have no exit, then get a cluster of new rooms with looping tunnels. Where a direct room-to-room tunnel has no event in it, that tunnel is walled off and the main route runs through the new galleries (8 maps; user: main routes can sit at the end of long corridors). The rest get side branches. The cluster only ever joins those two rooms or one spot, so scenes, bosses and sealed walls can't be bypassed. New galleries hold chests, and a rest-and-save shrine if the map had none. M170 and M157 had no room to grow and are unchanged. walkcheck: all caves pass (M147, M215, M456 list crowd villagers, not caves). Restoratives in apply_resources RESTORATIVES: I445 Sakaki Incense, I446 Temple Incense (MP), I447 Bitter Green Tea, I448 Warrior's Sake (TP); in 43 shops. M131's pool shrank so its bank is wide. Space Jump hint confirmed in engine.
+
+
+## Licensed copy (2026-11-08)
+D:/RokuganTraveler-licensed, its own git repository on branch licensed-demo (2 commits, local only, not pushed). Git refuses D:/RokuganTraveler in place: the folder is owned by an older Windows account (dubious ownership), and the only fix is a safe.directory setting that is the user's call. So this is a filtered copy: no wiki or card art, source PDFs, research, _art or logs; 92 boss and banner sprites plus their portraits are placeholders. LICENSE Apache-2.0, NOTICE.md lists what isn't covered. Rerun the copy when the demo should be refreshed. Stock assets: Apache-2.0. Pixel-Art-XL: CreativeML OpenRAIL-M. WAI-Illustrious on Civitai: no credit needed; commercial flags Image and RentCivit.
+
+## 2026-11-09: Whole-game dialogue pass (user: "make sure it makes sense, NPC speeches don't overlap, busts match")
+- **Read all of it.** 8,208 lines on 431 maps, every branch. Reading copies in `_art/preview/agents/dialog/`:
+  `read3.txt` (sorted by map, pages / IF / CHOICE / flags shown, traveler expression in `<...>`, repeats collapsed),
+  `dups.txt` (lines shared between events), `FINDINGS.md` (the working list). Rebuild them with the scratch scripts'
+  logic if needed: walk map.json `event -> page -> cmdblock`, `cmd_if.cmdblocks[0/1]`, `cmd_choices.text0..N`.
+- **The Seppun aunt asked twice (the user's example).** `S03B` (the noodle-stall scene) ran on through the script's
+  `### S03b` block, which is the optional tea-house talk. Fixed in gen_maps.py (`stop_at="### S03b"`): she now speaks
+  only in the tea house (first "You're Crab? ... Never mind.", second talk the request, sets G017). The cave lines that
+  name her nephew still need G017, as the storyboard intends.
+- **tools/apply_dialog_fixes.py (new, last step of tools/regen.py).** One table of fixes applied to map.json after
+  apply_bust_emotions: text swaps, speaker renames, deleted/inserted lines, one new NPC page, a few patterns. It prints
+  a count and lists any entry that no longer matches as STALE. `--check` reports without writing. Why a post-pass: the
+  lines live in gen_maps.py AND docs/story/production/*.md; one table is easier to audit than fifty scattered edits.
+  What it fixes:
+  - Leaked directions: "rat-way shortcut through donjon_1) [END]" in Natsuko's mouth (M148), "off-screen", "The camera
+    stays behind / slides", "Quick cuts:", "Training montage.", "The scene shimmers", "Not this chapter", `A beat.` ->
+    `A pause.` (11), "Ship'S Master", and the clear-save note that said the post-game "isn't built yet" (it is).
+  - Lines that fit no moment: Sachiko's "when the court's done with you" and Ryoichi's "Back from the Shadowlands" both
+    showed in Ch1; Mutsuye stayed cheerful after the murder (new page when G210); Nishi's "eleven weeks" vs "a week";
+    Ijako's same sentence twice running (tower, then hall); "guard. I challenge you"; the palace guard's doubled
+    opening; Gendo's "second time someone's said that"; Crane Ch1's ending text for the blade-in-the-cell choice and
+    its summary; Crane Ch1 said Seigen and Kiku "go their own ways" though both stay as guests.
+  - Missing set-up lines added (narration): Kage and the map case (M101), the gift exchange (M210), the oni's parting
+    shout before Benjiro answers it (M260), the dying healer (M290), Akuro's prophecy (M344), Akari (M418), Imuro's
+    rice (M205), Kitsune Hana introduced before she speaks (M352).
+  - Names: Nezumi Shaman / Warrior, Bandit Chief, Seduced Sentry, Mantis captain; **the fever-road child was also
+    called "Kitsune Hana"** (the Fox lady of Scorpion Ch1: same bust) -> "Little Hana"; Norie's letter lines.
+  - Terms: every "SP" -> "MP"; year-400 hirelings no longer say "Kitsuki-sama"; Charm-fail lines named the hireling's
+    home ("castle town's lamps has had enough"); the Eavesdrop-fail line called Mitsue a tea-pouring servant in every
+    town (kept only at the memorial, M345).
+- **Busts.** "sad" is crying (user): 28 expressions changed in tools/bust_emotions.json. Sad is left on 13 lines only:
+  Natsuko on the ridge when the road is real (3) and drawing the last line of the map; Rensei's "...Father."; Haruki
+  when Hoju dies (2), reading the note (2), "It's where I broke her.", the dream (2), "twelve years to give it back".
+  Also: "No." to Miyako and "We'll take it in jade." -> determined; Rensei's "You don't know our way." -> neutral.
+  NPCs have one bust each, so there is nothing to choose for them.
+- **Looked at, left alone.** Yosai's "Company!" block appears twice where two companions join: W is recomputed before
+  each, so it only plays once. **Commands after a map move never run** (engine-checked with runevent.py: the objectives on M316, M335 and M346
+  were silently lost). apply_dialog_fixes.py now moves the map move to the end of its block; re-run, all three show.
+  Also engine-checked: Satomi's three tea-house pages, Mutsuye's new page, the M148 line. The Crab/Scorpion/Unicorn shared tribunal scenes read
+  correctly for both leads.
+- **2026-11-09, later: engine sweep + two more fixes.** 32 changed scenes run with runevent.py, 0 errors. Found and
+  fixed: the fix pass was not repeat-safe ("Seppun Seppun Seppun Ushimo?" after three runs; `sub` now skips text
+  that already holds the replacement, inserts skip when already present). M148 "Just like the Crab said" assumed the
+  veteran's tip: now "Somebody came down here with a rasp."
+- **Skill popover overflow fixed (RokuganBattleUI.sk `UI.tickPop`).** A description over one line wrapped onto the
+  cost line and was cut after two (131 skills are that long; Earth Becomes Sky is 220 characters). The popover now
+  grows to 2 or 3 lines with the cost on its own line. The label holds a RichText: its length is `getText().intext`.
+  The panel group `g` clips its children, so `g` grows upward and its other children (infog, window, frame, lists,
+  grayg) shift down by the same amount. Checked with snapui.py (`-rt "lead P104;uicmd 2"`, gid 77): uicmd index 2 is
+  Spell. The skill-list scrollbar is tan now, not teal: nothing to fix.
+
+## 2026-11-09: Sprite runner order changed (user: move the busts up)
+tools/gen_pixeldrive.py `run()` now draws travelers + NPCs + enemies, then the bust candidates, then the 334 outfit
+variants (70% of all frames). Restarted with tools/start_pixeldrive.ps1; finished work is skipped.
+`queue_busts.py --dry` used to overwrite queue.json: fixed (it no longer saves on a dry run). The 934-job list lost that
+way was rebuilt from the 1,229 candidates in _art/busts/*/review (names only where the speaker is still unpicked).
+Still to draw at the bust stage: 924 candidates. Six finished travelers + Gonta are NOT installed yet (user decides).
+
+## 2026-11-10: Caves force the route through the new space (user: "force the travelers through a good part of each level")
+tools/cave_sprawl.py reworked. `necks()` finds every narrow spot that is the only way between two parts of a cave with no event on it (round plug or thin wall). `sprawl()` runs up to 3 passes: wall off a neck, build galleries joining its two sides, so the only way on is through them. Swapping a bridge for a longer bridge keeps story order. `event_groups` rolls a pass back if anything gets cut off. Maps now grow both east and south when free. Sprawling caves: wall rims 5+ (too high to jump), final pass raises anything climbable.
+Result: required walk across 21 caves 1120 -> 2288 steps; 20 of 21 forced by the check (M320 forced only past its last scene; M130's far goal unchanged in length). Sheet: `_art/preview/caves_forced.png`. walkcheck: only the 3 known flags (M147, M215, M456).
+
+## 2026-11-10: Sacred blades vs clan-made weapons; fewer outfit sheets (user)
+- Rule book (Core 3e clan Sacred Weapons, Book of Void): the Kaiu Blade and Kakita Blade are specific katana, separate from
+  other Kaiu- or Kakita-made weapons. `CLAN_ONLY` is now W130 Heaven's Glory + W131 Kakita Blade (renamed from Kakita
+  Masterwork), Crane; W158 Kaiu Blade (new, 126 attack, sold at R114 Kyuden Hida Arms, shares the katana sheet), Crab.
+  Kaiu Tetsubo/War Spear etc. and W133 Kakita Wakizashi are open to anyone; W133 is back at R152. This overrides the
+  W133 restriction in the 11-09 entry below.
+- `LOOK_NOT_DRAWN` (gen_sprites2d): no kasa or hachimaki outfit sheets. A170 Straw Kasa shows the jingasa sheet, A172
+  Hachimaki has no rt_look so it shows the traveler's own head. Outfit sheets 340 -> 224. Remove from the set to restore.
+- `look_combos`: hats are only drawn with the traveler's own weapon type. Another weapon + a hat shows that weapon and the
+  traveler's own head (plugin `lookFor` falls back to "weapon|"). Outfit sheets 224 -> 74. RokuganLookData.sk rewritten with
+  `s2.write_look_table` only: running gen_sprites2d.py plain would overwrite installed AI sheets.
+
+## 2026-11-09: Equipment rules and the Kakita blade (user)
+- Sprites were already shared by weapon TYPE (`EQTYPE_LOOK`: every plain katana is the "katana" sheet). Nothing to merge.
+- tools/apply_resources.py: monks can't equip Tanto/Katana/Yari/Axe; shugenja can't equip Heavy Armour/Heavy Shield
+  (`NO_EQTYPES`, cleared from player `eqtypebits`). `CLAN_ONLY`: Heaven's Glory (W130), Kakita Masterwork (W131), Kakita
+  Wakizashi (W133) are Crane only (`rt_only_clan`, checked in plugin RokuganLook.sk; the engine's eqflag can't do it,
+  getEquipFlagBits always returns 0). Description says so. Removed from the two non-Crane shops (R142, R152).
+- W130 and W131 use a unique weapon look "kakita" (white silk grip, gold guard, bright steel): Rensei only, EP2512-2517.
+  `gen_sprites2d.py rensei --weapon kakita` draws just those sheets and leaves installed AI sheets alone. Plain
+  `gen_sprites2d.py` would OVERWRITE them: reinstall with install_aisheets.py afterwards.
+- Runner: the six Kakita sheets are drawn with the base sheets (before the busts). Installed today: Rensei, Shizue,
+  Haruki, Mitsue, Tamotsu, Sayo, Gonta. Engine-checked: equip slots for Rensei, Natsuko, Haruki, Yosai, Hayato.

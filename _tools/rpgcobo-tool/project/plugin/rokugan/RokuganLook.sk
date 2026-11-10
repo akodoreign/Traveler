@@ -29,6 +29,20 @@ runsk( srcdir .. "/RokuganLookData.sk");
 	}
 	return "";
 };
+//	(user) Clan-only gear: a weapon with rt_only_clan can only be equipped by a player of that rt_clan (the Kakita blades).
+//	The engine eqflag check cannot do it: getEquipFlagBits always returns 0.
+::RPGPlayer._rt_equipable <- ::RPGPlayer.getEquipableItems;
+::RPGPlayer.getEquipableItems <- function( slotidx, items=null){
+	local clan = data["rt_clan"];
+	return _rt_equipable( slotidx, items).filter( @( v) !v.data["rt_only_clan"] || v.data["rt_only_clan"] == clan);
+};
+::RPGPlayer._rt_eqslot <- ::RPGPlayer.getEquipableSlot;
+::RPGPlayer.getEquipableSlot <- function( itemid){
+	local only = ::rpgdata[itemid]["rt_only_clan"];
+	if( only && only != data["rt_clan"]) return -1;
+	return _rt_eqslot( itemid);
+};
+
 //	The enemy_pic id for a player object (RPGPlayer), or null to keep the database model.
 ::Rokugan.lookFor <- function( pc){
 	if( !pc || !(pc.dataid in this.LOOKS)) return null;

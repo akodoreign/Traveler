@@ -1232,7 +1232,7 @@
 		"MATK": 0,
 		"PATK": 96,
 		"PMTK": 0,
-		"desc": "Heaven's Glory Reflected in the Soul's Steel. Look at it and you measure yourself against the ideal samurai. Rensei can bear to, now. (Critical +15)",
+		"desc": "Heaven's Glory Reflected in the Soul's Steel. Look at it and you measure yourself against the ideal samurai. Rensei can bear to, now. (Critical +15) (Crane only.)",
 		"eqflag": -1,
 		"eqtype": 2,
 		"icon": "",
@@ -1249,22 +1249,26 @@
 		],
 		"opttype": "opt_equip",
 		"price": 0,
-		"skillid": "S100"
+		"skillid": "S100",
+		"rt_only_clan": "crane",
+		"rt_look": "kakita"
 	},
 	"W131": {
 		"MATK": 0,
 		"PATK": 108,
 		"PMTK": 0,
-		"desc": "A Kakita smith's best work for sale: no name, no story, and a perfect edge.",
+		"desc": "A Kakita smith's best work for sale: no name, no story, and a perfect edge. (Crane only.)",
 		"eqflag": -1,
 		"eqtype": 2,
 		"icon": "",
 		"mdlid": "EV000",
-		"name": "Kakita Masterwork",
+		"name": "Kakita Blade",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 1080,
-		"skillid": "S100"
+		"skillid": "S100",
+		"rt_only_clan": "crane",
+		"rt_look": "kakita"
 	},
 	"W132": {
 		"MATK": 0,
@@ -1664,5 +1668,21 @@
 		"opttype": "opt_equip",
 		"price": 0,
 		"skillid": "S100"
+	},
+	"W158": {
+		"MATK": 0,
+		"PATK": 126,
+		"PMTK": 0,
+		"desc": "The Crab's sacred sword, born in the Great Forge. Steel a shade darker than any other, and it has never once needed a whetstone. (Crab only.)",
+		"eqflag": -1,
+		"eqtype": 2,
+		"icon": "",
+		"mdlid": "EV000",
+		"name": "Kaiu Blade",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 1260,
+		"skillid": "S100",
+		"rt_only_clan": "crab"
 	}
 }

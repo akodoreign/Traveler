@@ -255,7 +255,8 @@ def main():
             j["prompt_id"] = r["prompt_id"]
     if redo and os.path.exists(OUTJS) and not dry:                       # keep the earlier jobs in the manifest (collect reads all)
         jobs = json.load(open(OUTJS, encoding="utf-8")) + jobs
-    json.dump(jobs, open(OUTJS, "w", encoding="utf-8"), indent=1)
+    if not dry:                                  # a dry run must leave the job list alone
+        json.dump(jobs, open(OUTJS, "w", encoding="utf-8"), indent=1)
     lines = ["# Dialog bust queue (%d ComfyUI jobs, %s)" % (len(jobs), "dry run" if dry else "submitted"),
              "", "Collect after the queue finishes: `python -E tools/collect_busts.py` (downloads into "
              "_art/busts/<key>/review/, sheets in _art/preview/agents/busts/review_*.png). Nothing here is in the "

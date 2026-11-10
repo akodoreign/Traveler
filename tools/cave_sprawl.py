@@ -8,6 +8,7 @@ New galleries hold a few chests, and a rest-and-save shrine when the map has non
 import collections
 import re
 
+import cv2
 import numpy as np
 
 CAVE_NAME = re.compile(r"\bcave|tunnel|catacomb|cellar|under the|\bcove\b|lava tube|\bmines?\b|\bden\b", re.I)
@@ -22,11 +23,7 @@ def grow_size(w, d, rooms, links):
     """A cave grows toward a side with no exit on it: east if it can, else south. Hand-placed coordinates stay valid."""
     east = any(max(l[0], l[2]) >= w - 3 for l in links) or any(r[0] + r[2] >= w - 2 for r in rooms)
     south = any(max(l[1], l[3]) >= d - 3 for l in links) or any(r[1] + r[3] >= d - 2 for r in rooms)
-    if not east:
-        return int(w * 1.6), d
-    if not south:
-        return w, int(d * 1.5)
-    return w, d
+    return (w if east else int(w * 1.6)), (d if south else int(d * 1.5))   # (user) use the space: both ways when both are free
 
 
 def dilate(a, k):
@@ -39,6 +36,18 @@ def dilate(a, k):
         n[:, :-1] |= out[:, 1:]
         out = n
     return out
+
+
+def climbable(hgt, floor):
+    """Cells the player can get on top of from the floor: up by at most 2 blocks (the jump), down by any."""
+    seen = floor.copy()
+    while True:
+        n = seen.copy()
+        for ax, sh in ((0, 1), (0, -1), (1, 1), (1, -1)):
+            n |= np.roll(seen, sh, ax) & (hgt <= np.roll(hgt, sh, ax) + 2)
+        if (n == seen).all():
+            return seen
+        seen = n
 
 
 def flood(open_, seeds):
@@ -76,63 +85,146 @@ def disc_path(shape, pts, width):
     return mask
 
 
-def candidates(m, ev):
-    """Direct tunnels between two rooms that hold no event: these can be walled off and rerouted through the new galleries."""
+def event_cells(m, ev):
     spots = np.zeros((m.d, m.w), bool)
     for e in ev.ev.values():
         if "pos" in e and 0 <= int(e["pos"][2]) < m.d and 0 <= int(e["pos"][0]) < m.w:
             spots[int(e["pos"][2]), int(e["pos"][0])] = True
-    spots = dilate(spots, 3)
-    rooms_all = np.zeros((m.d, m.w), bool)
-    for r in m.cave_rooms:
-        rooms_all |= r
-    out = []
-    for a, b, lm in m.cave_links:
-        ends = [next((i for i, r in enumerate(m.cave_rooms) if 0 <= int(p[1]) < m.d and 0 <= int(p[0]) < m.w and r[int(p[1]), int(p[0])]), None)
-                for p in (a, b)]
-        cut = lm & ~rooms_all
-        if None in ends or ends[0] == ends[1] or cut.sum() < 8 or (cut & spots).any():
-            continue
-        out.append((cut, ends[0], ends[1]))
-    return out
+    return spots
 
 
-def sprawl(m, ev, mid, rocks, save_shrine):
-    """Reroute the main path through new galleries where a tunnel allows it (user: main routes can sit at the end of long
-    corridors); otherwise the galleries are a side branch. Returns the number of rooms added."""
-    if ev is None or not hasattr(m, "cave_floor"):
-        return 0
-    cands = candidates(m, ev)
-    np.random.default_rng(int(mid[1:])).shuffle(cands)
-    for k, c in enumerate(cands[:6]):
-        n = _build(m, ev, mid, rocks, save_shrine, c, k)
-        if n:
-            return n
-    return _build(m, ev, mid, rocks, save_shrine, None, 9)
-
-
-def _build(m, ev, mid, rocks, save_shrine, link, attempt):
-    rng = np.random.default_rng(int(mid[1:]) * 7 + 11 + attempt)
-    d, w = m.d, m.w
+def reach_of(m, ev):
+    """(floor_open, where the player can walk from the exits). A cave with no portal is entered by its touch triggers."""
     floor_open = m.hgt <= 3                                              # floors and pools; rims and rock stand higher
-    walk = (m.hgt == 2)
-    cut = None
+    walk = floor_open & (m.blk != 8)                                     # pits and steps can be walked; water, tar and lava can't
     for o in m.objs:
         if o["t"] == "fill" and o.get("blk") is not None and o["h"] > 1:   # a filled block in the way stays in the way
             walk[max(0, o["z"]):o["z"] + o["d"], max(0, o["x"]):o["x"] + o["w"]] = False
-    seeds = []
-    for e in ev.ev.values():
-        if e.get("role") == "portal" and "pos" in e:
-            seeds.append((int(e["pos"][0]), int(e["pos"][2])))
+    seeds = [(int(e["pos"][0]), int(e["pos"][2])) for e in ev.ev.values() if e.get("role") == "portal" and "pos" in e]
+    if not seeds:                                                        # entered and left by scene triggers alone
+        seeds = [(int(e["pos"][0]), int(e["pos"][2])) for e in ev.ev.values() if "pos" in e and e.get("role") != "light"]
     if not seeds:
-        return 0
+        return floor_open, None
     expanded = [(x + dx, z + dz) for x, z in seeds for dx in range(-2, 3) for dz in range(-2, 3)]
     reach, _ = flood(walk, expanded)
-    if reach.sum() < 20:
+    if reach.sum() < 20:                                                 # an exit standing on a step or a fill: start from the events
+        spots = [(int(e["pos"][0]), int(e["pos"][2])) for e in ev.ev.values() if "pos" in e and e.get("role") != "light"]
+        reach, _ = flood(walk, spots)
+    return floor_open, reach
+
+
+def necks(m, ev, reach, avoid):
+    """(user, 2026-11-10: force the travelers through a good part of each level) Every narrow spot on the walkable floor that
+    is the only way between two sizeable parts of the cave and has no event near it: (plug, side A, side B), most even split
+    first. Swapping such a bridge for a longer one keeps the story order: nothing on either side can be skipped."""
+    d, w = reach.shape
+    raw = event_cells(m, ev)
+    spots = dilate(raw, 1)
+    door = np.zeros((d, w), bool)                                        # the entrance stub counts as a side, however small
+    for e in ev.ev.values():
+        if e.get("role") == "portal" and "pos" in e and 0 <= int(e["pos"][2]) < d and 0 <= int(e["pos"][0]) < w:
+            door[int(e["pos"][2]), int(e["pos"][0])] = True
+    door = dilate(door, 2)
+    u8 = reach.astype(np.uint8)
+    dt = cv2.distanceTransform(u8, cv2.DIST_L2, 3)
+    _, lab0 = cv2.connectedComponents(u8, connectivity=4)
+    zz, xx = np.mgrid[0:d, 0:w]
+    found = []
+    for r in (1.5, 2.5, 3.5, 4.5, 5.5):
+        cells = np.argwhere(reach & (dt > r - 1.2) & (dt <= r))
+        for z, x in cells[::2]:
+            for shape in ("disc", "across", "along"):                    # a thin wall fits between two events where a round plug can't
+                if shape == "disc":
+                    disc = ((xx - x) ** 2 + (zz - z) ** 2 <= (r + 1.0) ** 2) & reach
+                elif shape == "across":
+                    disc = (np.abs(zz - z) <= 1) & (np.abs(xx - x) <= r + 2) & reach
+                else:
+                    disc = (np.abs(xx - x) <= 1) & (np.abs(zz - z) <= r + 2) & reach
+                if (disc & spots).any() or (disc & avoid).any():
+                    continue
+                left = reach & ~disc
+                n, lab, stats, _ = cv2.connectedComponentsWithStats(left.astype(np.uint8), connectivity=4)
+                home = lab0 == lab0[z, x]
+                ids = [i for i in np.unique(lab[home & left]) if i]
+                big = [i for i in ids if stats[i, cv2.CC_STAT_AREA] >= 30 or (stats[i, cv2.CC_STAT_AREA] >= 8 and (door & (lab == i)).any())]
+                if len(big) != 2:
+                    continue
+                frag = home & left & ~np.isin(lab, big)
+                if frag.sum() > 40 or (frag & raw).any():
+                    continue
+                found.append((min(stats[i, cv2.CC_STAT_AREA] for i in big), int(x), int(z), disc | frag, lab == big[0], lab == big[1]))
+    found.sort(key=lambda f: -f[0])
+    out, kept = [], []
+    for _, x, z, cut, a, b in found:
+        if all((x - u) ** 2 + (z - v) ** 2 >= 12 ** 2 for u, v in kept):
+            kept.append((x, z))
+            out.append((cut, a, b))
+    return out
+
+
+PASSES = 3
+
+
+def event_groups(m, ev, reach):
+    """How many separate walkable areas hold the events that stood on the route before this pass."""
+    walk = (m.hgt <= 3) & (m.blk != 8)
+    _, lab = cv2.connectedComponents(walk.astype(np.uint8), connectivity=4)
+    return len({int(lab[z, x]) for z, x in np.argwhere(event_cells(m, ev) & reach)} - {0}) + \
+        int((event_cells(m, ev) & reach & ~walk).sum())
+
+
+def sprawl(m, ev, mid, rocks, save_shrine):
+    """Reroute the required path through new galleries at up to PASSES narrow spots, so getting through the level means walking
+    them (user). Only a cave with no such spot at all gets a side branch. Returns the number of rooms added."""
+    if ev is None or not hasattr(m, "cave_floor"):
+        return 0
+    total = 0
+    for p in range(PASSES):
+        _, reach = reach_of(m, ev)
+        if reach is None or reach.sum() < 20:
+            break
+        cands = necks(m, ev, reach, dilate(getattr(m, "sprawled", np.zeros((m.d, m.w), bool)), 2))
+        built = 0
+        for gain in (80, 50, 25, 8):                                         # the longest detour this neck can give
+            for k, c in enumerate(cands[:10]):
+                saved = (m.hgt.copy(), m.blk.copy(), set(ev.ev), len(m.objs), getattr(m, "has_shrine", False), getattr(m, "sprawled", None))
+                groups = event_groups(m, ev, reach)
+                built = _build(m, ev, mid, rocks, save_shrine, c, p * 20 + k, PASSES - p, gain)
+                if built and event_groups(m, ev, reach) > groups:        # something got cut off: never ship that
+                    m.hgt, m.blk = saved[0], saved[1]
+                    for key in set(ev.ev) - saved[2]:
+                        del ev.ev[key]
+                    del m.objs[saved[3]:]
+                    m.has_shrine, m.sprawled = saved[4], saved[5] if saved[5] is not None else np.zeros((m.d, m.w), bool)
+                    built = 0
+                if built:
+                    break
+            if built:
+                break
+        if not built:
+            break
+        total += built
+    total = total or _build(m, ev, mid, rocks, save_shrine, None, 9, 1)
+    if total:                                                            # last: no wall top anywhere can be climbed to get around a plug
+        floor = m.hgt <= 3
+        for _ in range(8):
+            bad = climbable(m.hgt, floor) & ~floor
+            if not bad.any():
+                break
+            m.hgt[bad] = 2 + m.cave_wall_h
+    return total
+
+
+def _build(m, ev, mid, rocks, save_shrine, link, attempt, share, gain=0):
+    rng = np.random.default_rng(int(mid[1:]) * 7 + 11 + attempt)
+    d, w = m.d, m.w
+    floor_open, reach = reach_of(m, ev)
+    cut = None
+    if reach is None or reach.sum() < 20:
         return 0
     if link is not None:
-        cut, ra, rb = link
-        if (m.cave_rooms[ra] & reach).sum() < 10 or (m.cave_rooms[rb] & reach).sum() < 10:
+        cut, side_a, side_b = link
+        if (side_a & reach).sum() < 10 or (side_b & reach).sum() < 10:
             return 0
         floor_open = floor_open & ~cut
         reach = reach & ~cut
@@ -141,7 +233,7 @@ def _build(m, ev, mid, rocks, save_shrine, link, attempt):
     keep_clear[:3, :] = keep_clear[-3:, :] = True
     keep_clear[:, :3] = keep_clear[:, -3:] = True
     zz, xx = np.mgrid[0:d, 0:w]
-    target = int(np.clip((~keep_clear).sum() / 420, 4, 12))
+    target = int(np.clip((~keep_clear).sum() / 420 / share, 3, 12))
     rooms, new = [], np.zeros((d, w), bool)
     for _ in range(900):
         if len(rooms) >= target:
@@ -164,7 +256,7 @@ def _build(m, ev, mid, rocks, save_shrine, link, attempt):
 
     forbid = dilate(floor_open, 2)
     rc = [np.array(r["c"]) for r in rooms]
-    pts = np.argwhere(reach if link is None else (reach & m.cave_rooms[ra]))
+    pts = np.argwhere(reach if link is None else (reach & side_a))
     pts_xz = np.stack([pts[:, 1], pts[:, 0]], 1)
     best = sorted(range(len(rooms)), key=lambda i: np.min(np.sum((pts_xz - rc[i]) ** 2, 1)))
     carved, anchor = None, None
@@ -213,8 +305,8 @@ def _build(m, ev, mid, rocks, save_shrine, link, attempt):
                     carved |= path
                     links += 1
     if link is not None:                                                 # the far side of the walled tunnel: the way on
-        bcells = np.argwhere(reach & m.cave_rooms[rb])
-        joined = False
+        bcells = np.argwhere(reach & side_b)
+        joined = None
         for i in sorted(used[1:] or used, key=lambda u: -np.sum((rc[u] - rc[used[0]]) ** 2)):
             order = np.argsort(np.sum((bcells[:, ::-1] - rc[i]) ** 2, 1))[:30]
             for q in order[::3]:
@@ -224,13 +316,15 @@ def _build(m, ev, mid, rocks, save_shrine, link, attempt):
                     near = (xx - a2[0]) ** 2 + (zz - a2[1]) ** 2 <= 16
                     if not (path & forbid & ~near).any() and not (path & sealed).any():
                         carved |= path
-                        joined = True
+                        joined = a2
                         break
                 if joined:
                     break
             if joined:
                 break
         if not joined:
+            return 0
+        if flood(carved, [anchor])[1].get(joined, 0) < gain:              # too short a detour to be worth a wall
             return 0
     _, dist = flood(reach, [anchor])                                     # a second way back to the same spot on the route
     near_anchor = [p for p, v in dist.items() if 6 <= v <= 18]
@@ -246,6 +340,7 @@ def _build(m, ev, mid, rocks, save_shrine, link, attempt):
     if cut is not None:
         m.blk[cut] = m.cave_wall
         m.hgt[cut] = 2 + m.cave_wall_h
+    m.sprawled = getattr(m, "sprawled", np.zeros((d, w), bool)) | carved
     m.blk[carved] = m.cave_floor
     m.hgt[carved] = 2
     wall_top = m.cave_wall_h
@@ -255,10 +350,25 @@ def _build(m, ev, mid, rocks, save_shrine, link, attempt):
     for k in range(1, 10):                                               # room drop to a low rim so the room stays visible
         front[:d - k] |= carved[k:]
     front &= solid & ~dilate(sealed, 3)
-    m.hgt[front & (m.hgt > 4)] = 4
+    m.hgt[front & (m.hgt > 5)] = 5
     ring = dilate(carved, 1) & solid                                     # a lip nobody can jump onto from the new galleries
     m.hgt[ring] = np.maximum(m.hgt[ring], 5)
     m.blk[ring] = m.cave_wall
+    guard = ring.copy()
+    if cut is not None:
+        low = np.zeros((d, w), bool)                                     # a plug in front of floor is a low rim the camera sees over
+        for k in range(1, 10):
+            low[:d - k] |= (carved | floor_open)[k:]
+        m.hgt[cut & low] = 5
+        m.hgt[cut] = np.maximum(m.hgt[cut], 5)
+        guard |= cut
+    tall = 2 + m.cave_wall_h
+    for _ in range(8):                                                   # no climbing a low rim, along the lip and down the far side
+        got = climbable(m.hgt, carved | floor_open)
+        bad = got & guard & solid
+        if not bad.any():
+            break
+        m.hgt[bad] = tall
     placed = 0
     rooms_used = [rooms[i] for i in used]
     rng.shuffle(rooms_used)

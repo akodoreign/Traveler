@@ -1694,12 +1694,6 @@
 				"reqs": null
 			},
 			{
-				"dataid": "W131",
-				"price": null,
-				"reqfail": 0,
-				"reqs": null
-			},
-			{
 				"dataid": "W143",
 				"price": null,
 				"reqfail": 0,
@@ -4091,6 +4085,12 @@
 		"name": "Kyuden Hida Arms (T4)",
 		"type": 0,
 		"items": [
+			{
+				"dataid": "W158",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
 			{
 				"dataid": "W127",
 				"price": null,

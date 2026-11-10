@@ -35,6 +35,12 @@ TP_SKILLS = {"S132", "S139", "S140", "S141", "S142", "S169", "S172", "S426", "S4
 FREE_SCHOOL = {"S110", "S147", "S148"}                        # costless techniques still belong on the School command
 
 
+NO_EQTYPES = {"monk": (1, 2, 3, 4), "shugenja": (9, 15)}      # type.json eqtype: 1 Tanto, 2 Katana, 3 Yari, 4 Axe; 9 Heavy Shield, 15 Heavy Armour
+CLAN_ONLY = {"W130": ("crane", "kakita"), "W131": ("crane", "kakita"), "W158": ("crab", None)}   # the Sacred Weapons (Core 3e, Book of Void): Kakita Blades, the Kaiu Blade.
+#   Other Kakita- or Kaiu-made weapons stay open to anyone. Plugin RokuganLook.sk reads rt_only_clan.
+NOT_SOLD = {"R142": "W131"}                                    # Gendo's year-400 camp
+
+
 def is_spell(sid):
     return "S300" <= sid <= "S395" or sid in MP_SKILLS
 
@@ -104,7 +110,23 @@ def main():
             for iid in ("I445", "I447") + (("I446", "I448") if "I101" in have or "I104" in have else ()):
                 if iid not in have:
                     v["items"].append({"dataid": iid, "price": None, "reqfail": 0, "reqs": None})
+    for sid, drop in NOT_SOLD.items():                                # a shop on another clan's road shouldn't sell what its lead can't hold
+        sto[sid]["items"] = [i for i in sto[sid]["items"] if i["dataid"] != drop]
     save("store", sto)
+    wp = load("weapon")                                               # (user) Kakita steel is for the Crane
+    for wid, (clan, look) in CLAN_ONLY.items():
+        wp[wid]["rt_only_clan"] = clan
+        if look:
+            wp[wid]["rt_look"] = look
+        note = " (%s only.)" % clan.capitalize()
+        if note not in wp[wid].get("desc", ""):
+            wp[wid]["desc"] = wp[wid].get("desc", "") + note
+    save("weapon", wp)
+    for pid, x in pl.items():                                         # (user) monks: no blades; shugenja: no heavy armour
+        if pid >= "P100" and isinstance(x, dict) and x.get("rt_class") in NO_EQTYPES:
+            for et in NO_EQTYPES[x["rt_class"]]:
+                x["eqtypebits"] &= ~(1 << et)
+    save("player", pl)
     st = load("setting")
     st["battlecmd2"] = "spell"
     save("setting", st)

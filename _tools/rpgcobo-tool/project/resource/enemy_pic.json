@@ -628250,5 +628250,3323 @@
 		},
 		"pic3d": "/resource/enemy_pic/trav_sayo__tetsubo_hachimaki.png",
 		"scale": 0.667
+	},
+	"EP2512": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 3.3600000000000003,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 42,
+				"en": 48,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.25,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": true,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "traveler look kakita| (tools/gen_sprites2d.py look_variant)",
+		"name": {
+			"en": "Kakita Rensei",
+			"ja": "Kakita Rensei"
+		},
+		"pic3d": "/resource/enemy_pic/trav_rensei__kakita_own.png",
+		"scale": 0.667
+	},
+	"EP2513": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 3.3600000000000003,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 42,
+				"en": 48,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.25,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": true,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "traveler look kakita|jingasa (tools/gen_sprites2d.py look_variant)",
+		"name": {
+			"en": "Kakita Rensei",
+			"ja": "Kakita Rensei"
+		},
+		"pic3d": "/resource/enemy_pic/trav_rensei__kakita_jingasa.png",
+		"scale": 0.667
+	},
+	"EP2514": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 3.3600000000000003,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 42,
+				"en": 48,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.25,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": true,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "traveler look kakita|kasa (tools/gen_sprites2d.py look_variant)",
+		"name": {
+			"en": "Kakita Rensei",
+			"ja": "Kakita Rensei"
+		},
+		"pic3d": "/resource/enemy_pic/trav_rensei__kakita_kasa.png",
+		"scale": 0.667
+	},
+	"EP2515": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 3.3600000000000003,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 42,
+				"en": 48,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.25,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": true,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "traveler look kakita|kabuto (tools/gen_sprites2d.py look_variant)",
+		"name": {
+			"en": "Kakita Rensei",
+			"ja": "Kakita Rensei"
+		},
+		"pic3d": "/resource/enemy_pic/trav_rensei__kakita_kabuto.png",
+		"scale": 0.667
+	},
+	"EP2516": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 3.3600000000000003,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 42,
+				"en": 48,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.25,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": true,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "traveler look kakita|eboshi (tools/gen_sprites2d.py look_variant)",
+		"name": {
+			"en": "Kakita Rensei",
+			"ja": "Kakita Rensei"
+		},
+		"pic3d": "/resource/enemy_pic/trav_rensei__kakita_eboshi.png",
+		"scale": 0.667
+	},
+	"EP2517": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 3.3600000000000003,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 5.6000000000000005,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 42,
+				"en": 48,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.25,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": true,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "traveler look kakita|hachimaki (tools/gen_sprites2d.py look_variant)",
+		"name": {
+			"en": "Kakita Rensei",
+			"ja": "Kakita Rensei"
+		},
+		"pic3d": "/resource/enemy_pic/trav_rensei__kakita_hachimaki.png",
+		"scale": 0.667
 	}
 }

@@ -205,6 +205,41 @@ UI.tickRows <- function(){
 };
 
 //	--- the panel follows what the bottom area is showing
+//	The skill popover grows with its text: a long description wrapped onto the cost line and was cut after two lines
+//	(131 skills are longer than one line). 1 line: stock size. 2 or 3 lines: taller, moved up, cost on its own line.
+UI.poplines <- 0;
+UI.tickPop <- function( b){
+	local ui = b.battleui, lbl = ui.findChild( "descllbl"), cost = ui.findChild( "descrlbl");
+	local pop = ui.findChild( "dialog"), grp = ui.findChild( "descpop");
+	if( !lbl || !cost || !pop || !grp) return;
+	local t = lbl.getText(), n = 1;					//	a RichText ("[P]name: [O]description"): its source is .intext
+	local len = t && t["intext"] ? t.intext.len() - 6 : 0;
+	n = len > 200 ? 3 : len > 100 ? 2 : 1;
+	if( n == UI.poplines) return;
+	UI.poplines = n;
+	local grow = n == 3 ? 52 : n == 2 ? 26 : 0;
+	pop.setRect( 0, 0, 976, 96 + grow);
+	lbl.setRect( 28, 22, 918, 53 + ( n == 3 ? 27 : 0));
+	cost.setRect( 554, 50 + grow, 400, 24);
+	grp.setRect( 0, 0, 976, 96 + grow);
+	//	The whole panel group clips its children, so the popover cannot simply move up: the group grows upward by
+	//	`grow` and everything else in it moves down by the same amount (on screen only the popover's top edge moves).
+	local og = ui.findChild( "descg"), g = ui.findChild( "g");
+	if( !og || !g) return;
+	local names = ["infog", "window", "frame", "lists", "grayg"];
+	if( !UI["popbase"]){
+		UI.popbase <- { gy = g.pos.y, gh = g.bnd.h, kids = {} };
+		foreach( nm in names){ local c = g.findChild( nm); if( c) UI.popbase.kids[nm] <- c.pos.y; }
+	}
+	g.pos.y = UI.popbase.gy - grow * PANEL_SCALE;
+	g.bnd.h = UI.popbase.gh + grow;
+	g.matdirty = true;
+	foreach( nm, y in UI.popbase.kids){ local c = g.findChild( nm); if( c){ c.pos.y = y + grow; c.matdirty = true; } }
+	og.setRect( 26, 8, 976, 96 + grow);
+	og.matdirty = true;
+	grp.matdirty = true;
+};
+
 UI.tickPanel <- function( b){
 	local ui = b.battleui, sk = ui.findChild( "skilllist"), el = ui.findChild( "enemylist");
 	local tgt = el.visible, choosing = !!b["cmdchr"];
@@ -293,12 +328,23 @@ UI.style <- function( b){
 		try{
 			UI.tickEnemies( b);
 			UI.tickPanel( b);
+			UI.tickPop( b);
 			UI.tickRows();
 		}catch( ex){ printexception( ex); return false; }
 		return true;
 	});
 	if( ::arguments.indexOf( "-rtuidump") >= 0){
 		print( sprintf( "\n[UIPOS] g %f %f win %f %f\n", g.pos.x, g.pos.y, win.pos.x, win.pos.y));
+		print( sprintf( "[UIPOS] POP pos %f %f bnd %f %f %f %f\n", pop.pos.x, pop.pos.y, pop.bnd.x, pop.bnd.y, pop.bnd.w, pop.bnd.h));
+		foreach( c in pop.children) print( sprintf( "[UIPOS] POP.%s %s pos %f %f bnd %f %f %f %f\n", c["name"] ?? "-", typeof( c), c.pos.x, c.pos.y, c.bnd.x, c.bnd.y, c.bnd.w, c.bnd.h));
+		local _w = { f = null };
+		_w.f = function( v, d){
+			foreach( c in v.children){
+				print( sprintf( "[UIPOS] T%d %s pos %f %f bnd %f %f\n", d, c["name"] ?? "-", c.pos.x, c.pos.y, c.bnd.w, c.bnd.h));
+				if( d < 1) _w.f( c, d + 1);
+			}
+		};
+		_w.f( ui.findChild( "descg"), 0);
 		local row = ui.findChild( "memberlist0");
 		foreach( c in row.children) print( sprintf( "[UIPOS] %s pos %f %f bnd %f %f %f %f\n", c["name"] ?? "-", c.pos.x, c.pos.y, c.bnd.x, c.bnd.y, c.bnd.w, c.bnd.h));
 	}
@@ -329,9 +375,10 @@ local _setup = ::TurnBattleRunner.setupBattleUI;
 };
 
 //	Test: -rtuicmd N picks the Nth battle command by itself, so a screenshot can show the skill list or the target choice.
-local _uic = ::arguments.indexOf( "-rtuicmd");
-if( _uic >= 0){
-	local want = int( ::arguments[_uic + 1]), once = { done = false, back = false };
+local _uic = ::arguments.indexOf( "-rtuicmd"), _uicw = -1;
+if( _uic >= 0) _uicw = int( ::arguments[_uic + 1]);
+if( _uicw >= 0){
+	local want = _uicw, once = { done = false, back = false };
 	local _loop = ::RPGMain.uiLoop;
 	::RPGMain.uiLoop <- function( funcmap){
 		local b = ::rpgstage ? ::rpgstage["battle"] : null;

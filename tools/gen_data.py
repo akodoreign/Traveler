@@ -896,7 +896,7 @@ def crab_armor(ar):
     ar["A172"]["desc"] = "A plain white headband, tied tight before a hard day. (Critical +3)"
     opt("A172", opttype="opt_status", propid="CRI", val=3, valtype="supply")
     for aid, look in (("A102", "jingasa"), ("A103", "jingasa"), ("A113", "jingasa"), ("A110", "kabuto"),
-                      ("A170", "kasa"), ("A171", "eboshi"), ("A172", "hachimaki")):
+                      ("A170", "jingasa"), ("A171", "eboshi")):   # (user) similar hats share a sheet; the Hachimaki is not drawn
         ar[aid]["rt_look"] = look
 
 
@@ -1006,7 +1006,7 @@ def crab_stores(st):
     store("R116", "Daidoji Armoury (Crane T2)", ["W110", "W102", "A109", "A110", "W114"])
     store("R117", "Garden Under Shadow Fish Market", ["I101", "I125", "I131", "I126", "I018"])
     store("R115", "Pleasant Eaves Peddler (Lion goods)", ["W101", "W100", "W102", "A101", "I100", "I018"])
-    store("R114", "Kyuden Hida Arms (T4)", ["W127", "W128", "W125", "W126", "A116", "A115", "I130", "I131", "I104"])
+    store("R114", "Kyuden Hida Arms (T4)", ["W158", "W127", "W128", "W125", "W126", "A116", "A115", "I130", "I131", "I104"])
     store("R113", "Wall Quartermaster (T3)", ["A115", "I130", "W120", "W122", "W123", "A112", "I131", "I104", "I128"])
     for rid, extra in (("R102", ["A170"]), ("R162", ["A170"]), ("R156", ["A170"]), ("R138", ["A170"]),
                        ("R100", ["A172"]), ("R126", ["A172"]), ("R128", ["A172"]),
@@ -2832,6 +2832,7 @@ def main():
         "W153": "Found in a rock the lightning split: a bow of pale wood that never warps. It shines a little at "
                 "night. (T5)",
         "W154": "A thunder monk's staff, iron-shod, struck by lightning twice. The monks call that a blessing. (T5)",
+        "W158": "The Crab's sacred sword, born in the Great Forge. Steel a shade darker than any other, and it has never once needed a whetstone.",
         "W155": "A blade too thin to see edge-on. The smith won't say who ordered it, or why they never collected. (T5)",
         "W156": "The smith's master katana with a seam of Wall jade along the back of the blade. (T5, Katana + Jade)",
         "W157": "A katana with a running hare on the tsuba, found on the throne of Shiro Hiruma. How a Usagi blade came "
@@ -2854,7 +2855,7 @@ def main():
              ("W127", "Kaiu War Spear", 3, "S101", "EV007", 106), ("W128", "Jade Kaiu Spear", 3, "S107", "EV007", 106),
              ("W129", "Bone-cage Tetsubo", 7, "S103", "EV001", 138),
              ("W130", "Heaven's Glory", 2, "S100", "EV000", 96),
-             ("W131", "Kakita Masterwork", 2, "S100", "EV000", 108), ("W132", "Daikyu-pattern Yumi", 6, "S104", "EV005", 98),
+             ("W131", "Kakita Blade", 2, "S100", "EV000", 108), ("W132", "Daikyu-pattern Yumi", 6, "S104", "EV005", 98),
              ("W133", "Kakita Wakizashi", 1, "S102", "EV016", 110), ("W134", "Excellent Katana", 2, "S100", "EV000", 124),
              ("W135", "Tsuruchi Longbow", 6, "S104", "EV005", 118),
              ("W136", "Matsu Sensei's Bokken", 2, "S100", "EV000", 36),
@@ -2874,7 +2875,8 @@ def main():
              ("W153", "Moonlit Yumi", 6, "S104", "EV005", 152), ("W154", "Thunder Monk's Bo", 5, "S105", "EV006", 150),
              ("W155", "Whisper Blade", 1, "S102", "EV016", 152),
              ("W156", "Jade-seamed Master Katana", 2, "S562", "EV000", 146),
-             ("W157", "The Hare Sword", 2, "S100", "EV000", 176)]
+             ("W157", "The Hare Sword", 2, "S100", "EV000", 176),
+             ("W158", "Kaiu Blade", 2, "S100", "EV000", 126)]
     for wid, name, et, sid, mdl, atk in wlist:
         x = copy.deepcopy(wbase)
         x.update({"name": name, "eqtype": et, "skillid": sid, "mdlid": mdl, "PATK": atk, "price": atk * 10,

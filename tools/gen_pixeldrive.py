@@ -80,7 +80,8 @@ WEAPON_DESC = {"yari": "a long yari spear with a black lacquered shaft and a ste
                "bo": "a long dark wooden bo staff", "yumi": "a tall yumi longbow", "tetsubo": "an iron-studded tetsubo club",
                "naginata": "a naginata polearm with a black shaft and a curved steel blade", "shakujo":
                "a shakujo staff with metal rings", "musket": "a matchlock musket", "kama": "a kama sickle",
-               "nodachi": "a huge nodachi sword", "fan": "a folding fan", "none": "", "bokken": "a wooden bokken sword"}
+               "nodachi": "a huge nodachi sword",
+               "kakita": "a masterwork katana with a mirror-bright blade, a white silk hilt and a gold crane sword guard", "fan": "a folding fan", "none": "", "bokken": "a wooden bokken sword"}
 
 
 def spec_from(d, sheet, kind, desc=None):
@@ -428,6 +429,10 @@ def look_spec(sp, T, w, h, outkey):
         for n, c in enumerate(cols):
             r = [hx(x) for x in s2.ramp(c)]
             v["groups"]["hat%d" % n] = {"base": hx(c), "ramp": r, "detect": r}
+    if w == "kakita":                                     # the rig draws these colours (gen_sprites2d, kakita_blade)
+        for n, c in enumerate([(236, 232, 222), (214, 176, 84), (232, 240, 250)]):
+            r = [hx(x) for x in s2.ramp(c)]
+            v["groups"]["kakita%d" % n] = {"base": hx(c), "ramp": r, "detect": r}
     items.insert(-1, ("holding " + WEAPON_DESC[w]) if WEAPON_DESC.get(w) else "unarmed, empty hands")
     v["prompt"] = ", ".join(items)
     v["negative"] = sp["negative"] + ", drinking straw, mascot, creature on hat, face on hat, eyes on hat, emblem on hat"
@@ -476,7 +481,7 @@ def comfy_idle():
 
 
 def bust_stage(log_error):
-    """Last stage: dialog bust candidates for review (never wired in here). Each round: wait for ComfyUI to drain,
+    """Between the base sheets and the outfit variants: dialog bust candidates for review (never wired in here). Each round: wait for ComfyUI to drain,
     download what finished, forget jobs that produced nothing (lost to a restart), queue what is still missing."""
     qj = os.path.join(g.PREVIEW, "queue.json")
     py = sys.executable
@@ -553,45 +558,56 @@ def run(workers=3, only=None, looks=False, busts=False):
             open(os.path.join(ps.PX, "ERRORS.txt"), "a").write("%s %s\n%s\n" % (time.strftime("%m-%d %H:%M"), what,
                                                                                traceback.format_exc()))
 
-    stuck = 0
-    while True:
-        q = [it for it in items if not os.path.exists(os.path.join(SHEETS, it[2], "complete"))]
-        if not q:
-            break
-        before = STATS["frames"]
+    def draw(todo):
+        """Passes over todo until every sheet in it is complete, or three passes in a row make no progress."""
+        stuck = 0
+        while True:
+            q = [it for it in todo if not os.path.exists(os.path.join(SHEETS, it[2], "complete"))]
+            if not q:
+                return
+            before = STATS["frames"]
 
-        def worker():
-            while True:
-                with LOCK:
-                    if not q:
-                        return
-                    it = q.pop(0)
-                try:
-                    if do_sheet(*it):
-                        open(os.path.join(SHEETS, it[2], "complete"), "w").write("1")
-                        with LOCK:
-                            open(os.path.join(ps.PX, "DONE.txt"), "a").write("%s %s\n" % (time.strftime("%m-%d %H:%M"),
-                                                                                         it[2]))
-                        print(time.strftime("%H:%M"), "sheet done", it[2], flush=True)
-                except Exception:
-                    log_error(it[2])
-        ts = [threading.Thread(target=worker) for _ in range(workers)]
-        for t in ts:
-            t.start()
-        for t in ts:
-            t.join()
-        if STATS["frames"] == before:                         # nothing moved: don't spin on a persistent error
-            stuck += 1
-            print(time.strftime("%H:%M"), "pass made no progress (%d); see ERRORS.txt" % stuck, flush=True)
-            if stuck >= 3:
-                break
-            time.sleep(600)
-        else:
-            stuck = 0
+            def worker():
+                while True:
+                    with LOCK:
+                        if not q:
+                            return
+                        it = q.pop(0)
+                    try:
+                        if do_sheet(*it):
+                            open(os.path.join(SHEETS, it[2], "complete"), "w").write("1")
+                            with LOCK:
+                                open(os.path.join(ps.PX, "DONE.txt"), "a").write(
+                                    "%s %s\n" % (time.strftime("%m-%d %H:%M"), it[2]))
+                            print(time.strftime("%H:%M"), "sheet done", it[2], flush=True)
+                    except Exception:
+                        log_error(it[2])
+            ts = [threading.Thread(target=worker) for _ in range(workers)]
+            for t in ts:
+                t.start()
+            for t in ts:
+                t.join()
+            if STATS["frames"] == before:                     # nothing moved: don't spin on a persistent error
+                stuck += 1
+                print(time.strftime("%H:%M"), "pass made no progress (%d); see ERRORS.txt" % stuck, flush=True)
+                if stuck >= 3:
+                    return
+                time.sleep(600)
+            else:
+                stuck = 0
+
+    # (user, 2026-11-09) travelers, NPCs and enemies; then the dialog busts; the outfit variants (70% of the frames) last
+    def early(k):                                         # a look nobody else has: drawn with the base sheets
+        return "__" not in k or "__kakita" in k
+
+    draw([it for it in items if early(it[2])])
     progress()
-    print(time.strftime("%H:%M"), "sprite sheets finished", flush=True)
+    print(time.strftime("%H:%M"), "base sprite sheets finished", flush=True)
     if busts:
         bust_stage(log_error)
+    draw([it for it in items if not early(it[2])])
+    progress()
+    print(time.strftime("%H:%M"), "sprite sheets finished", flush=True)
 
 
 def progress():

@@ -25,6 +25,7 @@ def main():
     run("gen_data.py")
     run("gen_render.py")
     run("apply_bust_emotions.py")
+    run("apply_dialog_fixes.py")
 
 
 if __name__ == "__main__":

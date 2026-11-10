@@ -15845,7 +15845,7 @@
 											"text": "You don't know our way.",
 											"name": "Kakita Rensei",
 											"uiclose": 2,
-											"emo": "angry"
+											"emo": "neutral"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -17253,7 +17253,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "(Pleasant Eaves has had enough. Make amends at the inn.)",
+														"text": "(Word of the Crane with the speeches has got around. Make amends at the inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -17524,7 +17524,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "(Pleasant Eaves has had enough. Make amends at the inn.)",
+														"text": "(Word of the Crane with the speeches has got around. Make amends at the inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -27365,6 +27365,13 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
+								"text": "The village granary. Imuro has left the lid off a crate of rice balls.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
 								"text": "Take them. You'll need them more than the Lion tax-man.",
 								"name": "Imuro",
 								"uiclose": 2
@@ -27949,7 +27956,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "(Green Ronin's village has had enough. Make amends at the inn.)",
+														"text": "(Word of the Crane with the speeches has got around. Make amends at the inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -28051,7 +28058,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "(Green Ronin's village thinks a little less of the stiff young Crane.)",
+																	"text": "(The Green Ronin's village thinks a little less of the stiff young Crane.)",
 																	"name": "",
 																	"uiclose": 2
 																}
@@ -33428,7 +33435,7 @@
 																			{
 																				"cmd": "cmd_showmsg",
 																				"key": "message_talk",
-																				"text": "Certainty is worse.",
+																				"text": "It says Heaven decides. My father thinks Heaven sounds like him. Certainty is worse than cruelty, Kakita-san.",
 																				"name": "Akodo Seoko",
 																				"uiclose": 2
 																			},
@@ -40418,10 +40425,24 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
+														"text": "She presses a folded scrap of oiled paper into his hand.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
 														"text": "My father's. A copy of one corner. For luck.",
 														"name": "Hiruma Natsuko",
 														"uiclose": 2,
 														"emo": "happy"
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "He hands her a small porcelain cup, wrapped in white silk.",
+														"name": "",
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -40733,7 +40754,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "(Garden Under Shadow docks has had enough. Make amends at the inn.)",
+														"text": "(Word of the Crane with the speeches has got around. Make amends at the inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -40835,7 +40856,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "(Garden Under Shadow docks thinks a little less of the stiff young Crane.)",
+																	"text": "(Garden Under Shadow thinks a little less of the stiff young Crane.)",
 																	"name": "",
 																	"uiclose": 2
 																}
@@ -41009,7 +41030,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "(Suitengu shrine has had enough. Make amends at the inn.)",
+														"text": "(Word of the Crane with the speeches has got around. Make amends at the inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -41111,7 +41132,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "(Suitengu shrine thinks a little less of the stiff young Crane.)",
+																	"text": "(Garden Under Shadow thinks a little less of the stiff young Crane.)",
 																	"name": "",
 																	"uiclose": 2
 																}
@@ -47156,7 +47177,7 @@
 														"text": "No.",
 														"name": "Hiruma Natsuko",
 														"uiclose": 2,
-														"emo": "surprised"
+														"emo": "determined"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -47164,7 +47185,7 @@
 														"text": "No.",
 														"name": "Kakita Rensei",
 														"uiclose": 2,
-														"emo": "surprised"
+														"emo": "determined"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -47188,7 +47209,7 @@
 														"text": "No.",
 														"name": "Kakita Rensei",
 														"uiclose": 2,
-														"emo": "surprised"
+														"emo": "determined"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -49577,7 +49598,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A ship. A crew. A grizzled Ship'S Master who looks at Kakita Rensei the way a horse looks at a new rider.",
+											"text": "A ship. A crew. A grizzled ship's master who looks at Kakita Rensei the way a horse looks at a new rider.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -51615,7 +51636,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "(Crane port docks has had enough. Make amends at the inn.)",
+														"text": "(Word of the Crane with the speeches has got around. Make amends at the inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -51717,7 +51738,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "(Crane port docks thinks a little less of the stiff young Crane.)",
+																	"text": "(The Crane port thinks a little less of the stiff young Crane.)",
 																	"name": "",
 																	"uiclose": 2
 																}
@@ -51891,7 +51912,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "(Suitengu shrine has had enough. Make amends at the inn.)",
+														"text": "(Word of the Crane with the speeches has got around. Make amends at the inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -51993,7 +52014,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "(Suitengu shrine thinks a little less of the stiff young Crane.)",
+																	"text": "(The Crane port thinks a little less of the stiff young Crane.)",
 																	"name": "",
 																	"uiclose": 2
 																}
@@ -78685,7 +78706,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "(Kyuden Doji tea house has had enough. Make amends at the inn.)",
+														"text": "(Word of the Crane with the speeches has got around. Make amends at the inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -78787,7 +78808,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "(Kyuden Doji tea house thinks a little less of the stiff young Crane.)",
+																	"text": "(Kyuden Doji thinks a little less of the stiff young Crane.)",
 																	"name": "",
 																	"uiclose": 2
 																}
@@ -78961,7 +78982,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "(castle town's lamps has had enough. Make amends at the inn.)",
+														"text": "(Word of the Crane with the speeches has got around. Make amends at the inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -79063,7 +79084,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "(castle town's lamps thinks a little less of the stiff young Crane.)",
+																	"text": "(Kyuden Doji thinks a little less of the stiff young Crane.)",
 																	"name": "",
 																	"uiclose": 2
 																}
@@ -82013,7 +82034,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A play about a demon, banned for four hundred years. Rensei rehearsed it in secret, refused his father, and drew first blood - and found a new hilt-wrap on his sword with no note at all.",
+											"text": "A play about a demon, banned for four hundred years. Rensei rehearsed it in secret, faced his father on the white sand - and found a new hilt-wrap on his sword with no note at all.",
 											"name": "",
 											"uiclose": 2
 										}
@@ -104299,7 +104320,7 @@
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "The lady said no one... The lady said...",
-														"name": "Seduced sentry",
+														"name": "Seduced Sentry",
 														"uiclose": 2
 													},
 													{
@@ -118627,7 +118648,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "Kakita Morishu dies. Sariko's cry carries across the yard. Lady Sanae returns the sword to its box for the Kakita vaults.",
+																	"text": "Kakita Morishu dies before the sun is up. In the village, Sariko's cry carries a long way. Lady Sanae returns the sword to its box for the Kakita vaults.",
 																	"name": "",
 																	"uiclose": 2
 																},
@@ -118727,7 +118748,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Sent to make a fallen prodigy disappear, Rensei found a man who could cut twice and then shake for an hour - and stood beside him.",
+											"text": "Sent to make a fallen prodigy disappear, Rensei found a man who could cut twice and then shake for an hour - and had to decide what kind of Crane to be.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -118740,7 +118761,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Kitsuki Seigen and Matsu Kiku go their own ways. (Their side stories come later.)",
+											"text": "Kitsuki Seigen and Matsu Kiku take their leave for now. (Either will answer the Guest call again when you find them on the road.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -121700,7 +121721,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "Kakita Morishu dies. Sariko's cry carries across the yard. Lady Sanae returns the sword to its box for the Kakita vaults.",
+																	"text": "Kakita Morishu dies before the sun is up. In the village, Sariko's cry carries a long way. Lady Sanae returns the sword to its box for the Kakita vaults.",
 																	"name": "",
 																	"uiclose": 2
 																},
@@ -121800,7 +121821,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Sent to make a fallen prodigy disappear, Rensei found a man who could cut twice and then shake for an hour - and stood beside him.",
+											"text": "Sent to make a fallen prodigy disappear, Rensei found a man who could cut twice and then shake for an hour - and had to decide what kind of Crane to be.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -121813,7 +121834,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Kitsuki Seigen and Matsu Kiku go their own ways. (Their side stories come later.)",
+											"text": "Kitsuki Seigen and Matsu Kiku take their leave for now. (Either will answer the Guest call again when you find them on the road.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -129511,7 +129532,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A beat.",
+											"text": "A pause.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -129543,7 +129564,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "A beat.",
+														"text": "A pause.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -145318,7 +145339,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "He's impatient now. He'll do something tonight.",
+											"text": "He's here. In this room. The dead have stopped whispering.",
 											"name": "Akodo Ijako",
 											"uiclose": 2
 										},
@@ -145543,7 +145564,7 @@
 											"text": "We'll take it in jade.",
 											"name": "Akodo Shizue",
 											"uiclose": 2,
-											"emo": "happy"
+											"emo": "determined"
 										},
 										{
 											"cmd": "cmd_script",
@@ -145590,7 +145611,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Each time O-Tamai's guard breaks (Suki), a jade chain goes round him. Three chains hold him. (The red shadow eats SP and VP, not HP.)",
+											"text": "Each time O-Tamai's guard breaks (Suki), a jade chain goes round him. Three chains hold him. (The red shadow eats MP and VP, not HP.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -146058,7 +146079,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Each time O-Tamai's guard breaks (Suki), a jade chain goes round him. Three chains hold him. (The red shadow eats SP and VP, not HP.)",
+											"text": "Each time O-Tamai's guard breaks (Suki), a jade chain goes round him. Three chains hold him. (The red shadow eats MP and VP, not HP.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -149563,7 +149584,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Haruki's Affinity is Water and Void. Void spells cost VP, not SP, and grow stronger the more VP he holds.",
+											"text": "Haruki's Affinity is Water and Void. Void spells cost VP, not MP, and grow stronger the more VP he holds.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -154760,7 +154781,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "guard. I challenge you. First blood.",
+											"text": "Shiba-san. I challenge you. First blood.",
 											"name": "Akodo Shizue",
 											"uiclose": 2,
 											"emo": "determined"
@@ -159649,7 +159670,7 @@
 								"text": "\"Kaiki. Fifteen. We had no other way.\" \"I forged the chains. I have never forgiven myself for the boy.\"",
 								"name": "Isawa Haruki",
 								"uiclose": 2,
-								"emo": "sad"
+								"emo": "worried"
 							},
 							{
 								"cmd": "cmd_itemop",
@@ -160156,7 +160177,7 @@
 														"text": "This was my teacher's home.",
 														"name": "Isawa Haruki",
 														"uiclose": 2,
-														"emo": "sad"
+														"emo": "worried"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -173916,7 +173937,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Ranks of kneeling samurai under ancestor portraits. Far up the hall: Akodo Toturi, quiet, watchful. The camera slides past the great names and stops at the last cushion: Akodo Shizue.",
+											"text": "Ranks of kneeling samurai under ancestor portraits. Far up the hall: Akodo Toturi, quiet, watchful. Past all the great names, on the very last cushion: Akodo Shizue.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -178671,7 +178692,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "My wedding is in eleven weeks. Everyone keeps telling me.",
+								"text": "My wedding is before the thaw. Everyone keeps telling me.",
 								"name": "Akodo Nishi",
 								"uiclose": 2
 							},
@@ -181664,6 +181685,13 @@
 											"lvar": "G509",
 											"op": "=",
 											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "The oni squeals - \"I will return! I will devour your souls!\" - and is gone through the floor.",
+											"name": "",
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -186337,7 +186365,7 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					103,
+					91,
 					3,
 					23,
 					2
@@ -186430,11 +186458,27 @@
 			},
 			"#79#": {
 				"role": "itemchest",
-				"itemid": "I101",
-				"num": 2,
+				"itemid": "I446",
+				"num": 1,
 				"mdlid": "CV036",
 				"pos": [
-					99,
+					42,
+					3,
+					32,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-79"
+			},
+			"#80#": {
+				"role": "itemchest",
+				"itemid": "I448",
+				"num": 1,
+				"mdlid": "CV036",
+				"pos": [
+					107,
 					3,
 					11,
 					2
@@ -186442,7 +186486,23 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*itemchest-79"
+				"name": "*itemchest-80"
+			},
+			"#81#": {
+				"role": "itemchest",
+				"itemid": "I446",
+				"num": 1,
+				"mdlid": "CV036",
+				"pos": [
+					88,
+					3,
+					41,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-81"
 			}
 		},
 		"exitmap": {
@@ -186464,7 +186524,7 @@
 		"size": [
 			148,
 			64,
-			46
+			61
 		],
 		"vs": 23,
 		"weather": {
@@ -200028,7 +200088,7 @@
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Ha! A zeni a head, Lion girl.",
-											"name": "Bandit chief",
+											"name": "Bandit Chief",
 											"uiclose": 2
 										},
 										{
@@ -200085,7 +200145,7 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "The toll is waived, Lion. My lads guard the ford for the refugees now.",
-								"name": "Bandit chief",
+								"name": "Bandit Chief",
 								"uiclose": 2
 							}
 						]
@@ -231634,7 +231694,7 @@
 											"text": "Sorry, Rokuro-san.",
 											"name": "Akodo Shizue",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_battle1",
@@ -234625,7 +234685,7 @@
 											"text": "I couldn't stop the war, uncle. Only one battle.",
 											"name": "Akodo Shizue",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -256483,7 +256543,7 @@
 											"text": "I'm the reason she's two people.",
 											"name": "Isawa Haruki",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_itemop",
@@ -256677,7 +256737,7 @@
 								"text": "...Once. A long time ago.",
 								"name": "Isawa Haruki",
 								"uiclose": 2,
-								"emo": "sad"
+								"emo": "worried"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -256685,7 +256745,7 @@
 								"text": "You wouldn't remember.",
 								"name": "Isawa Haruki",
 								"uiclose": 2,
-								"emo": "sad"
+								"emo": "worried"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -257270,13 +257330,6 @@
 						],
 						"standani": null,
 						"cmdblock": [
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
-								"text": "Night falls over the treaty city.",
-								"name": "",
-								"uiclose": 2
-							},
 							{
 								"cmd": "cmd_screenfxon",
 								"color": 657231871,
@@ -267958,7 +268011,7 @@
 								"text": "Isawa Mieko.",
 								"name": "Isawa Haruki",
 								"uiclose": 2,
-								"emo": "sad"
+								"emo": "worried"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -267973,7 +268026,7 @@
 								"text": "My Void lashed out. It split her soul. And it cracked something under that house. Something that was sleeping.",
 								"name": "Isawa Haruki",
 								"uiclose": 2,
-								"emo": "sad"
+								"emo": "worried"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -267981,7 +268034,7 @@
 								"text": "The eclipse finished what I started.",
 								"name": "Isawa Haruki",
 								"uiclose": 2,
-								"emo": "sad"
+								"emo": "worried"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -271904,9 +271957,10 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Every hour he stays, it spreads further. I'm sorry. I'm so sorry.",
-											"name": "",
-											"uiclose": 2
+											"text": "Every hour I stay, it spreads further. I'm sorry. I'm so sorry.",
+											"name": "Isawa Haruki",
+											"uiclose": 2,
+											"emo": "worried"
 										}
 									]
 								],
@@ -272038,7 +272092,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -272164,7 +272218,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -272234,7 +272288,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -272325,7 +272379,7 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Mama says the dark goes away if I'm good. I've been very good.",
-								"name": "Kitsune Hana",
+								"name": "Little Hana",
 								"uiclose": 2
 							},
 							{
@@ -272420,7 +272474,7 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Mama says the dark goes away if I'm good. I've been very good.",
-								"name": "Kitsune Hana",
+								"name": "Little Hana",
 								"uiclose": 2
 							},
 							{
@@ -272489,7 +272543,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -272581,7 +272635,7 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "I'm still being good. Just in case.",
-								"name": "Kitsune Hana",
+								"name": "Little Hana",
 								"uiclose": 2
 							}
 						]
@@ -272793,7 +272847,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -273002,7 +273056,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -273118,7 +273172,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -273188,7 +273242,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -273338,7 +273392,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -273454,7 +273508,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -273524,7 +273578,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -275890,6 +275944,13 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
+								"text": "On the last mat, a healer with dark veins to her jaw presses a scroll into Haruki's hands.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
 								"text": "It won't cure this. Nothing cures this.",
 								"name": "Dying Healer",
 								"uiclose": 2
@@ -275930,7 +275991,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Haruki learns Hand of Jurojin: it eases the sick for 4 SP.",
+								"text": "Haruki learns Hand of Jurojin: it eases the sick for 4 MP.",
 								"name": "",
 								"uiclose": 2
 							}
@@ -278687,7 +278748,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -278846,7 +278907,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -279012,7 +279073,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -279082,7 +279143,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -279377,7 +279438,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Not enough SP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
+														"text": "Not enough MP. (Rejuvenating Tea restores it; the fever villages have no inn.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -301819,7 +301880,7 @@
 											"text": "You were so brave. To write a warning about yourself.",
 											"name": "Isawa Haruki",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -304453,7 +304514,7 @@
 											"text": "She's here. But she isn't.",
 											"name": "Isawa Haruki",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -312784,7 +312845,7 @@
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "...Please don't tell the Yoritomo.",
-											"name": "Captain",
+											"name": "Mantis captain",
 											"uiclose": 2
 										},
 										{
@@ -321456,7 +321517,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Quick cuts: Kitsuki Gendo shouting for a healer; Kosai \"can't find one\"; Gendo's hands steady as he sniffs the tea.",
+											"text": "Gendo shouts for a healer. Kosai \"can't find one\". Gendo's hands are steady as he sniffs the tea.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -349405,20 +349466,6 @@
 											"time": 1800
 										},
 										{
-											"cmd": "cmd_mapmove",
-											"dest": {
-												"mapid": "M315",
-												"pos": [
-													21.0,
-													null,
-													17.0,
-													0.0
-												]
-											},
-											"wipe": 1,
-											"remap": true
-										},
-										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -349471,6 +349518,20 @@
 											"text": "Objective: Kumpei's sail went into a sea-cave round the headland. (The east end of the shore lane.)",
 											"name": "",
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M315",
+												"pos": [
+													21.0,
+													null,
+													17.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
 										}
 									]
 								]
@@ -351826,7 +351887,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Training montage. Kitsuki Gendo drops the wakizashi twice. The third time, he doesn't.",
+								"text": "An afternoon of it. Kitsuki Gendo drops the wakizashi twice. The third time, he doesn't.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -351840,7 +351901,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "That's the second time someone's said that to me in a way that sounded like praise.",
+								"text": "I'll file that under praise. Nobody will check.",
 								"name": "Kitsuki Gendo",
 								"uiclose": 2,
 								"emo": "happy"
@@ -356589,9 +356650,9 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					94,
+					41,
 					3,
-					36,
+					38,
 					2
 				],
 				"page": [
@@ -356686,9 +356747,9 @@
 				"num": 2,
 				"mdlid": "CV036",
 				"pos": [
-					58,
+					59,
 					3,
-					39,
+					46,
 					2
 				],
 				"col": 0,
@@ -356702,9 +356763,9 @@
 				"num": 2,
 				"mdlid": "CV036",
 				"pos": [
-					79,
+					65,
 					3,
-					38,
+					34,
 					2
 				],
 				"col": 0,
@@ -356713,6 +356774,22 @@
 				"name": "*itemchest-81"
 			},
 			"#82#": {
+				"role": "itemchest",
+				"itemid": "N000",
+				"num": 200,
+				"mdlid": "CV036",
+				"pos": [
+					95,
+					3,
+					34,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-82"
+			},
+			"#83#": {
 				"role": "portal",
 				"pos": [
 					130,
@@ -356740,7 +356817,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-82"
+				"name": "*portal-83"
 			}
 		},
 		"exitmap": {
@@ -359470,13 +359547,13 @@
 			},
 			"#82#": {
 				"role": "itemchest",
-				"itemid": "I448",
-				"num": 1,
+				"itemid": "N000",
+				"num": 200,
 				"mdlid": "CV036",
 				"pos": [
-					130,
+					62,
 					3,
-					20,
+					47,
 					2
 				],
 				"col": 0,
@@ -359486,19 +359563,51 @@
 			},
 			"#83#": {
 				"role": "itemchest",
-				"itemid": "I445",
-				"num": 2,
+				"itemid": "N000",
+				"num": 200,
 				"mdlid": "CV036",
 				"pos": [
-					116,
+					115,
 					3,
-					32,
+					31,
 					2
 				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
 				"name": "*itemchest-83"
+			},
+			"#84#": {
+				"role": "itemchest",
+				"itemid": "I101",
+				"num": 2,
+				"mdlid": "CV036",
+				"pos": [
+					142,
+					3,
+					14,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-84"
+			},
+			"#85#": {
+				"role": "itemchest",
+				"itemid": "N000",
+				"num": 120,
+				"mdlid": "CV036",
+				"pos": [
+					41,
+					3,
+					12,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-85"
 			}
 		},
 		"exitmap": {
@@ -359520,7 +359629,7 @@
 		"size": [
 			180,
 			64,
-			52
+			70
 		],
 		"vs": 23,
 		"weather": {
@@ -362319,9 +362428,9 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					77,
+					88,
 					3,
-					10,
+					19,
 					2
 				],
 				"page": [
@@ -362412,19 +362521,35 @@
 			},
 			"#80#": {
 				"role": "itemchest",
-				"itemid": "N000",
-				"num": 200,
+				"itemid": "I445",
+				"num": 2,
 				"mdlid": "CV036",
 				"pos": [
-					88,
+					59,
 					3,
-					22,
+					35,
 					2
 				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
 				"name": "*itemchest-80"
+			},
+			"#81#": {
+				"role": "itemchest",
+				"itemid": "N000",
+				"num": 200,
+				"mdlid": "CV036",
+				"pos": [
+					39,
+					3,
+					32,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-81"
 			}
 		},
 		"exitmap": {
@@ -362446,7 +362571,7 @@
 		"size": [
 			132,
 			64,
-			44
+			58
 		],
 		"vs": 23,
 		"weather": {
@@ -375937,7 +376062,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Coin first, Kitsuki-sama.",
+														"text": "Coin first, sir.",
 														"name": "Crane Ashigaru",
 														"uiclose": 2
 													}
@@ -378713,14 +378838,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "You're asking after Seppun Ushimo? ...",
-								"name": "Palace guard",
-								"uiclose": 2
-							},
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
-								"text": "Ushimo? He lives by the south gate with his wife. Small house, shutters closed. She's dying, they say.",
+								"text": "Seppun Ushimo? He lives by the south gate with his wife. Small house, shutters closed. She's dying, they say.",
 								"name": "Palace guard",
 								"uiclose": 2
 							},
@@ -379083,7 +379201,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Coin first, Kitsuki-sama.",
+														"text": "Coin first, sir.",
 														"name": "Isawa Novice",
 														"uiclose": 2
 													}
@@ -383949,7 +384067,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Three thousand, magistrate. Real silvered glass!",
+														"text": "Three thousand, stranger. Real silvered glass!",
 														"name": "Kakita Miyoshi",
 														"uiclose": 2
 													}
@@ -402555,6 +402673,13 @@
 											"time": 1800
 										},
 										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the war council, in the palace hall.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
 											"cmd": "cmd_mapmove",
 											"dest": {
 												"mapid": "M326",
@@ -402567,13 +402692,6 @@
 											},
 											"wipe": 1,
 											"remap": true
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "Objective: the war council, in the palace hall.",
-											"name": "",
-											"uiclose": 2
 										}
 									]
 								]
@@ -407937,7 +408055,7 @@
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "The Champion's voice is... different.",
-														"name": "Crane Soldier",
+														"name": "Crane soldier",
 														"uiclose": 2
 													},
 													{
@@ -409405,7 +409523,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Coin first, Kitsuki-sama.",
+														"text": "Coin first, sir.",
 														"name": "Centipede Scout",
 														"uiclose": 2
 													}
@@ -409545,7 +409663,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Coin first, Kitsuki-sama.",
+														"text": "Coin first, sir.",
 														"name": "Crane Field Medic",
 														"uiclose": 2
 													}
@@ -417253,13 +417371,13 @@
 			},
 			"#81#": {
 				"role": "itemchest",
-				"itemid": "I447",
-				"num": 2,
+				"itemid": "I446",
+				"num": 1,
 				"mdlid": "CV036",
 				"pos": [
-					70,
-					3,
 					44,
+					3,
+					38,
 					2
 				],
 				"col": 0,
@@ -417273,9 +417391,9 @@
 				"num": 2,
 				"mdlid": "CV036",
 				"pos": [
-					85,
+					64,
 					3,
-					39,
+					44,
 					2
 				],
 				"col": 0,
@@ -419852,7 +419970,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The scene shimmers. Somewhere in the future, something shifts.",
+														"text": "The room shimmers. Somewhere in the future, something shifts.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -424963,6 +425081,13 @@
 											"key": "message_talk",
 											"text": "You'd be terrible. You never laugh at your own jokes.",
 											"name": "Togashi Yosai",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Later, alone, Gendo opens his notebook and writes down Akuro's prophecy.",
+											"name": "",
 											"uiclose": 2
 										},
 										{
@@ -431472,6 +431597,13 @@
 											"time": 1800
 										},
 										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: south to Kudo, by Traitor's Grove and the border town of Shutai. The castle town has an outfitter, an apothecary and an inn.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
 											"cmd": "cmd_mapmove",
 											"dest": {
 												"mapid": "M347",
@@ -431484,13 +431616,6 @@
 											},
 											"wipe": 1,
 											"remap": true
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "Objective: south to Kudo, by Traitor's Grove and the border town of Shutai. The castle town has an outfitter, an apothecary and an inn.",
-											"name": "",
-											"uiclose": 2
 										}
 									]
 								]
@@ -439967,14 +440092,14 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+														"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 														"name": "",
 														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "...Do you mind? Go and pour tea somewhere else.",
+														"text": "...Do you mind? This is a private conversation.",
 														"name": "Innkeeper",
 														"uiclose": 2
 													},
@@ -445817,14 +445942,14 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+														"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 														"name": "",
 														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "...Do you mind? Go and pour tea somewhere else.",
+														"text": "...Do you mind? This is a private conversation.",
 														"name": "Suzume Rika",
 														"uiclose": 2
 													},
@@ -445971,14 +446096,14 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+														"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 														"name": "",
 														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "...Do you mind? Go and pour tea somewhere else.",
+														"text": "...Do you mind? This is a private conversation.",
 														"name": "Kasuga Yodo",
 														"uiclose": 2
 													},
@@ -449168,7 +449293,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+														"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -449283,15 +449408,15 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "The governor hasn't been himself since spring.",
-								"name": "Kitsune Hana",
+								"text": "A Fox lady in dark green with gold leaves: Kitsune Hana. She bows, and makes to leave, the way she leaves every room the governor is in.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Kitsune Hana: older, in dark green with gold leaves. She bows and makes to leave, the way she leaves every room he is in.",
-								"name": "",
+								"text": "The governor hasn't been himself since spring.",
+								"name": "Kitsune Hana",
 								"uiclose": 2
 							},
 							{
@@ -471183,14 +471308,14 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+														"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 														"name": "",
 														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "...Do you mind? Go and pour tea somewhere else.",
+														"text": "...Do you mind? This is a private conversation.",
 														"name": "Bath attendant",
 														"uiclose": 2
 													},
@@ -477301,7 +477426,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "The city's people ignore the unmasked. Masks: the Merchant District, north. Worn in the city, a mask drinks a little of you (SP) each time you enter a district. A district shrine takes it off.",
+											"text": "The city's people ignore the unmasked. Masks: the Merchant District, north. Worn in the city, a mask drinks a little of you (MP) each time you enter a district. A district shrine takes it off.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -478278,7 +478403,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "(Masks off. Mitsue's own face, cold in the air. HP and SP restored.)",
+											"text": "(Masks off. Mitsue's own face, cold in the air. HP and MP restored.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -485009,14 +485134,14 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+																	"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 																	"name": "",
 																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "...Do you mind? Go and pour tea somewhere else.",
+																	"text": "...Do you mind? This is a private conversation.",
 																	"name": "Agasha Kusuri",
 																	"uiclose": 2
 																},
@@ -485174,14 +485299,14 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+														"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 														"name": "",
 														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "...Do you mind? Go and pour tea somewhere else.",
+														"text": "...Do you mind? This is a private conversation.",
 														"name": "Masked citizen",
 														"uiclose": 2
 													}
@@ -485303,14 +485428,14 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+														"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 														"name": "",
 														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "...Do you mind? Go and pour tea somewhere else.",
+														"text": "...Do you mind? This is a private conversation.",
 														"name": "Masked citizen",
 														"uiclose": 2
 													}
@@ -485432,14 +485557,14 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+														"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 														"name": "",
 														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "...Do you mind? Go and pour tea somewhere else.",
+														"text": "...Do you mind? This is a private conversation.",
 														"name": "Masked citizen",
 														"uiclose": 2
 													}
@@ -485640,7 +485765,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "(Masks off. Mitsue's own face, cold in the air. HP and SP restored.)",
+											"text": "(Masks off. Mitsue's own face, cold in the air. HP and MP restored.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -507490,14 +507615,14 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+																	"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 																	"name": "",
 																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "...Do you mind? Go and pour tea somewhere else.",
+																	"text": "...Do you mind? This is a private conversation.",
 																	"name": "Soshi officer",
 																	"uiclose": 2
 																},
@@ -507803,14 +507928,14 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+																	"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 																	"name": "",
 																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "...Do you mind? Go and pour tea somewhere else.",
+																	"text": "...Do you mind? This is a private conversation.",
 																	"name": "Quartermaster",
 																	"uiclose": 2
 																},
@@ -521960,7 +522085,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Not this chapter. Not without a hundred people and a great deal of jade.",
+											"text": "Not today. Not without a hundred people and a great deal of jade.",
 											"name": "Shosuro Mitsue",
 											"uiclose": 2,
 											"emo": "determined"
@@ -524352,7 +524477,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "The silence bubble: every other round, spells and spell-like skills (anything that costs SP) make no sound. The round before, the air goes still. Break the amulet-bearer to pop it for good.",
+											"text": "The silence bubble: every other round, spells and spell-like skills (anything that costs MP) make no sound. The round before, the air goes still. Break the amulet-bearer to pop it for good.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -527491,14 +527616,14 @@
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "The only fire hot enough is Tamori's Furnace, in Dragon lands. Destroy it there.",
-											"name": "Shosuro Norie",
+											"name": "Shosuro Norie (letter)",
 											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "And Mitsue - whatever you hear on the road, keep walking.",
-											"name": "Shosuro Norie",
+											"name": "Shosuro Norie (letter)",
 											"uiclose": 2
 										},
 										{
@@ -528177,7 +528302,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
+														"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -534086,7 +534211,7 @@
 											"text": "Rest now. I'll tell them.",
 											"name": "Shosuro Mitsue",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -534239,7 +534364,7 @@
 								"text": "No. He believed he delivered it.",
 								"name": "Shosuro Mitsue",
 								"uiclose": 2,
-								"emo": "sad"
+								"emo": "worried"
 							},
 							{
 								"cmd": "cmd_compute",
@@ -538013,7 +538138,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "A beat.",
+														"text": "A pause.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -545585,9 +545710,9 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					138,
+					135,
 					3,
-					33,
+					30,
 					2
 				],
 				"page": [
@@ -545682,9 +545807,9 @@
 				"num": 200,
 				"mdlid": "CV036",
 				"pos": [
-					139,
+					115,
 					3,
-					13,
+					23,
 					2
 				],
 				"col": 0,
@@ -545693,26 +545818,10 @@
 				"name": "*itemchest-86"
 			},
 			"#87#": {
-				"role": "itemchest",
-				"itemid": "I447",
-				"num": 2,
-				"mdlid": "CV036",
-				"pos": [
-					110,
-					3,
-					19,
-					2
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"name": "*itemchest-87"
-			},
-			"#88#": {
 				"role": "portal",
 				"pos": [
 					90,
-					5,
+					6,
 					1,
 					2
 				],
@@ -545736,9 +545845,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-88"
+				"name": "*portal-87"
 			},
-			"#89#": {
+			"#88#": {
 				"role": "portal",
 				"pos": [
 					90,
@@ -545766,7 +545875,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-89"
+				"name": "*portal-88"
 			}
 		},
 		"exitmap": {
@@ -555454,7 +555563,7 @@
 											"text": "I sold him rice cakes for a copper when we were nine.",
 											"name": "Ide Tamotsu",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -555462,7 +555571,7 @@
 											"text": "He paid in pebbles. I took them.",
 											"name": "Ide Tamotsu",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -558474,7 +558583,7 @@
 											"text": "Hate me, grandmother. I'm the one who's late.",
 											"name": "Ide Tamotsu",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_if",
@@ -580900,9 +581009,9 @@
 				"num": 1,
 				"mdlid": "CV036",
 				"pos": [
-					37,
+					123,
 					3,
-					36,
+					26,
 					2
 				],
 				"col": 0,
@@ -580911,10 +581020,26 @@
 				"name": "*itemchest-82"
 			},
 			"#83#": {
+				"role": "itemchest",
+				"itemid": "I448",
+				"num": 1,
+				"mdlid": "CV036",
+				"pos": [
+					98,
+					3,
+					18,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-83"
+			},
+			"#84#": {
 				"role": "portal",
 				"pos": [
 					82,
-					10,
+					6,
 					1,
 					2
 				],
@@ -580938,9 +581063,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-83"
+				"name": "*portal-84"
 			},
-			"#84#": {
+			"#85#": {
 				"role": "portal",
 				"pos": [
 					82,
@@ -580968,7 +581093,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-84"
+				"name": "*portal-85"
 			}
 		},
 		"exitmap": {
@@ -583384,9 +583509,9 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					41,
+					43,
 					3,
-					14,
+					50,
 					2
 				],
 				"page": [
@@ -583476,6 +583601,22 @@
 				"name": "*custom-80"
 			},
 			"#81#": {
+				"role": "itemchest",
+				"itemid": "I448",
+				"num": 1,
+				"mdlid": "CV036",
+				"pos": [
+					101,
+					3,
+					40,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-81"
+			},
+			"#82#": {
 				"role": "villager",
 				"mdlid": "EP212",
 				"pos": [
@@ -583493,9 +583634,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-81"
+				"name": "*villager-82"
 			},
-			"#82#": {
+			"#83#": {
 				"role": "villager",
 				"mdlid": "EP212",
 				"pos": [
@@ -583513,9 +583654,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-82"
+				"name": "*villager-83"
 			},
-			"#83#": {
+			"#84#": {
 				"role": "villager",
 				"mdlid": "EP212",
 				"pos": [
@@ -583533,9 +583674,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-83"
+				"name": "*villager-84"
 			},
-			"#84#": {
+			"#85#": {
 				"role": "portal",
 				"pos": [
 					82,
@@ -583563,7 +583704,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-84"
+				"name": "*portal-85"
 			}
 		},
 		"exitmap": {
@@ -583585,7 +583726,7 @@
 		"size": [
 			164,
 			64,
-			56
+			76
 		],
 		"vs": 23,
 		"weather": {
@@ -604894,9 +605035,9 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					36,
+					115,
 					3,
-					33,
+					31,
 					2
 				],
 				"page": [
@@ -604986,6 +605127,38 @@
 				"name": "*custom-84"
 			},
 			"#85#": {
+				"role": "itemchest",
+				"itemid": "I448",
+				"num": 1,
+				"mdlid": "CV036",
+				"pos": [
+					91,
+					3,
+					16,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-85"
+			},
+			"#86#": {
+				"role": "itemchest",
+				"itemid": "I447",
+				"num": 2,
+				"mdlid": "CV036",
+				"pos": [
+					41,
+					3,
+					37,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-86"
+			},
+			"#87#": {
 				"role": "villager",
 				"mdlid": "EP219",
 				"pos": [
@@ -605003,9 +605176,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-85"
+				"name": "*villager-87"
 			},
-			"#86#": {
+			"#88#": {
 				"role": "villager",
 				"mdlid": "EP219",
 				"pos": [
@@ -605023,9 +605196,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-86"
+				"name": "*villager-88"
 			},
-			"#87#": {
+			"#89#": {
 				"role": "villager",
 				"mdlid": "EP219",
 				"pos": [
@@ -605043,9 +605216,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-87"
+				"name": "*villager-89"
 			},
-			"#88#": {
+			"#90#": {
 				"role": "villager",
 				"mdlid": "EP212",
 				"pos": [
@@ -605069,68 +605242,14 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-88",
-				"memo": "barricade"
-			},
-			"#89#": {
-				"role": "villager",
-				"mdlid": "EP221",
-				"pos": [
-					84,
-					3,
-					40,
-					0
-				],
-				"moveaction": "stop",
-				"movespd": 0,
-				"reqs0": [
-					{
-						"lvar": "G1007",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"pop": null,
-				"standani": null,
-				"msg": "",
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"name": "*villager-89",
-				"memo": "barricade"
-			},
-			"#90#": {
-				"role": "villager",
-				"mdlid": "EP212",
-				"pos": [
-					85,
-					3,
-					40,
-					0
-				],
-				"moveaction": "stop",
-				"movespd": 0,
-				"reqs0": [
-					{
-						"lvar": "G1007",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"pop": null,
-				"standani": null,
-				"msg": "",
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
 				"name": "*villager-90",
 				"memo": "barricade"
 			},
 			"#91#": {
 				"role": "villager",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
-					86,
+					84,
 					3,
 					40,
 					0
@@ -605155,9 +605274,9 @@
 			},
 			"#92#": {
 				"role": "villager",
-				"mdlid": "EP221",
+				"mdlid": "EP212",
 				"pos": [
-					87,
+					85,
 					3,
 					40,
 					0
@@ -605184,7 +605303,7 @@
 				"role": "villager",
 				"mdlid": "EP212",
 				"pos": [
-					88,
+					86,
 					3,
 					40,
 					0
@@ -605209,10 +605328,10 @@
 			},
 			"#94#": {
 				"role": "villager",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
-					89,
-					10,
+					87,
+					3,
 					40,
 					0
 				],
@@ -605236,6 +605355,60 @@
 			},
 			"#95#": {
 				"role": "villager",
+				"mdlid": "EP212",
+				"pos": [
+					88,
+					3,
+					40,
+					0
+				],
+				"moveaction": "stop",
+				"movespd": 0,
+				"reqs0": [
+					{
+						"lvar": "G1007",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"msg": "",
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*villager-95",
+				"memo": "barricade"
+			},
+			"#96#": {
+				"role": "villager",
+				"mdlid": "EP212",
+				"pos": [
+					89,
+					10,
+					40,
+					0
+				],
+				"moveaction": "stop",
+				"movespd": 0,
+				"reqs0": [
+					{
+						"lvar": "G1007",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"msg": "",
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*villager-96",
+				"memo": "barricade"
+			},
+			"#97#": {
+				"role": "villager",
 				"mdlid": "EP347",
 				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
 				"pos": [
@@ -605258,14 +605431,14 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-95",
+				"name": "*villager-97",
 				"memo": "barricade"
 			},
-			"#96#": {
+			"#98#": {
 				"role": "portal",
 				"pos": [
 					83,
-					10,
+					6,
 					1,
 					2
 				],
@@ -605289,9 +605462,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-96"
+				"name": "*portal-98"
 			},
-			"#97#": {
+			"#99#": {
 				"role": "portal",
 				"pos": [
 					83,
@@ -605319,7 +605492,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-97",
+				"name": "*portal-99",
 				"reqs0": [
 					{
 						"lvar": "G1007",
@@ -608299,13 +608472,13 @@
 			},
 			"#86#": {
 				"role": "itemchest",
-				"itemid": "I446",
+				"itemid": "I448",
 				"num": 1,
 				"mdlid": "CV036",
 				"pos": [
-					78,
+					112,
 					3,
-					14,
+					24,
 					2
 				],
 				"col": 0,
@@ -608315,13 +608488,13 @@
 			},
 			"#87#": {
 				"role": "itemchest",
-				"itemid": "I101",
-				"num": 2,
+				"itemid": "N000",
+				"num": 200,
 				"mdlid": "CV036",
 				"pos": [
-					120,
+					132,
 					3,
-					12,
+					11,
 					2
 				],
 				"col": 0,
@@ -608330,30 +608503,26 @@
 				"name": "*itemchest-87"
 			},
 			"#88#": {
-				"role": "villager",
-				"mdlid": "EP210",
+				"role": "itemchest",
+				"itemid": "I446",
+				"num": 1,
+				"mdlid": "CV036",
 				"pos": [
-					56,
+					40,
 					3,
-					30,
-					0
+					15,
+					2
 				],
-				"moveaction": "stop",
-				"movespd": 0,
-				"reqs0": null,
-				"pop": null,
-				"standani": null,
-				"msg": "",
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-88"
+				"name": "*itemchest-88"
 			},
 			"#89#": {
 				"role": "villager",
 				"mdlid": "EP210",
 				"pos": [
-					58,
+					56,
 					3,
 					30,
 					0
@@ -608373,7 +608542,7 @@
 				"role": "villager",
 				"mdlid": "EP210",
 				"pos": [
-					60,
+					58,
 					3,
 					30,
 					0
@@ -608393,7 +608562,7 @@
 				"role": "villager",
 				"mdlid": "EP210",
 				"pos": [
-					62,
+					60,
 					3,
 					30,
 					0
@@ -608413,7 +608582,7 @@
 				"role": "villager",
 				"mdlid": "EP210",
 				"pos": [
-					64,
+					62,
 					3,
 					30,
 					0
@@ -608433,7 +608602,7 @@
 				"role": "villager",
 				"mdlid": "EP210",
 				"pos": [
-					66,
+					64,
 					3,
 					30,
 					0
@@ -608450,6 +608619,26 @@
 				"name": "*villager-93"
 			},
 			"#94#": {
+				"role": "villager",
+				"mdlid": "EP210",
+				"pos": [
+					66,
+					3,
+					30,
+					0
+				],
+				"moveaction": "stop",
+				"movespd": 0,
+				"reqs0": null,
+				"pop": null,
+				"standani": null,
+				"msg": "",
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*villager-94"
+			},
+			"#95#": {
 				"role": "villager",
 				"mdlid": "EP212",
 				"pos": [
@@ -608473,41 +608662,14 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-94",
-				"memo": "barricade"
-			},
-			"#95#": {
-				"role": "villager",
-				"mdlid": "EP221",
-				"pos": [
-					84,
-					3,
-					40,
-					0
-				],
-				"moveaction": "stop",
-				"movespd": 0,
-				"reqs0": [
-					{
-						"lvar": "G1008",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"pop": null,
-				"standani": null,
-				"msg": "",
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
 				"name": "*villager-95",
 				"memo": "barricade"
 			},
 			"#96#": {
 				"role": "villager",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
-					85,
+					84,
 					3,
 					40,
 					0
@@ -608534,7 +608696,7 @@
 				"role": "villager",
 				"mdlid": "EP212",
 				"pos": [
-					86,
+					85,
 					3,
 					40,
 					0
@@ -608559,9 +608721,9 @@
 			},
 			"#98#": {
 				"role": "villager",
-				"mdlid": "EP221",
+				"mdlid": "EP212",
 				"pos": [
-					87,
+					86,
 					3,
 					40,
 					0
@@ -608586,9 +608748,9 @@
 			},
 			"#99#": {
 				"role": "villager",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
-					88,
+					87,
 					3,
 					40,
 					0
@@ -608615,8 +608777,8 @@
 				"role": "villager",
 				"mdlid": "EP212",
 				"pos": [
-					89,
-					10,
+					88,
+					3,
 					40,
 					0
 				],
@@ -608640,11 +608802,38 @@
 			},
 			"#101#": {
 				"role": "villager",
+				"mdlid": "EP212",
+				"pos": [
+					89,
+					6,
+					40,
+					0
+				],
+				"moveaction": "stop",
+				"movespd": 0,
+				"reqs0": [
+					{
+						"lvar": "G1008",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"msg": "",
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*villager-101",
+				"memo": "barricade"
+			},
+			"#102#": {
+				"role": "villager",
 				"mdlid": "EP347",
 				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
 				"pos": [
 					90,
-					10,
+					6,
 					39,
 					0
 				],
@@ -608662,14 +608851,14 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-101",
+				"name": "*villager-102",
 				"memo": "barricade"
 			},
-			"#102#": {
+			"#103#": {
 				"role": "portal",
 				"pos": [
 					83,
-					5,
+					6,
 					1,
 					2
 				],
@@ -608693,9 +608882,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-102"
+				"name": "*portal-103"
 			},
-			"#103#": {
+			"#104#": {
 				"role": "portal",
 				"pos": [
 					83,
@@ -608723,7 +608912,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-103",
+				"name": "*portal-104",
 				"reqs0": [
 					{
 						"lvar": "G1008",
@@ -611140,9 +611329,9 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					38,
+					90,
 					3,
-					13,
+					20,
 					2
 				],
 				"page": [
@@ -611232,6 +611421,22 @@
 				"name": "*custom-78"
 			},
 			"#79#": {
+				"role": "itemchest",
+				"itemid": "I445",
+				"num": 2,
+				"mdlid": "CV036",
+				"pos": [
+					94,
+					3,
+					50,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-79"
+			},
+			"#80#": {
 				"role": "portal",
 				"pos": [
 					74,
@@ -611259,7 +611464,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-79"
+				"name": "*portal-80"
 			}
 		},
 		"exitmap": {
@@ -611281,7 +611486,7 @@
 		"size": [
 			148,
 			64,
-			52
+			70
 		],
 		"vs": 23,
 		"weather": {
@@ -641512,7 +641717,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Ume-baa would be proud. She'd also tell you to eat something.",
+								"text": "Ume-baa will be proud when she hears. She'll also tell you to eat something.",
 								"name": "Auntie Fumi",
 								"uiclose": 2
 							}
@@ -641553,6 +641758,13 @@
 						"reqs": null,
 						"standani": null,
 						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A thin girl sits by the shrine fire, wrapped in a quilt: Akari.",
+								"name": "",
+								"uiclose": 2
+							},
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
@@ -666945,9 +667157,9 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					89,
+					102,
 					3,
-					41,
+					39,
 					2
 				],
 				"page": [
@@ -667038,13 +667250,13 @@
 			},
 			"#84#": {
 				"role": "itemchest",
-				"itemid": "I446",
-				"num": 1,
+				"itemid": "N000",
+				"num": 120,
 				"mdlid": "CV036",
 				"pos": [
-					40,
+					78,
 					3,
-					32,
+					44,
 					2
 				],
 				"col": 0,
@@ -667053,22 +667265,6 @@
 				"name": "*itemchest-84"
 			},
 			"#85#": {
-				"role": "itemchest",
-				"itemid": "I101",
-				"num": 2,
-				"mdlid": "CV036",
-				"pos": [
-					105,
-					3,
-					31,
-					2
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"name": "*itemchest-85"
-			},
-			"#86#": {
 				"role": "portal",
 				"pos": [
 					142,
@@ -667096,7 +667292,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-86"
+				"name": "*portal-85"
 			}
 		},
 		"exitmap": {
@@ -674793,9 +674989,9 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					45,
+					69,
 					3,
-					31,
+					33,
 					2
 				],
 				"page": [
@@ -674890,9 +675086,9 @@
 				"num": 200,
 				"mdlid": "CV036",
 				"pos": [
-					88,
+					45,
 					3,
-					38,
+					40,
 					2
 				],
 				"col": 0,
@@ -724044,7 +724240,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "A beat.",
+								"text": "A pause.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -729842,7 +730038,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "(The finale is cleared. It can be played again from the Shinomen, for the other ally shots and codas. The post-game regions - the Shadowlands deep, Hiruma Castle, Lv 61-80 - aren't built yet.)",
+											"text": "(The finale is cleared. It can be played again from the Shinomen, for the other ally shots and codas. Two more roads open from the shrine gate: the deep Shadowlands, and a storm off the Crane coast.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -753450,7 +753646,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "A beat.",
+														"text": "A pause.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -753527,7 +753723,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A beat.",
+											"text": "A pause.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -755093,7 +755289,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "A beat.",
+														"text": "A pause.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -755547,7 +755743,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A beat.",
+											"text": "A pause.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -760978,7 +761174,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Hiruma. Not today. Come back when the court's done with you.",
+								"text": "Hiruma. Not today. The Wall will still be here when you get back.",
 								"name": "Hida Sachiko",
 								"uiclose": 2
 							}
@@ -761534,6 +761730,13 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
+											"text": "Inside the gate, Kage holds the map case out to Natsuko. Then he draws it back.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
 											"text": "Keep it.",
 											"name": "Hiruma Kage",
 											"uiclose": 2
@@ -761558,7 +761761,7 @@
 											"text": "Yes, my lord.",
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
-											"emo": "worried"
+											"emo": "neutral"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -761650,7 +761853,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Back from the Shadowlands and still in one piece. Mostly.",
+								"text": "Still in one piece, Natsuko? Mostly? Good. Keep it that way.",
 								"name": "Hiruma Ryoichi",
 								"uiclose": 2
 							}
@@ -771568,57 +771771,6 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "You're a scout. You notice things?",
-											"name": "Seppun Satomi",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "It's mostly what I do. That, and stab things.",
-											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "happy"
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "My nephew came to this coast a month ago. Seppun Ryozo.",
-											"name": "Seppun Satomi",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "An Imperial guardsman. He... had troubles in the capital. Strange ideas.",
-											"name": "Seppun Satomi",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "His letters stopped. If you hear of him, come to me. Only me.",
-											"name": "Seppun Satomi",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "Strange ideas like what?",
-											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "neutral"
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "Ideas a Seppun should not have. Please. Only me.",
-											"name": "Seppun Satomi",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
 											"text": "Objective: look around Hoshi-no-Ichi.",
 											"name": "",
 											"uiclose": 2
@@ -775987,7 +776139,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Coin first, Hiruma-sama.",
+														"text": "Coin first, Crab.",
 														"name": "Gonta",
 														"uiclose": 2
 													}
@@ -780991,7 +781143,7 @@
 				"mdlid": "CE000",
 				"pos": [
 					82,
-					10,
+					6,
 					1,
 					2
 				],
@@ -783682,6 +783834,54 @@
 				"name": "*custom-85"
 			},
 			"#86#": {
+				"role": "itemchest",
+				"itemid": "I100",
+				"num": 3,
+				"mdlid": "CV036",
+				"pos": [
+					110,
+					3,
+					26,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-86"
+			},
+			"#87#": {
+				"role": "itemchest",
+				"itemid": "I445",
+				"num": 2,
+				"mdlid": "CV036",
+				"pos": [
+					107,
+					3,
+					38,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-87"
+			},
+			"#88#": {
+				"role": "itemchest",
+				"itemid": "I101",
+				"num": 2,
+				"mdlid": "CV036",
+				"pos": [
+					126,
+					3,
+					13,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-88"
+			},
+			"#89#": {
 				"role": "portal",
 				"pos": [
 					82,
@@ -783709,7 +783909,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-86"
+				"name": "*portal-89"
 			}
 		},
 		"exitmap": {
@@ -786417,9 +786617,9 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					122,
+					121,
 					3,
-					12,
+					26,
 					2
 				],
 				"page": [
@@ -786510,13 +786710,13 @@
 			},
 			"#90#": {
 				"role": "itemchest",
-				"itemid": "I447",
-				"num": 2,
+				"itemid": "I100",
+				"num": 3,
 				"mdlid": "CV036",
 				"pos": [
-					106,
+					79,
 					3,
-					35,
+					38,
 					2
 				],
 				"col": 0,
@@ -786530,9 +786730,9 @@
 				"num": 2,
 				"mdlid": "CV036",
 				"pos": [
-					124,
+					123,
 					3,
-					29,
+					39,
 					2
 				],
 				"col": 0,
@@ -786541,6 +786741,22 @@
 				"name": "*itemchest-91"
 			},
 			"#92#": {
+				"role": "itemchest",
+				"itemid": "I447",
+				"num": 2,
+				"mdlid": "CV036",
+				"pos": [
+					36,
+					3,
+					13,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-92"
+			},
+			"#93#": {
 				"role": "portal",
 				"pos": [
 					82,
@@ -786568,13 +786784,13 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-92"
+				"name": "*portal-93"
 			},
-			"#93#": {
+			"#94#": {
 				"role": "portal",
 				"pos": [
 					82,
-					10,
+					3,
 					58,
 					0
 				],
@@ -786598,7 +786814,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-93"
+				"name": "*portal-94"
 			}
 		},
 		"exitmap": {
@@ -787155,7 +787371,7 @@
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Crab go back! Big-man busy!",
-											"name": "Nezumi warrior",
+											"name": "Nezumi Warrior",
 											"uiclose": 2
 										},
 										{
@@ -789290,13 +789506,13 @@
 			},
 			"#84#": {
 				"role": "itemchest",
-				"itemid": "I446",
+				"itemid": "I448",
 				"num": 1,
 				"mdlid": "CV036",
 				"pos": [
-					124,
+					113,
 					3,
-					35,
+					13,
 					2
 				],
 				"col": 0,
@@ -789310,9 +789526,9 @@
 				"num": 2,
 				"mdlid": "CV036",
 				"pos": [
-					100,
+					124,
 					3,
-					11,
+					40,
 					2
 				],
 				"col": 0,
@@ -789326,9 +789542,9 @@
 				"num": 2,
 				"mdlid": "CV036",
 				"pos": [
-					117,
+					32,
 					3,
-					21,
+					37,
 					2
 				],
 				"col": 0,
@@ -789337,6 +789553,22 @@
 				"name": "*itemchest-86"
 			},
 			"#87#": {
+				"role": "itemchest",
+				"itemid": "I101",
+				"num": 2,
+				"mdlid": "CV036",
+				"pos": [
+					81,
+					3,
+					11,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-87"
+			},
+			"#88#": {
 				"role": "villager",
 				"mdlid": "EP211",
 				"pos": [
@@ -789354,9 +789586,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-87"
+				"name": "*villager-88"
 			},
-			"#88#": {
+			"#89#": {
 				"role": "villager",
 				"mdlid": "EP210",
 				"pos": [
@@ -789374,13 +789606,13 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-88"
+				"name": "*villager-89"
 			},
-			"#89#": {
+			"#90#": {
 				"role": "portal",
 				"pos": [
 					82,
-					5,
+					6,
 					1,
 					2
 				],
@@ -789404,13 +789636,13 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-89"
+				"name": "*portal-90"
 			},
-			"#90#": {
+			"#91#": {
 				"role": "portal",
 				"pos": [
 					82,
-					10,
+					3,
 					58,
 					0
 				],
@@ -789434,7 +789666,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-90"
+				"name": "*portal-91"
 			}
 		},
 		"exitmap": {
@@ -790614,7 +790846,7 @@
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "...Young ones... choose scout...?",
-											"name": "Nezumi shaman",
+											"name": "Nezumi Shaman",
 											"uiclose": 2
 										},
 										{
@@ -790638,7 +790870,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The party turns to leave. Seppun Ryozo, bleeding, crawls into a side tunnel. The camera stays behind.",
+														"text": "Natsuko turns to leave. Seppun Ryozo, bleeding, crawls into a side tunnel, and nobody sees him go.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -792745,9 +792977,9 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					115,
+					101,
 					3,
-					19,
+					23,
 					2
 				],
 				"page": [
@@ -792838,13 +793070,13 @@
 			},
 			"#84#": {
 				"role": "itemchest",
-				"itemid": "I446",
-				"num": 1,
+				"itemid": "N000",
+				"num": 120,
 				"mdlid": "CV036",
 				"pos": [
-					92,
+					71,
 					3,
-					20,
+					54,
 					2
 				],
 				"col": 0,
@@ -792853,42 +793085,10 @@
 				"name": "*itemchest-84"
 			},
 			"#85#": {
-				"role": "itemchest",
-				"itemid": "I101",
-				"num": 2,
-				"mdlid": "CV036",
-				"pos": [
-					83,
-					3,
-					10,
-					2
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"name": "*itemchest-85"
-			},
-			"#86#": {
-				"role": "itemchest",
-				"itemid": "N000",
-				"num": 120,
-				"mdlid": "CV036",
-				"pos": [
-					102,
-					3,
-					38,
-					2
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"name": "*itemchest-86"
-			},
-			"#87#": {
 				"role": "portal",
 				"pos": [
 					77,
-					5,
+					6,
 					1,
 					2
 				],
@@ -792912,7 +793112,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-87"
+				"name": "*portal-85"
 			}
 		},
 		"exitmap": {
@@ -792934,7 +793134,7 @@
 		"size": [
 			154,
 			64,
-			60
+			82
 		],
 		"vs": 23,
 		"weather": {
@@ -833136,6 +833336,41 @@
 								"uiclose": 2
 							}
 						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G210",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "...I didn't do this, Hiruma-san. I don't even know what it is on my skin.",
+								"name": "Isawa Mutsuye",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "I know. Somebody threw it at you. I mean to find out who.",
+								"name": "Hiruma Natsuko",
+								"uiclose": 2,
+								"emo": "worried"
+							}
+						]
 					}
 				],
 				"reqs0": [
@@ -846473,7 +846708,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A beat.",
+											"text": "A pause.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -852360,7 +852595,7 @@
 											"text": "Tunnel of Quiescent Flame. You were the only honest thing here.",
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -852652,7 +852887,7 @@
 											"text": "You danced. Nobody else in that castle had the nerve.",
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										}
 									],
 									[]
@@ -855020,7 +855255,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Filed. Just like the Crab said. rat-way shortcut through donjon_1) [END]",
+											"text": "Filed. Somebody came down here with a rasp.",
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
 											"emo": "neutral"
@@ -860031,9 +860266,9 @@
 				"num": 2,
 				"mdlid": "CV036",
 				"pos": [
-					33,
+					103,
 					3,
-					14,
+					29,
 					2
 				],
 				"col": 0,
@@ -860042,10 +860277,58 @@
 				"name": "*itemchest-80"
 			},
 			"#81#": {
+				"role": "itemchest",
+				"itemid": "I445",
+				"num": 2,
+				"mdlid": "CV036",
+				"pos": [
+					117,
+					3,
+					21,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-81"
+			},
+			"#82#": {
+				"role": "itemchest",
+				"itemid": "N000",
+				"num": 120,
+				"mdlid": "CV036",
+				"pos": [
+					44,
+					3,
+					13,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-82"
+			},
+			"#83#": {
+				"role": "itemchest",
+				"itemid": "I445",
+				"num": 2,
+				"mdlid": "CV036",
+				"pos": [
+					89,
+					3,
+					14,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-83"
+			},
+			"#84#": {
 				"role": "portal",
 				"pos": [
 					82,
-					10,
+					6,
 					1,
 					2
 				],
@@ -860069,9 +860352,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-81"
+				"name": "*portal-84"
 			},
-			"#82#": {
+			"#85#": {
 				"role": "portal",
 				"pos": [
 					82,
@@ -860099,7 +860382,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-82"
+				"name": "*portal-85"
 			}
 		},
 		"exitmap": {
@@ -863235,7 +863518,7 @@
 				"pos": [
 					1,
 					10,
-					23,
+					30,
 					2
 				],
 				"page": [
@@ -863281,7 +863564,7 @@
 						0,
 						1.0,
 						0,
-						11.5,
+						15.25,
 						6.0,
 						0.5
 					]
@@ -865951,6 +866234,117 @@
 				"col": 0,
 				"flags": 1,
 				"name": "*villager-82"
+			},
+			"#83#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					125,
+					3,
+					28,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A small stone shrine to the Fortunes, half buried in the rock. Someone left it a rice ball.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_hpmp",
+											"cmdtgt": 11,
+											"hp1": true,
+											"op": 1,
+											"pid": "HP",
+											"val": 100
+										},
+										{
+											"charaid": "P000",
+											"cmd": "cmd_hpmp",
+											"cmdtgt": 11,
+											"hp1": true,
+											"op": 1,
+											"pid": "MP",
+											"val": 100
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "(Rested. HP and MP restored.)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showui",
+											"key": "menu_save",
+											"op": null,
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Rest and save.",
+								"text1": "Leave it be."
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-83"
+			},
+			"#84#": {
+				"role": "itemchest",
+				"itemid": "I448",
+				"num": 1,
+				"mdlid": "CV036",
+				"pos": [
+					79,
+					3,
+					41,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-84"
 			}
 		},
 		"exitmap": {
@@ -865972,7 +866366,7 @@
 		"size": [
 			199,
 			64,
-			46
+			61
 		],
 		"vs": 23,
 		"weather": {
@@ -868956,7 +869350,7 @@
 								"text": "I'll tell her, brother.",
 								"name": "Hiruma Natsuko",
 								"uiclose": 2,
-								"emo": "sad"
+								"emo": "worried"
 							},
 							{
 								"cmd": "cmd_itemop",
@@ -874278,19 +874672,12 @@
 											"text": "You've kept the watch long enough. I'll take it from here.",
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A clean stroke, off-screen. She leaves his patrol report under a stone.",
-											"name": "",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "(Natsuko leaves his patrol report under a stone.)",
+											"text": "A clean stroke. She leaves his patrol report under a stone.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -895041,6 +895428,38 @@
 				"col": 0,
 				"flags": 1,
 				"name": "*villager-84"
+			},
+			"#85#": {
+				"role": "itemchest",
+				"itemid": "I448",
+				"num": 1,
+				"mdlid": "CV036",
+				"pos": [
+					48,
+					3,
+					37,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-85"
+			},
+			"#86#": {
+				"role": "itemchest",
+				"itemid": "I448",
+				"num": 1,
+				"mdlid": "CV036",
+				"pos": [
+					74,
+					3,
+					39,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-86"
 			}
 		},
 		"exitmap": {
@@ -895062,7 +895481,7 @@
 		"size": [
 			164,
 			64,
-			46
+			61
 		],
 		"vs": 23,
 		"weather": {
@@ -905386,6 +905805,117 @@
 				"col": 0,
 				"flags": 1,
 				"name": "*villager-74"
+			},
+			"#76#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					78,
+					3,
+					15,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A small stone shrine to the Fortunes, half buried in the rock. Someone left it a rice ball.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_hpmp",
+											"cmdtgt": 11,
+											"hp1": true,
+											"op": 1,
+											"pid": "HP",
+											"val": 100
+										},
+										{
+											"charaid": "P000",
+											"cmd": "cmd_hpmp",
+											"cmdtgt": 11,
+											"hp1": true,
+											"op": 1,
+											"pid": "MP",
+											"val": 100
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "(Rested. HP and MP restored.)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showui",
+											"key": "menu_save",
+											"op": null,
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Rest and save.",
+								"text1": "Leave it be."
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-76"
+			},
+			"#77#": {
+				"role": "itemchest",
+				"itemid": "N000",
+				"num": 200,
+				"mdlid": "CV036",
+				"pos": [
+					115,
+					3,
+					25,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-77"
 			}
 		},
 		"exitmap": {
@@ -910735,7 +911265,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "A beat.",
+														"text": "A pause.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -938572,7 +939102,7 @@
 											"text": "Thirty years of work.",
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -938587,7 +939117,7 @@
 											"text": "...He was right. All of it. It leads here.",
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "worried"
 										},
 										{
 											"cmd": "cmd_showmsg",

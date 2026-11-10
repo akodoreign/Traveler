@@ -647,7 +647,8 @@ _i = next(i for i, c in enumerate(S01_CRAB1) if c.get("text") == "You're bleedin
 S01_CRAB1.insert(_i, bust_hold("natsuko", "hurt"))                                       # until the night's rest
 S03A = script_scene("crab-ch1", "S03", stop_at="(Inside the noodle stall") + [
     narrate("Objective: rest. ...Or at least find something to eat.")]
-S03B = script_scene("crab-ch1", "S03", start_at="(Inside the noodle stall") + [
+S03B = script_scene("crab-ch1", "S03", start_at="(Inside the noodle stall", stop_at="### S03b") + [   # (user: Satomi
+    # asked for her nephew at the noodle stall AND again in the tea house; S03b is the tea-house talk only)
     narrate("Objective: look around Hoshi-no-Ichi.")]
 
 # ------------------------------------------------------------------------------------------- Crab Ch1 maps
@@ -1073,12 +1074,12 @@ def cave_map(mid, name, w, d, rooms, links, wall_h=7, seed=1, floor=None, wall=N
     m.hgt[open_] = 2
     edge = ~open_ & (np.roll(open_, 1, 0) | np.roll(open_, -1, 0) | np.roll(open_, 1, 1) | np.roll(open_, -1, 1))
     lo = edge & (rng.random((d, w)) < 0.35)                                 # broken, uneven wall foot
-    m.hgt[lo] = 2 + wall_h - 3
+    m.hgt[lo] = max(2 + wall_h - 3, 5 if sprawling else 0)
     front = np.zeros((d, w), bool)                                          # cut-away: walls with floor just north
     for k in range(1, 10):                                                  # of them (between the room and the
         front[:d - k] |= open_[k:]                                          # camera) drop to a low rim
     front &= ~open_
-    m.hgt[front] = 2 + 2 + (rng.random((d, w))[front] < 0.3)
+    m.hgt[front] = 2 + (3 if sprawling else 2) + (rng.random((d, w))[front] < 0.3)   # a forced route: too high to jump onto
     for _ in range(int(open_.sum() / 90)):                                  # rubble
         z, x = np.argwhere(open_)[int(rng.integers(0, open_.sum()))]
         if edge[max(z - 1, 0):z + 2, max(x - 1, 0):x + 2].any():

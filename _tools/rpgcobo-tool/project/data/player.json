@@ -17610,7 +17610,7 @@
 		"defskillid": "S003",
 		"desc": "Isawa shugenja of Water and Void. Counts on his fingers.",
 		"eqlockbits": 0,
-		"eqtypebits": 67108863,
+		"eqtypebits": 67075583,
 		"equips": [
 			"W105",
 			null
@@ -28782,7 +28782,7 @@
 		"defskillid": "S003",
 		"desc": "Phoenix Inquisitor, Earth tensai. Brilliant, and he knows it.",
 		"eqlockbits": 0,
-		"eqtypebits": 67108863,
+		"eqtypebits": 67075583,
 		"equips": [
 			"W115",
 			null
@@ -41075,7 +41075,7 @@
 		"defskillid": "S003",
 		"desc": "A bright boy of twelve with ink on his fingers. He thinks the fire has a spirit. He's right.",
 		"eqlockbits": 0,
-		"eqtypebits": 67108863,
+		"eqtypebits": 67075583,
 		"equips": [
 			"W105",
 			null
@@ -43812,7 +43812,7 @@
 		"defskillid": "S003",
 		"desc": "An Emerald Magistrate, Phoenix, very small, very precise. Her whole team is dead or worse.",
 		"eqlockbits": 0,
-		"eqtypebits": 67108863,
+		"eqtypebits": 67075583,
 		"equips": [
 			"W105",
 			null
@@ -49301,7 +49301,7 @@
 		"defskillid": "S003",
 		"desc": "A young Tamori monk in heat-wards. Says what he smells. Usually right.",
 		"eqlockbits": 0,
-		"eqtypebits": 67108863,
+		"eqtypebits": 67075583,
 		"equips": [
 			"W106",
 			null
@@ -52032,7 +52032,7 @@
 		"defskillid": "S003",
 		"desc": "A tattooed Togashi. Keeps a tally of the Fortunes' attempts on his life. He is winning.",
 		"eqlockbits": 0,
-		"eqtypebits": 67108863,
+		"eqtypebits": 67108833,
 		"equips": [
 			"W106",
 			null

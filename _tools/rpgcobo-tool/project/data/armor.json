@@ -2052,7 +2052,7 @@
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 40,
-		"rt_look": "kasa"
+		"rt_look": "jingasa"
 	},
 	"A171": {
 		"MDEF": 2,
@@ -2095,7 +2095,6 @@
 			}
 		],
 		"opttype": "opt_equip",
-		"price": 50,
-		"rt_look": "hachimaki"
+		"price": 50
 	}
 }
