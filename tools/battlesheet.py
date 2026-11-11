@@ -27,8 +27,10 @@ def main():
     out = os.path.join(HERE, "..", "_art", "preview", "bot", name)
     log = open(os.path.join(out, "log.txt"), errors="replace").read()
     names = {int(n): (m, en) for n, m, en in re.findall(r"BOT battle shot (\d+) (M\d+): ([^\n]*)", log)}
-    nums = sorted(n for n in names if n >= start and os.path.exists(
-        os.path.join(SHOTS, "bot_%s_battle_%03d_0.raw" % (name, n))))
+    pat = re.compile(r"bot_%s_battle_(\d+)_0\.raw$" % re.escape(name))   # every burst on disk, logged or not yet
+    nums = sorted(int(m.group(1)) for m in map(pat.match, os.listdir(SHOTS)) if m and int(m.group(1)) >= start)
+    for n in nums:
+        names.setdefault(n, ("?", "(not in log.txt yet)"))
     for k in range(0, len(nums), 6):
         chunk = nums[k:k + 6]
         tiles = []

@@ -102,6 +102,26 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 		}
 		return s;
 	};
+	//	party, purse and bag, for a checkpoint (storyplay --resume): "party=P100+P120 money=40 items=I104x5+I201x1"
+	::Rokugan.botKit <- function(){
+		local s = "party=", f = true;
+		local hurt = 0;
+		foreach( p in ::rpgstat.members) if( p){
+			s += (f ? "" : "+") .. p.dataid; f = false;
+			if( p.HP * 4 < p.MAXHP * 3) hurt++;					//	(down or under 3/4: a player rests first)
+		}
+		s += " hurt=" .. ("%d" % [hurt]);
+		local eq = "", who = ::rpgstat.members.filter( @( v) v);	//	gear: "P100+0+W127,P100+3+A116" (-rtequip)
+		if( "fReserve" in ::Rokugan) foreach( p in ::Rokugan.fReserve()) if( p && who.indexOf( p) < 0) who.append( p);
+		foreach( p in who) foreach( i, e in p.equips) if( e) eq += (eq.len() ? "," : "") .. p.dataid .. "+" .. ("%d" % [i]) .. "+" .. e.dataid;
+		s += " equip=" .. eq;
+		s += " money=" .. ("%d" % [int( ::rpgstat.money)]) .. " items=";
+		f = true;
+		foreach( lst in [::rpgstat.items, ::rpgstat.keyitems]) foreach( v in lst) if( v){
+			s += (f ? "" : "+") .. v.dataid .. "x" .. ("%d" % [int( v["num"] || 1)]); f = false;
+		}
+		return s;
+	};
 	//	serve file (JSON): { n = batch number, steps = ["goto,1,2", ...], flags = ["G010", ...], quit = false }
 	::Rokugan.botServe <- function( file){
 		local last = 0;
@@ -113,6 +133,7 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 				local n = int( cmd.n);
 				last = n;
 				if( cmd["quit"]){ printf( "[RT] BOT finished\n"); return; }
+				if( cmd["battle0"] && !("botbattle0set" in ::Rokugan)){ ::Rokugan.botbattle0set <- true; ::Rokugan.botbattle0 <- int( cmd.battle0); }
 				this.botSteps( cmd["steps"] || []);
 				local busy = 0;									//	a message left waiting (a villager's line does not
 				while( ::rpgstage && (::rpgstage.mainevent || ::rpgstage["battle"])){	//	auto-advance): press Z, as a player
@@ -122,6 +143,7 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 				}
 				local w = this.botWhere();
 				printf( "[RT] BOT state %d %S %.1f %.1f %.1f\n", n, w ? w.map : "-", w ? w.x : 0.0, w ? w.z : 0.0, w ? w.y : 0.0);
+				printf( "[RT] BOT kit %d %s\n", n, this.botKit());
 				printf( "[RT] BOT flags %d %s\n", n, this.botFlags( cmd["flags"] || []));
 			}
 			sleep( 300);
@@ -142,6 +164,7 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 						sleep( 3000);										//	sides (user: sprites that face
 						local b = ::rpgstage ? ::rpgstage["battle"] : null, names = "";	//	the wrong way)
 						if( b) foreach( e in b.enemies) if( e) names += (names.len() ? ", " : "") .. e.name;
+						if( "botbattle0" in ::Rokugan){ mapnow.n += ::Rokugan.botbattle0; delete ::Rokugan.botbattle0; }	//	(resumed: number on)
 						mapnow.n++;
 						printf( "[RT] BOT battle shot %d %S: %S\n", mapnow.n, w.map, names);
 						foreach( fr in [0, 1, 2]){						//	three frames apart: an idle loop's bad
@@ -215,10 +238,21 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 			case "vars": foreach( k in a.slice( 1)) printf( "[RT] BOT var %S = %S\n", k, ::rpgvar[k]); break;
 			case "talkto": {									//	talkto BX BZ: close in to ~1 m (blocked by a
 				this.botGoto( float( a[1]) + 0.5, float( a[2]) + 0.5, 2500.0, 2.0);	//	counter: stops there), face, Z
-				local rp = ::rpgstage.player3d, dx = float( a[1]) * 0.5 - rp.pos.x, dz = float( a[2]) * 0.5 - rp.pos.z;
-				rp.dir = Math.atan2( dx, dz); rp.matdirty = true;
-				sleep( 150);
-				this.botSet( "z", true); sleep( 90); this.botSet( "z", false); sleep( 400);
+				//	nothing answered (the talk ray missed: M445's gate from one side): step round to another side, again
+				local m0 = "msgn" in ::Rokugan ? ::Rokugan.msgn : 0;
+				foreach( k, o in [[0, 0], [-1.6, 0], [0, -1.6], [0, 1.6], [1.6, 0]]){
+					if( k > 0){
+						if( !::rpgstage || ::rpgstage.mainevent || ::rpgstage["battle"]) break;
+						if( ("msgn" in ::Rokugan ? ::Rokugan.msgn : 0) != m0) break;			//	(it answered and finished)
+						this.botGoto( float( a[1]) + 0.5 + o[0], float( a[2]) + 0.5 + o[1], 1500.0, 0.5);
+						printf( "[RT] BOT talk retry %d\n", k);
+					}
+					local rp = ::rpgstage.player3d, dx = (float( a[1]) + 0.5) * 0.5 - rp.pos.x, dz = (float( a[2]) + 0.5) * 0.5 - rp.pos.z;
+					rp.dir = Math.atan2( dx, dz); rp.matdirty = true;
+					sleep( 150);
+					this.botSet( "z", true); sleep( 90); this.botSet( "z", false); sleep( 500);
+					if( ::rpgstage && (::rpgstage.mainevent || ::rpgstage["battle"])) break;
+				}
 				break;
 			}
 			case "face": {										//	face BX BZ: turn toward a spot (to talk)

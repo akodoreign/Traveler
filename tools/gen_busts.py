@@ -122,6 +122,13 @@ CHARS = {
         seed=2, base_file="approved_base.png", face=(215, 360, 590, 705), neck_y=720, crown_y=390, flip=False, variants=["travel", "court", "bath", "night"],
         neg_add=["scroll", "talisman", "text", "magic circle", "window"]),
     "mitsue": dict(
+        # bath redone 2026-11-11 (bust monitor): the base's red half-mask grew into a red high-necked top; picked
+        # review/var_bath_v61.png (old one: review/var_bath_old_redtop.png)
+        vseed={"bath": 61},
+        vtags={"bath": "(pale porcelain skin, fair skin:1.3), after the bath, white towel on head, bare shoulders, bare neck, "
+                       "collarbone, bare arms, white bath towel wrapped around the chest, damp hair, relaxed"},
+        vneg={"bath": ["red clothes", "turtleneck", "high collar", "shirt", "sleeves", "mask", "scarf", "mouth mask",
+                       "bodysuit", "red top", "kimono", "tan", "dark skin", "tanned skin", "brown skin"]},
         look="1girl, young woman, long straight black hair, swept bangs, sharp crimson eyes, red eyeshadow", colors="crimson and black kimono", court="crimson formal silk kimono with black diamond pattern and gold trim", night="black cotton yukata with a red pattern",
         names=["Shosuro Mitsue", "Mitsue"],
         prompt=("1girl, young woman, 20s, scorpion clan agent, long straight black hair, swept bangs, sharp crimson "
@@ -144,7 +151,8 @@ CHARS = {
         prompt=("1girl, young woman, 20s, ronin herbalist, tan skin, freckles, long brown hair, wide brown eyes, "
                 "kind smile, jingasa woven travel hat (kasa hat), worn brown kimono with a faded wave pattern, "
                 "green obi, herb basket strap, plain, poor, feudal japan, rokugan"),
-        seed=1, base_file="approved_base.png", face=(236, 320, 560, 560), neck_y=575, crown_y=345, flip=False, variants=["travel", "court", "bath", "night"]),
+        seed=1, base_file="approved_base.png", face=(236, 320, 560, 560), neck_y=575, crown_y=345, flip=False, variants=["travel", "court", "bath", "night"],
+        cut_edge_hue=(24, 90)),   # green plant leaves at the frame sides (base, night): keyed out
 }
 
 # Everyone who isn't a traveler: ONE neutral bust each (user, 2026-11-07); the plugin shows it for every emotion.
@@ -519,7 +527,147 @@ def variant_emotion(c, d, vn, emo):
 
 
 # ------------------------------------------------------------------------------------------------- keying + export
-def key_out(im, tol=12, protect=None, hair_y=None, holes=True):
+MASKS = os.path.join(ROOT, "_art", "busts", "_masks")
+
+
+def fg_mask(im):
+    """BiRefNet foreground mask (ComfyUI LoadBackgroundRemovalModel + RemoveBackground, models/background_removal/
+    birefnet.safetensors), cached by the image's content: user 2026-11-11 'see through eyes and hair ... clean up edges
+    that are white when they should be cut out' - colour keying can't tell a white kimono from a white background."""
+    import hashlib
+    rgb = im.convert("RGB")
+    key = hashlib.md5(rgb.tobytes()).hexdigest()
+    p = os.path.join(MASKS, key + ".png")
+    if not os.path.exists(p):
+        os.makedirs(MASKS, exist_ok=True)
+        name = upload(rgb, "bustmask_%s.png" % key[:12])
+        wf = {"1": {"class_type": "LoadImage", "inputs": {"image": name}},
+              "2": {"class_type": "LoadBackgroundRemovalModel", "inputs": {"bg_removal_name": "birefnet.safetensors"}},
+              "3": {"class_type": "RemoveBackground", "inputs": {"bg_removal_model": ["2", 0], "image": ["1", 0]}},
+              "4": {"class_type": "MaskToImage", "inputs": {"mask": ["3", 0]}},
+              "5": {"class_type": "SaveImage", "inputs": {"images": ["4", 0], "filename_prefix": "bustmask"}}}
+        out = queue(wf)
+        out[0].convert("L").resize(rgb.size, Image.LANCZOS).save(p)
+    return Image.open(p).convert("L")
+
+
+def repair_holes(bg, dist, h, w, hair_y, prot, cv2):
+    """(user, 2026-11-11: "see through eyes, and hair ... the mirumoto's neck was all fucked up for bath busts") The
+    background pass also took pale parts of the figure: eye whites, white kimono and fur, Gendo's towel and neck (the
+    border flood leaked in through a pale edge). Give back (1) every transparent island the outside can't reach,
+    unless it is pure background colour (a real gap between arm and body) or a thin sliver between hair strands
+    above the neck; (2) below the neck, every bite a 15 px closing of the figure seals that isn't pure background."""
+    neck = int(hair_y or 0.62 * h)
+    fig = ~bg
+    n, lab, st, _ = cv2.connectedComponentsWithStats(bg.astype(np.uint8), 8)
+    for i in range(1, n):
+        x0, y0, bw, bh, area = st[i]
+        if x0 == 0 or y0 == 0 or x0 + bw >= w or y0 + bh >= h:
+            continue                                              # the outside
+        isl = lab == i
+        md = np.median(dist[isl])                                 # (pure white can be cloth as well as a gap:
+        sliver = min(bw, bh) <= 6 or max(bw, bh) >= 4 * min(bw, bh) or area < 0.35 * bw * bh
+        if sliver and md <= 10 and not isl[prot].any() and (
+                (y0 + bh < neck and area < 6000) or min(bw, bh) <= 6):
+            continue                                              # between hair strands: stays cut (user)
+        # busts are cropped at the chest: an arm-body gap is rare, a white kimono or fur collar is not)
+        fig |= isl
+    k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (15, 15))
+    closed = cv2.morphologyEx(fig.astype(np.uint8), cv2.MORPH_CLOSE, k).astype(bool)
+    bite = closed & ~fig
+    bite[:neck] = False
+    bite &= dist > 3                                              # pale cloth, not the pure background colour
+    fig |= bite
+    return ~fig
+
+
+def cut_enclosed_bg(m, dist, prot, hair_y, flood, cv2, lum=None):
+    """BiRefNet sometimes keeps a patch of the flat background enclosed between hair and face (npc_akodo_rin): cut
+    kept regions of the pure background colour that are big and flat (eye whites, teeth and highlights are small or
+    shaded), above the shoulders, not in the face core, and - what tells it from a white towel or hat top (pure white
+    cloth too; Gendo's bath and travel busts) - reached by the colour key's border flood, which the lineart stops.
+    The patch's rim (the anti-aliased band) goes too."""
+    h, w = m.shape
+    lim = int(hair_y or 0.58 * h)                                 # (NPCs have no neck line: Rin's collar starts at .62)
+    cand = (m > 0.5) & (dist <= 5)
+    n, lab, st, _ = cv2.connectedComponentsWithStats(cand.astype(np.uint8), 8)
+    cut = np.zeros((h, w), bool)
+    for i in range(1, n):
+        x0, y0, bw, bh, area = st[i]
+        if area >= 900 and y0 + bh >= h - 2:
+            # vignette busts: the art fades out above the frame bottom and BiRefNet keeps the white below it as a white
+            # bib (Doji Sanae, Maho Puppet, Naohida): exact background colour (median 0-1 from it; white cloth cut by
+            # the frame has shading, 3-5)
+            isl = lab == i
+            if np.median(dist[isl]) <= 1 and not (prot.any() and isl[prot].any()):
+                cut |= isl
+                print("  cut kept background (bottom) %d px at %d,%d %dx%d" % (area, x0, y0, bw, bh))
+            continue
+        if area < 900 or min(bw, bh) < 12 or y0 >= lim:          # starts above the shoulders (may reach below)
+            continue
+        isl = lab == i
+        if prot.any() and isl[prot].any():
+            continue
+        if np.median(dist[isl]) > 2:
+            continue
+        if flood[isl].mean() < 0.5:
+            # enclosed (the flood can't get in): a gap between hair strands and the neck (Natsuko's ponytail, Rensei,
+            # Shizue's bath hair) is ringed by dark hair/lineart; a towel or hat top by light cloth shading. Only with
+            # a face box: its core protects the eye whites, which are ringed by dark lashes too (NPCs: flood rule only)
+            if not prot.any():
+                continue
+            ring = cv2.dilate(isl.astype(np.uint8), np.ones((7, 7), np.uint8)).astype(bool) & ~isl & (m > 0.5)
+            rl = lum[ring]
+            if not rl.size or np.median(rl) > 140 or (rl < 100).mean() < 0.3:
+                continue
+        cut |= isl
+        print("  cut kept background %d px at %d,%d %dx%d" % (area, x0, y0, bw, bh))
+    if cut.any():
+        grow = cv2.dilate(cut.astype(np.uint8), np.ones((5, 5), np.uint8)).astype(bool) & (dist < 40)
+        m = m.copy()
+        m[grow] = 0
+    # white fringe: background kept along the silhouette, outside the lineart (the flood got there, BiRefNet didn't
+    # cut it): a 4 px band next to the cut-out
+    band = cv2.dilate((m < 0.5).astype(np.uint8), np.ones((9, 9), np.uint8)).astype(bool)
+    fr = band & flood & (dist <= 8) & (m >= 0.5)
+    if fr.any():
+        m = m.copy()
+        m[fr] = 0
+    return m
+
+
+def cut_edge_hue(m, a, dist, prot, hue, cv2):
+    """Scenery the source art kept at the frame's sides (Sayo's base and night busts: green plant leaves left and right;
+    BiRefNet counts them as foreground). CHARS[key]["cut_edge_hue"] = (h0, h1) in OpenCV hue (0-180): cut regions of
+    that hue near the left or right frame edge (outer 8%), with their dark outlines, and any opaque bits left loose."""
+    h, w = m.shape
+    hsv = cv2.cvtColor(a.astype(np.uint8), cv2.COLOR_RGB2HSV)
+    g = (hsv[..., 0] >= hue[0]) & (hsv[..., 0] <= hue[1]) & (hsv[..., 1] > 50) & (hsv[..., 2] > 40) & (m > 0.5)
+    n, lab, st, _ = cv2.connectedComponentsWithStats(g.astype(np.uint8), 8)
+    leaf = np.zeros((h, w), bool)
+    for i in range(1, n):
+        x0, y0, bw, bh, area = st[i]
+        if area >= 150 and (x0 <= 0.08 * w or x0 + bw >= 0.92 * w):    # at the sides (the obi is central)
+            leaf |= lab == i
+    if not leaf.any():
+        return m
+    lum = a.mean(axis=2)
+    for _ in range(3):                                            # grow over the leaves' lineart and the white between
+        leaf |= cv2.dilate(leaf.astype(np.uint8), np.ones((5, 5), np.uint8)).astype(bool) & (g | (lum < 70) | (dist < 40))
+    leaf &= ~prot
+    m = m.copy()
+    m[leaf] = 0
+    n, lab, st, _ = cv2.connectedComponentsWithStats((m > 0.5).astype(np.uint8), 8)
+    if n > 2:                                                     # leaf bits cut loose from the figure
+        big = 1 + int(np.argmax(st[1:, cv2.CC_STAT_AREA]))
+        for i in range(1, n):
+            if i != big and st[i, cv2.CC_STAT_AREA] < 0.02 * h * w:
+                m[lab == i] = 0
+    print("  cut edge scenery %d px" % int(leaf.sum()))
+    return m
+
+
+def key_out(im, tol=12, protect=None, hair_y=None, holes=True, repair=False, fixed_alpha=None, edge_hue=None):
     """Flat background -> alpha. Flood fill from the border through pixels close to the corner colour, then soften the
     edge by one pixel and pull the background tint out of the semi-transparent rim."""
     a = np.asarray(im.convert("RGB")).astype(np.int16)
@@ -534,14 +682,20 @@ def key_out(im, tol=12, protect=None, hair_y=None, holes=True):
     ff = near.astype(np.uint8)
     seed_mask = np.zeros((h + 2, w + 2), np.uint8)
     filled = np.zeros((h, w), np.uint8)
-    for (y, x) in [(0, 0), (0, w - 1), (h - 1, 0), (h - 1, w - 1)] + [(0, xx) for xx in range(0, w, 16)] + \
-                  [(yy, 0) for yy in range(0, h, 16)] + [(yy, w - 1) for yy in range(0, h, 16)]:
+    # busts (repair): seed only along the top and the sides above the neck - the frame cuts a white kimono or towel at
+    # the bottom/lower sides, and a flood started there ran into it (Sayo's court kimono, Gendo's bath towel)
+    side_to = int((hair_y or 0.5 * h)) if repair else h
+    seeds = [(0, 0), (0, w - 1)] + ([] if repair else [(h - 1, 0), (h - 1, w - 1)]) + \
+        [(0, xx) for xx in range(0, w, 16)] + [(yy, 0) for yy in range(0, side_to, 16)] + \
+        [(yy, w - 1) for yy in range(0, side_to, 16)]
+    for (y, x) in seeds:
         if ff[y, x] and not filled[y, x]:
             tmp = ff.copy()
             seed_mask[:] = 0
             cv2.floodFill(tmp, seed_mask, (x, y), 2)
             filled |= (tmp == 2)
     bg = filled.astype(bool)
+    flood = bg.copy()
     # holes inside the figure that are background (between arm and body): big enough near-bg islands
     # small ones too between hair strands: pure background colour, above the neck (hair_y), not in the face core
     # (eye whites, teeth); below the neck white is cloth / armour shine and stays
@@ -577,9 +731,25 @@ def key_out(im, tol=12, protect=None, hair_y=None, holes=True):
         for i in range(1, n):
             if i != big and stats[i, cv2.CC_STAT_AREA] < 0.02 * h * w:
                 bg |= lab == i
+    if repair:                                                    # busts only (sprites keep their leg gaps)
+        bg = repair_holes(bg, dist, h, w, hair_y, prot, cv2)
     alpha = (~bg).astype(np.float32)
     alpha = cv2.GaussianBlur(cv2.erode(alpha, np.ones((3, 3), np.uint8)), (5, 5), 0)
     alpha = np.clip(alpha, 0, 1)
+    if fixed_alpha is not None:                                   # the variant's silhouette (stage_export: one BiRefNet
+        alpha = np.asarray(fixed_alpha).astype(np.float32) / 255.0  # pass per variant, the emotions only re-colour)
+    elif repair:                                                  # busts: BiRefNet's mask is the cut-out (holes,
+        try:                                                      # eye whites, white kimono, hair, white fringes)
+            m = np.asarray(fg_mask(im)).astype(np.float32) / 255.0
+            m = np.clip((m - 0.08) / 0.84, 0, 1)                  # firm up the soft band a little
+            m = cut_enclosed_bg(m, dist, prot, hair_y, flood, cv2, lum=a.mean(axis=2))
+            if edge_hue:
+                m = cut_edge_hue(m, a, dist, prot, edge_hue, cv2)
+            if prot.any():
+                m = np.maximum(m, prot.astype(np.float32))        # the face core never goes see-through
+            alpha = m
+        except Exception as ex:                                   # ComfyUI down: the colour key stands
+            print("bust mask unavailable (%s): colour key used" % ex)
     rgb = a.astype(np.float32)
     # decontaminate: c = alpha*f + (1-alpha)*bg  ->  f = (c - (1-alpha)*bg)/alpha on the rim
     rim = (alpha > 0.02) & (alpha < 0.98)
@@ -609,7 +779,7 @@ def estimate_chin(rgba):
 
 
 # chin height (fraction of the exported image) where the silhouette guess is wrong (checked on chin sheets)
-CHIN_FIX = {"fujio": 0.4, "gonta": 0.53, "goro": 0.4, "kage": 0.43, "kiyo": 0.47, "mai": 0.4, "michio": 0.43, "npc_akodo_hiruto": 0.48, "npc_akodo_rin": 0.45, "npc_akodo_shogen": 0.45, "npc_asako_keiki": 0.5, "npc_asako_kuhime": 0.37, "npc_ashigaru_archer": 0.43, "npc_cart_driver": 0.5, "npc_child": 0.57, "npc_crab_bushi": 0.57, "npc_doji_nashiko": 0.48, "npc_doji_sanae": 0.45, "npc_fishwife": 0.43, "npc_gate_guard": 0.51, "npc_goblin_prisoner": 0.51, "npc_gonbei": 0.5, "npc_hida_taneo": 0.5, "npc_hida_veteran": 0.51, "npc_hiruma_kenzo": 0.5, "npc_hiruma_messenger": 0.5, "npc_hiruma_scout": 0.5, "npc_hoshi_fisherman": 0.44, "npc_ide_keiyomi": 0.37, "npc_innkeeper": 0.45, "npc_isawa_akiko": 0.5, "npc_isawa_kamasari": 0.53, "npc_isawa_mieko": 0.53, "npc_isawa_mutsuye": 0.53, "npc_kaiu_engineer": 0.5, "npc_kaiu_sapper": 0.54, "npc_kaiu_smith": 0.43, "npc_kitsuki_seigen": 0.48, "npc_kuni_shugenja": 0.4, "npc_kuni_taira": 0.45, "npc_kuni_witch_hunter": 0.43, "npc_maho_puppet": 0.45, "npc_merchant": 0.45, "npc_naohida": 0.48, "npc_oni_no_kommei": 0.48, "npc_runner": 0.51, "npc_sentry": 0.54, "npc_shiba_ashimita": 0.56, "npc_shiba_noboru": 0.56, "npc_shinjo_o_shito": 0.45, "npc_shosuro_norie": 0.54, "npc_shosuro_shiko": 0.5, "npc_soshi_nihime": 0.45, "npc_troll": 0.57, "npc_village_herbalist": 0.4, "npc_wall_veteran": 0.45, "npc_yasuki_kanbe": 0.51, "npc_yasuki_kurako": 0.45, "npc_yogo_scribe": 0.43, "npc_yogo_shigeru": 0.48, "ryozo": 0.4, "sachiko": 0.4, "sakura": 0.4, "satomi": 0.36, "squeak": 0.42, "takakana": 0.52, "takeo": 0.45, "tomoe": 0.45, "yosai": 0.53, "npc_guard_sergeant": 0.43, "npc_broken_guard": 0.4, "npc_gonta_s_boy": 0.5, "npc_nezumi_shaman": 0.36, "npc_servant": 0.42, "npc_crab_guard": 0.4, "npc_hida_kisada": 0.45, "npc_kitchen_servant": 0.52, "npc_nezumi_warrior": 0.38, "npc_akodo_ijako": 0.4, "npc_jinnai": 0.4, "npc_shinjo_tsune": 0.42, "npc_akodo_gusai": 0.48, "npc_iuchi_karasu": 0.4, "npc_iuchi_daiyu": 0.45, "npc_akodo_kafu": 0.45, "npc_maid": 0.37, "ryoichi": 0.4, "npc_akodo_toturi": 0.4, "npc_hantei_kusada": 0.38, "npc_kakita_masanori": 0.47, "npc_kitsuki_oharu": 0.42, "npc_kitsune_hana": 0.45, "npc_lion_sergeant": 0.45, "npc_masked_citizen": 0.45, "npc_matsu_hanae": 0.43, "npc_matsu_kiku": 0.45, "npc_ship_s_master": 0.52, "npc_shosuro_osuko": 0.42, "npc_stich_kik": 0.48}
+CHIN_FIX = {"ryoichi": 0.29, "npc_matsu_kiku": 0.43, "npc_wall_veteran": 0.5, "npc_hida_kisada": 0.45, "npc_fishwife": 0.43, "fujio": 0.4, "gonta": 0.53, "goro": 0.4, "kage": 0.43, "kiyo": 0.47, "mai": 0.4, "michio": 0.43, "npc_akodo_hiruto": 0.48, "npc_akodo_rin": 0.45, "npc_akodo_shogen": 0.45, "npc_asako_keiki": 0.5, "npc_asako_kuhime": 0.37, "npc_ashigaru_archer": 0.43, "npc_cart_driver": 0.5, "npc_child": 0.57, "npc_crab_bushi": 0.57, "npc_doji_nashiko": 0.48, "npc_doji_sanae": 0.45, "npc_gate_guard": 0.51, "npc_goblin_prisoner": 0.51, "npc_gonbei": 0.5, "npc_hida_taneo": 0.5, "npc_hida_veteran": 0.51, "npc_hiruma_kenzo": 0.5, "npc_hiruma_messenger": 0.5, "npc_hiruma_scout": 0.5, "npc_hoshi_fisherman": 0.44, "npc_ide_keiyomi": 0.37, "npc_innkeeper": 0.45, "npc_isawa_akiko": 0.5, "npc_isawa_kamasari": 0.53, "npc_isawa_mieko": 0.53, "npc_isawa_mutsuye": 0.53, "npc_kaiu_engineer": 0.5, "npc_kaiu_sapper": 0.54, "npc_kaiu_smith": 0.43, "npc_kitsuki_seigen": 0.48, "npc_kuni_shugenja": 0.4, "npc_kuni_taira": 0.45, "npc_kuni_witch_hunter": 0.43, "npc_maho_puppet": 0.45, "npc_merchant": 0.45, "npc_naohida": 0.48, "npc_oni_no_kommei": 0.48, "npc_runner": 0.51, "npc_sentry": 0.54, "npc_shiba_ashimita": 0.56, "npc_shinjo_o_shito": 0.45, "npc_shosuro_norie": 0.54, "npc_shosuro_shiko": 0.5, "npc_soshi_nihime": 0.45, "npc_troll": 0.57, "npc_village_herbalist": 0.4, "npc_yasuki_kanbe": 0.51, "npc_yasuki_kurako": 0.45, "npc_yogo_scribe": 0.43, "npc_yogo_shigeru": 0.48, "ryozo": 0.4, "sachiko": 0.4, "sakura": 0.4, "satomi": 0.36, "squeak": 0.42, "takakana": 0.52, "takeo": 0.45, "tomoe": 0.45, "yosai": 0.53, "npc_guard_sergeant": 0.43, "npc_broken_guard": 0.4, "npc_gonta_s_boy": 0.5, "npc_nezumi_shaman": 0.36, "npc_servant": 0.42, "npc_crab_guard": 0.4, "npc_kitchen_servant": 0.52, "npc_nezumi_warrior": 0.38, "npc_akodo_ijako": 0.4, "npc_jinnai": 0.4, "npc_shinjo_tsune": 0.42, "npc_akodo_gusai": 0.48, "npc_iuchi_karasu": 0.4, "npc_iuchi_daiyu": 0.45, "npc_akodo_kafu": 0.45, "npc_maid": 0.37, "npc_akodo_toturi": 0.4, "npc_hantei_kusada": 0.38, "npc_kakita_masanori": 0.47, "npc_kitsuki_oharu": 0.42, "npc_kitsune_hana": 0.45, "npc_lion_sergeant": 0.45, "npc_masked_citizen": 0.45, "npc_ship_s_master": 0.52, "npc_shosuro_osuko": 0.42, "npc_stich_kik": 0.48}
 
 
 def stage_export(key):
@@ -629,12 +799,11 @@ def stage_export(key):
             fm = full_face_mask(c, im) if c.get("face") else None
             if fm is not None and c.get("flip"):
                 fm = fm.transpose(Image.FLIP_LEFT_RIGHT)
-            rgba = key_out(im, protect=fm, hair_y=c.get("neck_y"), holes=c.get("holes", c.get("bg", "white") == "white"))
+            rgba = key_out(im, protect=fm, hair_y=c.get("neck_y"), holes=c.get("holes", c.get("bg", "white") == "white"),
+                           repair=True, fixed_alpha=base_alpha, edge_hue=c.get("cut_edge_hue"))
             if base_alpha is None:                            # one silhouette per variant (the face pass is inside)
                 base_alpha = rgba.getchannel("A")
                 bb = base_alpha.point(lambda v: 255 if v > 8 else 0).getbbox()
-            else:
-                rgba.putalpha(base_alpha)
             t = rgba.crop((bb[0], bb[1], bb[2], rgba.height))   # trim the sides and top; keep the bottom edge
             if emo == emos[0] and c.get("face"):                # where the face sits in the exported image (0..1)
                 fx0, fy0, fx1, fy1 = c["face"]

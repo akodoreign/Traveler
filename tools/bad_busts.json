@@ -1,0 +1,62 @@
+{
+ "_doc": "Bust art found bad while testing (user, 2026-11-11: 'keep track of bad bust art, so it can be re-queued'). One entry per bust: speaker (as in the dialogue), file (resource/bust/<key>/<emotion>.png), why, found (date/run), look (optional: what the new candidates must show - queue_busts.py puts it first in the prompt, weighted), seed_add (optional: another round with new seeds), fixed (set once a new pick is exported; --bad skips it). Requeue: python -E tools/queue_busts.py --bad [--only 'Speaker']  (new candidates for these speakers, even ones already in the game); then collect_busts.py, pick into _art/busts/npc_picks.json, `gen_busts.py npc <key>` (stage_export alone re-keys the OLD neutral.png), check the chin (CHIN_FIX) and magenta sheet (bustfringe.py <key>). Review sheets of the busts a playthrough showed: python -E tools/bustsheet.py story_N.",
+ "busts": [
+  {
+   "speaker": "Hiruma Ryoichi",
+   "file": "ryoichi/neutral.png",
+   "found": "2026-11-11 story_0 (Crab prologue)",
+   "why": "full-body picture of a little boy in plain clothes, not a bust crop like the rest; on the Wall he is a soldier at Natsuko's side ('Stay behind me, Ryoichi')",
+   "look": "upper body portrait, teen boy, young hiruma scout, light dark-blue lamellar armor over brown kimono",
+   "fixed": "2026-11-11 cand_s39551 (waist-up teen scout, lamellar over brown kimono, gourd)"
+  },
+  {
+   "speaker": "Wall veteran",
+   "file": "npc_wall_veteran/neutral.png",
+   "found": "2026-11-11 story_0 (Hoshi-no-Ichi)",
+   "why": "reads young (smooth face under the silver hair); he says 'I was on the Wall forty years. Now I'm on the sake.' - should be an old, weathered drinker. Round 1 pick cand_s84702 (in the game now) is right in look but a close-up (chin at 0.68 of the image, others 0.36-0.57: the plugin blows him up) - round 2 asks for chest-up framing",
+   "look": "upper body, chest-up portrait, shoulders and chest visible, old man, 60s, weathered wrinkled face, scarred, grey stubble, tired drunk eyes, worn dark blue kimono, sake cup",
+   "seed_add": 500,
+   "fixed": "2026-11-11 round 2 cand_s85203 (old, weathered, tipsy, sake cup, chest-up; chin 0.50)"
+  },
+  {
+   "speaker": "Fishwife",
+   "file": "npc_village_herbalist/neutral.png",
+   "found": "2026-11-11 story_0 (Hoshi-no-Ichi)",
+   "why": "no own bust: RokuganBustGeneric.sk lends her the Village Herbalist (a pale silver-haired girl in a green hood); she hawks salt herring ('Two zeni, or one if you smile') - a loud middle-aged fisherwoman",
+   "look": "middle-aged fisherwoman, 40s, tanned weathered face, broad grin, hair in a headscarf, sleeves tied back with a tasuki cord, patched indigo work kimono",
+   "fixed": "2026-11-11 own key npc_fishwife, cand_s83508 (headscarf, tasuki, indigo kimono, grin; reads 20s-30s rather than 40s)"
+  },
+  {
+   "speaker": "Hida Kisada",
+   "file": "npc_hida_kisada/neutral.png",
+   "found": "2026-11-11 bust monitor (all-NPC sheet)",
+   "why": "face fully hidden behind a black mempo and helmet (reads like a sci-fi villain); the Crab Champion, the Great Bear, talks to the player - he needs a face: huge, black-haired, heavy, stern. (The old pick armour_s303 had been user-OK'd on 2026-11-08; the user said 'redraw them' for this list on 2026-11-11 - revert in npc_picks.json if he prefers the mempo)",
+   "look": "huge broad-shouldered man, 50s, crab clan champion, square jaw, short black hair and short beard, stern scowl, bare head, helmet under arm, heavy dark blue-grey lacquered lamellar armor",
+   "fixed": "2026-11-11 cand_s73518 (face and beard under the kabuto, dark lamellar)"
+  },
+  {
+   "speaker": "Matsu Hanae",
+   "file": "npc_matsu_hanae/neutral.png",
+   "found": "2026-11-11 bust monitor (all-NPC sheet; lead: make the look-alikes distinct)",
+   "why": "same face, brown ponytail and red-kimono-and-armour as Akodo Rin and Matsu Kiku; Hanae is the sharp, proud leader of the Matsu climbing party in Ronin Ch3 ('You. Ronin. You'll carry the ropes.') and the eldest grandchild",
+   "look": "proud stern young woman, 20s, sharp angular face, chin raised, narrow fierce eyes, short black hair cut at the jaw with a gold headband, lion clan gold and brown lacquered armour, coiled climbing rope over one shoulder",
+   "fixed": "2026-11-11 cand_s65236 (proud, black bob, gold headband, coiled rope, gold-black armour)"
+  },
+  {
+   "speaker": "Matsu Kiku",
+   "file": "npc_matsu_kiku/neutral.png",
+   "found": "2026-11-11 bust monitor (all-NPC sheet; lead: make the look-alikes distinct)",
+   "why": "same face, brown ponytail and red kimono as Akodo Rin and Matsu Hanae; Kiku (Crane Ch1 hireable) is gentle outside battle, afraid of her own battle-joy, secretly loves Crane art",
+   "look": "gentle shy young woman, soft round face, worried kind eyes, faint blush, long auburn hair in a loose low braid over the shoulder, pale gold kimono with a single lacquered lion shoulder guard, a small paintbrush tucked in the obi",
+   "fixed": "2026-11-11 cand_s56507 (shy, braid, cream kimono, gold lion shoulder guard, paintbrush in obi)"
+  },
+  {
+   "speaker": "Shiba Noboru",
+   "file": "npc_shiba_noboru/neutral.png",
+   "found": "2026-11-11 bust monitor (all-NPC sheet; lead: make the look-alikes distinct)",
+   "why": "near twin of Shiba Ashimita (same long black-and-orange hair, beard, orange-black armour); Noboru is Isawa Mutsuye's humble yojimbo who duels with a yari (Crab Ch2 Winter Court)",
+   "look": "humble earnest young man, clean-shaven, short neat black hair in a small topknot, calm lowered eyes, plain orange and white phoenix clan do armour over a white kimono, holding a yari spear upright",
+   "fixed": "2026-11-11 cand_s25863 (young, topknot, white kimono, black-orange do, yari)"
+  }
+ ]
+}

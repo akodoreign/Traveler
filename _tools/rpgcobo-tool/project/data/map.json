@@ -9105,6 +9105,15 @@
 										},
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -24427,6 +24436,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -34590,6 +34608,15 @@
 										},
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -34656,6 +34683,15 @@
 										{
 											"cmd": "cmd_wait",
 											"time": 1800
+										},
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
 										},
 										{
 											"charaid": "P000",
@@ -34749,6 +34785,15 @@
 										},
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -34815,6 +34860,15 @@
 										{
 											"cmd": "cmd_wait",
 											"time": 1800
+										},
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
 										},
 										{
 											"charaid": "P000",
@@ -34899,6 +34953,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -34994,6 +35057,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -45350,6 +45422,15 @@
 							},
 							{
 								"charaid": "P000",
+								"cmd": "cmd_condop",
+								"cmdtgt": 11,
+								"condbits": 1,
+								"ignoredead": true,
+								"op": 2,
+								"showpop": false
+							},
+							{
+								"charaid": "P000",
 								"cmd": "cmd_hpmp",
 								"cmdtgt": 11,
 								"hp1": true,
@@ -50503,6 +50584,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -59281,6 +59371,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -72729,6 +72828,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -75372,6 +75480,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -78381,6 +78498,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -85721,6 +85847,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -85849,6 +85984,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -91245,6 +91389,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -94086,6 +94239,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -102795,6 +102957,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -109054,6 +109225,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -126774,6 +126954,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -129738,6 +129927,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -130141,6 +130339,15 @@
 														"backenable": false,
 														"cmdblocks": [
 															[
+																{
+																	"charaid": "P000",
+																	"cmd": "cmd_condop",
+																	"cmdtgt": 11,
+																	"condbits": 1,
+																	"ignoredead": true,
+																	"op": 2,
+																	"showpop": false
+																},
 																{
 																	"charaid": "P000",
 																	"cmd": "cmd_hpmp",
@@ -130825,6 +131032,15 @@
 																					[
 																						{
 																							"charaid": "P000",
+																							"cmd": "cmd_condop",
+																							"cmdtgt": 11,
+																							"condbits": 1,
+																							"ignoredead": true,
+																							"op": 2,
+																							"showpop": false
+																						},
+																						{
+																							"charaid": "P000",
 																							"cmd": "cmd_hpmp",
 																							"cmdtgt": 11,
 																							"hp1": true,
@@ -131080,6 +131296,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -138290,6 +138515,15 @@
 																		[
 																			{
 																				"charaid": "P000",
+																				"cmd": "cmd_condop",
+																				"cmdtgt": 11,
+																				"condbits": 1,
+																				"ignoredead": true,
+																				"op": 2,
+																				"showpop": false
+																			},
+																			{
+																				"charaid": "P000",
 																				"cmd": "cmd_hpmp",
 																				"cmdtgt": 11,
 																				"hp1": true,
@@ -141302,6 +141536,15 @@
 															[
 																{
 																	"charaid": "P000",
+																	"cmd": "cmd_condop",
+																	"cmdtgt": 11,
+																	"condbits": 1,
+																	"ignoredead": true,
+																	"op": 2,
+																	"showpop": false
+																},
+																{
+																	"charaid": "P000",
 																	"cmd": "cmd_hpmp",
 																	"cmdtgt": 11,
 																	"hp1": true,
@@ -142024,6 +142267,15 @@
 																					[
 																						{
 																							"charaid": "P000",
+																							"cmd": "cmd_condop",
+																							"cmdtgt": 11,
+																							"condbits": 1,
+																							"ignoredead": true,
+																							"op": 2,
+																							"showpop": false
+																						},
+																						{
+																							"charaid": "P000",
 																							"cmd": "cmd_hpmp",
 																							"cmdtgt": 11,
 																							"hp1": true,
@@ -142422,6 +142674,15 @@
 																	"backenable": false,
 																	"cmdblocks": [
 																		[
+																			{
+																				"charaid": "P000",
+																				"cmd": "cmd_condop",
+																				"cmdtgt": 11,
+																				"condbits": 1,
+																				"ignoredead": true,
+																				"op": 2,
+																				"showpop": false
+																			},
 																			{
 																				"charaid": "P000",
 																				"cmd": "cmd_hpmp",
@@ -145094,6 +145355,15 @@
 														"backenable": false,
 														"cmdblocks": [
 															[
+																{
+																	"charaid": "P000",
+																	"cmd": "cmd_condop",
+																	"cmdtgt": 11,
+																	"condbits": 1,
+																	"ignoredead": true,
+																	"op": 2,
+																	"showpop": false
+																},
 																{
 																	"charaid": "P000",
 																	"cmd": "cmd_hpmp",
@@ -151933,6 +152203,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -162213,6 +162492,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -162716,6 +163004,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -175700,6 +175997,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -176331,6 +176637,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -176662,6 +176977,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -184070,6 +184394,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -189149,6 +189482,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -194167,6 +194509,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -197218,6 +197569,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -206944,6 +207304,15 @@
 										},
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -207197,6 +207566,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -207315,6 +207693,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -212704,6 +213091,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -212898,6 +213294,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -215606,6 +216011,15 @@
 											"text": "Shogen pours bitter tea into two chipped cups. The cold goes out of her hands.",
 											"name": "",
 											"uiclose": 2
+										},
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
 										},
 										{
 											"charaid": "P000",
@@ -222297,6 +222711,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -227401,6 +227824,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -234798,6 +235230,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -245953,6 +246394,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -248358,6 +248808,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -251592,6 +252051,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -260577,6 +261045,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -261194,6 +261671,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -271565,6 +272051,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -272008,6 +272503,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -276005,6 +276509,15 @@
 										{
 											"cmd": "cmd_wait",
 											"time": 1800
+										},
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
 										},
 										{
 											"charaid": "P000",
@@ -280193,6 +280706,15 @@
 										{
 											"cmd": "cmd_wait",
 											"time": 1800
+										},
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
 										},
 										{
 											"charaid": "P000",
@@ -291549,6 +292071,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -299667,6 +300198,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -308900,6 +309440,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -317479,6 +318028,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -326417,6 +326975,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -331983,6 +332550,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -342696,6 +343272,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -354564,6 +355149,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -361834,6 +362428,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -362620,6 +363223,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -367632,6 +368244,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -370676,6 +371297,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -392438,6 +393068,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -394973,6 +395612,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -397527,6 +398175,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -400067,6 +400724,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -413668,6 +414334,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -414113,6 +414788,15 @@
 														"backenable": false,
 														"cmdblocks": [
 															[
+																{
+																	"charaid": "P000",
+																	"cmd": "cmd_condop",
+																	"cmdtgt": 11,
+																	"condbits": 1,
+																	"ignoredead": true,
+																	"op": 2,
+																	"showpop": false
+																},
 																{
 																	"charaid": "P000",
 																	"cmd": "cmd_hpmp",
@@ -414791,6 +415475,15 @@
 														"backenable": false,
 														"cmdblocks": [
 															[
+																{
+																	"charaid": "P000",
+																	"cmd": "cmd_condop",
+																	"cmdtgt": 11,
+																	"condbits": 1,
+																	"ignoredead": true,
+																	"op": 2,
+																	"showpop": false
+																},
 																{
 																	"charaid": "P000",
 																	"cmd": "cmd_hpmp",
@@ -418309,6 +419002,15 @@
 															[
 																{
 																	"charaid": "P000",
+																	"cmd": "cmd_condop",
+																	"cmdtgt": 11,
+																	"condbits": 1,
+																	"ignoredead": true,
+																	"op": 2,
+																	"showpop": false
+																},
+																{
+																	"charaid": "P000",
 																	"cmd": "cmd_hpmp",
 																	"cmdtgt": 11,
 																	"hp1": true,
@@ -421148,6 +421850,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -435068,6 +435779,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -455783,6 +456503,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -468942,6 +469671,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -471704,6 +472442,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -477576,6 +478323,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -484354,6 +485110,15 @@
 																},
 																{
 																	"charaid": "P000",
+																	"cmd": "cmd_condop",
+																	"cmdtgt": 11,
+																	"condbits": 1,
+																	"ignoredead": true,
+																	"op": 2,
+																	"showpop": false
+																},
+																{
+																	"charaid": "P000",
 																	"cmd": "cmd_hpmp",
 																	"cmdtgt": 11,
 																	"hp1": true,
@@ -484911,6 +485676,15 @@
 										},
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -484942,6 +485716,15 @@
 										}
 									],
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -492333,6 +493116,15 @@
 										},
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -492364,6 +493156,15 @@
 										}
 									],
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -497538,6 +498339,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -499964,6 +500774,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -514203,6 +515022,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -523638,6 +524466,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -534658,6 +535495,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -541431,6 +542277,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -545147,6 +546002,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -553149,6 +554013,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -553805,6 +554678,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -562567,6 +563449,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -562847,6 +563738,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -586655,6 +587555,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -591298,6 +592207,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -593011,6 +593929,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -604075,6 +605002,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -606761,6 +607697,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -613264,6 +614209,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -614730,6 +615684,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -619858,6 +620821,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -621067,6 +622039,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -630079,6 +631060,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -640853,6 +641843,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -650369,6 +651368,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -656628,6 +657636,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -668501,6 +669518,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -669151,6 +670177,15 @@
 										},
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -669440,6 +670475,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -669589,6 +670633,15 @@
 										{
 											"cmd": "cmd_wait",
 											"time": 1800
+										},
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
 										},
 										{
 											"charaid": "P000",
@@ -676436,6 +677489,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -679483,6 +680545,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -684388,6 +685459,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -686176,6 +687256,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -688619,6 +689708,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -699794,6 +700892,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -705074,6 +706181,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -711921,6 +713037,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -714723,6 +715848,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -722103,6 +723237,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -728068,6 +729211,15 @@
 											"backenable": false,
 											"cmdblocks": [
 												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
 													{
 														"charaid": "P000",
 														"cmd": "cmd_hpmp",
@@ -734159,6 +735311,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -736924,6 +738085,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -736943,7 +738113,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "foreach( p in ::Rokugan.fReserve()){ p.HP = p.MAXHP; p.MP = p.MAXMP; }"
+														"code": "foreach( p in ::Rokugan.fReserve()){ p.removeCondition( \"K000\"); p.HP = p.MAXHP; p.MP = p.MAXMP; }"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -737422,6 +738592,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -739654,6 +740833,15 @@
 												[
 													{
 														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
 														"cmd": "cmd_hpmp",
 														"cmdtgt": 11,
 														"hp1": true,
@@ -739673,7 +740861,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "foreach( p in ::Rokugan.fReserve()){ p.HP = p.MAXHP; p.MP = p.MAXMP; }"
+														"code": "foreach( p in ::Rokugan.fReserve()){ p.removeCondition( \"K000\"); p.HP = p.MAXHP; p.MP = p.MAXMP; }"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -743973,6 +745161,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -743992,7 +745189,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "foreach( p in ::Rokugan.fReserve()){ p.HP = p.MAXHP; p.MP = p.MAXMP; }"
+											"code": "foreach( p in ::Rokugan.fReserve()){ p.removeCondition( \"K000\"); p.HP = p.MAXHP; p.MP = p.MAXMP; }"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -754829,6 +756026,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -754848,7 +756054,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "foreach( p in ::Rokugan.fReserve()){ p.HP = p.MAXHP; p.MP = p.MAXMP; }"
+											"code": "foreach( p in ::Rokugan.fReserve()){ p.removeCondition( \"K000\"); p.HP = p.MAXHP; p.MP = p.MAXMP; }"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -760250,6 +761456,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -760269,7 +761484,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "foreach( p in ::Rokugan.fReserve()){ p.HP = p.MAXHP; p.MP = p.MAXMP; }"
+											"code": "foreach( p in ::Rokugan.fReserve()){ p.removeCondition( \"K000\"); p.HP = p.MAXHP; p.MP = p.MAXMP; }"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -794849,6 +796064,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -797804,6 +799028,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -798612,6 +799845,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -804232,6 +805474,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -813942,6 +815193,15 @@
 										{
 											"cmd": "cmd_wait",
 											"time": 1800
+										},
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
 										},
 										{
 											"charaid": "P000",
@@ -851353,6 +852613,15 @@
 										},
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -870552,6 +871821,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -878698,6 +879976,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -884916,6 +886203,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -889956,6 +891252,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -906553,6 +907858,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -919061,6 +920375,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -930269,6 +931592,15 @@
 									[
 										{
 											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
+										{
+											"charaid": "P000",
 											"cmd": "cmd_hpmp",
 											"cmdtgt": 11,
 											"hp1": true,
@@ -935123,6 +936455,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",
@@ -955276,6 +956617,15 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"charaid": "P000",
+											"cmd": "cmd_condop",
+											"cmdtgt": 11,
+											"condbits": 1,
+											"ignoredead": true,
+											"op": 2,
+											"showpop": false
+										},
 										{
 											"charaid": "P000",
 											"cmd": "cmd_hpmp",

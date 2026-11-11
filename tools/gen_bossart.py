@@ -298,7 +298,9 @@ PAINT_HINTS = {"cand_crane6/Doji_Ayano.jpg": dict(                       # boxes
     # "fix his hat") and the red hair under it
     keep=[[(347, 74), (356, 48), (370, 30), (392, 24), (421, 25), (410, 33), (380, 50), (360, 66)],
           [(352, 78), (366, 62), (395, 45), (420, 50), (416, 62), (382, 76), (370, 92), (354, 90)]])}
-FLIP = {"akutsukai", "cellar_ogre", "masanori", "seppun_duelist"}
+FLIP = {"akutsukai", "cellar_ogre", "masanori", "seppun_duelist", "kumpei", "okura"}
+# (2026-11-11 animation watcher: kumpei + okura were painted facing left and their installed sheets still did, so
+# enemy_pic.json EP145/EP196 got flipx True; a rebuild here flips the image and writes flipx False - same result.)
 # gamma per painted boss (< 1 brightens the shadows): the Onikage painting is a night scene and read as a black blob
 # on the battle backdrop (mean 47/255; the troll is 131)
 LIFT = {"akutsukai": 0.62, "cellar_ogre": 0.85, "iron_crane": 0.8}

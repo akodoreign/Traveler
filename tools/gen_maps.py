@@ -2711,8 +2711,11 @@ DARK = [{"cmd": "cmd_screenfxon", "color": 657231871, "num": 1, "sfxid": "color0
         {"cmd": "cmd_wait", "time": 1200},
         {"cmd": "cmd_screenfxon", "color": 255, "num": 1, "sfxid": "color0", "time": 1600},
         {"cmd": "cmd_wait", "time": 1800}]
-REST = [{"charaid": "P000", "cmd": "cmd_hpmp", "cmdtgt": 11, "hp1": True, "op": 1, "pid": pid, "val": 100}
-        for pid in ("HP", "MP")]
+# (tester 2026-11-11: cmd_hpmp skips the fallen, so "Rested. HP and MP restored." left a downed traveler at 0 HP -
+# the finale's eight maps from Osano-Wo to the Empress have no inn. Lift the fallen first, as the inn macro X014 does.)
+REST = [{"charaid": "P000", "cmd": "cmd_condop", "cmdtgt": 11, "condbits": 1, "ignoredead": True, "op": 2,
+         "showpop": False}] +     [{"charaid": "P000", "cmd": "cmd_hpmp", "cmdtgt": 11, "hp1": True, "op": 1, "pid": pid, "val": 100}
+     for pid in ("HP", "MP")]
 
 
 def night_road_start():
@@ -16250,7 +16253,8 @@ PARTY_MENU = [narrate("${::Rokugan.fSummary()}"),
                                      [("Never mind.", [])]),
                              narrate("${::Rokugan.fSummary()}")])]),
                       ("Leave it.", []))]
-REST_ALL = REST + [script("foreach( p in ::Rokugan.fReserve()){ p.HP = p.MAXHP; p.MP = p.MAXMP; }")]
+REST_ALL = REST + [script("foreach( p in ::Rokugan.fReserve()){ p.removeCondition( \"K000\"); p.HP = p.MAXHP; "
+                          "p.MP = p.MAXMP; }")]
 
 
 # ---- M444 the Plains of Thunder (the level bridge; F01 the eight roads)

@@ -71,9 +71,17 @@ def check(epid, pics, fix=False):
 def apply_fixes(pics):
     """tools/frame_fixes.json: copy each listed good frame over the bad one (from the .orig.png, so it repeats safely)."""
     fixes = json.load(open(os.path.join(HERE, "frame_fixes.json"), encoding="utf-8"))
-    for epid, mp in fixes.items():
+    # One pass per SHEET, not per EP: two EPs can share a sheet (EP309 Togashi Yosai + EP709, EP342 Gonta + EP742
+    # Wrestler). Applied one after the other, the second saw the first's fixes as "redrawn since", took them as the
+    # original and re-copied only its own frames - so the two maps fought (2026-11-11). Merge them (bigger map wins).
+    sheets = {}
+    for epid, mp in sorted(fixes.items(), key=lambda kv: len(kv[1]) if isinstance(kv[1], dict) else 0):
         if epid.startswith("_") or epid not in pics:
             continue
+        key = os.path.basename(pics[epid]["pic3d"])
+        ep0, m0 = sheets.get(key, (epid, {}))
+        sheets[key] = (ep0 if key in sheets else epid, {**m0, **mp})
+    for key, (epid, mp) in sheets.items():
         e = pics[epid]
         path = os.path.join(RES, "enemy_pic", os.path.basename(e["pic3d"]))
         orig = os.path.join(ORIG, os.path.basename(path))                # (outside the game's resources)

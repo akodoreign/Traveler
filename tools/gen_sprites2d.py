@@ -983,6 +983,12 @@ def pose_v4(T, kind, i):
             P["ha_f"] = (30, 46 - hand)                  # the near arm hangs down the side, the belly in front
             P["ha_b"] = (43, 38 - hand)                  # the far fist pushed forward past it
             P["grip2"], P["fist"] = False, True
+        if T.get("club_back") and fam == "club":           # (user 2026-11-11, Sachiko) club planted upright in the far
+            P["whand"] = "b"                               # hand behind her, like the talk pose: the face stays clear
+            P["ha_b"] = (19, 39 - hand)
+            P["wang"] = -100.0
+            P["grip2"] = False
+            P["ha_f"] = (35, 43 - hand)                    # near hand down at the belt, off her face
         return _finish(P)
     if kind == "walk8":
         return _finish(walk_cycle(T, i, 8, style, spear))
@@ -3671,8 +3677,10 @@ def compose(T, P):
     cv = Canvas()
     long_w = T["weapon"] in ("yari", "bo", "shakujo")
     weapon_back = (P["wang"] < -100 or (P["smear"] is False and P["wang"] < -60 and long_w)) and not P.get("wfront")
-    if T["weapon"] == "tetsubo" and not P["smear"]:
+    if T["weapon"] == "tetsubo" and not P["smear"] and not T.get("club_back"):
         weapon_back = False                                # club rests on the near shoulder, in front of the bulk
+    # club_back (user 2026-11-11, Hida Sachiko: "her tetsubo must not cover her face"): the club stays behind the
+    # body and head, so the face reads in every idle frame
     if whand_b or P.get("wlay") is not None:
         weapon_back = True
     if P.get("wlay") is not None and not P["sheathed"] and T["weapon"] != "none":

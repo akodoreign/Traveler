@@ -4454,6 +4454,12 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   RE-RUN `badframes.py --apply` AFTER INSTALLING NEW SHEETS.
 - Story player: a battle burst (3 frames, 0.35 s apart) per battle, `story_N_battle_NNN_F.png`, enemy names logged
   ("[RT] BOT battle shot") - for backwards sprites (user: enemies facing left / cast facing right) and bad frames.
+- **Bad busts list** (user: "keep track of bad bust art, so it can be re-queued"): `tools/bad_busts.json` (speaker,
+  file, why, found). `tools/bustsheet.py story_N` = sheets of every bust a playthrough showed (review them each run).
+  `queue_busts.py --bad` queues 3 new candidates per listed speaker, even ones already in the game (not sent yet:
+  ComfyUI is busy with the sprite runner). So far: Hiruma Ryoichi (full-body child, wrong framing), Wall veteran
+  (too young for "forty years on the Wall"). Hida Tomoe as an old man is fine ("a grizzled commander").
+- 2026-11-11: 147 finished AI sheets installed (install_aisheets.py) + portraits + frame fixes, pushed (ec2311f).
 - Shop/inn doors: the portal sits 2 tiles out from the wall; walking along the footing past it never enters. Players
   walk up from the street, so the story player lines up 2 cells back and pushes in.
 - `tools/storyplay.py PATH`: plays a path from New Game (M099, prologue choice = PATH). Bot serve mode: a JSON command
@@ -4461,3 +4467,113 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   picks the nearest story event whose page would change a flag (Objective/arrival scenes first), routes map to map
   through open exits (whole trigger boxes), walks, talks, screenshots each leg (`story_N_LLL.png`). Exits that fail
   twice are reported as "BUG?" and routed around. Output `_art/preview/bot/story_N/play.txt`.
+
+## 2026-11-11: Agent team (user: "spin up an agent ... watch animations ... testing all the paths ... pushes fixes every 5 hours ... monitors bust work")
+- TESTER: plays every path with tools/storyplay.py, adds save/resume checkpoints (_art/preview/bot/checkpoints/path_N.json,
+  COVERAGE.md), fixes game bugs it finds, notes under "Agent team - tester". Only agent allowed to run rpgcobo.exe.
+- ANIMATION: reviews the tester's battle bursts (battlesheet.py) and every fighter's sheet (animsheet.py) for backwards
+  sprites and bad frames; owns frame_fixes.json / badframes.py / install_aisheets.py runs.
+- BUSTS: finishes the BiRefNet bust re-export (gen_busts.fg_mask, model in ComfyUI models/background_removal), scans
+  holes (busthole.py), reviews busts each run shows (bustsheet.py), keeps tools/bad_busts.json.
+- PUSH: every 5 h (session cron, expires after 7 days or when the session closes): sync_licensed.py + commit + push.
+- Status files: _art/preview/agents/team/{tester,animation,busts,push}.md. To restart after a session ends: spawn the same
+  roles again from this section; the tester resumes from its checkpoints.
+
+## 2026-11-11: Agent team - animation
+- 06:00 story_0 bursts 1-18 + rerun 1-8 reviewed; facing sheet of all 250 fighter EPs. Fixes: Togashi Yosai EP309 walk 12,
+  run 21, atk 35 (off-model/turned heads); Gonta EP342 run 21; badframes.py now merges fixes per shared sheet (EP309/709,
+  EP342/742 were undoing each other); boss Kumpei EP145 + Okura EP196 flipx True (+ gen_bossart FLIP); Sumai opponents
+  faced away (party-side sprite on the enemy side) -> RokuganField.sk sumaiMatch swaps in the EP700+ foe twin
+  (::Rokugan.sumaiFoe). Details + open items: _art/preview/agents/team/animation.md.
+
+## 2026-11-11: Agent team - tester
+- **Checkpoints** (storyplay.py): `--resume [--ckpt FILE]` starts at the saved map/spot with every story flag
+  (defaults since cleared get `=0`), party (`-rtlead`/`-rtparty`, `-rtlv`), money and bag (`-rtitem`), tried pages and
+  broken exits. Saved to `_art/preview/bot/checkpoints/path_N.json` every 40 legs, at each "- complete" card
+  (`path_N_chK_doneD.json` kept) and at the end of a run. `--save-from-log LEG|last` rebuilds one from a run's
+  log.txt + play.txt. RokuganBot prints `[RT] BOT kit N party=.. money=.. items=..` each leg; a resumed run numbers
+  its battle bursts on (cmd `battle0`), logs to `log_resume.txt` (appended to log.txt at the end), appends play.txt.
+  Not restored: equipment, the plugin's menu-answer rotation. Coverage per path: `checkpoints/COVERAGE.md`.
+- **M103 -> M102 "BUG?" was the planner** (both Crab runs stopped there): its route cut through the west padding
+  forest and wedged between canopies (engine trees collide wider than reach_map's 1-cell margin). Routes now prefer
+  road squares (Dijkstra, road 1 / ground 3) and keep 2 cells from trunks when they can.
+- **Crab Ch1-4 complete** in one resumed playthrough (checkpoints path_0_ch1..ch4_done*.json, ~260 legs). The Ch4 dark
+  castle stalk (maid / guard / Akiko / Nashiko) is solved by the menu-answer rotation. After Ch4 the Crab save walks
+  straight into the finale (M444 eight roads, fJoinAll -> M445 seven waves).
+- Engine passes at most 13 command-line args: resume packs lv/party/item/money/fast/auto into `-rt`.
+- Planner: door cells (portal boxes <= 9 cells) are never walked across on the way elsewhere (M141: the route east
+  crossed the M160 inn door - in, out, in, forever); a "go" leg that lands on a third map without any flag change is
+  reported (`??`) and after 3 routed around; hireling / Yosai offers (moneyop "hire", `W = n <= 1`) get one try at
+  the lowest priority (they ate 6 legs each).
+- **Finale wave 7 lost** (Many-Legged Horror, 30,571 HP) with Party A at 2 of 4 standing: the bot chained waves 1-7
+  with no healing (the inn closes during the waves). Bot now rests at a save shrine on the map whenever a member is
+  down or under 3/4 HP (`BOT kit ... hurt=N`), at anything offering "Rest and save." (shrines, the wave gate, the glade's last save); RokuganField's auto-answer always takes "Rest and save." (0).
+- **GAME FIX - resting never raised the fallen**: REST (every save shrine, the wave gate, the glade's last save) was
+  two cmd_hpmp, and the engine's changeHPMP skips dead characters: "(Rested. HP and MP restored.)" left a KO'd
+  traveler at 0 HP. The finale has no inn from Osano-Wo to the Empress (8 maps, 4 with encounters), so a downed
+  Party A member stayed down to the end; the bot wiped twice in the Shinomen Mori. REST now starts with the inn
+  macro's cmd_condop (remove K000, ignoredead) (gen_maps.py REST); REST_ALL and the inn's "RT reserve rest"
+  (gen_data.py, macro.json X014) also `removeCondition("K000")` on Party B. Lead: veto if save shrines should not
+  revive (Octopath's don't; but the text promises it and there is no inn on the finale road).
+- Bot `kit` also prints equipment (`equip=P100+0+W127,...`, Party A + B) and resume restores it (`-rt equip`); a
+  resume with no equipment fought the finale in starting gear. Party wipe is reported as such ("PARTY WIPED").
+- Battle burst numbers: a resumed run's offset was added again on every battle (cmd sent it each leg) - shots
+  2341.. 3220 in story_0; now once per run.
+- **Crab path played to THE END** (finale Act 1 seven waves won on auto with rests; Shinomen Mori; Act 4 Empress;
+  epilogue codas for all eight; THE END; then back at Osano-Wo for the post-game). The Empress (13,134 HP, 20
+  shields, vanishes - "crystal or jade finds her") beat the auto-battler twice; seen through with `--tank`
+  (storyplay: -rttank, nobody falls). Not a game bug as far as the logs show; a player uses crystal/jade there.
+- Bot talkto retries from the other sides when nothing answered (M445's gate ignored Z from one spot after the
+  regen: six "talks", no message); RokuganField counts shown messages (`::Rokugan.msgn`) so a talk that ran and
+  finished is not repeated.
+- 06:30 all ~67 remaining side-cast/hireling sheets reviewed (walk/run/attack): frame fixes for EP389, EP392, EP588, EP673,
+  EP1107, EP1112, EP1127, EP1128, EP1140, EP1149 (heads turned away, hats/weapons popping, Hida Veteran morphing).
+  Redraws (user "yeah redraw them"): Hida Sachiko - new gen_sprites2d flag club_back (tetsubo behind her head; rig and
+  guide redone, procedural sheet in the game meanwhile); Moto Outrider - cleaner spec, procedural sheet in the game
+  meanwhile. Both drawing via tools/pixelai_redo.py (detached, log pixelai/redo.log); old frames in pixelai/replaced/.
+- 06:15 enemy sheets reviewed (walk/attack: humans, monsters, foe twins) - all fine. Hida Veteran redraw queued after
+  Sachiko/Moto (spec said "sage green hair"; now grey-haired balding old man). Redraw progress: pixelai/redo.log.
+- 06:40 Sachiko redraw restarted twice: the AI drew her facing left (backwards) from frame 0. Rig idle now plants the club
+  behind her and lowers her near hand (gen_sprites2d club_back), spec says "facing right", and tools/pixelai_pick.py
+  hand-picks a right-facing candidate. Try 3 is facing right. Queue: Sachiko, Moto Outrider, Hida Veteran (~15 h each
+  at the shared ComfyUI pace).
+- 06:45 club_back on Hiruma Kage (ch3), Kaiu Engineer, Hida Veteran too: plain sheets + guides redone; Engineer's AI sheet
+  (club over face) set aside and queued for redraw after Sachiko, Moto, Veteran.
+
+## 2026-11-11: Agent team - busts
+- (bust monitor) Finished the BiRefNet re-export: all 99 bust keys (411 files) re-keyed with the final code. gen_busts.py:
+  BiRefNet runs once per variant (key_out fixed_alpha= for the other emotions; was a ComfyUI job per emotion), masks
+  cached in _art/busts/_masks. New cut_enclosed_bg() after the mask: (1) background BiRefNet kept above the shoulders
+  (npc_akodo_rin's white patch) - flat background colour reached by the colour key's border flood; (2) enclosed gaps
+  between hair strands and the neck (Natsuko's ponytail, Rensei, Shizue bath) - only with a face box, ringed by dark
+  hair/lineart (a towel or hat top is ringed by light cloth; a flat-white-only rule cut Gendo's bath towel and travel
+  hat top - don't); (3) vignette busts whose art fades out above the frame bottom (Doji Sanae, Maho Puppet, Naohida,
+  Runner, Gonbei, Yogo scribe...) - bottom-touching exact background colour (median 0-1; white cloth is 3-5);
+  (4) a 4 px band of flood-reached white along the silhouette (fringe).
+- Scans (before = _art/bust_backup_20261111 -> now): enclosed holes 834k px -> 550k px, and every remaining one checked on
+  sheets is a correct cut (background between hair and shoulders), none in faces/bodies; edge white fringe 51k -> 38k px
+  (the rest is white lineart in the art). busthole.py's "bite" count flags every bust (open background between hair and
+  arm) - not a useful number. New tools/bustfringe.py [key...] [--sheet]: _art/preview/bustcheck_<key>.png (every file on
+  magenta, cyan = opaque pure white).
+- Bad bust art (tools/bad_busts.json, user "yeah redraw them"): redrawn and exported - Hiruma Ryoichi (cand_s39551,
+  waist-up teen scout in lamellar), Wall veteran (round 2 cand_s85203, old tipsy drinker, sake cup; round 1 was a
+  close-up), Hida Kisada (cand_s73518, face and beard under the kabuto; the old faceless mempo pick armour_s303 was
+  user-OK'd 2026-11-08 - revert in _art/busts/npc_picks.json if wanted), Fishwife (new key npc_fishwife, cand_s83508; she
+  borrowed the herbalist girl via RokuganBustGeneric.sk - bustnames wins now). Chins in CHIN_FIX. queue_busts.py --bad:
+  real prompts for picked NPCs, bad_busts "look" (weighted, first) and "seed_add", --bad --only X, "fixed" skipped.
+  NOTE: a new pick needs `gen_busts.py npc <key>` - stage_export alone re-keys the OLD _art/busts/<key>/neutral.png.
+- Open: sayo base/night keep green plant leaves from the source art at the edges; Mitsue's bath variant shows a red
+  high-necked top instead of bare shoulders (art); several Lion women share one face (Akodo Rin, Matsu Hanae, Matsu
+  Kiku) and Shiba Ashimita/Noboru look alike; Fishwife reads 20s-30s, not 40s. Status: _art/preview/agents/team/busts.md.
+- (busts, follow-up per lead) Sayo base/night: the green plant leaves at the frame sides are keyed out - new
+  CHARS option cut_edge_hue=(24, 90) -> gen_busts.cut_edge_hue() cuts regions of that hue in the outer 8% of the width
+  (her green obi is central) with their lineart, and loose bits (a few tiny stem specks remain against her hair).
+  Mitsue bath redone: the base's red half-mask had grown into a red high-necked top; new var_bath.png (review/
+  var_bath_v61.png, pale skin to match her face, bare shoulders + towel; old one review/var_bath_old_redtop.png);
+  settings kept in her CHARS entry (vseed/vtags/vneg bath). Look-alikes redrawn via bad_busts.json + queue_busts --bad:
+  Matsu Hanae (cand_s65236: proud, black bob, gold headband, climbing rope, gold-black armour), Matsu Kiku
+  (cand_s56507: shy, braid, cream kimono, lion shoulder guard, paintbrush in the obi), Shiba Noboru (cand_s25863:
+  young humble yojimbo, topknot, yari) - all exported, checked on magenta, chins set. Hida Kisada keeps the face version.
+  Tried and dropped: the dark-ring "enclosed gap" rule for NPCs (no face box) - it also hits white kimono collars
+  ringed by dark cloth (Crab guard, Kaiu sapper, Shosuro Norie). Open: a small white patch of background between Matsu
+  Hanae's rope and staff; Fishwife reads 20s-30s; story_1..7 bust sheets when the tester's runs land (only story_0 so far).

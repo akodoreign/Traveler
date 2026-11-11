@@ -1178,9 +1178,10 @@ def main():
             node = node[int(k)] if k.isdigit() else node[k]
         node[keys[-1]] = text
     stay = mc["X014"]["cmdblock"][4]["cmdblocks"][0]      # the inn also rests whoever waits in the finale's Party B
-    if not any(c.get("desc") == "RT reserve rest" for c in stay):                 # (G1160; empty outside the finale)
-        stay.append({"cmd": "cmd_script", "desc": "RT reserve rest",
-                     "code": "foreach( p in ::Rokugan.fReserve()){ p.HP = p.MAXHP; p.MP = p.MAXMP; }"})
+    code = ("foreach( p in ::Rokugan.fReserve()){ p.removeCondition( \"K000\"); p.HP = p.MAXHP; "
+            "p.MP = p.MAXMP; }")                          # (the fallen get up too: tester 2026-11-11)
+    stay[:] = [c for c in stay if c.get("desc") != "RT reserve rest"]             # (G1160; empty outside the finale)
+    stay.append({"cmd": "cmd_script", "desc": "RT reserve rest", "code": code})
     save("macro", mc)
     gv = load("gvar")                                     # story flags (Crab Ch1)
     for gid, nm in (("G010", "S01 watchtower opening done"), ("G011", "S02 leave ordered"),

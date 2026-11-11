@@ -912,7 +912,7 @@
 						{
 							"cmd": "cmd_script",
 							"desc": "RT reserve rest",
-							"code": "foreach( p in ::Rokugan.fReserve()){ p.HP = p.MAXHP; p.MP = p.MAXMP; }"
+							"code": "foreach( p in ::Rokugan.fReserve()){ p.removeCondition( \"K000\"); p.HP = p.MAXHP; p.MP = p.MAXMP; }"
 						}
 					],
 					[]

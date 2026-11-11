@@ -95,12 +95,26 @@ def would_change(page, flags):
 _grid = {}
 
 
-def grid(mid):
+def grid(mid, strict=False):
     if mid not in _grid:
         m, ev = gm.make(mid)
         seen, blocked, fl = et.reach_map(m, ev)
-        _grid[mid] = (m, ev, seen, fl)
-    return _grid[mid]
+        wide = seen.copy()                                        # strict: 2 cells clear of every tree trunk (a
+        for o in m.objs:                                          # canopy collides wider than reach_map's 1 cell:
+            if o.get("t") == "fb" and o.get("fbtype") == 20 and o.get("fbparam") in (gm.TREE_L, gm.TREE_M):
+                x, z = o["x"], o["z"]                             # the bot wedged between M103's padding trees)
+                wide[max(0, z - 2):z + 3, max(0, x - 2):x + 3] = False
+        for e in (MP.get(mid, {}).get("event") or {}).values():   # never walk across a door on the way somewhere
+            s = json.dumps(e.get("page") or [])                   # else (M141: the route east crossed the inn door,
+            if "pos" in e and (e.get("role") == "portal" or '"trigger": 5' in s and "cmd_mapmove" in s):  # in, out,
+                fp = et.footprint(e, m.w, m.d)                    # in ... forever)
+                if fp and len(fp) <= 9:
+                    for x, z in fp:
+                        if 0 <= x < m.w and 0 <= z < m.d:
+                            seen[z, x] = wide[z, x] = False
+        _grid[mid] = (m, ev, seen, fl, wide)
+    m, ev, seen, fl, wide = _grid[mid]
+    return (m, ev, wide if strict else seen, fl)
 
 
 def exits(mid, flags):
@@ -137,6 +151,7 @@ def exits(mid, flags):
 
 
 CHOICE_PAGES = set()                                              # (map, event@page) that open a menu
+HIRE_PAGES = set()                                                # (map, event@page) of hirelings
 BROKEN = set()                                                  # (map, next map): its exit never took us there
 
 
@@ -158,8 +173,38 @@ def map_route(src, dst, flags):
     return None
 
 
+def road_path(m, seen, fl, start, goals):
+    """Cheapest walk, a road square costing a third of open ground (a player follows the road, not the forest)."""
+    import heapq
+    cost = {start: 0}
+    prev = {start: None}
+    h = [(0, start)]
+    while h:
+        c0, c = heapq.heappop(h)
+        if c0 > cost.get(c, 1e9):
+            continue
+        if c in goals:
+            out = []
+            while c:
+                out.append(c)
+                c = prev[c]
+            return out[::-1]
+        for nb in et.nbrs(c[0], c[1], seen, fl):
+            nc = c0 + (1 if m.blk[nb[1], nb[0]] == gm.ROAD else 3)
+            if nc < cost.get(nb, 1e9):
+                cost[nb] = nc
+                prev[nb] = c
+                heapq.heappush(h, (nc, nb))
+    return None
+
+
 def walk_steps(mid, start, goal_cells):
-    m, ev, seen, fl = grid(mid)
+    """Clear of trees by 2 cells if it can (roads, not the padding forest), else the plain walk grid."""
+    return _walk_steps(mid, start, goal_cells, True) or _walk_steps(mid, start, goal_cells, False)
+
+
+def _walk_steps(mid, start, goal_cells, strict):
+    m, ev, seen, fl = grid(mid, strict)
     sx, sz = int(start[0]), int(start[1])
     if not (0 <= sx < m.w and 0 <= sz < m.d):
         return None
@@ -174,7 +219,7 @@ def walk_steps(mid, start, goal_cells):
     goals = {g for g in goal_cells if 0 <= g[0] < m.w and 0 <= g[1] < m.d and seen[g[1], g[0]]}
     if not goals:
         return None
-    route = et.path(seen, fl, (best[1], best[2]), goals)
+    route = road_path(m, seen, fl, (best[1], best[2]), goals)
     if not route:
         return None
     return ["goto %.1f %.1f 4000" % (x + 0.5, z + 0.5) for x, z in route[2::3] + [route[-1]]]
@@ -199,6 +244,10 @@ def targets(flags, here):
                 continue
             s = json.dumps(pg)
             prio = 0 if "Objective" in s else 1
+            if ("cmd_moneyop" in s and re.search(r"[Hh]ire", s)) or "W = n <= 1" in s:   # a hireling or an optional
+                # companion's offer (Yosai: "W" = room in the party): side business, one try, last
+                prio = 2
+                HIRE_PAGES.add((mid, "%s@%d" % (key, n)))
             if pg.get("trigger") == 6:
                 prio -= 1                                         # a scene that plays on arrival
             out.append((prio, mid, "%s@%d" % (key, n), pg.get("trigger"), int(round(e["pos"][0])),
@@ -212,8 +261,8 @@ def plan(state, flags, tried):
     mid, x, z = state
     best = None
     for prio, tm, key, trig, tx, tz in targets(flags, mid):
-        if tried.get((tm, key), 0) >= (6 if (tm, key) in CHOICE_PAGES else 2):   # a menu: try its other answers
-            continue
+        if tried.get((tm, key), 0) >= (1 if (tm, key) in HIRE_PAGES else 6 if (tm, key) in CHOICE_PAGES else 2):
+            continue                                              # (a menu: try its other answers)
         r = map_route(mid, tm, flags)
         if r is None:
             continue
@@ -254,55 +303,236 @@ def plan(state, flags, tried):
     return (tm, key, "talk"), (w + ["talkto %d %d" % (tx, tz), "wait 2000"]) if w is not None else None
 
 
+def rest_plan(state, flags):
+    """Somebody is down or under half HP: a player rests first, at anything on this map that offers "Rest and save."
+    (a save shrine, the gate before the finale's waves, the glade's last save)."""
+    mid, x, z = state
+    for key, e in (MP.get(mid, {}).get("event") or {}).items():
+        n, pg = page_now(e, flags) if "pos" in e else (None, None)
+        if pg and pg.get("trigger") in (1, 2) and '"Rest and save."' in json.dumps(pg):
+            tx, tz = int(round(e["pos"][0])), int(round(e["pos"][2]))
+            w = walk_steps(mid, (x, z), near(tx, tz, 1) - near(tx, tz, 0)) or                 walk_steps(mid, (x, z), near(tx, tz, 2) - near(tx, tz, 1))
+            if w is not None:
+                return (mid, key, "rest at the shrine"), w + ["talkto %d %d" % (tx, tz), "wait 2500"]
+    return None, None
+
+
+# ------------------------------------------------------------------ checkpoints (save / resume)
+CKDIR = os.path.join(HERE, "..", "_art", "preview", "bot", "checkpoints")
+TANK = "--tank" in sys.argv                                       # --tank: nobody falls (-rttank), to see what comes
+                                                                  # after a fight the auto-battler keeps losing
+PARTY0 = "P100"                                                   # who a -testplay start has in the party
+
+
+def parse_flags(raw):
+    flags = {}
+    for kv in raw.split(","):
+        if "=" in kv:
+            k, v = kv.split("=")
+            flags[k] = True if v == "1" and GV.get(k, {}).get("type") == 1 else int(v) if v.lstrip("-").isdigit() else True
+    return flags
+
+
+def parse_kit(raw):
+    """'party=P100+P120 money=40 items=I104x5+I200x1' -> dict"""
+    kit = {"party": [], "money": 0, "items": []}
+    for part in raw.split():
+        k, _, v = part.partition("=")
+        if k == "party":
+            kit["party"] = [p for p in v.split("+") if p]
+        elif k == "money":
+            kit["money"] = int(v) if v.lstrip("-").isdigit() else 0
+        elif k == "items":
+            kit["items"] = [p for p in v.split("+") if p]
+        elif k == "equip":
+            kit["equip"] = [p for p in v.split(",") if p]
+        elif k == "hurt":
+            kit["hurt"] = int(v) if v.isdigit() else 0
+    return kit
+
+
+def save_checkpoint(path, n, state, flags, kit, chapter, done, why, tried, broken, extra=None):
+    """_art/preview/bot/checkpoints/path_N.json (the latest) + path_N_<why>.json (kept: one per chapter start)."""
+    os.makedirs(CKDIR, exist_ok=True)
+    ck = {"path": path, "name": PATHS[path], "leg": n, "map": state[0], "x": state[1], "z": state[2],
+          "y": state[3] if len(state) > 3 else None, "flags": flags, "kit": kit, "chapter": chapter,
+          "chapters_done": done, "why": why, "saved": time.strftime("%Y-%m-%d %H:%M"),
+          "tried": [[m, k, c] for (m, k), c in sorted(tried.items())], "broken": sorted(list(b) for b in broken)}
+    ck.update(extra or {})
+    for f in ["path_%d.json" % path] + (["path_%d_%s.json" % (path, why)] if why.startswith("ch") else []):
+        tmp = os.path.join(CKDIR, f + ".tmp")
+        json.dump(ck, open(tmp, "w"), indent=1)
+        os.replace(tmp, os.path.join(CKDIR, f))
+    return ck
+
+
+def checkpoint_from_log(path, leg=None):
+    """Rebuild a checkpoint from a run's own log (story_N/log.txt + play.txt): the last leg (or LEG) that reported."""
+    out = os.path.join(HERE, "..", "_art", "preview", "bot", "story_%d" % path)
+    lines = [ln[ln.find("[RT]"):] for ln in open(os.path.join(out, "log.txt"), errors="replace").read().splitlines()
+             if "[RT] BOT " in ln]
+    st, fl, kt = {}, {}, {}
+    for ln in lines:
+        p = ln.split(" ", 4)
+        if ln.startswith("[RT] BOT state "):
+            q = ln.split()
+            st[int(q[3])] = (q[4], float(q[5]), float(q[6]), float(q[7]) if len(q) > 7 else None)
+        elif ln.startswith("[RT] BOT flags "):
+            fl[int(p[3])] = parse_flags(p[4] if len(p) > 4 else "")
+        elif ln.startswith("[RT] BOT kit "):
+            kt[int(p[3])] = parse_kit(p[4] if len(p) > 4 else "")
+    legs = sorted(k for k in st if k in fl and (leg is None or k <= leg))
+    if not legs:
+        raise SystemExit("no leg reported in the log")
+    n = legs[-1]
+    chapter, done, tried, broken = 1, 0, {}, set()
+    hist = {}                                                     # leg -> the state before it (a resumed run's
+    for ln in open(os.path.join(out, "play.txt"), encoding="utf-8", errors="replace"):   # lines replace the old ones)
+        mr = re.search(r"RESUMED at leg (\d+)", ln)
+        if mr:
+            k = min([j for j in hist if j > int(mr.group(1))] or [None]) if hist else None
+            if k is not None:
+                chapter, done, tried, broken = hist[k][0], hist[k][1], dict(hist[k][2]), set(hist[k][3])
+            hist = {j: v for j, v in hist.items() if j <= int(mr.group(1))}
+            continue
+        ml = re.match(r"\s*(\d+) M\d+ ", ln)
+        if ml:
+            if int(ml.group(1)) > n:                              # (past the leg we save: ignore the rest of
+                hist.setdefault(int(ml.group(1)), (chapter, done, dict(tried), set(broken)))   # this section)
+                continue
+            hist[int(ml.group(1))] = (chapter, done, dict(tried), set(broken))
+        if hist and max(hist) > n and not ml:
+            continue
+        m = re.match(r"\s*(\d+) M\d+ .*-> (M\d+) (\S+) \((talk|walk onto|arrival scene)\)", ln)
+        if m and int(m.group(1)) < n:
+            tried[(m.group(2), m.group(3))] = tried.get((m.group(2), m.group(3)), 0) + 1
+        m = re.search(r"CHAPTER (\d+)", ln)
+        if m:
+            chapter = int(m.group(1))
+        if "- complete" in ln:
+            done += 1
+        m = re.search(r"the exit (M\d+) -> (M\d+) did not", ln)
+        if m:
+            broken.add((m.group(1), m.group(2)))
+    kit = kt.get(n) or {"party": [PARTY0], "money": 0, "items": []}
+    return save_checkpoint(path, n, st[n], fl[n], kit, chapter, done, "log", tried, broken)
+
+
+def resume_args(ck, name, lv=60):
+    """Engine arguments that start where the checkpoint stood: map, spot, flags, party, purse, bag."""
+    flags = ck["flags"]
+    vl = [k if v is True else "%s=%d" % (k, int(v)) for k, v in sorted(flags.items())]
+    vl += ["%s=0" % k for k, d in DEF.items() if re.match(r"^G\d+$", k) and d and k not in flags]   # (cleared since)
+    vf = os.path.join(TOOL, "tmp", "bot", name + "_resume_vars.txt")
+    json.dump(vl or ["G000"], open(vf, "w"))
+    y = ck.get("y")
+    pos = "[%.2f,%.2f,%.2f,0.0]" % (ck["x"] / 2.0, (y / 2.0 + 0.05) if y is not None else 2.0, ck["z"] / 2.0) \
+        if y is not None else pb.start_pos(ck["map"], ck["x"], ck["z"])
+    # (the engine passes at most 13 arguments: the rest go packed in -rt, "lv 60;party P132;...")
+    pack = ["bot serve,tmp/bot/%s_cmd.txt" % name, "fast", "auto", "lv %s" % lv] + (["tank"] if TANK else [])
+    kit = ck.get("kit") or {}
+    party = kit.get("party") or [PARTY0]
+    if party[0] != PARTY0:
+        pack.append("lead " + party[0])
+    if len(party) > 1:
+        pack.append("party " + ",".join(party[1:]))       # (-rtparty joiners take the lead's level)
+    if kit.get("items"):
+        pack.append("item " + ",".join(kit["items"]))
+    if kit.get("money"):
+        pack.append("money %d" % kit["money"])
+    if kit.get("equip"):
+        pack.append("equip " + ",".join(kit["equip"]))
+    return ["-testplay", "-map", ck["map"], pos, "-rtvar", "@tmp/bot/%s_resume_vars.txt" % name,
+            "-debuglv", str(lv), "-rt", ";".join(pack)]
+
+
 # ------------------------------------------------------------------ the loop
 def main():
     a = sys.argv[1:]
-    opts = {"--lv": "60", "--legs": "400", "--minutes": "90"}
+    opts = {"--lv": "60", "--legs": "400", "--minutes": "90", "--save-from-log": None, "--ckpt": None}
+    resume = "--resume" in a
+    a = [x for x in a if x not in ("--resume", "--tank")]
     for k in list(opts):
         if k in a:
             i = a.index(k)
-            opts[k] = a[i + 1]
+            opts[k] = a[i + 1] if i + 1 < len(a) else ""
             a = a[:i] + a[i + 2:]
     path = int(a[0])
+    if opts["--save-from-log"] is not None:                       # storyplay.py N --save-from-log [LEG|last]
+        lg = opts["--save-from-log"]
+        ck = checkpoint_from_log(path, int(lg) if lg.isdigit() else None)
+        print("checkpoint leg %d %s %.0f,%.0f chapter %d -> %s" % (ck["leg"], ck["map"], ck["x"], ck["z"],
+                                                                   ck["chapter"], CKDIR))
+        return
     name = "story_%d" % path
     out = os.path.join(HERE, "..", "_art", "preview", "bot", name)
     os.makedirs(out, exist_ok=True)
     cmdf = os.path.join(TOOL, "tmp", "bot", name + "_cmd.txt")
     os.makedirs(os.path.dirname(cmdf), exist_ok=True)
     flagnames = sorted(k for k in GV if re.match(r"^G\d+$", k))
+    ck = None
+    if resume:                                                    # --resume [--ckpt FILE]: path_N.json by default
+        ckf = opts["--ckpt"] or os.path.join(CKDIR, "path_%d.json" % path)
+        if not os.path.isabs(ckf) and not os.path.exists(ckf):
+            ckf = os.path.join(CKDIR, ckf)
+        ck = json.load(open(ckf))
+    shots = os.path.join(TOOL, "tmp", "rt_shot")
+    os.makedirs(shots, exist_ok=True)
+    battle0 = 0
+    for f in os.listdir(shots):
+        if f.startswith("bot_%s_" % name):
+            mb = re.match(r"bot_%s_battle_(\d+)_" % name, f)
+            if resume and mb:
+                battle0 = max(battle0, int(mb.group(1)))              # a resumed run numbers its battles on
+            elif not resume:
+                os.remove(os.path.join(shots, f))
 
     def cmd(n, steps, quit_=False):
         tmp = cmdf + ".tmp"
-        json.dump({"n": n, "steps": [s.replace(" ", ",") for s in steps], "flags": flagnames, "quit": quit_},
-                  open(tmp, "w"))
+        d = {"n": n, "steps": [s.replace(" ", ",") for s in steps], "flags": flagnames, "quit": quit_}
+        if battle0:
+            d["battle0"] = battle0
+        json.dump(d, open(tmp, "w"))
         os.replace(tmp, cmdf)                                     # (never a half-written file)
     cmd(0, [])
-    shots = os.path.join(TOOL, "tmp", "rt_shot")
-    os.makedirs(shots, exist_ok=True)
-    for f in os.listdir(shots):
-        if f.startswith("bot_%s_" % name):
-            os.remove(os.path.join(shots, f))
     subprocess.run(["taskkill", "/IM", "rpgcobo.exe", "/F"], capture_output=True)
-    log = os.path.join(out, "log.txt")
-    args = [os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-map", "M099", pb.start_pos("M099", *pb.block("M099", 12, 6)), "-rtvar",
-            "G000", "-rtfast", "-rtauto", "-debuglv", opts["--lv"],
-            "-rt", "bot serve,tmp/bot/%s_cmd.txt;choice %d" % (name, path)]
+    log = os.path.join(out, "log_resume.txt" if resume else "log.txt")
+    if resume:
+        args = [os.path.join(TOOL, "rpgcobo.exe")] + resume_args(ck, name, opts["--lv"])
+    else:
+        args = [os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-map", "M099", pb.start_pos("M099", *pb.block("M099", 12, 6)), "-rtvar",
+                "G000", "-rtfast", "-rtauto", "-debuglv", opts["--lv"],
+                "-rt", "bot serve,tmp/bot/%s_cmd.txt;choice %d" % (name, path)]
     lf = open(log, "w")
     proc = subprocess.Popen(args, cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
-    play = open(os.path.join(out, "play.txt"), "w", encoding="utf-8")
+    play = open(os.path.join(out, "play.txt"), "a" if resume else "w", encoding="utf-8")
 
     def note(s):
         print(s)
         play.write(s + "\n")
         play.flush()
-    note("== %s path, level %s" % (PATHS[path], opts["--lv"]))
     t0, n, tried, seen_lines = time.time(), 0, {}, 0
     last_flags, what, fails = None, None, {}
+    chapter, done, kit, last_ck, rested = 1, 0, None, 0, -9
     send = ["wait 4000"]                                          # the prologue plays first
-    while n < int(opts["--legs"]) and time.time() - t0 < float(opts["--minutes"]) * 60:
+    if resume:
+        n = ck["leg"]
+        chapter, done, last_ck = ck.get("chapter", 1), ck.get("chapters_done", 0), ck["leg"]
+        tried = {(m, k): c for m, k, c in ck.get("tried", [])}
+        for b in ck.get("broken", []):
+            BROKEN.add(tuple(b))
+        note("== %s path, level %s, RESUMED at leg %d (%s %.0f,%.0f, chapter %d) from %s" % (
+            PATHS[path], opts["--lv"], n, ck["map"], ck["x"], ck["z"], chapter, ck.get("saved")))
+        send = ["wait 3000"]
+    else:
+        note("== %s path, level %s" % (PATHS[path], opts["--lv"]))
+    legs_max = n + int(opts["--legs"])
+    while n < legs_max and time.time() - t0 < float(opts["--minutes"]) * 60:
         n += 1
         cmd(n, send)
         state = flags = None
+        lines = []
+        finished = False
         t1 = time.time()
         while time.time() - t1 < 240 and proc.poll() is None:
             time.sleep(0.5)
@@ -311,6 +541,12 @@ def main():
             for ln in lines[seen_lines:]:
                 if "[RT] MSG" in ln and ("Objective" in ln or "- complete" in ln or "CHAPTER" in ln):
                     note("   " + ln[ln.find("[RT] MSG") + 9:][:150])
+                    mc = re.search(r"CHAPTER (\d+)", ln)
+                    if mc:
+                        chapter = int(mc.group(1))
+                    if "- complete" in ln:
+                        done += 1
+                        finished = True
                 if "xception in thread" in ln or "ERROR" in ln:
                     note("   !! " + ln[:160])
                 if "[RT] BOT STUCK" in ln:
@@ -321,16 +557,31 @@ def main():
             if st and fl:
                 p = st[-1].split()
                 state = (p[4], float(p[5]), float(p[6]))
+                y = float(p[7]) if len(p) > 7 else None
                 raw = fl[-1].split(" ", 4)[4] if len(fl[-1].split(" ", 4)) > 4 else ""
-                flags = {}
-                for kv in raw.split(","):
-                    if "=" in kv:
-                        k, v = kv.split("=")
-                        flags[k] = True if v == "1" and GV.get(k, {}).get("type") == 1 else int(v) if v.lstrip("-").isdigit() else True
+                flags = parse_flags(raw)
+                kl = [l for l in lines if l.startswith("[RT] BOT kit %d " % n)]
+                if kl:
+                    kit = parse_kit(kl[-1].split(" ", 4)[4] if len(kl[-1].split(" ", 4)) > 4 else "")
                 break
         if state is None:
-            note("!! no answer from the game (crashed or hung) after leg %d" % n)
+            wiped = any("ARRIVE M000" in l for l in lines[-60:]) if lines else False
+            note("!! %s after leg %d" % ("PARTY WIPED (game over, back at the title)" if wiped else
+                                        "no answer from the game (crashed or hung)", n))
             break
+        if "M100" <= state[0] < "M800" and (finished or n - last_ck >= 40):
+            why = "ch%d_done%d" % (chapter, done) if finished else "leg"
+            save_checkpoint(path, n, state + (y,), flags, kit or {"party": [PARTY0], "money": 0, "items": []},
+                            chapter, done, why, tried, BROKEN)
+            last_ck = n
+            note("   [checkpoint leg %d: %s]" % (n, why))
+        moved = flags != last_flags                                      # (a story scene moved us: not a door)
+        if what and len(what) > 3 and state[0] not in what[3] and not ("M800" <= state[0] < "M900") and not moved:
+            note("   ?? went %s -> %s but landed in %s" % (what[3][0], what[3][1], state[0]))   # (walked into a
+            fails[what[3]] = fails.get(what[3], 0) + 1                                         # door on the way)
+            if fails[what[3]] >= 3:
+                BROKEN.add(what[3])
+                note("!! BUG? the way %s -> %s keeps landing in %s; routing around it" % (what[3] + (state[0],)))
         if what and len(what) > 3 and state[0] == what[3][0]:          # a "go" leg that left us where we were
             fails[what[3]] = fails.get(what[3], 0) + 1
             if fails[what[3]] >= 3:
@@ -342,7 +593,13 @@ def main():
                 note("   + " + ",".join(sorted(newly)))
             tried[(what[0], what[1])] = tried.get((what[0], what[1]), 0) + 1   # every page gets two tries
         last_flags = flags
-        what, steps = plan(state, flags, tried)
+        what = steps = None
+        if kit and kit.get("hurt") and rested != n - 1:              # (once in a row: a menu answer may be "Leave")
+            what, steps = rest_plan(state, flags)
+            if what:
+                rested = n
+        if what is None:
+            what, steps = plan(state, flags, tried)
         if what is None:
             note("-- nothing left that moves the story (at %s %.0f,%.0f)" % state)
             break
@@ -353,9 +610,18 @@ def main():
             continue
         note("%3d %s %4.0f,%-4.0f -> %s %s (%s)" % (n, state[0], state[1], state[2], what[0], what[1], what[2]))
         send = steps + ["shot %s_%03d" % (name, n + 1)]                 # what the player sees after this leg
+    if state and flags is not None and "M100" <= state[0] < "M800":
+        save_checkpoint(path, n, state + (y,), flags, kit or {"party": [PARTY0], "money": 0, "items": []},
+                        chapter, done, "end", tried, BROKEN)
+        note("   [checkpoint leg %d: end]" % n)
     cmd(n + 1, [], True)
     time.sleep(2)
     subprocess.run(["taskkill", "/PID", str(proc.pid), "/F"], capture_output=True)
+    lf.close()
+    if resume:                                                    # (battlesheet reads log.txt for the enemy names)
+        with open(os.path.join(out, "log.txt"), "a") as f:
+            f.write("\n==== RESUMED RUN from leg %d ====\n" % ck["leg"])
+            f.write(open(log, errors="replace").read())
     pb.convert_shots(name, out)
     note("== %d legs, %.0f min" % (n, (time.time() - t0) / 60))
 

@@ -165,7 +165,14 @@ def npc_prompt(name, looks, md=None):
 def main():
     dry = "--dry" in ARGS
     only = set(ARGS[ARGS.index("--only") + 1].split(",")) if "--only" in ARGS else None   # speaker names
-    redo = "--redo" in ARGS or bool(only)                # only speakers without a pick yet, improved prompts, name-hashed seeds
+    bad, badlook, badseed = set(), {}, {}
+    if "--bad" in ARGS:                                  # tools/bad_busts.json: busts found bad in testing, redo them
+        badl = json.load(open(os.path.join(HERE, "bad_busts.json"), encoding="utf-8"))["busts"]
+        bad = {b["speaker"] for b in badl if not b.get("fixed")}
+        badlook = {b["speaker"]: b.get("look", "") for b in badl}       # what the new candidates must show
+        badseed = {b["speaker"]: b.get("seed_add", 0) for b in badl}    # another round: new seeds
+        only = (only & bad) if only else bad                      # --bad --only X: just that bad one
+    redo = "--redo" in ARGS or bool(only) or "--bad" in ARGS              # only speakers without a pick yet, improved prompts, name-hashed seeds
     md = cast_looks_md()
     picked = set()
     for k, c in g.CHARS.items():
@@ -201,9 +208,9 @@ def main():
         if not name.strip() or base_name in TRAVELER_NAMES or base_name != name or name in ("Note",)                 or not re.search(r"[A-Za-z]", name):
             continue
         key = named.get(name)
-        if key and key in done:
+        if key and key in done and name not in bad:
             continue                                         # already exported (picked earlier)
-        if redo and name in picked:
+        if redo and name in picked and name not in bad:
             continue
         if only is not None and name not in only:
             continue
@@ -214,16 +221,22 @@ def main():
             if os.path.exists(g.cand_path(key, 1)) and not redo:
                 continue                                     # candidates already made by gen_busts.py base
             pos, extra = g.base_prompt(c), c.get("neg_add", [])
+            if not c.get("prompt"):                          # picked from candidates (base_file): no prompt kept
+                p, extra = npc_prompt(name, looks, md)
+                pos = "%s, %s, %s" % (g.STYLE, p, g.EMO["neutral"][0])
         else:
             key = keyname(name)
             p, extra = npc_prompt(name, looks, md)
             pos = "%s, %s, %s" % (g.STYLE, p, g.EMO["neutral"][0])
+        if badlook.get(name):                                # bad_busts.json "look": put it first, weighted
+            lk = "(%s:1.3), " % badlook[name]
+            pos = pos.replace(g.STYLE + ", ", g.STYLE + ", " + lk, 1) if (g.STYLE + ", ") in pos else lk + pos
         neg = g.neg_for((), list(extra) + ["drinking straw", "straw (drink)", "receding hairline", "bald forehead"]
                         if "bald" not in pos else list(extra) + ["drinking straw"])
         n = 3 if (name in looks or name in named) else 2
         # no two speakers share a seed (same face). "|v2": new seeds for the fixed prompts, so the rejected speakers'
         # old candidates (kept on disk) don't count as done
-        s0 = (zlib.crc32((name + "|v2").encode()) % 90000 + 1000) if redo else 0
+        s0 = ((zlib.crc32((name + "|v2").encode()) % 90000 + 1000) if redo else 0) + badseed.get(name, 0)
         for s in [s0 + i for i in range(1, n + 1)]:
             if redo and os.path.exists(os.path.join(g.WORK, key, "review", "cand_s%d.png" % s)):
                 continue                                     # resumable: already generated

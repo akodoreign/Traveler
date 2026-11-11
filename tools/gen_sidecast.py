@@ -43,7 +43,7 @@ CAST = [
          weapon="naginata", height=1, wide=1, armor=(110, 84, 62), lace=(60, 70, 96)),
     dict(key="sachiko", scale=1.08, face="round", name="Hida Sachiko", clan="crab", skin=TAN, hair=BROWN, hairstyle="bob", build="heavy",
          height=3, wide=2, head="hachimaki", band=(176, 46, 40), weapon="tetsubo", mouth="grin", female=True, props=["gourd"],
-         armor=(64, 96, 132), lace=(214, 150, 60)),
+         armor=(64, 96, 132), lace=(214, 150, 60), club_back=True),          # club behind her head (user 2026-11-11)
     dict(key="ryoichi", face="round", name="Hiruma Ryoichi", clan="peasant", skin=TAN, hair=BROWN, hairstyle="spiky",
          build="peasant", weapon="kama", mouth="grin", props=["gourd"]),
     dict(key="sanae", name="Doji Sanae", clan="crane", skin=PALE, hair=WHITE, hairstyle="bun", build="robe",
@@ -232,7 +232,7 @@ CAST = [
     # Crab Ch3: Kage walked out through the Wall "a daimyo, without armour" (production/crab-ch3.md S01)
     dict(key="kage_ch3", face="long", name="Hiruma Kage", clan="crab", skin=TAN, hair=BLACK, hairstyle="mane",
          build="normal", top=(70, 72, 84), lower=(48, 50, 60), accent=(110, 30, 34), eyes="narrow",
-         facial="mustache", weapon="tetsubo", brow="stern", height=1),
+         facial="mustache", weapon="tetsubo", brow="stern", height=1, club_back=True),
     # hireables (tools/hirelings.py; memory hireables): generic townsfolk, one look each so the back row reads
     dict(key="h_archer", face="round", name="Ashigaru Archer", clan="crab", skin=TAN, hair=BLACK, hairstyle="short",
          bangs="short", build="armored_light", hat="jingasa", hat_col=(70, 74, 86), top=(70, 82, 104),
@@ -243,7 +243,7 @@ CAST = [
          glow=(210, 180, 100)),
     dict(key="h_engineer", face="square", name="Kaiu Engineer", clan="crab", skin=TAN, hair=BLACK, hairstyle="short",
          bangs="short", build="peasant", head="hachimaki", top=(110, 96, 70), lower=(70, 62, 50),
-         accent=(70, 82, 104), facial="stubble", weapon="tetsubo"),
+         accent=(70, 82, 104), facial="stubble", weapon="tetsubo", club_back=True),
     dict(key="h_herbalist", face="round", name="Village Herbalist", clan="peasant", skin=SKIN, hair=GREY,
          hairstyle="bun", build="peasant", head="headcloth", cloth=(200, 196, 170), top=(110, 120, 80),
          lower=(80, 74, 60), eyes="old", age="old", weapon="none", props=["gourd"], female=True),
@@ -251,7 +251,7 @@ CAST = [
          hairstyle="short", build="peasant", hat="jingasa", hat_col=(180, 150, 90), top=(70, 96, 120),
          lower=(90, 84, 70), facial="stubble", weapon="bo"),
     dict(key="h_veteran", face="square", name="Hida Veteran", clan="crab", skin=TAN, hair=GREY, hairstyle="chonmage",
-         build="armored", eyes="old", age="old", facial="beard", scar=True, weapon="tetsubo", height=2),
+         build="armored", eyes="old", age="old", facial="beard", scar=True, weapon="tetsubo", height=2, club_back=True),
     dict(key="h_scout", face="sharp", name="Hiruma Scout", clan="crab", skin=TAN, hair=BLACK, hairstyle="ponytail",
          build="armored_light", hat="jingasa", hat_col=(60, 64, 72), top=(60, 66, 58), lower=(44, 48, 44),
          accent=(120, 150, 110), weapon="yumi", props=["quiver"], female=True),
