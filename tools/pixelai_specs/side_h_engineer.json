@@ -3,8 +3,8 @@
  "name": "Kaiu Engineer",
  "kind": "side",
  "sheet": "side_h_engineer.png",
- "prompt": "1boy, male focus, man, Kaiu Engineer, light tan skin, black hair, short hair, light brown kimono, dark brown hakama, hachimaki, an iron-studded tetsubo club, feudal japan",
- "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
+ "prompt": "1boy, male focus, man, Kaiu Engineer, light tan skin, black hair, short hair, light brown kimono, dark brown hakama, hachimaki, an iron-studded tetsubo club, facing right, face clearly visible, iron tetsubo resting behind him, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes, facing left, from behind, back view, weapon covering face",
  "seed": 11,
  "candidates": 2,
  "groups": {
@@ -130,6 +130,40 @@
     "#465268",
     "#6b7e8b",
     "#98a5aa"
+   ]
+  },
+  "armor": {
+   "base": "#586274",
+   "ramp": [
+    "#040407",
+    "#2a2f3f",
+    "#586274",
+    "#828e97",
+    "#b2b5b6"
+   ],
+   "detect": [
+    "#040407",
+    "#2a2f3f",
+    "#586274",
+    "#828e97",
+    "#b2b5b6"
+   ]
+  },
+  "lace": {
+   "base": "#96342c",
+   "ramp": [
+    "#25040d",
+    "#61121b",
+    "#96342c",
+    "#b95749",
+    "#d8816f"
+   ],
+   "detect": [
+    "#25040d",
+    "#61121b",
+    "#96342c",
+    "#b95749",
+    "#d8816f"
    ]
   }
  }

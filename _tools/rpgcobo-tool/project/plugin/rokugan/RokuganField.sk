@@ -378,6 +378,10 @@ local rtShowChoices = function( cmd){
 		::Rokugan.botseen[key] <- k + 1;
 		local v = (c["text0"] == "Buy" || c["text0"] == "Sell") ? n : k % (n + 1);
 		if( c["text0"] == "Rest and save.") v = 0;					//	(a save shrine: the bot came to rest)
+		if( ("botpin" in ::Rokugan) && ::Rokugan.botpin >= 0 && !(c["text0"] == "Buy" || c["text0"] == "Sell")){
+			v = ::Rokugan.botpin > n ? n : ::Rokugan.botpin;		//	(passing through: "Wait for low tide", not a puzzle)
+			::Rokugan.botseen[key] <- k;						//	(an answer given in passing doesn't use up a turn)
+		}
 		printf( "[RT] CHOICE %d (auto): %S\n", v, c["text" .. v]);
 		return v;
 	}

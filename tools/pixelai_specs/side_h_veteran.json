@@ -3,8 +3,8 @@
  "name": "Hida Veteran",
  "kind": "side",
  "sheet": "side_h_veteran.png",
- "prompt": "1boy, male focus, old man, Hida Veteran, light tan skin, grey hair, balding, grey chonmage topknot, grey beard, weathered scarred face, dark lacquered lamellar armor, an iron-studded tetsubo club, feudal japan",
- "negative": "red hair, orange hair, pink hair, blue hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes, green hair, long hair, flowing hair, woman, young man",
+ "prompt": "1boy, male focus, old man, Hida Veteran, light tan skin, grey hair, balding, grey chonmage topknot, grey beard, weathered scarred face, dark lacquered lamellar armor, an iron-studded tetsubo club, facing right, face clearly visible, iron tetsubo resting behind him, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes, green hair, long hair, flowing hair, woman, young man, facing left, from behind, back view, weapon covering face",
  "seed": 31,
  "candidates": 3,
  "groups": {
@@ -79,6 +79,91 @@
     "#9c9ca4",
     "#c7c7c7",
     "#e6e6e6"
+   ]
+  },
+  "top": {
+   "base": "#425474",
+   "ramp": [
+    "#020307",
+    "#1e263f",
+    "#425374",
+    "#658397",
+    "#8fadb6"
+   ],
+   "detect": [
+    "#020307",
+    "#1e263f",
+    "#425374",
+    "#658397",
+    "#8fadb6"
+   ]
+  },
+  "lower": {
+   "base": "#303648",
+   "ramp": [
+    "#030407",
+    "#0b0c13",
+    "#303648",
+    "#525e6b",
+    "#7a858a"
+   ],
+   "detect": [
+    "#030407",
+    "#0b0c13",
+    "#303648",
+    "#525e6b",
+    "#7a858a"
+   ]
+  },
+  "accent": {
+   "base": "#a4362c",
+   "ramp": [
+    "#330410",
+    "#6f121c",
+    "#a4362c",
+    "#c75b49",
+    "#e68570"
+   ],
+   "detect": [
+    "#330410",
+    "#6f121c",
+    "#a4362c",
+    "#c75b49",
+    "#e68570"
+   ]
+  },
+  "armor": {
+   "base": "#586274",
+   "ramp": [
+    "#040407",
+    "#2a2f3f",
+    "#586274",
+    "#828e97",
+    "#b2b5b6"
+   ],
+   "detect": [
+    "#040407",
+    "#2a2f3f",
+    "#586274",
+    "#828e97",
+    "#b2b5b6"
+   ]
+  },
+  "lace": {
+   "base": "#96342c",
+   "ramp": [
+    "#25040d",
+    "#61121b",
+    "#96342c",
+    "#b95749",
+    "#d8816f"
+   ],
+   "detect": [
+    "#25040d",
+    "#61121b",
+    "#96342c",
+    "#b95749",
+    "#d8816f"
    ]
   }
  }

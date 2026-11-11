@@ -141,7 +141,8 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 					busy = ::rpgstage["battle"] ? 0 : busy + 300;
 					if( busy >= 3000){ this.botSet( "z", true); sleep( 90); this.botSet( "z", false); busy = 2000; }
 				}
-				local w = this.botWhere();
+				if( cmd["shot"]){ sleep( 400); this.rtshot( "tmp/rt_shot/bot_" .. cmd.shot .. ".raw"); }	//	(after the scene:
+				local w = this.botWhere();												//	what the player is left with)
 				printf( "[RT] BOT state %d %S %.1f %.1f %.1f\n", n, w ? w.map : "-", w ? w.x : 0.0, w ? w.z : 0.0, w ? w.y : 0.0);
 				printf( "[RT] BOT kit %d %s\n", n, this.botKit());
 				printf( "[RT] BOT flags %d %s\n", n, this.botFlags( cmd["flags"] || []));
@@ -202,6 +203,22 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 				break;
 			case "shot": this.rtshot( "tmp/rt_shot/bot_" .. a[1] .. ".raw"); break;
 			case "pos": this.botPos( "pos"); break;
+			case "pin": ::Rokugan.botpin <- int( a[1]); break;
+			case "answer": ::Rokugan.rtq = [int( a[1])]; ::Rokugan.rtqi = 0; break;	//	answer N: the next menu takes N
+			case "darkmove": {									//	darkmove MAP BX BZ: DARK (black fade) then a map move,
+				::rpgstage.screenfx.screenEffectOn( { sfxid = "color0", color = 657231871, time = 1200 });	//	as a scene
+				sleep( 300);											//	does (DARK: dim, then black), moving
+				::rpgstage.screenfx.screenEffectOn( { sfxid = "color0", color = 255, time = 1600 });	//	while it fades
+				sleep( length( a) > 4 ? int( a[4]) : 200);
+				if( length( a) > 5) ::rpgstage.screenfx.screenEffectOff( { sfxbits = 1, time = 1 });	//	(the fix to test)
+				::RPGMain.moveMap( { dest = { mapid = a[1], pos = (float( a[2]) * 0.5, null, float( a[3]) * 0.5, 0.0) },
+					wipe = 1, remap = true });
+				local t = 0;
+				while( t < 15000 && !(::rpgstage && ::rpgstage.mapid == a[1] && ::rpgstage["player3d"])){ sleep( 200); t += 200; }
+				sleep( 600);
+				this.botPos( "darkmoved");
+				break;
+			}		//	pin N: every menu answers N (-1: rotate again)
 			case "warp": {										//	warp MAP BX BZ: teleport (between tour legs)
 				while( ::rpgstage && ::rpgstage.mainevent) sleep( 200);
 				if( ::rpgstage && ::rpgstage.mapid == a[1] && ::rpgstage["player3d"]){		//	same map: just stand there

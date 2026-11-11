@@ -134,9 +134,15 @@ def exits(mid, flags):
             if pg and pg.get("trigger") in (1, 2):                     # examine to go (a cave mouth, a ladder)
                 s = json.dumps(pg.get("cmdblock"))
                 if "cmd_mapmove" in s:                                 # (a guard: "Go up? (Night falls.)")
-                    d = re.findall(r'"cmd": "cmd_mapmove", "dest": \{"mapid": "(M\d+)"', s)
-                    if d:
-                        out.append((d[0], x, z, "talk", {(x, z)}))
+                    menu = menu_moves(pg.get("cmdblock"))
+                    if menu:                                           # a menu of places (the sea chart): each
+                        for i, dests in menu:                          # answer is its own way out
+                            for dd in dests:
+                                out.append((dd, x, z, "talk%d" % i, {(x, z)}))
+                    else:
+                        d = re.findall(r'"cmd": "cmd_mapmove", "dest": \{"mapid": "(M\d+)"', s)
+                        if d:
+                            out.append((d[0], x, z, "talk", {(x, z)}))
             cb = (pg or {}).get("cmdblock") or []
             if cb and isinstance(cb[0], dict) and cb[0].get("cmd") == "cmd_if" and not holds(cb[0].get("reqs"), flags):
                 pg = None                                              # a scene that isn't ready yet
@@ -148,6 +154,26 @@ def exits(mid, flags):
                         out.append((d[0], x, z, {0: "up", 1: "right", 2: "down", 3: "left"}.get(e["pos"][3], "up"),
                                     fp))
     return [o for o in out if o[0] in MP and o[0] != mid and not ("M800" <= o[0] < "M900")]
+
+
+def menu_moves(cmds):
+    """[(answer, [maps it moves to]), ...] for the first menu in cmds whose answers lead to different maps."""
+    for c in cmds or []:
+        if not isinstance(c, dict):
+            continue
+        if c.get("cmd") == "cmd_choices":
+            res = []
+            for i, br in enumerate(c.get("cmdblocks") or []):
+                d = [m for m in re.findall(r'"mapid": "(M\d+)"', json.dumps(br)) if "M100" <= m < "M800"]
+                if d:
+                    res.append((i, sorted(set(d))))
+            if len(res) > 1:
+                return res
+        for b in c.get("cmdblocks") or []:
+            r = menu_moves(b)
+            if r:
+                return r
+    return None
 
 
 CHOICE_PAGES = set()                                              # (map, event@page) that open a menu
@@ -171,6 +197,42 @@ def map_route(src, dst, flags):
                 prev[d] = m
                 q.append(d)
     return None
+
+
+def push_step(ex, ez, push):
+    """Walk on through the doorway (a goto in map terms: the keys are camera-relative, and an interior's camera
+    turned M260's "down" into a wall push)."""
+    dx, dz = {"up": (0, 1), "down": (0, -1), "right": (1, 0), "left": (-1, 0)}[push]
+    return "goto %.1f %.1f 2500" % (ex + 0.5 + dx * 2.0, ez + 0.5 + dz * 2.0)
+
+
+def door_push(mid, ex, ez, push, fp=None):
+    """Which way a door is walked into: toward its wall (the one side that is rock, a building or off the map).
+    The portal's own facing is the way you face coming OUT of it on that side, not always the way in (M227's west
+    cave door, d=1, is walked into going left)."""
+    m, _ev, seen, fl, _w = _grid[mid] if mid in _grid else (grid(mid) and _grid[mid])
+    dirs = (("up", (0, 1)), ("down", (0, -1)), ("right", (1, 0)), ("left", (-1, 0)))
+    if fp and len(fp) > 1:                                        # a door box lies along its wall: walk in across it
+        xs, zs = {a for a, b in fp}, {b for a, b in fp}
+        if len(xs) > len(zs):
+            dirs = dirs[:2]
+            if push not in ("up", "down"):
+                return push
+        elif len(zs) > len(xs):
+            dirs = dirs[2:]
+            if push not in ("left", "right"):
+                return push
+    for reach in (1, 2):                                          # (a door a square out from its wall)
+        walls = []
+        for key, (dx, dz) in dirs:
+            a, b = ex + dx * reach, ez + dz * reach
+            if not (0 <= a < m.w and 0 <= b < m.d) or fl[b, a] < 0 or int(fl[b, a]) >= int(fl[ez, ex]) + 3:
+                walls.append(key)
+        if len(walls) == 1:
+            return walls[0]
+        if walls:
+            break
+    return push
 
 
 def road_path(m, seen, fl, start, goals):
@@ -244,8 +306,10 @@ def targets(flags, here):
                 continue
             s = json.dumps(pg)
             prio = 0 if "Objective" in s else 1
-            if ("cmd_moneyop" in s and re.search(r"[Hh]ire", s)) or "W = n <= 1" in s:   # a hireling or an optional
-                # companion's offer (Yosai: "W" = room in the party): side business, one try, last
+            if ("cmd_moneyop" in s and re.search(r"[Hh]ire", s)) or "W = n <= 1" in s or ("answer the Guest call" in s and pg.get("trigger") == 2
+                    and "Objective" not in s):
+                # a hireling, an optional companion (Yosai: "W" = room in the party) or a Guest-call offer:
+                # side business, one try, last
                 prio = 2
                 HIRE_PAGES.add((mid, "%s@%d" % (key, n)))
             if pg.get("trigger") == 6:
@@ -261,7 +325,8 @@ def plan(state, flags, tried):
     mid, x, z = state
     best = None
     for prio, tm, key, trig, tx, tz in targets(flags, mid):
-        if tried.get((tm, key), 0) >= (1 if (tm, key) in HIRE_PAGES else 6 if (tm, key) in CHOICE_PAGES else 2):
+        if tried.get((tm, key), 0) >= (1 if (tm, key) in HIRE_PAGES else 6 if (tm, key) in CHOICE_PAGES else
+                                       3 if trig == 6 else 2):
             continue                                              # (a menu: try its other answers)
         r = map_route(mid, tm, flags)
         if r is None:
@@ -275,11 +340,16 @@ def plan(state, flags, tried):
     if len(r) > 1:                                                # walk to the next map on the route
         nxt = r[1]
         for d, ex, ez, push, fp in exits(mid, flags):
-            if d == nxt and push == "talk":
-                w = walk_steps(mid, (x, z), near(ex, ez, 2) - near(ex, ez, 0))
+            if d == nxt and push.startswith("talk"):
+                ring, fl = near(ex, ez, 2) - near(ex, ez, 0), grid(mid)[3]
+                ey = min([e["pos"][1] for e in (MP[mid].get("event") or {}).values()
+                          if e.get("pos") and int(e["pos"][0]) == ex and int(e["pos"][2]) == ez] or [0]) - 1
+                level = {(a, b) for a, b in ring if 0 <= b < fl.shape[0] and 0 <= a < fl.shape[1] and int(fl[b, a]) == ey}
+                w = (walk_steps(mid, (x, z), level) if level else None) or walk_steps(mid, (x, z), ring)
                 if w is not None:
-                    return (tm, key, "go %s via %s" % (tm, nxt), (mid, nxt)), w + [
-                        "face %d %d" % (ex, ez), "tap z", "untilmap %s 12000" % nxt, "wait 800"]
+                    ans = ["answer %s" % push[4:]] if push[4:] else []   # (the sea chart: this answer goes there)
+                    return (tm, key, "go %s via %s" % (tm, nxt), (mid, nxt)), w + ans + [
+                        "talkto %d %d" % (ex, ez), "untilmap %s 12000" % nxt, "wait 800"]
                 continue
             if d == nxt:
                 gmap = grid(mid)[0]                                    # a player follows the road out
@@ -287,17 +357,36 @@ def plan(state, flags, tried):
                 w = walk_steps(mid, (x, z), {c for a, b in (road or fp) for c in near(a, b)})
                 if w is not None:
                     if len(fp) <= 9:                                   # a door: line up in front of it, push in
+                        push = door_push(mid, ex, ez, push, fp)
                         bx, bz = {"up": (0, -2), "down": (0, 2), "left": (2, 0), "right": (-2, 0)}[push]
                         w = w + ["goto %.1f %.1f 3000" % (ex + bx + 0.5, ez + bz + 0.5)]
-                    return (tm, key, "go %s via %s" % (tm, nxt), (mid, nxt)), w + ["hold %s 900" % push, "untilmap %s 12000" % nxt,
+                    return (tm, key, "go %s via %s" % (tm, nxt), (mid, nxt)), w + [push_step(ex, ez, push), "untilmap %s 12000" % nxt,
                                                                        "wait 800"]
         return (tm, key, "no walking route to the %s exit" % nxt), None
     if trig == 6:
+        if tried.get((tm, key), 0) >= 1:                          # an arrival scene that waits for you to ARRIVE
+            for d, ex, ez, push, fp in exits(mid, flags):          # (M267: its flag was set while we were here):
+                if (mid, d) in BROKEN or push.startswith("talk"):  # step out and come back, as a player would
+                    continue
+                gmap = grid(mid)[0]
+                road = {(a, b) for a, b in fp if 0 <= b < gmap.d and 0 <= a < gmap.w and gmap.blk[b, a] == gm.ROAD}
+                w = walk_steps(mid, (x, z), {c for a, b in (road or fp) for c in near(a, b)})
+                if w is not None:
+                    if len(fp) <= 9:
+                        push = door_push(mid, ex, ez, push, fp)
+                    return (tm, key, "go %s via %s" % (d, d), (mid, d)), w + [push_step(ex, ez, push),
+                                                                           "untilmap %s 12000" % d, "wait 800"]
         return (tm, key, "arrival scene"), ["wait 1500"]
     if trig == 5:
         w = walk_steps(mid, (x, z), near(tx, tz))
         return (tm, key, "walk onto"), (w + ["goto %.1f %.1f 4000" % (tx + 0.5, tz + 0.5), "wait 1500"]) if w is not None else None
-    w = walk_steps(mid, (x, z), near(tx, tz, 1) - near(tx, tz, 0))   # beside them (talk reaches ~1 m)
+    ring = near(tx, tz, 1) - near(tx, tz, 0)                        # beside them (talk reaches ~1 m), on their
+    fl = grid(mid)[3]                                                 # floor (not up on the table they stand at)
+    ty = (MP[mid]["event"].get(key.split("@")[0]) or {}).get("pos", [0, 0])[1] - 1
+    level = {(a, b) for a, b in ring if 0 <= b < fl.shape[0] and 0 <= a < fl.shape[1] and int(fl[b, a]) == ty}
+    w = walk_steps(mid, (x, z), level) if level else None
+    if w is None:
+        w = walk_steps(mid, (x, z), ring)
     if w is None:
         w = walk_steps(mid, (x, z), near(tx, tz, 2) - near(tx, tz, 1))   # across a counter
     return (tm, key, "talk"), (w + ["talkto %d %d" % (tx, tz), "wait 2000"]) if w is not None else None
@@ -487,9 +576,12 @@ def main():
             elif not resume:
                 os.remove(os.path.join(shots, f))
 
+    shot_box = [None]
+
     def cmd(n, steps, quit_=False):
         tmp = cmdf + ".tmp"
-        d = {"n": n, "steps": [s.replace(" ", ",") for s in steps], "flags": flagnames, "quit": quit_}
+        d = {"n": n, "steps": [s.replace(" ", ",") for s in steps], "flags": flagnames, "quit": quit_,
+             "shot": shot_box[0]}
         if battle0:
             d["battle0"] = battle0
         json.dump(d, open(tmp, "w"))
@@ -515,6 +607,7 @@ def main():
     last_flags, what, fails = None, None, {}
     chapter, done, kit, last_ck, rested = 1, 0, None, 0, -9
     send = ["wait 4000"]                                          # the prologue plays first
+    shot_next = None
     if resume:
         n = ck["leg"]
         chapter, done, last_ck = ck.get("chapter", 1), ck.get("chapters_done", 0), ck["leg"]
@@ -529,6 +622,7 @@ def main():
     legs_max = n + int(opts["--legs"])
     while n < legs_max and time.time() - t0 < float(opts["--minutes"]) * 60:
         n += 1
+        shot_box[0] = shot_next
         cmd(n, send)
         state = flags = None
         lines = []
@@ -609,7 +703,9 @@ def main():
             send = ["wait 300"]
             continue
         note("%3d %s %4.0f,%-4.0f -> %s %s (%s)" % (n, state[0], state[1], state[2], what[0], what[1], what[2]))
-        send = steps + ["shot %s_%03d" % (name, n + 1)]                 # what the player sees after this leg
+        passing = what[2].startswith("go ") or what[2].startswith("rest")   # (a menu met on the way: the first answer;
+        send = ["pin %d" % (0 if passing else -1)] + steps                # rotate at a target)
+        shot_next = "%s_%03d" % (name, n + 1)                             # (taken once the scene is over)
     if state and flags is not None and "M100" <= state[0] < "M800":
         save_checkpoint(path, n, state + (y,), flags, kit or {"party": [PARTY0], "money": 0, "items": []},
                         chapter, done, "end", tried, BROKEN)

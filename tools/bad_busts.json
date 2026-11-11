@@ -57,6 +57,35 @@
    "why": "near twin of Shiba Ashimita (same long black-and-orange hair, beard, orange-black armour); Noboru is Isawa Mutsuye's humble yojimbo who duels with a yari (Crab Ch2 Winter Court)",
    "look": "humble earnest young man, clean-shaven, short neat black hair in a small topknot, calm lowered eyes, plain orange and white phoenix clan do armour over a white kimono, holding a yari spear upright",
    "fixed": "2026-11-11 cand_s25863 (young, topknot, white kimono, black-orange do, yari)"
+  },
+  {
+   "speaker": "Kakita sensei",
+   "file": "npc_servant/neutral.png",
+   "found": "2026-11-11 story_1 (Crane path)",
+   "why": "no own bust: RokuganBustGeneric.sk lends him the young plain-grey servant; he is Rensei's Kakita dueling teacher calling the final bout ('Kakita Rensei. Final bout. Bokken.')",
+   "look": "stern middle-aged kakita dueling master, 50s, grey-streaked black hair in a topknot, dignified clean-shaven face, sky blue and white crane clan kimono, holding a wooden bokken",
+   "picked": "2026-11-11 cand_s1 (older bulk candidate, grey-haired master in Crane blue/white) - export pending: gen_busts.py npc npc_kakita_sensei once ComfyUI is back"
+  },
+  {
+   "speaker": "Bandit",
+   "file": "npc_gate_guard/neutral.png",
+   "found": "2026-11-11 story_1 (Crane path)",
+   "why": "no own bust: lent the gate guard (a clean helmeted soldier in lamellar) - reads as a samurai guard, not a mountain bandit",
+   "look": "rough mountain bandit, ronin, unshaven scarred face, ragged dirty hachimaki headband, patched brown clothes, mismatched battered leather armour pieces, rope belt"
+  },
+  {
+   "speaker": "Sariko",
+   "file": "npc_village_herbalist/neutral.png",
+   "found": "2026-11-11 story_1 (Crane path)",
+   "why": "no own bust: lent the Village Herbalist (silver-haired girl in a green hood); Sariko is a pregnant young peasant woman serving tea with shaking hands, waiting for Morishu ('Where is he?')",
+   "look": "young peasant woman, 20s, worried anxious face, teary eyes, pregnant, simple faded blue cotton kimono, black hair in a low bun under a plain kerchief, holding a teapot"
+  },
+  {
+   "speaker": "Village Herbalist",
+   "file": "npc_village_herbalist/neutral.png",
+   "found": "2026-11-11 story_1 (Crane path)",
+   "why": "twin of Doji Sanae (same face, silver hair in a bun) and lent to other speakers; a village herbalist should be a plain countrywoman",
+   "look": "village herbalist, middle-aged woman, 40s, kind lined face, brown hair tied up in a headscarf, green work kimono with tied-back sleeves, bundle of dried herbs over the shoulder"
   }
  ]
 }

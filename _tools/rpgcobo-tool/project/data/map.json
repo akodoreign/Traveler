@@ -15457,7 +15457,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					5,
+					3,
 					28,
 					3
 				],
@@ -15487,7 +15487,7 @@
 				"role": "portal",
 				"pos": [
 					170,
-					9,
+					3,
 					28,
 					1
 				],
@@ -20582,7 +20582,7 @@
 				"role": "portal",
 				"pos": [
 					76,
-					5,
+					4,
 					58,
 					0
 				],
@@ -23798,7 +23798,7 @@
 				"role": "portal",
 				"pos": [
 					81,
-					4,
+					2,
 					1,
 					2
 				],
@@ -39966,7 +39966,7 @@
 				"role": "portal",
 				"pos": [
 					170,
-					4,
+					2,
 					28,
 					1
 				],
@@ -40348,6 +40348,20 @@
 								"text": "Up you go, Kakita-sama. Mind the generals: they bite.",
 								"name": "Gate guard",
 								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_mapmove",
+								"dest": {
+									"mapid": "M211",
+									"pos": [
+										30.5,
+										null,
+										5.0,
+										0.0
+									]
+								},
+								"wipe": 1,
+								"remap": true
 							}
 						]
 					}
@@ -44395,7 +44409,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					32,
 					3
 				],
@@ -44425,7 +44439,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					32,
 					1
 				],
@@ -55179,7 +55193,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					32,
 					1
 				],
@@ -70043,7 +70057,7 @@
 				"role": "portal",
 				"pos": [
 					112,
-					4,
+					10,
 					24,
 					1
 				],
@@ -72689,10 +72703,10 @@
 			"#1#": {
 				"role": "portal",
 				"pos": [
-					29,
+					30,
 					3,
 					26,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -75338,7 +75352,7 @@
 				"role": "portal",
 				"pos": [
 					130,
-					10,
+					3,
 					30,
 					1
 				],
@@ -75419,10 +75433,10 @@
 			"#1#": {
 				"role": "portal",
 				"pos": [
-					29,
+					30,
 					3,
 					24,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -82621,7 +82635,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					30,
 					1
 				],
@@ -112387,14 +112401,7 @@
 							}
 						],
 						"standani": null,
-						"cmdblock": [
-							{
-								"cmd": "cmd_compute",
-								"lvar": "G376",
-								"op": "=",
-								"rvar": false
-							}
-						]
+						"cmdblock": []
 					}
 				],
 				"reqs0": null,
@@ -112561,6 +112568,65 @@
 							}
 						],
 						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"reqs0": null,
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-5"
+			},
+			"#6#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					29,
+					3,
+					20,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G376",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
 						"cmdblock": [
 							{
 								"cmd": "cmd_compute",
@@ -112585,9 +112651,75 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-5"
+				"name": "*custom-6"
 			},
-			"#6#": {
+			"#7#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					141,
+					3,
+					20,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G376",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G376",
+								"op": "=",
+								"rvar": false
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-7"
+			},
+			"#8#": {
 				"role": "itemchest",
 				"itemid": "I101",
 				"num": 1,
@@ -112601,9 +112733,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*itemchest-6"
+				"name": "*itemchest-8"
 			},
-			"#7#": {
+			"#9#": {
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
@@ -112710,9 +112842,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-7"
+				"name": "*custom-9"
 			},
-			"#8#": {
+			"#10#": {
 				"role": "villager",
 				"mdlid": "EP387",
 				"msg": "Three quivers left. Two. Whatever. Point me at it.",
@@ -112738,9 +112870,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-8"
+				"name": "*villager-10"
 			},
-			"#9#": {
+			"#11#": {
 				"role": "villager",
 				"mdlid": "EP388",
 				"msg": "(listening to the ground) ...The stones are counting.",
@@ -112766,9 +112898,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-9"
+				"name": "*villager-11"
 			},
-			"#10#": {
+			"#12#": {
 				"role": "villager",
 				"mdlid": "EP389",
 				"msg": "That wall's leaning. Everything's leaning.",
@@ -112794,9 +112926,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-10"
+				"name": "*villager-12"
 			},
-			"#11#": {
+			"#13#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "Drink your tea. No, all of it.",
@@ -112822,9 +112954,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-11"
+				"name": "*villager-13"
 			},
-			"#12#": {
+			"#14#": {
 				"role": "villager",
 				"mdlid": "EP391",
 				"msg": "Smells like rain. Smells like goblin.",
@@ -112850,9 +112982,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-12"
+				"name": "*villager-14"
 			},
-			"#13#": {
+			"#15#": {
 				"role": "villager",
 				"mdlid": "EP392",
 				"msg": "My knees say it'll snow.",
@@ -112878,9 +113010,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-13"
+				"name": "*villager-15"
 			},
-			"#14#": {
+			"#16#": {
 				"role": "villager",
 				"mdlid": "EP342",
 				"msg": "Big sky. Good hills. Bad soup.",
@@ -112906,9 +113038,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-14"
+				"name": "*villager-16"
 			},
-			"#15#": {
+			"#17#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "Smoke on the wind. Something big, east.",
@@ -112934,9 +113066,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-15"
+				"name": "*villager-17"
 			},
-			"#16#": {
+			"#18#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(writing on an ofuda) Hold still. No, the other arm.",
@@ -112962,9 +113094,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-16"
+				"name": "*villager-18"
 			},
-			"#17#": {
+			"#19#": {
 				"role": "villager",
 				"mdlid": "EP395",
 				"msg": "Third stone's safe. All the others: squish.",
@@ -112990,9 +113122,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-17"
+				"name": "*villager-19"
 			},
-			"#18#": {
+			"#20#": {
 				"role": "villager",
 				"mdlid": "EP462",
 				"msg": "(muttering a prayer for the Green Ronin, then one for you)",
@@ -113018,9 +113150,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-18"
+				"name": "*villager-20"
 			},
-			"#19#": {
+			"#21#": {
 				"role": "villager",
 				"mdlid": "EP473",
 				"msg": "(watching the trees) ...Something's in there.",
@@ -113046,9 +113178,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-19"
+				"name": "*villager-21"
 			},
-			"#20#": {
+			"#22#": {
 				"role": "villager",
 				"mdlid": "EP541",
 				"msg": "(two lanterns bobbing on a rope between them)",
@@ -113074,9 +113206,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-20"
+				"name": "*villager-22"
 			},
-			"#21#": {
+			"#23#": {
 				"role": "villager",
 				"mdlid": "EP485",
 				"msg": "(watching the tide) ...Low water in an hour.",
@@ -113102,9 +113234,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-21"
+				"name": "*villager-23"
 			},
-			"#22#": {
+			"#24#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(murmuring the tide prayers)",
@@ -113130,9 +113262,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-22"
+				"name": "*villager-24"
 			},
-			"#23#": {
+			"#25#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(testing the wind with a wet finger)",
@@ -113158,9 +113290,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-23"
+				"name": "*villager-25"
 			},
-			"#24#": {
+			"#26#": {
 				"role": "villager",
 				"mdlid": "EP543",
 				"msg": "(murmuring to the breeze)",
@@ -113186,9 +113318,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-24"
+				"name": "*villager-26"
 			},
-			"#25#": {
+			"#27#": {
 				"role": "villager",
 				"mdlid": "EP549",
 				"msg": "(composing under her breath)",
@@ -113214,9 +113346,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-25"
+				"name": "*villager-27"
 			},
-			"#26#": {
+			"#28#": {
 				"role": "villager",
 				"mdlid": "EP553",
 				"msg": "(trimming a wick)",
@@ -113242,9 +113374,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-26"
+				"name": "*villager-28"
 			},
-			"#27#": {
+			"#29#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(leaning on the spear)",
@@ -113270,9 +113402,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-27"
+				"name": "*villager-29"
 			},
-			"#28#": {
+			"#30#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(whispering to ancestors who don't answer)",
@@ -113298,9 +113430,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-28"
+				"name": "*villager-30"
 			},
-			"#29#": {
+			"#31#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(polishing a jade disc)",
@@ -113326,9 +113458,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-29"
+				"name": "*villager-31"
 			},
-			"#30#": {
+			"#32#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(humming the Ballad of Matsu Joruri)",
@@ -113354,9 +113486,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-30"
+				"name": "*villager-32"
 			},
-			"#31#": {
+			"#33#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(stringing a hunting bow)",
@@ -113382,9 +113514,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-31"
+				"name": "*villager-33"
 			},
-			"#32#": {
+			"#34#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(watching the road for inspectors)",
@@ -113410,9 +113542,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-32"
+				"name": "*villager-34"
 			},
-			"#33#": {
+			"#35#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding herbs in a bowl)",
@@ -113438,9 +113570,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-33"
+				"name": "*villager-35"
 			},
-			"#34#": {
+			"#36#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(murmuring to the river's dead)",
@@ -113466,9 +113598,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-34"
+				"name": "*villager-36"
 			},
-			"#35#": {
+			"#37#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(clearing a very loud throat)",
@@ -113494,9 +113626,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-35"
+				"name": "*villager-37"
 			},
-			"#36#": {
+			"#38#": {
 				"role": "villager",
 				"mdlid": "EP574",
 				"msg": "(leaning on a long spear)",
@@ -113522,9 +113654,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-36"
+				"name": "*villager-38"
 			},
-			"#37#": {
+			"#39#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(cupping a small flame in both hands)",
@@ -113550,9 +113682,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-37"
+				"name": "*villager-39"
 			},
-			"#38#": {
+			"#40#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on a long oak staff)",
@@ -113578,9 +113710,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-38"
+				"name": "*villager-40"
 			},
-			"#39#": {
+			"#41#": {
 				"role": "villager",
 				"mdlid": "EP495",
 				"msg": "(knocking snow off a long carrying-pole)",
@@ -113606,9 +113738,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-39"
+				"name": "*villager-41"
 			},
-			"#40#": {
+			"#42#": {
 				"role": "villager",
 				"mdlid": "EP371",
 				"msg": "(reciting the names of the dead under her breath)",
@@ -113634,9 +113766,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-40"
+				"name": "*villager-42"
 			},
-			"#41#": {
+			"#43#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(spinning a long staff idly)",
@@ -113662,9 +113794,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-41"
+				"name": "*villager-43"
 			},
-			"#42#": {
+			"#44#": {
 				"role": "villager",
 				"mdlid": "EP575",
 				"msg": "(praying under her breath for her village)",
@@ -113690,9 +113822,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-42"
+				"name": "*villager-44"
 			},
-			"#43#": {
+			"#45#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(praying into the wind)",
@@ -113718,9 +113850,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-43"
+				"name": "*villager-45"
 			},
-			"#44#": {
+			"#46#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on an oak staff against the wind)",
@@ -113746,9 +113878,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-44"
+				"name": "*villager-46"
 			},
-			"#45#": {
+			"#47#": {
 				"role": "villager",
 				"mdlid": "EP463",
 				"msg": "(reciting a Tao verse slightly wrong)",
@@ -113774,9 +113906,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-45"
+				"name": "*villager-47"
 			},
-			"#46#": {
+			"#48#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding something that smells of the sea)",
@@ -113802,9 +113934,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-46"
+				"name": "*villager-48"
 			},
-			"#47#": {
+			"#49#": {
 				"role": "villager",
 				"mdlid": "EP614",
 				"msg": "(squinting at the water, counting breaths)",
@@ -113830,9 +113962,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-47"
+				"name": "*villager-49"
 			},
-			"#48#": {
+			"#50#": {
 				"role": "villager",
 				"mdlid": "EP616",
 				"msg": "(humming to a kami who is very, very old)",
@@ -113858,9 +113990,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-48"
+				"name": "*villager-50"
 			},
-			"#49#": {
+			"#51#": {
 				"role": "villager",
 				"mdlid": "EP551",
 				"msg": "(polishing a yari that is already very clean)",
@@ -113886,9 +114018,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-49"
+				"name": "*villager-51"
 			},
-			"#50#": {
+			"#52#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(practising a mudra, and getting it slightly wrong)",
@@ -113914,9 +114046,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-50"
+				"name": "*villager-52"
 			},
-			"#51#": {
+			"#53#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "(watching the ridge, very still)",
@@ -113942,9 +114074,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-51"
+				"name": "*villager-53"
 			},
-			"#52#": {
+			"#54#": {
 				"role": "villager",
 				"mdlid": "EP588",
 				"msg": "(rolling bandages, humming a court song)",
@@ -113970,9 +114102,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-52"
+				"name": "*villager-54"
 			},
-			"#53#": {
+			"#55#": {
 				"role": "villager",
 				"mdlid": "EP635",
 				"msg": "(practising a bow nobody will ever see)",
@@ -113998,9 +114130,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-53"
+				"name": "*villager-55"
 			},
-			"#54#": {
+			"#56#": {
 				"role": "villager",
 				"mdlid": "EP636",
 				"msg": "(sweeping the road as he walks, out of habit)",
@@ -114026,9 +114158,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-54"
+				"name": "*villager-56"
 			},
-			"#55#": {
+			"#57#": {
 				"role": "villager",
 				"mdlid": "EP637",
 				"msg": "(sniffing the wind toward the river, frowning)",
@@ -114054,9 +114186,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-55"
+				"name": "*villager-57"
 			},
-			"#56#": {
+			"#58#": {
 				"role": "villager",
 				"mdlid": "EP661",
 				"msg": "(not looking at the horizon where the city is)",
@@ -114082,9 +114214,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-56"
+				"name": "*villager-58"
 			},
-			"#57#": {
+			"#59#": {
 				"role": "villager",
 				"mdlid": "EP662",
 				"msg": "(gone from where she was standing; back again)",
@@ -114110,9 +114242,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-57"
+				"name": "*villager-59"
 			},
-			"#58#": {
+			"#60#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -114138,9 +114270,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-58"
+				"name": "*villager-60"
 			},
-			"#59#": {
+			"#61#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -114166,9 +114298,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-59"
+				"name": "*villager-61"
 			},
-			"#60#": {
+			"#62#": {
 				"role": "villager",
 				"mdlid": "EP687",
 				"msg": "(sniffing the air for the smell of rain)",
@@ -114194,9 +114326,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-60"
+				"name": "*villager-62"
 			},
-			"#61#": {
+			"#63#": {
 				"role": "villager",
 				"mdlid": "EP688",
 				"msg": "(checking both swords, then the path, then both swords)",
@@ -114222,9 +114354,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-61"
+				"name": "*villager-63"
 			},
-			"#62#": {
+			"#64#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the air for damp, out of habit)",
@@ -114250,9 +114382,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-62"
+				"name": "*villager-64"
 			},
-			"#63#": {
+			"#65#": {
 				"role": "villager",
 				"mdlid": "EP1100",
 				"msg": "(whistling to a horse that isn't there)",
@@ -114278,9 +114410,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-63"
+				"name": "*villager-65"
 			},
-			"#64#": {
+			"#66#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -114306,9 +114438,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-64"
+				"name": "*villager-66"
 			},
-			"#65#": {
+			"#67#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -114334,9 +114466,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-65"
+				"name": "*villager-67"
 			},
-			"#66#": {
+			"#68#": {
 				"role": "villager",
 				"mdlid": "EP1107",
 				"msg": "(humming a different song, on purpose)",
@@ -114362,9 +114494,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-66"
+				"name": "*villager-68"
 			},
-			"#67#": {
+			"#69#": {
 				"role": "villager",
 				"mdlid": "EP1108",
 				"msg": "(warming her hands on nothing)",
@@ -114390,9 +114522,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-67"
+				"name": "*villager-69"
 			},
-			"#68#": {
+			"#70#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the wind for rain)",
@@ -114418,9 +114550,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-68"
+				"name": "*villager-70"
 			},
-			"#69#": {
+			"#71#": {
 				"role": "villager",
 				"mdlid": "EP1112",
 				"msg": "(checking the wax in his ears, again)",
@@ -114446,9 +114578,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-69"
+				"name": "*villager-71"
 			},
-			"#70#": {
+			"#72#": {
 				"role": "villager",
 				"mdlid": "EP1127",
 				"msg": "(checking the fuses, one by one)",
@@ -114474,9 +114606,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-70"
+				"name": "*villager-72"
 			},
-			"#71#": {
+			"#73#": {
 				"role": "villager",
 				"mdlid": "EP1128",
 				"msg": "(watching the sky for wings)",
@@ -114502,9 +114634,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-71"
+				"name": "*villager-73"
 			},
-			"#72#": {
+			"#74#": {
 				"role": "villager",
 				"mdlid": "EP1139",
 				"msg": "(polishing a very old blade, very carefully)",
@@ -114530,9 +114662,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-72"
+				"name": "*villager-74"
 			},
-			"#73#": {
+			"#75#": {
 				"role": "villager",
 				"mdlid": "EP1140",
 				"msg": "(sniffing the air, as if it were soup)",
@@ -114558,9 +114690,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-73"
+				"name": "*villager-75"
 			},
-			"#74#": {
+			"#76#": {
 				"role": "villager",
 				"mdlid": "EP1149",
 				"msg": "(counting arrows, then goats, then arrows)",
@@ -114586,9 +114718,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-74"
+				"name": "*villager-76"
 			},
-			"#75#": {
+			"#77#": {
 				"role": "villager",
 				"mdlid": "EP1150",
 				"msg": "(sifting green dust through her fingers)",
@@ -114614,9 +114746,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-75"
+				"name": "*villager-77"
 			},
-			"#76#": {
+			"#78#": {
 				"role": "villager",
 				"mdlid": "EP1155",
 				"msg": "(squinting up at the smoke on the mountain)",
@@ -114642,9 +114774,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-76"
+				"name": "*villager-78"
 			},
-			"#77#": {
+			"#79#": {
 				"role": "villager",
 				"mdlid": "EP1156",
 				"msg": "(holding up a wet finger, frowning at the smoke)",
@@ -114670,9 +114802,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-77"
+				"name": "*villager-79"
 			},
-			"#78#": {
+			"#80#": {
 				"role": "villager",
 				"mdlid": "EP1161",
 				"msg": "(cracking his knuckles at the forest)",
@@ -114698,9 +114830,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-78"
+				"name": "*villager-80"
 			},
-			"#79#": {
+			"#81#": {
 				"role": "villager",
 				"mdlid": "EP1162",
 				"msg": "(counting arrowheads, lips moving)",
@@ -114726,9 +114858,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-79"
+				"name": "*villager-81"
 			},
-			"#80#": {
+			"#82#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -114756,9 +114888,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-80"
+				"name": "*portal-82"
 			},
-			"#81#": {
+			"#83#": {
 				"role": "portal",
 				"pos": [
 					170,
@@ -114786,7 +114918,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-81"
+				"name": "*portal-83"
 			}
 		},
 		"exitmap": {
@@ -154292,7 +154424,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					26,
 					3
 				],
@@ -154322,7 +154454,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					26,
 					1
 				],
@@ -165902,10 +166034,10 @@
 			"#1#": {
 				"role": "custom",
 				"pos": [
-					144,
+					27,
 					4,
 					20,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -168340,10 +168472,10 @@
 			"#79#": {
 				"role": "portal",
 				"pos": [
-					170,
+					1,
 					4,
 					26,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -172687,7 +172819,7 @@
 					86,
 					4,
 					14,
-					0
+					2
 				],
 				"back": false,
 				"remap": true,
@@ -172724,7 +172856,7 @@
 					36,
 					4,
 					14,
-					0
+					2
 				],
 				"back": false,
 				"remap": true,
@@ -172820,8 +172952,8 @@
 				"pos": [
 					38,
 					4,
-					34,
-					0
+					36,
+					2
 				],
 				"back": false,
 				"remap": true,
@@ -172925,7 +173057,7 @@
 				"pos": [
 					50,
 					4,
-					10,
+					14,
 					2
 				],
 				"page": [
@@ -187179,7 +187311,7 @@
 					30,
 					3,
 					19,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -202919,7 +203051,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					26,
 					3
 				],
@@ -202949,7 +203081,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					26,
 					1
 				],
@@ -206957,7 +207089,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					28,
 					3
 				],
@@ -206987,7 +207119,7 @@
 				"role": "portal",
 				"pos": [
 					150,
-					4,
+					2,
 					28,
 					1
 				],
@@ -210368,7 +210500,7 @@
 					29,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -212595,7 +212727,7 @@
 				"role": "portal",
 				"pos": [
 					130,
-					10,
+					3,
 					26,
 					1
 				],
@@ -212751,10 +212883,10 @@
 			"#1#": {
 				"role": "portal",
 				"pos": [
-					29,
+					30,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -212781,10 +212913,10 @@
 			"#2#": {
 				"role": "portal",
 				"pos": [
-					102,
+					101,
 					3,
 					24,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -221502,7 +221634,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					26,
 					1
 				],
@@ -221539,7 +221671,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					26,
 					1
 				],
@@ -221581,7 +221713,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					26,
 					1
 				],
@@ -221623,7 +221755,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					26,
 					1
 				],
@@ -225249,7 +225381,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					28,
 					3
 				],
@@ -225279,7 +225411,7 @@
 				"role": "portal",
 				"pos": [
 					150,
-					4,
+					2,
 					28,
 					1
 				],
@@ -230988,7 +231120,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					28,
 					3
 				],
@@ -231018,7 +231150,7 @@
 				"role": "portal",
 				"pos": [
 					150,
-					4,
+					2,
 					28,
 					1
 				],
@@ -234079,7 +234211,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					23,
 					3
 				],
@@ -234109,7 +234241,7 @@
 				"role": "portal",
 				"pos": [
 					110,
-					4,
+					2,
 					23,
 					1
 				],
@@ -255268,7 +255400,7 @@
 					29,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -257509,7 +257641,7 @@
 				"role": "portal",
 				"pos": [
 					130,
-					10,
+					3,
 					26,
 					1
 				],
@@ -257658,7 +257790,7 @@
 					29,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -257685,10 +257817,10 @@
 			"#2#": {
 				"role": "portal",
 				"pos": [
-					102,
+					101,
 					3,
 					24,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -265624,7 +265756,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					31,
 					3
 				],
@@ -265654,7 +265786,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					31,
 					1
 				],
@@ -286716,7 +286848,7 @@
 					29,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -289078,7 +289210,7 @@
 				"role": "portal",
 				"pos": [
 					130,
-					10,
+					3,
 					26,
 					1
 				],
@@ -289227,7 +289359,7 @@
 					29,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -289257,7 +289389,7 @@
 					102,
 					3,
 					24,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -303822,7 +303954,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					28,
 					1
 				],
@@ -303980,10 +304112,10 @@
 			"#1#": {
 				"role": "portal",
 				"pos": [
-					29,
+					30,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -306426,7 +306558,7 @@
 				"role": "portal",
 				"pos": [
 					130,
-					10,
+					3,
 					26,
 					1
 				],
@@ -306580,7 +306712,7 @@
 					29,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -306607,10 +306739,10 @@
 			"#2#": {
 				"role": "portal",
 				"pos": [
-					102,
+					101,
 					3,
 					24,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -317233,7 +317365,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					23,
 					3
 				],
@@ -324080,7 +324212,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					30,
 					3
 				],
@@ -332145,7 +332277,7 @@
 				"role": "portal",
 				"pos": [
 					100,
-					4,
+					2,
 					21,
 					1
 				],
@@ -337410,10 +337542,10 @@
 			"#1#": {
 				"role": "portal",
 				"pos": [
-					29,
+					30,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -340038,7 +340170,7 @@
 				"role": "portal",
 				"pos": [
 					130,
-					10,
+					3,
 					26,
 					1
 				],
@@ -340209,7 +340341,7 @@
 					29,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -340236,10 +340368,10 @@
 			"#2#": {
 				"role": "portal",
 				"pos": [
-					102,
+					101,
 					3,
 					24,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -342988,10 +343120,10 @@
 			"#1#": {
 				"role": "portal",
 				"pos": [
-					29,
+					30,
 					3,
 					19,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -350449,7 +350581,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					23,
 					3
 				],
@@ -354748,7 +354880,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					6,
+					2,
 					30,
 					1
 				],
@@ -359999,10 +360131,10 @@
 			"#1#": {
 				"role": "portal",
 				"pos": [
-					29,
+					30,
 					3,
 					21,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -362548,7 +362680,7 @@
 				"role": "portal",
 				"pos": [
 					130,
-					10,
+					3,
 					33,
 					1
 				],
@@ -362734,7 +362866,7 @@
 					29,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -365431,10 +365563,10 @@
 			"#1#": {
 				"role": "portal",
 				"pos": [
-					29,
+					30,
 					3,
 					18,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -384448,10 +384580,10 @@
 			"#2#": {
 				"role": "custom",
 				"pos": [
-					27,
+					124,
 					4,
 					18,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -387470,10 +387602,10 @@
 			"#84#": {
 				"role": "portal",
 				"pos": [
-					1,
+					150,
 					4,
 					28,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -403481,10 +403613,10 @@
 			"#1#": {
 				"role": "custom",
 				"pos": [
-					134,
+					27,
 					4,
 					19,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -405768,10 +405900,10 @@
 			"#78#": {
 				"role": "portal",
 				"pos": [
-					160,
-					3,
+					1,
+					4,
 					26,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -406027,10 +406159,10 @@
 			"#1#": {
 				"role": "portal",
 				"pos": [
-					29,
+					30,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -408449,7 +408581,7 @@
 				"role": "portal",
 				"pos": [
 					130,
-					10,
+					3,
 					26,
 					1
 				],
@@ -408690,7 +408822,7 @@
 					29,
 					3,
 					20,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -418412,7 +418544,7 @@
 				"role": "portal",
 				"pos": [
 					150,
-					4,
+					2,
 					28,
 					1
 				],
@@ -421284,7 +421416,7 @@
 					29,
 					3,
 					21,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -423988,7 +424120,7 @@
 				"role": "portal",
 				"pos": [
 					130,
-					10,
+					3,
 					33,
 					1
 				],
@@ -449669,7 +449801,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					28,
 					3
 				],
@@ -449699,7 +449831,7 @@
 				"role": "portal",
 				"pos": [
 					154,
-					4,
+					2,
 					28,
 					1
 				],
@@ -449896,10 +450028,10 @@
 			"#2#": {
 				"role": "custom",
 				"pos": [
-					27,
+					134,
 					4,
 					19,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -452007,7 +452139,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					24,
 					3
 				],
@@ -452036,10 +452168,10 @@
 			"#79#": {
 				"role": "portal",
 				"pos": [
-					1,
-					4,
+					160,
+					2,
 					24,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -495501,7 +495633,7 @@
 					105,
 					3,
 					18,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -497982,7 +498114,7 @@
 					29,
 					3,
 					22,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -498012,7 +498144,7 @@
 					105,
 					3,
 					21,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -541934,7 +542066,7 @@
 				"role": "portal",
 				"pos": [
 					162,
-					10,
+					9,
 					26,
 					1
 				],
@@ -548650,7 +548782,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					7,
+					6,
 					26,
 					3
 				],
@@ -548680,7 +548812,7 @@
 				"role": "portal",
 				"pos": [
 					170,
-					7,
+					6,
 					26,
 					1
 				],
@@ -548765,7 +548897,7 @@
 				"mdlid": "CE000",
 				"pos": [
 					1,
-					10,
+					4,
 					23,
 					3
 				],
@@ -554131,7 +554263,7 @@
 				"role": "portal",
 				"pos": [
 					90,
-					10,
+					3,
 					54,
 					0
 				],
@@ -556800,7 +556932,7 @@
 				"role": "portal",
 				"pos": [
 					66,
-					10,
+					3,
 					1,
 					2
 				],
@@ -556830,7 +556962,7 @@
 				"role": "portal",
 				"pos": [
 					66,
-					10,
+					3,
 					54,
 					0
 				],
@@ -592385,7 +592517,7 @@
 				"role": "portal",
 				"pos": [
 					82,
-					10,
+					3,
 					1,
 					2
 				],
@@ -607090,7 +607222,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					3,
 					25,
 					3
 				],
@@ -614719,7 +614851,7 @@
 				"role": "portal",
 				"pos": [
 					83,
-					10,
+					3,
 					54,
 					0
 				],
@@ -618288,7 +618420,7 @@
 				"role": "portal",
 				"pos": [
 					83,
-					6,
+					3,
 					1,
 					2
 				],
@@ -618318,7 +618450,7 @@
 				"role": "portal",
 				"pos": [
 					83,
-					7,
+					3,
 					54,
 					0
 				],
@@ -620909,7 +621041,7 @@
 				"role": "portal",
 				"pos": [
 					74,
-					10,
+					3,
 					1,
 					2
 				],
@@ -644652,7 +644784,7 @@
 				"role": "portal",
 				"pos": [
 					154,
-					4,
+					3,
 					25,
 					1
 				],
@@ -666911,7 +667043,7 @@
 				"role": "portal",
 				"pos": [
 					162,
-					4,
+					3,
 					25,
 					1
 				],
@@ -674809,7 +674941,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					3,
 					30,
 					3
 				],
@@ -677577,7 +677709,7 @@
 				"role": "portal",
 				"pos": [
 					142,
-					10,
+					3,
 					32,
 					1
 				],
@@ -680275,7 +680407,7 @@
 				"role": "portal",
 				"pos": [
 					124,
-					5,
+					3,
 					21,
 					1
 				],
@@ -680391,7 +680523,7 @@
 					73,
 					3,
 					26,
-					2
+					0
 				],
 				"back": false,
 				"remap": true,
@@ -682781,7 +682913,7 @@
 					30,
 					3,
 					19,
-					1
+					3
 				],
 				"back": false,
 				"remap": true,
@@ -700198,7 +700330,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					7,
+					2,
 					25,
 					1
 				],
@@ -700240,7 +700372,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					25,
 					3
 				],
@@ -700412,10 +700544,10 @@
 			"#1#": {
 				"role": "portal",
 				"pos": [
-					119,
+					118,
 					7,
 					19,
-					3
+					1
 				],
 				"back": false,
 				"remap": true,
@@ -708581,7 +708713,7 @@
 				"role": "portal",
 				"pos": [
 					142,
-					5,
+					3,
 					23,
 					1
 				],
@@ -715567,7 +715699,7 @@
 				"role": "portal",
 				"pos": [
 					166,
-					4,
+					3,
 					26,
 					1
 				],
@@ -719964,7 +720096,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					3,
 					31,
 					3
 				],
@@ -719994,7 +720126,7 @@
 				"role": "portal",
 				"pos": [
 					166,
-					4,
+					3,
 					31,
 					1
 				],
@@ -728311,7 +728443,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					6,
+					2,
 					23,
 					1
 				],
@@ -737834,7 +737966,7 @@
 				"role": "portal",
 				"pos": [
 					190,
-					4,
+					3,
 					26,
 					1
 				],
@@ -744166,7 +744298,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					3,
 					30,
 					3
 				],
@@ -781452,7 +781584,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					6,
+					2,
 					30,
 					3
 				],
@@ -781482,7 +781614,7 @@
 				"role": "portal",
 				"pos": [
 					190,
-					9,
+					2,
 					30,
 					1
 				],
@@ -786427,7 +786559,7 @@
 				"role": "portal",
 				"pos": [
 					1,
-					4,
+					2,
 					43,
 					3
 				],
@@ -793393,7 +793525,7 @@
 				"mdlid": "CE000",
 				"pos": [
 					82,
-					6,
+					3,
 					1,
 					2
 				],
@@ -796184,7 +796316,7 @@
 				"role": "portal",
 				"pos": [
 					82,
-					10,
+					3,
 					58,
 					0
 				],
@@ -799148,7 +799280,7 @@
 				"role": "portal",
 				"pos": [
 					82,
-					10,
+					3,
 					1,
 					2
 				],
@@ -802059,7 +802191,7 @@
 				"role": "portal",
 				"pos": [
 					82,
-					6,
+					3,
 					1,
 					2
 				],
@@ -805564,7 +805696,7 @@
 				"role": "portal",
 				"pos": [
 					77,
-					6,
+					3,
 					1,
 					2
 				],
@@ -865870,7 +866002,7 @@
 				"role": "portal",
 				"pos": [
 					160,
-					4,
+					2,
 					44,
 					1
 				],
@@ -871511,7 +871643,7 @@
 					61,
 					3,
 					5,
-					2
+					0
 				],
 				"back": false,
 				"remap": true,
@@ -873973,7 +874105,7 @@
 				"role": "portal",
 				"pos": [
 					82,
-					6,
+					3,
 					1,
 					2
 				],
@@ -874003,7 +874135,7 @@
 				"role": "portal",
 				"pos": [
 					82,
-					10,
+					3,
 					54,
 					0
 				],
@@ -877182,7 +877314,7 @@
 				"mdlid": "CE000",
 				"pos": [
 					1,
-					10,
+					3,
 					30,
 					3
 				],
@@ -888358,7 +888490,7 @@
 				"role": "portal",
 				"pos": [
 					162,
-					7,
+					4,
 					28,
 					1
 				],
@@ -899497,7 +899629,7 @@
 				"mdlid": "CE000",
 				"pos": [
 					160,
-					4,
+					2,
 					44,
 					1
 				],

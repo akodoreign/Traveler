@@ -4526,6 +4526,63 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
 - Bot talkto retries from the other sides when nothing answered (M445's gate ignored Z from one spot after the
   regen: six "talks", no message); RokuganField counts shown messages (`::Rokugan.msgn`) so a talk that ran and
   finished is not repeated.
+- **Crane (path 1)**: Ch1 "Heaven's Glory" complete (checkpoint path_1_ch1_done1.json). Found and fixed:
+  - **GAME FIX M210 castle gate**: the portal to the lantern garden (M211) sits on top of the 12-high castle wall
+    (y 13), out of reach; only the guard's first-visit menu ever moved you in. After G346 the guard said "Up you go"
+    and nothing happened - no way back to Lady Sanae's rooms (Ch2 report). The guard now moves you in (gen_maps.py
+    garden_port). A scan of every small portal against the walkable area (scratch highportal check) found no other.
+  - **GAME FIX M212 tide gates looped for ever**: after "Wait for low tide" the bridgehead's page flipped to its
+    G376 page while the player still stood on it, which cleared G376, which flipped it back: wait, dry, under water,
+    wait... (the engine re-fires a walk-on event when its page changes under you). The bridgehead's low-tide page is
+    now empty; two new walk-ons on the shores past each bridgehead (tide_ashore) end the crossing.
+  - The reported Crane "black screen after a screen change" did NOT reproduce: the black leg-19 shot was taken
+    mid-cutscene (DARK before the move to M201); the next shot on M201 is normal. Leg shots are now taken after the
+    scene ends (bot serve `shot`), so a black leg shot means a black screen the player is left with. A DARK + move
+    test (bot step `darkmove MAP BX BZ [MS]`, also after a battle) never stayed dark.
+  - Bot: menus met while passing through ("go"/"rest" legs) always take answer 0 (`pin 0`); the rotation (puzzles)
+    only runs at the story target. The tide gate's rotation had answered "Not now." on the way across.
+  - Ch2 "The Iron Cranes" and Ch3 "The White Squid" complete (path_1_ch2_done2 / ch3_done3). Sea chart: the
+    planner now reads menus of places (`menu_moves`: each answer that moves map is its own exit) and the bot answers
+    with step `answer N` (sets -rtchoice's queue for the next menu).
+  - **GAME FIX M221 chart table** was 1 block high: walking up to it, the step-up lifted Rensei onto the chart and Z
+    talked to Seigen instead. Now 2 high. (Talk targets also prefer squares on the event's own floor.)
+  - **GAME FIX side doors in caves (14 maps)**: a one-square portal against a rock face to its east/west can't be
+    walked wholly into (the body stops half a square short): M226<->M225/M227 never fired (Crane Ch3 shrine);
+    same for M270, M284, M298, M299, M310, M311, M312, M318, M320, M334, M433 (paths 2-7). make() ->
+    `portals_off_side_walls()` moves such a portal one square out. (North-wall doors with door openings are fine.)
+  - **GAME FIX edge strips over rock**: edge_triggers() based a strip's box at the ground height at its MIDDLE;
+    M226's east strip sat on 10-high rock and the paved way out at 3 ran under it. Strips now start at the lowest
+    ground along their stretch. Full regen 12:00.
+  - **GAME FIX M225 cliff path**: the exit to the White Squid shrine sat at the cliff's foot behind the climb; a
+    ledge at the top of the path now holds it ("up the cliff path").
+  - Bot: door pushes go toward the door's wall (door_push, up to 2 squares; the portal's d is the facing coming out,
+    M227's west door is entered going left) and hold 1.6 s (0.9 s stopped short). Guest-call offers ("will answer
+    the Guest call") join hirelings as one-try side business. Never regen while a run plays: gen_maps' RTMAPGEN
+    kills the engine.
+- **Lion (path 2)**: Ch1 "The Blood of Family" complete (path_2_ch1_done1.json).
+  - **GAME FIX two exits on one edge**: MOVE_EXIT moved an exit onto an edge that already had one; both strips covered
+    the whole edge and the first won: M254's east edge always went to M241 (never Shiro Akodo, M255 - Lion Ch2
+    blocked), same for M326 (M325/M322), M333 (M323/M334), M350 (M349/M351). Those four MOVE_EXIT entries are
+    removed (exits back where they were drawn). Scratch check: no other ungated overlapping strips (M140/M272's
+    overlaps are flag-gated alternatives).
+  - Bot: door push follows the door box's orientation (a box lying along x is walked into along z).
+  - **GAME FIX M256 south-facing castle doors**: the Hall of Akodo (M262) and South Dojo (M260) doors sit on their
+    buildings' south walls but had d 0 like the others, so coming back out set you down INSIDE the building and the
+    fall-rescue lifted you onto the roof (Lion Ch2, after "The Crane spy! Arrest her!": stuck on the roof). d 2 now.
+  - **GAME FIX arrivals into rock** (engine: RPGStageState.getPortalPos sets you 1 m in FRONT of the portal you
+    arrive at, heading (d+2)*90: d 0 -> -z, 1 -> -x, 2 -> +z, 3 -> +x). Cave side doors on west walls were d 1:
+    arriving faced the rock (M261 from the South Dojo: rescued onto a ledge, stuck; same M226, M227 and the other
+    cave maps). make() -> `arrivals_face_open_ground()` turns any small portal/landing whose arrival square is rock
+    and whose back is open ground. Full regen 12:50. Scratch scan left: M101 #1# (Wall stair, played fine) and
+    M142 #5# (castle stair).
+  - **GAME FIX M256 Moto Benjiro** stood inside the stables' solid block (24, 6): unreachable, so Lion Ch2's
+    "Objective: Moto Benjiro, in the stables" (S08, G507) could never be done. Now at the stables' door (24, 10).
+    Scratch scan of people standing inside blocks (floor 2+ above their feet), hireling homes excluded, found 18
+    more, flavour villagers mostly (open, cosmetic): M103 #7#, M132 #88/89#, M143 #12#, M200 #16#, M206 #14#,
+    M229 #13#, M241 #101# (closed-road guard), M256 #12/#13#, M282 #7# (Matsu Hisae) and #92#, M285 #108/#109#,
+    M406 #89#, M411 #6-8#.
+  - Bot: door pushes are a goto 2 squares past the door (keys are camera-relative; an interior camera turned M260's
+    "down" into a push at the wall).
 - 06:30 all ~67 remaining side-cast/hireling sheets reviewed (walk/run/attack): frame fixes for EP389, EP392, EP588, EP673,
   EP1107, EP1112, EP1127, EP1128, EP1140, EP1149 (heads turned away, hats/weapons popping, Hida Veteran morphing).
   Redraws (user "yeah redraw them"): Hida Sachiko - new gen_sprites2d flag club_back (tetsubo behind her head; rig and
@@ -4577,3 +4634,8 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   Tried and dropped: the dark-ring "enclosed gap" rule for NPCs (no face box) - it also hits white kimono collars
   ringed by dark cloth (Crab guard, Kaiu sapper, Shosuro Norie). Open: a small white patch of background between Matsu
   Hanae's rope and staff; Fishwife reads 20s-30s; story_1..7 bust sheets when the tester's runs land (only story_0 so far).
+
+## 2026-11-11: Agent team - pushes
+- 2026-11-11 ~08:45 push 9c5658a (licensed-demo -> main, 476 files): Rest revives the fallen, Sumai foes face the player,
+  Kumpei/Okura boss flipx, bad-frame fixes + club_back sheets, full bust re-export + redrawn NPC busts, test-bot tools.
+  Checks: 15 changed tools/*.py compile; story_1 log (after the 07:50 plugin edit) has no compile error; no backups in resource.

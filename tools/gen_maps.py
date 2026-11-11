@@ -2331,6 +2331,51 @@ def mark_exits(m, ev):
                 ev.ev["#%d#" % n]["memo"] = "barricade"
 
 
+def portals_off_side_walls(m, ev):
+    """(tester, 2026-11-11: M227's way back to M226 never fired - the bot stood in the portal's square with its back
+    to the rock.) A one-square portal right against a rock face to its east or west can't be walked wholly into: the
+    player's body stops half a square short. Every cave map's side doors (x 3 / far end) sat like that. Move such a
+    portal one square out from the face."""
+    h = m.hgt
+    for e in ev.ev.values():
+        if e.get("role") != "portal" or "pos" not in e:
+            continue
+        r = (e.get("mdl") or {}).get("r") or []
+        if len(r) == 6 and max(r[3], r[5]) > 1.5:
+            continue                                                       # (an edge strip, not a door)
+        x, z = int(e["pos"][0]), int(e["pos"][2])
+        if not (1 <= x < m.w - 1 and 0 <= z < m.d):
+            continue
+        for dx in (-1, 1):
+            if h[z, x + dx] >= h[z, x] + 3 and 0 <= x - dx < m.w and h[z, x - dx] == h[z, x]:
+                e["pos"][0] = x - dx
+                break
+
+
+def arrivals_face_open_ground(m, ev):
+    """(tester, 2026-11-11: coming back into M261 from the South Dojo set Shizue down inside the rock and the
+    fall-rescue lifted her onto a ledge with no way down.) The engine sets an arriving player 1 m (2 squares) in
+    FRONT of the portal he arrives at (RPGStageState.getPortalPos: heading (d + 2) * 90 deg: d 0 -> -z, 1 -> -x,
+    2 -> +z, 3 -> +x). Where that square is rock and the one behind the portal is open ground, turn the portal
+    round. (Cave side doors were drawn d 1 on the west wall: arriving faced into the rock.)"""
+    step = {0: (0, -1), 1: (-1, 0), 2: (0, 1), 3: (1, 0)}
+    h = m.hgt
+    for e in ev.ev.values():
+        if "pos" not in e or not (e.get("role") == "portal" or
+                                  any(p.get("memo") == "landing" for p in e.get("page") or [])):
+            continue
+        r = (e.get("mdl") or {}).get("r") or []
+        if len(r) == 6 and max(r[3], r[5]) > 1.5:
+            continue
+        x, z, d = int(e["pos"][0]), int(e["pos"][2]), int(e["pos"][3]) % 4
+        dx, dz = step[d]
+        a, b, c, f = x + 2 * dx, z + 2 * dz, x - 2 * dx, z - 2 * dz
+        if not (0 <= x < m.w and 0 <= z < m.d and 0 <= a < m.w and 0 <= b < m.d and 0 <= c < m.w and 0 <= f < m.d):
+            continue
+        if h[b, a] >= h[z, x] + 3 and abs(int(h[f, c]) - int(h[z, x])) <= 1:
+            e["pos"][3] = (d + 2) % 4
+
+
 def fix_dark(x):
     """(user, 2026-11-10: Crane "the screen is completely black"; Lion "wait at night, screen goes black") DARK fades
     the screen to black and only a map change (a new stage) clears it. Any command list that goes dark and then never
@@ -2359,9 +2404,13 @@ PAVE_SKIP = {WATER}
 # they lead (tools/edgecheck.py lists them): {map: {destination map: the edge the exit belongs on}}. Applied in
 # make() before mark_exits(): the exit (and any edge trigger beside it) moves to that edge; pave_exit draws the road.
 MOVE_EXIT = {
-    "M216": {"M200": "b"}, "M203": {"M202": "f"}, "M254": {"M241": "e"},
+    "M216": {"M200": "b"}, "M203": {"M202": "f"},   # (M254 -> M241 "e" removed, tester 2026-11-11: it put M241 on
+                                                     # the same east edge as M255 - one strip, the M241 one won, and
+                                                     # the Lion road to Shiro Akodo never led there; the winter road
+                                                     # sits between them, its west end goes back to M241)
     "M272": {"M255": "b"}, "M288": {"M285": "f"}, "M297": {"M288": "b"},
-    "M304": {"M314": "e"}, "M326": {"M322": "w"}, "M333": {"M323": "e"}, "M350": {"M351": "w"},
+    "M304": {"M314": "e"},   # (M326 -> M322 "w", M333 -> M323 "e", M350 -> M351 "w" removed, tester 2026-11-11:
+                             # each put two exits on one edge strip, so one of the two ways could never be taken)
     "M362": {"M361": "w", "M365": "e"}, "M384": {"M382": "w"}, "M386": {"M385": "f"}, "M397": {"M396": "w"},
     "M404": {"M399": "b"}, "M405": {"M404": "w"},
 }
@@ -2508,7 +2557,11 @@ def edge_triggers(m, ev):
             # edge's strip ACROSS the road, 15 m long, at one row: it fired early or not at all)
             d = {"w": 3, "e": 1, "f": 2, "b": 0}[side]
             trig = copy.deepcopy(e) if e.get("role") == "portal" else e
-            trig["pos"] = [int(x), int(m.hgt[z, x]) + 1, int(z), d]
+            # the box rises from its base: base it at the LOWEST ground along its stretch (tester 2026-11-11: M226's
+            # east strip took the height of the rock at its middle, 10, and the paved way out at 3 ran under it)
+            cells = [(x, zz) for zz in range(lo, hi)] if side in ("w", "e") else [(xx, z) for xx in range(lo, hi)]
+            base = min([int(m.hgt[b, a]) for a, b in cells if 0 <= a < m.w and 0 <= b < m.d] or [int(m.hgt[z, x])])
+            trig["pos"] = [int(x), base + 1, int(z), d]
             r = list((trig.get("mdl") or {}).get("r") or [0, 1.0, 0, 1.0, 1.0, 1.0])
             r[3] = max(1.0, (hi - lo) / 4.0)                                 # half its stretch, in metres (0.5 m blocks)
             r[4] = 6.0                                                       # tall: any floor height along the edge
@@ -4362,7 +4415,9 @@ def garden_port():
     ev.talk(51, 34, SC["townguard"], [
         (None, [say("Gate guard", "The castle is closed to wanderers. The Daidoji are hosting a dinner.")]),
         ([flag("G321"), flag("G346", False)], GS_GATE),
-        ([flag("G346")], [say("Gate guard", "Up you go, Kakita-sama. Mind the generals: they bite.")])])
+        ([flag("G346")], [say("Gate guard", "Up you go, Kakita-sama. Mind the generals: they bite."),
+                          go("M211", 35, 6)])])                     # (tester 2026-11-11: the gate portal sits on the
+                                                                    # 12-high wall top, unreachable - the guard lets you in)
     garden = ev.portal(51, 36, "M211", 1, d=0)                              # the castle gate (after the chapter icon)
     assert garden == 5                                                      # M211's way out returns here
     ev.ev["#%d#" % garden]["reqs0"] = [flag("G346")]
@@ -4500,7 +4555,14 @@ def tide_gate(here):
         narrate("Low tide. The causeway is dry."), setf("G376")]
     return [(None, [narrate("The causeway to the %s is under water." % here),
                     choices(("Wait for low tide.", wait), ("Not now.", [step_back(0, 0)]))]),
-            ([flag("G376")], [setf("G376", False)])]
+            ([flag("G376")], [])]                       # (tester 2026-11-11: this page used to clear G376 - stood on
+                                                        # after waiting, the bridgehead flipped pages and re-fired for
+                                                        # ever: wait, dry, under water, wait... The shore clears it now.)
+
+
+def tide_ashore():
+    """Off the causeway, past the bridgehead: the crossing is over (the next one waits for the tide again)."""
+    return [(None, []), ([flag("G376")], [setf("G376", False)])]
 
 
 def land_bridge():
@@ -4518,6 +4580,8 @@ def land_bridge():
     ev.scene(5, 16, "G377", S02_BRIDGE + [setf("G376")], after="G347", touch=True)
     ev.talk(9, 16, "CE000", tide_gate("Crab side"), trigger=5)
     ev.talk(110, 16, "CE000", tide_gate("Crane side"), trigger=5)
+    ev.talk(3, 16, "CE000", tide_ashore(), trigger=5)                       # the Crane shore (before the S02 scene)
+    ev.talk(115, 16, "CE000", tide_ashore(), trigger=5)                     # the Crab shore
     ev.chest(60, 18, "I101", 1)
     ev.talk(72, 21, "CE000", [(None, [narrate("A tide pool among the rocks, left behind by the sea.")] +
                                    got(item_named("Shell"), "Crab Shell", 3) + got(item_named("Pearl"), "a Pearl") +
@@ -4948,7 +5012,8 @@ def ship_deck():
     ev = Events(m)
     ev.scene(30, 12, "G386", S01_DECK, after="G388")
     ev.clerk(20, 11, SC["shipmaster"], "R121")
-    fill(m, 33, 4, 14, 2, 1, 1, DARKWOOD)                                   # the chart table
+    fill(m, 33, 4, 14, 2, 2, 1, DARKWOOD)                                   # the chart table (2 high: at 1 the
+                                                                            # step-up lifted you onto the chart)
     ev.talk(34, 14, "CE000", sea_chart(), trigger=1)
     ev.talk(45, 14, "CE000", [(None, [narrate("The captain's cabin: a bunk, a lamp, a basin that never stops "
                                               "sliding."), SAVE_CHOICE])], trigger=1)
@@ -5127,8 +5192,9 @@ def heavenly_sheen_isle():
         m.tree(x, 24, ROCK_M)
     for x in range(10, 56, 9):
         m.tree(x, 27, TREE_S)
-    ev = Events(m)
-    cliff = ev.portal(86, 20, "M226", 1, d=1)                               # event 1: the cliff path (M226's 1)
+    m.rect(86, 19, 4, 6, STONEW, 9)                                         # the path's top ledge (tester 2026-11-11:
+    ev = Events(m)                                                          # the exit sat at the cliff's FOOT, behind
+    cliff = ev.portal(86, 20, "M226", 1, d=1)                               # the climb) event 1: the cliff path
     assert cliff == 1
     ev.talk(5, 10, SC["shipmaster"], [(None, [say("Ship's master", "White sand, captain. I don't trust white sand. "
                                                                     "Back aboard?"),
@@ -6271,17 +6337,23 @@ def shiro_akodo_grounds():
     ev = Events(m)
     ev.portal(35, 1, "M255", 2, d=2)                                        # event 1: the castle town
     for i, (mid, (x, z)) in enumerate(DOORS_SA):
-        door = ev.portal(x, z, mid, 1, d=0)
-        assert door == i + 2                                                # events 2-8: the castle doors
+        door = ev.portal(x, z, mid, 1, d=2 if z < 15 else 0)              # (tester 2026-11-11: the South Dojo and the
+        assert door == i + 2                                                # Hall of Akodo face south, the building to
+                                                                            # their north: d 0 set you down inside it,
+                                                                            # and the fall-rescue put you on the roof)
     ev.ev["#5#"]["reqs0"] = [flag("G498")]                                  # the South Dojo: after Beat 3
     ev.ev["#8#"]["reqs0"] = [flag("G504")]                                  # the cells: after the arrest
     if "M265" in MAPS_LION:
-        karo = ev.portal(12, 30, "M265", 1, d=0)                            # event 9: the karo's office (Lion Ch3)
+        karo = ev.portal(12, 32, "M265", 1, d=2)                            # event 9: the karo's office (Lion Ch3)
+        # (tester 2026-11-11: at (12, 30) d 0 it sat inside the Central Dojo's eaves - no way in, and arriving set you
+        # down in the building. A square clear of the back wall now, facing out.)
         assert karo == 9
         ev.ev["#9#"]["reqs0"] = [flag("G510")]
     ev.talk(60, 12, "CE000", [(None, [narrate("The South Dojo. Kafu-sama's. The door is cold to the touch.")]),
                               ([flag("G498")], [])], trigger=5)
-    ev.talk(24, 6, SC["benjiro"], [(None, [say("Benjiro", "The Crab laugh at me. Let them.")]),
+    ev.talk(24, 10, SC["benjiro"], [(None, [say("Benjiro", "The Crab laugh at me. Let them.")]),   # (at the stables'
+                                                                            # door: at (24, 6) he stood inside the
+                                                                            # stables' solid block - tester 2026-11-11)
                                    ([flag("G506"), flag("G507", False)], S08_CL2),
                                    ([flag("G507")], [say("Benjiro", "Tonight, Lion. It is fat enough now.")])])
     ev.npc(28, 7, SC["kitechild"], "Benjiro-sama paints his face every morning.")                # the stable girl
@@ -18439,6 +18511,9 @@ def make(i):
         pad(m, ev)
         if ev is not None and getattr(m, "exits", None):
             edge_triggers(m, ev)
+    if ev is not None:
+        portals_off_side_walls(m, ev)
+        arrivals_face_open_ground(m, ev)
     if ev is not None:                                                     # a big walk-in box whose centre can be
         for e in ev.ev.values():                                           # off screen while the player is in it
             r = (e.get("mdl") or {}).get("r") or []                        # would not exist there (spawndist 1)
