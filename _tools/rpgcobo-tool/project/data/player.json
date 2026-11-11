@@ -13397,6 +13397,51 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S110"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S700"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S701"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S702"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S703"
+			},
+			{
+				"LV": 10,
+				"opttype": "opt_getskill",
+				"skillid": "S741"
+			},
+			{
+				"LV": 25,
+				"opttype": "opt_getskill",
+				"skillid": "S742"
+			},
+			{
+				"LV": 41,
+				"opttype": "opt_getskill",
+				"skillid": "S743"
+			},
+			{
+				"LV": 51,
+				"opttype": "opt_getskill",
+				"skillid": "S744"
+			},
+			{
+				"LV": 61,
+				"opttype": "opt_getskill",
+				"skillid": "S745"
 			}
 		],
 		"mdlid": "EP200",
@@ -14763,6 +14808,61 @@
 				"LV": 25,
 				"opttype": "opt_getskill",
 				"skillid": "S426"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S704"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S705"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S706"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S707"
+			},
+			{
+				"LV": 10,
+				"opttype": "opt_getskill",
+				"skillid": "S747"
+			},
+			{
+				"LV": 25,
+				"opttype": "opt_getskill",
+				"skillid": "S748"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S749"
+			},
+			{
+				"LV": 41,
+				"opttype": "opt_getskill",
+				"skillid": "S750"
+			},
+			{
+				"LV": 51,
+				"opttype": "opt_getskill",
+				"skillid": "S751"
+			},
+			{
+				"LV": 61,
+				"opttype": "opt_getskill",
+				"skillid": "S752"
+			},
+			{
+				"LV": 70,
+				"opttype": "opt_getskill",
+				"skillid": "S753"
 			}
 		],
 		"mdlid": "EP201",
@@ -16129,6 +16229,63 @@
 				"LV": 5,
 				"opttype": "opt_getskill",
 				"skillid": "S476"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S708"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S709"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S710"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S711"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_conddef",
+				"CDR.4": 100,
+				"CDR.7": 100,
+				"CDR.8": 100
+			},
+			{
+				"LV": 25,
+				"opttype": "opt_getskill",
+				"skillid": "S754"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S755"
+			},
+			{
+				"LV": 41,
+				"opttype": "opt_getskill",
+				"skillid": "S756"
+			},
+			{
+				"LV": 51,
+				"opttype": "opt_getskill",
+				"skillid": "S757"
+			},
+			{
+				"LV": 61,
+				"opttype": "opt_getskill",
+				"skillid": "S758"
+			},
+			{
+				"LV": 70,
+				"opttype": "opt_getskill",
+				"skillid": "S759"
 			}
 		],
 		"mdlid": "EP202",
@@ -17490,7 +17647,58 @@
 				309
 			]
 		},
-		"lvoption": [],
+		"lvoption": [
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S712"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S713"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S714"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S715"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getskill",
+				"skillid": "S760"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S761"
+			},
+			{
+				"LV": 41,
+				"opttype": "opt_getskill",
+				"skillid": "S762"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S763"
+			},
+			{
+				"LV": 51,
+				"opttype": "opt_getskill",
+				"skillid": "S764"
+			},
+			{
+				"LV": 61,
+				"opttype": "opt_getskill",
+				"skillid": "S765"
+			}
+		],
 		"mdlid": "EP203",
 		"name": "Akodo Shizue",
 		"picid": "",
@@ -19035,6 +19243,56 @@
 				"LV": 75,
 				"opttype": "opt_getskill",
 				"skillid": "S394"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S716"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S717"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S718"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S719"
+			},
+			{
+				"LV": 8,
+				"opttype": "opt_getskill",
+				"skillid": "S777"
+			},
+			{
+				"LV": 14,
+				"opttype": "opt_getskill",
+				"skillid": "S778"
+			},
+			{
+				"LV": 20,
+				"opttype": "opt_getskill",
+				"skillid": "S779"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S780"
+			},
+			{
+				"LV": 42,
+				"opttype": "opt_getskill",
+				"skillid": "S781"
+			},
+			{
+				"LV": 54,
+				"opttype": "opt_getskill",
+				"skillid": "S782"
 			}
 		],
 		"mdlid": "EP204",
@@ -20411,6 +20669,56 @@
 				"LV": 22,
 				"opttype": "opt_getskill",
 				"skillid": "S141"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S720"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S721"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S722"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S723"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getskill",
+				"skillid": "S766"
+			},
+			{
+				"LV": 25,
+				"opttype": "opt_getskill",
+				"skillid": "S767"
+			},
+			{
+				"LV": 41,
+				"opttype": "opt_getskill",
+				"skillid": "S768"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S769"
+			},
+			{
+				"LV": 51,
+				"opttype": "opt_getskill",
+				"skillid": "S770"
+			},
+			{
+				"LV": 61,
+				"opttype": "opt_getskill",
+				"skillid": "S771"
 			}
 		],
 		"mdlid": "EP205",
@@ -21792,6 +22100,26 @@
 				"LV": 41,
 				"opttype": "opt_getskill",
 				"skillid": "S566"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S724"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S725"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S726"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S727"
 			}
 		],
 		"mdlid": "EP206",
@@ -23173,6 +23501,31 @@
 				"LV": 6,
 				"opttype": "opt_getskill",
 				"skillid": "S584"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getskill",
+				"skillid": "S772"
+			},
+			{
+				"LV": 10,
+				"opttype": "opt_getskill",
+				"skillid": "S773"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S774"
+			},
+			{
+				"LV": 20,
+				"opttype": "opt_getskill",
+				"skillid": "S775"
+			},
+			{
+				"LV": 25,
+				"opttype": "opt_getskill",
+				"skillid": "S776"
 			}
 		],
 		"mdlid": "EP207",
@@ -53282,6 +53635,66 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S461"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_getskill",
+				"skillid": "S783"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getskill",
+				"skillid": "S784"
+			},
+			{
+				"LV": 10,
+				"opttype": "opt_getskill",
+				"skillid": "S785"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S786"
+			},
+			{
+				"LV": 20,
+				"opttype": "opt_getskill",
+				"skillid": "S787"
+			},
+			{
+				"LV": 28,
+				"opttype": "opt_getskill",
+				"skillid": "S788"
+			},
+			{
+				"LV": 35,
+				"opttype": "opt_getskill",
+				"skillid": "S789"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S790"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S791"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S792"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S793"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S794"
 			}
 		],
 		"mdlid": "EP309",

@@ -1,0 +1,212 @@
+//	RokuganJobs.sk : jobs and traits (docs/rules/progression-v2.md section 3; tools/jobs_data.py). Slot 1 "Job": Traveler
+//	(J000: +0..50% EXP and money by job level) or the traveler's own job (J010-J017, data field rt_owner). Slot 2
+//	"Trait": traits the own job unlocks at job Lv 2 / 5 / 8 (its lvoption opt_getjob; the engine has no hook for that
+//	option, so they are added here). Trait effects below, keyed by job id.
+
+local log( s){ printf( "[RT] %S\n", s); }
+local _chance = @( pct) ::rnd.nextf( 0.0, 100.0) < pct;
+
+::Rokugan.jobLv <- function( pc, jid){
+	local j = (pc && pc["ownjobs"]) ? pc.ownjobs.find( @( v) v && v.dataid == jid) : null;
+	return j ? j.JOBLV : 0;
+};
+::Rokugan.wearsJob <- function( pc, jid){
+	return pc && pc["jobs"] && !!pc.jobs.find( @( v) v && v.dataid == jid);
+};
+//	The first party member (in battle: the battle's members; else the party) wearing jid, alive; or null.
+::Rokugan.partyWith <- function( jid){
+	local b = ::rpgstage ? ::rpgstage["battle"] : null;
+	foreach( m in (b ? b.members : ::rpgstat.members)){
+		if( m && !m.isDead() && this.wearsJob( m, jid)) return m;
+	}
+	return null;
+};
+
+//	The traveler's own job and the traits it has unlocked join their job list (idempotent).
+::Rokugan.ensureJobs <- function( pc){
+	if( !pc || !pc["ownjobs"]) return [];
+	local pid = pc.dataid, added = [];
+	foreach( jid, jd in ::conf.job){
+		if( jid[0] == 'J' && jd && jd["rt_owner"] == pid && !pc.ownjobs.find( @( v) v && v.dataid == jid)){
+			pc.ownjobs .. ::RPGObject.create( jid);
+			log( "job %S gets %S" % (pc.name, jid));
+		}
+	}
+	foreach( j in clone pc.ownjobs){
+		if( !j || !j.data["lvoption"]) continue;
+		foreach( o in j.data.lvoption){
+			if( o["opttype"] != "opt_getjob" || j.JOBLV < int( o["LV"])) continue;
+			local tid = o["jobid"];
+			if( pc.ownjobs.find( @( v) v && v.dataid == tid)) continue;
+			pc.ownjobs .. ::RPGObject.create( tid);
+			::rpgstat.discover( tid, 1);
+			added .. ::conf.job[tid].name;
+			log( "trait %S learns %S (%S Lv %d)" % (pc.name, tid, j.data.name, j.JOBLV));
+		}
+	}
+	return added;
+};
+
+local _sel = ::RPGPlayer.getSelectableJobs;
+::RPGPlayer.getSelectableJobs <- function( slotidx){
+	::Rokugan.ensureJobs( this);
+	return _sel( slotidx);
+};
+local _ajx = ::RPGPlayer.addJobExp;
+::RPGPlayer.addJobExp <- function( val){
+	local r = _ajx( val);
+	::Rokugan.ensureJobs( this);
+	return r;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	Traveler: extra EXP and money (party-wide: the best Traveler among the living), Bounty +20%, Golden Purse +30%.
+//	The foes' exp / money are scaled for the victory screen (so it shows the real numbers), then put back.
+::Rokugan.travelerRate <- function( members){
+	local best = 0;
+	foreach( m in members){
+		if( m && !m.isDefeated() && this.wearsJob( m, "J000")) best = Math.max( best, this.jobLv( m, "J000"));
+	}
+	return best > 1 ? 0.5 * (best - 1) / 9.0 : 0.0;
+};
+::TurnBattleRunner._rt_victory_jobs <- ::TurnBattleRunner.showVictoryUI;
+::TurnBattleRunner.showVictoryUI <- function(){
+	local R = ::Rokugan, xr = R.travelerRate( this.members), mr = xr;
+	if( R.partyWith( "J118")) mr += 0.2;
+	if( R.partyWith( "J128")) mr += 0.3;
+	local saved = [];
+	if( xr > 0 || mr > 0){
+		foreach( e in this.enemies){
+			if( !e || !e["data"] || saved.find( @( v) v.d == e.data)) continue;
+			saved .. { d = e.data, exp = e.data.exp, money = e.data.money };
+			e.data.exp = int( e.data.exp * (1.0 + xr) + 0.5);
+			e.data.money = int( e.data.money * (1.0 + mr) + 0.5);
+		}
+		log( "victory bonus: EXP +%d%%, money +%d%%" % (int( xr * 100 + 0.5), int( mr * 100 + 0.5)));
+	}
+	this._rt_victory_jobs();
+	foreach( s in saved){ s.d.exp = s.exp; s.d.money = s.money; }
+	local f = R.partyWith( "J130");								//	Forager: a herb, sometimes
+	if( f && _chance( 35.0)){
+		::rpgstat.addItemID( "I001", 1);
+		log( "Forager: %S finds a Healing Herb" % f.name);
+	}
+};
+
+//	Sneak: half as many random encounters.
+::RPGStage._rt_enc_jobs <- ::RPGStage.calcEnc;
+::RPGStage.calcEnc <- function(){
+	local r = this._rt_enc_jobs();
+	return ::Rokugan.partyWith( "J111") ? r * 0.5 : r;
+};
+
+//	Haggle: shop prices -10% while the shop is open.
+::RPGMain._rt_ui_jobs <- ::RPGMain.showUI;
+::RPGMain.showUI <- function( t){
+	local sd = (t && t["key"] == "store_item" && ::Rokugan.partyWith( "J127")) ? ::rpgdata[t["storeid"]] : null;
+	if( !sd || !sd["items"]) return this._rt_ui_jobs( t);
+	local saved = [];
+	foreach( v in sd.items){
+		if( !v || !v["dataid"] || !::rpgdata[v.dataid]) continue;
+		local had = ("price" in v), p = v["price"] || ::rpgdata[v.dataid]["price"] || 0;
+		saved .. { v = v, had = had, p = v["price"] };
+		v["price"] <- Math.max( 1, int( p * 0.9));
+	}
+	log( "Haggle: prices -10%% at %S" % t["storeid"]);
+	local r = this._rt_ui_jobs( t);
+	foreach( s in saved){ if( s.had) s.v["price"] = s.p; else delete s.v["price"]; }
+	return r;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	Battle start (the first turn of each battle) and every turn.
+::Rokugan.jobb <- { battle = null, surprise = false, lost = {}, conn = false, started = false };
+::Rokugan.jobBattle <- function(){
+	local b = ::rpgstage ? ::rpgstage["battle"] : null, jb = this.jobb;
+	if( jb.battle != b){
+		jb.battle = b; jb.surprise = false; jb.lost = {}; jb.conn = false; jb.started = false;
+	}
+	return jb;
+};
+
+::Rokugan._rt_preturn_jobs <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_jobs( chr);
+	local jb = this.jobBattle(), b = ::rpgstage["battle"];
+	if( !b) return;
+	if( !jb.started){
+		jb.started = true;
+		::rpgvar["G1226"] = !!this.partyWith( "J132");			//	Wave-woman: the Flee macro reads it
+		local boss = !!b.enemies.find( @( e) e && e.isBoss());
+		//	Surprise Round (Scout) / Ambush (Shinobi): random foes lose their first action
+		local sc = this.partyWith( "J110"), am = this.partyWith( "J126");
+		if( !boss && (sc || am)){
+			local pct = Math.max( sc ? 20 + 3 * this.jobLv( sc, "J010") : 0, am ? 20 + 3 * this.jobLv( am, "J015") : 0);
+			if( _chance( pct)){
+				jb.surprise = true;
+				this.pop( sc || am, "SURPRISE ROUND!", 0xffd040ff);
+				log( "surprise round (%d%%)" % pct);
+			}
+		}
+		//	Tracker: every foe's weaknesses; Read the Foe: one foe's
+		local tr = this.partyWith( "J112"), rf = this.partyWith( "J116");
+		local alive = b.enemies.filter( @( e) e && !e.isDead());
+		if( tr) foreach( e in alive) this.state( e).known = this.state( e).known | this.weakbits( e);
+		else if( rf && length( alive)){
+			local e = alive[int( ::rnd.nextf( 0.0, length( alive) - 0.001))];
+			this.state( e).known = this.state( e).known | this.weakbits( e);
+			this.pop( e, "READ", 0xffe080ff);
+		}
+		foreach( m in b.members){
+			if( !m || m.isDead()) continue;
+			if( this.wearsJob( m, "J113")) m.putCondition( "K062");					//	First Draw
+			if( this.partyWith( "J119")) m.putCondition( "K062");					//	Vanguard (everyone)
+			if( this.wearsJob( m, "J120")){ local st = this.state( m); st.bp = Math.min( st.bp + 1, this.vpMax( m) + 1); }
+			if( this.wearsJob( m, "J115")) this.state( m).focus = Math.max( this.state( m).focus, 1);	//	Ready Blade
+		}
+	}
+	if( (chr instanceof ::RPGPlayer) && this.wearsJob( chr, "J123") && chr.MAXMP > 0)		//	Meditation
+		chr.MP = Math.min( chr.MAXMP, chr.MP + Math.max( 1, chr.MAXMP / 20));
+};
+
+//	Surprise: each foe's first action is lost. Connections: the first hireling call a battle costs no charge.
+::Rokugan._rt_pre_jobs <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local jb = this.jobBattle(), pc = cmd.src;
+	if( (pc instanceof ::RPGEnemy) && jb.surprise && !(pc in jb.lost)){
+		jb.lost[pc] <- true;
+		if( cmd.skill && cmd.skill["skilltype"] != "noop"){
+			cmd.skill = ::conf.skill["S000"];
+			this.pop( pc, "CAUGHT UNAWARE", 0xffd040ff);
+		}
+	}
+	local before = int( ::rpgvar["G294"] || 0), hire = cmd.skill && cmd.skill["rt_hire"] && (pc instanceof ::RPGPlayer);
+	this._rt_pre_jobs( cmd);
+	if( hire && !jb.conn && int( ::rpgvar["G294"] || 0) < before && this.partyWith( "J129")){
+		jb.conn = true;
+		::rpgvar["G294"] = before;
+		this.pop( pc, "CONNECTIONS: NO CHARGE SPENT", 0xffe080ff);
+	}
+};
+
+//	Hits: surprise criticals, Measure the Foe, Banner; Strong Brew heals.
+::Rokugan._rt_att_jobs <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local src = dmg.src, dst = dmg.dst, sk = dmg.skill, jb = this.jobBattle();
+	if( !dmg.skip && (src instanceof ::RPGPlayer)){
+		if( dmg.heal && this.wearsJob( src, "J131")) dmg.cval.baserate *= 1.25;
+		else if( !dmg.heal && !dmg.miss && (dst instanceof ::RPGEnemy)){
+			local crit = 0.0, mul = 1.0, b = ::rpgstage["battle"];
+			if( jb.surprise && !(dst in jb.lost) && ((this.wearsJob( src, "J110") && this.jobLv( src, "J010") >= 5) ||
+					this.wearsJob( src, "J126"))) crit += 25.0;
+			if( this.wearsJob( src, "J114") && b && b.enemies.filter( @( e) e && !e.isDead()).len() == 1) crit += 20.0;
+			local bn = this.partyWith( "J121");
+			if( bn && bn.HP * 2 < bn.MAXHP) mul *= 1.15;
+			if( crit > 0 && !dmg.critical && _chance( crit)){ dmg.critical = true; mul *= 1.5; }
+			if( mul != 1.0) dmg.cval.baserate *= mul;
+		}
+	}
+	this._rt_att_jobs( dmg);
+};
+
+printf( "Rokugan jobs loaded\n");

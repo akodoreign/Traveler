@@ -1,0 +1,268 @@
+//	RokuganRanks.sk : school ranks (docs/rules/progression-v2.md, user 2026-11-11). Insight Rank 2-5 come at Lv 15 / 30 /
+//	45 / 60 as passive skills (player lvoption opt_getskill, tools/gen_data.py RANKS); this file gives them their battle
+//	effects. Each traveler's own school (schools.md): Hiruma, Kakita, Kitsuki, Akodo, Isawa, Shosuro, Ide. Sayo's ronin
+//	ranks stay the story picks (RokuganHazard ronin()). Gendo R2's resistances are an opt_conddef on the player data.
+
+local log( s){ printf( "[RT] %S\n", s); }
+
+::Rokugan.RANKS <- {
+	Natsuko = ["S700", "S701", "S702", "S703"],
+	Rensei  = ["S704", "S705", "S706", "S707"],
+	Gendo   = ["S708", "S709", "S710", "S711"],
+	Shizue  = ["S712", "S713", "S714", "S715"],
+	Haruki  = ["S716", "S717", "S718", "S719"],
+	Mitsue  = ["S720", "S721", "S722", "S723"],
+	Tamotsu = ["S724", "S725", "S726", "S727"],
+};
+
+//	Insight Rank 1-5 (0 for enemies and the cast without a school here).
+::Rokugan.insight <- function( pc){
+	if( !(pc instanceof ::RPGPlayer)) return 0;
+	local a = this.RANKS[this.given( pc.name)];
+	if( !a) return 0;
+	local r = 1;
+	foreach( id in a) if( pc.hasSkill( id)) r++;
+	return r;
+};
+::Rokugan.ranked <- function( pc, who, n){
+	return (pc instanceof ::RPGPlayer) && this.given( pc.name) == who && this.insight( pc) >= n;
+};
+
+local _chance = @( pct) ::rnd.nextf( 0.0, 100.0) < pct;
+local _isPlainAttack = @( sk) sk && sk["skilltype"] == "attack" && sk["flags"] == 255;
+local _isDamaging = @( sk) sk && sk["skilltype"] == "attack";
+local SHADOW_BIT = 1 << 11;										//	jade: a Shadowlands creature is weak to it
+
+//	Per-battle extras on the state table (state() is rebuilt every battle).
+local _rs = function( chr){
+	local st = ::Rokugan.state( chr);
+	if( !("rk" in st)) st.rk <- { hitme = {}, misses = 0, acted = false, first = true, marked = {}, dodged = false,
+		veil = false, wide = false, read = false };
+	return st.rk;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	Before a command: extra hits, first-action crits, enemy "has acted" bookkeeping, Gendo R5, Haruki R3/R5.
+::Rokugan._rt_pre_rank <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill;
+	if( pc instanceof ::RPGEnemy){
+		this._rt_pre_rank( cmd);
+		_rs( pc).acted = true;
+		//	Gendo R5 Kitsuki's Eyes: a foe that reaches for charm, fear or confusion feeds his Void
+		if( sk && sk["putconds"]){
+			local b = ::rpgstage["battle"];
+			foreach( m in (b ? b.members : [])){
+				if( m && !m.isDead() && this.ranked( m, "Gendo", 5)){
+					local pcs = ::bitdblist( sk["putconds"], "cond");
+					if( pcs.find( @( c) c == "K004" || c == "K007" || c == "K008")){
+						local st = this.state( m);
+						st.bp = Math.min( st.bp + 1, this.vpMax( m) + 1);
+						this.pop( m, "KITSUKI'S EYES +1 VP", 0xc0a0ffff);
+						log( "Kitsuki's Eyes: %S +1 VP (%S)" % (m.name, sk.name));
+					}
+				}
+			}
+		}
+		return;
+	}
+	if( sk && (pc instanceof ::RPGPlayer) && sk["rt_kata"]) sk = cmd.skill = this.useKata( pc, sk);
+	if( sk && (pc instanceof ::RPGPlayer)){
+		local g = this.given( pc.name), r = this.insight( pc), nsk = null;
+		//	+1 hit: Harness the Wind / Strength of My Ancestors / No Substance (plain attacks), One Strike Two Cuts (Strike)
+		if( (_isPlainAttack( sk) && ((g == "Natsuko" && r >= 4) || (g == "Shizue" && r >= 3) || (g == "Mitsue" && r >= 4))) ||
+				(g == "Rensei" && r >= 4 && sk["name"] == "Iaijutsu: Strike")){
+			nsk = clone sk;
+			local na = sk["atknum"] || [1, 1];
+			nsk["atknum"] <- [na[0] + 1, na[1] + 1];
+		}
+		//	Haruki R3: Void spells cost 1 VP less (min 1)
+		if( g == "Haruki" && r >= 3 && sk["rt_vp"] && sk["rt_vp"] > 1){
+			if( !nsk) nsk = clone sk;
+			nsk["rt_vp"] <- sk["rt_vp"] - 1;
+		}
+		//	Haruki R5: once a battle, his first single-target damaging spell strikes every enemy
+		local rk = _rs( pc);
+		if( g == "Haruki" && r >= 5 && !rk.wide && _isDamaging( sk) && sk["flags"] != 255 && sk["cmdtgt"] == 1){
+			local b = ::rpgstage["battle"];
+			local tg = (b && cmd.dsts && length( cmd.dsts)) ? b.getCommandTargets( pc, cmd.dsts[0], 7, false) : null;
+			if( tg && length( tg) > 1){
+				if( !nsk) nsk = clone sk;
+				nsk["cmdtgt"] <- 7;
+				cmd.dsts = tg;
+				rk.wide = true;
+				this.pop( pc, "ISAWA'S ART: EVERY FOE", 0xc0a0ffff);
+			}
+		}
+		if( nsk) cmd.skill = nsk;
+	}
+	this._rt_pre_rank( cmd);
+	//	Gendo R3 Finding the Path: Deduce also shows the move each target has queued
+	if( cmd.skill && cmd.skill["name"] == "Deduce" && this.ranked( pc, "Gendo", 3)){
+		foreach( d in (cmd.dsts || [])){
+			if( !(d instanceof ::RPGEnemy)) continue;
+			local nx = d["skill"];
+			if( nx) this.pop( d, "NEXT: " .. nx.name, 0xffe080ff);
+		}
+	}
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	Kata, kiho, tattoos (tools/kata_data.py): the user's own weapon attack (x rt_kmul) that puts its stance (rt_kata, a
+//	condition with rt_kata set) on the user. One stance at a time: the new one replaces the old.
+::Rokugan.useKata <- function( pc, sk){
+	local cid = sk["rt_kata"];
+	foreach( c in clone pc.conds){
+		if( c && c.data["rt_kata"] && c.dataid != cid) pc.removeCondition( c.dataid);
+	}
+	pc.removeCondition( cid);										//	re-using a kata restarts its turns
+	pc.putCondition( cid);
+	local base = pc.getAttackSkill(), nsk = clone base, m = sk["rt_kmul"] || 1.0, r = base["dmgrate"] || [1.0, 1.0];
+	nsk["name"] <- sk.name;
+	nsk["dmgrate"] <- [r[0] * m, r[1] * m];
+	local st = this.state( pc), nm = sk.name;
+	if( nm == "Self No Self"){ st.bp = Math.min( st.bp + 2, this.vpMax( pc) + 1); this.pop( pc, "+2 VP", 0xc0a0ffff); }
+	if( nm == "Void Fist"){ st.bp = Math.min( st.bp + 1, this.vpMax( pc) + 1); this.pop( pc, "+1 VP", 0xc0a0ffff); }
+	if( nm == "Freezing the Lifeblood")
+		nsk["option"] <- [ ...(base["option"] || []), { condid = "K006", opttype = "opt_putcond", rate = 0.5, when = 0,
+			whom = 0, showmiss = false, efx_start = null } ];
+	log( "%S uses %S (%S): stance %S" % (pc.name, nm, sk["rt_kkind"] || "kata", cid));
+	return nsk;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	Each hit: damage, crit and dodge from the ranks. dmg.cval.baserate scales the damage; dmg.miss can still change.
+::Rokugan._rt_att_rank <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local src = dmg.src, dst = dmg.dst, sk = dmg.skill;
+	if( !dmg.skip && !dmg.heal && sk && _isDamaging( sk)){
+		if( (src instanceof ::RPGPlayer) && (dst instanceof ::RPGEnemy)) this.rankOffence( dmg, src, dst, sk);
+		if( (src instanceof ::RPGEnemy) && (dst instanceof ::RPGPlayer)) this.rankDefence( dmg, src, dst, sk);
+	}
+	this._rt_att_rank( dmg);
+};
+
+::Rokugan.rankOffence <- function( dmg, pc, e, sk){
+	local g = this.given( pc.name), r = this.insight( pc);
+	if( r < 2 || dmg.miss) {
+		if( g == "Shizue" && r >= 5 && dmg.miss){				//	Akodo's Final Lesson: her blows never miss
+			dmg.miss = false;
+		}else return;
+	}
+	local es = _rs( e), mul = 1.0, crit = 0.0, tag = null;
+	local shadow = (this.weakbits( e) & SHADOW_BIT) != 0;
+	switch( g){
+	case "Natsuko":
+		if( !(pc in es.hitme)){ mul *= 1.25; tag = "STRIKE LIKE THE WIND"; }		//	R2: a foe that hasn't touched her
+		if( r >= 3 && shadow) mul *= 1.25;										//	R3 Fire and Shadow
+		if( r >= 5) crit = shadow ? 30.0 : 15.0;								//	R5 Veil of Spirits
+		break;
+	case "Rensei":																//	R2 The Sudden Strike: the turn-order lead
+		local a = this.rankOf( pc), b = this.rankOf( e);
+		if( a && b && b > a) mul *= 1.0 + Math.min( 0.5, 0.1 * (b - a));
+		if( r >= 3 && a && b && b > a) _rs( e).marked[pc] <- true;			//	R3 Strike from the Void: it flinches
+		local rk = _rs( pc);
+		if( r >= 5 && rk.first && a == 1){ crit = 100.0; tag = "STRIKE WITH NO THOUGHT"; }	//	R5
+		rk.first = false;
+		break;
+	case "Gendo":
+		if( r >= 4 && (this.state( e).known & this.weakbits( e))) mul *= 1.2;	//	R4 Rhythm of the Heart
+		break;
+	case "Shizue":
+		local h = Math.clamp( int( ::rpgvar["G060"] || 0), 0, 10);
+		mul *= 1.0 + 0.04 * h;													//	R2 Strength of Purity: Honor
+		if( r >= 4){																//	R4 Triumph Before Battle
+			mul *= 1.1;
+			if( e.hasCondition( "K022")){ e.removeCondition( "K022"); tag = "TRIUMPH BEFORE BATTLE"; }
+		}
+		if( r >= 5) mul *= 1.25;
+		break;
+	case "Mitsue":
+		local open = !es.acted || this.state( e).broken;
+		if( open){ mul *= 1.5; tag = "NO MERCY"; }								//	R2 The Shadow Has No Mercy
+		if( r >= 5 && open) crit = 30.0;										//	R5 The Shadow Has No Soul
+		break;
+	case "Haruki":
+		if( sk["flags"] != 255) mul *= r >= 4 ? 1.25 : 1.1;					//	R2 / R4 the higher Masteries
+		break;
+	}
+	//	Tamotsu R4 Piercing the Veils is defensive (rankDefence). Party-wide: Gendo R4 counts for everyone's hits.
+	if( g != "Gendo"){
+		local b = ::rpgstage["battle"];
+		foreach( m in (b ? b.members : [])){
+			if( m && !m.isDead() && this.ranked( m, "Gendo", 4) && (this.state( e).known & this.weakbits( e))){ mul *= 1.1; break; }
+		}
+	}
+	if( crit > 0 && !dmg.critical && _chance( crit)){ dmg.critical = true; mul *= 1.5; }
+	if( mul != 1.0) dmg.cval.baserate *= mul;
+	if( tag) this.pop( pc, tag, 0xffd040ff);
+};
+
+::Rokugan.rankDefence <- function( dmg, e, pc, sk){
+	local g = this.given( pc.name), r = this.insight( pc), es = _rs( e), ps = _rs( pc);
+	local eva = 0.0;
+	switch( g){
+	case "Natsuko":
+		if( r >= 2) eva += Math.min( 25.0, 5.0 * ps.misses);					//	R2: every miss makes her harder to hit
+		if( r >= 3) eva += 15.0;												//	R3 Fire and Shadow
+		break;
+	case "Rensei":
+		if( r >= 3 && (pc in es.marked)) eva += 20.0;							//	R3: the foe he cut flinches
+		break;
+	case "Mitsue":
+		if( r >= 3) eva += 20.0;												//	R3 The Shadow Has No Form
+		if( r >= 4 && !ps.dodged && !dmg.miss){								//	R4 No Substance: once a battle
+			ps.dodged = true;
+			dmg.miss = true;
+			this.pop( pc, "NO SUBSTANCE", 0xb0d8ffff);
+		}
+		break;
+	}
+	if( !dmg.miss && eva > 0 && _chance( eva)){
+		dmg.miss = true;
+		this.pop( pc, "DODGE", 0xb0d8ffff);
+	}
+	if( dmg.miss){
+		if( g == "Natsuko") ps.misses++;
+		return;
+	}
+	es.hitme[pc] <- true;
+	//	Tamotsu R3 When the Veil Moves (once a battle: a heavy blow on anyone is halved), R4 Piercing the Veils (-10%)
+	local b = ::rpgstage["battle"];
+	foreach( m in (b ? b.members : [])){
+		if( !m || m.isDead() || !this.ranked( m, "Tamotsu", 3)) continue;
+		local ms = _rs( m);
+		if( this.insight( m) >= 4) dmg.cval.baserate *= 0.9;
+		if( !ms.veil && dmg.cval.baserate * dmg.cval.base >= pc.MAXHP * 0.3){
+			ms.veil = true;
+			dmg.cval.baserate *= 0.5;
+			this.pop( m, "WHEN THE VEIL MOVES", 0xc0e0ffff);
+		}
+		break;
+	}
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	Start of a traveler's turn: Tamotsu R2 The Heart Listens reads every foe once; Rensei R3 starts a duel with +1 VP.
+::Rokugan._rt_preturn_rank <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_rank( chr);
+	if( !(chr instanceof ::RPGPlayer)) return;
+	local rk = _rs( chr), b = ::rpgstage["battle"];
+	if( rk.read || !b) return;
+	rk.read = true;
+	if( this.ranked( chr, "Tamotsu", 2)){
+		foreach( d in b.enemies){
+			if( !d || d.isDead()) continue;
+			this.state( d).known = this.state( d).known | this.weakbits( d);
+		}
+		this.pop( chr, "THE HEART LISTENS", 0xffe080ff);
+	}
+	if( this.ranked( chr, "Rensei", 3) && length( b.enemies) == 1){
+		local st = this.state( chr);
+		st.bp = Math.min( st.bp + 1, this.vpMax( chr) + 1);
+		this.pop( chr, "STRIKE FROM THE VOID +1 VP", 0xc0a0ffff);
+	}
+};
+
+printf( "Rokugan ranks loaded: %d schools\n", length( ::Rokugan.RANKS));

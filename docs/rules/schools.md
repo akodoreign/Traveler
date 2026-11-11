@@ -2,7 +2,8 @@
 
 Source: *L5R 3e Core Book Revised*, Book of Water (OCR: `_research/books_txt/L5R - 3E - Core Book Revised.ocr.clean.txt`,
 lines ≈ 13311–17000). Technique summaries are **paraphrased** for design use — do not copy book text into the game.
-Rank thresholds = user's level bands: **R1 Lv 1 · R2 Lv 21 · R3 Lv 41 · R4 Lv 51 · R5 Lv 61** (DESIGN §4c).
+Rank thresholds (user, 2026-11-11, supersedes DESIGN §4c): **R1 Lv 1 · R2 Lv 15 · R3 Lv 30 · R4 Lv 45 · R5 Lv 60**,
+automatic at level-up (docs/rules/progression-v2.md). The "(Lv)" numbers in the tables below are the old bands.
 
 General translation rules used below:
 - L5R "Free Raise" → +damage/+accuracy % or a cheaper Boost.

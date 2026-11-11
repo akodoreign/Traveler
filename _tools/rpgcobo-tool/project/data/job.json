@@ -3,8 +3,8 @@
 		"MAXLV": 10,
 		"desc": "A traveler on the roads of Rokugan.",
 		"expcurv": [
-			10,
-			20
+			8,
+			15
 		],
 		"icon": "",
 		"jobflag": -1,
@@ -206,5 +206,590 @@
 	"_meta": {
 		"caps": 200,
 		"version": 1
+	},
+	"J010": {
+		"MAXLV": 10,
+		"desc": "Hiruma scout craft: ambushes, quiet roads, reading tracks. Traits at job Lv 2, 5 and 8.",
+		"expcurv": [
+			8,
+			15
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 2,
+				"opttype": "opt_getjob",
+				"jobid": "J110"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getjob",
+				"jobid": "J111"
+			},
+			{
+				"LV": 8,
+				"opttype": "opt_getjob",
+				"jobid": "J112"
+			}
+		],
+		"name": "Scout",
+		"option": [],
+		"rt_owner": "P100"
+	},
+	"J011": {
+		"MAXLV": 10,
+		"desc": "The iaijutsu duelist: first draw, the measure, the ready blade. Traits at job Lv 2, 5 and 8.",
+		"expcurv": [
+			8,
+			15
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 2,
+				"opttype": "opt_getjob",
+				"jobid": "J113"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getjob",
+				"jobid": "J114"
+			},
+			{
+				"LV": 8,
+				"opttype": "opt_getjob",
+				"jobid": "J115"
+			}
+		],
+		"name": "Duelist",
+		"option": [],
+		"rt_owner": "P101"
+	},
+	"J012": {
+		"MAXLV": 10,
+		"desc": "Evidence over testimony - and a bounty for the guilty. Traits at job Lv 2, 5 and 8.",
+		"expcurv": [
+			8,
+			15
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 2,
+				"opttype": "opt_getjob",
+				"jobid": "J116"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getjob",
+				"jobid": "J117"
+			},
+			{
+				"LV": 8,
+				"opttype": "opt_getjob",
+				"jobid": "J118"
+			}
+		],
+		"name": "Magistrate",
+		"option": [],
+		"rt_owner": "P102"
+	},
+	"J013": {
+		"MAXLV": 10,
+		"desc": "The go player's war: the vanguard, the rally, the banner. Traits at job Lv 2, 5 and 8.",
+		"expcurv": [
+			8,
+			15
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 2,
+				"opttype": "opt_getjob",
+				"jobid": "J119"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getjob",
+				"jobid": "J120"
+			},
+			{
+				"LV": 8,
+				"opttype": "opt_getjob",
+				"jobid": "J121"
+			}
+		],
+		"name": "Tactician",
+		"option": [],
+		"rt_owner": "P103"
+	},
+	"J014": {
+		"MAXLV": 10,
+		"desc": "Scrolls, meditation and wards. Traits at job Lv 2, 5 and 8.",
+		"expcurv": [
+			8,
+			15
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 2,
+				"opttype": "opt_getjob",
+				"jobid": "J122"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getjob",
+				"jobid": "J123"
+			},
+			{
+				"LV": 8,
+				"opttype": "opt_getjob",
+				"jobid": "J124"
+			}
+		],
+		"name": "Scholar",
+		"option": [],
+		"rt_owner": "P104"
+	},
+	"J015": {
+		"MAXLV": 10,
+		"desc": "Quiet feet, light fingers, the knife from behind. Traits at job Lv 2, 5 and 8.",
+		"expcurv": [
+			8,
+			15
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 2,
+				"opttype": "opt_getjob",
+				"jobid": "J111"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getjob",
+				"jobid": "J103"
+			},
+			{
+				"LV": 8,
+				"opttype": "opt_getjob",
+				"jobid": "J126"
+			}
+		],
+		"name": "Shinobi",
+		"option": [],
+		"rt_owner": "P105"
+	},
+	"J016": {
+		"MAXLV": 10,
+		"desc": "The Ide trade: haggling, the purse and friends everywhere. Traits at job Lv 2, 5 and 8.",
+		"expcurv": [
+			8,
+			15
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 2,
+				"opttype": "opt_getjob",
+				"jobid": "J127"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getjob",
+				"jobid": "J128"
+			},
+			{
+				"LV": 8,
+				"opttype": "opt_getjob",
+				"jobid": "J129"
+			}
+		],
+		"name": "Merchant",
+		"option": [],
+		"rt_owner": "P106"
+	},
+	"J017": {
+		"MAXLV": 10,
+		"desc": "The wave-woman's road craft: forage, brew, and always a way out. Traits at job Lv 2, 5 and 8.",
+		"expcurv": [
+			8,
+			15
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 2,
+				"opttype": "opt_getjob",
+				"jobid": "J130"
+			},
+			{
+				"LV": 5,
+				"opttype": "opt_getjob",
+				"jobid": "J131"
+			},
+			{
+				"LV": 8,
+				"opttype": "opt_getjob",
+				"jobid": "J132"
+			}
+		],
+		"name": "Herbalist",
+		"option": [],
+		"rt_owner": "P107"
+	},
+	"J110": {
+		"MAXLV": 1,
+		"desc": "Scout trait. A chance to catch random foes unaware: they lose their first action. From Scout Lv 5, criticals up against foes that haven't acted yet.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Surprise Round",
+		"option": []
+	},
+	"J111": {
+		"MAXLV": 1,
+		"desc": "Trait. Quiet feet: fewer random encounters (half as many).",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Sneak",
+		"option": []
+	},
+	"J112": {
+		"MAXLV": 1,
+		"desc": "Scout trait. Read the tracks: every foe's weaknesses are known at the start of a battle.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Tracker",
+		"option": []
+	},
+	"J113": {
+		"MAXLV": 1,
+		"desc": "Duelist trait. In the first turn of a battle, Speed is doubled.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "First Draw",
+		"option": []
+	},
+	"J114": {
+		"MAXLV": 1,
+		"desc": "Duelist trait. +20% critical hits against a lone foe.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Measure the Foe",
+		"option": []
+	},
+	"J115": {
+		"MAXLV": 1,
+		"desc": "Duelist trait. Iaijutsu starts every battle with 1 Focus.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Ready Blade",
+		"option": []
+	},
+	"J116": {
+		"MAXLV": 1,
+		"desc": "Magistrate trait. At the start of a battle, one foe's weaknesses are known.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Read the Foe",
+		"option": []
+	},
+	"J117": {
+		"MAXLV": 1,
+		"desc": "Magistrate trait. Resists charm and confusion.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Honest Eyes",
+		"option": [
+			{
+				"opttype": "opt_conddef",
+				"CDR.4": 100,
+				"CDR.8": 100
+			}
+		]
+	},
+	"J118": {
+		"MAXLV": 1,
+		"desc": "Magistrate trait. +20% money from battles.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Bounty",
+		"option": []
+	},
+	"J119": {
+		"MAXLV": 1,
+		"desc": "Tactician trait. The whole party moves faster in the first turn.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Vanguard",
+		"option": []
+	},
+	"J120": {
+		"MAXLV": 1,
+		"desc": "Tactician trait. +1 VP at the start of every battle.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Rally",
+		"option": []
+	},
+	"J121": {
+		"MAXLV": 1,
+		"desc": "Tactician trait. While she is under half HP, the party hits 15% harder.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Banner",
+		"option": []
+	},
+	"J122": {
+		"MAXLV": 1,
+		"desc": "Scholar trait. Max SP +20%.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Learned",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "MAXMP",
+				"val": 20,
+				"valtype": "totalrate"
+			}
+		]
+	},
+	"J123": {
+		"MAXLV": 1,
+		"desc": "Scholar trait. Recovers 5% of max SP every turn.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Meditation",
+		"option": []
+	},
+	"J124": {
+		"MAXLV": 1,
+		"desc": "Scholar trait. Resists poison, blindness, silence and sleep (50%).",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Ward",
+		"option": [
+			{
+				"opttype": "opt_conddef",
+				"CDR.1": 50,
+				"CDR.2": 50,
+				"CDR.3": 50,
+				"CDR.5": 50
+			}
+		]
+	},
+	"J126": {
+		"MAXLV": 1,
+		"desc": "Shinobi trait. A chance to catch random foes unaware; her criticals are up against foes that haven't acted yet.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Ambush",
+		"option": []
+	},
+	"J127": {
+		"MAXLV": 1,
+		"desc": "Merchant trait. Shop prices -10%.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Haggle",
+		"option": []
+	},
+	"J128": {
+		"MAXLV": 1,
+		"desc": "Merchant trait. +30% money from battles.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Golden Purse",
+		"option": []
+	},
+	"J129": {
+		"MAXLV": 1,
+		"desc": "Merchant trait. The first hireling call each battle costs no charge.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Connections",
+		"option": []
+	},
+	"J130": {
+		"MAXLV": 1,
+		"desc": "Herbalist trait. After a battle, a chance to find a Healing Herb.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Forager",
+		"option": []
+	},
+	"J131": {
+		"MAXLV": 1,
+		"desc": "Herbalist trait. Her healing is 25% stronger.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Strong Brew",
+		"option": []
+	},
+	"J132": {
+		"MAXLV": 1,
+		"desc": "Herbalist trait. Escape always works.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Wave-woman",
+		"option": []
 	}
 }

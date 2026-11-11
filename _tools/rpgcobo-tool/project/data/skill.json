@@ -11635,7 +11635,7 @@
 			0,
 			0
 		],
-		"desc": "Earth Becomes Sky: the earth kami fling a boulder that never misses and ignores half its armour, and knock it Prone (DEF down; a Prone foe takes double). Boost 2+ (two Raises): Earth Becomes Jade, a jade boulder. (Earth)",
+		"desc": "Earth Becomes Sky: the earth kami fling a boulder that never misses and ignores half its armour, and knock it Prone (DEF down; a Prone foe takes double). Void 2+ (two Raises): Earth Becomes Jade, a jade boulder. (Earth)",
 		"dmgform": 0,
 		"dmgrate": [
 			1.0,
@@ -30378,5 +30378,4996 @@
 		"rt_hcharges": 3,
 		"rt_hhome": "the castle town's lamps",
 		"rt_aoe": true
+	},
+	"S700": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 2, Lv 15). +25% damage against a foe that hasn't hit her yet this battle. Every miss against her makes her harder to hit (up to +25% evasion).",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 2: Strike Like the Wind",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S701": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 3, Lv 30). +15% evasion. +25% damage against Shadowlands creatures.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 3: Fire and Shadow",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S702": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 4, Lv 45). Her weapon attack strikes twice.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 4: Harness the Wind",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S703": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 5, Lv 60). 15% more critical hits; 30% against Shadowlands creatures.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 5: Veil of Spirits",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S704": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 2, Lv 15). +10% damage for every place he acts ahead of his target (up to +50%).",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 2: The Sudden Strike",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S705": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 3, Lv 30). Against a lone foe he starts with +1 VP. A slower foe he has cut has a harder time hitting him (+20% evasion against it).",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 3: Strike from the Void",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S706": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 4, Lv 45). Iaijutsu: Strike hits twice.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 4: One Strike, Two Cuts",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S707": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 5, Lv 60). If he acts first, his first blow of the battle is a certain critical.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 5: Strike with No Thought",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S708": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 2, Lv 15). Charm, fear and confusion can't take hold of him.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 2: Wisdom the Wind Brings",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S709": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 3, Lv 30). Deduce also shows what the foe will do next.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 3: Finding the Path",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S710": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 4, Lv 45). +20% damage against a foe whose weakness is known; the party gets +10%.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 4: Know the Rhythm of the Heart",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S711": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 5, Lv 60). A foe that reaches for charm, fear or confusion gives Gendo 1 VP.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 5: Kitsuki's Eyes",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S712": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 2, Lv 15). +4% damage for every point of Honor (up to +40%).",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 2: Strength of Purity",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S713": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 3, Lv 30). Her weapon attack strikes twice.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 3: Strength of My Ancestors",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S714": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 4, Lv 45). +10% damage, and her blows strip a foe's DEF Up.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 4: Triumph Before Battle",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S715": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 5, Lv 60). Her blows never miss, and hit 25% harder.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 5: Akodo's Final Lesson",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S716": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 2, Lv 15). Damage spells +10%.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 2: Isawa's Insight",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S717": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 3, Lv 30). Void spells cost 1 VP less (at least 1).",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 3: The Void Answers",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S718": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 4, Lv 45). Damage spells +25%.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 4: Mastery of the Elements",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S719": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 5, Lv 60). Once a battle, his first single-target damage spell strikes every foe.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 5: Isawa's Art",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S720": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 2, Lv 15). +50% damage against a foe that hasn't acted yet, or one left open (Suki).",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 2: The Shadow Has No Mercy",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S721": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 3, Lv 30). +20% evasion.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 3: The Shadow Has No Form",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S722": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 4, Lv 45). Her weapon attack strikes twice, and the first blow that would hit her each battle passes through.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 4: The Shadow Has No Substance",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S723": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 5, Lv 60). 30% more critical hits against a foe that hasn't acted yet or is open.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 5: The Shadow Has No Soul",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S724": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 2, Lv 15). At the start of a battle he reads every foe: their weaknesses are known.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 2: The Heart Listens",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S725": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 3, Lv 30). Once a battle, a heavy blow on anyone in the party is halved.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 3: When the Veil Moves",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S726": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 4, Lv 45). While he stands, the party takes 10% less damage.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 4: Piercing the Veils",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S727": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 5, Lv 60). Once a battle (Support): a foe can't act against him while he doesn't attack.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Insight Rank 5: The Immovable Hand of Peace",
+		"occasion": 0,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		}
+	},
+	"S740": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Crab kata. Settle like the mountain: +15% evasion, -10% accuracy for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Striking as Earth",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K070",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S741": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Move like the wind: Speed +20%, damage -15% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Striking as Wind",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K071",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S742": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Hiruma kata. Armour mode: DEF +50%, accuracy -10% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Shell of Stone",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K072",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S743": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Hiruma kata. Draw the enemy's eye (+evasion, foes target her) and strike back at 30% of those who attack her. Speed -20%. The whole battle. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Stance of the Wall",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K073",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S744": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Hiruma kata. A blow through the carapace: x1.6, and ATK +30% next turn. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Shards of Earth",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K074",
+		"rt_kmul": 1.6,
+		"rt_kkind": "kata"
+	},
+	"S745": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Hida kata. Every blow she takes may be answered (60% counter). The whole battle. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Unyielding Fury",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K075",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S746": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Kakita kata. The duelist's stance: +10% criticals for the whole battle. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Kakita's First Stance",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K076",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S747": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "The sword over the court: ATK +20% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "The Empire Rests on Its Edge",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K077",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S748": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Kakita kata. Nothing escapes him: accuracy +20% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Watchful Falcon",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K078",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S749": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Execute stance: x1.3 now, then +10% criticals and -10% ATK for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Victory of the Wind",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K079",
+		"rt_kmul": 1.3,
+		"rt_kkind": "kata"
+	},
+	"S750": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Kakita kata. Speed +30% for 3 turns: he leaps ahead in the turn order. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "One Leg Stance",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K080",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S751": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "atk_slash",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Kakita kata. Everything in one cut: x1.8, and Speed +30% next turn. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "One Strike Blade",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K081",
+		"rt_kmul": 1.8,
+		"rt_kkind": "kata"
+	},
+	"S752": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Kakita kata. Honourable foes hardly target him; his damage -15%. The whole battle. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "One Truth",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K082",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S753": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "The sky does not get hit: +35% evasion for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Standing on the Heavens",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K083",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S754": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Mirumoto kata. Fire in the arm, earth in the feet: ATK and DEF +20% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Thunder and Steel",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K084",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S755": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "The blade over the investigation: ATK +20% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "The Empire Rests on Its Edge",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K085",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S756": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Mirumoto kata. Spells slide off: MDEF +40%, Speed -10% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "My Brother's Soul",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K086",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S757": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Mirumoto kata. Every attack on him may be answered (50% counter) for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Time Between Breaths",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K087",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S758": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Mirumoto kata. Break the foe's rhythm: ATK +30% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Breaking Waves",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K088",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S759": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "The river does not stop: ATK +25%, evasion -20% for the whole battle. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Victory of the River",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K089",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S760": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Damage +20%, evasion -10% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Striking as Water",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K090",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S761": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Accuracy +10%, criticals +5%, Speed -10% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Striking as Fire",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K091",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S762": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Akodo kata. Fear, charm and confusion can't touch her; ATK +10%. The whole battle. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Fury Without End",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K092",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S763": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Matsu kata. ATK +35%, evasion -10% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "The Soul's Roar",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K093",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S764": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Akodo kata. Cold, patient cuts: x1.2 now, ATK +15% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Gentle Blade of Winter",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K094",
+		"rt_kmul": 1.2,
+		"rt_kkind": "kata"
+	},
+	"S765": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Akodo kata. The glass-cannon capstone: Speed +20%, ATK +50%, evasion -40% for the whole battle. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Matsu's Vengeance",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K095",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S766": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Speed +20%, damage -15% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Striking as Wind",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K096",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S767": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Shosuro kata. ATK +20%, evasion -10% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "The Tail's Reach",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K097",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S768": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "atk_slash",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Shosuro kata. Under the big man's swing: evasion +20%, Speed +10% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Cut Under the Mountain",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K098",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S769": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Bayushi kata. Light cuts that find the gaps: x0.8 now, accuracy +15% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Sundering Grace",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K099",
+		"rt_kmul": 0.8,
+		"rt_kkind": "kata"
+	},
+	"S770": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Shosuro kata. Foes can't land a critical on her; DEF +20% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Blackened Sight",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K100",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S771": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Bayushi kata. A second evasion tank: evasion +30%, ATK -20% for the whole battle. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Choking Air",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K101",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S772": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Damage +20%, evasion -10% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Striking as Water",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K102",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S773": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "+15% evasion, -10% accuracy for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Striking as Earth",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K103",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S774": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Accuracy +10%, criticals +5%, Speed -10% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Striking as Fire",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K104",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S775": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Speed +20%, damage -15% for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Striking as Wind",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K105",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S776": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "All four elements at once: ATK, evasion, accuracy and Speed up for 3 turns. (Kata)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Striking as Void",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K106",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata"
+	},
+	"S777": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Void kiho. A staff tap, and the self empties: +2 VP, MDEF +20% for 3 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Self No Self",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K107",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kiho"
+	},
+	"S778": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Earth kiho. DEF and MDEF +30% for 3 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Heart of Stone",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K108",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kiho"
+	},
+	"S779": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Water kiho. Each attack on him may be answered (40% counter) for 3 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Ebb and Flow",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K109",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kiho"
+	},
+	"S780": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Water kiho. The tide parts around him: DEF and MDEF +25%, his spells -15%. The whole battle. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Parting the Waves",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K110",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kiho"
+	},
+	"S781": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Void kiho. The land's element answers: spells +30% for 3 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Touch the Void Dragon",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K111",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kiho"
+	},
+	"S782": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Earth kiho. The earth holds him up: once he falls to a quarter HP he is braced to survive. The whole battle. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Grasp the Earth Dragon",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K112",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kiho"
+	},
+	"S783": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Martial kiho. A burning blow: x1.2, ATK +20% for 3 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Fire Fist",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K113",
+		"rt_kmul": 1.2,
+		"rt_kkind": "kiho"
+	},
+	"S784": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Martial kiho. Flow around the blade: evasion +20% for 3 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Water Fist",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K114",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kiho"
+	},
+	"S785": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Martial kiho. Root like the mountain: DEF +40% for 3 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Earth Fist",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K115",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kiho"
+	},
+	"S786": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Martial kiho. Speed +30% for 3 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Air Fist",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K116",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kiho"
+	},
+	"S787": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "atk_slash",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Martial kiho. A blow from above: x1.4, criticals +20% for 2 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Falling Star Strike",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K117",
+		"rt_kmul": 1.4,
+		"rt_kkind": "kiho"
+	},
+	"S788": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "atk_slash",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Kharmic kiho. What is done to him returns (70% counter) for 3 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Kharmic Strike",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K118",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kiho"
+	},
+	"S789": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Atemi kiho. A finger on the nerve: the foe may freeze (Paralysis); accuracy +20% for 2 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Freezing the Lifeblood",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K119",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kiho"
+	},
+	"S790": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Martial kiho. x1.3, +1 VP, MDEF +20% for 3 turns. (Kiho)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Void Fist",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K120",
+		"rt_kmul": 1.3,
+		"rt_kkind": "kiho"
+	},
+	"S791": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "The tiger wakes on his back: x1.5, ATK +30% for 3 turns. (Tattoo)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Tiger Tattoo",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K121",
+		"rt_kmul": 1.5,
+		"rt_kkind": "tattoo"
+	},
+	"S792": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "The raven lifts him out of the blow: evasion +30%, Speed +15% for 3 turns. (Tattoo)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Raven Tattoo",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K122",
+		"rt_kmul": 1.0,
+		"rt_kkind": "tattoo"
+	},
+	"S793": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "A hundred legs: Speed +50% for the whole battle. (Tattoo)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Centipede Tattoo",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K123",
+		"rt_kmul": 1.0,
+		"rt_kkind": "tattoo"
+	},
+	"S794": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "The phoenix rises: ATK and spells +20%, and he comes back once from the brink. The whole battle. (Tattoo)",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Phoenix Tattoo",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K124",
+		"rt_kmul": 1.0,
+		"rt_kkind": "tattoo"
 	}
 }

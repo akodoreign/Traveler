@@ -364,6 +364,10 @@ def plan(state, flags, tried):
                                                                        "wait 800"]
         return (tm, key, "no walking route to the %s exit" % nxt), None
     if trig == 6:
+        if abs(tx - x) + abs(tz - z) > 8:                         # an autorun only exists while its spot is on
+            w = walk_steps(mid, (x, z), near(tx, tz, 3) - near(tx, tz, 0))    # screen (spawndist 1): go there
+            if w is not None:                                     # (M282's Silent Court card at x 76, landing 29)
+                return (tm, key, "arrival scene"), w + ["wait 1500"]
         if tried.get((tm, key), 0) >= 1:                          # an arrival scene that waits for you to ARRIVE
             for d, ex, ez, push, fp in exits(mid, flags):          # (M267: its flag was set while we were here):
                 if (mid, d) in BROKEN or push.startswith("talk"):  # step out and come back, as a player would

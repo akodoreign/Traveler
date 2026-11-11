@@ -971,7 +971,7 @@ local WARDS = { ["Oni no Tsukakoro"] = 11 };			//	boss name -> ELEMS bit (11 = J
 ::Rokugan.cycleBoost <- function( pc){
 	if( pc.hasCondition( "K007")){
 		this.state( pc).boostsel = 0;
-		this.pop( pc, "Too afraid to Boost", 0xc080ffff);
+		this.pop( pc, "Too afraid to call the Void", 0xc080ffff);
 		return 0;
 	}
 	return this._rt_cycle_terror( pc);
@@ -2989,7 +2989,7 @@ local WARDS = { ["Oni no Tsukakoro"] = 11 };			//	boss name -> ELEMS bit (11 = J
 	if( g == "Rensei" && ::rpgvar["G427"]) a.append( ::conf.skill["S635"]);
 	if( ::rpgvar["G1185"] && length( live) >= 2) a.append( ::conf.skill["S636"]);
 	if( g == "Sayo") a.append( ::conf.skill["S637"]);
-	if( g == "Tamotsu" && pc.LV >= 61) a.append( ::conf.skill["S638"]);
+	if( g == "Tamotsu" && ::Rokugan.ranked( pc, "Tamotsu", 5)) a.append( ::conf.skill["S638"]);	//	Rank 5 (Lv 60)
 	return a;
 };
 ::Rokugan._rt_pre_exploit <- ::Rokugan.onPreCommand;

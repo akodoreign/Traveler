@@ -27,6 +27,8 @@ B = {n: 1 << i for i, n in enumerate(ELEMS)}
 import sys  # noqa: E402
 sys.path.insert(0, HERE)
 import hirelings as _hire  # noqa: E402  the hireables roster (shared with gen_maps / gen_sidecast)
+import kata_data as _kata  # noqa: E402  kata / kiho / tattoos learned on level-up (progression-v2.md)
+import jobs_data as _jobs  # noqa: E402  jobs and traits (progression-v2.md)
 
 
 def _sc_epid(key):
@@ -101,6 +103,68 @@ LOCAL = {
              "K012": "Undead", "K020": "ATK Up", "K021": "ATK Down", "K022": "DEF Up", "K023": "DEF Down",
              "K040": "Regen", "K041": "Berserk", "K042": "Auto-Revive", "K043": "Reflect"},
 }
+
+
+# School ranks R2-R5 (docs/rules/progression-v2.md; user 2026-11-11: "min levels for each rank should be 0, 15, 30, 45,
+# 60"). Each traveler's own school (schools.md); the battle effects are in plugin RokuganRanks.sk.
+RANK_LEVELS = (15, 30, 45, 60)
+RANK_PIDS = {"P100": 700, "P101": 704, "P102": 708, "P103": 712, "P104": 716, "P105": 720, "P106": 724}
+_R = [
+    # Hiruma Natsuko (Hiruma Scout)
+    ("Strike Like the Wind", "+25% damage against a foe that hasn't hit her yet this battle. Every miss against her "
+     "makes her harder to hit (up to +25% evasion)."),
+    ("Fire and Shadow", "+15% evasion. +25% damage against Shadowlands creatures."),
+    ("Harness the Wind", "Her weapon attack strikes twice."),
+    ("Veil of Spirits", "15% more critical hits; 30% against Shadowlands creatures."),
+    # Kakita Rensei (Kakita Bushi)
+    ("The Sudden Strike", "+10% damage for every place he acts ahead of his target (up to +50%)."),
+    ("Strike from the Void", "Against a lone foe he starts with +1 VP. A slower foe he has cut has a harder time "
+     "hitting him (+20% evasion against it)."),
+    ("One Strike, Two Cuts", "Iaijutsu: Strike hits twice."),
+    ("Strike with No Thought", "If he acts first, his first blow of the battle is a certain critical."),
+    # Kitsuki Gendo (Kitsuki Investigator)
+    ("Wisdom the Wind Brings", "Charm, fear and confusion can't take hold of him."),
+    ("Finding the Path", "Deduce also shows what the foe will do next."),
+    ("Know the Rhythm of the Heart", "+20% damage against a foe whose weakness is known; the party gets +10%."),
+    ("Kitsuki's Eyes", "A foe that reaches for charm, fear or confusion gives Gendo 1 VP."),
+    # Akodo Shizue (Akodo Bushi)
+    ("Strength of Purity", "+4% damage for every point of Honor (up to +40%)."),
+    ("Strength of My Ancestors", "Her weapon attack strikes twice."),
+    ("Triumph Before Battle", "+10% damage, and her blows strip a foe's DEF Up."),
+    ("Akodo's Final Lesson", "Her blows never miss, and hit 25% harder."),
+    # Isawa Haruki (Isawa Shugenja)
+    ("Isawa's Insight", "Damage spells +10%."),
+    ("The Void Answers", "Void spells cost 1 VP less (at least 1)."),
+    ("Mastery of the Elements", "Damage spells +25%."),
+    ("Isawa's Art", "Once a battle, his first single-target damage spell strikes every foe."),
+    # Shosuro Mitsue (Shosuro Shinobi)
+    ("The Shadow Has No Mercy", "+50% damage against a foe that hasn't acted yet, or one left open (Suki)."),
+    ("The Shadow Has No Form", "+20% evasion."),
+    ("The Shadow Has No Substance", "Her weapon attack strikes twice, and the first blow that would hit her each "
+     "battle passes through."),
+    ("The Shadow Has No Soul", "30% more critical hits against a foe that hasn't acted yet or is open."),
+    # Ide Tamotsu (Ide Emissary)
+    ("The Heart Listens", "At the start of a battle he reads every foe: their weaknesses are known."),
+    ("When the Veil Moves", "Once a battle, a heavy blow on anyone in the party is halved."),
+    ("Piercing the Veils", "While he stands, the party takes 10% less damage."),
+    ("The Immovable Hand of Peace", "Once a battle (Support): a foe can't act against him while he doesn't attack."),
+]
+RANK_SKILLS = {}
+for _pid, _base in RANK_PIDS.items():
+    for _i in range(4):
+        _n, _d = _R[(_base - 700) + _i]
+        RANK_SKILLS["S%03d" % (_base + _i)] = ("Insight Rank %d: %s" % (_i + 2, _n), "School technique (Rank %d, "
+                                               "Lv %d). %s" % (_i + 2, RANK_LEVELS[_i], _d))
+
+
+def rank_options(pid):
+    base = RANK_PIDS.get(pid)
+    if base is None:
+        return []
+    o = [{"LV": lv, "opttype": "opt_getskill", "skillid": "S%03d" % (base + i)} for i, lv in enumerate(RANK_LEVELS)]
+    if pid == "P102":                          # Gendo R2 Wisdom the Wind Brings: confuse, fear, charm can't take hold
+        o.append({"LV": RANK_LEVELS[0], "opttype": "opt_conddef", "CDR.4": 100, "CDR.7": 100, "CDR.8": 100})
+    return o
 
 
 def localise(kind, d):
@@ -1127,7 +1191,7 @@ def main():
     bl["option"] = [dict(bl["option"][0], dmgval=5.0)]
     c["K055"] = bl
     c["K007"]["name"] = "Terror"                       # (the plugin: a Terrified traveler may freeze, and can't Boost)
-    c["K007"]["desc"] = "Terror: may lose the turn, and can't Boost. Jade gear and courage resist it."
+    c["K007"]["desc"] = "Terror: may lose the turn, and can't use Void. Jade gear and courage resist it."
     dt = copy.deepcopy(c["K022"])                      # Moto Benjiro's Death Trance: no fear, no charm (1 round)
     dt.update({"name": "Death Trance", "desc": "A Moto's death-mask calm: immune to Terror and charm.", "option": [],
                "revcondid": None, "rem_turn": [2, 2], "MAXLV": 1})
@@ -1162,6 +1226,8 @@ def main():
                "rem_turn": [2, 2], "option": [{"LV": 1, "opttype": "opt_status", "propid": "AGI", "val": 60,
                                                "valtype": "totalrate"}]})
     c["K062"] = hb
+    for e in _kata.KATA:                               # kata / kiho / tattoo stances K070-K124 (tools/kata_data.py)
+        c[e[1]] = _kata.cond_for(e, copy.deepcopy(c["K020"]))
     localise("cond", c)
     save("cond", c)
     dc = load("dict")                                     # term overrides (engine T[] dictionary)
@@ -1182,6 +1248,14 @@ def main():
             "p.MP = p.MAXMP; }")                          # (the fallen get up too: tester 2026-11-11)
     stay[:] = [c for c in stay if c.get("desc") != "RT reserve rest"]             # (G1160; empty outside the finale)
     stay.append({"cmd": "cmd_script", "desc": "RT reserve rest", "code": code})
+    # Flee (X004): the Herbalist's Wave-woman trait (G1226, set by RokuganJobs.sk) skips the 50% roll where fleeing
+    # is allowed (jobs_data.py J132)
+    fl = mc["X004"]["cmdblock"]
+    if not (fl and fl[0].get("desc") == "RT wave-woman"):
+        roll = fl.pop(0)
+        fl.insert(0, {"cmd": "cmd_if", "desc": "RT wave-woman", "cmdblocks": [[], [roll]],
+                      "reqs": [{"key": "varcmp", "lvar": "G1226", "op": "==", "rvar": True},
+                               {"key": "varcmp", "lvar": "ESCAPABLE", "op": "==", "rvar": True}]})
     save("macro", mc)
     gv = load("gvar")                                     # story flags (Crab Ch1)
     for gid, nm in (("G010", "S01 watchtower opening done"), ("G011", "S02 leave ordered"),
@@ -1650,7 +1724,10 @@ def main():
                     ("G1219", "post-game: the Hiruma tablets set up (the keep)"),
                     ("G1220", "post-game: the Orochi (scene)"), ("G1221", "post-game: the Orochi yielded"),
                     ("G1222", "post-game: the Orochi killed (a killing blow)"),
-                    ("G1223", "the shifting waste: the last move was south")):
+                    ("G1223", "the shifting waste: the last move was south"),
+                    ("G1224", "dojo kata taught (Hida dojo: Natsuko's Striking as Earth)"),
+                    ("G1225", "dojo kata taught (Kakita academy: Rensei's Kakita's First Stance)"),
+                    ("G1226", "this battle: the Wave-woman trait is worn (Flee always works; RokuganJobs.sk)")):
         gv[gid] = {"defval": False, "name": nm, "type": 1}
     gv["G1160"] = {"defval": 0, "name": "finale Party B (bitmask over P100-P107)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}
@@ -1712,12 +1789,17 @@ def main():
                     ("G064", "Wooden Fish returned"), ("G065", "Pearl Hairpin returned")):
         gv[gid] = {"defval": False, "name": nm, "type": 1}
     gv["G020"] = {"defval": 0, "name": "S04 Sumai losses vs Gonta (2 = he lets her win)", "type": 2}
+    gv["G1227"] = {"defval": 0, "name": "field HUD: the current objective (1-based into RokuganObjectives.sk; 0 = "
+                                        "none)", "type": 2}
+    gv["G1228"] = {"defval": 0, "name": "field HUD: the chapter's recommended level (from its chapter card)", "type": 2}
     save("gvar", gv)
     for kind in ("job", "item"):
         dd = load(kind)
         localise(kind, dd)
         if kind == "item":
             crab_items(dd)
+        if kind == "job":                              # jobs + traits (tools/jobs_data.py, progression-v2.md)
+            _jobs.build(dd, copy.deepcopy(dd["J000"]), copy.deepcopy(dd["J105"]))
         save(kind, dd)
     ar = load("armor")
     crab_armor(ar)
@@ -1962,7 +2044,7 @@ def main():
                "all enemies)", act="Arrow Volley", option=[], cmdtgt=7, elembits=B["Yumi"], dmgrate=[1.0, 1.0],
                atkform="dst.PDEF+20+src.LV*4.5")
     hire_skill(H[2], TPL_PUTCOND, "Earth Becomes Sky: the earth kami fling a boulder that never misses and ignores half "
-               "its armour, and knock it Prone (DEF down; a Prone foe takes double). Boost 2+ (two Raises): Earth "
+               "its armour, and knock it Prone (DEF down; a Prone foe takes double). Void 2+ (two Raises): Earth "
                "Becomes Jade, a jade boulder. (Earth)", act="Earth Becomes Sky", cmdtgt=1, elembits=B["Earth"],
                dmgrate=[1.0, 1.0], hitform="999", rt_jade_raise=True,
                atkform='dst.PDEF*0.5+(60+src.LV*11)*(dst.hasCondition("K029")?2.0:1.0)',
@@ -2771,6 +2853,20 @@ def main():
         k["atkact"] = {"id": "noop", "scp": None}
         k["hitact"] = dict(k.get("hitact") or {}, hitefx=fx, hitsnd="SE204")
         k["rt_aoe"] = True
+    # School ranks (docs/rules/progression-v2.md, user 2026-11-11): passive skills, given at Lv 15/30/45/60 by the
+    # players' lvoption (RANK_OPTIONS below); the level-up panel names them. Effects: plugin RokuganRanks.sk.
+    for sid, (name, desc) in RANK_SKILLS.items():
+        r = copy.deepcopy(noop)
+        r.update({"name": name, "desc": desc, "addlist": False, "enemyuse": False, "occasion": 0, "consume": [0, 0]})
+        s[sid] = r
+    # Kata / kiho / tattoos (tools/kata_data.py): School-list commands; the plugin swaps in the user's own weapon
+    # attack x rt_kmul and puts the rt_kata stance on them (RokuganRanks.sk useKata).
+    for sid, cid, pid, lv, kind, name, mult, turns, mods, extra, desc in _kata.KATA:
+        k = copy.deepcopy(s["S100"])
+        k.update({"name": name, "desc": "%s (%s)" % (desc, {"kata": "Kata", "kiho": "Kiho", "tattoo": "Tattoo"}[kind]),
+                  "addlist": True, "enemyuse": False, "occasion": 1, "consume": [0, 0], "eqtypebits": 2047,
+                  "rt_school": True, "rt_kata": cid, "rt_kmul": mult, "rt_kkind": kind})
+        s[sid] = k
     save("skill", s)
 
     # ---- weapon.json  (eqtype: 1 dagger, 2 sword, 3 spear, 5 staff, 6 bow, 7 hammer)
@@ -3030,6 +3126,29 @@ def main():
         "for a deserter and no sense of humour.", atkx=1.05)
     hum("E239", "Matsu Braggart", "EP431", 19, 1.3, 3, ["Yari", "Air"], "A Lion who races the way he fights: early, "
         "loud and with his elbows.")
+    # The Egg Caves after the nezumi (G049; user 2026-11-11: "re fill the different caves with progressively harder
+    # creatures up to level 15 (so first cave 8-9, 2nd cave 10-12, 3rd cave 13-15)" - a place to level before the Hida
+    # road, Lv 18+). gen_maps ENCOUNTERS M130 / M131 / M132.
+    for eid, nm, mdl, lv, hpx, res, weak, desc in (
+            ("E608", "Old Cave Beetle", "EP102", 9, 1.2, 3, ["Tetsubo", "Fire"], "Bigger than the ones before. The "
+             "nezumi are gone, so it ate their scraps."),
+            ("E609", "Pit Viper", "EP103", 8, 0.7, 2, ["Tanto", "Fire"], "Moved into the empty nests."),
+            ("E610", "Goblin Scavenger", "EP106", 8, 0.9, 2, ["Yari", "Jade", "Fire"], "Picking through what the "
+             "nezumi left."),
+            ("E611", "Giant Cave Beetle", "EP102", 12, 1.4, 3, ["Tetsubo", "Fire"], "A carapace like a temple bell."),
+            ("E612", "Mamushi Brood", "EP103", 11, 0.8, 2, ["Tanto", "Fire"], "A knot of vipers, all of them awake."),
+            ("E613", "Goblin Raider", "EP110", 10, 1.0, 3, ["Yari", "Jade", "Fire"], "Iron hat, rusty spear, no "
+             "manners."),
+            ("E614", "Cave Bat Swarm", "EP111", 11, 0.5, 1, ["Yumi", "Fire"], "A cloud of teeth in the dark."),
+            ("E615", "Armoured Beetle", "EP102", 15, 1.6, 4, ["Tetsubo", "Fire"], "Its shell turns spears. Crush "
+             "it."),
+            ("E616", "Mamushi Matriarch", "EP103", 13, 1.0, 3, ["Tanto", "Fire"], "The mother of the brood, and in "
+             "a mood."),
+            ("E617", "Goblin Sergeant", "EP110", 14, 1.2, 3, ["Yari", "Jade", "Fire"], "Shouts at the others. Hits "
+             "harder than it shouts."),
+            ("E618", "Great Bat Swarm", "EP111", 14, 0.6, 2, ["Yumi", "Fire"], "The whole roof comes down at you, "
+             "squeaking.")):
+        hum(eid, nm, mdl, lv, hpx, res, weak, desc)
     CH3 = -5                                   # CH3_LV_SHIFT (see NOTES); HPx tuned for Natsuko + 1-2 companions
     hum("E240", "Goblin Warmonger", "EP110", 31 + CH3, 0.6, 3, ["Jade", "Yari"], "Shadowlands-born, Taint in its "
         "teeth. Frenzied, and there are always more.")
@@ -4293,6 +4412,30 @@ def main():
     for x in e.values():
         if isinstance(x, dict) and x.get("mdlid") in _foe:
             x["mdlid"] = _foe[x["mdlid"]]
+    # Levelling ladders (tools/ladders.py; gen_maps apply_ladders writes the list): the chapter's own foes at a higher
+    # level, scaled from the base foe's final stats by the level curve (foe_stats), exp ~ level^2, money ~ level.
+    lad_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_ladder_foes.json")
+    lad = json.load(open(lad_path, encoding="utf-8")) if os.path.exists(lad_path) else {}
+    for nid, (base, lv) in sorted(lad.items()):
+        b = e.get(base)
+        if not isinstance(b, dict):
+            print("ladder: no base foe %s for %s" % (base, nid))
+            continue
+        blv = max(1, int(b.get("LV") or 1))
+        f0, f1 = foe_stats(blv), foe_stats(lv)
+        x = copy.deepcopy(b)
+        x["LV"] = lv
+        for k in ("MAXHP", "PATK", "PDEF", "MDEF", "AGI"):
+            if isinstance(b.get(k), (int, float)) and f0.get(k):
+                x[k] = max(1, int(round(b[k] * f1[k] / f0[k])))
+        x["exp"] = max(1, int(round((b.get("exp") or 1) * (lv / blv) ** 2)))
+        x["money"] = max(1, int(round((b.get("money") or 1) * lv / blv)))
+        e[nid] = x
+    if lad:
+        print("ladder foes: %d" % len(lad))
+    for x in e.values():                                # job EXP (jobs_data.py): the same from every foe
+        if isinstance(x, dict) and "jxp" in x:
+            x["jxp"] = _jobs.ENEMY_JXP
     save("enemy", e)
     print("bestiary drops:", n_drops, "enemies")
 
@@ -4423,6 +4566,7 @@ def main():
                                                                                          (3, "S583"), (6, "S584"))]
                   if pid == "P107"
                   else []})
+        x["lvoption"] = list(x["lvoption"]) + rank_options(pid) + _kata.level_options(pid)   # progression-v2.md
         if pid == "P122":
             x["INILV"] = 6                         # joins for the S08 boss (chapter Lv 7-8)
         if pid in TRAIT_CURVES:                    # docs/rules/stats.md traits -> per-traveler growth (tools/traits.py)
@@ -4786,7 +4930,7 @@ def english_leftovers():
                     "Healing item", "Debuff"],
         "eqflag": ["Traveler's gear", "Women's gear", "Elven gear", "Heavy gear"],
         "jobflag": ["Hero's mark", "Royal blood"],
-        "jobslot": ["School", "Trait"],
+        "jobslot": ["Job", "Trait"],
         "resistg": ["Death resist", "Poison resist", "Sleep resist", "Paralysis resist", "Mind resist",
                     "Curse resist", "Exhaustion resist", "Focus resist"],
         "tribe": ["Human", "Male", "Female", "Flying", "Construct", "Undead", "Insect", "Demon", "Beast", "Spirit",

@@ -4583,6 +4583,27 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
     M406 #89#, M411 #6-8#.
   - Bot: door pushes are a goto 2 squares past the door (keys are camera-relative; an interior camera turned M260's
     "down" into a push at the wall).
+  - **GAME FIX M256 karo's office door** (Lion Ch3) sat inside the Central Dojo's eaves (12, 30) d 0: no way in,
+    arriving set you inside the building. Now (12, 32) d 2.
+  - Lion Ch2 "Shadow of a Doubt", Ch3 "The Deadly Message", Ch4 "Sorrow's Path" complete; finale Act 1 won
+    (path_2_ch*_done*.json). Bot: an arrival scene whose flag was set while you stood on the map (M267 Ijako) is
+    triggered by stepping out and back in.
+  - **PLUGIN FIX RokuganField party followers**: an empty trail (`f.trail.last()` undefined) threw "index hypot
+    does not exist in undefined" every frame - 40,000 exceptions in one Lion run. Guarded (~line 1101).
+  - "Wait for night" (M242) and the M268 DARK scenes end lit: the one dark leg shot was the 0.9 s fade-in; leg shots
+    now wait 1.3 s after a scene. A transient "image data error: size 0" loop in M265 (a sheet being rewritten
+    while the run loaded it) did not recur.
+- **Phoenix (path 3)**: Ch1 "The Silent Kami", Ch2 "The Silent Court", Ch3 "The Darkfever" complete
+  (path_3_ch*_done*.json). New plugins load clean (ranks: 7 schools, jobs, HUD: 179 objectives; reported to lead).
+  HUD: objective #0 showed a Crab line on other saves, boxes overlapped the key hints (lead fixed both).
+  - **GAME FIX front-edge strips never fired** (every map, side "f"): the strip sat at z 1 with a 1 m deep box;
+    the map border stops the player at ~1.2 squares and a portal needs the body wholly inside. Kyuden Isawa
+    (M288)'s whole north side - to M285 and M297 - was dead (Phoenix Ch4 blocked). edge_triggers puts front strips
+    at z 2 (back strips were already a square in). Engine-tested M288 -> M297. Full regen 17:00.
+  - Bot: autorun scenes far from the arrival point are walked to (an autorun only exists while its spot is on
+    screen: M282's Ch2 card at x 76, the landing at 29).
+  - Ladder reachability (for the lead's tools/ladders.py; scratch ladderreach.py over my chapter checkpoints): all
+    reachable except Crab G255 (M171-M176, beyond the Wall) and G286 (M152) - the lead moved those ladders.
 - 06:30 all ~67 remaining side-cast/hireling sheets reviewed (walk/run/attack): frame fixes for EP389, EP392, EP588, EP673,
   EP1107, EP1112, EP1127, EP1128, EP1140, EP1149 (heads turned away, hats/weapons popping, Hida Veteran morphing).
   Redraws (user "yeah redraw them"): Hida Sachiko - new gen_sprites2d flag club_back (tetsubo behind her head; rig and
@@ -4639,3 +4660,47 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
 - 2026-11-11 ~08:45 push 9c5658a (licensed-demo -> main, 476 files): Rest revives the fallen, Sumai foes face the player,
   Kumpei/Okura boss flipx, bad-frame fixes + club_back sheets, full bust re-export + redrawn NPC busts, test-bot tools.
   Checks: 15 changed tools/*.py compile; story_1 log (after the 07:50 plugin edit) has no compile error; no backups in resource.
+- 2026-11-11 16:11 push efdf608 (licensed-demo -> main, 37 files): Crane/Lion path blocker fixes (M210 gate, M212 tide
+  loop, M221 table, cave side doors x14, edge strips, M225 cliff, two-exit edges M254/M326/M333/M350, M256 doors +
+  Benjiro, arrivals face open ground), side-cast frame fixes, test-bot updates. Checks: 2 changed tools compile;
+  story_2 log (after the 11:41 plugin edit) has no compile error; no backups in resource; 0 new boss files.
+
+## 2026-11-11 (evening): Progression v2 - ranks, jobs, kata/kiho, Void, Support (user's design pass)
+Spec: `docs/rules/progression-v2.md` (the user's decisions, quoted). Built (lead):
+- **Boost -> Void** (1/2/3 VP = damage AND hit x2/x3/x5, no extra hits; RokuganBattle.sk VOID_MUL) and **Call ->
+  Support** (battle command names, UI strings, tutorial lines in gen_maps/gen_data).
+- **School ranks at Lv 15/30/45/60** (R1 at start): passive skills S700-S727 ("Insight Rank N: <technique>", shown on
+  the level-up panel) via the players' lvoption (gen_data RANK_SKILLS / rank_options); effects in the new plugin
+  **RokuganRanks.sk** (`::Rokugan.insight(pc)`, `ranked(pc, who, n)`). Sayo keeps her story rank picks. Tamotsu's
+  Immovable Hand now needs Rank 5 (was Lv 61). Rank narrations removed (Rensei G369 line, Mitsue's "Insight Rank 2").
+- **Dojos teach kata** (user: "instead of school rank ... that way its still a reward"): Goro's Hida dojo M164 ->
+  Striking as Earth (G1224) + "back to the Wall gate" pointer (also the Ch2 end objective); the Kakita academy dojo
+  M200 -> Kakita's First Stance (G1225).
+- **Kata / kiho / tattoos** (tools/kata_data.py, S740-S794, stance conds K070-K124): School commands = the user's
+  own weapon attack x mult + a stance for N turns (or the battle); one stance at a time (useKata in RokuganRanks.sk).
+  Bushi kata (kata.md lists), Haruki kiho (6), Togashi Yosai kiho (8) + tattoos Tiger/Raven/Centipede/Phoenix at Lv
+  15/30/45/60 (user named Tiger, Raven; Centipede and Phoenix are my picks).
+- **Jobs** (tools/jobs_data.py, plugin **RokuganJobs.sk**): slot "Job" = Traveler (+0..50% EXP and money, JLv 1-10)
+  or the own job J010-J017 (Scout, Duelist, Magistrate, Tactician, Scholar, Shinobi, Merchant, Herbalist); traits at
+  job Lv 2/5/8 (J110-J132, + J103 Light Fingers) go in slot "Trait". Enemy jxp = 2. Flee macro X004 honours
+  Wave-woman (G1226). Haggle scales store prices while the shop UI is open (check it really blocks).
+- Verified by the tester (16:37 restart): both plugins load, no compile error; victory bonus + job grant logged.
+- **Field HUD** (user: "a couple boxes in the lower right ... Story: *where to go next* ... Recommended level of
+  area"): plugin RokuganHUD.sk; gen_maps `objective_pass` puts `G1227 = n` after every "Objective:" / "Next:"
+  narration (list -> generated RokuganObjectives.sk, 179 lines) and `G1228 = N` after a chapter card's "(Recommended
+  level N)". Level box = the current map's foe level range (respecting rt_if/rt_ifnot), else the chapter level.
+  `-rthud0` hides it. Old saves show no Story box until the next objective line plays. NOT yet seen in engine.
+- **Crab Egg Caves levelling** (user: after the nezumi part, caves 8-9 / 10-12 / 13-15 so the Hida road (Lv 18+)
+  is reachable): E608-E618 (gen_data, foe_stats), M130-M132 groups gated `rt_if G049`, the old ones `rt_ifnot G049`.
+- **tools/level_gaps.py**: per path (tester play logs) the foe levels each chapter offers vs the next chapter's
+  recommended level. Every path's Ch1 tops out ~Lv 6-9 while Ch2 recommends 18-20; Crane/Phoenix Ch2 -> Ch3 gap 6-8.
+  Same "post-chapter ladder" fix wanted on the other paths.
+- **Levelling ladders, every path** (user: "anywhere that there is a spread of levels ... re use dungeons for various
+  leveling and sub plot missions"): tools/ladders.py (path, chapter-done flag, [(map, lo, hi)]) for Ch1->2, Ch2->3,
+  Ch3->4 and Ch4->finale; gen_maps apply_ladders() adds re-levelled copies of each map's groups (rt_if done flag, or
+  rt_if2 when the group already has a path rt_if - new plugin field in RokuganField/RokuganHUD) and turns the old
+  groups off (rt_ifnot); clones E619-E947 (`_ladder_foes.json`, stats scaled from the base foe by foe_stats, exp ~
+  lv^2). 83 maps, 329 foes. Not covered: Dragon Ch4 and Ronin Ch4 (no completion flag found), Unicorn Ch2 (shares
+  the Ojatara maps with Scorpion Ch3). Reachability of each map after its chapter is NOT checked yet (tester).
+  HUD fixes after the tester's shot: G1227 is 1-based (0 = none: old saves showed a Crab line), boxes 62 px up off the
+  key-hint bar.

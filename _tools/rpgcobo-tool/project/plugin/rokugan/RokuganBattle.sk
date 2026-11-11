@@ -8,6 +8,7 @@ local SUKI_COND = "K030";							//	cond.json: "Suki" (uncommandable, removed aft
 local BP_MAX = opt["bpmax"] || 5;
 local VP_BY_CLASS = { shugenja = 6, monk = 5, other = 3, samurai = 2 };
 local BOOST_MAX = opt["boostmax"] || 3;
+local VOID_MUL = [1, 2, 3, 5];						//	Void command: VP spent -> damage and hit multiplier
 local IAI_MAX = 3;									//	Iaijutsu Focus stacks (Rensei; production crane-ch1)
 local SUKI_RATE = 1.0 + (opt["sukirate"] ?? 50) * 0.01;
 local LOG = !!(opt["log"] ?? 1);
@@ -168,6 +169,7 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 
 	function getBP( pc){ return state( pc).bp; }
 	function getBoost( pc){ return state( pc).boostsel; }
+	function voidMul( b){ return VOID_MUL[Math.min( b, length( VOID_MUL) - 1)]; }
 
 	//	"preturn" : players gain 1 VP (not on the turn after a boost); enemies recover shields after Suki ends.
 	function onPreTurn( chr){
@@ -368,21 +370,19 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 		st.bp -= b;
 		st.boosted = true;
 		local nsk = clone sk;
-		if( stype == "attack" && sk["flags"] == 255){			//	normal weapon attack: extra hits
-			local na = sk["atknum"] || [1, 1];
-			nsk["atknum"] <- [na[0] + b, na[1] + b];
-		}else{												//	skills/spells: more power
-			local r = sk["dmgrate"] || [1.0, 1.0];
-			nsk["dmgrate"] <- [r[0] * (1 + b), r[1] * (1 + b)];
-		}
+		//	Void (user 2026-11-11, was Boost): 1/2/3 VP multiply damage (or healing) and hit chance x2/x3/x5, no extra hits
+		local mul = VOID_MUL[Math.min( b, length( VOID_MUL) - 1)];
+		local r = sk["dmgrate"] || [1.0, 1.0];
+		nsk["dmgrate"] <- [r[0] * mul, r[1] * mul];
+		nsk["hitrate"] <- (sk["hitrate"] || 1.0) * mul;
 		if( sk["rt_jade_raise"] && b >= 2){					//	Earth Becomes Sky, 2 Raises: the boulders are jade
 			nsk["elembits"] <- (sk["elembits"] | 0) | (1 << 11);
 			nsk["name"] <- "Earth Becomes Jade";
 			log( "the boulder is jade (Earth Becomes Jade)");
 		}
 		cmd.skill = nsk;
-		log( "%S boosts x%d with %S (VP left %d)" % (pc.name, b, sk["name"], st.bp));
-		pop( pc, "BOOST x%d" % b, 0x80c0ffff);
+		log( "%S boosts %d (Void x%d) with %S (VP left %d)" % (pc.name, b, mul, sk["name"], st.bp));
+		pop( pc, "VOID x%d" % mul, 0x80c0ffff);
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -563,7 +563,7 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 	function memberLabel( pc){
 		local st = state( pc), b = st.boostsel;
 		local r = rankOf( pc);
-		return (r ? "#" .. r .. " " : "") .. pc.name .. "  VP" .. st.bp .. (b ? " +" .. b : "");
+		return (r ? "#" .. r .. " " : "") .. pc.name .. "  VP" .. st.bp .. (b ? " x" .. voidMul( b) : "");
 	}
 };
 
@@ -629,7 +629,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 //	Battle command: Boost (put "boost" in a battlecmd slot of setting.json).
 ::RPGSystem.battlecmd .. {
 	key = "boost"
-	name = "Boost"
+	name = "Void"
 	icon = ""
 	props = []
 
@@ -641,7 +641,8 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 	function selectSkill( bcmd, pc){
 		local b = ::Rokugan.cycleBoost( pc);
 		::playSound( b ? "SE013" : "SE004");
-		::rpgstage.battle.battleui.bindValue( "inforlbl", "VP %d   Boost %d" % (::Rokugan.getBP( pc), b));
+		::rpgstage.battle.battleui.bindValue( "inforlbl", b ? "VP %d   Void %d: x%d damage and hit" % (::Rokugan.getBP( pc), b,
+			::Rokugan.voidMul( b)) : "VP %d   Void off" % ::Rokugan.getBP( pc));
 		return false;
 	}
 };
@@ -763,7 +764,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 };
 ::RPGSystem.battlecmd .. {
 	key = "guest"
-	name = "Call"
+	name = "Support"
 	icon = ""
 	props = []
 

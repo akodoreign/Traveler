@@ -141,7 +141,7 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 					busy = ::rpgstage["battle"] ? 0 : busy + 300;
 					if( busy >= 3000){ this.botSet( "z", true); sleep( 90); this.botSet( "z", false); busy = 2000; }
 				}
-				if( cmd["shot"]){ sleep( 400); this.rtshot( "tmp/rt_shot/bot_" .. cmd.shot .. ".raw"); }	//	(after the scene:
+				if( cmd["shot"]){ sleep( 1300); this.rtshot( "tmp/rt_shot/bot_" .. cmd.shot .. ".raw"); }	//	(after the scene:
 				local w = this.botWhere();												//	what the player is left with)
 				printf( "[RT] BOT state %d %S %.1f %.1f %.1f\n", n, w ? w.map : "-", w ? w.x : 0.0, w ? w.z : 0.0, w ? w.y : 0.0);
 				printf( "[RT] BOT kit %d %s\n", n, this.botKit());

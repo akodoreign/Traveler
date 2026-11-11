@@ -824,7 +824,8 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	local all = map.encount, keep = [];
 	foreach( v in all){
 		local a = ("rt_if" in v) ? v.rt_if : null, b = ("rt_ifnot" in v) ? v.rt_ifnot : null;
-		if( (a && !::rpgvar[a]) || (b && ::rpgvar[b])) continue;
+		local a2 = ("rt_if2" in v) ? v.rt_if2 : null, b2 = ("rt_ifnot2" in v) ? v.rt_ifnot2 : null;	//	(ladders.py)
+		if( (a && !::rpgvar[a]) || (b && ::rpgvar[b]) || (a2 && !::rpgvar[a2]) || (b2 && ::rpgvar[b2])) continue;
 		keep.append( v);
 	}
 	map.encount = keep;
@@ -1098,7 +1099,8 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 		}
 		printf( "[RT] party followers: %S\n", sig);
 	}
-	local last = f.trail.last();
+	if( !length( f.trail)) f.trail .. Vector3D( pl.pos);				//	(tester: an empty trail threw 40,000
+	local last = f.trail.last();									//	"hypot in undefined" in a Lion run)
 	if( last.hypot( pl.pos) > 0.12){
 		f.trail .. Vector3D( pl.pos);
 		if( length( f.trail) > 120) f.trail = f.trail.slice( 20);		//	(arrays here have no remove())

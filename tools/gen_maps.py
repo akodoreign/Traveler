@@ -1613,11 +1613,20 @@ def kh_dojo():
     return interior("M164", "Kyuden Hida - Hida dojo", 16, 8, [
         ("tatami", 4, 4), ("tatami", 7, 4), ("tatami", 10, 4), ("sword", 2, 9), ("shield", 14, 9)],
         ("M141", DOOR_EV[("M141", "dojo")]),
+        # (user 2026-11-11: Natsuko is a Hiruma - her school ranks come with her level; the dojo teaches a Crab kata
+        # instead, and says where to go next. progression-v2.md)
         npcs=[(8, 7, SC["goro"], "talk", [
-            (None, [say("Hiruma Goro", "The Hida school. Come back when the court is done with you, Hiruma.")]),
-            ([flag("G216")], [say("Hiruma Goro", "The court let you go? Then the school will have you. Hida "
-                                                  "technique, Rank 2: you hit, it stays hit."),
-                              narrate("(The Hida secondary school is open to Natsuko.)")])])])
+            (None, [say("Hiruma Goro", "The Hida dojo. Come back when the court is done with you, Hiruma. I'll show "
+                                       "you something the Hida don't teach to scouts.")]),
+            ([flag("G216")], [say("Hiruma Goro", "The court let you go? Good. Stand there. Feet wide. You're a "
+                                                  "mountain - things hit you and slide off. Again. Again."),
+                              script('::Rokugan.learn( "P100", "S740");'), setf("G1224"),
+                              narrate("Natsuko learns the Crab kata Striking as Earth. (Battle: School. Strike, and "
+                                      "settle like the mountain for 3 turns: +evasion, -accuracy.)"),
+                              say("Hiruma Goro", "Now go home. Back to the Wall - the gate garrison. Kage will want "
+                                                 "you beyond it.")]),
+            ([flag("G1224")], [say("Hiruma Goro", "Practising? Good. Now the Wall, Hiruma - the gate garrison. "
+                                                   "Kage is waiting.")])])])
 
 
 def kh_tea():
@@ -2056,7 +2065,8 @@ S07 = ch2("S07", stop_at="[CHAPTER COMPLETE]") + [
     narrate("A dancer without a face, a bride with a stain thrown on her, and a puppet's word-perfect confession. "
             "The Champion has his culprit. Natsuko has grey mud, and a friend of the bride's who never seems to "
             "sleep."),
-    narrate("(The Hida secondary school at the Kyuden Hida dojo is open.)"),
+    narrate("Objective: back to the Kaiu Wall - the gate garrison. (Before you go: Hiruma Goro will teach you a Crab "
+            "kata at the Hida dojo here.)"),
     narrate("Goro goes back to standing behind Kage. Sachiko goes back to the Wall, complaining. Isawa Michio leaves "
             "for the Phoenix lands with a list of names."),
     leave("P123"), leave("P120"), leave("P124"), setf("G216")]
@@ -2548,7 +2558,9 @@ def edge_triggers(m, ev):
             lo, hi = span[key]
             mid = (lo + hi) // 2
             x = 1 if side == "w" else m.w - 2 if side == "e" else None
-            z = 1 if side == "f" else m.d - 2 if side == "b" else None
+            z = 2 if side == "f" else m.d - 2 if side == "b" else None     # (tester 2026-11-11: at z 1 the
+            # front strip's box sat past where the player can stand - the map border stops you at ~1.2 squares and
+            # the body must be wholly inside: M288's whole north side, M285 and M297, never fired)
             if x is None:
                 x = mid
             if z is None:
@@ -3751,8 +3763,16 @@ def kakita_academy():
                                              "academy has no more room for him.")])], trigger=1)
     ev.talk(55, 10, "CE000", [(None, [narrate("The Kakita smith. A sign on the door: \"Graduates of rank only.\" "
                                               "(Opens at Rank 2.)")])], trigger=1)
+    # (user 2026-11-11: dojos teach a clan kata as a reward; progression-v2.md)
     ev.talk(32, 27, "CE000", [(None, [narrate("The dojo. Rensei's name is on the graduates' board: last in the row, "
-                                              "in fresh ink.")])], trigger=1)
+                                              "in fresh ink."),
+                                      narrate("An old sensei is sweeping the floor. \"Last in the row. Then you have "
+                                              "the most to learn. Stand. Draw. Slower.\""),
+                                      script('::Rokugan.learn( "P101", "S746");'), setf("G1225"),
+                                      narrate("Rensei learns the Kakita kata Kakita's First Stance. (Battle: School. "
+                                              "Strike, and hold the duelist's stance: +critical hits all battle.)")]),
+                              ([flag("G1225")], [narrate("The dojo. Rensei's name is on the graduates' board: last in "
+                                                         "the row, in fresh ink.")])], trigger=1)
     ev.npc(20, 20, SC["senior_student"], "Adequate, he said. My father says worse to me every morning.",
            reqs=[flag("G301")])
     ev.prop(58, 13, "EP356", msg="Lady Doji Sanae's palanquin. Plain lacquer: the Keeper of the House Honour travels "
@@ -4795,7 +4815,7 @@ S07_CR2 = cr2("S07", stop_at="[IF natsuko_in_party]") + natsuko_here(
 ) + [narrate("\"The Iron Cranes\" - complete."),
      narrate("Two women seduced two armies - and they were never two women. Rensei freed the generals he could, "
              "refused a bargain of open doors, and learned that the woman behind it all is a Doji."),
-     setf("G369"), narrate("Kakita Rensei reaches Rank 2: the Sudden Strike."),
+     setf("G369"),
      if_([{"lvar": "NUM_I140", "op": ">=", "rvar": 1}],
          [{"cmd": "cmd_itemop", "itemid": "I140", "op": 1, "num": 1, "LV": 1},
           narrate("Heaven's Glory answers his hand now.")] + got("W130", "Heaven's Glory (a blade)")),
@@ -6493,7 +6513,7 @@ def north_dojo():
 S06_IN = [narrate("The South Dojo at night. Cold. Braziers guttering. A wet trail across the floorboards that hisses "
                   "where it touches the wood."),
           say("Shizue", "Something crawled here. Something heavy. And frightened."),
-          narrate("Terror: a Terrified traveler may lose the turn, and can't Boost. Jade gear resists it; Calming Tea "
+          narrate("Terror: a Terrified traveler may lose the turn, and can't use Void. Jade gear resists it; Calming Tea "
                   "cures it."),
           battle("M001", 61), setf("G502"),
           narrate("The trail goes under the floor. A loose board.")]
@@ -7403,7 +7423,7 @@ S05_PHX1 = cp1("S05", stop_at="> CHOICE") + [choices(
     narrate("Objective: on west. The lock grows colder.")]
 VOID_TUTORIAL = [narrate("Haruki's Affinity is Water and Void. Void spells cost VP, not SP, and grow stronger the "
                          "more VP he holds."),
-                 narrate("Drawing the Void gains VP at once. And Boost Path to Inner Peace with 3 VP to heal the "
+                 narrate("Drawing the Void gains VP at once. And Void Path to Inner Peace with 3 VP to heal the "
                          "whole party.")]
 S06_PHX1 = cp1("S06", stop_at="### TUTORIAL") + [
     narrate("Bless (Haruki's path action): guide someone, living or dead, to follow you."),
@@ -7946,7 +7966,7 @@ def sick(ev, x, z, mdl, f, who, line, after, opts):
 
 
 PTIP = lambda f: ("Path to Inner Peace (6 SP)", sp_cost(6, treated(f, "Water and quiet. The dark veins fade.")))  # noqa
-MASS = lambda f: ("Path to Inner Peace, Boosted (12 SP)", sp_cost(12, treated(f, "Path to Inner Peace, Boosted: the "  # noqa
+MASS = lambda f: ("Path to Inner Peace, with Void (12 SP)", sp_cost(12, treated(f, "Path to Inner Peace, with Void: the "  # noqa
                                                                                "whole family breathes easier.")))
 BLESS = lambda f, t: ("Bless (lead them to the temple hospital)", [narrate("Bless (Haruki's path action): " + t)] +  # noqa
                       treated(f, "At the temple hospital, they rest."))
@@ -11010,7 +11030,6 @@ S08_SCP2 = [if_([flag("G907")],
             narrate("A city that wasn't on any map, people who wouldn't speak to the faceless, and masks that ate "
                     "souls. Mitsue wore other faces to save the souls inside them, and checked afterwards that hers "
                     "was still there."),
-            narrate("(Insight Rank 2: The Shadow Has No Mercy.)"),
             setf("G909"), narrate("Next: Fortunes Lost, the Ojatara tribunal. (Recommended level 30)")]
 
 
@@ -14189,7 +14208,7 @@ S01_RON1 = [narrate("CHAPTER 1 - What's Eating the Eta."),
     narrate("Dockside: two thugs shove a fish-seller into the water."),
     narrate("Remedy: Sayo's School technique. Mix a base herb with a catalyst. Ginseng and Rice Wine make a strong heal; Ume-baa's "
             "Poultice needs nothing at all. (Battle menu: School.)"),
-    narrate("Katana: her attacks hit harder for every VP spent on a Boost."),
+    narrate("Katana: her attacks hit harder for every VP spent on Void."),
     battle("M001", 132),
     narrate("The fish-seller climbs out, dripping."),
     say("Fish-seller", "Thank you, miss! Who are you?"),
@@ -17927,6 +17946,7 @@ RSET.update({"M464": "rt_hd2d_night", "M809": "rt_hd2d_battle"})
 LION_ROAD, PHX_ROAD = {"rt_ifnot": "G585"}, {"rt_if": "G585"}            # the shrine road: Shizue's or Haruki's
 DUO, ALONE = {"rt_if": "G793"}, {"rt_ifnot": "G793"}                   # Dragon Ch3: Ushimo with Gendo, or not
 UNI2, MIT3 = {"rt_if": "G967"}, {"rt_ifnot": "G967"}                   # the Ojatara Valleys: Tamotsu's view or Mitsue's
+PRE_NEZ, POST_NEZ = {"rt_ifnot": "G049"}, {"rt_if": "G049"}             # the Egg Caves before / after the nezumi
 ENCOUNTERS = {
     # Scorpion Ch3 (Mitsue's view, 30-35): Mitsue + Akodo Rin in the Ojatara Valleys (bestiary F "Ojatara Valleys")
     # Unicorn Ch2 = Tamotsu's view (G967; Lv 22-30): Tamotsu + Shinjo Ryuko + Akodo Rin, the same valleys a band lower
@@ -18087,13 +18107,29 @@ ENCOUNTERS = {
     "M102": ("M811", [("Coast: goblins", ["E100", "E100"], 40), ("Coast: tide crabs", ["E105", "E105"], 27),
                       ("Coast: crows", ["E107", "E107", "E107"], 20), ("Coast: road bandit", ["E200"], 9),
                       ("Coast: will-o'-wisp", ["E108"], 4)]),
-    "M130": ("M813", [("Caves: beetle + viper", ["E103", "E104"], 40), ("Caves: vipers", ["E104", "E104"], 30),
-                      ("Caves: beetles", ["E103", "E103"], 20), ("Caves: goblins", ["E100", "E100"], 10)]),
-    "M131": ("M813", [("Caves: beetle + viper", ["E103", "E104"], 40), ("Caves: vipers", ["E104", "E104", "E104"], 30),
-                      ("Caves: beetles", ["E103", "E103"], 20), ("Caves: goblins", ["E100", "E100"], 10)]),
-    "M132": ("M813", [("Caves: beetle + viper", ["E103", "E104"], 35), ("Caves: vipers", ["E104", "E104", "E104"], 25),
-                      ("Caves: beetles", ["E103", "E103", "E103"], 25), ("Caves: goblins", ["E100", "E100", "E101"],
-                                                                         15)]),
+    # Before the nezumi are dealt with (G049 clear): the Ch1 cave foes. After (G049): a levelling ladder up to Lv 15
+    # (user 2026-11-11): the nests Lv 8-9, the painted eggs Lv 10-12, the armour Lv 13-15 (gen_data E608-E618).
+    "M130": ("M813", [("Caves: beetle + viper", ["E103", "E104"], 40, PRE_NEZ), ("Caves: vipers", ["E104", "E104"], 30,
+                                                                                PRE_NEZ),
+                      ("Caves: beetles", ["E103", "E103"], 20, PRE_NEZ), ("Caves: goblins", ["E100", "E100"], 10,
+                                                                          PRE_NEZ),
+                      ("Caves II: beetle + vipers", ["E608", "E609", "E609"], 40, POST_NEZ),
+                      ("Caves II: scavengers", ["E610", "E610", "E609"], 35, POST_NEZ),
+                      ("Caves II: old beetles", ["E608", "E608"], 25, POST_NEZ)]),
+    "M131": ("M813", [("Caves: beetle + viper", ["E103", "E104"], 40, PRE_NEZ), ("Caves: vipers", ["E104", "E104",
+                                                                                                 "E104"], 30, PRE_NEZ),
+                      ("Caves: beetles", ["E103", "E103"], 20, PRE_NEZ), ("Caves: goblins", ["E100", "E100"], 10,
+                                                                          PRE_NEZ),
+                      ("Caves II: giant beetle + brood", ["E611", "E612"], 35, POST_NEZ),
+                      ("Caves II: raiders", ["E613", "E613", "E612"], 35, POST_NEZ),
+                      ("Caves II: bats", ["E614", "E614", "E614"], 30, POST_NEZ)]),
+    "M132": ("M813", [("Caves: beetle + viper", ["E103", "E104"], 35, PRE_NEZ), ("Caves: vipers", ["E104", "E104",
+                                                                                                 "E104"], 25, PRE_NEZ),
+                      ("Caves: beetles", ["E103", "E103", "E103"], 25, PRE_NEZ), ("Caves: goblins", ["E100", "E100",
+                                                                                                  "E101"], 15, PRE_NEZ),
+                      ("Caves II: armoured beetle", ["E615", "E616"], 35, POST_NEZ),
+                      ("Caves II: goblin squad", ["E617", "E613", "E613"], 35, POST_NEZ),
+                      ("Caves II: great bats", ["E618", "E618", "E616"], 30, POST_NEZ)]),
     "M140": ("M814", [("Hida road: bandits", ["E257", "E257"], 45), ("Hida road: drunks", ["E237", "E257"], 30),
                       ("Hida road: patrol", ["E258", "E258"], 18), ("Hida road: yurei", ["E259", "E259"], 7)]),
     "M148": ("M815", [("Donjon: warmongers", ["E230", "E230", "E230"], 50),
@@ -18320,6 +18356,53 @@ def music_for(sp):
     return _mu.MUSIC[key]
 
 
+def apply_ladders():
+    """tools/ladders.py: after a chapter's completion flag, its encounter maps get re-levelled copies of their groups;
+    the clone ids go to tools/_ladder_foes.json for gen_data."""
+    import ladders as _lad
+    plan = []                                                   # (map, row index, level, flag)
+    for path, done, maps in _lad.LADDERS:
+        for mid, lo, hi in maps:
+            if mid not in ENCOUNTERS:
+                print("ladder %s: %s has no encounters" % (path, mid))
+                continue
+            rows = [r for r in ENCOUNTERS[mid][1] if not (len(r) > 3 and "rt_if2" in r[3])]
+            for k, r in enumerate(rows):
+                lv = lo if len(rows) == 1 else int(round(lo + (hi - lo) * k / (len(rows) - 1)))
+                plan.append((mid, r, lv, done))
+    pairs = sorted({(f, lv) for _m, r, lv, _d in plan for f in r[1]})
+    ids = {p: "E%d" % (_lad.FIRST_ID + i) for i, p in enumerate(pairs)}
+    assert _lad.FIRST_ID + len(pairs) <= 1000, "ladder foes past E999: merge levels in ladders.py"
+    for mid in {p[0] for p in plan}:
+        bmap, table = ENCOUNTERS[mid]
+        flags = []                                              # this map's ladders in order (one map can stack
+        for _m, _r, _l, d in plan:                              # several: Crab M140/M148/M149 after Ch2, 3 and 4)
+            if _m == mid and d not in flags:
+                flags.append(d)
+        new = []
+
+        def off(extra, flag):                                   # rt_ifnot, or rt_ifnot2 if that slot is taken
+            if flag:
+                extra["rt_ifnot2" if "rt_ifnot" in extra else "rt_ifnot"] = flag
+            return extra
+        for r in table:                                         # the chapter's own groups: off once it is done
+            new.append((r[0], r[1], r[2], off(dict(r[3]) if len(r) > 3 else {}, flags[0])))
+        for m, r, lv, d in plan:
+            if m != mid:
+                continue
+            extra = dict(r[3]) if len(r) > 3 else {}
+            extra["rt_if2" if "rt_if" in extra else "rt_if"] = d           # (a group already tied to a path flag)
+            nxt = flags[flags.index(d) + 1] if flags.index(d) + 1 < len(flags) else None
+            new.append(("%s (Lv %d)" % (r[0], lv), [ids[(f, lv)] for f in r[1]], r[2], off(extra, nxt)))
+        ENCOUNTERS[mid] = (bmap, new)
+    out = os.path.join(HERE, "_ladder_foes.json")
+    json.dump({v: [k[0], k[1]] for k, v in ids.items()}, open(out, "w", encoding="utf-8"), indent=1, sort_keys=True)
+    print("ladders: %d maps, %d re-levelled foes (%s)" % (len({p[0] for p in plan}), len(ids), out))
+
+
+apply_ladders()
+
+
 # ------------------------------------------------------------------------------------------- registration / build
 # Random-encounter rate (engine: ENCOUNTER += steps x (0.6-2.0) x rate; a fight at 100). The template's 1.0 meant one
 # fight per ~100 m: the user walked the whole Coast Road escort without one. 4.0 is a fight every ~25 m on average,
@@ -18368,7 +18451,77 @@ def register(specs, events):
                 groups.append(g)
             e["encount"], e["encntrate"] = groups, ENC_RATE
         mp[sp.mid] = e
+    objective_pass(mp)
     json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="	")
+
+
+# The field HUD (plugin RokuganHUD.sk; user 2026-11-11: "a couple boxes in the lower right hand corner, one that says
+# Story: *description of where to go next*. and the 2nd box ... Recommended level of area"). Every narration with
+# "Objective:" (or starting "Next:") gets a cmd after it that sets OBJ_VAR to its number in the list written to
+# RokuganObjectives.sk; a chapter card's "(Recommended level N)" sets CH_LV_VAR = N.
+OBJ_VAR, CH_LV_VAR = "G1227", "G1228"
+
+
+def objective_pass(mp):
+    import re as _re
+    objs, idx = [], {}
+
+    def found(c):
+        t = c.get("text") or ""
+        if not isinstance(t, str):
+            return None, None
+        lv = _re.search(r"\(Recommended level (\d+)\)", t)
+        i = t.find("Objective:")
+        if i >= 0:
+            s = t[i + len("Objective:"):].strip()
+            return (s[:1].upper() + s[1:]) or None, lv
+        if t.startswith("Next:"):
+            return _re.sub(r"\s*\(Recommended level \d+\)", "", t[len("Next:"):]).strip(), lv
+        return None, lv
+
+    def walk(x):
+        if isinstance(x, dict):
+            for v in list(x.values()):
+                walk(v)
+            return
+        if not isinstance(x, list):
+            return
+        i = 0
+        while i < len(x):
+            c = x[i]
+            if isinstance(c, dict) and c.get("cmd") == "cmd_showmsg":
+                t, lv = found(c)
+                sets = []
+                if t:
+                    if t not in idx:
+                        idx[t] = len(objs)
+                        objs.append(t)
+                    sets.append({"cmd": "cmd_compute", "lvar": OBJ_VAR, "op": "=", "rvar": idx[t] + 1,   # 1-based:
+                                 "desc": "RT objective"})                                          # 0 = none
+                if lv:
+                    sets.append({"cmd": "cmd_compute", "lvar": CH_LV_VAR, "op": "=", "rvar": int(lv.group(1)),
+                                 "desc": "RT objective"})
+                j = i + 1
+                while j < len(x) and isinstance(x[j], dict) and x[j].get("desc") == "RT objective":
+                    j += 1
+                x[i + 1:j] = sets                                     # (re-runs replace the old setters)
+                i += len(sets)
+            else:
+                walk(c)
+            i += 1
+
+    for mid in sorted(mp):
+        if isinstance(mp[mid], dict):
+            walk(mp[mid].get("event"))
+    out = os.path.join(PROJ, "plugin", "rokugan", "RokuganObjectives.sk")
+    with open(out, "w", encoding="utf-8") as f:
+        f.write("//\tGenerated by tools/gen_maps.py objective_pass (the field HUD's Story lines, by number = rpgvar %s).\n"
+                % OBJ_VAR)
+        f.write("::Rokugan.OBJECTIVES <- [\n")
+        for t in objs:
+            f.write("\t%s,\n" % json.dumps(t, ensure_ascii=False))
+        f.write("];\n")
+    print("objectives: %d (HUD list %s)" % (len(objs), out))
 
 
 def build(specs):
@@ -18421,7 +18574,7 @@ def hire_join(h):
     lead = h.get("leader", "Natsuko")
     return [if_([{"lvar": "G293", "op": ">=", "rvar": 1}], [narrate("Your current hireling heads home.")]),
             setf("G293", h["n"]), setf("G294", h["charges"]), say(h["name"], h["joined"]),
-            narrate("%s follows %s. (In battle: Call. %d uses, then home to %s.)" % (h["name"], lead, h["charges"],
+            narrate("%s follows %s. (In battle: Support. %d uses, then home to %s.)" % (h["name"], lead, h["charges"],
                                                                                    h["home"]))]
 
 

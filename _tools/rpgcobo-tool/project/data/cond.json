@@ -326,7 +326,7 @@
 		"ani": null,
 		"condtype": 0,
 		"deadtype": 0,
-		"desc": "Terror: may lose the turn, and can't Boost. Jade gear and courage resist it.",
+		"desc": "Terror: may lose the turn, and can't use Void. Jade gear and courage resist it.",
 		"efx_cont": null,
 		"efx_start": null,
 		"icon": "",
@@ -1962,5 +1962,2457 @@
 		"snd_cont": null,
 		"uncommandable": false,
 		"xcondbits": 0
+	},
+	"K070": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Crab kata. Settle like the mountain: +15% evasion, -10% accuracy for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Striking as Earth",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 15,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": -10,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K071": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Move like the wind: Speed +20%, damage -15% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Striking as Wind",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": -15,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K072": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Hiruma kata. Armour mode: DEF +50%, accuracy -10% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Shell of Stone",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 50,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": -10,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K073": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Hiruma kata. Draw the enemy's eye (+evasion, foes target her) and strike back at 30% of those who attack her. Speed -20%. The whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Stance of the Wall",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 10,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "TGR",
+				"val": 100,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": -20,
+				"valtype": "totalrate"
+			},
+			{
+				"opttype": "opt_counter",
+				"skillid": null,
+				"formbits": 1,
+				"elembits": 0,
+				"rate": 0.3,
+				"hittype": 0,
+				"hitact": null,
+				"LV": 1
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K074": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Hiruma kata. A blow through the carapace: x1.6, and ATK +30% next turn.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Shards of Earth",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			2,
+			2
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K075": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Hida kata. Every blow she takes may be answered (60% counter). The whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Unyielding Fury",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"opttype": "opt_counter",
+				"skillid": null,
+				"formbits": 1,
+				"elembits": 0,
+				"rate": 0.6,
+				"hittype": 0,
+				"hitact": null,
+				"LV": 1
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K076": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Kakita kata. The duelist's stance: +10% criticals for the whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Kakita's First Stance",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 10,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K077": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "The sword over the court: ATK +20% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "The Empire Rests on Its Edge",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 20,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K078": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Kakita kata. Nothing escapes him: accuracy +20% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Watchful Falcon",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": 20,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K079": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Execute stance: x1.3 now, then +10% criticals and -10% ATK for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Victory of the Wind",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 10,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": -10,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K080": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Kakita kata. Speed +30% for 3 turns: he leaps ahead in the turn order.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "One Leg Stance",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K081": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Kakita kata. Everything in one cut: x1.8, and Speed +30% next turn.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "One Strike Blade",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			2,
+			2
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K082": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Kakita kata. Honourable foes hardly target him; his damage -15%. The whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "One Truth",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "TGR",
+				"val": -80,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": -15,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K083": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "The sky does not get hit: +35% evasion for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Standing on the Heavens",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 35,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K084": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Mirumoto kata. Fire in the arm, earth in the feet: ATK and DEF +20% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Thunder and Steel",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 20,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K085": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "The blade over the investigation: ATK +20% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "The Empire Rests on Its Edge",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 20,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K086": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Mirumoto kata. Spells slide off: MDEF +40%, Speed -10% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "My Brother's Soul",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 40,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": -10,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K087": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Mirumoto kata. Every attack on him may be answered (50% counter) for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Time Between Breaths",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 15,
+				"valtype": "totalrate"
+			},
+			{
+				"opttype": "opt_counter",
+				"skillid": null,
+				"formbits": 1,
+				"elembits": 0,
+				"rate": 0.5,
+				"hittype": 0,
+				"hitact": null,
+				"LV": 1
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K088": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Mirumoto kata. Break the foe's rhythm: ATK +30% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Breaking Waves",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K089": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "The river does not stop: ATK +25%, evasion -20% for the whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Victory of the River",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 25,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": -20,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K090": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Damage +20%, evasion -10% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Striking as Water",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": -10,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K091": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Accuracy +10%, criticals +5%, Speed -10% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Striking as Fire",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": 10,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 5,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": -10,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K092": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Akodo kata. Fear, charm and confusion can't touch her; ATK +10%. The whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Fury Without End",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 10,
+				"valtype": "totalrate"
+			},
+			{
+				"opttype": "opt_conddef",
+				"CDR.4": 100,
+				"CDR.7": 100,
+				"CDR.8": 100,
+				"LV": 1
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K093": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Matsu kata. ATK +35%, evasion -10% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "The Soul's Roar",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 35,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": -10,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K094": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Akodo kata. Cold, patient cuts: x1.2 now, ATK +15% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Gentle Blade of Winter",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 15,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K095": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Akodo kata. The glass-cannon capstone: Speed +20%, ATK +50%, evasion -40% for the whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Matsu's Vengeance",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 50,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": -40,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K096": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Speed +20%, damage -15% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Striking as Wind",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": -15,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K097": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Shosuro kata. ATK +20%, evasion -10% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "The Tail's Reach",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": -10,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K098": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Shosuro kata. Under the big man's swing: evasion +20%, Speed +10% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Cut Under the Mountain",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 20,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 10,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K099": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Bayushi kata. Light cuts that find the gaps: x0.8 now, accuracy +15% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Sundering Grace",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": 15,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K100": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Shosuro kata. Foes can't land a critical on her; DEF +20% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Blackened Sight",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CEVA",
+				"val": 100,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 20,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K101": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Bayushi kata. A second evasion tank: evasion +30%, ATK -20% for the whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Choking Air",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 30,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": -20,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K102": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Damage +20%, evasion -10% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Striking as Water",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": -10,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K103": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "+15% evasion, -10% accuracy for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Striking as Earth",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 15,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": -10,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K104": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Accuracy +10%, criticals +5%, Speed -10% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Striking as Fire",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": 10,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 5,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": -10,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K105": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Speed +20%, damage -15% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Striking as Wind",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": -15,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K106": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "All four elements at once: ATK, evasion, accuracy and Speed up for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Striking as Void",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 15,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 10,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": 10,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 10,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K107": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Void kiho. A staff tap, and the self empties: +2 VP, MDEF +20% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Self No Self",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 20,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K108": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Earth kiho. DEF and MDEF +30% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Heart of Stone",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 30,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K109": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Water kiho. Each attack on him may be answered (40% counter) for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Ebb and Flow",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 10,
+				"valtype": "supply"
+			},
+			{
+				"opttype": "opt_counter",
+				"skillid": null,
+				"formbits": 1,
+				"elembits": 0,
+				"rate": 0.4,
+				"hittype": 0,
+				"hitact": null,
+				"LV": 1
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K110": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Water kiho. The tide parts around him: DEF and MDEF +25%, his spells -15%. The whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Parting the Waves",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 25,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 25,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MATK",
+				"val": -15,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K111": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Void kiho. The land's element answers: spells +30% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Touch the Void Dragon",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MATK",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K112": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Earth kiho. The earth holds him up: once he falls to a quarter HP he is braced to survive. The whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Grasp the Earth Dragon",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"opttype": "opt_autocond",
+				"condid": "K042",
+				"req": "hp25",
+				"LV": 1
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K113": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Martial kiho. A burning blow: x1.2, ATK +20% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Fire Fist",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 20,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K114": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Martial kiho. Flow around the blade: evasion +20% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Water Fist",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 20,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K115": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Martial kiho. Root like the mountain: DEF +40% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Earth Fist",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 40,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K116": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Martial kiho. Speed +30% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Air Fist",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K117": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Martial kiho. A blow from above: x1.4, criticals +20% for 2 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Falling Star Strike",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 20,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K118": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Kharmic kiho. What is done to him returns (70% counter) for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Kharmic Strike",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 10,
+				"valtype": "totalrate"
+			},
+			{
+				"opttype": "opt_counter",
+				"skillid": null,
+				"formbits": 1,
+				"elembits": 0,
+				"rate": 0.7,
+				"hittype": 0,
+				"hitact": null,
+				"LV": 1
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K119": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Atemi kiho. A finger on the nerve: the foe may freeze (Paralysis); accuracy +20% for 2 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Freezing the Lifeblood",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": 20,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K120": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Martial kiho. x1.3, +1 VP, MDEF +20% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Void Fist",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 20,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K121": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "The tiger wakes on his back: x1.5, ATK +30% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Tiger Tattoo",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K122": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "The raven lifts him out of the blow: evasion +30%, Speed +15% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Raven Tattoo",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 30,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 15,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K123": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "A hundred legs: Speed +50% for the whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Centipede Tattoo",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 50,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K124": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "The phoenix rises: ATK and spells +20%, and he comes back once from the brink. The whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Phoenix Tattoo",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MATK",
+				"val": 20,
+				"valtype": "totalrate"
+			},
+			{
+				"opttype": "opt_autocond",
+				"condid": "K042",
+				"req": "hp25",
+				"LV": 1
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
 	}
 }

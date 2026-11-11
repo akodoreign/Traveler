@@ -1,0 +1,135 @@
+//	RokuganHUD.sk : the field "where next" boxes, lower right (user 2026-11-11: "on the overworld map put in a couple
+//	boxes in the lower right hand corner, one that says Story: *description of where to go next*. and the 2nd box
+//	go Recommended level of area").
+//	- Story: rpgvar G1227 = the latest objective's number in ::Rokugan.OBJECTIVES (RokuganObjectives.sk, written by
+//	  tools/gen_maps.py objective_pass, which puts the setter after every "Objective:" / "Next:" narration).
+//	- Recommended level: the level range of the foes this map can throw at you now (its encounter groups, with their
+//	  rt_if / rt_ifnot flags); on a map without battles, the chapter's level (G1228, from the chapter card).
+//	Hidden in battles and while an event (a talk, a cutscene) runs.
+
+local log( s){ printf( "[RT] %S\n", s); }
+local W_BOX = 440, PAD = 12, LINE = 22, CHARS = 42, MARGIN = 18, BOTTOM = 62, GAP = 8;	//	BOTTOM: above the key-hint bar
+
+::Rokugan.hud <- { root = null, views = [], key = null, on = false, tex = null };
+
+::Rokugan.areaLevels <- function( map){
+	local lo = 999, hi = 0;
+	foreach( g in ((map && map["encount"]) || [])){
+		if( !g || !g["rate"]) continue;
+		local a = ("rt_if" in g) ? g.rt_if : null, b = ("rt_ifnot" in g) ? g.rt_ifnot : null;
+		if( a && !::rpgvar[a]) continue;
+		if( b && ::rpgvar[b]) continue;
+		if( ("rt_if2" in g) && !::rpgvar[g.rt_if2]) continue;
+		if( ("rt_ifnot2" in g) && ::rpgvar[g.rt_ifnot2]) continue;
+		foreach( en in (g["enemies"] || [])){
+			local d = en ? ::rpgdata[en["id"]] : null;
+			if( !d) continue;
+			local lv = int( d["LV"] || 0);
+			if( lv <= 0) continue;
+			lo = Math.min( lo, lv);
+			hi = Math.max( hi, lv);
+		}
+	}
+	return hi > 0 ? [lo, hi] : null;
+};
+
+local wrap = function( s, n){
+	local out = [];
+	while( length( s) > n){
+		local i = s.substring( 0, n + 1).lastIndexOf( " ");
+		if( i <= 0) i = n;
+		out .. s.substring( 0, i);
+		s = s.substring( i + 1);
+	}
+	if( length( s)) out .. s;
+	return out;
+};
+
+local hudSprite = function(){
+	local H = ::Rokugan.hud;
+	if( !H.tex){
+		local img = ::getResource( "/resource/efx/battleui/white.png").getContent();
+		img.premultAlpha();
+		H.tex = Texture();
+		H.tex.load( img, 0);
+	}
+	local sp = Sprite( H.tex);
+	sp.blend = SK_PMAMIX;
+	return sp;
+};
+
+::Rokugan.hudClear <- function(){
+	local H = this.hud;
+	foreach( v in H.views) if( v) v.removeFromParent();
+	H.views = [];
+};
+
+//	Builds the two boxes for the given lines (story lines may be empty: then only the level box).
+::Rokugan.hudBuild <- function( root, story, level){
+	local H = this.hud;
+	this.hudClear();
+	local W = root.bnd.w, Ht = root.bnd.h, x = W - MARGIN - W_BOX;
+	local box = function( y, h){
+		local bg = ::SKImageView( hudSprite());
+		bg.enabled = false; bg.setRect( x, y, W_BOX, h); bg.setColor( 0x0b0a12c8);
+		root.addChild( bg); H.views .. bg;
+		foreach( q in [[x, y, W_BOX, 2], [x, y + h - 2, W_BOX, 2]]){				//	gold hairlines
+			local ln = ::SKImageView( hudSprite());
+			ln.enabled = false; ln.setRect( q[0], q[1], q[2], q[3]); ln.setColor( 0xc9a45cff);
+			root.addChild( ln); H.views .. ln;
+		}
+	};
+	local text = function( tx, ty, s, size, col){
+		local v = SKLabelView( "", FontAttribute( Fonts.get( "ui"), size, col, SK_FONT_BOLD));
+		v.enabled = false; v.bnd.set( tx, ty, W_BOX - 2 * PAD, LINE + 2);
+		v.setText( s);
+		root.addChild( v); H.views .. v;
+	};
+	local lh = 2 * PAD + LINE;
+	local ly = Ht - BOTTOM - lh;
+	box( ly, lh);
+	text( x + PAD, ly + PAD - 1, level, 18, 0xf0e0b0ff);
+	if( length( story)){
+		local sh = 2 * PAD + LINE * (length( story) + 1);
+		local sy = ly - GAP - sh;
+		box( sy, sh);
+		text( x + PAD, sy + PAD - 1, "Story", 18, 0xc9a45cff);
+		foreach( i, s in story) text( x + PAD, sy + PAD - 1 + LINE * (i + 1), s, 17, 0xf4f0e6ff);
+	}
+};
+
+::Rokugan.hudTick <- function( st){
+	if( !::rootview) return;
+	local root = ::rootview.findChild( "stageui");
+	if( !root) return;
+	local H = this.hud;
+	local on = !st["battle"] && !st["mainevent"] && !!st["map"] && ::arguments.indexOf( "-rthud0") < 0;
+	if( !on){
+		if( H.on) foreach( v in H.views) v.setVisible( false);
+		H.on = false;
+		return;
+	}
+	local oi = int( ::rpgvar["G1227"] || 0) - 1, objs = this["OBJECTIVES"] || [];	//	G1227 is 1-based (0 = none yet)
+	local lv = this.areaLevels( st.map), clv = int( ::rpgvar["G1228"] || 0);
+	local key = "%S|%d|%S|%d" % (st["mapid"], oi, lv ? lv[0] .. "-" .. lv[1] : "-", clv);
+	if( key != H.key || H.root != root){
+		H.key = key; H.root = root;
+		local story = (oi >= 0 && oi < length( objs)) ? wrap( objs[oi], CHARS) : [];
+		if( length( story) > 5) story = story.slice( 0, 5);
+		local level = lv ? (lv[0] == lv[1] ? "Recommended level: %d" % lv[0] : "Recommended level: %d-%d" % (lv[0], lv[1]))
+			: clv > 0 ? "Recommended level: %d (no battles here)" % clv : "No battles here";
+		this.hudBuild( root, story, level);
+		log( "HUD %S: story #%d, %S" % (st["mapid"], oi, level));
+	}
+	if( !H.on) foreach( v in H.views) v.setVisible( true);
+	H.on = true;
+};
+
+::RPGStage._rt_body_hud <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	local r = this._rt_body_hud( dt);
+	try{ ::Rokugan.hudTick( this); }catch( ex){ if( !::Rokugan.hud["err"]){ ::Rokugan.hud.err <- true; printexception( ex); } }
+	return r;
+};
+
+printf( "Rokugan HUD loaded: %d objectives\n", length( ::Rokugan["OBJECTIVES"] || []));

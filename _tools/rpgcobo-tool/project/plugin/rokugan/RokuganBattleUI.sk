@@ -371,7 +371,7 @@ local _setup = ::TurnBattleRunner.setupBattleUI;
 };
 ::Rokugan.memberLabel <- function( pc){
 	local b = ::Rokugan.state( pc).boostsel;
-	return pc.name .. (b ? "  +" .. b : "");
+	return pc.name .. (b ? "  x" .. ::Rokugan.voidMul( b) : "");
 };
 
 //	Test: -rtuicmd N picks the Nth battle command by itself, so a screenshot can show the skill list or the target choice.
