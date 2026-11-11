@@ -230,7 +230,7 @@ def plan(state, flags, tried):
                 w = walk_steps(mid, (x, z), near(ex, ez, 2) - near(ex, ez, 0))
                 if w is not None:
                     return (tm, key, "go %s via %s" % (tm, nxt), (mid, nxt)), w + [
-                        "face %d %d" % (ex, ez), "tap z", "untilmap %s 6000" % nxt, "wait 800"]
+                        "face %d %d" % (ex, ez), "tap z", "untilmap %s 12000" % nxt, "wait 800"]
                 continue
             if d == nxt:
                 gmap = grid(mid)[0]                                    # a player follows the road out
@@ -240,7 +240,7 @@ def plan(state, flags, tried):
                     if len(fp) <= 9:                                   # a door: line up in front of it, push in
                         bx, bz = {"up": (0, -2), "down": (0, 2), "left": (2, 0), "right": (-2, 0)}[push]
                         w = w + ["goto %.1f %.1f 3000" % (ex + bx + 0.5, ez + bz + 0.5)]
-                    return (tm, key, "go %s via %s" % (tm, nxt), (mid, nxt)), w + ["hold %s 900" % push, "untilmap %s 6000" % nxt,
+                    return (tm, key, "go %s via %s" % (tm, nxt), (mid, nxt)), w + ["hold %s 900" % push, "untilmap %s 12000" % nxt,
                                                                        "wait 800"]
         return (tm, key, "no walking route to the %s exit" % nxt), None
     if trig == 6:
@@ -333,7 +333,7 @@ def main():
             break
         if what and len(what) > 3 and state[0] == what[3][0]:          # a "go" leg that left us where we were
             fails[what[3]] = fails.get(what[3], 0) + 1
-            if fails[what[3]] >= 2:
+            if fails[what[3]] >= 3:
                 BROKEN.add(what[3])
                 note("!! BUG? the exit %s -> %s did not take the player there (twice); routing around it" % what[3])
         if what and what[2] in ("talk", "walk onto", "arrival scene"):     # did the last try move the story?

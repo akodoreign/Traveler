@@ -57,6 +57,10 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 		while( t < ms){
 			local st = ::rpgstage, w = this.botWhere();
 			if( !w){ sleep( 100); t += 100; continue; }
+			if( w.battle || w.map.slice( 0, 2) == "M8"){				//	a random battle: wait it out, the clock stopped
+				if( held){ this.botSet( held, false); held = null; }
+				sleep( 300); last = null; continue;
+			}
 			if( w.map != map0){ if( held) this.botSet( held, false); printf( "[RT] BOT goto ended: map %S\n", w.map); return true; }
 			if( w.ev || w.battle){ if( held){ this.botSet( held, false); held = null; } sleep( 200); t += 200; last = null; continue; }
 			local dx = tx - w.x, dz = tz - w.z, d = Math.sqrt( dx * dx + dz * dz);
@@ -85,7 +89,7 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 		}
 		if( held) this.botSet( held, false);
 		this.botPos( "STUCK (goto %.0f %.0f, closest %.1f)" % [tx, tz, best]);
-		return false;
+		return best < 3.0;										//	(came close: the route still holds)
 	};
 	//	The story player (tools/storyplay.py) drives the bot live: it writes numbered step batches into a file, the bot runs
 	//	each new batch and reports where it is and every story flag that is set.
@@ -101,6 +105,7 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 	//	serve file (JSON): { n = batch number, steps = ["goto,1,2", ...], flags = ["G010", ...], quit = false }
 	::Rokugan.botServe <- function( file){
 		local last = 0;
+		::Rokugan.serving <- true;							//	(the story player replans a leg that went wrong)
 		while( true){
 			local cmd = null;
 			try{ cmd = decodeJSON( FileRef( file).load()); }catch( ex){ cmd = null; }
@@ -127,15 +132,31 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 		local lines = path.split( "|").filter( @( v) v != "");
 		while( !::rpgstage || !::rpgstage["player3d"]) sleep( 200);
 		sleep( 2500);
-		local mapnow = { m = null };
+		local mapnow = { m = null, n = 0 };
 		newthread().start( @(){								//	map changes, as they happen
 			while( true){
 				local w = ::Rokugan.botWhere();
-				if( w && w.map != mapnow.m){ mapnow.m = w.map; ::Rokugan.botPos( "MAP"); }
+				if( w && w.map != mapnow.m){
+					mapnow.m = w.map; ::Rokugan.botPos( "MAP");
+					if( w.map.slice( 0, 2) == "M8" && "botname" in ::Rokugan){		//	a battle: a picture of both
+						sleep( 3000);										//	sides (user: sprites that face
+						local b = ::rpgstage ? ::rpgstage["battle"] : null, names = "";	//	the wrong way)
+						if( b) foreach( e in b.enemies) if( e) names += (names.len() ? ", " : "") .. e.name;
+						mapnow.n++;
+						printf( "[RT] BOT battle shot %d %S: %S\n", mapnow.n, w.map, names);
+						foreach( fr in [0, 1, 2]){						//	three frames apart: an idle loop's bad
+							::Rokugan.rtshot( "tmp/rt_shot/bot_" .. ::Rokugan.botname .. ("_battle_%03d_%d.raw" % [mapnow.n, fr]));
+							sleep( 350);									//	frame shows in one of them (user)
+						}
+					}
+				}
 				sleep( 150);
 			}
 		});
 		if( length( lines) && lines[0].len() > 6 && lines[0].slice( 0, 6) == "serve,"){
+			local f = lines[0].slice( 6), s = f.len() - 1;					//	tmp/bot/story_0_cmd.txt -> story_0
+			while( s > 0 && f.slice( s - 1, s) != "/") s--;
+			::Rokugan.botname <- f.slice( s, f.len() - 8);
 			this.botServe( lines[0].slice( 6));
 			return;
 		}
@@ -152,7 +173,10 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 			case "wait": sleep( int( a[1])); break;
 			case "hold": this.botSet( a[1], true); sleep( int( a[2])); this.botSet( a[1], false); sleep( 120); break;
 			case "tap": this.botSet( a[1], true); sleep( 90); this.botSet( a[1], false); sleep( 400); break;
-			case "goto": this.botGoto( float( a[1]), float( a[2]), length( a) > 3 ? float( a[3]) : 30000.0); break;
+			case "goto":											//	a waypoint missed: the rest of this route is
+				if( !this.botGoto( float( a[1]), float( a[2]), length( a) > 3 ? float( a[3]) : 30000.0)	//	stale
+					&& "serving" in ::Rokugan){ printf( "[RT] BOT leg aborted\n"); return; }
+				break;
 			case "shot": this.rtshot( "tmp/rt_shot/bot_" .. a[1] .. ".raw"); break;
 			case "pos": this.botPos( "pos"); break;
 			case "warp": {										//	warp MAP BX BZ: teleport (between tour legs)

@@ -4446,6 +4446,14 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   keep 1 cell from trees, shops pick Leave, villager lines skipped under -rtfast (showUI message_talk).
 - Story player results so far: Crab Ch1-3 complete start to finish (~40 min of play, Hida road walked both ways);
   Ch4 blocked at the cellar stair (fixed above).
+- **Bad animation frames** (user: "like the togashi's head"): the AI sheets' 8-frame idle turns the head (frames 0-1
+  and 6-7 show the side/back of the head, 2-5 the face): Yosai, Mitsue, Sachiko, Gendo, Tamotsu ... Every side-cast
+  and cast sprite with an 8-frame stand now plays 3,2,2,3,4,5,5,4 (706 sprites); Yosai's walk 8/15 and run 16 too.
+  `tools/frame_fixes.json` {EP: {bad: good}}, `tools/badframes.py --apply` (sheets as drawn kept in _art/frame_orig;
+  a sheet the sprite runner redraws becomes the new original). `tools/animsheet.py EPxxx` = one row per animation.
+  RE-RUN `badframes.py --apply` AFTER INSTALLING NEW SHEETS.
+- Story player: a battle burst (3 frames, 0.35 s apart) per battle, `story_N_battle_NNN_F.png`, enemy names logged
+  ("[RT] BOT battle shot") - for backwards sprites (user: enemies facing left / cast facing right) and bad frames.
 - Shop/inn doors: the portal sits 2 tiles out from the wall; walking along the footing past it never enters. Players
   walk up from the street, so the story player lines up 2 cells back and pushes in.
 - `tools/storyplay.py PATH`: plays a path from New Game (M099, prologue choice = PATH). Bot serve mode: a JSON command
