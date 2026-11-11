@@ -4385,3 +4385,71 @@ Result: required walk across 21 caves 1120 -> 2288 steps; 20 of 21 forced by the
   `gen_sprites2d.py` would OVERWRITE them: reinstall with install_aisheets.py afterwards.
 - Runner: the six Kakita sheets are drawn with the base sheets (before the busts). Installed today: Rensei, Shizue,
   Haruki, Mitsue, Tamotsu, Sayo, Gonta. Engine-checked: equip slots for Rensei, Natsuko, Haruki, Yosai, Hayato.
+
+## 2026-11-10: Playthrough testing (user: "simulate each path ... approach it like a player")
+User reports: Hiruma path no route to Hida castle; Crane path black screen after a screen change; Lion stairs don't
+work; Lion "wait at night" goes black; you can jump/fall off the Wall and get trapped.
+- **Test player** (plugin `RokuganBot.sk`, only with `-rtbot`; `tools/playbot.py NAME MAP X Z "steps" --vars ...`):
+  holds virtual keys through the field controller (no Windows keys, no focus), `goto MAP X Z` walks there (jumps when
+  blocked, detours), `tap z` talks, `shot NAME` screenshots, map changes logged. Steps are packed into the -rt arg.
+  Output `_art/preview/bot/NAME/`. Coordinates are gen_maps block coordinates of the map named in the step.
+- **Hida road**: the exit existed (M101 west edge) but nothing showed it (forest in the padding, a tree in the way).
+  New `pave_exit()` (edge_triggers): every edge exit gets a 4-wide road out to the map edge, trees cleared, and inward
+  until it meets a road. Edge trigger stays one square deep (user).
+- **Direction rule** (user: "going left you should keep going left ... or east"): Hida road flipped (garrison west ->
+  road's east end; road's west end -> Kyuden Hida's east side; M151 summer exit too). New `tools/edgecheck.py` checks
+  every edge exit lands on the opposite edge of the next map: 47 wrong -> fixed with `MOVE_EXIT` (exit moved to the
+  right edge, step-backs flipped) and `ARRIVE_AT` (portal lands at a walkable spot beside the right doorway). 8 left on
+  purpose: mid-map gates/doors and one-way story moves (M220, M286, M340, M372, M377, M391, M396, M408).
+- **Black screen**: DARK (cmd_screenfxon black) is only cleared by a map change; Crane M201 "Four days of road" (touch
+  scene) and Lion M242 Ukita "Wait for night" went dark and stayed dark. `fix_dark()` (make()): any command list that
+  goes dark and never moves map fades back in at its end.
+- **Lion stairs**: castle_floor() drew the back-right stair on every floor, even with no floor above (Hiruto's chapel,
+  barracks, guest wing, hall...). Now only when `up` is set.
+- **Wall**: M100 far parapet had gaps and a 1-block lip; jumping off landed in the Shadowlands with no way back.
+  Invisible walls along z 20-22 across the whole padded width.
+- `tools/storycheck.py [--path N]`: symbolic play of the built map.json from New Game (value sets per variable):
+  maps never reached, event pages whose conditions can never hold.
+- **Stairs, the real cause** (engine-tested): the engine never steps up while walking, so every 0.5 m stair needed a
+  jump ("you can kinda jump up them"). Plugin RokuganField: walking into a ledge 1 block high with room above lifts the
+  player onto it (`::Rokugan.STEPUP` 0.55). The Wall stairs are now walked without a single jump.
+- **Wall stairs (M101)** started 3 blocks above the yard (a jump clears 2): fell off the Wall = trapped. Two lower steps.
+- **Edge triggers made from walk-on talks kept d 2**: on west/east edges their 15 m strip lay ACROSS the road at one row
+  (fired early or never; e.g. M140 -> M151). edge_triggers() now sets d by side for every trigger.
+- pave_exit clears trees 3 cells either side (canopies overhung the new roads).
+- MOVE_EXIT M314/M351 put exits in the sea/river: moved the partner exits instead (M304 -> east, M350 -> west).
+- `tools/exittour.py [MAP ...]`: end-state world (every true/false flag true), pathfinds (walkcheck grid, the map's
+  largest walkable area) to every exit, walks in, checks it arrives where it should and the screen isn't black.
+  Report `_art/preview/bot/tour_report.txt`. Bot `warp` on the same map sets the position (moveMap ignored it).
+- `-rtvar @file` reads the list from a file (long lists): a JSON list, read with `decodeJSON(FileRef(f).load())`.
+- Engine script gotchas met here: no `'c'` char literals in comparisons that compile, no `str.find` (use `slice`),
+  no `x.tostring()` on numbers (use `"%d" % [x]`), `typeof(x) == SS_STRING` is a function, `FileRef.load()` gives a
+  ByteBuffer (no asText): use JSON. A compile error in RokuganBot.sk silently voided the first whole-game tour.
+- **Long edge triggers had dead ends** (engine-tested on M103's north edge: an 81 m strip fired from x 47-117 only;
+  M104's south edge failed at x 44). Cause (RPGEvent.spawnDistantCheck): spawndist 1, the default, spawns an event
+  only while its CENTRE is on screen (+3 m), so the far end of a long strip had no event at all. Edge triggers now get
+  spawndist 5 (always there), and make() gives it to any event whose box is 4 m+ across. Trigger 5 ("walk in") needs
+  the player's centre box (+-0.38 m) wholly inside the event box; no ray test (that's trigger 1/2 talk).
+- **M140 -> M151** (summer Kyuden Hida, after Crab Ch4): the walk-on talk at the west edge never fired; now a second
+  portal shown with G286 (the winter portal hides with it).
+- exittour: the "main area" was the largest walkable area, often a cliff top (cliff tops count as floor; seeds within
+  3 cells of an edge strip's middle landed on them); now the area under the exits' whole trigger boxes, seeds only at
+  an event's height, edge strips don't seed. The 45 "no route" exits were all that.
+- **Empty message boxes**: `Events.prop()` made every bottle/candle/dish a villager with msg "" (1,197 of them); the
+  villager role always talks, so Z beside one opened an empty box (found by the story player in the M120 inn). A
+  prop with nothing to say is now a custom event with no trigger (same model, still solid).
+- **Crab Ch4 was unwinnable**: M153 (Kyuden Hida cellars) - the servants' stair portal (x 66) sat 2 cells past the
+  end of the cellar's tunnel (it stopped at x 60), inside the rock: no way up to the dark castle. Tunnel runs to 68
+  now (engine-checked: walks through to M154). walkcheck never saw it (it seeds at the portal itself).
+- Story player found, all fixed in the planner (not game bugs): talk range ~1 m (closes in with `talkto`), examine
+  exits (cave mouth M105 -> M130), guard choice exits ("Go back up?" -> M152), road-following at edge strips, routes
+  keep 1 cell from trees, shops pick Leave, villager lines skipped under -rtfast (showUI message_talk).
+- Story player results so far: Crab Ch1-3 complete start to finish (~40 min of play, Hida road walked both ways);
+  Ch4 blocked at the cellar stair (fixed above).
+- Shop/inn doors: the portal sits 2 tiles out from the wall; walking along the footing past it never enters. Players
+  walk up from the street, so the story player lines up 2 cells back and pushes in.
+- `tools/storyplay.py PATH`: plays a path from New Game (M099, prologue choice = PATH). Bot serve mode: a JSON command
+  file `{n, steps, flags, quit}`; after each batch the bot prints its map/position and the set story flags. The planner
+  picks the nearest story event whose page would change a flag (Objective/arrival scenes first), routes map to map
+  through open exits (whole trigger boxes), walks, talks, screenshots each leg (`story_N_LLL.png`). Exits that fail
+  twice are reported as "BUG?" and routed around. Output `_art/preview/bot/story_N/play.txt`.

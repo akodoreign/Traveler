@@ -1,0 +1,213 @@
+//
+//	Test player (tools/playbot.py). Only active with -rtbot <steps file>: holds virtual keys the way a player would
+//	(walk, jump, talk), logs where the leader is, and takes screenshots. Never touches the real keyboard or focus.
+//	Steps, one per line (block coordinates = world * 2 on the map as built):
+//	  wait MS | hold KEYS MS | tap KEYS | goto BX BZ [MS] | shot NAME | pos | untilmap MAPID [MS] | until FLAG [MS]
+//	  KEYS: up,down,left,right,z,x,space,enter,esc joined by "+".
+//
+import ControlID;
+
+if( ::arguments.indexOf( "-rtbot") >= 0){
+	::Rokugan.botkeys <- {};
+	//	the field controller reads its inputs through each state's devfunc: the bot's held keys come first
+	::PlayerMoveController._rt_setup <- ::PlayerMoveController.setup;
+	::PlayerMoveController.setup <- function(){
+		this._rt_setup();
+		foreach( st in stats){
+			local f = st.devfunc, cid = st.cid;
+			st.devfunc = @() ::Rokugan.botInput( cid) || f();
+		}
+	};
+	::Rokugan.botInput <- function( cid){
+		local k = this.botkeys;
+		switch( cid){
+		case CTRL_MOVE: {
+			local dx = 1 + ("right" in k ? 1 : 0) - ("left" in k ? 1 : 0), dy = 1 + ("down" in k ? 1 : 0) - ("up" in k ? 1 : 0);
+			return [15,1,3,13,0,5,11,9,7][dy * 3 + dx];
+		}
+		case CTRL_SEARCH: return ("z" in k || "enter" in k) ? 1 : 0;
+		case CTRL_JUMP: return ("space" in k || "x" in k) ? 1 : 0;
+		case CTRL_MENU: return "esc" in k ? 1 : 0;
+		}
+		return 0;
+	};
+	::Rokugan.botSet <- function( keys, on){
+		foreach( k in keys.split( "+")){
+			if( on) this.botkeys[k] <- true;
+			else if( k in this.botkeys) delete this.botkeys[k];
+		}
+	};
+	::Rokugan.botWhere <- function(){
+		local st = ::rpgstage;
+		if( !st || !st["player3d"]) return null;
+		local p = st.player3d.pos;
+		return { map = st.mapid, x = p.x * 2.0, y = p.y * 2.0, z = p.z * 2.0, ev = !!st.mainevent, battle = !!st["battle"] };
+	};
+	::Rokugan.botPos <- function( tag){
+		local w = this.botWhere();
+		if( w) printf( "[RT] BOT %S %S %.1f %.1f y%.1f%S%S\n", tag, w.map, w.x, w.z, w.y, w.ev ? " event" : "", w.battle ? " battle" : "");
+	};
+	//	the 8 key combos and the world direction each one walks (camera-relative, like PlayerMoveAction)
+	::Rokugan.BOTDIRS <- [["up", 1], ["up+right", 3], ["right", 5], ["down+right", 7], ["down", 9], ["down+left", 11],
+		["left", 13], ["up+left", 15]];
+	::Rokugan.botleg <- null;								//	the map a tour leg walks on (set by warp)
+	::Rokugan.botGoto <- function( tx, tz, ms, tol = 0.9){
+		if( this.botleg && ::rpgstage && ::rpgstage.mapid != this.botleg) return false;	//	the exit already fired
+		local t = 0, last = null, still = 0, held = null, side = 0, sidet = 0, map0 = ::rpgstage.mapid, best = 999999.0;
+		while( t < ms){
+			local st = ::rpgstage, w = this.botWhere();
+			if( !w){ sleep( 100); t += 100; continue; }
+			if( w.map != map0){ if( held) this.botSet( held, false); printf( "[RT] BOT goto ended: map %S\n", w.map); return true; }
+			if( w.ev || w.battle){ if( held){ this.botSet( held, false); held = null; } sleep( 200); t += 200; last = null; continue; }
+			local dx = tx - w.x, dz = tz - w.z, d = Math.sqrt( dx * dx + dz * dz);
+			if( d < tol){ if( held) this.botSet( held, false); this.botPos( "at"); return true; }
+			best = Math.min( best, d);
+			local pick = null, bd = -2.0;
+			foreach( c in this.BOTDIRS){
+				local yaw = (c[1] - 1) * (Math.PI2 / 16.0) + st.camdir, v = Vector3D( 0, 0, 1).rotate( yaw, 0, 0);
+				local dot = (v.x * dx + v.z * dz) / d;
+				if( side){											//	detour: walk across the line for a moment
+					local s = (v.x * -dz + v.z * dx) / d * side;
+					dot = s * 0.9 + dot * 0.3;
+				}
+				if( dot > bd){ bd = dot; pick = c[0]; }
+			}
+			if( pick != held){ if( held) this.botSet( held, false); this.botSet( pick, true); held = pick; }
+			sleep( 100); t += 100;
+			if( side && (sidet += 100) > 900){ side = 0; sidet = 0; }
+			if( last){
+				local mv = Math.sqrt( Math.pow( w.x - last[0], 2) + Math.pow( w.z - last[1], 2));
+				still = mv < 0.08 ? still + 100 : 0;
+				if( still == 600){ this.botSet( "space", true); sleep( 80); this.botSet( "space", false); printf( "[RT] BOT jump (blocked)\n"); }
+				if( still >= 1500){ still = 0; side = (t / 1500) % 2 ? 1 : -1; printf( "[RT] BOT detour at %.1f %.1f\n", w.x, w.z); }
+			}
+			last = [w.x, w.z];
+		}
+		if( held) this.botSet( held, false);
+		this.botPos( "STUCK (goto %.0f %.0f, closest %.1f)" % [tx, tz, best]);
+		return false;
+	};
+	//	The story player (tools/storyplay.py) drives the bot live: it writes numbered step batches into a file, the bot runs
+	//	each new batch and reports where it is and every story flag that is set.
+	::Rokugan.botFlags <- function( names){				//	the story flags (of those named) that are set: "G010=1,G061=3"
+		local s = "";
+		foreach( k in names){
+			local x = ::rpgvar[k];
+			if( !x) continue;
+			s += (s.len() ? "," : "") .. k .. "=" .. (x == true ? "1" : "%d" % [int( x)]);
+		}
+		return s;
+	};
+	//	serve file (JSON): { n = batch number, steps = ["goto,1,2", ...], flags = ["G010", ...], quit = false }
+	::Rokugan.botServe <- function( file){
+		local last = 0;
+		while( true){
+			local cmd = null;
+			try{ cmd = decodeJSON( FileRef( file).load()); }catch( ex){ cmd = null; }
+			if( cmd && cmd["n"] && int( cmd.n) > last){
+				local n = int( cmd.n);
+				last = n;
+				if( cmd["quit"]){ printf( "[RT] BOT finished\n"); return; }
+				this.botSteps( cmd["steps"] || []);
+				local busy = 0;									//	a message left waiting (a villager's line does not
+				while( ::rpgstage && (::rpgstage.mainevent || ::rpgstage["battle"])){	//	auto-advance): press Z, as a player
+					sleep( 300);
+					busy = ::rpgstage["battle"] ? 0 : busy + 300;
+					if( busy >= 3000){ this.botSet( "z", true); sleep( 90); this.botSet( "z", false); busy = 2000; }
+				}
+				local w = this.botWhere();
+				printf( "[RT] BOT state %d %S %.1f %.1f %.1f\n", n, w ? w.map : "-", w ? w.x : 0.0, w ? w.z : 0.0, w ? w.y : 0.0);
+				printf( "[RT] BOT flags %d %s\n", n, this.botFlags( cmd["flags"] || []));
+			}
+			sleep( 300);
+		}
+	};
+	::Rokugan.botRun <- function( path){
+		//	steps come packed in the argument: "|" between steps, "," between words (the -rt pack splits on ";" and " ")
+		local lines = path.split( "|").filter( @( v) v != "");
+		while( !::rpgstage || !::rpgstage["player3d"]) sleep( 200);
+		sleep( 2500);
+		local mapnow = { m = null };
+		newthread().start( @(){								//	map changes, as they happen
+			while( true){
+				local w = ::Rokugan.botWhere();
+				if( w && w.map != mapnow.m){ mapnow.m = w.map; ::Rokugan.botPos( "MAP"); }
+				sleep( 150);
+			}
+		});
+		if( length( lines) && lines[0].len() > 6 && lines[0].slice( 0, 6) == "serve,"){
+			this.botServe( lines[0].slice( 6));
+			return;
+		}
+		this.botSteps( lines);
+		this.botPos( "done");
+		printf( "[RT] BOT finished\n");
+	};
+	::Rokugan.botSteps <- function( lines){
+		foreach( n, ln in lines){
+			local a = ln.split( ",").filter( @( v) v != "" && v != "\r");
+			if( !length( a)) continue;
+			printf( "[RT] BOT step %d: %S\n", n, ln);
+			switch( a[0]){
+			case "wait": sleep( int( a[1])); break;
+			case "hold": this.botSet( a[1], true); sleep( int( a[2])); this.botSet( a[1], false); sleep( 120); break;
+			case "tap": this.botSet( a[1], true); sleep( 90); this.botSet( a[1], false); sleep( 400); break;
+			case "goto": this.botGoto( float( a[1]), float( a[2]), length( a) > 3 ? float( a[3]) : 30000.0); break;
+			case "shot": this.rtshot( "tmp/rt_shot/bot_" .. a[1] .. ".raw"); break;
+			case "pos": this.botPos( "pos"); break;
+			case "warp": {										//	warp MAP BX BZ: teleport (between tour legs)
+				while( ::rpgstage && ::rpgstage.mainevent) sleep( 200);
+				if( ::rpgstage && ::rpgstage.mapid == a[1] && ::rpgstage["player3d"]){		//	same map: just stand there
+					local rp = ::rpgstage.player3d, s = ::Rokugan.nearestFloor( rp, float( a[2]) * 0.5 + 0.25, float( a[3]) * 0.5 + 0.25);
+					if( s){ rp.pos( s.x, s.y, s.z); rp.matdirty = true; }
+					sleep( 500);
+					this.botleg = a[1];
+					this.botPos( "warped");
+					break;
+				}
+				::RPGMain.moveMap( { dest = { mapid = a[1], pos = (float( a[2]) * 0.5, null, float( a[3]) * 0.5, 0.0) },
+					wipe = 1, remap = true });
+				local t = 0;
+				while( t < 15000 && !(::rpgstage && ::rpgstage.mapid == a[1] && ::rpgstage["player3d"] && !::rpgstage.mainevent)){
+					sleep( 200); t += 200;
+				}
+				sleep( 600);
+				this.botleg = a[1];
+				this.botPos( "warped");
+				break;
+			}
+			case "untilmap": {
+				local t = 0, ms = length( a) > 2 ? int( a[2]) : 20000;
+				while( t < ms && !(::rpgstage && ::rpgstage.mapid == a[1] && !::rpgstage.mainevent)){ sleep( 200); t += 200; }
+				this.botPos( t < ms ? "reached" : "NOT reached " .. a[1]);
+				break;
+			}
+			case "until": {
+				local t = 0, ms = length( a) > 2 ? int( a[2]) : 20000;
+				while( t < ms && !::rpgvar[a[1]]){ sleep( 200); t += 200; }
+				printf( "[RT] BOT flag %S %S\n", a[1], ::rpgvar[a[1]] ? "set" : "NOT set");
+				break;
+			}
+			case "vars": foreach( k in a.slice( 1)) printf( "[RT] BOT var %S = %S\n", k, ::rpgvar[k]); break;
+			case "talkto": {									//	talkto BX BZ: close in to ~1 m (blocked by a
+				this.botGoto( float( a[1]) + 0.5, float( a[2]) + 0.5, 2500.0, 2.0);	//	counter: stops there), face, Z
+				local rp = ::rpgstage.player3d, dx = float( a[1]) * 0.5 - rp.pos.x, dz = float( a[2]) * 0.5 - rp.pos.z;
+				rp.dir = Math.atan2( dx, dz); rp.matdirty = true;
+				sleep( 150);
+				this.botSet( "z", true); sleep( 90); this.botSet( "z", false); sleep( 400);
+				break;
+			}
+			case "face": {										//	face BX BZ: turn toward a spot (to talk)
+				local rp = ::rpgstage.player3d, dx = float( a[1]) * 0.5 - rp.pos.x, dz = float( a[2]) * 0.5 - rp.pos.z;
+				rp.dir = Math.atan2( dx, dz); rp.matdirty = true;
+				break;
+			}
+			}
+		}
+	};
+	{
+		local i = ::arguments.indexOf( "-rtbot");
+		local path = ::arguments[i+1];
+		newthread().start( @() ::Rokugan.botRun( path));
+	}
+}

@@ -234,7 +234,9 @@ class RTFollowAction extends EventMoveAction
 	}
 	if( i >= 0 && !("rtvar_done" in ::Rokugan)){
 		::Rokugan.rtvar_done <- true;
-		foreach( k in args[i+1].split( ",")){				//	G011 = true, G061=0 = a number
+		local vs = args[i+1];
+		local vl = vs.slice( 0, 1) == "@" ? decodeJSON( FileRef( vs.slice( 1)).load()) : vs.split( ",");	//	-rtvar @file: a JSON list
+		foreach( k in vl){									//	G011 = true, G061=0 = a number
 			local kv = k.split( "=");
 			::rpgvar[kv[0]] = length( kv) > 1 ? int( kv[1]) : true;
 		}
@@ -361,6 +363,17 @@ local rtShowChoices = function( cmd){
 		printf( "[RT] CHOICE %d: %S\n", v, c["text" .. v]);
 		return v;
 	}
+	if( ::arguments.indexOf( "-rtbot") >= 0){						//	the test player: the first option, except a
+		local c = this.replaceTemplate( cmd), n = 0;				//	shop's menu (Buy opens a screen it can't use):
+		while( c["text" .. (n + 1)]) n++;							//	its last option, Leave
+		//	the same menu again: the next option (a puzzle - "Offer hot sake / ... / Let pass" - needs the right one)
+		if( !("botseen" in ::Rokugan)) ::Rokugan.botseen <- {};
+		local key = (c["text0"] || "") .. "|" .. n, k = key in ::Rokugan.botseen ? ::Rokugan.botseen[key] : 0;
+		::Rokugan.botseen[key] <- k + 1;
+		local v = (c["text0"] == "Buy" || c["text0"] == "Sell") ? n : k % (n + 1);
+		printf( "[RT] CHOICE %d (auto): %S\n", v, c["text" .. v]);
+		return v;
+	}
 	return this._rt_showChoices( cmd);
 };
 local rtShowMessage = function( cmd){
@@ -405,6 +418,14 @@ foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]
 ::RPGMain.showUI <- function( t){
 	if( ::Rokugan.rtfast && (t.key == "misc_levelup" || t.key == "misc_waitclick")){
 		printf( "[RT] skip %S\n", t.key);
+		return null;
+	}
+	if( ::Rokugan.rtfast && t.key == "message_talk"){				//	a villager's line (macro X012 shows it as a UI,
+		printf( "[RT] MSG %S: %S\n", t["name"] || "", t["text"] || "");	//	not a message): logged, not waited on
+		return null;
+	}
+	if( (t.key == "menu_save" || t.key == "menu_load" || t.key == "menu_config") && ::arguments.indexOf( "-rtbot") >= 0){
+		printf( "[RT] skip %S (test player)\n", t.key);
 		return null;
 	}
 	return this._rt_showUI( t);
@@ -566,6 +587,29 @@ foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]
 		}
 	}
 	return this._rt_body( dt);
+};
+
+//	Stairs (user, 2026-11-10: "stairs do not work at all, you can kinda jump up them"): the engine never steps up while
+//	walking, so every 0.5 m stair or curb needed a jump. Walking into a ledge one block high (0.5 m) with room above it
+//	now lifts the player onto it; the normal ground snap then sets her down on the step. Taller ledges still need X.
+::Rokugan.STEPUP <- 0.55;
+::PlayerMoveAction._rt_body_step <- ::PlayerMoveAction.updateActionBody;
+::PlayerMoveAction.updateActionBody <- function( dt){
+	local st = ::rpgstage;
+	if( cdir && landed && !crimbing && !mvfunc && st && !st["battle"] && dt > 0.0){
+		local spd = ::rpgstat.settingmap.walkspd, d = (cdir-1)*(Math.PI2/16.0) + st.camdir;
+		local v = Vector3D( 0, 0, spd*dt*0.001 + 0.06).rotate( d, 0, 0), p = rp3d.pos;
+		local ref = rp3d.moveTest( p, v);
+		if( ref && ref.length() > v.length()*0.6){						//	walking into something
+			local up = Vector3D( p).add( 0, ::Rokugan.STEPUP, 0);
+			local ref2 = rp3d.moveTest( up, v);
+			if( !ref2 || ref2.length() < v.length()*0.2){				//	clear one step higher: a stair
+				p.y += ::Rokugan.STEPUP;
+				rp3d.matdirty = true;
+			}
+		}
+	}
+	return this._rt_body_step( dt);
 };
 
 //	Taint (rules/enemies.md "Taint"; storyboard crab-ch3 "Taint tiles"): condition K026, stacks to 5 (the engine shows

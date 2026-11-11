@@ -309,6 +309,14 @@ class Events:
     def prop(self, x, z, mdl, msg=None, d=1, reqs=None):
         e = {"role": "villager", "mdlid": mdl, "pos": self.pos(x, z, d), "moveaction": "stop", "movespd": 0,
              "reqs0": reqs, "pop": None, "standani": None, "msg": msg or ""}
+        if not msg:
+            # Nothing to say: not a villager (that role always talks, so Z by a bottle or a candle opened an empty
+            # message box: the story player stuck on one in the Hoshi-no-Ichi inn, 2026-11-10). A custom event with
+            # no trigger shows the same model and blocks the same way.
+            e = {"role": "custom", "mdlid": mdl, "pos": self.pos(x, z, d), "reqs0": reqs, "col": 0, "flags": 1,
+                 "spawndist": 1,
+                 "page": [{"ani": {"id": "stand"}, "trigger": 0, "memo": "prop", "moveaction": "stop", "movespd": 0,
+                           "pararun": False, "reqs": None, "standani": None, "cmdblock": []}]}
         return self._add(e)
 
     def light(self, x, z, col=0xFFFFB060, lr=5.0, dy=2):
@@ -684,6 +692,9 @@ def wall_watchtower():
     for x in range(0, 80, 4):                                                # far parapet crenels
         fill(m, x, 17, 19, 2, 3, 2, KAIU)
     fill(m, 0, 17, 21, 80, 1, 1, KAIU)
+    # (user, 2026-11-10: "you can jump/fall off the wall and get trapped") nobody goes over the far parapet, here or
+    # in the padding beyond the map's ends (the walkway continues there)
+    m.walls += [(x, z) for x in range(-PAD_X, 80 + PAD_X) for z in (20, 21, 22)]
     for x in range(0, 80, 6):                                                # inner parapet
         fill(m, x, 17, 0, 3, 1, 1, KAIU)
     for (rx, rz) in ((10, 28), (24, 31), (37, 26), (52, 33), (63, 27), (74, 30)):   # Shadowlands rocks
@@ -710,6 +721,8 @@ def wall_garrison():
     fill(m, 9, 12, 42, 9, 1, 1, KAIU)
     for i, zz in enumerate(range(31, 42)):                                   # stairs up the Wall face
         m.rect(62, zz, 5, 1, STONEW, 2 + i + 3)
+    m.rect(62, 29, 5, 1, STONEW, 3)                                          # (user: "fall off the wall and get
+    m.rect(62, 30, 5, 1, STONEW, 4)                                          # trapped") the first step was 3 high
     building(m, 5, 30, 13, 8)                                                # Tomoe's office
     building(m, 24, 30, 20, 8, wall_h=5)                                     # barracks
     building(m, 5, 13, 11, 7, wall=WOOD)                                     # armoury
@@ -1490,11 +1503,17 @@ def hida_road():
         m.tree(x + 4, 4, (TREE_L, TREE_M)[x % 2])
     shrine(m, 52, 22)
     ev = Events(m)
-    ev.portal(1, 15, "M101", DOOR_EV[("M101", "hidaroad")], d=1)
-    kh_east = ev.portal(118, 15, "M141", 1, d=3)                            # winter town, until Crab Ch4 ends
-    ev.ev["#%d#" % kh_east]["reqs0"] = [flag("G286", False)]
-    ev.talk(118, 15, "CE000", [([flag("G286")], [go("M151", 4, 32)])], trigger=5)   # then the summer town
-    ev.talk(6, 19, "CE000", [(None, [narrate("A road-stone: \"Kyuden Hida, two days. Danger 18-25.\"")])],
+    # (user: "going left you should keep going left") the garrison's west edge leads onto the road's EAST end; the
+    # road's west end leads into Kyuden Hida's east side
+    ev.portal(118, 15, "M101", DOOR_EV[("M101", "hidaroad")], d=3)
+    kh_west = ev.portal(1, 15, "M141", 1, d=1)                              # winter town, until Crab Ch4 ends
+    ev.ev["#%d#" % kh_west]["reqs0"] = [flag("G286", False)]
+    kh_sum = ev.portal(1, 15, "M151", 1, d=1)                               # then the summer town (a portal: a
+    ev.ev["#%d#" % kh_sum]["reqs0"] = [flag("G286")]                         # walk-on event at the edge never fired)
+    p = list(go("M151", 105, 32)["dest"]["pos"])
+    p[1] = None                                                             # (land on the ground there)
+    ev.ev["#%d#" % kh_sum]["dest"] = {"mapid": "M151", "pos": p}
+    ev.talk(113, 19, "CE000", [(None, [narrate("A road-stone: \"Kyuden Hida, two days. Danger 18-25.\"")])],
             trigger=1)
     ev.chest(86, 20, "I101", 2)
     ev.chest(100, 32, "A108", 1)                                           # up the Wall-stair
@@ -1533,7 +1552,7 @@ def kh_town():
     for x, z in ((4, 44), (100, 44), (104, 22)):
         m.tree(x, z, TREE_M)
     ev = Events(m)
-    ev.portal(1, 32, "M140", 2, d=1)                                       # event 1: the Hida road
+    ev.portal(108, 32, "M140", 2, d=3)                                     # event 1: the Hida road (east side)
     DOOR_EV[("M141", "castle")] = ev.portal(54, 46, "M142", 1, d=0)
     ev.ev["#%d#" % DOOR_EV[("M141", "castle")]]["reqs0"] = [flag("G200")]
     ev.talk(54, 44, SC["townguard"], [
@@ -1548,7 +1567,7 @@ def kh_town():
     for room, (fp, imid) in KH_ROOMS.items():
         DOOR_EV[("M141", room)] = ev.portal(*door_of(fp[0], fp[1], fp[2]), imid, 1, d=0)
     signpost(m, ev, 8, 36, "KH")
-    ev.talk(108, 32, "CE000", [(None, [narrate("The river road to the port. The harbour is iced in until spring.")])],
+    ev.talk(1, 32, "CE000", [(None, [narrate("The river road to the port. The harbour is iced in until spring.")])],
             trigger=5)
     ev.npc(30, 34, SC["merchant"] if "merchant" in SC else EP_SERVICE["merchant"],
            "Jade! Jade dust! Burns goblins, cleans wounds, impresses in-laws!")
@@ -1655,8 +1674,8 @@ def castle_floor(mid, name, w, d, layout, up=None, down=None, wall=PLASTER, extr
             pass
         else:
             fb(m, x, z, 4, IN[kind], y=1)
-    for i in range(3):                                                     # the stair up, back right
-        fill(m, W - 5, 2 + i, D - 4 + i, 3, 1, 1, DARKWOOD)
+    for i in range(3 if up else 0):                                        # the stair up, back right (user: Lion
+        fill(m, W - 5, 2 + i, D - 4 + i, 3, 1, 1, DARKWOOD)                # rooms showed stairs that led nowhere)
     ev = Events(m)
     if down:
         ev.portal(2 if mid != "M142" else W // 2, 2 if mid != "M142" else 1, down[0], down[1], d=2)
@@ -2312,6 +2331,147 @@ def mark_exits(m, ev):
                 ev.ev["#%d#" % n]["memo"] = "barricade"
 
 
+def fix_dark(x):
+    """(user, 2026-11-10: Crane "the screen is completely black"; Lion "wait at night, screen goes black") DARK fades
+    the screen to black and only a map change (a new stage) clears it. Any command list that goes dark and then never
+    moves map gets the screen faded back in at its end."""
+    def is_black(c):
+        return isinstance(c, dict) and c.get("cmd") == "cmd_screenfxon" and c.get("sfxid") == "color0" and \
+            c.get("color") == 255
+
+    def moves(c):
+        return "cmd_mapmove" in json.dumps(c) or "::Rokugan.travel" in json.dumps(c)
+    if isinstance(x, list):
+        for c in x:
+            fix_dark(c)
+        i = next((n for n, c in enumerate(x) if is_black(c)), None)
+        if i is not None and not any(moves(c) for c in x[i + 1:]) and \
+                not any(isinstance(c, dict) and c.get("cmd") == "cmd_screenfxoff" for c in x[i + 1:]):
+            x.append({"cmd": "cmd_screenfxoff", "sfxbits": 7, "time": 900})
+    elif isinstance(x, dict):
+        for v in x.values():
+            if isinstance(v, (list, dict)):
+                fix_dark(v)
+
+
+PAVE_SKIP = {WATER}
+# (user, 2026-11-10: "going left you should keep going left ... or east") Exits that sat on the wrong edge for where
+# they lead (tools/edgecheck.py lists them): {map: {destination map: the edge the exit belongs on}}. Applied in
+# make() before mark_exits(): the exit (and any edge trigger beside it) moves to that edge; pave_exit draws the road.
+MOVE_EXIT = {
+    "M216": {"M200": "b"}, "M203": {"M202": "f"}, "M254": {"M241": "e"},
+    "M272": {"M255": "b"}, "M288": {"M285": "f"}, "M297": {"M288": "b"},
+    "M304": {"M314": "e"}, "M326": {"M322": "w"}, "M333": {"M323": "e"}, "M350": {"M351": "w"},
+    "M362": {"M361": "w", "M365": "e"}, "M384": {"M382": "w"}, "M386": {"M385": "f"}, "M397": {"M396": "w"},
+    "M404": {"M399": "b"}, "M405": {"M404": "w"},
+}
+# Edge exits whose arrival point was on the wrong side of the next map (it shared a landing spot with another exit):
+# {map: {destination: (x, z) unpadded}} - they land beside the right doorway instead (spots found walkable).
+ARRIVE_AT = {"M214": {"M210": (101, 28)}, "M286": {"M285": (58, 23)}, "M408": {"M404": (54, 18)},
+             "M409": {"M408": (101, 16)}, "M430": {"M431": (4, 15)}, "M431": {"M432": (7, 20)},
+             "M432": {"M433": (7, 20)}, "M440": {"M439": (73, 15)}}
+
+
+def _exit_dests(e):
+    s = json.dumps(e.get("dest") or {}) + json.dumps(e.get("page") or [])
+    return set(re.findall(r'"mapid": "(M\d+)"', s))
+
+
+def move_exits(m, ev, mid):
+    for dest, (ax, az) in ARRIVE_AT.get(mid, {}).items():
+        n = 0
+        for e in ev.ev.values():
+            if e.get("role") == "portal" and (e.get("dest") or {}).get("mapid") == dest:
+                e["dest"] = {"mapid": dest, "pos": world(dest, ax, az, 0.0)}
+                n += 1
+        if not n:
+            print("   ARRIVE_AT %s -> %s: no portal found" % (mid, dest))
+    for dest, side in MOVE_EXIT.get(mid, {}).items():
+        def on_edge(e):
+            x, z = e["pos"][0], e["pos"][2]
+            return x <= 2 or x >= m.w - 3 or z <= 2 or z >= m.d - 3
+        hits = [e for e in ev.ev.values() if "pos" in e and dest in _exit_dests(e) and on_edge(e)]
+        if not hits:
+            print("   MOVE_EXIT %s -> %s: no edge exit found" % (mid, dest))
+            continue
+        ox, oz = hits[0]["pos"][0], hits[0]["pos"][2]
+        near = [e for e in ev.ev.values() if "pos" in e and e not in hits and e.get("mdlid") == "CE000"
+                and abs(e["pos"][0] - ox) + abs(e["pos"][2] - oz) <= 3
+                and any(pg.get("trigger") == 5 for pg in e.get("page") or [])]
+        if side in ("w", "e"):
+            x = 1 if side == "w" else m.w - 2
+            if (ox <= 2 or ox >= m.w - 3):
+                z = oz                                                      # same axis: keep the road's line
+            else:
+                rows = [zz for zz in range(2, m.d - 2) if int(m.blk[zz, x]) == ROAD] or \
+                       [zz for zz in range(2, m.d - 2) if int(m.blk[zz, x]) != WATER]
+                z = min(rows, key=lambda zz: abs(zz - m.d // 2)) if rows else m.d // 2
+        else:
+            z = 1 if side == "f" else m.d - 2
+            if oz <= 2 or oz >= m.d - 3:
+                x = ox
+            else:
+                cols = [xx for xx in range(2, m.w - 2) if int(m.blk[z, xx]) == ROAD] or \
+                       [xx for xx in range(2, m.w - 2) if int(m.blk[z, xx]) != WATER]
+                x = min(cols, key=lambda xx: abs(xx - m.w // 2)) if cols else m.w // 2
+        for e in hits + near:
+            dx, dz = e["pos"][0] - ox, e["pos"][2] - oz
+            nx, nz = (x, z + dz) if side in ("w", "e") else (x + dx, z)
+            nx, nz = min(max(nx, 0), m.w - 1), min(max(nz, 0), m.d - 1)
+            e["pos"] = [int(nx), int(m.hgt[nz, nx]) + 1, int(nz), e["pos"][3]]
+            inward = {"w": (1, 0), "e": (-1, 0), "f": (0, 1), "b": (0, -1)}[side]
+
+            def flip(x_):                                                    # step_back pushes inward
+                if isinstance(x_, list):
+                    for c in x_:
+                        flip(c)
+                elif isinstance(x_, dict):
+                    if x_.get("cmd") == "cmd_move" and x_.get("who") == 1 and isinstance(x_.get("pos"), list):
+                        k = max(abs(v) for v in x_["pos"][:2]) or 2.0
+                        x_["pos"] = [inward[0] * k, inward[1] * k]
+                    for v in x_.values():
+                        flip(v)
+            flip(e.get("page"))
+
+
+def pave_exit(m, x, z, side):
+    """(user, 2026-11-10: "if there is road that way, it should show as a road") A 4-wide road from an edge exit out to
+    the map's real edge (through the padding, trees cleared, level with the exit), and inward until it meets a road
+    or a step it can't take (up to 14 cells), so every way out reads as a way out."""
+    x, z = int(x), int(z)
+    out = {"w": (-1, 0), "e": (1, 0), "f": (0, -1), "b": (0, 1)}[side]
+    acr = (0, 1) if side in ("w", "e") else (1, 0)
+    h0 = int(m.hgt[z, x])
+    cells = set()
+
+    solid = set()
+    for o in m.objs:
+        if o["t"] == "fill" and o["blk"] != 0:
+            solid.update((o["x"] + i, o["z"] + j) for i in range(o["w"]) for j in range(o["d"]))
+
+    def lay(cx, cz, flatten=True):
+        for k in (-2, -1, 0, 1):
+            px, pz = cx + k * acr[0], cz + k * acr[1]
+            if 0 <= px < m.w and 0 <= pz < m.d and (flatten or (int(m.hgt[pz, px]) == h0 and (px, pz) not in solid)):
+                cells.add((px, pz))
+                if int(m.blk[pz, px]) not in PAVE_SKIP:
+                    m.blk[pz, px] = ROAD
+                m.hgt[pz, px] = h0
+    cx, cz = x, z
+    while 0 <= cx < m.w and 0 <= cz < m.d:                                   # outward to the edge
+        lay(cx, cz)
+        cx, cz = cx + out[0], cz + out[1]
+    cx, cz = x - out[0], z - out[1]
+    for _ in range(14):                                                       # inward, while the ground is level
+        if not (0 <= cx < m.w and 0 <= cz < m.d) or abs(int(m.hgt[cz, cx]) - h0) > 0 or int(m.blk[cz, cx]) == ROAD \
+                or (cx, cz) in solid:
+            break
+        lay(cx, cz, flatten=False)
+        cx, cz = cx - out[0], cz - out[1]
+    near = {(a + i, b + j) for a, b in cells for i in range(-3, 4) for j in range(-3, 4)}   # (canopies are wide)
+    m.objs = [o for o in m.objs if not (o["t"] == "fb" and o.get("fbtype") == 20 and (o["x"], o["z"]) in near)]
+
+
 def edge_triggers(m, ev):
     """After pad(): each recorded exit's trigger goes to the map's real edge, as long as the stretch of edge it owns
     (the whole edge, or up to the midpoint with a neighbouring exit on the same edge). A portal's own event stays where
@@ -2320,6 +2480,7 @@ def edge_triggers(m, ev):
     by_side = {}
     for key, side in getattr(m, "exits", []):
         by_side.setdefault(side, []).append(key)
+        pave_exit(m, ev.ev[key]["pos"][0], ev.ev[key]["pos"][2], side)
     for side, keys in by_side.items():
         along = 2 if side in ("w", "e") else 0                               # pos index of the along-edge coordinate
         length = m.d if side in ("w", "e") else m.w
@@ -2343,15 +2504,24 @@ def edge_triggers(m, ev):
                 x = mid
             if z is None:
                 z = mid
+            # the box's long side runs along the edge: d turns it (walk-on triggers kept d 2, which laid a west/east
+            # edge's strip ACROSS the road, 15 m long, at one row: it fired early or not at all)
+            d = {"w": 3, "e": 1, "f": 2, "b": 0}[side]
             trig = copy.deepcopy(e) if e.get("role") == "portal" else e
-            trig["pos"] = [int(x), int(m.hgt[z, x]) + 1, int(z), e["pos"][3]]
+            trig["pos"] = [int(x), int(m.hgt[z, x]) + 1, int(z), d]
             r = list((trig.get("mdl") or {}).get("r") or [0, 1.0, 0, 1.0, 1.0, 1.0])
             r[3] = max(1.0, (hi - lo) / 4.0)                                 # half its stretch, in metres (0.5 m blocks)
             r[4] = 6.0                                                       # tall: any floor height along the edge
-            r[5] = 0.5
+            r[5] = 0.5                                                       # one square deep (user)
             trig.setdefault("mdl", {})["r"] = r
+            # Always there: spawndist 1 (the default) only spawns an event while its CENTRE is on screen (RPGEvent
+            # spawnDistantCheck), so the far ends of a long edge strip had no trigger at all (engine-tested
+            # 2026-11-10: M103's 81 m north strip fired from x 47 to 117 only; the M104 south edge failed at x 44).
+            trig["spawndist"] = 5
+            m.edge_out = getattr(m, "edge_out", []) + [(key, side)]         # (tools/edgecheck.py)
             if trig is not e:
-                ev._add(trig)
+                m.edge_out[-1] = ("#%d#" % ev._add(trig), side)
+            if e.get("role") == "portal":
                 e["role"], e["mdlid"] = "custom", "CE000"                     # the landing spot: no longer a trigger
                 e["page"] = [{"ani": {"id": "stand"}, "trigger": 0, "memo": "landing", "moveaction": "stop",
                               "movespd": 4, "pararun": False, "reqs": None, "standani": None, "cmdblock": []}]
@@ -3046,10 +3216,10 @@ def kh_town_summer():
     m.mid, m.name = "M151", "Kyuden Hida - castle town (summer)"
     m.blk[m.blk == SNOW] = GRASS2
     ev = Events(m)
-    ev.talk(1, 32, "CE000", [(None, [narrate("The river road west. Not today: the wedding feast runs until dark."),
-                                     step_back(2.0, 0)]),
-                             ([flag("G286")], [narrate("The river road west, toward the Hida road and the Wall."),
-                                               go("M140", 115, 15)])], trigger=5)
+    ev.talk(108, 32, "CE000", [(None, [narrate("The road east. Not today: the wedding feast runs until dark."),
+                                       step_back(-2.0, 0)]),
+                               ([flag("G286")], [narrate("The road east, toward the Hida road and the Wall."),
+                                                 go("M140", 4, 15)])], trigger=5)
     signpost(m, ev, 8, 36, "KH")                                           # fast travel (the KH node)
     ev.talk(24, 37, SC["townguard"], [                                     # storyboard crab-ch4: the fragment trade
         (None, [say("Kaiu smith", "Oni bone? Bring me some and see what I make of it.")]),
@@ -3139,7 +3309,8 @@ COURTIERS = [if_([{"lvar": "G291", "op": ">", "rvar": 0}],
 def cellars():
     m = cave_map("M153", "Kyuden Hida - the cellars", 70, 30,
                  rooms=[(8, 14, 6, 4), (30, 14, 12, 5), (54, 14, 10, 6)],
-                 links=[(8, 14, 60, 14, 4)], seed=41, floor=STONEW, wall=STONE)
+                 links=[(8, 14, 68, 14, 4)], seed=41, floor=STONEW, wall=STONE)   # (to the stair at x 66: it
+                                                                            # stopped at 60, the stair was in the rock)
     for x in range(44, 64, 3):                                              # pickle barrels
         m.block(x, 9, DARKWOOD), m.block(x + 1, 19, DARKWOOD)
     ev = Events(m)
@@ -18253,7 +18424,10 @@ def make(i):
     if ev is not None and hasattr(m, "cave_floor"):
         _cave.sprawl(m, ev, i, (ROCK_S, ROCK_M), save_shrine)
     library_to_ours(m, ev, battle="M800" <= i < "M900")
+    if ev is not None:
+        fix_dark(ev.ev)
     if ev is not None and ("M100" <= i < "M800") and i not in INTERIORS and i not in ROOM_OFS:
+        move_exits(m, ev, i)
         mark_exits(m, ev)
     if "M800" <= i < "M900":
         clear_arena(m)
@@ -18261,6 +18435,11 @@ def make(i):
         pad(m, ev)
         if ev is not None and getattr(m, "exits", None):
             edge_triggers(m, ev)
+    if ev is not None:                                                     # a big walk-in box whose centre can be
+        for e in ev.ev.values():                                           # off screen while the player is in it
+            r = (e.get("mdl") or {}).get("r") or []                        # would not exist there (spawndist 1)
+            if len(r) == 6 and max(r[3], r[5]) >= 2.0 and e.get("spawndist", 1) == 1 and e.get("role") != "villager":
+                e["spawndist"] = 5
     return m, ev
 
 
