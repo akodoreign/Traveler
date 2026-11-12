@@ -14,7 +14,8 @@ SHUGENJA = {"P104", "P124", "P135", "P137", "P139"}
 MONK = {"P132"}
 OTHER = {"P105", "P106", "P107", "P122", "P125", "P136"}     # shinobi, courtiers, ronin healer, nezumi, a heimin wrestler
 #                  MP share, TP share of each character's old magic curve
-SHARES = {"shugenja": (1.0, 0.0), "monk": (0.8, 0.4), "other": (0.45, 0.75), "samurai": (0.0, 1.0)}
+# (user 2026-11-12: kiho cost TP) shugenja get a small TP pool for their kiho
+SHARES = {"shugenja": (1.0, 0.25), "monk": (0.8, 0.4), "other": (0.45, 0.75), "samurai": (0.0, 1.0)}
 
 CLAN = {"Hiruma": "crab", "Hida": "crab", "Kaiu": "crab", "Kuni": "crab", "Yasuki": "crab", "Akodo": "lion", "Matsu": "lion", "Ikoma": "lion", "Kitsu": "lion",
         "Kakita": "crane", "Doji": "crane", "Daidoji": "crane", "Asahina": "crane", "Mirumoto": "dragon", "Kitsuki": "dragon", "Togashi": "dragon", "Tamori": "dragon",
@@ -136,7 +137,8 @@ def main():
         text = json.dumps(x)
         for sid, v in sk.items():
             if isinstance(v, dict) and sid >= "S100" and '"%s"' % sid in text and v.get("consume", [0, 0])[1] > 0:
-                if (x["rt_class"] == "samurai" and v["consume"][0] == 0) or (x["rt_class"] == "shugenja" and v["consume"][0] == 1):
+                if (x["rt_class"] == "samurai" and v["consume"][0] == 0) or (
+                        SHARES[x["rt_class"]][1] == 0 and v["consume"][0] == 1):
                     print("WARNING: %s (%s) owns %s %s, which it cannot pay for" % (x["name"], x["rt_class"], sid, v["name"]))
     if unsorted_:
         print("WARNING: paid skills not sorted into MP or TP:", ", ".join(unsorted_))

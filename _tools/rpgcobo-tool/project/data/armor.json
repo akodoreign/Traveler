@@ -2,12 +2,12 @@
 	"A000": {
 		"MDEF": 0,
 		"PDEF": 2,
-		"desc": "木製の粗末な盾",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 8,
 		"icon": "",
 		"mdlid": "EV022",
-		"name": "木の盾",
+		"name": "(unused armor A000)",
 		"option": [
 			{
 				"LV": 1,
@@ -30,12 +30,12 @@
 	"A001": {
 		"MDEF": 0,
 		"PDEF": 5,
-		"desc": "木製の粗末な盾",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 8,
 		"icon": "",
 		"mdlid": "EV022",
-		"name": "甲羅の盾",
+		"name": "(unused armor A001)",
 		"option": [
 			{
 				"LV": 1,
@@ -58,12 +58,12 @@
 	"A002": {
 		"MDEF": 0,
 		"PDEF": 12,
-		"desc": "安価な割に丈夫な盾。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 9,
 		"icon": "",
 		"mdlid": "EV009",
-		"name": "鉄の盾",
+		"name": "(unused armor A002)",
 		"option": [
 			{
 				"LV": 1,
@@ -86,12 +86,12 @@
 	"A003": {
 		"MDEF": 0,
 		"PDEF": 15,
-		"desc": "頑丈な盾",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 9,
 		"icon": "",
 		"mdlid": "EV004",
-		"name": "大盾",
+		"name": "(unused armor A003)",
 		"option": [
 			{
 				"LV": 1,
@@ -121,12 +121,12 @@
 	"A004": {
 		"MDEF": 4,
 		"PDEF": 12,
-		"desc": "不思議な力で属性攻撃を軽減。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 8,
 		"icon": "",
 		"mdlid": "EV009",
-		"name": "守りの盾",
+		"name": "(unused armor A004)",
 		"option": [
 			{
 				"EDR.0": 0,
@@ -158,12 +158,12 @@
 	"A005": {
 		"MDEF": 4,
 		"PDEF": 18,
-		"desc": "騎士の用いる高性能な盾。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 9,
 		"icon": "",
 		"mdlid": "EV019",
-		"name": "ナイトシールド",
+		"name": "(unused armor A005)",
 		"option": [
 			{
 				"LV": 1,
@@ -186,12 +186,12 @@
 	"A006": {
 		"MDEF": 0,
 		"PDEF": 23,
-		"desc": "とても重く頑丈な盾",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 9,
 		"icon": "",
 		"mdlid": "EV020",
-		"name": "ヘビーシールド",
+		"name": "(unused armor A006)",
 		"option": [
 			{
 				"LV": 1,
@@ -221,12 +221,12 @@
 	"A007": {
 		"MDEF": 10,
 		"PDEF": 21,
-		"desc": "騎士の用いる高性能な盾。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 9,
 		"icon": "",
 		"mdlid": "EV009",
-		"name": "ミラーシールド",
+		"name": "(unused armor A007)",
 		"option": [
 			{
 				"LV": 1,
@@ -249,12 +249,12 @@
 	"A008": {
 		"MDEF": 16,
 		"PDEF": 23,
-		"desc": "騎士の用いる高性能な盾。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 8,
 		"icon": "",
 		"mdlid": "EV009",
-		"name": "女神の盾",
+		"name": "(unused armor A008)",
 		"option": [
 			{
 				"LV": 1,
@@ -277,12 +277,12 @@
 	"A009": {
 		"MDEF": 12,
 		"PDEF": 36,
-		"desc": "騎士の用いる高性能な盾。",
+		"desc": "",
 		"eqflag": 0,
 		"eqtype": 9,
 		"icon": "",
 		"mdlid": "EV019",
-		"name": "勇者の盾",
+		"name": "(unused armor A009)",
 		"option": [
 			{
 				"LV": 1,
@@ -305,12 +305,12 @@
 	"A020": {
 		"MDEF": 0,
 		"PDEF": 4,
-		"desc": "普段着としても使える上着。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
 		"mdlid": null,
-		"name": "レザーベスト",
+		"name": "(unused armor A020)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 60
@@ -318,12 +318,12 @@
 	"A021": {
 		"MDEF": 3,
 		"PDEF": 7,
-		"desc": "厚手の綿で守りも堅いローブ。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
 		"mdlid": null,
-		"name": "木綿のローブ",
+		"name": "(unused armor A021)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 120
@@ -331,12 +331,12 @@
 	"A022": {
 		"MDEF": 0,
 		"PDEF": 14,
-		"desc": "軽くて頑丈。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 14,
 		"icon": "",
 		"mdlid": null,
-		"name": "鎖かたびら",
+		"name": "(unused armor A022)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 330
@@ -344,12 +344,12 @@
 	"A023": {
 		"MDEF": 0,
 		"PDEF": 13,
-		"desc": "格闘家のための服。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
 		"mdlid": null,
-		"name": "武道着",
+		"name": "(unused armor A023)",
 		"option": [
 			{
 				"LV": 1,
@@ -370,7 +370,7 @@
 		"eqtype": 13,
 		"icon": "",
 		"mdlid": null,
-		"name": "修道服",
+		"name": "(unused armor A024)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 290
@@ -378,12 +378,12 @@
 	"A025": {
 		"MDEF": 0,
 		"PDEF": 20,
-		"desc": "軽くて頑丈。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 15,
 		"icon": "",
 		"mdlid": null,
-		"name": "アイアンメイル",
+		"name": "(unused armor A025)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 740
@@ -391,12 +391,12 @@
 	"A026": {
 		"MDEF": 0,
 		"PDEF": 18,
-		"desc": "軽くて頑丈。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
 		"mdlid": null,
-		"name": "忍び装束",
+		"name": "(unused armor A026)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 980
@@ -404,12 +404,12 @@
 	"A027": {
 		"MDEF": 0,
 		"PDEF": 30,
-		"desc": "軽くて頑丈。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 15,
 		"icon": "",
 		"mdlid": null,
-		"name": "プレートアーマー",
+		"name": "(unused armor A027)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 3500
@@ -422,7 +422,7 @@
 		"eqtype": 13,
 		"icon": "",
 		"mdlid": null,
-		"name": "魔道の衣",
+		"name": "(unused armor A028)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 2800
@@ -430,12 +430,12 @@
 	"A029": {
 		"MDEF": 0,
 		"PDEF": 45,
-		"desc": "軽くて頑丈。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 15,
 		"icon": "",
 		"mdlid": null,
-		"name": "ドラゴンメイル",
+		"name": "(unused armor A029)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 11500
@@ -448,7 +448,7 @@
 		"eqtype": 13,
 		"icon": "",
 		"mdlid": null,
-		"name": "タイガーベスト",
+		"name": "(unused armor A030)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 6700
@@ -456,12 +456,12 @@
 	"A040": {
 		"MDEF": 2,
 		"PDEF": 2,
-		"desc": "軽くて頑丈。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 10,
 		"icon": "",
 		"mdlid": null,
-		"name": "皮の帽子",
+		"name": "(unused armor A040)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 40
@@ -469,12 +469,12 @@
 	"A041": {
 		"MDEF": 3,
 		"PDEF": 6,
-		"desc": "軽くて頑丈。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 11,
 		"icon": "",
 		"mdlid": null,
-		"name": "アイアンヘルム",
+		"name": "(unused armor A041)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 140
@@ -482,12 +482,12 @@
 	"A042": {
 		"MDEF": 4,
 		"PDEF": 4,
-		"desc": "軽くて頑丈。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 10,
 		"icon": "",
 		"mdlid": null,
-		"name": "ベレー帽",
+		"name": "(unused armor A042)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 110
@@ -495,12 +495,12 @@
 	"A043": {
 		"MDEF": 6,
 		"PDEF": 10,
-		"desc": "軽くて頑丈。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 11,
 		"icon": "",
 		"mdlid": null,
-		"name": "ナイトヘルム",
+		"name": "(unused armor A043)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 260
@@ -508,12 +508,12 @@
 	"A044": {
 		"MDEF": 12,
 		"PDEF": 6,
-		"desc": "軽くて頑丈。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 10,
 		"icon": "",
 		"mdlid": null,
-		"name": "マジックハット",
+		"name": "(unused armor A044)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 320
@@ -521,12 +521,12 @@
 	"A045": {
 		"MDEF": 9,
 		"PDEF": 15,
-		"desc": "軽くて頑丈。",
+		"desc": "",
 		"eqflag": -1,
 		"eqtype": 11,
 		"icon": "",
 		"mdlid": null,
-		"name": "ダイヤヘルム",
+		"name": "(unused armor A045)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 540
@@ -539,7 +539,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "魔除けの数珠",
+		"name": "(unused armor A050)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -552,7 +552,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "魔寄せの数珠",
+		"name": "(unused armor A051)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -565,7 +565,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "命のペンダント",
+		"name": "(unused armor A052)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -578,7 +578,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "祝福の指輪",
+		"name": "(unused armor A053)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -591,7 +591,7 @@
 		"eqtype": 17,
 		"icon": "",
 		"mdlid": null,
-		"name": "安全靴",
+		"name": "(unused armor A054)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -604,7 +604,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "アミュレット",
+		"name": "(unused armor A055)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -617,7 +617,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "ガントレット",
+		"name": "(unused armor A056)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -630,7 +630,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "金の髪飾り",
+		"name": "(unused armor A057)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -643,7 +643,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "明鏡止水",
+		"name": "(unused armor A058)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -656,7 +656,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "七色のオーブ",
+		"name": "(unused armor A059)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -669,7 +669,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "風の守り",
+		"name": "(unused armor A060)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -682,7 +682,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "風の守り",
+		"name": "(unused armor A061)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -695,7 +695,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "風の守り",
+		"name": "(unused armor A062)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -708,7 +708,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "風の守り",
+		"name": "(unused armor A063)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -721,7 +721,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "戦士の首飾り",
+		"name": "(unused armor A064)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -734,7 +734,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "天使の羽",
+		"name": "(unused armor A065)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -747,7 +747,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "魔神の小手",
+		"name": "(unused armor A066)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -760,7 +760,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "ラバーバンド",
+		"name": "(unused armor A067)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -773,7 +773,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "メガネ",
+		"name": "(unused armor A068)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -786,7 +786,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "魂の数珠",
+		"name": "(unused armor A069)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100
@@ -799,7 +799,7 @@
 		"eqtype": 16,
 		"icon": "",
 		"mdlid": null,
-		"name": "妖魔の角",
+		"name": "(unused armor A070)",
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 100

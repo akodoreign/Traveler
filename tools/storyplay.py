@@ -85,7 +85,7 @@ def would_change(page, flags):
                 if walk(pick):
                     return True
                 continue
-            if c.get("cmd") == "cmd_compute" and isinstance(c.get("lvar"), str) and re.match(r"^G\d+$", c["lvar"]):
+            if c.get("cmd") == "cmd_compute" and isinstance(c.get("lvar"), str) and re.match(r"^G\d+$", c["lvar"])                     and c["lvar"] not in TOGGLES:                 # (a switch that flips back and forth: wax in/out)
                 rv = c.get("rvar")
                 if isinstance(rv, (bool, int)) and (c.get("op") != "=" or not test(val(flags, c["lvar"]), "==", rv)):
                     return True
@@ -184,6 +184,8 @@ def menu_moves(cmds):
     return None
 
 
+TOGGLES = set()                                                  # flags newly set 3+ times: state switches, not story
+FLIPS = {}
 CHOICE_PAGES = set()                                              # (map, event@page) that open a menu
 HIRE_PAGES = set()                                                # (map, event@page) of hirelings
 BROKEN = set()                                                  # (map, next map): its exit never took us there
@@ -712,6 +714,18 @@ def main():
             newly = [k for k, v in (flags or {}).items() if v is True and (last_flags or {}).get(k) is not True]
             if newly:
                 note("   + " + ",".join(sorted(newly)))
+            if newly:                                             # something moved: walk-ons that pushed us back
+                for (tm_, tk_) in list(tried):                    # (a rope point, a gate) get another go
+                    ev_ = (MP.get(tm_, {}).get("event") or {}).get(tk_.split("@")[0]) or {}
+                    pg_ = ev_.get("page") or []
+                    pi_ = int(tk_.split("@")[1]) if "@" in tk_ else 0
+                    if pi_ < len(pg_) and pg_[pi_].get("trigger") == 5 and tried[(tm_, tk_)] < 9:
+                        del tried[(tm_, tk_)]
+            for k in newly:
+                FLIPS[k] = FLIPS.get(k, 0) + 1
+                if FLIPS[k] == 3:
+                    TOGGLES.add(k)
+                    note("   (%s keeps flipping: a switch, not the story)" % k)
             tried[(what[0], what[1])] = tried.get((what[0], what[1]), 0) + 1   # every page gets two tries
         last_flags = flags
         what = steps = None

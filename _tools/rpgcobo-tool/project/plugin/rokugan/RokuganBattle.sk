@@ -27,7 +27,8 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 		}
 		local st = this.states[chr];
 		if( !st){
-			st = { started = false, boosted = false, boostsel = 0, bp = 1, res = 0, maxres = 0, known = 0, broken = false,
+			//	(user 2026-11-12: everyone but the Void shugenja starts with 0 VP; the Ishiken-do job / trait raises it)
+			st = { started = false, boosted = false, boostsel = 0, bp = 0, res = 0, maxres = 0, known = 0, broken = false,
 				taunt = 0, focus = 0, attune = false };
 			if( chr instanceof ::RPGEnemy){
 				st.maxres = st.res = Math.max( int( chr.RES || 2), 1);
@@ -61,7 +62,9 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 		local scar = ::rpgvar["G897"] && !::rpgvar["G909"] && this.given( chr.name) == "Mitsue";	//	Scorpion Ch2: she
 		local cls = (chr instanceof ::RPGPlayer) ? chr.data["rt_class"] : null;
 		local base = cls ? VP_BY_CLASS[cls] : BP_MAX;				//	shugenja 6, monk 5, other 3, samurai 2 (tools/apply_resources.py)
-		return base - (whole ? 1 : 0) - (scar ? 1 : 0) + this.vpBonus( chr);		//	wore Giseiki (Void -1)
+		//	(user 2026-11-12) each level of Taint (K026) blocks 1 point of Void until it is cleansed
+		local taint = (chr instanceof ::RPGPlayer) ? (chr.getConditionLV( "K026") || 0) : 0;
+		return Math.max( 0, base - (whole ? 1 : 0) - (scar ? 1 : 0) + this.vpBonus( chr) - taint);	//	wore Giseiki (Void -1)
 	}
 
 	//	Element/weapon bits the enemy is weak to (EDR < 0, set with opt_elemdef).

@@ -50,6 +50,11 @@ def save(name, d):
     json.dump(d, open(os.path.join(DATA, name + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent="\t")
 
 
+def load_built(name):
+    """The table as built so far this run (load() always starts again from the engine's original)."""
+    return json.load(open(os.path.join(DATA, name + ".json"), encoding="utf-8"))
+
+
 TYPED_ATK = (("atk_draw", ("Iaijutsu", "Draw", "Iai")), ("atk_thrust", ("Thrust", "Lunge", "Stab", "Pierce")),
              ("atk_overhead", ("Smash", "Cleave", "Crush", "Hammer", "Overhead", "Quake")),
              ("atk_slash", ("Sweep", "Cut", "Slash", "Strike")))
@@ -108,7 +113,8 @@ LOCAL = {
 # School ranks R2-R5 (docs/rules/progression-v2.md; user 2026-11-11: "min levels for each rank should be 0, 15, 30, 45,
 # 60"). Each traveler's own school (schools.md); the battle effects are in plugin RokuganRanks.sk.
 RANK_LEVELS = (15, 30, 45, 60)
-RANK_PIDS = {"P100": 700, "P101": 704, "P102": 708, "P103": 712, "P104": 716, "P105": 720, "P106": 724}
+RANK_PIDS = {"P100": 700, "P101": 704, "P102": 708, "P103": 712, "P104": 716, "P105": 720, "P106": 724,
+             "P107": 728}
 _R = [
     # Hiruma Natsuko (Hiruma Scout)
     ("Strike Like the Wind", "+25% damage against a foe that hasn't hit her yet this battle. Every miss against her "
@@ -132,11 +138,12 @@ _R = [
     ("Strength of My Ancestors", "Her weapon attack strikes twice."),
     ("Triumph Before Battle", "+10% damage, and her blows strip a foe's DEF Up."),
     ("Akodo's Final Lesson", "Her blows never miss, and hit 25% harder."),
-    # Isawa Haruki (Isawa Shugenja)
-    ("Isawa's Insight", "Damage spells +10%."),
-    ("The Void Answers", "Void spells cost 1 VP less (at least 1)."),
-    ("Mastery of the Elements", "Damage spells +25%."),
-    ("Isawa's Art", "Once a battle, his first single-target damage spell strikes every foe."),
+    # Isawa Haruki (Isawa Shugenja) - user 2026-11-12: "shugenja just get more spells at rank until advanced school":
+    # each rank brings the next mastery's spells at once (haruki_spells batches them), no other effect
+    ("Mastery 2 Spells", "New spells: the second mastery opens to him."),
+    ("Mastery 3 Spells", "New spells: the third mastery opens to him."),
+    ("Mastery 4 Spells", "New spells: the fourth mastery opens to him."),
+    ("Mastery 5 Spells", "New spells: the fifth mastery opens to him."),
     # Shosuro Mitsue (Shosuro Shinobi)
     ("The Shadow Has No Mercy", "+50% damage against a foe that hasn't acted yet, or one left open (Suki)."),
     ("The Shadow Has No Form", "+20% evasion."),
@@ -148,7 +155,100 @@ _R = [
     ("When the Veil Moves", "Once a battle, a heavy blow on anyone in the party is halved."),
     ("Piercing the Veils", "While he stands, the party takes 10% less damage."),
     ("The Immovable Hand of Peace", "Once a battle (Support): a foe can't act against him while he doesn't attack."),
+    # Sayo (user 2026-11-12): R1 her ronin pick; R2-R4 the Forest Killers (Fealty & Freedom p.148-150: Fool's Harvest,
+    # Canopy of Knives; the third is ours), R5 Ronin Duelist R1 (The Wind Technique)
+    ("Forest Killer: Fool's Harvest", "From the trees: +50% damage against a foe that hasn't acted yet, and she moves "
+     "faster after striking it."),
+    ("Forest Killer: Canopy of Knives", "Her weapon attack strikes twice, and her first blow each battle is a sure "
+     "critical against a slower foe."),
+    ("Forest Killer: Ghost of the Shinomen", "+20% evasion; a foe she has cut has a harder time hitting her (+20% "
+     "evasion against it)."),
+    ("Ronin Duelist: The Wind Technique", "Twice as quick to act: Speed +30% for the whole battle."),
 ]
+# Advanced schools (user 2026-11-12: "For level 75, 90, 100 lets add an advanced school for each of the travelers to
+# unlock and gain, If they have level passed it have it apply the schools retroactively" - lvoption by level is
+# retroactive by nature). Skills S800-S823; effects RokuganRanks.sk ADV (tier I damage, II evasion, III crit + a hit).
+ADV_LEVELS = (75, 90, 100)
+# (user: "advanced schools are real schools listed in books") 3e advanced schools and their technique names: The Four
+# Winds (Hida Avenger p.7, Kenshinzen p.7, Student of the Tao p.8, Shadow-Hunters p.12, Master of the Courts p.13,
+# Master of the Elements p.14) and the 3e supplement index (Master General, The Machi-Kanshisha) -
+# _research/books_txt/1592510476074.txt "Index of the Advanced Schools". Effects are our Octopath translation.
+ADV_SCHOOLS = {
+    "P100": ("Hida Avenger", ["Wrath of the Crab", "Be the Wall", "Hida's Technique"]),
+    "P101": ("Kenshinzen", ["Drawing the Void", "A Single Moment", "Kakita's Technique"]),
+    "P102": ("Student of the Tao", ["Path of Wisdom", "Seek the Path", "Defining the Essence"]),
+    "P103": ("Master General", ["Eyes of the Army", "Arms of the Army", "Heart of the Army"]),
+    "P104": ("Master of the Elements", ["Stone Among the Flames", "Wind Among the Waves", "The Secrets Between All "
+                                                                                         "Things"]),
+    "P105": ("Shadow-Hunters", ["Strike of the Righteous", "Scent of the Prey", "Strike from the Darkness"]),
+    "P106": ("Master of the Courts", ["The Emperor's Grace", "Favored Among the Heavens", "Voice of the Sun and Moon"]),
+    "P107": ("The Machi-Kanshisha", ["Smoke and Mirrors", "Clouded Mind", "Wear Them Down"]),
+}
+ADV_EFFECT = ["+15% damage.", "+15% evasion and +10% damage.", "20% more critical hits; the weapon attack strikes "
+              "once more."]
+ADV_SKILLS, ADV_FIRST = {}, 800
+for _k, (_pid, (_school, _techs)) in enumerate(sorted(ADV_SCHOOLS.items())):
+    for _i, _t in enumerate(_techs):
+        ADV_SKILLS["S%03d" % (ADV_FIRST + 3 * _k + _i)] = (
+            _pid, ADV_LEVELS[_i], "%s %s: %s" % (_school, "I" * (_i + 1), _t),
+            "Advanced school technique (Lv %d). %s" % (ADV_LEVELS[_i], ADV_EFFECT[_i]))
+# Companions' school ranks (user 2026-11-12: "make sure all the companions got the new school rank up techniques at the
+# right levels as well"): their own schools' 3e technique names (core: Hida, Matsu Berserker, Yoritomo, Seppun
+# Guardsman, Shiba; The Four Winds: Shinjo, Doji Magistrate; Hiruma / Akodo as the travelers'). Shugenja companions get
+# two spells per rank instead (3e core). Effects: plugin RokuganVoidCrit.sk COMP_FX (cumulative per rank).
+COMP_SCHOOLS = {
+    "P120": ("hida", ["The Mountain Does Not Move", "Two Pincers, One Mind", "Fury of Hida",
+                      "The Mountain Does Not Fall"]),
+    "P121": ("hiruma", ["Strike Like the Wind", "Fire and Shadow", "Harness the Wind", "Veil of Spirits"]),
+    "P123": ("hiruma", ["Strike Like the Wind", "Fire and Shadow", "Harness the Wind", "Veil of Spirits"]),
+    "P126": ("hiruma", ["Strike Like the Wind", "Fire and Shadow", "Harness the Wind", "Veil of Spirits"]),
+    "P127": ("akodo", ["Strength of Purity", "Strength of My Ancestors", "Triumph Before Battle",
+                       "Akodo's Final Lesson"]),
+    "P129": ("akodo", ["Strength of Purity", "Strength of My Ancestors", "Triumph Before Battle",
+                       "Akodo's Final Lesson"]),
+    "P130": ("akodo", ["Strength of Purity", "Strength of My Ancestors", "Triumph Before Battle",
+                       "Akodo's Final Lesson"]),
+    "P138": ("akodo", ["Strength of Purity", "Strength of My Ancestors", "Triumph Before Battle",
+                       "Akodo's Final Lesson"]),
+    "P128": ("matsu", ["Matsu's Fury", "The Lion's Charge", "Matsu's Courage", "The Lion's Victory"]),
+    "P141": ("matsu", ["Matsu's Fury", "The Lion's Charge", "Matsu's Courage", "The Lion's Victory"]),
+    "P131": ("shiba", ["Dancing with the Elements", "One with the Void", "Move with the World", "Touch of the Void"]),
+    "P133": ("doji", ["The Eyes of Doji", "Strike of the Just", "Judgment's Swift Blade", "Eternal Justice"]),
+    "P134": ("seppun", ["The Clouds Part", "With Heaven's Speed", "The Sun's Light Reveals", "Heaven Never Falls"]),
+    "P136": ("yoritomo", ["Voice of the Storm", "Strike of the Mantis", "The Rolling Wave", "Hand of Osano-Wo"]),
+    "P140": ("shinjo", ["Dance of the Blade", "The Four Winds Strike", "Spirit of Our Lady",
+                        "Dancing with the Fortunes"]),
+    "P124": ("isawa", None), "P135": ("isawa", None), "P137": ("isawa", None), "P139": ("tamori", None),
+}
+# the school each player fights as (Void-crit shouts and companion effects in RokuganVoidCrit.sk)
+SCHOOL_KEY = {"P100": "hiruma", "P101": "kakita", "P102": "kitsuki", "P103": "akodo", "P104": "isawa",
+              "P105": "shosuro", "P106": "ide", "P107": "ronin", "P132": "togashi",
+              **{k: v[0] for k, v in COMP_SCHOOLS.items()}}
+# per-rank effect text for the companion schools (the plugin's COMP_FX in the same order: Rank 2, 3, 4, 5)
+COMP_FX_TEXT = {
+    "hida": ["Takes 15% less damage.", "The weapon attack strikes twice.", "+20% damage.", "Takes 20% less damage."],
+    "hiruma": ["+15% damage.", "+15% evasion.", "The weapon attack strikes twice.", "+15% critical hits."],
+    "akodo": ["+15% damage.", "The weapon attack strikes twice.", "+10% damage.", "+20% critical hits."],
+    "matsu": ["+20% damage.", "The weapon attack strikes twice.", "Takes 10% less damage.", "+20% damage."],
+    "shiba": ["+15% evasion.", "Takes 10% less damage.", "+15% damage.", "The weapon attack strikes twice."],
+    "doji": ["Every foe's weaknesses are read at the start of a battle.", "+20% damage.",
+             "The weapon attack strikes twice.", "+20% critical hits."],
+    "seppun": ["+15% evasion.", "Speed up for the whole battle.", "+20% critical hits.", "Takes 15% less damage."],
+    "yoritomo": ["+15% damage.", "The weapon attack strikes twice.", "+15% evasion.", "+20% critical hits."],
+    "shinjo": ["Speed up for the whole battle.", "The weapon attack strikes twice.", "+15% evasion.", "+20% damage."],
+}
+COMP_RANK_FIRST = 830
+COMP_RANK_SKILLS = {}                                      # sid -> (pid, level, name, desc)
+for _k, (_pid, (_school, _techs)) in enumerate(sorted(COMP_SCHOOLS.items())):
+    for _i in range(4):
+        _sid = "S%03d" % (COMP_RANK_FIRST + 4 * _k + _i)
+        if _techs:
+            COMP_RANK_SKILLS[_sid] = (_pid, RANK_LEVELS[_i], "Insight Rank %d: %s" % (_i + 2, _techs[_i]),
+                                      "School technique (Rank %d, Lv %d). %s" % (_i + 2, RANK_LEVELS[_i],
+                                                                                COMP_FX_TEXT[_school][_i]))
+        else:
+            COMP_RANK_SKILLS[_sid] = (_pid, RANK_LEVELS[_i], "Insight Rank %d: Mastery %d Spells" % (_i + 2, _i + 2),
+                                      "Two new spells (3e: two per Insight Rank).")
 RANK_SKILLS = {}
 for _pid, _base in RANK_PIDS.items():
     for _i in range(4):
@@ -159,11 +259,15 @@ for _pid, _base in RANK_PIDS.items():
 
 def rank_options(pid):
     base = RANK_PIDS.get(pid)
-    if base is None:
-        return []
+    if base is None:                           # a companion: their school's ranks (shugenja: + two spells per rank)
+        o = [{"LV": lv, "opttype": "opt_getskill", "skillid": sid}
+             for sid, (p_, lv, _n, _d) in sorted(COMP_RANK_SKILLS.items()) if p_ == pid]
+        return o                               # (shugenja companions' spells: rank_spells, added with their kit)
     o = [{"LV": lv, "opttype": "opt_getskill", "skillid": "S%03d" % (base + i)} for i, lv in enumerate(RANK_LEVELS)]
     if pid == "P102":                          # Gendo R2 Wisdom the Wind Brings: confuse, fear, charm can't take hold
         o.append({"LV": RANK_LEVELS[0], "opttype": "opt_conddef", "CDR.4": 100, "CDR.7": 100, "CDR.8": 100})
+    o += [{"LV": lv, "opttype": "opt_getskill", "skillid": sid} for sid, (p_, lv, _n, _d) in sorted(ADV_SKILLS.items())
+          if p_ == pid]
     return o
 
 
@@ -270,10 +374,40 @@ def haruki_spells():
     sec = doc[doc.index("## 4."):doc.index("## 5.")]
     for m in re.finditer(r"^\| (\d+)[^|]*\| ([^|]+)\|", sec, re.M):
         lv = int(m.group(1))
+        # (user 2026-11-12: "shugenja just get more spells at rank until advanced school ... how many of each they get
+        # per rank in the books") 3e core: "When your shugenja increases in Insight Rank, you may select any two
+        # spells that you could now potentially cast." Below Rank 2 the school's gifts stay (Lv 5, 10); from Rank 2
+        # on, only the two spells of each rank level (15 / 30 / 45 / 60) are learned.
+        if lv >= RANK_LEVELS[0]:
+            continue                                   # (rank spells: HARUKI_RANK_SPELLS below)
         for nm in m.group(2).split(","):
             nm = re.sub(r"\*+", "", nm).strip().lower()
             if nm in by_name:
                 opts.append({"LV": lv, "opttype": "opt_getskill", "skillid": by_name[nm]})
+    return opts + rank_spells("P104", {o["skillid"] for o in opts})
+
+
+# The shugenja's elements (user 2026-11-12: rank spells "should match the element of the shugenja"): Haruki's affinity
+# Water (+ his Void spell each rank: "2 per rank plus one void spell"); the companions by their kits.
+SHUGENJA_ELEM = {"P104": "Water", "P124": "Fire", "P135": "Earth", "P137": "Air", "P139": "Fire"}
+
+
+def rank_spells(pid, known):
+    """Rank 2-5 spells (3e core: two new spells per Insight Rank, Mastery up to the rank): two of the shugenja's
+    element - the highest mastery they can now cast first - and for Haruki one Void spell more."""
+    mpath = os.path.join(DATA, "rt_spells.json")
+    if not os.path.exists(mpath) or pid not in SHUGENJA_ELEM:
+        return []
+    spells = json.load(open(mpath, encoding="utf-8"))
+    known, opts = set(known), []
+    for i, lv in enumerate(RANK_LEVELS):
+        rank = i + 2
+        for elem, n in ((SHUGENJA_ELEM[pid], 2),) + ((("Void", 1),) if pid == "P104" else ()):
+            pool = sorted((sp for sp in spells if sp["elem"] == elem and sp["ml"] <= rank and sp["skill"] not in known),
+                          key=lambda sp: (-sp["ml"], sp["name"]))
+            for sp in pool[:n]:
+                known.add(sp["skill"])
+                opts.append({"LV": lv, "opttype": "opt_getskill", "skillid": sp["skill"]})
     return opts
 
 
@@ -2119,12 +2253,12 @@ def main():
     # stick, so the power comes from the story chewed into it: heals scale with the target and Squeak's level, not MATK.
     def stick(sid, src, name, desc, sp, **kw):
         k = copy.deepcopy(s[src])
-        k.update({"name": name, "desc": desc, "consume": [0, sp * 2], "addlist": True, "enemyuse": False,
-                  "occasion": 3})                       # user: double the SP cost of the sticks
+        k.update({"name": name, "desc": desc, "consume": [0, sp], "addlist": True, "enemyuse": False,
+                  "occasion": 3})                       # (user 2026-11-12: doubled, Squeak couldn't afford them)
         k.update(kw)
         s[sid] = k
     stick("S154", "S300", "Mend-Name Stick", "A shaman's mending, chewed into a stick: a wounded Name returns to its "
-          "rightful form. (Heal one ally)", 22, atkform="dst.MAXHP*0.35+src.LV*2.0")
+          "rightful form. (Heal one ally)", 14, atkform="dst.MAXHP*0.35+src.LV*2.0")
     stick("S155", "S305", "Armor Stick", "The tale of the Nezumi's friendship with the Crab: an ally fights as if in "
           "heavy armour. (DEF up)", 16, putconds=COND_BIT("K022"))
     stick("S156", "S305", "Warrior's Stick", "The tale of a mighty warrior, sharpened at one end. (ATK up, one ally)",
@@ -2853,9 +2987,32 @@ def main():
         k["atkact"] = {"id": "noop", "scp": None}
         k["hitact"] = dict(k.get("hitact") or {}, hitefx=fx, hitsnd="SE204")
         k["rt_aoe"] = True
+    # Single-target spells swung a weapon (user 2026-11-12: "spells are showing up as fist attacks a lot instead of the
+    # char making some sort of prayer move then colorful representation on the screen, example amaterasu flame"): every
+    # magic attack (magic damage form, or a MATK formula) that still uses the plain weapon swing gets the bolt cast of
+    # Death of Flame (S337) and a spell effect on the target by element.
+    bolt = s.get("S337") or {}
+    for sid, k in s.items():
+        if not isinstance(k, dict) or k.get("rt_aoe") or (k.get("atkact") or {}).get("id") != "atk_normal":
+            continue
+        el = sum(B[n] for n in ("Fire", "Water", "Air", "Earth", "Void") if n in B)
+        wp = sum(B[n] for n in ("Katana", "Yari", "Tanto", "Tetsubo", "Yumi", "Bo", "Unarmed") if n in B)
+        bits0 = k.get("elembits") or 0
+        magic = (k.get("dmgform") == 1 or "MATK" in str(k.get("atkform") or "") or
+                 (bits0 & el and not bits0 & wp and k.get("flags") != 255))           # (Amaterasu's Fire: MATK)
+        if not magic or k.get("skilltype") != "attack":
+            continue
+        bits = k.get("elembits") or 0
+        fx = next((f for n, f in AOE_FX if bits & B[n]), None) or "FX437"
+        for fld in ("useact", "aimani"):
+            if fld in bolt:
+                k[fld] = copy.deepcopy(bolt[fld])
+        k["atkact"] = copy.deepcopy(bolt.get("atkact")) or {"id": "noop", "scp": None}     # no weapon swing
+        k["hitact"] = dict(k.get("hitact") or {}, hitefx=fx, hitsnd="SE204")
     # School ranks (docs/rules/progression-v2.md, user 2026-11-11): passive skills, given at Lv 15/30/45/60 by the
     # players' lvoption (RANK_OPTIONS below); the level-up panel names them. Effects: plugin RokuganRanks.sk.
-    for sid, (name, desc) in RANK_SKILLS.items():
+    for sid, (name, desc) in (list(RANK_SKILLS.items()) + [(k, (v[2], v[3])) for k, v in ADV_SKILLS.items()] +
+                              [(k, (v[2], v[3])) for k, v in COMP_RANK_SKILLS.items()]):
         r = copy.deepcopy(noop)
         r.update({"name": name, "desc": desc, "addlist": False, "enemyuse": False, "occasion": 0, "consume": [0, 0]})
         s[sid] = r
@@ -2864,7 +3021,9 @@ def main():
     for sid, cid, pid, lv, kind, name, mult, turns, mods, extra, desc in _kata.KATA:
         k = copy.deepcopy(s["S100"])
         k.update({"name": name, "desc": "%s (%s)" % (desc, {"kata": "Kata", "kiho": "Kiho", "tattoo": "Tattoo"}[kind]),
-                  "addlist": True, "enemyuse": False, "occasion": 1, "consume": [0, 0], "eqtypebits": 2047,
+                  "addlist": True, "enemyuse": False, "occasion": 1, "eqtypebits": 2047,
+                  # (user 2026-11-12: "Kiho and Kata should use TP points") TP by the level it is learned at
+                  "consume": [1, 4 + (lv or 12) // 3],
                   "rt_school": True, "rt_kata": cid, "rt_kmul": mult, "rt_kkind": kind})
         s[sid] = k
     save("skill", s)
@@ -4433,6 +4592,21 @@ def main():
         e[nid] = x
     if lad:
         print("ladder foes: %d" % len(lad))
+    # Weakness memory (user 2026-11-12: "once a weakness for a species is revealed it should always stay revealed even
+    # in the next time you see them"): one saved int var per species (same name = same species, so the ladder clones
+    # share it) holding the revealed weakness bits; plugin RokuganJobs.sk loads / stores it.
+    names = sorted({x["name"] for x in e.values() if isinstance(x, dict) and x.get("name")})
+    assert len(names) < 1000, "species vars past G2999"
+    species_var = {nm: "G%d" % (2000 + i) for i, nm in enumerate(names)}
+    for x in e.values():
+        if isinstance(x, dict) and x.get("name"):
+            x["rt_species"] = species_var[x["name"]]
+    gv2 = load_built("gvar")
+    for k in [k for k in gv2 if k[1:].isdigit() and 2000 <= int(k[1:]) <= 2999]:
+        del gv2[k]
+    for nm, v in species_var.items():
+        gv2[v] = {"defval": 0, "name": "weakness memory: %s (revealed weakness bits)" % nm, "type": 2}
+    save("gvar", gv2)
     for x in e.values():                                # job EXP (jobs_data.py): the same from every foe
         if isinstance(x, dict) and "jxp" in x:
             x["jxp"] = _jobs.ENEMY_JXP
@@ -4567,8 +4741,15 @@ def main():
                   if pid == "P107"
                   else []})
         x["lvoption"] = list(x["lvoption"]) + rank_options(pid) + _kata.level_options(pid)   # progression-v2.md
+        if pid in SHUGENJA_ELEM and pid != "P104":     # shugenja companions: two spells of their element per rank
+            x["lvoption"] += rank_spells(pid, {o.get("skillid") for o in x["lvoption"]})
+        if pid in SCHOOL_KEY:
+            x["rt_school_key"] = SCHOOL_KEY[pid]
+        if pid in ADV_SCHOOLS:
+            x["MAXLV"] = 100                       # (user: the advanced school's last technique at Lv 100)
         if pid == "P122":
-            x["INILV"] = 6                         # joins for the S08 boss (chapter Lv 7-8)
+            x["INILV"] = 10                        # joins for the S08 boss (user 2026-11-12: Lv 6 was too weak to help
+            # against the shaman)
         if pid in TRAIT_CURVES:                    # docs/rules/stats.md traits -> per-traveler growth (tools/traits.py)
             x["lvcurve"] = TRAIT_CURVES[pid]
         elif pid == "P124" and x.get("lvcurve"):  # companion shugenja (Michio): magic grows like a bushi's attack
@@ -4580,6 +4761,11 @@ def main():
             for k, m in mult.items():
                 lc[k] = [max(1, int(round(v * m))) for v in lc[k]]
         p[pid] = x
+    # Haruki had no TP at all; kiho cost TP (user 2026-11-12) -> a small pool, 60% of Sayo's curve
+    if "P104" in p and "P107" in p and p["P107"].get("lvcurve", {}).get("MAXTP"):
+        lc = p["P104"]["lvcurve"] = copy.deepcopy(p["P104"]["lvcurve"])
+        if not any(lc.get("MAXTP") or []):
+            lc["MAXTP"] = [max(0, int(v * 0.6)) for v in p["P107"]["lvcurve"]["MAXTP"]]
     save("player", p)
     party_typed_attacks(p)
 
@@ -4939,6 +5125,9 @@ def english_leftovers():
         for i, nm in enumerate(lst):
             if i < len(t.get(key, [])) and isinstance(t[key][i], dict):
                 t[key][i]["name"] = nm
+    for js in t.get("jobslot", []):                    # (user 2026-11-12: the Job slot showed a padlock - jobs could
+        if isinstance(js, dict):                       # not be changed; progression-v2 jobs need both slots open)
+            js["lock"] = 0
     save("type", t)
     fixes = {"armor": {"A141": {"desc": "Light and sturdy."}},
              "item": {"I000": {"desc": "A useless thing."}, "I001": {"desc": "Restores HP."},
@@ -4946,8 +5135,7 @@ def english_leftovers():
                                        "in dangerous places."},
                       "I010": {"desc": "Restores HP."}, "I011": {"desc": "Restores HP."},
                       "I016": {"desc": "Revives a fallen ally."}},
-             "job": {"J000": {"desc": "A traveler on the roads of Rokugan."},
-                     "J105": {"desc": "Attack up at the start of each battle."}},
+             "job": {"J105": {"desc": "Attack up at the start of each battle."}},   # (J000: jobs_data.py)
              "cond": {"K005": {"desc": "Asleep: can't act for a while. A physical hit wakes them."}},
              "skill": {"S003": {"desc": "A plain attack with no weapon."}, "S190": {"name": "Auto-Revive"}},
              "player": {}}
@@ -4961,6 +5149,54 @@ def english_leftovers():
                 if isinstance(pl, dict) and isinstance(pl.get("equips"), list):
                     pl["equips"] = [None if e == "A000" else e for e in pl["equips"]]
         save(f, d)
+    english_pass()
+
+
+# (user 2026-11-12: "Lots of Japanese characters still in the game, example selecting spell when using a bushi gives
+# Japanese explanation") Template entries the game can show, in English; then any Japanese name / desc left in the
+# player-facing tables is replaced with a plain English stand-in and listed.
+ENGLISH = {
+    "skill": {"S004": ("Steal", None), "S010": ("Slash", None), "S011": ("Heavy Slash", None),
+              "S012": ("Thrust", None), "S013": ("Strike", None), "S014": ("Shot", None), "S020": ("Claw", None),
+              "S027": ("Drain Blood", None), "S035": ("Heal", "Restores a little HP to one ally."),
+              "S036": ("Greater Heal", "Restores a lot of HP to one ally."),
+              "S038": ("Heal All", "Restores a little HP to every ally."),
+              "S040": ("Cure", "Cures poison, blindness, silence and sealed skills on one ally."),
+              "S043": ("Raise", "Revives a fallen ally."),
+              "S045": ("Guard Up", "Raises one ally's defence for a while."),
+              "S046": ("Guard Up All", "Raises every ally's defence for a while."),
+              "S073": ("Fire", None), "S074": ("Greater Fire", "A middle-rank fire spell."),
+              "S076": ("Ice", None), "S077": ("Greater Ice", None)},
+    "item": {"I019": (None, "Cures poison, paralysis, blindness and sealing."),
+             "I020": (None, "Cures sleep, confusion and charm.")},
+    "job": {"J001": (None, "A special calling only the chosen may take."),
+            "J101": (None, "A heart of iron that nothing shakes: resists mind-affecting ailments."),
+            "J102": (None, "Shields a weakened ally."), "J104": (None, "A light step that slips past attacks.")},
+    "store": {"R000": ("Village Goods", None), "R001": ("Healing Arts", None)},
+}
+
+
+def english_pass():
+    import re
+    jp = re.compile(r"[぀-ヿ一-鿿]")
+    left = []
+    for f in ("skill", "item", "job", "store", "weapon", "armor", "cond", "enemy", "player"):
+        d = load_built(f)
+        for rid, (nm, desc) in ENGLISH.get(f, {}).items():
+            if rid in d and isinstance(d[rid], dict):
+                if nm:
+                    d[rid]["name"] = nm
+                if desc:
+                    d[rid]["desc"] = desc
+        for rid, x in d.items():
+            if not isinstance(x, dict):
+                continue
+            for fld in ("name", "desc"):
+                if isinstance(x.get(fld), str) and jp.search(x[fld]):
+                    x[fld] = ("(unused %s %s)" % (f, rid)) if fld == "name" else ""
+                    left.append("%s %s %s" % (f, rid, fld))
+        save(f, d)
+    print("english pass: %d template strings blanked (unused sample data)" % len(left))
 
 
 if __name__ == "__main__":

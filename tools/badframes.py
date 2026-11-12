@@ -113,6 +113,10 @@ def main():
     pics = json.load(open(os.path.join(RES, "enemy_pic.json"), encoding="utf-8"))
     if "--apply" in a:
         apply_fixes(pics)
+        # the travelers' weapon / hat look sheets are built from the (now fixed) AI base sheets (user 2026-11-12:
+        # katana look showed the old art); always the last step after install_aisheets / anim_harmonize
+        import look_hybrid
+        look_hybrid.main()
         return
     ids = [k for k in pics if isinstance(pics[k], dict) and pics[k].get("pic3d")] if "--all" in a else \
         [x for x in a if not x.startswith("--")]

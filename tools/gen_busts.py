@@ -199,6 +199,7 @@ for _k, _s in NPC_PICK.items():
     CHARS[_k]["seed"] = _s
 CHARS["npc_nezumi_warrior"]["flip"] = True                            # he faces left: turn him toward the text
 CHARS["ryozo"]["names"].append('"Ryozo"')                  # his alias line label
+CHARS["sayo"]["names"].append("Young Sayo")                # flashback label (story_7): her own face, not the herbalist stand-in
 # Picks from the bulk queue (tools/queue_busts.py -> collect_busts.py -> _art/busts/<key>/review/cand_s<seed>.png):
 # _art/busts/npc_picks.json {key: {names, file}}; `npc <key>` (or `npcpicks`) exports them.
 _PICKS = os.path.join(WORK, "npc_picks.json")
@@ -323,16 +324,19 @@ def save_workflows():
 
 # ------------------------------------------------------------------------------------------------- stages
 def save_png(im, path):
-    """Write via a temp file and retry the swap: a viewer holding the old file open made a plain save fail (Errno 22)."""
-    tmp = path + ".tmp.png"
-    im.save(tmp)
-    for i in range(20):
-        try:
-            os.replace(tmp, path)
-            return
-        except OSError:
-            time.sleep(0.5)
-    raise OSError("could not replace " + path)
+    """Atomic (tools/atomic_io.py: temp "<name>.tmp", then os.replace, retried while the game holds the file): the user
+    plays while the agents work - the game must never read a half-written bust or see a "*.tmp.png"."""
+    import atomic_io
+    atomic_io.save_png(im, path)
+
+
+def save_text(text, path):
+    """Atomic text write (faces.json, RokuganBustData.sk), same scheme as atomic_io."""
+    import atomic_io
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8", newline="\n") as f:
+        f.write(text)
+    atomic_io._replace(tmp, path)
 
 
 def cdir(key):
@@ -779,7 +783,7 @@ def estimate_chin(rgba):
 
 
 # chin height (fraction of the exported image) where the silhouette guess is wrong (checked on chin sheets)
-CHIN_FIX = {"ryoichi": 0.29, "npc_matsu_kiku": 0.43, "npc_wall_veteran": 0.5, "npc_hida_kisada": 0.45, "npc_fishwife": 0.43, "fujio": 0.4, "gonta": 0.53, "goro": 0.4, "kage": 0.43, "kiyo": 0.47, "mai": 0.4, "michio": 0.43, "npc_akodo_hiruto": 0.48, "npc_akodo_rin": 0.45, "npc_akodo_shogen": 0.45, "npc_asako_keiki": 0.5, "npc_asako_kuhime": 0.37, "npc_ashigaru_archer": 0.43, "npc_cart_driver": 0.5, "npc_child": 0.57, "npc_crab_bushi": 0.57, "npc_doji_nashiko": 0.48, "npc_doji_sanae": 0.45, "npc_gate_guard": 0.51, "npc_goblin_prisoner": 0.51, "npc_gonbei": 0.5, "npc_hida_taneo": 0.5, "npc_hida_veteran": 0.51, "npc_hiruma_kenzo": 0.5, "npc_hiruma_messenger": 0.5, "npc_hiruma_scout": 0.5, "npc_hoshi_fisherman": 0.44, "npc_ide_keiyomi": 0.37, "npc_innkeeper": 0.45, "npc_isawa_akiko": 0.5, "npc_isawa_kamasari": 0.53, "npc_isawa_mieko": 0.53, "npc_isawa_mutsuye": 0.53, "npc_kaiu_engineer": 0.5, "npc_kaiu_sapper": 0.54, "npc_kaiu_smith": 0.43, "npc_kitsuki_seigen": 0.48, "npc_kuni_shugenja": 0.4, "npc_kuni_taira": 0.45, "npc_kuni_witch_hunter": 0.43, "npc_maho_puppet": 0.45, "npc_merchant": 0.45, "npc_naohida": 0.48, "npc_oni_no_kommei": 0.48, "npc_runner": 0.51, "npc_sentry": 0.54, "npc_shiba_ashimita": 0.56, "npc_shinjo_o_shito": 0.45, "npc_shosuro_norie": 0.54, "npc_shosuro_shiko": 0.5, "npc_soshi_nihime": 0.45, "npc_troll": 0.57, "npc_village_herbalist": 0.4, "npc_yasuki_kanbe": 0.51, "npc_yasuki_kurako": 0.45, "npc_yogo_scribe": 0.43, "npc_yogo_shigeru": 0.48, "ryozo": 0.4, "sachiko": 0.4, "sakura": 0.4, "satomi": 0.36, "squeak": 0.42, "takakana": 0.52, "takeo": 0.45, "tomoe": 0.45, "yosai": 0.53, "npc_guard_sergeant": 0.43, "npc_broken_guard": 0.4, "npc_gonta_s_boy": 0.5, "npc_nezumi_shaman": 0.36, "npc_servant": 0.42, "npc_crab_guard": 0.4, "npc_kitchen_servant": 0.52, "npc_nezumi_warrior": 0.38, "npc_akodo_ijako": 0.4, "npc_jinnai": 0.4, "npc_shinjo_tsune": 0.42, "npc_akodo_gusai": 0.48, "npc_iuchi_karasu": 0.4, "npc_iuchi_daiyu": 0.45, "npc_akodo_kafu": 0.45, "npc_maid": 0.37, "npc_akodo_toturi": 0.4, "npc_hantei_kusada": 0.38, "npc_kakita_masanori": 0.47, "npc_kitsuki_oharu": 0.42, "npc_kitsune_hana": 0.45, "npc_lion_sergeant": 0.45, "npc_masked_citizen": 0.45, "npc_ship_s_master": 0.52, "npc_shosuro_osuko": 0.42, "npc_stich_kik": 0.48}
+CHIN_FIX = {"ryoichi": 0.29, "npc_kakita_sensei": 0.56, "npc_matsu_kiku": 0.43, "npc_wall_veteran": 0.5, "npc_hida_kisada": 0.45, "npc_fishwife": 0.43, "fujio": 0.4, "gonta": 0.53, "goro": 0.4, "kage": 0.43, "kiyo": 0.47, "mai": 0.4, "michio": 0.43, "npc_akodo_hiruto": 0.48, "npc_akodo_rin": 0.45, "npc_akodo_shogen": 0.45, "npc_asako_keiki": 0.5, "npc_asako_kuhime": 0.37, "npc_ashigaru_archer": 0.43, "npc_cart_driver": 0.5, "npc_child": 0.57, "npc_crab_bushi": 0.57, "npc_doji_nashiko": 0.48, "npc_doji_sanae": 0.45, "npc_gate_guard": 0.51, "npc_goblin_prisoner": 0.51, "npc_gonbei": 0.5, "npc_hida_taneo": 0.5, "npc_hida_veteran": 0.51, "npc_hiruma_kenzo": 0.5, "npc_hiruma_messenger": 0.5, "npc_hiruma_scout": 0.5, "npc_hoshi_fisherman": 0.44, "npc_ide_keiyomi": 0.37, "npc_innkeeper": 0.45, "npc_isawa_akiko": 0.5, "npc_isawa_kamasari": 0.53, "npc_isawa_mieko": 0.53, "npc_isawa_mutsuye": 0.53, "npc_kaiu_engineer": 0.5, "npc_kaiu_sapper": 0.54, "npc_kaiu_smith": 0.43, "npc_kitsuki_seigen": 0.48, "npc_kuni_shugenja": 0.4, "npc_kuni_taira": 0.45, "npc_kuni_witch_hunter": 0.43, "npc_maho_puppet": 0.45, "npc_merchant": 0.45, "npc_naohida": 0.48, "npc_oni_no_kommei": 0.48, "npc_runner": 0.51, "npc_sentry": 0.54, "npc_shiba_ashimita": 0.56, "npc_shinjo_o_shito": 0.45, "npc_shosuro_norie": 0.54, "npc_shosuro_shiko": 0.5, "npc_soshi_nihime": 0.45, "npc_troll": 0.57, "npc_yasuki_kanbe": 0.51, "npc_yasuki_kurako": 0.45, "npc_yogo_scribe": 0.43, "npc_yogo_shigeru": 0.48, "ryozo": 0.4, "sachiko": 0.4, "sakura": 0.4, "satomi": 0.36, "squeak": 0.42, "takakana": 0.52, "takeo": 0.45, "tomoe": 0.45, "yosai": 0.53, "npc_guard_sergeant": 0.43, "npc_broken_guard": 0.4, "npc_gonta_s_boy": 0.5, "npc_nezumi_shaman": 0.36, "npc_servant": 0.42, "npc_crab_guard": 0.4, "npc_kitchen_servant": 0.52, "npc_nezumi_warrior": 0.38, "npc_akodo_ijako": 0.4, "npc_jinnai": 0.4, "npc_shinjo_tsune": 0.42, "npc_akodo_gusai": 0.48, "npc_iuchi_karasu": 0.4, "npc_iuchi_daiyu": 0.45, "npc_akodo_kafu": 0.45, "npc_maid": 0.37, "npc_akodo_toturi": 0.4, "npc_hantei_kusada": 0.38, "npc_kakita_masanori": 0.47, "npc_kitsuki_oharu": 0.42, "npc_kitsune_hana": 0.45, "npc_lion_sergeant": 0.45, "npc_masked_citizen": 0.45, "npc_ship_s_master": 0.52, "npc_shosuro_osuko": 0.42, "npc_stich_kik": 0.48}
 
 
 def stage_export(key):
@@ -825,7 +829,7 @@ def stage_export(key):
         ch = CHIN_FIX.get(key) or estimate_chin(out_base)
         if ch:
             faces["base"] = [0.5, round(ch - 0.25, 4), ch]
-    json.dump(faces, open(os.path.join(RES, key, "faces.json"), "w"), indent=1)
+    save_text(json.dumps(faces, indent=1), os.path.join(RES, key, "faces.json"))
     if len(allims) > 1:
         sheet(allims, alllbs, os.path.join(PREVIEW, "%s_variants.png" % key), cols=len(allims), tw=280)
     write_data()
@@ -867,7 +871,7 @@ def write_data():
     for key, vs in vars_.items():
         lines.append('\t["%s"] = [%s],' % (key, ", ".join('"%s"' % v for v in vs)))
     lines.append("};")
-    open(DATA_SK, "w", encoding="utf-8", newline="\n").write("\n".join(lines) + "\n")
+    save_text("\n".join(lines) + "\n", DATA_SK)
     print("wrote", DATA_SK, list(keys))
 
 

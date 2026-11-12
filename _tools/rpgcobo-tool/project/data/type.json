@@ -252,7 +252,7 @@
 	"jobslot": [
 		{
 			"icon": "",
-			"lock": 1,
+			"lock": 0,
 			"name": "Job"
 		},
 		{

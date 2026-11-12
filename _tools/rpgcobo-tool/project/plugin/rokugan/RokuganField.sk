@@ -337,6 +337,24 @@ class RTFollowAction extends EventMoveAction
 	printf( "[RT] sumai solo: %d in the party\n", length( ::rpgstat.members.filter( @( v) v)));
 	printf( "[RT] sumai match %S: HP %d PATK %d PDEF %d (%d throws)\n", name, d.MAXHP, d.PATK, d.PDEF, hits);
 };
+//	A solo fight (user 2026-11-12: "Gonta's fight should be solo, player (hirable) no companions (don't have them leave
+//	just not be in the fight)"): the companions sit out (the party is put back afterwards); the hireling can still be
+//	called (Support), unlike a Sumai match.
+::Rokugan.solo_party <- null;
+::Rokugan.soloBegin <- function( pid){
+	local p = ::rpgstat.playermap[pid];
+	if( !p || this.solo_party) return;
+	this.solo_party = clone ::rpgstat.members;
+	for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = i == 0 ? p : null;
+	printf( "[RT] solo fight %S: companions sit out\n", pid);
+};
+::Rokugan.soloEnd <- function(){
+	local pt = this.solo_party;
+	if( !pt) return;
+	for( local i = 0; i < length( pt); i++) ::rpgstat.members[i] = pt[i];
+	this.solo_party = null;
+	printf( "[RT] solo fight over: %d members back\n", length( ::rpgstat.members.filter( @( v) v)));
+};
 ::Rokugan.sumaiEnd <- function( pid){
 	local p = ::rpgstat.playermap[pid], sv = ::Rokugan.sumai_saved[pid], pt = this.sumai_party;
 	if( p && pt){
@@ -781,6 +799,21 @@ local UPGRADES = { S172 = "S139" };			//	Goro SS2 The Bent Sword: Troll-Breaker 
 	foreach( er in this.darkwaysChests( st)) if( er["rp3d"]) er.rp3d.effect( { id = "FX020", pos = [0.0, 0.5, 0.0] });
 };
 //	Waystones and shrines: cleanse the whole party (returns how many stacks were lifted).
+//	Small stone shrines (user 2026-11-12: "have the small stone shrines remove status effects besides taint (aka
+//	poisoning)"): every condition on the party except Taint and Down goes (Down is the REST command's job).
+::Rokugan.shrineCure <- function(){
+	local n = 0;
+	foreach( m in ::rpgstat.members){
+		if( !m) continue;
+		foreach( c in clone m.conds){
+			if( !c || c.dataid == this.TAINT || c.dataid == "K000") continue;
+			m.removeCondition( c.dataid);
+			n++;
+		}
+	}
+	printf( "[RT] shrine: %d ailments eased\n", n);
+	return n;
+};
 ::Rokugan.cleanseTaint <- function(){
 	local n = 0;
 	foreach( m in ::rpgstat.members){

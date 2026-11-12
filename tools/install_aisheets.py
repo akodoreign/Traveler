@@ -30,11 +30,15 @@ def main():
     for key in sorted(os.listdir(os.path.join(PX, "sheets"))):
         d = os.path.join(PX, "sheets", key)
         spec = os.path.join(SPECS, key + ".json")
+        if not os.path.exists(spec):                      # traveler weapon / hat looks (natsuko__katana_own ...)
+            spec = os.path.join(SPECS, "looks", key + ".json")
         if not os.path.isdir(d) or not os.path.exists(spec) or (want and key not in want):
             continue
         if not (os.path.exists(os.path.join(d, "complete")) or "--started" in a or key in want):
             continue
         sheet = json.load(open(spec, encoding="utf-8"))["sheet"]
+        if "__" in key:                                   # a look spec carries its base sheet name: the look sheet is
+            sheet = "trav_%s.png" % key                    # trav_<key> (gen_pixeldrive worklist)
         if not os.path.exists(os.path.join(ORIG, sheet)):
             shutil.copy(os.path.join(PIC, sheet), os.path.join(ORIG, sheet))
         im = Image.open(os.path.join(ORIG, sheet)).convert("RGBA")

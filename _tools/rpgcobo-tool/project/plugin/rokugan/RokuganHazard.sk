@@ -2356,8 +2356,11 @@ local WARDS = { ["Oni no Tsukakoro"] = 11 };			//	boss name -> ELEMS bit (11 = J
 //	other R1s as above, 4 Punish the Arrogant, 5 Taking the Measure, 6 Will Not Flesh. ronin( t) = she holds technique t.
 //	Rank 3 (Ronin Ch4 start, Lv 41): G1133 = 1-6 an R1/R2 she lacked, 7 Desperate Speed, 8 Strike Like Wind, 9 Hasten
 //	the Blade.
+//	(user 2026-11-12: "Rank 1 (ronin base) 2 forest killer Rank 1, 3 forest killer rank 2, 4 forest killer rank 3, then
+//	for rank 5 ... Ronin Duelist rank 1") Only her Rank 1 pick (G1039) counts here now; Ranks 2-5 come with her level
+//	(RokuganRanks.sk, S728-S731). The Ch2 / Ch4 picks (G1092 / G1133) are kept as story choices only.
 ::Rokugan.ronin <- function( t){
-	return int( ::rpgvar["G1039"] || 0) == t || int( ::rpgvar["G1092"] || 0) == t || int( ::rpgvar["G1133"] || 0) == t;
+	return int( ::rpgvar["G1039"] || 0) == t;
 };
 ::Rokugan._rt_pre_school <- ::Rokugan.onPreCommand;
 ::Rokugan.onPreCommand <- function( cmd){

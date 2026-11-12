@@ -501,8 +501,12 @@ def worklist(only):
     keys = []
     for k in sorted(os.listdir(pd.SHEETS)):
         sp = os.path.join(pd.SPECS, k + ".json")
+        if not os.path.exists(sp):                        # traveler weapon / hat looks: pixelai_specs/looks/
+            sp = os.path.join(pd.SPECS, "looks", k + ".json")
         if os.path.exists(os.path.join(pd.SHEETS, k, "complete")) and os.path.exists(sp) and (not only or k in only):
             spec = json.load(open(sp))
+            if "__" in k:                                 # a look spec carries the base sheet name
+                spec = dict(spec, sheet="trav_%s.png" % k)
             if spec["sheet"] in ents:
                 n = sum(1 for f in os.listdir(os.path.join(pd.SHEETS, k)) if len(f) == 8 and f.endswith(".png"))
                 keys.append((-n, k, spec, ents[spec["sheet"]]))           # full 150-frame sheets first

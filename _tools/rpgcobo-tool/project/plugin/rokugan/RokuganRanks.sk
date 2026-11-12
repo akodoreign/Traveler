@@ -13,6 +13,7 @@ local log( s){ printf( "[RT] %S\n", s); }
 	Haruki  = ["S716", "S717", "S718", "S719"],
 	Mitsue  = ["S720", "S721", "S722", "S723"],
 	Tamotsu = ["S724", "S725", "S726", "S727"],
+	Sayo    = ["S728", "S729", "S730", "S731"],		//	Forest Killer 1-3, Ronin Duelist 1 (user 2026-11-12)
 };
 
 //	Insight Rank 1-5 (0 for enemies and the cast without a school here).
@@ -23,6 +24,18 @@ local log( s){ printf( "[RT] %S\n", s); }
 	local r = 1;
 	foreach( id in a) if( pc.hasSkill( id)) r++;
 	return r;
+};
+//	Advanced schools (Lv 75 / 90 / 100; gen_data ADV_SCHOOLS, skills S800 + 3k by player id order): tier I +15% damage,
+//	II +15% evasion and +10% damage, III +20% criticals and one more hit on the weapon attack.
+::Rokugan.ADV <- { Natsuko = 800, Rensei = 803, Gendo = 806, Shizue = 809, Haruki = 812, Mitsue = 815, Tamotsu = 818,
+	Sayo = 821 };
+::Rokugan.advTier <- function( pc){
+	if( !(pc instanceof ::RPGPlayer)) return 0;
+	local b = this.ADV[this.given( pc.name)];
+	if( !b) return 0;
+	local n = 0;
+	for( local i = 0; i < 3; i++) if( pc.hasSkill( "S%03d" % (b + i))) n++;
+	return n;
 };
 ::Rokugan.ranked <- function( pc, who, n){
 	return (pc instanceof ::RPGPlayer) && this.given( pc.name) == who && this.insight( pc) >= n;
@@ -70,7 +83,8 @@ local _rs = function( chr){
 	if( sk && (pc instanceof ::RPGPlayer)){
 		local g = this.given( pc.name), r = this.insight( pc), nsk = null;
 		//	+1 hit: Harness the Wind / Strength of My Ancestors / No Substance (plain attacks), One Strike Two Cuts (Strike)
-		if( (_isPlainAttack( sk) && ((g == "Natsuko" && r >= 4) || (g == "Shizue" && r >= 3) || (g == "Mitsue" && r >= 4))) ||
+		if( (_isPlainAttack( sk) && ((g == "Natsuko" && r >= 4) || (g == "Shizue" && r >= 3) || (g == "Mitsue" && r >= 4) ||
+				(g == "Sayo" && r >= 3) || this.advTier( pc) >= 3)) ||
 				(g == "Rensei" && r >= 4 && sk["name"] == "Iaijutsu: Strike")){
 			nsk = clone sk;
 			local na = sk["atknum"] || [1, 1];
@@ -185,6 +199,13 @@ local _rs = function( chr){
 	case "Haruki":
 		if( sk["flags"] != 255) mul *= r >= 4 ? 1.25 : 1.1;					//	R2 / R4 the higher Masteries
 		break;
+	case "Sayo":																//	the Forest Killers
+		if( !es.acted){ mul *= 1.5; tag = "FOOL'S HARVEST"; pc.putCondition( "K062"); }	//	R2 Fool's Harvest
+		local rk2 = _rs( pc), a2 = this.rankOf( pc), b2 = this.rankOf( e);
+		if( r >= 3 && rk2.first && a2 && b2 && a2 < b2){ crit = 100.0; tag = "CANOPY OF KNIVES"; }	//	R3
+		rk2.first = false;
+		if( r >= 4) es.marked[pc] <- true;										//	R4 Ghost of the Shinomen
+		break;
 	}
 	//	Tamotsu R4 Piercing the Veils is defensive (rankDefence). Party-wide: Gendo R4 counts for everyone's hits.
 	if( g != "Gendo"){
@@ -193,6 +214,10 @@ local _rs = function( chr){
 			if( m && !m.isDead() && this.ranked( m, "Gendo", 4) && (this.state( e).known & this.weakbits( e))){ mul *= 1.1; break; }
 		}
 	}
+	local at = this.advTier( pc);											//	the advanced school
+	if( at >= 1) mul *= 1.15;
+	if( at >= 2) mul *= 1.1;
+	if( at >= 3) crit += 20.0;
 	if( crit > 0 && !dmg.critical && _chance( crit)){ dmg.critical = true; mul *= 1.5; }
 	if( mul != 1.0) dmg.cval.baserate *= mul;
 	if( tag) this.pop( pc, tag, 0xffd040ff);
@@ -209,6 +234,9 @@ local _rs = function( chr){
 	case "Rensei":
 		if( r >= 3 && (pc in es.marked)) eva += 20.0;							//	R3: the foe he cut flinches
 		break;
+	case "Sayo":
+		if( r >= 4) eva += 20.0 + ((pc in es.marked) ? 20.0 : 0.0);			//	R4 Ghost of the Shinomen
+		break;
 	case "Mitsue":
 		if( r >= 3) eva += 20.0;												//	R3 The Shadow Has No Form
 		if( r >= 4 && !ps.dodged && !dmg.miss){								//	R4 No Substance: once a battle
@@ -218,6 +246,7 @@ local _rs = function( chr){
 		}
 		break;
 	}
+	if( this.advTier( pc) >= 2) eva += 15.0;								//	advanced school II
 	if( !dmg.miss && eva > 0 && _chance( eva)){
 		dmg.miss = true;
 		this.pop( pc, "DODGE", 0xb0d8ffff);
@@ -258,6 +287,7 @@ local _rs = function( chr){
 		}
 		this.pop( chr, "THE HEART LISTENS", 0xffe080ff);
 	}
+	if( this.ranked( chr, "Sayo", 5)){ chr.putCondition( "K059"); this.pop( chr, "THE WIND TECHNIQUE", 0x9fd8ffff); }
 	if( this.ranked( chr, "Rensei", 3) && length( b.enemies) == 1){
 		local st = this.state( chr);
 		st.bp = Math.min( st.bp + 1, this.vpMax( chr) + 1);

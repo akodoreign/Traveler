@@ -282,7 +282,9 @@ class Events:
                               (([{"lvar": after, "op": "==", "rvar": True}] if isinstance(after, str) else
                                 list(after)) if after else []),
                               "cmdblocks": [block]}]}
-        r = [0, 1.0, 0, 2.5, 1.0, 2.5] if touch else [0, 0.5, 0, 0.5, 0.5, 0.5]
+        # (user 2026-11-12: the Egg Caves altar scene only fired on one tile) walk-on scenes: 3 m tall, so a sloping
+        # floor still puts the whole body inside the box (the engine's walk-on rule)
+        r = [0, 1.0, 0, 2.5, 3.0, 2.5] if touch else [0, 0.5, 0, 0.5, 0.5, 0.5]
         pages = [page]
         if not touch:
             # (tester 2026-11-11) The engine runs an autorun (trigger 6) once per spawn, the first time its page is
@@ -376,8 +378,9 @@ def script(code):
 
 # Togashi Yosai steps out (to wait at the inns) whenever a story companion joins (user: only when no other companion)
 YOSAI_STEPS_OUT = [
-    script('local p = ::rpgstat.playermap["P132"], l = ::rpgstat.members[0]; '      # Haruki and Tamotsu (user) keep him
-           'W = !!::rpgstat.members.find( @( v) v && v == p) && !(l && (l.dataid == "P104" || l.dataid == "P106"));'),
+    # (user 2026-11-12: "don't have Togashi leave") he only steps out when the party is over four
+    script('local p = ::rpgstat.playermap["P132"]; '
+           'W = !!::rpgstat.members.find( @( v) v && v == p) && length( ::rpgstat.members.filter( @( v) v)) > 4;'),
     {"cmd": "cmd_if", "reqs": [{"lvar": "W", "op": "==", "rvar": True}], "cmdblocks": [[
         {"cmd": "cmd_memberop", "playerid": "P132", "op": 0, "slot": None},
         {"cmd": "cmd_compute", "lvar": "G608", "op": "=", "rvar": False},
@@ -748,7 +751,16 @@ def wall_garrison():
     ev.portal(70, 3, "M102", 1)
     ev.npc(33, 22, EP["sachiko"], "Leave? You? The Wall will fall over from shock.")
     ev.npc(38, 18, EP["ryoichi"], "A week off. You'll be bored by noon. Bring me back something that isn't rice.")
-    ev.npc(15, 10, EP["takakana"], "Men are dumb enough to fight fair. Goblins are not. Take a yari.")
+    ev.npc(15, 10, EP["takakana"], "Men are dumb enough to fight fair. Goblins are not. Take a yari.",
+           reqs=[flag("G054", False)])
+    # (user 2026-11-12: after the courier's summons and the nezumi caves, tell her to toughen up before the Hida road -
+    # the Egg Caves have new tenants; tools/ladders.py + gen_data E608-E618)
+    ev.npc(15, 10, EP["takakana"], "The Hida road? Bandits, drunks with swords and worse. You're green for it, "
+           "Hiruma. Go back to the Egg Caves first - with the ratlings gone, beetles and goblins moved in. Toughen up "
+           "there.", reqs=[flag("G054"), flag("G216", False)])
+    ev.npc(6, 19, EP["veteran"], "Hida road's that way, scout. Folk come back from it in pieces. Check the egg caves "
+           "again first - new creatures have moved in, bigger than the old lot. Good practice.",
+           reqs=[flag("G054"), flag("G216", False)])
     ev.npc(11, 40, EP["veteran"], "Sealed by order of the Hida. Forty years I've watched that gate. Still shut.",
            reqs=[flag("G240", False)])
     ev.npc(11, 40, EP["veteran"], "Forty years shut, and today it's open. Come back through it, scout.",
@@ -990,9 +1002,9 @@ S04_WIN = after_line(script_scene("crab-ch1", "S04", start_at="[IF Sumai won]"),
 def sumai_bout():
     """Natsuko's Sumai with Gonta (b_hidden_ones_sumai): bare hands vs. M001 group 6; a loss recovers and returns
     to the choice; after two losses Gonta lets her win (production S04)."""
-    return [script('::Rokugan.sumaiBegin( "P100");'),
+    return [script('::Rokugan.sumaiBegin( "P100"); ::Rokugan.soloBegin( "P100");'),   # (user: solo + hireling)
             dict(battle("M001", 6), losefunc=1),
-            script('::Rokugan.sumaiEnd( "P100");'),
+            script('::Rokugan.sumaiEnd( "P100"); ::Rokugan.soloEnd();'),
             if_([{"lvar": "RESULT", "op": "==", "rvar": 1}], S04_WIN, [
                 setf("G020", 1, "+="),
                 if_([{"lvar": "G020", "op": ">=", "rvar": 2}],
@@ -1162,7 +1174,8 @@ def save_shrine(m, ev, x, z):
     fb(m, x, z + 1, 3, 14)                                                 # exterior statue1
     ev.talk(x, z - 1, "CE000", [(None, [
         narrate("A small stone shrine to the Fortunes, half buried in the rock. Someone left it a rice ball."),
-        choices(("Rest and save.", REST + [narrate("(Rested. HP and MP restored.)"),
+        choices(("Rest and save.", REST + [script("::Rokugan.shrineCure();"),     # (user: shrines cure all but Taint)
+                                           narrate("(Rested. HP and MP restored, ailments eased.)"),
                                            {"cmd": "cmd_showui", "key": "menu_save", "op": None, "uiclose": 2}]),
                 ("Leave it be.", []))])], trigger=1)
 
@@ -1322,7 +1335,10 @@ def egg_altar():
         ev.npc(x, z, EP["young"], "...", reqs=altar)
     ev.npc(29, 14, EP["squeak"], "Big-man there. Scout talk. Talk-talk.", reqs=altar)
     ev.npc(40, 30, EP["shaman"], "Shiny-man ours.", reqs=[flag("G045"), flag("G049", False)])
-    ev.scene(32, 9, "G045", S07_TO_S09, touch=True)
+    # (user 2026-11-12: "Seppun encounter in cave only triggers on bottom tile, should trigger where you enter his area")
+    # a strip across the whole tunnel mouth where it opens into the altar cave, not one tile in the middle
+    k = ev.scene(32, 11, "G045", S07_TO_S09, touch=True)
+    ev.ev["#%d#" % k]["mdl"] = {"r": [0, 1.0, 0, 2.5, 4.0, 1.5]}       # (the tunnel slopes: a tall box)
     return m, ev
 
 
@@ -1397,9 +1413,8 @@ YOSAI_ANY = ["Two letters, two insults, two armies. Somebody is very good at ari
 def yosai_inn(ev, x, z, mid):
     """Togashi Yosai beside an inn: the first meeting (in a path's Ch1 town), then an offer to travel whenever no
     other companion is in the party."""
-    alone = script('local n = length( ::rpgstat.members.filter( @( v) v)), l = ::rpgstat.members[0]; '  # length(), not
-                   'W = n <= 1 || (n <= 2 && l && (l.dataid == "P104" || l.dataid == "P106"));')  # len(); Haruki and
-    # Tamotsu may have him beside their yojimbo (user)
+    # (user 2026-11-12: Yosai stays with the party) he offers whenever there is room (fewer than 4)
+    alone = script('local n = length( ::rpgstat.members.filter( @( v) v)); W = n < 4;')
     come = [{"cmd": "cmd_memberop", "playerid": "P132", "op": 0, "slot": -1},
             script('local p = ::rpgstat.playermap["P132"], n = ::rpgstat.members.find( @( v) v && v != p); '
                    'if( n && p.LV < n.LV) p.setLV( n.LV);'),
@@ -2441,6 +2456,40 @@ def portals_off_side_walls(m, ev):
                 break
 
 
+def people_off_blocks(m, ev):
+    """(tester, 2026-11-12; memory: spawn on walkable) A person standing inside a block - a stable, a wall, a roof -
+    can't be talked to and pokes out of the scenery. Move each to the nearest open square at their own floor height.
+    (Hireling homes, the G293 spots, are parked off-map on purpose and stay.)"""
+    import walkcheck as wc
+    fl, bl = wc.floors(m)
+    taken = {(int(e["pos"][0]), int(e["pos"][2])) for e in ev.ev.values() if "pos" in e}
+    for e in ev.ev.values():
+        if "pos" not in e or not str(e.get("mdlid") or "").startswith("EP"):
+            continue
+        if not (e.get("page") or e.get("role") == "villager") or "G293" in json.dumps(e.get("reqs0")):
+            continue
+        x, y, z = int(e["pos"][0]), int(e["pos"][1]), int(e["pos"][2])
+        if not (0 <= x < m.w and 0 <= z < m.d) or fl[z, x] < 0 or fl[z, x] < y + 2:
+            continue
+        best = None
+        for r in range(1, 9):
+            for dz in range(-r, r + 1):
+                for dx in range(-r, r + 1):
+                    if max(abs(dx), abs(dz)) != r:
+                        continue
+                    a, b = x + dx, z + dz
+                    if 0 <= a < m.w and 0 <= b < m.d and abs(int(fl[b, a]) - y) <= 1 and not bl[b, a]                             and (a, b) not in taken:
+                        d2 = dx * dx + dz * dz
+                        if best is None or d2 < best[0]:
+                            best = (d2, a, b)
+            if best:
+                break
+        if best:
+            taken.discard((x, z))
+            e["pos"][0], e["pos"][1], e["pos"][2] = best[1], int(fl[best[2], best[1]]), best[2]
+            taken.add((best[1], best[2]))
+
+
 def arrivals_face_open_ground(m, ev):
     """(tester, 2026-11-11: coming back into M261 from the South Dojo set Shizue down inside the rock and the
     fall-rescue lifted her onto a ledge with no way down.) The engine sets an arriving player 1 m (2 squares) in
@@ -2510,7 +2559,7 @@ MOVE_EXIT = {
 # {map: {destination: (x, z) unpadded}} - they land beside the right doorway instead (spots found walkable).
 ARRIVE_AT = {"M214": {"M210": (101, 28)}, "M286": {"M285": (58, 23)}, "M408": {"M404": (54, 18)},
              "M409": {"M408": (101, 16)}, "M430": {"M431": (4, 15)}, "M431": {"M432": (7, 20)},
-             "M432": {"M433": (7, 20)}, "M440": {"M439": (73, 15)}}
+             "M432": {"M433": (7, 15)}, "M440": {"M439": (73, 15)}}
 
 
 def _exit_dests(e):
@@ -4267,7 +4316,8 @@ S07_CR1 = cr1("S07", stop_at="> CHOICE") + [setf("G329"), choices(
      ROUTE_YARD(3)),
     ("Demand trial by challenge. (Recommended)", ROUTE_YARD(4)))]
 GUEST_ROOM_SAVE = [narrate("The guest room: a futon, a writing box, and a window onto the dark yard."),
-                   choices(("Rest and save.", REST + [narrate("(Rested. HP and MP restored.)"),
+                   choices(("Rest and save.", REST + [script("::Rokugan.shrineCure();"),     # (user: shrines cure all but Taint)
+                                           narrate("(Rested. HP and MP restored, ailments eased.)"),
                                                      {"cmd": "cmd_showui", "key": "menu_save", "op": None,
                                                       "uiclose": 2}]),
                            ("Not yet.", []))]
@@ -4758,7 +4808,8 @@ S03_CR2 = partner_says("Lady Doji Sanae's rooms in the castle. Sanae; Kakita Ren
                 ("\"We go together.\"", [setf("G353", 2)])),
         setf("G352")] + CAMP_DAWN + DARK + [narrate("The border conference. Night."), go("M214", 4, 16)]
 ROOM_SAVE = [narrate("Lady Sanae's writing table, and a screen with a futon behind it."),
-             choices(("Rest and save.", REST + [narrate("(Rested. HP and MP restored.)"),
+             choices(("Rest and save.", REST + [script("::Rokugan.shrineCure();"),     # (user: shrines cure all but Taint)
+                                           narrate("(Rested. HP and MP restored, ailments eased.)"),
                                                 {"cmd": "cmd_showui", "key": "menu_save", "op": None, "uiclose": 2}]),
                      ("Not yet.", []))]
 
@@ -10311,12 +10362,15 @@ def bayushi_town():
     for x in range(4, 104, 9):
         m.tree(x, 6 + (x * 3) % 5, (TREE_M, TREE_S)[x % 2])
     ev = Events(m)
+    NORTH_ROAD_347 = [narrate("The north road: Shiro no Soshi, Seikitsu Pass, and the plains."),
+                      choices(("Take the north road.", DARK + [go("M359", 4, 15)]), ("Stay.", [step_back(2.0, 0)]))]
     ev.portal(102, 17, "M348", 1, d=3)                                      # event 1: the south road (the grove)
     ev.talk(1, 17, "CE000", [(None, [narrate("The palace wall, and a guard who isn't looking at you."),
                                      step_back(2.0, 0)]),
-                             ([flag("G861")], [narrate("The north road: Shiro no Soshi, Seikitsu Pass, and the plains."),
-                                               choices(("Take the north road.", DARK + [go("M359", 4, 15)]),
-                                                       ("Stay.", [step_back(2.0, 0)]))])], trigger=5)
+                             ([flag("G861")], NORTH_ROAD_347),
+                             # (tester 2026-11-12: a Unicorn save reaches this town from M359 - the north road's own
+                             # west end lets anyone in - and the gate only opened after Scorpion Ch1: trapped)
+                             ([flag("G982")], NORTH_ROAD_347)], trigger=5)
     ev.talk(9, 21, "CE000", [(None, [narrate("The servants' gate. The guard doesn't look at servants; that is the "
                                              "point of servants.")])], trigger=1)
     ev.npc(11, 21, SC["bayushiguard"], "(not looking at you) Move along. Unless you're nobody. Nobody can stay.")
@@ -18533,8 +18587,52 @@ def register(specs, events):
                 groups.append(g)
             e["encount"], e["encntrate"] = groups, ENC_RATE
         mp[sp.mid] = e
+    ladder_hint_pass(mp)
     objective_pass(mp)
     json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="	")
+
+
+def ladder_hint_pass(mp):
+    """(user 2026-11-12: "NPCs should tell you ... you need to toughen up ... new creatures have moved in. Similar in any
+    other level ladder situation") Right where a chapter's completion flag is set, a line says which of its places now
+    hold tougher creatures and how tough (tools/ladders.py). The Crab Wall has its own NPCs (wall_garrison)."""
+    import ladders as _lad
+    hints = {}
+    for path, done, maps in _lad.LADDERS:
+        names, lo, hi = [], 99, 0
+        for mid, a, b in maps:
+            nm = (mp.get(mid) or {}).get("name") or mid
+            nm = nm.split(" - ")[0] if " - " in nm else nm
+            if nm not in names:
+                names.append(nm)
+            lo, hi = min(lo, a), max(hi, b)
+        where = names[0] if len(names) == 1 else ", ".join(names[:-1]) + " and " + names[-1]
+        hints[done] = ("Word on the road: new creatures have moved into %s since you passed - tougher than before "
+                       "(Lv %d-%d). Good hunting, if you need seasoning before what comes next." % (where, lo, hi))
+
+    def walk(x):
+        if isinstance(x, dict):
+            for v in list(x.values()):
+                walk(v)
+            return
+        if not isinstance(x, list):
+            return
+        i = 0
+        while i < len(x):
+            c = x[i]
+            if (isinstance(c, dict) and c.get("cmd") == "cmd_compute" and c.get("lvar") in hints
+                    and c.get("op") == "=" and c.get("rvar") is True):
+                j = i + 1
+                while j < len(x) and isinstance(x[j], dict) and x[j].get("desc") == "RT ladder hint":
+                    j += 1
+                x[i + 1:j] = [dict(narrate(hints[c["lvar"]]), desc="RT ladder hint")]
+                i += 1
+            else:
+                walk(c)
+            i += 1
+    for mid in sorted(mp):
+        if isinstance(mp[mid], dict):
+            walk(mp[mid].get("event"))
 
 
 # The field HUD (plugin RokuganHUD.sk; user 2026-11-11: "a couple boxes in the lower right hand corner, one that says
@@ -18753,6 +18851,7 @@ def make(i):
     if ev is not None:
         portals_off_side_walls(m, ev)
         arrivals_face_open_ground(m, ev)
+        people_off_blocks(m, ev)
     if ev is not None:                                                     # a big walk-in box whose centre can be
         for e in ev.ev.values():                                           # off screen while the player is in it
             r = (e.get("mdl") or {}).get("r") or []                        # would not exist there (spawndist 1)

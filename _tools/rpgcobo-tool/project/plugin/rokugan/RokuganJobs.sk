@@ -13,21 +13,51 @@ local _chance = @( pct) ::rnd.nextf( 0.0, 100.0) < pct;
 ::Rokugan.wearsJob <- function( pc, jid){
 	return pc && pc["jobs"] && !!pc.jobs.find( @( v) v && v.dataid == jid);
 };
-//	The first party member (in battle: the battle's members; else the party) wearing jid, alive; or null.
+//	Perks (user 2026-11-12): a job's perks work while it is worn, from the job level in its data field rt_perks
+//	([[perk id, level], ...]); a perk worn as a Trait (slot 2, learned at job Lv 10) works too.
+::Rokugan.PERK_SRC <- null;
+::Rokugan.perkSources <- function(){
+	if( this.PERK_SRC) return this.PERK_SRC;
+	local t = {};
+	foreach( jid, jd in ::conf.job){
+		if( jid[0] != 'J' || !jd || !jd["rt_perks"]) continue;
+		foreach( p in jd.rt_perks){
+			if( !(p[0] in t)) t[p[0]] <- [];
+			t[p[0]].append( [jid, p[1]]);
+		}
+	}
+	return this.PERK_SRC = t;
+};
+::Rokugan.hasPerk <- function( pc, tid){
+	if( !pc || !pc["jobs"]) return false;
+	if( this.wearsJob( pc, tid)) return true;
+	local src = this.perkSources()[tid];
+	if( !src) return false;
+	foreach( s in src){
+		local j = pc.jobs.find( @( v) v && v.dataid == s[0]);
+		if( j && j.JOBLV >= s[1]) return true;
+	}
+	return false;
+};
+//	The first party member (in battle: the battle's members; else the party) with the perk tid, alive; or null.
 ::Rokugan.partyWith <- function( jid){
 	local b = ::rpgstage ? ::rpgstage["battle"] : null;
 	foreach( m in (b ? b.members : ::rpgstat.members)){
-		if( m && !m.isDead() && this.wearsJob( m, jid)) return m;
+		if( m && !m.isDead() && this.hasPerk( m, jid)) return m;
 	}
 	return null;
 };
 
-//	The traveler's own job and the traits it has unlocked join their job list (idempotent).
+//	The traveler's own job, the jobs of the other travelers in the party with them (user: "once they are all together
+//	they can each level up the different jobs ... mix and match"), and the traits learned join their job list.
+local TRAVELERS = { P100 = 1, P101 = 1, P102 = 1, P103 = 1, P104 = 1, P105 = 1, P106 = 1, P107 = 1 };
 ::Rokugan.ensureJobs <- function( pc){
 	if( !pc || !pc["ownjobs"]) return [];
-	local pid = pc.dataid, added = [];
+	local pid = pc.dataid, added = [], owners = {};
+	owners[pid] <- true;
+	if( pid in TRAVELERS) foreach( m in ::rpgstat.members) if( m && (m.dataid in TRAVELERS)) owners[m.dataid] <- true;
 	foreach( jid, jd in ::conf.job){
-		if( jid[0] == 'J' && jd && jd["rt_owner"] == pid && !pc.ownjobs.find( @( v) v && v.dataid == jid)){
+		if( jid[0] == 'J' && jd && jd["rt_owner"] && (jd.rt_owner in owners) && !pc.ownjobs.find( @( v) v && v.dataid == jid)){
 			pc.ownjobs .. ::RPGObject.create( jid);
 			log( "job %S gets %S" % (pc.name, jid));
 		}
@@ -62,12 +92,15 @@ local _ajx = ::RPGPlayer.addJobExp;
 ///////////////////////////////////////////////////////////////////////////////
 //	Traveler: extra EXP and money (party-wide: the best Traveler among the living), Bounty +20%, Golden Purse +30%.
 //	The foes' exp / money are scaled for the victory screen (so it shows the real numbers), then put back.
+//	Traveler: +1% at job Lv 1 .. +50% at Lv 10 (user 2026-11-12; jobs_data.traveler_pct); Seasoned Traveler trait +25%.
 ::Rokugan.travelerRate <- function( members){
-	local best = 0;
+	local best = 0, r = 0.0;
 	foreach( m in members){
 		if( m && !m.isDefeated() && this.wearsJob( m, "J000")) best = Math.max( best, this.jobLv( m, "J000"));
+		if( m && !m.isDefeated() && this.wearsJob( m, "J134")) r = 0.25;
 	}
-	return best > 1 ? 0.5 * (best - 1) / 9.0 : 0.0;
+	if( best >= 1) r += (1.0 + (Math.min( best, 10) - 1) * 49.0 / 9.0) / 100.0;
+	return r;
 };
 ::TurnBattleRunner._rt_victory_jobs <- ::TurnBattleRunner.showVictoryUI;
 ::TurnBattleRunner.showVictoryUI <- function(){
@@ -157,16 +190,22 @@ local _ajx = ::RPGPlayer.addJobExp;
 			this.state( e).known = this.state( e).known | this.weakbits( e);
 			this.pop( e, "READ", 0xffe080ff);
 		}
+		local van = this.partyWith( "J119");
 		foreach( m in b.members){
-			if( !m || m.isDead()) continue;
-			if( this.wearsJob( m, "J113")) m.putCondition( "K062");					//	First Draw
-			if( this.partyWith( "J119")) m.putCondition( "K062");					//	Vanguard (everyone)
-			if( this.wearsJob( m, "J120")){ local st = this.state( m); st.bp = Math.min( st.bp + 1, this.vpMax( m) + 1); }
-			if( this.wearsJob( m, "J115")) this.state( m).focus = Math.max( this.state( m).focus, 1);	//	Ready Blade
+			if( !m || m.isDead() || !(m instanceof ::RPGPlayer)) continue;
+			local st = this.state( m), vmax = this.vpMax( m);
+			if( this.hasPerk( m, "J113") || van) m.putCondition( "K062");			//	First Draw / Vanguard
+			if( this.hasPerk( m, "J120")) st.bp = Math.min( st.bp + 1, vmax + 1);	//	Rally
+			if( this.hasPerk( m, "J115")) st.focus = Math.max( st.focus, 1);		//	Ready Blade
+			//	Ishiken-do (user 2026-11-12): worn as a job, battles start with 1 VP at job Lv 1 .. full at Lv 10; the Lv 10
+			//	trait gives full VP to whoever wears it
+			if( this.wearsJob( m, "J133")) st.bp = Math.max( st.bp, vmax);
+			else if( this.wearsJob( m, "J014")){
+				local jl = this.jobLv( m, "J014");
+				st.bp = Math.max( st.bp, Math.min( vmax, 1 + (jl - 1) * Math.max( 0, vmax - 1) / 9));
+			}
 		}
 	}
-	if( (chr instanceof ::RPGPlayer) && this.wearsJob( chr, "J123") && chr.MAXMP > 0)		//	Meditation
-		chr.MP = Math.min( chr.MAXMP, chr.MP + Math.max( 1, chr.MAXMP / 20));
 };
 
 //	Surprise: each foe's first action is lost. Connections: the first hireling call a battle costs no charge.
@@ -194,12 +233,11 @@ local _ajx = ::RPGPlayer.addJobExp;
 ::Rokugan.onAttack <- function( dmg){
 	local src = dmg.src, dst = dmg.dst, sk = dmg.skill, jb = this.jobBattle();
 	if( !dmg.skip && (src instanceof ::RPGPlayer)){
-		if( dmg.heal && this.wearsJob( src, "J131")) dmg.cval.baserate *= 1.25;
+		if( dmg.heal && this.hasPerk( src, "J131")) dmg.cval.baserate *= 1.25;
 		else if( !dmg.heal && !dmg.miss && (dst instanceof ::RPGEnemy)){
 			local crit = 0.0, mul = 1.0, b = ::rpgstage["battle"];
-			if( jb.surprise && !(dst in jb.lost) && ((this.wearsJob( src, "J110") && this.jobLv( src, "J010") >= 5) ||
-					this.wearsJob( src, "J126"))) crit += 25.0;
-			if( this.wearsJob( src, "J114") && b && b.enemies.filter( @( e) e && !e.isDead()).len() == 1) crit += 20.0;
+			if( jb.surprise && !(dst in jb.lost) && (this.hasPerk( src, "J110") || this.hasPerk( src, "J126"))) crit += 25.0;
+			if( this.hasPerk( src, "J114") && b && b.enemies.filter( @( e) e && !e.isDead()).len() == 1) crit += 20.0;
 			local bn = this.partyWith( "J121");
 			if( bn && bn.HP * 2 < bn.MAXHP) mul *= 1.15;
 			if( crit > 0 && !dmg.critical && _chance( crit)){ dmg.critical = true; mul *= 1.5; }
@@ -207,6 +245,37 @@ local _ajx = ::RPGPlayer.addJobExp;
 		}
 	}
 	this._rt_att_jobs( dmg);
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	Weakness memory (user 2026-11-12: "once a weakness for a species is revealed it should always stay revealed even in
+//	the next time you see them"): enemy data field rt_species = a saved int var (gen_data, one per species name) with the
+//	revealed weakness bits. A foe's battle state starts from it; every hit and the victory store what is known.
+::Rokugan._rt_state_mem <- ::Rokugan.state;
+::Rokugan.state <- function( chr){
+	local fresh = this.curbattle != ::rpgstage["battle"] || !(chr in this.states);
+	local st = this._rt_state_mem( chr);
+	if( fresh && (chr instanceof ::RPGEnemy)){
+		local v = chr.data["rt_species"];
+		if( v) st.known = st.known | (int( ::rpgvar[v] || 0) & this.weakbits( chr));
+	}
+	return st;
+};
+::Rokugan.rememberWeak <- function( e){
+	local v = (e instanceof ::RPGEnemy) ? e.data["rt_species"] : null;
+	if( !v) return;
+	local k = this.state( e).known, old = int( ::rpgvar[v] || 0);
+	if( (old | k) != old) ::rpgvar[v] = old | k;
+};
+::Rokugan._rt_att_mem <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	this._rt_att_mem( dmg);
+	if( dmg.dst instanceof ::RPGEnemy) this.rememberWeak( dmg.dst);
+};
+::TurnBattleRunner._rt_victory_mem <- ::TurnBattleRunner.showVictoryUI;
+::TurnBattleRunner.showVictoryUI <- function(){
+	foreach( e in this.enemies) if( e) ::Rokugan.rememberWeak( e);			//	(Deduce, Read the Foe, Tracker...)
+	this._rt_victory_mem();
 };
 
 printf( "Rokugan jobs loaded\n");

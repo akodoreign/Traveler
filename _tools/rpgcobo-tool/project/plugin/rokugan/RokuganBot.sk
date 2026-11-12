@@ -156,6 +156,7 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 		while( !::rpgstage || !::rpgstage["player3d"]) sleep( 200);
 		sleep( 2500);
 		local mapnow = { m = null, n = 0 };
+		if( !("botname" in ::Rokugan)) ::Rokugan.botname <- "pb";				//	(playbot runs burst their battles too)
 		newthread().start( @(){								//	map changes, as they happen
 			while( true){
 				local w = ::Rokugan.botWhere();

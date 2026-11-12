@@ -7,7 +7,7 @@
 			"seed": 3123
 		},
 		"defskillid": "S003",
-		"desc": "辺境の小村で育った心優しい青年。幼い頃に魔物から村を救われた経験から、強くなることを誓う。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 67108863,
 		"equips": [
@@ -1186,7 +1186,7 @@
 			}
 		],
 		"mdlid": "CV000",
-		"name": "シレン",
+		"name": "(unused player P000)",
 		"picid": "",
 		"voiceid": "VA000"
 	},
@@ -1199,7 +1199,7 @@
 			"seed": 3123
 		},
 		"defskillid": "S003",
-		"desc": "名門貴族の若き当主。気品と責任感を併せ持ち、腐敗した貴族社会を改革しようと志す。冷静だが情熱的な一面も。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 262127,
 		"equips": [
@@ -2361,7 +2361,7 @@
 			}
 		],
 		"mdlid": "CV003",
-		"name": "アシュレイ",
+		"name": "(unused player P001)",
 		"picid": "",
 		"row": 1,
 		"voiceid": null
@@ -2374,7 +2374,7 @@
 			"seed": 3123
 		},
 		"defskillid": "S003",
-		"desc": "王国軍の名門槍騎兵隊の家系に生まれたが、家を離れ傭兵や用心棒をしている。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 67108863,
 		"equips": [
@@ -3514,7 +3514,7 @@
 		},
 		"lvoption": [],
 		"mdlid": "CV011",
-		"name": "キジー",
+		"name": "(unused player P002)",
 		"picid": "",
 		"voiceid": null
 	},
@@ -3526,7 +3526,7 @@
 			"seed": 3123
 		},
 		"defskillid": "S003",
-		"desc": "魔力の濃い森で生まれた天才魔術師。幼い頃から魔力が暴走しがちで、感情が力に直結する繊細な体質。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 67108863,
 		"equips": [
@@ -4666,7 +4666,7 @@
 		},
 		"lvoption": [],
 		"mdlid": "CV005",
-		"name": "ミレイユ",
+		"name": "(unused player P003)",
 		"picid": "",
 		"voiceid": null
 	},
@@ -4674,7 +4674,7 @@
 		"INILV": 1,
 		"MAXLV": 99,
 		"defskillid": "S003",
-		"desc": "スラム街で育ち、幼い頃から身軽さと機転で生き延びてきた義賊。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 262143,
 		"equips": [
@@ -5406,7 +5406,7 @@
 		},
 		"lvoption": [],
 		"mdlid": "CV006",
-		"name": "カイ",
+		"name": "(unused player P004)",
 		"picid": "",
 		"voiceid": null
 	},
@@ -5414,7 +5414,7 @@
 		"INILV": 1,
 		"MAXLV": 99,
 		"defskillid": "S003",
-		"desc": "深い森に住む長命のエルフ族の娘。自然と精霊の声を聞く力を持ち、森の守護者として育てられた。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 262143,
 		"equips": [
@@ -6186,7 +6186,7 @@
 			}
 		],
 		"mdlid": "CV013",
-		"name": "リーファ",
+		"name": "(unused player P005)",
 		"picid": "",
 		"voiceid": "VA001"
 	},
@@ -6194,7 +6194,7 @@
 		"INILV": 1,
 		"MAXLV": 99,
 		"defskillid": "S003",
-		"desc": "旅をしながら物語を紡ぐ吟遊詩人。港町の酒場で育ち、世界中の歌や伝承を学んできた。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 262143,
 		"equips": [
@@ -6926,7 +6926,7 @@
 		},
 		"lvoption": [],
 		"mdlid": "CV018",
-		"name": "ルード",
+		"name": "(unused player P006)",
 		"picid": "",
 		"voiceid": null
 	},
@@ -6934,7 +6934,7 @@
 		"INILV": 1,
 		"MAXLV": 99,
 		"defskillid": "S003",
-		"desc": "砂漠のオアシス都市で生まれた踊り子。幼い頃から舞と歌で旅人を魅了してきた。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 262143,
 		"equips": [
@@ -7666,7 +7666,7 @@
 		},
 		"lvoption": [],
 		"mdlid": "CV007",
-		"name": "フィオナ",
+		"name": "(unused player P007)",
 		"picid": "",
 		"voiceid": null
 	},
@@ -7674,7 +7674,7 @@
 		"INILV": 1,
 		"MAXLV": 99,
 		"defskillid": "S003",
-		"desc": "荒野の闘技場で育った孤児。自分を拾ってくれた師匠の教えを胸に、真の強さを求めて旅を続ける。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 262143,
 		"equips": [
@@ -8420,7 +8420,7 @@
 			}
 		],
 		"mdlid": "CV009",
-		"name": "ランガ",
+		"name": "(unused player P008)",
 		"picid": "",
 		"voiceid": null
 	},
@@ -8428,7 +8428,7 @@
 		"INILV": 1,
 		"MAXLV": 99,
 		"defskillid": "S003",
-		"desc": "霧深い山里に隠れ住む忍びの一族の生まれ。任務のためならどんな危険にも身を投じるが、仲間を守るためには掟すら破ることもある。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 262143,
 		"equips": [
@@ -9160,7 +9160,7 @@
 		},
 		"lvoption": [],
 		"mdlid": "CV010",
-		"name": "シグレ",
+		"name": "(unused player P009)",
 		"picid": "",
 		"voiceid": null
 	},
@@ -9168,7 +9168,7 @@
 		"INILV": 1,
 		"MAXLV": 99,
 		"defskillid": "S003",
-		"desc": "王国を守る近衛騎士団の家系に生まれたエリート。厳格な性格だが、弱き者には誰よりも優しい。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 262143,
 		"equips": [
@@ -9900,7 +9900,7 @@
 		},
 		"lvoption": [],
 		"mdlid": "CV005",
-		"name": "クラリス",
+		"name": "(unused player P010)",
 		"picid": "",
 		"voiceid": null
 	},
@@ -9908,7 +9908,7 @@
 		"INILV": 1,
 		"MAXLV": 99,
 		"defskillid": "S003",
-		"desc": "行商人の家に生まれ、幼い頃から各地を旅してきた経験豊富な商人。利益だけでなく人との縁を大切にし、どんな相手とも誠実に取引する。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 262143,
 		"equips": [
@@ -10640,7 +10640,7 @@
 		},
 		"lvoption": [],
 		"mdlid": "CV008",
-		"name": "ロッシュ",
+		"name": "(unused player P011)",
 		"picid": "",
 		"voiceid": null
 	},
@@ -10648,7 +10648,7 @@
 		"INILV": 1,
 		"MAXLV": 99,
 		"defskillid": "S003",
-		"desc": "北方の森に住む小さな種族・コロボックルの青年。自然と共に生きる民で、植物や動物と心を通わせる力を持つ。",
+		"desc": "",
 		"eqlockbits": 0,
 		"eqtypebits": 262143,
 		"equips": [
@@ -11380,7 +11380,7 @@
 		},
 		"lvoption": [],
 		"mdlid": "CV015",
-		"name": "ポックル",
+		"name": "(unused player P012)",
 		"picid": "",
 		"voiceid": null
 	},
@@ -12144,7 +12144,7 @@
 	},
 	"P100": {
 		"INILV": 1,
-		"MAXLV": 99,
+		"MAXLV": 100,
 		"_meta": {
 			"lvtype": 0,
 			"seed": 3123
@@ -13290,7 +13290,7 @@
 				258
 			],
 			"MAXTP": [
-				1,
+				7,
 				11,
 				16,
 				20,
@@ -13419,6 +13419,21 @@
 				"skillid": "S703"
 			},
 			{
+				"LV": 75,
+				"opttype": "opt_getskill",
+				"skillid": "S800"
+			},
+			{
+				"LV": 90,
+				"opttype": "opt_getskill",
+				"skillid": "S801"
+			},
+			{
+				"LV": 100,
+				"opttype": "opt_getskill",
+				"skillid": "S802"
+			},
+			{
 				"LV": 10,
 				"opttype": "opt_getskill",
 				"skillid": "S741"
@@ -13448,6 +13463,7 @@
 		"name": "Hiruma Natsuko",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "hiruma",
 		"rt_class": "samurai",
 		"rt_clan": "crab",
 		"rt_mpref": [
@@ -13555,7 +13571,7 @@
 	},
 	"P101": {
 		"INILV": 1,
-		"MAXLV": 99,
+		"MAXLV": 100,
 		"_meta": {
 			"lvtype": 0,
 			"seed": 3123
@@ -14701,7 +14717,7 @@
 				148
 			],
 			"MAXTP": [
-				12,
+				7,
 				12,
 				17,
 				22,
@@ -14830,6 +14846,21 @@
 				"skillid": "S707"
 			},
 			{
+				"LV": 75,
+				"opttype": "opt_getskill",
+				"skillid": "S803"
+			},
+			{
+				"LV": 90,
+				"opttype": "opt_getskill",
+				"skillid": "S804"
+			},
+			{
+				"LV": 100,
+				"opttype": "opt_getskill",
+				"skillid": "S805"
+			},
+			{
 				"LV": 10,
 				"opttype": "opt_getskill",
 				"skillid": "S747"
@@ -14869,6 +14900,7 @@
 		"name": "Kakita Rensei",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "kakita",
 		"rt_class": "samurai",
 		"rt_clan": "crane",
 		"rt_mpref": [
@@ -14976,7 +15008,7 @@
 	},
 	"P102": {
 		"INILV": 1,
-		"MAXLV": 99,
+		"MAXLV": 100,
 		"_meta": {
 			"lvtype": 0,
 			"seed": 3123
@@ -16258,6 +16290,21 @@
 				"CDR.8": 100
 			},
 			{
+				"LV": 75,
+				"opttype": "opt_getskill",
+				"skillid": "S806"
+			},
+			{
+				"LV": 90,
+				"opttype": "opt_getskill",
+				"skillid": "S807"
+			},
+			{
+				"LV": 100,
+				"opttype": "opt_getskill",
+				"skillid": "S808"
+			},
+			{
 				"LV": 25,
 				"opttype": "opt_getskill",
 				"skillid": "S754"
@@ -16292,6 +16339,7 @@
 		"name": "Kitsuki Gendo",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "kitsuki",
 		"rt_class": "samurai",
 		"rt_clan": "dragon",
 		"rt_mpref": [
@@ -16399,7 +16447,7 @@
 	},
 	"P103": {
 		"INILV": 1,
-		"MAXLV": 99,
+		"MAXLV": 100,
 		"_meta": {
 			"lvtype": 0,
 			"seed": 3123
@@ -17545,7 +17593,7 @@
 				185
 			],
 			"MAXTP": [
-				1,
+				5,
 				10,
 				14,
 				18,
@@ -17669,6 +17717,21 @@
 				"skillid": "S715"
 			},
 			{
+				"LV": 75,
+				"opttype": "opt_getskill",
+				"skillid": "S809"
+			},
+			{
+				"LV": 90,
+				"opttype": "opt_getskill",
+				"skillid": "S810"
+			},
+			{
+				"LV": 100,
+				"opttype": "opt_getskill",
+				"skillid": "S811"
+			},
+			{
 				"LV": 5,
 				"opttype": "opt_getskill",
 				"skillid": "S760"
@@ -17703,6 +17766,7 @@
 		"name": "Akodo Shizue",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "akodo",
 		"rt_class": "samurai",
 		"rt_clan": "lion",
 		"rt_mpref": [
@@ -17810,7 +17874,7 @@
 	},
 	"P104": {
 		"INILV": 1,
-		"MAXLV": 99,
+		"MAXLV": 100,
 		"_meta": {
 			"lvtype": 0,
 			"seed": 3123
@@ -18956,106 +19020,106 @@
 				185
 			],
 			"MAXTP": [
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0
+				6,
+				6,
+				6,
+				8,
+				10,
+				12,
+				14,
+				16,
+				17,
+				19,
+				21,
+				22,
+				24,
+				26,
+				28,
+				30,
+				31,
+				33,
+				34,
+				36,
+				37,
+				39,
+				40,
+				42,
+				42,
+				44,
+				48,
+				50,
+				52,
+				53,
+				55,
+				57,
+				58,
+				60,
+				62,
+				63,
+				64,
+				65,
+				66,
+				68,
+				66,
+				68,
+				77,
+				79,
+				79,
+				80,
+				82,
+				84,
+				85,
+				87,
+				92,
+				93,
+				93,
+				95,
+				95,
+				97,
+				96,
+				98,
+				100,
+				101,
+				102,
+				104,
+				105,
+				106,
+				108,
+				109,
+				110,
+				112,
+				113,
+				114,
+				116,
+				116,
+				118,
+				119,
+				120,
+				121,
+				122,
+				124,
+				124,
+				125,
+				126,
+				128,
+				129,
+				130,
+				130,
+				131,
+				132,
+				133,
+				134,
+				135,
+				136,
+				137,
+				138,
+				138,
+				139,
+				140,
+				141,
+				142,
+				143,
+				144
 			]
 		},
 		"lvoption": [
@@ -19117,132 +19181,62 @@
 			{
 				"LV": 15,
 				"opttype": "opt_getskill",
-				"skillid": "S321"
+				"skillid": "S311"
 			},
 			{
 				"LV": 15,
 				"opttype": "opt_getskill",
-				"skillid": "S366"
+				"skillid": "S310"
 			},
 			{
-				"LV": 20,
-				"opttype": "opt_getskill",
-				"skillid": "S308"
-			},
-			{
-				"LV": 20,
-				"opttype": "opt_getskill",
-				"skillid": "S347"
-			},
-			{
-				"LV": 25,
+				"LV": 15,
 				"opttype": "opt_getskill",
 				"skillid": "S386"
 			},
 			{
-				"LV": 25,
+				"LV": 30,
 				"opttype": "opt_getskill",
-				"skillid": "S326"
+				"skillid": "S314"
 			},
 			{
 				"LV": 30,
-				"opttype": "opt_getskill",
-				"skillid": "S385"
-			},
-			{
-				"LV": 30,
-				"opttype": "opt_getskill",
-				"skillid": "S312"
-			},
-			{
-				"LV": 35,
-				"opttype": "opt_getskill",
-				"skillid": "S387"
-			},
-			{
-				"LV": 35,
-				"opttype": "opt_getskill",
-				"skillid": "S368"
-			},
-			{
-				"LV": 40,
-				"opttype": "opt_getskill",
-				"skillid": "S375"
-			},
-			{
-				"LV": 40,
-				"opttype": "opt_getskill",
-				"skillid": "S372"
-			},
-			{
-				"LV": 45,
-				"opttype": "opt_getskill",
-				"skillid": "S376"
-			},
-			{
-				"LV": 45,
-				"opttype": "opt_getskill",
-				"skillid": "S389"
-			},
-			{
-				"LV": 50,
-				"opttype": "opt_getskill",
-				"skillid": "S336"
-			},
-			{
-				"LV": 50,
-				"opttype": "opt_getskill",
-				"skillid": "S388"
-			},
-			{
-				"LV": 55,
-				"opttype": "opt_getskill",
-				"skillid": "S340"
-			},
-			{
-				"LV": 55,
-				"opttype": "opt_getskill",
-				"skillid": "S390"
-			},
-			{
-				"LV": 60,
-				"opttype": "opt_getskill",
-				"skillid": "S357"
-			},
-			{
-				"LV": 60,
 				"opttype": "opt_getskill",
 				"skillid": "S313"
 			},
 			{
-				"LV": 65,
+				"LV": 30,
 				"opttype": "opt_getskill",
-				"skillid": "S317"
+				"skillid": "S387"
 			},
 			{
-				"LV": 65,
+				"LV": 45,
 				"opttype": "opt_getskill",
-				"skillid": "S382"
+				"skillid": "S316"
 			},
 			{
-				"LV": 70,
+				"LV": 45,
 				"opttype": "opt_getskill",
-				"skillid": "S392"
+				"skillid": "S312"
 			},
 			{
-				"LV": 70,
+				"LV": 45,
 				"opttype": "opt_getskill",
 				"skillid": "S395"
 			},
 			{
-				"LV": 75,
+				"LV": 60,
 				"opttype": "opt_getskill",
-				"skillid": "S393"
+				"skillid": "S392"
 			},
 			{
-				"LV": 75,
+				"LV": 60,
 				"opttype": "opt_getskill",
-				"skillid": "S394"
+				"skillid": "S319"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S390"
 			},
 			{
 				"LV": 15,
@@ -19263,6 +19257,21 @@
 				"LV": 60,
 				"opttype": "opt_getskill",
 				"skillid": "S719"
+			},
+			{
+				"LV": 75,
+				"opttype": "opt_getskill",
+				"skillid": "S812"
+			},
+			{
+				"LV": 90,
+				"opttype": "opt_getskill",
+				"skillid": "S813"
+			},
+			{
+				"LV": 100,
+				"opttype": "opt_getskill",
+				"skillid": "S814"
 			},
 			{
 				"LV": 8,
@@ -19299,6 +19308,7 @@
 		"name": "Isawa Haruki",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "isawa",
 		"rt_class": "shugenja",
 		"rt_clan": "phoenix",
 		"rt_mpref": [
@@ -19406,7 +19416,7 @@
 	},
 	"P105": {
 		"INILV": 1,
-		"MAXLV": 99,
+		"MAXLV": 100,
 		"_meta": {
 			"lvtype": 0,
 			"seed": 3123
@@ -20552,7 +20562,7 @@
 				148
 			],
 			"MAXTP": [
-				6,
+				5,
 				8,
 				10,
 				14,
@@ -20691,6 +20701,21 @@
 				"skillid": "S723"
 			},
 			{
+				"LV": 75,
+				"opttype": "opt_getskill",
+				"skillid": "S815"
+			},
+			{
+				"LV": 90,
+				"opttype": "opt_getskill",
+				"skillid": "S816"
+			},
+			{
+				"LV": 100,
+				"opttype": "opt_getskill",
+				"skillid": "S817"
+			},
+			{
 				"LV": 5,
 				"opttype": "opt_getskill",
 				"skillid": "S766"
@@ -20725,6 +20750,7 @@
 		"name": "Shosuro Mitsue",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "shosuro",
 		"rt_class": "other",
 		"rt_clan": "scorpion",
 		"rt_mpref": [
@@ -20832,7 +20858,7 @@
 	},
 	"P106": {
 		"INILV": 1,
-		"MAXLV": 99,
+		"MAXLV": 100,
 		"_meta": {
 			"lvtype": 0,
 			"seed": 3123
@@ -22120,12 +22146,28 @@
 				"LV": 60,
 				"opttype": "opt_getskill",
 				"skillid": "S727"
+			},
+			{
+				"LV": 75,
+				"opttype": "opt_getskill",
+				"skillid": "S818"
+			},
+			{
+				"LV": 90,
+				"opttype": "opt_getskill",
+				"skillid": "S819"
+			},
+			{
+				"LV": 100,
+				"opttype": "opt_getskill",
+				"skillid": "S820"
 			}
 		],
 		"mdlid": "EP206",
 		"name": "Ide Tamotsu",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "ide",
 		"rt_class": "other",
 		"rt_clan": "unicorn",
 		"rt_mpref": [
@@ -22233,7 +22275,7 @@
 	},
 	"P107": {
 		"INILV": 1,
-		"MAXLV": 99,
+		"MAXLV": 100,
 		"_meta": {
 			"lvtype": 0,
 			"seed": 3123
@@ -23503,6 +23545,41 @@
 				"skillid": "S584"
 			},
 			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S728"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S729"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S730"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S731"
+			},
+			{
+				"LV": 75,
+				"opttype": "opt_getskill",
+				"skillid": "S821"
+			},
+			{
+				"LV": 90,
+				"opttype": "opt_getskill",
+				"skillid": "S822"
+			},
+			{
+				"LV": 100,
+				"opttype": "opt_getskill",
+				"skillid": "S823"
+			},
+			{
 				"LV": 5,
 				"opttype": "opt_getskill",
 				"skillid": "S772"
@@ -23532,6 +23609,7 @@
 		"name": "Sayo",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "ronin",
 		"rt_class": "other",
 		"rt_clan": "ronin",
 		"rt_mpref": [
@@ -24892,12 +24970,33 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S169"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S830"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S831"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S832"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S833"
 			}
 		],
 		"mdlid": "EP303",
 		"name": "Hida Sachiko",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "hida",
 		"rt_class": "samurai",
 		"rt_clan": "crab",
 		"rt_mpref": [
@@ -26253,11 +26352,33 @@
 				380
 			]
 		},
-		"lvoption": [],
+		"lvoption": [
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S834"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S835"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S836"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S837"
+			}
+		],
 		"mdlid": "EP304",
 		"name": "Hiruma Ryoichi",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "hiruma",
 		"rt_class": "samurai",
 		"rt_clan": "crab",
 		"rt_mpref": [
@@ -26364,7 +26485,7 @@
 		]
 	},
 	"P122": {
-		"INILV": 6,
+		"INILV": 10,
 		"MAXLV": 99,
 		"_meta": {
 			"lvtype": 0,
@@ -26899,18 +27020,18 @@
 				1120
 			],
 			"MAXMP": [
-				28,
-				28,
-				28,
-				28,
-				28,
-				28,
-				28,
-				28,
-				28,
-				28,
-				28,
-				28,
+				14,
+				14,
+				14,
+				14,
+				14,
+				14,
+				16,
+				18,
+				20,
+				22,
+				25,
+				27,
 				29,
 				31,
 				33,
@@ -29014,12 +29135,33 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S139"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S838"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S839"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S840"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S841"
 			}
 		],
 		"mdlid": "EP381",
 		"name": "Hiruma Goro",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "hiruma",
 		"rt_class": "samurai",
 		"rt_clan": "crab",
 		"rt_mpref": [
@@ -30274,105 +30416,105 @@
 			],
 			"MAXTP": [
 				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0
+				3,
+				4,
+				6,
+				6,
+				8,
+				9,
+				10,
+				11,
+				12,
+				14,
+				15,
+				16,
+				17,
+				18,
+				20,
+				20,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				42,
+				42,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				70,
+				72,
+				72,
+				73,
+				74,
+				75,
+				76,
+				76,
+				77,
+				78,
+				79,
+				80,
+				80,
+				81,
+				82,
+				82,
+				83,
+				84,
+				84,
+				85,
+				86,
+				86,
+				87,
+				88,
+				88,
+				89,
+				90,
+				90,
+				91,
+				91,
+				92,
+				92,
+				93,
+				94,
+				94,
+				94,
+				95
 			]
 		},
 		"lvoption": [
@@ -30395,12 +30537,73 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S305"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S842"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S843"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S844"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S845"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S329"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S328"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S335"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S333"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S337"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S338"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S343"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S341"
 			}
 		],
 		"mdlid": "EP380",
 		"name": "Isawa Michio",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "isawa",
 		"rt_class": "shugenja",
 		"rt_clan": "phoenix",
 		"rt_mpref": [
@@ -33141,12 +33344,33 @@
 				"propid": "PATK",
 				"val": 15,
 				"valtype": "totalrate"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S846"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S847"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S848"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S849"
 			}
 		],
 		"mdlid": "EP386",
 		"name": "Hiruma Kage",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "hiruma",
 		"rt_class": "samurai",
 		"rt_clan": "crab",
 		"rt_mpref": [
@@ -34502,11 +34726,33 @@
 				380
 			]
 		},
-		"lvoption": [],
+		"lvoption": [
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S850"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S851"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S852"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S853"
+			}
+		],
 		"mdlid": "EP554",
 		"name": "Akodo Gusai",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "akodo",
 		"rt_class": "samurai",
 		"rt_clan": "lion",
 		"rt_mpref": [
@@ -35862,11 +36108,33 @@
 				380
 			]
 		},
-		"lvoption": [],
+		"lvoption": [
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S854"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S855"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S856"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S857"
+			}
+		],
 		"mdlid": "EP555",
 		"name": "Lion rider",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "matsu",
 		"rt_class": "samurai",
 		"rt_clan": "lion",
 		"rt_mpref": [
@@ -37222,11 +37490,33 @@
 				380
 			]
 		},
-		"lvoption": [],
+		"lvoption": [
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S858"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S859"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S860"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S861"
+			}
+		],
 		"mdlid": "EP568",
 		"name": "Akodo Kafu",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "akodo",
 		"rt_class": "samurai",
 		"rt_clan": "lion",
 		"rt_mpref": [
@@ -38582,11 +38872,33 @@
 				380
 			]
 		},
-		"lvoption": [],
+		"lvoption": [
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S862"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S863"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S864"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S865"
+			}
+		],
 		"mdlid": "EP311",
 		"name": "Akodo Hiruto",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "akodo",
 		"rt_class": "samurai",
 		"rt_clan": "lion",
 		"rt_mpref": [
@@ -39942,11 +40254,33 @@
 				360
 			]
 		},
-		"lvoption": [],
+		"lvoption": [
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S866"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S867"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S868"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S869"
+			}
+		],
 		"mdlid": "EP318",
 		"name": "Shiba Ashimita",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "shiba",
 		"rt_class": "samurai",
 		"rt_clan": "phoenix",
 		"rt_mpref": [
@@ -41307,12 +41641,33 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S489"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S874"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S875"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S876"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S877"
 			}
 		],
 		"mdlid": "EP611",
 		"name": "Seppun Ushimo",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "seppun",
 		"rt_class": "samurai",
 		"rt_clan": "imperial",
 		"rt_mpref": [
@@ -41954,7 +42309,7 @@
 				1200
 			],
 			"MAXMP": [
-				1,
+				10,
 				11,
 				16,
 				20,
@@ -42567,105 +42922,105 @@
 			],
 			"MAXTP": [
 				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				10,
+				10,
+				12,
+				12,
+				13,
+				14,
+				16,
+				16,
+				18,
+				18,
+				20,
+				20,
+				22,
+				22,
+				23,
+				24,
+				25,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				30,
+				32,
+				32,
+				33,
+				34,
+				35,
+				38,
+				40,
+				40,
+				41,
+				40,
+				41,
+				44,
+				45,
+				46,
+				46,
+				47,
+				48,
+				49,
+				50,
+				50,
+				50,
+				50,
+				51,
+				60,
+				60,
+				60,
+				62,
+				62,
+				64,
+				64,
+				65,
+				66,
+				67,
+				68,
+				68,
+				69,
+				70,
+				71,
+				72,
+				72,
+				73,
+				74,
+				74,
+				75,
+				76,
+				77,
+				77,
+				78,
+				78,
+				79,
+				80,
+				81,
+				81,
+				82,
+				82,
+				83,
+				84,
+				84,
+				85,
+				85,
+				86,
+				86,
+				87,
+				87,
+				88,
+				88,
+				89,
+				90,
+				90
 			]
 		},
 		"lvoption": [
@@ -42673,12 +43028,73 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S499"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S878"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S879"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S880"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S881"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S367"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S368"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S373"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S372"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S376"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S377"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S380"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S381"
 			}
 		],
 		"mdlid": "EP606",
 		"name": "Isawa Sanro",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "isawa",
 		"rt_class": "shugenja",
 		"rt_clan": "phoenix",
 		"rt_mpref": [
@@ -44044,12 +44460,33 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S507"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S882"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S883"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S884"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S885"
 			}
 		],
 		"mdlid": "EP631",
 		"name": "Yoritomo Rui",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "yoritomo",
 		"rt_class": "other",
 		"rt_clan": "mantis",
 		"rt_mpref": [
@@ -45304,105 +45741,105 @@
 			],
 			"MAXTP": [
 				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0
+				4,
+				6,
+				8,
+				10,
+				12,
+				14,
+				16,
+				17,
+				19,
+				21,
+				22,
+				24,
+				26,
+				28,
+				30,
+				31,
+				33,
+				34,
+				36,
+				37,
+				39,
+				40,
+				42,
+				42,
+				44,
+				48,
+				50,
+				52,
+				53,
+				55,
+				57,
+				58,
+				60,
+				62,
+				63,
+				64,
+				65,
+				66,
+				68,
+				66,
+				68,
+				77,
+				79,
+				79,
+				80,
+				82,
+				84,
+				85,
+				87,
+				92,
+				93,
+				93,
+				95,
+				95,
+				97,
+				96,
+				98,
+				100,
+				101,
+				102,
+				104,
+				105,
+				106,
+				108,
+				109,
+				110,
+				112,
+				113,
+				114,
+				116,
+				116,
+				118,
+				119,
+				120,
+				121,
+				122,
+				124,
+				124,
+				125,
+				126,
+				128,
+				129,
+				130,
+				130,
+				131,
+				132,
+				133,
+				134,
+				135,
+				136,
+				137,
+				138,
+				138,
+				139,
+				140,
+				141,
+				142,
+				143,
+				144
 			]
 		},
 		"lvoption": [
@@ -45420,12 +45857,73 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S300"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S886"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S887"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S888"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S889"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S350"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S349"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S352"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S351"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S353"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S354"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S356"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S358"
 			}
 		],
 		"mdlid": "EP658",
 		"name": "Isawa Kasiko",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "isawa",
 		"rt_class": "shugenja",
 		"rt_clan": "phoenix",
 		"rt_mpref": [
@@ -46791,12 +47289,33 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S527"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S890"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S891"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S892"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S893"
 			}
 		],
 		"mdlid": "EP664",
 		"name": "Akodo Rin",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "akodo",
 		"rt_class": "samurai",
 		"rt_clan": "lion",
 		"rt_mpref": [
@@ -48162,12 +48681,33 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S547"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S898"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S899"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S900"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S901"
 			}
 		],
 		"mdlid": "EP689",
 		"name": "Shinjo Ryuko",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "shinjo",
 		"rt_class": "samurai",
 		"rt_clan": "unicorn",
 		"rt_mpref": [
@@ -49533,12 +50073,33 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S608"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S902"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S903"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S904"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S905"
 			}
 		],
 		"mdlid": "EP1141",
 		"name": "Matsu Hanae",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "matsu",
 		"rt_class": "samurai",
 		"rt_clan": "lion",
 		"rt_mpref": [
@@ -50793,105 +51354,105 @@
 			],
 			"MAXTP": [
 				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				10,
+				10,
+				12,
+				12,
+				13,
+				14,
+				16,
+				16,
+				18,
+				18,
+				20,
+				20,
+				22,
+				22,
+				23,
+				24,
+				25,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				30,
+				32,
+				32,
+				33,
+				34,
+				35,
+				38,
+				40,
+				40,
+				41,
+				40,
+				41,
+				44,
+				45,
+				46,
+				46,
+				47,
+				48,
+				49,
+				50,
+				50,
+				50,
+				50,
+				51,
+				60,
+				60,
+				60,
+				62,
+				62,
+				64,
+				64,
+				65,
+				66,
+				67,
+				68,
+				68,
+				69,
+				70,
+				71,
+				72,
+				72,
+				73,
+				74,
+				74,
+				75,
+				76,
+				77,
+				77,
+				78,
+				78,
+				79,
+				80,
+				81,
+				81,
+				82,
+				82,
+				83,
+				84,
+				84,
+				85,
+				85,
+				86,
+				86,
+				87,
+				87,
+				88,
+				88,
+				89,
+				90,
+				90
 			]
 		},
 		"lvoption": [
@@ -50904,12 +51465,73 @@
 				"LV": 1,
 				"opttype": "opt_getskill",
 				"skillid": "S538"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S894"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S895"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S896"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S897"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S329"
+			},
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S328"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S335"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S333"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S337"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S338"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S343"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S341"
 			}
 		],
 		"mdlid": "EP674",
 		"name": "Tamori Haku",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "tamori",
 		"rt_class": "shugenja",
 		"rt_clan": "dragon",
 		"rt_mpref": [
@@ -52265,11 +52887,33 @@
 				360
 			]
 		},
-		"lvoption": [],
+		"lvoption": [
+			{
+				"LV": 15,
+				"opttype": "opt_getskill",
+				"skillid": "S870"
+			},
+			{
+				"LV": 30,
+				"opttype": "opt_getskill",
+				"skillid": "S871"
+			},
+			{
+				"LV": 45,
+				"opttype": "opt_getskill",
+				"skillid": "S872"
+			},
+			{
+				"LV": 60,
+				"opttype": "opt_getskill",
+				"skillid": "S873"
+			}
+		],
 		"mdlid": "EP585",
 		"name": "Doji Hayato",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "doji",
 		"rt_class": "samurai",
 		"rt_clan": "crane",
 		"rt_mpref": [
@@ -53523,7 +54167,7 @@
 				194
 			],
 			"MAXTP": [
-				0,
+				4,
 				4,
 				6,
 				8,
@@ -53701,6 +54345,7 @@
 		"name": "Togashi Yosai",
 		"picid": "",
 		"voiceid": "",
+		"rt_school_key": "togashi",
 		"rt_class": "monk",
 		"rt_clan": "dragon",
 		"rt_mpref": [

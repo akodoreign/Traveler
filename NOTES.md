@@ -4626,6 +4626,23 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   - Fixed my own RokuganBot compile error (a literal newline in a printf) before it cost more than one start.
   - Open: M384's save shrine (#85#) can't be reached from the lava tubes; the Tamori heat tiles keep the party
     under 3/4 HP, so the bot keeps trying to rest there.
+- **Unicorn (path 6)**: Ch1 "Fault Lines" complete; Ch2 "The Bell Without a Clapper" runs through Scorpion's lands.
+  - **GAME FIX M347 trap**: Shosuro's town (M347) is reachable from the north road (M359) by anyone, but its own
+    west gate only opened after Scorpion Ch1 (G861): a Unicorn save that wandered in (M359 -> M347 -> M348 ...
+    M354) could never get back out. The gate now also opens after Unicorn Ch1 (G982).
+  - Bot: any page with a money op (hirelings, a traitor's purse in the Traitor's Grove M348 that wedged the bot in
+    the trees) is one-try side business.
+  - Ch2 "The Bell Without a Clapper", Ch3 "The Noblest Blood", Ch4 "Regret" complete. Bot: a flag that keeps
+    getting set again (the wax earplugs G999: in at the wind tunnel, out on arrival elsewhere) is a switch, not story,
+    after its third flip. Ladder G1010: M400/M401 (the tower) unreachable once Ch3 ends - reported to the lead.
+- **Ronin (path 7)**: Ch1 "What's Eating the Eta", Ch2 "The Noble and the Ronin" complete.
+  - **GAME FIX M433 arrival in the clouds**: ARRIVE_AT put the way in from M432 at (7, 20) - the cloud sea under
+    the bridge (the bridge is z 12-17, invisible walls keep you ON it, nothing gets you back UP): Ronin Ch3 stuck.
+    Now (7, 15). The other ARRIVE_AT spots checked: all on their maps' floors.
+  - Bot: walk-ons that pushed us back (a rope point: "Too steep to climb untied") get fresh tries whenever the
+    story moves.
+  - Ch3 "The Village of the Wounded Lion" and Ch4 "The Oracle's Choice" complete (completion flag G1154, set in
+    S08_RON4 just before the "- complete" line). **All eight paths are now played through Ch4.**
 - 06:30 all ~67 remaining side-cast/hireling sheets reviewed (walk/run/attack): frame fixes for EP389, EP392, EP588, EP673,
   EP1107, EP1112, EP1127, EP1128, EP1140, EP1149 (heads turned away, hats/weapons popping, Hida Veteran morphing).
   Redraws (user "yeah redraw them"): Hida Sachiko - new gen_sprites2d flag club_back (tetsubo behind her head; rig and
@@ -4690,6 +4707,11 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   exits (86 interior maps rebuilt), stacked Crab ladders M140/M148/M149, HUD fixes (G1227 1-based, boxes up),
   anim_harmonize.py + install_aisheets/storyplay. Checks: 4 changed tools compile; arrows/arrows2 logs (21:11, after
   the 17:12 plugin edit) load all plugins, no compile error; no backups in resource; 0 new boss files.
+- 2026-11-12 03:15 push 1ad7ee2 (licensed-demo -> main, 67 files, previous 0b6a2d1): Events.scene autorun fix (Scorpion
+  Ch1 M345 soft-lock), M363 hireling spots, cave exits on rock removed (M384/M397/M405), RokuganField follower/floorAt
+  guards, tools/atomic_io.py atomic sheet writes, anim_harmonize updates + 48 harmonized/AI sheets, bot updates.
+  Checks: 7 changed tools compile; story_6 log (23:23, after the 22:43 plugin edit) no compile error; no backups in
+  resource; 0 new boss files. Harmonize run still going (last install 02:24) - rest goes in the next push.
 
 ## 2026-11-11 (evening): Progression v2 - ranks, jobs, kata/kiho, Void, Support (user's design pass)
 Spec: `docs/rules/progression-v2.md` (the user's decisions, quoted). Built (lead):
@@ -4739,3 +4761,40 @@ Spec: `docs/rules/progression-v2.md` (the user's decisions, quoted). Built (lead
   stairs"): gen_maps `floor_arrows()` in make() for INTERIORS / ROOM_OFS maps paints a vermilion (TORII) arrow
   into the floor blocks one cell inside every exit, pointing at it (inward = most same-height floor). Kyuden Hida
   1F-6F, the dark castle and the town interiors get 1-4 each. Needs a map build (`gen_maps.py <ids>`), not just regen.
+- 11-12 03:15 anim_harmonize full batch running (installs; 38 sheets done, 24 frames repainted by ComfyUI, 12 "needs
+  eye"; contact sheets _art/preview/agents/anim_harmonize/contact/). Moto Outrider redraw installed; Veteran nearly
+  done. Kumpei confirmed facing right in game. tools/atomic_io.py = atomic writes into resource/ (game may run).
+
+## 2026-11-12 (morning): the user's 17-point list (lead)
+1. Models: user OK'd downloads -> IP-Adapter Plus SDXL + CLIP-ViT-H weights downloading into ComfyUI models/. The
+   ComfyUI_IPAdapter_plus custom node (git clone) was BLOCKED by the permission check ("untrusted code
+   integration") - needs the user's OK / a permission rule; animation agent checks core-node options.
+2. Jobs: the Job slot was LOCKED (type.json jobslot[0].lock) -> unlocked. Traveler: +1% at JLv1 .. +50% at JLv10
+   (the "+10 coffin" was J000's template death-resist option; gen_data's dict override also reset its desc). Jobs
+   reworked (jobs_data.py): a job's perks work while worn (JLv 1/4/7, field rt_perks; plugin hasPerk), ONE signature
+   trait per job learned at JLv 10, wearable with any job; travelers in the party together share their jobs.
+   Haruki's job = Ishiken-do (start VP 1 at JLv1 -> full at 10; trait Ishiken-do = full VP).
+4. Kata / kiho cost TP: 4 + learn level / 3 (dojo kata 8). Shugenja now get a TP share (apply_resources SHARES 0.25).
+5. Yosai only steps out when the party is over 4, offers whenever there's room. Squeak INILV 10, sticks not doubled
+   (Mend-Name 14 MP).
+6. Gonta's Sumai: ::Rokugan.soloBegin/soloEnd (companions sit out, hireling allowed).
+7. (answered) kata levels: kata_data.py.
+8. VP: everyone starts battles at 0 (shugenja still 2); Taint (K026) level blocks that much max VP; save shrines'
+   rest calls ::Rokugan.shrineCure() (all ailments but Taint and Down).
+9. Weakness memory: enemy rt_species = saved int gvar G2000+ (one per enemy name); plugin RokuganJobs loads / stores.
+10. Hiruma katana look still old art -> animation agent.
+11. Japanese text: gen_data english_pass (ENGLISH table + blank leftover template strings). NB gen_data load() ALWAYS
+    rereads the engine original - use load_built() to edit what was built this run (an english_pass on load()
+    wiped the built tables once; restored from the licensed copy, rebuilt).
+12. Wall M101: Takakana + a veteran tell her to train in the Egg Caves (after G054, before G216);
+    gen_maps ladder_hint_pass puts a "Word on the road" line after each ladder's completion flag.
+13. Egg Caves altar scene: box at z 11, wide and 4 m tall; every walk-on scene box is now 3 m tall (slopes).
+14. Sayo: R1 her ronin pick (G1039); R2-R4 Forest Killers (Fool's Harvest, Canopy of Knives - Fealty & Freedom
+    p.148-150 - and Ghost of the Shinomen, ours), R5 Ronin Duelist The Wind Technique (K059). Ch2/Ch4 picks are story
+    only now (RokuganHazard ronin()).
+15. Advanced schools at Lv 75/90/100 (MAXLV 100), real 3e schools from the index (1592510476074.txt): Hida Avenger,
+    Kenshinzen, Student of the Tao, Master General, Master of the Elements, Shadow-Hunters, Master of the Courts,
+    The Machi-Kanshisha (book technique names; effects ours). Skills S800-S823.
+16. Spells: every magic attack still swinging a weapon now uses Death of Flame's charge + bolt cast and an element
+    hit effect (gen_data, after the AoE pass).
+17. Push: after the tester's load check.

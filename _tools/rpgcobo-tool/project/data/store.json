@@ -58,7 +58,7 @@
 				"reqs": null
 			}
 		],
-		"name": "町の道具屋",
+		"name": "Village Goods",
 		"type": 0
 	},
 	"R001": {
@@ -72,7 +72,7 @@
 				"reqs": null
 			}
 		],
-		"name": "白魔法",
+		"name": "Healing Arts",
 		"type": 1
 	},
 	"R034": {

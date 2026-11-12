@@ -1,7 +1,7 @@
 {
 	"J000": {
 		"MAXLV": 10,
-		"desc": "A traveler on the roads of Rokugan.",
+		"desc": "A traveler on the roads of Rokugan. EXP and money from battles +1% at job Lv 1, rising to +50% at Lv 10. Lv 10 trait: Seasoned Traveler.",
 		"expcurv": [
 			8,
 			15
@@ -10,21 +10,19 @@
 		"jobflag": -1,
 		"jobslotbits": 1,
 		"learn": [],
-		"lvoption": [],
-		"name": "Traveler",
-		"option": [
+		"lvoption": [
 			{
-				"CDR.0": 10,
-				"CDR.1": 0,
-				"CDR.2": 0,
-				"CDR.3": 0,
-				"opttype": "opt_conddef"
+				"LV": 10,
+				"opttype": "opt_getjob",
+				"jobid": "J134"
 			}
-		]
+		],
+		"name": "Traveler",
+		"option": []
 	},
 	"J001": {
 		"MAXLV": 10,
-		"desc": "選ばれたもののみが就くことが出来る特別な職業。",
+		"desc": "A special calling only the chosen may take.",
 		"expcurv": [
 			10,
 			20
@@ -86,7 +84,7 @@
 	},
 	"J101": {
 		"MAXLV": 1,
-		"desc": "いかなる状況にも動じない鉄の心を持つ。\n精神系の状態異常に耐性が付く。",
+		"desc": "A heart of iron that nothing shakes: resists mind-affecting ailments.",
 		"expcurv": [
 			10,
 			20
@@ -112,7 +110,7 @@
 	},
 	"J102": {
 		"MAXLV": 1,
-		"desc": "弱った見方をかばう。",
+		"desc": "Shields a weakened ally.",
 		"expcurv": [
 			10,
 			20
@@ -159,7 +157,7 @@
 	},
 	"J104": {
 		"MAXLV": 1,
-		"desc": "軽やかなステップで敵の攻撃をかわす。",
+		"desc": "A light step that slips past attacks.",
 		"expcurv": [
 			10,
 			20
@@ -209,7 +207,7 @@
 	},
 	"J010": {
 		"MAXLV": 10,
-		"desc": "Hiruma scout craft: ambushes, quiet roads, reading tracks. Traits at job Lv 2, 5 and 8.",
+		"desc": "Hiruma scout craft: ambushes, quiet roads, reading tracks. Lv 1 Surprise Round: A chance to catch random foes unaware: they lose their first action; criticals up against foes that haven't acted yet. Lv 4 Sneak: Quiet feet: half as many random encounters. Lv 7 Tracker: Every foe's weaknesses are known at the start of a battle. Lv 10 trait: Surprise Round.",
 		"expcurv": [
 			8,
 			15
@@ -220,28 +218,32 @@
 		"learn": [],
 		"lvoption": [
 			{
-				"LV": 2,
+				"LV": 10,
 				"opttype": "opt_getjob",
 				"jobid": "J110"
-			},
-			{
-				"LV": 5,
-				"opttype": "opt_getjob",
-				"jobid": "J111"
-			},
-			{
-				"LV": 8,
-				"opttype": "opt_getjob",
-				"jobid": "J112"
 			}
 		],
 		"name": "Scout",
 		"option": [],
-		"rt_owner": "P100"
+		"rt_owner": "P100",
+		"rt_perks": [
+			[
+				"J110",
+				1
+			],
+			[
+				"J111",
+				4
+			],
+			[
+				"J112",
+				7
+			]
+		]
 	},
 	"J011": {
 		"MAXLV": 10,
-		"desc": "The iaijutsu duelist: first draw, the measure, the ready blade. Traits at job Lv 2, 5 and 8.",
+		"desc": "The iaijutsu duelist: the first draw, the measure, the ready blade. Lv 1 First Draw: Speed up in the first turn of a battle. Lv 4 Measure the Foe: +20% critical hits against a lone foe. Lv 7 Ready Blade: Iaijutsu starts every battle with 1 Focus. Lv 10 trait: Measure the Foe.",
 		"expcurv": [
 			8,
 			15
@@ -252,28 +254,32 @@
 		"learn": [],
 		"lvoption": [
 			{
-				"LV": 2,
-				"opttype": "opt_getjob",
-				"jobid": "J113"
-			},
-			{
-				"LV": 5,
+				"LV": 10,
 				"opttype": "opt_getjob",
 				"jobid": "J114"
-			},
-			{
-				"LV": 8,
-				"opttype": "opt_getjob",
-				"jobid": "J115"
 			}
 		],
 		"name": "Duelist",
 		"option": [],
-		"rt_owner": "P101"
+		"rt_owner": "P101",
+		"rt_perks": [
+			[
+				"J113",
+				1
+			],
+			[
+				"J114",
+				4
+			],
+			[
+				"J115",
+				7
+			]
+		]
 	},
 	"J012": {
 		"MAXLV": 10,
-		"desc": "Evidence over testimony - and a bounty for the guilty. Traits at job Lv 2, 5 and 8.",
+		"desc": "Evidence over testimony - and a bounty for the guilty. Lv 1 Read the Foe: One foe's weaknesses are known at the start of a battle. Lv 4 Honest Eyes: Resists charm and confusion. Lv 7 Bounty: +20% money from battles. Lv 10 trait: Read the Foe.",
 		"expcurv": [
 			8,
 			15
@@ -284,28 +290,38 @@
 		"learn": [],
 		"lvoption": [
 			{
-				"LV": 2,
+				"LV": 10,
 				"opttype": "opt_getjob",
 				"jobid": "J116"
 			},
 			{
-				"LV": 5,
-				"opttype": "opt_getjob",
-				"jobid": "J117"
-			},
-			{
-				"LV": 8,
-				"opttype": "opt_getjob",
-				"jobid": "J118"
+				"opttype": "opt_conddef",
+				"CDR.4": 100,
+				"CDR.8": 100,
+				"LV": 4
 			}
 		],
 		"name": "Magistrate",
 		"option": [],
-		"rt_owner": "P102"
+		"rt_owner": "P102",
+		"rt_perks": [
+			[
+				"J116",
+				1
+			],
+			[
+				"J117",
+				4
+			],
+			[
+				"J118",
+				7
+			]
+		]
 	},
 	"J013": {
 		"MAXLV": 10,
-		"desc": "The go player's war: the vanguard, the rally, the banner. Traits at job Lv 2, 5 and 8.",
+		"desc": "The go player's war: the vanguard, the rally, the banner. Lv 1 Vanguard: The whole party moves faster in the first turn. Lv 4 Rally: +1 VP at the start of every battle. Lv 7 Banner: While its wearer is under half HP, the party hits 15% harder. Lv 10 trait: Rally.",
 		"expcurv": [
 			8,
 			15
@@ -316,28 +332,32 @@
 		"learn": [],
 		"lvoption": [
 			{
-				"LV": 2,
-				"opttype": "opt_getjob",
-				"jobid": "J119"
-			},
-			{
-				"LV": 5,
+				"LV": 10,
 				"opttype": "opt_getjob",
 				"jobid": "J120"
-			},
-			{
-				"LV": 8,
-				"opttype": "opt_getjob",
-				"jobid": "J121"
 			}
 		],
 		"name": "Tactician",
 		"option": [],
-		"rt_owner": "P103"
+		"rt_owner": "P103",
+		"rt_perks": [
+			[
+				"J119",
+				1
+			],
+			[
+				"J120",
+				4
+			],
+			[
+				"J121",
+				7
+			]
+		]
 	},
 	"J014": {
 		"MAXLV": 10,
-		"desc": "Scrolls, meditation and wards. Traits at job Lv 2, 5 and 8.",
+		"desc": "The Void shugenja's art. Battles start with 1 VP at job Lv 1, rising to full VP at Lv 10. Lv 1 Ward: Resists poison, blindness, silence and sleep (50%). Lv 4 Learned: Max MP +20%. Lv 7 Rally: +1 VP at the start of every battle. Lv 10 trait: Ishiken-do.",
 		"expcurv": [
 			8,
 			15
@@ -348,28 +368,47 @@
 		"learn": [],
 		"lvoption": [
 			{
-				"LV": 2,
+				"LV": 10,
 				"opttype": "opt_getjob",
-				"jobid": "J122"
+				"jobid": "J133"
 			},
 			{
-				"LV": 5,
-				"opttype": "opt_getjob",
-				"jobid": "J123"
+				"opttype": "opt_conddef",
+				"CDR.1": 50,
+				"CDR.2": 50,
+				"CDR.3": 50,
+				"CDR.5": 50,
+				"LV": 1
 			},
 			{
-				"LV": 8,
-				"opttype": "opt_getjob",
-				"jobid": "J124"
+				"opttype": "opt_status",
+				"propid": "MAXMP",
+				"val": 20,
+				"valtype": "totalrate",
+				"LV": 4
 			}
 		],
-		"name": "Scholar",
+		"name": "Ishiken-do",
 		"option": [],
-		"rt_owner": "P104"
+		"rt_owner": "P104",
+		"rt_perks": [
+			[
+				"J124",
+				1
+			],
+			[
+				"J122",
+				4
+			],
+			[
+				"J120",
+				7
+			]
+		]
 	},
 	"J015": {
 		"MAXLV": 10,
-		"desc": "Quiet feet, light fingers, the knife from behind. Traits at job Lv 2, 5 and 8.",
+		"desc": "Quiet feet, light fingers, the knife from behind. Lv 1 Sneak: Quiet feet: half as many random encounters. Lv 4 Light Fingers: Steals succeed more often. Lv 7 Ambush: A chance to catch random foes unaware; criticals up against foes that haven't acted yet. Lv 10 trait: Ambush.",
 		"expcurv": [
 			8,
 			15
@@ -380,28 +419,32 @@
 		"learn": [],
 		"lvoption": [
 			{
-				"LV": 2,
-				"opttype": "opt_getjob",
-				"jobid": "J111"
-			},
-			{
-				"LV": 5,
-				"opttype": "opt_getjob",
-				"jobid": "J103"
-			},
-			{
-				"LV": 8,
+				"LV": 10,
 				"opttype": "opt_getjob",
 				"jobid": "J126"
 			}
 		],
 		"name": "Shinobi",
 		"option": [],
-		"rt_owner": "P105"
+		"rt_owner": "P105",
+		"rt_perks": [
+			[
+				"J111",
+				1
+			],
+			[
+				"J103",
+				4
+			],
+			[
+				"J126",
+				7
+			]
+		]
 	},
 	"J016": {
 		"MAXLV": 10,
-		"desc": "The Ide trade: haggling, the purse and friends everywhere. Traits at job Lv 2, 5 and 8.",
+		"desc": "The Ide trade: haggling, the purse, friends everywhere. Lv 1 Haggle: Shop prices -10%. Lv 4 Golden Purse: +30% money from battles. Lv 7 Connections: The first hireling call each battle costs no charge. Lv 10 trait: Golden Purse.",
 		"expcurv": [
 			8,
 			15
@@ -412,28 +455,32 @@
 		"learn": [],
 		"lvoption": [
 			{
-				"LV": 2,
-				"opttype": "opt_getjob",
-				"jobid": "J127"
-			},
-			{
-				"LV": 5,
+				"LV": 10,
 				"opttype": "opt_getjob",
 				"jobid": "J128"
-			},
-			{
-				"LV": 8,
-				"opttype": "opt_getjob",
-				"jobid": "J129"
 			}
 		],
 		"name": "Merchant",
 		"option": [],
-		"rt_owner": "P106"
+		"rt_owner": "P106",
+		"rt_perks": [
+			[
+				"J127",
+				1
+			],
+			[
+				"J128",
+				4
+			],
+			[
+				"J129",
+				7
+			]
+		]
 	},
 	"J017": {
 		"MAXLV": 10,
-		"desc": "The wave-woman's road craft: forage, brew, and always a way out. Traits at job Lv 2, 5 and 8.",
+		"desc": "The wave-woman's road craft: forage, brew, always a way out. Lv 1 Forager: After a battle, a chance to find a Healing Herb. Lv 4 Strong Brew: Healing 25% stronger. Lv 7 Wave-woman: Escape always works. Lv 10 trait: Wave-woman.",
 		"expcurv": [
 			8,
 			15
@@ -444,28 +491,32 @@
 		"learn": [],
 		"lvoption": [
 			{
-				"LV": 2,
-				"opttype": "opt_getjob",
-				"jobid": "J130"
-			},
-			{
-				"LV": 5,
-				"opttype": "opt_getjob",
-				"jobid": "J131"
-			},
-			{
-				"LV": 8,
+				"LV": 10,
 				"opttype": "opt_getjob",
 				"jobid": "J132"
 			}
 		],
 		"name": "Herbalist",
 		"option": [],
-		"rt_owner": "P107"
+		"rt_owner": "P107",
+		"rt_perks": [
+			[
+				"J130",
+				1
+			],
+			[
+				"J131",
+				4
+			],
+			[
+				"J132",
+				7
+			]
+		]
 	},
 	"J110": {
 		"MAXLV": 1,
-		"desc": "Scout trait. A chance to catch random foes unaware: they lose their first action. From Scout Lv 5, criticals up against foes that haven't acted yet.",
+		"desc": "Trait. A chance to catch random foes unaware: they lose their first action; criticals up against foes that haven't acted yet.",
 		"expcurv": [
 			10,
 			20
@@ -479,7 +530,7 @@
 	},
 	"J111": {
 		"MAXLV": 1,
-		"desc": "Trait. Quiet feet: fewer random encounters (half as many).",
+		"desc": "Trait. Quiet feet: half as many random encounters.",
 		"expcurv": [
 			10,
 			20
@@ -493,7 +544,7 @@
 	},
 	"J112": {
 		"MAXLV": 1,
-		"desc": "Scout trait. Read the tracks: every foe's weaknesses are known at the start of a battle.",
+		"desc": "Trait. Every foe's weaknesses are known at the start of a battle.",
 		"expcurv": [
 			10,
 			20
@@ -507,7 +558,7 @@
 	},
 	"J113": {
 		"MAXLV": 1,
-		"desc": "Duelist trait. In the first turn of a battle, Speed is doubled.",
+		"desc": "Trait. Speed up in the first turn of a battle.",
 		"expcurv": [
 			10,
 			20
@@ -521,7 +572,7 @@
 	},
 	"J114": {
 		"MAXLV": 1,
-		"desc": "Duelist trait. +20% critical hits against a lone foe.",
+		"desc": "Trait. +20% critical hits against a lone foe.",
 		"expcurv": [
 			10,
 			20
@@ -535,7 +586,7 @@
 	},
 	"J115": {
 		"MAXLV": 1,
-		"desc": "Duelist trait. Iaijutsu starts every battle with 1 Focus.",
+		"desc": "Trait. Iaijutsu starts every battle with 1 Focus.",
 		"expcurv": [
 			10,
 			20
@@ -549,7 +600,7 @@
 	},
 	"J116": {
 		"MAXLV": 1,
-		"desc": "Magistrate trait. At the start of a battle, one foe's weaknesses are known.",
+		"desc": "Trait. One foe's weaknesses are known at the start of a battle.",
 		"expcurv": [
 			10,
 			20
@@ -563,7 +614,7 @@
 	},
 	"J117": {
 		"MAXLV": 1,
-		"desc": "Magistrate trait. Resists charm and confusion.",
+		"desc": "Trait. Resists charm and confusion.",
 		"expcurv": [
 			10,
 			20
@@ -583,7 +634,7 @@
 	},
 	"J118": {
 		"MAXLV": 1,
-		"desc": "Magistrate trait. +20% money from battles.",
+		"desc": "Trait. +20% money from battles.",
 		"expcurv": [
 			10,
 			20
@@ -597,7 +648,7 @@
 	},
 	"J119": {
 		"MAXLV": 1,
-		"desc": "Tactician trait. The whole party moves faster in the first turn.",
+		"desc": "Trait. The whole party moves faster in the first turn.",
 		"expcurv": [
 			10,
 			20
@@ -611,7 +662,7 @@
 	},
 	"J120": {
 		"MAXLV": 1,
-		"desc": "Tactician trait. +1 VP at the start of every battle.",
+		"desc": "Trait. +1 VP at the start of every battle.",
 		"expcurv": [
 			10,
 			20
@@ -625,7 +676,7 @@
 	},
 	"J121": {
 		"MAXLV": 1,
-		"desc": "Tactician trait. While she is under half HP, the party hits 15% harder.",
+		"desc": "Trait. While its wearer is under half HP, the party hits 15% harder.",
 		"expcurv": [
 			10,
 			20
@@ -639,7 +690,7 @@
 	},
 	"J122": {
 		"MAXLV": 1,
-		"desc": "Scholar trait. Max SP +20%.",
+		"desc": "Trait. Max MP +20%.",
 		"expcurv": [
 			10,
 			20
@@ -658,23 +709,9 @@
 			}
 		]
 	},
-	"J123": {
-		"MAXLV": 1,
-		"desc": "Scholar trait. Recovers 5% of max SP every turn.",
-		"expcurv": [
-			10,
-			20
-		],
-		"icon": "",
-		"jobflag": -1,
-		"jobslotbits": 2,
-		"lvoption": [],
-		"name": "Meditation",
-		"option": []
-	},
 	"J124": {
 		"MAXLV": 1,
-		"desc": "Scholar trait. Resists poison, blindness, silence and sleep (50%).",
+		"desc": "Trait. Resists poison, blindness, silence and sleep (50%).",
 		"expcurv": [
 			10,
 			20
@@ -694,9 +731,23 @@
 			}
 		]
 	},
+	"J133": {
+		"MAXLV": 1,
+		"desc": "Trait. The Void answers at once: every battle starts with full VP.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Ishiken-do",
+		"option": []
+	},
 	"J126": {
 		"MAXLV": 1,
-		"desc": "Shinobi trait. A chance to catch random foes unaware; her criticals are up against foes that haven't acted yet.",
+		"desc": "Trait. A chance to catch random foes unaware; criticals up against foes that haven't acted yet.",
 		"expcurv": [
 			10,
 			20
@@ -710,7 +761,7 @@
 	},
 	"J127": {
 		"MAXLV": 1,
-		"desc": "Merchant trait. Shop prices -10%.",
+		"desc": "Trait. Shop prices -10%.",
 		"expcurv": [
 			10,
 			20
@@ -724,7 +775,7 @@
 	},
 	"J128": {
 		"MAXLV": 1,
-		"desc": "Merchant trait. +30% money from battles.",
+		"desc": "Trait. +30% money from battles.",
 		"expcurv": [
 			10,
 			20
@@ -738,7 +789,7 @@
 	},
 	"J129": {
 		"MAXLV": 1,
-		"desc": "Merchant trait. The first hireling call each battle costs no charge.",
+		"desc": "Trait. The first hireling call each battle costs no charge.",
 		"expcurv": [
 			10,
 			20
@@ -752,7 +803,7 @@
 	},
 	"J130": {
 		"MAXLV": 1,
-		"desc": "Herbalist trait. After a battle, a chance to find a Healing Herb.",
+		"desc": "Trait. After a battle, a chance to find a Healing Herb.",
 		"expcurv": [
 			10,
 			20
@@ -766,7 +817,7 @@
 	},
 	"J131": {
 		"MAXLV": 1,
-		"desc": "Herbalist trait. Her healing is 25% stronger.",
+		"desc": "Trait. Healing 25% stronger.",
 		"expcurv": [
 			10,
 			20
@@ -780,7 +831,7 @@
 	},
 	"J132": {
 		"MAXLV": 1,
-		"desc": "Herbalist trait. Escape always works.",
+		"desc": "Trait. Escape always works.",
 		"expcurv": [
 			10,
 			20
@@ -790,6 +841,20 @@
 		"jobslotbits": 2,
 		"lvoption": [],
 		"name": "Wave-woman",
+		"option": []
+	},
+	"J134": {
+		"MAXLV": 1,
+		"desc": "Trait. +25% EXP and money from battles.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Seasoned Traveler",
 		"option": []
 	}
 }

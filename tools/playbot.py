@@ -55,7 +55,7 @@ def convert_shots(name, out):
             Image.fromarray(arr[..., :3].copy(), "RGB").save(os.path.join(out, f[4:-4] + ".png"))
 
 
-def launch(name, mid, bx, bz, lines, vars_="", lv="9", party="", choice="", secs=240.0, quiet=False):
+def launch(name, mid, bx, bz, lines, vars_="", lv="9", party="", choice="", secs=240.0, quiet=False, lead=""):
     """Run the bot with raw step lines from built block bx, bz on map mid. Returns the log lines kept."""
     out = os.path.join(HERE, "..", "_art", "preview", "bot", name)
     os.makedirs(out, exist_ok=True)
@@ -70,6 +70,8 @@ def launch(name, mid, bx, bz, lines, vars_="", lv="9", party="", choice="", secs
         packed.append("choice " + choice)
     if party:
         packed.append("party " + party)
+    if lead:
+        packed.append("lead " + lead)                                     # (another traveler leads: -rtlead)
     varfile = None
     if len(vars_) > 2000:                                                 # a long list goes through a file
         varfile = os.path.join(TOOL, "tmp", "bot", name + "_vars.txt")

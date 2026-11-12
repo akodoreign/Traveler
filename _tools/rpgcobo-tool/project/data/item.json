@@ -347,7 +347,7 @@
 		"atkform": "0",
 		"cmdtgt": 8,
 		"consume": 1,
-		"desc": "毒、麻痺、盲目、封印を直す。",
+		"desc": "Cures poison, paralysis, blindness and sealing.",
 		"dmgform": 5,
 		"dmgtype": 0,
 		"endact": {
@@ -404,7 +404,7 @@
 		"atkform": "0",
 		"cmdtgt": 8,
 		"consume": 1,
-		"desc": "睡眠、混乱、魅了を直す。",
+		"desc": "Cures sleep, confusion and charm.",
 		"dmgform": 5,
 		"dmgtype": 0,
 		"endact": {
