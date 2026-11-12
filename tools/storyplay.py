@@ -75,6 +75,12 @@ def would_change(page, flags):
                 continue
             if c.get("cmd") == "cmd_if":
                 br = c.get("cmdblocks") or []
+                unknown = any(not (isinstance(r.get("lvar"), str) and re.match(r"^G\d+$", r["lvar"]))
+                              for r in c.get("reqs") or [])
+                if unknown:                                       # (W from a script, an item, money: either way)
+                    if any(walk(b) for b in br):
+                        return True
+                    continue
                 pick = br[0] if holds(c.get("reqs"), flags) else (br[1] if len(br) > 1 else [])
                 if walk(pick):
                     return True
@@ -148,7 +154,9 @@ def exits(mid, flags):
                 pg = None                                              # a scene that isn't ready yet
             if pg and pg.get("trigger") == 5:
                 s = json.dumps(pg.get("cmdblock"))
-                if s.startswith('[{"cmd": "cmd_mapmove"') or (len(pg.get("cmdblock") or []) <= 3 and "cmd_mapmove" in s):
+                top = [c.get("cmd") for c in pg.get("cmdblock") or [] if isinstance(c, dict)]
+                fades = all(t in ("cmd_screenfxon", "cmd_wait", "cmd_mapmove", "cmd_screenfxoff", "cmd_se") for t in top)
+                if s.startswith('[{"cmd": "cmd_mapmove"') or (len(pg.get("cmdblock") or []) <= 3 and "cmd_mapmove" in s)                         or ("cmd_mapmove" in top and fades):           # (a fade to black, then the move: M329's door)
                     d = re.findall(r'"mapid": "(M\d+)"', s)
                     if d:
                         out.append((d[0], x, z, {0: "up", 1: "right", 2: "down", 3: "left"}.get(e["pos"][3], "up"),
@@ -312,7 +320,7 @@ def targets(flags, here):
                 continue
             s = json.dumps(pg)
             prio = 0 if "Objective" in s else 1
-            if ("cmd_moneyop" in s and re.search(r"[Hh]ire", s)) or "W = n <= 1" in s or ("answer the Guest call" in s and pg.get("trigger") == 2
+            if "cmd_moneyop" in s or "W = n <= 1" in s or ("answer the Guest call" in s and pg.get("trigger") == 2
                     and "Objective" not in s):
                 # a hireling, an optional companion (Yosai: "W" = room in the party) or a Guest-call offer:
                 # side business, one try, last
@@ -403,7 +411,12 @@ def plan(state, flags, tried):
         w = walk_steps(mid, (x, z), ring)
     if w is None:
         w = walk_steps(mid, (x, z), near(tx, tz, 2) - near(tx, tz, 1))   # across a counter
-    return (tm, key, "talk"), (w + ["talkto %d %d" % (tx, tz), "wait 2000"]) if w is not None else None
+    gear = []                                                     # a mask gate: wear the mask it asks for
+    pg = (MP[tm]["event"].get(key.split("@")[0]) or {}).get("page") or []
+    pi = int(key.split("@")[1]) if "@" in key else 0
+    for pid, aid in re.findall(r'wearsMask\( \\"(P\d+)\\", \\"(A\d+)\\"\)', json.dumps(pg[pi] if pi < len(pg) else {})):
+        gear = ["equip %s 4 %s" % (pid, aid)]
+    return (tm, key, "talk"), (w + gear + ["talkto %d %d" % (tx, tz), "wait 2000"]) if w is not None else None
 
 
 def rest_plan(state, flags):

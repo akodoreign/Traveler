@@ -1,4 +1,4 @@
-﻿"""Make every pose of a sprite sheet match its stand frames (user, 2026-11-11: "have comfyUI start editing the different
+"""Make every pose of a sprite sheet match its stand frames (user, 2026-11-11: "have comfyUI start editing the different
 poses so they are closer to each other in sprite colors etc. like you did with heads ... give it reject and retry and
 have it report back").
 
@@ -41,6 +41,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 _argv, sys.argv = sys.argv, [sys.argv[0]]
 import gen_pixeldrive as pd  # noqa: E402
+from atomic_io import save_png, copy_file  # noqa: E402  (atomic writes: the game may be running)
 sys.argv = _argv
 ps, pa, g, gp = pd.ps, pd.pa, pd.g, pd.gp
 
@@ -61,7 +62,14 @@ FOREIGN_T = 0.06       # share of pixels in big off-palette regions over this ->
 IOU_MIN = 0.85
 CANDS = 2
 ROUNDS = ((0.28, 0), (0.34, 1), (0.40, 2))
+LYING = {"die", "collapse", "seiza", "sit", "seiza_rei", "rei_full", "sleep", "kneel"}  # (all 6 tries rejected on facing)
+FORCE = {}             # tools/harmonize_force.json {key: [frames]}: sent to ComfyUI whatever the score (seen by eye)
 LOG = open(os.path.join(WORK, "harmonize.log"), "a", encoding="utf-8", buffering=1) if os.path.isdir(WORK) else None
+
+
+def _jd(o):
+    """json default: numpy scalars (bool_, float32, int64) as plain Python values."""
+    return o.item() if hasattr(o, "item") else str(o)
 
 
 def log(*a):
@@ -416,11 +424,14 @@ def harmonize(key, spec, ep, entry, palette_only):
                "region_palette": round(r1, 3), "facing_right": facing_right(orig, skin), "tries": []}
         final = mapped
         side_view = not aid_of[i].endswith(("_f", "_b"))  # front / back views legitimately show other colours
-        if side_view and (r1 > REGION_T or foreign > FOREIGN_T):
+        forced = i in FORCE.get(key, [])                  # frames seen by eye (tools/harmonize_force.json)
+        rec["forced"] = forced
+        upright = aid_of[i] not in LYING                  # lying / kneeling: the head check cannot work there
+        if forced or (side_view and upright and (r1 > REGION_T or foreign > FOREIGN_T)):
             if palette_only:
                 rec["final"] = "pending"
             else:
-                got = comfy_frame(spec, ref, aid_of[i], i, mapped, orig, r1, rec)
+                got = comfy_frame(spec, ref, aid_of[i], i, mapped, orig, r1 if not forced else r1 / 0.9 + 1e-6, rec)
                 if got:
                     final = got[0]
                     rec["final"], rec["region_final"] = "comfy", round(got[1], 3)
@@ -430,10 +441,10 @@ def harmonize(key, spec, ep, entry, palette_only):
             rec["final"] = "palette"
         final.save(done)
         frames[str(i)] = rec
-        json.dump(frames, open(lp, "w"), indent=1)
+        json.dump(frames, open(lp, "w"), indent=1, default=_jd)
         out.paste(final, ((i % COLS) * FW, (i // COLS) * FH))
     os.makedirs(OUT, exist_ok=True)
-    out.save(os.path.join(OUT, sheet))
+    save_png(out, os.path.join(OUT, sheet))
     contact(key, src, out, am, frames)
     return frames, out
 
@@ -472,7 +483,7 @@ def install(key, sheet, out):
     b = os.path.join(BACKUP, sheet)
     if not os.path.exists(b):
         Image.open(os.path.join(PIC, sheet)).save(b)
-    out.save(os.path.join(PIC, sheet))
+    save_png(out, os.path.join(PIC, sheet))
 
 
 def tool(*args):
@@ -480,6 +491,9 @@ def tool(*args):
                        capture_output=True, text=True)
     if r.returncode:
         log("%s failed: %s" % (args[0], r.stderr[-600:]))
+
+
+FIRST = set()          # --first k1,k2: these sheets go first (the trial sheets, for an early look)
 
 
 def worklist(only):
@@ -492,7 +506,7 @@ def worklist(only):
             if spec["sheet"] in ents:
                 n = sum(1 for f in os.listdir(os.path.join(pd.SHEETS, k)) if len(f) == 8 and f.endswith(".png"))
                 keys.append((-n, k, spec, ents[spec["sheet"]]))           # full 150-frame sheets first
-    keys.sort(key=lambda x: (x[0], x[1]))
+    keys.sort(key=lambda x: (x[1] not in FIRST, x[0], x[1]))
     return [(k, s, e) for _, k, s, e in keys]
 
 
@@ -505,11 +519,14 @@ def run(a):
         log("another anim_harmonize runner is active")
         return
     only = set(a[a.index("--only") + 1].split(",")) if "--only" in a else None
+    FIRST.update(a[a.index("--first") + 1].split(",") if "--first" in a else [])
     limit = int(a[a.index("--limit") + 1]) if "--limit" in a else None
     palette_only, no_install = "--palette-only" in a, "--no-install" in a
     if not palette_only:
         threading.Thread(target=watchdog, daemon=True).start()
     state = json.load(open(STATE)) if os.path.exists(STATE) else {}
+    fp_ = os.path.join(HERE, "harmonize_force.json")
+    FORCE.update({k: v for k, v in (json.load(open(fp_)) if os.path.exists(fp_) else {}).items() if not k.startswith("_")})
     work = worklist(only)
     log("start: %d sheets, palette_only=%s install=%s" % (len(work), palette_only, not no_install))
     n = 0
@@ -535,7 +552,7 @@ def run(a):
                     tool("gen_portraits.py")
             state[key] = {"ai_fp": fp, "status": status, "ep": ep, "sheet": spec["sheet"], "counts": c,
                           "contact": os.path.join(CONTACT, key + ".png"), "time": time.strftime("%m-%d %H:%M")}
-            json.dump(state, open(STATE, "w"), indent=1)
+            json.dump(state, open(STATE, "w"), indent=1, default=_jd)
             log("sheet %s (%s): %s" % (key, ep, c))
         except Exception:
             log("ERROR", key, traceback.format_exc()[-1500:])

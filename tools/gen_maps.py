@@ -283,8 +283,18 @@ class Events:
                                 list(after)) if after else []),
                               "cmdblocks": [block]}]}
         r = [0, 1.0, 0, 2.5, 1.0, 2.5] if touch else [0, 0.5, 0, 0.5, 0.5, 0.5]
+        pages = [page]
+        if not touch:
+            # (tester 2026-11-11) The engine runs an autorun (trigger 6) once per spawn, the first time its page is
+            # live - even when the cmd_if inside says "not yet". A scene whose "after" flag was set while the player
+            # stood there never played until he left and came back (Scorpion Ch1's memorial garden has no way out:
+            # stuck after the three conversations; Lion's Burned Bridge). Now an empty page waits until the guard
+            # holds, and the scene's page carries the guard itself: when it becomes live, the scene runs.
+            page["reqs"] = list(page["cmdblock"][0]["reqs"])
+            pages = [{"ani": {"id": "stand"}, "trigger": 0, "memo": "", "moveaction": "stop", "movespd": 4,
+                      "pararun": False, "reqs": None, "standani": None, "cmdblock": []}, page]
         return self._add({"role": "custom", "pos": self.pos(x, z), "mdl": {"r": r},
-                          "mdlid": "CE000", "page": [page]})
+                          "mdlid": "CE000", "page": pages})
 
     def talk(self, x, z, mdl, pages, reqs=None, d=2, trigger=2):
         """NPC/object with talk pages: [(page reqs or None, cmds), ...]; the engine runs the LAST page whose reqs
@@ -2490,8 +2500,11 @@ MOVE_EXIT = {
     "M272": {"M255": "b"}, "M288": {"M285": "f"}, "M297": {"M288": "b"},
     "M304": {"M314": "e"},   # (M326 -> M322 "w", M333 -> M323 "e", M350 -> M351 "w" removed, tester 2026-11-11:
                              # each put two exits on one edge strip, so one of the two ways could never be taken)
-    "M362": {"M361": "w", "M365": "e"}, "M384": {"M382": "w"}, "M386": {"M385": "f"}, "M397": {"M396": "w"},
-    "M404": {"M399": "b"}, "M405": {"M404": "w"},
+    "M362": {"M361": "w", "M365": "e"}, "M386": {"M385": "f"},
+    "M404": {"M399": "b"},
+    # (M384 -> M382, M397 -> M396, M405 -> M404 "w" removed, tester 2026-11-11: on a cave map the moved exit sat on
+    # the solid rock past the cave's west wall - you arrived on the rock top, dropped into the cave and could never
+    # climb back out. Scorpion Ch4's lava tubes: one way.)
 }
 # Edge exits whose arrival point was on the wrong side of the next map (it shared a landing spot with another exit):
 # {map: {destination: (x, z) unpadded}} - they land beside the right doorway instead (spots found walkable).
@@ -18702,6 +18715,8 @@ def make(i):
         for h in _hire.HIRELINGS:
             for mid, x, z in h["spots"]:
                 if mid == i:
+                    if i in ROOM_OFS:                                       # (tester 2026-11-11: the Shadow Hunter
+                        x, z = x + ROOM_OFS[i][0], z + ROOM_OFS[i][1]       # stood outside M363) room -> map coords
                     hire_npc(ev, x, z, h)
         hire_followers(ev)
         gids = duel_gids()

@@ -33,6 +33,8 @@ class RTResource
 	local bw = ::rpgstage.bw, bx = int( x * 2.0), bz = int( z * 2.0);
 	if( x < 0.0 || z < 0.0 || bx >= bw.w || bz >= bw.d) return null;
 	if( bw.bmp && bw.bmp.get( bx, bz)) return null;
+	if( !rp3d["scn"]) return null;						//	(tester: a leader model not in the scene yet - the finale's party
+														//	swap - threw "b3world in null" from groundTest and froze the field)
 	local r = rp3d.groundTest( Vector3D( x, y0, z), dy);
 	if( !r) return null;
 	local gy = r[0];

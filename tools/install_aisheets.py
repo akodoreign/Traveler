@@ -9,6 +9,7 @@ import shutil
 import sys
 
 from PIL import Image
+from atomic_io import save_png, copy_file  # noqa: E402  (atomic writes: the game may be running)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PX = os.path.normpath(os.path.join(HERE, "..", "_art", "preview", "agents", "pixelai"))
@@ -22,7 +23,7 @@ def main():
     os.makedirs(ORIG, exist_ok=True)
     if "--restore" in a:
         for f in os.listdir(ORIG):
-            shutil.copy(os.path.join(ORIG, f), os.path.join(PIC, f))
+            copy_file(os.path.join(ORIG, f), os.path.join(PIC, f))
             print("restored", f)
         return
     want = [x for x in a if not x.startswith("--")]
@@ -45,7 +46,7 @@ def main():
                 im.paste((0, 0, 0, 0), (xy[0], xy[1], xy[0] + FW, xy[1] + FH))
                 im.alpha_composite(Image.open(os.path.join(d, f)).convert("RGBA"), xy)
                 n += 1
-        im.save(os.path.join(PIC, sheet))
+        save_png(im, os.path.join(PIC, sheet))
         print("installed", key, n, "frames ->", sheet)
         # anim_harmonize.py (2026-11-11): its harmonized sheet replaces this one while the AI frames are unchanged
         hz = os.path.normpath(os.path.join(HERE, "..", "_art", "preview", "agents", "anim_harmonize"))
@@ -58,7 +59,7 @@ def main():
                     s_ = os.stat(os.path.join(d, f))
                     h.update(("%s %d %d;" % (f, s_.st_size, int(s_.st_mtime))).encode())
             if h.hexdigest() == st[key]["ai_fp"]:
-                shutil.copy(os.path.join(hz, "out", sheet), os.path.join(PIC, sheet))
+                copy_file(os.path.join(hz, "out", sheet), os.path.join(PIC, sheet))
                 print("  harmonized sheet re-applied")
 
 

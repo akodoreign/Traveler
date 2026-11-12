@@ -205,6 +205,11 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 			case "pos": this.botPos( "pos"); break;
 			case "pin": ::Rokugan.botpin <- int( a[1]); break;
 			case "answer": ::Rokugan.rtq = [int( a[1])]; ::Rokugan.rtqi = 0; break;	//	answer N: the next menu takes N
+			case "equip": {									//	equip PID SLOT ITEM: as a player would in the menu (a
+				local p = ::rpgstat.playermap[a[1]];		//	mask gate: "the stone mask bows only to silk")
+				if( p){ p.setEquip( int( a[2]), RPGObject.create( a[3])); printf( "[RT] BOT equip %S %S %S\n", a[1], a[2], a[3]); }
+				break;
+			}
 			case "darkmove": {									//	darkmove MAP BX BZ: DARK (black fade) then a map move,
 				::rpgstage.screenfx.screenEffectOn( { sfxid = "color0", color = 657231871, time = 1200 });	//	as a scene
 				sleep( 300);											//	does (DARK: dim, then black), moving

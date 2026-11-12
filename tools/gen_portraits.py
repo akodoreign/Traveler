@@ -8,6 +8,7 @@ import os
 
 import numpy as np
 from PIL import Image, ImageDraw
+from atomic_io import save_png, copy_file  # noqa: E402  (atomic writes: the game may be running)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "..", "_tools", "rpgcobo-tool", "project", "resource")
@@ -126,7 +127,7 @@ def main():
         if crop is None:
             continue
         ally = name.startswith(("trav_", "side_"))
-        frame(crop, ally).save(os.path.join(OUT, os.path.splitext(name)[0] + ".png"))
+        save_png(frame(crop, ally), os.path.join(OUT, os.path.splitext(name)[0] + ".png"))
         done.add(name)
     for name, text in (("_now", "THIS TURN"), ("_next", "NEXT"), ("_rumble", "RUMBLE")):   # bar row tags
         w = 8 + 6 * len(text)
@@ -134,18 +135,18 @@ def main():
         d = ImageDraw.Draw(tag)
         d.rounded_rectangle([0, 0, w - 1, 12], radius=3, fill=(28, 24, 32, 220), outline=ALLY[1])
         d.text((4, 1), text, fill=ALLY[0])
-        tag.resize((w * 2, 26), Image.NEAREST).save(os.path.join(OUT, name + ".png"))
+        save_png(tag.resize((w * 2, 26), Image.NEAREST), os.path.join(OUT, name + ".png"))
     bar = Image.new("RGBA", (64, 8), (0, 0, 0, 0))                       # Rumble meter (plugin stretches these)
     d = ImageDraw.Draw(bar)
     d.rounded_rectangle([0, 0, 63, 7], radius=2, fill=(28, 24, 32, 200), outline=(150, 120, 90, 255))
-    bar.resize((128, 16), Image.NEAREST).save(os.path.join(OUT, "_rumble_bar.png"))
+    save_png(bar.resize((128, 16), Image.NEAREST), os.path.join(OUT, "_rumble_bar.png"))
     fill = Image.new("RGBA", (64, 4), (0, 0, 0, 0))
     for x in range(64):
         t = x / 63.0
         col = (int(200 + 50 * t), int(170 - 120 * t), int(60 - 30 * t), 255)   # sand -> ember red
         for y in range(4):
             fill.putpixel((x, y), tuple(min(255, int(c * (1.0 if y else 1.15))) if i < 3 else c for i, c in enumerate(col)))
-    fill.save(os.path.join(OUT, "_rumble_fill.png"))
+    save_png(fill, os.path.join(OUT, "_rumble_fill.png"))
     print("portraits:", len(done))
 
 

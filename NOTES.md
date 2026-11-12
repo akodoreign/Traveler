@@ -4604,6 +4604,28 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
     screen: M282's Ch2 card at x 76, the landing at 29).
   - Ladder reachability (for the lead's tools/ladders.py; scratch ladderreach.py over my chapter checkpoints): all
     reachable except Crab G255 (M171-M176, beyond the Wall) and G286 (M152) - the lead moved those ladders.
+  - Phoenix Ch4 "Howl" complete. **PLUGIN FIX RokuganField floorAt**: after the finale's party swap the leader's new
+    model wasn't in the scene yet; the followers' groundTest threw "b3world in null" (RPG3DObject.sk:660) through
+    RokuganLook's stage update and the field froze. Guarded (`if( !rp3d["scn"]) return null;`).
+- **Dragon (path 4)**: Ch1 "Under the Skin", Ch2 "The Painting", Ch3 "Past Mistakes", Ch4 "The Battle of the White
+  Stag" complete, finale Act 1 won (path_4_ch*_done*.json). No game bugs. Bot: a walk-on that fades to black and then
+  moves map (M329's mansion door) counts as an exit. Floor-arrow shots for the lead (M142, M160): double chevrons
+  read well.
+- **GAME FIX autorun scenes (Events.scene, every map)**: the engine runs a trigger-6 event once per spawn, the first
+  time its page is live (RPGEvent spawnandran), even when its own cmd_if says "not yet". A scene whose "after" flags
+  were set while you stood on the map never played until you left and came back - Scorpion Ch1's memorial garden
+  (M345) has no way out: soft-lock after the three conversations. Non-touch scenes now have an empty trigger-0 page
+  and the scene page carries the guard as page reqs, so it runs the moment it goes live. Sampled after a full regen:
+  Crane dawn, Lion S01, finale F01 all play once.
+- **Scorpion (path 5)**: Ch1 "Blood and Iron", Ch2 "City of Masks", Ch3 "Fortunes Lost", Ch4 "The Eve" complete.
+  - **GAME FIX cave maps with moved exits** (M384, M397, M405 "w" in MOVE_EXIT): the exit sat on solid rock past the
+    cave's west wall - you arrived on the rock top, dropped into the cave, and could never climb back out. Removed.
+  - Bot: talk gates that check a worn mask (`wearsMask( "P105", "A148")`) get `equip P105 4 A148` first (Mitsue wears
+    the Silk Mask for the temple gatekeeper, as a player would in the menu); would_change follows both branches of an
+    if on a non-story value (W from a script, money, items).
+  - Fixed my own RokuganBot compile error (a literal newline in a printf) before it cost more than one start.
+  - Open: M384's save shrine (#85#) can't be reached from the lava tubes; the Tamori heat tiles keep the party
+    under 3/4 HP, so the bot keeps trying to rest there.
 - 06:30 all ~67 remaining side-cast/hireling sheets reviewed (walk/run/attack): frame fixes for EP389, EP392, EP588, EP673,
   EP1107, EP1112, EP1127, EP1128, EP1140, EP1149 (heads turned away, hats/weapons popping, Hida Veteran morphing).
   Redraws (user "yeah redraw them"): Hida Sachiko - new gen_sprites2d flag club_back (tetsubo behind her head; rig and
@@ -4664,6 +4686,10 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   loop, M221 table, cave side doors x14, edge strips, M225 cliff, two-exit edges M254/M326/M333/M350, M256 doors +
   Benjiro, arrivals face open ground), side-cast frame fixes, test-bot updates. Checks: 2 changed tools compile;
   story_2 log (after the 11:41 plugin edit) has no compile error; no backups in resource; 0 new boss files.
+- 2026-11-11 21:15 push 0b6a2d1 (licensed-demo -> main, 92 files, previous 65456af): floor chevron arrows at interior
+  exits (86 interior maps rebuilt), stacked Crab ladders M140/M148/M149, HUD fixes (G1227 1-based, boxes up),
+  anim_harmonize.py + install_aisheets/storyplay. Checks: 4 changed tools compile; arrows/arrows2 logs (21:11, after
+  the 17:12 plugin edit) load all plugins, no compile error; no backups in resource; 0 new boss files.
 
 ## 2026-11-11 (evening): Progression v2 - ranks, jobs, kata/kiho, Void, Support (user's design pass)
 Spec: `docs/rules/progression-v2.md` (the user's decisions, quoted). Built (lead):

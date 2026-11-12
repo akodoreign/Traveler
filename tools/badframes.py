@@ -12,6 +12,7 @@ import sys
 
 import numpy as np
 from PIL import Image
+from atomic_io import save_png, copy_file  # noqa: E402  (atomic writes: the game may be running)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "..", "_tools", "rpgcobo-tool", "project", "resource")
@@ -64,7 +65,7 @@ def check(epid, pics, fix=False):
             if good:
                 j = min(good, key=lambda g: abs(g - i))
                 im.paste(im.crop(box(j)), box(i)[:2])
-        im.save(path)
+        save_png(im, path)
     return bad
 
 
@@ -102,7 +103,7 @@ def apply_fixes(pics):
         src = im.copy()
         for bad, good in mp.items():
             im.paste(src.crop(box(int(good))), box(int(bad))[:2])
-        im.save(path)
+        save_png(im, path)
         print("fixed", epid, len(mp), "frames")
 
 
