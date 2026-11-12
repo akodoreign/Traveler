@@ -4703,4 +4703,13 @@ Spec: `docs/rules/progression-v2.md` (the user's decisions, quoted). Built (lead
   lv^2). 83 maps, 329 foes. Not covered: Dragon Ch4 and Ronin Ch4 (no completion flag found), Unicorn Ch2 (shares
   the Ojatara maps with Scorpion Ch3). Reachability of each map after its chapter is NOT checked yet (tester).
   HUD fixes after the tester's shot: G1227 is 1-based (0 = none: old saves showed a Crab line), boxes 62 px up off the
-  key-hint bar.
+  key-hint bar. Crab G255/G286 ladders moved to M140/M148/M149 (stacked; rt_ifnot2), tester found M171-176/M152
+  unreachable after their chapters.
+- Push 65456af (user "push to git"): all of the above + the tester's front-edge strip fix. ComfyUI was hung since
+  13:15; restarted (user-authorized, memory comfyui-restart-ok). Animation agent building tools/anim_harmonize.py
+  (palette pass + ComfyUI img2img with reject/retry + self-restart watchdog).
+- **Floor arrows** (user: "down arrows in locations where you cant visually see the door, just put them on the floor,
+  i struggled in kyuden hida finding the exits ... we will re touch them later with downward looking (texture)
+  stairs"): gen_maps `floor_arrows()` in make() for INTERIORS / ROOM_OFS maps paints a vermilion (TORII) arrow
+  into the floor blocks one cell inside every exit, pointing at it (inward = most same-height floor). Kyuden Hida
+  1F-6F, the dark castle and the town interiors get 1-4 each. Needs a map build (`gen_maps.py <ids>`), not just regen.

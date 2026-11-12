@@ -199,10 +199,16 @@ def map_route(src, dst, flags):
     return None
 
 
-def push_step(ex, ez, push):
+def push_step(ex, ez, push, w=None, fp=None):
     """Walk on through the doorway (a goto in map terms: the keys are camera-relative, and an interior's camera
-    turned M260's "down" into a wall push)."""
+    turned M260's "down" into a wall push). An edge strip is crossed straight from where the walk ended (its centre
+    can be 35 squares away: M288's north strip)."""
     dx, dz = {"up": (0, 1), "down": (0, -1), "right": (1, 0), "left": (-1, 0)}[push]
+    if fp and len(fp) > 9 and w:
+        lx, lz = (float(v) for v in w[-1].split()[1:3])
+        if dx:
+            return "goto %.1f %.1f 4000" % (ex + 0.5 + dx * 2.0, lz)
+        return "goto %.1f %.1f 4000" % (lx, ez + 0.5 + dz * 2.0)
     return "goto %.1f %.1f 2500" % (ex + 0.5 + dx * 2.0, ez + 0.5 + dz * 2.0)
 
 
@@ -354,13 +360,17 @@ def plan(state, flags, tried):
             if d == nxt:
                 gmap = grid(mid)[0]                                    # a player follows the road out
                 road = {(a, b) for a, b in fp if 0 <= b < gmap.d and 0 <= a < gmap.w and gmap.blk[b, a] == gm.ROAD}
-                w = walk_steps(mid, (x, z), {c for a, b in (road or fp) for c in near(a, b)})
+                goal = {c for a, b in (road or fp) for c in near(a, b)}
+                if len(fp) > 9 and push in ("up", "down", "left", "right"):   # an edge strip: stop 3 squares short
+                    sx, sz = {"up": (0, 1), "down": (0, -1), "right": (1, 0), "left": (-1, 0)}[push]   # and cross it
+                    goal = {(a - 3 * sx, b - 3 * sz) for a, b in (road or fp)}       # walking (a body must pass
+                w = walk_steps(mid, (x, z), goal)                                    # wholly through the box)
                 if w is not None:
                     if len(fp) <= 9:                                   # a door: line up in front of it, push in
                         push = door_push(mid, ex, ez, push, fp)
                         bx, bz = {"up": (0, -2), "down": (0, 2), "left": (2, 0), "right": (-2, 0)}[push]
                         w = w + ["goto %.1f %.1f 3000" % (ex + bx + 0.5, ez + bz + 0.5)]
-                    return (tm, key, "go %s via %s" % (tm, nxt), (mid, nxt)), w + [push_step(ex, ez, push), "untilmap %s 12000" % nxt,
+                    return (tm, key, "go %s via %s" % (tm, nxt), (mid, nxt)), w + [push_step(ex, ez, push, w, fp), "untilmap %s 12000" % nxt,
                                                                        "wait 800"]
         return (tm, key, "no walking route to the %s exit" % nxt), None
     if trig == 6:
@@ -378,7 +388,7 @@ def plan(state, flags, tried):
                 if w is not None:
                     if len(fp) <= 9:
                         push = door_push(mid, ex, ez, push, fp)
-                    return (tm, key, "go %s via %s" % (d, d), (mid, d)), w + [push_step(ex, ez, push),
+                    return (tm, key, "go %s via %s" % (d, d), (mid, d)), w + [push_step(ex, ez, push, w, fp),
                                                                            "untilmap %s 12000" % d, "wait 800"]
         return (tm, key, "arrival scene"), ["wait 1500"]
     if trig == 5:

@@ -2289,6 +2289,75 @@ def _inverse(reqs):
     return None
 
 
+ARROW_TILE = TORII                     # vermilion lacquer: reads on plank, tatami and stone
+
+
+def floor_arrows(m, ev):
+    """Interiors (user, 2026-11-11: "need those down arrows in locations where you cant visually see the door, just put
+    them on the floor, i struggled in kyuden hida finding the exits"; stair textures may replace them later): every
+    exit (a portal, or a walk-in trigger that moves you to another map) gets a vermilion arrow painted into the floor,
+    starting one cell inside and pointing at the exit. Inward = the direction with the most floor at the exit's
+    height (ties: toward the map centre)."""
+    def moves(e):
+        return e.get("role") == "portal" or (e.get("role") == "custom" and "cmd_mapmove" in str(e.get("page"))
+                                              and any(pg.get("trigger") == 5 for pg in e.get("page") or []))
+    painted = 0
+    for e in ev.ev.values():
+        if "pos" not in e or not moves(e):
+            continue
+        x, z = int(e["pos"][0]), int(e["pos"][2])
+        if not (0 <= x < m.w and 0 <= z < m.d):
+            continue
+        def floor(cx, cz, h):
+            return 0 <= cx < m.w and 0 <= cz < m.d and int(m.hgt[cz, cx]) == h
+        best = None
+        for dx, dz in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            if not (0 <= x + dx < m.w and 0 <= z + dz < m.d):
+                continue
+            h = int(m.hgt[z + dz, x + dx])                                # the room floor one cell in (a doorway or
+            n = 0                                                         # a step can sit lower than the room)
+            while n < 7 and floor(x + (n + 1) * dx, z + (n + 1) * dz, h):
+                n += 1
+            centre = -abs((x + 3 * dx) - m.w / 2) - abs((z + 3 * dz) - m.d / 2)
+            key = (n, centre)
+            if n >= 6 and (best is None or key > best[0]):
+                best = (key, dx, dz, h)
+        if not best:
+            continue
+        _k, dx, dz, h = best
+        px, pz = -dz, dx                                                  # across the arrow
+        # (tester 2026-11-11: a plus / a triangle with a tail both read as a cross at this tile size) a double
+        # chevron pointing at the exit, set back a cell from the wall cut: (k = cells in, j = across)
+        cells = [(x + k * dx + j * px, z + k * dz + j * pz) for k, j in
+                 ((2, 0), (3, -1), (3, 1), (4, -2), (4, 2),
+                  (4, 0), (5, -1), (5, 1), (6, -2), (6, 2))]
+        for cx, cz in cells:
+            if floor(cx, cz, h):
+                m.blk[cz, cx] = ARROW_TILE
+        # rugs / futons (fills one block above the floor) over the chevron slide sideways off it (the inn's rug lay
+        # across its doorway and hid the arrow)
+        foot = set(cells)
+        for o in m.objs:
+            if o.get("t") != "fill" or o.get("h") != 1 or o.get("blk") not in (TATAMI, FUTON):
+                continue
+            cov = {(o["x"] + a, o["z"] + b) for a in range(o["w"]) for b in range(o["d"])}
+            if not cov & foot:
+                continue
+            for step in range(1, 9):
+                for sgn in (1, -1):
+                    nx, nz = o["x"] + sgn * step * px, o["z"] + sgn * step * pz
+                    ncov = {(nx + a, nz + b) for a in range(o["w"]) for b in range(o["d"])}
+                    if not ncov & foot and all(1 <= cx < m.w - 1 and 1 <= cz < m.d - 1 for cx, cz in ncov):
+                        o["x"], o["z"] = int(nx), int(nz)
+                        break
+                else:
+                    continue
+                break
+        painted += 1
+    if painted:
+        m.arrows = painted
+
+
 def mark_exits(m, ev):
     """Map edges (user, 2026-11-07: "last edge of any map if it connects to another map should transition to that
     next map, going both ways ... if you need to block a map use things like stacks of barrels and boxes and a samurai
@@ -18664,6 +18733,8 @@ def make(i):
         pad(m, ev)
         if ev is not None and getattr(m, "exits", None):
             edge_triggers(m, ev)
+    if ev is not None and (i in INTERIORS or i in ROOM_OFS):
+        floor_arrows(m, ev)
     if ev is not None:
         portals_off_side_walls(m, ev)
         arrivals_face_open_ground(m, ev)

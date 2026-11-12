@@ -34151,7 +34151,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M207": {
@@ -34400,16 +34408,14 @@
 											"key": "message_talk",
 											"text": "(...He looked straight at me and didn't see me.)",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "(Father always said a Kakita should fill a room. It's useful to be empty.)",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_compute",
@@ -34526,8 +34532,7 @@
 																	"key": "message_talk",
 																	"text": "Akodo-san. You study the Way of the Lion. Does it say a man may not speak at his own trial?",
 																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "neutral"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_script",
@@ -34548,7 +34553,7 @@
 																			{
 																				"cmd": "cmd_showmsg",
 																				"key": "message_talk",
-																				"text": "It says Heaven decides. My father thinks Heaven sounds like him. Certainty is worse than cruelty, Kakita-san.",
+																				"text": "Certainty is worse.",
 																				"name": "Akodo Seoko",
 																				"uiclose": 2
 																			},
@@ -34748,8 +34753,7 @@
 																	"key": "message_talk",
 																	"text": "My lady, the estate's accounts must weigh on you. May I ask what the forest has cost?",
 																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "neutral"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_script",
@@ -34980,8 +34984,7 @@
 								"key": "message_talk",
 								"text": "He can't hold a cup without shaking.",
 								"name": "Kakita Rensei",
-								"uiclose": 2,
-								"emo": "worried"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -34995,8 +34998,7 @@
 								"key": "message_talk",
 								"text": "...You're deciding what kind of Crane I am.",
 								"name": "Kakita Rensei",
-								"uiclose": 2,
-								"emo": "determined"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -37747,7 +37749,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M825": {
@@ -48655,16 +48665,14 @@
 														"key": "message_talk",
 														"text": "No.",
 														"name": "Hiruma Natsuko",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "No.",
 														"name": "Kakita Rensei",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -48687,8 +48695,7 @@
 														"key": "message_talk",
 														"text": "No.",
 														"name": "Kakita Rensei",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -48712,8 +48719,7 @@
 											"key": "message_talk",
 											"text": "...Not two women. One.",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_compute",
@@ -50920,7 +50926,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M220": {
@@ -83992,8 +84006,7 @@
 											"key": "message_talk",
 											"text": "Why help me?",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -84014,8 +84027,7 @@
 											"key": "message_talk",
 											"text": "...Father.",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "sad"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_if",
@@ -84075,7 +84087,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A play about a demon, banned for four hundred years. Rensei rehearsed it in secret, faced his father on the white sand - and found a new hilt-wrap on his sword with no note at all.",
+											"text": "A play about a demon, banned for four hundred years. Rensei rehearsed it in secret, refused his father, and drew first blood - and found a new hilt-wrap on his sword with no note at all.",
 											"name": "",
 											"uiclose": 2
 										}
@@ -86365,7 +86377,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M230": {
@@ -86617,8 +86637,7 @@
 														"key": "message_talk",
 														"text": "...Yes, Father.",
 														"name": "Kakita Rensei",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -86668,8 +86687,7 @@
 														"key": "message_talk",
 														"text": "No, Father.",
 														"name": "Kakita Rensei",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -89229,7 +89247,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M231": {
@@ -89487,8 +89513,7 @@
 											"key": "message_talk",
 											"text": "Lady Sanae of the House Honour sends me. She'd hate to have to come herself.",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -91842,7 +91867,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M232": {
@@ -94666,7 +94699,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M233": {
@@ -94893,8 +94934,7 @@
 								"key": "message_talk",
 								"text": "She's colour-blind.",
 								"name": "Kakita Rensei",
-								"uiclose": 2,
-								"emo": "surprised"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_compute",
@@ -94940,8 +94980,7 @@
 								"key": "message_talk",
 								"text": "She's colour-blind.",
 								"name": "Kakita Rensei",
-								"uiclose": 2,
-								"emo": "surprised"
+								"uiclose": 2
 							}
 						]
 					}
@@ -95015,8 +95054,7 @@
 											"key": "message_talk",
 											"text": "A terror of disfigurement.",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_compute",
@@ -95073,8 +95111,7 @@
 								"key": "message_talk",
 								"text": "A terror of disfigurement.",
 								"name": "Kakita Rensei",
-								"uiclose": 2,
-								"emo": "surprised"
+								"uiclose": 2
 							}
 						]
 					}
@@ -95177,8 +95214,7 @@
 											"key": "message_talk",
 											"text": "The Empress of Nothing. Written by \"a survivor of the court of Komatsu\".",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_itemop",
@@ -95284,8 +95320,7 @@
 								"key": "message_talk",
 								"text": "She wants to be called Empress.",
 								"name": "Kakita Rensei",
-								"uiclose": 2,
-								"emo": "neutral"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -95299,8 +95334,7 @@
 								"key": "message_talk",
 								"text": "She doesn't know this play exists. Nobody has performed it in four hundred years.",
 								"name": "Kakita Rensei",
-								"uiclose": 2,
-								"emo": "surprised"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_compute",
@@ -95416,8 +95450,7 @@
 								"key": "message_talk",
 								"text": "She wants to be called Empress.",
 								"name": "Kakita Rensei",
-								"uiclose": 2,
-								"emo": "neutral"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -95431,8 +95464,7 @@
 								"key": "message_talk",
 								"text": "She doesn't know this play exists. Nobody has performed it in four hundred years.",
 								"name": "Kakita Rensei",
-								"uiclose": 2,
-								"emo": "surprised"
+								"uiclose": 2
 							}
 						]
 					}
@@ -97695,7 +97727,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M234": {
@@ -97957,24 +97997,21 @@
 														"key": "message_talk",
 														"text": "Oh, please let me direct.",
 														"name": "Shosuro Mitsue",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "You're a Scorpion.",
 														"name": "Kakita Rensei",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "I'm an actress. The Scorpion part is a hobby.",
 														"name": "Shosuro Mitsue",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													}
 												]
 											]
@@ -98095,24 +98132,21 @@
 																	"key": "message_talk",
 																	"text": "Yes. Mean it. She can tell flattery from worship.",
 																	"name": "Shosuro Mitsue",
-																	"uiclose": 2,
-																	"emo": "neutral"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
 																	"text": "How do you know?",
 																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "neutral"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
 																	"text": "Because I can.",
 																	"name": "Shosuro Mitsue",
-																	"uiclose": 2,
-																	"emo": "happy"
+																	"uiclose": 2
 																}
 															],
 															[
@@ -98239,8 +98273,7 @@
 														"key": "message_talk",
 														"text": "Exactly. She can only follow one.",
 														"name": "Kakita Rensei",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													}
 												],
 												[
@@ -100580,7 +100613,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M235": {
@@ -103808,16 +103849,14 @@
 											"key": "message_talk",
 											"text": "The Crane generals hang on Miyako. The Crab generals hang on Miyubi.",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Miyako lied about a dead uncle. Miyubi drank sake hot enough to strip paint.",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_script",
@@ -103840,8 +103879,7 @@
 														"key": "message_talk",
 														"text": "Two women. Same trick. Seduce the generals, plant a reason for war, wait.",
 														"name": "Hiruma Natsuko",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													}
 												],
 												[
@@ -103867,8 +103905,7 @@
 											"key": "message_talk",
 											"text": "...Because they can't be.",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -106402,7 +106439,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M214": {
@@ -119271,8 +119316,7 @@
 														"key": "message_talk",
 														"text": "Nobody drinks Crab sake like that. Not even Crab.",
 														"name": "Hiruma Natsuko",
-														"uiclose": 2,
-														"emo": "surprised"
+														"uiclose": 2
 													}
 												],
 												[
@@ -119314,8 +119358,7 @@
 														"key": "message_talk",
 														"text": "Why are you angry, general? Really?",
 														"name": "Hiruma Natsuko",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -121610,7 +121653,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M208": {
@@ -121838,8 +121889,7 @@
 											"key": "message_talk",
 											"text": "Then I'll stand in your way.",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -122005,7 +122055,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "Kakita Morishu dies before the sun is up. In the village, Sariko's cry carries a long way. Lady Sanae returns the sword to its box for the Kakita vaults.",
+																	"text": "Kakita Morishu dies. Sariko's cry carries across the yard. Lady Sanae returns the sword to its box for the Kakita vaults.",
 																	"name": "",
 																	"uiclose": 2
 																},
@@ -122056,8 +122106,7 @@
 											"key": "message_talk",
 											"text": "My lady. The letter. The death poem. Would my father ever...",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -122078,8 +122127,7 @@
 											"key": "message_talk",
 											"text": "...Is that what you'll write in your report? That nothing happened?",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "angry"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -122105,7 +122153,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Sent to make a fallen prodigy disappear, Rensei found a man who could cut twice and then shake for an hour - and had to decide what kind of Crane to be.",
+											"text": "Sent to make a fallen prodigy disappear, Rensei found a man who could cut twice and then shake for an hour - and stood beside him.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -122118,7 +122166,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Kitsuki Seigen and Matsu Kiku take their leave for now. (Either will answer the Guest call again when you find them on the road.)",
+											"text": "Kitsuki Seigen and Matsu Kiku go their own ways. (Their side stories come later.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -124351,12 +124399,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": "particle",
-			"spd": 0.04,
-			"size": 0.09,
-			"dens": 0.25,
-			"col1": -929009409,
-			"col2": -389508865
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M209": {
@@ -139539,8 +139590,7 @@
 											"key": "message_talk",
 											"text": "Ijako? You're home.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -139554,8 +139604,7 @@
 											"key": "message_talk",
 											"text": "I'll say what I always say. \"Good morning, Ijako.\"",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -139881,8 +139930,7 @@
 																	"key": "message_talk",
 																	"text": "Give me one more day, Isawa-sama.",
 																	"name": "Akodo Shizue",
-																	"uiclose": 2,
-																	"emo": "determined"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -139896,8 +139944,7 @@
 																	"key": "message_talk",
 																	"text": "For the truth. You said you followed it here. Let me follow it a little further.",
 																	"name": "Akodo Shizue",
-																	"uiclose": 2,
-																	"emo": "determined"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -139932,8 +139979,7 @@
 																	"key": "message_talk",
 																	"text": "You fight like someone listening for something else entirely.",
 																	"name": "Akodo Shizue",
-																	"uiclose": 2,
-																	"emo": "neutral"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -142353,7 +142399,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M245": {
@@ -142546,16 +142600,14 @@
 								"key": "message_talk",
 								"text": "No.",
 								"name": "Akodo Shizue",
-								"uiclose": 2,
-								"emo": "determined"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "If your hands did it, then someone is wearing your hands. I want the someone.",
 								"name": "Akodo Shizue",
-								"uiclose": 2,
-								"emo": "determined"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -142569,8 +142621,7 @@
 								"key": "message_talk",
 								"text": "Then you'll help me bring him back.",
 								"name": "Akodo Shizue",
-								"uiclose": 2,
-								"emo": "determined"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_choices",
@@ -142916,8 +142967,7 @@
 														"key": "message_talk",
 														"text": "Give me one more day, Isawa-sama.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -142931,8 +142981,7 @@
 														"key": "message_talk",
 														"text": "For the truth. You said you followed it here. Let me follow it a little further.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -142967,8 +143016,7 @@
 														"key": "message_talk",
 														"text": "You fight like someone listening for something else entirely.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -143179,8 +143227,7 @@
 											"key": "message_talk",
 											"text": "Gusai. I challenge you. First blood.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_script",
@@ -143369,8 +143416,7 @@
 											"key": "message_talk",
 											"text": "Ozaki. I challenge you. First blood.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_script",
@@ -143466,8 +143512,7 @@
 														"key": "message_talk",
 														"text": "Then I'll be a clerk.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -143654,8 +143699,7 @@
 																				"key": "message_talk",
 																				"text": "Give me one more day, Isawa-sama.",
 																				"name": "Akodo Shizue",
-																				"uiclose": 2,
-																				"emo": "determined"
+																				"uiclose": 2
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
@@ -143669,8 +143713,7 @@
 																				"key": "message_talk",
 																				"text": "For the truth. You said you followed it here. Let me follow it a little further.",
 																				"name": "Akodo Shizue",
-																				"uiclose": 2,
-																				"emo": "determined"
+																				"uiclose": 2
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
@@ -143705,8 +143748,7 @@
 																				"key": "message_talk",
 																				"text": "You fight like someone listening for something else entirely.",
 																				"name": "Akodo Shizue",
-																				"uiclose": 2,
-																				"emo": "neutral"
+																				"uiclose": 2
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
@@ -144070,8 +144112,7 @@
 																	"key": "message_talk",
 																	"text": "Give me one more day, Isawa-sama.",
 																	"name": "Akodo Shizue",
-																	"uiclose": 2,
-																	"emo": "determined"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -144085,8 +144126,7 @@
 																	"key": "message_talk",
 																	"text": "For the truth. You said you followed it here. Let me follow it a little further.",
 																	"name": "Akodo Shizue",
-																	"uiclose": 2,
-																	"emo": "determined"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -144121,8 +144161,7 @@
 																	"key": "message_talk",
 																	"text": "You fight like someone listening for something else entirely.",
 																	"name": "Akodo Shizue",
-																	"uiclose": 2,
-																	"emo": "neutral"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -146407,7 +146446,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M246": {
@@ -146758,8 +146805,7 @@
 														"key": "message_talk",
 														"text": "Give me one more day, Isawa-sama.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -146773,8 +146819,7 @@
 														"key": "message_talk",
 														"text": "For the truth. You said you followed it here. Let me follow it a little further.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -146809,8 +146854,7 @@
 														"key": "message_talk",
 														"text": "You fight like someone listening for something else entirely.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -149180,7 +149224,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M248": {
@@ -149353,7 +149405,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "He's here. In this room. The dead have stopped whispering.",
+											"text": "He's impatient now. He'll do something tonight.",
 											"name": "Akodo Ijako",
 											"uiclose": 2
 										},
@@ -149417,16 +149469,14 @@
 														"key": "message_talk",
 														"text": "No.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "I'll face you clean, Kakita-san.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -149524,8 +149574,7 @@
 														"key": "message_talk",
 														"text": "Uncle! Don't move!",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "surprised"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -149577,8 +149626,7 @@
 											"key": "message_talk",
 											"text": "We'll take it in jade.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_script",
@@ -149608,16 +149656,14 @@
 														"key": "message_talk",
 														"text": "Yes. We did. And I know exactly what that costs.",
 														"name": "Isawa Haruki",
-														"uiclose": 2,
-														"emo": "worried"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "That's why I won't let you make anyone pay it again.",
 														"name": "Isawa Haruki",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													}
 												]
 											]
@@ -149625,7 +149671,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Each time O-Tamai's guard breaks (Suki), a jade chain goes round him. Three chains hold him. (The red shadow eats MP and VP, not HP.)",
+											"text": "Each time O-Tamai's guard breaks (Suki), a jade chain goes round him. Three chains hold him. (The red shadow eats SP and VP, not HP.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -149763,8 +149809,7 @@
 											"key": "message_talk",
 											"text": "The Lion acknowledge your patience.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -149834,8 +149879,7 @@
 											"key": "message_talk",
 											"text": "...You noticed.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -149863,8 +149907,7 @@
 											"key": "message_talk",
 											"text": "Good. You see the whole board from the far end.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_compute",
@@ -150079,21 +150122,19 @@
 											"key": "message_talk",
 											"text": "Yes. We did. And I know exactly what that costs.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "That's why I won't let you make anyone pay it again.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Each time O-Tamai's guard breaks (Suki), a jade chain goes round him. Three chains hold him. (The red shadow eats MP and VP, not HP.)",
+											"text": "Each time O-Tamai's guard breaks (Suki), a jade chain goes round him. Three chains hold him. (The red shadow eats SP and VP, not HP.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -152350,7 +152391,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M834": {
@@ -163757,8 +163806,7 @@
 											"key": "message_talk",
 											"text": "Grave, sensei. ...Sensei, what evil?",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -163772,8 +163820,7 @@
 											"key": "message_talk",
 											"text": "Sorry.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -163787,8 +163834,7 @@
 											"key": "message_talk",
 											"text": "Then I start again on the other hand, sensei.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -163809,8 +163855,7 @@
 											"key": "message_talk",
 											"text": "Yes, sensei. Sensei - you'll go to bed too?",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -164059,8 +164104,7 @@
 											"key": "message_talk",
 											"text": "Sensei! Sensei!",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -164081,8 +164125,7 @@
 											"key": "message_talk",
 											"text": "Please. Please answer. You always answer.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "sad"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -164096,8 +164139,7 @@
 											"key": "message_talk",
 											"text": "...The cook. The salt. You always talk about the salt.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "sad"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -164263,8 +164305,7 @@
 								"key": "message_talk",
 								"text": "\"Kaiki. Fifteen. We had no other way.\" \"I forged the chains. I have never forgiven myself for the boy.\"",
 								"name": "Isawa Haruki",
-								"uiclose": 2,
-								"emo": "worried"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_itemop",
@@ -164575,16 +164616,14 @@
 														"key": "message_talk",
 														"text": "...You kept this. Twelve years.",
 														"name": "Isawa Haruki",
-														"uiclose": 2,
-														"emo": "sad"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "You knew, sensei. You knew all along. And you never said a word.",
 														"name": "Isawa Haruki",
-														"uiclose": 2,
-														"emo": "sad"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -164800,24 +164839,21 @@
 														"key": "message_talk",
 														"text": "This was my teacher's home.",
 														"name": "Isawa Haruki",
-														"uiclose": 2,
-														"emo": "worried"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "Then you'll know where he kept his secrets.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "In a chest under his desk. With his tea. He always said history and tea should be kept together.",
 														"name": "Isawa Haruki",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													}
 												],
 												[
@@ -167267,7 +167303,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M835": {
@@ -177610,8 +177654,7 @@
 											"key": "message_talk",
 											"text": "Then your painting isn't of the Wall at all.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -178302,8 +178345,7 @@
 														"key": "message_talk",
 														"text": "...And yet.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "worried"
+														"uiclose": 2
 													}
 												]
 											],
@@ -178321,8 +178363,7 @@
 											"key": "message_talk",
 											"text": "Honour isn't a banner someone can steal from a wall.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -178503,8 +178544,7 @@
 														"key": "message_talk",
 														"text": "Then I'll dance like a siege.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													}
 												],
 												[
@@ -178520,8 +178560,7 @@
 														"key": "message_talk",
 														"text": "Let them.",
 														"name": "Akodo Shizue",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													}
 												],
 												[
@@ -178611,16 +178650,14 @@
 											"key": "message_talk",
 											"text": "A scarf from a friend. A flower from the garden. Duty. The banner. His sword. The seal.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "...They're all Kafu's. Everything Kafu loves, in order. Someone is taking his life apart one piece at a time.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_compute",
@@ -178902,7 +178939,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Ranks of kneeling samurai under ancestor portraits. Far up the hall: Akodo Toturi, quiet, watchful. Past all the great names, on the very last cushion: Akodo Shizue.",
+											"text": "Ranks of kneeling samurai under ancestor portraits. Far up the hall: Akodo Toturi, quiet, watchful. The camera slides past the great names and stops at the last cushion: Akodo Shizue.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -178932,8 +178969,7 @@
 											"key": "message_talk",
 											"text": "\"Sufficient.\" From a Crab, that's a love poem.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -178954,8 +178990,7 @@
 											"key": "message_talk",
 											"text": "Nishi-sama remembers a game from four summers ago?",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -181223,7 +181258,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M258": {
@@ -183625,7 +183668,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M259": {
@@ -183733,7 +183784,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "My wedding is before the thaw. Everyone keeps telling me.",
+								"text": "My wedding is in eleven weeks. Everyone keeps telling me.",
 								"name": "Akodo Nishi",
 								"uiclose": 2
 							},
@@ -186056,7 +186107,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M260": {
@@ -186246,8 +186305,7 @@
 											"key": "message_talk",
 											"text": "Something crawled here. Something heavy. And frightened.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -186587,8 +186645,7 @@
 											"key": "message_talk",
 											"text": "Stop.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "angry"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_choices",
@@ -186775,13 +186832,6 @@
 											"lvar": "G509",
 											"op": "=",
 											"rvar": true
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "The oni squeals - \"I will return! I will devour your souls!\" - and is gone through the floor.",
-											"name": "",
-											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -189108,7 +189158,7 @@
 		"marker": {},
 		"name": "Shiro Akodo - the South Dojo at night",
 		"reverbid": "plain",
-		"rsetid": "rt_hd2d_night",
+		"rsetid": "rt_hd2d_field",
 		"size": [
 			36,
 			64,
@@ -189116,16 +189166,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": "mist",
+			"type": "cloud",
 			"spd": [
-				0.22,
-				0.1
+				0.025,
+				0.015
 			],
-			"dens": 30,
-			"scale": 50,
-			"xscale": 3.0,
-			"modspd": 0.1,
-			"mistcol": -1935619841
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M261": {
@@ -194101,7 +194150,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M263": {
@@ -196396,7 +196453,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M264": {
@@ -198775,7 +198840,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M837": {
@@ -199603,8 +199676,7 @@
 											"key": "message_talk",
 											"text": "Yes, Kagehisa-sama.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -199625,16 +199697,14 @@
 											"key": "message_talk",
 											"text": "A Rank 1 messenger. Nobody would miss one.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "...That's why it's me.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_itemop",
@@ -199808,8 +199878,7 @@
 											"key": "message_talk",
 											"text": "It broke. I read it.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -199830,8 +199899,7 @@
 											"key": "message_talk",
 											"text": "(He knows something's waiting on the pass. He's sending me anyway.)",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_compute",
@@ -199983,8 +200051,7 @@
 											"key": "message_talk",
 											"text": "To keep the clans bleeding, my lord. So none of us can challenge the throne.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -200005,8 +200072,7 @@
 											"key": "message_talk",
 											"text": "...My lord?",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -200208,8 +200274,7 @@
 											"key": "message_talk",
 											"text": "To keep the clans bleeding, my lord. So none of us can challenge the throne.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -200230,8 +200295,7 @@
 											"key": "message_talk",
 											"text": "...My lord?",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -202537,7 +202601,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M266": {
@@ -241093,16 +241165,14 @@
 											"key": "message_talk",
 											"text": "...It isn't jade. It's river stone. She couldn't tell the difference.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "North. And east. Shinomen.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -241116,8 +241186,7 @@
 											"key": "message_talk",
 											"text": "I couldn't stop the war, uncle. Only one battle.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -243325,7 +243394,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M841": {
@@ -248754,7 +248831,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M279": {
@@ -251179,7 +251264,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M280": {
@@ -251371,8 +251464,7 @@
 											"key": "message_talk",
 											"text": "No. Yes. In the wind. He's screaming in the wind.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -253594,7 +253686,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M843": {
@@ -283626,13 +283726,6 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "On the last mat, a healer with dark veins to her jaw presses a scroll into Haruki's hands.",
-								"name": "",
-								"uiclose": 2
-							},
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
 								"text": "It won't cure this. Nothing cures this.",
 								"name": "Dying Healer",
 								"uiclose": 2
@@ -283673,7 +283766,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Haruki learns Hand of Jurojin: it eases the sick for 4 MP.",
+								"text": "Haruki learns Hand of Jurojin: it eases the sick for 4 SP.",
 								"name": "",
 								"uiclose": 2
 							}
@@ -286053,7 +286146,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M291": {
@@ -297846,16 +297947,14 @@
 											"key": "message_talk",
 											"text": "Then I'll close it.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Politely.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -297915,8 +298014,7 @@
 											"key": "message_talk",
 											"text": "Maybe. But not today.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -300137,7 +300235,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M296": {
@@ -300322,16 +300428,14 @@
 											"key": "message_talk",
 											"text": "\"On the splitting and joining of souls.\" \"Joining requires one of the halves to want it. And a giver.\"",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "...A giver.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -300345,16 +300449,14 @@
 											"key": "message_talk",
 											"text": "\"Obsidian against Fear. Jade against Regret. Crystal against Desire.\" \"Obsidian corrupts the hand that holds it.\"",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Someone in the Ojatara valleys should read this.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -300410,8 +300512,7 @@
 											"key": "message_talk",
 											"text": "Thank you for leaving me out.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -300425,8 +300526,7 @@
 											"key": "message_talk",
 											"text": "I've been in one report already. It took twelve years to read.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_if",
@@ -302802,7 +302902,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M846": {
@@ -313125,16 +313233,14 @@
 											"key": "message_talk",
 											"text": "She's here. But she isn't.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Dreamwalker.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -315342,7 +315448,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M301": {
@@ -330243,7 +330357,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M306": {
@@ -330422,13 +330544,12 @@
 											"key": "message_talk",
 											"text": "Oharu-sama!",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Gendo shouts for a healer. Kosai \"can't find one\". Gendo's hands are steady as he sniffs the tea.",
+											"text": "Quick cuts: Kitsuki Gendo shouting for a healer; Kosai \"can't find one\"; Gendo's hands steady as he sniffs the tea.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -330437,8 +330558,7 @@
 											"key": "message_talk",
 											"text": "(Bitter almond... no. Mantis mushroom. She'll live if she doesn't move. If.)",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -330452,8 +330572,7 @@
 											"key": "message_talk",
 											"text": "Oharu-sama, I'm a clerk with spectacles.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -330501,8 +330620,7 @@
 											"key": "message_talk",
 											"text": "The case has one.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -330516,8 +330634,7 @@
 											"key": "message_talk",
 											"text": "Fish wear hats on some islands. I've read about it.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_choices",
@@ -330673,8 +330790,7 @@
 											"key": "message_talk",
 											"text": "Yes, Oharu-sama.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -330688,8 +330804,7 @@
 											"key": "message_talk",
 											"text": "Perfectly wrong, Oharu-sama.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -330710,16 +330825,14 @@
 											"key": "message_talk",
 											"text": "No, Oharu-sama. But they'll remember being wrong about me.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "That will have to do.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -330740,8 +330853,7 @@
 											"key": "message_talk",
 											"text": "Off to catch something.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -333131,7 +333243,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M307": {
@@ -336012,8 +336132,7 @@
 											"key": "message_talk",
 											"text": "Who taught you to say it exactly wrong, Riichi?",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -336092,16 +336211,14 @@
 											"key": "message_talk",
 											"text": "\"The fourth step\"... \"three stones, thirty-three paces\"... \"twenty up the wall\"...",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "It isn't scripture. It's a map. Up the stairs of the ruin. Kyuden Gusai.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -336115,8 +336232,7 @@
 											"key": "message_talk",
 											"text": "You said it perfectly wrong, Riichi. That's the hardest kind.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_compute",
@@ -336314,8 +336430,7 @@
 								"key": "message_talk",
 								"text": "The reputation precedes me like a smell.",
 								"name": "Kitsuki Gendo",
-								"uiclose": 2,
-								"emo": "happy"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -338465,7 +338580,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M309": {
@@ -349607,8 +349730,7 @@
 											"key": "message_talk",
 											"text": "Of course.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -349629,16 +349751,14 @@
 											"key": "message_talk",
 											"text": "(Evidence: paint, tide, a lie about tide tables. Testimony against it: a Crane with beautiful manners.)",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "(Every court in the Empire believes the manners.)",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_choices",
@@ -349656,8 +349776,7 @@
 														"key": "message_talk",
 														"text": "You were there when Nobue died.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -349693,8 +349812,7 @@
 														"key": "message_talk",
 														"text": "Thank you, Kumpei-san. You've been very helpful. Please don't leave the island.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -349708,8 +349826,7 @@
 														"key": "message_talk",
 														"text": "Yes.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -349723,16 +349840,14 @@
 														"key": "message_talk",
 														"text": "I let him run.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "Men who run go somewhere. I'd like to know where.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													}
 												]
 											],
@@ -351973,7 +352088,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M314": {
@@ -358874,8 +358997,7 @@
 											"key": "message_talk",
 											"text": "Dragon work. Tamori-style. Our own clan's tools, in a murderer's kitchen.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "angry"
+											"uiclose": 2
 										}
 									]
 								]
@@ -359007,8 +359129,7 @@
 											"key": "message_talk",
 											"text": "Akuro.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -359058,6 +359179,20 @@
 										{
 											"cmd": "cmd_wait",
 											"time": 1800
+										},
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M315",
+												"pos": [
+													21.0,
+													null,
+													17.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
 										},
 										{
 											"cmd": "cmd_choices",
@@ -359128,20 +359263,6 @@
 											"op": "=",
 											"rvar": 93,
 											"desc": "RT objective"
-										},
-										{
-											"cmd": "cmd_mapmove",
-											"dest": {
-												"mapid": "M315",
-												"pos": [
-													21.0,
-													null,
-													17.0,
-													0.0
-												]
-											},
-											"wipe": 1,
-											"remap": true
 										}
 									]
 								]
@@ -361306,7 +361427,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M317": {
@@ -361460,8 +361589,7 @@
 								"key": "message_talk",
 								"text": "Everyone has. It's my only fame.",
 								"name": "Kitsuki Gendo",
-								"uiclose": 2,
-								"emo": "happy"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -361475,8 +361603,7 @@
 								"key": "message_talk",
 								"text": "I was a clerk.",
 								"name": "Kitsuki Gendo",
-								"uiclose": 2,
-								"emo": "neutral"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -361497,8 +361624,7 @@
 								"key": "message_talk",
 								"text": "It feels like writing with two brushes.",
 								"name": "Kitsuki Gendo",
-								"uiclose": 2,
-								"emo": "neutral"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -361537,7 +361663,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "An afternoon of it. Kitsuki Gendo drops the wakizashi twice. The third time, he doesn't.",
+								"text": "Training montage. Kitsuki Gendo drops the wakizashi twice. The third time, he doesn't.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -361551,10 +361677,9 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "I'll file that under praise. Nobody will check.",
+								"text": "That's the second time someone's said that to me in a way that sounded like praise.",
 								"name": "Kitsuki Gendo",
-								"uiclose": 2,
-								"emo": "happy"
+								"uiclose": 2
 							}
 						]
 					},
@@ -363803,7 +363928,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M318": {
@@ -381708,16 +381841,14 @@
 											"key": "message_talk",
 											"text": "Every history scroll I ever filed has these three names in it.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "None of them got the seating right.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_itemop",
@@ -381835,16 +381966,14 @@
 								"key": "message_talk",
 								"text": "Twenty-two, you'd say. The Fortunes tried again.",
 								"name": "Kitsuki Gendo",
-								"uiclose": 2,
-								"emo": "happy"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Don't let them win, Yosai. I still need you to explain the half.",
 								"name": "Kitsuki Gendo",
-								"uiclose": 2,
-								"emo": "worried"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_compute",
@@ -384123,7 +384252,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M853": {
@@ -391933,16 +392070,14 @@
 											"key": "message_talk",
 											"text": "...Real gaijin medicine. Real comfort. Wrapped around one poisoned suggestion.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "angry"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "(Akuro. The Chameleon tattoo. He wore a doctor's face.)",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_choices",
@@ -394209,7 +394344,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M328": {
@@ -394363,8 +394506,7 @@
 								"key": "message_talk",
 								"text": "(Mirrors that won't exist here for two hundred years.)",
 								"name": "Kitsuki Gendo",
-								"uiclose": 2,
-								"emo": "worried"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_compute",
@@ -394405,8 +394547,7 @@
 														"key": "message_talk",
 														"text": "...Keep it in a drawer, sensei. Please.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "worried"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_itemop",
@@ -394496,7 +394637,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Three thousand, stranger. Real silvered glass!",
+														"text": "Three thousand, magistrate. Real silvered glass!",
 														"name": "Kakita Miyoshi",
 														"uiclose": 2
 													}
@@ -394582,8 +394723,7 @@
 														"key": "message_talk",
 														"text": "...Keep it in a drawer, sensei. Please.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "worried"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_itemop",
@@ -396833,7 +396973,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M329": {
@@ -397061,8 +397209,7 @@
 											"key": "message_talk",
 											"text": "(A Bayushi girl in the boy's bed changes who sits on the throne in twenty years. Changes the first Empress.)",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_choices",
@@ -397080,8 +397227,7 @@
 														"key": "message_talk",
 														"text": "My lord, I'm a man with no family. I have no way to introduce anyone.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_compute",
@@ -397166,8 +397312,7 @@
 														"key": "message_talk",
 														"text": "...What have I done.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "surprised"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_compute",
@@ -399527,7 +399672,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M330": {
@@ -399799,8 +399952,7 @@
 											"key": "message_talk",
 											"text": "(He'll be dead within the month. History says so. History doesn't say how.)",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_compute",
@@ -402031,7 +402183,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M331": {
@@ -402282,8 +402442,7 @@
 											"key": "message_talk",
 											"text": "Nobody at this court is, my lord.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -402311,8 +402470,7 @@
 											"key": "message_talk",
 											"text": "...I think you should write that idea down, and never stop.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_compute",
@@ -404606,7 +404764,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M332": {
@@ -404939,8 +405105,7 @@
 											"key": "message_talk",
 											"text": "Then someone has to reach him first.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_compute",
@@ -405138,16 +405303,14 @@
 											"key": "message_talk",
 											"text": "Then they'll follow him, my lady.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "I've studied every recorded habit of the Crane Champion. I filed them.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -405161,8 +405324,7 @@
 											"key": "message_talk",
 											"text": "For one battle. Then I'll give it back. History can have it.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_itemop",
@@ -407528,7 +407690,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M333": {
@@ -423503,8 +423673,7 @@
 														"key": "message_talk",
 														"text": "You don't take gaijin money, Iami-san. They take you. Ask your ledgers.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -423518,8 +423687,7 @@
 														"key": "message_talk",
 														"text": "Champions know everything.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_compute",
@@ -423637,8 +423805,7 @@
 																	"key": "message_talk",
 																	"text": "(I filed this battle as a victory. I was wrong.)",
 																	"name": "Kitsuki Gendo",
-																	"uiclose": 2,
-																	"emo": "worried"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_compute",
@@ -425944,7 +426111,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M340": {
@@ -431327,8 +431502,7 @@
 											"key": "message_talk",
 											"text": "...Yes, Majesty.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -431360,13 +431534,12 @@
 														"key": "message_talk",
 														"text": "...I accept, Majesty.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The room shimmers. Somewhere in the future, something shifts.",
+														"text": "The scene shimmers. Somewhere in the future, something shifts.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -431459,24 +431632,21 @@
 														"key": "message_talk",
 														"text": "Majesty, I was an archive clerk for nine years.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "I know exactly how little being remembered is worth. It's the remembering that matters.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "Let them remember him. Seikidera. He earned it. He rode out alone to stop a war.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -431497,8 +431667,7 @@
 														"key": "message_talk",
 														"text": "That's the only kind that matters, Majesty.",
 														"name": "Kitsuki Gendo",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -433729,7 +433898,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M343": {
@@ -436457,8 +436634,7 @@
 											"key": "message_talk",
 											"text": "Yes, my lord.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -436472,8 +436648,7 @@
 											"key": "message_talk",
 											"text": "Yes, my lord.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -436487,8 +436662,7 @@
 											"key": "message_talk",
 											"text": "Thank you, my lord. I'll consider it.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -436509,8 +436683,7 @@
 											"key": "message_talk",
 											"text": "He thinks I should be a jester.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -436522,33 +436695,23 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Later, alone, Gendo opens his notebook and writes down Akuro's prophecy.",
-											"name": "",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
 											"text": "\"The son will become the dark brother. The jade clan goes black. The dead rule.\"",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "\"...and out of all hope, seven mortals will rise.\"",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Seven. There are eight of us.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_itemop",
@@ -438865,7 +439028,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M857": {
@@ -442940,8 +443111,7 @@
 											"key": "message_talk",
 											"text": "And the caravan? The dreams?",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -443080,8 +443250,7 @@
 											"key": "message_talk",
 											"text": "Evening, sir. Mind the step.",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -443119,20 +443288,6 @@
 											"time": 1800
 										},
 										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "Objective: south to Kudo, by Traitor's Grove and the border town of Shutai. The castle town has an outfitter, an apothecary and an inn.",
-											"name": "",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_compute",
-											"lvar": "G1227",
-											"op": "=",
-											"rvar": 105,
-											"desc": "RT objective"
-										},
-										{
 											"cmd": "cmd_mapmove",
 											"dest": {
 												"mapid": "M347",
@@ -443145,6 +443300,20 @@
 											},
 											"wipe": 1,
 											"remap": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: south to Kudo, by Traitor's Grove and the border town of Shutai. The castle town has an outfitter, an apothecary and an inn.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 105,
+											"desc": "RT objective"
 										}
 									]
 								]
@@ -445309,7 +445478,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M347": {
@@ -461175,7 +461352,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
+														"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -461290,15 +461467,15 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "A Fox lady in dark green with gold leaves: Kitsune Hana. She bows, and makes to leave, the way she leaves every room the governor is in.",
-								"name": "",
+								"text": "The governor hasn't been himself since spring.",
+								"name": "Kitsune Hana",
 								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "The governor hasn't been himself since spring.",
-								"name": "Kitsune Hana",
+								"text": "Kitsune Hana: older, in dark green with gold leaves. She bows and makes to leave, the way she leaves every room he is in.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -461425,8 +461602,7 @@
 											"key": "message_talk",
 											"text": "Your fish, my lord.",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -461440,8 +461616,7 @@
 											"key": "message_talk",
 											"text": "My lord, it's raw-",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -461462,8 +461637,7 @@
 											"key": "message_talk",
 											"text": "Of course, my lord.",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -461477,8 +461651,7 @@
 											"key": "message_talk",
 											"text": "...That isn't a governor. That isn't a person.",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_compute",
@@ -463741,7 +463914,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M353": {
@@ -466265,7 +466446,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M354": {
@@ -466479,8 +466668,7 @@
 											"key": "message_talk",
 											"text": "Neither does anyone. It's restful.",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_if",
@@ -466536,8 +466724,7 @@
 											"key": "message_talk",
 											"text": "...Again?",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_itemop",
@@ -466592,8 +466779,7 @@
 											"key": "message_talk",
 											"text": "...Especially if I'm nobody.",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_if",
@@ -468926,7 +469112,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M355": {
@@ -493864,8 +494058,7 @@
 														"key": "message_talk",
 														"text": "...Oh. He's very polite in here.",
 														"name": "Shosuro Mitsue",
-														"uiclose": 2,
-														"emo": "surprised"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -496426,7 +496619,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M364": {
@@ -506218,8 +506419,7 @@
 											"key": "message_talk",
 											"text": "Choosing is the only part that's mine.",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -508589,7 +508789,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M865": {
@@ -517323,8 +517531,7 @@
 											"key": "message_talk",
 											"text": "And the poetry?",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -517387,8 +517594,7 @@
 											"key": "message_talk",
 											"text": "I'm a very good servant.",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -517578,8 +517784,7 @@
 											"key": "message_talk",
 											"text": "I have a pony, a terrible haiku, and a very expensive scandal. I'll bring all three.",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -517763,8 +517968,7 @@
 																	"key": "message_talk",
 																	"text": "Then I'll need twice the rice cakes.",
 																	"name": "Ide Tamotsu",
-																	"uiclose": 2,
-																	"emo": "happy"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_compute",
@@ -517836,8 +518040,7 @@
 														"key": "message_talk",
 														"text": "You wrote half of that verdict.",
 														"name": "Ide Tamotsu",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -517858,8 +518061,7 @@
 														"key": "message_talk",
 														"text": "I'd never. Nobody would believe me.",
 														"name": "Ide Tamotsu",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_itemop",
@@ -517915,8 +518117,7 @@
 														"key": "message_talk",
 														"text": "Then we go and look at it. Together.",
 														"name": "Ide Tamotsu",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -518005,8 +518206,7 @@
 																	"key": "message_talk",
 																	"text": "Only two, sensei? I'm losing my touch.",
 																	"name": "Shosuro Mitsue",
-																	"uiclose": 2,
-																	"emo": "happy"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_compute",
@@ -518092,16 +518292,14 @@
 														"key": "message_talk",
 														"text": "I wrote all of it. Himeko-sama read it beautifully.",
 														"name": "Shosuro Mitsue",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "Don't tell anyone I was kind.",
 														"name": "Shosuro Mitsue",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -518293,8 +518491,7 @@
 											"key": "message_talk",
 											"text": "My pony, Persimmon, for an afternoon. She's very discerning. She bites anyone who lies.",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -520671,7 +520868,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M371": {
@@ -533336,8 +533541,7 @@
 														"key": "message_talk",
 														"text": "He told you about me?",
 														"name": "Ide Tamotsu",
-														"uiclose": 2,
-														"emo": "surprised"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -533401,8 +533605,7 @@
 																				"key": "message_talk",
 																				"text": "I gave the tribunal his name.",
 																				"name": "Ide Tamotsu",
-																				"uiclose": 2,
-																				"emo": "worried"
+																				"uiclose": 2
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
@@ -533442,8 +533645,7 @@
 																	"key": "message_talk",
 																	"text": "He's well. He's angry. He's well.",
 																	"name": "Ide Tamotsu",
-																	"uiclose": 2,
-																	"emo": "neutral"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -533517,8 +533719,7 @@
 														"key": "message_talk",
 														"text": "A Scorpion lady sold and declared dead. The family files say 'drowned'. I've read them.",
 														"name": "Shosuro Mitsue",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -535826,7 +536027,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M377": {
@@ -548671,8 +548880,7 @@
 														"key": "message_talk",
 														"text": "Every garrison. Toward Otosan Uchi.",
 														"name": "Shosuro Mitsue (thinking)",
-														"uiclose": 2,
-														"emo": "worried"
+														"uiclose": 2
 													}
 												]
 											],
@@ -548688,8 +548896,7 @@
 											"key": "message_talk",
 											"text": "Rest now. I'll tell them.",
 											"name": "Shosuro Mitsue",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -548857,8 +549064,7 @@
 								"key": "message_talk",
 								"text": "No. He believed he delivered it.",
 								"name": "Shosuro Mitsue",
-								"uiclose": 2,
-								"emo": "worried"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_compute",
@@ -551246,7 +551452,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M382": {
@@ -569991,8 +570205,7 @@
 											"key": "message_talk",
 											"text": "The refugees, Tsune-sama?",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -570006,8 +570219,7 @@
 											"key": "message_talk",
 											"text": "I'm Ide, Tsune-sama. Being liked is our only weapon. I keep it sharp.",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -570028,8 +570240,7 @@
 											"key": "message_talk",
 											"text": "Pony. Persimmon. She bites everyone she loves. And everyone she doesn't. Please, a small apology.",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -570071,8 +570282,7 @@
 											"key": "message_talk",
 											"text": "Then stand in front of the rice cakes. People keep taking them.",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -570175,8 +570385,7 @@
 											"key": "message_talk",
 											"text": "Rice cakes are for the camps, Tsune-sama.",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -570346,8 +570555,7 @@
 											"key": "message_talk",
 											"text": "Is that everyone?",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "hurt"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -570361,8 +570569,7 @@
 											"key": "message_talk",
 											"text": "The cat was important.",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -570648,8 +570855,7 @@
 														"key": "message_talk",
 														"text": "...His name is Naohida. A peasant. Trained by Shinjo Miyahana. My classmate.",
 														"name": "Ide Tamotsu",
-														"uiclose": 2,
-														"emo": "worried"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_compute",
@@ -570671,8 +570877,7 @@
 														"key": "message_talk",
 														"text": "He escaped, Tsune-sama. Into the smoke. Unidentified.",
 														"name": "Ide Tamotsu",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -570716,16 +570921,14 @@
 											"key": "message_talk",
 											"text": "I sold him rice cakes for a copper when we were nine.",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "He paid in pebbles. I took them.",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -573543,7 +573746,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M389": {
@@ -586663,8 +586874,7 @@
 											"key": "message_talk",
 											"text": "I'm sure he does, my lady.",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -588932,7 +589142,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M395": {
@@ -604152,8 +604370,7 @@
 											"key": "message_talk",
 											"text": "DON'T STEP ON THE HUMMING ONES. THEY'LL REMEMBER IT.",
 											"name": "Ide Tamotsu (note)",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -606452,7 +606669,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M401": {
@@ -606821,8 +607046,7 @@
 											"key": "message_talk",
 											"text": "I LIKE THE COOKS.",
 											"name": "Ide Tamotsu (note)",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_battle1",
@@ -609128,7 +609352,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M402": {
@@ -609334,8 +609566,7 @@
 											"key": "message_talk",
 											"text": "REAL. I BROUGHT RICE CAKES.",
 											"name": "Ide Tamotsu (note)",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -609363,8 +609594,7 @@
 											"key": "message_talk",
 											"text": "YOUR FATHER IS VERY WISE. ALSO I'M ROUND, NOT FAT.",
 											"name": "Ide Tamotsu (note)",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -609405,8 +609635,7 @@
 											"key": "message_talk",
 											"text": "I KNOW. NOT NOW.",
 											"name": "Ide Tamotsu (note)",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -611621,7 +611850,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M403": {
@@ -638414,8 +638651,7 @@
 											"key": "message_talk",
 											"text": "THEY'LL WAKE?",
 											"name": "Ide Tamotsu (note)",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -638452,8 +638688,7 @@
 																	"key": "message_talk",
 																	"text": "GO WITH YOUR FATHER. I'LL BRING YOU A RICE CAKE AFTER.",
 																	"name": "Ide Tamotsu (note)",
-																	"uiclose": 2,
-																	"emo": "happy"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -638467,8 +638702,7 @@
 																	"key": "message_talk",
 																	"text": "PROMISE.",
 																	"name": "Ide Tamotsu (note)",
-																	"uiclose": 2,
-																	"emo": "happy"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -638497,8 +638731,7 @@
 																	"key": "message_talk",
 																	"text": "...THAT'S EITHER GENIUS OR TERRIBLE.",
 																	"name": "Ide Tamotsu (note)",
-																	"uiclose": 2,
-																	"emo": "surprised"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -638557,8 +638790,7 @@
 																	"key": "message_talk",
 																	"text": "GO WITH YOUR FATHER. I'LL BRING YOU A RICE CAKE AFTER.",
 																	"name": "Ide Tamotsu (note)",
-																	"uiclose": 2,
-																	"emo": "happy"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -638572,8 +638804,7 @@
 																	"key": "message_talk",
 																	"text": "PROMISE.",
 																	"name": "Ide Tamotsu (note)",
-																	"uiclose": 2,
-																	"emo": "happy"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -640833,7 +641064,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M412": {
@@ -641027,8 +641266,7 @@
 											"key": "message_talk",
 											"text": "Kurosho-sama!",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -641042,8 +641280,7 @@
 											"key": "message_talk",
 											"text": "Come to buy you back, my lord.",
 											"name": "Ide Tamotsu",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -641218,16 +641455,14 @@
 														"key": "message_talk",
 														"text": "He's Iuchi by his father. Soshi by his mother. Peasant by upbringing.",
 														"name": "Ide Tamotsu",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "If you want a bridge between your houses, my lords - here he is. Already built.",
 														"name": "Ide Tamotsu",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -641241,8 +641476,7 @@
 														"key": "message_talk",
 														"text": "You always asked why the lord eats first. Now you'll find out. It's mostly indigestion.",
 														"name": "Ide Tamotsu",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													}
 												],
 												[
@@ -641251,8 +641485,7 @@
 														"key": "message_talk",
 														"text": "A treaty, my lords. Borders, rice, the mines shared. Nobody's name on it but yours.",
 														"name": "Ide Tamotsu",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -643490,7 +643723,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M413": {
@@ -814950,8 +815191,7 @@
 											"key": "message_talk",
 											"text": "[neutral] Yes, Tomoe-sama.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -814965,8 +815205,7 @@
 											"key": "message_talk",
 											"text": "[determined] One and a half, Tomoe-sama.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -814980,8 +815219,7 @@
 											"key": "message_talk",
 											"text": "[determined] I'd rather not.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -815009,8 +815247,7 @@
 											"key": "message_talk",
 											"text": "[determined] And if I refuse?",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -815024,8 +815261,7 @@
 											"key": "message_talk",
 											"text": "[determined] ...I'll take the cart.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -815039,8 +815275,7 @@
 											"key": "message_talk",
 											"text": "[determined] I'll try, Tomoe-sama. I don't know how.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -817226,7 +817461,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M111": {
@@ -819653,7 +819896,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M112": {
@@ -821915,7 +822166,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M113": {
@@ -824117,7 +824376,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M120": {
@@ -824269,8 +824536,7 @@
 														"key": "message_talk",
 														"text": "...Mostly.",
 														"name": "Hiruma Natsuko",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -824432,8 +824698,7 @@
 											"key": "message_talk",
 											"text": "...You picked the wrong pack, friend.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -824447,8 +824712,7 @@
 											"key": "message_talk",
 											"text": "NOT. THE. MAP!",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "angry"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -824462,8 +824726,7 @@
 											"key": "message_talk",
 											"text": "...You're waiting for me.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -826651,7 +826914,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M121": {
@@ -828883,7 +829154,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M122": {
@@ -831085,7 +831364,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M123": {
@@ -831259,8 +831546,7 @@
 								"key": "message_talk",
 								"text": "It's mostly what I do. That, and stab things.",
 								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "happy"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -831288,8 +831574,7 @@
 								"key": "message_talk",
 								"text": "Strange ideas like what?",
 								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "neutral"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -831452,8 +831737,7 @@
 														"key": "message_talk",
 														"text": "I understand you're asking. I don't gossip. Ask anyone on the Wall.",
 														"name": "Hiruma Natsuko",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -831492,8 +831776,7 @@
 																	"key": "message_talk",
 																	"text": "It's beautiful. I'll get goblin on it within the week.",
 																	"name": "Hiruma Natsuko",
-																	"uiclose": 2,
-																	"emo": "happy"
+																	"uiclose": 2
 																}
 															],
 															[
@@ -831502,8 +831785,7 @@
 																	"key": "message_talk",
 																	"text": "Keep it. Buy Kiyo some hens.",
 																	"name": "Hiruma Natsuko",
-																	"uiclose": 2,
-																	"emo": "happy"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_compute",
@@ -831549,8 +831831,7 @@
 														"key": "message_talk",
 														"text": "I found where he was. He ran into the deep tunnels. I couldn't follow.",
 														"name": "Hiruma Natsuko",
-														"uiclose": 2,
-														"emo": "worried"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -833776,7 +834057,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M124": {
@@ -833940,8 +834229,7 @@
 														"key": "message_talk",
 														"text": "Wrestle me.",
 														"name": "Hiruma Natsuko",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -836163,7 +836451,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M125": {
@@ -838332,7 +838628,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M160": {
@@ -840684,7 +840988,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M161": {
@@ -842886,7 +843198,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M162": {
@@ -845088,7 +845408,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M163": {
@@ -847260,7 +847588,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M164": {
@@ -849530,7 +849866,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M165": {
@@ -851643,7 +851987,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M142": {
@@ -851925,8 +852277,7 @@
 								"key": "message_talk",
 								"text": "Court's trying. It hasn't found anything to grip.",
 								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "happy"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_choices",
@@ -852660,8 +853011,7 @@
 														"key": "message_talk",
 														"text": "Nobody heard them booing, either.",
 														"name": "Hiruma Natsuko",
-														"uiclose": 2,
-														"emo": "happy"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -852909,8 +853259,7 @@
 											"key": "message_talk",
 											"text": "Sky-eyes?",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -852931,8 +853280,7 @@
 											"key": "message_talk",
 											"text": "I noticed.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -855550,7 +855898,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M143": {
@@ -855667,8 +856023,7 @@
 								"key": "message_talk",
 								"text": "From his family's ruins, my lady. We're mostly ruins.",
 								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "happy"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -855682,8 +856037,7 @@
 								"key": "message_talk",
 								"text": "He wasn't, this week.",
 								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "neutral"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_compute",
@@ -855767,41 +856121,6 @@
 								"uiclose": 2
 							}
 						]
-					},
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 2,
-						"memo": "",
-						"moveaction": "stop",
-						"movespd": 4,
-						"pararun": false,
-						"reqs": [
-							{
-								"lvar": "G210",
-								"op": "==",
-								"rvar": true
-							}
-						],
-						"standani": null,
-						"cmdblock": [
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
-								"text": "...I didn't do this, Hiruma-san. I don't even know what it is on my skin.",
-								"name": "Isawa Mutsuye",
-								"uiclose": 2
-							},
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
-								"text": "I know. Somebody threw it at you. I mean to find out who.",
-								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "worried"
-							}
-						]
 					}
 				],
 				"reqs0": [
@@ -855850,8 +856169,7 @@
 								"key": "message_talk",
 								"text": "How many years?",
 								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "neutral"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -856104,8 +856422,7 @@
 								"key": "message_talk",
 								"text": "On the Wall we watch anything that moves that fast.",
 								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "neutral"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -856197,8 +856514,7 @@
 								"key": "message_talk",
 								"text": "...I wasn't going to.",
 								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "neutral"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_compute",
@@ -856484,8 +856800,7 @@
 														"key": "message_talk",
 														"text": "Three hundred peasants still alive. On the Wall we'd call that a good day.",
 														"name": "Hiruma Natsuko",
-														"uiclose": 2,
-														"emo": "neutral"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -858811,7 +859126,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M144": {
@@ -859003,8 +859326,7 @@
 								"key": "message_talk",
 								"text": "They do. Nobody here knows where they are.",
 								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "happy"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -859272,8 +859594,7 @@
 								"key": "message_talk",
 								"text": "Tell me about the forgeries. Not the words. The paper.",
 								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "determined"
+								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -861618,7 +861939,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M145": {
@@ -861886,8 +862215,7 @@
 											"key": "message_talk",
 											"text": "(They're laughing at her. She knows. She doesn't stop.)",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -864226,7 +864554,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M146": {
@@ -864531,8 +864867,7 @@
 											"key": "message_talk",
 											"text": "My lord Kage? Marry? He's never looked at anyone but a map.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -864560,8 +864895,7 @@
 											"key": "message_talk",
 											"text": "Why me? I'm a scout. I can't tell a fan from a fork.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -864575,8 +864909,7 @@
 											"key": "message_talk",
 											"text": "And if she's none of those things?",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -864611,8 +864944,7 @@
 											"key": "message_talk",
 											"text": "What does blue mean?",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -864660,8 +864992,7 @@
 											"key": "message_talk",
 											"text": "Do you also look at exits?",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -864952,8 +865283,7 @@
 																	"key": "message_talk",
 																	"text": "(He was a creep. He wasn't a killer. I just killed a creep.)",
 																	"name": "Hiruma Natsuko",
-																	"uiclose": 2,
-																	"emo": "worried"
+																	"uiclose": 2
 																}
 															],
 															[
@@ -864968,8 +865298,7 @@
 																	"key": "message_talk",
 																	"text": "My lord. I don't have a culprit. I have mud.",
 																	"name": "Hiruma Natsuko",
-																	"uiclose": 2,
-																	"emo": "worried"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -864983,8 +865312,7 @@
 																	"key": "message_talk",
 																	"text": "Give me one night, and I'll give you the hand that held the knife.",
 																	"name": "Hiruma Natsuko",
-																	"uiclose": 2,
-																	"emo": "determined"
+																	"uiclose": 2
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -865116,8 +865444,7 @@
 																	"key": "message_talk",
 																	"text": "(He was a creep. He wasn't a killer. I just killed a creep.)",
 																	"name": "Hiruma Natsuko",
-																	"uiclose": 2,
-																	"emo": "worried"
+																	"uiclose": 2
 																}
 															]
 														],
@@ -865251,8 +865578,7 @@
 											"key": "message_talk",
 											"text": "The puppet didn't do it alone. Someone held its strings.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -865266,8 +865592,7 @@
 											"key": "message_talk",
 											"text": "Then why-",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -865447,8 +865772,7 @@
 											"key": "message_talk",
 											"text": "My lady.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -865462,8 +865786,7 @@
 											"key": "message_talk",
 											"text": "...I've seen someone drink sake like that before.",
 											"name": "Hiruma Natsuko",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -867761,7 +868084,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M810": {
@@ -933396,8 +933727,7 @@
 											"key": "message_talk",
 											"text": "The son will become the dark brother... the jade clan goes black... seven mortals will rise.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -933411,8 +933741,7 @@
 											"key": "message_talk",
 											"text": "...Seven. Plus one.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "surprised"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -933426,8 +933755,7 @@
 											"key": "message_talk",
 											"text": "Akuro never could count.",
 											"name": "Kitsuki Gendo",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_if",
@@ -935751,7 +936079,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M455": {
@@ -936108,13 +936444,12 @@
 														"key": "message_talk",
 														"text": "She looked right at me in the shrine town. A ronin girl.",
 														"name": "Sayo",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "A pause.",
+														"text": "A beat.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -936123,8 +936458,7 @@
 														"key": "message_talk",
 														"text": "Biggest mistake she ever made.",
 														"name": "Sayo",
-														"uiclose": 2,
-														"emo": "determined"
+														"uiclose": 2
 													}
 												]
 											]
@@ -938448,7 +938782,15 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
 		}
 	},
 	"M456": {
