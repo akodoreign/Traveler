@@ -2319,6 +2319,10 @@ def _inverse(reqs):
 FLOATERS = {"EP359"}                   # props that hang in the air on purpose (the ink stars)
 
 
+def i_interior(m):
+    return m.mid in INTERIORS or m.mid in ROOM_OFS
+
+
 def settle_floaters(m, ev):
     """(user 2026-11-12: "this guy im supposed to talk to but hes in the air. saw a chest in the air in the nezumi
     caves") An event placed while its cell was still rock keeps that height after the cave is carved / the map is
@@ -2347,7 +2351,7 @@ def settle_floaters(m, ev):
 ARROW_TILE = TORII                     # vermilion lacquer: reads on plank, tatami and stone
 
 
-def floor_arrows(m, ev):
+def floor_arrows(m, ev, walkon_only=False):
     """Interiors (user, 2026-11-11: "need those down arrows in locations where you cant visually see the door, just put
     them on the floor, i struggled in kyuden hida finding the exits"; stair textures may replace them later): every
     exit (a portal, or a walk-in trigger that moves you to another map) gets a vermilion arrow painted into the floor,
@@ -2360,9 +2364,16 @@ def floor_arrows(m, ev):
     for e in ev.ev.values():
         if "pos" not in e or not moves(e):
             continue
+        if walkon_only and e.get("role") == "portal":
+            continue
+        r = (e.get("mdl") or {}).get("r") or []
+        if len(r) == 6 and max(r[3], r[5]) >= 2.0:                        # a whole-edge strip: the edge is the way
+            continue
         x, z = int(e["pos"][0]), int(e["pos"][2])
         if not (0 <= x < m.w and 0 <= z < m.d):
             continue
+        if not (i_interior(m) or 3 <= x < m.w - 3 and 3 <= z < m.d - 3):
+            continue                                                      # (outdoors: map-edge exits need no arrow)
         def floor(cx, cz, h):
             return 0 <= cx < m.w and 0 <= cz < m.d and int(m.hgt[cz, cx]) == h
         best = None
@@ -18907,6 +18918,10 @@ def make(i):
             edge_triggers(m, ev)
     if ev is not None and (i in INTERIORS or i in ROOM_OFS):
         floor_arrows(m, ev)
+    elif ev is not None and "M100" <= i < "M800":
+        # (user 2026-11-12: "need an indicator what tile to step on to get out of the kaiu tunnels and into the
+        # shadowlands") caves: every exit inside the map; elsewhere: the invisible walk-on spots that move you on
+        floor_arrows(m, ev, walkon_only=i not in CAVE_MAPS)
     if ev is not None:
         settle_floaters(m, ev)
     if ev is not None:

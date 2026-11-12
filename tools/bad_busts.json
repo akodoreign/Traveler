@@ -64,28 +64,120 @@
    "found": "2026-11-11 story_1 (Crane path)",
    "why": "no own bust: RokuganBustGeneric.sk lends him the young plain-grey servant; he is Rensei's Kakita dueling teacher calling the final bout ('Kakita Rensei. Final bout. Bokken.')",
    "look": "stern middle-aged kakita dueling master, 50s, grey-streaked black hair in a topknot, dignified clean-shaven face, sky blue and white crane clan kimono, holding a wooden bokken",
-   "picked": "2026-11-11 cand_s1 (older bulk candidate, grey-haired master in Crane blue/white) - export pending: gen_busts.py npc npc_kakita_sensei once ComfyUI is back"
+   "picked": "2026-11-11 cand_s1 (older bulk candidate, grey-haired master in Crane blue/white) - export pending: gen_busts.py npc npc_kakita_sensei once ComfyUI is back",
+   "fixed": "2026-11-12 own key npc_kakita_sensei, cand_s1 (grey-haired Kakita master, blue/white)"
   },
   {
    "speaker": "Bandit",
    "file": "npc_gate_guard/neutral.png",
    "found": "2026-11-11 story_1 (Crane path)",
    "why": "no own bust: lent the gate guard (a clean helmeted soldier in lamellar) - reads as a samurai guard, not a mountain bandit",
-   "look": "rough mountain bandit, ronin, unshaven scarred face, ragged dirty hachimaki headband, patched brown clothes, mismatched battered leather armour pieces, rope belt"
+   "look": "rough mountain bandit, ronin, unshaven scarred face, ragged dirty hachimaki headband, patched brown clothes, mismatched battered leather armour pieces, rope belt",
+   "fixed": "2026-11-12 own key npc_bandit, cand_s81990 (headband, war paint, patched armour, rope)"
   },
   {
    "speaker": "Sariko",
    "file": "npc_village_herbalist/neutral.png",
    "found": "2026-11-11 story_1 (Crane path)",
    "why": "no own bust: lent the Village Herbalist (silver-haired girl in a green hood); Sariko is a pregnant young peasant woman serving tea with shaking hands, waiting for Morishu ('Where is he?')",
-   "look": "young peasant woman, 20s, worried anxious face, teary eyes, pregnant, simple faded blue cotton kimono, black hair in a low bun under a plain kerchief, holding a teapot"
+   "look": "young peasant woman, 20s, worried anxious face, teary eyes, pregnant, simple faded blue cotton kimono, black hair in a low bun under a plain kerchief, holding a teapot",
+   "fixed": "2026-11-12 own key npc_sariko, cand_s72399 (pregnant young peasant with a teapot)"
   },
   {
    "speaker": "Village Herbalist",
    "file": "npc_village_herbalist/neutral.png",
    "found": "2026-11-11 story_1 (Crane path)",
    "why": "twin of Doji Sanae (same face, silver hair in a bun) and lent to other speakers; a village herbalist should be a plain countrywoman",
-   "look": "village herbalist, middle-aged woman, 40s, kind lined face, brown hair tied up in a headscarf, green work kimono with tied-back sleeves, bundle of dried herbs over the shoulder"
+   "look": "village herbalist, middle-aged woman, 40s, kind lined face, brown hair tied up in a headscarf, green work kimono with tied-back sleeves, bundle of dried herbs over the shoulder",
+   "fixed": "2026-11-12 cand_s5678 (countrywoman in headscarf and green work kimono)"
+  },
+  {
+   "speaker": "(28 stand-in speakers)",
+   "file": "npc_servant / npc_village_herbalist / npc_gate_guard",
+   "found": "2026-11-12 story_0..7 review",
+   "why": "265 speakers across the 8 runs show a RokuganBustGeneric stand-in (one young servant, the herbalist girl or the helmeted guard) - wrong age/gender/role for most",
+   "fixed": "2026-11-12 own busts from the redo queue for the 28 with the most lines: Doji Nashiko (+alias Nashiko), Mamoru, Abbot of Osano-Wo, Herald, Innkeeper, Oyuki, Messenger, Yoritomo Rui, Masked sake-seller, Isawa Kasiko, Seppun Ushimo, Beggar, Hiro, Pilgrim, Imuro, Miya Yachiko, Isawa Hoju, Ikoma Yoshi, Togashi Sumi, Bayushi Shiruko, Yasuki Kasamashi, Shosuro Noburo, Miya Hatomu, Doji Himeko, Hostess, Muika, Mirumoto Koshi, Ronin Yojimbo; 'Young Sayo' now uses Sayo's own bust",
+   "open": "candidates rejected (requeue with a look): Akari (green hair/sketch), Gochu (sketch), Moto Benjiro (skull oni mask), Ume-baa (drawn young; she is a grandmother), Tomie Cho (drawn as a boy), Doji Hayato + Mibu Kagemaro (cyan hair leak); ~230 lower-line speakers still on stand-ins"
+  },
+  {
+   "speaker": "Akari",
+   "file": "npc_akari/neutral.png",
+   "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
+   "why": "candidates were green-haired or bare sketches; she is the eta woman chosen by the Oracle of Fire",
+   "look": "young eta woman, 20s, plain tanned face with soot smudges, calm faraway eyes, black hair tied back with a rag, patched grey-brown hemp work clothes, faint glow of embers reflected on her face",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Gochu",
+   "file": "npc_gochu/neutral.png",
+   "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
+   "why": "candidates were greyscale sketches; a poor man taking five koku so his daughter eats",
+   "look": "poor thin peasant man, 40s, gaunt tired face, stubble, short messy black hair, worn patched brown kimono, ashamed downcast eyes",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Moto Benjiro",
+   "file": "npc_moto_benjiro/neutral.png",
+   "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
+   "why": "candidates were a full skull oni mask with horns hiding the face; cast-looks says a white death-mask PAINTED ON (Moto curse) - his face must read",
+   "look": "unicorn clan moto bushi, 30s, weathered steppe rider face with white skull face paint around the eyes and mouth, long black hair braided back, purple and white riding coat with fur trim, no mask, no horns",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Ume-baa",
+   "file": "npc_ume_baa/neutral.png",
+   "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
+   "why": "candidates were young girls; she is Sayo's old grandmother, the eta herbalist mentor",
+   "look": "very old woman, 70s, deeply wrinkled kind face, thin white hair in a small bun, hunched, faded indigo patched kimono, herb pouch, sharp knowing eyes",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Tomie Cho",
+   "file": "npc_tomie_cho/neutral.png",
+   "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
+   "why": "candidates were a young man; she is an old woman (secretly a weretiger: 'now I'm too old to catch rabbits')",
+   "look": "old woman, 60s, friendly grandmotherly smile with something predatory in her amber eyes, grey hair in a loose bun, orange and brown striped kimono, village widow",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Doji Hayato",
+   "file": "npc_doji_hayato/neutral.png",
+   "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
+   "why": "cyan hair leaked from the crane clan colours",
+   "look": "crane clan samurai, man, 30s, (natural black hair:1.3) in a neat topknot, composed refined face, sky blue and white kimono",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Mibu Kagemaro",
+   "file": "npc_mibu_kagemaro/neutral.png",
+   "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
+   "why": "cyan hair leaked from the clan colours; a minor-family samurai seeking help to avenge his brother",
+   "look": "earnest young samurai, 20s, (natural black hair:1.3) in a topknot, eager hopeful face, plain dark green and grey formal kimono with a small family mon",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Kitsuki Oharu",
+   "file": "npc_kitsuki_oharu/neutral.png",
+   "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
+   "why": "another silver-haired girl with a bun, a look-alike of Doji Sanae; she is a Kitsuki (Dragon) magistrate's aide examining bodies",
+   "look": "kitsuki investigator woman, 30s, sharp analytical eyes, black hair in a severe high ponytail, thin reading spectacles, dark green and gold dragon clan kimono, brush and scroll",
+   "seed_add": 300
+  },
+  {
+   "speaker": "O-Tamai",
+   "file": "npc_o_tamai/neutral.png",
+   "found": "2026-11-12 bust monitor batch 2 (candidates rejected)",
+   "why": "both candidates are young men; O-Tamai is a woman (Lion Ch2 antagonist: 'Lions! You broke my prison to burn a granary!')",
+   "look": "fierce woman, 40s, sharp vengeful eyes, long black hair loose with grey streaks, dark ragged formal kimono, chains on her wrists",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Mirumoto Hikaru",
+   "file": "npc_mirumoto_hikaru/neutral.png",
+   "found": "2026-11-12 bust monitor batch 2 (candidates rejected)",
+   "why": "no tattoos on any candidate (one has a golden halo); he is the ageless tattooed Dragon who says 'I ran.'",
+   "look": "ageless dragon clan man, calm haunted eyes, long black hair, glowing ise zumi tattoos of dragons across his face and neck, bare tattooed shoulders under a loose dark green kimono",
+   "seed_add": 300
   }
  ]
 }

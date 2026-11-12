@@ -85,7 +85,7 @@ CAST = [
          weapon="shakujo", props=["ofuda"], female=True),
     dict(key="ashimita", face="sharp", name="Shiba Ashimita", clan="phoenix", skin=SKIN, hair=BLACK, hairstyle="ponytail",
          build="armored", armor=(190, 88, 40), lace=(246, 206, 92), eyes="narrow", brow="stern", mouth="frown",
-         scar=True, weapon="katana", props=["daisho"]),
+         scar=True, weapon="naginata", props=["daisho"]),     # naginata kata (lead 2026-11-12): his sprite must show one
     dict(key="norie", face="sharp", name="Shosuro Norie", clan="scorpion", skin=SKIN, hair=BLACK, hairstyle="bob",
          bangs="center", pattern="diamonds", pcol=(110, 20, 32), mask="cloth", mask_col=(150, 30, 44),
          weapon="tanto", female=True),

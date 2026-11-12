@@ -203,6 +203,7 @@ def main():
         os.path.join(g.PROJ, "resource", "bust")) else set()
     named = {n: k for k, c in g.CHARS.items() for n in c["names"]}
     order = sorted(allc, key=lambda n: (0 if crab[n] else 1, -crab[n], -allc[n], n))
+    order += sorted(n for n in bad if n not in allc)          # bad_busts speakers the map scan misses (script-set names)
     for name in order:
         base_name = name.split(" (")[0]
         if not name.strip() or base_name in TRAVELER_NAMES or base_name != name or name in ("Note",)                 or not re.search(r"[A-Za-z]", name):
