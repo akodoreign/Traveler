@@ -4414,5 +4414,473 @@
 		"uncommandable": false,
 		"xcondbits": 0,
 		"rt_kata": true
+	},
+	"K132": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Shiba kata (naginata). The blade circles like the sun: x1.2, Speed +30% and ATK +15% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Tail of the Sun",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 30,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 15,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K133": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Shiba kata (naginata). Stillness before the storm: +2 VP, MDEF +20% for the whole battle.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Deeper Reflection",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 20,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			99,
+			99
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K134": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Shiba kata (naginata). Evasion +25%, criticals +15% for 3 turns.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Touching the Infinite",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 25,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 15,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			4,
+			4
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K135": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Shiba kata (naginata). Spend every VP held: one extra cut for each, now; then the guard is open (DEF -20%).",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Heaven's Wing",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": -20,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_kata": true
+	},
+	"K136": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "More attacks on the next turn (one per the caster's Insight Rank); accuracy -10%.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Stand Against the Waves",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": -10,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			2,
+			2
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_waves": true
+	},
+	"K125": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Razor's Edge (party): a Void critical's gift to the party.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Razor's Edge (party)",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 20,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K126": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "The Mountain Does Not Fall: a Void critical's gift to the party.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "The Mountain Does Not Fall",
+		"option": [],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0,
+		"rt_dmgtaken": 0.25
+	},
+	"K127": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Void Focus (criticals): a Void critical's gift to the party.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Void Focus (criticals)",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 20,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K128": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Void Fury (ATK): a Void critical's gift to the party.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Void Fury (ATK)",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K129": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Touch of the Void (MDEF): a Void critical's gift to the party.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Touch of the Void (MDEF)",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 30,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K130": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "The Wind (Speed): a Void critical's gift to the party.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "The Wind (Speed)",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 40,
+				"valtype": "totalrate"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
+	},
+	"K131": {
+		"MAXLV": 1,
+		"ani": null,
+		"condtype": 0,
+		"deadtype": 0,
+		"desc": "Clear Sight (accuracy): a Void critical's gift to the party.",
+		"efx_cont": null,
+		"efx_start": null,
+		"icon": "",
+		"name": "Clear Sight (accuracy)",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PHIT",
+				"val": 20,
+				"valtype": "supply"
+			}
+		],
+		"rem_battle": true,
+		"rem_die": true,
+		"rem_turn": [
+			3,
+			3
+		],
+		"rem_walk": [
+			0,
+			0
+		],
+		"remcondbits": 0,
+		"resistg": 6,
+		"revcondid": null,
+		"showpop": true,
+		"showstat": true,
+		"snd_cont": null,
+		"uncommandable": false,
+		"xcondbits": 0
 	}
 }

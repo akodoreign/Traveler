@@ -147,8 +147,36 @@ KATA = [
      "The phoenix rises: ATK and spells +20%, and he comes back once from the brink. The whole battle."),
 ]
 
+# Shiba Ashimita (Phoenix yojimbo; kata.md "Shiba guests (Yari = naginata)"). User 2026-11-12: "Phoenix yojimbo + the
+# naginata kata + water spell Stand Against the Waves should be almost god like in number of attacks and damage".
+KATA += [
+    ("S795", "K132", "P131", 15, "kata", "Tail of the Sun", 1.2, 3, [("AGI", 30), ("PATK", 15)], None,
+     "Shiba kata (naginata). The blade circles like the sun: x1.2, Speed +30% and ATK +15% for 3 turns."),
+    ("S796", "K133", "P131", 30, "kata", "Deeper Reflection", 1.0, 99, [("MDEF", 20)], None,
+     "Shiba kata (naginata). Stillness before the storm: +2 VP, MDEF +20% for the whole battle."),
+    ("S797", "K134", "P131", 45, "kata", "Touching the Infinite", 1.0, 3, [("PEVA", 25), ("CRI", 15)], None,
+     "Shiba kata (naginata). Evasion +25%, criticals +15% for 3 turns."),
+    ("S798", "K135", "P131", 60, "kata", "Heaven's Wing", 1.0, 2, [("PDEF", -20)], None,
+     "Shiba kata (naginata). Spend every VP held: one extra cut for each, now; then the guard is open (DEF -20%)."),
+]
+
+# Weapon requirements (user 2026-11-12: "kiho that say fist, or unarmed only use bare fists (unarmed) ... include claws
+# with martial kiho ... same with kata that require things like katana or yari, or naginata"): kata.md's (req.)
+# column. "Unarmed" = no weapon, bare fists or claws. Naginata counts as Yari.
+REQ = {
+    "S746": ("Katana",), "S747": ("Katana",), "S749": ("Katana",), "S750": ("Katana", "Yari"), "S753": ("Katana",),
+    "S754": ("Katana",), "S755": ("Katana",), "S756": ("Katana",), "S757": ("Katana",), "S758": ("Katana", "Unarmed"),
+    "S759": ("Katana",), "S764": ("Katana",), "S768": ("Tanto",),
+    "S783": ("Unarmed",), "S784": ("Unarmed",), "S785": ("Unarmed",), "S786": ("Unarmed",), "S787": ("Unarmed",),
+    "S788": ("Unarmed",), "S789": ("Unarmed",), "S790": ("Unarmed",),
+    "S795": ("Yari",), "S796": ("Yari",), "S797": ("Yari",), "S798": ("Yari",),
+}
+# (user: "give the shugenja only non martial kihos. monks can have any") a shugenja's kiho is a stance taken in place:
+# no strike.
+NO_STRIKE = {"S777", "S778", "S779", "S780", "S781", "S782"}
+
 # Specials the plugin handles by name (RokuganRanks.sk): Self No Self +2 VP, Void Fist +1 VP, Freezing the Lifeblood
-# 50% Paralysis (K006) on the target.
+# 50% Paralysis (K006) on the target, Deeper Reflection +2 VP, Heaven's Wing (all VP -> extra hits).
 
 # Dojo rewards (user: "change the dojo to give out a Kata appropriate to crab clan like Earth instead of school rank").
 DOJO_KATA = {"natsuko_hida_dojo M164 (G1224)": "S740", "rensei_kakita_academy M200 (G1225)": "S746"}

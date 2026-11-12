@@ -63,6 +63,7 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 		local cls = (chr instanceof ::RPGPlayer) ? chr.data["rt_class"] : null;
 		local base = cls ? VP_BY_CLASS[cls] : BP_MAX;				//	shugenja 6, monk 5, other 3, samurai 2 (tools/apply_resources.py)
 		//	(user 2026-11-12) each level of Taint (K026) blocks 1 point of Void until it is cleansed
+		if( (chr instanceof ::RPGPlayer) && chr.dataid == "P122") return 0;	//	(user) Squeak: no Void, ever
 		local taint = (chr instanceof ::RPGPlayer) ? (chr.getConditionLV( "K026") || 0) : 0;
 		return Math.max( 0, base - (whole ? 1 : 0) - (scar ? 1 : 0) + this.vpBonus( chr) - taint);	//	wore Giseiki (Void -1)
 	}
@@ -378,6 +379,10 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 		local r = sk["dmgrate"] || [1.0, 1.0];
 		nsk["dmgrate"] <- [r[0] * mul, r[1] * mul];
 		nsk["hitrate"] <- (sk["hitrate"] || 1.0) * mul;
+		//	(user 2026-11-12: "number of void spent increase crit chance as well") +15 / +30 / +50% criticals; a Void
+		//	critical calls the character's shout (RokuganVoidCrit.sk)
+		nsk["rt_vcrit"] <- [0, 15, 30, 50][Math.min( b, 3)];
+		nsk["rt_vfired"] <- false;
 		if( sk["rt_jade_raise"] && b >= 2){					//	Earth Becomes Sky, 2 Raises: the boulders are jade
 			nsk["elembits"] <- (sk["elembits"] | 0) | (1 << 11);
 			nsk["name"] <- "Earth Becomes Jade";

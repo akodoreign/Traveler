@@ -7,7 +7,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Wait.",
 		"dmgtype": 1,
 		"enemyuse": true,
 		"eqtypebits": 2047,
@@ -41,7 +41,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Defend.",
 		"enemyuse": true,
 		"eqtypebits": 2047,
 		"icon": "",
@@ -77,7 +77,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Flee.",
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -196,7 +196,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Steal.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -272,7 +272,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Slash.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -345,7 +345,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Heavy Slash.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -418,7 +418,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Thrust.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -491,7 +491,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Strike.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -566,7 +566,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Shot.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -636,7 +636,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Claw.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -700,7 +700,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Drain Blood.",
 		"dmgform": 1,
 		"dmgrate": [
 			0.9,
@@ -1205,7 +1205,7 @@
 			0,
 			3
 		],
-		"desc": "",
+		"desc": "Fire.",
 		"dmgform": 1,
 		"dmgrate": [
 			0.9,
@@ -1346,7 +1346,7 @@
 			0,
 			3
 		],
-		"desc": "",
+		"desc": "Ice.",
 		"dmgform": 1,
 		"dmgrate": [
 			0.9,
@@ -1417,7 +1417,7 @@
 			0,
 			3
 		],
-		"desc": "",
+		"desc": "Greater Ice.",
 		"dmgform": 1,
 		"dmgrate": [
 			0.9,
@@ -2064,7 +2064,7 @@
 			0,
 			0
 		],
-		"desc": "",
+		"desc": "Auto-Revive.",
 		"dmgform": 5,
 		"dmgtype": 2,
 		"endact": {
@@ -30085,7 +30085,7 @@
 	},
 	"S700": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30097,22 +30097,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +25% damage against a foe that hasn't hit her yet this battle. Every miss against her makes her harder to hit (up to +25% evasion).",
+		"desc": "School technique (Rank 2, Lv 15). +25% damage against a foe that hasn't hit her yet this battle. Every miss against her makes her harder to hit (up to +25% evasion). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Strike Like the Wind",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S701": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30124,22 +30126,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). +15% evasion. +25% damage against Shadowlands creatures.",
+		"desc": "School technique (Rank 3, Lv 30). +15% evasion. +25% damage against Shadowlands creatures. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Fire and Shadow",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S702": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30151,22 +30155,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). Her weapon attack strikes twice.",
+		"desc": "School technique (Rank 4, Lv 45). Her weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Harness the Wind",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S703": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30178,22 +30184,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). 15% more critical hits; 30% against Shadowlands creatures.",
+		"desc": "School technique (Rank 5, Lv 60). 15% more critical hits; 30% against Shadowlands creatures. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Veil of Spirits",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S704": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30205,22 +30213,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +10% damage for every place he acts ahead of his target (up to +50%).",
+		"desc": "School technique (Rank 2, Lv 15). +10% damage for every place he acts ahead of his target (up to +50%). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: The Sudden Strike",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S705": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30232,22 +30242,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). Against a lone foe he starts with +1 VP. A slower foe he has cut has a harder time hitting him (+20% evasion against it).",
+		"desc": "School technique (Rank 3, Lv 30). Against a lone foe he starts with +1 VP. A slower foe he has cut has a harder time hitting him (+20% evasion against it). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Strike from the Void",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S706": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30259,22 +30271,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). Iaijutsu: Strike hits twice.",
+		"desc": "School technique (Rank 4, Lv 45). Iaijutsu: Strike hits twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: One Strike, Two Cuts",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S707": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30286,22 +30300,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). If he acts first, his first blow of the battle is a certain critical.",
+		"desc": "School technique (Rank 5, Lv 60). If he acts first, his first blow of the battle is a certain critical. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Strike with No Thought",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S708": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30313,22 +30329,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). Charm, fear and confusion can't take hold of him.",
+		"desc": "School technique (Rank 2, Lv 15). Charm, fear and confusion can't take hold of him. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Wisdom the Wind Brings",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S709": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30340,22 +30358,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). Deduce also shows what the foe will do next.",
+		"desc": "School technique (Rank 3, Lv 30). Deduce also shows what the foe will do next. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Finding the Path",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S710": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30367,22 +30387,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +20% damage against a foe whose weakness is known; the party gets +10%.",
+		"desc": "School technique (Rank 4, Lv 45). +20% damage against a foe whose weakness is known; the party gets +10%. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Know the Rhythm of the Heart",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S711": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30394,22 +30416,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). A foe that reaches for charm, fear or confusion gives Gendo 1 VP.",
+		"desc": "School technique (Rank 5, Lv 60). A foe that reaches for charm, fear or confusion gives Gendo 1 VP. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Kitsuki's Eyes",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S712": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30421,22 +30445,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +4% damage for every point of Honor (up to +40%).",
+		"desc": "School technique (Rank 2, Lv 15). +4% damage for every point of Honor (up to +40%). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Strength of Purity",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S713": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30448,22 +30474,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). Her weapon attack strikes twice.",
+		"desc": "School technique (Rank 3, Lv 30). Her weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Strength of My Ancestors",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S714": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30475,22 +30503,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +10% damage, and her blows strip a foe's DEF Up.",
+		"desc": "School technique (Rank 4, Lv 45). +10% damage, and her blows strip a foe's DEF Up. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Triumph Before Battle",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S715": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30502,22 +30532,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). Her blows never miss, and hit 25% harder.",
+		"desc": "School technique (Rank 5, Lv 60). Her blows never miss, and hit 25% harder. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Akodo's Final Lesson",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S716": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30529,22 +30561,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). New spells: the second mastery opens to him.",
+		"desc": "School technique (Rank 2, Lv 15). New spells: the second mastery opens to him. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Mastery 2 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S717": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30556,22 +30590,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). New spells: the third mastery opens to him.",
+		"desc": "School technique (Rank 3, Lv 30). New spells: the third mastery opens to him. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Mastery 3 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S718": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30583,22 +30619,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). New spells: the fourth mastery opens to him.",
+		"desc": "School technique (Rank 4, Lv 45). New spells: the fourth mastery opens to him. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Mastery 4 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S719": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30610,22 +30648,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). New spells: the fifth mastery opens to him.",
+		"desc": "School technique (Rank 5, Lv 60). New spells: the fifth mastery opens to him. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Mastery 5 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S720": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30637,22 +30677,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +50% damage against a foe that hasn't acted yet, or one left open (Suki).",
+		"desc": "School technique (Rank 2, Lv 15). +50% damage against a foe that hasn't acted yet, or one left open (Suki). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: The Shadow Has No Mercy",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S721": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30664,22 +30706,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). +20% evasion.",
+		"desc": "School technique (Rank 3, Lv 30). +20% evasion. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: The Shadow Has No Form",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S722": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30691,22 +30735,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). Her weapon attack strikes twice, and the first blow that would hit her each battle passes through.",
+		"desc": "School technique (Rank 4, Lv 45). Her weapon attack strikes twice, and the first blow that would hit her each battle passes through. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: The Shadow Has No Substance",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S723": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30718,22 +30764,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). 30% more critical hits against a foe that hasn't acted yet or is open.",
+		"desc": "School technique (Rank 5, Lv 60). 30% more critical hits against a foe that hasn't acted yet or is open. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: The Shadow Has No Soul",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S724": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30745,22 +30793,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). At the start of a battle he reads every foe: their weaknesses are known.",
+		"desc": "School technique (Rank 2, Lv 15). At the start of a battle he reads every foe: their weaknesses are known. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: The Heart Listens",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S725": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30772,22 +30822,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). Once a battle, a heavy blow on anyone in the party is halved.",
+		"desc": "School technique (Rank 3, Lv 30). Once a battle, a heavy blow on anyone in the party is halved. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: When the Veil Moves",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S726": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30799,22 +30851,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). While he stands, the party takes 10% less damage.",
+		"desc": "School technique (Rank 4, Lv 45). While he stands, the party takes 10% less damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Piercing the Veils",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S727": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30826,22 +30880,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). Once a battle (Support): a foe can't act against him while he doesn't attack.",
+		"desc": "School technique (Rank 5, Lv 60). Once a battle (Support): a foe can't act against him while he doesn't attack. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: The Immovable Hand of Peace",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S728": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30853,22 +30909,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). From the trees: +50% damage against a foe that hasn't acted yet, and she moves faster after striking it.",
+		"desc": "School technique (Rank 2, Lv 15). From the trees: +50% damage against a foe that hasn't acted yet, and she moves faster after striking it. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Forest Killer: Fool's Harvest",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S729": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30880,22 +30938,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). Her weapon attack strikes twice, and her first blow each battle is a sure critical against a slower foe.",
+		"desc": "School technique (Rank 3, Lv 30). Her weapon attack strikes twice, and her first blow each battle is a sure critical against a slower foe. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Forest Killer: Canopy of Knives",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S730": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30907,22 +30967,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +20% evasion; a foe she has cut has a harder time hitting her (+20% evasion against it).",
+		"desc": "School technique (Rank 4, Lv 45). +20% evasion; a foe she has cut has a harder time hitting her (+20% evasion against it). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Forest Killer: Ghost of the Shinomen",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S731": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30934,22 +30996,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). Twice as quick to act: Speed +30% for the whole battle.",
+		"desc": "School technique (Rank 5, Lv 60). Twice as quick to act: Speed +30% for the whole battle. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Ronin Duelist: The Wind Technique",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S800": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30961,22 +31025,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 75). +15% damage.",
+		"desc": "Advanced school technique (Lv 75). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Hida Avenger I: Wrath of the Crab",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S801": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -30988,22 +31054,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage.",
+		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Hida Avenger II: Be the Wall",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S802": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31015,22 +31083,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more.",
+		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Hida Avenger III: Hida's Technique",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S803": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31042,22 +31112,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 75). +15% damage.",
+		"desc": "Advanced school technique (Lv 75). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Kenshinzen I: Drawing the Void",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S804": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31069,22 +31141,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage.",
+		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Kenshinzen II: A Single Moment",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S805": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31096,22 +31170,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more.",
+		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Kenshinzen III: Kakita's Technique",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S806": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31123,22 +31199,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 75). +15% damage.",
+		"desc": "Advanced school technique (Lv 75). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Student of the Tao I: Path of Wisdom",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S807": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31150,22 +31228,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage.",
+		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Student of the Tao II: Seek the Path",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S808": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31177,22 +31257,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more.",
+		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Student of the Tao III: Defining the Essence",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S809": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31204,22 +31286,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 75). +15% damage.",
+		"desc": "Advanced school technique (Lv 75). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Master General I: Eyes of the Army",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S810": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31231,22 +31315,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage.",
+		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Master General II: Arms of the Army",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S811": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31258,22 +31344,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more.",
+		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Master General III: Heart of the Army",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S812": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31285,22 +31373,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 75). +15% damage.",
+		"desc": "Advanced school technique (Lv 75). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Master of the Elements I: Stone Among the Flames",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S813": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31312,22 +31402,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage.",
+		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Master of the Elements II: Wind Among the Waves",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S814": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31339,22 +31431,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more.",
+		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Master of the Elements III: The Secrets Between All Things",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S815": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31366,22 +31460,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 75). +15% damage.",
+		"desc": "Advanced school technique (Lv 75). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Shadow-Hunters I: Strike of the Righteous",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S816": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31393,22 +31489,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage.",
+		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Shadow-Hunters II: Scent of the Prey",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S817": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31420,22 +31518,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more.",
+		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Shadow-Hunters III: Strike from the Darkness",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S818": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31447,22 +31547,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 75). +15% damage.",
+		"desc": "Advanced school technique (Lv 75). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Master of the Courts I: The Emperor's Grace",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S819": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31474,22 +31576,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage.",
+		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Master of the Courts II: Favored Among the Heavens",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S820": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31501,22 +31605,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more.",
+		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Master of the Courts III: Voice of the Sun and Moon",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S821": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31528,22 +31634,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 75). +15% damage.",
+		"desc": "Advanced school technique (Lv 75). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "The Machi-Kanshisha I: Smoke and Mirrors",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S822": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31555,22 +31663,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage.",
+		"desc": "Advanced school technique (Lv 90). +15% evasion and +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "The Machi-Kanshisha II: Clouded Mind",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S823": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31582,22 +31692,24 @@
 			0,
 			0
 		],
-		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more.",
+		"desc": "Advanced school technique (Lv 100). 20% more critical hits; the weapon attack strikes once more. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "The Machi-Kanshisha III: Wear Them Down",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S830": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31609,22 +31721,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). Takes 15% less damage.",
+		"desc": "School technique (Rank 2, Lv 15). Takes 15% less damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: The Mountain Does Not Move",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S831": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31636,22 +31750,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Two Pincers, One Mind",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S832": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31663,22 +31779,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +20% damage.",
+		"desc": "School technique (Rank 4, Lv 45). +20% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Fury of Hida",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S833": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31690,22 +31808,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). Takes 20% less damage.",
+		"desc": "School technique (Rank 5, Lv 60). Takes 20% less damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: The Mountain Does Not Fall",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S834": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31717,22 +31837,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +15% damage.",
+		"desc": "School technique (Rank 2, Lv 15). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Strike Like the Wind",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S835": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31744,22 +31866,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). +15% evasion.",
+		"desc": "School technique (Rank 3, Lv 30). +15% evasion. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Fire and Shadow",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S836": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31771,22 +31895,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 4, Lv 45). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Harness the Wind",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S837": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31798,22 +31924,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +15% critical hits.",
+		"desc": "School technique (Rank 5, Lv 60). +15% critical hits. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Veil of Spirits",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S838": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31825,22 +31953,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +15% damage.",
+		"desc": "School technique (Rank 2, Lv 15). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Strike Like the Wind",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S839": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31852,22 +31982,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). +15% evasion.",
+		"desc": "School technique (Rank 3, Lv 30). +15% evasion. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Fire and Shadow",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S840": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31879,22 +32011,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 4, Lv 45). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Harness the Wind",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S841": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31906,22 +32040,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +15% critical hits.",
+		"desc": "School technique (Rank 5, Lv 60). +15% critical hits. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Veil of Spirits",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S842": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31933,22 +32069,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Mastery 2 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S843": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31960,22 +32098,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Mastery 3 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S844": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -31987,22 +32127,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Mastery 4 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S845": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32014,22 +32156,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Mastery 5 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S846": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32041,22 +32185,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +15% damage.",
+		"desc": "School technique (Rank 2, Lv 15). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Strike Like the Wind",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S847": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32068,22 +32214,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). +15% evasion.",
+		"desc": "School technique (Rank 3, Lv 30). +15% evasion. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Fire and Shadow",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S848": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32095,22 +32243,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 4, Lv 45). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Harness the Wind",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S849": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32122,22 +32272,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +15% critical hits.",
+		"desc": "School technique (Rank 5, Lv 60). +15% critical hits. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Veil of Spirits",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S850": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32149,22 +32301,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +15% damage.",
+		"desc": "School technique (Rank 2, Lv 15). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Strength of Purity",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S851": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32176,22 +32330,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Strength of My Ancestors",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S852": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32203,22 +32359,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +10% damage.",
+		"desc": "School technique (Rank 4, Lv 45). +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Triumph Before Battle",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S853": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32230,22 +32388,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +20% critical hits.",
+		"desc": "School technique (Rank 5, Lv 60). +20% critical hits. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Akodo's Final Lesson",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S854": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32257,22 +32417,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +20% damage.",
+		"desc": "School technique (Rank 2, Lv 15). +20% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Matsu's Fury",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S855": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32284,22 +32446,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: The Lion's Charge",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S856": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32311,22 +32475,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). Takes 10% less damage.",
+		"desc": "School technique (Rank 4, Lv 45). Takes 10% less damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Matsu's Courage",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S857": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32338,22 +32504,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +20% damage.",
+		"desc": "School technique (Rank 5, Lv 60). +20% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: The Lion's Victory",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S858": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32365,22 +32533,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +15% damage.",
+		"desc": "School technique (Rank 2, Lv 15). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Strength of Purity",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S859": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32392,22 +32562,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Strength of My Ancestors",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S860": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32419,22 +32591,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +10% damage.",
+		"desc": "School technique (Rank 4, Lv 45). +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Triumph Before Battle",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S861": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32446,22 +32620,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +20% critical hits.",
+		"desc": "School technique (Rank 5, Lv 60). +20% critical hits. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Akodo's Final Lesson",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S862": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32473,22 +32649,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +15% damage.",
+		"desc": "School technique (Rank 2, Lv 15). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Strength of Purity",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S863": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32500,22 +32678,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Strength of My Ancestors",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S864": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32527,22 +32707,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +10% damage.",
+		"desc": "School technique (Rank 4, Lv 45). +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Triumph Before Battle",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S865": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32554,22 +32736,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +20% critical hits.",
+		"desc": "School technique (Rank 5, Lv 60). +20% critical hits. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Akodo's Final Lesson",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S866": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32581,22 +32765,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +15% evasion.",
+		"desc": "School technique (Rank 2, Lv 15). +15% evasion. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Dancing with the Elements",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S867": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32608,22 +32794,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). Takes 10% less damage.",
+		"desc": "School technique (Rank 3, Lv 30). Takes 10% less damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: One with the Void",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S868": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32635,22 +32823,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +15% damage.",
+		"desc": "School technique (Rank 4, Lv 45). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Move with the World",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S869": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32662,22 +32852,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 5, Lv 60). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Touch of the Void",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S870": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32689,22 +32881,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). Every foe's weaknesses are read at the start of a battle.",
+		"desc": "School technique (Rank 2, Lv 15). Every foe's weaknesses are read at the start of a battle. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: The Eyes of Doji",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S871": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32716,22 +32910,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). +20% damage.",
+		"desc": "School technique (Rank 3, Lv 30). +20% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Strike of the Just",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S872": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32743,22 +32939,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 4, Lv 45). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Judgment's Swift Blade",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S873": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32770,22 +32968,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +20% critical hits.",
+		"desc": "School technique (Rank 5, Lv 60). +20% critical hits. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Eternal Justice",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S874": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32797,22 +32997,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +15% evasion.",
+		"desc": "School technique (Rank 2, Lv 15). +15% evasion. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: The Clouds Part",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S875": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32824,22 +33026,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). Speed up for the whole battle.",
+		"desc": "School technique (Rank 3, Lv 30). Speed up for the whole battle. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: With Heaven's Speed",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S876": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32851,22 +33055,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +20% critical hits.",
+		"desc": "School technique (Rank 4, Lv 45). +20% critical hits. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: The Sun's Light Reveals",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S877": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32878,22 +33084,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). Takes 15% less damage.",
+		"desc": "School technique (Rank 5, Lv 60). Takes 15% less damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Heaven Never Falls",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S878": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32905,22 +33113,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Mastery 2 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S879": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32932,22 +33142,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Mastery 3 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S880": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32959,22 +33171,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Mastery 4 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S881": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -32986,22 +33200,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Mastery 5 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S882": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33013,22 +33229,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +15% damage.",
+		"desc": "School technique (Rank 2, Lv 15). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Voice of the Storm",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S883": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33040,22 +33258,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Strike of the Mantis",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S884": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33067,22 +33287,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +15% evasion.",
+		"desc": "School technique (Rank 4, Lv 45). +15% evasion. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: The Rolling Wave",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S885": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33094,22 +33316,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +20% critical hits.",
+		"desc": "School technique (Rank 5, Lv 60). +20% critical hits. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Hand of Osano-Wo",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S886": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33121,22 +33345,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Mastery 2 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S887": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33148,22 +33374,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Mastery 3 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S888": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33175,22 +33403,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Mastery 4 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S889": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33202,22 +33432,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Mastery 5 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S890": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33229,22 +33461,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +15% damage.",
+		"desc": "School technique (Rank 2, Lv 15). +15% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Strength of Purity",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S891": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33256,22 +33490,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Strength of My Ancestors",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S892": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33283,22 +33519,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +10% damage.",
+		"desc": "School technique (Rank 4, Lv 45). +10% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Triumph Before Battle",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S893": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33310,22 +33548,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +20% critical hits.",
+		"desc": "School technique (Rank 5, Lv 60). +20% critical hits. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Akodo's Final Lesson",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S894": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33337,22 +33577,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Mastery 2 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S895": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33364,22 +33606,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: Mastery 3 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S896": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33391,22 +33635,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Mastery 4 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S897": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33418,22 +33664,24 @@
 			0,
 			0
 		],
-		"desc": "Two new spells (3e: two per Insight Rank).",
+		"desc": "Two new spells (3e: two per Insight Rank). (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Mastery 5 Spells",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S898": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33445,22 +33693,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). Speed up for the whole battle.",
+		"desc": "School technique (Rank 2, Lv 15). Speed up for the whole battle. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Dance of the Blade",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S899": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33472,22 +33722,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: The Four Winds Strike",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S900": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33499,22 +33751,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +15% evasion.",
+		"desc": "School technique (Rank 4, Lv 45). +15% evasion. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Spirit of Our Lady",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S901": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33526,22 +33780,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +20% damage.",
+		"desc": "School technique (Rank 5, Lv 60). +20% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: Dancing with the Fortunes",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S902": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33553,22 +33809,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +20% damage.",
+		"desc": "School technique (Rank 2, Lv 15). +20% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 2: Matsu's Fury",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S903": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33580,22 +33838,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice.",
+		"desc": "School technique (Rank 3, Lv 30). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 3: The Lion's Charge",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S904": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33607,22 +33867,24 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). Takes 10% less damage.",
+		"desc": "School technique (Rank 4, Lv 45). Takes 10% less damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 4: Matsu's Courage",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S905": {
 		"H1": null,
-		"addlist": false,
+		"addlist": true,
 		"aimani": {
 			"id": "aim",
 			"mdlid": "CV000",
@@ -33634,18 +33896,20 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). +20% damage.",
+		"desc": "School technique (Rank 5, Lv 60). +20% damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: The Lion's Victory",
-		"occasion": 0,
+		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
 		"useact": {
 			"id": "noop",
 			"scp": null
-		}
+		},
+		"rt_school": true,
+		"rt_passive": true
 	},
 	"S740": {
 		"H1": null,
@@ -33722,7 +33986,9 @@
 		"rt_school": true,
 		"rt_kata": "K070",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S741": {
 		"H1": null,
@@ -33799,7 +34065,9 @@
 		"rt_school": true,
 		"rt_kata": "K071",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S742": {
 		"H1": null,
@@ -33876,7 +34144,9 @@
 		"rt_school": true,
 		"rt_kata": "K072",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S743": {
 		"H1": null,
@@ -33953,7 +34223,9 @@
 		"rt_school": true,
 		"rt_kata": "K073",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S744": {
 		"H1": null,
@@ -34030,7 +34302,9 @@
 		"rt_school": true,
 		"rt_kata": "K074",
 		"rt_kmul": 1.6,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S745": {
 		"H1": null,
@@ -34107,7 +34381,9 @@
 		"rt_school": true,
 		"rt_kata": "K075",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S746": {
 		"H1": null,
@@ -34141,7 +34417,7 @@
 			1,
 			8
 		],
-		"desc": "Kakita kata. The duelist's stance: +10% criticals for the whole battle. (Kata)",
+		"desc": "Kakita kata. The duelist's stance: +10% criticals for the whole battle. (Kata) Needs: katana.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -34184,7 +34460,11 @@
 		"rt_school": true,
 		"rt_kata": "K076",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana"
+		],
+		"rt_knostrike": false
 	},
 	"S747": {
 		"H1": null,
@@ -34218,7 +34498,7 @@
 			1,
 			7
 		],
-		"desc": "The sword over the court: ATK +20% for 3 turns. (Kata)",
+		"desc": "The sword over the court: ATK +20% for 3 turns. (Kata) Needs: katana.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -34261,7 +34541,11 @@
 		"rt_school": true,
 		"rt_kata": "K077",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana"
+		],
+		"rt_knostrike": false
 	},
 	"S748": {
 		"H1": null,
@@ -34338,7 +34622,9 @@
 		"rt_school": true,
 		"rt_kata": "K078",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S749": {
 		"H1": null,
@@ -34372,7 +34658,7 @@
 			1,
 			14
 		],
-		"desc": "Execute stance: x1.3 now, then +10% criticals and -10% ATK for 3 turns. (Kata)",
+		"desc": "Execute stance: x1.3 now, then +10% criticals and -10% ATK for 3 turns. (Kata) Needs: katana.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -34415,7 +34701,11 @@
 		"rt_school": true,
 		"rt_kata": "K079",
 		"rt_kmul": 1.3,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana"
+		],
+		"rt_knostrike": false
 	},
 	"S750": {
 		"H1": null,
@@ -34449,7 +34739,7 @@
 			1,
 			17
 		],
-		"desc": "Kakita kata. Speed +30% for 3 turns: he leaps ahead in the turn order. (Kata)",
+		"desc": "Kakita kata. Speed +30% for 3 turns: he leaps ahead in the turn order. (Kata) Needs: katana or yari / naginata.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -34492,7 +34782,12 @@
 		"rt_school": true,
 		"rt_kata": "K080",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana",
+			"Yari"
+		],
+		"rt_knostrike": false
 	},
 	"S751": {
 		"H1": null,
@@ -34569,7 +34864,9 @@
 		"rt_school": true,
 		"rt_kata": "K081",
 		"rt_kmul": 1.8,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S752": {
 		"H1": null,
@@ -34646,7 +34943,9 @@
 		"rt_school": true,
 		"rt_kata": "K082",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S753": {
 		"H1": null,
@@ -34680,7 +34979,7 @@
 			1,
 			27
 		],
-		"desc": "The sky does not get hit: +35% evasion for 3 turns. (Kata)",
+		"desc": "The sky does not get hit: +35% evasion for 3 turns. (Kata) Needs: katana.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -34723,7 +35022,11 @@
 		"rt_school": true,
 		"rt_kata": "K083",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana"
+		],
+		"rt_knostrike": false
 	},
 	"S754": {
 		"H1": null,
@@ -34757,7 +35060,7 @@
 			1,
 			12
 		],
-		"desc": "Mirumoto kata. Fire in the arm, earth in the feet: ATK and DEF +20% for 3 turns. (Kata)",
+		"desc": "Mirumoto kata. Fire in the arm, earth in the feet: ATK and DEF +20% for 3 turns. (Kata) Needs: katana.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -34800,7 +35103,11 @@
 		"rt_school": true,
 		"rt_kata": "K084",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana"
+		],
+		"rt_knostrike": false
 	},
 	"S755": {
 		"H1": null,
@@ -34834,7 +35141,7 @@
 			1,
 			14
 		],
-		"desc": "The blade over the investigation: ATK +20% for 3 turns. (Kata)",
+		"desc": "The blade over the investigation: ATK +20% for 3 turns. (Kata) Needs: katana.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -34877,7 +35184,11 @@
 		"rt_school": true,
 		"rt_kata": "K085",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana"
+		],
+		"rt_knostrike": false
 	},
 	"S756": {
 		"H1": null,
@@ -34911,7 +35222,7 @@
 			1,
 			17
 		],
-		"desc": "Mirumoto kata. Spells slide off: MDEF +40%, Speed -10% for 3 turns. (Kata)",
+		"desc": "Mirumoto kata. Spells slide off: MDEF +40%, Speed -10% for 3 turns. (Kata) Needs: katana.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -34954,7 +35265,11 @@
 		"rt_school": true,
 		"rt_kata": "K086",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana"
+		],
+		"rt_knostrike": false
 	},
 	"S757": {
 		"H1": null,
@@ -34988,7 +35303,7 @@
 			1,
 			21
 		],
-		"desc": "Mirumoto kata. Every attack on him may be answered (50% counter) for 3 turns. (Kata)",
+		"desc": "Mirumoto kata. Every attack on him may be answered (50% counter) for 3 turns. (Kata) Needs: katana.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -35031,7 +35346,11 @@
 		"rt_school": true,
 		"rt_kata": "K087",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana"
+		],
+		"rt_knostrike": false
 	},
 	"S758": {
 		"H1": null,
@@ -35065,7 +35384,7 @@
 			1,
 			24
 		],
-		"desc": "Mirumoto kata. Break the foe's rhythm: ATK +30% for 3 turns. (Kata)",
+		"desc": "Mirumoto kata. Break the foe's rhythm: ATK +30% for 3 turns. (Kata) Needs: katana or bare hands / claws.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -35108,7 +35427,12 @@
 		"rt_school": true,
 		"rt_kata": "K088",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana",
+			"Unarmed"
+		],
+		"rt_knostrike": false
 	},
 	"S759": {
 		"H1": null,
@@ -35142,7 +35466,7 @@
 			1,
 			27
 		],
-		"desc": "The river does not stop: ATK +25%, evasion -20% for the whole battle. (Kata)",
+		"desc": "The river does not stop: ATK +25%, evasion -20% for the whole battle. (Kata) Needs: katana.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -35185,7 +35509,11 @@
 		"rt_school": true,
 		"rt_kata": "K089",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana"
+		],
+		"rt_knostrike": false
 	},
 	"S760": {
 		"H1": null,
@@ -35262,7 +35590,9 @@
 		"rt_school": true,
 		"rt_kata": "K090",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S761": {
 		"H1": null,
@@ -35339,7 +35669,9 @@
 		"rt_school": true,
 		"rt_kata": "K091",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S762": {
 		"H1": null,
@@ -35416,7 +35748,9 @@
 		"rt_school": true,
 		"rt_kata": "K092",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S763": {
 		"H1": null,
@@ -35493,7 +35827,9 @@
 		"rt_school": true,
 		"rt_kata": "K093",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S764": {
 		"H1": null,
@@ -35527,7 +35863,7 @@
 			1,
 			21
 		],
-		"desc": "Akodo kata. Cold, patient cuts: x1.2 now, ATK +15% for 3 turns. (Kata)",
+		"desc": "Akodo kata. Cold, patient cuts: x1.2 now, ATK +15% for 3 turns. (Kata) Needs: katana.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -35570,7 +35906,11 @@
 		"rt_school": true,
 		"rt_kata": "K094",
 		"rt_kmul": 1.2,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Katana"
+		],
+		"rt_knostrike": false
 	},
 	"S765": {
 		"H1": null,
@@ -35647,7 +35987,9 @@
 		"rt_school": true,
 		"rt_kata": "K095",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S766": {
 		"H1": null,
@@ -35724,7 +36066,9 @@
 		"rt_school": true,
 		"rt_kata": "K096",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S767": {
 		"H1": null,
@@ -35801,7 +36145,9 @@
 		"rt_school": true,
 		"rt_kata": "K097",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S768": {
 		"H1": null,
@@ -35835,7 +36181,7 @@
 			1,
 			17
 		],
-		"desc": "Shosuro kata. Under the big man's swing: evasion +20%, Speed +10% for 3 turns. (Kata)",
+		"desc": "Shosuro kata. Under the big man's swing: evasion +20%, Speed +10% for 3 turns. (Kata) Needs: tanto.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -35878,7 +36224,11 @@
 		"rt_school": true,
 		"rt_kata": "K098",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Tanto"
+		],
+		"rt_knostrike": false
 	},
 	"S769": {
 		"H1": null,
@@ -35955,7 +36305,9 @@
 		"rt_school": true,
 		"rt_kata": "K099",
 		"rt_kmul": 0.8,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S770": {
 		"H1": null,
@@ -36032,7 +36384,9 @@
 		"rt_school": true,
 		"rt_kata": "K100",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S771": {
 		"H1": null,
@@ -36109,7 +36463,9 @@
 		"rt_school": true,
 		"rt_kata": "K101",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S772": {
 		"H1": null,
@@ -36186,7 +36542,9 @@
 		"rt_school": true,
 		"rt_kata": "K102",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S773": {
 		"H1": null,
@@ -36263,7 +36621,9 @@
 		"rt_school": true,
 		"rt_kata": "K103",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S774": {
 		"H1": null,
@@ -36340,7 +36700,9 @@
 		"rt_school": true,
 		"rt_kata": "K104",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S775": {
 		"H1": null,
@@ -36417,7 +36779,9 @@
 		"rt_school": true,
 		"rt_kata": "K105",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S776": {
 		"H1": null,
@@ -36494,7 +36858,9 @@
 		"rt_school": true,
 		"rt_kata": "K106",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kata"
+		"rt_kkind": "kata",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S777": {
 		"H1": null,
@@ -36571,7 +36937,9 @@
 		"rt_school": true,
 		"rt_kata": "K107",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [],
+		"rt_knostrike": true
 	},
 	"S778": {
 		"H1": null,
@@ -36648,7 +37016,9 @@
 		"rt_school": true,
 		"rt_kata": "K108",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [],
+		"rt_knostrike": true
 	},
 	"S779": {
 		"H1": null,
@@ -36725,7 +37095,9 @@
 		"rt_school": true,
 		"rt_kata": "K109",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [],
+		"rt_knostrike": true
 	},
 	"S780": {
 		"H1": null,
@@ -36802,7 +37174,9 @@
 		"rt_school": true,
 		"rt_kata": "K110",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [],
+		"rt_knostrike": true
 	},
 	"S781": {
 		"H1": null,
@@ -36879,7 +37253,9 @@
 		"rt_school": true,
 		"rt_kata": "K111",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [],
+		"rt_knostrike": true
 	},
 	"S782": {
 		"H1": null,
@@ -36956,7 +37332,9 @@
 		"rt_school": true,
 		"rt_kata": "K112",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [],
+		"rt_knostrike": true
 	},
 	"S783": {
 		"H1": null,
@@ -36990,7 +37368,7 @@
 			1,
 			4
 		],
-		"desc": "Martial kiho. A burning blow: x1.2, ATK +20% for 3 turns. (Kiho)",
+		"desc": "Martial kiho. A burning blow: x1.2, ATK +20% for 3 turns. (Kiho) Needs: bare hands / claws.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -37033,7 +37411,11 @@
 		"rt_school": true,
 		"rt_kata": "K113",
 		"rt_kmul": 1.2,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [
+			"Unarmed"
+		],
+		"rt_knostrike": false
 	},
 	"S784": {
 		"H1": null,
@@ -37067,7 +37449,7 @@
 			1,
 			5
 		],
-		"desc": "Martial kiho. Flow around the blade: evasion +20% for 3 turns. (Kiho)",
+		"desc": "Martial kiho. Flow around the blade: evasion +20% for 3 turns. (Kiho) Needs: bare hands / claws.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -37110,7 +37492,11 @@
 		"rt_school": true,
 		"rt_kata": "K114",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [
+			"Unarmed"
+		],
+		"rt_knostrike": false
 	},
 	"S785": {
 		"H1": null,
@@ -37144,7 +37530,7 @@
 			1,
 			7
 		],
-		"desc": "Martial kiho. Root like the mountain: DEF +40% for 3 turns. (Kiho)",
+		"desc": "Martial kiho. Root like the mountain: DEF +40% for 3 turns. (Kiho) Needs: bare hands / claws.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -37187,7 +37573,11 @@
 		"rt_school": true,
 		"rt_kata": "K115",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [
+			"Unarmed"
+		],
+		"rt_knostrike": false
 	},
 	"S786": {
 		"H1": null,
@@ -37221,7 +37611,7 @@
 			1,
 			9
 		],
-		"desc": "Martial kiho. Speed +30% for 3 turns. (Kiho)",
+		"desc": "Martial kiho. Speed +30% for 3 turns. (Kiho) Needs: bare hands / claws.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -37264,7 +37654,11 @@
 		"rt_school": true,
 		"rt_kata": "K116",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [
+			"Unarmed"
+		],
+		"rt_knostrike": false
 	},
 	"S787": {
 		"H1": null,
@@ -37298,7 +37692,7 @@
 			1,
 			10
 		],
-		"desc": "Martial kiho. A blow from above: x1.4, criticals +20% for 2 turns. (Kiho)",
+		"desc": "Martial kiho. A blow from above: x1.4, criticals +20% for 2 turns. (Kiho) Needs: bare hands / claws.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -37341,7 +37735,11 @@
 		"rt_school": true,
 		"rt_kata": "K117",
 		"rt_kmul": 1.4,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [
+			"Unarmed"
+		],
+		"rt_knostrike": false
 	},
 	"S788": {
 		"H1": null,
@@ -37375,7 +37773,7 @@
 			1,
 			13
 		],
-		"desc": "Kharmic kiho. What is done to him returns (70% counter) for 3 turns. (Kiho)",
+		"desc": "Kharmic kiho. What is done to him returns (70% counter) for 3 turns. (Kiho) Needs: bare hands / claws.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -37418,7 +37816,11 @@
 		"rt_school": true,
 		"rt_kata": "K118",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [
+			"Unarmed"
+		],
+		"rt_knostrike": false
 	},
 	"S789": {
 		"H1": null,
@@ -37452,7 +37854,7 @@
 			1,
 			15
 		],
-		"desc": "Atemi kiho. A finger on the nerve: the foe may freeze (Paralysis); accuracy +20% for 2 turns. (Kiho)",
+		"desc": "Atemi kiho. A finger on the nerve: the foe may freeze (Paralysis); accuracy +20% for 2 turns. (Kiho) Needs: bare hands / claws.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -37495,7 +37897,11 @@
 		"rt_school": true,
 		"rt_kata": "K119",
 		"rt_kmul": 1.0,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [
+			"Unarmed"
+		],
+		"rt_knostrike": false
 	},
 	"S790": {
 		"H1": null,
@@ -37529,7 +37935,7 @@
 			1,
 			19
 		],
-		"desc": "Martial kiho. x1.3, +1 VP, MDEF +20% for 3 turns. (Kiho)",
+		"desc": "Martial kiho. x1.3, +1 VP, MDEF +20% for 3 turns. (Kiho) Needs: bare hands / claws.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -37572,7 +37978,11 @@
 		"rt_school": true,
 		"rt_kata": "K120",
 		"rt_kmul": 1.3,
-		"rt_kkind": "kiho"
+		"rt_kkind": "kiho",
+		"rt_kreq": [
+			"Unarmed"
+		],
+		"rt_knostrike": false
 	},
 	"S791": {
 		"H1": null,
@@ -37649,7 +38059,9 @@
 		"rt_school": true,
 		"rt_kata": "K121",
 		"rt_kmul": 1.5,
-		"rt_kkind": "tattoo"
+		"rt_kkind": "tattoo",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S792": {
 		"H1": null,
@@ -37726,7 +38138,9 @@
 		"rt_school": true,
 		"rt_kata": "K122",
 		"rt_kmul": 1.0,
-		"rt_kkind": "tattoo"
+		"rt_kkind": "tattoo",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S793": {
 		"H1": null,
@@ -37803,7 +38217,9 @@
 		"rt_school": true,
 		"rt_kata": "K123",
 		"rt_kmul": 1.0,
-		"rt_kkind": "tattoo"
+		"rt_kkind": "tattoo",
+		"rt_kreq": [],
+		"rt_knostrike": false
 	},
 	"S794": {
 		"H1": null,
@@ -37880,6 +38296,391 @@
 		"rt_school": true,
 		"rt_kata": "K124",
 		"rt_kmul": 1.0,
-		"rt_kkind": "tattoo"
+		"rt_kkind": "tattoo",
+		"rt_kreq": [],
+		"rt_knostrike": false
+	},
+	"S795": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			1,
+			9
+		],
+		"desc": "Shiba kata (naginata). The blade circles like the sun: x1.2, Speed +30% and ATK +15% for 3 turns. (Kata) Needs: yari / naginata.",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Tail of the Sun",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K132",
+		"rt_kmul": 1.2,
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Yari"
+		],
+		"rt_knostrike": false
+	},
+	"S796": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			1,
+			14
+		],
+		"desc": "Shiba kata (naginata). Stillness before the storm: +2 VP, MDEF +20% for the whole battle. (Kata) Needs: yari / naginata.",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Deeper Reflection",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K133",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Yari"
+		],
+		"rt_knostrike": false
+	},
+	"S797": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			1,
+			19
+		],
+		"desc": "Shiba kata (naginata). Evasion +25%, criticals +15% for 3 turns. (Kata) Needs: yari / naginata.",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Touching the Infinite",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K134",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Yari"
+		],
+		"rt_knostrike": false
+	},
+	"S798": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			1,
+			24
+		],
+		"desc": "Shiba kata (naginata). Spend every VP held: one extra cut for each, now; then the guard is open (DEF -20%). (Kata) Needs: yari / naginata.",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 1,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Heaven's Wing",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_kata": "K135",
+		"rt_kmul": 1.0,
+		"rt_kkind": "kata",
+		"rt_kreq": [
+			"Yari"
+		],
+		"rt_knostrike": false
+	},
+	"S799": {
+		"H1": null,
+		"HACT": null,
+		"acttest": null,
+		"addlist": true,
+		"aimani": {
+			"id": "spell",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 8,
+		"consume": [
+			0,
+			12
+		],
+		"desc": "Stand Against the Waves (Water 2). One ally strikes once more for each of the caster's Insight Ranks on their next turn, a little less accurately. (Prayers & Treasures)",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 126,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX002",
+			"hitsnd": "SE234",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"name": "Stand Against the Waves",
+		"occasion": 1,
+		"option": [
+			{
+				"condid": "K136",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 1.0,
+				"showmiss": false,
+				"when": 0,
+				"whom": 0
+			}
+		],
+		"putconds": 0,
+		"skilltype": "buff",
+		"spdrate": 1.0,
+		"useact": {
+			"id": "use_charge",
+			"scp": null,
+			"useani": {
+				"id": "magic1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"useefx": "FX063",
+			"usesnd": "SE229"
+		},
+		"elembits": 128
 	}
 }

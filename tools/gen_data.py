@@ -405,6 +405,8 @@ def rank_spells(pid, known):
         for elem, n in ((SHUGENJA_ELEM[pid], 2),) + ((("Void", 1),) if pid == "P104" else ()):
             pool = sorted((sp for sp in spells if sp["elem"] == elem and sp["ml"] <= rank and sp["skill"] not in known),
                           key=lambda sp: (-sp["ml"], sp["name"]))
+            if elem == "Water" and rank == 2 and "S799" not in known:      # Stand Against the Waves first (Water 2)
+                pool = [{"skill": "S799", "ml": 2, "name": "Stand Against the Waves"}] + pool
             for sp in pool[:n]:
                 known.add(sp["skill"])
                 opts.append({"LV": lv, "opttype": "opt_getskill", "skillid": sp["skill"]})
@@ -1362,6 +1364,31 @@ def main():
     c["K062"] = hb
     for e in _kata.KATA:                               # kata / kiho / tattoo stances K070-K124 (tools/kata_data.py)
         c[e[1]] = _kata.cond_for(e, copy.deepcopy(c["K020"]))
+    # Stand Against the Waves (Prayers & Treasures, Water ML 2: one more attack per caster's Insight Rank on the
+    # target's next turn, +5 TN to hit -> -10% accuracy); the plugin adds the hits (RokuganRanks.sk)
+    sw = copy.deepcopy(c["K020"])
+    sw.update({"name": "Stand Against the Waves", "desc": "More attacks on the next turn (one per the caster's Insight "
+               "Rank); accuracy -10%.", "MAXLV": 1, "rem_turn": [2, 2], "revcondid": None, "rt_waves": True,
+               "option": [{"LV": 1, "opttype": "opt_status", "propid": "PHIT", "val": -10, "valtype": "supply"}]})
+    c["K136"] = sw
+    # Void-critical party buffs (user 2026-11-12: "when a void spent crit happens have the bust of the char pop up with
+    # text ... Hiruma ... 20% avoid for 2 turns, for the Hida ... 75 damage reduction for 2 turns etc."). 2 turns after
+    # the one it lands in. rt_dmgtaken: the plugin scales damage taken (RokuganVoidCrit.sk).
+    for cid, name, opts, extra in (
+            ("K125", "Razor's Edge (party)", [("PEVA", 20, "supply")], {}),
+            ("K126", "The Mountain Does Not Fall", [], {"rt_dmgtaken": 0.25}),
+            ("K127", "Void Focus (criticals)", [("CRI", 20, "supply")], {}),
+            ("K128", "Void Fury (ATK)", [("PATK", 30, "totalrate")], {}),
+            ("K129", "Touch of the Void (MDEF)", [("MDEF", 30, "totalrate")], {}),
+            ("K130", "The Wind (Speed)", [("AGI", 40, "totalrate")], {}),
+            ("K131", "Clear Sight (accuracy)", [("PHIT", 20, "supply")], {})):
+        vb = copy.deepcopy(c["K020"])
+        vb.update({"name": name, "desc": name + ": a Void critical's gift to the party.", "MAXLV": 1,
+                   "rem_turn": [3, 3], "revcondid": None,
+                   "option": [{"LV": 1, "opttype": "opt_status", "propid": p_, "val": v_, "valtype": t_}
+                              for p_, v_, t_ in opts]})
+        vb.update(extra)
+        c[cid] = vb
     localise("cond", c)
     save("cond", c)
     dc = load("dict")                                     # term overrides (engine T[] dictionary)
@@ -1861,7 +1888,8 @@ def main():
                     ("G1223", "the shifting waste: the last move was south"),
                     ("G1224", "dojo kata taught (Hida dojo: Natsuko's Striking as Earth)"),
                     ("G1225", "dojo kata taught (Kakita academy: Rensei's Kakita's First Stance)"),
-                    ("G1226", "this battle: the Wave-woman trait is worn (Flee always works; RokuganJobs.sk)")):
+                    ("G1226", "this battle: the Wave-woman trait is worn (Flee always works; RokuganJobs.sk)"),
+                    ("G1229", "Crab Ch4: the cellar-stair objective shown")):
         gv[gid] = {"defval": False, "name": nm, "type": 1}
     gv["G1160"] = {"defval": 0, "name": "finale Party B (bitmask over P100-P107)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}
@@ -3014,7 +3042,10 @@ def main():
     for sid, (name, desc) in (list(RANK_SKILLS.items()) + [(k, (v[2], v[3])) for k, v in ADV_SKILLS.items()] +
                               [(k, (v[2], v[3])) for k, v in COMP_RANK_SKILLS.items()]):
         r = copy.deepcopy(noop)
-        r.update({"name": name, "desc": desc, "addlist": False, "enemyuse": False, "occasion": 0, "consume": [0, 0]})
+        # (user 2026-11-12: "new schools are not showing up as School selections") listed under School, greyed out:
+        # always-on techniques (plugin: rt_passive is never usable)
+        r.update({"name": name, "desc": desc + " (Always active.)", "addlist": True, "enemyuse": False, "occasion": 1,
+                  "consume": [0, 0], "rt_school": True, "rt_passive": True})
         s[sid] = r
     # Kata / kiho / tattoos (tools/kata_data.py): School-list commands; the plugin swaps in the user's own weapon
     # attack x rt_kmul and puts the rt_kata stance on them (RokuganRanks.sk useKata).
@@ -3024,8 +3055,21 @@ def main():
                   "addlist": True, "enemyuse": False, "occasion": 1, "eqtypebits": 2047,
                   # (user 2026-11-12: "Kiho and Kata should use TP points") TP by the level it is learned at
                   "consume": [1, 4 + (lv or 12) // 3],
-                  "rt_school": True, "rt_kata": cid, "rt_kmul": mult, "rt_kkind": kind})
+                  "rt_school": True, "rt_kata": cid, "rt_kmul": mult, "rt_kkind": kind,
+                  "rt_kreq": list(_kata.REQ.get(sid, ())), "rt_knostrike": sid in _kata.NO_STRIKE})
+        if _kata.REQ.get(sid):
+            k["desc"] += " Needs: %s." % " or ".join("bare hands / claws" if w == "Unarmed" else
+                                                       ("yari / naginata" if w == "Yari" else w.lower())
+                                                       for w in _kata.REQ[sid])
         s[sid] = k
+    sw = copy.deepcopy(s["S045"])                      # Stand Against the Waves (a Water spell; cond K136)
+    sw.update({"name": "Stand Against the Waves", "desc": "Stand Against the Waves (Water 2). One ally strikes once more "
+               "for each of the caster's Insight Ranks on their next turn, a little less accurately. (Prayers & "
+               "Treasures)", "consume": [0, 12], "elembits": B["Water"], "putconds": 0, "addlist": True,
+               "enemyuse": False, "occasion": 1, "eqtypebits": 2047,
+               "option": [o for o in (sw.get("option") or []) if o.get("opttype") != "opt_putcond"] +
+               [dict(PUT_BY_ID("K136"))]})
+    s["S799"] = sw
     save("skill", s)
 
     # ---- weapon.json  (eqtype: 1 dagger, 2 sword, 3 spear, 5 staff, 6 bow, 7 hammer)
@@ -4761,6 +4805,17 @@ def main():
             for k, m in mult.items():
                 lc[k] = [max(1, int(round(v * m))) for v in lc[k]]
         p[pid] = x
+    # (user 2026-11-12: "why do the travelers and companions lose stats on some level ups?") the trait curves wobble
+    # (Natsuko's AGI 220 -> 214): every stat curve only ever rises
+    for x in p.values():
+        if isinstance(x, dict) and isinstance(x.get("lvcurve"), dict):
+            lc = x["lvcurve"] = copy.deepcopy(x["lvcurve"])
+            for k, arr in lc.items():
+                if isinstance(arr, list) and arr and all(isinstance(v, (int, float)) for v in arr):
+                    top = arr[0]
+                    for i, v in enumerate(arr):
+                        top = max(top, v)
+                        arr[i] = top
     # Haruki had no TP at all; kiho cost TP (user 2026-11-12) -> a small pool, 60% of Sayo's curve
     if "P104" in p and "P107" in p and p["P107"].get("lvcurve", {}).get("MAXTP"):
         lc = p["P104"]["lvcurve"] = copy.deepcopy(p["P104"]["lvcurve"])
@@ -5195,6 +5250,10 @@ def english_pass():
                 if isinstance(x.get(fld), str) and jp.search(x[fld]):
                     x[fld] = ("(unused %s %s)" % (f, rid)) if fld == "name" else ""
                     left.append("%s %s %s" % (f, rid, fld))
+            # (user 2026-11-12 screenshot: an empty description shows the engine's Japanese sample text in the skill
+            # tooltip) never leave one empty
+            if f in ("skill", "item", "weapon", "armor") and not (x.get("desc") or "").strip() and x.get("name"):
+                x["desc"] = x["name"] + "."
         save(f, d)
     print("english pass: %d template strings blanked (unused sample data)" % len(left))
 

@@ -664,6 +664,7 @@ foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]
 //	immune to Taint from any source: Taint tiles, Command the Taint, maho.
 ::RPGPlayer._rt_putCond <- ::RPGPlayer.putCondition;
 ::RPGPlayer.putCondition <- function( condid){
+	if( condid == ::Rokugan.TAINT && this.dataid == "P122") return;		//	(user) Squeak: a nezumi - the Taint can't take him
 	if( condid == ::Rokugan.TAINT && (::Rokugan.wears( this, "A115") || ::Rokugan.wears( this, "A149"))){
 		printf( "[RT] Jade Finger: %S is not Tainted\n", this.name);
 		if( ::rpgstage && ::rpgstage["battle"]) ::Rokugan.pop( this, "Jade Finger", 0x80ff9cff);
@@ -872,13 +873,22 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 //	player. Phoenix Ch2: Courage of the Seven Thunders (S368) from the Silent Court (G638).
 ::Rokugan.STORY_SKILLS <- { P104 = [["G638", "S368"], ["G656", "S316"]],
 	P102 = [["G740", "S482"], ["G757", "S483"], ["G742", "S481"]],
-	P106 = [["G985", "S545"]] };										//	+ Unicorn Ch1: Hiroichi's telescope	//	+ Dragon Ch2: Subdue, the Bow, Daisho Technique	//	+ Phoenix Ch3: Hand of Jurojin
+	P106 = [["G985", "S545"]],
+	//	(user 2026-11-12: saving right after Goro's dojo kata hung the save screen - ::Rokugan.learn put a live RPGOption
+	//	into the player's saved ownoptions) the dojo kata and Goro's upgraded Troll-Breaker come from flags instead
+	P100 = [["G1224", "S740"]], P101 = [["G1225", "S746"]], P123 = [["G292", "S172"]] };										//	+ Unicorn Ch1: Hiroichi's telescope	//	+ Dragon Ch2: Subdue, the Bow, Daisho Technique	//	+ Phoenix Ch3: Hand of Jurojin
 ::RPGPlayer._rt_ownlists <- ::RPGPlayer.udpateOwnLists;
 ::RPGPlayer.udpateOwnLists <- function(){
+	//	(a game that already learned a skill through ::Rokugan.learn holds a live RPGOption in ownoptions, which hangs the
+	//	save screen: drop those - the flags in STORY_SKILLS give the skills back)
+	local own = this["ownoptions"];
+	if( own && own.find( @( o) (o instanceof ::RPGOption) && o.opd["opttype"] == "opt_getskill"))
+		this.ownoptions = own.filter( @( o) !((o instanceof ::RPGOption) && o.opd["opttype"] == "opt_getskill"));
 	this._rt_ownlists();
 	local id = this["dataid"];
 	if( !id || !(id in ::Rokugan.STORY_SKILLS)) return;
 	foreach( fs in ::Rokugan.STORY_SKILLS[id]) if( ::rpgvar[fs[0]]) skillbits = ::bitset( skillbits, int( fs[1].substring( 1)));
+	if( id == "P123" && ::rpgvar["G292"]) skillbits = ::bitclr( skillbits, 139);	//	the upgrade replaces Troll-Breaker
 };
 
 //	Every special skill names itself in the banner at the top, with its element (user: "not clear what is happening
@@ -934,8 +944,49 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	v.setText( "History: %d%%" % int( ::rpgvar["G748"] || 0));
 	printf( "[RT] History HUD %d%%\n", int( ::rpgvar["G748"] || 0));
 };
+//	Save inspection for support (-rtdumpsave N): prints a save slot's map, position, party and set flags to the log, then
+//	"[RT] SAVEDUMP END" (tools/dumpsave.py kills the engine after it).
+::Rokugan.dumpSaveSlot <- function( slot){
+	try{
+		local f = FileRef( ::savedir, sprintf( "save%03d.bin", slot));
+		local ns = ObjectInput.decode( f.load());
+		printf( "[RT] SAVEDUMP map %S\n", ns.mapid);
+		local snap = ns.stagemap[ns.mapid];
+		if( snap && snap["player"]) printf( "[RT] SAVEDUMP player %S\n", encodeJSON( snap.player, 3));
+		foreach( m in ns.members) if( m) printf( "[RT] SAVEDUMP member %S %S LV %d HP %d/%d\n", m.dataid, m.name, m.LV, m.HP, m.MAXHP);
+		local keys = [];
+		foreach( k, v in ns.gvarmap) if( v) keys.append( k);
+		keys.sort();
+		foreach( k in keys) printf( "[RT] SAVEDUMP var %S = %S\n", k, "" .. ns.gvarmap[k]);
+		if( snap && snap["evarmap"]) printf( "[RT] SAVEDUMP evar %S\n", encodeJSON( snap.evarmap, 3));
+	}catch( ex){
+		printf( "[RT] SAVEDUMP error %S (savedir %S)\n", "" .. ex, "" .. ::savedir);
+		printexception( ex);
+	}
+	printf( "[RT] SAVEDUMP END\n");
+};
 ::RPGStage._rt_launch_hist <- ::RPGStage.launch;
 ::RPGStage.launch <- function( opt = null){
+	local di = ::arguments.indexOf( "-rtdumpsave");
+	if( di >= 0 && !::Rokugan["dumped"]){ ::Rokugan.dumped <- true; ::Rokugan.dumpSaveSlot( int( ::arguments[di + 1])); }
+	//	-rtloadsave N: load that slot as the title's Continue would, then screenshot (tmp/rt_shot/usersave_N_K.raw) a few
+	//	times and say "[RT] LOADSHOT done" (tools/dumpsave.py --shot)
+	local li = ::arguments.indexOf( "-rtloadsave");
+	if( li >= 0 && !::Rokugan["loadedsave"]){
+		::Rokugan.loadedsave <- true;
+		local slot = int( ::arguments[li + 1]);
+		newthread().start( @(){
+			sleep( 1500);
+			::RPGMain.loadGame( slot);
+			for( local k = 0; k < 3; k++){
+				sleep( 2500);
+				::Rokugan.rtshot( "tmp/rt_shot/bot_usersave_%d_%d.raw" % [slot, k]);
+			}
+			local st = ::rpgstage;
+			if( st && st["player3d"]) printf( "[RT] LOADSHOT at %S %.2f %.2f %.2f\n", st.mapid, st.player3d.pos.x, st.player3d.pos.y, st.player3d.pos.z);
+			printf( "[RT] LOADSHOT done\n");
+		});
+	}
 	local r = _rt_launch_hist( opt);
 	try{ ::Rokugan.historyHUD(); }catch( ex){ printexception( ex); }
 	return r;

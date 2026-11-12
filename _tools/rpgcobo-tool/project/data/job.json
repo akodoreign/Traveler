@@ -3,8 +3,8 @@
 		"MAXLV": 10,
 		"desc": "A traveler on the roads of Rokugan. EXP and money from battles +1% at job Lv 1, rising to +50% at Lv 10. Lv 10 trait: Seasoned Traveler.",
 		"expcurv": [
-			8,
-			15
+			30,
+			0
 		],
 		"icon": "",
 		"jobflag": -1,
@@ -205,12 +205,71 @@
 		"caps": 200,
 		"version": 1
 	},
+	"J018": {
+		"MAXLV": 10,
+		"desc": "The Togashi way: a body like iron, a step like water, strength in the ink. Lv 1 Iron Body: DEF +20%. Lv 4 Flowing Step: +10% evasion. Lv 7 Tattooed Strength: ATK +15%. Lv 10 trait: Flowing Step.",
+		"expcurv": [
+			30,
+			0
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 10,
+				"opttype": "opt_getjob",
+				"jobid": "J137"
+			},
+			{
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 20,
+				"valtype": "totalrate",
+				"LV": 1
+			},
+			{
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 10,
+				"valtype": "supply",
+				"LV": 4
+			},
+			{
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 15,
+				"valtype": "totalrate",
+				"LV": 7
+			}
+		],
+		"name": "Monk",
+		"option": [],
+		"rt_owner": [
+			"P132"
+		],
+		"rt_perks": [
+			[
+				"J136",
+				1
+			],
+			[
+				"J137",
+				4
+			],
+			[
+				"J138",
+				7
+			]
+		]
+	},
 	"J010": {
 		"MAXLV": 10,
 		"desc": "Hiruma scout craft: ambushes, quiet roads, reading tracks. Lv 1 Surprise Round: A chance to catch random foes unaware: they lose their first action; criticals up against foes that haven't acted yet. Lv 4 Sneak: Quiet feet: half as many random encounters. Lv 7 Tracker: Every foe's weaknesses are known at the start of a battle. Lv 10 trait: Surprise Round.",
 		"expcurv": [
-			8,
-			15
+			30,
+			0
 		],
 		"icon": "",
 		"jobflag": -1,
@@ -225,7 +284,10 @@
 		],
 		"name": "Scout",
 		"option": [],
-		"rt_owner": "P100",
+		"rt_owner": [
+			"P100",
+			"P122"
+		],
 		"rt_perks": [
 			[
 				"J110",
@@ -245,8 +307,8 @@
 		"MAXLV": 10,
 		"desc": "The iaijutsu duelist: the first draw, the measure, the ready blade. Lv 1 First Draw: Speed up in the first turn of a battle. Lv 4 Measure the Foe: +20% critical hits against a lone foe. Lv 7 Ready Blade: Iaijutsu starts every battle with 1 Focus. Lv 10 trait: Measure the Foe.",
 		"expcurv": [
-			8,
-			15
+			30,
+			0
 		],
 		"icon": "",
 		"jobflag": -1,
@@ -261,7 +323,9 @@
 		],
 		"name": "Duelist",
 		"option": [],
-		"rt_owner": "P101",
+		"rt_owner": [
+			"P101"
+		],
 		"rt_perks": [
 			[
 				"J113",
@@ -281,8 +345,8 @@
 		"MAXLV": 10,
 		"desc": "Evidence over testimony - and a bounty for the guilty. Lv 1 Read the Foe: One foe's weaknesses are known at the start of a battle. Lv 4 Honest Eyes: Resists charm and confusion. Lv 7 Bounty: +20% money from battles. Lv 10 trait: Read the Foe.",
 		"expcurv": [
-			8,
-			15
+			30,
+			0
 		],
 		"icon": "",
 		"jobflag": -1,
@@ -303,7 +367,9 @@
 		],
 		"name": "Magistrate",
 		"option": [],
-		"rt_owner": "P102",
+		"rt_owner": [
+			"P102"
+		],
 		"rt_perks": [
 			[
 				"J116",
@@ -323,8 +389,8 @@
 		"MAXLV": 10,
 		"desc": "The go player's war: the vanguard, the rally, the banner. Lv 1 Vanguard: The whole party moves faster in the first turn. Lv 4 Rally: +1 VP at the start of every battle. Lv 7 Banner: While its wearer is under half HP, the party hits 15% harder. Lv 10 trait: Rally.",
 		"expcurv": [
-			8,
-			15
+			30,
+			0
 		],
 		"icon": "",
 		"jobflag": -1,
@@ -339,7 +405,9 @@
 		],
 		"name": "Tactician",
 		"option": [],
-		"rt_owner": "P103",
+		"rt_owner": [
+			"P103"
+		],
 		"rt_perks": [
 			[
 				"J119",
@@ -359,8 +427,8 @@
 		"MAXLV": 10,
 		"desc": "The Void shugenja's art. Battles start with 1 VP at job Lv 1, rising to full VP at Lv 10. Lv 1 Ward: Resists poison, blindness, silence and sleep (50%). Lv 4 Learned: Max MP +20%. Lv 7 Rally: +1 VP at the start of every battle. Lv 10 trait: Ishiken-do.",
 		"expcurv": [
-			8,
-			15
+			30,
+			0
 		],
 		"icon": "",
 		"jobflag": -1,
@@ -390,7 +458,9 @@
 		],
 		"name": "Ishiken-do",
 		"option": [],
-		"rt_owner": "P104",
+		"rt_owner": [
+			"P104"
+		],
 		"rt_perks": [
 			[
 				"J124",
@@ -410,8 +480,8 @@
 		"MAXLV": 10,
 		"desc": "Quiet feet, light fingers, the knife from behind. Lv 1 Sneak: Quiet feet: half as many random encounters. Lv 4 Light Fingers: Steals succeed more often. Lv 7 Ambush: A chance to catch random foes unaware; criticals up against foes that haven't acted yet. Lv 10 trait: Ambush.",
 		"expcurv": [
-			8,
-			15
+			30,
+			0
 		],
 		"icon": "",
 		"jobflag": -1,
@@ -426,7 +496,9 @@
 		],
 		"name": "Shinobi",
 		"option": [],
-		"rt_owner": "P105",
+		"rt_owner": [
+			"P105"
+		],
 		"rt_perks": [
 			[
 				"J111",
@@ -446,8 +518,8 @@
 		"MAXLV": 10,
 		"desc": "The Ide trade: haggling, the purse, friends everywhere. Lv 1 Haggle: Shop prices -10%. Lv 4 Golden Purse: +30% money from battles. Lv 7 Connections: The first hireling call each battle costs no charge. Lv 10 trait: Golden Purse.",
 		"expcurv": [
-			8,
-			15
+			30,
+			0
 		],
 		"icon": "",
 		"jobflag": -1,
@@ -462,7 +534,9 @@
 		],
 		"name": "Merchant",
 		"option": [],
-		"rt_owner": "P106",
+		"rt_owner": [
+			"P106"
+		],
 		"rt_perks": [
 			[
 				"J127",
@@ -482,8 +556,8 @@
 		"MAXLV": 10,
 		"desc": "The wave-woman's road craft: forage, brew, always a way out. Lv 1 Forager: After a battle, a chance to find a Healing Herb. Lv 4 Strong Brew: Healing 25% stronger. Lv 7 Wave-woman: Escape always works. Lv 10 trait: Wave-woman.",
 		"expcurv": [
-			8,
-			15
+			30,
+			0
 		],
 		"icon": "",
 		"jobflag": -1,
@@ -498,7 +572,9 @@
 		],
 		"name": "Herbalist",
 		"option": [],
-		"rt_owner": "P107",
+		"rt_owner": [
+			"P107"
+		],
 		"rt_perks": [
 			[
 				"J130",
@@ -856,5 +932,68 @@
 		"lvoption": [],
 		"name": "Seasoned Traveler",
 		"option": []
+	},
+	"J136": {
+		"MAXLV": 1,
+		"desc": "Trait. DEF +20%.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Iron Body",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 20,
+				"valtype": "totalrate"
+			}
+		]
+	},
+	"J137": {
+		"MAXLV": 1,
+		"desc": "Trait. +10% evasion.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Flowing Step",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 10,
+				"valtype": "supply"
+			}
+		]
+	},
+	"J138": {
+		"MAXLV": 1,
+		"desc": "Trait. ATK +15%.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 2,
+		"lvoption": [],
+		"name": "Tattooed Strength",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 15,
+				"valtype": "totalrate"
+			}
+		]
 	}
 }

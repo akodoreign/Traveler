@@ -2,7 +2,7 @@
 	"A000": {
 		"MDEF": 0,
 		"PDEF": 2,
-		"desc": "",
+		"desc": "(unused armor A000).",
 		"eqflag": -1,
 		"eqtype": 8,
 		"icon": "",
@@ -30,7 +30,7 @@
 	"A001": {
 		"MDEF": 0,
 		"PDEF": 5,
-		"desc": "",
+		"desc": "(unused armor A001).",
 		"eqflag": -1,
 		"eqtype": 8,
 		"icon": "",
@@ -58,7 +58,7 @@
 	"A002": {
 		"MDEF": 0,
 		"PDEF": 12,
-		"desc": "",
+		"desc": "(unused armor A002).",
 		"eqflag": -1,
 		"eqtype": 9,
 		"icon": "",
@@ -86,7 +86,7 @@
 	"A003": {
 		"MDEF": 0,
 		"PDEF": 15,
-		"desc": "",
+		"desc": "(unused armor A003).",
 		"eqflag": -1,
 		"eqtype": 9,
 		"icon": "",
@@ -121,7 +121,7 @@
 	"A004": {
 		"MDEF": 4,
 		"PDEF": 12,
-		"desc": "",
+		"desc": "(unused armor A004).",
 		"eqflag": -1,
 		"eqtype": 8,
 		"icon": "",
@@ -158,7 +158,7 @@
 	"A005": {
 		"MDEF": 4,
 		"PDEF": 18,
-		"desc": "",
+		"desc": "(unused armor A005).",
 		"eqflag": -1,
 		"eqtype": 9,
 		"icon": "",
@@ -186,7 +186,7 @@
 	"A006": {
 		"MDEF": 0,
 		"PDEF": 23,
-		"desc": "",
+		"desc": "(unused armor A006).",
 		"eqflag": -1,
 		"eqtype": 9,
 		"icon": "",
@@ -221,7 +221,7 @@
 	"A007": {
 		"MDEF": 10,
 		"PDEF": 21,
-		"desc": "",
+		"desc": "(unused armor A007).",
 		"eqflag": -1,
 		"eqtype": 9,
 		"icon": "",
@@ -249,7 +249,7 @@
 	"A008": {
 		"MDEF": 16,
 		"PDEF": 23,
-		"desc": "",
+		"desc": "(unused armor A008).",
 		"eqflag": -1,
 		"eqtype": 8,
 		"icon": "",
@@ -277,7 +277,7 @@
 	"A009": {
 		"MDEF": 12,
 		"PDEF": 36,
-		"desc": "",
+		"desc": "(unused armor A009).",
 		"eqflag": 0,
 		"eqtype": 9,
 		"icon": "",
@@ -305,7 +305,7 @@
 	"A020": {
 		"MDEF": 0,
 		"PDEF": 4,
-		"desc": "",
+		"desc": "(unused armor A020).",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
@@ -318,7 +318,7 @@
 	"A021": {
 		"MDEF": 3,
 		"PDEF": 7,
-		"desc": "",
+		"desc": "(unused armor A021).",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
@@ -331,7 +331,7 @@
 	"A022": {
 		"MDEF": 0,
 		"PDEF": 14,
-		"desc": "",
+		"desc": "(unused armor A022).",
 		"eqflag": -1,
 		"eqtype": 14,
 		"icon": "",
@@ -344,7 +344,7 @@
 	"A023": {
 		"MDEF": 0,
 		"PDEF": 13,
-		"desc": "",
+		"desc": "(unused armor A023).",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
@@ -365,7 +365,7 @@
 	"A024": {
 		"MDEF": 8,
 		"PDEF": 12,
-		"desc": "",
+		"desc": "(unused armor A024).",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
@@ -378,7 +378,7 @@
 	"A025": {
 		"MDEF": 0,
 		"PDEF": 20,
-		"desc": "",
+		"desc": "(unused armor A025).",
 		"eqflag": -1,
 		"eqtype": 15,
 		"icon": "",
@@ -391,7 +391,7 @@
 	"A026": {
 		"MDEF": 0,
 		"PDEF": 18,
-		"desc": "",
+		"desc": "(unused armor A026).",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
@@ -404,7 +404,7 @@
 	"A027": {
 		"MDEF": 0,
 		"PDEF": 30,
-		"desc": "",
+		"desc": "(unused armor A027).",
 		"eqflag": -1,
 		"eqtype": 15,
 		"icon": "",
@@ -417,7 +417,7 @@
 	"A028": {
 		"MDEF": 12,
 		"PDEF": 18,
-		"desc": "",
+		"desc": "(unused armor A028).",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
@@ -430,7 +430,7 @@
 	"A029": {
 		"MDEF": 0,
 		"PDEF": 45,
-		"desc": "",
+		"desc": "(unused armor A029).",
 		"eqflag": -1,
 		"eqtype": 15,
 		"icon": "",
@@ -443,7 +443,7 @@
 	"A030": {
 		"MDEF": 5,
 		"PDEF": 34,
-		"desc": "",
+		"desc": "(unused armor A030).",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
@@ -456,7 +456,7 @@
 	"A040": {
 		"MDEF": 2,
 		"PDEF": 2,
-		"desc": "",
+		"desc": "(unused armor A040).",
 		"eqflag": -1,
 		"eqtype": 10,
 		"icon": "",
@@ -469,7 +469,7 @@
 	"A041": {
 		"MDEF": 3,
 		"PDEF": 6,
-		"desc": "",
+		"desc": "(unused armor A041).",
 		"eqflag": -1,
 		"eqtype": 11,
 		"icon": "",
@@ -482,7 +482,7 @@
 	"A042": {
 		"MDEF": 4,
 		"PDEF": 4,
-		"desc": "",
+		"desc": "(unused armor A042).",
 		"eqflag": -1,
 		"eqtype": 10,
 		"icon": "",
@@ -495,7 +495,7 @@
 	"A043": {
 		"MDEF": 6,
 		"PDEF": 10,
-		"desc": "",
+		"desc": "(unused armor A043).",
 		"eqflag": -1,
 		"eqtype": 11,
 		"icon": "",
@@ -508,7 +508,7 @@
 	"A044": {
 		"MDEF": 12,
 		"PDEF": 6,
-		"desc": "",
+		"desc": "(unused armor A044).",
 		"eqflag": -1,
 		"eqtype": 10,
 		"icon": "",
@@ -521,7 +521,7 @@
 	"A045": {
 		"MDEF": 9,
 		"PDEF": 15,
-		"desc": "",
+		"desc": "(unused armor A045).",
 		"eqflag": -1,
 		"eqtype": 11,
 		"icon": "",
@@ -534,7 +534,7 @@
 	"A050": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A050).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -547,7 +547,7 @@
 	"A051": {
 		"MDEF": 0,
 		"PDEF": 3,
-		"desc": "",
+		"desc": "(unused armor A051).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -560,7 +560,7 @@
 	"A052": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A052).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -573,7 +573,7 @@
 	"A053": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A053).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -586,7 +586,7 @@
 	"A054": {
 		"MDEF": 0,
 		"PDEF": 8,
-		"desc": "",
+		"desc": "(unused armor A054).",
 		"eqflag": -1,
 		"eqtype": 17,
 		"icon": "",
@@ -599,7 +599,7 @@
 	"A055": {
 		"MDEF": 5,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A055).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -612,7 +612,7 @@
 	"A056": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A056).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -625,7 +625,7 @@
 	"A057": {
 		"MDEF": 1,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A057).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -638,7 +638,7 @@
 	"A058": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A058).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -651,7 +651,7 @@
 	"A059": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A059).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -664,7 +664,7 @@
 	"A060": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A060).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -677,7 +677,7 @@
 	"A061": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A061).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -690,7 +690,7 @@
 	"A062": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A062).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -703,7 +703,7 @@
 	"A063": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A063).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -716,7 +716,7 @@
 	"A064": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A064).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -729,7 +729,7 @@
 	"A065": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A065).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -742,7 +742,7 @@
 	"A066": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A066).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -755,7 +755,7 @@
 	"A067": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A067).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -768,7 +768,7 @@
 	"A068": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A068).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -781,7 +781,7 @@
 	"A069": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A069).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",
@@ -794,7 +794,7 @@
 	"A070": {
 		"MDEF": 0,
 		"PDEF": 1,
-		"desc": "",
+		"desc": "(unused armor A070).",
 		"eqflag": -1,
 		"eqtype": 16,
 		"icon": "",

@@ -14,7 +14,8 @@ So:
 - Travelers in the party together can take each other's jobs (RokuganJobs.sk ensureJobs).
 """
 
-JOB_CURVE = [8, 15]            # engine getExpByLV: ~JLv 10 after a chapter or two at 2 job EXP a foe
+JOB_CURVE = [30, 0]            # engine getExpByLV: JLv 10 at ~1400 job EXP (user 2026-11-12: "a much bigger exp needed
+                               # per job level"; was [8, 15] = 515)
 ENEMY_JXP = 2
 PERK_LEVELS = (1, 4, 7)
 TRAIT_LEVEL = 10
@@ -50,11 +51,17 @@ PERKS = {
     "J131": ("Strong Brew", "Healing 25% stronger.", []),
     "J132": ("Wave-woman", "Escape always works.", []),
     "J134": ("Seasoned Traveler", "+25% EXP and money from battles.", []),
+    "J136": ("Iron Body", "DEF +20%.", [STAT("PDEF", 20)]),
+    "J137": ("Flowing Step", "+10% evasion.", [STAT("PEVA", 10, "supply")]),
+    "J138": ("Tattooed Strength", "ATK +15%.", [STAT("PATK", 15)]),
 }
 
 # (job id, owner, name, description, [perks at Lv 1, 4, 7], signature trait at Lv 10)
 JOBS = [
-    ("J010", "P100", "Scout", "Hiruma scout craft: ambushes, quiet roads, reading tracks.", ["J110", "J111", "J112"],
+    # (user 2026-11-12: "Yosai doesn't have a job besides traveler should probably get Monk. and Squeak gets Scout")
+    ("J018", ["P132"], "Monk", "The Togashi way: a body like iron, a step like water, strength in the ink.",
+     ["J136", "J137", "J138"], "J137"),
+    ("J010", ["P100", "P122"], "Scout", "Hiruma scout craft: ambushes, quiet roads, reading tracks.", ["J110", "J111", "J112"],
      "J110"),
     ("J011", "P101", "Duelist", "The iaijutsu duelist: the first draw, the measure, the ready blade.",
      ["J113", "J114", "J115"], "J114"),
@@ -97,7 +104,7 @@ def build(jobs, template_job, template_trait):
             for o in PERKS[tid][2] or []:
                 lvo.append(dict(o, LV=lv))
         j.update({"name": name, "MAXLV": 10, "expcurv": list(JOB_CURVE), "jobflag": -1, "jobslotbits": 1,
-                  "option": [], "learn": [], "lvoption": lvo, "rt_owner": pid,
+                  "option": [], "learn": [], "lvoption": lvo, "rt_owner": pid if isinstance(pid, list) else [pid],
                   "rt_perks": [[tid, lv] for lv, tid in zip(PERK_LEVELS, perks)],
                   "desc": desc + " " + " ".join(_perk_line(t_, lv) for lv, t_ in zip(PERK_LEVELS, perks)) +
                   " Lv 10 trait: %s." % PERKS[sig][0]})

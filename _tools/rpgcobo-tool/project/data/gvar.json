@@ -4973,6 +4973,11 @@
 		"name": "this battle: the Wave-woman trait is worn (Flee always works; RokuganJobs.sk)",
 		"type": 1
 	},
+	"G1229": {
+		"defval": false,
+		"name": "Crab Ch4: the cellar-stair objective shown",
+		"type": 1
+	},
 	"G1160": {
 		"defval": 0,
 		"name": "finale Party B (bitmask over P100-P107)",

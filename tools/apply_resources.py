@@ -80,6 +80,7 @@ def main():
         x["rt_class"] = cls
         x["rt_clan"] = "lion" if x["name"] == "Lion rider" else CLAN.get(x["name"].split()[0], "ronin")
         ref = x.setdefault("rt_mpref", x["lvcurve"]["MAXMP"])
+        ref = [max(ref[:i + 1]) for i in range(len(ref))]               # (user: no stat may drop on a level-up)
         mp, tp = SHARES[cls]
         x["lvcurve"]["MAXMP"] = [int(round(v * mp)) for v in ref]
         x["lvcurve"]["MAXTP"] = [int(round(v * tp)) for v in ref]

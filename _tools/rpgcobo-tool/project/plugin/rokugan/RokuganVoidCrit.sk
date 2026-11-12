@@ -1,0 +1,211 @@
+//	RokuganVoidCrit.sk (user 2026-11-12):
+//	- "number of void spent increase crit chance as well and when a void spent crit happens have the bust of the char pop
+//	  up with text. like Hiruma goes Dancing the razors edge, and gives everyone 20% avoid for 2 turns, for the Hida have
+//	  her go The Mountain DOES NOT FALL!!! and give everyone 75 damage reduction for 2 turns etc."
+//	  The Void command puts rt_vcrit (15 / 30 / 50% more criticals) on the action (RokuganBattle.sk); the first critical
+//	  of such an action calls the striker's school shout: a cut-in (bust + text) and a party-wide gift for 2 turns.
+//	- "make sure all the companions got the new school rank up techniques at the right levels": companion schools'
+//	  effects by Insight Rank (gen_data COMP_SCHOOLS / player field rt_school_key), cumulative, COMP_FX below.
+
+local log( s){ printf( "[RT] %S\n", s); }
+local _chance = @( pct) ::rnd.nextf( 0.0, 100.0) < pct;
+
+//	school -> [shout, party condition or a special]
+::Rokugan.VOID_SHOUT <- {
+	hiruma   = ["Dancing the Razor's Edge!", "K125"],
+	hida     = ["The Mountain DOES NOT FALL!!!", "K126"],
+	kakita   = ["Strike with No Thought!", "K127"],
+	kitsuki  = ["Kitsuki's Eyes see everything!", "K131", "read"],
+	akodo    = ["Akodo's Final Lesson!", "K128"],
+	isawa    = ["The Void answers!", null, "vp"],
+	tamori   = ["The Void answers!", null, "vp"],
+	shosuro  = ["The Shadow Has No Mercy!", "K127"],
+	ide      = ["The Heart Speaks!", null, "heal"],
+	ronin    = ["The Wind Technique!", "K130"],
+	togashi  = ["The Dragon wakes!", "K128"],
+	matsu    = ["The Lion's Victory!", "K128"],
+	shiba    = ["Touch of the Void!", "K129"],
+	seppun   = ["Heaven Never Falls!", "K126"],
+	yoritomo = ["Hand of Osano-Wo!", "K128"],
+	shinjo   = ["Dancing with the Fortunes!", "K130"],
+	doji     = ["Eternal Justice!", "K127"],
+};
+
+//	companion schools: per Insight Rank 2..5 (cumulative) - dmg / taken multipliers, eva / crit points, hit = +1 hit,
+//	haste = Speed up all battle, read = every foe's weaknesses at the start (gen_data COMP_FX_TEXT says the same)
+local FX = function( dmg = 1.0, taken = 1.0, eva = 0.0, crit = 0.0, hit = 0, haste = false, read = false){
+	return { dmg = dmg, taken = taken, eva = eva, crit = crit, hit = hit, haste = haste, read = read };
+};
+::Rokugan.COMP_FX <- {
+	hida     = [FX( 1.0, 0.85), FX( 1.0, 1.0, 0, 0, 1), FX( 1.2), FX( 1.0, 0.8)],
+	hiruma   = [FX( 1.15), FX( 1.0, 1.0, 15), FX( 1.0, 1.0, 0, 0, 1), FX( 1.0, 1.0, 0, 15)],
+	akodo    = [FX( 1.15), FX( 1.0, 1.0, 0, 0, 1), FX( 1.1), FX( 1.0, 1.0, 0, 20)],
+	matsu    = [FX( 1.2), FX( 1.0, 1.0, 0, 0, 1), FX( 1.0, 0.9), FX( 1.2)],
+	shiba    = [FX( 1.0, 1.0, 15), FX( 1.0, 0.9), FX( 1.15), FX( 1.0, 1.0, 0, 0, 1)],
+	doji     = [FX( 1.0, 1.0, 0, 0, 0, false, true), FX( 1.2), FX( 1.0, 1.0, 0, 0, 1), FX( 1.0, 1.0, 0, 20)],
+	seppun   = [FX( 1.0, 1.0, 15), FX( 1.0, 1.0, 0, 0, 0, true), FX( 1.0, 1.0, 0, 20), FX( 1.0, 0.85)],
+	yoritomo = [FX( 1.15), FX( 1.0, 1.0, 0, 0, 1), FX( 1.0, 1.0, 15), FX( 1.0, 1.0, 0, 20)],
+	shinjo   = [FX( 1.0, 1.0, 0, 0, 0, true), FX( 1.0, 1.0, 0, 0, 1), FX( 1.0, 1.0, 15), FX( 1.2)],
+};
+local TRAVELER_IDS = { P100 = 1, P101 = 1, P102 = 1, P103 = 1, P104 = 1, P105 = 1, P106 = 1, P107 = 1 };
+::Rokugan.compFx <- function( pc){
+	if( !(pc instanceof ::RPGPlayer) || (pc.dataid in TRAVELER_IDS)) return null;
+	local t = this.COMP_FX[pc.data["rt_school_key"]];
+	if( !t) return null;
+	local r = 0;
+	foreach( lv in [15, 30, 45, 60]) if( pc.LV >= lv) r++;
+	if( !r) return null;
+	local s = FX();
+	for( local i = 0; i < r; i++){
+		local f = t[i];
+		s.dmg *= f.dmg; s.taken *= f.taken; s.eva += f.eva; s.crit += f.crit; s.hit += f.hit;
+		s.haste = s.haste || f.haste; s.read = s.read || f.read;
+	}
+	return s;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	The cut-in: a dark band across the screen, the bust on the left, the shout beside it; it fades in and out (~1.8 s).
+local CUT = { tex = null };
+local cutSprite = function(){
+	if( !CUT.tex){
+		local img = ::getResource( "/resource/efx/battleui/white.png").getContent();
+		img.premultAlpha();
+		CUT.tex = Texture();
+		CUT.tex.load( img, 0);
+	}
+	local sp = Sprite( CUT.tex);
+	sp.blend = SK_PMAMIX;
+	return sp;
+};
+class RTCutIn extends SKImageView
+{
+	t = 0.0;
+	parts = null;
+	constructor(){
+		super( cutSprite());
+		enabled = false;
+		parts = [];
+		addUpdateFunc( this.tick.bindenv( this));
+	}
+	function tick( dt){
+		t += dt;
+		local a = t < 200.0 ? t / 200.0 : t > 1600.0 ? Math.max( 0.0, 1.0 - (t - 1600.0) / 250.0) : 1.0;
+		setColor( 0x0b0a1200 | int( a * 0xd8));
+		foreach( p in parts){
+			if( p[1] == "img") p[0].setColor( 0xffffff00 | int( a * 255));
+			else p[0].setColor( (p[2] & 0xffffff00) | int( a * 255));
+		}
+		if( t >= 1850.0){
+			foreach( p in parts) p[0].removeFromParent();
+			removeFromParent();
+			return false;
+		}
+		return true;
+	}
+}
+::Rokugan.cutIn <- function( pc, text){
+	if( !::rootview) return;
+	local root = ::rootview.findChild( "stageui");
+	if( !root) return;
+	local W = root.bnd.w, H = root.bnd.h, y = H * 0.30, h = H * 0.26;
+	local band = RTCutIn();
+	band.setRect( 0, y, W, h);
+	root.addChild( band);
+	local key = ("bustKey" in this) ? this.bustKey( pc.name) : null;
+	if( key){
+		local emos = this["bustemos"] ? (this.bustemos[key] || []) : [];
+		local file = "/resource/bust/" .. key .. "/" .. (emos.indexOf( "determined") >= 0 ? "determined" : "neutral") .. ".png";
+		local tex = this.bustTexture( file);
+		if( tex){
+			local sp = Sprite( tex);
+			sp.blend = SK_PMAMIX;
+			local iv = ::SKImageView( sp), bh = h * 1.5, bw = bh * tex.width / tex.height;
+			iv.enabled = false;
+			iv.setRect( W * 0.06, y + h - bh, bw, bh);
+			root.addChild( iv);
+			band.parts.append( [iv, "img", 0xffffffff]);
+		}
+	}
+	local v = SKLabelView( "", FontAttribute( Fonts.get( "ui"), 40, 0xf4e2b0ff, SK_FONT_BOLD));
+	v.enabled = false;
+	v.bnd.set( W * 0.32, y + h * 0.30, W * 0.64, h * 0.5);
+	v.setText( text);
+	root.addChild( v);
+	band.parts.append( [v, "lbl", 0xf4e2b0ff]);
+	local n = SKLabelView( "", FontAttribute( Fonts.get( "ui"), 20, 0xc9a45cff, SK_FONT_BOLD));
+	n.enabled = false;
+	n.bnd.set( W * 0.32, y + h * 0.10, W * 0.64, 26);
+	n.setText( pc.name .. "  -  Void critical");
+	root.addChild( n);
+	band.parts.append( [n, "lbl", 0xc9a45cff]);
+	::playSound( "SE209");
+};
+
+::Rokugan.voidShout <- function( pc){
+	local key = pc.data["rt_school_key"] || "", sh = this.VOID_SHOUT[key] || ["The Void strikes!", "K128"];
+	local b = ::rpgstage["battle"];
+	this.cutIn( pc, sh[0]);
+	log( "VOID CRIT %S: %S" % (pc.name, sh[0]));
+	foreach( m in (b ? b.members : [])){
+		if( !m || m.isDead()) continue;
+		if( sh[1]) m.putCondition( sh[1]);
+		local sp = length( sh) > 2 ? sh[2] : null;
+		if( sp == "vp"){ local st = this.state( m); st.bp = Math.min( st.bp + 1, this.vpMax( m) + 1); }
+		if( sp == "heal") m.HP = Math.min( m.MAXHP, m.HP + m.MAXHP / 4);
+	}
+	if( length( sh) > 2 && sh[2] == "read" && b)
+		foreach( e in b.enemies) if( e && !e.isDead()) this.state( e).known = this.state( e).known | this.weakbits( e);
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	Hooks: hits (Void criticals, companion school damage / evasion / damage taken, the party's damage-taken buffs) and
+//	actions (companion extra hits), battle start (companion haste / read).
+::Rokugan._rt_att_vc <- ::Rokugan.onAttack;
+::Rokugan.onAttack <- function( dmg){
+	local src = dmg.src, dst = dmg.dst, sk = dmg.skill;
+	if( !dmg.skip && !dmg.heal && sk && sk["skilltype"] == "attack"){
+		if( (src instanceof ::RPGPlayer) && (dst instanceof ::RPGEnemy) && !dmg.miss){
+			local f = this.compFx( src), mul = f ? f.dmg : 1.0, crit = (f ? f.crit : 0.0) + (sk["rt_vcrit"] || 0);
+			if( crit > 0 && !dmg.critical && _chance( crit)){ dmg.critical = true; mul *= 1.5; }
+			if( mul != 1.0) dmg.cval.baserate *= mul;
+			if( dmg.critical && sk["rt_vcrit"] && !sk["rt_vfired"]){ sk["rt_vfired"] = true; this.voidShout( src); }
+		}
+		if( (dst instanceof ::RPGPlayer) && (src instanceof ::RPGEnemy)){
+			local f = this.compFx( dst);
+			if( f && !dmg.miss && f.eva > 0 && _chance( f.eva)){ dmg.miss = true; this.pop( dst, "DODGE", 0xb0d8ffff); }
+			if( !dmg.miss){
+				if( f) dmg.cval.baserate *= f.taken;
+				foreach( c in dst.conds) if( c && c.data["rt_dmgtaken"]) dmg.cval.baserate *= c.data.rt_dmgtaken;
+			}
+		}
+	}
+	this._rt_att_vc( dmg);
+};
+::Rokugan._rt_pre_vc <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local pc = cmd.src, sk = cmd.skill;
+	if( sk && (pc instanceof ::RPGPlayer) && sk["skilltype"] == "attack" && sk["flags"] == 255){
+		local f = this.compFx( pc);
+		if( f && f.hit > 0){
+			local nsk = clone sk, na = sk["atknum"] || [1, 1];
+			nsk["atknum"] <- [na[0] + f.hit, na[1] + f.hit];
+			cmd.skill = nsk;
+		}
+	}
+	this._rt_pre_vc( cmd);
+};
+::Rokugan._rt_preturn_vc <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._rt_preturn_vc( chr);
+	if( !(chr instanceof ::RPGPlayer)) return;
+	local st = this.state( chr);
+	if( ("vcstart" in st)) return;
+	st.vcstart <- true;
+	local f = this.compFx( chr), b = ::rpgstage["battle"];
+	if( !f || !b) return;
+	if( f.haste) chr.putCondition( "K059");
+	if( f.read) foreach( e in b.enemies) if( e && !e.isDead()) this.state( e).known = this.state( e).known | this.weakbits( e);
+};
+
+printf( "Rokugan Void crits loaded\n");

@@ -50,14 +50,16 @@ local _chance = @( pct) ::rnd.nextf( 0.0, 100.0) < pct;
 
 //	The traveler's own job, the jobs of the other travelers in the party with them (user: "once they are all together
 //	they can each level up the different jobs ... mix and match"), and the traits learned join their job list.
-local TRAVELERS = { P100 = 1, P101 = 1, P102 = 1, P103 = 1, P104 = 1, P105 = 1, P106 = 1, P107 = 1 };
+local TRAVELERS = { P100 = 1, P101 = 1, P102 = 1, P103 = 1, P104 = 1, P105 = 1, P106 = 1, P107 = 1, P122 = 1, P132 = 1 };
 ::Rokugan.ensureJobs <- function( pc){
 	if( !pc || !pc["ownjobs"]) return [];
 	local pid = pc.dataid, added = [], owners = {};
 	owners[pid] <- true;
 	if( pid in TRAVELERS) foreach( m in ::rpgstat.members) if( m && (m.dataid in TRAVELERS)) owners[m.dataid] <- true;
 	foreach( jid, jd in ::conf.job){
-		if( jid[0] == 'J' && jd && jd["rt_owner"] && (jd.rt_owner in owners) && !pc.ownjobs.find( @( v) v && v.dataid == jid)){
+		local ow = jd ? jd["rt_owner"] : null, mine = false;
+		if( ow) foreach( o in ow) if( o in owners) mine = true;			//	(rt_owner: a list of player ids)
+		if( jid[0] == 'J' && mine && !pc.ownjobs.find( @( v) v && v.dataid == jid)){
 			pc.ownjobs .. ::RPGObject.create( jid);
 			log( "job %S gets %S" % (pc.name, jid));
 		}
@@ -85,6 +87,14 @@ local _sel = ::RPGPlayer.getSelectableJobs;
 local _ajx = ::RPGPlayer.addJobExp;
 ::RPGPlayer.addJobExp <- function( val){
 	local r = _ajx( val);
+	//	(user 2026-11-12: jobs "actually stop at 10") the engine never caps JOBLV: clamp level and job EXP to MAXLV
+	foreach( j in (this["ownjobs"] || [])){
+		if( !j || !j["data"]) continue;
+		local mx = int( j.data["MAXLV"] || 10);
+		if( j.JOBLV > mx) j.JOBLV = mx;
+		local cap = ::RPGSystem.getExpByLV( mx, j.data.expcurv);
+		if( j.jxp > cap) j.jxp = cap;
+	}
 	::Rokugan.ensureJobs( this);
 	return r;
 };

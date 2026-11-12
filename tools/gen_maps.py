@@ -305,7 +305,9 @@ class Events:
                "pararun": False, "reqs": r, "standani": None, "cmdblock": c} for r, c in pages]
         e = {"role": "custom", "mdlid": mdl, "pos": self.pos(x, z, d), "page": pg, "reqs0": reqs}
         if mdl == "CE000":
-            e["mdl"] = {"r": [0, 1.0, 0, 1.0, 1.0, 1.0]}
+            # (user 2026-11-12: walk-on spots that needed one exact tile) a walk-on box is 3 m tall, so uneven ground
+            # still puts the whole body inside it
+            e["mdl"] = {"r": [0, 1.0, 0, 1.0, 3.0 if trigger == 5 else 1.0, 1.0]}
         return self._add(e)
 
     def clerk(self, x, z, mdl, storeid, d=2):
@@ -1645,7 +1647,7 @@ def kh_dojo():
                                        "you something the Hida don't teach to scouts.")]),
             ([flag("G216")], [say("Hiruma Goro", "The court let you go? Good. Stand there. Feet wide. You're a "
                                                   "mountain - things hit you and slide off. Again. Again."),
-                              script('::Rokugan.learn( "P100", "S740");'), setf("G1224"),
+                              setf("G1224"),                     # (STORY_SKILLS: G1224 -> S740; learn() hung saves)
                               narrate("Natsuko learns the Crab kata Striking as Earth. (Battle: School. Strike, and "
                                       "settle like the mountain for 3 turns: +evasion, -accuracy.)"),
                               say("Hiruma Goro", "Now go home. Back to the Wall - the gate garrison. Kage will want "
@@ -1905,7 +1907,7 @@ GORO_SS2 = [
             say("Hiruma Goro", "(quietly, to Natsuko) There. Just now. Did you feel it? Somebody old, and proud."),
             say("Hiruma Natsuko", "I felt the Wall stop shaking. Same thing, on the Wall."),
             say("Hiruma Goro", "Courage isn't having the best sword. It's using the one you've got."),
-            script('::Rokugan.learn( "P123", "S172");'), setf("G292"),
+            setf("G292"),                                                   # (STORY_SKILLS: G292 -> S172)
             narrate("Hiruma Goro's Troll-Breaker is now swung with the bent katana: 3 uses, and it ignores armour.")],
             [say("Hiruma Goro", "(hauling Natsuko up) It's still up there. So are we. Again, Hiruma?")])]),
             ("Not now.", [say("Hiruma Goro", "Go on, then. I'll stay down here. I'm good at that.")]))]
@@ -2312,6 +2314,34 @@ def _inverse(reqs):
     if reqs and len(reqs) == 1 and reqs[0].get("op") == "==" and isinstance(reqs[0].get("rvar"), bool):
         return [dict(reqs[0], rvar=not reqs[0]["rvar"])]
     return None
+
+
+FLOATERS = {"EP359"}                   # props that hang in the air on purpose (the ink stars)
+
+
+def settle_floaters(m, ev):
+    """(user 2026-11-12: "this guy im supposed to talk to but hes in the air. saw a chest in the air in the nezumi
+    caves") An event placed while its cell was still rock keeps that height after the cave is carved / the map is
+    reshaped. Anything standing 2+ blocks above the ground with nothing built under it comes down to the ground.
+    tools/float_check.py lists them."""
+    def held(x, y, z):                                                    # a fill (bridge, platform, roof) under it
+        for o in m.objs:
+            if o.get("t") == "fill" and o["x"] <= x < o["x"] + o["w"] and o["z"] <= z < o["z"] + o["d"] \
+                    and y - 2 <= o["y"] + o["h"] <= y:
+                return True
+        return False
+    for e in ev.ev.values():
+        role, pos = e.get("role"), e.get("pos")
+        if not pos or role not in ("villager", "custom", "itemchest", "clerk", "hotel"):
+            continue
+        if role == "custom" and (e.get("mdlid") in (None, "CE000") or e.get("mdlid") in FLOATERS):
+            continue
+        x, y, z = int(pos[0]), int(pos[1]), int(pos[2])
+        if not (0 <= x < m.w and 0 <= z < m.d):
+            continue
+        ground = int(m.hgt[z, x]) + 1
+        if y >= ground + 2 and not held(x, y, z):
+            pos[1] = ground
 
 
 ARROW_TILE = TORII                     # vermilion lacquer: reads on plank, tatami and stone
@@ -3459,13 +3489,18 @@ S02_JOIN = [say("Hida Sachiko", "Cellars, she says. Fine. Nobody eats the Champi
 
 def trap_tile(ev, x, z):
     """A tampered trap: it hurts, unless the old guard (guard_rescued) marked it."""
-    ev.talk(x, z, "CE000", [
+    # (user 2026-11-12: "its really easy to get stuck on those patches") each trap goes off once, then is spent (event
+    # var A): no message every time a foot touches it
+    spent = {"cmd": "cmd_compute", "lvar": "A", "op": "=", "rvar": True}
+    k = ev.talk(x, z, "CE000", [
         (None, [narrate("A trap stone gives under her foot - the roller was jammed the wrong way. It slams into the "
                         "party."),
                 {"charaid": "P000", "cmd": "cmd_hpmp", "cmdtgt": 11, "hp1": True, "op": 3, "pid": "HP", "val": -8},
-                step_back(0, -1.5)]),
-        ([flag("G248")], [narrate("The old guard's chalk cross. Natsuko steps around the tampered stone.")])],
+                spent]),
+        ([flag("G248")], [narrate("The old guard's chalk cross. Natsuko steps around the tampered stone."), spent]),
+        ([{"lvar": "A", "op": "==", "rvar": True}], [])],
         trigger=5)
+    ev.ev["#%d#" % k]["page"][-1]["trigger"] = 0                         # spent: nothing happens
 
 
 def siege_yard():
@@ -3487,13 +3522,23 @@ def siege_yard():
     ev.npc(46, 10, EP["veteran"], "Sector six. The east stair. Wrong, all wrong. I told them.", reqs=[flag("G248")])
     ev.npc(30, 24, EP["takakana"], "Cellars, Hiruma! Go!")
     cave_fight(ev, 62, 16, "G273", 22, [narrate("Goblins over the wall on wolves, knives in their teeth.")],
-               [(65, 14, "EP436"), (66, 18, "EP110"), (67, 15, "EP436"), (68, 19, "EP110")])
+               [(65, 14, "EP436"), (66, 18, "EP110"), (67, 15, "EP436"), (68, 19, "EP110")],
+               # (user 2026-11-12: stuck here - nothing said where to go after the breach)
+               after=[narrate("Objective: the cellar stair, at the far east end of the yard."), setf("G1229")])
+    ev.scene(40, 6, "G1229", [narrate("Objective: the cellar stair, at the far east end of the yard.")],
+             after=[flag("G273"), flag("G274", False)])                     # (saves made after the breach)
     ev.chest(84, 12, "I131", 3)                                             # a burst supply crate
     ev.chest(86, 12, "I130", 2)
     ev.chest(76, 21, "W125", 1)                                             # the armoury: a Hida Tetsubo
-    ev.talk(92, 16, "CE000", [
+    # (user 2026-11-12: "what cellar-stair? i went all over that map" - it was an invisible spot) a dark wooden cellar
+    # hatch in the yard, a chevron pointing at it from the west, and a bigger step-on box
+    m.rect(90, 14, 5, 5, DARKWOOD)
+    for k, j in ((3, 0), (4, -1), (4, 1), (5, -2), (5, 2), (5, 0), (6, -1), (6, 1), (7, -2), (7, 2)):
+        m.blk[16 + j, 90 - k] = TORII
+    k = ev.talk(92, 16, "CE000", [
         (None, [narrate("The cellar stair. Goblins in the yard between her and it.")]),
         ([flag("G273")], [narrate("Down the cellar stair, the court behind her."), go("M153", 8, 14)])], trigger=5)
+    ev.ev["#%d#" % k]["mdl"] = {"r": [0, 1.0, 0, 2.0, 3.0, 2.0]}
     return m, ev
 
 
@@ -3899,7 +3944,7 @@ def kakita_academy():
                                               "in fresh ink."),
                                       narrate("An old sensei is sweeping the floor. \"Last in the row. Then you have "
                                               "the most to learn. Stand. Draw. Slower.\""),
-                                      script('::Rokugan.learn( "P101", "S746");'), setf("G1225"),
+                                      setf("G1225"),             # (STORY_SKILLS: G1225 -> S746)
                                       narrate("Rensei learns the Kakita kata Kakita's First Stance. (Battle: School. "
                                               "Strike, and hold the duelist's stance: +critical hits all battle.)")]),
                               ([flag("G1225")], [narrate("The dojo. Rensei's name is on the graduates' board: last in "
@@ -18644,7 +18689,15 @@ OBJ_VAR, CH_LV_VAR = "G1227", "G1228"
 
 def objective_pass(mp):
     import re as _re
-    objs, idx = [], {}
+    # (2026-11-12: saves store the objective's NUMBER; inserting the chapter cards renumbered the list and an old save
+    # showed a Chapter 2 line in Chapter 4) a kept registry: known lines keep their numbers, new ones go at the end
+    reg_path = os.path.join(HERE, "_objectives.json")
+    objs = json.load(open(reg_path, encoding="utf-8")) if os.path.exists(reg_path) else []
+    if not objs and os.path.exists(os.path.join(PROJ, "plugin", "rokugan", "RokuganObjectives.sk")):
+        old = open(os.path.join(PROJ, "plugin", "rokugan", "RokuganObjectives.sk"), encoding="utf-8").read()
+        objs = [json.loads(s) for s in _re.findall(r'^\t(".*"),$', old, _re.M)]
+        objs = [t for t in objs if not t.startswith("Chapter ")]      # (the order before the chapter cards)
+    idx = {t: i for i, t in enumerate(objs)}
 
     def found(c):
         t = c.get("text") or ""
@@ -18657,6 +18710,11 @@ def objective_pass(mp):
             return (s[:1].upper() + s[1:]) or None, lv
         if t.startswith("Next:"):
             return _re.sub(r"\s*\(Recommended level \d+\)", "", t[len("Next:"):]).strip(), lv
+        # (user 2026-11-12: the Story box kept "back to the Wall / learn the kata" after the next chapter began) a
+        # chapter card replaces the old objective with the chapter itself
+        ch = _re.match(r"CHAPTER (\d+) - ([^(]+?)\.?\s*(\(|$)", t)
+        if ch:
+            return "Chapter %s: %s." % (ch.group(1), ch.group(2).strip().rstrip(".")), lv
         return None, lv
 
     def walk(x):
@@ -18693,6 +18751,7 @@ def objective_pass(mp):
     for mid in sorted(mp):
         if isinstance(mp[mid], dict):
             walk(mp[mid].get("event"))
+    json.dump(objs, open(reg_path, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     out = os.path.join(PROJ, "plugin", "rokugan", "RokuganObjectives.sk")
     with open(out, "w", encoding="utf-8") as f:
         f.write("//\tGenerated by tools/gen_maps.py objective_pass (the field HUD's Story lines, by number = rpgvar %s).\n"
@@ -18848,6 +18907,8 @@ def make(i):
             edge_triggers(m, ev)
     if ev is not None and (i in INTERIORS or i in ROOM_OFS):
         floor_arrows(m, ev)
+    if ev is not None:
+        settle_floaters(m, ev)
     if ev is not None:
         portals_off_side_walls(m, ev)
         arrivals_face_open_ground(m, ev)

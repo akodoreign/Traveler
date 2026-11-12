@@ -80,6 +80,22 @@ local _rs = function( chr){
 		return;
 	}
 	if( sk && (pc instanceof ::RPGPlayer) && sk["rt_kata"]) sk = cmd.skill = this.useKata( pc, sk);
+	//	Stand Against the Waves (K136): one more attack per Insight Rank of the best shugenja in the fight, this action
+	if( sk && (pc instanceof ::RPGPlayer) && pc.hasCondition( "K136") && sk["skilltype"] == "attack" && sk["flags"] == 255){
+		local b = ::rpgstage["battle"], ir = 2;
+		foreach( m in (b ? b.members : [])){
+			if( m && m.data["rt_class"] == "shugenja"){
+				local r = 1;
+				foreach( lv in [15, 30, 45, 60]) if( m.LV >= lv) r++;
+				ir = Math.max( ir, r);
+			}
+		}
+		local nsk = clone sk, na = sk["atknum"] || [1, 1];
+		nsk["atknum"] <- [na[0] + ir, na[1] + ir];
+		sk = cmd.skill = nsk;
+		pc.removeCondition( "K136");
+		this.pop( pc, "STAND AGAINST THE WAVES +%d" % ir, 0x9fd8ffff);
+	}
 	if( sk && (pc instanceof ::RPGPlayer)){
 		local g = this.given( pc.name), r = this.insight( pc), nsk = null;
 		//	+1 hit: Harness the Wind / Strength of My Ancestors / No Substance (plain attacks), One Strike Two Cuts (Strike)
@@ -124,17 +140,60 @@ local _rs = function( chr){
 ///////////////////////////////////////////////////////////////////////////////
 //	Kata, kiho, tattoos (tools/kata_data.py): the user's own weapon attack (x rt_kmul) that puts its stance (rt_kata, a
 //	condition with rt_kata set) on the user. One stance at a time: the new one replaces the old.
+//	Weapon requirements (kata_data REQ, skill field rt_kreq): names from ELEM_NAMES; "Unarmed" = no weapon, bare fists or
+//	claws. The School list greys a kata out while the wrong weapon is held (isSkillUseable).
+local WEAPON_BIT = { Katana = 0, Yari = 1, Tanto = 2, Tetsubo = 3, Yumi = 4, Bo = 5, Unarmed = 12 };
+::Rokugan.kataWeaponOk <- function( pc, sk){
+	local req = sk ? sk["rt_kreq"] : null;
+	if( !req || !length( req)) return true;
+	local w = pc.getWeapon(), wd = w ? w["data"] : null;
+	local bits = wd ? (pc.getAttackSkill()["elembits"] || 0) : (1 << 12);
+	local claws = wd && wd["name"] && wd.name.toLowerCase().indexOf( "claw") >= 0;
+	foreach( r in req){
+		if( r == "Unarmed" && (!wd || claws || (bits & (1 << 12)))) return true;
+		if( r != "Unarmed" && wd && (r in WEAPON_BIT) && (bits & (1 << WEAPON_BIT[r]))) return true;
+	}
+	return false;
+};
+::RPGPlayer._rt_useable_kata <- ::RPGPlayer.isSkillUseable;
+::RPGPlayer.isSkillUseable <- function( id){
+	local sk = ::conf.skill[id];
+	if( sk && sk["rt_passive"]) return false;									//	a rank technique: listed, always on
+	if( sk && sk["rt_kreq"] && !::Rokugan.kataWeaponOk( this, sk)) return false;
+	return this._rt_useable_kata( id);
+};
+
 ::Rokugan.useKata <- function( pc, sk){
+	if( !this.kataWeaponOk( pc, sk)){											//	(picked anyway: the auto battler)
+		this.pop( pc, "NEEDS THE RIGHT WEAPON", 0xc0c0c0ff);
+		return ::conf.skill["S000"];
+	}
 	local cid = sk["rt_kata"];
 	foreach( c in clone pc.conds){
 		if( c && c.data["rt_kata"] && c.dataid != cid) pc.removeCondition( c.dataid);
 	}
 	pc.removeCondition( cid);										//	re-using a kata restarts its turns
 	pc.putCondition( cid);
+	local st = this.state( pc), nm = sk.name;
+	if( sk["rt_knostrike"]){													//	a shugenja's kiho: a stance, no strike
+		local q = clone ::conf.skill["S000"];
+		q["name"] <- nm;
+		q["consume"] <- sk["consume"];
+		if( nm == "Self No Self"){ st.bp = Math.min( st.bp + 2, this.vpMax( pc) + 1); this.pop( pc, "+2 VP", 0xc0a0ffff); }
+		log( "%S takes the kiho %S: stance %S" % (pc.name, nm, cid));
+		return q;
+	}
 	local base = pc.getAttackSkill(), nsk = clone base, m = sk["rt_kmul"] || 1.0, r = base["dmgrate"] || [1.0, 1.0];
 	nsk["name"] <- sk.name;
 	nsk["dmgrate"] <- [r[0] * m, r[1] * m];
-	local st = this.state( pc), nm = sk.name;
+	nsk["consume"] <- sk["consume"];		//	(user 2026-11-12: kata / kiho didn't take their TP - the clone was free)
+	if( nm == "Deeper Reflection"){ st.bp = Math.min( st.bp + 2, this.vpMax( pc) + 1); this.pop( pc, "+2 VP", 0xc0a0ffff); }
+	if( nm == "Heaven's Wing" && st.bp > 0){									//	every VP held -> one more cut each
+		local na = nsk["atknum"] || [1, 1];
+		nsk["atknum"] <- [na[0] + st.bp, na[1] + st.bp];
+		this.pop( pc, "HEAVEN'S WING x%d" % (st.bp + 1), 0xffd040ff);
+		st.bp = 0;
+	}
 	if( nm == "Self No Self"){ st.bp = Math.min( st.bp + 2, this.vpMax( pc) + 1); this.pop( pc, "+2 VP", 0xc0a0ffff); }
 	if( nm == "Void Fist"){ st.bp = Math.min( st.bp + 1, this.vpMax( pc) + 1); this.pop( pc, "+1 VP", 0xc0a0ffff); }
 	if( nm == "Freezing the Lifeblood")
