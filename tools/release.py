@@ -29,7 +29,8 @@ def crc(path):
     with open(path, "rb") as f:
         for b in iter(lambda: f.read(1 << 20), b""):
             c = zlib.crc32(b, c)
-    return c & 0xffffffff
+    c &= 0xffffffff
+    return c - (1 << 32) if c >= 1 << 31 else c      # signed, as the engine's ByteBuffer.crc32 returns it
 
 
 def main():

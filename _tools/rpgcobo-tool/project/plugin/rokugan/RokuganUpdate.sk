@@ -15,23 +15,47 @@ local log( s){ printf( "[RT] update: %S\n", s); }
 
 ::Rokugan.upd <- { views = [], lbl = null, tex = null };
 
-::Rokugan.updRoot <- function(){
-	return skGetCurrentDir() .. "/../../";			//	the game runs in <repo>/_tools/rpgcobo-tool
+//	The engine's file security (project/sakana.proj, permission_lv2) lets the game write only inside its own folder,
+//	<repo>/_tools/rpgcobo-tool ($cdir), and never .exe/.dll/.bat/.ps1/sakana.proj. So the updater keeps exactly that part
+//	of the repo - everything the game loads - and the installed version's record there too (rt_version.json,
+//	rt_manifest.json). Docs and the developer tools come with a git pull / a fresh download.
+local GAME = "_tools/rpgcobo-tool/";
+
+//	The local file for a repo path, or null when the updater doesn't manage it.
+::Rokugan.updPath <- function( p){
+	if( p.indexOf( GAME) != 0) return null;
+	local l = p.toLowerCase();
+	foreach( x in [".exe", ".dll", ".bat", ".ps1", ".psm1", ".local", "sakana.proj"]){
+		if( l.lastIndexOf( x) >= 0 && l.lastIndexOf( x) == length( l) - length( x)) return null;
+	}
+	return skGetCurrentDir() .. "/" .. p.substring( length( GAME));
 };
 
 ::Rokugan.updUrl <- function( path){
 	return REPO .. path.replace( " ", "%20");
 };
 
+::Rokugan.updReadJSON <- function( full){
+	try{
+		local f = FileRef( full);
+		if( !f.exists()) return null;
+		return decodeJSON( f.load().asText());
+	}catch( ex){ return null; }
+};
+
+//	The installed version's file: the game folder's own record (written by the last in-game update) or the repo
+//	root's (a git clone / a downloaded zip), whichever is newer.
 ::Rokugan.updLocalJSON <- function( name){
-	local f = FileRef( this.updRoot() .. name);
-	if( !f.exists()) return null;
-	try{ return decodeJSON( f.load().asText()); }catch( ex){ return null; }
+	local a = this.updReadJSON( skGetCurrentDir() .. "/rt_" .. (name == "version.json" ? "version.json" : "manifest.json"));
+	local b = this.updReadJSON( skGetCurrentDir() .. "/../../" .. name);
+	if( !a) return b;
+	if( !b) return a;
+	return (a["version"] || 0) >= (b["version"] || 0) ? a : b;
 };
 
 ::Rokugan.updCrcOk <- function( bb, want){
-	local c = bb.crc32( 0);
-	return c == want || (c & 0xffffffff) == (want & 0xffffffff);
+	local c = bb.crc32( 0);									//	(signed 32-bit; tools/release.py writes it so)
+	return c == want || (want > 2147483647 && c == want - 4294967296);
 };
 
 //	A one-line progress panel on top of everything (the title UI is darkened behind it).
@@ -87,8 +111,7 @@ local log( s){ printf( "[RT] update: %S\n", s); }
 	throw last;
 };
 
-::Rokugan.updWrite <- function( path, bb){
-	local full = this.updRoot() .. path;
+::Rokugan.updWrite <- function( full, bb){
 	FileRef( dirname( full)).mkdirs();
 	local f = FileRef( full);
 	local s = f.open( "wb");
@@ -101,11 +124,13 @@ local log( s){ printf( "[RT] update: %S\n", s); }
 //	The files to fetch. fast: manifest entries changed since the installed manifest, plus missing / wrong-sized files.
 //	Otherwise every file's CRC32 is checked.
 ::Rokugan.updScan <- function( remote, local_, fast){
-	local need = [], n = 0, tot = length( remote.files), root = this.updRoot();
+	local need = [], n = 0, tot = length( remote.files);
 	local lf = (local_ && local_["files"]) || {};
 	foreach( p, e in remote.files){
 		n++;
-		local f = FileRef( root .. p);
+		local full = this.updPath( p);
+		if( !full) continue;
+		local f = FileRef( full);
 		if( !f.exists() || f.size != e[1]){ need .. p; continue; }
 		if( fast){
 			local o = (p in lf) ? lf[p] : null;
@@ -119,19 +144,17 @@ local log( s){ printf( "[RT] update: %S\n", s); }
 	return need;
 };
 
-::Rokugan.updRun <- function( runner, fast){
-	local remote;
-	this.updShow( "Downloading the file list from GitHub...");
-	remote = decodeJSON( this.updGet( "rt_manifest.json").asText());
-	local need = this.updScan( remote, this.updLocalJSON( "rt_manifest.json"), fast);
-	log( "%S: %d files to fetch" % (fast ? "update" : "verify", length( need)));
+//	Downloads the listed files (each checked against the manifest before it replaces the old one); when all of them
+//	landed, records the installed version in the game folder. Returns { ok = count, bad = [paths] }.
+::Rokugan.updApply <- function( remote, need){
 	local ok = 0, bad = [];
 	foreach( i, p in need){
 		this.updShow( "Downloading %d / %d: %S" % (i + 1, length( need), p.substring( p.lastIndexOf( "/") + 1)));
 		try{
 			local bb = this.updGet( p), e = remote.files[p];
-			if( bb.size != e[1] || !this.updCrcOk( bb, e[0])) throw "the download doesn't match the manifest";
-			this.updWrite( p, bb);
+			if( bb.size != e[1] || !this.updCrcOk( bb, e[0])) throw sprintf( "the download doesn't match the manifest"
+				.. " (size %d/%S, crc %d/%S %S)", bb.size, "" .. e[1], bb.crc32( 0), "" .. e[0], typeof( e[0]));
+			this.updWrite( this.updPath( p), bb);
 			ok++;
 		}catch( ex){
 			log( "%S: %S" % (p, string( ex)));
@@ -139,9 +162,18 @@ local log( s){ printf( "[RT] update: %S\n", s); }
 		}
 	}
 	if( !length( bad)){
-		this.updWrite( "rt_manifest.json", this.updGet( "rt_manifest.json"));	//	(the exact bytes, for the next fast update)
-		this.updWrite( "version.json", this.updGet( "version.json"));
+		this.updWrite( skGetCurrentDir() .. "/rt_manifest.json", this.updGet( "rt_manifest.json"));	//	(for the next fast update)
+		this.updWrite( skGetCurrentDir() .. "/rt_version.json", this.updGet( "version.json"));
 	}
+	return { ok = ok, bad = bad };
+};
+
+::Rokugan.updRun <- function( runner, fast){
+	this.updShow( "Downloading the file list from GitHub...");
+	local remote = decodeJSON( this.updGet( "rt_manifest.json").asText());
+	local need = this.updScan( remote, this.updLocalJSON( "rt_manifest.json"), fast);
+	log( "%S: %d files to fetch" % (fast ? "update" : "verify", length( need)));
+	local res = this.updApply( remote, need), ok = res.ok, bad = res.bad;
 	this.updHide();
 	local v = remote["version"];
 	if( length( bad)){
@@ -153,7 +185,7 @@ local log( s){ printf( "[RT] update: %S\n", s); }
 	if( !ok){
 		runner.showMessage( { key = "message_talk", name = "", uiclose = 2, text = fast
 			? sprintf( "Already up to date (version %d).", v)
-			: sprintf( "All %d files match GitHub (version %d).", length( remote.files), v) });
+			: sprintf( "Every game file matches GitHub (version %d).", v) });
 		return;
 	}
 	runner.showMessage( { key = "message_talk", name = "", uiclose = 2, text = sprintf(
@@ -197,15 +229,22 @@ local log( s){ printf( "[RT] update: %S\n", s); }
 	}
 };
 
-//	-rtupdtest fast|verify : runs the updater from the launch hook against GitHub (no title menu, no messages).
-::Rokugan.updTest <- function( fast){
+//	-rtupdtest fast|verify|fix : runs the updater from the launch hook against GitHub (no title menu, no messages).
+//	fast / verify only list what they would fetch; fix verifies and downloads.
+::Rokugan.updTest <- function( mode){
 	try{
+		local t0 = skGetTime();
 		local remote = decodeJSON( this.updGet( "rt_manifest.json").asText());
 		local vbb = this.updGet( "version.json");
-		log( "remote version %S, %d files; version.json crc %d size %d"
-			% (remote["version"], length( remote.files), vbb.crc32( 0), vbb.size));
-		local need = this.updScan( remote, this.updLocalJSON( "rt_manifest.json"), fast);
-		log( "TEST %S: %d to fetch %S" % (fast ? "fast" : "verify", length( need), encodeJSON( need.slice( 0, Math.min( 10, length( need))))));
+		log( "remote version %S, %d files; version.json crc %d size %d; local version %S"
+			% (remote["version"], length( remote.files), vbb.crc32( 0), vbb.size, encodeJSON( this.updLocalJSON( "version.json"))));
+		local need = this.updScan( remote, this.updLocalJSON( "rt_manifest.json"), mode == "fast");
+		log( "scan %S: %d to fetch in %d ms %S" % (mode, length( need), skGetTime( t0), encodeJSON( need.slice( 0, Math.min( 10, length( need))))));
+		if( mode == "fix"){
+			local res = this.updApply( remote, need);
+			log( "fixed %d, failed %S" % (res.ok, encodeJSON( res.bad)));
+		}
+		log( "TEST done in %d ms" % skGetTime( t0));
 	}catch( ex){
 		printexception( ex);
 		log( "TEST failed: " .. string( ex));
