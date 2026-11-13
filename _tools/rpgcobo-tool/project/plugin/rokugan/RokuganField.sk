@@ -448,6 +448,7 @@ foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]
 //	-rtfast also skips the battle result's level-up panels and the final click wait.
 ::RPGMain._rt_showUI <- ::RPGMain.showUI;
 ::RPGMain.showUI <- function( t){
+	if( t.key == "menu_main") ::Rokugan.compactParty();					//	(the menu focuses members[0])
 	if( ::Rokugan.rtfast && (t.key == "misc_levelup" || t.key == "misc_waitclick")){
 		printf( "[RT] skip %S\n", t.key);
 		return null;
@@ -879,7 +880,18 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	local was = p ? ::rpgstat.members.indexOf( p) >= 0 : true;
 	local r = this._rt_memberop( cmd);
 	if( p && !was && ::rpgstat.members.indexOf( p) >= 0){ p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP; }
+	::Rokugan.compactParty();
 	return r;
+};
+//	(user 2026-11-13: on a Crane / Scorpion new game, Menu -> Equipment froze the menu - only Alt-F4 got out) the path
+//	start took Natsuko out of slot 0 and put the traveler in a later slot; the main menu focuses members[0].dataid and
+//	died on the empty slot. The party is kept packed from slot 0 (after every join / leave, and whenever a map loads).
+::Rokugan.compactParty <- function(){
+	local m = ::rpgstat ? ::rpgstat["members"] : null;
+	if( !m || !length( m) || m[0]) return;
+	local a = m.filter( @( v) v);
+	for( local i = 0; i < length( m); i++) m[i] = i < length( a) ? a[i] : null;
+	printf( "[RT] party packed: %S\n", encodeJSON( m.map( @( v) v ? v.dataid : null)));
 };
 ::Rokugan.STORY_SKILLS <- { P104 = [["G638", "S368"], ["G656", "S316"]],
 	P102 = [["G740", "S482"], ["G757", "S483"], ["G742", "S481"]],
@@ -977,10 +989,69 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 };
 ::RPGStage._rt_launch_hist <- ::RPGStage.launch;
 ::RPGStage.launch <- function( opt = null){
+	try{ ::Rokugan.compactParty(); }catch( ex){ printexception( ex); }
 	local di = ::arguments.indexOf( "-rtdumpsave");
 	if( di >= 0 && !::Rokugan["dumped"]){ ::Rokugan.dumped <- true; ::Rokugan.dumpSaveSlot( int( ::arguments[di + 1])); }
 	//	-rtloadsave N: load that slot as the title's Continue would, then screenshot (tmp/rt_shot/usersave_N_K.raw) a few
 	//	times and say "[RT] LOADSHOT done" (tools/dumpsave.py --shot)
+	//	-rtmenutest KEY: opens that menu UI (menu_equip, menu_job, menu_skill, menu_main) for the leader and answers its
+	//	first selection with "back", logging each step - a menu that won't close shows up as no "MENUTEST closed" line
+	local mi = ::arguments.indexOf( "-rtmenutest");
+	if( mi >= 0 && !::Rokugan["menutested"]){
+		::Rokugan.menutested <- true;
+		local key = ::arguments[mi + 1];
+		local _loop = ::RPGMain.uiLoop, n = { k = 0 };
+		::RPGMain.uiLoop <- function( funcmap){
+			n.k++;
+			printf( "[RT] MENUTEST uiLoop %d keys %S\n", n.k, encodeJSON( Table.keys( funcmap)));
+			//	-rtmenupath: from the main menu, pick Equipment (1), the leader (2), then back out normally
+			if( ::arguments.indexOf( "-rtmenupath") >= 0 && n.k <= 1 && ("action" in funcmap)){
+				local r = null;
+				try{
+					if( n.k == 1){
+						local ui = null;
+						foreach( u in ::RPGSystem.ui) if( u && u["key"] == "menu_equip") ui = u;
+						r = funcmap.action( { item = { _name = "menu_equip", key = "menu_equip", ui = ui, disable = false } });
+					}else{
+						local p = ::rpgstat.members[0];
+						r = funcmap.action( { item = { _name = p.dataid } });
+					}
+				}catch( ex){ printf( "[RT] MENUTEST step %d threw %S\n", n.k, "" .. ex); printexception( ex); }
+				printf( "[RT] MENUTEST step %d -> %S\n", n.k, "" .. r);
+				return r;
+			}
+			//	the first answer picks equip slot 0 (as a player selecting something), every later one backs out
+			if( n.k == 1 && ::arguments.indexOf( "-rtmenupick") >= 0 && ("action" in funcmap)){
+				local it = { _name = "slot0", slotidx = 0 }, r = null;
+				try{
+					if( "select" in funcmap) funcmap.select( { item = it, name = "slot0" });
+					r = funcmap.action( { item = it, name = "slot0", src = { name = "slot0" } });
+				}catch( ex){ printf( "[RT] MENUTEST pick threw %S\n", "" .. ex); printexception( ex); }
+				printf( "[RT] MENUTEST pick -> %S\n", "" .. r);
+				return r;
+			}
+			if( n.k <= 6 && ("back" in funcmap)){
+				local r = null;
+				try{ r = funcmap.back( {}); }catch( ex){ printf( "[RT] MENUTEST back threw %S\n", "" .. ex); printexception( ex); }
+				printf( "[RT] MENUTEST back -> %S\n", "" .. r);
+				return r;
+			}
+			return _loop( funcmap);
+		};
+		newthread().start( @(){
+			sleep( 2000);
+			if( ::arguments.indexOf( "-rtnullslot0") >= 0){					//	a new game's party: leader not in slot 0
+				::rpgstat.members[1] = ::rpgstat.members[0];
+				::rpgstat.members[0] = null;
+				printf( "[RT] MENUTEST slot 0 emptied\n");
+			}
+			local p = ::rpgstat.members.find( @( v) v);
+			printf( "[RT] MENUTEST open %S for %S\n", key, p ? p.dataid : "-");
+			try{ ::RPGMain.showUI( { key = key, playerid = p ? p.dataid : null }); }
+			catch( ex){ printf( "[RT] MENUTEST showUI threw %S\n", "" .. ex); printexception( ex); }
+			printf( "[RT] MENUTEST closed %S\n", key);
+		});
+	}
 	local li = ::arguments.indexOf( "-rtloadsave");
 	if( li >= 0 && !::Rokugan["loadedsave"]){
 		::Rokugan.loadedsave <- true;
