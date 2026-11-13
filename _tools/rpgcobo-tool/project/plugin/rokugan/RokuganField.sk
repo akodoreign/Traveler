@@ -996,6 +996,9 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	//	times and say "[RT] LOADSHOT done" (tools/dumpsave.py --shot)
 	//	-rtmenutest KEY: opens that menu UI (menu_equip, menu_job, menu_skill, menu_main) for the leader and answers its
 	//	first selection with "back", logging each step - a menu that won't close shows up as no "MENUTEST closed" line
+	//	-rtupdtest fast|verify: the title Update / Verify scan against GitHub, logged only (RokuganUpdate.sk)
+	local ui = ::arguments.indexOf( "-rtupdtest");
+	if( ui >= 0 && !::Rokugan["updtested"]){ ::Rokugan.updtested <- true; ::Rokugan.updTest( ::arguments[ui + 1] == "fast"); }
 	local mi = ::arguments.indexOf( "-rtmenutest");
 	if( mi >= 0 && !::Rokugan["menutested"]){
 		::Rokugan.menutested <- true;

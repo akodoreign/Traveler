@@ -136,6 +136,14 @@
 								"cmd": "cmd_arrayop",
 								"idx": 0,
 								"op": "add",
+								"rvar": "\t({_name=\"m5\",lbl=\"Update / Verify\"})",
+								"tvar": "X"
+							},
+							{
+								"avar": "W",
+								"cmd": "cmd_arrayop",
+								"idx": 0,
+								"op": "add",
 								"rvar": "\t({_name=\"m4\",lbl=\"$T.exitgame\"})",
 								"tvar": "X"
 							},
@@ -421,6 +429,52 @@
 																"op": "==",
 																"rvar": "'m4"
 															}
+														]
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"key": "varcmp",
+																"lvar": "X",
+																"op": "==",
+																"rvar": "'m5"
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"ch": 0,
+																	"cmd": "cmd_snd",
+																	"sndid": "SE001",
+																	"vol": 100,
+																	"who": 0
+																},
+																{
+																	"action": "darken",
+																	"cmd": "cmd_customui",
+																	"idx": 0,
+																	"op": "action",
+																	"wait": false
+																},
+																{
+																	"cmd": "cmd_script",
+																	"code": "::Rokugan.updateMenu( this);",
+																	"desc": "SCRIPT"
+																},
+																{
+																	"action": "lighten",
+																	"cmd": "cmd_customui",
+																	"idx": 0,
+																	"op": "action",
+																	"wait": false
+																},
+																{
+																	"cmd": "cmd_focusui",
+																	"focusto": "m5",
+																	"wait": true
+																}
+															]
 														]
 													}
 												]

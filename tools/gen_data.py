@@ -1231,6 +1231,26 @@ MACRO_TEXT = [  # (macro id, path in the macro, English line)
 ]
 
 
+def title_update_entry(ev):
+    """Title menu (map M000 *autoexec): an "Update / Verify" entry before Exit (user 2026-11-12: "add a new box on
+    start screen ... Update ... and verify files (against Git)"). It calls ::Rokugan.updateMenu (RokuganUpdate.sk)."""
+    cb = ev["page"][0]["cmdblock"]
+    if any("m5" in str(c.get("rvar", "")) for c in cb):
+        return
+    i = next(k for k, c in enumerate(cb) if c.get("cmd") == "cmd_arrayop" and '"m4"' in str(c.get("rvar", "")))
+    item = dict(cb[i])
+    item["rvar"] = '\t({_name="m5",lbl="Update / Verify"})'
+    cb.insert(i, item)
+    loop = next(c for c in cb if c.get("cmd") == "cmd_loop")
+    handlers = next(c for c in loop["cmdblocks"][0] if c.get("cmd") == "cmd_if")["cmdblocks"][0]
+    handlers.append({"cmd": "cmd_if", "reqs": [{"key": "varcmp", "lvar": "X", "op": "==", "rvar": "'m5"}], "cmdblocks": [[
+        {"ch": 0, "cmd": "cmd_snd", "sndid": "SE001", "vol": 100, "who": 0},
+        {"action": "darken", "cmd": "cmd_customui", "idx": 0, "op": "action", "wait": False},
+        {"cmd": "cmd_script", "code": "::Rokugan.updateMenu( this);", "desc": "SCRIPT"},
+        {"action": "lighten", "cmd": "cmd_customui", "idx": 0, "op": "action", "wait": False},
+        {"cmd": "cmd_focusui", "focusto": "m5", "wait": True}]]})
+
+
 def main():
     # ---- type.json
     t = load("type")
@@ -5142,6 +5162,7 @@ def main():
     for g in mp["M001"]["encount"]:                     # gets its theme (gen_music BATTLE_MUSIC: standard, oni, duel,
         g["bgmid"] = _mu.battle_music(g.get("name"))    # intrigue, mini-boss, the finale's three, the superbosses)
     mp["M000"]["bgmid"] = _mu.MUSIC["travelers"]        # the title screen: the travelers' theme
+    title_update_entry(mp["M000"]["event"]["#1000001#"])
     mp["M001"]["bgmid"] = _mu.MUSIC["town"]             # (the template map the generated maps copy)
     # field placeholders -> HD-2D sprites: villager = Hiruma Ryoichi (EP304), wandering symbol enemies = goblins
     ev = mp["M001"]["event"]
