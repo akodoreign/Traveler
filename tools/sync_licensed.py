@@ -23,7 +23,7 @@ for top in TOP:
         rel = os.path.relpath(dp, SRC).replace(os.sep, "/")
         dn[:] = [x for x in dn if x not in (".git", "__pycache__") and not (rel == ENGINE and x in SKIP_ENGINE)]
         for x in fn:
-            if x.endswith(".pyc") or x in ("NUL.png", "desktop.ini"):
+            if x.endswith(".pyc") or x in ("NUL.png", "desktop.ini") or (rel == ENGINE and x in ("rt_version.json", "rt_manifest.json")):
                 continue
             r = rel + "/" + x
             seen.add(r)

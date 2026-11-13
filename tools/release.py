@@ -55,6 +55,12 @@ def main():
     open(tmp, "w", encoding="utf-8", newline="\n").write("Version %d: %s" % (ver, msg))
     git("commit", "-q", "-F", tmp)
     git("push", "-q", "origin", "licensed-demo:main")
+    # the working game folder now matches what went up: record it as installed at this version, so the title's
+    # Update there only fetches what later pushes change (RokuganUpdate.sk reads these two)
+    eng = "D:/RokuganTraveler/_tools/rpgcobo-tool/"
+    for a, b in (("version.json", "rt_version.json"), ("rt_manifest.json", "rt_manifest.json")):
+        with open(DST + "/" + a, "rb") as s, open(eng + b, "wb") as t:
+            t.write(s.read())
     print("released version %d: %d files in the manifest, %s" % (ver, len(files), git("log", "--oneline", "-1", out=True).strip()))
 
 

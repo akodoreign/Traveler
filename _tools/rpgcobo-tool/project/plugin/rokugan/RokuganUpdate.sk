@@ -134,14 +134,20 @@ local GAME = "_tools/rpgcobo-tool/";
 		local full = this.updPath( p);
 		if( !full) continue;
 		local f = FileRef( full);
-		if( !f.exists() || f.size != e[1]){ need .. p; continue; }
+		if( !f.exists()){ need .. p; continue; }
+		//	boss / banner art: GitHub has placeholders (the wiki-derived originals never go there) - a copy that has the
+		//	real picture keeps it
+		local fn = p.substring( p.lastIndexOf( "/") + 1);
+		if( (fn.indexOf( "boss_") == 0 || fn.indexOf( "banner_") == 0)
+			&& (p.indexOf( "resource/enemy_pic/") >= 0 || p.indexOf( "resource/efx/portrait/") >= 0)) continue;
 		if( fast){
+			//	only what changed on GitHub since the installed version (a local edit that GitHub hasn't changed stays)
 			local o = (p in lf) ? lf[p] : null;
-			if( !o || o[0] != e[0] || o[1] != e[1]) need .. p;
+			if( !o ? f.size != e[1] : (o[0] != e[0] || o[1] != e[1])) need .. p;
 			if( n % 400 == 0) this.updShow( "Comparing files... %d / %d" % (n, tot));
 			continue;
 		}
-		if( !this.updCrcOk( f.load(), e[0])) need .. p;
+		if( f.size != e[1] || !this.updCrcOk( f.load(), e[0])) need .. p;
 		if( n % 25 == 0) this.updShow( "Verifying files... %d / %d (%d to fix)" % (n, tot, length( need)));
 	}
 	return need;
@@ -203,7 +209,15 @@ local GAME = "_tools/rpgcobo-tool/";
 	local mine = this.updLocalJSON( "version.json");
 	if( !mine){
 		runner.showMessage( { key = "message_talk", name = "", uiclose = 2,
-			text = "This copy has no version.json, so it isn't a GitHub install (the developer's working folder). Nothing to update." });
+			text = "This copy doesn't know its version yet. Choose Verify all files once, then Update works." });
+		local r0 = runner.showChoices( { backenable = true, cmdblocks = [[], []], text0 = "Verify all files", text1 = "Back" });
+		if( r0 != 0) return;
+		try{ this.updRun( runner, false); }catch( ex){
+			this.updHide();
+			printexception( ex);
+			runner.showMessage( { key = "message_talk", name = "", uiclose = 2,
+				text = "The update stopped: " .. string( ex) .. ". Nothing half-written was kept; try again." });
+		}
 		return;
 	}
 	local theirs = null;
