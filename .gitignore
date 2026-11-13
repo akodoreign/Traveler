@@ -5,3 +5,6 @@ _tools/rpgcobo-tool/log/
 _tools/rpgcobo-tool/savedata/
 _tools/rpgcobo-tool/backup/
 _tools/rpgcobo-tool/build/
+
+_tools/rpgcobo-tool/rt_version.json
+_tools/rpgcobo-tool/rt_manifest.json

@@ -114,7 +114,8 @@ local GAME = "_tools/rpgcobo-tool/";
 };
 
 ::Rokugan.updWrite <- function( full, bb){
-	FileRef( dirname( full)).mkdirs();
+	local d = FileRef( dirname( full));
+	if( !d.isDirectory()) d.mkdirs();					//	(mkdirs on an existing folder trips the file security)
 	local f = FileRef( full);
 	local s = f.open( "wb");
 	bb.pos = 0;
