@@ -588,6 +588,18 @@ def sumai_match(name, mdl, chance, win, lose):
             if_([{"lvar": "RESULT", "op": "==", "rvar": 1}], win, lose)]
 
 
+MINI_RES = "G1231"                                      # the last mini-game's result (RokuganMini.sk)
+
+
+def mini_game(kind, won, lost, fallback):
+    """(user 2026-11-12) A Winter Court mini-game (plugin RokuganMini.sk: "yumi" the archery contest, "race" Takeo's
+    three laps). G1231 = 1 won, 2 lost and declined "Try again?", 0 it could not run -> `fallback` (the old narrated
+    outcome), so the story never blocks."""
+    res = lambda v: [{"lvar": MINI_RES, "op": "==", "rvar": v}]
+    return [setf(MINI_RES, 0), script('::rpgvar["%s"] = ::Rokugan.miniGame( "%s");' % (MINI_RES, kind)),
+            if_(res(1), won, [if_(res(2), lost, fallback)])]
+
+
 def sumai(name, chance, win, taunt, refuse=None, match=False):
     """The Sumai branch: refusal, or a bout (match=True), or a roll at `chance` percent. Win -> `win`, loss -> standing -1 + `taunt`."""
     if refuse:
@@ -1754,17 +1766,29 @@ def castle_1f():
         # outer yard (right): the archery contest (Kurako)
         for x in (22, 25, 28):                                            # archery butts (clear of the stair)
             fb(m, x, 14, 4, IN["shield"], y=1)
+        arch_won = [narrate("Natsuko's arrow splits the straw goblin's nose. The court applauds. "
+                            "Asako Kuhime claps a beat too late."), setf("G219", 1)]
         arch = [setf("W", 0)] + ch2("S02", start_at="(The court gathers", stop_at="> CHOICE") + [
-            choices(("Shoot to win.", [narrate("Natsuko's arrow splits the straw goblin's nose. The court applauds. "
-                                               "Asako Kuhime claps a beat too late."), setf("G219", 1)]),
+            choices(("Shoot to win.", mini_game("yumi", arch_won + [setf("G1232")], [
+                narrate("Natsuko's arrows find the straw, and not much else. A Crane courtier takes the prize."),
+                say("Isawa Mutsuye", "You're kind to let him have it."), setf("G219", 2)], arch_won)),
                     ("Shoot to lose politely.", [narrate("The arrow lands politely in the straw."),
                                                  say("Isawa Mutsuye", "You're kind."), setf("G219", 2)]),
                     ("Shoot the straw goblin's hat off.", [narrate("The straw hat spins away. The court gasps. On his "
                                                                    "balcony, the Champion almost smiles."),
                                                            setf("G219", 3)]))] + hub_done("G205")
         ev.talk(30, 10, SC["kurako"], [(None, arch)], reqs=[flag("G205", False)])
+        ev.talk(25, 13, "CE000", [(None, [                                  # (after the contest - Kurako has gone up
+            narrate("The archery butts. A quiver of practice arrows leans on the rail."),   # to 4F: shoot again, for fun)
+            choices(("Shoot another round.", mini_game("yumi", [
+                narrate("A servant runs the arrows back, grinning. \"Every one of them, Hiruma-sama!\""), setf("G1232")],
+                [narrate("Natsuko looks at the wind, then at the straw. The straw wins this time.")], [])),
+                    ("Leave the bow.", []))])], reqs=[flag("G205")], trigger=1)
         guest_npc(ev, 21, 9, 1, TAKEO_SS, "The horses are saddled, Hiruma. Ride with me?",
-                  "I'm with you. Charge first, think later.")
+                  "I'm with you. Charge first, think later.",
+                  extra=("Race the yard again.", mini_game("race", [
+                      say("Kitsu Takeo", "Ha! The Matsu won't even look at us now."), setf("G1233")],
+                      [say("Kitsu Takeo", "The horses are tired. Or we are. Again some other day.")], [])))
         guest_npc(ev, 36, 6, 2, MAI_SS, "More tea, Hiruma? Or more confessions?", "Ready when you are. I'll ask nicely.")
         # basement stair: Yogo Shigeru and Kuni Taira over the troll notes
         ev.talk(33, 4, SC["shigeru"], [(None, ch2("S02", start_at="**Yogo Shigeru", stop_at="**Yasuki Kurako**") +
@@ -1800,16 +1824,26 @@ def guest_join(n):
     return [setf(f), setf("G232", n), narrate("%s will answer the Guest call in battle. (One guest at a time.)" % name)]
 
 
-def guest_npc(ev, x, z, n, story, again, current, d=2):
-    """The guest before (side-story icon, the story) and after (ask them along again; their line while current)."""
+def guest_npc(ev, x, z, n, story, again, current, d=2, extra=None):
+    """The guest before (side-story icon, the story) and after (ask them along again; their line while current).
+    extra: one more (label, cmds) option after they've joined (Takeo: race the yard again)."""
     key, name, f = GUESTS[n]
     ev.talk(x, z, SCI[key], [(None, story)], reqs=[flag(f, False)], d=d)
+    more = [extra] if extra else []
     ev.talk(x, z, SC[key], [
-        (None, [say(name, again), choices(("Ask %s to come along." % name,
-                                           [setf("G232", n), narrate("%s will answer the Guest call." % name)]),
-                                          ("Not now.", []))]),
-        ([{"lvar": "G232", "op": "==", "rvar": n}], [say(name, current)])], reqs=[flag(f)], d=d)
+        (None, [say(name, again), choices(*([("Ask %s to come along." % name,
+                                              [setf("G232", n), narrate("%s will answer the Guest call." % name)])] +
+                                            more + [("Not now.", [])]))]),
+        ([{"lvar": "G232", "op": "==", "rvar": n}], [say(name, current)] +
+         ([choices(*(more + [("Not now.", [])]))] if extra else []))], reqs=[flag(f)], d=d)
 
+
+TAKEO_FIGHT = [
+    dict(battle("M001", 17), losefunc=1),
+    if_([WON], [say("Kitsu Takeo", "(breathless, laughing) We won. I won! ...Nobody heard the ancestors cheering."),
+                say("Natsuko", "Nobody heard them booing, either."),
+                say("Kitsu Takeo", "Ha! Call me, Hiruma, whenever something needs charging at.")] + guest_join(1),
+        [say("Kitsu Takeo", "(hauling her up) The horses liked you, at least. Again, when you're ready.")])]
 
 TAKEO_SS = [
     narrate("A Lion cavalryman in Akodo gold walks a horse round and round the outer yard. Kitsu Takeo."),
@@ -1819,14 +1853,15 @@ TAKEO_SS = [
     say("Kitsu Takeo", "Those two Matsu say a Kitsu who can't hear his grandfathers can't ride either. Three laps of "
                        "the yard, for my saddle. I need a second rider."),
     choices(("Ride with him.", [
-        narrate("Three laps on the Champion's own horses. On the second lap the Matsu stop racing and start "
-                "swinging."),
-        dict(battle("M001", 17), losefunc=1),
-        if_([WON], [say("Kitsu Takeo", "(breathless, laughing) We won. I won! ...Nobody heard the ancestors "
-                                       "cheering."),
-                    say("Natsuko", "Nobody heard them booing, either."),
-                    say("Kitsu Takeo", "Ha! Call me, Hiruma, whenever something needs charging at.")] + guest_join(1),
-            [say("Kitsu Takeo", "(hauling her up) The horses liked you, at least. Again, when you're ready.")])]),
+        narrate("Three laps on the Champion's own horses. Takeo takes the louder Matsu; Natsuko gets the other.")] +
+        # (user 2026-11-12) the laps are a tap-left-tap-right mini-game (RokuganMini.sk); lose and decline "Try
+        # again?" and Takeo asks again later; win (or the narrated fallback) and the Matsu start swinging as before
+        mini_game("race", [
+            narrate("Natsuko crosses the line a length clear, and Takeo whoops past a beat behind her. The Matsu "
+                    "stop racing and start swinging."), setf("G1233")] + TAKEO_FIGHT,
+            [say("Kitsu Takeo", "(laughing, out of breath) The Matsu crow, the horses don't care. Again, Hiruma, "
+                                "when you're ready.")],
+            [narrate("On the second lap the Matsu stop racing and start swinging.")] + TAKEO_FIGHT)),
         ("Not now.", [say("Kitsu Takeo", "The horses will wait. The Matsu won't.")]))]
 
 MAI_SS = [

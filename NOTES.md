@@ -4838,3 +4838,30 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
 - Test fight: M001 group 199 "TEST: sparring" (E998 Sparring Oni ~79k HP, 2x E997 ~33k HP, Lv 60, weak to all).
 - Waiting: tester's engine verification of all of the above; bust agent on stand-in speakers (130 own busts now).
 - Session crons: f67ff0a3 team check every 2 h, ef8b99f2 push every 5 h, 3ed5a951 resume at 18:11 today.
+
+## 2026-11-12 (evening): Winter Court mini-games (user: "one inspired by links crossbow for the Yumi tourney, then one with the horse race ... tap left then right ... don't make it to difficult, and give a try again option")
+- Plugin `RokuganMini.sk` (loaded from plugin.sk before RokuganBot). `::Rokugan.miniGame( "yumi" | "race")` is a
+  blocking call from an event script (cmd_script sleeps on the event thread): a full-screen overlay on stageui built
+  from white.png rects + labels (no copied art), ticked by addUpdateFunc, keys read with skIsKeyPressed (arrows/WASD,
+  Z/Space/Enter, X/Esc), gamepad buttonmask, mouse (best effort), and the bot's virtual keys. Returns 1 won, 2 lost and
+  declined "Try again?", 0 could not run. gen_maps `mini_game(kind, won, lost, fallback)` writes the result to G1231
+  and branches; 0 -> the OLD narrated outcome (tested with -rtminifail), so the story never blocks.
+- Yumi (M142 1F yard, Yasuki Kurako, "Shoot to win."): straw butts 1 (bullseye +1), straw goblins popping over the
+  rail 2, paper lanterns 2, crows 3; 24 arrows, 45 s, goal 12 (easy: ~8 hits). Win -> the old win branch (G219 = 1)
+  + G1232; lose + "No" -> narrated loss, G219 = 2 (Mutsuye: "You're kind to let him have it"). The other two archery
+  choices (lose politely, the goblin's hat) stay narrated. After the contest (G205) an examine spot at the middle butt
+  (25, 13) offers "Shoot another round." (Kurako herself has moved up to 4F by then).
+- Race = Kitsu Takeo's side story (guests-07-12 "a cavalry race against Lion braggarts"; M142 (21, 9), "Ride with
+  him."): three laps (180 m), alternate Left/Right (A/D, pad); same key twice or both at once = stumble (speed x0.55).
+  Rival ~6.2 m/s (~29 s); a calm 3 taps/s wins (~23 s), 4.8 taps/s wins in 16 s, 1.25 taps/s loses. Win -> G1233,
+  then the Matsu start swinging (battle 17, the old guest-join branches, TAKEO_FIGHT); lose + "No" -> Takeo laughs, no
+  battle, the "?" stays so you can retry; fallback -> the old narration + battle. After Takeo joins, his talk menu has
+  "Race the yard again." (guest_npc `extra`).
+- Flags: G1231 (int, last mini-game result), G1232 (Yumi won with the bow), G1233 (Takeo's race won) in gen_data.
+- Test: `tools/minitest.py yumi|race|both [--plan lose,win]` (playbot; kills rpgcobo.exe): -rtmini "lose,win" plays
+  one round per entry (lose = idle, win = aims / taps), -rtminishot NAME saves each stage. Shots:
+  _art/preview/bot/mini_yumi/, _art/preview/bot/mini_race/. All paths verified in the engine 2026-11-12: lose -> Try
+  again -> win (both games), race lose -> No (no battle), forced failure -> narrated, both replays.
+- Dialect gotcha: `aidown[aiside ? "right" : "left"]` (a ternary inside an index) always gave "left" - use if/else.
+- Not tested: real keyboard / gamepad / mouse feel (the bot's keys only); the mouse mapping assumes stageui fills the
+  window (rootview.scale). The engine's key-hint bar (Z Check / Space Jump ...) still draws over the bottom-right.

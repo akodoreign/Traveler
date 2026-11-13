@@ -55,6 +55,7 @@ function loadPlugin( args, opt){
 	runsk( srcdir .. "/RokuganBustGeneric.sk");	//	stand-in busts for speakers without one
 	runsk( srcdir .. "/RokuganBustData.sk");	//	dialog busts: name -> images (tools/gen_busts.py)
 	runsk( srcdir .. "/RokuganBust.sk");		//	dialog busts behind the message box (after RokuganField: wraps showMessage)
+	runsk( srcdir .. "/RokuganMini.sk");		//	Winter Court mini-games: the Yumi contest, Takeo's horse race
 	runsk( srcdir .. "/RokuganBot.sk");			//	test player for tools/playbot.py (only with -rtbot)
 	return true;
 }

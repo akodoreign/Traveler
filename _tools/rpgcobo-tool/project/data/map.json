@@ -858192,17 +858192,99 @@
 								"cmdblocks": [
 									[
 										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "Natsuko's arrow splits the straw goblin's nose. The court applauds. Asako Kuhime claps a beat too late.",
-											"name": "",
-											"uiclose": 2
+											"cmd": "cmd_compute",
+											"lvar": "G1231",
+											"op": "=",
+											"rvar": 0
 										},
 										{
-											"cmd": "cmd_compute",
-											"lvar": "G219",
-											"op": "=",
-											"rvar": 1
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1231\"] = ::Rokugan.miniGame( \"yumi\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "G1231",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Natsuko's arrow splits the straw goblin's nose. The court applauds. Asako Kuhime claps a beat too late.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G219",
+														"op": "=",
+														"rvar": 1
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1232",
+														"op": "=",
+														"rvar": true
+													}
+												],
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G1231",
+																"op": "==",
+																"rvar": 2
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Natsuko's arrows find the straw, and not much else. A Crane courtier takes the prize.",
+																	"name": "",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "You're kind to let him have it.",
+																	"name": "Isawa Mutsuye",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G219",
+																	"op": "=",
+																	"rvar": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Natsuko's arrow splits the straw goblin's nose. The court applauds. Asako Kuhime claps a beat too late.",
+																	"name": "",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G219",
+																	"op": "=",
+																	"rvar": 1
+																}
+															]
+														]
+													}
+												]
+											]
 										}
 									],
 									[
@@ -858323,6 +858405,138 @@
 			},
 			"#10#": {
 				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					29,
+					2,
+					20,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The archery butts. A quiver of practice arrows leans on the rail.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1231",
+											"op": "=",
+											"rvar": 0
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1231\"] = ::Rokugan.miniGame( \"yumi\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "G1231",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "A servant runs the arrows back, grinning. \"Every one of them, Hiruma-sama!\"",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1232",
+														"op": "=",
+														"rvar": true
+													}
+												],
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G1231",
+																"op": "==",
+																"rvar": 2
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Natsuko looks at the wind, then at the straw. The straw wins this time.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															],
+															[]
+														]
+													}
+												]
+											]
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Shoot another round.",
+								"text1": "Leave the bow."
+							}
+						]
+					}
+				],
+				"reqs0": [
+					{
+						"lvar": "G205",
+						"op": "==",
+						"rvar": true
+					}
+				],
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-10"
+			},
+			"#11#": {
+				"role": "custom",
 				"mdlid": "EP1165",
 				"pos": [
 					25,
@@ -858379,23 +858593,26 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Three laps on the Champion's own horses. On the second lap the Matsu stop racing and start swinging.",
+											"text": "Three laps on the Champion's own horses. Takeo takes the louder Matsu; Natsuko gets the other.",
 											"name": "",
 											"uiclose": 2
 										},
 										{
-											"cmd": "cmd_battle1",
-											"mapid": "M001",
-											"gid": 17,
-											"losefunc": 1,
-											"bgmid": null,
-											"keeprset": false
+											"cmd": "cmd_compute",
+											"lvar": "G1231",
+											"op": "=",
+											"rvar": 0
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1231\"] = ::Rokugan.miniGame( \"race\");"
 										},
 										{
 											"cmd": "cmd_if",
 											"reqs": [
 												{
-													"lvar": "RESULT",
+													"lvar": "G1231",
 													"op": "==",
 													"rvar": 1
 												}
@@ -858405,52 +858622,191 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "We won. I won! ...Nobody heard the ancestors cheering.",
-														"name": "Kitsu Takeo",
-														"uiclose": 2
-													},
-													{
-														"cmd": "cmd_showmsg",
-														"key": "message_talk",
-														"text": "Nobody heard them booing, either.",
-														"name": "Hiruma Natsuko",
-														"uiclose": 2,
-														"emo": "happy"
-													},
-													{
-														"cmd": "cmd_showmsg",
-														"key": "message_talk",
-														"text": "Ha! Call me, Hiruma, whenever something needs charging at.",
-														"name": "Kitsu Takeo",
+														"text": "Natsuko crosses the line a length clear, and Takeo whoops past a beat behind her. The Matsu stop racing and start swinging.",
+														"name": "",
 														"uiclose": 2
 													},
 													{
 														"cmd": "cmd_compute",
-														"lvar": "G233",
+														"lvar": "G1233",
 														"op": "=",
 														"rvar": true
 													},
 													{
-														"cmd": "cmd_compute",
-														"lvar": "G232",
-														"op": "=",
-														"rvar": 1
+														"cmd": "cmd_battle1",
+														"mapid": "M001",
+														"gid": 17,
+														"losefunc": 1,
+														"bgmid": null,
+														"keeprset": false
 													},
 													{
-														"cmd": "cmd_showmsg",
-														"key": "message_talk",
-														"text": "Kitsu Takeo will answer the Guest call in battle. (One guest at a time.)",
-														"name": "",
-														"uiclose": 2
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "RESULT",
+																"op": "==",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "We won. I won! ...Nobody heard the ancestors cheering.",
+																	"name": "Kitsu Takeo",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Nobody heard them booing, either.",
+																	"name": "Hiruma Natsuko",
+																	"uiclose": 2,
+																	"emo": "happy"
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Ha! Call me, Hiruma, whenever something needs charging at.",
+																	"name": "Kitsu Takeo",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G233",
+																	"op": "=",
+																	"rvar": true
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G232",
+																	"op": "=",
+																	"rvar": 1
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Kitsu Takeo will answer the Guest call in battle. (One guest at a time.)",
+																	"name": "",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The horses liked you, at least. Again, when you're ready.",
+																	"name": "Kitsu Takeo",
+																	"uiclose": 2
+																}
+															]
+														]
 													}
 												],
 												[
 													{
-														"cmd": "cmd_showmsg",
-														"key": "message_talk",
-														"text": "The horses liked you, at least. Again, when you're ready.",
-														"name": "Kitsu Takeo",
-														"uiclose": 2
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G1231",
+																"op": "==",
+																"rvar": 2
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The Matsu crow, the horses don't care. Again, Hiruma, when you're ready.",
+																	"name": "Kitsu Takeo",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "On the second lap the Matsu stop racing and start swinging.",
+																	"name": "",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_battle1",
+																	"mapid": "M001",
+																	"gid": 17,
+																	"losefunc": 1,
+																	"bgmid": null,
+																	"keeprset": false
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "RESULT",
+																			"op": "==",
+																			"rvar": 1
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "We won. I won! ...Nobody heard the ancestors cheering.",
+																				"name": "Kitsu Takeo",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Nobody heard them booing, either.",
+																				"name": "Hiruma Natsuko",
+																				"uiclose": 2,
+																				"emo": "happy"
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Ha! Call me, Hiruma, whenever something needs charging at.",
+																				"name": "Kitsu Takeo",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_compute",
+																				"lvar": "G233",
+																				"op": "=",
+																				"rvar": true
+																			},
+																			{
+																				"cmd": "cmd_compute",
+																				"lvar": "G232",
+																				"op": "=",
+																				"rvar": 1
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Kitsu Takeo will answer the Guest call in battle. (One guest at a time.)",
+																				"name": "",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "The horses liked you, at least. Again, when you're ready.",
+																				"name": "Kitsu Takeo",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															]
+														]
 													}
 												]
 											]
@@ -858487,9 +858843,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-10"
+				"name": "*custom-11"
 			},
-			"#11#": {
+			"#12#": {
 				"role": "custom",
 				"mdlid": "EP382",
 				"pos": [
@@ -858537,6 +858893,70 @@
 											"uiclose": 2
 										}
 									],
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1231",
+											"op": "=",
+											"rvar": 0
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1231\"] = ::Rokugan.miniGame( \"race\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "G1231",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Ha! The Matsu won't even look at us now.",
+														"name": "Kitsu Takeo",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1233",
+														"op": "=",
+														"rvar": true
+													}
+												],
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G1231",
+																"op": "==",
+																"rvar": 2
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The horses are tired. Or we are. Again some other day.",
+																	"name": "Kitsu Takeo",
+																	"uiclose": 2
+																}
+															],
+															[]
+														]
+													}
+												]
+											]
+										}
+									],
 									[]
 								],
 								"pos": {
@@ -858545,7 +858965,8 @@
 									"y": 380
 								},
 								"text0": "Ask Kitsu Takeo to come along.",
-								"text1": "Not now."
+								"text1": "Race the yard again.",
+								"text2": "Not now."
 							}
 						]
 					},
@@ -858573,6 +858994,84 @@
 								"text": "I'm with you. Charge first, think later.",
 								"name": "Kitsu Takeo",
 								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1231",
+											"op": "=",
+											"rvar": 0
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1231\"] = ::Rokugan.miniGame( \"race\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "G1231",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Ha! The Matsu won't even look at us now.",
+														"name": "Kitsu Takeo",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1233",
+														"op": "=",
+														"rvar": true
+													}
+												],
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G1231",
+																"op": "==",
+																"rvar": 2
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The horses are tired. Or we are. Again some other day.",
+																	"name": "Kitsu Takeo",
+																	"uiclose": 2
+																}
+															],
+															[]
+														]
+													}
+												]
+											]
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Race the yard again.",
+								"text1": "Not now."
 							}
 						]
 					}
@@ -858587,9 +859086,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-11"
+				"name": "*custom-12"
 			},
-			"#12#": {
+			"#13#": {
 				"role": "custom",
 				"mdlid": "EP1166",
 				"pos": [
@@ -858746,9 +859245,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-12"
+				"name": "*custom-13"
 			},
-			"#13#": {
+			"#14#": {
 				"role": "custom",
 				"mdlid": "EP383",
 				"pos": [
@@ -858846,9 +859345,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-13"
+				"name": "*custom-14"
 			},
-			"#14#": {
+			"#15#": {
 				"role": "custom",
 				"mdlid": "EP374",
 				"pos": [
@@ -858930,9 +859429,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-14"
+				"name": "*custom-15"
 			},
-			"#15#": {
+			"#16#": {
 				"role": "villager",
 				"mdlid": "EP375",
 				"msg": "That one's nearly worn out. Fascinating creature. Fascinating.",
@@ -858956,9 +859455,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-15"
+				"name": "*villager-16"
 			},
-			"#16#": {
+			"#17#": {
 				"role": "custom",
 				"mdlid": "EP210",
 				"pos": [
@@ -858986,9 +859485,9 @@
 						"cmdblock": []
 					}
 				],
-				"name": "*custom-16"
+				"name": "*custom-17"
 			},
-			"#17#": {
+			"#18#": {
 				"role": "custom",
 				"mdlid": "EP212",
 				"pos": [
@@ -859016,9 +859515,9 @@
 						"cmdblock": []
 					}
 				],
-				"name": "*custom-17"
+				"name": "*custom-18"
 			},
-			"#18#": {
+			"#19#": {
 				"role": "villager",
 				"mdlid": "EP387",
 				"msg": "Three quivers left. Two. Whatever. Point me at it.",
@@ -859044,9 +859543,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-18"
+				"name": "*villager-19"
 			},
-			"#19#": {
+			"#20#": {
 				"role": "villager",
 				"mdlid": "EP388",
 				"msg": "(listening to the ground) ...The stones are counting.",
@@ -859072,9 +859571,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-19"
+				"name": "*villager-20"
 			},
-			"#20#": {
+			"#21#": {
 				"role": "villager",
 				"mdlid": "EP389",
 				"msg": "That wall's leaning. Everything's leaning.",
@@ -859100,9 +859599,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-20"
+				"name": "*villager-21"
 			},
-			"#21#": {
+			"#22#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "Drink your tea. No, all of it.",
@@ -859128,9 +859627,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-21"
+				"name": "*villager-22"
 			},
-			"#22#": {
+			"#23#": {
 				"role": "villager",
 				"mdlid": "EP391",
 				"msg": "Smells like rain. Smells like goblin.",
@@ -859156,9 +859655,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-22"
+				"name": "*villager-23"
 			},
-			"#23#": {
+			"#24#": {
 				"role": "villager",
 				"mdlid": "EP392",
 				"msg": "My knees say it'll snow.",
@@ -859184,9 +859683,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-23"
+				"name": "*villager-24"
 			},
-			"#24#": {
+			"#25#": {
 				"role": "villager",
 				"mdlid": "EP342",
 				"msg": "Big sky. Good hills. Bad soup.",
@@ -859212,9 +859711,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-24"
+				"name": "*villager-25"
 			},
-			"#25#": {
+			"#26#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "Smoke on the wind. Something big, east.",
@@ -859240,9 +859739,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-25"
+				"name": "*villager-26"
 			},
-			"#26#": {
+			"#27#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(writing on an ofuda) Hold still. No, the other arm.",
@@ -859268,9 +859767,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-26"
+				"name": "*villager-27"
 			},
-			"#27#": {
+			"#28#": {
 				"role": "villager",
 				"mdlid": "EP395",
 				"msg": "Third stone's safe. All the others: squish.",
@@ -859296,9 +859795,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-27"
+				"name": "*villager-28"
 			},
-			"#28#": {
+			"#29#": {
 				"role": "villager",
 				"mdlid": "EP462",
 				"msg": "(muttering a prayer for the Green Ronin, then one for you)",
@@ -859324,9 +859823,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-28"
+				"name": "*villager-29"
 			},
-			"#29#": {
+			"#30#": {
 				"role": "villager",
 				"mdlid": "EP473",
 				"msg": "(watching the trees) ...Something's in there.",
@@ -859352,9 +859851,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-29"
+				"name": "*villager-30"
 			},
-			"#30#": {
+			"#31#": {
 				"role": "villager",
 				"mdlid": "EP541",
 				"msg": "(two lanterns bobbing on a rope between them)",
@@ -859380,9 +859879,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-30"
+				"name": "*villager-31"
 			},
-			"#31#": {
+			"#32#": {
 				"role": "villager",
 				"mdlid": "EP485",
 				"msg": "(watching the tide) ...Low water in an hour.",
@@ -859408,9 +859907,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-31"
+				"name": "*villager-32"
 			},
-			"#32#": {
+			"#33#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(murmuring the tide prayers)",
@@ -859436,9 +859935,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-32"
+				"name": "*villager-33"
 			},
-			"#33#": {
+			"#34#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(testing the wind with a wet finger)",
@@ -859464,9 +859963,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-33"
+				"name": "*villager-34"
 			},
-			"#34#": {
+			"#35#": {
 				"role": "villager",
 				"mdlid": "EP543",
 				"msg": "(murmuring to the breeze)",
@@ -859492,9 +859991,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-34"
+				"name": "*villager-35"
 			},
-			"#35#": {
+			"#36#": {
 				"role": "villager",
 				"mdlid": "EP549",
 				"msg": "(composing under her breath)",
@@ -859520,9 +860019,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-35"
+				"name": "*villager-36"
 			},
-			"#36#": {
+			"#37#": {
 				"role": "villager",
 				"mdlid": "EP553",
 				"msg": "(trimming a wick)",
@@ -859548,9 +860047,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-36"
+				"name": "*villager-37"
 			},
-			"#37#": {
+			"#38#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(leaning on the spear)",
@@ -859576,9 +860075,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-37"
+				"name": "*villager-38"
 			},
-			"#38#": {
+			"#39#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(whispering to ancestors who don't answer)",
@@ -859604,9 +860103,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-38"
+				"name": "*villager-39"
 			},
-			"#39#": {
+			"#40#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(polishing a jade disc)",
@@ -859632,9 +860131,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-39"
+				"name": "*villager-40"
 			},
-			"#40#": {
+			"#41#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(humming the Ballad of Matsu Joruri)",
@@ -859660,9 +860159,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-40"
+				"name": "*villager-41"
 			},
-			"#41#": {
+			"#42#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(stringing a hunting bow)",
@@ -859688,9 +860187,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-41"
+				"name": "*villager-42"
 			},
-			"#42#": {
+			"#43#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(watching the road for inspectors)",
@@ -859716,9 +860215,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-42"
+				"name": "*villager-43"
 			},
-			"#43#": {
+			"#44#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding herbs in a bowl)",
@@ -859744,9 +860243,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-43"
+				"name": "*villager-44"
 			},
-			"#44#": {
+			"#45#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(murmuring to the river's dead)",
@@ -859772,9 +860271,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-44"
+				"name": "*villager-45"
 			},
-			"#45#": {
+			"#46#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(clearing a very loud throat)",
@@ -859800,9 +860299,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-45"
+				"name": "*villager-46"
 			},
-			"#46#": {
+			"#47#": {
 				"role": "villager",
 				"mdlid": "EP574",
 				"msg": "(leaning on a long spear)",
@@ -859828,9 +860327,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-46"
+				"name": "*villager-47"
 			},
-			"#47#": {
+			"#48#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(cupping a small flame in both hands)",
@@ -859856,9 +860355,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-47"
+				"name": "*villager-48"
 			},
-			"#48#": {
+			"#49#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on a long oak staff)",
@@ -859884,9 +860383,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-48"
+				"name": "*villager-49"
 			},
-			"#49#": {
+			"#50#": {
 				"role": "villager",
 				"mdlid": "EP495",
 				"msg": "(knocking snow off a long carrying-pole)",
@@ -859912,9 +860411,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-49"
+				"name": "*villager-50"
 			},
-			"#50#": {
+			"#51#": {
 				"role": "villager",
 				"mdlid": "EP371",
 				"msg": "(reciting the names of the dead under her breath)",
@@ -859940,9 +860439,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-50"
+				"name": "*villager-51"
 			},
-			"#51#": {
+			"#52#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(spinning a long staff idly)",
@@ -859968,9 +860467,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-51"
+				"name": "*villager-52"
 			},
-			"#52#": {
+			"#53#": {
 				"role": "villager",
 				"mdlid": "EP575",
 				"msg": "(praying under her breath for her village)",
@@ -859996,9 +860495,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-52"
+				"name": "*villager-53"
 			},
-			"#53#": {
+			"#54#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(praying into the wind)",
@@ -860024,9 +860523,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-53"
+				"name": "*villager-54"
 			},
-			"#54#": {
+			"#55#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on an oak staff against the wind)",
@@ -860052,9 +860551,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-54"
+				"name": "*villager-55"
 			},
-			"#55#": {
+			"#56#": {
 				"role": "villager",
 				"mdlid": "EP463",
 				"msg": "(reciting a Tao verse slightly wrong)",
@@ -860080,9 +860579,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-55"
+				"name": "*villager-56"
 			},
-			"#56#": {
+			"#57#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding something that smells of the sea)",
@@ -860108,9 +860607,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-56"
+				"name": "*villager-57"
 			},
-			"#57#": {
+			"#58#": {
 				"role": "villager",
 				"mdlid": "EP614",
 				"msg": "(squinting at the water, counting breaths)",
@@ -860136,9 +860635,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-57"
+				"name": "*villager-58"
 			},
-			"#58#": {
+			"#59#": {
 				"role": "villager",
 				"mdlid": "EP616",
 				"msg": "(humming to a kami who is very, very old)",
@@ -860164,9 +860663,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-58"
+				"name": "*villager-59"
 			},
-			"#59#": {
+			"#60#": {
 				"role": "villager",
 				"mdlid": "EP551",
 				"msg": "(polishing a yari that is already very clean)",
@@ -860192,9 +860691,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-59"
+				"name": "*villager-60"
 			},
-			"#60#": {
+			"#61#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(practising a mudra, and getting it slightly wrong)",
@@ -860220,9 +860719,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-60"
+				"name": "*villager-61"
 			},
-			"#61#": {
+			"#62#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "(watching the ridge, very still)",
@@ -860248,9 +860747,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-61"
+				"name": "*villager-62"
 			},
-			"#62#": {
+			"#63#": {
 				"role": "villager",
 				"mdlid": "EP588",
 				"msg": "(rolling bandages, humming a court song)",
@@ -860276,9 +860775,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-62"
+				"name": "*villager-63"
 			},
-			"#63#": {
+			"#64#": {
 				"role": "villager",
 				"mdlid": "EP635",
 				"msg": "(practising a bow nobody will ever see)",
@@ -860304,9 +860803,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-63"
+				"name": "*villager-64"
 			},
-			"#64#": {
+			"#65#": {
 				"role": "villager",
 				"mdlid": "EP636",
 				"msg": "(sweeping the road as he walks, out of habit)",
@@ -860332,9 +860831,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-64"
+				"name": "*villager-65"
 			},
-			"#65#": {
+			"#66#": {
 				"role": "villager",
 				"mdlid": "EP637",
 				"msg": "(sniffing the wind toward the river, frowning)",
@@ -860360,9 +860859,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-65"
+				"name": "*villager-66"
 			},
-			"#66#": {
+			"#67#": {
 				"role": "villager",
 				"mdlid": "EP661",
 				"msg": "(not looking at the horizon where the city is)",
@@ -860388,9 +860887,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-66"
+				"name": "*villager-67"
 			},
-			"#67#": {
+			"#68#": {
 				"role": "villager",
 				"mdlid": "EP662",
 				"msg": "(gone from where she was standing; back again)",
@@ -860416,9 +860915,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-67"
+				"name": "*villager-68"
 			},
-			"#68#": {
+			"#69#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -860444,9 +860943,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-68"
+				"name": "*villager-69"
 			},
-			"#69#": {
+			"#70#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -860472,9 +860971,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-69"
+				"name": "*villager-70"
 			},
-			"#70#": {
+			"#71#": {
 				"role": "villager",
 				"mdlid": "EP687",
 				"msg": "(sniffing the air for the smell of rain)",
@@ -860500,9 +860999,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-70"
+				"name": "*villager-71"
 			},
-			"#71#": {
+			"#72#": {
 				"role": "villager",
 				"mdlid": "EP688",
 				"msg": "(checking both swords, then the path, then both swords)",
@@ -860528,9 +861027,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-71"
+				"name": "*villager-72"
 			},
-			"#72#": {
+			"#73#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the air for damp, out of habit)",
@@ -860556,9 +861055,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-72"
+				"name": "*villager-73"
 			},
-			"#73#": {
+			"#74#": {
 				"role": "villager",
 				"mdlid": "EP1100",
 				"msg": "(whistling to a horse that isn't there)",
@@ -860584,9 +861083,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-73"
+				"name": "*villager-74"
 			},
-			"#74#": {
+			"#75#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -860612,9 +861111,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-74"
+				"name": "*villager-75"
 			},
-			"#75#": {
+			"#76#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -860640,9 +861139,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-75"
+				"name": "*villager-76"
 			},
-			"#76#": {
+			"#77#": {
 				"role": "villager",
 				"mdlid": "EP1107",
 				"msg": "(humming a different song, on purpose)",
@@ -860668,9 +861167,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-76"
+				"name": "*villager-77"
 			},
-			"#77#": {
+			"#78#": {
 				"role": "villager",
 				"mdlid": "EP1108",
 				"msg": "(warming her hands on nothing)",
@@ -860696,9 +861195,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-77"
+				"name": "*villager-78"
 			},
-			"#78#": {
+			"#79#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the wind for rain)",
@@ -860724,9 +861223,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-78"
+				"name": "*villager-79"
 			},
-			"#79#": {
+			"#80#": {
 				"role": "villager",
 				"mdlid": "EP1112",
 				"msg": "(checking the wax in his ears, again)",
@@ -860752,9 +861251,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-79"
+				"name": "*villager-80"
 			},
-			"#80#": {
+			"#81#": {
 				"role": "villager",
 				"mdlid": "EP1127",
 				"msg": "(checking the fuses, one by one)",
@@ -860780,9 +861279,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-80"
+				"name": "*villager-81"
 			},
-			"#81#": {
+			"#82#": {
 				"role": "villager",
 				"mdlid": "EP1128",
 				"msg": "(watching the sky for wings)",
@@ -860808,9 +861307,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-81"
+				"name": "*villager-82"
 			},
-			"#82#": {
+			"#83#": {
 				"role": "villager",
 				"mdlid": "EP1139",
 				"msg": "(polishing a very old blade, very carefully)",
@@ -860836,9 +861335,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-82"
+				"name": "*villager-83"
 			},
-			"#83#": {
+			"#84#": {
 				"role": "villager",
 				"mdlid": "EP1140",
 				"msg": "(sniffing the air, as if it were soup)",
@@ -860864,9 +861363,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-83"
+				"name": "*villager-84"
 			},
-			"#84#": {
+			"#85#": {
 				"role": "villager",
 				"mdlid": "EP1149",
 				"msg": "(counting arrows, then goats, then arrows)",
@@ -860892,9 +861391,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-84"
+				"name": "*villager-85"
 			},
-			"#85#": {
+			"#86#": {
 				"role": "villager",
 				"mdlid": "EP1150",
 				"msg": "(sifting green dust through her fingers)",
@@ -860920,9 +861419,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-85"
+				"name": "*villager-86"
 			},
-			"#86#": {
+			"#87#": {
 				"role": "villager",
 				"mdlid": "EP1155",
 				"msg": "(squinting up at the smoke on the mountain)",
@@ -860948,9 +861447,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-86"
+				"name": "*villager-87"
 			},
-			"#87#": {
+			"#88#": {
 				"role": "villager",
 				"mdlid": "EP1156",
 				"msg": "(holding up a wet finger, frowning at the smoke)",
@@ -860976,9 +861475,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-87"
+				"name": "*villager-88"
 			},
-			"#88#": {
+			"#89#": {
 				"role": "villager",
 				"mdlid": "EP1161",
 				"msg": "(cracking his knuckles at the forest)",
@@ -861004,9 +861503,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-88"
+				"name": "*villager-89"
 			},
-			"#89#": {
+			"#90#": {
 				"role": "villager",
 				"mdlid": "EP1162",
 				"msg": "(counting arrowheads, lips moving)",
@@ -861032,9 +861531,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-89"
+				"name": "*villager-90"
 			},
-			"#90#": {
+			"#91#": {
 				"role": "custom",
 				"mdlid": "EP309",
 				"pos": [
@@ -861188,43 +861687,13 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-90"
-			},
-			"#91#": {
-				"role": "custom",
-				"mdlid": "EP211",
-				"pos": [
-					26,
-					2,
-					21,
-					0
-				],
-				"reqs0": null,
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
 				"name": "*custom-91"
 			},
 			"#92#": {
 				"role": "custom",
 				"mdlid": "EP211",
 				"pos": [
-					29,
+					26,
 					2,
 					21,
 					0
@@ -861254,7 +861723,7 @@
 				"role": "custom",
 				"mdlid": "EP211",
 				"pos": [
-					32,
+					29,
 					2,
 					21,
 					0
@@ -861279,6 +861748,36 @@
 					}
 				],
 				"name": "*custom-93"
+			},
+			"#94#": {
+				"role": "custom",
+				"mdlid": "EP211",
+				"pos": [
+					32,
+					2,
+					21,
+					0
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-94"
 			}
 		},
 		"exitmap": {

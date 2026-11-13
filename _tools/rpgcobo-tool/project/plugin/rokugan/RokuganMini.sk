@@ -50,7 +50,8 @@ class RTMini extends SKImageView
 	prev = null; hit = null; aidown = null;
 	ai = null; aiq = null; round = 0; shotname = null; shotn = 0; game = "mini";
 	state = "intro"; st = 0.0;
-	pbg = null; pline = null; ptitle = null; plines = null; popts = null; psel = 0; pn = 0; pon = false;
+	pbg = null; pline = null; ptitle = null; plines = null; popts = null; psel = 0; pn = 0; pon = false; popt = null;
+	ppx = 0.0; ppy = 0.0; ppw = 0.0; pph = 0.0; pall = null;
 	mouse = null;
 
 	constructor( r, bg){
@@ -67,6 +68,7 @@ class RTMini extends SKImageView
 		if( i >= 0 && i + 1 < length( ::arguments)) aiq = ::arguments[i+1].split( ",").filter( @( v) v != "");
 		i = ::arguments.indexOf( "-rtminishot");
 		if( i >= 0 && i + 1 < length( ::arguments)) shotname = ::arguments[i+1];
+		readDevices();
 		foreach( k in KEYNAMES) prev[k] <- isDown( k);		//	(the key that picked the menu option is still held)
 		foreach( k in KEYNAMES) hit[k] <- false;
 		addUpdateFunc( this.tick.bindenv( this));
@@ -80,19 +82,29 @@ class RTMini extends SKImageView
 	}
 	function label( x, y, w, h, size, col, align = 0){
 		local v = SKLabelView( "", FontAttribute( Fonts.get( "ui"), size, col, SK_FONT_BOLD));
-		v.enabled = false; v.bnd.set( x, y, w, h);
+		v.enabled = false; v.setRect( x, y, w, h);
 		v.textbox.align = align;
 		root.addChild( v); views.append( v);
 		return v;
 	}
+	padmask = 0; mousebtn = false;
 	function isDown( k){
 		foreach( vk in KEYMAP[k]) if( skIsKeyPressed( vk)) return true;
-		try{ if( ::gpui.getGPUIDevice()["gp"]["buttonmask"] & (1 << PADMAP[k])) return true; }catch( ex){}
+		if( padmask & (1 << PADMAP[k])) return true;
 		if( "botkeys" in ::Rokugan) foreach( b in BOTMAP[k]) if( b in ::Rokugan.botkeys) return true;
-		if( k == "fire") try{ if( ::rootview.mouses[0].modifiers & BUTTON1_MASK) return true; }catch( ex){}
+		if( k == "fire" && mousebtn) return true;
 		return k in aidown;
 	}
+	function readDevices(){
+		padmask = 0; mousebtn = false;
+		try{
+			local dev = ::gpui ? ::gpui.getGPUIDevice() : null, gp = dev ? dev["gp"] : null;
+			if( gp && gp["buttonmask"]) padmask = gp["buttonmask"];
+		}catch( ex){}
+		try{ mousebtn = !!(::rootview.mouses[0].modifiers & BUTTON1_MASK); }catch( ex){}
+	}
 	function readInput(){
+		readDevices();
 		foreach( k in KEYNAMES){
 			local d = isDown( k);
 			hit[k] = d && !prev[k];
@@ -122,29 +134,30 @@ class RTMini extends SKImageView
 	function chosen( i){}
 	//	the centre panel
 	function buildPanel(){
-		local pw = 640.0, ph = 300.0, px = (W - pw) / 2, py = (H - ph) / 2 - 20;
+		local pw = 820.0, ph = 300.0, px = (W - pw) / 2, py = (H - ph) / 2 - 20;
+		ppx = px; ppy = py; ppw = pw; pph = ph;
 		pbg = rect( px, py, pw, ph, 0x0b0a12e8);
 		pline = [rect( px, py, pw, 3, 0xc9a45cff), rect( px, py + ph - 3, pw, 3, 0xc9a45cff)];
 		ptitle = label( px, py + 22, pw, 44, 34, 0xf4e2b0ff, 1);
 		plines = [];
 		for( local i = 0; i < 4; i++) plines.append( label( px + 30, py + 82 + i * 32, pw - 60, 30, 21, 0xf4f0e6ff, 1));
 		popts = [label( px, py + ph - 70, pw / 2, 40, 26, 0xf4f0e6ff, 1), label( px + pw / 2, py + ph - 70, pw / 2, 40, 26, 0xf4f0e6ff, 1)];
+		pall = [pbg, ptitle, pline[0], pline[1], popts[0], popts[1]];
+		foreach( v in plines) pall.append( v);
 		showPanel( false);
 	}
 	function showPanel( on, title = "", lines = [], opts = [], sel = 0){
 		pon = on; psel = sel; pn = length( opts);
-		foreach( v in [pbg, ptitle] .extend( pline) .extend( plines) .extend( popts)) v.setVisible( on);
+		foreach( v in pall) v.setVisible( on);
 		if( !on) return;
 		ptitle.setText( title);
 		foreach( i, v in plines) v.setText( i < length( lines) ? lines[i] : "");
-		if( pn == 1){ popts[0].bnd.set( pbg.bnd.x, popts[0].bnd.y, pbg.bnd.w, 40); popts[1].setVisible( false); }
-		else popts[0].bnd.set( pbg.bnd.x, popts[0].bnd.y, pbg.bnd.w / 2, 40);
-		popts[0].updateLayout();
-		this.popt = opts;
+		if( pn == 1){ popts[0].setRect( ppx, ppy + pph - 70, ppw, 40); popts[1].setVisible( false); }
+		else popts[0].setRect( ppx, ppy + pph - 70, ppw / 2, 40);
+		popt = opts;
 		drawOpts();
 		st = 0.0;
 	}
-	popt = null;
 	function drawOpts(){
 		foreach( i, v in popts){
 			if( i >= pn) continue;
@@ -253,7 +266,7 @@ class RTYumi extends RTMini
 		lscore = label( 30, RAIL_Y + 30, 360, 40, 30, 0xf4e2b0ff);
 		larrows = label( 450, RAIL_Y + 30, 380, 40, 30, 0xf4e2b0ff, 1);
 		ltime = label( W - 330, RAIL_Y + 30, 300, 40, 30, 0xf4e2b0ff, 2);
-		lhint = label( 0, RAIL_Y + 76, W, 30, 18, 0xd9c9a0ff, 1);
+		lhint = label( 0, RAIL_Y + 76, 860, 30, 18, 0xd9c9a0ff, 1);		//	(left of the engine's key-hint bar)
 		lhint.setText( "Arrows / WASD / mouse: aim      Z / Space / click: loose an arrow");
 		ltitle = label( 0, 24, W, 50, 36, 0xf4e2b0ff, 1);
 		ltitle.setText( "The Yumi Contest at Kyuden Hida");
@@ -329,7 +342,7 @@ class RTYumi extends RTMini
 		foreach( e in fx) if( !e.on){ f = e; break; }
 		f.on = true; f.t = 0.0; f.x = x; f.y = y;
 		f.v.setText( s); f.v.setColor( col); f.v.setVisible( true);
-		f.v.bnd.set( x - 100, y - 20, 200, 40); f.v.updateLayout();
+		f.v.setRect( x - 100, y - 20, 200, 40);
 	}
 	function loose(){
 		arrows--; cool = 260.0;
@@ -379,7 +392,7 @@ class RTYumi extends RTMini
 		foreach( f in fx){
 			if( !f.on) continue;
 			f.t += dt;
-			f.v.bnd.set( f.x - 100, f.y - 20 - f.t * 0.05, 200, 40); f.v.updateLayout();
+			f.v.setRect( f.x - 100, f.y - 20 - f.t * 0.05, 200, 40);
 			if( f.t > 900.0){ f.on = false; f.v.setVisible( false); }
 		}
 		if( state != "play") return;
@@ -457,7 +470,7 @@ class RTRace extends RTMini
 	me = 0.0; mv = 0.0; rv = 0.0; rd = 0.0; last = null; stumble = 0.0; phase = 0.0; rphase = 0.0; taps = 0;
 	hme = null; hrv = null; posts = null; finish = null; finishLbl = null; lapmarks = null;
 	barme = null; barrv = null; llap = null; lmsg = null; keyL = null; keyR = null; lkeyL = null; lkeyR = null; lhint = null;
-	msgt = 0.0; aitap = 0.0; aiside = 0; count = 0.0;
+	msgt = 0.0; aitap = 0.0; aiside = 0; count = 0.0; stumbles = 0; frames = 0; lme = null; lrv = null;
 
 	constructor( r){
 		super( r, 0x3a4a6eff);
@@ -496,8 +509,8 @@ class RTRace extends RTMini
 		lhint.setText( "Left, right, left, right...");
 		label( W / 2 + 170, 650, W / 2 - 190, 40, 18, 0xd9c9a0ff).setText( "Same key twice: she stumbles");
 		lmsg = label( 0, 120, W, 60, 44, 0xf4e2b0ff, 1);
-		label( 30, 456, 300, 26, 18, 0x2b1d10ff).setText( "Hiruma Natsuko");
-		label( 30, 344, 300, 26, 18, 0x2b1d10ff).setText( "Matsu rider");
+		lme = label( 0, 0, 240, 26, 18, 0xf4f0e6ff, 1); lme.setText( "Hiruma Natsuko");		//	(names ride above
+		lrv = label( 0, 0, 240, 26, 18, 0xf4e2b0ff, 1); lrv.setText( "Matsu rider");			//	the horses)
 		buildPanel();
 		reset();
 		intro();
@@ -524,6 +537,7 @@ class RTRace extends RTMini
 	}
 	function reset(){
 		me = 0.0; mv = 0.0; rv = 0.0; rd = 0.0; last = null; stumble = 0.0; taps = 0; msgt = 0.0; aitap = 0.0; aiside = 0;
+		stumbles = 0; frames = 0;
 		aidown = {};
 		lmsg.setText( "");
 		draw();
@@ -546,17 +560,20 @@ class RTRace extends RTMini
 		}
 	}
 	function say( s, ms = 900.0){ lmsg.setText( s); msgt = ms; }
+	function sx( d){ return ME_X + (d - me) * PXM; }
 	function draw(){
-		local sx = function( d) : (me) { return ME_X + (d - me) * PXM; };
+		local rx = Math.max( -120.0, Math.min( W + 120.0, sx( rd)));
 		placeHorse( hme, ME_X, 470.0, phase, mv);
-		placeHorse( hrv, Math.max( -120.0, Math.min( W + 120.0, sx( rd))), 372.0, rphase, rv);
+		placeHorse( hrv, rx, 372.0, rphase, rv);
+		lme.setRect( ME_X - 120, 470.0 - 112, 240, 26);
+		lrv.setRect( Math.max( 0.0, Math.min( W - 240.0, rx - 120)), 372.0 - 112, 240, 26);
 		local off = (me * PXM) % 120.0;
 		foreach( i, p in posts){ p[0].setRect( i * 120.0 - off, 296, 8, 40); p[1].setRect( i * 120.0 - off + 60.0, 540, 8, 40); }
 		foreach( i, m in lapmarks) m.setRect( sx( LAP * (i + 1)) - 3, 336, 6, 198);
 		lapmarks[2].setVisible( false);
 		local fxp = sx( RACE_LEN);
 		finish[0].setRect( fxp - 7, 336, 14, 198); finish[1].setRect( fxp - 7, 336, 7, 198);
-		finishLbl.bnd.set( fxp - 100, 300, 200, 30); finishLbl.updateLayout();
+		finishLbl.setRect( fxp - 100, 300, 200, 30);
 		barme.setRect( 160 + 960 * Math.min( 1.0, me / RACE_LEN) - 6, 598, 12, 26);
 		barrv.setRect( 160 + 960 * Math.min( 1.0, rd / RACE_LEN) - 6, 598, 12, 26);
 		llap.setText( "Lap " .. Math.min( 3, 1 + int( me / LAP)) .. " / 3");
@@ -571,8 +588,9 @@ class RTRace extends RTMini
 		aitap -= dt;
 		if( aitap <= 0.0){
 			aitap = m == "win" ? 210.0 : 800.0;			//	~4.8 taps a second vs ~1.2
-			aidown[aiside ? "right" : "left"] <- true;
-			aiside = 1 - aiside;
+			if( aiside == 1) aidown.right <- true;
+			else aidown.left <- true;
+			aiside = aiside == 1 ? 0 : 1;
 		}
 	}
 	function step( dt){
@@ -587,13 +605,17 @@ class RTRace extends RTMini
 			return;
 		}
 		if( state != "run"){ draw(); return; }
+		frames++;
 		aiStep( dt);
 		if( shotname && st > 4000.0 && st - dt <= 4000.0) shot( "run");
 		//	Natsuko: a tap on the other key spurs her on, the same key twice stumbles
-		local k = hit.left && hit.right ? "both" : hit.left ? "left" : hit.right ? "right" : null;
+		local k = null;
+		if( hit.left && hit.right) k = "both";
+		else if( hit.left) k = "left";
+		else if( hit.right) k = "right";
 		if( k && stumble <= 0.0){
 			if( k == "both" || k == last){
-				mv *= 0.55; stumble = 350.0; last = null; say( "Stumble!", 700.0); sfx( "SE210");
+				mv *= 0.55; stumble = 350.0; last = null; say( "Stumble!", 700.0); sfx( "SE210"); stumbles++;
 			}else{
 				mv = Math.min( 15.0, mv + 2.4); last = k; taps++;
 				if( taps % 2 == 0) sfx( "SE000");
@@ -615,12 +637,12 @@ class RTRace extends RTMini
 		if( me >= RACE_LEN || rd >= RACE_LEN){
 			aidown = {};
 			local won = me >= rd;
-			log( "race: round %d over, %S (Natsuko %.1f m, Matsu %.1f m, %.1f s)" % [round + 1, won ? "won" : "lost", me, rd, st / 1000.0]);
+			log( "race: round %d over, %S (Natsuko %.1f m, Matsu %.1f m, %.1f s, %d taps, %d stumbles, %d frames)" % [round + 1, won ? "won" : "lost", me, rd, st / 1000.0, taps, stumbles, frames]);
 			lmsg.setText( "");
 			if( won){
 				state = "won"; sfx( "SE018");
 				local by = (me - rd) / Math.max( 1.0, mv);
-				showPanel( true, "First across the line!", ["By " .. (by >= 1.0 ? int( by * 10.0) / 10.0 .. " seconds" : "a nose") .. ". Kitsu Takeo whoops.",
+				showPanel( true, "First across the line!", ["By " .. (by >= 1.0 ? ("%.1f seconds" % [by]) : "a nose") .. ". Kitsu Takeo whoops.",
 					"The Matsu rider glares. Then his hand drifts to his sword.", "", ""], ["Rein in"]);
 			}else{
 				state = "lost"; sfx( "SE012");
@@ -640,6 +662,7 @@ class RTRace extends RTMini
 	try{
 		local root = ::rootview ? ::rootview.findChild( "stageui") : null;
 		if( !root){ log( "mini-game " .. kind .. ": no stage UI, narrated outcome"); return 0; }
+		if( ::arguments.indexOf( "-rtminifail") >= 0) throw "test: -rtminifail";		//	(tests the fallback)
 		g = kind == "yumi" ? ::RTYumi( root) : ::RTRace( root);
 	}catch( ex){
 		printexception( ex);
@@ -650,7 +673,7 @@ class RTRace extends RTMini
 	log( "mini-game " .. kind .. " open");
 	while( !g.done){
 		sleep( 40);
-		if( g.shotreq){ local s = g.shotreq; g.shotreq = null; this.rtshot( s); }
+		if( g.shotreq){ local s = g.shotreq; g.shotreq = null; sleep( 250); this.rtshot( s); }	//	(a frame for a new panel)
 		if( skGetTime() - g.lastTick > 8000){ log( "mini-game " .. kind .. ": stalled"); g.err = true; break; }
 	}
 	if( g.shotreq) this.rtshot( g.shotreq);

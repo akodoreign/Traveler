@@ -1890,7 +1890,9 @@ def main():
                     ("G1225", "dojo kata taught (Kakita academy: Rensei's Kakita's First Stance)"),
                     ("G1226", "this battle: the Wave-woman trait is worn (Flee always works; RokuganJobs.sk)"),
                     ("G1229", "Crab Ch4: the cellar-stair objective shown"),
-                    ("G1230", "the finale road-marker objective shown (any path)")):
+                    ("G1230", "the finale road-marker objective shown (any path)"),
+                    ("G1232", "Winter Court: the Yumi contest won with the bow (mini-game)"),
+                    ("G1233", "Winter Court: Takeo's three laps won (mini-game)")):
         gv[gid] = {"defval": False, "name": nm, "type": 1}
     gv["G1160"] = {"defval": 0, "name": "finale Party B (bitmask over P100-P107)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}
@@ -1955,6 +1957,8 @@ def main():
     gv["G1227"] = {"defval": 0, "name": "field HUD: the current objective (1-based into RokuganObjectives.sk; 0 = "
                                         "none)", "type": 2}
     gv["G1228"] = {"defval": 0, "name": "field HUD: the chapter's recommended level (from its chapter card)", "type": 2}
+    gv["G1231"] = {"defval": 0, "name": "last mini-game result (RokuganMini.sk: 1 won, 2 lost, 0 narrated fallback)",
+                   "type": 2}
     save("gvar", gv)
     for kind in ("job", "item"):
         dd = load(kind)

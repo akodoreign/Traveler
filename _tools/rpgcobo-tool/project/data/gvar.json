@@ -4983,6 +4983,16 @@
 		"name": "the finale road-marker objective shown (any path)",
 		"type": 1
 	},
+	"G1232": {
+		"defval": false,
+		"name": "Winter Court: the Yumi contest won with the bow (mini-game)",
+		"type": 1
+	},
+	"G1233": {
+		"defval": false,
+		"name": "Winter Court: Takeo's three laps won (mini-game)",
+		"type": 1
+	},
 	"G1160": {
 		"defval": 0,
 		"name": "finale Party B (bitmask over P100-P107)",
@@ -5271,6 +5281,11 @@
 	"G1228": {
 		"defval": 0,
 		"name": "field HUD: the chapter's recommended level (from its chapter card)",
+		"type": 2
+	},
+	"G1231": {
+		"defval": 0,
+		"name": "last mini-game result (RokuganMini.sk: 1 won, 2 lost, 0 narrated fallback)",
 		"type": 2
 	},
 	"G2000": {
