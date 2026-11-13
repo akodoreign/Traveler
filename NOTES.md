@@ -4738,6 +4738,10 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   guards, tools/atomic_io.py atomic sheet writes, anim_harmonize updates + 48 harmonized/AI sheets, bot updates.
   Checks: 7 changed tools compile; story_6 log (23:23, after the 22:43 plugin edit) no compile error; no backups in
   resource; 0 new boss files. Harmonize run still going (last install 02:24) - rest goes in the next push.
+- 2026-11-13 11:01 push agent: NO release. Version 4 (3c2788b, 11:00, release.py) was already out; dry sync showed only
+  NOTES.md changed (lead's release.py notes). Checks: no tools/*.py changed since; no backups in resource; 0 new boss
+  files. Newest bot log (story_3, 11-12 08:34) predates the 11-13 plugin edits (RokuganUpdate/Field/Objectives) - no
+  engine run has verified them yet.
 
 ## 2026-11-11 (evening): Progression v2 - ranks, jobs, kata/kiho, Void, Support (user's design pass)
 Spec: `docs/rules/progression-v2.md` (the user's decisions, quoted). Built (lead):
@@ -4876,3 +4880,9 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
   extra_model_paths maps "ipadapter" there, not ComfyUI\models\ipadapter). anim_harmonize.py "ref" pass: reference =
   stand frame 0, weight 0.6 linear, original head + weapon composited back. badframes.py bug fixed: it compared only
   frames 0-19 to detect a redrawn sheet and reverted later-frame changes (100 harmonized sheets re-installed).
+
+
+## 2026-11-13: pushes go through tools/release.py (title Update / Verify)
+- Push = `python tools/release.py <message file>`: sync_licensed, version.json +1, rt_manifest.json (CRC32 as signed-int TEXT - the engine's JSON reader clamps big/negative numbers), commit, push origin licensed-demo:main. Version 4 = 3c2788b.
+- In game: title "Update / Verify" (gen_data title_update_entry -> RokuganUpdate.sk). Manages only _tools/rpgcobo-tool/ (engine file security: writes only in its folder, never exe/dll/bat/ps1/sakana.proj); records the install in _tools/rpgcobo-tool/rt_version.json + rt_manifest.json (gitignored). URLs carry ?t= to skip raw.githubusercontent's 5-min cache. sakana.proj allows https raw.githubusercontent.com.
+- Test: `-rtupdtest fast|verify|fix` (run in D:/RokuganTraveler-licensed; the dev folder has no version.json, so the button refuses there). Engine test windows sit black while they scan - warn the user first.
