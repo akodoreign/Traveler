@@ -104,12 +104,13 @@ class RTCutIn extends SKImageView
 		return true;
 	}
 }
+::RTCutIn <- RTCutIn;		//	(tester: the class lives in this file's scope; ::Rokugan.cutIn runs with this = ::Rokugan)
 ::Rokugan.cutIn <- function( pc, text){
 	if( !::rootview) return;
 	local root = ::rootview.findChild( "stageui");
 	if( !root) return;
 	local W = root.bnd.w, H = root.bnd.h, y = H * 0.30, h = H * 0.26;
-	local band = RTCutIn();
+	local band = ::RTCutIn();
 	band.setRect( 0, y, W, h);
 	root.addChild( band);
 	local key = ("bustKey" in this) ? this.bustKey( pc.name) : null;

@@ -138,15 +138,33 @@ def watchdog():
             log("watchdog error", traceback.format_exc()[-300:])
 
 
-def run_job(pos, neg, seed, init, ctrl, den, tag):
-    """One img2img job; resubmitted if lost to a restart. Returns an RGB image."""
-    iname = pd.api(g.upload, init, "rt_hz_%s_i.png" % tag, what="upload")
-    cname = pd.api(g.upload, ctrl, "rt_hz_%s_c.png" % tag, what="upload")
+IPA = {"file": "ip-adapter-plus_sdxl_vit-h.safetensors", "clip": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"}
+
+
+def run_job(pos, neg, seed, init, ctrl, den, tag, ref=None):
+    """One img2img job; resubmitted if lost to a restart. Returns an RGB image.
+    ref = (image, weight, weight_type): IP-Adapter (ComfyUI_IPAdapter_plus) conditions the model on that image -
+    the sheet's stand frame - so the outfit / face follow it; the canny control still holds the pose."""
+    def uploads():
+        a = pd.api(g.upload, init, "rt_hz_%s_i.png" % tag, what="upload")
+        b = pd.api(g.upload, ctrl, "rt_hz_%s_c.png" % tag, what="upload")
+        c = pd.api(g.upload, ref[0], "rt_hz_%s_r.png" % tag, what="upload") if ref else None
+        return a, b, c
+    iname, cname, rname = uploads()
 
     def build():
         w = ps.wf(pos, neg, seed, iname, cname)
         w["11"]["inputs"]["denoise"] = den
         w["13"]["inputs"]["filename_prefix"] = "rt_harmonize/f"
+        if ref:
+            w["20"] = {"class_type": "IPAdapterModelLoader", "inputs": {"ipadapter_file": IPA["file"]}}
+            w["21"] = {"class_type": "CLIPVisionLoader", "inputs": {"clip_name": IPA["clip"]}}
+            w["22"] = {"class_type": "LoadImage", "inputs": {"image": rname}}
+            w["23"] = {"class_type": "IPAdapterAdvanced", "inputs": {
+                "model": ["2", 0], "ipadapter": ["20", 0], "image": ["22", 0], "clip_vision": ["21", 0],
+                "weight": ref[1], "weight_type": ref[2], "combine_embeds": "concat", "start_at": 0.0, "end_at": 1.0,
+                "embeds_scaling": "V only"}}
+            w["11"]["inputs"]["model"] = ["23", 0]
         return w
     pid = pd.post_job(build())
     tries = 0
@@ -158,8 +176,7 @@ def run_job(pos, neg, seed, init, ctrl, den, tag):
             tries += 1
             if tries > 4:
                 raise RuntimeError("job %s failed %d times" % (tag, tries))
-            iname = pd.api(g.upload, init, "rt_hz_%s_i.png" % tag, what="upload")
-            cname = pd.api(g.upload, ctrl, "rt_hz_%s_c.png" % tag, what="upload")
+            iname, cname, rname = uploads()
             pid = pd.post_job(build())
         time.sleep(2)
 
@@ -347,8 +364,9 @@ def ai_fp(key):
     return h.hexdigest()
 
 
-def comfy_frame(spec, ref, aid, i, mapped, orig, base_score, rec):
-    """Up to 3 rounds of CANDS img2img candidates; the best accepted one or None."""
+def comfy_frame(spec, ref, aid, i, mapped, orig, base_score, rec, refimg=None, rounds=None, tries_key="tries"):
+    """Up to 3 rounds of CANDS img2img candidates; the best accepted one or None.
+    refimg = (image, weight, weight_type) adds the IP-Adapter reference (the stand frame)."""
     white = Image.new("RGBA", mapped.size, (255, 255, 255, 255))
     white.alpha_composite(mapped)
     init = pa.up(white.convert("RGB")).filter(ImageFilter.GaussianBlur(2))
@@ -362,10 +380,11 @@ def comfy_frame(spec, ref, aid, i, mapped, orig, base_score, rec):
     sil = cv2.dilate((oa[..., 3] > 0).astype(np.uint8), np.ones((3, 3), np.uint8)) > 0
     shadow = (oa[..., 3] > 0) & (oa[..., 3] < 255)
     best = None
-    for den, rnd in ROUNDS:
+    rec.setdefault(tries_key, [])
+    for den, rnd in (rounds or ROUNDS):
         for s in range(CANDS):
-            seed = 7000 + i * 31 + rnd * 7 + s
-            im = run_job(pos, neg, seed, init, ctrl, den, "%s_%d_%d_%d" % (spec["key"], i, rnd, s))
+            seed = 7000 + i * 31 + rnd * 7 + s + (500 if refimg else 0)
+            im = run_job(pos, neg, seed, init, ctrl, den, "%s_%d_%d_%d" % (spec["key"], i, rnd, s), ref=refimg)
             small = np.asarray(g.key_out(im.resize((FW * K, FH * K)), holes=True).resize((FW, FH), Image.BOX)).copy()
             fill = solid & (small[..., 3] < 230)
             small[fill] = np.asarray(mapped)[fill]
@@ -379,13 +398,75 @@ def comfy_frame(spec, ref, aid, i, mapped, orig, base_score, rec):
             verdict = "accept" if ok_iou >= IOU_MIN and ok_head and sc < base_score * 0.9 else "reject"
             why = [] if verdict == "accept" else [w for w, bad in (("iou", ok_iou < IOU_MIN), ("facing", not ok_head),
                                                                    ("no gain", sc >= base_score * 0.9)) if bad]
-            rec["tries"].append({"round": rnd, "den": den, "seed": seed, "iou": round(ok_iou, 3), "head_ok": bool(ok_head),
+            rec[tries_key].append({"round": rnd, "den": den, "seed": seed, "iou": round(ok_iou, 3), "head_ok": bool(ok_head),
                                  "region": round(sc, 3), "verdict": verdict, "why": why})
             if verdict == "accept" and (best is None or sc < best[1]):
                 best = (cand, sc)
         if best:
             return best
     return None
+
+
+REF_ROUNDS = ((0.42, 0), (0.50, 1), (0.58, 2))   # more freedom than the plain pass: the outfit has to change
+REF_T = 0.30                                       # side-view upright frames whose region score is still over this
+
+
+def ref_targets(key, frames, force):
+    """Frames for the reference pass: forced ones, the plain pass's "needs eye", and upright side-view frames whose
+    colour-family score vs the stand frames is still high (head or outfit different)."""
+    out = []
+    for i, r in frames.items():
+        i = int(i)
+        if r.get("ref_final"):
+            continue
+        side = not r["anim"].endswith(("_f", "_b")) and r["anim"] not in LYING
+        score = r.get("region_final", r.get("region_palette", 0))
+        if i in force or r["final"] == "palette (needs eye)" and side or side and score > REF_T:
+            out.append(i)
+    return sorted(out)
+
+
+def ref_pass(key, spec, ep, entry, weight, wtype, only_frames=None, install_it=True):
+    """IP-Adapter pass on the installed (already harmonized) sheet: reference = stand frame 0."""
+    sheet = spec["sheet"]
+    src = Image.open(os.path.join(PIC, sheet)).convert("RGBA")
+    am = [a for a in entry.get("animap", []) if isinstance(a, dict) and "st" in a]
+    stand = next((a for a in am if a["id"] == "stand"), {"st": 0, "en": 1})
+    ref = Ref([crop(src, i) for i in range(stand["st"], stand["en"])], spec)
+    r0 = crop(src, stand["st"])
+    white = Image.new("RGBA", r0.size, (255, 255, 255, 255))
+    white.alpha_composite(r0)
+    refimg = (pa.up(white.convert("RGB")), weight, wtype)
+    lp = os.path.join(LOGS, key + ".json")
+    frames = json.load(open(lp)) if os.path.exists(lp) else {}
+    todo = only_frames if only_frames is not None else ref_targets(key, frames, FORCE.get(key, []))
+    od = os.path.join(OUT, key)
+    os.makedirs(od, exist_ok=True)
+    out = src.copy()
+    n = 0
+    for i in todo:
+        rec = frames.setdefault(str(i), {"anim": "?", "final": "palette", "tries": []})
+        cur = crop(src, i)
+        base = ref.region_dist(np.asarray(cur))
+        forced = i in FORCE.get(key, [])
+        got = comfy_frame(spec, ref, rec.get("anim", "stand"), i, cur, cur, base / 0.9 + 1e-6 if forced else base,
+                          rec, refimg=refimg, rounds=REF_ROUNDS, tries_key="ref_tries")
+        rec["ref_settings"] = [weight, wtype]
+        if got:
+            rec["ref_final"], rec["final"], rec["region_ref"] = "accept", "ref", round(got[1], 3)
+            got[0].save(os.path.join(od, "f%03d.png" % i))
+            out.paste(got[0], ((i % COLS) * FW, (i // COLS) * FH))
+            n += 1
+        else:
+            rec["ref_final"] = "reject"
+        json.dump(frames, open(lp, "w"), indent=1, default=_jd)
+        log("  ref %s f%d: %s" % (key, i, rec["ref_final"]))
+    save_png(out, os.path.join(OUT, sheet))
+    before = os.path.join(BACKUP, sheet)
+    contact(key, Image.open(before).convert("RGBA") if os.path.exists(before) else src, out, am, frames)
+    if install_it and n:
+        install(key, sheet, out)
+    return n, len(todo)
 
 
 def harmonize(key, spec, ep, entry, palette_only):
@@ -469,8 +550,8 @@ def contact(key, before, after, am, frames):
             for row, im in ((0, before), (1, after)):
                 f = crop(im, i).resize((FW * s, FH * s), Image.NEAREST)
                 sh.paste(f, (90 + k * FW * s, y + 12 + row * FH * s), f)
-            fl = (frames.get(str(i)) or {}).get("final", "ref")
-            col = {"comfy": (80, 200, 255), "palette (needs eye)": (255, 80, 80), "pending": (255, 160, 0)}.get(fl)
+            fl = (frames.get(str(i)) or {}).get("final", "stand")
+            col = {"comfy": (80, 200, 255), "ref": (255, 120, 255), "palette (needs eye)": (255, 80, 80), "pending": (255, 160, 0)}.get(fl)
             d.text((90 + k * FW * s + 2, y), str(i) + ("" if not col else " " + fl.split()[0]),
                    fill=col or (255, 255, 255))
         y += FH * s * 2 + 14
@@ -595,6 +676,42 @@ if __name__ == "__main__":
         LOG = open(os.path.join(WORK, "harmonize.log"), "a", encoding="utf-8", buffering=1)
     if a and a[0] == "run":
         run(a[1:])
+    elif a and a[0] == "ref":
+        # python -E tools/anim_harmonize.py ref --only side_yosai,natsuko [--weight 0.7] [--type "style transfer"]
+        #        [--frames 11,12] [--no-install]          IP-Adapter pass (reference = stand frame 0)
+        b = a[1:]
+        only = b[b.index("--only") + 1].split(",") if "--only" in b else None
+        wt = float(b[b.index("--weight") + 1]) if "--weight" in b else 0.7
+        wty = b[b.index("--type") + 1] if "--type" in b else "style transfer"
+        fr = [int(x) for x in b[b.index("--frames") + 1].split(",")] if "--frames" in b else None
+        fp_ = os.path.join(HERE, "harmonize_force.json")
+        FORCE.update({k: v for k, v in (json.load(open(fp_)) if os.path.exists(fp_) else {}).items()
+                      if not k.startswith("_")})
+        guard = __import__("socket").socket()
+        try:
+            guard.bind(("127.0.0.1", 18767))
+        except OSError:
+            log("another anim_harmonize ref runner is active")
+            sys.exit(0)
+        threading.Thread(target=watchdog, daemon=True).start()
+        state = json.load(open(STATE)) if os.path.exists(STATE) else {}
+        tot = 0
+        for key, spec, (ep, entry) in worklist(set(only) if only else None):
+            if state.get(key, {}).get("ref") and fr is None:
+                continue
+            try:
+                n, m = ref_pass(key, spec, ep, entry, wt, wty, fr, "--no-install" not in b)
+                log("ref sheet %s: %d of %d frames accepted (weight %.2f, %s)" % (key, n, m, wt, wty))
+                if key in state and fr is None:
+                    state[key]["ref"] = [n, m]
+                    json.dump(state, open(STATE, "w"), indent=1, default=_jd)
+                tot += n
+            except Exception:
+                log("ERROR ref", key, traceback.format_exc()[-1500:])
+        if tot and "--no-install" not in b:
+            tool("badframes.py", "--apply")
+            tool("gen_portraits.py")
+        log("ref pass finished")
     elif a and a[0] == "status":
         summary(json.load(open(STATE)) if os.path.exists(STATE) else {})
         print(open(os.path.join(WORK, "SUMMARY.md"), encoding="utf-8").read())

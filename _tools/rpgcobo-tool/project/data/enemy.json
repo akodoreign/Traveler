@@ -69,7 +69,7 @@
 		"money": 10,
 		"name": "(unused enemy E000)",
 		"option": [],
-		"rt_species": "G2274"
+		"rt_species": "G2276"
 	},
 	"E001": {
 		"AGI": 10,
@@ -142,7 +142,7 @@
 		"name": "(unused enemy E001)",
 		"option": [],
 		"tribebits": 0,
-		"rt_species": "G2235"
+		"rt_species": "G2237"
 	},
 	"E002": {
 		"AGI": 10,
@@ -206,7 +206,7 @@
 		"money": 10,
 		"name": "(unused enemy E002)",
 		"option": [],
-		"rt_species": "G2265"
+		"rt_species": "G2267"
 	},
 	"E003": {
 		"AGI": 10,
@@ -270,7 +270,7 @@
 		"money": 10,
 		"name": "(unused enemy E003)",
 		"option": [],
-		"rt_species": "G2227"
+		"rt_species": "G2229"
 	},
 	"E004": {
 		"AGI": 15,
@@ -342,7 +342,7 @@
 		"money": 15,
 		"name": "(unused enemy E004)",
 		"option": [],
-		"rt_species": "G2222"
+		"rt_species": "G2224"
 	},
 	"E005": {
 		"AGI": 10,
@@ -406,7 +406,7 @@
 		"money": 10,
 		"name": "(unused enemy E005)",
 		"option": [],
-		"rt_species": "G2258"
+		"rt_species": "G2260"
 	},
 	"E006": {
 		"AGI": 10,
@@ -470,7 +470,7 @@
 		"money": 10,
 		"name": "(unused enemy E006)",
 		"option": [],
-		"rt_species": "G2273"
+		"rt_species": "G2275"
 	},
 	"E007": {
 		"AGI": 10,
@@ -534,7 +534,7 @@
 		"money": 10,
 		"name": "(unused enemy E007)",
 		"option": [],
-		"rt_species": "G2242"
+		"rt_species": "G2244"
 	},
 	"E008": {
 		"AGI": 10,
@@ -598,7 +598,7 @@
 		"money": 10,
 		"name": "(unused enemy E008)",
 		"option": [],
-		"rt_species": "G2248"
+		"rt_species": "G2250"
 	},
 	"E009": {
 		"AGI": 10,
@@ -662,7 +662,7 @@
 		"money": 10,
 		"name": "(unused enemy E009)",
 		"option": [],
-		"rt_species": "G2225"
+		"rt_species": "G2227"
 	},
 	"E010": {
 		"AGI": 10,
@@ -726,7 +726,7 @@
 		"money": 10,
 		"name": "(unused enemy E010)",
 		"option": [],
-		"rt_species": "G2238"
+		"rt_species": "G2240"
 	},
 	"E011": {
 		"AGI": 100,
@@ -790,7 +790,7 @@
 		"money": 10,
 		"name": "(unused enemy E011)",
 		"option": [],
-		"rt_species": "G2262"
+		"rt_species": "G2264"
 	},
 	"E012": {
 		"AGI": 100,
@@ -854,7 +854,7 @@
 		"money": 10,
 		"name": "(unused enemy E012)",
 		"option": [],
-		"rt_species": "G2221"
+		"rt_species": "G2223"
 	},
 	"E013": {
 		"AGI": 100,
@@ -918,7 +918,7 @@
 		"money": 10,
 		"name": "(unused enemy E013)",
 		"option": [],
-		"rt_species": "G2250"
+		"rt_species": "G2252"
 	},
 	"E014": {
 		"AGI": 15,
@@ -982,7 +982,7 @@
 		"money": 10,
 		"name": "(unused enemy E014)",
 		"option": [],
-		"rt_species": "G2241"
+		"rt_species": "G2243"
 	},
 	"E015": {
 		"AGI": 100,
@@ -1046,7 +1046,7 @@
 		"money": 10,
 		"name": "(unused enemy E015)",
 		"option": [],
-		"rt_species": "G2237"
+		"rt_species": "G2239"
 	},
 	"E016": {
 		"AGI": 100,
@@ -1110,7 +1110,7 @@
 		"money": 10,
 		"name": "(unused enemy E016)",
 		"option": [],
-		"rt_species": "G2257"
+		"rt_species": "G2259"
 	},
 	"E017": {
 		"AGI": 100,
@@ -1174,7 +1174,7 @@
 		"money": 10,
 		"name": "(unused enemy E017)",
 		"option": [],
-		"rt_species": "G2246"
+		"rt_species": "G2248"
 	},
 	"E018": {
 		"AGI": 15,
@@ -1238,7 +1238,7 @@
 		"money": 10,
 		"name": "(unused enemy E018)",
 		"option": [],
-		"rt_species": "G2276"
+		"rt_species": "G2278"
 	},
 	"E019": {
 		"AGI": 10,
@@ -1312,7 +1312,7 @@
 				"whom": 0
 			}
 		],
-		"rt_species": "G2240"
+		"rt_species": "G2242"
 	},
 	"E020": {
 		"AGI": 100,
@@ -1376,7 +1376,7 @@
 		"money": 10,
 		"name": "(unused enemy E020)",
 		"option": [],
-		"rt_species": "G2255"
+		"rt_species": "G2257"
 	},
 	"E021": {
 		"AGI": 20,
@@ -1440,7 +1440,7 @@
 		"money": 10,
 		"name": "(unused enemy E021)",
 		"option": [],
-		"rt_species": "G2234"
+		"rt_species": "G2236"
 	},
 	"E022": {
 		"AGI": 100,
@@ -1504,7 +1504,7 @@
 		"money": 10,
 		"name": "(unused enemy E022)",
 		"option": [],
-		"rt_species": "G2267"
+		"rt_species": "G2269"
 	},
 	"E023": {
 		"AGI": 100,
@@ -1568,7 +1568,7 @@
 		"money": 10,
 		"name": "(unused enemy E023)",
 		"option": [],
-		"rt_species": "G2244"
+		"rt_species": "G2246"
 	},
 	"E024": {
 		"AGI": 100,
@@ -1632,7 +1632,7 @@
 		"money": 10,
 		"name": "(unused enemy E024)",
 		"option": [],
-		"rt_species": "G2261"
+		"rt_species": "G2263"
 	},
 	"E025": {
 		"AGI": 100,
@@ -1696,7 +1696,7 @@
 		"money": 10,
 		"name": "(unused enemy E025)",
 		"option": [],
-		"rt_species": "G2245"
+		"rt_species": "G2247"
 	},
 	"E026": {
 		"AGI": 100,
@@ -1760,7 +1760,7 @@
 		"money": 10,
 		"name": "(unused enemy E026)",
 		"option": [],
-		"rt_species": "G2228"
+		"rt_species": "G2230"
 	},
 	"E027": {
 		"AGI": 10,
@@ -1824,7 +1824,7 @@
 		"money": 10,
 		"name": "(unused enemy E027)",
 		"option": [],
-		"rt_species": "G2224"
+		"rt_species": "G2226"
 	},
 	"E028": {
 		"AGI": 100,
@@ -1888,7 +1888,7 @@
 		"money": 10,
 		"name": "(unused enemy E028)",
 		"option": [],
-		"rt_species": "G2218"
+		"rt_species": "G2220"
 	},
 	"E029": {
 		"AGI": 100,
@@ -1952,7 +1952,7 @@
 		"money": 10,
 		"name": "(unused enemy E029)",
 		"option": [],
-		"rt_species": "G2217"
+		"rt_species": "G2219"
 	},
 	"E030": {
 		"AGI": 100,
@@ -2016,7 +2016,7 @@
 		"money": 10,
 		"name": "(unused enemy E030)",
 		"option": [],
-		"rt_species": "G2254"
+		"rt_species": "G2256"
 	},
 	"E031": {
 		"AGI": 100,
@@ -2080,7 +2080,7 @@
 		"money": 10,
 		"name": "(unused enemy E031)",
 		"option": [],
-		"rt_species": "G2253"
+		"rt_species": "G2255"
 	},
 	"E032": {
 		"AGI": 100,
@@ -2144,7 +2144,7 @@
 		"money": 10,
 		"name": "(unused enemy E032)",
 		"option": [],
-		"rt_species": "G2268"
+		"rt_species": "G2270"
 	},
 	"E033": {
 		"AGI": 100,
@@ -2208,7 +2208,7 @@
 		"money": 10,
 		"name": "(unused enemy E033)",
 		"option": [],
-		"rt_species": "G2219"
+		"rt_species": "G2221"
 	},
 	"E034": {
 		"AGI": 100,
@@ -2272,7 +2272,7 @@
 		"money": 10,
 		"name": "(unused enemy E034)",
 		"option": [],
-		"rt_species": "G2259"
+		"rt_species": "G2261"
 	},
 	"E035": {
 		"AGI": 100,
@@ -2336,7 +2336,7 @@
 		"money": 10,
 		"name": "(unused enemy E035)",
 		"option": [],
-		"rt_species": "G2275"
+		"rt_species": "G2277"
 	},
 	"E036": {
 		"AGI": 100,
@@ -2400,7 +2400,7 @@
 		"money": 10,
 		"name": "(unused enemy E036)",
 		"option": [],
-		"rt_species": "G2252"
+		"rt_species": "G2254"
 	},
 	"E037": {
 		"AGI": 100,
@@ -2464,7 +2464,7 @@
 		"money": 10,
 		"name": "(unused enemy E037)",
 		"option": [],
-		"rt_species": "G2223"
+		"rt_species": "G2225"
 	},
 	"E038": {
 		"AGI": 100,
@@ -2528,7 +2528,7 @@
 		"money": 10,
 		"name": "(unused enemy E038)",
 		"option": [],
-		"rt_species": "G2230"
+		"rt_species": "G2232"
 	},
 	"E039": {
 		"AGI": 100,
@@ -2592,7 +2592,7 @@
 		"money": 10,
 		"name": "(unused enemy E039)",
 		"option": [],
-		"rt_species": "G2220"
+		"rt_species": "G2222"
 	},
 	"E040": {
 		"AGI": 100,
@@ -2656,7 +2656,7 @@
 		"money": 10,
 		"name": "(unused enemy E040)",
 		"option": [],
-		"rt_species": "G2243"
+		"rt_species": "G2245"
 	},
 	"E041": {
 		"AGI": 100,
@@ -2720,7 +2720,7 @@
 		"money": 10,
 		"name": "(unused enemy E041)",
 		"option": [],
-		"rt_species": "G2226"
+		"rt_species": "G2228"
 	},
 	"E042": {
 		"AGI": 100,
@@ -2784,7 +2784,7 @@
 		"money": 10,
 		"name": "(unused enemy E042)",
 		"option": [],
-		"rt_species": "G2231"
+		"rt_species": "G2233"
 	},
 	"E043": {
 		"AGI": 100,
@@ -2848,7 +2848,7 @@
 		"money": 10,
 		"name": "(unused enemy E043)",
 		"option": [],
-		"rt_species": "G2271"
+		"rt_species": "G2273"
 	},
 	"E044": {
 		"AGI": 100,
@@ -2912,7 +2912,7 @@
 		"money": 10,
 		"name": "(unused enemy E044)",
 		"option": [],
-		"rt_species": "G2266"
+		"rt_species": "G2268"
 	},
 	"E045": {
 		"AGI": 100,
@@ -2976,7 +2976,7 @@
 		"money": 10,
 		"name": "(unused enemy E045)",
 		"option": [],
-		"rt_species": "G2249"
+		"rt_species": "G2251"
 	},
 	"E046": {
 		"AGI": 100,
@@ -3040,7 +3040,7 @@
 		"money": 10,
 		"name": "(unused enemy E046)",
 		"option": [],
-		"rt_species": "G2236"
+		"rt_species": "G2238"
 	},
 	"E047": {
 		"AGI": 100,
@@ -3104,7 +3104,7 @@
 		"money": 10,
 		"name": "(unused enemy E047)",
 		"option": [],
-		"rt_species": "G2232"
+		"rt_species": "G2234"
 	},
 	"E048": {
 		"AGI": 100,
@@ -3168,7 +3168,7 @@
 		"money": 10,
 		"name": "(unused enemy E048)",
 		"option": [],
-		"rt_species": "G2270"
+		"rt_species": "G2272"
 	},
 	"E049": {
 		"AGI": 100,
@@ -3232,7 +3232,7 @@
 		"money": 10,
 		"name": "(unused enemy E049)",
 		"option": [],
-		"rt_species": "G2264"
+		"rt_species": "G2266"
 	},
 	"E050": {
 		"AGI": 100,
@@ -3296,7 +3296,7 @@
 		"money": 10,
 		"name": "(unused enemy E050)",
 		"option": [],
-		"rt_species": "G2239"
+		"rt_species": "G2241"
 	},
 	"E051": {
 		"AGI": 100,
@@ -3360,7 +3360,7 @@
 		"money": 10,
 		"name": "(unused enemy E051)",
 		"option": [],
-		"rt_species": "G2260"
+		"rt_species": "G2262"
 	},
 	"E052": {
 		"AGI": 100,
@@ -3424,7 +3424,7 @@
 		"money": 10,
 		"name": "(unused enemy E052)",
 		"option": [],
-		"rt_species": "G2269"
+		"rt_species": "G2271"
 	},
 	"E053": {
 		"AGI": 100,
@@ -3488,7 +3488,7 @@
 		"money": 10,
 		"name": "(unused enemy E053)",
 		"option": [],
-		"rt_species": "G2263"
+		"rt_species": "G2265"
 	},
 	"E054": {
 		"AGI": 100,
@@ -3552,7 +3552,7 @@
 		"money": 10,
 		"name": "(unused enemy E054)",
 		"option": [],
-		"rt_species": "G2256"
+		"rt_species": "G2258"
 	},
 	"E055": {
 		"AGI": 100,
@@ -3616,7 +3616,7 @@
 		"money": 10,
 		"name": "(unused enemy E055)",
 		"option": [],
-		"rt_species": "G2229"
+		"rt_species": "G2231"
 	},
 	"E056": {
 		"AGI": 100,
@@ -3680,7 +3680,7 @@
 		"money": 10,
 		"name": "(unused enemy E056)",
 		"option": [],
-		"rt_species": "G2272"
+		"rt_species": "G2274"
 	},
 	"E057": {
 		"AGI": 100,
@@ -3744,7 +3744,7 @@
 		"money": 10,
 		"name": "(unused enemy E057)",
 		"option": [],
-		"rt_species": "G2251"
+		"rt_species": "G2253"
 	},
 	"E058": {
 		"AGI": 100,
@@ -3808,7 +3808,7 @@
 		"money": 10,
 		"name": "(unused enemy E058)",
 		"option": [],
-		"rt_species": "G2277"
+		"rt_species": "G2279"
 	},
 	"E059": {
 		"AGI": 100,
@@ -3872,7 +3872,7 @@
 		"money": 10,
 		"name": "(unused enemy E059)",
 		"option": [],
-		"rt_species": "G2233"
+		"rt_species": "G2235"
 	},
 	"E060": {
 		"AGI": 100,
@@ -3936,7 +3936,7 @@
 		"money": 10,
 		"name": "(unused enemy E060)",
 		"option": [],
-		"rt_species": "G2247"
+		"rt_species": "G2249"
 	},
 	"_meta": {
 		"caps": 100,
@@ -4439,7 +4439,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E107": {
 		"AGI": 16,
@@ -4624,7 +4624,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E109": {
 		"AGI": 14,
@@ -4712,7 +4712,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2209"
+		"rt_species": "G2211"
 	},
 	"E106": {
 		"AGI": 17,
@@ -4880,7 +4880,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2213"
+		"rt_species": "G2215"
 	},
 	"E120": {
 		"AGI": 7,
@@ -5040,7 +5040,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2188"
+		"rt_species": "G2190"
 	},
 	"E200": {
 		"AGI": 17,
@@ -5526,7 +5526,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 208
 	},
 	"E206": {
@@ -5607,7 +5607,7 @@
 		],
 		"tribebits": 0,
 		"RES": 5,
-		"rt_species": "G2207",
+		"rt_species": "G2209",
 		"rt_money0": 298
 	},
 	"E207": {
@@ -6498,7 +6498,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 208
 	},
 	"E218": {
@@ -6668,7 +6668,7 @@
 		],
 		"tribebits": 0,
 		"RES": 5,
-		"rt_species": "G2187"
+		"rt_species": "G2189"
 	},
 	"E220": {
 		"AGI": 26,
@@ -6908,7 +6908,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2186"
+		"rt_species": "G2188"
 	},
 	"E223": {
 		"AGI": 98,
@@ -7661,7 +7661,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E237": {
 		"AGI": 63,
@@ -7996,7 +7996,7 @@
 		],
 		"tribebits": 0,
 		"RES": 99,
-		"rt_species": "G2200"
+		"rt_species": "G2202"
 	},
 	"E238": {
 		"AGI": 63,
@@ -9223,7 +9223,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2216"
+		"rt_species": "G2218"
 	},
 	"E242": {
 		"AGI": 116,
@@ -9480,7 +9480,7 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2199"
+		"rt_species": "G2201"
 	},
 	"E245": {
 		"AGI": 89,
@@ -9839,7 +9839,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2195"
+		"rt_species": "G2197"
 	},
 	"E250": {
 		"AGI": 103,
@@ -10470,7 +10470,7 @@
 		],
 		"tribebits": 0,
 		"RES": 5,
-		"rt_species": "G2206"
+		"rt_species": "G2208"
 	},
 	"E300": {
 		"AGI": 8,
@@ -11251,7 +11251,7 @@
 		"RES": 7,
 		"rt_captain": true,
 		"rt_broadside": true,
-		"rt_species": "G2214"
+		"rt_species": "G2216"
 	},
 	"E330": {
 		"AGI": 106,
@@ -11628,7 +11628,7 @@
 		],
 		"tribebits": 0,
 		"RES": 6,
-		"rt_species": "G2203"
+		"rt_species": "G2205"
 	},
 	"E342": {
 		"AGI": 123,
@@ -14770,7 +14770,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2202"
+		"rt_species": "G2204"
 	},
 	"E408": {
 		"AGI": 100,
@@ -15662,7 +15662,7 @@
 		"tribebits": 0,
 		"RES": 12,
 		"rt_captain": "The powder room explodes. When the smoke clears, Akuro is gone.",
-		"rt_species": "G2204"
+		"rt_species": "G2206"
 	},
 	"E441": {
 		"AGI": 121,
@@ -15749,7 +15749,7 @@
 		"tribebits": 0,
 		"RES": 9,
 		"rt_untouchable": true,
-		"rt_species": "G2197"
+		"rt_species": "G2199"
 	},
 	"E445": {
 		"AGI": 129,
@@ -17242,7 +17242,7 @@
 		"tribebits": 0,
 		"RES": 4,
 		"rt_freed": true,
-		"rt_species": "G2186"
+		"rt_species": "G2188"
 	},
 	"E467": {
 		"AGI": 72,
@@ -17331,7 +17331,7 @@
 		"tribebits": 0,
 		"RES": 4,
 		"rt_freed": true,
-		"rt_species": "G2186"
+		"rt_species": "G2188"
 	},
 	"E470": {
 		"AGI": 69,
@@ -18987,7 +18987,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E303": {
 		"AGI": 11,
@@ -19245,7 +19245,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2209"
+		"rt_species": "G2211"
 	},
 	"E306": {
 		"AGI": 17,
@@ -19423,7 +19423,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E308": {
 		"AGI": 20,
@@ -19592,7 +19592,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2209"
+		"rt_species": "G2211"
 	},
 	"E310": {
 		"AGI": 23,
@@ -19770,7 +19770,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E312": {
 		"AGI": 20,
@@ -20019,7 +20019,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E318": {
 		"AGI": 69,
@@ -20179,7 +20179,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 217
 	},
 	"E320": {
@@ -20277,7 +20277,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E321": {
 		"AGI": 69,
@@ -20437,7 +20437,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E323": {
 		"AGI": 72,
@@ -20597,7 +20597,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 226
 	},
 	"E325": {
@@ -20695,7 +20695,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E377": {
 		"AGI": 92,
@@ -20856,7 +20856,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 280
 	},
 	"E379": {
@@ -20946,7 +20946,7 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
 	"E380": {
 		"AGI": 95,
@@ -21789,7 +21789,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E370": {
 		"AGI": 66,
@@ -22321,7 +22321,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E396": {
 		"AGI": 11,
@@ -22588,7 +22588,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E411": {
 		"AGI": 95,
@@ -22854,7 +22854,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E431": {
 		"AGI": 66,
@@ -22942,7 +22942,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 199
 	},
 	"E432": {
@@ -23111,7 +23111,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E442": {
 		"AGI": 100,
@@ -23199,7 +23199,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 307
 	},
 	"E443": {
@@ -23815,7 +23815,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E458": {
 		"AGI": 29,
@@ -24241,7 +24241,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E468": {
 		"AGI": 63,
@@ -25003,7 +25003,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E428": {
 		"AGI": 20,
@@ -25357,7 +25357,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 388
 	},
 	"E420": {
@@ -25543,7 +25543,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 280
 	},
 	"E335": {
@@ -25624,7 +25624,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E336": {
 		"AGI": 98,
@@ -25801,7 +25801,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 307
 	},
 	"E339": {
@@ -26081,7 +26081,7 @@
 		],
 		"tribebits": 0,
 		"RES": 6,
-		"rt_species": "G2203"
+		"rt_species": "G2205"
 	},
 	"E329": {
 		"AGI": 98,
@@ -26170,7 +26170,7 @@
 		"tribebits": 0,
 		"RES": 3,
 		"rt_charm": "K045",
-		"rt_species": "G2208",
+		"rt_species": "G2210",
 		"rt_money0": 298
 	},
 	"E332": {
@@ -26259,7 +26259,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2208",
+		"rt_species": "G2210",
 		"rt_money0": 316
 	},
 	"E489": {
@@ -27271,7 +27271,7 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
 	"E480": {
 		"AGI": 126,
@@ -27533,7 +27533,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2190"
+		"rt_species": "G2192"
 	},
 	"E483": {
 		"AGI": 132,
@@ -27630,7 +27630,7 @@
 		],
 		"tribebits": 0,
 		"RES": 6,
-		"rt_species": "G2212"
+		"rt_species": "G2214"
 	},
 	"E484": {
 		"AGI": 129,
@@ -30042,7 +30042,7 @@
 		"RES": 3,
 		"rt_flee": true,
 		"rt_fleebark": "Not for Daigoro's money. Not for this.",
-		"rt_species": "G2191"
+		"rt_species": "G2193"
 	},
 	"E522": {
 		"AGI": 17,
@@ -30402,7 +30402,7 @@
 		"tribebits": 0,
 		"RES": 4,
 		"rt_tomie_old": true,
-		"rt_species": "G2198"
+		"rt_species": "G2200"
 	},
 	"E527": {
 		"AGI": 28,
@@ -30500,7 +30500,7 @@
 		"tribebits": 0,
 		"RES": 9,
 		"rt_tomie": true,
-		"rt_species": "G2198"
+		"rt_species": "G2200"
 	},
 	"E528": {
 		"AGI": 14,
@@ -30757,7 +30757,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2209"
+		"rt_species": "G2211"
 	},
 	"E531": {
 		"AGI": 20,
@@ -32477,7 +32477,7 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
 	"E550": {
 		"AGI": 103,
@@ -32574,7 +32574,7 @@
 		],
 		"tribebits": 0,
 		"RES": 6,
-		"rt_species": "G2212"
+		"rt_species": "G2214"
 	},
 	"E555": {
 		"AGI": 126,
@@ -32942,7 +32942,7 @@
 		"tribebits": 0,
 		"RES": 16,
 		"rt_naga": true,
-		"rt_species": "G2193"
+		"rt_species": "G2195"
 	},
 	"E558": {
 		"AGI": 129,
@@ -34151,7 +34151,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2216"
+		"rt_species": "G2218"
 	},
 	"E574": {
 		"AGI": 170,
@@ -34605,7 +34605,7 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2199"
+		"rt_species": "G2201"
 	},
 	"E581": {
 		"AGI": 170,
@@ -34793,7 +34793,7 @@
 		],
 		"tribebits": 0,
 		"RES": 6,
-		"rt_species": "G2212"
+		"rt_species": "G2214"
 	},
 	"E579": {
 		"AGI": 172,
@@ -35460,7 +35460,7 @@
 		"rt_obsidian_weak": true,
 		"rt_flee_pct": 10,
 		"rt_fleebark": "(cornered, her face flickering through every disguise) I was going to be EMPRESS-",
-		"rt_species": "G2192"
+		"rt_species": "G2194"
 	},
 	"E539": {
 		"AGI": 63,
@@ -35548,7 +35548,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 190
 	},
 	"E540": {
@@ -36837,7 +36837,7 @@
 		],
 		"tribebits": 0,
 		"RES": 10,
-		"rt_species": "G2201"
+		"rt_species": "G2203"
 	},
 	"E599": {
 		"AGI": 198,
@@ -37424,7 +37424,7 @@
 		],
 		"tribebits": 0,
 		"RES": 10,
-		"rt_species": "G2201"
+		"rt_species": "G2203"
 	},
 	"E606": {
 		"AGI": 221,
@@ -37641,7 +37641,7 @@
 		"RES": 30,
 		"rt_surrender": 10,
 		"rt_killflag": "G1222",
-		"rt_species": "G2194"
+		"rt_species": "G2196"
 	},
 	"E619": {
 		"AGI": 33,
@@ -37802,7 +37802,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E621": {
 		"AGI": 41,
@@ -37987,7 +37987,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E623": {
 		"AGI": 28,
@@ -39397,7 +39397,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E639": {
 		"AGI": 83,
@@ -39494,7 +39494,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E640": {
 		"AGI": 98,
@@ -39591,7 +39591,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E641": {
 		"AGI": 103,
@@ -39688,7 +39688,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E642": {
 		"AGI": 72,
@@ -40757,7 +40757,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E655": {
 		"AGI": 92,
@@ -40854,7 +40854,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E656": {
 		"AGI": 149,
@@ -40951,7 +40951,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E657": {
 		"AGI": 28,
@@ -41209,7 +41209,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2209"
+		"rt_species": "G2211"
 	},
 	"E660": {
 		"AGI": 34,
@@ -41387,7 +41387,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E662": {
 		"AGI": 40,
@@ -41637,7 +41637,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2209"
+		"rt_species": "G2211"
 	},
 	"E665": {
 		"AGI": 35,
@@ -41725,7 +41725,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2209"
+		"rt_species": "G2211"
 	},
 	"E666": {
 		"AGI": 46,
@@ -41984,7 +41984,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E669": {
 		"AGI": 50,
@@ -42081,7 +42081,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E670": {
 		"AGI": 37,
@@ -42499,7 +42499,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E675": {
 		"AGI": 80,
@@ -42739,7 +42739,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 255
 	},
 	"E678": {
@@ -42820,7 +42820,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 264
 	},
 	"E679": {
@@ -42918,7 +42918,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E680": {
 		"AGI": 75,
@@ -43078,7 +43078,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E682": {
 		"AGI": 77,
@@ -43238,7 +43238,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 245
 	},
 	"E684": {
@@ -43336,7 +43336,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E685": {
 		"AGI": 103,
@@ -43424,7 +43424,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 317
 	},
 	"E686": {
@@ -43513,7 +43513,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 327
 	},
 	"E687": {
@@ -43686,7 +43686,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E689": {
 		"AGI": 109,
@@ -43863,7 +43863,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 335
 	},
 	"E691": {
@@ -43952,7 +43952,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 354
 	},
 	"E692": {
@@ -44041,7 +44041,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 363
 	},
 	"E693": {
@@ -44502,7 +44502,7 @@
 		],
 		"tribebits": 0,
 		"RES": 6,
-		"rt_species": "G2203"
+		"rt_species": "G2205"
 	},
 	"E698": {
 		"AGI": 132,
@@ -46015,7 +46015,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E715": {
 		"AGI": 35,
@@ -46112,7 +46112,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E716": {
 		"AGI": 37,
@@ -46209,7 +46209,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E717": {
 		"AGI": 43,
@@ -46306,7 +46306,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E718": {
 		"AGI": 80,
@@ -46749,7 +46749,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E723": {
 		"AGI": 89,
@@ -47160,7 +47160,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 299
 	},
 	"E728": {
@@ -47241,7 +47241,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 317
 	},
 	"E729": {
@@ -47322,7 +47322,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 336
 	},
 	"E730": {
@@ -47403,7 +47403,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 355
 	},
 	"E731": {
@@ -47484,7 +47484,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 364
 	},
 	"E732": {
@@ -47565,7 +47565,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2189",
+		"rt_species": "G2191",
 		"rt_money0": 373
 	},
 	"E733": {
@@ -47655,7 +47655,7 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
 	"E734": {
 		"AGI": 106,
@@ -47744,7 +47744,7 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
 	"E735": {
 		"AGI": 115,
@@ -47833,7 +47833,7 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
 	"E736": {
 		"AGI": 106,
@@ -48750,7 +48750,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E747": {
 		"AGI": 49,
@@ -48847,7 +48847,7 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
 	"E748": {
 		"AGI": 72,
@@ -49300,7 +49300,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E753": {
 		"AGI": 89,
@@ -49397,7 +49397,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
 	"E754": {
 		"AGI": 100,
@@ -50329,7 +50329,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2202"
+		"rt_species": "G2204"
 	},
 	"E765": {
 		"AGI": 118,
@@ -50409,7 +50409,7 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2202"
+		"rt_species": "G2204"
 	},
 	"E766": {
 		"AGI": 106,
@@ -50931,7 +50931,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 425
 	},
 	"E772": {
@@ -51020,7 +51020,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 443
 	},
 	"E773": {
@@ -51619,7 +51619,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E780": {
 		"AGI": 44,
@@ -52640,7 +52640,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 227
 	},
 	"E792": {
@@ -52729,7 +52729,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 237
 	},
 	"E793": {
@@ -52818,7 +52818,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 256
 	},
 	"E794": {
@@ -53075,7 +53075,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E797": {
 		"AGI": 57,
@@ -53155,7 +53155,7 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2196"
+		"rt_species": "G2198"
 	},
 	"E798": {
 		"AGI": 100,
@@ -54970,6 +54970,458 @@
 		"rt_species": "G2055"
 	},
 	"E818": {
+		"AGI": 149,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 50,
+		"MATK": 10,
+		"MAXHP": 1205,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 186,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 145,
+		"PDEF": 203,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 75,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					},
+					{
+						"affecttgr": true,
+						"rate": 25,
+						"rndwgt": 20,
+						"skillid": "S492",
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "A foreign soldier behind a very long pike. Resists Yari.",
+		"exp": 3292,
+		"item0": {
+			"issteal": false,
+			"itemid": "I242",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": null,
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP509",
+		"money": 462,
+		"name": "Gaijin Pikeman",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.2": -50,
+				"EDR.8": -50
+			},
+			{
+				"opttype": "opt_elemdef",
+				"EDR.1": 50
+			}
+		],
+		"tribebits": 0,
+		"RES": 4,
+		"rt_species": "G2056"
+	},
+	"E819": {
+		"AGI": 138,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 46,
+		"MATK": 10,
+		"MAXHP": 932,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 173,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 134,
+		"PDEF": 188,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 45,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					},
+					{
+						"affecttgr": true,
+						"rate": 55,
+						"rndwgt": 20,
+						"skillid": "S491",
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "A foreign soldier with a smoking tube that throws lead. (Using a dropped musket: History -15)",
+		"exp": 2701,
+		"item0": {
+			"issteal": false,
+			"itemid": "I278",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": null,
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP510",
+		"money": 425,
+		"name": "Gaijin Musketeer",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.1": -50,
+				"EDR.5": -50
+			}
+		],
+		"tribebits": 0,
+		"RES": 4,
+		"rt_species": "G2055"
+	},
+	"E820": {
+		"AGI": 144,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 48,
+		"MATK": 10,
+		"MAXHP": 968,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 179,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 140,
+		"PDEF": 196,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 45,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					},
+					{
+						"affecttgr": true,
+						"rate": 55,
+						"rndwgt": 20,
+						"skillid": "S491",
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "A foreign soldier with a smoking tube that throws lead. (Using a dropped musket: History -15)",
+		"exp": 2941,
+		"item0": {
+			"issteal": false,
+			"itemid": "I278",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": null,
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP510",
+		"money": 443,
+		"name": "Gaijin Musketeer",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.1": -50,
+				"EDR.5": -50
+			}
+		],
+		"tribebits": 0,
+		"RES": 4,
+		"rt_species": "G2055"
+	},
+	"E821": {
+		"AGI": 132,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 44,
+		"MATK": 10,
+		"MAXHP": 1166,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 166,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 123,
+		"PDEF": 181,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 60,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					},
+					{
+						"affecttgr": true,
+						"rate": 40,
+						"rndwgt": 20,
+						"skillid": "S498",
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "A Gusai marine with a boarding axe, paid in gaijin silver. Resists Water.",
+		"exp": 2471,
+		"item0": {
+			"issteal": false,
+			"itemid": "I279",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": null,
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP418",
+		"money": 406,
+		"name": "Gusai Mantis Marine",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.8": -50,
+				"EDR.0": -50
+			},
+			{
+				"opttype": "opt_elemdef",
+				"EDR.7": 50
+			}
+		],
+		"tribebits": 0,
+		"RES": 5,
+		"rt_species": "G2075"
+	},
+	"E822": {
+		"AGI": 144,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 48,
+		"MATK": 10,
+		"MAXHP": 1259,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 179,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 133,
+		"PDEF": 196,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 60,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					},
+					{
+						"affecttgr": true,
+						"rate": 40,
+						"rndwgt": 20,
+						"skillid": "S498",
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "A Gusai marine with a boarding axe, paid in gaijin silver. Resists Water.",
+		"exp": 2941,
+		"item0": {
+			"issteal": false,
+			"itemid": "I279",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": null,
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP418",
+		"money": 443,
+		"name": "Gusai Mantis Marine",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.8": -50,
+				"EDR.0": -50
+			},
+			{
+				"opttype": "opt_elemdef",
+				"EDR.7": 50
+			}
+		],
+		"tribebits": 0,
+		"RES": 5,
+		"rt_species": "G2075"
+	},
+	"E823": {
 		"AGI": 28,
 		"ATK": 100,
 		"DEF": 100,
@@ -55050,7 +55502,7 @@
 		"rt_species": "G2162",
 		"rt_money0": 112
 	},
-	"E819": {
+	"E824": {
 		"AGI": 34,
 		"ATK": 100,
 		"DEF": 100,
@@ -55131,7 +55583,7 @@
 		"rt_species": "G2162",
 		"rt_money0": 140
 	},
-	"E820": {
+	"E825": {
 		"AGI": 46,
 		"ATK": 100,
 		"DEF": 100,
@@ -55219,7 +55671,7 @@
 		"RES": 2,
 		"rt_species": "G2110"
 	},
-	"E821": {
+	"E826": {
 		"AGI": 60,
 		"ATK": 100,
 		"DEF": 100,
@@ -55307,7 +55759,7 @@
 		"RES": 2,
 		"rt_species": "G2110"
 	},
-	"E822": {
+	"E827": {
 		"AGI": 45,
 		"ATK": 100,
 		"DEF": 100,
@@ -55395,7 +55847,7 @@
 		"RES": 1,
 		"rt_species": "G2022"
 	},
-	"E823": {
+	"E828": {
 		"AGI": 49,
 		"ATK": 100,
 		"DEF": 100,
@@ -55483,7 +55935,7 @@
 		"RES": 1,
 		"rt_species": "G2022"
 	},
-	"E824": {
+	"E829": {
 		"AGI": 37,
 		"ATK": 100,
 		"DEF": 100,
@@ -55564,7 +56016,7 @@
 		"rt_species": "G2079",
 		"rt_money0": 126
 	},
-	"E825": {
+	"E830": {
 		"AGI": 33,
 		"ATK": 100,
 		"DEF": 100,
@@ -55659,9 +56111,9 @@
 		],
 		"tribebits": 0,
 		"RES": 1,
-		"rt_species": "G2210"
+		"rt_species": "G2212"
 	},
-	"E826": {
+	"E831": {
 		"AGI": 43,
 		"ATK": 100,
 		"DEF": 100,
@@ -55749,7 +56201,7 @@
 		"RES": 2,
 		"rt_species": "G2013"
 	},
-	"E827": {
+	"E832": {
 		"AGI": 49,
 		"ATK": 100,
 		"DEF": 100,
@@ -55837,7 +56289,7 @@
 		"RES": 2,
 		"rt_species": "G2013"
 	},
-	"E828": {
+	"E833": {
 		"AGI": 67,
 		"ATK": 100,
 		"DEF": 100,
@@ -55918,7 +56370,7 @@
 		"RES": 2,
 		"rt_species": "G2063"
 	},
-	"E829": {
+	"E834": {
 		"AGI": 74,
 		"ATK": 100,
 		"DEF": 100,
@@ -55999,7 +56451,7 @@
 		"RES": 2,
 		"rt_species": "G2063"
 	},
-	"E830": {
+	"E835": {
 		"AGI": 75,
 		"ATK": 100,
 		"DEF": 100,
@@ -56087,7 +56539,7 @@
 		"RES": 2,
 		"rt_species": "G2110"
 	},
-	"E831": {
+	"E836": {
 		"AGI": 87,
 		"ATK": 100,
 		"DEF": 100,
@@ -56175,7 +56627,7 @@
 		"RES": 2,
 		"rt_species": "G2110"
 	},
-	"E832": {
+	"E837": {
 		"AGI": 72,
 		"ATK": 100,
 		"DEF": 100,
@@ -56255,7 +56707,7 @@
 		"RES": 3,
 		"rt_species": "G2175"
 	},
-	"E833": {
+	"E838": {
 		"AGI": 77,
 		"ATK": 100,
 		"DEF": 100,
@@ -56335,7 +56787,7 @@
 		"RES": 3,
 		"rt_species": "G2175"
 	},
-	"E834": {
+	"E839": {
 		"AGI": 69,
 		"ATK": 100,
 		"DEF": 100,
@@ -56423,7 +56875,7 @@
 		"RES": 3,
 		"rt_species": "G2146"
 	},
-	"E835": {
+	"E840": {
 		"AGI": 75,
 		"ATK": 100,
 		"DEF": 100,
@@ -56511,7 +56963,7 @@
 		"RES": 3,
 		"rt_species": "G2146"
 	},
-	"E836": {
+	"E841": {
 		"AGI": 72,
 		"ATK": 100,
 		"DEF": 100,
@@ -56599,7 +57051,7 @@
 		"RES": 2,
 		"rt_species": "G2061"
 	},
-	"E837": {
+	"E842": {
 		"AGI": 77,
 		"ATK": 100,
 		"DEF": 100,
@@ -56687,7 +57139,7 @@
 		"RES": 2,
 		"rt_species": "G2061"
 	},
-	"E838": {
+	"E843": {
 		"AGI": 75,
 		"ATK": 100,
 		"DEF": 100,
@@ -56767,7 +57219,7 @@
 		"RES": 4,
 		"rt_species": "G2062"
 	},
-	"E839": {
+	"E844": {
 		"AGI": 80,
 		"ATK": 100,
 		"DEF": 100,
@@ -56862,9 +57314,9 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2215"
+		"rt_species": "G2217"
 	},
-	"E840": {
+	"E845": {
 		"AGI": 80,
 		"ATK": 100,
 		"DEF": 100,
@@ -56951,9 +57403,9 @@
 		"tribebits": 0,
 		"RES": 4,
 		"rt_freed": true,
-		"rt_species": "G2186"
+		"rt_species": "G2188"
 	},
-	"E841": {
+	"E846": {
 		"AGI": 83,
 		"ATK": 100,
 		"DEF": 100,
@@ -57040,9 +57492,9 @@
 		"tribebits": 0,
 		"RES": 4,
 		"rt_freed": true,
-		"rt_species": "G2186"
+		"rt_species": "G2188"
 	},
-	"E842": {
+	"E847": {
 		"AGI": 86,
 		"ATK": 100,
 		"DEF": 100,
@@ -57129,9 +57581,9 @@
 		"tribebits": 0,
 		"RES": 4,
 		"rt_freed": true,
-		"rt_species": "G2186"
+		"rt_species": "G2188"
 	},
-	"E843": {
+	"E848": {
 		"AGI": 73,
 		"ATK": 100,
 		"DEF": 100,
@@ -57232,7 +57684,7 @@
 		"RES": 1,
 		"rt_species": "G2093"
 	},
-	"E844": {
+	"E849": {
 		"AGI": 75,
 		"ATK": 100,
 		"DEF": 100,
@@ -57333,7 +57785,7 @@
 		"RES": 1,
 		"rt_species": "G2093"
 	},
-	"E845": {
+	"E850": {
 		"AGI": 86,
 		"ATK": 100,
 		"DEF": 100,
@@ -57421,7 +57873,7 @@
 		"RES": 2,
 		"rt_species": "G2149"
 	},
-	"E846": {
+	"E851": {
 		"AGI": 89,
 		"ATK": 100,
 		"DEF": 100,
@@ -57509,7 +57961,7 @@
 		"RES": 2,
 		"rt_species": "G2149"
 	},
-	"E847": {
+	"E852": {
 		"AGI": 103,
 		"ATK": 100,
 		"DEF": 100,
@@ -57591,7 +58043,7 @@
 		"rt_species": "G2124",
 		"rt_money0": 317
 	},
-	"E848": {
+	"E853": {
 		"AGI": 109,
 		"ATK": 100,
 		"DEF": 100,
@@ -57673,7 +58125,7 @@
 		"rt_species": "G2124",
 		"rt_money0": 336
 	},
-	"E849": {
+	"E854": {
 		"AGI": 112,
 		"ATK": 100,
 		"DEF": 100,
@@ -57755,7 +58207,7 @@
 		"rt_species": "G2124",
 		"rt_money0": 345
 	},
-	"E850": {
+	"E855": {
 		"AGI": 103,
 		"ATK": 100,
 		"DEF": 100,
@@ -57835,7 +58287,7 @@
 		"RES": 3,
 		"rt_species": "G2019"
 	},
-	"E851": {
+	"E856": {
 		"AGI": 106,
 		"ATK": 100,
 		"DEF": 100,
@@ -57915,7 +58367,7 @@
 		"RES": 3,
 		"rt_species": "G2019"
 	},
-	"E852": {
+	"E857": {
 		"AGI": 112,
 		"ATK": 100,
 		"DEF": 100,
@@ -57995,7 +58447,7 @@
 		"RES": 3,
 		"rt_species": "G2019"
 	},
-	"E853": {
+	"E858": {
 		"AGI": 106,
 		"ATK": 100,
 		"DEF": 100,
@@ -58084,7 +58536,7 @@
 		"RES": 2,
 		"rt_species": "G2125"
 	},
-	"E854": {
+	"E859": {
 		"AGI": 109,
 		"ATK": 100,
 		"DEF": 100,
@@ -58173,7 +58625,7 @@
 		"RES": 2,
 		"rt_species": "G2125"
 	},
-	"E855": {
+	"E860": {
 		"AGI": 115,
 		"ATK": 100,
 		"DEF": 100,
@@ -58262,7 +58714,7 @@
 		"RES": 2,
 		"rt_species": "G2125"
 	},
-	"E856": {
+	"E861": {
 		"AGI": 115,
 		"ATK": 100,
 		"DEF": 100,
@@ -58343,7 +58795,7 @@
 		"rt_species": "G2058",
 		"rt_money0": 354
 	},
-	"E857": {
+	"E862": {
 		"AGI": 118,
 		"ATK": 100,
 		"DEF": 100,
@@ -58424,7 +58876,7 @@
 		"rt_species": "G2058",
 		"rt_money0": 363
 	},
-	"E858": {
+	"E863": {
 		"AGI": 118,
 		"ATK": 100,
 		"DEF": 100,
@@ -58504,7 +58956,7 @@
 		"RES": 3,
 		"rt_species": "G2014"
 	},
-	"E859": {
+	"E864": {
 		"AGI": 132,
 		"ATK": 100,
 		"DEF": 100,
@@ -58591,9 +59043,9 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
-	"E860": {
+	"E865": {
 		"AGI": 138,
 		"ATK": 100,
 		"DEF": 100,
@@ -58680,9 +59132,9 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
-	"E861": {
+	"E866": {
 		"AGI": 144,
 		"ATK": 100,
 		"DEF": 100,
@@ -58769,9 +59221,9 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
-	"E862": {
+	"E867": {
 		"AGI": 135,
 		"ATK": 100,
 		"DEF": 100,
@@ -58853,7 +59305,7 @@
 		"rt_species": "G2124",
 		"rt_money0": 416
 	},
-	"E863": {
+	"E868": {
 		"AGI": 141,
 		"ATK": 100,
 		"DEF": 100,
@@ -58935,7 +59387,7 @@
 		"rt_species": "G2124",
 		"rt_money0": 434
 	},
-	"E864": {
+	"E869": {
 		"AGI": 132,
 		"ATK": 100,
 		"DEF": 100,
@@ -59027,7 +59479,7 @@
 		"RES": 5,
 		"rt_species": "G2184"
 	},
-	"E865": {
+	"E870": {
 		"AGI": 138,
 		"ATK": 100,
 		"DEF": 100,
@@ -59119,7 +59571,7 @@
 		"RES": 5,
 		"rt_species": "G2184"
 	},
-	"E866": {
+	"E871": {
 		"AGI": 138,
 		"ATK": 100,
 		"DEF": 100,
@@ -59205,9 +59657,9 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2190"
+		"rt_species": "G2192"
 	},
-	"E867": {
+	"E872": {
 		"AGI": 144,
 		"ATK": 100,
 		"DEF": 100,
@@ -59293,9 +59745,9 @@
 		],
 		"tribebits": 0,
 		"RES": 4,
-		"rt_species": "G2190"
+		"rt_species": "G2192"
 	},
-	"E868": {
+	"E873": {
 		"AGI": 138,
 		"ATK": 100,
 		"DEF": 100,
@@ -59390,9 +59842,9 @@
 		],
 		"tribebits": 0,
 		"RES": 6,
-		"rt_species": "G2212"
+		"rt_species": "G2214"
 	},
-	"E869": {
+	"E874": {
 		"AGI": 144,
 		"ATK": 100,
 		"DEF": 100,
@@ -59487,9 +59939,9 @@
 		],
 		"tribebits": 0,
 		"RES": 6,
-		"rt_species": "G2212"
+		"rt_species": "G2214"
 	},
-	"E870": {
+	"E875": {
 		"AGI": 141,
 		"ATK": 100,
 		"DEF": 100,
@@ -59581,7 +60033,7 @@
 		"RES": 4,
 		"rt_species": "G2052"
 	},
-	"E871": {
+	"E876": {
 		"AGI": 144,
 		"ATK": 100,
 		"DEF": 100,
@@ -59673,7 +60125,7 @@
 		"RES": 4,
 		"rt_species": "G2052"
 	},
-	"E872": {
+	"E877": {
 		"AGI": 147,
 		"ATK": 100,
 		"DEF": 100,
@@ -59765,7 +60217,7 @@
 		"RES": 4,
 		"rt_species": "G2052"
 	},
-	"E873": {
+	"E878": {
 		"AGI": 149,
 		"ATK": 100,
 		"DEF": 100,
@@ -59857,7 +60309,7 @@
 		"RES": 4,
 		"rt_species": "G2052"
 	},
-	"E874": {
+	"E879": {
 		"AGI": 144,
 		"ATK": 100,
 		"DEF": 100,
@@ -59945,7 +60397,7 @@
 		"RES": 4,
 		"rt_species": "G2007"
 	},
-	"E875": {
+	"E880": {
 		"AGI": 147,
 		"ATK": 100,
 		"DEF": 100,
@@ -60033,7 +60485,7 @@
 		"RES": 4,
 		"rt_species": "G2007"
 	},
-	"E876": {
+	"E881": {
 		"AGI": 149,
 		"ATK": 100,
 		"DEF": 100,
@@ -60121,7 +60573,7 @@
 		"RES": 4,
 		"rt_species": "G2007"
 	},
-	"E877": {
+	"E882": {
 		"AGI": 28,
 		"ATK": 100,
 		"DEF": 100,
@@ -60202,7 +60654,7 @@
 		"rt_species": "G2162",
 		"rt_money0": 99
 	},
-	"E878": {
+	"E883": {
 		"AGI": 31,
 		"ATK": 100,
 		"DEF": 100,
@@ -60291,7 +60743,7 @@
 		"RES": 2,
 		"rt_species": "G2073"
 	},
-	"E879": {
+	"E884": {
 		"AGI": 37,
 		"ATK": 100,
 		"DEF": 100,
@@ -60371,7 +60823,7 @@
 		"RES": 3,
 		"rt_species": "G2019"
 	},
-	"E880": {
+	"E885": {
 		"AGI": 40,
 		"ATK": 100,
 		"DEF": 100,
@@ -60452,7 +60904,7 @@
 		"rt_species": "G2079",
 		"rt_money0": 132
 	},
-	"E881": {
+	"E886": {
 		"AGI": 26,
 		"ATK": 100,
 		"DEF": 100,
@@ -60532,7 +60984,7 @@
 		"RES": 3,
 		"rt_species": "G2024"
 	},
-	"E882": {
+	"E887": {
 		"AGI": 51,
 		"ATK": 100,
 		"DEF": 100,
@@ -60620,7 +61072,7 @@
 		"RES": 2,
 		"rt_species": "G2153"
 	},
-	"E883": {
+	"E888": {
 		"AGI": 57,
 		"ATK": 100,
 		"DEF": 100,
@@ -60702,7 +61154,7 @@
 		"rt_surrender": true,
 		"rt_species": "G2151"
 	},
-	"E884": {
+	"E889": {
 		"AGI": 106,
 		"ATK": 100,
 		"DEF": 100,
@@ -60784,7 +61236,7 @@
 		"rt_species": "G2124",
 		"rt_money0": 330
 	},
-	"E885": {
+	"E890": {
 		"AGI": 115,
 		"ATK": 100,
 		"DEF": 100,
@@ -60866,7 +61318,7 @@
 		"rt_species": "G2124",
 		"rt_money0": 359
 	},
-	"E886": {
+	"E891": {
 		"AGI": 109,
 		"ATK": 100,
 		"DEF": 100,
@@ -60946,7 +61398,7 @@
 		"RES": 3,
 		"rt_species": "G2019"
 	},
-	"E887": {
+	"E892": {
 		"AGI": 115,
 		"ATK": 100,
 		"DEF": 100,
@@ -61026,7 +61478,7 @@
 		"RES": 3,
 		"rt_species": "G2019"
 	},
-	"E888": {
+	"E893": {
 		"AGI": 109,
 		"ATK": 100,
 		"DEF": 100,
@@ -61115,7 +61567,7 @@
 		"RES": 2,
 		"rt_species": "G2125"
 	},
-	"E889": {
+	"E894": {
 		"AGI": 112,
 		"ATK": 100,
 		"DEF": 100,
@@ -61204,7 +61656,7 @@
 		"RES": 2,
 		"rt_species": "G2125"
 	},
-	"E890": {
+	"E895": {
 		"AGI": 121,
 		"ATK": 100,
 		"DEF": 100,
@@ -61293,7 +61745,7 @@
 		"RES": 2,
 		"rt_species": "G2125"
 	},
-	"E891": {
+	"E896": {
 		"AGI": 118,
 		"ATK": 100,
 		"DEF": 100,
@@ -61374,7 +61826,7 @@
 		"rt_species": "G2058",
 		"rt_money0": 366
 	},
-	"E892": {
+	"E897": {
 		"AGI": 121,
 		"ATK": 100,
 		"DEF": 100,
@@ -61455,7 +61907,7 @@
 		"rt_species": "G2058",
 		"rt_money0": 375
 	},
-	"E893": {
+	"E898": {
 		"AGI": 121,
 		"ATK": 100,
 		"DEF": 100,
@@ -61535,7 +61987,7 @@
 		"RES": 3,
 		"rt_species": "G2014"
 	},
-	"E894": {
+	"E899": {
 		"AGI": 75,
 		"ATK": 100,
 		"DEF": 100,
@@ -61631,7 +62083,7 @@
 		"RES": 3,
 		"rt_species": "G2161"
 	},
-	"E895": {
+	"E900": {
 		"AGI": 79,
 		"ATK": 100,
 		"DEF": 100,
@@ -61727,7 +62179,7 @@
 		"RES": 3,
 		"rt_species": "G2161"
 	},
-	"E896": {
+	"E901": {
 		"AGI": 81,
 		"ATK": 100,
 		"DEF": 100,
@@ -61823,7 +62275,7 @@
 		"RES": 3,
 		"rt_species": "G2161"
 	},
-	"E897": {
+	"E902": {
 		"AGI": 112,
 		"ATK": 100,
 		"DEF": 100,
@@ -61904,7 +62356,7 @@
 		"rt_species": "G2058",
 		"rt_money0": 344
 	},
-	"E898": {
+	"E903": {
 		"AGI": 118,
 		"ATK": 100,
 		"DEF": 100,
@@ -61985,7 +62437,7 @@
 		"rt_species": "G2058",
 		"rt_money0": 363
 	},
-	"E899": {
+	"E904": {
 		"AGI": 115,
 		"ATK": 100,
 		"DEF": 100,
@@ -62073,7 +62525,7 @@
 		"RES": 1,
 		"rt_species": "G2023"
 	},
-	"E900": {
+	"E905": {
 		"AGI": 121,
 		"ATK": 100,
 		"DEF": 100,
@@ -62161,7 +62613,7 @@
 		"RES": 1,
 		"rt_species": "G2023"
 	},
-	"E901": {
+	"E906": {
 		"AGI": 132,
 		"ATK": 100,
 		"DEF": 100,
@@ -62250,7 +62702,7 @@
 		"rt_legion": true,
 		"rt_species": "G2155"
 	},
-	"E902": {
+	"E907": {
 		"AGI": 141,
 		"ATK": 100,
 		"DEF": 100,
@@ -62339,7 +62791,7 @@
 		"rt_legion": true,
 		"rt_species": "G2155"
 	},
-	"E903": {
+	"E908": {
 		"AGI": 138,
 		"ATK": 100,
 		"DEF": 100,
@@ -62420,7 +62872,7 @@
 		"RES": 6,
 		"rt_species": "G2123"
 	},
-	"E904": {
+	"E909": {
 		"AGI": 144,
 		"ATK": 100,
 		"DEF": 100,
@@ -62501,7 +62953,7 @@
 		"RES": 6,
 		"rt_species": "G2123"
 	},
-	"E905": {
+	"E910": {
 		"AGI": 141,
 		"ATK": 100,
 		"DEF": 100,
@@ -62599,7 +63051,7 @@
 		"rt_singing": true,
 		"rt_species": "G2182"
 	},
-	"E906": {
+	"E911": {
 		"AGI": 149,
 		"ATK": 100,
 		"DEF": 100,
@@ -62697,7 +63149,7 @@
 		"rt_singing": true,
 		"rt_species": "G2182"
 	},
-	"E907": {
+	"E912": {
 		"AGI": 40,
 		"ATK": 100,
 		"DEF": 100,
@@ -62778,7 +63230,7 @@
 		"rt_species": "G2035",
 		"rt_money0": 148
 	},
-	"E908": {
+	"E913": {
 		"AGI": 40,
 		"ATK": 100,
 		"DEF": 100,
@@ -62866,7 +63318,7 @@
 		"RES": 1,
 		"rt_species": "G2022"
 	},
-	"E909": {
+	"E914": {
 		"AGI": 70,
 		"ATK": 100,
 		"DEF": 100,
@@ -62954,7 +63406,7 @@
 		"RES": 1,
 		"rt_species": "G2022"
 	},
-	"E910": {
+	"E915": {
 		"AGI": 24,
 		"ATK": 100,
 		"DEF": 100,
@@ -63040,9 +63492,9 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2209"
+		"rt_species": "G2211"
 	},
-	"E911": {
+	"E916": {
 		"AGI": 30,
 		"ATK": 100,
 		"DEF": 100,
@@ -63128,9 +63580,9 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2209"
+		"rt_species": "G2211"
 	},
-	"E912": {
+	"E917": {
 		"AGI": 57,
 		"ATK": 100,
 		"DEF": 100,
@@ -63211,7 +63663,7 @@
 		"rt_species": "G2079",
 		"rt_money0": 198
 	},
-	"E913": {
+	"E918": {
 		"AGI": 75,
 		"ATK": 100,
 		"DEF": 100,
@@ -63292,7 +63744,7 @@
 		"RES": 2,
 		"rt_species": "G2063"
 	},
-	"E914": {
+	"E919": {
 		"AGI": 77,
 		"ATK": 100,
 		"DEF": 100,
@@ -63389,7 +63841,7 @@
 		"RES": 2,
 		"rt_species": "G2174"
 	},
-	"E915": {
+	"E920": {
 		"AGI": 83,
 		"ATK": 100,
 		"DEF": 100,
@@ -63486,7 +63938,7 @@
 		"RES": 2,
 		"rt_species": "G2174"
 	},
-	"E916": {
+	"E921": {
 		"AGI": 89,
 		"ATK": 100,
 		"DEF": 100,
@@ -63583,7 +64035,7 @@
 		"RES": 2,
 		"rt_species": "G2174"
 	},
-	"E917": {
+	"E922": {
 		"AGI": 72,
 		"ATK": 100,
 		"DEF": 100,
@@ -63669,10 +64121,10 @@
 		],
 		"tribebits": 0,
 		"RES": 3,
-		"rt_species": "G2205",
+		"rt_species": "G2207",
 		"rt_money0": 218
 	},
-	"E918": {
+	"E923": {
 		"AGI": 75,
 		"ATK": 100,
 		"DEF": 100,
@@ -63760,7 +64212,7 @@
 		"RES": 3,
 		"rt_species": "G2146"
 	},
-	"E919": {
+	"E924": {
 		"AGI": 80,
 		"ATK": 100,
 		"DEF": 100,
@@ -63848,7 +64300,7 @@
 		"RES": 3,
 		"rt_species": "G2146"
 	},
-	"E920": {
+	"E925": {
 		"AGI": 89,
 		"ATK": 100,
 		"DEF": 100,
@@ -63936,7 +64388,7 @@
 		"RES": 3,
 		"rt_species": "G2146"
 	},
-	"E921": {
+	"E926": {
 		"AGI": 75,
 		"ATK": 100,
 		"DEF": 100,
@@ -64024,7 +64476,7 @@
 		"rt_kappa": true,
 		"rt_species": "G2095"
 	},
-	"E922": {
+	"E927": {
 		"AGI": 77,
 		"ATK": 100,
 		"DEF": 100,
@@ -64104,7 +64556,7 @@
 		"RES": 4,
 		"rt_species": "G2062"
 	},
-	"E923": {
+	"E928": {
 		"AGI": 83,
 		"ATK": 100,
 		"DEF": 100,
@@ -64192,7 +64644,7 @@
 		"RES": 4,
 		"rt_species": "G2144"
 	},
-	"E924": {
+	"E929": {
 		"AGI": 86,
 		"ATK": 100,
 		"DEF": 100,
@@ -64280,7 +64732,7 @@
 		"RES": 4,
 		"rt_species": "G2144"
 	},
-	"E925": {
+	"E930": {
 		"AGI": 109,
 		"ATK": 100,
 		"DEF": 100,
@@ -64372,7 +64824,7 @@
 		"RES": 5,
 		"rt_species": "G2184"
 	},
-	"E926": {
+	"E931": {
 		"AGI": 112,
 		"ATK": 100,
 		"DEF": 100,
@@ -64464,7 +64916,7 @@
 		"RES": 5,
 		"rt_species": "G2184"
 	},
-	"E927": {
+	"E932": {
 		"AGI": 115,
 		"ATK": 100,
 		"DEF": 100,
@@ -64556,7 +65008,7 @@
 		"RES": 5,
 		"rt_species": "G2184"
 	},
-	"E928": {
+	"E933": {
 		"AGI": 109,
 		"ATK": 100,
 		"DEF": 100,
@@ -64653,7 +65105,7 @@
 		"RES": 3,
 		"rt_species": "G2054"
 	},
-	"E929": {
+	"E934": {
 		"AGI": 115,
 		"ATK": 100,
 		"DEF": 100,
@@ -64750,7 +65202,7 @@
 		"RES": 3,
 		"rt_species": "G2054"
 	},
-	"E930": {
+	"E935": {
 		"AGI": 121,
 		"ATK": 100,
 		"DEF": 100,
@@ -64847,7 +65299,7 @@
 		"RES": 3,
 		"rt_species": "G2054"
 	},
-	"E931": {
+	"E936": {
 		"AGI": 106,
 		"ATK": 100,
 		"DEF": 100,
@@ -64934,9 +65386,9 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
-	"E932": {
+	"E937": {
 		"AGI": 109,
 		"ATK": 100,
 		"DEF": 100,
@@ -65023,9 +65475,9 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
-	"E933": {
+	"E938": {
 		"AGI": 112,
 		"ATK": 100,
 		"DEF": 100,
@@ -65112,9 +65564,9 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
-	"E934": {
+	"E939": {
 		"AGI": 115,
 		"ATK": 100,
 		"DEF": 100,
@@ -65201,9 +65653,9 @@
 		],
 		"tribebits": 0,
 		"RES": 2,
-		"rt_species": "G2211"
+		"rt_species": "G2213"
 	},
-	"E935": {
+	"E940": {
 		"AGI": 112,
 		"ATK": 100,
 		"DEF": 100,
@@ -65298,9 +65750,9 @@
 		],
 		"tribebits": 0,
 		"RES": 6,
-		"rt_species": "G2212"
+		"rt_species": "G2214"
 	},
-	"E936": {
+	"E941": {
 		"AGI": 115,
 		"ATK": 100,
 		"DEF": 100,
@@ -65395,9 +65847,9 @@
 		],
 		"tribebits": 0,
 		"RES": 6,
-		"rt_species": "G2212"
+		"rt_species": "G2214"
 	},
-	"E937": {
+	"E942": {
 		"AGI": 118,
 		"ATK": 100,
 		"DEF": 100,
@@ -65492,9 +65944,9 @@
 		],
 		"tribebits": 0,
 		"RES": 6,
-		"rt_species": "G2212"
+		"rt_species": "G2214"
 	},
-	"E938": {
+	"E943": {
 		"AGI": 112,
 		"ATK": 100,
 		"DEF": 100,
@@ -65590,7 +66042,7 @@
 		"RES": 4,
 		"rt_species": "G2059"
 	},
-	"E939": {
+	"E944": {
 		"AGI": 115,
 		"ATK": 100,
 		"DEF": 100,
@@ -65686,7 +66138,7 @@
 		"RES": 4,
 		"rt_species": "G2059"
 	},
-	"E940": {
+	"E945": {
 		"AGI": 118,
 		"ATK": 100,
 		"DEF": 100,
@@ -65782,7 +66234,7 @@
 		"RES": 4,
 		"rt_species": "G2059"
 	},
-	"E941": {
+	"E946": {
 		"AGI": 121,
 		"ATK": 100,
 		"DEF": 100,
@@ -65878,7 +66330,7 @@
 		"RES": 4,
 		"rt_species": "G2059"
 	},
-	"E942": {
+	"E947": {
 		"AGI": 132,
 		"ATK": 100,
 		"DEF": 100,
@@ -65970,7 +66422,7 @@
 		"RES": 4,
 		"rt_species": "G2052"
 	},
-	"E943": {
+	"E948": {
 		"AGI": 149,
 		"ATK": 100,
 		"DEF": 100,
@@ -66062,7 +66514,7 @@
 		"RES": 4,
 		"rt_species": "G2052"
 	},
-	"E944": {
+	"E949": {
 		"AGI": 138,
 		"ATK": 100,
 		"DEF": 100,
@@ -66142,7 +66594,7 @@
 		"RES": 4,
 		"rt_species": "G2097"
 	},
-	"E945": {
+	"E950": {
 		"AGI": 149,
 		"ATK": 100,
 		"DEF": 100,
@@ -66222,7 +66674,7 @@
 		"RES": 4,
 		"rt_species": "G2097"
 	},
-	"E946": {
+	"E951": {
 		"AGI": 144,
 		"ATK": 100,
 		"DEF": 100,
@@ -66301,5 +66753,187 @@
 		"tribebits": 0,
 		"RES": 5,
 		"rt_species": "G2180"
+	},
+	"E998": {
+		"AGI": 178,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 60,
+		"MATK": 10,
+		"MAXHP": 78780,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 219,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 112,
+		"PDEF": 239,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 50,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "A test foe: it takes a beating and gives one back. (debug)",
+		"exp": 0,
+		"item0": {
+			"issteal": false,
+			"itemid": "I261",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": null,
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP118",
+		"money": 0,
+		"name": "Sparring Oni",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.0": -50,
+				"EDR.1": -50,
+				"EDR.2": -50,
+				"EDR.3": -50,
+				"EDR.4": -50,
+				"EDR.5": -50,
+				"EDR.6": -50,
+				"EDR.7": -50,
+				"EDR.8": -50,
+				"EDR.9": -50,
+				"EDR.10": -50,
+				"EDR.11": -50,
+				"EDR.12": -50
+			}
+		],
+		"tribebits": 0,
+		"RES": 6,
+		"rt_species": "G2187"
+	},
+	"E997": {
+		"AGI": 178,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 60,
+		"MATK": 10,
+		"MAXHP": 32825,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 219,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 94,
+		"PDEF": 239,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 50,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "A test foe: it takes a beating and gives one back. (debug)",
+		"exp": 0,
+		"item0": {
+			"issteal": false,
+			"itemid": "I100",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": null,
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP400",
+		"money": 0,
+		"name": "Sparring Ashigaru",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.0": -50,
+				"EDR.1": -50,
+				"EDR.2": -50,
+				"EDR.3": -50,
+				"EDR.4": -50,
+				"EDR.5": -50,
+				"EDR.6": -50,
+				"EDR.7": -50,
+				"EDR.8": -50,
+				"EDR.9": -50,
+				"EDR.10": -50,
+				"EDR.11": -50,
+				"EDR.12": -50
+			}
+		],
+		"tribebits": 0,
+		"RES": 6,
+		"rt_species": "G2186"
 	}
 }

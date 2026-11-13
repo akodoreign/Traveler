@@ -1889,7 +1889,8 @@ def main():
                     ("G1224", "dojo kata taught (Hida dojo: Natsuko's Striking as Earth)"),
                     ("G1225", "dojo kata taught (Kakita academy: Rensei's Kakita's First Stance)"),
                     ("G1226", "this battle: the Wave-woman trait is worn (Flee always works; RokuganJobs.sk)"),
-                    ("G1229", "Crab Ch4: the cellar-stair objective shown")):
+                    ("G1229", "Crab Ch4: the cellar-stair objective shown"),
+                    ("G1230", "the finale road-marker objective shown (any path)")):
         gv[gid] = {"defval": False, "name": nm, "type": 1}
     gv["G1160"] = {"defval": 0, "name": "finale Party B (bitmask over P100-P107)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}
@@ -4636,6 +4637,21 @@ def main():
         e[nid] = x
     if lad:
         print("ladder foes: %d" % len(lad))
+    # Sparring foes for testing (user 2026-11-12: "you will need a lot tougher enemies to test that stuff"): a debug
+    # party kills ordinary foes before a Void critical, a stance or Stand Against the Waves shows. Lv 60, huge HP, they
+    # hit back, weak to every weapon and element (Suki breaks); no EXP or money. M001 group 199 (TEST: sparring).
+    f60 = foe_stats(60)
+    for eid, nm, base, hpx, atkx in (("E998", "Sparring Oni", "E243", 60.0, 0.6),
+                                     ("E997", "Sparring Ashigaru", "E200", 25.0, 0.5)):
+        if base not in e:
+            continue
+        x = copy.deepcopy(e[base])
+        x.update({"name": nm, "LV": 60, "MAXHP": int(f60["MAXHP"] * hpx), "PATK": int(f60["PATK"] * atkx),
+                  "PDEF": f60["PDEF"], "MDEF": f60["MDEF"], "AGI": f60["AGI"], "RES": 6, "exp": 0, "money": 0,
+                  "desc": "A test foe: it takes a beating and gives one back. (debug)",
+                  "option": [weak_opt("Katana", "Yari", "Tanto", "Tetsubo", "Yumi", "Bo", "Fire", "Water", "Air",
+                                      "Earth", "Void", "Jade", "Unarmed")]})
+        e[eid] = x
     # Weakness memory (user 2026-11-12: "once a weakness for a species is revealed it should always stay revealed even
     # in the next time you see them"): one saved int var per species (same name = same species, so the ladder clones
     # share it) holding the revealed weakness bits; plugin RokuganJobs.sk loads / stores it.
@@ -5113,7 +5129,10 @@ def main():
     for g in ch2:                                       # coast (map.json is rebuilt here, so ask gen_maps)
         if g["mapid"] not in mp and g["mapid"] not in _gm.MAPS:
             g["mapid"] = "M826"
-    mp["M001"]["encount"] = [g1, g2, g3, g4, g5, g6, g_sumai] + cave + [g12] + ch2
+    g_spar = copy.deepcopy(groups[0])                   # (user: tough foes to test Void crits, kata, stances)
+    g_spar.update({"name": "TEST: sparring (Lv 60, huge HP)", "rate": 0, "gid": 199, "mapid": "M838", "enemies": [
+        {"id": "E998", "x": -0.9, "z": 0.2}, {"id": "E997", "x": -1.8, "z": -1.6}, {"id": "E997", "x": -1.8, "z": 1.8}]})
+    mp["M001"]["encount"] = [g1, g2, g3, g4, g5, g6, g_sumai] + cave + [g12] + ch2 + [g_spar]
     import gen_music as _mu                             # the soundtrack (user: "more medieval Japanese"): each boss
     for g in mp["M001"]["encount"]:                     # gets its theme (gen_music BATTLE_MUSIC: standard, oni, duel,
         g["bgmid"] = _mu.battle_music(g.get("name"))    # intrigue, mini-boss, the finale's three, the superbosses)

@@ -105,7 +105,8 @@
    "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
    "why": "candidates were green-haired or bare sketches; she is the eta woman chosen by the Oracle of Fire",
    "look": "young eta woman, 20s, plain tanned face with soot smudges, calm faraway eyes, black hair tied back with a rag, patched grey-brown hemp work clothes, faint glow of embers reflected on her face",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand_s82861"
   },
   {
    "speaker": "Gochu",
@@ -113,7 +114,8 @@
    "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
    "why": "candidates were greyscale sketches; a poor man taking five koku so his daughter eats",
    "look": "poor thin peasant man, 40s, gaunt tired face, stubble, short messy black hair, worn patched brown kimono, ashamed downcast eyes",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand_s8648"
   },
   {
    "speaker": "Moto Benjiro",
@@ -121,7 +123,8 @@
    "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
    "why": "candidates were a full skull oni mask with horns hiding the face; cast-looks says a white death-mask PAINTED ON (Moto curse) - his face must read",
    "look": "unicorn clan moto bushi, 30s, weathered steppe rider face with white skull face paint around the eyes and mouth, long black hair braided back, purple and white riding coat with fur trim, no mask, no horns",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand_s57458"
   },
   {
    "speaker": "Ume-baa",
@@ -129,7 +132,8 @@
    "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
    "why": "candidates were young girls; she is Sayo's old grandmother, the eta herbalist mentor",
    "look": "very old woman, 70s, deeply wrinkled kind face, thin white hair in a small bun, hunched, faded indigo patched kimono, herb pouch, sharp knowing eyes",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand_s74410"
   },
   {
    "speaker": "Tomie Cho",
@@ -137,7 +141,8 @@
    "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
    "why": "candidates were a young man; she is an old woman (secretly a weretiger: 'now I'm too old to catch rabbits')",
    "look": "old woman, 60s, friendly grandmotherly smile with something predatory in her amber eyes, grey hair in a loose bun, orange and brown striped kimono, village widow",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand_s7430"
   },
   {
    "speaker": "Doji Hayato",
@@ -145,7 +150,8 @@
    "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
    "why": "cyan hair leaked from the crane clan colours",
    "look": "crane clan samurai, man, 30s, (natural black hair:1.3) in a neat topknot, composed refined face, sky blue and white kimono",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand_s14151"
   },
   {
    "speaker": "Mibu Kagemaro",
@@ -153,7 +159,8 @@
    "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
    "why": "cyan hair leaked from the clan colours; a minor-family samurai seeking help to avenge his brother",
    "look": "earnest young samurai, 20s, (natural black hair:1.3) in a topknot, eager hopeful face, plain dark green and grey formal kimono with a small family mon",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand_s12583"
   },
   {
    "speaker": "Kitsuki Oharu",
@@ -161,7 +168,8 @@
    "found": "2026-11-12 bust monitor (redo-queue candidates rejected)",
    "why": "another silver-haired girl with a bun, a look-alike of Doji Sanae; she is a Kitsuki (Dragon) magistrate's aide examining bodies",
    "look": "kitsuki investigator woman, 30s, sharp analytical eyes, black hair in a severe high ponytail, thin reading spectacles, dark green and gold dragon clan kimono, brush and scroll",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand_s72024"
   },
   {
    "speaker": "O-Tamai",
@@ -169,7 +177,8 @@
    "found": "2026-11-12 bust monitor batch 2 (candidates rejected)",
    "why": "both candidates are young men; O-Tamai is a woman (Lion Ch2 antagonist: 'Lions! You broke my prison to burn a granary!')",
    "look": "fierce woman, 40s, sharp vengeful eyes, long black hair loose with grey streaks, dark ragged formal kimono, chains on her wrists",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand_s50556"
   },
   {
    "speaker": "Mirumoto Hikaru",
@@ -177,7 +186,8 @@
    "found": "2026-11-12 bust monitor batch 2 (candidates rejected)",
    "why": "no tattoos on any candidate (one has a golden halo); he is the ageless tattooed Dragon who says 'I ran.'",
    "look": "ageless dragon clan man, calm haunted eyes, long black hair, glowing ise zumi tattoos of dragons across his face and neck, bare tattooed shoulders under a loose dark green kimono",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand_s83012"
   }
  ]
 }

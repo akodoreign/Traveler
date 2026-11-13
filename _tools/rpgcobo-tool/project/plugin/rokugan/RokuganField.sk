@@ -871,6 +871,16 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 
 //	Story-taught skills (a scroll given in a chapter, before the level curve would teach it): rpgvar flag -> skill id per
 //	player. Phoenix Ch2: Courage of the Seven Thunders (S368) from the Silent Court (G638).
+//	(user 2026-11-12: "starting with non full hp/mp/tp just joined companions is not cool") anyone added to the party by
+//	an event arrives fresh
+::RPGEventRunner._rt_memberop <- ::RPGEventRunner.memberOp;
+::RPGEventRunner.memberOp <- function( cmd){
+	local p = cmd.playerid ? (cmd.playerid["player"] || ::rpgstat.playermap[cmd.playerid]) : null;
+	local was = p ? ::rpgstat.members.indexOf( p) >= 0 : true;
+	local r = this._rt_memberop( cmd);
+	if( p && !was && ::rpgstat.members.indexOf( p) >= 0){ p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP; }
+	return r;
+};
 ::Rokugan.STORY_SKILLS <- { P104 = [["G638", "S368"], ["G656", "S316"]],
 	P102 = [["G740", "S482"], ["G757", "S483"], ["G742", "S481"]],
 	P106 = [["G985", "S545"]],

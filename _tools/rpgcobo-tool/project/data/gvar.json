@@ -4978,6 +4978,11 @@
 		"name": "Crab Ch4: the cellar-stair objective shown",
 		"type": 1
 	},
+	"G1230": {
+		"defval": false,
+		"name": "the finale road-marker objective shown (any path)",
+		"type": 1
+	},
 	"G1160": {
 		"defval": 0,
 		"name": "finale Party B (bitmask over P100-P107)",
@@ -6200,460 +6205,470 @@
 	},
 	"G2186": {
 		"defval": 0,
-		"name": "weakness memory: Stitched-face Monk (revealed weakness bits)",
+		"name": "weakness memory: Sparring Ashigaru (revealed weakness bits)",
 		"type": 2
 	},
 	"G2187": {
 		"defval": 0,
-		"name": "weakness memory: Storm Legion Renegade (revealed weakness bits)",
+		"name": "weakness memory: Sparring Oni (revealed weakness bits)",
 		"type": 2
 	},
 	"G2188": {
 		"defval": 0,
-		"name": "weakness memory: Straw-Hat Brute (training) (revealed weakness bits)",
+		"name": "weakness memory: Stitched-face Monk (revealed weakness bits)",
 		"type": 2
 	},
 	"G2189": {
 		"defval": 0,
-		"name": "weakness memory: Sword-for-Hire (revealed weakness bits)",
+		"name": "weakness memory: Storm Legion Renegade (revealed weakness bits)",
 		"type": 2
 	},
 	"G2190": {
 		"defval": 0,
-		"name": "weakness memory: Tengu Crow-Warrior (revealed weakness bits)",
+		"name": "weakness memory: Straw-Hat Brute (training) (revealed weakness bits)",
 		"type": 2
 	},
 	"G2191": {
 		"defval": 0,
-		"name": "weakness memory: Tetsuo (revealed weakness bits)",
+		"name": "weakness memory: Sword-for-Hire (revealed weakness bits)",
 		"type": 2
 	},
 	"G2192": {
 		"defval": 0,
-		"name": "weakness memory: The Empress of Nothing (revealed weakness bits)",
+		"name": "weakness memory: Tengu Crow-Warrior (revealed weakness bits)",
 		"type": 2
 	},
 	"G2193": {
 		"defval": 0,
-		"name": "weakness memory: The Naga's Champion (revealed weakness bits)",
+		"name": "weakness memory: Tetsuo (revealed weakness bits)",
 		"type": 2
 	},
 	"G2194": {
 		"defval": 0,
-		"name": "weakness memory: The Orochi (revealed weakness bits)",
+		"name": "weakness memory: The Empress of Nothing (revealed weakness bits)",
 		"type": 2
 	},
 	"G2195": {
 		"defval": 0,
-		"name": "weakness memory: The Other Face (revealed weakness bits)",
+		"name": "weakness memory: The Naga's Champion (revealed weakness bits)",
 		"type": 2
 	},
 	"G2196": {
 		"defval": 0,
-		"name": "weakness memory: Tide Crab (revealed weakness bits)",
+		"name": "weakness memory: The Orochi (revealed weakness bits)",
 		"type": 2
 	},
 	"G2197": {
 		"defval": 0,
-		"name": "weakness memory: Togashi Akuro (revealed weakness bits)",
+		"name": "weakness memory: The Other Face (revealed weakness bits)",
 		"type": 2
 	},
 	"G2198": {
 		"defval": 0,
-		"name": "weakness memory: Tomie Cho (revealed weakness bits)",
+		"name": "weakness memory: Tide Crab (revealed weakness bits)",
 		"type": 2
 	},
 	"G2199": {
 		"defval": 0,
-		"name": "weakness memory: Toothed Poppy (revealed weakness bits)",
+		"name": "weakness memory: Togashi Akuro (revealed weakness bits)",
 		"type": 2
 	},
 	"G2200": {
 		"defval": 0,
-		"name": "weakness memory: Troll (revealed weakness bits)",
+		"name": "weakness memory: Tomie Cho (revealed weakness bits)",
 		"type": 2
 	},
 	"G2201": {
 		"defval": 0,
-		"name": "weakness memory: Troll Elder (revealed weakness bits)",
+		"name": "weakness memory: Toothed Poppy (revealed weakness bits)",
 		"type": 2
 	},
 	"G2202": {
 		"defval": 0,
-		"name": "weakness memory: Tsuchigumo (revealed weakness bits)",
+		"name": "weakness memory: Troll (revealed weakness bits)",
 		"type": 2
 	},
 	"G2203": {
 		"defval": 0,
-		"name": "weakness memory: Umibozu Shade (revealed weakness bits)",
+		"name": "weakness memory: Troll Elder (revealed weakness bits)",
 		"type": 2
 	},
 	"G2204": {
 		"defval": 0,
-		"name": "weakness memory: Vanguard Captain (revealed weakness bits)",
+		"name": "weakness memory: Tsuchigumo (revealed weakness bits)",
 		"type": 2
 	},
 	"G2205": {
 		"defval": 0,
-		"name": "weakness memory: Wako Raider (revealed weakness bits)",
+		"name": "weakness memory: Umibozu Shade (revealed weakness bits)",
 		"type": 2
 	},
 	"G2206": {
 		"defval": 0,
-		"name": "weakness memory: Wall Troll (revealed weakness bits)",
+		"name": "weakness memory: Vanguard Captain (revealed weakness bits)",
 		"type": 2
 	},
 	"G2207": {
 		"defval": 0,
-		"name": "weakness memory: Wave-man Duelist (revealed weakness bits)",
+		"name": "weakness memory: Wako Raider (revealed weakness bits)",
 		"type": 2
 	},
 	"G2208": {
 		"defval": 0,
-		"name": "weakness memory: White Squid Pirate (revealed weakness bits)",
+		"name": "weakness memory: Wall Troll (revealed weakness bits)",
 		"type": 2
 	},
 	"G2209": {
 		"defval": 0,
-		"name": "weakness memory: Wild Boar (revealed weakness bits)",
+		"name": "weakness memory: Wave-man Duelist (revealed weakness bits)",
 		"type": 2
 	},
 	"G2210": {
 		"defval": 0,
-		"name": "weakness memory: Will-o'-wisp (revealed weakness bits)",
+		"name": "weakness memory: White Squid Pirate (revealed weakness bits)",
 		"type": 2
 	},
 	"G2211": {
 		"defval": 0,
-		"name": "weakness memory: Winter Wolf (revealed weakness bits)",
+		"name": "weakness memory: Wild Boar (revealed weakness bits)",
 		"type": 2
 	},
 	"G2212": {
 		"defval": 0,
-		"name": "weakness memory: Wolf-Spirit (revealed weakness bits)",
+		"name": "weakness memory: Will-o'-wisp (revealed weakness bits)",
 		"type": 2
 	},
 	"G2213": {
 		"defval": 0,
-		"name": "weakness memory: Wrestler (revealed weakness bits)",
+		"name": "weakness memory: Winter Wolf (revealed weakness bits)",
 		"type": 2
 	},
 	"G2214": {
 		"defval": 0,
-		"name": "weakness memory: Yosuke the Bold (revealed weakness bits)",
+		"name": "weakness memory: Wolf-Spirit (revealed weakness bits)",
 		"type": 2
 	},
 	"G2215": {
 		"defval": 0,
-		"name": "weakness memory: Yurei (revealed weakness bits)",
+		"name": "weakness memory: Wrestler (revealed weakness bits)",
 		"type": 2
 	},
 	"G2216": {
 		"defval": 0,
-		"name": "weakness memory: Zombie (revealed weakness bits)",
+		"name": "weakness memory: Yosuke the Bold (revealed weakness bits)",
 		"type": 2
 	},
 	"G2217": {
 		"defval": 0,
-		"name": "weakness memory: イビルスター (revealed weakness bits)",
+		"name": "weakness memory: Yurei (revealed weakness bits)",
 		"type": 2
 	},
 	"G2218": {
 		"defval": 0,
-		"name": "weakness memory: イビルフロッグ (revealed weakness bits)",
+		"name": "weakness memory: Zombie (revealed weakness bits)",
 		"type": 2
 	},
 	"G2219": {
 		"defval": 0,
-		"name": "weakness memory: イーグル (revealed weakness bits)",
+		"name": "weakness memory: イビルスター (revealed weakness bits)",
 		"type": 2
 	},
 	"G2220": {
 		"defval": 0,
-		"name": "weakness memory: ウッドゴーレム (revealed weakness bits)",
+		"name": "weakness memory: イビルフロッグ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2221": {
 		"defval": 0,
-		"name": "weakness memory: ウルフ (revealed weakness bits)",
+		"name": "weakness memory: イーグル (revealed weakness bits)",
 		"type": 2
 	},
 	"G2222": {
 		"defval": 0,
-		"name": "weakness memory: オオコウモリ (revealed weakness bits)",
+		"name": "weakness memory: ウッドゴーレム (revealed weakness bits)",
 		"type": 2
 	},
 	"G2223": {
 		"defval": 0,
-		"name": "weakness memory: オクトパス (revealed weakness bits)",
+		"name": "weakness memory: ウルフ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2224": {
 		"defval": 0,
-		"name": "weakness memory: オーガ (revealed weakness bits)",
+		"name": "weakness memory: オオコウモリ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2225": {
 		"defval": 0,
-		"name": "weakness memory: オーク (revealed weakness bits)",
+		"name": "weakness memory: オクトパス (revealed weakness bits)",
 		"type": 2
 	},
 	"G2226": {
 		"defval": 0,
-		"name": "weakness memory: ガーゴイル (revealed weakness bits)",
+		"name": "weakness memory: オーガ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2227": {
 		"defval": 0,
-		"name": "weakness memory: キラービー (revealed weakness bits)",
+		"name": "weakness memory: オーク (revealed weakness bits)",
 		"type": 2
 	},
 	"G2228": {
 		"defval": 0,
-		"name": "weakness memory: クラブ (revealed weakness bits)",
+		"name": "weakness memory: ガーゴイル (revealed weakness bits)",
 		"type": 2
 	},
 	"G2229": {
 		"defval": 0,
-		"name": "weakness memory: クラーケン (revealed weakness bits)",
+		"name": "weakness memory: キラービー (revealed weakness bits)",
 		"type": 2
 	},
 	"G2230": {
 		"defval": 0,
-		"name": "weakness memory: クロコダイル (revealed weakness bits)",
+		"name": "weakness memory: クラブ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2231": {
 		"defval": 0,
-		"name": "weakness memory: グリズリー (revealed weakness bits)",
+		"name": "weakness memory: クラーケン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2232": {
 		"defval": 0,
-		"name": "weakness memory: グリフォン (revealed weakness bits)",
+		"name": "weakness memory: クロコダイル (revealed weakness bits)",
 		"type": 2
 	},
 	"G2233": {
 		"defval": 0,
-		"name": "weakness memory: グレートドラゴン (revealed weakness bits)",
+		"name": "weakness memory: グリズリー (revealed weakness bits)",
 		"type": 2
 	},
 	"G2234": {
 		"defval": 0,
-		"name": "weakness memory: コボルド (revealed weakness bits)",
+		"name": "weakness memory: グリフォン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2235": {
 		"defval": 0,
-		"name": "weakness memory: ゴブリン (revealed weakness bits)",
+		"name": "weakness memory: グレートドラゴン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2236": {
 		"defval": 0,
-		"name": "weakness memory: ジェリー (revealed weakness bits)",
+		"name": "weakness memory: コボルド (revealed weakness bits)",
 		"type": 2
 	},
 	"G2237": {
 		"defval": 0,
-		"name": "weakness memory: スカルファイター (revealed weakness bits)",
+		"name": "weakness memory: ゴブリン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2238": {
 		"defval": 0,
-		"name": "weakness memory: スケルトン (revealed weakness bits)",
+		"name": "weakness memory: ジェリー (revealed weakness bits)",
 		"type": 2
 	},
 	"G2239": {
 		"defval": 0,
-		"name": "weakness memory: ストーンゴーレム (revealed weakness bits)",
+		"name": "weakness memory: スカルファイター (revealed weakness bits)",
 		"type": 2
 	},
 	"G2240": {
 		"defval": 0,
-		"name": "weakness memory: スネーク (revealed weakness bits)",
+		"name": "weakness memory: スケルトン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2241": {
 		"defval": 0,
-		"name": "weakness memory: スピリット (revealed weakness bits)",
+		"name": "weakness memory: ストーンゴーレム (revealed weakness bits)",
 		"type": 2
 	},
 	"G2242": {
 		"defval": 0,
-		"name": "weakness memory: スライム (revealed weakness bits)",
+		"name": "weakness memory: スネーク (revealed weakness bits)",
 		"type": 2
 	},
 	"G2243": {
 		"defval": 0,
-		"name": "weakness memory: セイレーン (revealed weakness bits)",
+		"name": "weakness memory: スピリット (revealed weakness bits)",
 		"type": 2
 	},
 	"G2244": {
 		"defval": 0,
-		"name": "weakness memory: ソルジャー (revealed weakness bits)",
+		"name": "weakness memory: スライム (revealed weakness bits)",
 		"type": 2
 	},
 	"G2245": {
 		"defval": 0,
-		"name": "weakness memory: ゾンビ (revealed weakness bits)",
+		"name": "weakness memory: セイレーン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2246": {
 		"defval": 0,
-		"name": "weakness memory: ゾンビドッグ (revealed weakness bits)",
+		"name": "weakness memory: ソルジャー (revealed weakness bits)",
 		"type": 2
 	},
 	"G2247": {
 		"defval": 0,
-		"name": "weakness memory: ダゴン (revealed weakness bits)",
+		"name": "weakness memory: ゾンビ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2248": {
 		"defval": 0,
-		"name": "weakness memory: ツチグモ (revealed weakness bits)",
+		"name": "weakness memory: ゾンビドッグ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2249": {
 		"defval": 0,
-		"name": "weakness memory: トレント (revealed weakness bits)",
+		"name": "weakness memory: ダゴン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2250": {
 		"defval": 0,
-		"name": "weakness memory: トータス (revealed weakness bits)",
+		"name": "weakness memory: ツチグモ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2251": {
 		"defval": 0,
-		"name": "weakness memory: ドラゴン (revealed weakness bits)",
+		"name": "weakness memory: トレント (revealed weakness bits)",
 		"type": 2
 	},
 	"G2252": {
 		"defval": 0,
-		"name": "weakness memory: ドラゴンフィッシュ (revealed weakness bits)",
+		"name": "weakness memory: トータス (revealed weakness bits)",
 		"type": 2
 	},
 	"G2253": {
 		"defval": 0,
-		"name": "weakness memory: ニンジャ (revealed weakness bits)",
+		"name": "weakness memory: ドラゴン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2254": {
 		"defval": 0,
-		"name": "weakness memory: バッファロー (revealed weakness bits)",
+		"name": "weakness memory: ドラゴンフィッシュ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2255": {
 		"defval": 0,
-		"name": "weakness memory: パイレーツ (revealed weakness bits)",
+		"name": "weakness memory: ニンジャ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2256": {
 		"defval": 0,
-		"name": "weakness memory: ヒュドラ (revealed weakness bits)",
+		"name": "weakness memory: バッファロー (revealed weakness bits)",
 		"type": 2
 	},
 	"G2257": {
 		"defval": 0,
-		"name": "weakness memory: ピラニア (revealed weakness bits)",
+		"name": "weakness memory: パイレーツ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2258": {
 		"defval": 0,
-		"name": "weakness memory: フロッグ (revealed weakness bits)",
+		"name": "weakness memory: ヒュドラ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2259": {
 		"defval": 0,
-		"name": "weakness memory: ブレイン (revealed weakness bits)",
+		"name": "weakness memory: ピラニア (revealed weakness bits)",
 		"type": 2
 	},
 	"G2260": {
 		"defval": 0,
-		"name": "weakness memory: ホースナイト (revealed weakness bits)",
+		"name": "weakness memory: フロッグ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2261": {
 		"defval": 0,
-		"name": "weakness memory: マジシャン (revealed weakness bits)",
+		"name": "weakness memory: ブレイン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2262": {
 		"defval": 0,
-		"name": "weakness memory: マッシュ (revealed weakness bits)",
+		"name": "weakness memory: ホースナイト (revealed weakness bits)",
 		"type": 2
 	},
 	"G2263": {
 		"defval": 0,
-		"name": "weakness memory: ミノタウロス (revealed weakness bits)",
+		"name": "weakness memory: マジシャン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2264": {
 		"defval": 0,
-		"name": "weakness memory: メドゥーサ (revealed weakness bits)",
+		"name": "weakness memory: マッシュ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2265": {
 		"defval": 0,
-		"name": "weakness memory: メリー (revealed weakness bits)",
+		"name": "weakness memory: ミノタウロス (revealed weakness bits)",
 		"type": 2
 	},
 	"G2266": {
 		"defval": 0,
-		"name": "weakness memory: ユニコーン (revealed weakness bits)",
+		"name": "weakness memory: メドゥーサ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2267": {
 		"defval": 0,
-		"name": "weakness memory: ラフレシア (revealed weakness bits)",
+		"name": "weakness memory: メリー (revealed weakness bits)",
 		"type": 2
 	},
 	"G2268": {
 		"defval": 0,
-		"name": "weakness memory: リザードマン (revealed weakness bits)",
+		"name": "weakness memory: ユニコーン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2269": {
 		"defval": 0,
-		"name": "weakness memory: レオ (revealed weakness bits)",
+		"name": "weakness memory: ラフレシア (revealed weakness bits)",
 		"type": 2
 	},
 	"G2270": {
 		"defval": 0,
-		"name": "weakness memory: ワータイガー (revealed weakness bits)",
+		"name": "weakness memory: リザードマン (revealed weakness bits)",
 		"type": 2
 	},
 	"G2271": {
 		"defval": 0,
-		"name": "weakness memory: ワーム (revealed weakness bits)",
+		"name": "weakness memory: レオ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2272": {
 		"defval": 0,
-		"name": "weakness memory: ヴァンパイア (revealed weakness bits)",
+		"name": "weakness memory: ワータイガー (revealed weakness bits)",
 		"type": 2
 	},
 	"G2273": {
 		"defval": 0,
-		"name": "weakness memory: 大ネズミ (revealed weakness bits)",
+		"name": "weakness memory: ワーム (revealed weakness bits)",
 		"type": 2
 	},
 	"G2274": {
 		"defval": 0,
-		"name": "weakness memory: 影人間 (revealed weakness bits)",
+		"name": "weakness memory: ヴァンパイア (revealed weakness bits)",
 		"type": 2
 	},
 	"G2275": {
 		"defval": 0,
-		"name": "weakness memory: 死神 (revealed weakness bits)",
+		"name": "weakness memory: 大ネズミ (revealed weakness bits)",
 		"type": 2
 	},
 	"G2276": {
 		"defval": 0,
-		"name": "weakness memory: 盗賊 (revealed weakness bits)",
+		"name": "weakness memory: 影人間 (revealed weakness bits)",
 		"type": 2
 	},
 	"G2277": {
+		"defval": 0,
+		"name": "weakness memory: 死神 (revealed weakness bits)",
+		"type": 2
+	},
+	"G2278": {
+		"defval": 0,
+		"name": "weakness memory: 盗賊 (revealed weakness bits)",
+		"type": 2
+	},
+	"G2279": {
 		"defval": 0,
 		"name": "weakness memory: 魔人 (revealed weakness bits)",
 		"type": 2

@@ -49,6 +49,7 @@ LADDERS = [
     ("Phoenix", "G698", [("M298", 44, 47), ("M299", 47, 50)]),
     ("Scorpion", "G962", [("M380", 44, 46), ("M382", 46, 48), ("M384", 47, 49), ("M385", 48, 50)]),
     ("Unicorn", "G1031", [("M409", 44, 47), ("M410", 47, 50)]),
+    ("Dragon", "G830", [("M340", 44, 50)]),                  # (Dragon Ch4's completion flag: CH4_DONE)
 ]
 
 FIRST_ID = 619           # clones E619+ (after the Egg Caves foes E608-E618; deterministic: sorted (base, level)

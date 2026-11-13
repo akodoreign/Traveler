@@ -4701,6 +4701,33 @@
 				"mapid": "M809",
 				"name": "Scripted (b_superboss_orochi)",
 				"rate": 0
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E998",
+						"x": -0.9,
+						"z": 0.2
+					},
+					{
+						"id": "E997",
+						"x": -1.8,
+						"z": -1.6
+					},
+					{
+						"id": "E997",
+						"x": -1.8,
+						"z": 1.8
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 199,
+				"mapid": "M838",
+				"name": "TEST: sparring (Lv 60, huge HP)",
+				"rate": 0
 			}
 		],
 		"event": {
@@ -86721,6 +86748,116 @@
 				"flags": 1,
 				"spawndist": 1,
 				"name": "*custom-87"
+			},
+			"#88#": {
+				"role": "custom",
+				"pos": [
+					28,
+					2,
+					10,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1230",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G434",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1230",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G434",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1230",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the letter on the table to the Plains of Thunder - the finale. (Recommended level 55)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 210,
+											"desc": "RT objective"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1228",
+											"op": "=",
+											"rvar": 55,
+											"desc": "RT objective"
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-88"
 			}
 		},
 		"exitmap": {
@@ -113993,7 +114130,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 20 ? n.LV : 20; if( p.LV < lv) p.setLV( lv);"
+														"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 20 ? n.LV : 20; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -128820,7 +128957,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P127\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 1 ? n.LV : 1; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P127\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 1 ? n.LV : 1; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -128883,7 +129020,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P128\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 1 ? n.LV : 1; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P128\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 1 ? n.LV : 1; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -160911,7 +161048,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P131\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 3 ? n.LV : 3; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P131\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 3 ? n.LV : 3; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -187788,7 +187925,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P129\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv);"
+														"code": "local p = ::rpgstat.playermap[\"P129\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -229014,6 +229151,116 @@
 				"name": "*custom-94"
 			},
 			"#95#": {
+				"role": "custom",
+				"pos": [
+					80,
+					4,
+					18,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1230",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G573",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1230",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G573",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1230",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the road-marker near here to the Plains of Thunder - the finale. (Recommended level 55)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 209,
+											"desc": "RT objective"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1228",
+											"op": "=",
+											"rvar": 55,
+											"desc": "RT objective"
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-95"
+			},
+			"#96#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -229041,9 +229288,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-95"
+				"name": "*portal-96"
 			},
-			"#96#": {
+			"#97#": {
 				"role": "portal",
 				"pos": [
 					150,
@@ -229071,7 +229318,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-96",
+				"name": "*portal-97",
 				"reqs0": [
 					{
 						"lvar": "G555",
@@ -231811,7 +232058,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P130\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 44 ? n.LV : 44; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P130\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 44 ? n.LV : 44; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -255584,7 +255831,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P131\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 20 ? n.LV : 20; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P131\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 20 ? n.LV : 20; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -276424,7 +276671,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P131\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 30 ? n.LV : 30; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P131\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 30 ? n.LV : 30; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -305179,7 +305426,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P133\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 41 ? n.LV : 41; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P133\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 41 ? n.LV : 41; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -308544,6 +308791,116 @@
 			},
 			"#94#": {
 				"role": "custom",
+				"pos": [
+					84,
+					4,
+					15,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1230",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G698",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1230",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G698",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1230",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the road-marker near here to the Plains of Thunder - the finale. (Recommended level 55)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 209,
+											"desc": "RT objective"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1228",
+											"op": "=",
+											"rvar": 55,
+											"desc": "RT objective"
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-94"
+			},
+			"#95#": {
+				"role": "custom",
 				"mdlid": "EP212",
 				"pos": [
 					132,
@@ -308576,53 +308933,16 @@
 						"cmdblock": []
 					}
 				],
-				"name": "*custom-94",
+				"name": "*custom-95",
 				"memo": "barricade"
 			},
-			"#95#": {
+			"#96#": {
 				"role": "custom",
 				"mdlid": "EP221",
 				"pos": [
 					132,
 					4,
 					18,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G683",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-95",
-				"memo": "barricade"
-			},
-			"#96#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					19,
 					0
 				],
 				"reqs0": [
@@ -308659,7 +308979,7 @@
 				"pos": [
 					132,
 					4,
-					20,
+					19,
 					0
 				],
 				"reqs0": [
@@ -308692,11 +309012,11 @@
 			},
 			"#98#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "EP212",
 				"pos": [
 					132,
 					4,
-					21,
+					20,
 					0
 				],
 				"reqs0": [
@@ -308729,11 +309049,11 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
 					132,
 					4,
-					22,
+					21,
 					0
 				],
 				"reqs0": [
@@ -308770,7 +309090,7 @@
 				"pos": [
 					132,
 					4,
-					23,
+					22,
 					0
 				],
 				"reqs0": [
@@ -308802,6 +309122,43 @@
 				"memo": "barricade"
 			},
 			"#101#": {
+				"role": "custom",
+				"mdlid": "EP212",
+				"pos": [
+					132,
+					4,
+					23,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G683",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-101",
+				"memo": "barricade"
+			},
+			"#102#": {
 				"role": "villager",
 				"mdlid": "EP347",
 				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
@@ -308825,10 +309182,10 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-101",
+				"name": "*villager-102",
 				"memo": "barricade"
 			},
-			"#102#": {
+			"#103#": {
 				"role": "portal",
 				"pos": [
 					81,
@@ -308856,9 +309213,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-102"
+				"name": "*portal-103"
 			},
-			"#103#": {
+			"#104#": {
 				"role": "portal",
 				"pos": [
 					160,
@@ -308886,7 +309243,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-103",
+				"name": "*portal-104",
 				"reqs0": [
 					{
 						"lvar": "G683",
@@ -372331,6 +372688,14 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Word on the road: new creatures have moved into The harbour tunnels (the year 400) since you passed - tougher than before (Lv 44-50). Good hunting, if you need seasoning before what comes next.",
+											"name": "",
+											"uiclose": 2,
+											"desc": "RT ladder hint"
+										},
+										{
 											"cmd": "cmd_screenfxon",
 											"color": 657231871,
 											"num": 1,
@@ -428446,7 +428811,8 @@
 				"gid": 1,
 				"mapid": "M859",
 				"name": "Tunnels: Gusai marines",
-				"rate": 35
+				"rate": 35,
+				"rt_ifnot": "G830"
 			},
 			{
 				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
@@ -428473,7 +428839,8 @@
 				"gid": 2,
 				"mapid": "M859",
 				"name": "Tunnels: musketeers",
-				"rate": 30
+				"rate": 30,
+				"rt_ifnot": "G830"
 			},
 			{
 				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
@@ -428495,7 +428862,8 @@
 				"gid": 3,
 				"mapid": "M859",
 				"name": "Tunnels: a boarding party",
-				"rate": 25
+				"rate": 25,
+				"rt_ifnot": "G830"
 			},
 			{
 				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
@@ -428517,7 +428885,105 @@
 				"gid": 4,
 				"mapid": "M859",
 				"name": "Tunnels: pikemen",
-				"rate": 10
+				"rate": 10,
+				"rt_ifnot": "G830"
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E821",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E821",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 5,
+				"mapid": "M859",
+				"name": "Tunnels: Gusai marines (Lv 44)",
+				"rate": 35,
+				"rt_if": "G830"
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E819",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E819",
+						"x": -1.6,
+						"z": -1.9
+					},
+					{
+						"id": "E819",
+						"x": 0.5,
+						"z": -0.3
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 6,
+				"mapid": "M859",
+				"name": "Tunnels: musketeers (Lv 46)",
+				"rate": 30,
+				"rt_if": "G830"
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E822",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E820",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M859",
+				"name": "Tunnels: a boarding party (Lv 48)",
+				"rate": 25,
+				"rt_if": "G830"
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E818",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E818",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M859",
+				"name": "Tunnels: pikemen (Lv 50)",
+				"rate": 10,
+				"rt_if": "G830"
 			}
 		],
 		"event": {
@@ -441391,6 +441857,116 @@
 				"flags": 1,
 				"spawndist": 1,
 				"name": "*custom-81"
+			},
+			"#82#": {
+				"role": "custom",
+				"pos": [
+					13,
+					2,
+					12,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1230",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G830",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1230",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G830",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1230",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the letter on the table to the Plains of Thunder - the finale. (Recommended level 55)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 210,
+											"desc": "RT objective"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1228",
+											"op": "=",
+											"rvar": 55,
+											"desc": "RT objective"
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-82"
 			}
 		},
 		"exitmap": {
@@ -451648,7 +452224,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E818",
+						"id": "E823",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -451666,12 +452242,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E822",
+						"id": "E827",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E822",
+						"id": "E827",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -451689,7 +452265,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E820",
+						"id": "E825",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -451707,12 +452283,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E819",
+						"id": "E824",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E823",
+						"id": "E828",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -457481,12 +458057,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E819",
+						"id": "E824",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E819",
+						"id": "E824",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -457504,7 +458080,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E824",
+						"id": "E829",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -457522,7 +458098,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E825",
+						"id": "E830",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -457540,12 +458116,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E821",
+						"id": "E826",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E821",
+						"id": "E826",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -460402,7 +460978,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P136\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 5 ? n.LV : 5; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P136\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 5 ? n.LV : 5; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -474576,17 +475152,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E826",
+						"id": "E831",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E826",
+						"id": "E831",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E826",
+						"id": "E831",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -474604,12 +475180,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E828",
+						"id": "E833",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E828",
+						"id": "E833",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -474627,17 +475203,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E827",
+						"id": "E832",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E830",
+						"id": "E835",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E827",
+						"id": "E832",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -477278,17 +477854,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E827",
+						"id": "E832",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E827",
+						"id": "E832",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E827",
+						"id": "E832",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -477306,17 +477882,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E829",
+						"id": "E834",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E829",
+						"id": "E834",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E829",
+						"id": "E834",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -477334,17 +477910,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E831",
+						"id": "E836",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E831",
+						"id": "E836",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E831",
+						"id": "E836",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -483572,7 +484148,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E834",
+						"id": "E839",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -483590,17 +484166,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E836",
+						"id": "E841",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E836",
+						"id": "E841",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E836",
+						"id": "E841",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -483618,7 +484194,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E832",
+						"id": "E837",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -483636,7 +484212,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E838",
+						"id": "E843",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -489526,12 +490102,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E835",
+						"id": "E840",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E835",
+						"id": "E840",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -489549,17 +490125,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E837",
+						"id": "E842",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E837",
+						"id": "E842",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E837",
+						"id": "E842",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -489577,12 +490153,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E833",
+						"id": "E838",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E833",
+						"id": "E838",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -489600,7 +490176,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E839",
+						"id": "E844",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -496953,7 +497529,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P137\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P137\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -503940,12 +504516,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E840",
+						"id": "E845",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E840",
+						"id": "E845",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -503963,12 +504539,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E843",
+						"id": "E848",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E843",
+						"id": "E848",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -503986,12 +504562,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E845",
+						"id": "E850",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E842",
+						"id": "E847",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -506523,17 +507099,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E841",
+						"id": "E846",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E841",
+						"id": "E846",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E841",
+						"id": "E846",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -506551,17 +507127,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E844",
+						"id": "E849",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E844",
+						"id": "E849",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E844",
+						"id": "E849",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -506579,12 +507155,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E846",
+						"id": "E851",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E846",
+						"id": "E851",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -512675,17 +513251,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E847",
+						"id": "E852",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E847",
+						"id": "E852",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E847",
+						"id": "E852",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -512704,12 +513280,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E850",
+						"id": "E855",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E850",
+						"id": "E855",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -512728,17 +513304,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E853",
+						"id": "E858",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E853",
+						"id": "E858",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E853",
+						"id": "E858",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -512757,17 +513333,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E884",
+						"id": "E889",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E884",
+						"id": "E889",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E884",
+						"id": "E889",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -512786,12 +513362,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E886",
+						"id": "E891",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E886",
+						"id": "E891",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -512810,17 +513386,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E888",
+						"id": "E893",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E888",
+						"id": "E893",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E888",
+						"id": "E893",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -520646,7 +521222,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P138\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 30 ? n.LV : 30; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P138\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 30 ? n.LV : 30; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -530232,12 +530808,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E854",
+						"id": "E859",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E854",
+						"id": "E859",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -530256,17 +530832,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E848",
+						"id": "E853",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E848",
+						"id": "E853",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E848",
+						"id": "E853",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -530285,12 +530861,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E852",
+						"id": "E857",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E849",
+						"id": "E854",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -530309,12 +530885,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E889",
+						"id": "E894",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E889",
+						"id": "E894",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -530333,17 +530909,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E885",
+						"id": "E890",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E885",
+						"id": "E890",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E885",
+						"id": "E890",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -530362,12 +530938,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E887",
+						"id": "E892",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E885",
+						"id": "E890",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -539347,12 +539923,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E856",
+						"id": "E861",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E856",
+						"id": "E861",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -539371,17 +539947,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E855",
+						"id": "E860",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E855",
+						"id": "E860",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E855",
+						"id": "E860",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -539400,12 +539976,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E858",
+						"id": "E863",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E857",
+						"id": "E862",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -539424,12 +540000,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E891",
+						"id": "E896",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E891",
+						"id": "E896",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -539448,17 +540024,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E890",
+						"id": "E895",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E890",
+						"id": "E895",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E890",
+						"id": "E895",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -539477,12 +540053,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E893",
+						"id": "E898",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E892",
+						"id": "E897",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -545589,7 +546165,7 @@
 																{
 																	"cmd": "cmd_script",
 																	"desc": "SCRIPT",
-																	"code": "local p = ::rpgstat.playermap[\"P139\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 40 ? n.LV : 40; if( p.LV < lv) p.setLV( lv);"
+																	"code": "local p = ::rpgstat.playermap[\"P139\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 40 ? n.LV : 40; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -548588,6 +549164,116 @@
 			},
 			"#94#": {
 				"role": "custom",
+				"pos": [
+					130,
+					4,
+					17,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1230",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G953",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1230",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G953",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1230",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the road-marker near here to the Plains of Thunder - the finale. (Recommended level 55)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 209,
+											"desc": "RT objective"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1228",
+											"op": "=",
+											"rvar": 55,
+											"desc": "RT objective"
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-94"
+			},
+			"#95#": {
+				"role": "custom",
 				"mdlid": "EP212",
 				"pos": [
 					132,
@@ -548620,53 +549306,16 @@
 						"cmdblock": []
 					}
 				],
-				"name": "*custom-94",
+				"name": "*custom-95",
 				"memo": "barricade"
 			},
-			"#95#": {
+			"#96#": {
 				"role": "custom",
 				"mdlid": "EP221",
 				"pos": [
 					132,
 					4,
 					17,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G945",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-95",
-				"memo": "barricade"
-			},
-			"#96#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					18,
 					0
 				],
 				"reqs0": [
@@ -548703,7 +549352,7 @@
 				"pos": [
 					132,
 					4,
-					19,
+					18,
 					0
 				],
 				"reqs0": [
@@ -548736,11 +549385,11 @@
 			},
 			"#98#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "EP212",
 				"pos": [
 					132,
 					4,
-					20,
+					19,
 					0
 				],
 				"reqs0": [
@@ -548773,11 +549422,11 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
 					132,
 					4,
-					21,
+					20,
 					0
 				],
 				"reqs0": [
@@ -548814,7 +549463,7 @@
 				"pos": [
 					132,
 					4,
-					22,
+					21,
 					0
 				],
 				"reqs0": [
@@ -548846,6 +549495,43 @@
 				"memo": "barricade"
 			},
 			"#101#": {
+				"role": "custom",
+				"mdlid": "EP212",
+				"pos": [
+					132,
+					4,
+					22,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G945",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-101",
+				"memo": "barricade"
+			},
+			"#102#": {
 				"role": "villager",
 				"mdlid": "EP347",
 				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
@@ -548869,10 +549555,10 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-101",
+				"name": "*villager-102",
 				"memo": "barricade"
 			},
-			"#102#": {
+			"#103#": {
 				"role": "portal",
 				"pos": [
 					160,
@@ -548900,7 +549586,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-102",
+				"name": "*portal-103",
 				"reqs0": [
 					{
 						"lvar": "G945",
@@ -549075,17 +549761,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E859",
+						"id": "E864",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E859",
+						"id": "E864",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E859",
+						"id": "E864",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -549103,7 +549789,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E864",
+						"id": "E869",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -549121,17 +549807,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E862",
+						"id": "E867",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E862",
+						"id": "E867",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E862",
+						"id": "E867",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -549149,12 +549835,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E866",
+						"id": "E871",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E860",
+						"id": "E865",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -549172,7 +549858,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E868",
+						"id": "E873",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -554783,17 +555469,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E860",
+						"id": "E865",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E860",
+						"id": "E865",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E860",
+						"id": "E865",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -554811,7 +555497,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E865",
+						"id": "E870",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -554829,17 +555515,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E863",
+						"id": "E868",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E863",
+						"id": "E868",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E863",
+						"id": "E868",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -554857,12 +555543,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E867",
+						"id": "E872",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E861",
+						"id": "E866",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -554880,7 +555566,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E869",
+						"id": "E874",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -561441,12 +562127,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E870",
+						"id": "E875",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E870",
+						"id": "E875",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -561464,17 +562150,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E874",
+						"id": "E879",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E874",
+						"id": "E879",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E874",
+						"id": "E879",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -561492,12 +562178,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E872",
+						"id": "E877",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E875",
+						"id": "E880",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -564427,12 +565113,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E871",
+						"id": "E876",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E871",
+						"id": "E876",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -564450,17 +565136,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E875",
+						"id": "E880",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E875",
+						"id": "E880",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E875",
+						"id": "E880",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -564478,12 +565164,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E873",
+						"id": "E878",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E876",
+						"id": "E881",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -573675,7 +574361,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P140\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 1 ? n.LV : 1; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P140\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 1 ? n.LV : 1; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -574031,7 +574717,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P138\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 6 ? n.LV : 6; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P138\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 6 ? n.LV : 6; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -579977,12 +580663,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E877",
+						"id": "E882",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E877",
+						"id": "E882",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -580000,17 +580686,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E878",
+						"id": "E883",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E878",
+						"id": "E883",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E878",
+						"id": "E883",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -580028,12 +580714,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E879",
+						"id": "E884",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E879",
+						"id": "E884",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -580051,7 +580737,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E880",
+						"id": "E885",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -597749,12 +598435,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E881",
+						"id": "E886",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E881",
+						"id": "E886",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -597772,17 +598458,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E882",
+						"id": "E887",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E882",
+						"id": "E887",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E882",
+						"id": "E887",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -597800,12 +598486,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E883",
+						"id": "E888",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E883",
+						"id": "E888",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -603785,17 +604471,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E847",
+						"id": "E852",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E847",
+						"id": "E852",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E847",
+						"id": "E852",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -603813,12 +604499,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E851",
+						"id": "E856",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E851",
+						"id": "E856",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -603836,17 +604522,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E854",
+						"id": "E859",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E854",
+						"id": "E859",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E854",
+						"id": "E859",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -622282,17 +622968,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E894",
+						"id": "E899",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E894",
+						"id": "E899",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E894",
+						"id": "E899",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -622310,12 +622996,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E897",
+						"id": "E902",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E897",
+						"id": "E902",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -622333,17 +623019,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E899",
+						"id": "E904",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E899",
+						"id": "E904",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E899",
+						"id": "E904",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -625874,17 +626560,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E895",
+						"id": "E900",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E895",
+						"id": "E900",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E895",
+						"id": "E900",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -625902,12 +626588,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E898",
+						"id": "E903",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E896",
+						"id": "E901",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -625925,17 +626611,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E900",
+						"id": "E905",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E900",
+						"id": "E905",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E900",
+						"id": "E905",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -636652,12 +637338,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E901",
+						"id": "E906",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E901",
+						"id": "E906",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -636675,7 +637361,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E903",
+						"id": "E908",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -636693,12 +637379,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E902",
+						"id": "E907",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E905",
+						"id": "E910",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -639373,17 +640059,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E902",
+						"id": "E907",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E902",
+						"id": "E907",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E902",
+						"id": "E907",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -639401,12 +640087,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E904",
+						"id": "E909",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E904",
+						"id": "E909",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -639424,12 +640110,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E906",
+						"id": "E911",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E906",
+						"id": "E911",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -650193,6 +650879,116 @@
 				"flags": 1,
 				"spawndist": 1,
 				"name": "*custom-83"
+			},
+			"#84#": {
+				"role": "custom",
+				"pos": [
+					40,
+					4,
+					16,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1230",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1031",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1230",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G1031",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1230",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the road-marker near here to the Plains of Thunder - the finale. (Recommended level 55)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 209,
+											"desc": "RT objective"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1228",
+											"op": "=",
+											"rvar": 55,
+											"desc": "RT objective"
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-84"
 			}
 		},
 		"exitmap": {
@@ -665728,12 +666524,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E908",
+						"id": "E913",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E908",
+						"id": "E913",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -665751,7 +666547,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E910",
+						"id": "E915",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -665769,7 +666565,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E907",
+						"id": "E912",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -668617,7 +669413,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E911",
+						"id": "E916",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -668635,12 +669431,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E909",
+						"id": "E914",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E909",
+						"id": "E914",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -668658,7 +669454,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E913",
+						"id": "E918",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -668676,7 +669472,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E912",
+						"id": "E917",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -675454,12 +676250,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E917",
+						"id": "E922",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E917",
+						"id": "E922",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -675477,7 +676273,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E918",
+						"id": "E923",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -675495,12 +676291,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E921",
+						"id": "E926",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E921",
+						"id": "E926",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -675518,7 +676314,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E922",
+						"id": "E927",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -686879,12 +687675,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E914",
+						"id": "E919",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E914",
+						"id": "E919",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -686902,7 +687698,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E919",
+						"id": "E924",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -686920,12 +687716,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E923",
+						"id": "E928",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E915",
+						"id": "E920",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -694820,17 +695616,17 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E915",
+						"id": "E920",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E915",
+						"id": "E920",
 						"x": -1.6,
 						"z": -1.9
 					},
 					{
-						"id": "E915",
+						"id": "E920",
 						"x": 0.5,
 						"z": -0.3
 					}
@@ -694848,12 +695644,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E924",
+						"id": "E929",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E924",
+						"id": "E929",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -694871,12 +695667,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E920",
+						"id": "E925",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E916",
+						"id": "E921",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -698406,12 +699202,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E931",
+						"id": "E936",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E931",
+						"id": "E936",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -698429,7 +699225,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E925",
+						"id": "E930",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -698447,7 +699243,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E928",
+						"id": "E933",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -702173,7 +702969,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P141\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 30 ? n.LV : 30; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P141\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 30 ? n.LV : 30; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -706375,12 +707171,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E932",
+						"id": "E937",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E932",
+						"id": "E937",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -706398,7 +707194,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E925",
+						"id": "E930",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -706416,12 +707212,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E928",
+						"id": "E933",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E928",
+						"id": "E933",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -706439,7 +707235,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E938",
+						"id": "E943",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -706457,7 +707253,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E935",
+						"id": "E940",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -709634,12 +710430,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E933",
+						"id": "E938",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E933",
+						"id": "E938",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -709657,7 +710453,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E926",
+						"id": "E931",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -709675,12 +710471,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E929",
+						"id": "E934",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E929",
+						"id": "E934",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -709698,7 +710494,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E939",
+						"id": "E944",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -709716,7 +710512,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E936",
+						"id": "E941",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -712946,12 +713742,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E934",
+						"id": "E939",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E934",
+						"id": "E939",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -712969,7 +713765,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E927",
+						"id": "E932",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -712987,12 +713783,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E929",
+						"id": "E934",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E929",
+						"id": "E934",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -713010,7 +713806,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E940",
+						"id": "E945",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -713028,7 +713824,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E937",
+						"id": "E942",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -715766,12 +716562,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E940",
+						"id": "E945",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E940",
+						"id": "E945",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -715789,12 +716585,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E930",
+						"id": "E935",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E930",
+						"id": "E935",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -715812,12 +716608,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E941",
+						"id": "E946",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E930",
+						"id": "E935",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -718345,12 +719141,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E940",
+						"id": "E945",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E940",
+						"id": "E945",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -718368,12 +719164,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E941",
+						"id": "E946",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E930",
+						"id": "E935",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -724814,12 +725610,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E942",
+						"id": "E947",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E942",
+						"id": "E947",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -724837,12 +725633,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E944",
+						"id": "E949",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E944",
+						"id": "E949",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -724860,7 +725656,7 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E946",
+						"id": "E951",
 						"x": -0.9,
 						"z": 1.5
 					}
@@ -724878,12 +725674,12 @@
 				"bgmid": "MU104",
 				"enemies": [
 					{
-						"id": "E945",
+						"id": "E950",
 						"x": -0.9,
 						"z": 1.5
 					},
 					{
-						"id": "E943",
+						"id": "E948",
 						"x": -1.6,
 						"z": -1.9
 					}
@@ -732642,6 +733438,116 @@
 			},
 			"#100#": {
 				"role": "custom",
+				"pos": [
+					40,
+					4,
+					15,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1230",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1154",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1230",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G1154",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1230",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the road-marker near here to the Plains of Thunder - the finale. (Recommended level 55)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 209,
+											"desc": "RT objective"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1228",
+											"op": "=",
+											"rvar": 55,
+											"desc": "RT objective"
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-100"
+			},
+			"#101#": {
+				"role": "custom",
 				"mdlid": "EP212",
 				"pos": [
 					138,
@@ -732674,53 +733580,16 @@
 						"cmdblock": []
 					}
 				],
-				"name": "*custom-100",
+				"name": "*custom-101",
 				"memo": "barricade"
 			},
-			"#101#": {
+			"#102#": {
 				"role": "custom",
 				"mdlid": "EP221",
 				"pos": [
 					138,
 					4,
 					17,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G1134",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-101",
-				"memo": "barricade"
-			},
-			"#102#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					138,
-					4,
-					18,
 					0
 				],
 				"reqs0": [
@@ -732757,7 +733626,7 @@
 				"pos": [
 					138,
 					4,
-					19,
+					18,
 					0
 				],
 				"reqs0": [
@@ -732790,11 +733659,11 @@
 			},
 			"#104#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "EP212",
 				"pos": [
 					138,
 					4,
-					20,
+					19,
 					0
 				],
 				"reqs0": [
@@ -732827,11 +733696,11 @@
 			},
 			"#105#": {
 				"role": "custom",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
 					138,
 					4,
-					21,
+					20,
 					0
 				],
 				"reqs0": [
@@ -732868,7 +733737,7 @@
 				"pos": [
 					138,
 					4,
-					22,
+					21,
 					0
 				],
 				"reqs0": [
@@ -732900,6 +733769,43 @@
 				"memo": "barricade"
 			},
 			"#107#": {
+				"role": "custom",
+				"mdlid": "EP212",
+				"pos": [
+					138,
+					4,
+					22,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G1134",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-107",
+				"memo": "barricade"
+			},
+			"#108#": {
 				"role": "villager",
 				"mdlid": "EP347",
 				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
@@ -732923,10 +733829,10 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-107",
+				"name": "*villager-108",
 				"memo": "barricade"
 			},
-			"#108#": {
+			"#109#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -732954,9 +733860,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-108"
+				"name": "*portal-109"
 			},
-			"#109#": {
+			"#110#": {
 				"role": "portal",
 				"pos": [
 					166,
@@ -732984,7 +733890,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-109",
+				"name": "*portal-110",
 				"reqs0": [
 					{
 						"lvar": "G1134",
@@ -786993,7 +787899,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -787284,7 +788190,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -787604,7 +788510,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P124\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 46 ? n.LV : 46; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P124\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 46 ? n.LV : 46; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -787667,7 +788573,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 46 ? n.LV : 46; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 46 ? n.LV : 46; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -856953,7 +857859,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv);"
+														"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -857142,7 +858048,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv);"
+														"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -869596,7 +870502,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -881013,7 +881919,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P124\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P124\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -892727,7 +893633,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P122\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv);"
+														"code": "local p = ::rpgstat.playermap[\"P122\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -892823,7 +893729,7 @@
 																{
 																	"cmd": "cmd_script",
 																	"desc": "SCRIPT",
-																	"code": "local p = ::rpgstat.playermap[\"P125\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv);"
+																	"code": "local p = ::rpgstat.playermap[\"P125\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -911840,7 +912746,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P126\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv);"
+														"code": "local p = ::rpgstat.playermap[\"P126\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -918207,6 +919113,116 @@
 			},
 			"#90#": {
 				"role": "custom",
+				"pos": [
+					84,
+					4,
+					42,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1230",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G286",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1230",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G286",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1230",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the road-marker near here to the Plains of Thunder - the finale. (Recommended level 55)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 209,
+											"desc": "RT objective"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1228",
+											"op": "=",
+											"rvar": 55,
+											"desc": "RT objective"
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-90"
+			},
+			"#91#": {
+				"role": "custom",
 				"mdlid": "EP212",
 				"pos": [
 					132,
@@ -918239,53 +919255,16 @@
 						"cmdblock": []
 					}
 				],
-				"name": "*custom-90",
+				"name": "*custom-91",
 				"memo": "barricade"
 			},
-			"#91#": {
+			"#92#": {
 				"role": "custom",
 				"mdlid": "EP221",
 				"pos": [
 					132,
 					4,
 					34,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G286",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-91",
-				"memo": "barricade"
-			},
-			"#92#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					35,
 					0
 				],
 				"reqs0": [
@@ -918322,7 +919301,7 @@
 				"pos": [
 					132,
 					4,
-					36,
+					35,
 					0
 				],
 				"reqs0": [
@@ -918355,11 +919334,11 @@
 			},
 			"#94#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "EP212",
 				"pos": [
 					132,
 					4,
-					37,
+					36,
 					0
 				],
 				"reqs0": [
@@ -918392,11 +919371,11 @@
 			},
 			"#95#": {
 				"role": "custom",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
 					132,
 					4,
-					38,
+					37,
 					0
 				],
 				"reqs0": [
@@ -918433,7 +919412,7 @@
 				"pos": [
 					132,
 					4,
-					39,
+					38,
 					0
 				],
 				"reqs0": [
@@ -918465,6 +919444,43 @@
 				"memo": "barricade"
 			},
 			"#97#": {
+				"role": "custom",
+				"mdlid": "EP212",
+				"pos": [
+					132,
+					4,
+					39,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G286",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-97",
+				"memo": "barricade"
+			},
+			"#98#": {
 				"role": "villager",
 				"mdlid": "EP347",
 				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
@@ -918488,7 +919504,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-97",
+				"name": "*villager-98",
 				"memo": "barricade"
 			}
 		},
@@ -918867,7 +919883,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -918937,7 +919953,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv);"
+											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -936031,7 +937047,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv);"
+														"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -936115,7 +937131,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv);"
+														"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
 													},
 													{
 														"cmd": "cmd_showmsg",

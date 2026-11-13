@@ -1173,7 +1173,13 @@ def squeak_follows(ev, x, z):
 def save_shrine(m, ev, x, z):
     """Octopath save point: a small stone shrine. Rest (full heal) and save."""
     m.has_shrine = True
-    fb(m, x, z + 1, 3, 14)                                                 # exterior statue1
+    # (user 2026-11-12 shot: the statue stood on top of a cave wall) the statue behind the shrine only where that cell is
+    # floor at the shrine's height; otherwise beside it on the floor
+    sx, sz = x, z + 1
+    if not (0 <= sz < m.d and m.hgt[sz, sx] == m.hgt[z, x]):
+        sx, sz = next(((x + dx, z + dz) for dx, dz in ((1, 0), (-1, 0), (1, 1), (-1, 1))
+                       if 0 <= x + dx < m.w and 0 <= z + dz < m.d and m.hgt[z + dz, x + dx] == m.hgt[z, x]), (x, z + 1))
+    fb(m, sx, sz, 3, 14)                                                   # exterior statue1
     ev.talk(x, z - 1, "CE000", [(None, [
         narrate("A small stone shrine to the Fortunes, half buried in the rock. Someone left it a rice ball."),
         choices(("Rest and save.", REST + [script("::Rokugan.shrineCure();"),     # (user: shrines cure all but Taint)
@@ -1379,7 +1385,9 @@ def join(pid, name, lines, lv=18):
     wait at the inns while a story companion travels (user: he travels only when no other companion does)."""
     return lines + YOSAI_STEPS_OUT + [{"cmd": "cmd_memberop", "playerid": pid, "op": 0, "slot": -1},
                     script('local p = ::rpgstat.playermap["%s"], n = ::rpgstat.members.find( @( v) v && v != p); '
-                           'local lv = n.LV > %d ? n.LV : %d; if( p.LV < lv) p.setLV( lv);' % (pid, lv, lv)),
+                           'local lv = n.LV > %d ? n.LV : %d; if( p.LV < lv) p.setLV( lv); '
+                           # (user 2026-11-12: "starting with non full hp/mp/tp just joined companions is not cool")
+                           'p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;' % (pid, lv, lv)),
                     narrate("%s joins the party." % name)]
 
 
@@ -18902,6 +18910,15 @@ def make(i):
         if i in ROOM_OFS:                                                   # interiors were already embedded:
             gx, gz = gx + ROOM_OFS[i][0], gz + ROOM_OFS[i][1]               # room coordinates -> map coordinates
         finale_gate(ev, gx, gz, *FINALE_GATES[i][2:])
+        # (user 2026-11-12: "closed game again, i don't know where to go" - the gate was an invisible spot) a stone
+        # marker you can see, a chevron to it, and the objective (once; also for saves made after the chapter)
+        own, indoors = FINALE_GATES[i][2], FINALE_GATES[i][3]
+        if not indoors and 0 <= gz + 1 < m.d:
+            fb(m, gx, gz + 1, 3, 14)
+        floor_arrows(m, type("E", (), {"ev": {"gate": {"role": "portal", "pos": [gx, 0, gz, 0]}}})())
+        ev.scene(gx, gz - 2, "G1230", [narrate("Objective: the %s to the Plains of Thunder - the finale. (Recommended "
+                                               "level 55)" % ("letter on the table" if indoors else
+                                                              "road-marker near here"))], after=[flag(own)])
     if ev is not None and hasattr(m, "cave_floor"):
         _cave.sprawl(m, ev, i, (ROCK_S, ROCK_M), save_shrine)
     library_to_ours(m, ev, battle="M800" <= i < "M900")

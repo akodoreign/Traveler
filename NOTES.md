@@ -4694,6 +4694,19 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   Tried and dropped: the dark-ring "enclosed gap" rule for NPCs (no face box) - it also hits white kimono collars
   ringed by dark cloth (Crab guard, Kaiu sapper, Shosuro Norie). Open: a small white patch of background between Matsu
   Hanae's rope and staff; Fishwife reads 20s-30s; story_1..7 bust sheets when the tester's runs land (only story_0 so far).
+- (busts, 2026-11-12) gen_busts.py writes into resource\ atomically (save_png -> tools/atomic_io; faces.json and
+  RokuganBustData.sk via save_text). Blocked items done: Kakita sensei, Bandit, Sariko (own keys), Village Herbalist
+  (countrywoman). Review of story_0..7: no keying faults in any shown bust; the problem is 265 speakers showing a
+  RokuganBustGeneric stand-in. The 11-08 redo queue's ~900 candidates were never collected - copied from ComfyUI
+  output/rt_bust_queue into _art/busts/<key>/review/. Own busts picked + exported, most lines first: batch 1 (28:
+  Doji Nashiko (+"Nashiko"), Mamoru, Abbot of Osano-Wo, Herald, Innkeeper, Oyuki, ...), batch 2 (28: Akodo Hojiki,
+  Akodo Nishi, Kakita Kumpei, Dock-hand, Kitsu Kenshai, Kaiu Naname, Ide Xue, Abbot Munashii, ...); "Young Sayo" uses
+  Sayo's bust. Rejected candidates requeued with a look in bad_busts.json: Akari, Gochu, Moto Benjiro (white skull face
+  PAINT per cast-looks, no mask), Ume-baa (old), Tomie Cho (old woman), Doji Hayato / Mibu Kagemaro (natural hair),
+  Kitsuki Oharu (was a Doji Sanae look-alike), O-Tamai (woman), Mirumoto Hikaru (tattoos). queue_busts.py --bad now
+  also queues bad_busts speakers the map scan misses. ComfyUI restarted itself at 13:37; an export running then fell
+  back to the colour key - redone. Picking workflow: scratchpad pick sheets, npc_picks.json, CHIN_FIX by eye,
+  gen_busts.py npc <key>. ~200 low-line speakers still on stand-ins.
 
 ## 2026-11-11: Agent team - pushes
 - 2026-11-11 ~08:45 push 9c5658a (licensed-demo -> main, 476 files): Rest revives the fallen, Sumai foes face the player,
@@ -4798,3 +4811,24 @@ Spec: `docs/rules/progression-v2.md` (the user's decisions, quoted). Built (lead
 16. Spells: every magic attack still swinging a weapon now uses Death of Flame's charge + bolt cast and an element
     hit effect (gen_data, after the AoE pass).
 17. Push: after the tester's load check.
+
+## 2026-11-12 (afternoon): resume point
+User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (sparring group added after the push):
+- Void: +15/30/50% crit per VP; a Void crit plays a bust cut-in + school shout + 2-turn party gift (plugin
+  RokuganVoidCrit.sk; conds K125-K131; shouts table VOID_SHOUT by player rt_school_key).
+- Companion school ranks Lv 15/30/45/60 (gen_data COMP_SCHOOLS, skills S830+, effects COMP_FX in RokuganVoidCrit.sk);
+  shugenja: 2 spells of their element per rank (rank_spells; Haruki +1 Void). Advanced schools S800-S823 (Lv 75/90/100).
+- Kata/kiho cost TP (useKata copies consume); weapon reqs (kata_data REQ, plugin kataWeaponOk + isSkillUseable);
+  shugenja kiho NO_STRIKE; Shiba naginata kata S795-S798 (P131); Stand Against the Waves S799 / K136.
+- Rank techniques listed under School, greyed (rt_passive). Jobs: curve [30,0] (JLv10 ~1400), capped at 10;
+  Monk J018 (Yosai), Scout shared with Squeak; Squeak 0 VP + Taint-immune. Stat curves monotonic.
+- Save hang fix: dojo kata / Goro upgrade via STORY_SKILLS flags (G1224/G1225/G292), old ownoptions stripped.
+- Story box: chapter cards set it; objective registry tools/_objectives.json keeps numbers stable.
+- Crab Ch4 M152 (user's save, stuck): visible cellar hatch + chevron, objective after the breach (G1229), traps fire
+  once. Floor chevrons now also on cave exits and invisible walk-on exits on every map (all maps rebuilt 13:55).
+- Tools: tools/dumpsave.py SLOT [--shot] (reads / loads a save in its own engine; slot 0 = the user's), float_check.py.
+- IP-Adapter: the user cloned ComfyUI_IPAdapter_plus; ComfyUI restarted, IPAdapterAdvanced live. Animation agent is
+  adding the reference-image stage to anim_harmonize (Yosai / Natsuko contact sheets first).
+- Test fight: M001 group 199 "TEST: sparring" (E998 Sparring Oni ~79k HP, 2x E997 ~33k HP, Lv 60, weak to all).
+- Waiting: tester's engine verification of all of the above; bust agent on stand-in speakers (130 own busts now).
+- Session crons: f67ff0a3 team check every 2 h, ef8b99f2 push every 5 h, 3ed5a951 resume at 18:11 today.
