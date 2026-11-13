@@ -107,6 +107,11 @@ class RTCutIn extends SKImageView
 ::RTCutIn <- RTCutIn;		//	(tester: the class lives in this file's scope; ::Rokugan.cutIn runs with this = ::Rokugan)
 ::Rokugan.cutIn <- function( pc, text){
 	if( !::rootview) return;
+	if( ::arguments.indexOf( "-rtshotcut") >= 0){					//	test: a screenshot of each cut-in (tester)
+		::Rokugan.cutn <- ("cutn" in ::Rokugan ? ::Rokugan.cutn : 0) + 1;
+		local n = ::Rokugan.cutn;
+		if( n <= 4) newthread().start( @(){ sleep( 600); ::Rokugan.rtshot( "tmp/rt_shot/cutin_%d.raw" % [n]); });
+	}
 	local root = ::rootview.findChild( "stageui");
 	if( !root) return;
 	local W = root.bnd.w, H = root.bnd.h, y = H * 0.30, h = H * 0.26;

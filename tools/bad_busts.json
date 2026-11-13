@@ -195,7 +195,8 @@
    "found": "2026-11-12 bust monitor batch 3 (candidates rejected)",
    "why": "all candidates have cyan hair (crane colour leak); she paints generals for a living",
    "look": "kakita court painter woman, 30s, (natural black hair:1.3) in an elegant bun with a paintbrush pin, refined amused face, sky blue and white kimono, paint smudge on a sleeve",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand (natural black hair, blue kimono with paint splashes)"
   },
   {
    "speaker": "Suzume grandmother",
@@ -203,6 +204,15 @@
    "found": "2026-11-12 bust monitor batch 3 (candidates rejected)",
    "why": "candidates are young girls; a feuding old grandmother ('Forty years she's been spilling')",
    "look": "cranky old grandmother, 70s, wrinkled scowling face, thin grey hair in a bun, hunched, faded brown and yellow kimono, wooden broom",
+   "seed_add": 300,
+   "fixed": "2026-11-12 cand (old scowling woman leaning on a broom)"
+  },
+  {
+   "speaker": "Doji Aoi",
+   "file": "npc_doji_aoi/neutral.png",
+   "found": "2026-11-12 bust monitor batch 5 (candidates rejected)",
+   "why": "all candidates are silver-haired girls with a bun - Doji Sanae / old herbalist look-alikes; she tells the tale of the five champions",
+   "look": "crane court storyteller woman, 40s, (natural black hair:1.3) with grey streaks in an elegant half-up style, warm dignified face, white and pale blue layered court kimono, folded fan",
    "seed_add": 300
   }
  ]

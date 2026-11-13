@@ -114130,7 +114130,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 20 ? n.LV : 20; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+														"code": "::Rokugan.joinReady( \"P123\", 20);"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -128957,7 +128957,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P127\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 1 ? n.LV : 1; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P127\", 1);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -129020,7 +129020,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P128\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 1 ? n.LV : 1; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P128\", 1);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -161048,7 +161048,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P131\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 3 ? n.LV : 3; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P131\", 3);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -187925,7 +187925,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P129\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+														"code": "::Rokugan.joinReady( \"P129\", 22);"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -232058,7 +232058,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P130\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 44 ? n.LV : 44; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P130\", 44);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -255831,7 +255831,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P131\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 20 ? n.LV : 20; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P131\", 20);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -276671,7 +276671,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P131\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 30 ? n.LV : 30; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P131\", 30);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -305426,7 +305426,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P133\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 41 ? n.LV : 41; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P133\", 41);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -460978,7 +460978,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P136\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 5 ? n.LV : 5; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P136\", 5);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -497529,7 +497529,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P137\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P137\", 22);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -521222,7 +521222,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P138\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 30 ? n.LV : 30; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P138\", 30);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -546165,7 +546165,7 @@
 																{
 																	"cmd": "cmd_script",
 																	"desc": "SCRIPT",
-																	"code": "local p = ::rpgstat.playermap[\"P139\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 40 ? n.LV : 40; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+																	"code": "::Rokugan.joinReady( \"P139\", 40);"
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -574361,7 +574361,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P140\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 1 ? n.LV : 1; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P140\", 1);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -574717,7 +574717,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P138\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 6 ? n.LV : 6; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P138\", 6);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -702969,7 +702969,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P141\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 30 ? n.LV : 30; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P141\", 30);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -787899,7 +787899,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P123\", 32);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -788190,7 +788190,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P123\", 32);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -788510,7 +788510,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P124\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 46 ? n.LV : 46; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P124\", 46);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -788573,7 +788573,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 46 ? n.LV : 46; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P123\", 46);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -857859,7 +857859,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+														"code": "::Rokugan.joinReady( \"P120\", 18);"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -858048,7 +858048,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+														"code": "::Rokugan.joinReady( \"P120\", 18);"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -871001,7 +871001,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P123\", 18);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -882418,7 +882418,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P124\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 18 ? n.LV : 18; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P124\", 18);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -894132,7 +894132,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P122\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+														"code": "::Rokugan.joinReady( \"P122\", 22);"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -894228,7 +894228,7 @@
 																{
 																	"cmd": "cmd_script",
 																	"desc": "SCRIPT",
-																	"code": "local p = ::rpgstat.playermap[\"P125\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+																	"code": "::Rokugan.joinReady( \"P125\", 22);"
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -913245,7 +913245,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P126\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 22 ? n.LV : 22; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+														"code": "::Rokugan.joinReady( \"P126\", 22);"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -920382,7 +920382,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P120\", 32);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -920452,7 +920452,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+											"code": "::Rokugan.joinReady( \"P123\", 32);"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -937546,7 +937546,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P120\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+														"code": "::Rokugan.joinReady( \"P120\", 32);"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -937630,7 +937630,7 @@
 													{
 														"cmd": "cmd_script",
 														"desc": "SCRIPT",
-														"code": "local p = ::rpgstat.playermap[\"P123\"], n = ::rpgstat.members.find( @( v) v && v != p); local lv = n.LV > 32 ? n.LV : 32; if( p.LV < lv) p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;"
+														"code": "::Rokugan.joinReady( \"P123\", 32);"
 													},
 													{
 														"cmd": "cmd_showmsg",

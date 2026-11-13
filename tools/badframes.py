@@ -94,7 +94,8 @@ def apply_fixes(pics):
             o = Image.open(orig).convert("RGBA")                            # the new drawing is the original
             keep = [i for i in range(cols * rows) if str(i) not in mp]
             if o.size != cur.size or any(np.asarray(o.crop(box(i))).tobytes() != np.asarray(cur.crop(box(i))).tobytes()
-                                         for i in keep[:20]):
+                                         for i in keep):    # every frame (2026-11-12: [:20] missed changes
+                # past frame 20 - anim_harmonize's attack / cast frames, the ref pass - and put the old drawing back)
                 shutil.copy(path, orig)
         else:
             os.makedirs(ORIG, exist_ok=True)

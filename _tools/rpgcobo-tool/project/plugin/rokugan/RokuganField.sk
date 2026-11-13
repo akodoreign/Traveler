@@ -1035,6 +1035,16 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	printf( "[RT] masks removed: %d\n", n);
 	return n;
 };
+//	gen_maps join(): a companion who just joined comes up to at least `lv` (or the party's best level) and arrives at full
+//	HP, MP and TP (user 2026-11-12). (tester: the same code inline in a cmd_script did not compile.)
+::Rokugan.joinReady <- function( pid, lv){
+	local p = ::rpgstat.playermap[pid];
+	if( !p) return;
+	foreach( m in ::rpgstat.members) if( m && m != p && m.LV > lv) lv = m.LV;
+	if( p.LV < lv) p.setLV( lv);
+	p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;
+	printf( "[RT] join %S LV%d HP%d/%d TP%d\n", p.name, p.LV, p.HP, p.MAXHP, p.TP);
+};
 ::Rokugan.wearsMask <- function( pid, aid){				//	gen_maps talk gates: is the leader wearing this mask?
 	local p = ::rpgstat.playermap[pid];
 	local eq = p ? p.equips[4] : null;

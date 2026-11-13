@@ -1190,7 +1190,7 @@ def save_shrine(m, ev, x, z):
     sx, sz = x, z + 1
     if not (0 <= sz < m.d and m.hgt[sz, sx] == m.hgt[z, x]):
         sx, sz = next(((x + dx, z + dz) for dx, dz in ((1, 0), (-1, 0), (1, 1), (-1, 1))
-                       if 0 <= x + dx < m.w and 0 <= z + dz < m.d and m.hgt[z + dz, x + dx] == m.hgt[z, x]), (x, z + 1))
+                       if 0 <= x + dx < m.w and 0 <= z + dz < m.d and m.hgt[z + dz, x + dx] == m.hgt[z, x]), (x, z))
     fb(m, sx, sz, 3, 14)                                                   # exterior statue1
     ev.talk(x, z - 1, "CE000", [(None, [
         narrate("A small stone shrine to the Fortunes, half buried in the rock. Someone left it a rice ball."),
@@ -1396,10 +1396,10 @@ def join(pid, name, lines, lv=18):
     """A short-term companion joins (at least `lv`, or the party leader's level if higher). Togashi Yosai steps out to
     wait at the inns while a story companion travels (user: he travels only when no other companion does)."""
     return lines + YOSAI_STEPS_OUT + [{"cmd": "cmd_memberop", "playerid": pid, "op": 0, "slot": -1},
-                    script('local p = ::rpgstat.playermap["%s"], n = ::rpgstat.members.find( @( v) v && v != p); '
-                           'local lv = n.LV > %d ? n.LV : %d; if( p.LV < lv) p.setLV( lv); '
-                           # (user 2026-11-12: "starting with non full hp/mp/tp just joined companions is not cool")
-                           'p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;' % (pid, lv, lv)),
+                    # (tester 2026-11-12: the one-line "local p = ..., n = ...find( @( v) ...); ... ? :" did not compile -
+                    # "end of statement expected" - so a joining companion was never levelled or healed)
+                    # (user 2026-11-12: "starting with non full hp/mp/tp just joined companions is not cool")
+                    script('::Rokugan.joinReady( "%s", %d);' % (pid, lv)),
                     narrate("%s joins the party." % name)]
 
 

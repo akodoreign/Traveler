@@ -4649,6 +4649,13 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   used from ::Rokugan.cutIn - every Void crit threw "index RTCutIn does not exist" (could end the battle); exported as
   ::RTCutIn. Sparring (M001 g199) on the 18:10 build: clean, cut-ins for every school seen. playbot.py gets
   `lead=`/`extra=` and its runs now burst their battles too (RokuganBot botname "pb").
+- **GAME FIX companion joins (87 join sites)**: gen_maps join()'s one-line cmd_script (level up + full HP/MP/TP) did
+  not compile ("end of statement expected") - the scene stopped right there with "handleerror does not exist"
+  (Squeak in the Kaiu tunnels M170, every companion join). Now a plugin call: `::Rokugan.joinReady( pid, lv)`
+  (RokuganField.sk) logs "[RT] join Squeak LV30 HP559/559 TP109". Full regen.
+- Checked in engine: M151 finale road-marker + chevron + once-only objective (G1230 set); M152 trap stones fire once
+  each, hatch visible; M170 exit chevron visible; Void-crit cut-in shot (`-rt shotcut` makes RokuganVoidCrit save
+  tmp/rt_shot/cutin_N.raw): _art/preview/bot/cutin_1.png. Note: Natsuko (yari) used "Shell of Stone - Katana".
 - 06:30 all ~67 remaining side-cast/hireling sheets reviewed (walk/run/attack): frame fixes for EP389, EP392, EP588, EP673,
   EP1107, EP1112, EP1127, EP1128, EP1140, EP1149 (heads turned away, hats/weapons popping, Hida Veteran morphing).
   Redraws (user "yeah redraw them"): Hida Sachiko - new gen_sprites2d flag club_back (tetsubo behind her head; rig and
@@ -4865,3 +4872,7 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
 - Dialect gotcha: `aidown[aiside ? "right" : "left"]` (a ternary inside an index) always gave "left" - use if/else.
 - Not tested: real keyboard / gamepad / mouse feel (the bot's keys only); the mouse mapping assumes stageui fills the
   window (rootview.scale). The engine's key-hint bar (Z Check / Space Jump ...) still draws over the bottom-right.
+- 11-12 night: IP-Adapter live (weights hard-linked into C:\AI\StabilityMatrix\Models\IpAdaptersXl - StabilityMatrix's
+  extra_model_paths maps "ipadapter" there, not ComfyUI\models\ipadapter). anim_harmonize.py "ref" pass: reference =
+  stand frame 0, weight 0.6 linear, original head + weapon composited back. badframes.py bug fixed: it compared only
+  frames 0-19 to detect a redrawn sheet and reverted later-frame changes (100 harmonized sheets re-installed).

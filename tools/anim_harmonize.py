@@ -364,6 +364,44 @@ def ai_fp(key):
     return h.hexdigest()
 
 
+_PALS = {}
+
+
+def PAL_OF(spec):
+    if spec["key"] not in _PALS:
+        _PALS[spec["key"]] = pd.Pal(spec)
+    return _PALS[spec["key"]]
+
+
+HEAD_SHARE = 0.28      # top share of the figure kept from the original frame in the reference pass (face + hair)
+
+
+def keep_head_weapon(ref, cand, orig, rig=None, pal=None, pal_names=()):
+    """Composite for the IP-Adapter pass: the original frame's head (top HEAD_SHARE of its figure) and its weapon pixels
+    (colours of the spec's steel / wood groups, grown 1 px) over the new frame. Yosai test: 0.8 linear fixed the robe
+    but paled the faces and turned the staff gold."""
+    o, c_ = np.asarray(orig).copy(), np.asarray(cand).copy()
+    op = o[..., 3] > 0
+    ys = np.nonzero(op.any(1))[0]
+    if not len(ys):
+        return cand
+    keep = np.zeros(op.shape, bool)
+    keep[:ys.min() + int(round((ys.max() - ys.min() + 1) * HEAD_SHARE))] = True
+    keep &= op | (c_[..., 3] > 0)
+    weapon = np.zeros(op.shape, bool)
+    if rig is not None and pal is not None:           # where the procedural rig draws the weapon (steel / wood groups):
+        r = np.asarray(rig)                              # the rig, not the AI colours - a grey under-shirt is "steel"
+        L = pd.pa.lab(r[..., :3].reshape(-1, 3))         # colour too and must not be kept
+        g_ = pal.dgid[((L[:, None, :] - pal.DL[None, :, :]) ** 2).sum(2).argmin(1)].reshape(r.shape[:2])
+        names = list(pal_names)
+        wg = [names.index(n) for n in ("steel", "wood") if n in names]
+        weapon = (r[..., 3] > 0) & np.isin(g_, wg)
+        weapon = cv2.dilate(weapon.astype(np.uint8), np.ones((3, 3), np.uint8)) > 0
+    m = keep | (weapon & (op | (c_[..., 3] > 0)))
+    c_[m] = o[m]
+    return Image.fromarray(c_, "RGBA")
+
+
 def comfy_frame(spec, ref, aid, i, mapped, orig, base_score, rec, refimg=None, rounds=None, tries_key="tries"):
     """Up to 3 rounds of CANDS img2img candidates; the best accepted one or None.
     refimg = (image, weight, weight_type) adds the IP-Adapter reference (the stand frame)."""
@@ -392,6 +430,8 @@ def comfy_frame(spec, ref, aid, i, mapped, orig, base_score, rec, refimg=None, r
             small[..., 3] = np.where(alpha, 255, 0)
             small[shadow] = oa[shadow]
             cand, _, _ = palette_pass(ref, Image.fromarray(small, "RGBA"), keep_accents=False)
+            if refimg:                                    # (lead 2026-11-12) robe/body from the new frame only: the
+                cand = keep_head_weapon(ref, cand, orig, ps.frame(spec["sheet"], i), PAL_OF(spec), list(spec["groups"]))
             if refimg:                                    # keep every candidate for eye review
                 cd = os.path.join(OUT, spec["key"], "cand")
                 os.makedirs(cd, exist_ok=True)
@@ -432,6 +472,7 @@ def ref_targets(key, frames, force):
 
 def ref_pass(key, spec, ep, entry, weight, wtype, only_frames=None, install_it=True):
     """IP-Adapter pass on the installed (already harmonized) sheet: reference = stand frame 0."""
+    spec = dict(spec, key=key)                            # candidates under out/<key>/cand (spec key is "yosai")
     sheet = spec["sheet"]
     src = Image.open(os.path.join(PIC, sheet)).convert("RGBA")
     am = [a for a in entry.get("animap", []) if isinstance(a, dict) and "st" in a]
@@ -687,8 +728,8 @@ if __name__ == "__main__":
         #        [--frames 11,12] [--no-install]          IP-Adapter pass (reference = stand frame 0)
         b = a[1:]
         only = b[b.index("--only") + 1].split(",") if "--only" in b else None
-        wt = float(b[b.index("--weight") + 1]) if "--weight" in b else 0.7
-        wty = b[b.index("--type") + 1] if "--type" in b else "style transfer"
+        wt = float(b[b.index("--weight") + 1]) if "--weight" in b else 0.6
+        wty = b[b.index("--type") + 1] if "--type" in b else "linear"
         fr = [int(x) for x in b[b.index("--frames") + 1].split(",")] if "--frames" in b else None
         fp_ = os.path.join(HERE, "harmonize_force.json")
         FORCE.update({k: v for k, v in (json.load(open(fp_)) if os.path.exists(fp_) else {}).items()

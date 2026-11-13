@@ -33950,7 +33950,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34029,7 +34029,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34108,7 +34108,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34187,7 +34187,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34266,7 +34266,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34345,7 +34345,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34424,7 +34424,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34505,7 +34505,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34586,7 +34586,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34665,7 +34665,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34746,7 +34746,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34828,7 +34828,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34907,7 +34907,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -34986,7 +34986,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35067,7 +35067,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35148,7 +35148,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35229,7 +35229,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35310,7 +35310,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35391,7 +35391,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35473,7 +35473,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35554,7 +35554,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35633,7 +35633,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35712,7 +35712,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35791,7 +35791,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35870,7 +35870,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -35951,7 +35951,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36030,7 +36030,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36109,7 +36109,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36188,7 +36188,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36269,7 +36269,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36348,7 +36348,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36427,7 +36427,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36506,7 +36506,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36585,7 +36585,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36664,7 +36664,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36743,7 +36743,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36822,7 +36822,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36901,7 +36901,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -36980,7 +36980,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37059,7 +37059,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37138,7 +37138,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37217,7 +37217,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37296,7 +37296,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37375,7 +37375,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37456,7 +37456,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37537,7 +37537,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37618,7 +37618,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37699,7 +37699,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37780,7 +37780,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37861,7 +37861,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -37942,7 +37942,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -38023,7 +38023,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -38102,7 +38102,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -38181,7 +38181,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -38260,7 +38260,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -38339,7 +38339,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -38420,7 +38420,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -38501,7 +38501,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null
@@ -38582,7 +38582,7 @@
 			1.1
 		],
 		"dmgtype": 1,
-		"elembits": 1,
+		"elembits": 0,
 		"endact": {
 			"id": "noop",
 			"scp": null

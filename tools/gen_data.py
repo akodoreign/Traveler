@@ -3058,6 +3058,7 @@ def main():
         k = copy.deepcopy(s["S100"])
         k.update({"name": name, "desc": "%s (%s)" % (desc, {"kata": "Kata", "kiho": "Kiho", "tattoo": "Tattoo"}[kind]),
                   "addlist": True, "enemyuse": False, "occasion": 1, "eqtypebits": 2047,
+                  "elembits": 0,       # (the banner read the katana template's element; the strike is the weapon's)
                   # (user 2026-11-12: "Kiho and Kata should use TP points") TP by the level it is learned at
                   "consume": [1, 4 + (lv or 12) // 3],
                   "rt_school": True, "rt_kata": cid, "rt_kmul": mult, "rt_kkind": kind,
