@@ -47,7 +47,7 @@ def main():
         if p in ("version.json", "rt_manifest.json") or p.lower().endswith((".exe", ".dll")):
             continue
         fp = DST + "/" + p
-        files[p] = [crc(fp), os.path.getsize(fp)]
+        files[p] = [str(crc(fp)), os.path.getsize(fp)]   # (a string: the engine's JSON reader clamps big numbers)
     json.dump({"version": ver, "files": files}, open(DST + "/rt_manifest.json", "w", newline="\n"),
               separators=(",", ":"), sort_keys=True)
     git("add", "-A")

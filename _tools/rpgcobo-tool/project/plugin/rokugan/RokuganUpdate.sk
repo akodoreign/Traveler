@@ -31,9 +31,12 @@ local GAME = "_tools/rpgcobo-tool/";
 	return skGetCurrentDir() .. "/" .. p.substring( length( GAME));
 };
 
+//	raw.githubusercontent.com caches each URL for ~5 minutes; a fresh query string skips that cache, so a push is seen
+//	right away and every file comes from the same version as the manifest.
 ::Rokugan.updUrl <- function( path){
-	return REPO .. path.replace( " ", "%20");
+	return REPO .. path.replace( " ", "%20") .. "?t=" .. ::Rokugan.updStamp;
 };
+::Rokugan.updStamp <- 0;
 
 ::Rokugan.updReadJSON <- function( full){
 	try{
@@ -54,8 +57,7 @@ local GAME = "_tools/rpgcobo-tool/";
 };
 
 ::Rokugan.updCrcOk <- function( bb, want){
-	local c = bb.crc32( 0);									//	(signed 32-bit; tools/release.py writes it so)
-	return c == want || (want > 2147483647 && c == want - 4294967296);
+	return ("" .. bb.crc32( 0)) == ("" .. want);			//	(signed 32-bit, as a string: tools/release.py)
 };
 
 //	A one-line progress panel on top of everything (the title UI is darkened behind it).
@@ -196,6 +198,7 @@ local GAME = "_tools/rpgcobo-tool/";
 
 //	Called by the title menu's Update / Verify entry (tools/gen_data.py, map M000).
 ::Rokugan.updateMenu <- function( runner){
+	this.updStamp = skGetTime() .. "x" .. int( ::rnd.nextf( 0.0, 1000000.0));
 	local mine = this.updLocalJSON( "version.json");
 	if( !mine){
 		runner.showMessage( { key = "message_talk", name = "", uiclose = 2,
@@ -232,6 +235,7 @@ local GAME = "_tools/rpgcobo-tool/";
 //	-rtupdtest fast|verify|fix : runs the updater from the launch hook against GitHub (no title menu, no messages).
 //	fast / verify only list what they would fetch; fix verifies and downloads.
 ::Rokugan.updTest <- function( mode){
+	this.updStamp = skGetTime() .. "x" .. int( ::rnd.nextf( 0.0, 1000000.0));
 	try{
 		local t0 = skGetTime();
 		local remote = decodeJSON( this.updGet( "rt_manifest.json").asText());
