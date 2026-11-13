@@ -4643,6 +4643,12 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
     story moves.
   - Ch3 "The Village of the Wounded Lion" and Ch4 "The Oracle's Choice" complete (completion flag G1154, set in
     S08_RON4 just before the "- complete" line). **All eight paths are now played through Ch4.**
+- 2026-11-12 follow-ups: people standing inside blocks are moved to the nearest open square at their height in make()
+  (`people_off_blocks`, hireling homes excluded; rescan: 0 left). M384's save shrine is reachable on the current build.
+  Dragon Ch4 completion flag G823. **PLUGIN FIX RokuganVoidCrit.sk**: `RTCutIn` was declared in the file's scope but
+  used from ::Rokugan.cutIn - every Void crit threw "index RTCutIn does not exist" (could end the battle); exported as
+  ::RTCutIn. Sparring (M001 g199) on the 18:10 build: clean, cut-ins for every school seen. playbot.py gets
+  `lead=`/`extra=` and its runs now burst their battles too (RokuganBot botname "pb").
 - 06:30 all ~67 remaining side-cast/hireling sheets reviewed (walk/run/attack): frame fixes for EP389, EP392, EP588, EP673,
   EP1107, EP1112, EP1127, EP1128, EP1140, EP1149 (heads turned away, hats/weapons popping, Hida Veteran morphing).
   Redraws (user "yeah redraw them"): Hida Sachiko - new gen_sprites2d flag club_back (tetsubo behind her head; rig and

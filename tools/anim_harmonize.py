@@ -392,6 +392,10 @@ def comfy_frame(spec, ref, aid, i, mapped, orig, base_score, rec, refimg=None, r
             small[..., 3] = np.where(alpha, 255, 0)
             small[shadow] = oa[shadow]
             cand, _, _ = palette_pass(ref, Image.fromarray(small, "RGBA"), keep_accents=False)
+            if refimg:                                    # keep every candidate for eye review
+                cd = os.path.join(OUT, spec["key"], "cand")
+                os.makedirs(cd, exist_ok=True)
+                cand.save(os.path.join(cd, "f%03d_r%d_s%d.png" % (i, rnd, s)))
             sc = ref.region_dist(np.asarray(cand))
             ok_iou = iou(cand, orig)
             ok_head = head_agree(ref, cand, orig)
@@ -449,7 +453,9 @@ def ref_pass(key, spec, ep, entry, weight, wtype, only_frames=None, install_it=T
         cur = crop(src, i)
         base = ref.region_dist(np.asarray(cur))
         forced = i in FORCE.get(key, [])
-        got = comfy_frame(spec, ref, rec.get("anim", "stand"), i, cur, cur, base / 0.9 + 1e-6 if forced else base,
+        # forced frames were picked by eye because the score cannot see their fault (Yosai grey under-shirt scored like a
+        # clean frame; all 6 IP-Adapter candidates were rejected "no gain"): for them only facing + silhouette gate
+        got = comfy_frame(spec, ref, rec.get("anim", "stand"), i, cur, cur, 1e9 if forced else base,
                           rec, refimg=refimg, rounds=REF_ROUNDS, tries_key="ref_tries")
         rec["ref_settings"] = [weight, wtype]
         if got:

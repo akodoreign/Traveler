@@ -1,0 +1,665 @@
+//	RokuganMini.sk : Winter Court mini-games (user 2026-11-12: "during winter court lets actually do some mini games, one
+//	inspired by links crossbow for the Yumi tourney, then one with the horse race ... track and field where you tap left
+//	then right, or vice versa ... (don't make it to difficult, and give a try again option)").
+//	- ::Rokugan.miniGame( "yumi") : the archery contest at Kyuden Hida (1F outer yard, Yasuki Kurako). A shooting gallery:
+//	  straw butts, straw goblins over the rail, paper lanterns, crows. Crosshair: arrows / WASD / pad / mouse; shoot:
+//	  Z / Space / Enter / click. 24 arrows, 45 s, goal 12 points.
+//	- ::Rokugan.miniGame( "race") : Kitsu Takeo's three laps of the yard against a Matsu rider. Alternate Left / Right
+//	  (A / D, pad) to gallop; the same key twice stumbles. The rival is paced so a calm rhythm (~3 taps a second) wins.
+//	Both run as a blocking call from an event script (cmd_script sleeps on the event thread) and return
+//	1 = won, 2 = lost and declined "Try again?", 0 = could not run (no stage UI, an error): the event then falls back to
+//	its old narrated outcome, so the story never blocks. Everything is drawn from white.png rects and labels (no art).
+//	Test hooks (tools/minitest.py): -rtmini "lose,win" plays itself one round per entry (idle = lose, aim/rhythm = win;
+//	"Try again?" -> Yes while entries remain); -rtminishot NAME saves tmp/rt_shot/bot_NAME_<game>_<n>.raw at each stage.
+//	The bot's virtual keys (RokuganBot.sk "tap") are read as well.
+import VirtualKeyCode;
+import ModifiersMask;
+import GamepadButtonCode;
+
+local log( s){ printf( "[RT] %S\n", s); }
+local MINI = { tex = null };
+local miniSprite = function(){
+	if( !MINI.tex){
+		local img = ::getResource( "/resource/efx/battleui/white.png").getContent();
+		img.premultAlpha();
+		MINI.tex = Texture();
+		MINI.tex.load( img, 0);
+	}
+	local sp = Sprite( MINI.tex);
+	sp.blend = SK_PMAMIX;
+	return sp;
+};
+local KEYMAP = { left = [VK_LEFT, VK_A], right = [VK_RIGHT, VK_D], up = [VK_UP, VK_W], down = [VK_DOWN, VK_S],
+	fire = [VK_Z, VK_SPACE, VK_ENTER], back = [VK_X, VK_ESCAPE] };
+local PADMAP = { left = BTN_LEFT, right = BTN_RIGHT, up = BTN_UP, down = BTN_DOWN, fire = BTN_A, back = BTN_B };
+local BOTMAP = { left = ["left"], right = ["right"], up = ["up"], down = ["down"], fire = ["z", "space", "enter"],
+	back = ["x", "esc"] };
+local KEYNAMES = ["left", "right", "up", "down", "fire", "back"];
+local sfx = function( id){ try{ ::playSound( id); }catch( ex){} };
+local fabs = @( v) v < 0 ? -v : v;
+local frand = @( a, b) ::rnd.nextf( a, b);
+
+///////////////////////////////////////////////////////////////////////////////
+//	The base: a full-screen backdrop on stageui, rect / label helpers, edge-triggered input, the centre panel
+//	(title, up to four lines, options with a cursor) and the self-play hooks.
+class RTMini extends SKImageView
+{
+	root = null; W = 1280.0; H = 720.0;
+	views = null;
+	done = false; result = 0; err = false; shotreq = null; lastTick = 0;
+	prev = null; hit = null; aidown = null;
+	ai = null; aiq = null; round = 0; shotname = null; shotn = 0; game = "mini";
+	state = "intro"; st = 0.0;
+	pbg = null; pline = null; ptitle = null; plines = null; popts = null; psel = 0; pn = 0; pon = false;
+	mouse = null;
+
+	constructor( r, bg){
+		super( miniSprite());
+		root = r;
+		W = r.bnd.w; H = r.bnd.h;
+		views = []; prev = {}; hit = {}; aidown = {};
+		enabled = false;
+		setRect( 0, 0, W, H);
+		setColor( bg);
+		root.addChild( this);
+		lastTick = skGetTime();
+		local i = ::arguments.indexOf( "-rtmini");
+		if( i >= 0 && i + 1 < length( ::arguments)) aiq = ::arguments[i+1].split( ",").filter( @( v) v != "");
+		i = ::arguments.indexOf( "-rtminishot");
+		if( i >= 0 && i + 1 < length( ::arguments)) shotname = ::arguments[i+1];
+		foreach( k in KEYNAMES) prev[k] <- isDown( k);		//	(the key that picked the menu option is still held)
+		foreach( k in KEYNAMES) hit[k] <- false;
+		addUpdateFunc( this.tick.bindenv( this));
+	}
+	function aiMode(){ return aiq && length( aiq) ? aiq[Math.min( round, length( aiq) - 1)] : null; }
+	function rect( x, y, w, h, col){
+		local v = ::SKImageView( miniSprite());
+		v.enabled = false; v.setRect( x, y, w, h); v.setColor( col);
+		root.addChild( v); views.append( v);
+		return v;
+	}
+	function label( x, y, w, h, size, col, align = 0){
+		local v = SKLabelView( "", FontAttribute( Fonts.get( "ui"), size, col, SK_FONT_BOLD));
+		v.enabled = false; v.bnd.set( x, y, w, h);
+		v.textbox.align = align;
+		root.addChild( v); views.append( v);
+		return v;
+	}
+	function isDown( k){
+		foreach( vk in KEYMAP[k]) if( skIsKeyPressed( vk)) return true;
+		try{ if( ::gpui.getGPUIDevice()["gp"]["buttonmask"] & (1 << PADMAP[k])) return true; }catch( ex){}
+		if( "botkeys" in ::Rokugan) foreach( b in BOTMAP[k]) if( b in ::Rokugan.botkeys) return true;
+		if( k == "fire") try{ if( ::rootview.mouses[0].modifiers & BUTTON1_MASK) return true; }catch( ex){}
+		return k in aidown;
+	}
+	function readInput(){
+		foreach( k in KEYNAMES){
+			local d = isDown( k);
+			hit[k] = d && !prev[k];
+			prev[k] = d;
+		}
+	}
+	function shot( tag){
+		if( shotname) shotreq = "tmp/rt_shot/bot_" .. shotname .. "_" .. game .. "_" .. ("%02d" % [shotn++]) .. "_" .. tag .. ".raw";
+	}
+	function tick( dt){
+		if( done) return false;
+		lastTick = skGetTime();
+		try{
+			readInput();
+			st += dt;
+			step( dt);
+			if( pon) panelStep( dt);
+		}catch( ex){
+			printexception( ex);
+			log( "mini-game " .. game .. ": error, falling back to the narrated outcome");
+			err = true; done = true;
+			return false;
+		}
+		return true;
+	}
+	function step( dt){}
+	function chosen( i){}
+	//	the centre panel
+	function buildPanel(){
+		local pw = 640.0, ph = 300.0, px = (W - pw) / 2, py = (H - ph) / 2 - 20;
+		pbg = rect( px, py, pw, ph, 0x0b0a12e8);
+		pline = [rect( px, py, pw, 3, 0xc9a45cff), rect( px, py + ph - 3, pw, 3, 0xc9a45cff)];
+		ptitle = label( px, py + 22, pw, 44, 34, 0xf4e2b0ff, 1);
+		plines = [];
+		for( local i = 0; i < 4; i++) plines.append( label( px + 30, py + 82 + i * 32, pw - 60, 30, 21, 0xf4f0e6ff, 1));
+		popts = [label( px, py + ph - 70, pw / 2, 40, 26, 0xf4f0e6ff, 1), label( px + pw / 2, py + ph - 70, pw / 2, 40, 26, 0xf4f0e6ff, 1)];
+		showPanel( false);
+	}
+	function showPanel( on, title = "", lines = [], opts = [], sel = 0){
+		pon = on; psel = sel; pn = length( opts);
+		foreach( v in [pbg, ptitle] .extend( pline) .extend( plines) .extend( popts)) v.setVisible( on);
+		if( !on) return;
+		ptitle.setText( title);
+		foreach( i, v in plines) v.setText( i < length( lines) ? lines[i] : "");
+		if( pn == 1){ popts[0].bnd.set( pbg.bnd.x, popts[0].bnd.y, pbg.bnd.w, 40); popts[1].setVisible( false); }
+		else popts[0].bnd.set( pbg.bnd.x, popts[0].bnd.y, pbg.bnd.w / 2, 40);
+		popts[0].updateLayout();
+		this.popt = opts;
+		drawOpts();
+		st = 0.0;
+	}
+	popt = null;
+	function drawOpts(){
+		foreach( i, v in popts){
+			if( i >= pn) continue;
+			v.setText( (i == psel ? "> " : "  ") .. popt[i] .. (i == psel ? " <" : "  "));
+			v.setColor( i == psel ? 0xffe08aff : 0x9a968cff);
+		}
+	}
+	function panelStep( dt){
+		if( pn > 1 && (hit.left || hit.right || hit.up || hit.down)){ psel = (psel + 1) % pn; drawOpts(); sfx( "SE001"); }
+		local m = aiMode();
+		if( m && st > 1500.0 && !("fire" in aidown)){				//	self-play: answer after a moment
+			if( pn > 1){ psel = round + 1 < length( aiq) ? 0 : 1; drawOpts(); }
+			aidown.fire <- true;
+		}
+		if( hit.fire){
+			if( "fire" in aidown) delete aidown.fire;
+			sfx( "SE003");
+			local i = psel;
+			showPanel( false);
+			chosen( i);
+		}
+	}
+	function close(){
+		foreach( v in views) if( v) v.removeFromParent();
+		views = [];
+		removeFromParent();
+	}
+}
+::RTMini <- RTMini;
+
+///////////////////////////////////////////////////////////////////////////////
+//	Yumi: the archery contest
+//	target kinds: points, hit radius, centre offset for the hit test, parts [dx, dy, w, h, colour, anim(1 = wing)]
+local STRAW = 0xd9b86aff, STRAW2 = 0xc9a35aff, WOOD = 0x6b4a2cff, INK = 0x16161cff;
+local YUMI_KINDS = {
+	butt = { pts = 1, r = 40.0, hy = 0.0, parts = [
+		[-32, 26, 8, 44, WOOD, 0], [24, 26, 8, 44, WOOD, 0],
+		[-38, -30, 76, 60, STRAW, 0], [-30, -38, 60, 76, STRAW, 0],
+		[-23, -23, 46, 46, 0xf2eee0ff, 0], [-14, -14, 28, 28, 0xc0392bff, 0], [-5, -5, 10, 10, 0xf1c40fff, 0]] },
+	goblin = { pts = 2, r = 34.0, hy = -14.0, parts = [
+		[-4, 30, 8, 60, WOOD, 0],
+		[-20, -8, 40, 44, STRAW2, 0], [-30, 0, 12, 8, STRAW2, 0], [18, 0, 12, 8, STRAW2, 0],
+		[-16, -38, 32, 30, 0x9fa35cff, 0],
+		[-9, -30, 6, 6, INK, 0], [3, -30, 6, 6, INK, 0],
+		[-26, -46, 52, 8, 0x8b5a2bff, 0], [-12, -60, 24, 14, 0x8b5a2bff, 0]] },
+	lantern = { pts = 2, r = 28.0, hy = 0.0, parts = [
+		[-1, -70, 2, 46, 0x222222ff, 0],
+		[-14, -28, 28, 6, 0x2b2b2bff, 0],
+		[-20, -20, 40, 40, 0xe0572aff, 0], [-16, -24, 32, 48, 0xe0572aff, 0],
+		[-9, -12, 18, 24, 0xffd27aff, 0],
+		[-14, 22, 28, 6, 0x2b2b2bff, 0], [-3, 28, 6, 10, 0xc0392bff, 0]] },
+	crow = { pts = 3, r = 24.0, hy = 0.0, parts = [
+		[-16, -6, 30, 13, INK, 0], [12, -12, 12, 11, INK, 0], [24, -9, 8, 4, 0xd4a017ff, 0],
+		[-26, -4, 11, 6, INK, 0], [-8, -20, 18, 14, 0x2c2c38ff, 1], [16, -9, 3, 3, 0xf0f0f0ff, 0]] },
+};
+local YUMI_ODDS = [["butt", 34], ["goblin", 30], ["lantern", 20], ["crow", 16]];
+local RAIL_Y = 600.0;
+
+class RTYumi extends RTMini
+{
+	cx = 640.0; cy = 380.0; cross = null;
+	arrows = 24; timeleft = 45000.0; score = 0; goal = 12; best = 0; cool = 0.0; spawnt = 0.0;
+	pool = null; fx = null; snow = null;
+	lscore = null; larrows = null; ltime = null; lhint = null; ltitle = null;
+	mlast = null; aiwait = 0.0;
+
+	constructor( r){
+		super( r, 0x2a3550ff);
+		game = "yumi";
+		//	the yard: dusk sky, the castle wall and keep, snow, the shooting rail
+		rect( 0, 150, W, 150, 0x34436aff);
+		rect( 0, 230, W, 70, 0x1e2230ff);
+		for( local x = 0.0; x < W; x += 64.0) rect( x, 216, 34, 14, 0x1e2230ff);
+		rect( 930, 70, 220, 160, 0x161a24ff); rect( 900, 120, 280, 16, 0x0f1219ff);
+		rect( 960, 30, 160, 50, 0x161a24ff); rect( 940, 66, 200, 12, 0x0f1219ff);
+		rect( 1000, 0, 80, 34, 0x161a24ff); rect( 985, 26, 110, 10, 0x0f1219ff);
+		rect( 0, 300, W, RAIL_Y - 300, 0xdfe6eeff);
+		rect( 0, 300, W, 10, 0xc4ccd6ff);
+		for( local y = 360.0; y < RAIL_Y; y += 70.0) rect( 0, y, W, 4, 0xd0d8e2ff);
+		//	the targets (pooled: drawn under the rail and the crosshair)
+		pool = [];
+		for( local i = 0; i < 7; i++){
+			local parts = [];
+			for( local j = 0; j < 9; j++){ local v = rect( 0, 0, 1, 1, 0); v.setVisible( false); parts.append( v); }
+			pool.append( { on = false, kind = null, x = 0.0, y = 0.0, vx = 0.0, by = 0.0, age = 0.0, life = 0.0, flip = 1.0, parts = parts });
+		}
+		snow = [];
+		for( local i = 0; i < 34; i++)
+			snow.append( { v = rect( 0, 0, 3, 3, 0xffffffc0), x = frand( 0.0, W), y = frand( 0.0, H), s = frand( 25.0, 60.0) });
+		rect( 0, RAIL_Y, W, H - RAIL_Y, 0x5a3a22ff);
+		rect( 0, RAIL_Y, W, 14, 0x7a5232ff);
+		rect( 0, RAIL_Y + 14, W, 3, 0x3a2414ff);
+		for( local x = 40.0; x < W; x += 160.0) rect( x, RAIL_Y + 17, 10, H - RAIL_Y - 17, 0x4a2e1aff);
+		//	hit pops and the crosshair
+		fx = [];
+		for( local i = 0; i < 6; i++){
+			local l = label( 0, 0, 200, 40, 28, 0xffe08aff, 1);
+			l.setVisible( false);
+			fx.append( { v = l, t = 0.0, x = 0.0, y = 0.0, on = false });
+		}
+		cross = [];
+		foreach( q in [[-22, -2, 14, 5], [9, -2, 14, 5], [-2, -22, 5, 14], [-2, 9, 5, 14]]) cross.append( [rect( 0, 0, q[2] + 2, q[3] + 2, 0x000000a0), q, 1]);
+		foreach( q in [[-21, -1, 12, 3], [10, -1, 12, 3], [-1, -21, 3, 12], [-1, 10, 3, 12]]) cross.append( [rect( 0, 0, q[2], q[3], 0xffe08aff), q, 0]);
+		cross.append( [rect( 0, 0, 4, 4, 0xe74c3cff), [-2, -2, 4, 4], 0]);
+		//	the rail's scoreboard
+		lscore = label( 30, RAIL_Y + 30, 360, 40, 30, 0xf4e2b0ff);
+		larrows = label( 450, RAIL_Y + 30, 380, 40, 30, 0xf4e2b0ff, 1);
+		ltime = label( W - 330, RAIL_Y + 30, 300, 40, 30, 0xf4e2b0ff, 2);
+		lhint = label( 0, RAIL_Y + 76, W, 30, 18, 0xd9c9a0ff, 1);
+		lhint.setText( "Arrows / WASD / mouse: aim      Z / Space / click: loose an arrow");
+		ltitle = label( 0, 24, W, 50, 36, 0xf4e2b0ff, 1);
+		ltitle.setText( "The Yumi Contest at Kyuden Hida");
+		buildPanel();
+		reset();
+		intro();
+	}
+	function reset(){
+		arrows = 24; timeleft = 45000.0; score = 0; cool = 0.0; spawnt = 600.0; aiwait = 0.0;
+		cx = W / 2; cy = 400.0;
+		foreach( t in pool){ t.on = false; foreach( p in t.parts) p.setVisible( false); }
+		foreach( f in fx){ f.on = false; f.v.setVisible( false); }
+		aidown = {};
+		drawCross(); drawBoard();
+	}
+	function intro(){
+		state = "intro";
+		showPanel( true, "Yumi of the Winter Court", [
+			"Straw butts 1 (bullseye 2). Straw goblins 2.",
+			"Paper lanterns 2. Crows 3.",
+			"Score " .. goal .. " with " .. arrows .. " arrows in 45 seconds.",
+			"The whole court is watching. No pressure."], ["Draw the bow"]);
+		shot( "intro");
+	}
+	function chosen( i){
+		if( state == "intro"){ state = "play"; st = 0.0; ltitle.setVisible( false); log( "yumi: round %d starts (%S)" % [round + 1, aiMode() || "player"]); return; }
+		if( state == "won"){ result = 1; done = true; return; }
+		if( state == "lost"){
+			if( i == 0){ round++; reset(); ltitle.setVisible( true); intro(); }
+			else{ result = 2; done = true; }
+		}
+	}
+	function drawBoard(){
+		lscore.setText( "Score " .. score .. " / " .. goal);
+		larrows.setText( "Arrows " .. arrows);
+		ltime.setText( "Time " .. int( (timeleft + 999.0) / 1000.0));
+		lscore.setColor( score >= goal ? 0x8fe388ff : 0xf4e2b0ff);
+	}
+	function drawCross(){
+		foreach( c in cross) c[0].setRect( cx + c[1][0] - c[2], cy + c[1][1] - c[2], c[1][2] + 2 * c[2], c[1][3] + 2 * c[2]);
+	}
+	function spawn(){
+		local t = null;
+		foreach( s in pool) if( !s.on){ t = s; break; }
+		if( !t) return;
+		local n = frand( 0.0, 100.0), kind = "butt";
+		foreach( o in YUMI_ODDS){ if( n < o[1]){ kind = o[0]; break; } n -= o[1]; }
+		local spec = YUMI_KINDS[kind];
+		t.on = true; t.kind = kind; t.age = 0.0; t.flip = frand( 0.0, 1.0) < 0.5 ? 1.0 : -1.0;
+		switch( kind){
+		case "butt":    t.x = frand( 140.0, W - 140.0); t.by = t.y = frand( 340.0, 480.0); t.vx = frand( 25.0, 75.0) * t.flip; t.life = frand( 5000.0, 7000.0); break;
+		case "goblin":  t.x = frand( 100.0, W - 100.0); t.by = frand( 520.0, 545.0); t.y = 700.0; t.vx = 0.0; t.life = frand( 1900.0, 2600.0); break;
+		case "lantern": t.x = t.flip > 0 ? -40.0 : W + 40.0; t.by = t.y = frand( 130.0, 210.0); t.vx = frand( 70.0, 115.0) * t.flip; t.life = 99999.0; break;
+		case "crow":    t.x = t.flip > 0 ? -40.0 : W + 40.0; t.by = t.y = frand( 80.0, 280.0); t.vx = frand( 190.0, 250.0) * t.flip; t.life = 99999.0; break;
+		}
+		foreach( i, p in t.parts){
+			if( i < length( spec.parts)){ p.setColor( spec.parts[i][4]); p.setVisible( true); }
+			else p.setVisible( false);
+		}
+		place( t);
+	}
+	function place( t){
+		local spec = YUMI_KINDS[t.kind];
+		foreach( i, q in spec.parts){
+			local dx = t.flip > 0 ? q[0] : -(q[0] + q[2]), dy = q[1], h = q[3];
+			if( q[5] == 1){ local f = Math.sin( t.age * 0.025); dy = q[1] + (f > 0 ? 0 : 10); h = q[3] * (0.4 + 0.6 * fabs( f)); }
+			t.parts[i].setRect( t.x + dx, t.y + dy, q[2], h);
+		}
+	}
+	function kill( t){ t.on = false; foreach( p in t.parts) p.setVisible( false); }
+	function pop( x, y, s, col){
+		local f = fx[0];
+		foreach( e in fx) if( !e.on){ f = e; break; }
+		f.on = true; f.t = 0.0; f.x = x; f.y = y;
+		f.v.setText( s); f.v.setColor( col); f.v.setVisible( true);
+		f.v.bnd.set( x - 100, y - 20, 200, 40); f.v.updateLayout();
+	}
+	function loose(){
+		arrows--; cool = 260.0;
+		sfx( "SE204");
+		local best_ = null, bd = 0.0;
+		foreach( t in pool){
+			if( !t.on) continue;
+			local spec = YUMI_KINDS[t.kind], dx = cx - t.x, dy = cy - (t.y + spec.hy), d = Math.sqrt( dx * dx + dy * dy);
+			if( d <= spec.r && (!best_ || spec.pts > YUMI_KINDS[best_.kind].pts)){ best_ = t; bd = d; }
+		}
+		if( best_){
+			local pts = YUMI_KINDS[best_.kind].pts, txt = "+" .. pts;
+			if( best_.kind == "butt" && bd <= 9.0){ pts++; txt = "Bullseye! +" .. pts; }
+			score += pts;
+			pop( best_.x, best_.y - 50, txt, 0xffe08aff);
+			sfx( "SE207");
+			kill( best_);
+			if( score >= goal && score - pts < goal) pop( W / 2, 260, "The goal! Keep shooting for glory.", 0x8fe388ff);
+		}else{
+			pop( cx, cy - 40, "miss", 0xc8c8c8ff);
+			sfx( "SE210");
+		}
+		drawBoard();
+	}
+	//	self-play: "win" swings to the most valuable reachable target and looses; "lose" just waits out the clock
+	function aiStep( dt){
+		aidown = {};
+		if( aiMode() != "win") return;
+		local tgt = null, bs = -1.0;
+		foreach( t in pool){
+			if( !t.on || t.x < 30.0 || t.x > W - 30.0) continue;
+			local spec = YUMI_KINDS[t.kind], dx = t.x - cx, dy = t.y + spec.hy - cy, s = spec.pts * 400.0 - Math.sqrt( dx * dx + dy * dy);
+			if( s > bs){ bs = s; tgt = t; }
+		}
+		if( !tgt) return;
+		local dx = tgt.x + tgt.vx * 0.12 - cx, dy = tgt.y + YUMI_KINDS[tgt.kind].hy - cy;
+		if( dx < -6) aidown.left <- true; else if( dx > 6) aidown.right <- true;
+		if( dy < -6) aidown.up <- true; else if( dy > 6) aidown.down <- true;
+		if( fabs( dx) < 14 && fabs( dy) < 14 && cool <= 0.0 && !prev.fire) aidown.fire <- true;
+	}
+	function step( dt){
+		foreach( s in snow){
+			s.y += s.s * dt / 1000.0; s.x += Math.sin( s.y * 0.02) * 0.3;
+			if( s.y > H){ s.y = -4.0; s.x = frand( 0.0, W); }
+			s.v.setRect( s.x, s.y, 3, 3);
+		}
+		foreach( f in fx){
+			if( !f.on) continue;
+			f.t += dt;
+			f.v.bnd.set( f.x - 100, f.y - 20 - f.t * 0.05, 200, 40); f.v.updateLayout();
+			if( f.t > 900.0){ f.on = false; f.v.setVisible( false); }
+		}
+		if( state != "play") return;
+		aiStep( dt);
+		if( shotname && st > 9000.0 && st - dt <= 9000.0) shot( "play");
+		timeleft -= dt; cool -= dt; spawnt -= dt;
+		//	aim
+		local sp = 0.62 * dt, mx = (prev.right ? 1 : 0) - (prev.left ? 1 : 0), my = (prev.down ? 1 : 0) - (prev.up ? 1 : 0);
+		if( mx && my) sp *= 0.7071;
+		cx += mx * sp; cy += my * sp;
+		try{
+			local m = ::rootview.mouses[0], k = root.bnd.w / (::rootview.bnd.w * ::rootview.scale.x);
+			local p = [m.mousex * k, m.mousey * k];
+			if( mlast && (fabs( p[0] - mlast[0]) + fabs( p[1] - mlast[1]) > 1.5)){ cx = p[0]; cy = p[1]; }
+			mlast = p;
+		}catch( ex){}
+		cx = Math.max( 20.0, Math.min( W - 20.0, cx)); cy = Math.max( 40.0, Math.min( RAIL_Y - 6.0, cy));
+		drawCross();
+		if( hit.fire && cool <= 0.0 && arrows > 0) loose();
+		//	targets
+		local live = 0;
+		foreach( t in pool){
+			if( !t.on) continue;
+			live++;
+			t.age += dt;
+			t.x += t.vx * dt / 1000.0;
+			switch( t.kind){
+			case "butt": if( t.x < 80.0 || t.x > W - 80.0) t.vx = -t.vx; break;
+			case "goblin": {
+				local up = Math.min( 1.0, t.age / 280.0), dn = Math.min( 1.0, Math.max( 0.0, (t.age - t.life + 280.0) / 280.0));
+				t.y = 700.0 + (t.by - 700.0) * (up - dn);
+				break;
+			}
+			case "lantern": t.y = t.by + Math.sin( t.age / 420.0) * 10.0; break;
+			case "crow": t.y = t.by + Math.sin( t.age / 260.0) * 14.0; break;
+			}
+			if( t.age > t.life || t.x < -80.0 || t.x > W + 80.0) kill( t);
+			else place( t);
+		}
+		if( spawnt <= 0.0 && live < 5){ spawn(); spawnt = frand( 650.0, 1150.0); }
+		local secs = int( (timeleft + 999.0) / 1000.0);
+		if( secs != int( (timeleft + dt + 999.0) / 1000.0)) drawBoard();
+		if( timeleft <= 0.0 || (arrows <= 0 && cool <= -400.0)){
+			timeleft = Math.max( 0.0, timeleft);
+			drawBoard();
+			aidown = {};
+			best = Math.max( best, score);
+			log( "yumi: round %d over, score %d of %d" % [round + 1, score, goal]);
+			if( score >= goal){
+				state = "won"; sfx( "SE018");
+				showPanel( true, "The court applauds!", ["Score " .. score .. ". The goal was " .. goal .. ".",
+					score >= goal + 8 ? "Even the Crane judges stop whispering." : "A Crab who can shoot. They'll talk about it.", "", ""],
+					["Bow to the court"]);
+			}else{
+				state = "lost"; sfx( "SE012");
+				showPanel( true, "Not quite.", ["Score " .. score .. ". The goal is " .. goal .. ".",
+					"Yasuki Kurako waves another quiver over. \"Again, Hiruma-san?\"", "", "Try again?"], ["Yes", "No"]);
+			}
+			shot( state);
+		}
+	}
+}
+::RTYumi <- RTYumi;
+
+///////////////////////////////////////////////////////////////////////////////
+//	The race: three laps of the outer yard. Side view; the camera rides with Natsuko.
+local RACE_LEN = 180.0, LAP = 60.0, PXM = 16.0, ME_X = 380.0;
+local HORSE = [		//	[dx, dy, w, h, part] (part: 0 body, 1 rider, 2 rider head, 3 helmet, 4.. legs 0-3, 8 tail, 9 mane)
+	[-46, -16, 92, 32, 0], [36, -40, 18, 30, 0], [46, -46, 26, 16, 0], [-58, -12, 14, 26, 8], [32, -40, 8, 20, 9],
+	[-38, 12, 9, 34, 4], [-24, 12, 9, 34, 5], [24, 12, 9, 34, 6], [36, 12, 9, 34, 7],
+	[-14, -56, 22, 40, 1], [-10, -76, 16, 18, 2], [-13, -82, 22, 8, 3]];
+
+class RTRace extends RTMini
+{
+	me = 0.0; mv = 0.0; rv = 0.0; rd = 0.0; last = null; stumble = 0.0; phase = 0.0; rphase = 0.0; taps = 0;
+	hme = null; hrv = null; posts = null; finish = null; finishLbl = null; lapmarks = null;
+	barme = null; barrv = null; llap = null; lmsg = null; keyL = null; keyR = null; lkeyL = null; lkeyR = null; lhint = null;
+	msgt = 0.0; aitap = 0.0; aiside = 0; count = 0.0;
+
+	constructor( r){
+		super( r, 0x3a4a6eff);
+		game = "race";
+		rect( 0, 170, W, 90, 0x4a5a7eff);
+		rect( 0, 230, W, 50, 0x1e2230ff);
+		for( local x = 0.0; x < W; x += 64.0) rect( x, 218, 34, 14, 0x1e2230ff);
+		rect( 0, 280, W, 300, 0xdfe6eeff);
+		rect( 0, 330, W, 210, 0x8a6a48ff);				//	the track
+		rect( 0, 330, W, 6, 0x6e5236ff); rect( 0, 534, W, 6, 0x6e5236ff);
+		rect( 0, 432, W, 3, 0x7a5c3eff);
+		posts = [];
+		for( local i = 0; i < 12; i++) posts.append( [rect( 0, 296, 8, 40, 0x5a3a22ff), rect( 0, 296, 8, 40, 0x5a3a22ff)]);
+		rect( 0, 300, W, 6, 0x7a5232ff);					//	the far rail
+		lapmarks = [];
+		for( local i = 0; i < 3; i++) lapmarks.append( rect( 0, 330, 6, 210, 0xf4f0e6c0));
+		finish = [rect( 0, 330, 14, 210, 0xf4f0e6ff), rect( 0, 330, 7, 210, 0x16161cff)];
+		finishLbl = label( 0, 286, 200, 30, 20, 0x16161cff, 1);
+		finishLbl.setText( "FINISH");
+		hrv = horse( 0xbfb8aaff, 0xd4a72cff, 0xe8c56aff);		//	the Matsu rider (far lane) first: Natsuko's horse in front
+		hme = horse( 0x6b4426ff, 0x3c5a78ff, 0x2b3f55ff);
+		rect( 0, 580, W, H - 580, 0x1a1620ff);
+		rect( 0, 580, W, 3, 0xc9a45cff);
+		//	the whole race: a bar with lap ticks, Natsuko (blue) and the Matsu (gold)
+		rect( 160, 606, 960, 10, 0x3a3440ff);
+		for( local i = 1; i < 3; i++) rect( 160 + 960 * i / 3.0 - 1, 600, 3, 22, 0x8a8478ff);
+		rect( 1118, 596, 6, 30, 0xf4f0e6ff);
+		barrv = rect( 0, 598, 12, 26, 0xd4a72cff);
+		barme = rect( 0, 598, 12, 26, 0x5d8fc4ff);
+		llap = label( 20, 596, 140, 30, 22, 0xf4e2b0ff);
+		label( 1130, 596, 140, 30, 18, 0xd9c9a0ff).setText( "finish");
+		keyL = rect( W / 2 - 150, 640, 120, 56, 0x2a2430ff); keyR = rect( W / 2 + 30, 640, 120, 56, 0x2a2430ff);
+		lkeyL = label( W / 2 - 150, 652, 120, 40, 26, 0xf4f0e6ff, 1); lkeyR = label( W / 2 + 30, 652, 120, 40, 26, 0xf4f0e6ff, 1);
+		lkeyL.setText( "< LEFT"); lkeyR.setText( "RIGHT >");
+		lhint = label( 0, 650, W / 2 - 170, 40, 18, 0xd9c9a0ff, 2);
+		lhint.setText( "Left, right, left, right...");
+		label( W / 2 + 170, 650, W / 2 - 190, 40, 18, 0xd9c9a0ff).setText( "Same key twice: she stumbles");
+		lmsg = label( 0, 120, W, 60, 44, 0xf4e2b0ff, 1);
+		label( 30, 456, 300, 26, 18, 0x2b1d10ff).setText( "Hiruma Natsuko");
+		label( 30, 344, 300, 26, 18, 0x2b1d10ff).setText( "Matsu rider");
+		buildPanel();
+		reset();
+		intro();
+	}
+	function horse( coat, body, helm){
+		local parts = [];
+		foreach( q in HORSE){
+			local c = q[4] == 1 ? body : q[4] == 2 ? 0xe8c9a0ff : q[4] == 3 ? helm : q[4] == 8 || q[4] == 9 ? 0x2a1c12ff : coat;
+			parts.append( rect( 0, 0, q[2], q[3], c));
+		}
+		return parts;
+	}
+	function placeHorse( parts, x, y, ph, v){
+		local bob = Math.sin( ph * 2.0) * Math.min( 1.0, v / 6.0) * 4.0;
+		foreach( i, q in HORSE){
+			local dx = q[0], dy = q[1] + bob, h = q[3];
+			if( q[4] >= 4 && q[4] <= 7){
+				local s = Math.sin( ph + (q[4] == 4 || q[4] == 7 ? 0.0 : 3.1416)) * Math.min( 1.0, v / 4.0);
+				dx += s * 10.0; h = q[3] - fabs( s) * 8.0; dy = q[1];
+			}
+			if( q[4] == 8) dy += Math.sin( ph) * 3.0;
+			parts[i].setRect( x + dx, y + dy, q[2], h);
+		}
+	}
+	function reset(){
+		me = 0.0; mv = 0.0; rv = 0.0; rd = 0.0; last = null; stumble = 0.0; taps = 0; msgt = 0.0; aitap = 0.0; aiside = 0;
+		aidown = {};
+		lmsg.setText( "");
+		draw();
+	}
+	function intro(){
+		state = "intro";
+		showPanel( true, "Three Laps of the Yard", [
+			"Kitsu Takeo's saddle rides on this. Beat the Matsu rider.",
+			"Tap Left and Right in turn to gallop: left, right, left...",
+			"(Or right, left. Any order, as long as it changes.)",
+			"Hitting the same key twice makes the horse stumble."], ["Mount up"]);
+		shot( "intro");
+	}
+	function chosen( i){
+		if( state == "intro"){ state = "count"; count = 3000.0; st = 0.0; log( "race: round %d starts (%S)" % [round + 1, aiMode() || "player"]); return; }
+		if( state == "won"){ result = 1; done = true; return; }
+		if( state == "lost"){
+			if( i == 0){ round++; reset(); intro(); }
+			else{ result = 2; done = true; }
+		}
+	}
+	function say( s, ms = 900.0){ lmsg.setText( s); msgt = ms; }
+	function draw(){
+		local sx = function( d) : (me) { return ME_X + (d - me) * PXM; };
+		placeHorse( hme, ME_X, 470.0, phase, mv);
+		placeHorse( hrv, Math.max( -120.0, Math.min( W + 120.0, sx( rd))), 372.0, rphase, rv);
+		local off = (me * PXM) % 120.0;
+		foreach( i, p in posts){ p[0].setRect( i * 120.0 - off, 296, 8, 40); p[1].setRect( i * 120.0 - off + 60.0, 540, 8, 40); }
+		foreach( i, m in lapmarks) m.setRect( sx( LAP * (i + 1)) - 3, 336, 6, 198);
+		lapmarks[2].setVisible( false);
+		local fxp = sx( RACE_LEN);
+		finish[0].setRect( fxp - 7, 336, 14, 198); finish[1].setRect( fxp - 7, 336, 7, 198);
+		finishLbl.bnd.set( fxp - 100, 300, 200, 30); finishLbl.updateLayout();
+		barme.setRect( 160 + 960 * Math.min( 1.0, me / RACE_LEN) - 6, 598, 12, 26);
+		barrv.setRect( 160 + 960 * Math.min( 1.0, rd / RACE_LEN) - 6, 598, 12, 26);
+		llap.setText( "Lap " .. Math.min( 3, 1 + int( me / LAP)) .. " / 3");
+		local nextL = last != "left", nextR = last != "right";
+		keyL.setColor( state == "run" && nextL ? (prev.left ? 0xc9a45cff : 0x5a4a30ff) : 0x2a2430ff);
+		keyR.setColor( state == "run" && nextR ? (prev.right ? 0xc9a45cff : 0x5a4a30ff) : 0x2a2430ff);
+	}
+	function aiStep( dt){
+		aidown = {};
+		local m = aiMode();
+		if( !m || state != "run") return;
+		aitap -= dt;
+		if( aitap <= 0.0){
+			aitap = m == "win" ? 210.0 : 800.0;			//	~4.8 taps a second vs ~1.2
+			aidown[aiside ? "right" : "left"] <- true;
+			aiside = 1 - aiside;
+		}
+	}
+	function step( dt){
+		local s = dt / 1000.0;
+		if( msgt > 0.0){ msgt -= dt; if( msgt <= 0.0) lmsg.setText( ""); }
+		if( state == "count"){
+			local before = count;
+			count -= dt;
+			foreach( n in [3000.0, 2000.0, 1000.0]) if( before >= n && count < n){ say( "" .. int( n / 1000.0), 1000.0); sfx( "SE001"); }
+			if( count <= 0.0){ state = "run"; st = 0.0; say( "GO!", 800.0); sfx( "SE003"); }
+			draw();
+			return;
+		}
+		if( state != "run"){ draw(); return; }
+		aiStep( dt);
+		if( shotname && st > 4000.0 && st - dt <= 4000.0) shot( "run");
+		//	Natsuko: a tap on the other key spurs her on, the same key twice stumbles
+		local k = hit.left && hit.right ? "both" : hit.left ? "left" : hit.right ? "right" : null;
+		if( k && stumble <= 0.0){
+			if( k == "both" || k == last){
+				mv *= 0.55; stumble = 350.0; last = null; say( "Stumble!", 700.0); sfx( "SE210");
+			}else{
+				mv = Math.min( 15.0, mv + 2.4); last = k; taps++;
+				if( taps % 2 == 0) sfx( "SE000");
+			}
+		}
+		stumble -= dt;
+		mv -= mv * 0.9 * s;
+		me += mv * s;
+		phase += mv * s * 0.9;
+		//	the Matsu: steady ~6.2 m/s with surges; eases off when far ahead (a calm rhythm, ~3 taps a second, wins)
+		local want = 6.2 + Math.sin( st / 1700.0) * 0.8;
+		if( rd - me > 15.0) want *= 0.8;
+		rv += (want - rv) * Math.min( 1.0, 1.1 * s);
+		rd += rv * s;
+		rphase += rv * s * 0.9;
+		local lapNow = int( me / LAP), lapWas = int( (me - mv * s) / LAP);
+		if( lapNow != lapWas && lapNow < 3) say( lapNow == 2 ? "Final lap!" : "Lap " .. (lapNow + 1), 900.0);
+		draw();
+		if( me >= RACE_LEN || rd >= RACE_LEN){
+			aidown = {};
+			local won = me >= rd;
+			log( "race: round %d over, %S (Natsuko %.1f m, Matsu %.1f m, %.1f s)" % [round + 1, won ? "won" : "lost", me, rd, st / 1000.0]);
+			lmsg.setText( "");
+			if( won){
+				state = "won"; sfx( "SE018");
+				local by = (me - rd) / Math.max( 1.0, mv);
+				showPanel( true, "First across the line!", ["By " .. (by >= 1.0 ? int( by * 10.0) / 10.0 .. " seconds" : "a nose") .. ". Kitsu Takeo whoops.",
+					"The Matsu rider glares. Then his hand drifts to his sword.", "", ""], ["Rein in"]);
+			}else{
+				state = "lost"; sfx( "SE012");
+				showPanel( true, "The Matsu wins.", ["He crows. The horses don't care. Takeo laughs anyway.",
+					"\"Again, Hiruma? Steady: left, right, left, right.\"", "", "Try again?"], ["Yes", "No"]);
+			}
+			shot( state);
+		}
+	}
+}
+::RTRace <- RTRace;
+
+///////////////////////////////////////////////////////////////////////////////
+//	The blocking call for event scripts: 1 won, 2 lost and declined, 0 could not run (the event's narrated fallback).
+::Rokugan.miniGame <- function( kind){
+	local g = null;
+	try{
+		local root = ::rootview ? ::rootview.findChild( "stageui") : null;
+		if( !root){ log( "mini-game " .. kind .. ": no stage UI, narrated outcome"); return 0; }
+		g = kind == "yumi" ? ::RTYumi( root) : ::RTRace( root);
+	}catch( ex){
+		printexception( ex);
+		log( "mini-game " .. kind .. ": could not start, narrated outcome");
+		try{ if( g) g.close(); }catch( ex2){}
+		return 0;
+	}
+	log( "mini-game " .. kind .. " open");
+	while( !g.done){
+		sleep( 40);
+		if( g.shotreq){ local s = g.shotreq; g.shotreq = null; this.rtshot( s); }
+		if( skGetTime() - g.lastTick > 8000){ log( "mini-game " .. kind .. ": stalled"); g.err = true; break; }
+	}
+	if( g.shotreq) this.rtshot( g.shotreq);
+	local r = g.err ? 0 : g.result;
+	try{ g.close(); }catch( ex){ printexception( ex); }
+	local t = 0;
+	while( t < 1500 && (skIsKeyPressed( VK_Z) || skIsKeyPressed( VK_SPACE) || skIsKeyPressed( VK_ENTER))){ sleep( 30); t += 30; }
+	log( "mini-game %S result %d" % [kind, r]);
+	return r;
+};
+
+printf( "Rokugan mini-games loaded\n");
