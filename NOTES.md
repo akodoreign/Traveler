@@ -4728,6 +4728,18 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   note` -> npc_picks.json (x = skip); `bash export.sh tag` -> gen_busts npc per key, "FAIL" if the BiRefNet mask was
   unavailable (colour-key fallback), magenta sheet done<tag>.png with chin lines (yellow box = no chin);
   `chin.py key=0.45 ...` -> CHIN_FIX, then `gen_busts.py export <key>`.
+- (busts, 2026-11-14) Batches 7-10 done: every person-speaker on the maps now has an own bust (~420 keys). Batch 7
+  (28), 8 (34, last playthrough stand-ins), 9 (30) and 10 (~37) from a list rebuilt from the map scan
+  (queue_busts.speaker_counts) - monsters/spirits/kami/goblins/naga left out (they shouldn't get a human bust).
+  queue_busts.py --bad builds redraw prompts from the bad_busts "look" only, without the speaker label (labels
+  misled the model: "Bloodspeaker" -> loudspeakers, "Old nun" -> western habit, "Otomo Shinken" -> a woman) and adds
+  negatives (red cross, crab, animal on shoulder, child...). Redraws picked: Old nun, Kitsune grandmother,
+  Bloodspeaker, Refugee Herbalist, Auntie Fumi, Otomo Shinken, Akodo Kagehisa, Kakita Miyoshi, Shinjo Miyahana. New
+  side-quest givers got own busts: Hida yojimbo, Daidoji courtier, A bo-staff monk (Lion sergeant had one).
+  Mieko (dark)/Dark Mieko/Gentle Mieko/Mieko (???) alias to Isawa Mieko; Shadow Hunter to Shadow hunter.
+  Redos done (lead): Hida yojimbo without the crab, bo-staff monk older (40s sohei), Refugee Herbalist without the
+  red-cross mark, Crane Field Medic (no crosses). Non-human speakers (kami, spirits, demon, goblin, naga, monsters)
+  stay on stand-ins on purpose.
 
 ## 2026-11-11: Agent team - pushes
 - 2026-11-11 ~08:45 push 9c5658a (licensed-demo -> main, 476 files): Rest revives the fallen, Sumai foes face the player,
@@ -4910,3 +4922,21 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
 - Generic jobs: jobs_data GENERIC_JOBS (J020 Yojimbo, J021 Courtier, J022 Sergeant, J023 Sohei; rt_unlock = the quest's done flag; ensureJobs gives them to every traveler).
 - Job slots: jobs_data JOB_SLOTS = Job + Trait 1-4; traits jobslotbits 30; RokuganJobs fitJobSlots resizes old saves.
 - Next batch: chains for Dragon, Scorpion, Unicorn, Ronin (and more generic jobs).
+
+## 2026-11-14: tester - regression pass (versions 12-14)
+- Passed: 8 new games (road begins, start maps); main menu open/close x8 leads, plain + via Equipment; updater fast/verify
+  = 0 to fetch in RokuganTraveler-licensed; title "Update / Verify" message + choice + Back; end-of-road marker -> next
+  traveler (party = them only, road marked, refusal of walked roads, locked finale text); all 8 walked -> M444 join;
+  Journal tabs + tracking -> HUD Story box; side quests (Crab chain whole incl. J020; first quest on Crane / Lion /
+  Phoenix); Job menu 5 slots; generic jobs reach every traveler.
+- Reported: menu option 9 (finale) not templated (RPGEvent tmplmap stops at text7); SKView "link" exception on screen
+  resize (code-made root views); Job menu bare resistance zeros.
+- Engine launches now go through tools/engine_lock.py (wait until no rpgcobo.exe, retry exit 7, kill own PID only).
+  Details: _art/preview/agents/team/tester.md.
+
+## 2026-11-14: connecting routes, side caves, cave walkways (version 15)
+- gen_maps ROUTES (after apply_ladders): 8 road maps M470-M477 between hubs of different paths, along world-map roads: Hoshi-no-Ichi - Yasuki Yashiki, Kudo - Floating Flowers, Shiro Akodo - Wounded Lion, Wounded Lion - Zumiki, Cakon - Kyuden Doji, Kamatori - Dragon mountain town, Buried Leaves - Dragon mountain town, Pleasant Eaves - Kyuden Bayushi. route_hub() wraps each hub builder and adds an edge portal (_edge_spot picks a dry, level spot on a free side).
+- Gates: each route end needs flag G1300+ (ROUTE_GATES -> generated plugin RokuganRouteData.sk). RokuganField routeFlags (RPGStage.launch wrapper) opens an end while one of its travelers leads, once their road is walked, or when all 8 are walked. Closed end = mark_exits barricade + guard (portal "closed_msg").
+- Encounters: tier = ladder band (ladders.py position: 1 after Ch1 ... 4 after Ch4); rows copied from both paths' re-levelled ladder groups (no new foe ids). Road-stones give each end's danger.
+- Caves M480-M489 (1-2 per route, 1-2 bands harder than the road, Lv 22-50), route_cave(): 5 chambers, 4-wide tunnels, chests by tier; cave_sprawl grows galleries + shrine.
+- Cave walkways (user: a full block to every object): walkcheck.py --wide (2x2 body) and --caves; walkcheck.widen() runs in gen_maps.make() for every cave map: cuts the narrowest path to each missed object to 2x2 (lowers rims, removes rubble, steps a chest out of a one-cell gap). All caves pass --wide; walkcheck now seeds portal landings too.

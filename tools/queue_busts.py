@@ -234,7 +234,7 @@ def main():
             # a western habit, "Otomo Shinken" a girl)
             pos = "%s, (%s:1.3), upper body portrait, japanese clothing, feudal japan, rokugan, %s" % (
                 g.STYLE, badlook[name], g.EMO["neutral"][0])
-            extra = list(extra) + ["loudspeaker", "speaker", "western clothes", "nun habit", "veil"]
+            extra = list(extra) + ["loudspeaker", "speaker", "western clothes", "nun habit", "veil", "red cross", "cross", "crab", "animal on shoulder", "child", "teenager"]
         neg = g.neg_for((), list(extra) + ["drinking straw", "straw (drink)", "receding hairline", "bald forehead"]
                         if "bald" not in pos else list(extra) + ["drinking straw"])
         n = 3 if (name in looks or name in named) else 2

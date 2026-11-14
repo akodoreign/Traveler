@@ -222,7 +222,8 @@
    "found": "2026-11-14 bust monitor batch 6 (candidates rejected)",
    "why": "candidates are young women in a western nun's habit; round 2 still drew a western habit",
    "look": "very old japanese buddhist ama nun, 70s, completely shaven bald head, no hood, no veil, deeply wrinkled sorrowful face, plain grey kesa robe, wooden prayer beads",
-   "seed_add": 600
+   "seed_add": 600,
+   "fixed": "2026-11-14 shaven old ama nun with beads"
   },
   {
    "speaker": "Kitsune grandmother",
@@ -246,9 +247,10 @@
    "speaker": "Refugee Herbalist",
    "file": "npc_refugee_herbalist/neutral.png",
    "found": "2026-11-14 bust monitor batch 7 (candidates rejected)",
-   "why": "candidates are young men; she was a midwife in Motobu; round 2 drew a western red-cross medic badge",
-   "look": "tired middle-aged woman, 40s, former midwife, kind weary face, hair tied in a dusty headscarf, travel-worn brown kimono, herb satchel, no red cross, no symbols",
-   "seed_add": 600
+   "why": "candidates are young men; she was a midwife in Motobu; round 2 drew a western red-cross medic badge; picked bust has a red-cross mark (out of place in Rokugan)",
+   "look": "tired middle-aged woman, 40s, former village midwife, kind weary face, hair in a plain dusty headscarf, travel-worn brown kimono, herb satchel, no symbols, no badges, no crosses",
+   "seed_add": 1200,
+   "fixed": "2026-11-14 redo: headscarf midwife, no symbols"
   },
   {
    "speaker": "Auntie Fumi",
@@ -265,28 +267,34 @@
    "found": "2026-11-14 bust monitor batch 7 (candidates rejected)",
    "why": "candidates are women; he is the vain Imperial magistrate ('Thanks to my diligence!'); round 2 drew a woman with a moustache",
    "look": "pompous middle-aged nobleman, adult man, 1boy, male focus, 40s, smug face, thin moustache, black lacquered eboshi court hat, gold and green imperial silk robes",
-   "seed_add": 600
+   "seed_add": 600,
+   "fixed": "2026-11-14 pompous moustached magistrate in eboshi"
   },
   {
    "speaker": "Hida yojimbo",
    "file": "(stand-in)",
    "found": "2026-11-14 new side-quest givers (lead): no own bust",
-   "why": "side-quest giver in Hoshi-no-Ichi (Salt and Goblins / The Tide-Crab Nest)",
-   "look": "burly crab clan bodyguard, man, 30s, broad scarred face, short black hair, stubble, heavy dark blue-grey lamellar armour, tetsubo over the shoulder"
+   "why": "side-quest giver in Hoshi-no-Ichi (Salt and Goblins / The Tide-Crab Nest); round 1 had a crab creature on his shoulder (clan-name leak)",
+   "look": "burly bodyguard samurai, man, 30s, broad scarred face, short black hair, stubble, heavy dark blue-grey lamellar armour, iron studded club over the shoulder, no animals, no crab",
+   "seed_add": 600,
+   "fixed": "2026-11-14 redo: no crab, war paint, lamellar, katana"
   },
   {
    "speaker": "Daidoji courtier",
    "file": "(stand-in)",
    "found": "2026-11-14 new side-quest givers (lead): no own bust",
    "why": "side-quest giver in Garden Under Shadow City; teaches that a courtier who asks for credit is not remembered",
-   "look": "poised crane clan courtier, woman, 30s, composed knowing smile, black hair in an elegant bun, pale blue and white silk court kimono with a dark blue Daidoji over-robe, folded fan"
+   "look": "poised crane clan courtier, woman, 30s, composed knowing smile, black hair in an elegant bun, pale blue and white silk court kimono with a dark blue Daidoji over-robe, folded fan",
+   "fixed": "2026-11-14 crane courtier with fan"
   },
   {
    "speaker": "A bo-staff monk",
    "file": "(stand-in)",
    "found": "2026-11-14 new side-quest givers (lead): no own bust",
-   "why": "side-quest giver in Zumiki (Painted Men / Wolves of the Snowbound Pass), a Togashi-minded sohei",
-   "look": "mountain warrior monk, man, 40s, shaven head, calm weathered face, plain grey and saffron sohei robes, white head wrap around the neck, holding a wooden bo staff upright, snow on the shoulders"
+   "why": "side-quest giver in Zumiki (Painted Men / Wolves of the Snowbound Pass), a Togashi-minded sohei; round 1 read as a teenager",
+   "look": "seasoned warrior monk, adult man, 1boy, male focus, 45 years old, shaven head, stubble, lined weathered face, calm hard eyes, plain grey and saffron sohei robes, white head wrap around the neck, wooden bo staff",
+   "seed_add": 600,
+   "fixed": "2026-11-14 redo: weathered 40s sohei, head wrap, bo"
   },
   {
    "speaker": "Akodo Kagehisa",
@@ -294,7 +302,35 @@
    "found": "2026-11-14 batch 8 (candidates rejected)",
    "why": "candidates are young women; Kagehisa is a man (a Lion courier-lord sending a secret message)",
    "look": "lion clan samurai, adult man, 1boy, male focus, 40s, grave stern face, black hair in a topknot, short beard, gold and brown kimono with a dark armoured shoulder guard",
-   "seed_add": 300
+   "seed_add": 300,
+   "fixed": "2026-11-14 bearded Lion samurai"
+  },
+  {
+   "speaker": "Kakita Miyoshi",
+   "file": "(stand-in)",
+   "found": "2026-11-14 batch 9 (candidates were silver-bun look-alikes)",
+   "why": "candidates are silver-haired girls (Doji Sanae look-alikes); a vain Kakita artist-merchant ('I like my face in them')",
+   "look": "vain flamboyant kakita artisan, man, 40s, sly self-satisfied smile, black hair in an elaborate topknot with a jade pin, rich sky blue and white silk kimono, holding a hand mirror",
+   "seed_add": 300,
+   "fixed": "2026-11-14 redraw picked"
+  },
+  {
+   "speaker": "Shinjo Miyahana",
+   "file": "(stand-in)",
+   "found": "2026-11-14 batch 9 (candidates were silver-bun look-alikes)",
+   "why": "candidates are silver-haired girls (Sanae look-alikes); she is a Unicorn sensei",
+   "look": "unicorn clan sensei, woman, 50s, weathered strict face, long black hair with grey streaks in a warrior braid, purple and white riding coat with fur collar, horse-whip at the belt",
+   "seed_add": 300,
+   "fixed": "2026-11-14 redraw picked"
+  },
+  {
+   "speaker": "Crane Field Medic",
+   "file": "(stand-in)",
+   "found": "2026-11-14 batch 10",
+   "why": "candidates have white crosses on red (a western medic sign, out of place in Rokugan)",
+   "look": "crane clan battlefield healer, man, 30s, tired gentle face, black hair tied back, pale blue and white kimono with sleeves tied back by a tasuki cord, bandage rolls and herb pouches at the belt, no symbols",
+   "seed_add": 300,
+   "fixed": "2026-11-14 tasuki-sleeved healer in pale blue, no crosses"
   }
  ]
 }

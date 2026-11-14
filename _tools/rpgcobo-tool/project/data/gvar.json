@@ -5288,6 +5288,106 @@
 		"name": "side quest 15: done",
 		"type": 1
 	},
+	"G1300": {
+		"defval": false,
+		"name": "route gate 0 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1301": {
+		"defval": false,
+		"name": "route gate 1 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1302": {
+		"defval": false,
+		"name": "route gate 2 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1303": {
+		"defval": false,
+		"name": "route gate 3 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1304": {
+		"defval": false,
+		"name": "route gate 4 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1305": {
+		"defval": false,
+		"name": "route gate 5 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1306": {
+		"defval": false,
+		"name": "route gate 6 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1307": {
+		"defval": false,
+		"name": "route gate 7 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1308": {
+		"defval": false,
+		"name": "route gate 8 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1309": {
+		"defval": false,
+		"name": "route gate 9 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1310": {
+		"defval": false,
+		"name": "route gate 10 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1311": {
+		"defval": false,
+		"name": "route gate 11 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1312": {
+		"defval": false,
+		"name": "route gate 12 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1313": {
+		"defval": false,
+		"name": "route gate 13 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1314": {
+		"defval": false,
+		"name": "route gate 14 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1315": {
+		"defval": false,
+		"name": "route gate 15 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1316": {
+		"defval": false,
+		"name": "route gate 16 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1317": {
+		"defval": false,
+		"name": "route gate 17 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1318": {
+		"defval": false,
+		"name": "route gate 18 open (RokuganField routeFlags)",
+		"type": 1
+	},
+	"G1319": {
+		"defval": false,
+		"name": "route gate 19 open (RokuganField routeFlags)",
+		"type": 1
+	},
 	"G1244": {
 		"defval": 0,
 		"name": "Journal: the tracked entry (0 = the main story; RokuganJournal.sk)",

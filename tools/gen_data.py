@@ -1925,6 +1925,9 @@ def main():
     for _k in range(16):                                # side quests: G1250 + 3k taken / hunted / done (gen_maps
         for _o, _what in enumerate(("taken", "hunted", "done")):     # SIDE_QUESTS, quest k; room for 16)
             gv["G%d" % (1250 + 3 * _k + _o)] = {"defval": False, "name": "side quest %d: %s" % (_k, _what), "type": 1}
+    for _k in range(20):                                # connecting routes: gate k open (gen_maps ROUTE_GATES,
+        gv["G%d" % (1300 + _k)] = {"defval": False, "name": "route gate %d open (RokuganField routeFlags)" % _k,
+                                   "type": 1}                                           # set on every map launch)
     gv["G1244"] = {"defval": 0,"name": "Journal: the tracked entry (0 = the main story; RokuganJournal.sk)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}
     gv["G1092"] = {"defval": 0, "name": "ronin_technique_second (Ronin Ch2 Rank 2: 1-3 another school's R1, 4 Punish "

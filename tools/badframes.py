@@ -75,6 +75,19 @@ def apply_fixes(pics):
     # One pass per SHEET, not per EP: two EPs can share a sheet (EP309 Togashi Yosai + EP709, EP342 Gonta + EP742
     # Wrestler). Applied one after the other, the second saw the first's fixes as "redrawn since", took them as the
     # original and re-copied only its own frames - so the two maps fought (2026-11-11). Merge them (bigger map wins).
+    # (lead 2026-11-14) AI-drawn human-enemy sheets (hum_*, pixelai/sheets/hum_<key>/complete) get the standard fix
+    # automatically, like the side cast: idle head-turn 0,1,6,7 <- 3,2,5,4 and the turned first/last walk frames
+    # 8 <- 9, 15 <- 14 (seen on EP514). An explicit frame_fixes.json entry for the EP wins.
+    px = os.path.join(HERE, "..", "_art", "preview", "agents", "pixelai", "sheets")
+    std = {"0": 3, "1": 2, "6": 5, "7": 4, "8": 9, "15": 14}
+    fixes = dict(fixes)
+    for epid, e in pics.items():
+        pic = os.path.basename(e.get("pic3d", "")) if isinstance(e, dict) else ""
+        if pic.startswith("hum_") and epid not in fixes and \
+                os.path.exists(os.path.join(px, pic[:-4], "complete")):
+            am = {a.get("id"): a for a in e.get("animap", []) if isinstance(a, dict)}
+            if am.get("stand", {}).get("en") == 8 and am.get("walk", {}).get("st") == 8:
+                fixes[epid] = std
     sheets = {}
     for epid, mp in sorted(fixes.items(), key=lambda kv: len(kv[1]) if isinstance(kv[1], dict) else 0):
         if epid.startswith("_") or epid not in pics:

@@ -2514,8 +2514,8 @@ def mark_exits(m, ev):
                     ev.ev["#%d#" % n]["memo"] = "barricade"
             gx, gz = bx + 4 * along[0] + inw[0], bz + 4 * along[1] + inw[1]  # the guard, beside the barricade
             if 0 <= gx < m.w and 0 <= gz < m.d:
-                n = ev.npc(gx, gz, SC["townguard"], "The road's closed for now. Orders. When it opens, you'll hear "
-                                                    "of it.", d=0, reqs=closed)
+                n = ev.npc(gx, gz, SC["townguard"], e.pop("closed_msg", None) or "The road's closed for now. Orders. "
+                                                    "When it opens, you'll hear of it.", d=0, reqs=closed)
                 ev.ev["#%d#" % n]["memo"] = "barricade"
 
 
@@ -18673,6 +18673,276 @@ def apply_ladders():
 apply_ladders()
 
 
+# ------------------------------------------------------------------------------------------- connecting routes
+# (user 2026-11-14: "all overland maps need connecting routes added, use over world map to figure out where to add
+# more routes. then scatter in caves of various difficulty matching the routes difficulty") Each path was its own
+# chain of maps. A route is a road map between two hubs of different paths, along a road of the world-map sketch
+# (docs/story/storyboards/README.md 4a), with side caves. Each end of a route is open while its hub's traveler leads, or
+# once that traveler's road is walked (or all eight are): nobody walks into a story that hasn't happened yet, and a
+# closed end is the usual barricade with a guard who says why. The gates are flags G1300+ (RokuganRouteData.sk ->
+# plugin RokuganField routeFlags, set on every map launch).
+#   (route id, name, theme, tier, (hub A, side of hub A, [pids]), (hub B, side, [pids]), [(cave id, name, +tier)])
+# tier = the levelling-ladder band (tools/ladders.py: 1 = after Ch1 ... 4 = after Ch4); a cave fights one or two bands
+# harder than its road.
+ROUTES = [
+    ("M470", "The Yasuki coast road", "coast", 1, ("M103", "e", ["P100"]), ("M213", "f", ["P101"]),
+     [("M480", "The Yasuki sea cave", 1), ("M481", "The smugglers' cave, deep", 2)]),
+    ("M471", "The River of Gold east bank road", "forest", 1, ("M351", "f", ["P105"]), ("M424", "b", ["P107"]),
+     [("M482", "The river cave", 1)]),
+    ("M472", "The Lion hills road", "hills", 2, ("M255", "b", ["P103"]), ("M430", "f", ["P107"]),
+     [("M483", "The hill cave", 1), ("M484", "The old mine, deep", 2)]),
+    ("M473", "The snow road to Zumiki", "snow", 2, ("M430", "b", ["P107"]), ("M282", "f", ["P104"]),
+     [("M485", "The ice cave", 1)]),
+    ("M474", "The Doji coast road", "coast", 1, ("M415", "b", ["P107"]), ("M228", "w", ["P101"]),
+     [("M486", "The tide cave", 1)]),
+    ("M475", "The northern road - Phoenix lands", "hills", 1, ("M252", "b", ["P104", "P103"]),
+     ("M379", "f", ["P105"]), [("M487", "The fox cave", 1)]),
+    ("M476", "The northern road - Dragon lands", "mountain", 1, ("M387", "b", ["P106"]), ("M379", "b", ["P105"]),
+     [("M488", "The mountain cave", 2)]),
+    ("M477", "The Beiden hill road", "hills", 1, ("M202", "f", ["P101"]), ("M347", "f", ["P105"]),
+     [("M489", "The bandit cave", 1)]),
+]
+ROUTE_NAME = {"P100": "Hiruma Natsuko", "P101": "Kakita Rensei", "P102": "Kitsuki Gendo", "P103": "Akodo Shizue",
+              "P104": "Isawa Haruki", "P105": "Shosuro Mitsue", "P106": "Ide Tamotsu", "P107": "Sayo"}
+ROUTE_GATES = {}                       # flag -> [pids] (an end is open if any of them leads or has walked their road)
+ROUTE_EV = {}                          # (hub, route) -> the hub's event id of its way onto the route
+_OPP = {"w": "e", "e": "w", "f": "b", "b": "f"}
+ROUTE_LOOT = {1: [("I100", 3), ("N000", 150), ("I101", 2), ("I001", 2)],
+              2: [("I445", 2), ("N000", 300), ("I447", 2), ("I101", 3)],
+              3: [("I446", 1), ("N000", 600), ("I448", 1), ("I445", 3)],
+              4: [("I448", 2), ("N000", 1000), ("I446", 2), ("I447", 3)]}
+
+
+def _route_gate(pids):
+    for f, p in ROUTE_GATES.items():
+        if p == pids:
+            return f
+    f = "G%d" % (1300 + len(ROUTE_GATES))
+    ROUTE_GATES[f] = list(pids)
+    return f
+
+
+for _r in ROUTES:                                                          # gate flags in a fixed order
+    _route_gate(_r[4][2])
+    _route_gate(_r[5][2])
+
+
+def _tier_rows(pid, tier):
+    """The re-levelled encounter rows of a path's ladder band (ENCOUNTERS after apply_ladders), conditions dropped."""
+    import ladders as _lad
+    rows, bmap = [], None
+    for i, (path, done, maps) in enumerate(_lad.LADDERS):
+        t = 1 if i < 8 else 2 if i < 15 else 3 if i < 23 else 4
+        if LADDER_PID_EARLY.get(path) != pid or t != tier:
+            continue
+        for mid, _lo, _hi in maps:
+            if mid not in ENCOUNTERS:
+                continue
+            bm, table = ENCOUNTERS[mid]
+            for r in table:
+                c = r[3] if len(r) > 3 else {}
+                if done in (c.get("rt_if"), c.get("rt_if2")):
+                    rows.append((r[0], list(r[1]), r[2]))
+                    bmap = bmap or bm
+    return rows, bmap
+
+
+LADDER_PID_EARLY = {"Crab": "P100", "Crane": "P101", "Dragon": "P102", "Lion": "P103", "Phoenix": "P104",
+                    "Scorpion": "P105", "Unicorn": "P106", "Ronin": "P107"}
+
+
+def route_encounters(pids_a, pids_b, tier):
+    """Up to 6 groups: both ends' paths at this band (the nearest band that has any)."""
+    for t in [tier] + sorted({1, 2, 3, 4} - {tier}, key=lambda v: abs(v - tier)):
+        ra, rb, bm = [], [], None
+        for pid in pids_a:
+            rows, b = _tier_rows(pid, t)
+            ra += rows
+            bm = bm or b
+        for pid in pids_b:
+            rows, b = _tier_rows(pid, t)
+            rb += rows
+            bm = bm or b
+        mix = [r for pair in zip(ra, rb) for r in pair] + ra[len(rb):] + rb[len(ra):]
+        if mix:
+            return bm, mix[:6]
+    return None, []
+
+
+def _danger(rows):
+    lv = [int(x) for r in rows for x in re.findall(r"\(Lv (\d+)\)", r[0])]
+    return "Danger %d-%d" % (min(lv), max(lv)) if lv else "Danger unknown"
+
+
+def _edge_spot(m, ev, side):
+    """A cell on the builder's edge for a new way out: dry, not in a building, away from other events, with level
+    ground inward; a road cell first, then nearest the middle of the edge."""
+    solid = set()
+    for o in m.objs:
+        if o["t"] == "fill" and o["blk"] != 0:
+            solid.update((o["x"] + i, o["z"] + j) for i in range(o["w"]) for j in range(o["d"]))
+    taken = [(e["pos"][0], e["pos"][2]) for e in ev.ev.values() if "pos" in e]
+    inw = {"w": (1, 0), "e": (-1, 0), "f": (0, 1), "b": (0, -1)}[side]
+    if side in ("w", "e"):
+        x = 1 if side == "w" else m.w - 2
+        cand = [(x, z) for z in range(4, m.d - 4)]
+    else:
+        z = 1 if side == "f" else m.d - 2
+        cand = [(x, z) for x in range(6, m.w - 6)]
+
+    def ok(c, depth, half, step, gap):
+        x, z = c
+        h0 = int(m.hgt[z, x])
+        for k in range(depth):
+            cx, cz = x + inw[0] * k, z + inw[1] * k
+            for a in range(-half, half + 1):
+                px, pz = (cx, cz + a) if side in ("w", "e") else (cx + a, cz)
+                if not (0 <= px < m.w and 0 <= pz < m.d) or (int(m.blk[pz, px]) & 31) == 8 or (px, pz) in solid \
+                        or abs(int(m.hgt[pz, px]) - h0) > step:
+                    return False
+        return all(abs(x - a) + abs(z - b) > gap for a, b in taken)
+    good = []
+    for rule in ((8, 2, 1, 6), (5, 1, 2, 4), (3, 1, 2, 3)):                # strict first, then looser
+        good = [c for c in cand if ok(c, *rule)]
+        if good:
+            break
+    if not good:
+        raise RuntimeError("%s: no room for a route exit on side %s" % (m.mid, side))
+    mid = (m.d if side in ("w", "e") else m.w) // 2
+    along = 1 if side in ("w", "e") else 0
+    return min(good, key=lambda c: (int(m.blk[c[1], c[0]]) != ROAD, abs(c[along] - mid)))
+
+
+def route_hub(builder, hub, rid, side, route_ev):
+    def b(*a, **k):
+        r = builder(*a, **k)
+        m, ev = r if isinstance(r, tuple) else (r, None)
+        x, z = _edge_spot(m, ev, side)
+        n = ev.portal(x, z, rid, route_ev, d=0)
+        ROUTE_EV[(hub, rid)] = n
+        return m, ev
+    return b
+
+
+ROUTE_THEME = {   # ground, side band (blk, z0, z1), trees
+    "coast": (GRASS, (SAND, 24, 30), (TREE_S, ROCK_S, ROCK_M)),
+    "forest": (GRASS2, None, (TREE_L, TREE_M, TREE_L, TREE_S)),
+    "hills": (GRASS, None, (TREE_L, TREE_M, TREE_S, ROCK_S)),
+    "snow": (SNOW, None, (TREE_S, ROCK_S, ROCK_M)),
+    "mountain": (T(2, 0), None, (ROCK_S, ROCK_M, TREE_S)),
+}
+
+
+def route_map(r):
+    rid, name, theme, tier, A, B, caves = r
+    W, D = 130, 40
+    ground, band, trees = ROUTE_THEME[theme]
+    m = MapSpec(rid, name, W, D, base=ground, y=3)
+    if band:
+        m.rect(0, band[1], W, band[2] - band[1], band[0], 3)
+    m.rect(0, 16, W, 5, ROAD, 3)                                             # the road, west to east
+    ends, spurs = [], []
+    for k, (hub, hside, pids) in enumerate((A, B)):
+        rs = _OPP[hside]
+        x0 = 12 if k == 0 else W - 13
+        pos = {"w": (1, 18), "e": (W - 2, 18), "f": (x0, 1), "b": (x0, D - 2)}[rs]
+        if rs == "f":
+            m.rect(x0 - 2, 0, 5, 17, ROAD, 3)
+            spurs.append((x0, 0, 17))
+        elif rs == "b":
+            m.rect(x0 - 2, 20, 5, D - 20, ROAD, 3)
+            spurs.append((x0, 20, D))
+        ends.append((hub, pids, pos))
+    cave_x = [44, 86][:len(caves)] if len(caves) > 1 else [64]
+    rng = np.random.default_rng(int(rid[1:]))
+    for _ in range(140):                                                   # scenery, off the road, spurs and caves
+        x, z = int(rng.integers(1, W - 1)), int(rng.integers(1, D - 1))
+        if 13 <= z <= 23 or any(abs(x - sx) <= 4 and z0 - 1 <= z <= z1 for sx, z0, z1 in spurs) \
+                or any(abs(x - cx) <= 5 and z >= 22 for cx in cave_x):
+            continue
+        m.tree(x, z, trees[int(rng.integers(0, len(trees)))])
+    for cx in cave_x:
+        m.rect(cx - 2, 21, 5, 5, DIRT, 3)                                   # a trodden path up to the mouth
+        fb(m, cx, 27, 3, 21)                                                # the cave mouth
+    ev = Events(m)
+    for k, (hub, pids, pos) in enumerate(ends):                            # events 1, 2: the ends
+        if (hub, rid) not in ROUTE_EV:
+            MAPS[hub]()                                                     # (registers the hub's way onto here)
+        n = ev.portal(pos[0], pos[1], hub, ROUTE_EV[(hub, rid)], d=0)
+        e = ev.ev["#%d#" % n]
+        e["reqs0"] = [flag(_route_gate(pids))]
+        e["closed_msg"] = ("The road on is closed. %s's lands - that road isn't walked yet. When %s has walked it, "
+                           "this way opens." % (ROUTE_NAME[pids[0]], ROUTE_NAME[pids[0]]))
+    for i, (cid, cname, plus) in enumerate(caves):                         # events 3, 4: the caves
+        ev.portal(cave_x[i], 25, cid, 1, d=0)
+    bm, rows = ROUTE_ENC.get(rid, (None, []))
+    for k, (hub, pids, pos) in enumerate(ends):
+        sx = min(max(pos[0] + (4 if k == 0 else -4), 3), W - 4)
+        ev.talk(sx, 14, "CE000", [(None, [narrate("A road-stone: \"This way: %s. Back: %s. %s.\"" % (
+            MAP_TITLE.get(ends[1 - k][0], "the next lands"), MAP_TITLE.get(ends[k][0], "the last lands"),
+            _danger(rows)))])], trigger=1)
+    for i, cx in enumerate(cave_x):
+        cbm, crows = ROUTE_ENC.get(caves[i][0], (None, []))
+        ev.talk(cx + 3, 24, "CE000", [(None, [narrate("A cave mouth. Cold air, and old bones by the entrance. "
+                                                      "(%s)" % _danger(crows))])], trigger=1)
+    loot = ROUTE_LOOT[min(tier, 4)]
+    ev.chest(30, 11, *loot[0])
+    ev.chest(W - 34, 26 if theme != "coast" else 11, *loot[1])
+    return m, ev
+
+
+MAP_TITLE = {"M103": "Hoshi-no-Ichi", "M213": "Yasuki Yashiki", "M351": "Kudo", "M424": "Floating Flowers",
+             "M255": "Shiro Akodo", "M430": "the Wounded Lion", "M282": "Zumiki", "M415": "Cakon",
+             "M228": "Kyuden Doji", "M252": "Shiro no Kamatori", "M379": "the Dragon mountain town",
+             "M387": "the Town of Buried Leaves", "M202": "Pleasant Eaves", "M347": "Kyuden Bayushi"}
+
+
+def route_cave(cid, name, tier, rid, back_ev, seed):
+    """A side cave: five chambers in a chain, tunnels 4 wide (a full block to walk through everywhere), chests by
+    difficulty; cave_sprawl grows galleries (and a save shrine) off it."""
+    rng = np.random.default_rng(seed)
+
+    def j(v):
+        return int(v + rng.integers(-3, 4))
+    rooms = [(20, 9, 7, 5), (j(46), j(15), 10, 6), (j(26), j(30), 9, 6), (j(58), j(33), 11, 7), (j(82), j(20), 9, 6)]
+    links = [(20, 0, 20, 8, 4)] + [(a[0], a[1], b[0], b[1], 4) for a, b in zip(rooms, rooms[1:])]
+    m = cave_map(cid, name, 100, 46, rooms, links, seed=seed)
+    ev = Events(m)
+    ev.portal(20, 1, rid, back_ev, d=2)                                     # event 1: out to the road
+    loot = ROUTE_LOOT[min(tier, 4)]
+    for k, (cx, cz, rx, rz) in enumerate(rooms[1:], 1):
+        ev.chest(cx + 2, cz, *loot[k % len(loot)])
+    return m, ev
+
+
+ROUTE_ENC = {}
+for _r in ROUTES:
+    _rid, _nm, _th, _tier, _A, _B, _caves = _r
+    _bm, _rows = route_encounters(_A[2], _B[2], _tier)
+    if _rows:
+        ROUTE_ENC[_rid] = (_bm, _rows)
+    for _i, (_cid, _cn, _plus) in enumerate(_caves):
+        _cbm, _crows = route_encounters(_A[2], _B[2], min(_tier + _plus, 4))
+        if _crows:
+            ROUTE_ENC[_cid] = (_cbm, _crows)
+        MAPS[_cid] = (lambda c=_cid, n=_cn, t=min(_tier + _plus, 4), r=_rid, k=_i, s=int(_cid[1:]):
+                      route_cave(c, n, t, r, 3 + k, s))
+        RSET[_cid] = "rt_hd2d_cave"
+    for _k, (_hub, _side, _pids) in enumerate((_A, _B)):
+        MAPS[_hub] = route_hub(MAPS[_hub], _hub, _rid, _side, 1 + _k)
+    MAPS[_rid] = (lambda r=_r: route_map(r))
+ENCOUNTERS.update(ROUTE_ENC)
+ENCOUNTER_MAPS |= set(ROUTE_ENC)
+
+
+def route_pass():
+    """Writes RokuganRouteData.sk: the gate flags for plugin RokuganField routeFlags."""
+    path = os.path.join(PROJ, "plugin", "rokugan", "RokuganRouteData.sk")
+    body = ", ".join('%s = [%s]' % (f, ", ".join('"%s"' % p for p in pids)) for f, pids in ROUTE_GATES.items())
+    open(path, "w", encoding="utf-8").write("//\tgenerated by tools/gen_maps.py route_pass (the connecting routes)\n"
+                                            "::Rokugan.ROUTE_GATES <- { %s };\n" % body)
+
+
 # ------------------------------------------------------------------------------------------- registration / build
 # Random-encounter rate (engine: ENCOUNTER += steps x (0.6-2.0) x rate; a fight at 100). The template's 1.0 meant one
 # fight per ~100 m: the user walked the whole Coast Road escort without one. 4.0 is a fight every ~25 m on average,
@@ -18725,6 +18995,7 @@ def register(specs, events):
     chapter_end_pass(mp)
     objective_pass(mp)
     journal_pass(mp)
+    route_pass()
     json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="	")
 
 
@@ -19252,6 +19523,12 @@ def make(i):
         portals_off_side_walls(m, ev)
         arrivals_face_open_ground(m, ev)
         people_off_blocks(m, ev)
+    if ev is not None and i in CAVE_MAPS:                                  # (user 2026-11-14) a full body's width to
+        sys.modules.setdefault("gen_maps", sys.modules[__name__])          # every object in a cave (walkcheck.py)
+        import walkcheck as _walk
+        n = _walk.widen(m, ev)
+        if n:
+            print("   %s: widened %d cells (a full block to every object)" % (i, n))
     if ev is not None:                                                     # a big walk-in box whose centre can be
         for e in ev.ev.values():                                           # off screen while the player is in it
             r = (e.get("mdl") or {}).get("r") or []                        # would not exist there (spawndist 1)

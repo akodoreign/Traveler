@@ -1211,6 +1211,22 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	try{ ::rpgstage.changePlayer3D( ::rpgstage.stat.statmap.playermodel); }catch( ex){ printexception( ex); }
 	printf( "[RT] road begins: %S (%d of 8 walked)\n", pid, this.pathsWalked());
 };
+//	The connecting routes (tools/gen_maps.py ROUTES; gates in RokuganRouteData.sk): an end of a route is open while one
+//	of its travelers leads, once one of them has walked their road, or when all eight are walked.
+::Rokugan.routeFlags <- function(){
+	if( !("ROUTE_GATES" in ::Rokugan)) return;
+	local lead = ::rpgstat.members[0], all = this.pathsWalked() >= 8;
+	foreach( f, pids in this.ROUTE_GATES){
+		local open = all;
+		foreach( pid in pids) if( this.pathWalked( pid) || (lead && lead.dataid == pid)) open = true;
+		::rpgvar[f] = open;
+	}
+};
+::RPGStage._rt_launch_route <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	try{ ::Rokugan.routeFlags(); }catch( ex){ printexception( ex); }
+	return this._rt_launch_route( opt);
+};
 //	The finale: the traveler who walked last leads (fJoinAll brings the other seven on the plain).
 ::Rokugan.pathFinale <- function(){
 	local p = ::rpgstat.members.find( @( v) v && ::Rokugan.TRAVELERS.indexOf( v.dataid) >= 0);
