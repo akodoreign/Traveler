@@ -631608,6 +631608,6 @@
 			"ja": "Quest marker"
 		},
 		"pic3d": "/resource/enemy_pic/questmarker.png",
-		"scale": 0.35
+		"scale": 0.0875
 	}
 }

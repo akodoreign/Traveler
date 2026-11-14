@@ -53,7 +53,7 @@
 
 //	Joining (event command "member: join, any slot"): the first free slot, front row first, up to the cap.
 foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]){
-	cls._rt_memberop <- cls.memberOp;
+	cls._rt_memberop_party <- cls.memberOp;	//	(its own name: RokuganField wraps RPGEventRunner.memberOp as _rt_memberop)
 	cls.memberOp <- function( cmd){
 		::Rokugan.fitParty();
 		local slot = cmd.slot && int( cmd.slot);
@@ -65,7 +65,7 @@ foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]
 				return;
 			}
 		}
-		this._rt_memberop( cmd);
+		this._rt_memberop_party( cmd);
 		::Rokugan.fitParty();
 	};
 }
@@ -126,10 +126,13 @@ local formationUI = function( prms){
 	try{ ::rpgstage.changePlayer3D( ::rpgstage.stat.statmap.playermodel); }catch( ex){}
 	return r != "cancel";
 };
-foreach( u in ::RPGSystem.ui){
-	if( u && u["key"] == "menu_formation"){
+//	(RPGSystem.ui can't be walked with foreach - it yields nothing - but it answers by key)
+{
+	local u = ::RPGSystem.ui["menu_formation"];
+	if( u){
 		u.uifunc = formationUI;
 		u.lbl = "Formation";
 		if( "nochange_menuui" in u) u.nochange_menuui = false;
-	}
+		printf( "Rokugan party: Formation menu = 8 places\n");
+	}else printf( "Rokugan party: no menu_formation to replace\n");
 }

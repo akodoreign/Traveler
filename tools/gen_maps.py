@@ -19016,15 +19016,36 @@ def marker_pass(mp):
                         beats.append([mid, round(x, 2), round(z, 2),
                                       [[r_.get("lvar"), r_.get("op"), r_.get("rvar")] for r_ in reqs]])
     path_of = {}
-    for pid, f, dest in PATH_START:                                         # breadth-first along each road
-        start = (dest.get("dest") or {}).get("mapid")
-        q = [start]
-        while q:
-            cur = q.pop(0)
-            if not cur or cur in path_of or cur in route_ids or "M444" <= cur <= "M469":
-                continue
-            path_of[cur] = pid
-            q += sorted(links.get(cur, ()))
+    # (tester 2026-11-14: one road after another let the Crab road flood every map its story links reach - the Crane
+    # maps came out "P100", and no map was Crane's or Phoenix's) all eight roads at once, breadth-first: a map belongs
+    # to the road that reaches it first
+    q = [((dest.get("dest") or {}).get("mapid"), pid) for pid, f, dest in PATH_START]
+    # (each road's last map too: the Scorpion and Unicorn ends were reached first from other roads)
+    q += [(gm_, next(p for p, g in CH4_DONE.items() if g == v[2])) for gm_, v in FINALE_GATES.items()]
+    while q:
+        cur, pid = q.pop(0)
+        if not cur or cur in path_of or cur in route_ids or "M444" <= cur <= "M469" or cur < "M100":
+            continue
+        path_of[cur] = pid
+        q += [(n, pid) for n in sorted(links.get(cur, ()))]
+    # a map numbered between exactly one road's first and last map is that road's (the Unicorn maps M399-M412 were
+    # reached first from the Scorpion road)
+    span = {}
+    for pid, f, dest in PATH_START:
+        a = (dest.get("dest") or {}).get("mapid")
+        b = next((m_ for m_, v in FINALE_GATES.items() if CH4_DONE.get(pid) == v[2]), None)
+        if a and b:
+            span[pid] = (a, b)
+    span = {p: (a, b) for p, (a, b) in span.items()                       # (Lion and Phoenix interleave: BFS there)
+            if not any(q != p and a <= b2 and a2 <= b for q, (a2, b2) in span.items())}
+    for m_ in list(path_of):
+        inside = [p for p, (a, b) in span.items() if a <= m_ <= b]
+        if len(inside) == 1:
+            path_of[m_] = inside[0]
+    # the end-of-road objective (scene "G1230", shown once) stays due until that road is walked
+    for b in beats:
+        if b[3] and b[3][0][0] == "G1230" and path_of.get(b[0]) in PATH_WALKED:
+            b[3][0] = [PATH_WALKED[path_of[b[0]]], "==", False]
     quest = {}
 
     def find(mid, needle):

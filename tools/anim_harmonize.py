@@ -373,6 +373,7 @@ def PAL_OF(spec):
     return _PALS[spec["key"]]
 
 
+DRIFT_MAX = 0.15       # ref pass, automatic targets: max colour-family change vs the frame as it is
 HEAD_SHARE = 0.28      # top share of the figure kept from the original frame in the reference pass (face + hair)
 
 
@@ -439,9 +440,15 @@ def comfy_frame(spec, ref, aid, i, mapped, orig, base_score, rec, refimg=None, r
             sc = ref.region_dist(np.asarray(cand))
             ok_iou = iou(cand, orig)
             ok_head = head_agree(ref, cand, orig)
-            verdict = "accept" if ok_iou >= IOU_MIN and ok_head and sc < base_score * 0.9 else "reject"
+            # (11-14 Sayo spot check: score-"better" candidates painted red-brown blotches / pale trousers onto her)
+            # automatic targets may only shift colours a little from the frame as it is; forced frames are exempt
+            g1, g2 = ref.regions(np.asarray(cand))[0], ref.regions(np.asarray(orig))[0]
+            drift = float(np.abs(g1 - g2).sum() / 2)
+            too_far = refimg is not None and base_score < 1e8 and drift > DRIFT_MAX
+            verdict = "accept" if ok_iou >= IOU_MIN and ok_head and sc < base_score * 0.9 and not too_far else "reject"
             why = [] if verdict == "accept" else [w for w, bad in (("iou", ok_iou < IOU_MIN), ("facing", not ok_head),
-                                                                   ("no gain", sc >= base_score * 0.9)) if bad]
+                                                                   ("no gain", sc >= base_score * 0.9),
+                                                                   ("drift %.2f" % drift, too_far)) if bad]
             rec[tries_key].append({"round": rnd, "den": den, "seed": seed, "iou": round(ok_iou, 3), "head_ok": bool(ok_head),
                                  "region": round(sc, 3), "verdict": verdict, "why": why})
             if verdict == "accept" and (best is None or sc < best[1]):
@@ -489,6 +496,11 @@ def ref_pass(key, spec, ep, entry, weight, wtype, only_frames=None, install_it=T
     os.makedirs(od, exist_ok=True)
     out = src.copy()
     n = 0
+    for k_, r_ in frames.items():                         # accepted earlier in an interrupted run: keep them
+        f_ = os.path.join(od, "f%03d.png" % int(k_))
+        if r_.get("ref_final") == "accept" and os.path.exists(f_):
+            out.paste(Image.open(f_).convert("RGBA"), ((int(k_) % COLS) * FW, (int(k_) // COLS) * FH))
+            n += 1
     for i in todo:
         rec = frames.setdefault(str(i), {"anim": "?", "final": "palette", "tries": []})
         cur = crop(src, i)

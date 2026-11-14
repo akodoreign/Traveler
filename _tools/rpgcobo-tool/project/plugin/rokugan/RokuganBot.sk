@@ -258,6 +258,11 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 				printf( "[RT] BOT flag %S %S\n", a[1], ::rpgvar[a[1]] ? "set" : "NOT set");
 				break;
 			}
+			case "evalf": {									//	evalf PATH: runs a test script file (tools / scratch), logged
+				try{ compilestring( FileRef( a[1]).load().asText())(); printf( "[RT] BOT evalf %S done\n", a[1]); }
+				catch( ex){ printf( "[RT] BOT evalf %S threw %S\n", a[1], "" .. ex); printexception( ex); }
+				break;
+			}
 			case "vars": foreach( k in a.slice( 1)) printf( "[RT] BOT var %S = %S\n", k, ::rpgvar[k]); break;
 			case "talkto": {									//	talkto BX BZ: close in to ~1 m (blocked by a
 				this.botGoto( float( a[1]) + 0.5, float( a[2]) + 0.5, 2500.0, 2.0);	//	counter: stops there), face, Z

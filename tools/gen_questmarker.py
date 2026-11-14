@@ -47,7 +47,7 @@ def main():
     j = json.load(open(jpath, encoding="utf-8"))
     e = json.loads(json.dumps(j["EP360"] if "EP360" in j else j["EP000"]))
     e.update({"name": {"en": "Quest marker", "ja": "Quest marker"}, "pic3d": "/resource/enemy_pic/questmarker.png",
-              "aniuv": [1, 1], "memo": "quest marker (tools/gen_questmarker.py)", "gndpos": [0.5, 0.5], "scale": 0.35,
+              "aniuv": [1, 1], "memo": "quest marker (tools/gen_questmarker.py)", "gndpos": [0.5, 0.5], "scale": 0.0875,   # (user: "about 1/4 the size")
               "flipx": False, "animap": [{"id": "stand", "st": 0, "en": 1, "spd": 1.0, "loop": True, "replay": False}]})
     j["EP361"] = e
     json.dump(j, open(jpath, "w", encoding="utf-8"), ensure_ascii=False, indent="\t")

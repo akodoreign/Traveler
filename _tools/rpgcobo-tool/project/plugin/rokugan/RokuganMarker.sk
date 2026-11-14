@@ -52,11 +52,14 @@
 			return [t[0], t[1], t[2]];
 		}
 	}
-	local lead = ::rpgstat.members[0], pid = lead ? lead.dataid : null;
+	//	(whose road: the first traveler in the party - Formation can put a companion in slot 1)
+	local pid = ("journalLead" in this) ? this.journalLead() : null;
+	if( !pid){ local lead = ::rpgstat.members.find( @( v) v); pid = lead ? lead.dataid : null; }
 	local best = null, bs = -1, bd = 9999;
 	foreach( b in this.MK_BEATS){
 		local mp = b[0];
 		if( pid && (mp in this.MK_PATH) && this.MK_PATH[mp] != pid) continue;	//	another traveler's road
+		if( !(mp in this.MK_PATH) && !::rpgvar["G1363"]) continue;		//	the finale's maps: only in the finale
 		if( !(mp in road.dist)) continue;
 		if( !this.mkReqs( b[3])) continue;
 		local spec = 0, d = road.dist[mp];									//	the furthest-along beat (most story
@@ -75,8 +78,18 @@
 	local hop = road.first[goal[0]];
 	if( !(cur in this.MK_EXITS)) return null;
 	local p = st.player3d.pos, best = null, bd = 999999.0;			//	(no 1e9 literals in this dialect)
-	foreach( e in this.MK_EXITS[cur]){
-		if( e[0] != hop) continue;
+	//	(user: "on screens where there is no objectives the star should float at the edge ... where you are supposed
+	//	to go") the hop may be a story move with no door on this map: then the walkable exit whose map is nearest the goal
+	local ways = this.MK_EXITS[cur].filter( @( e) e[0] == hop);
+	if( !length( ways)){
+		local bestd = 9999;
+		foreach( e in this.MK_EXITS[cur]){
+			local r = this.mkRoad( e[0]), d = (goal[0] in r.dist) ? r.dist[goal[0]] : 9999;
+			if( d < bestd){ bestd = d; hop = e[0]; }
+		}
+		ways = this.MK_EXITS[cur].filter( @( e) e[0] == hop);
+	}
+	foreach( e in ways){
 		//	the nearest point of the exit's box (an edge strip is long: float where the player would cross it)
 		local x = Math.clamp( p.x, e[1] - e[3], e[1] + e[3]), z = Math.clamp( p.z, e[2] - e[4], e[2] + e[4]);
 		local d = (x - p.x) * (x - p.x) + (z - p.z) * (z - p.z);
@@ -123,6 +136,11 @@
 	if( dz > 7.0) f = Math.min( f, 7.0 / dz);
 	if( dz < -4.5) f = Math.min( f, 4.5 / -dz);
 	x = pl.pos.x + dx * f; z = pl.pos.z + dz * f;
+	//	it floats there: out from the player on a new map, then along as the goal or the screen moves, and stops
+	if( !("fx" in k) || k.fstage != st){ k.fx <- pl.pos.x; k.fz <- pl.pos.z; k.fstage <- st; }
+	local a = Math.min( 1.0, dt / 1000.0 * 3.0);
+	k.fx += (x - k.fx) * a; k.fz += (z - k.fz) * a;
+	x = k.fx; z = k.fz;
 	local gy = null;
 	try{ gy = ::Rokugan.floorAt( pl, x, z, pl.pos.y + 4.0, -8.0); }catch( ex){}
 	local ms = skGetTime() / 1000.0;
