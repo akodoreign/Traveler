@@ -51,6 +51,9 @@
 			if( ::rpgvar[q.taken] && !::rpgvar[q.hunted]) return [t[3], t[4], t[5]];
 			return [t[0], t[1], t[2]];
 		}
+		//	(tester 2026-11-14) the hand-written side stories, ids 1-10 (JOURNAL_SIDE): the place that finishes them
+		local s = ("JOURNAL_SIDE" in ::Rokugan) ? this.JOURNAL_SIDE.filter( @( v) v.id == tid) : [];
+		if( length( s)) return ::rpgvar[s[0].done] ? null : [t[0], t[1], t[2]];
 	}
 	//	(whose road: the first traveler in the party - Formation can put a companion in slot 1)
 	local pid = ("journalLead" in this) ? this.journalLead() : null;

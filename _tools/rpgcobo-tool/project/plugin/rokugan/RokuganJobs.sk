@@ -68,7 +68,21 @@ local TRAVELERS = { P100 = 1, P101 = 1, P102 = 1, P103 = 1, P104 = 1, P105 = 1, 
 	if( !pc || !pc["ownjobs"]) return [];
 	local pid = pc.dataid, added = [], owners = {};
 	owners[pid] <- true;
-	if( pid in TRAVELERS) foreach( m in ::rpgstat.members) if( m && (m.dataid in TRAVELERS)) owners[m.dataid] <- true;
+	//	(user 2026-11-14: "special jobs like Monk, Scout, Ishiken-do should be locked to their chars untill everyone joins
+	//	up at the end, other unlocked jobs can be taken once unlocked (yojimbo) by anyone (even the next lone travelers
+	//	story)") the other travelers' own jobs are shared only once all are together: the finale (G1363) or all 8 walked
+	local together = ::rpgvar["G1363"] || (("pathsWalked" in ::Rokugan) && ::Rokugan.pathsWalked() >= 8);
+	if( together && (pid in TRAVELERS))
+		foreach( m in ::rpgstat.members) if( m && (m.dataid in TRAVELERS)) owners[m.dataid] <- true;
+	//	a special job picked up from a companion before this rule: taken back unless it's worn right now
+	if( !together){
+		local keep = @( j) !j || !j["data"] || !j.data["rt_owner"] || j.data["rt_unlock"]
+			|| j.data.rt_owner.find( @( o) o in owners) != null || (pc["jobs"] && pc.jobs.find( @( v) v == j) != null);
+		local before = length( pc.ownjobs);
+		pc.ownjobs = pc.ownjobs.filter( @( j) keep( j));			//	(this engine's filter: value only)
+		if( length( pc.ownjobs) != before) log( "jobs %S: %d special job(s) put back until the travelers meet" % [pc.name,
+			before - length( pc.ownjobs)]);
+	}
 	foreach( jid, jd in ::conf.job){
 		local ow = jd ? jd["rt_owner"] : null, mine = false;
 		if( ow) foreach( o in ow) if( o in owners) mine = true;			//	(rt_owner: a list of player ids)

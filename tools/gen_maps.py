@@ -2535,7 +2535,19 @@ def mark_exits(m, ev):
             inw = {"w": (1, 0), "e": (-1, 0), "f": (0, 1), "b": (0, -1)}[side]
             along = (0, 1) if side in ("w", "e") else (1, 0)
             bx, bz = x + 2 * inw[0], z + 2 * inw[1]
-            for i, k in enumerate(range(-3, 4)):                             # barrels and crates across the road
+            # (tester 2026-11-14: M470's west end - the sand beside the road was open) across all the walkable ground
+            # there, not just the road: out from the road while the ground stays dry and level (up to 24 cells)
+            h0 = int(m.hgt[min(max(bz, 0), m.d - 1), min(max(bx, 0), m.w - 1)])
+
+            def open_at(k):
+                cx, cz = bx + k * along[0], bz + k * along[1]
+                return 0 <= cx < m.w and 0 <= cz < m.d and (m.blk[cz, cx] & 31) != 8 and abs(int(m.hgt[cz, cx]) - h0) <= 1
+            lo_k, hi_k = -3, 3
+            while lo_k > -24 and open_at(lo_k - 1):
+                lo_k -= 1
+            while hi_k < 24 and open_at(hi_k + 1):
+                hi_k += 1
+            for i, k in enumerate(range(lo_k, hi_k + 1)):                   # barrels and crates across the way
                 cx, cz = bx + k * along[0], bz + k * along[1]
                 if 0 <= cx < m.w and 0 <= cz < m.d and (m.blk[cz, cx] & 31) != 8:
                     n = ev.prop(cx, cz, DECOR_EP["crates" if i % 3 == 1 else "barrel"], d=0, reqs=closed)
@@ -19000,7 +19012,8 @@ def marker_pass(mp):
             ds = dests(e) - {mid}
             if ds and "pathBegin" not in js and "pathFinale" not in js:
                 links.setdefault(mid, set()).update(ds)
-                if e.get("role") == "portal" or trig & {1, 5}:
+                if e.get("role") == "portal" or trig & {1, 2, 5}:              # (2: talk to - a ship's master,
+                                                                                 # a gate guard: tester 2026-11-14)
                     r = (e.get("mdl") or {}).get("r") or [0, 1.0, 0, 1.0, 1.0, 0.5]
                     long_z = len(e["pos"]) > 3 and e["pos"][3] in (1, 3)
                     hx, hz = (r[5], r[3]) if long_z else (r[3], r[5])
@@ -19059,6 +19072,24 @@ def marker_pass(mp):
         h = find(hmap, '"lvar": "%s", "op": "==", "rvar": false' % SQ_FLAGS[key][1])
         if g and h:
             quest[100 + k] = g + h
+    # the Journal's hand-written side stories (RokuganJournal.sk JOURNAL_SIDE, ids 1-10: guests, contests...): the
+    # place whose event sets the story's "done" flag (the guest who joins, the archery butts, Goro's barracks...)
+    jtxt = open(os.path.join(PROJ, "plugin", "rokugan", "RokuganJournal.sk"), encoding="utf-8").read()
+    for sid, done in re.findall(r'\{ id = (\d+),[^}]*?done = "(G\d+)"', jtxt):
+        needle = '"lvar": "%s", "op": "=", "rvar": true' % done
+        spot = None
+        for mid in sorted(mp):
+            if not re.fullmatch(r"M\d{3}", mid) or "M800" <= mid < "M900":
+                continue
+            for e in ((mp.get(mid) or {}).get("event") or {}).values():
+                if isinstance(e, dict) and "pos" in e and needle in json.dumps(e) \
+                        and not any(pg.get("trigger") == 6 for pg in e.get("page") or []):
+                    spot = [mid, round(e["pos"][0] / 2.0, 2), round(e["pos"][2] / 2.0, 2)]
+                    break
+            if spot:
+                break
+        if spot:
+            quest[int(sid)] = spot + spot
     for k, q_ in enumerate(FETCH_QUESTS):
         key, title, gmap, gx, gz, spr, gname, imap, *_ = q_
         g = find(gmap, json.dumps("Odd job: %s" % title)[1:-1])
