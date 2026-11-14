@@ -4720,6 +4720,14 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   also queues bad_busts speakers the map scan misses. ComfyUI restarted itself at 13:37; an export running then fell
   back to the colour key - redone. Picking workflow: scratchpad pick sheets, npc_picks.json, CHIN_FIX by eye,
   gen_busts.py npc <key>. ~200 low-line speakers still on stand-ins.
+- (busts, 2026-11-12/14) Batches 4-6 of stand-in speakers -> own busts (27 + 31 + 30; Kakita Yumi, Suzume
+  grandmother, Doji Aoi redraws picked). Rejected + requeued with a look: Old nun, Kitsune grandmother. Batch helpers
+  now live in tools/bustbatch/ (work files in _art/preview/agents/busts/batch/: standins.txt = stand-in speakers by
+  line count, skipped.json, picksel<tag>.json, pick<tag>_NN.png, done<tag>.png):
+  `mksheet.py N tag [key:Name ...]` -> pick sheets of the next N stand-ins with candidates; `apply.py tag "i:c,i:x,..."
+  note` -> npc_picks.json (x = skip); `bash export.sh tag` -> gen_busts npc per key, "FAIL" if the BiRefNet mask was
+  unavailable (colour-key fallback), magenta sheet done<tag>.png with chin lines (yellow box = no chin);
+  `chin.py key=0.45 ...` -> CHIN_FIX, then `gen_busts.py export <key>`.
 
 ## 2026-11-11: Agent team - pushes
 - 2026-11-11 ~08:45 push 9c5658a (licensed-demo -> main, 476 files): Rest revives the fallen, Sumai foes face the player,

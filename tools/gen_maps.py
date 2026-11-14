@@ -3910,31 +3910,47 @@ PROLOGUE = [
     spot("EP205"), narrate("Shosuro Mitsue (Scorpion), an actress-agent nobody knows."),
     spot("EP206"), narrate("Ide Tamotsu (Unicorn), an emissary who likes everybody."),
     spot("EP207"), narrate("Sayo (Ronin), a wave-woman herbalist, born on a rice barge."),
-    spot(""),
-    narrate("Whose journey begins?"),
-    choices(("Hiruma Natsuko (Crab)",
-             [{"cmd": "cmd_mapmove", "dest": START_NATSUKO, "wipe": 1, "remap": True}]),
-            ("Kakita Rensei (Crane)",
-             [{"cmd": "cmd_memberop", "playerid": "P101", "op": 0, "slot": -1}, leave("P100"), setf("G300"),
-              go("M200", 32, 6)]),
-            ("Akodo Shizue (Lion)",
-             [{"cmd": "cmd_memberop", "playerid": "P103", "op": 0, "slot": -1}, leave("P100"), setf("G441"),
-              go("M240", 44, 6)]),
-            ("Isawa Haruki (Phoenix)",
-             [{"cmd": "cmd_memberop", "playerid": "P104", "op": 0, "slot": -1}, leave("P100"), setf("G585"),
-              go("M253", 12, 5, padded=False)]),
-            ("Kitsuki Gendo (Dragon)",
-             [{"cmd": "cmd_memberop", "playerid": "P102", "op": 0, "slot": -1}, leave("P100"), setf("G706"),
-              go("M303", 30, 15)]),
-            ("Shosuro Mitsue (Scorpion)",
-             [{"cmd": "cmd_memberop", "playerid": "P105", "op": 0, "slot": -1}, leave("P100"), setf("G831"),
-              go("M345", 36, 9)]),
-            ("Ide Tamotsu (Unicorn)",
-             [{"cmd": "cmd_memberop", "playerid": "P106", "op": 0, "slot": -1}, leave("P100"), setf("G967"),
-              go("M388", 14, 6, padded=False)]),
-            ("Sayo (Ronin)",
-             [{"cmd": "cmd_memberop", "playerid": "P107", "op": 0, "slot": -1}, leave("P100"), setf("G1038"),
-              go("M414", 8, 12)]))]
+    spot("")]
+
+# (user 2026-11-12: "at final of each chars path have that shrine take it back to the select char screen make the ones
+# already done marked, save the travelers state (so it can be imported at end) and then after all the chars are done
+# then have a new selection in the char select screen to go to final chapters") One save walks all eight roads in
+# turn: every traveler is already in ::rpgstat.playermap and every path has its own flags, so a finished traveler
+# simply waits (level, gear, skills kept) while the next one walks alone; the finale's fJoinAll brings all eight.
+# PATH_WALKED: set by that path's end marker (finale_gate). RokuganField ::Rokugan.path* draws the labels.
+PATH_WALKED = {"P100": "G1234", "P101": "G1235", "P102": "G1236", "P103": "G1237", "P104": "G1238", "P105": "G1239",
+               "P106": "G1240", "P107": "G1241"}
+PATH_START = [("P100", None, {"cmd": "cmd_mapmove", "dest": START_NATSUKO, "wipe": 1, "remap": True}),
+              ("P101", "G300", go("M200", 32, 6)), ("P103", "G441", go("M240", 44, 6)),
+              ("P104", "G585", go("M253", 12, 5, padded=False)), ("P102", "G706", go("M303", 30, 15)),
+              ("P105", "G831", go("M345", 36, 9)), ("P106", "G967", go("M388", 14, 6, padded=False)),
+              ("P107", "G1038", go("M414", 8, 12))]
+
+
+def path_menu(prompt="Whose journey begins?"):
+    """The traveler select: the eight roads (walked ones marked, and refused), then the finale once all eight are
+    walked. Loops until a road is taken (event-local Y; only W-Z exist)."""
+    opts = []
+    for pid, f, dest in PATH_START:
+        start = [script('::Rokugan.pathBegin( "%s"); Y = false;' % pid)] + ([setf(f)] if f else []) + [dest]
+        opts.append(("${::Rokugan.pathLabel(\"%s\")}" % pid,
+                     [if_([flag(PATH_WALKED[pid])], [narrate("${::Rokugan.pathWalkedText(\"%s\")}" % pid)], start)]))
+    opts.append(("${::Rokugan.finaleLabel(0)}",                    # (a template call needs an argument)
+                 [script("W = ::Rokugan.pathsWalked() >= 8;"),
+                  if_([flag("W")],
+                      [script("::Rokugan.pathFinale(); Y = false;"),
+                       narrate("All eight roads are walked. They lead to one place: the Plains of Thunder, the Shrine "
+                               "of Osano-Wo. (The finale: recommended level 55. There is no turning back until it's "
+                               "over.)"),
+                       go("M444", 4, 15)],
+                      [narrate("${::Rokugan.finaleLockedText()}")])]))
+    menu = choices(*opts)
+    menu["pos"] = {"left": 190, "right": 190, "y": 70}          # 9 rows of "Name (Clan)  - road walked (Lv NN)"
+    return [script("Y = true;"),
+            {"cmd": "cmd_loop", "reqs": [flag("Y")], "cmdblocks": [[narrate(prompt), menu]]}]
+
+
+PROLOGUE = PROLOGUE + path_menu()
 
 
 def prologue():
@@ -16551,16 +16567,22 @@ FINALE_GATES = {"M151": (58, 40, "G286", False), "M229": (24, 5, "G434", True), 
 def finale_gate(ev, x, z, own, letter=False):
     """A road-marker to the Plains of Thunder on a path's last map (the PT node: "The trees are waiting"); indoors, an
     unsigned letter on the table."""
-    reqs = [flag(g) for g in CH4_DONE.values()] if FINALE_ALL_EIGHT else [flag(own)]
+    # (user 2026-11-12) the end of a road: it is marked walked, the traveler waits as they are (kept in this save for
+    # the finale), and the traveler select opens for the next road; the finale itself opens there once all eight are
+    # walked (path_menu)
+    pid = next(p for p, g in CH4_DONE.items() if g == own)
     ev.talk(x, z, "CE000", [(None, [
         narrate("A letter on the table, unsigned, in a hand nobody here can place: \"The Plains of Thunder. The "
                 "Shrine of Osano-Wo. Eight roads meet there.\"" if letter else
                 "A road-marker, new-carved: \"The Plains of Thunder. The Shrine of Osano-Wo.\" Under it, in a hand "
                 "nobody signed: \"Eight roads meet here.\""),
-        narrate("(The finale: recommended level 55. Beyond the plain there is no turning back until it's over.)"),
-        setf("G1177"),
-        choices(("Take the road to the Plains of Thunder.", [go("M444", 4, 15)]), ("Not yet.", []))])],
-        reqs=reqs, trigger=1)
+        setf("G1177"), setf(PATH_WALKED[pid]),
+        narrate("${::Rokugan.pathEndText(\"%s\")}" % pid),
+        choices(("Save, then choose the next traveler.",
+                 [{"cmd": "cmd_showui", "key": "menu_save", "op": None, "uiclose": 2}] + path_menu("Whose road next?")),
+                ("Choose the next traveler.", path_menu("Whose road next?")),
+                ("Not yet.", []))])],
+        reqs=[flag(own)], trigger=1)
 
 
 # ---- the party screen (production F02: "two parties alternate; swap at the stockade gate between waves")
@@ -18951,9 +18973,10 @@ def make(i):
         if not indoors and 0 <= gz + 1 < m.d:
             fb(m, gx, gz + 1, 3, 14)
         floor_arrows(m, type("E", (), {"ev": {"gate": {"role": "portal", "pos": [gx, 0, gz, 0]}}})())
-        ev.scene(gx, gz - 2, "G1230", [narrate("Objective: the %s to the Plains of Thunder - the finale. (Recommended "
-                                               "level 55)" % ("letter on the table" if indoors else
-                                                              "road-marker near here"))], after=[flag(own)])
+        ev.scene(gx, gz - 2, "G1230", [narrate("Objective: the %s - the end of this road. There the next traveler's "
+                                               "road begins; when all eight are walked, the finale." % (
+                                                   "letter on the table" if indoors else "road-marker near here"))],
+                 after=[flag(own)])
     if ev is not None and hasattr(m, "cave_floor"):
         _cave.sprawl(m, ev, i, (ROCK_S, ROCK_M), save_shrine)
     library_to_ours(m, ev, battle="M800" <= i < "M900")

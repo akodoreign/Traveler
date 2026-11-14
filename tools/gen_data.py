@@ -1912,7 +1912,12 @@ def main():
                     ("G1229", "Crab Ch4: the cellar-stair objective shown"),
                     ("G1230", "the finale road-marker objective shown (any path)"),
                     ("G1232", "Winter Court: the Yumi contest won with the bow (mini-game)"),
-                    ("G1233", "Winter Court: Takeo's three laps won (mini-game)")):
+                    ("G1233", "Winter Court: Takeo's three laps won (mini-game)"),
+                    ("G1234", "road walked: Hiruma Natsuko (Crab)"), ("G1235", "road walked: Kakita Rensei (Crane)"),
+                    ("G1236", "road walked: Kitsuki Gendo (Dragon)"), ("G1237", "road walked: Akodo Shizue (Lion)"),
+                    ("G1238", "road walked: Isawa Haruki (Phoenix)"),
+                    ("G1239", "road walked: Shosuro Mitsue (Scorpion)"),
+                    ("G1240", "road walked: Ide Tamotsu (Unicorn)"), ("G1241", "road walked: Sayo (Ronin)")):
         gv[gid] = {"defval": False, "name": nm, "type": 1}
     gv["G1160"] = {"defval": 0, "name": "finale Party B (bitmask over P100-P107)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}

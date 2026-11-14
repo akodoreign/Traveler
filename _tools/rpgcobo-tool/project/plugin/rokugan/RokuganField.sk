@@ -1152,6 +1152,62 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 ::Rokugan.TRAVELERS <- ["P100", "P101", "P102", "P103", "P104", "P105", "P106", "P107"];
 ::Rokugan.FKIT <- { P100 = ["W127", "A116"], P101 = ["W131", "A141"], P102 = ["W144", "A141"], P103 = ["W134", "A135"],
 	P104 = ["W144", "A140"], P105 = ["W147", "A127"], P106 = ["W135", "A159"], P107 = ["W134", "A141"] };
+//	One save walks the eight roads in turn (user 2026-11-12; tools/gen_maps.py path_menu / finale_gate): a road's end
+//	marker sets its PATH_WALKED flag, the traveler waits as they are, the next one walks alone. The finale opens when
+//	all eight are walked.
+::Rokugan.PATH_WALKED <- { P100 = "G1234", P101 = "G1235", P102 = "G1236", P103 = "G1237", P104 = "G1238",
+	P105 = "G1239", P106 = "G1240", P107 = "G1241" };
+::Rokugan.PATH_NAME <- { P100 = "Hiruma Natsuko (Crab)", P101 = "Kakita Rensei (Crane)", P102 = "Kitsuki Gendo (Dragon)",
+	P103 = "Akodo Shizue (Lion)", P104 = "Isawa Haruki (Phoenix)", P105 = "Shosuro Mitsue (Scorpion)",
+	P106 = "Ide Tamotsu (Unicorn)", P107 = "Sayo (Ronin)" };
+::Rokugan.pathWalked <- function( pid){ return !!::rpgvar[this.PATH_WALKED[pid]]; };
+::Rokugan.pathsWalked <- function(){
+	local n = 0;
+	foreach( pid in this.TRAVELERS) if( this.pathWalked( pid)) n++;
+	return n;
+};
+::Rokugan.pathLabel <- function( pid){
+	local p = ::rpgstat.playermap[pid];
+	return this.pathWalked( pid) ? "%S  - road walked (Lv %d)" % (this.PATH_NAME[pid], p ? p.LV : 1) : this.PATH_NAME[pid];
+};
+::Rokugan.pathWalkedText <- function( pid){
+	return "%S's road is walked. They wait for the others, just as they are, and join them at the end." % this.PATH_NAME[pid];
+};
+::Rokugan.pathEndText <- function( pid){
+	local n = this.pathsWalked();
+	return n >= 8 ? "All eight roads are walked. Every traveler is ready for the Plains of Thunder."
+		: "%S's road is walked (%d of 8). They wait here, just as they are, until all eight roads meet at the finale."
+			% (this.PATH_NAME[pid], n);
+};
+::Rokugan.finaleLabel <- function( _ = 0){
+	local n = this.pathsWalked();
+	return n >= 8 ? "The Plains of Thunder (the finale)" : "The Plains of Thunder (%d of 8 roads walked)" % n;
+};
+::Rokugan.finaleLockedText <- function(){
+	local left = this.TRAVELERS.filter( @( pid) !::Rokugan.pathWalked( pid)).map( @( pid) ::Rokugan.PATH_NAME[pid]);
+	return "The finale opens when all eight roads are walked. Still on the road: " .. left.join( ", ") .. ".";
+};
+//	The chosen traveler walks alone: everyone else waits (Togashi Yosai goes back to the inns), arriving fresh.
+::Rokugan.pathBegin <- function( pid){
+	local p = ::rpgstat.playermap[pid];
+	if( !p) return;
+	for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = i == 0 ? p : null;
+	::rpgstat.discoverPlayer( pid);
+	p.removeCondition( "K000");
+	p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;
+	::rpgvar["G608"] = false;						//	Yosai waits beside the inns
+	::rpgvar["G1230"] = false;						//	this road's end-marker objective shows again
+	::rpgvar["G1227"] = 0;							//	the Story box: this road's objectives, not the last one's
+	try{ ::rpgstage.changePlayer3D( ::rpgstage.stat.statmap.playermodel); }catch( ex){ printexception( ex); }
+	printf( "[RT] road begins: %S (%d of 8 walked)\n", pid, this.pathsWalked());
+};
+//	The finale: the traveler who walked last leads (fJoinAll brings the other seven on the plain).
+::Rokugan.pathFinale <- function(){
+	local p = ::rpgstat.members.find( @( v) v && ::Rokugan.TRAVELERS.indexOf( v.dataid) >= 0);
+	if( p) for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = i == 0 ? p : null;
+	::rpgvar["G608"] = false;
+	printf( "[RT] the finale: 8 roads walked, %S leads\n", p ? p.dataid : "-");
+};
 ::Rokugan.fpick <- -1;
 ::Rokugan.fBits <- function(){ local b = ::rpgvar["G1160"]; return b ? int( b) : 0; };
 ::Rokugan.fReserve <- function(){							//	Party B, in TRAVELERS order

@@ -4993,6 +4993,46 @@
 		"name": "Winter Court: Takeo's three laps won (mini-game)",
 		"type": 1
 	},
+	"G1234": {
+		"defval": false,
+		"name": "road walked: Hiruma Natsuko (Crab)",
+		"type": 1
+	},
+	"G1235": {
+		"defval": false,
+		"name": "road walked: Kakita Rensei (Crane)",
+		"type": 1
+	},
+	"G1236": {
+		"defval": false,
+		"name": "road walked: Kitsuki Gendo (Dragon)",
+		"type": 1
+	},
+	"G1237": {
+		"defval": false,
+		"name": "road walked: Akodo Shizue (Lion)",
+		"type": 1
+	},
+	"G1238": {
+		"defval": false,
+		"name": "road walked: Isawa Haruki (Phoenix)",
+		"type": 1
+	},
+	"G1239": {
+		"defval": false,
+		"name": "road walked: Shosuro Mitsue (Scorpion)",
+		"type": 1
+	},
+	"G1240": {
+		"defval": false,
+		"name": "road walked: Ide Tamotsu (Unicorn)",
+		"type": 1
+	},
+	"G1241": {
+		"defval": false,
+		"name": "road walked: Sayo (Ronin)",
+		"type": 1
+	},
 	"G1160": {
 		"defval": 0,
 		"name": "finale Party B (bitmask over P100-P107)",

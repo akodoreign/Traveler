@@ -213,6 +213,23 @@
    "found": "2026-11-12 bust monitor batch 5 (candidates rejected)",
    "why": "all candidates are silver-haired girls with a bun - Doji Sanae / old herbalist look-alikes; she tells the tale of the five champions",
    "look": "crane court storyteller woman, 40s, (natural black hair:1.3) with grey streaks in an elegant half-up style, warm dignified face, white and pale blue layered court kimono, folded fan",
+   "seed_add": 300,
+   "fixed": "2026-11-14 redraw candidate 2 (black hair, fan, pale blue court kimono)"
+  },
+  {
+   "speaker": "Old nun",
+   "file": "npc_old_nun/neutral.png",
+   "found": "2026-11-14 bust monitor batch 6 (candidates rejected)",
+   "why": "candidates are young women in a western nun's habit",
+   "look": "very old japanese buddhist nun, 70s, shaven head, deeply wrinkled sorrowful face, grey monastic robes, prayer beads",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Kitsune grandmother",
+   "file": "npc_kitsune_grandmother/neutral.png",
+   "found": "2026-11-14 bust monitor batch 6 (candidates rejected)",
+   "why": "candidates are young; a feuding old grandmother ('Forty years...')",
+   "look": "cranky old grandmother, 70s, wrinkled sly face, thin grey hair in a bun, faded green and orange kimono, wooden ladle",
    "seed_add": 300
   }
  ]

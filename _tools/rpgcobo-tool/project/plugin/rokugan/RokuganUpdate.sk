@@ -206,6 +206,7 @@ local GAME = "_tools/rpgcobo-tool/";
 //	Called by the title menu's Update / Verify entry (tools/gen_data.py, map M000).
 ::Rokugan.updateMenu <- function( runner){
 	this.updStamp = skGetTime() .. "x" .. int( ::rnd.nextf( 0.0, 1000000.0));
+	this.updNoticeHide();
 	local mine = this.updLocalJSON( "version.json");
 	if( !mine){
 		runner.showMessage( { key = "message_talk", name = "", uiclose = 2,
@@ -245,6 +246,46 @@ local GAME = "_tools/rpgcobo-tool/";
 		runner.showMessage( { key = "message_talk", name = "", uiclose = 2,
 			text = "The update stopped: " .. string( ex) .. ". Nothing half-written was kept; try again." });
 	}
+};
+
+//	(user 2026-11-14: "sneak in some yellow text on screen letting players know an update is available when they launch")
+//	The title screen (map M000) checks GitHub's version.json in the background; when it is newer than the installed
+//	version, a yellow line shows on the title until another map loads. No connection: nothing shows.
+::Rokugan.updNotice <- null;
+::Rokugan.updNoticeHide <- function(){
+	if( this.updNotice){ this.updNotice.removeFromParent(); this.updNotice = null; }
+};
+::Rokugan.updNoticeCheck <- function(){
+	local mine = this.updLocalJSON( "version.json");
+	if( !mine || ::arguments.indexOf( "-rtnoupdcheck") >= 0) return;
+	newthread().start( @(){
+		try{
+			::Rokugan.updStamp = skGetTime() .. "n" .. int( ::rnd.nextf( 0.0, 1000000.0));
+			local http = HTTPClient();
+			http.addHeader( "User-Agent", "RokuganTraveler-updater");
+			local bb = http.get( ::Rokugan.updUrl( "version.json"));
+			if( http.statuscode != 200) return;
+			local theirs = decodeJSON( bb.asText()), lv = mine["version"] || 0, rv = theirs["version"] || 0;
+			log( "title check: installed %d, GitHub %d" % (lv, rv));
+			if( rv <= lv || !::rpgstage || ::rpgstage.mapid != "M000" || ::Rokugan.updNotice) return;
+			local root = ::rootview, W = root.bnd.w, Ht = root.bnd.h;
+			local v = SKLabelView( "", FontAttribute( Fonts.get( "ui"), 22, 0xffd84aff, SK_FONT_BOLD));
+			v.enabled = false;
+			v.bnd.set( 40, Ht - 92, W - 80, 30);
+			v.setText( "Update available: version %d (you have %d). Choose Update / Verify on the menu." % (rv, lv));
+			root.addChild( v);
+			::Rokugan.updNotice = v;
+		}catch( ex){
+			log( "title check failed: " .. string( ex));
+		}
+	});
+};
+::RPGStage._rt_launch_upd <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	try{
+		if( this.mapid == "M000") ::Rokugan.updNoticeCheck(); else ::Rokugan.updNoticeHide();
+	}catch( ex){ printexception( ex); }
+	return this._rt_launch_upd( opt);
 };
 
 //	-rtupdtest fast|verify|fix : runs the updater from the launch hook against GitHub (no title menu, no messages).
