@@ -152064,6 +152064,218 @@
 								"uiclose": 2
 							}
 						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1267",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1274",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest: The Champion's Challenge",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A glory-hound on the west road calls out every Akodo he meets - and his band backs him. A clan champion answers for the clan. Answer him, and come back a champion.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1274",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Side quest taken: The Champion's Challenge. (The Lion west road, past Shiro Akodo: the challenger.) The Journal tracks it.",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1274",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1275",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The Lion west road, past Shiro Akodo: the challenger.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1275",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1276",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "You answered for the clan, and the clan saw it. Wear the title well.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1276",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "N000",
+								"op": 0,
+								"num": 1500,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 1500 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I001",
+								"op": 0,
+								"num": 2,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Healing Herb x2.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "foreach( m in ::rpgstat.members) if( m) ::Rokugan.ensureJobs( m);"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "${::Rokugan.jobUnlockText(\"J001\")}",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest done: The Champion's Challenge.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1276",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The road's quieter for it.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							}
+						]
 					}
 				],
 				"reqs0": null,
@@ -223628,6 +223840,169 @@
 				"name": "*villager-78"
 			},
 			"#79#": {
+				"role": "custom",
+				"pos": [
+					32,
+					4,
+					20,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1275",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1274",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1275",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G1274",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1275",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "A bushi in borrowed gold steps into the road and draws: \"Akodo! Face me!\" His friends close in behind him.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M266",
+											"gid": 4,
+											"losefunc": 0,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_battle1",
+														"mapid": "M266",
+														"gid": 1,
+														"losefunc": 0,
+														"bgmid": null,
+														"keeprset": false
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "RESULT",
+																"op": "==",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Side quest: The Champion's Challenge - done here. Back to the Lion sergeant.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G1275",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
+													}
+												],
+												[
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1275",
+														"op": "=",
+														"rvar": false
+													}
+												]
+											]
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-79"
+			},
+			"#80#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -223655,9 +224030,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-79"
+				"name": "*portal-80"
 			},
-			"#80#": {
+			"#81#": {
 				"role": "portal",
 				"pos": [
 					160,
@@ -223685,7 +224060,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-80"
+				"name": "*portal-81"
 			}
 		},
 		"exitmap": {

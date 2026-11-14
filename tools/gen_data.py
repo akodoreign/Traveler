@@ -5313,8 +5313,7 @@ ENGLISH = {
               "S076": ("Ice", None), "S077": ("Greater Ice", None)},
     "item": {"I019": (None, "Cures poison, paralysis, blindness and sealing."),
              "I020": (None, "Cures sleep, confusion and charm.")},
-    "job": {"J001": (None, "A special calling only the chosen may take."),
-            "J101": (None, "A heart of iron that nothing shakes: resists mind-affecting ailments."),
+    "job": {"J101": (None, "A heart of iron that nothing shakes: resists mind-affecting ailments."),   # (J001: jobs_data)
             "J102": (None, "Shields a weakened ally."), "J104": (None, "A light step that slips past attacks.")},
     "store": {"R000": ("Village Goods", None), "R001": ("Healing Arts", None)},
 }

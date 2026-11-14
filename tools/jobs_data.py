@@ -96,6 +96,10 @@ GENERIC_JOBS = [
      "J119"),
     ("J023", "G1273", "Sohei", "The temple's warrior monks: a light step, a still mind, nerves of jade.",
      ["J137", "J142", "J144"], "J142"),
+    # (user 2026-11-14: "Sounds like a lion job to me") the Lion sergeant's last side quest (gen_maps sq_champion, the
+    # 9th side quest: done flag G1250 + 3*8 + 2)
+    ("J001", "G1276", "Champion", "The clan's champion: one foe, one blade, and the whole clan watching.",
+     ["J114", "J120", "J136"], "J114"),
 ]
 # (user 2026-11-14: "equip up to 4 traits") job slot 0 = the Job; slots 1-4 = Traits
 JOB_SLOTS = ["Job", "Trait 1", "Trait 2", "Trait 3", "Trait 4"]

@@ -22,44 +22,46 @@
 	},
 	"J001": {
 		"MAXLV": 10,
-		"desc": "A special calling only the chosen may take.",
+		"desc": "The clan's champion: one foe, one blade, and the whole clan watching. Lv 1 Measure the Foe: +20% critical hits against a lone foe. Lv 4 Rally: +1 VP at the start of every battle. Lv 7 Iron Body: DEF +20%. Lv 10 trait: Measure the Foe.",
 		"expcurv": [
-			10,
-			20
+			30,
+			0
 		],
-		"icon": "",
-		"jobflag": 0,
+		"icon": "",
+		"jobflag": -1,
 		"jobslotbits": 1,
-		"lvoption": [],
-		"name": "Champion",
-		"option": [
+		"learn": [],
+		"lvoption": [
 			{
-				"opttype": "opt_status",
-				"propid": "PATK",
-				"val": 10,
-				"valtype": "baserate"
+				"LV": 10,
+				"opttype": "opt_getjob",
+				"jobid": "J114"
 			},
 			{
 				"opttype": "opt_status",
-				"propid": "MAXHP",
+				"propid": "PDEF",
 				"val": 20,
-				"valtype": "baserate"
-			},
-			{
-				"eqflag": 0,
-				"opttype": "opt_eqflag"
-			},
-			{
-				"CDR.0": 0,
-				"CDR.1": 0,
-				"CDR.2": 0,
-				"CDR.3": 0,
-				"CDR.4": 30,
-				"CDR.5": 0,
-				"CDR.6": 0,
-				"CDR.7": 0,
-				"opttype": "opt_conddef"
+				"valtype": "totalrate",
+				"LV": 7
 			}
+		],
+		"name": "Champion",
+		"option": [],
+		"rt_owner": [],
+		"rt_unlock": "G1276",
+		"rt_perks": [
+			[
+				"J114",
+				1
+			],
+			[
+				"J120",
+				4
+			],
+			[
+				"J136",
+				7
+			]
 		]
 	},
 	"J100": {

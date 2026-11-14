@@ -19311,6 +19311,14 @@ SIDE_QUESTS = [
      "Wolves, a whole pack, and another pack on the ridge behind.",
      "The snowbound pass again: the wolves.",
      "The mountain stays up there; the village stays down here. That's all a sohei does.", 1200, "J023"),
+    # (user 2026-11-14: "Sounds like a lion job to me") the template's Champion, the Lion sergeant's last task (kept at
+    # the END of the list: a quest's flags are G1250 + 3 x its place, so this one is G1274-G1276)
+    ("sq_champion", "P103", "The Champion's Challenge", "M241", 22, 15, "lionsergeant", "Lion sergeant", ["sq_drill"],
+     "M266", [4, 1], "A glory-hound on the west road calls out every Akodo he meets - and his band backs him. A clan "
+     "champion answers for the clan. Answer him, and come back a champion.",
+     "A bushi in borrowed gold steps into the road and draws: \"Akodo! Face me!\" His friends close in behind him.",
+     "The Lion west road, past Shiro Akodo: the challenger.",
+     "You answered for the clan, and the clan saw it. Wear the title well.", 1500, "J001"),
 ]
 SQ_FLAGS = {q[0]: _sq(k) for k, q in enumerate(SIDE_QUESTS)}
 
