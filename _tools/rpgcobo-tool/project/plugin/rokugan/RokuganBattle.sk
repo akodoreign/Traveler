@@ -886,6 +886,16 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 	}
 	this._rt_death();
 };
+//	(user: "hiruma ... keeps like trying to stand up after being knocked down") while a party member is down, every
+//	other animation is refused (the turn's stances, idles, hits): only the fall and the lying frames play
+::RPG3DPicture._rt_anime2_down <- ::RPG3DPicture.anime2;
+::RPG3DPicture.anime2 <- function( t){
+	if( (this in ::Rokugan.downed) && this["rpgobj"] && this.rpgobj.isDead()){
+		local id = t ? t["id"] : null;
+		if( id != "die" && id != "collapse") return;
+	}
+	return this._rt_anime2_down( t);
+};
 ::Rokugan.downTick <- function( b){
 	if( !b || !("members" in b)) return;
 	foreach( pc in b.members){
@@ -895,11 +905,8 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 		if( !rp) continue;
 		if( pc.isDead()){
 			if( !(rp in this.downed)) this.downed[rp] <- skGetTime();
-			local t = this.downed[rp], now = skGetTime();
-			//	the fall over (700 ms), lie still - and keep lying: the turn's stance changes ("fight", "stand") reach
-			//	the fallen too, so the pose is put back a few times a second (77-78 are both lying frames)
-			if( t >= 0 && now - t > 700){ rp.anime2( #{ id = "die"}); this.downed[rp] = -now; }
-			else if( t < 0 && now + t > 300){ rp.anime2( #{ id = "die"}); this.downed[rp] = -now; }
+			local t = this.downed[rp];
+			if( t >= 0 && skGetTime() - t > 700){ rp.anime2( #{ id = "die"}); this.downed[rp] = -1; }	//	the fall over: lie
 			if( rp.fxtype != 0){ rp.fxtype = 0; rp.fxw = 0.0; rp.fxspd = 0.0; }	//	(never the foes' dissolve)
 		}else if( rp in this.downed){								//	woken: back on their feet
 			delete this.downed[rp];

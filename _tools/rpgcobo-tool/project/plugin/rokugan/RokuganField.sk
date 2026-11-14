@@ -535,10 +535,14 @@ foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]
 {
 	local i = ::arguments.indexOf( "-rtshot");
 	if( i >= 0){
-		local path = ::arguments[i+1], ms = int( ::arguments[i+2]);
+		//	-rtshot PATH MS, or MSxN: a burst of N shots 250 ms apart, PATH_k.raw (the engine takes only 13 arguments)
+		local path = ::arguments[i+1], spec = ::arguments[i+2].split( "x");
+		local ms = int( spec[0]), n = length( spec) > 1 ? int( spec[1]) : 1;
 		newthread().start( @(){
 			sleep( ms);
-			::Rokugan.rtshot( path);
+			if( n <= 1){ ::Rokugan.rtshot( path); return; }
+			local base = path.slice( 0, length( path) - 4);
+			for( local k = 0; k < n; k++){ ::Rokugan.rtshot( base .. "_" .. k .. ".raw"); sleep( 250); }
 		});
 	}
 }
