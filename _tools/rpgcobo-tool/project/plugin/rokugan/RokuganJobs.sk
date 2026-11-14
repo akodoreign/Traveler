@@ -48,6 +48,19 @@ local _chance = @( pct) ::rnd.nextf( 0.0, 100.0) < pct;
 	return null;
 };
 
+//	(user 2026-11-14: "equip up to 4 traits") Job + Trait 1-4: a save made with fewer job slots gets the new ones.
+::Rokugan.fitJobSlots <- function(){
+	local n = length( ::conf.type.jobslot);
+	foreach( p in (::rpgstat ? ::rpgstat.playermap : {})){
+		if( p && p["jobs"] && length( p.jobs) < n) p.jobs.resize( n);
+	}
+};
+::RPGStage._rt_launch_jobs <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	try{ ::Rokugan.fitJobSlots(); }catch( ex){ printexception( ex); }
+	return this._rt_launch_jobs( opt);
+};
+
 //	The traveler's own job, the jobs of the other travelers in the party with them (user: "once they are all together
 //	they can each level up the different jobs ... mix and match"), and the traits learned join their job list.
 local TRAVELERS = { P100 = 1, P101 = 1, P102 = 1, P103 = 1, P104 = 1, P105 = 1, P106 = 1, P107 = 1, P122 = 1, P132 = 1 };
@@ -59,6 +72,8 @@ local TRAVELERS = { P100 = 1, P101 = 1, P102 = 1, P103 = 1, P104 = 1, P105 = 1, 
 	foreach( jid, jd in ::conf.job){
 		local ow = jd ? jd["rt_owner"] : null, mine = false;
 		if( ow) foreach( o in ow) if( o in owners) mine = true;			//	(rt_owner: a list of player ids)
+		//	(user 2026-11-14) a side quest's job (rt_unlock = its done flag): every traveler, once it is learned
+		if( jd && jd["rt_unlock"] && ::rpgvar[jd.rt_unlock] && (pid in TRAVELERS)) mine = true;
 		if( jid[0] == 'J' && mine && !pc.ownjobs.find( @( v) v && v.dataid == jid)){
 			pc.ownjobs .. ::RPGObject.create( jid);
 			log( "job %S gets %S" % (pc.name, jid));

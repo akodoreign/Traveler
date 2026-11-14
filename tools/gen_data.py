@@ -1922,7 +1922,10 @@ def main():
                     ("G1243", "Crane Ch2: the castle-gate-guard objective shown")):
         gv[gid] = {"defval": False, "name": nm, "type": 1}
     gv["G1160"] = {"defval": 0, "name": "finale Party B (bitmask over P100-P107)", "type": 2}
-    gv["G1244"] = {"defval": 0, "name": "Journal: the tracked entry (0 = the main story; RokuganJournal.sk)", "type": 2}
+    for _k in range(16):                                # side quests: G1250 + 3k taken / hunted / done (gen_maps
+        for _o, _what in enumerate(("taken", "hunted", "done")):     # SIDE_QUESTS, quest k; room for 16)
+            gv["G%d" % (1250 + 3 * _k + _o)] = {"defval": False, "name": "side quest %d: %s" % (_k, _what), "type": 1}
+    gv["G1244"] = {"defval": 0,"name": "Journal: the tracked entry (0 = the main story; RokuganJournal.sk)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}
     gv["G1092"] = {"defval": 0, "name": "ronin_technique_second (Ronin Ch2 Rank 2: 1-3 another school's R1, 4 Punish "
                                         "the Arrogant, 5 Taking the Measure, 6 Will Not Flesh)", "type": 2}
@@ -5224,11 +5227,13 @@ def english_leftovers():
                     "Healing item", "Debuff"],
         "eqflag": ["Traveler's gear", "Women's gear", "Elven gear", "Heavy gear"],
         "jobflag": ["Hero's mark", "Royal blood"],
-        "jobslot": ["Job", "Trait"],
+        "jobslot": __import__("jobs_data").JOB_SLOTS,       # Job + Trait 1-4 (user 2026-11-14: "up to 4 traits")
         "resistg": ["Death resist", "Poison resist", "Sleep resist", "Paralysis resist", "Mind resist",
                     "Curse resist", "Exhaustion resist", "Focus resist"],
         "tribe": ["Human", "Male", "Female", "Flying", "Construct", "Undead", "Insect", "Demon", "Beast", "Spirit",
                   "Dragon", "Aquatic"]}
+    while len(t.get("jobslot", [])) < len(names["jobslot"]):          # more slots than the template's two
+        t["jobslot"].append(dict(t["jobslot"][-1]))
     for key, lst in names.items():
         for i, nm in enumerate(lst):
             if i < len(t.get(key, [])) and isinstance(t[key][i], dict):

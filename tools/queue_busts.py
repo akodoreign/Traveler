@@ -229,9 +229,12 @@ def main():
             key = keyname(name)
             p, extra = npc_prompt(name, looks, md)
             pos = "%s, %s, %s" % (g.STYLE, p, g.EMO["neutral"][0])
-        if badlook.get(name):                                # bad_busts.json "look": put it first, weighted
-            lk = "(%s:1.3), " % badlook[name]
-            pos = pos.replace(g.STYLE + ", ", g.STYLE + ", " + lk, 1) if (g.STYLE + ", ") in pos else lk + pos
+        if badlook.get(name):                                # bad_busts.json "look": the person described, ONLY -
+            # the speaker label is left out of the prompt (it misleads: "Bloodspeaker" drew loudspeakers, "Old nun"
+            # a western habit, "Otomo Shinken" a girl)
+            pos = "%s, (%s:1.3), upper body portrait, japanese clothing, feudal japan, rokugan, %s" % (
+                g.STYLE, badlook[name], g.EMO["neutral"][0])
+            extra = list(extra) + ["loudspeaker", "speaker", "western clothes", "nun habit", "veil"]
         neg = g.neg_for((), list(extra) + ["drinking straw", "straw (drink)", "receding hairline", "bald forehead"]
                         if "bald" not in pos else list(extra) + ["drinking straw"])
         n = 3 if (name in looks or name in named) else 2

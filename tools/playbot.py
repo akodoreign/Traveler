@@ -15,6 +15,9 @@ import subprocess
 import sys
 import time
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import engine_lock  # noqa: E402
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import gen_maps as gm  # noqa: E402
@@ -64,7 +67,7 @@ def launch(name, mid, bx, bz, lines, vars_="", lv="9", party="", choice="", secs
     for f in os.listdir(shots):
         if f.startswith("bot_%s_" % name):
             os.remove(os.path.join(shots, f))
-    pass                                                                  # (never kill engines this script did not start: the user and other agents run their own)
+    engine_lock.wait_free()                                              # (single-instance engine: never kill one this script did not start)
     packed = ["bot " + "|".join(ln.replace(" ", ",") for ln in lines)]
     if choice:
         packed.append("choice " + choice)
@@ -83,7 +86,7 @@ def launch(name, mid, bx, bz, lines, vars_="", lv="9", party="", choice="", secs
             "-rtfast", "-rtauto", "-debuglv", str(lv), "-rt", ";".join(packed)]
     log = os.path.join(out, "log.txt")
     with open(log, "w") as lf:
-        proc = subprocess.Popen(args, cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
+        proc = engine_lock.launch(args, cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
     t0 = time.time()
     while time.time() - t0 < secs:
         time.sleep(1.0)

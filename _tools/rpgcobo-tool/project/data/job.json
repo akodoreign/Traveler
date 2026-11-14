@@ -143,7 +143,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Light Fingers",
 		"option": [
@@ -249,6 +249,7 @@
 		"rt_owner": [
 			"P132"
 		],
+		"rt_unlock": null,
 		"rt_perks": [
 			[
 				"J136",
@@ -288,6 +289,7 @@
 			"P100",
 			"P122"
 		],
+		"rt_unlock": null,
 		"rt_perks": [
 			[
 				"J110",
@@ -326,6 +328,7 @@
 		"rt_owner": [
 			"P101"
 		],
+		"rt_unlock": null,
 		"rt_perks": [
 			[
 				"J113",
@@ -370,6 +373,7 @@
 		"rt_owner": [
 			"P102"
 		],
+		"rt_unlock": null,
 		"rt_perks": [
 			[
 				"J116",
@@ -408,6 +412,7 @@
 		"rt_owner": [
 			"P103"
 		],
+		"rt_unlock": null,
 		"rt_perks": [
 			[
 				"J119",
@@ -461,6 +466,7 @@
 		"rt_owner": [
 			"P104"
 		],
+		"rt_unlock": null,
 		"rt_perks": [
 			[
 				"J124",
@@ -499,6 +505,7 @@
 		"rt_owner": [
 			"P105"
 		],
+		"rt_unlock": null,
 		"rt_perks": [
 			[
 				"J111",
@@ -537,6 +544,7 @@
 		"rt_owner": [
 			"P106"
 		],
+		"rt_unlock": null,
 		"rt_perks": [
 			[
 				"J127",
@@ -575,6 +583,7 @@
 		"rt_owner": [
 			"P107"
 		],
+		"rt_unlock": null,
 		"rt_perks": [
 			[
 				"J130",
@@ -590,6 +599,212 @@
 			]
 		]
 	},
+	"J020": {
+		"MAXLV": 10,
+		"desc": "The bodyguard: stand in front of the cart, not behind it. Lv 1 Iron Body: DEF +20%. Lv 4 Stout: Max HP +15%. Lv 7 Kiai: ATK +10%. Lv 10 trait: Stout.",
+		"expcurv": [
+			30,
+			0
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 10,
+				"opttype": "opt_getjob",
+				"jobid": "J140"
+			},
+			{
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 20,
+				"valtype": "totalrate",
+				"LV": 1
+			},
+			{
+				"opttype": "opt_status",
+				"propid": "MAXHP",
+				"val": 15,
+				"valtype": "totalrate",
+				"LV": 4
+			},
+			{
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 10,
+				"valtype": "totalrate",
+				"LV": 7
+			}
+		],
+		"name": "Yojimbo",
+		"option": [],
+		"rt_owner": [],
+		"rt_unlock": "G1255",
+		"rt_perks": [
+			[
+				"J136",
+				1
+			],
+			[
+				"J140",
+				4
+			],
+			[
+				"J141",
+				7
+			]
+		]
+	},
+	"J021": {
+		"MAXLV": 10,
+		"desc": "The court's weapons: a price, a straight face, friends in every house. Lv 1 Haggle: Shop prices -10%. Lv 4 Honest Eyes: Resists charm and confusion. Lv 7 Connections: The first hireling call each battle costs no charge. Lv 10 trait: Haggle.",
+		"expcurv": [
+			30,
+			0
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 10,
+				"opttype": "opt_getjob",
+				"jobid": "J127"
+			},
+			{
+				"opttype": "opt_conddef",
+				"CDR.4": 100,
+				"CDR.8": 100,
+				"LV": 4
+			}
+		],
+		"name": "Courtier",
+		"option": [],
+		"rt_owner": [],
+		"rt_unlock": "G1261",
+		"rt_perks": [
+			[
+				"J127",
+				1
+			],
+			[
+				"J117",
+				4
+			],
+			[
+				"J129",
+				7
+			]
+		]
+	},
+	"J022": {
+		"MAXLV": 10,
+		"desc": "First in, last out: the vanguard, the shout, the banner. Lv 1 Vanguard: The whole party moves faster in the first turn. Lv 4 Kiai: ATK +10%. Lv 7 Banner: While its wearer is under half HP, the party hits 15% harder. Lv 10 trait: Vanguard.",
+		"expcurv": [
+			30,
+			0
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 10,
+				"opttype": "opt_getjob",
+				"jobid": "J119"
+			},
+			{
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 10,
+				"valtype": "totalrate",
+				"LV": 4
+			}
+		],
+		"name": "Sergeant",
+		"option": [],
+		"rt_owner": [],
+		"rt_unlock": "G1267",
+		"rt_perks": [
+			[
+				"J119",
+				1
+			],
+			[
+				"J141",
+				4
+			],
+			[
+				"J121",
+				7
+			]
+		]
+	},
+	"J023": {
+		"MAXLV": 10,
+		"desc": "The temple's warrior monks: a light step, a still mind, nerves of jade. Lv 1 Flowing Step: +10% evasion. Lv 4 Temple Discipline: Magic DEF +20%. Lv 7 Steady Nerves: Resists poison, blindness, silence, charm, sleep and confusion (50%). Lv 10 trait: Temple Discipline.",
+		"expcurv": [
+			30,
+			0
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 1,
+		"learn": [],
+		"lvoption": [
+			{
+				"LV": 10,
+				"opttype": "opt_getjob",
+				"jobid": "J142"
+			},
+			{
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 10,
+				"valtype": "supply",
+				"LV": 1
+			},
+			{
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 20,
+				"valtype": "totalrate",
+				"LV": 4
+			},
+			{
+				"opttype": "opt_conddef",
+				"CDR.1": 50,
+				"CDR.2": 50,
+				"CDR.3": 50,
+				"CDR.4": 50,
+				"CDR.5": 50,
+				"CDR.8": 50,
+				"LV": 7
+			}
+		],
+		"name": "Sohei",
+		"option": [],
+		"rt_owner": [],
+		"rt_unlock": "G1273",
+		"rt_perks": [
+			[
+				"J137",
+				1
+			],
+			[
+				"J142",
+				4
+			],
+			[
+				"J144",
+				7
+			]
+		]
+	},
 	"J110": {
 		"MAXLV": 1,
 		"desc": "Trait. A chance to catch random foes unaware: they lose their first action; criticals up against foes that haven't acted yet.",
@@ -599,7 +814,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Surprise Round",
 		"option": []
@@ -613,7 +828,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Sneak",
 		"option": []
@@ -627,7 +842,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Tracker",
 		"option": []
@@ -641,7 +856,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "First Draw",
 		"option": []
@@ -655,7 +870,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Measure the Foe",
 		"option": []
@@ -669,7 +884,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Ready Blade",
 		"option": []
@@ -683,7 +898,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Read the Foe",
 		"option": []
@@ -697,7 +912,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Honest Eyes",
 		"option": [
@@ -717,7 +932,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Bounty",
 		"option": []
@@ -731,7 +946,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Vanguard",
 		"option": []
@@ -745,7 +960,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Rally",
 		"option": []
@@ -759,7 +974,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Banner",
 		"option": []
@@ -773,7 +988,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Learned",
 		"option": [
@@ -794,7 +1009,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Ward",
 		"option": [
@@ -816,7 +1031,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Ishiken-do",
 		"option": []
@@ -830,7 +1045,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Ambush",
 		"option": []
@@ -844,7 +1059,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Haggle",
 		"option": []
@@ -858,7 +1073,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Golden Purse",
 		"option": []
@@ -872,7 +1087,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Connections",
 		"option": []
@@ -886,7 +1101,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Forager",
 		"option": []
@@ -900,7 +1115,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Strong Brew",
 		"option": []
@@ -914,7 +1129,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Wave-woman",
 		"option": []
@@ -928,7 +1143,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Seasoned Traveler",
 		"option": []
@@ -942,7 +1157,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Iron Body",
 		"option": [
@@ -963,7 +1178,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Flowing Step",
 		"option": [
@@ -984,7 +1199,7 @@
 		],
 		"icon": "",
 		"jobflag": -1,
-		"jobslotbits": 2,
+		"jobslotbits": 30,
 		"lvoption": [],
 		"name": "Tattooed Strength",
 		"option": [
@@ -993,6 +1208,93 @@
 				"propid": "PATK",
 				"val": 15,
 				"valtype": "totalrate"
+			}
+		]
+	},
+	"J140": {
+		"MAXLV": 1,
+		"desc": "Trait. Max HP +15%.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 30,
+		"lvoption": [],
+		"name": "Stout",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "MAXHP",
+				"val": 15,
+				"valtype": "totalrate"
+			}
+		]
+	},
+	"J141": {
+		"MAXLV": 1,
+		"desc": "Trait. ATK +10%.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 30,
+		"lvoption": [],
+		"name": "Kiai",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 10,
+				"valtype": "totalrate"
+			}
+		]
+	},
+	"J142": {
+		"MAXLV": 1,
+		"desc": "Trait. Magic DEF +20%.",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 30,
+		"lvoption": [],
+		"name": "Temple Discipline",
+		"option": [
+			{
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 20,
+				"valtype": "totalrate"
+			}
+		]
+	},
+	"J144": {
+		"MAXLV": 1,
+		"desc": "Trait. Resists poison, blindness, silence, charm, sleep and confusion (50%).",
+		"expcurv": [
+			10,
+			20
+		],
+		"icon": "",
+		"jobflag": -1,
+		"jobslotbits": 30,
+		"lvoption": [],
+		"name": "Steady Nerves",
+		"option": [
+			{
+				"opttype": "opt_conddef",
+				"CDR.1": 50,
+				"CDR.2": 50,
+				"CDR.3": 50,
+				"CDR.4": 50,
+				"CDR.5": 50,
+				"CDR.8": 50
 			}
 		]
 	}

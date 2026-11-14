@@ -7,6 +7,9 @@ import subprocess
 import sys
 import time
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import engine_lock  # noqa: E402
+
 import numpy as np
 from PIL import Image, ImageDraw
 
@@ -16,12 +19,12 @@ PREVIEW = os.path.join(HERE, "..", "_art", "preview")
 
 
 def shot(gid, wait_ms=7000):
-    subprocess.run(["taskkill", "/IM", "rpgcobo.exe", "/F"], capture_output=True)
+    engine_lock.wait_free()                                              # (single-instance engine: never kill one this script did not start)
     rel = "tmp/rt_shot/battle_%d_%d.raw" % (gid, int(time.time()))     # a fresh name: nothing to delete first
     raw = os.path.join(TOOL, rel)
     os.makedirs(os.path.dirname(raw), exist_ok=True)
     log = open(os.path.join(PREVIEW, "battle_%d.txt" % gid), "w")
-    proc = subprocess.Popen([os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-battle", "M001", str(gid),
+    proc = engine_lock.launch([os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-battle", "M001", str(gid),
                              "-debuglv", "20", "-rtfast", "-rtshot", rel, str(wait_ms)], cwd=TOOL, stdout=log,
                             stderr=subprocess.STDOUT)
     t0 = time.time()

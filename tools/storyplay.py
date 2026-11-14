@@ -11,6 +11,9 @@ import re
 import subprocess
 import sys
 import time
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import engine_lock  # noqa: E402
 from collections import deque
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -616,7 +619,7 @@ def main():
         json.dump(d, open(tmp, "w"))
         os.replace(tmp, cmdf)                                     # (never a half-written file)
     cmd(0, [])
-    pass                                                                  # (never kill engines this script did not start: the user and other agents run their own)
+    engine_lock.wait_free()                                              # (single-instance engine: never kill one this script did not start)
     log = os.path.join(out, "log_resume.txt" if resume else "log.txt")
     if resume:
         args = [os.path.join(TOOL, "rpgcobo.exe")] + resume_args(ck, name, opts["--lv"])
@@ -625,7 +628,7 @@ def main():
                 "G000", "-rtfast", "-rtauto", "-debuglv", opts["--lv"],
                 "-rt", "bot serve,tmp/bot/%s_cmd.txt;choice %d" % (name, path)]
     lf = open(log, "w")
-    proc = subprocess.Popen(args, cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
+    proc = engine_lock.launch(args, cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
     play = open(os.path.join(out, "play.txt"), "a" if resume else "w", encoding="utf-8")
 
     def note(s):

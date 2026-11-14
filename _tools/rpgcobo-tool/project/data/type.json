@@ -258,7 +258,22 @@
 		{
 			"icon": "",
 			"lock": 0,
-			"name": "Trait"
+			"name": "Trait 1"
+		},
+		{
+			"icon": "",
+			"lock": 0,
+			"name": "Trait 2"
+		},
+		{
+			"icon": "",
+			"lock": 0,
+			"name": "Trait 3"
+		},
+		{
+			"icon": "",
+			"lock": 0,
+			"name": "Trait 4"
 		}
 	],
 	"resistg": [

@@ -9,6 +9,9 @@ import subprocess
 import sys
 import time
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import engine_lock  # noqa: E402
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 TOOL = os.path.normpath(os.path.join(HERE, "..", "_tools", "rpgcobo-tool"))
 sys.path.insert(0, HERE)
@@ -89,7 +92,7 @@ PARTY = {"M102": (2, ""), "M130": (5, ""), "M131": (6, ""), "M132": (7, ""),
 
 
 def fight(mid, gid, lv, party, rtvar=""):
-    subprocess.run(["taskkill", "/IM", "rpgcobo.exe", "/F"], capture_output=True)
+    engine_lock.wait_free()                                              # (single-instance engine: never kill one this script did not start)
     log = os.path.join(HERE, "..", "_art", "preview", "bal_%s_%d.log" % (mid, gid))
     args = [os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-battle", mid, str(gid), "-debuglv", str(lv),
             "-rtauto", "-rtfast"]
@@ -98,7 +101,7 @@ def fight(mid, gid, lv, party, rtvar=""):
     if party:
         args += ["-rt", party if ";" in party or party.startswith("lead") else "party " + party]
     with open(log, "w") as lf:
-        p = subprocess.Popen(args, cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
+        p = engine_lock.launch(args, cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
     t0 = time.time()
     while p.poll() is None and time.time() - t0 < 300:
         time.sleep(1)

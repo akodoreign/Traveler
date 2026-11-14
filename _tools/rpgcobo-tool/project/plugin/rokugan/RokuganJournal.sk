@@ -62,6 +62,23 @@ local allOf = function( a){ foreach( f in a) if( !::rpgvar[f]) return false; ret
 	return out;
 };
 
+//	A generated side quest (gen_maps SIDE_QUESTS -> JOURNAL_QUESTS) as a Journal entry, or null while it isn't open
+//	(another road's, or its opening quest not done yet). done: true when finished.
+::Rokugan.journalQuest <- function( q){
+	local lead = this.journalLead();
+	if( q.who != lead || !allOf( q.open)) return null;
+	if( has( q.done)) return { id = -1, title = q.title, text = "Done." .. (q.job ? " (Job learned: "
+		.. ::conf.job[q.job].name .. ")" : ""), done = true };
+	local text = has( q.hunted) ? q.back : has( q.taken) ? q.hunt : q.offer .. " (Not taken yet.)";
+	if( q.job) text = text .. " Reward: the " .. ::conf.job[q.job].name .. " job, for every traveler.";
+	return { id = q.id, title = q.title, text = text, done = false };
+};
+::Rokugan.jobUnlockText <- function( jid){
+	local j = ::conf.job[jid];
+	return "Job learned: " .. (j ? j.name : jid) .. ". Any traveler can take it in the Job slot (Menu > Job). Its "
+		.. "Lv 10 trait can be worn in any of the four Trait slots.";
+};
+
 //	The tracked entry as [title, text], or null for the main story (also when the tracked one is done or gone).
 ::Rokugan.journalTracked <- function(){
 	local t = int( ::rpgvar[TRACK] || 0);
@@ -71,6 +88,11 @@ local allOf = function( a){ foreach( f in a) if( !::rpgvar[f]) return false; ret
 		return null;
 	}
 	foreach( q in this.JOURNAL_SIDE) if( q.id == t && this.journalSideOpen( q)) return [q.title, q.text];
+	foreach( q in (this["JOURNAL_QUESTS"] || [])){
+		if( q.id != t) continue;
+		local e = this.journalQuest( q);
+		return (e && !e.done) ? [e.title, e.text] : null;
+	}
 	return null;
 };
 
@@ -88,6 +110,10 @@ local allOf = function( a){ foreach( f in a) if( !::rpgvar[f]) return false; ret
 		if( q.who && q.who != lead) continue;
 		if( has( q.done)) done.append( { id = -1, title = q.title, text = "Done." });
 		else if( allOf( q.open)) side.append( { id = q.id, title = q.title, text = q.text });
+	}
+	foreach( q in (this["JOURNAL_QUESTS"] || [])){
+		local e = this.journalQuest( q);
+		if( e) (e.done ? done : side).append( e);
 	}
 	foreach( e in this.journalLadders( true)) done.append( { id = -1, title = e.title, text = "Passed: a newer training ground is open on this road." });
 	if( !length( side)) side.append( { id = -1, title = "(nothing open on this road yet)", text = "Side stories show up "

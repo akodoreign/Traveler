@@ -5048,6 +5048,246 @@
 		"name": "finale Party B (bitmask over P100-P107)",
 		"type": 2
 	},
+	"G1250": {
+		"defval": false,
+		"name": "side quest 0: taken",
+		"type": 1
+	},
+	"G1251": {
+		"defval": false,
+		"name": "side quest 0: hunted",
+		"type": 1
+	},
+	"G1252": {
+		"defval": false,
+		"name": "side quest 0: done",
+		"type": 1
+	},
+	"G1253": {
+		"defval": false,
+		"name": "side quest 1: taken",
+		"type": 1
+	},
+	"G1254": {
+		"defval": false,
+		"name": "side quest 1: hunted",
+		"type": 1
+	},
+	"G1255": {
+		"defval": false,
+		"name": "side quest 1: done",
+		"type": 1
+	},
+	"G1256": {
+		"defval": false,
+		"name": "side quest 2: taken",
+		"type": 1
+	},
+	"G1257": {
+		"defval": false,
+		"name": "side quest 2: hunted",
+		"type": 1
+	},
+	"G1258": {
+		"defval": false,
+		"name": "side quest 2: done",
+		"type": 1
+	},
+	"G1259": {
+		"defval": false,
+		"name": "side quest 3: taken",
+		"type": 1
+	},
+	"G1260": {
+		"defval": false,
+		"name": "side quest 3: hunted",
+		"type": 1
+	},
+	"G1261": {
+		"defval": false,
+		"name": "side quest 3: done",
+		"type": 1
+	},
+	"G1262": {
+		"defval": false,
+		"name": "side quest 4: taken",
+		"type": 1
+	},
+	"G1263": {
+		"defval": false,
+		"name": "side quest 4: hunted",
+		"type": 1
+	},
+	"G1264": {
+		"defval": false,
+		"name": "side quest 4: done",
+		"type": 1
+	},
+	"G1265": {
+		"defval": false,
+		"name": "side quest 5: taken",
+		"type": 1
+	},
+	"G1266": {
+		"defval": false,
+		"name": "side quest 5: hunted",
+		"type": 1
+	},
+	"G1267": {
+		"defval": false,
+		"name": "side quest 5: done",
+		"type": 1
+	},
+	"G1268": {
+		"defval": false,
+		"name": "side quest 6: taken",
+		"type": 1
+	},
+	"G1269": {
+		"defval": false,
+		"name": "side quest 6: hunted",
+		"type": 1
+	},
+	"G1270": {
+		"defval": false,
+		"name": "side quest 6: done",
+		"type": 1
+	},
+	"G1271": {
+		"defval": false,
+		"name": "side quest 7: taken",
+		"type": 1
+	},
+	"G1272": {
+		"defval": false,
+		"name": "side quest 7: hunted",
+		"type": 1
+	},
+	"G1273": {
+		"defval": false,
+		"name": "side quest 7: done",
+		"type": 1
+	},
+	"G1274": {
+		"defval": false,
+		"name": "side quest 8: taken",
+		"type": 1
+	},
+	"G1275": {
+		"defval": false,
+		"name": "side quest 8: hunted",
+		"type": 1
+	},
+	"G1276": {
+		"defval": false,
+		"name": "side quest 8: done",
+		"type": 1
+	},
+	"G1277": {
+		"defval": false,
+		"name": "side quest 9: taken",
+		"type": 1
+	},
+	"G1278": {
+		"defval": false,
+		"name": "side quest 9: hunted",
+		"type": 1
+	},
+	"G1279": {
+		"defval": false,
+		"name": "side quest 9: done",
+		"type": 1
+	},
+	"G1280": {
+		"defval": false,
+		"name": "side quest 10: taken",
+		"type": 1
+	},
+	"G1281": {
+		"defval": false,
+		"name": "side quest 10: hunted",
+		"type": 1
+	},
+	"G1282": {
+		"defval": false,
+		"name": "side quest 10: done",
+		"type": 1
+	},
+	"G1283": {
+		"defval": false,
+		"name": "side quest 11: taken",
+		"type": 1
+	},
+	"G1284": {
+		"defval": false,
+		"name": "side quest 11: hunted",
+		"type": 1
+	},
+	"G1285": {
+		"defval": false,
+		"name": "side quest 11: done",
+		"type": 1
+	},
+	"G1286": {
+		"defval": false,
+		"name": "side quest 12: taken",
+		"type": 1
+	},
+	"G1287": {
+		"defval": false,
+		"name": "side quest 12: hunted",
+		"type": 1
+	},
+	"G1288": {
+		"defval": false,
+		"name": "side quest 12: done",
+		"type": 1
+	},
+	"G1289": {
+		"defval": false,
+		"name": "side quest 13: taken",
+		"type": 1
+	},
+	"G1290": {
+		"defval": false,
+		"name": "side quest 13: hunted",
+		"type": 1
+	},
+	"G1291": {
+		"defval": false,
+		"name": "side quest 13: done",
+		"type": 1
+	},
+	"G1292": {
+		"defval": false,
+		"name": "side quest 14: taken",
+		"type": 1
+	},
+	"G1293": {
+		"defval": false,
+		"name": "side quest 14: hunted",
+		"type": 1
+	},
+	"G1294": {
+		"defval": false,
+		"name": "side quest 14: done",
+		"type": 1
+	},
+	"G1295": {
+		"defval": false,
+		"name": "side quest 15: taken",
+		"type": 1
+	},
+	"G1296": {
+		"defval": false,
+		"name": "side quest 15: hunted",
+		"type": 1
+	},
+	"G1297": {
+		"defval": false,
+		"name": "side quest 15: done",
+		"type": 1
+	},
 	"G1244": {
 		"defval": 0,
 		"name": "Journal: the tracked entry (0 = the main story; RokuganJournal.sk)",

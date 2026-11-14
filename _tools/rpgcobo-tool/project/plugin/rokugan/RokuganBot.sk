@@ -292,3 +292,48 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 		newthread().start( @() ::Rokugan.botRun( path));
 	}
 }
+
+//	-rttitlepick NAME (title-screen test, with -rtfast -rtchoice N): the title menu's first wait picks entry NAME (m5 =
+//	Update / Verify) as a player would; every later wait is logged ("[RT] TITLE back at the menu") and left to the
+//	player. The updater's downloads are stubbed out in this mode (it only logs what it would run), so a test can never
+//	rewrite the game files.
+if( ::arguments.indexOf( "-rttitlepick") >= 0){
+	local pick = ::arguments[::arguments.indexOf( "-rttitlepick") + 1], n = { k = 0 };
+	::Rokugan.updRun <- function( runner, fast){ printf( "[RT] TITLE updRun %S (stubbed: nothing fetched)\n", fast ? "fast" : "verify"); };
+	local _loop = ::RPGMain.uiLoop;
+	::RPGMain.uiLoop <- function( funcmap){
+		n.k++;
+		if( n.k <= 2) printf( "[RT] TITLE uiLoop %d keys %S\n", n.k, encodeJSON( Table.keys( funcmap)));
+		if( n.k == 1 && ("action" in funcmap)){
+			local r = null;
+			try{ r = funcmap.action( { id = "action", src = { name = pick }, item = { _name = pick, key = pick, disable = false } }); }
+			catch( ex){ printf( "[RT] TITLE pick threw %S\n", "" .. ex); printexception( ex); }
+			printf( "[RT] TITLE picked %S -> %S\n", pick, "" .. r);
+			return r;
+		}
+		if( n.k == 2) printf( "[RT] TITLE back at the menu\n");
+		return _loop( funcmap);
+	};
+}
+
+//	-rtjournaltrack TAB,IDX (with -rtmenutest menu_journal): the Journal's first wait picks tab TAB (0 Story, 1 Side
+//	quests, 2 Training, 3 Done) and entry IDX there, as a player choosing it; later waits go on to -rtmenutest (back out).
+if( ::arguments.indexOf( "-rtjournaltrack") >= 0){
+	local ti = ::arguments[::arguments.indexOf( "-rtjournaltrack") + 1].split( ",").map( @( v) int( v)), jd = { done = false };
+	local _jloop = ::RPGMain.uiLoop;
+	::RPGMain.uiLoop <- function( funcmap){
+		if( !jd.done && ("page" in funcmap) && ("action" in funcmap)){
+			jd.done = true;
+			local r = null;
+			try{
+				if( ti[0] > 0) funcmap.action( { name = "tab" .. ti[0], item = null });
+				local tabs = ::Rokugan.journalTabs(), e = tabs[ti[0]][ti[1]];
+				printf( "[RT] JOURNAL pick tab %d entry %d: %S (id %d)\n", ti[0], ti[1], e.title, e.id);
+				r = funcmap.action( { name = "i" .. ti[1], item = { _name = "i" .. ti[1], item = e } });
+			}catch( ex){ printf( "[RT] JOURNAL pick threw %S\n", "" .. ex); printexception( ex); }
+			printf( "[RT] JOURNAL pick -> %S, G1244 = %S\n", "" .. r, "" .. ::rpgvar["G1244"]);
+			if( r != null) return r;
+		}
+		return _jloop( funcmap);
+	};
+}

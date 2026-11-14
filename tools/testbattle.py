@@ -7,6 +7,9 @@ import subprocess
 import sys
 import time
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import engine_lock  # noqa: E402
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 TOOL = os.path.normpath(os.path.join(HERE, "..", "_tools", "rpgcobo-tool"))
 PARTY_NAMES = ("Hiruma", "Hida", "Isawa", "Squeak", "Gonta", "Kakita", "Matsu", "Kitsuki", "Akodo", "Lion", "Shiba",
@@ -38,7 +41,7 @@ def main():
             opts[k] = a[i + 1]
             a = a[:i] + a[i + 2:]
     gid = a[0]
-    pass                                                                  # (never kill engines this script did not start: the user and other agents run their own)
+    engine_lock.wait_free()                                              # (single-instance engine: never kill one this script did not start)
     log = os.path.join(HERE, "..", "_art", "preview", "battle_%s.log" % gid)
     args = [os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-battle", opts["--map"], gid, "-debuglv", opts["--lv"],
             "-rtauto", "-rtfast"]
@@ -47,7 +50,7 @@ def main():
     if opts["--rt"]:
         args += ["-rt", opts["--rt"]]
     with open(log, "w") as lf:
-        proc = subprocess.Popen(args, cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
+        proc = engine_lock.launch(args, cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
     t0 = time.time()
     while proc.poll() is None and time.time() - t0 < float(opts["--wait"]):
         time.sleep(2)

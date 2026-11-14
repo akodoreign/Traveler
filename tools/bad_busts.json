@@ -220,9 +220,9 @@
    "speaker": "Old nun",
    "file": "npc_old_nun/neutral.png",
    "found": "2026-11-14 bust monitor batch 6 (candidates rejected)",
-   "why": "candidates are young women in a western nun's habit",
-   "look": "very old japanese buddhist nun, 70s, shaven head, deeply wrinkled sorrowful face, grey monastic robes, prayer beads",
-   "seed_add": 300
+   "why": "candidates are young women in a western nun's habit; round 2 still drew a western habit",
+   "look": "very old japanese buddhist ama nun, 70s, completely shaven bald head, no hood, no veil, deeply wrinkled sorrowful face, plain grey kesa robe, wooden prayer beads",
+   "seed_add": 600
   },
   {
    "speaker": "Kitsune grandmother",
@@ -230,7 +230,8 @@
    "found": "2026-11-14 bust monitor batch 6 (candidates rejected)",
    "why": "candidates are young; a feuding old grandmother ('Forty years...')",
    "look": "cranky old grandmother, 70s, wrinkled sly face, thin grey hair in a bun, faded green and orange kimono, wooden ladle",
-   "seed_add": 300
+   "seed_add": 600,
+   "fixed": "2026-11-14 redraw picked"
   },
   {
    "speaker": "Bloodspeaker",
@@ -238,15 +239,16 @@
    "found": "2026-11-14 bust monitor batch 7 (candidates rejected)",
    "why": "candidates have loudspeakers in the background (the word 'speaker') and read as plain boys",
    "look": "maho cultist sorcerer, gaunt pale man, 40s, sunken red-rimmed eyes, ritual scars on cheeks, dark red hooded robe, bloodstained fingers, no loudspeakers",
-   "seed_add": 300
+   "seed_add": 600,
+   "fixed": "2026-11-14 redraw picked"
   },
   {
    "speaker": "Refugee Herbalist",
    "file": "npc_refugee_herbalist/neutral.png",
    "found": "2026-11-14 bust monitor batch 7 (candidates rejected)",
-   "why": "candidates are young men; she was a midwife in Motobu",
-   "look": "tired middle-aged woman, 40s, former midwife, kind weary face, hair tied in a dusty headscarf, travel-worn brown kimono, herb satchel",
-   "seed_add": 300
+   "why": "candidates are young men; she was a midwife in Motobu; round 2 drew a western red-cross medic badge",
+   "look": "tired middle-aged woman, 40s, former midwife, kind weary face, hair tied in a dusty headscarf, travel-worn brown kimono, herb satchel, no red cross, no symbols",
+   "seed_add": 600
   },
   {
    "speaker": "Auntie Fumi",
@@ -254,14 +256,44 @@
    "found": "2026-11-14 bust monitor batch 7 (candidates rejected)",
    "why": "candidates are young girls; a village auntie who knew Sayo as a child",
    "look": "warm plump village auntie, 50s, round smiling face, greying black hair in a bun, faded blue work kimono, apron",
-   "seed_add": 300
+   "seed_add": 600,
+   "fixed": "2026-11-14 redraw picked"
   },
   {
    "speaker": "Otomo Shinken",
    "file": "npc_otomo_shinken/neutral.png",
    "found": "2026-11-14 bust monitor batch 7 (candidates rejected)",
-   "why": "candidates are women; he is the vain Imperial magistrate ('Thanks to my diligence!')",
-   "look": "pompous imperial magistrate, man, 40s, smug face, thin moustache, tall black eboshi court hat, gold and green imperial silk robes",
+   "why": "candidates are women; he is the vain Imperial magistrate ('Thanks to my diligence!'); round 2 drew a woman with a moustache",
+   "look": "pompous middle-aged nobleman, adult man, 1boy, male focus, 40s, smug face, thin moustache, black lacquered eboshi court hat, gold and green imperial silk robes",
+   "seed_add": 600
+  },
+  {
+   "speaker": "Hida yojimbo",
+   "file": "(stand-in)",
+   "found": "2026-11-14 new side-quest givers (lead): no own bust",
+   "why": "side-quest giver in Hoshi-no-Ichi (Salt and Goblins / The Tide-Crab Nest)",
+   "look": "burly crab clan bodyguard, man, 30s, broad scarred face, short black hair, stubble, heavy dark blue-grey lamellar armour, tetsubo over the shoulder"
+  },
+  {
+   "speaker": "Daidoji courtier",
+   "file": "(stand-in)",
+   "found": "2026-11-14 new side-quest givers (lead): no own bust",
+   "why": "side-quest giver in Garden Under Shadow City; teaches that a courtier who asks for credit is not remembered",
+   "look": "poised crane clan courtier, woman, 30s, composed knowing smile, black hair in an elegant bun, pale blue and white silk court kimono with a dark blue Daidoji over-robe, folded fan"
+  },
+  {
+   "speaker": "A bo-staff monk",
+   "file": "(stand-in)",
+   "found": "2026-11-14 new side-quest givers (lead): no own bust",
+   "why": "side-quest giver in Zumiki (Painted Men / Wolves of the Snowbound Pass), a Togashi-minded sohei",
+   "look": "mountain warrior monk, man, 40s, shaven head, calm weathered face, plain grey and saffron sohei robes, white head wrap around the neck, holding a wooden bo staff upright, snow on the shoulders"
+  },
+  {
+   "speaker": "Akodo Kagehisa",
+   "file": "(stand-in)",
+   "found": "2026-11-14 batch 8 (candidates rejected)",
+   "why": "candidates are young women; Kagehisa is a man (a Lion courier-lord sending a secret message)",
+   "look": "lion clan samurai, adult man, 1boy, male focus, 40s, grave stern face, black hair in a topknot, short beard, gold and brown kimono with a dark armoured shoulder guard",
    "seed_add": 300
   }
  ]

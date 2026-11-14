@@ -8,6 +8,9 @@ import subprocess
 import sys
 import time
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import engine_lock  # noqa: E402
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import gen_maps as gm  # noqa: E402
@@ -24,7 +27,7 @@ def listing(mid):
 
 
 def run(mid, eid, page, rtvar, choice, wait, quiet=6.0, lv="", party="", rt=""):
-    subprocess.run(["taskkill", "/IM", "rpgcobo.exe", "/F"], capture_output=True)
+    engine_lock.wait_free()                                              # (single-instance engine: never kill one this script did not start)
     log = os.path.join(HERE, "..", "_art", "preview", "event_%s_%s.txt" % (mid, eid))
     args = [os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-event", mid, str(eid), str(page), "-rtfast",
             "-rtauto", "-debuglv", lv or "9"]                   # the debug level is also the party's level
@@ -40,7 +43,7 @@ def run(mid, eid, page, rtvar, choice, wait, quiet=6.0, lv="", party="", rt=""):
     if packed:
         args += ["-rt", ";".join(packed)]
     with open(log, "w") as lf:
-        proc = subprocess.Popen(args, cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
+        proc = engine_lock.launch(args, cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
     t0, last, size = time.time(), time.time(), 0
     while time.time() - t0 < wait:
         time.sleep(1.0)

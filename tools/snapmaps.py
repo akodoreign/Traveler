@@ -7,6 +7,9 @@ import subprocess
 import sys
 import time
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import engine_lock  # noqa: E402
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import gen_maps as gm  # noqa: E402
@@ -31,14 +34,14 @@ def snap(mid, x, z, rtvar, wait=4.0):
         ox, oz = gm.ROOM_OFS.get(mid, (0, 0))
         h = int(mm.hgt[int(z + oz), int(x + ox)])
     pos[1] = (h + 1) / 2.0
-    subprocess.run(["taskkill", "/IM", "rpgcobo.exe", "/F"], capture_output=True)
+    engine_lock.wait_free()                                              # (single-instance engine: never kill one this script did not start)
     log = os.path.join(gm.HERE, "..", "_art", "preview", "snap_%s.txt" % mid)
     with open(log, "w") as lf:
         os.makedirs(os.path.join(TOOL, "tmp", "rt_shot"), exist_ok=True)
         raw = os.path.join(TOOL, "tmp", "rt_shot", "snap_%s.raw" % mid)          # the game may only write here
         if os.path.exists(raw):
             os.remove(raw)
-        proc = subprocess.Popen([os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-map", mid,
+        proc = engine_lock.launch([os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-map", mid,
                                  "[%.1f,%.2f,%.1f,0.0]" % (pos[0], pos[1], pos[2]), "-rtvar", rtvar, "-rtfast",
                                  "-rtshot", "tmp/rt_shot/snap_%s.raw" % mid, str(int(wait * 1000) + 3000)],
                                 cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)

@@ -54,6 +54,12 @@ PERKS = {
     "J136": ("Iron Body", "DEF +20%.", [STAT("PDEF", 20)]),
     "J137": ("Flowing Step", "+10% evasion.", [STAT("PEVA", 10, "supply")]),
     "J138": ("Tattooed Strength", "ATK +15%.", [STAT("PATK", 15)]),
+    # (user 2026-11-14) the quest jobs' perks: data options, so they work wherever they are worn
+    "J140": ("Stout", "Max HP +15%.", [STAT("MAXHP", 15)]),
+    "J141": ("Kiai", "ATK +10%.", [STAT("PATK", 10)]),
+    "J142": ("Temple Discipline", "Magic DEF +20%.", [STAT("MDEF", 20)]),
+    "J144": ("Steady Nerves", "Resists poison, blindness, silence, charm, sleep and confusion (50%).",
+             [RESIST(50, 1, 2, 3, 4, 5, 8)]),
 }
 
 # (job id, owner, name, description, [perks at Lv 1, 4, 7], signature trait at Lv 10)
@@ -79,6 +85,22 @@ JOBS = [
 ]
 TRAVELER_TRAIT = "J134"
 
+# (user 2026-11-14: side quests "for generic jobs similar to Traveler") Jobs anyone in the travelers' party can wear,
+# learned from a side quest (tools/gen_maps.py SIDE_QUESTS): (job id, done flag, name, description, perks, trait).
+GENERIC_JOBS = [
+    ("J020", "G1255", "Yojimbo", "The bodyguard: stand in front of the cart, not behind it.", ["J136", "J140", "J141"],
+     "J140"),
+    ("J021", "G1261", "Courtier", "The court's weapons: a price, a straight face, friends in every house.",
+     ["J127", "J117", "J129"], "J127"),
+    ("J022", "G1267", "Sergeant", "First in, last out: the vanguard, the shout, the banner.", ["J119", "J141", "J121"],
+     "J119"),
+    ("J023", "G1273", "Sohei", "The temple's warrior monks: a light step, a still mind, nerves of jade.",
+     ["J137", "J142", "J144"], "J142"),
+]
+# (user 2026-11-14: "equip up to 4 traits") job slot 0 = the Job; slots 1-4 = Traits
+JOB_SLOTS = ["Job", "Trait 1", "Trait 2", "Trait 3", "Trait 4"]
+TRAIT_SLOT_BITS = 2 | 4 | 8 | 16
+
 
 def traveler_pct(lv):
     """Traveler's EXP and money bonus: +1% at job Lv 1 to +50% at Lv 10 (user)."""
@@ -97,14 +119,16 @@ def build(jobs, template_job, template_trait):
         {"LV": TRAIT_LEVEL, "opttype": "opt_getjob", "jobid": TRAVELER_TRAIT}],
         "desc": "A traveler on the roads of Rokugan. EXP and money from battles +%d%% at job Lv 1, rising to +%d%% "
                 "at Lv 10. Lv 10 trait: Seasoned Traveler." % (traveler_pct(1), traveler_pct(10))})
-    for jid, pid, name, desc, perks, sig in JOBS:
+    for jid, pid, name, desc, perks, sig in JOBS + [(g[0], None) + g[2:] for g in GENERIC_JOBS]:
         j = copy.deepcopy(template_job)
         lvo = [{"LV": TRAIT_LEVEL, "opttype": "opt_getjob", "jobid": sig}]
         for lv, tid in zip(PERK_LEVELS, perks):                 # data-option perks apply while the job is worn
             for o in PERKS[tid][2] or []:
                 lvo.append(dict(o, LV=lv))
         j.update({"name": name, "MAXLV": 10, "expcurv": list(JOB_CURVE), "jobflag": -1, "jobslotbits": 1,
-                  "option": [], "learn": [], "lvoption": lvo, "rt_owner": pid if isinstance(pid, list) else [pid],
+                  "option": [], "learn": [], "lvoption": lvo,
+                  "rt_owner": [] if pid is None else pid if isinstance(pid, list) else [pid],
+                  "rt_unlock": next((g[1] for g in GENERIC_JOBS if g[0] == jid), None),
                   "rt_perks": [[tid, lv] for lv, tid in zip(PERK_LEVELS, perks)],
                   "desc": desc + " " + " ".join(_perk_line(t_, lv) for lv, t_ in zip(PERK_LEVELS, perks)) +
                   " Lv 10 trait: %s." % PERKS[sig][0]})
@@ -112,8 +136,9 @@ def build(jobs, template_job, template_trait):
     for tid, (name, desc, opts) in PERKS.items():
         if opts is None:                                        # a template trait (J103): name only
             jobs[tid]["name"] = name
+            jobs[tid]["jobslotbits"] = TRAIT_SLOT_BITS
             continue
         j = copy.deepcopy(template_trait)
-        j.update({"name": name, "desc": "Trait. " + desc, "MAXLV": 1, "jobflag": -1, "jobslotbits": 2,
+        j.update({"name": name, "desc": "Trait. " + desc, "MAXLV": 1, "jobflag": -1, "jobslotbits": TRAIT_SLOT_BITS,
                   "lvoption": [], "option": [dict(o) for o in opts]})
         jobs[tid] = j

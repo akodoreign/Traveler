@@ -41153,6 +41153,324 @@
 				"name": "*villager-80"
 			},
 			"#81#": {
+				"role": "custom",
+				"pos": [
+					36,
+					4,
+					20,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1257",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1256",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1257",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G1256",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1257",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "A border patrol on the coast road, one of them reading a poem aloud and laughing.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M216",
+											"gid": 1,
+											"losefunc": 0,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "RESULT",
+																"op": "==",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Side quest: Lost Letters - done here. Back to the Daidoji courtier.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G1257",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
+													}
+												],
+												[
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1257",
+														"op": "=",
+														"rvar": false
+													}
+												]
+											]
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-81"
+			},
+			"#82#": {
+				"role": "custom",
+				"pos": [
+					38,
+					4,
+					20,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1260",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1259",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1260",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G1259",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1260",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Tide crabs, two broods of them, clattering over the low bridge.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M216",
+											"gid": 2,
+											"losefunc": 0,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_battle1",
+														"mapid": "M216",
+														"gid": 2,
+														"losefunc": 0,
+														"bgmid": null,
+														"keeprset": false
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "RESULT",
+																"op": "==",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Side quest: The Tide-Crab Bridge - done here. Back to the Daidoji courtier.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G1260",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
+													}
+												],
+												[
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1260",
+														"op": "=",
+														"rvar": false
+													}
+												]
+											]
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-82"
+			},
+			"#83#": {
 				"role": "portal",
 				"pos": [
 					86,
@@ -41180,9 +41498,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-81"
+				"name": "*portal-83"
 			},
-			"#82#": {
+			"#84#": {
 				"role": "portal",
 				"pos": [
 					170,
@@ -41210,7 +41528,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-82"
+				"name": "*portal-84"
 			}
 		},
 		"exitmap": {
@@ -45507,6 +45825,456 @@
 			},
 			"#94#": {
 				"role": "custom",
+				"mdlid": "EP494",
+				"pos": [
+					56,
+					4,
+					20,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Busy road. Busy, busy road.",
+								"name": "Daidoji courtier",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G346",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1256",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest: Lost Letters",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A border patrol took my courier's satchel on the coast road. The letters are poems. Very compromising poems. Discreetly, Kakita-sama.",
+								"name": "Daidoji courtier",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1256",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Side quest taken: Lost Letters. (The coast road, between the academy and the town: the patrol.) The Journal tracks it.",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1256",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1257",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The coast road, between the academy and the town: the patrol.",
+								"name": "Daidoji courtier",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1257",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1258",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Unread? ...Don't tell me if they were read. Thank you.",
+								"name": "Daidoji courtier",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1258",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "N000",
+								"op": 0,
+								"num": 900,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 900 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I001",
+								"op": 0,
+								"num": 2,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Healing Herb x2.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest done: Lost Letters.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1258",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The road's quieter for it.",
+								"name": "Daidoji courtier",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1258",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1259",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest: The Tide-Crab Bridge",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The tide crabs have taken the coast road's low bridge. A courtier who clears a road is remembered at court. A courtier who asks for credit is not. Shall I teach you the difference?",
+								"name": "Daidoji courtier",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1259",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Side quest taken: The Tide-Crab Bridge. (The coast road's low bridge: the tide crabs.) The Journal tracks it.",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1259",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1260",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The coast road's low bridge: the tide crabs.",
+								"name": "Daidoji courtier",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1260",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1261",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Remembered, and you never asked. You'll do well at court.",
+								"name": "Daidoji courtier",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1261",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "N000",
+								"op": 0,
+								"num": 1200,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 1200 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I001",
+								"op": 0,
+								"num": 2,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Healing Herb x2.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "foreach( m in ::rpgstat.members) if( m) ::Rokugan.ensureJobs( m);"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "${::Rokugan.jobUnlockText(\"J021\")}",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest done: The Tide-Crab Bridge.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1261",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The road's quieter for it.",
+								"name": "Daidoji courtier",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-94"
+			},
+			"#95#": {
+				"role": "custom",
 				"mdlid": "EP212",
 				"pos": [
 					132,
@@ -45539,53 +46307,16 @@
 						"cmdblock": []
 					}
 				],
-				"name": "*custom-94",
+				"name": "*custom-95",
 				"memo": "barricade"
 			},
-			"#95#": {
+			"#96#": {
 				"role": "custom",
 				"mdlid": "EP221",
 				"pos": [
 					132,
 					4,
 					18,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G347",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-95",
-				"memo": "barricade"
-			},
-			"#96#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					19,
 					0
 				],
 				"reqs0": [
@@ -45622,7 +46353,7 @@
 				"pos": [
 					132,
 					4,
-					20,
+					19,
 					0
 				],
 				"reqs0": [
@@ -45655,11 +46386,11 @@
 			},
 			"#98#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "EP212",
 				"pos": [
 					132,
 					4,
-					21,
+					20,
 					0
 				],
 				"reqs0": [
@@ -45692,11 +46423,11 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
 					132,
 					4,
-					22,
+					21,
 					0
 				],
 				"reqs0": [
@@ -45733,7 +46464,7 @@
 				"pos": [
 					132,
 					4,
-					23,
+					22,
 					0
 				],
 				"reqs0": [
@@ -45765,6 +46496,43 @@
 				"memo": "barricade"
 			},
 			"#101#": {
+				"role": "custom",
+				"mdlid": "EP212",
+				"pos": [
+					132,
+					4,
+					23,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G347",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-101",
+				"memo": "barricade"
+			},
+			"#102#": {
 				"role": "villager",
 				"mdlid": "EP347",
 				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
@@ -45788,10 +46556,10 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-101",
+				"name": "*villager-102",
 				"memo": "barricade"
 			},
-			"#102#": {
+			"#103#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -45819,9 +46587,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-102"
+				"name": "*portal-103"
 			},
-			"#103#": {
+			"#104#": {
 				"role": "portal",
 				"pos": [
 					160,
@@ -45849,7 +46617,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-103",
+				"name": "*portal-104",
 				"reqs0": [
 					{
 						"lvar": "G347",
@@ -141456,6 +142224,456 @@
 			},
 			"#94#": {
 				"role": "custom",
+				"mdlid": "EP1148",
+				"pos": [
+					48,
+					4,
+					19,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Busy road. Busy, busy road.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G467",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1262",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest: Deserters on the Shrine Road",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Ashigaru deserters on the shrine road, robbing pilgrims in a Lion's name. Bring them to heel, Akodo-sama.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1262",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Side quest taken: Deserters on the Shrine Road. (The shrine road, east of town: the deserters.) The Journal tracks it.",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1262",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1263",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The shrine road, east of town: the deserters.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1263",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1264",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "They'll go back in chains, and the pilgrims will go on. Good.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1264",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "N000",
+								"op": 0,
+								"num": 400,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 400 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I001",
+								"op": 0,
+								"num": 2,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Healing Herb x2.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest done: Deserters on the Shrine Road.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1264",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The road's quieter for it.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1264",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1265",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest: The Sergeant's Drill",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "More of them, in two bands. A sergeant goes first and comes back last. Do it twice, and I'll teach you the drill.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1265",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Side quest taken: The Sergeant's Drill. (The shrine road again: the last two bands of deserters.) The Journal tracks it.",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1265",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1266",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The shrine road again: the last two bands of deserters.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1266",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1267",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "First in, last out. The drill is yours.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1267",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "N000",
+								"op": 0,
+								"num": 700,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 700 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I001",
+								"op": 0,
+								"num": 2,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Healing Herb x2.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "foreach( m in ::rpgstat.members) if( m) ::Rokugan.ensureJobs( m);"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "${::Rokugan.jobUnlockText(\"J022\")}",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest done: The Sergeant's Drill.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1267",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The road's quieter for it.",
+								"name": "Lion sergeant",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-94"
+			},
+			"#95#": {
+				"role": "custom",
 				"mdlid": "EP212",
 				"pos": [
 					29,
@@ -141488,53 +142706,16 @@
 						"cmdblock": []
 					}
 				],
-				"name": "*custom-94",
+				"name": "*custom-95",
 				"memo": "barricade"
 			},
-			"#95#": {
+			"#96#": {
 				"role": "custom",
 				"mdlid": "EP221",
 				"pos": [
 					29,
 					4,
 					17,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G486",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-95",
-				"memo": "barricade"
-			},
-			"#96#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					29,
-					4,
-					18,
 					0
 				],
 				"reqs0": [
@@ -141571,7 +142752,7 @@
 				"pos": [
 					29,
 					4,
-					19,
+					18,
 					0
 				],
 				"reqs0": [
@@ -141604,11 +142785,11 @@
 			},
 			"#98#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "EP212",
 				"pos": [
 					29,
 					4,
-					20,
+					19,
 					0
 				],
 				"reqs0": [
@@ -141641,11 +142822,11 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
 					29,
 					4,
-					21,
+					20,
 					0
 				],
 				"reqs0": [
@@ -141682,7 +142863,7 @@
 				"pos": [
 					29,
 					4,
-					22,
+					21,
 					0
 				],
 				"reqs0": [
@@ -141714,6 +142895,43 @@
 				"memo": "barricade"
 			},
 			"#101#": {
+				"role": "custom",
+				"mdlid": "EP212",
+				"pos": [
+					29,
+					4,
+					22,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G486",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-101",
+				"memo": "barricade"
+			},
+			"#102#": {
 				"role": "villager",
 				"mdlid": "EP347",
 				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
@@ -141737,10 +142955,10 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-101",
+				"name": "*villager-102",
 				"memo": "barricade"
 			},
-			"#102#": {
+			"#103#": {
 				"role": "portal",
 				"pos": [
 					150,
@@ -141768,9 +142986,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-102"
+				"name": "*portal-103"
 			},
-			"#103#": {
+			"#104#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -141798,7 +143016,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-103",
+				"name": "*portal-104",
 				"reqs0": [
 					{
 						"lvar": "G486",
@@ -158640,6 +159858,324 @@
 				"name": "*villager-85"
 			},
 			"#86#": {
+				"role": "custom",
+				"pos": [
+					32,
+					4,
+					20,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1263",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1262",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1263",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G1262",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1263",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Spearmen in Lion colours block the shrine road. Not one of them is wearing his unit's mark.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M250",
+											"gid": 1,
+											"losefunc": 0,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "RESULT",
+																"op": "==",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Side quest: Deserters on the Shrine Road - done here. Back to the Lion sergeant.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G1263",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
+													}
+												],
+												[
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1263",
+														"op": "=",
+														"rvar": false
+													}
+												]
+											]
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-86"
+			},
+			"#87#": {
+				"role": "custom",
+				"pos": [
+					34,
+					4,
+					20,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1266",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1265",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1266",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G1265",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1266",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Two bands of deserters, one behind the other.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M250",
+											"gid": 1,
+											"losefunc": 0,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_battle1",
+														"mapid": "M250",
+														"gid": 1,
+														"losefunc": 0,
+														"bgmid": null,
+														"keeprset": false
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "RESULT",
+																"op": "==",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Side quest: The Sergeant's Drill - done here. Back to the Lion sergeant.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G1266",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
+													}
+												],
+												[
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1266",
+														"op": "=",
+														"rvar": false
+													}
+												]
+											]
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-87"
+			},
+			"#88#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -158667,9 +160203,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-86"
+				"name": "*portal-88"
 			},
-			"#87#": {
+			"#89#": {
 				"role": "portal",
 				"pos": [
 					160,
@@ -158697,7 +160233,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-87"
+				"name": "*portal-89"
 			}
 		},
 		"exitmap": {
@@ -261812,6 +263348,456 @@
 			},
 			"#93#": {
 				"role": "custom",
+				"mdlid": "EP1107",
+				"pos": [
+					66,
+					4,
+					21,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Busy road. Busy, busy road.",
+								"name": "A bo-staff monk",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G612",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1268",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest: Painted Men on the Pass",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Men with painted-on tattoos rob travellers on the pass and call it the Togashi way. It is not the Togashi way. Help me show them.",
+								"name": "A bo-staff monk",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1268",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Side quest taken: Painted Men on the Pass. (The snowbound pass, east of Zumiki: the painted men.) The Journal tracks it.",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1268",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1269",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The snowbound pass, east of Zumiki: the painted men.",
+								"name": "A bo-staff monk",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1269",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1270",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Ink washes off. Discipline doesn't. Thank you.",
+								"name": "A bo-staff monk",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1270",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "N000",
+								"op": 0,
+								"num": 900,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 900 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I001",
+								"op": 0,
+								"num": 2,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Healing Herb x2.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest done: Painted Men on the Pass.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1270",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The road's quieter for it.",
+								"name": "A bo-staff monk",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1270",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1271",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest: Wolves of the Snowbound Pass",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The pass wolves follow the snow down. A sohei stands between the village and the mountain. Stand there with me twice, and you'll have the temple's discipline.",
+								"name": "A bo-staff monk",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1271",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Side quest taken: Wolves of the Snowbound Pass. (The snowbound pass again: the wolves.) The Journal tracks it.",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1271",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1272",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The snowbound pass again: the wolves.",
+								"name": "A bo-staff monk",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1272",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1273",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The mountain stays up there; the village stays down here. That's all a sohei does.",
+								"name": "A bo-staff monk",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1273",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "N000",
+								"op": 0,
+								"num": 1200,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 1200 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I001",
+								"op": 0,
+								"num": 2,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Healing Herb x2.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "foreach( m in ::rpgstat.members) if( m) ::Rokugan.ensureJobs( m);"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "${::Rokugan.jobUnlockText(\"J023\")}",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest done: Wolves of the Snowbound Pass.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1273",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The road's quieter for it.",
+								"name": "A bo-staff monk",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-93"
+			},
+			"#94#": {
+				"role": "custom",
 				"mdlid": "EP212",
 				"pos": [
 					122,
@@ -261844,53 +263830,16 @@
 						"cmdblock": []
 					}
 				],
-				"name": "*custom-93",
+				"name": "*custom-94",
 				"memo": "barricade"
 			},
-			"#94#": {
+			"#95#": {
 				"role": "custom",
 				"mdlid": "EP221",
 				"pos": [
 					122,
 					4,
 					18,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G613",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-94",
-				"memo": "barricade"
-			},
-			"#95#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					122,
-					4,
-					19,
 					0
 				],
 				"reqs0": [
@@ -261927,7 +263876,7 @@
 				"pos": [
 					122,
 					4,
-					20,
+					19,
 					0
 				],
 				"reqs0": [
@@ -261960,11 +263909,11 @@
 			},
 			"#97#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "EP212",
 				"pos": [
 					122,
 					4,
-					21,
+					20,
 					0
 				],
 				"reqs0": [
@@ -261997,11 +263946,11 @@
 			},
 			"#98#": {
 				"role": "custom",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
 					122,
 					4,
-					22,
+					21,
 					0
 				],
 				"reqs0": [
@@ -262038,7 +263987,7 @@
 				"pos": [
 					122,
 					4,
-					23,
+					22,
 					0
 				],
 				"reqs0": [
@@ -262070,6 +264019,43 @@
 				"memo": "barricade"
 			},
 			"#100#": {
+				"role": "custom",
+				"mdlid": "EP212",
+				"pos": [
+					122,
+					4,
+					23,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G613",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-100",
+				"memo": "barricade"
+			},
+			"#101#": {
 				"role": "villager",
 				"mdlid": "EP347",
 				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
@@ -262093,10 +264079,10 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-100",
+				"name": "*villager-101",
 				"memo": "barricade"
 			},
-			"#101#": {
+			"#102#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -262124,9 +264110,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-101"
+				"name": "*portal-102"
 			},
-			"#102#": {
+			"#103#": {
 				"role": "portal",
 				"pos": [
 					150,
@@ -262154,7 +264140,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-102",
+				"name": "*portal-103",
 				"reqs0": [
 					{
 						"lvar": "G613",
@@ -264591,6 +266577,324 @@
 				"name": "*villager-77"
 			},
 			"#78#": {
+				"role": "custom",
+				"pos": [
+					36,
+					3,
+					20,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1269",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1268",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1269",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G1268",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1269",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Painted men step out of the snow on the pass, ink running on their arms.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M283",
+											"gid": 1,
+											"losefunc": 0,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "RESULT",
+																"op": "==",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Side quest: Painted Men on the Pass - done here. Back to the bo-staff monk.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G1269",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
+													}
+												],
+												[
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1269",
+														"op": "=",
+														"rvar": false
+													}
+												]
+											]
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-78"
+			},
+			"#79#": {
+				"role": "custom",
+				"pos": [
+					38,
+					3,
+					20,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1272",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1271",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1272",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G1271",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1272",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Wolves, a whole pack, and another pack on the ridge behind.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M283",
+											"gid": 2,
+											"losefunc": 0,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_battle1",
+														"mapid": "M283",
+														"gid": 2,
+														"losefunc": 0,
+														"bgmid": null,
+														"keeprset": false
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "RESULT",
+																"op": "==",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Side quest: Wolves of the Snowbound Pass - done here. Back to the bo-staff monk.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G1272",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
+													}
+												],
+												[
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1272",
+														"op": "=",
+														"rvar": false
+													}
+												]
+											]
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-79"
+			},
+			"#80#": {
 				"role": "portal",
 				"pos": [
 					130,
@@ -264618,7 +266922,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-78"
+				"name": "*portal-80"
 			}
 		},
 		"exitmap": {
@@ -803579,6 +805883,324 @@
 				"name": "*villager-84"
 			},
 			"#85#": {
+				"role": "custom",
+				"pos": [
+					32,
+					4,
+					20,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1251",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1250",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1251",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G1250",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1251",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Goblins burst out of the rocks by the road, waving salt sacks like trophies.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M102",
+											"gid": 1,
+											"losefunc": 0,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "RESULT",
+																"op": "==",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Side quest: Salt and Goblins - done here. Back to the Hida yojimbo.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G1251",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
+													}
+												],
+												[
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1251",
+														"op": "=",
+														"rvar": false
+													}
+												]
+											]
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-85"
+			},
+			"#86#": {
+				"role": "custom",
+				"pos": [
+					34,
+					4,
+					20,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1254",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1253",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1254",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G1253",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1254",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "The sand heaves. Tide crabs, a whole brood - and a second one behind it.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_battle1",
+											"mapid": "M102",
+											"gid": 2,
+											"losefunc": 0,
+											"bgmid": null,
+											"keeprset": false
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "RESULT",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_battle1",
+														"mapid": "M102",
+														"gid": 2,
+														"losefunc": 0,
+														"bgmid": null,
+														"keeprset": false
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "RESULT",
+																"op": "==",
+																"rvar": 1
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Side quest: The Tide-Crab Nest - done here. Back to the Hida yojimbo.",
+																	"name": "",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G1254",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
+													}
+												],
+												[
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1254",
+														"op": "=",
+														"rvar": false
+													}
+												]
+											]
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-86"
+			},
+			"#87#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -803606,9 +806228,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-85"
+				"name": "*portal-87"
 			},
-			"#86#": {
+			"#88#": {
 				"role": "portal",
 				"pos": [
 					190,
@@ -803636,7 +806258,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-86"
+				"name": "*portal-88"
 			}
 		},
 		"exitmap": {
@@ -808667,6 +811289,451 @@
 				"name": "*villager-99"
 			},
 			"#100#": {
+				"role": "custom",
+				"mdlid": "EP473",
+				"pos": [
+					74,
+					4,
+					30,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Busy road. Busy, busy road.",
+								"name": "Hida yojimbo",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1250",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest: Salt and Goblins",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Goblins keep hitting the salt carts on the Coast Road. Nobody's paid me to stop them. You look like nobody's paid you either.",
+								"name": "Hida yojimbo",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1250",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Side quest taken: Salt and Goblins. (The Coast Road, west of town. The goblins come to you.) The Journal tracks it.",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1250",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1251",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The Coast Road, west of town. The goblins come to you.",
+								"name": "Hida yojimbo",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1251",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1252",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "That's the salt road quiet. Here. Hida pay.",
+								"name": "Hida yojimbo",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1252",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "N000",
+								"op": 0,
+								"num": 300,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 300 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I001",
+								"op": 0,
+								"num": 2,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Healing Herb x2.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest done: Salt and Goblins.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1252",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The road's quieter for it.",
+								"name": "Hida yojimbo",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1252",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1253",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest: The Tide-Crab Nest",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The crabs nest under the same road. Two broods. A yojimbo learns to stand in front of the cart, not behind it. Clear them and I'll teach you how.",
+								"name": "Hida yojimbo",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1253",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Side quest taken: The Tide-Crab Nest. (The Coast Road again: the tide-crab nest.) The Journal tracks it.",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1253",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1254",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The Coast Road again: the tide-crab nest.",
+								"name": "Hida yojimbo",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1254",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1255",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "You stood in front of the cart. That's the whole job. The rest is breathing.",
+								"name": "Hida yojimbo",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1255",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "N000",
+								"op": 0,
+								"num": 500,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 500 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I001",
+								"op": 0,
+								"num": 2,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Healing Herb x2.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "foreach( m in ::rpgstat.members) if( m) ::Rokugan.ensureJobs( m);"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "${::Rokugan.jobUnlockText(\"J020\")}",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Side quest done: The Tide-Crab Nest.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1255",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The road's quieter for it.",
+								"name": "Hida yojimbo",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-100"
+			},
+			"#101#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -808694,9 +811761,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-100"
+				"name": "*portal-101"
 			},
-			"#101#": {
+			"#102#": {
 				"role": "portal",
 				"pos": [
 					81,
@@ -808724,7 +811791,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-101"
+				"name": "*portal-102"
 			}
 		},
 		"exitmap": {
