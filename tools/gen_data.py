@@ -1917,7 +1917,9 @@ def main():
                     ("G1236", "road walked: Kitsuki Gendo (Dragon)"), ("G1237", "road walked: Akodo Shizue (Lion)"),
                     ("G1238", "road walked: Isawa Haruki (Phoenix)"),
                     ("G1239", "road walked: Shosuro Mitsue (Scorpion)"),
-                    ("G1240", "road walked: Ide Tamotsu (Unicorn)"), ("G1241", "road walked: Sayo (Ronin)")):
+                    ("G1240", "road walked: Ide Tamotsu (Unicorn)"), ("G1241", "road walked: Sayo (Ronin)"),
+                    ("G1242", "Crane Ch1 -> Ch2: the way-to-Garden-Under-Shadow objective shown"),
+                    ("G1243", "Crane Ch2: the castle-gate-guard objective shown")):
         gv[gid] = {"defval": False, "name": nm, "type": 1}
     gv["G1160"] = {"defval": 0, "name": "finale Party B (bitmask over P100-P107)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}

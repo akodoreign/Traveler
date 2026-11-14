@@ -13669,6 +13669,119 @@
 				"name": "*custom-3"
 			},
 			"#4#": {
+				"role": "custom",
+				"pos": [
+					122,
+					4,
+					19,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1242",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G321",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G346",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1242",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G321",
+										"op": "==",
+										"rvar": true
+									},
+									{
+										"lvar": "G346",
+										"op": "==",
+										"rvar": false
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1242",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: Garden Under Shadow City. Back west to the academy, out its south gate, then east along the coast road. (Chapter 2, recommended level 20)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 213,
+											"desc": "RT objective"
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-4"
+			},
+			"#5#": {
 				"role": "villager",
 				"mdlid": "EP356",
 				"msg": "Lady Doji Sanae, behind the screen: \"Walk, Rensei-san. Do not march.\"",
@@ -13694,9 +13807,9 @@
 				"gap": 1.8,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-4"
+				"name": "*villager-5"
 			},
-			"#5#": {
+			"#6#": {
 				"role": "custom",
 				"pos": [
 					86,
@@ -13788,9 +13901,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*custom-5"
+				"name": "*custom-6"
 			},
-			"#6#": {
+			"#7#": {
 				"role": "itemchest",
 				"itemid": "I100",
 				"num": 2,
@@ -13804,9 +13917,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*itemchest-6"
+				"name": "*itemchest-7"
 			},
-			"#7#": {
+			"#8#": {
 				"role": "itemchest",
 				"itemid": "N000",
 				"num": 60,
@@ -13820,9 +13933,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*itemchest-7"
+				"name": "*itemchest-8"
 			},
-			"#8#": {
+			"#9#": {
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
@@ -13946,9 +14059,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-8"
+				"name": "*custom-9"
 			},
-			"#9#": {
+			"#10#": {
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
@@ -13994,9 +14107,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-9"
+				"name": "*custom-10"
 			},
-			"#10#": {
+			"#11#": {
 				"role": "villager",
 				"mdlid": "EP387",
 				"msg": "Three quivers left. Two. Whatever. Point me at it.",
@@ -14022,9 +14135,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-10"
+				"name": "*villager-11"
 			},
-			"#11#": {
+			"#12#": {
 				"role": "villager",
 				"mdlid": "EP388",
 				"msg": "(listening to the ground) ...The stones are counting.",
@@ -14050,9 +14163,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-11"
+				"name": "*villager-12"
 			},
-			"#12#": {
+			"#13#": {
 				"role": "villager",
 				"mdlid": "EP389",
 				"msg": "That wall's leaning. Everything's leaning.",
@@ -14078,9 +14191,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-12"
+				"name": "*villager-13"
 			},
-			"#13#": {
+			"#14#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "Drink your tea. No, all of it.",
@@ -14106,9 +14219,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-13"
+				"name": "*villager-14"
 			},
-			"#14#": {
+			"#15#": {
 				"role": "villager",
 				"mdlid": "EP391",
 				"msg": "Smells like rain. Smells like goblin.",
@@ -14134,9 +14247,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-14"
+				"name": "*villager-15"
 			},
-			"#15#": {
+			"#16#": {
 				"role": "villager",
 				"mdlid": "EP392",
 				"msg": "My knees say it'll snow.",
@@ -14162,9 +14275,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-15"
+				"name": "*villager-16"
 			},
-			"#16#": {
+			"#17#": {
 				"role": "villager",
 				"mdlid": "EP342",
 				"msg": "Big sky. Good hills. Bad soup.",
@@ -14190,9 +14303,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-16"
+				"name": "*villager-17"
 			},
-			"#17#": {
+			"#18#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "Smoke on the wind. Something big, east.",
@@ -14218,9 +14331,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-17"
+				"name": "*villager-18"
 			},
-			"#18#": {
+			"#19#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(writing on an ofuda) Hold still. No, the other arm.",
@@ -14246,9 +14359,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-18"
+				"name": "*villager-19"
 			},
-			"#19#": {
+			"#20#": {
 				"role": "villager",
 				"mdlid": "EP395",
 				"msg": "Third stone's safe. All the others: squish.",
@@ -14274,9 +14387,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-19"
+				"name": "*villager-20"
 			},
-			"#20#": {
+			"#21#": {
 				"role": "villager",
 				"mdlid": "EP462",
 				"msg": "(muttering a prayer for the Green Ronin, then one for you)",
@@ -14302,9 +14415,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-20"
+				"name": "*villager-21"
 			},
-			"#21#": {
+			"#22#": {
 				"role": "villager",
 				"mdlid": "EP473",
 				"msg": "(watching the trees) ...Something's in there.",
@@ -14330,9 +14443,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-21"
+				"name": "*villager-22"
 			},
-			"#22#": {
+			"#23#": {
 				"role": "villager",
 				"mdlid": "EP541",
 				"msg": "(two lanterns bobbing on a rope between them)",
@@ -14358,9 +14471,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-22"
+				"name": "*villager-23"
 			},
-			"#23#": {
+			"#24#": {
 				"role": "villager",
 				"mdlid": "EP485",
 				"msg": "(watching the tide) ...Low water in an hour.",
@@ -14386,9 +14499,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-23"
+				"name": "*villager-24"
 			},
-			"#24#": {
+			"#25#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(murmuring the tide prayers)",
@@ -14414,9 +14527,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-24"
+				"name": "*villager-25"
 			},
-			"#25#": {
+			"#26#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(testing the wind with a wet finger)",
@@ -14442,9 +14555,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-25"
+				"name": "*villager-26"
 			},
-			"#26#": {
+			"#27#": {
 				"role": "villager",
 				"mdlid": "EP543",
 				"msg": "(murmuring to the breeze)",
@@ -14470,9 +14583,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-26"
+				"name": "*villager-27"
 			},
-			"#27#": {
+			"#28#": {
 				"role": "villager",
 				"mdlid": "EP549",
 				"msg": "(composing under her breath)",
@@ -14498,9 +14611,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-27"
+				"name": "*villager-28"
 			},
-			"#28#": {
+			"#29#": {
 				"role": "villager",
 				"mdlid": "EP553",
 				"msg": "(trimming a wick)",
@@ -14526,9 +14639,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-28"
+				"name": "*villager-29"
 			},
-			"#29#": {
+			"#30#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(leaning on the spear)",
@@ -14554,9 +14667,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-29"
+				"name": "*villager-30"
 			},
-			"#30#": {
+			"#31#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(whispering to ancestors who don't answer)",
@@ -14582,9 +14695,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-30"
+				"name": "*villager-31"
 			},
-			"#31#": {
+			"#32#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(polishing a jade disc)",
@@ -14610,9 +14723,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-31"
+				"name": "*villager-32"
 			},
-			"#32#": {
+			"#33#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(humming the Ballad of Matsu Joruri)",
@@ -14638,9 +14751,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-32"
+				"name": "*villager-33"
 			},
-			"#33#": {
+			"#34#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(stringing a hunting bow)",
@@ -14666,9 +14779,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-33"
+				"name": "*villager-34"
 			},
-			"#34#": {
+			"#35#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(watching the road for inspectors)",
@@ -14694,9 +14807,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-34"
+				"name": "*villager-35"
 			},
-			"#35#": {
+			"#36#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding herbs in a bowl)",
@@ -14722,9 +14835,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-35"
+				"name": "*villager-36"
 			},
-			"#36#": {
+			"#37#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(murmuring to the river's dead)",
@@ -14750,9 +14863,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-36"
+				"name": "*villager-37"
 			},
-			"#37#": {
+			"#38#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(clearing a very loud throat)",
@@ -14778,9 +14891,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-37"
+				"name": "*villager-38"
 			},
-			"#38#": {
+			"#39#": {
 				"role": "villager",
 				"mdlid": "EP574",
 				"msg": "(leaning on a long spear)",
@@ -14806,9 +14919,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-38"
+				"name": "*villager-39"
 			},
-			"#39#": {
+			"#40#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(cupping a small flame in both hands)",
@@ -14834,9 +14947,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-39"
+				"name": "*villager-40"
 			},
-			"#40#": {
+			"#41#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on a long oak staff)",
@@ -14862,9 +14975,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-40"
+				"name": "*villager-41"
 			},
-			"#41#": {
+			"#42#": {
 				"role": "villager",
 				"mdlid": "EP495",
 				"msg": "(knocking snow off a long carrying-pole)",
@@ -14890,9 +15003,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-41"
+				"name": "*villager-42"
 			},
-			"#42#": {
+			"#43#": {
 				"role": "villager",
 				"mdlid": "EP371",
 				"msg": "(reciting the names of the dead under her breath)",
@@ -14918,9 +15031,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-42"
+				"name": "*villager-43"
 			},
-			"#43#": {
+			"#44#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(spinning a long staff idly)",
@@ -14946,9 +15059,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-43"
+				"name": "*villager-44"
 			},
-			"#44#": {
+			"#45#": {
 				"role": "villager",
 				"mdlid": "EP575",
 				"msg": "(praying under her breath for her village)",
@@ -14974,9 +15087,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-44"
+				"name": "*villager-45"
 			},
-			"#45#": {
+			"#46#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(praying into the wind)",
@@ -15002,9 +15115,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-45"
+				"name": "*villager-46"
 			},
-			"#46#": {
+			"#47#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on an oak staff against the wind)",
@@ -15030,9 +15143,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-46"
+				"name": "*villager-47"
 			},
-			"#47#": {
+			"#48#": {
 				"role": "villager",
 				"mdlid": "EP463",
 				"msg": "(reciting a Tao verse slightly wrong)",
@@ -15058,9 +15171,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-47"
+				"name": "*villager-48"
 			},
-			"#48#": {
+			"#49#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding something that smells of the sea)",
@@ -15086,9 +15199,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-48"
+				"name": "*villager-49"
 			},
-			"#49#": {
+			"#50#": {
 				"role": "villager",
 				"mdlid": "EP614",
 				"msg": "(squinting at the water, counting breaths)",
@@ -15114,9 +15227,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-49"
+				"name": "*villager-50"
 			},
-			"#50#": {
+			"#51#": {
 				"role": "villager",
 				"mdlid": "EP616",
 				"msg": "(humming to a kami who is very, very old)",
@@ -15142,9 +15255,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-50"
+				"name": "*villager-51"
 			},
-			"#51#": {
+			"#52#": {
 				"role": "villager",
 				"mdlid": "EP551",
 				"msg": "(polishing a yari that is already very clean)",
@@ -15170,9 +15283,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-51"
+				"name": "*villager-52"
 			},
-			"#52#": {
+			"#53#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(practising a mudra, and getting it slightly wrong)",
@@ -15198,9 +15311,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-52"
+				"name": "*villager-53"
 			},
-			"#53#": {
+			"#54#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "(watching the ridge, very still)",
@@ -15226,9 +15339,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-53"
+				"name": "*villager-54"
 			},
-			"#54#": {
+			"#55#": {
 				"role": "villager",
 				"mdlid": "EP588",
 				"msg": "(rolling bandages, humming a court song)",
@@ -15254,9 +15367,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-54"
+				"name": "*villager-55"
 			},
-			"#55#": {
+			"#56#": {
 				"role": "villager",
 				"mdlid": "EP635",
 				"msg": "(practising a bow nobody will ever see)",
@@ -15282,9 +15395,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-55"
+				"name": "*villager-56"
 			},
-			"#56#": {
+			"#57#": {
 				"role": "villager",
 				"mdlid": "EP636",
 				"msg": "(sweeping the road as he walks, out of habit)",
@@ -15310,9 +15423,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-56"
+				"name": "*villager-57"
 			},
-			"#57#": {
+			"#58#": {
 				"role": "villager",
 				"mdlid": "EP637",
 				"msg": "(sniffing the wind toward the river, frowning)",
@@ -15338,9 +15451,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-57"
+				"name": "*villager-58"
 			},
-			"#58#": {
+			"#59#": {
 				"role": "villager",
 				"mdlid": "EP661",
 				"msg": "(not looking at the horizon where the city is)",
@@ -15366,9 +15479,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-58"
+				"name": "*villager-59"
 			},
-			"#59#": {
+			"#60#": {
 				"role": "villager",
 				"mdlid": "EP662",
 				"msg": "(gone from where she was standing; back again)",
@@ -15394,9 +15507,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-59"
+				"name": "*villager-60"
 			},
-			"#60#": {
+			"#61#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -15422,9 +15535,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-60"
+				"name": "*villager-61"
 			},
-			"#61#": {
+			"#62#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -15450,9 +15563,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-61"
+				"name": "*villager-62"
 			},
-			"#62#": {
+			"#63#": {
 				"role": "villager",
 				"mdlid": "EP687",
 				"msg": "(sniffing the air for the smell of rain)",
@@ -15478,9 +15591,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-62"
+				"name": "*villager-63"
 			},
-			"#63#": {
+			"#64#": {
 				"role": "villager",
 				"mdlid": "EP688",
 				"msg": "(checking both swords, then the path, then both swords)",
@@ -15506,9 +15619,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-63"
+				"name": "*villager-64"
 			},
-			"#64#": {
+			"#65#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the air for damp, out of habit)",
@@ -15534,9 +15647,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-64"
+				"name": "*villager-65"
 			},
-			"#65#": {
+			"#66#": {
 				"role": "villager",
 				"mdlid": "EP1100",
 				"msg": "(whistling to a horse that isn't there)",
@@ -15562,9 +15675,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-65"
+				"name": "*villager-66"
 			},
-			"#66#": {
+			"#67#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -15590,9 +15703,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-66"
+				"name": "*villager-67"
 			},
-			"#67#": {
+			"#68#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -15618,9 +15731,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-67"
+				"name": "*villager-68"
 			},
-			"#68#": {
+			"#69#": {
 				"role": "villager",
 				"mdlid": "EP1107",
 				"msg": "(humming a different song, on purpose)",
@@ -15646,9 +15759,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-68"
+				"name": "*villager-69"
 			},
-			"#69#": {
+			"#70#": {
 				"role": "villager",
 				"mdlid": "EP1108",
 				"msg": "(warming her hands on nothing)",
@@ -15674,9 +15787,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-69"
+				"name": "*villager-70"
 			},
-			"#70#": {
+			"#71#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the wind for rain)",
@@ -15702,9 +15815,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-70"
+				"name": "*villager-71"
 			},
-			"#71#": {
+			"#72#": {
 				"role": "villager",
 				"mdlid": "EP1112",
 				"msg": "(checking the wax in his ears, again)",
@@ -15730,9 +15843,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-71"
+				"name": "*villager-72"
 			},
-			"#72#": {
+			"#73#": {
 				"role": "villager",
 				"mdlid": "EP1127",
 				"msg": "(checking the fuses, one by one)",
@@ -15758,9 +15871,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-72"
+				"name": "*villager-73"
 			},
-			"#73#": {
+			"#74#": {
 				"role": "villager",
 				"mdlid": "EP1128",
 				"msg": "(watching the sky for wings)",
@@ -15786,9 +15899,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-73"
+				"name": "*villager-74"
 			},
-			"#74#": {
+			"#75#": {
 				"role": "villager",
 				"mdlid": "EP1139",
 				"msg": "(polishing a very old blade, very carefully)",
@@ -15814,9 +15927,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-74"
+				"name": "*villager-75"
 			},
-			"#75#": {
+			"#76#": {
 				"role": "villager",
 				"mdlid": "EP1140",
 				"msg": "(sniffing the air, as if it were soup)",
@@ -15842,9 +15955,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-75"
+				"name": "*villager-76"
 			},
-			"#76#": {
+			"#77#": {
 				"role": "villager",
 				"mdlid": "EP1149",
 				"msg": "(counting arrows, then goats, then arrows)",
@@ -15870,9 +15983,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-76"
+				"name": "*villager-77"
 			},
-			"#77#": {
+			"#78#": {
 				"role": "villager",
 				"mdlid": "EP1150",
 				"msg": "(sifting green dust through her fingers)",
@@ -15898,9 +16011,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-77"
+				"name": "*villager-78"
 			},
-			"#78#": {
+			"#79#": {
 				"role": "villager",
 				"mdlid": "EP1155",
 				"msg": "(squinting up at the smoke on the mountain)",
@@ -15926,9 +16039,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-78"
+				"name": "*villager-79"
 			},
-			"#79#": {
+			"#80#": {
 				"role": "villager",
 				"mdlid": "EP1156",
 				"msg": "(holding up a wet finger, frowning at the smoke)",
@@ -15954,9 +16067,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-79"
+				"name": "*villager-80"
 			},
-			"#80#": {
+			"#81#": {
 				"role": "villager",
 				"mdlid": "EP1161",
 				"msg": "(cracking his knuckles at the forest)",
@@ -15982,9 +16095,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-80"
+				"name": "*villager-81"
 			},
-			"#81#": {
+			"#82#": {
 				"role": "villager",
 				"mdlid": "EP1162",
 				"msg": "(counting arrowheads, lips moving)",
@@ -16010,9 +16123,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-81"
+				"name": "*villager-82"
 			},
-			"#82#": {
+			"#83#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -16040,9 +16153,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-82"
+				"name": "*portal-83"
 			},
-			"#83#": {
+			"#84#": {
 				"role": "portal",
 				"pos": [
 					170,
@@ -16070,7 +16183,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-83"
+				"name": "*portal-84"
 			}
 		},
 		"exitmap": {
@@ -38794,6 +38907,119 @@
 				"name": "*custom-5"
 			},
 			"#6#": {
+				"role": "custom",
+				"pos": [
+					36,
+					4,
+					20,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1242",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G321",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G346",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1242",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G321",
+										"op": "==",
+										"rvar": true
+									},
+									{
+										"lvar": "G346",
+										"op": "==",
+										"rvar": false
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1242",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: Garden Under Shadow City, east along this coast road. (Chapter 2, recommended level 20)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 218,
+											"desc": "RT objective"
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-6"
+			},
+			"#7#": {
 				"role": "portal",
 				"pos": [
 					86,
@@ -38821,7 +39047,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*portal-6",
+				"name": "*portal-7",
 				"reqs0": [
 					{
 						"lvar": "G362",
@@ -38830,7 +39056,7 @@
 					}
 				]
 			},
-			"#7#": {
+			"#8#": {
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
@@ -38908,9 +39134,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-7"
+				"name": "*custom-8"
 			},
-			"#8#": {
+			"#9#": {
 				"role": "villager",
 				"mdlid": "EP387",
 				"msg": "Three quivers left. Two. Whatever. Point me at it.",
@@ -38936,9 +39162,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-8"
+				"name": "*villager-9"
 			},
-			"#9#": {
+			"#10#": {
 				"role": "villager",
 				"mdlid": "EP388",
 				"msg": "(listening to the ground) ...The stones are counting.",
@@ -38964,9 +39190,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-9"
+				"name": "*villager-10"
 			},
-			"#10#": {
+			"#11#": {
 				"role": "villager",
 				"mdlid": "EP389",
 				"msg": "That wall's leaning. Everything's leaning.",
@@ -38992,9 +39218,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-10"
+				"name": "*villager-11"
 			},
-			"#11#": {
+			"#12#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "Drink your tea. No, all of it.",
@@ -39020,9 +39246,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-11"
+				"name": "*villager-12"
 			},
-			"#12#": {
+			"#13#": {
 				"role": "villager",
 				"mdlid": "EP391",
 				"msg": "Smells like rain. Smells like goblin.",
@@ -39048,9 +39274,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-12"
+				"name": "*villager-13"
 			},
-			"#13#": {
+			"#14#": {
 				"role": "villager",
 				"mdlid": "EP392",
 				"msg": "My knees say it'll snow.",
@@ -39076,9 +39302,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-13"
+				"name": "*villager-14"
 			},
-			"#14#": {
+			"#15#": {
 				"role": "villager",
 				"mdlid": "EP342",
 				"msg": "Big sky. Good hills. Bad soup.",
@@ -39104,9 +39330,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-14"
+				"name": "*villager-15"
 			},
-			"#15#": {
+			"#16#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "Smoke on the wind. Something big, east.",
@@ -39132,9 +39358,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-15"
+				"name": "*villager-16"
 			},
-			"#16#": {
+			"#17#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(writing on an ofuda) Hold still. No, the other arm.",
@@ -39160,9 +39386,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-16"
+				"name": "*villager-17"
 			},
-			"#17#": {
+			"#18#": {
 				"role": "villager",
 				"mdlid": "EP395",
 				"msg": "Third stone's safe. All the others: squish.",
@@ -39188,9 +39414,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-17"
+				"name": "*villager-18"
 			},
-			"#18#": {
+			"#19#": {
 				"role": "villager",
 				"mdlid": "EP462",
 				"msg": "(muttering a prayer for the Green Ronin, then one for you)",
@@ -39216,9 +39442,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-18"
+				"name": "*villager-19"
 			},
-			"#19#": {
+			"#20#": {
 				"role": "villager",
 				"mdlid": "EP473",
 				"msg": "(watching the trees) ...Something's in there.",
@@ -39244,9 +39470,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-19"
+				"name": "*villager-20"
 			},
-			"#20#": {
+			"#21#": {
 				"role": "villager",
 				"mdlid": "EP541",
 				"msg": "(two lanterns bobbing on a rope between them)",
@@ -39272,9 +39498,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-20"
+				"name": "*villager-21"
 			},
-			"#21#": {
+			"#22#": {
 				"role": "villager",
 				"mdlid": "EP485",
 				"msg": "(watching the tide) ...Low water in an hour.",
@@ -39300,9 +39526,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-21"
+				"name": "*villager-22"
 			},
-			"#22#": {
+			"#23#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(murmuring the tide prayers)",
@@ -39328,9 +39554,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-22"
+				"name": "*villager-23"
 			},
-			"#23#": {
+			"#24#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(testing the wind with a wet finger)",
@@ -39356,9 +39582,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-23"
+				"name": "*villager-24"
 			},
-			"#24#": {
+			"#25#": {
 				"role": "villager",
 				"mdlid": "EP543",
 				"msg": "(murmuring to the breeze)",
@@ -39384,9 +39610,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-24"
+				"name": "*villager-25"
 			},
-			"#25#": {
+			"#26#": {
 				"role": "villager",
 				"mdlid": "EP549",
 				"msg": "(composing under her breath)",
@@ -39412,9 +39638,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-25"
+				"name": "*villager-26"
 			},
-			"#26#": {
+			"#27#": {
 				"role": "villager",
 				"mdlid": "EP553",
 				"msg": "(trimming a wick)",
@@ -39440,9 +39666,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-26"
+				"name": "*villager-27"
 			},
-			"#27#": {
+			"#28#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(leaning on the spear)",
@@ -39468,9 +39694,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-27"
+				"name": "*villager-28"
 			},
-			"#28#": {
+			"#29#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(whispering to ancestors who don't answer)",
@@ -39496,9 +39722,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-28"
+				"name": "*villager-29"
 			},
-			"#29#": {
+			"#30#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(polishing a jade disc)",
@@ -39524,9 +39750,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-29"
+				"name": "*villager-30"
 			},
-			"#30#": {
+			"#31#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(humming the Ballad of Matsu Joruri)",
@@ -39552,9 +39778,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-30"
+				"name": "*villager-31"
 			},
-			"#31#": {
+			"#32#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(stringing a hunting bow)",
@@ -39580,9 +39806,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-31"
+				"name": "*villager-32"
 			},
-			"#32#": {
+			"#33#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(watching the road for inspectors)",
@@ -39608,9 +39834,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-32"
+				"name": "*villager-33"
 			},
-			"#33#": {
+			"#34#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding herbs in a bowl)",
@@ -39636,9 +39862,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-33"
+				"name": "*villager-34"
 			},
-			"#34#": {
+			"#35#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(murmuring to the river's dead)",
@@ -39664,9 +39890,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-34"
+				"name": "*villager-35"
 			},
-			"#35#": {
+			"#36#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(clearing a very loud throat)",
@@ -39692,9 +39918,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-35"
+				"name": "*villager-36"
 			},
-			"#36#": {
+			"#37#": {
 				"role": "villager",
 				"mdlid": "EP574",
 				"msg": "(leaning on a long spear)",
@@ -39720,9 +39946,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-36"
+				"name": "*villager-37"
 			},
-			"#37#": {
+			"#38#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(cupping a small flame in both hands)",
@@ -39748,9 +39974,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-37"
+				"name": "*villager-38"
 			},
-			"#38#": {
+			"#39#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on a long oak staff)",
@@ -39776,9 +40002,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-38"
+				"name": "*villager-39"
 			},
-			"#39#": {
+			"#40#": {
 				"role": "villager",
 				"mdlid": "EP495",
 				"msg": "(knocking snow off a long carrying-pole)",
@@ -39804,9 +40030,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-39"
+				"name": "*villager-40"
 			},
-			"#40#": {
+			"#41#": {
 				"role": "villager",
 				"mdlid": "EP371",
 				"msg": "(reciting the names of the dead under her breath)",
@@ -39832,9 +40058,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-40"
+				"name": "*villager-41"
 			},
-			"#41#": {
+			"#42#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(spinning a long staff idly)",
@@ -39860,9 +40086,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-41"
+				"name": "*villager-42"
 			},
-			"#42#": {
+			"#43#": {
 				"role": "villager",
 				"mdlid": "EP575",
 				"msg": "(praying under her breath for her village)",
@@ -39888,9 +40114,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-42"
+				"name": "*villager-43"
 			},
-			"#43#": {
+			"#44#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(praying into the wind)",
@@ -39916,9 +40142,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-43"
+				"name": "*villager-44"
 			},
-			"#44#": {
+			"#45#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on an oak staff against the wind)",
@@ -39944,9 +40170,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-44"
+				"name": "*villager-45"
 			},
-			"#45#": {
+			"#46#": {
 				"role": "villager",
 				"mdlid": "EP463",
 				"msg": "(reciting a Tao verse slightly wrong)",
@@ -39972,9 +40198,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-45"
+				"name": "*villager-46"
 			},
-			"#46#": {
+			"#47#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding something that smells of the sea)",
@@ -40000,9 +40226,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-46"
+				"name": "*villager-47"
 			},
-			"#47#": {
+			"#48#": {
 				"role": "villager",
 				"mdlid": "EP614",
 				"msg": "(squinting at the water, counting breaths)",
@@ -40028,9 +40254,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-47"
+				"name": "*villager-48"
 			},
-			"#48#": {
+			"#49#": {
 				"role": "villager",
 				"mdlid": "EP616",
 				"msg": "(humming to a kami who is very, very old)",
@@ -40056,9 +40282,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-48"
+				"name": "*villager-49"
 			},
-			"#49#": {
+			"#50#": {
 				"role": "villager",
 				"mdlid": "EP551",
 				"msg": "(polishing a yari that is already very clean)",
@@ -40084,9 +40310,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-49"
+				"name": "*villager-50"
 			},
-			"#50#": {
+			"#51#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(practising a mudra, and getting it slightly wrong)",
@@ -40112,9 +40338,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-50"
+				"name": "*villager-51"
 			},
-			"#51#": {
+			"#52#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "(watching the ridge, very still)",
@@ -40140,9 +40366,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-51"
+				"name": "*villager-52"
 			},
-			"#52#": {
+			"#53#": {
 				"role": "villager",
 				"mdlid": "EP588",
 				"msg": "(rolling bandages, humming a court song)",
@@ -40168,9 +40394,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-52"
+				"name": "*villager-53"
 			},
-			"#53#": {
+			"#54#": {
 				"role": "villager",
 				"mdlid": "EP635",
 				"msg": "(practising a bow nobody will ever see)",
@@ -40196,9 +40422,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-53"
+				"name": "*villager-54"
 			},
-			"#54#": {
+			"#55#": {
 				"role": "villager",
 				"mdlid": "EP636",
 				"msg": "(sweeping the road as he walks, out of habit)",
@@ -40224,9 +40450,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-54"
+				"name": "*villager-55"
 			},
-			"#55#": {
+			"#56#": {
 				"role": "villager",
 				"mdlid": "EP637",
 				"msg": "(sniffing the wind toward the river, frowning)",
@@ -40252,9 +40478,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-55"
+				"name": "*villager-56"
 			},
-			"#56#": {
+			"#57#": {
 				"role": "villager",
 				"mdlid": "EP661",
 				"msg": "(not looking at the horizon where the city is)",
@@ -40280,9 +40506,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-56"
+				"name": "*villager-57"
 			},
-			"#57#": {
+			"#58#": {
 				"role": "villager",
 				"mdlid": "EP662",
 				"msg": "(gone from where she was standing; back again)",
@@ -40308,9 +40534,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-57"
+				"name": "*villager-58"
 			},
-			"#58#": {
+			"#59#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -40336,9 +40562,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-58"
+				"name": "*villager-59"
 			},
-			"#59#": {
+			"#60#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -40364,9 +40590,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-59"
+				"name": "*villager-60"
 			},
-			"#60#": {
+			"#61#": {
 				"role": "villager",
 				"mdlid": "EP687",
 				"msg": "(sniffing the air for the smell of rain)",
@@ -40392,9 +40618,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-60"
+				"name": "*villager-61"
 			},
-			"#61#": {
+			"#62#": {
 				"role": "villager",
 				"mdlid": "EP688",
 				"msg": "(checking both swords, then the path, then both swords)",
@@ -40420,9 +40646,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-61"
+				"name": "*villager-62"
 			},
-			"#62#": {
+			"#63#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the air for damp, out of habit)",
@@ -40448,9 +40674,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-62"
+				"name": "*villager-63"
 			},
-			"#63#": {
+			"#64#": {
 				"role": "villager",
 				"mdlid": "EP1100",
 				"msg": "(whistling to a horse that isn't there)",
@@ -40476,9 +40702,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-63"
+				"name": "*villager-64"
 			},
-			"#64#": {
+			"#65#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -40504,9 +40730,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-64"
+				"name": "*villager-65"
 			},
-			"#65#": {
+			"#66#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -40532,9 +40758,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-65"
+				"name": "*villager-66"
 			},
-			"#66#": {
+			"#67#": {
 				"role": "villager",
 				"mdlid": "EP1107",
 				"msg": "(humming a different song, on purpose)",
@@ -40560,9 +40786,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-66"
+				"name": "*villager-67"
 			},
-			"#67#": {
+			"#68#": {
 				"role": "villager",
 				"mdlid": "EP1108",
 				"msg": "(warming her hands on nothing)",
@@ -40588,9 +40814,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-67"
+				"name": "*villager-68"
 			},
-			"#68#": {
+			"#69#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the wind for rain)",
@@ -40616,9 +40842,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-68"
+				"name": "*villager-69"
 			},
-			"#69#": {
+			"#70#": {
 				"role": "villager",
 				"mdlid": "EP1112",
 				"msg": "(checking the wax in his ears, again)",
@@ -40644,9 +40870,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-69"
+				"name": "*villager-70"
 			},
-			"#70#": {
+			"#71#": {
 				"role": "villager",
 				"mdlid": "EP1127",
 				"msg": "(checking the fuses, one by one)",
@@ -40672,9 +40898,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-70"
+				"name": "*villager-71"
 			},
-			"#71#": {
+			"#72#": {
 				"role": "villager",
 				"mdlid": "EP1128",
 				"msg": "(watching the sky for wings)",
@@ -40700,9 +40926,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-71"
+				"name": "*villager-72"
 			},
-			"#72#": {
+			"#73#": {
 				"role": "villager",
 				"mdlid": "EP1139",
 				"msg": "(polishing a very old blade, very carefully)",
@@ -40728,9 +40954,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-72"
+				"name": "*villager-73"
 			},
-			"#73#": {
+			"#74#": {
 				"role": "villager",
 				"mdlid": "EP1140",
 				"msg": "(sniffing the air, as if it were soup)",
@@ -40756,9 +40982,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-73"
+				"name": "*villager-74"
 			},
-			"#74#": {
+			"#75#": {
 				"role": "villager",
 				"mdlid": "EP1149",
 				"msg": "(counting arrows, then goats, then arrows)",
@@ -40784,9 +41010,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-74"
+				"name": "*villager-75"
 			},
-			"#75#": {
+			"#76#": {
 				"role": "villager",
 				"mdlid": "EP1150",
 				"msg": "(sifting green dust through her fingers)",
@@ -40812,9 +41038,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-75"
+				"name": "*villager-76"
 			},
-			"#76#": {
+			"#77#": {
 				"role": "villager",
 				"mdlid": "EP1155",
 				"msg": "(squinting up at the smoke on the mountain)",
@@ -40840,9 +41066,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-76"
+				"name": "*villager-77"
 			},
-			"#77#": {
+			"#78#": {
 				"role": "villager",
 				"mdlid": "EP1156",
 				"msg": "(holding up a wet finger, frowning at the smoke)",
@@ -40868,9 +41094,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-77"
+				"name": "*villager-78"
 			},
-			"#78#": {
+			"#79#": {
 				"role": "villager",
 				"mdlid": "EP1161",
 				"msg": "(cracking his knuckles at the forest)",
@@ -40896,9 +41122,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-78"
+				"name": "*villager-79"
 			},
-			"#79#": {
+			"#80#": {
 				"role": "villager",
 				"mdlid": "EP1162",
 				"msg": "(counting arrowheads, lips moving)",
@@ -40924,9 +41150,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-79"
+				"name": "*villager-80"
 			},
-			"#80#": {
+			"#81#": {
 				"role": "portal",
 				"pos": [
 					86,
@@ -40954,9 +41180,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-80"
+				"name": "*portal-81"
 			},
-			"#81#": {
+			"#82#": {
 				"role": "portal",
 				"pos": [
 					170,
@@ -40984,7 +41210,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-81"
+				"name": "*portal-82"
 			}
 		},
 		"exitmap": {
@@ -41418,6 +41644,119 @@
 				]
 			},
 			"#6#": {
+				"role": "custom",
+				"pos": [
+					32,
+					4,
+					20,
+					2
+				],
+				"mdl": {
+					"r": [
+						0,
+						0.5,
+						0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1243",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G321",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G346",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G1243",
+										"op": "==",
+										"rvar": false
+									},
+									{
+										"lvar": "G321",
+										"op": "==",
+										"rvar": true
+									},
+									{
+										"lvar": "G346",
+										"op": "==",
+										"rvar": false
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1243",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the castle gate at the back of the town. Lady Sanae's yojimbo is expected: speak to the gate guard.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 214,
+											"desc": "RT objective"
+										}
+									]
+								]
+							}
+						]
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-6"
+			},
+			"#7#": {
 				"role": "hotel",
 				"mdlid": "EP339",
 				"price": 60,
@@ -41432,9 +41771,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*hotel-6"
+				"name": "*hotel-7"
 			},
-			"#7#": {
+			"#8#": {
 				"role": "clerk",
 				"mdlid": "EP337",
 				"storeid": "R116",
@@ -41451,9 +41790,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*clerk-7"
+				"name": "*clerk-8"
 			},
-			"#8#": {
+			"#9#": {
 				"role": "clerk",
 				"mdlid": "EP340",
 				"storeid": "R117",
@@ -41470,9 +41809,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*clerk-8"
+				"name": "*clerk-9"
 			},
-			"#9#": {
+			"#10#": {
 				"role": "custom",
 				"mdlid": "EP475",
 				"pos": [
@@ -41687,9 +42026,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-9"
+				"name": "*custom-10"
 			},
-			"#10#": {
+			"#11#": {
 				"role": "villager",
 				"mdlid": "EP485",
 				"msg": "Low tide, high tide. The land-bridge to the Crab comes and goes twice a day.",
@@ -41707,9 +42046,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-10"
+				"name": "*villager-11"
 			},
-			"#11#": {
+			"#12#": {
 				"role": "villager",
 				"mdlid": "EP478",
 				"msg": "Iron Cranes, they call us. Iron. Cranes. Ha!",
@@ -41733,9 +42072,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-11"
+				"name": "*villager-12"
 			},
-			"#12#": {
+			"#13#": {
 				"role": "itemchest",
 				"itemid": "I101",
 				"num": 2,
@@ -41749,9 +42088,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*itemchest-12"
+				"name": "*itemchest-13"
 			},
-			"#13#": {
+			"#14#": {
 				"role": "itemchest",
 				"itemid": "N000",
 				"num": 400,
@@ -41765,9 +42104,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*itemchest-13"
+				"name": "*itemchest-14"
 			},
-			"#14#": {
+			"#15#": {
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
@@ -41892,9 +42231,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-14"
+				"name": "*custom-15"
 			},
-			"#15#": {
+			"#16#": {
 				"role": "custom",
 				"mdlid": "EP340",
 				"pos": [
@@ -41977,9 +42316,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-15"
+				"name": "*custom-16"
 			},
-			"#16#": {
+			"#17#": {
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
@@ -42095,9 +42434,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-16"
+				"name": "*custom-17"
 			},
-			"#17#": {
+			"#18#": {
 				"role": "custom",
 				"pos": [
 					124,
@@ -42356,6 +42695,20 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the Crane port. West along the coast road: the shore path leads down to it. (Chapter 3, recommended level 30)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 217,
+											"desc": "RT objective"
+										},
+										{
 											"cmd": "cmd_compute",
 											"lvar": "G369",
 											"op": "=",
@@ -42426,9 +42779,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-17"
+				"name": "*custom-18"
 			},
-			"#18#": {
+			"#19#": {
 				"role": "custom",
 				"mdlid": "EP485",
 				"pos": [
@@ -42702,9 +43055,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-18"
+				"name": "*custom-19"
 			},
-			"#19#": {
+			"#20#": {
 				"role": "custom",
 				"mdlid": "EP486",
 				"pos": [
@@ -42978,9 +43331,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-19"
+				"name": "*custom-20"
 			},
-			"#20#": {
+			"#21#": {
 				"role": "villager",
 				"mdlid": "EP387",
 				"msg": "Three quivers left. Two. Whatever. Point me at it.",
@@ -43006,9 +43359,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-20"
+				"name": "*villager-21"
 			},
-			"#21#": {
+			"#22#": {
 				"role": "villager",
 				"mdlid": "EP388",
 				"msg": "(listening to the ground) ...The stones are counting.",
@@ -43034,9 +43387,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-21"
+				"name": "*villager-22"
 			},
-			"#22#": {
+			"#23#": {
 				"role": "villager",
 				"mdlid": "EP389",
 				"msg": "That wall's leaning. Everything's leaning.",
@@ -43062,9 +43415,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-22"
+				"name": "*villager-23"
 			},
-			"#23#": {
+			"#24#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "Drink your tea. No, all of it.",
@@ -43090,9 +43443,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-23"
+				"name": "*villager-24"
 			},
-			"#24#": {
+			"#25#": {
 				"role": "villager",
 				"mdlid": "EP391",
 				"msg": "Smells like rain. Smells like goblin.",
@@ -43118,9 +43471,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-24"
+				"name": "*villager-25"
 			},
-			"#25#": {
+			"#26#": {
 				"role": "villager",
 				"mdlid": "EP392",
 				"msg": "My knees say it'll snow.",
@@ -43146,9 +43499,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-25"
+				"name": "*villager-26"
 			},
-			"#26#": {
+			"#27#": {
 				"role": "villager",
 				"mdlid": "EP342",
 				"msg": "Big sky. Good hills. Bad soup.",
@@ -43174,9 +43527,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-26"
+				"name": "*villager-27"
 			},
-			"#27#": {
+			"#28#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "Smoke on the wind. Something big, east.",
@@ -43202,9 +43555,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-27"
+				"name": "*villager-28"
 			},
-			"#28#": {
+			"#29#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(writing on an ofuda) Hold still. No, the other arm.",
@@ -43230,9 +43583,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-28"
+				"name": "*villager-29"
 			},
-			"#29#": {
+			"#30#": {
 				"role": "villager",
 				"mdlid": "EP395",
 				"msg": "Third stone's safe. All the others: squish.",
@@ -43258,9 +43611,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-29"
+				"name": "*villager-30"
 			},
-			"#30#": {
+			"#31#": {
 				"role": "villager",
 				"mdlid": "EP462",
 				"msg": "(muttering a prayer for the Green Ronin, then one for you)",
@@ -43286,9 +43639,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-30"
+				"name": "*villager-31"
 			},
-			"#31#": {
+			"#32#": {
 				"role": "villager",
 				"mdlid": "EP473",
 				"msg": "(watching the trees) ...Something's in there.",
@@ -43314,9 +43667,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-31"
+				"name": "*villager-32"
 			},
-			"#32#": {
+			"#33#": {
 				"role": "villager",
 				"mdlid": "EP541",
 				"msg": "(two lanterns bobbing on a rope between them)",
@@ -43342,9 +43695,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-32"
+				"name": "*villager-33"
 			},
-			"#33#": {
+			"#34#": {
 				"role": "villager",
 				"mdlid": "EP485",
 				"msg": "(watching the tide) ...Low water in an hour.",
@@ -43370,9 +43723,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-33"
+				"name": "*villager-34"
 			},
-			"#34#": {
+			"#35#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(murmuring the tide prayers)",
@@ -43398,9 +43751,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-34"
+				"name": "*villager-35"
 			},
-			"#35#": {
+			"#36#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(testing the wind with a wet finger)",
@@ -43426,9 +43779,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-35"
+				"name": "*villager-36"
 			},
-			"#36#": {
+			"#37#": {
 				"role": "villager",
 				"mdlid": "EP543",
 				"msg": "(murmuring to the breeze)",
@@ -43454,9 +43807,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-36"
+				"name": "*villager-37"
 			},
-			"#37#": {
+			"#38#": {
 				"role": "villager",
 				"mdlid": "EP549",
 				"msg": "(composing under her breath)",
@@ -43482,9 +43835,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-37"
+				"name": "*villager-38"
 			},
-			"#38#": {
+			"#39#": {
 				"role": "villager",
 				"mdlid": "EP553",
 				"msg": "(trimming a wick)",
@@ -43510,9 +43863,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-38"
+				"name": "*villager-39"
 			},
-			"#39#": {
+			"#40#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(leaning on the spear)",
@@ -43538,9 +43891,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-39"
+				"name": "*villager-40"
 			},
-			"#40#": {
+			"#41#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(whispering to ancestors who don't answer)",
@@ -43566,9 +43919,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-40"
+				"name": "*villager-41"
 			},
-			"#41#": {
+			"#42#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(polishing a jade disc)",
@@ -43594,9 +43947,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-41"
+				"name": "*villager-42"
 			},
-			"#42#": {
+			"#43#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(humming the Ballad of Matsu Joruri)",
@@ -43622,9 +43975,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-42"
+				"name": "*villager-43"
 			},
-			"#43#": {
+			"#44#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(stringing a hunting bow)",
@@ -43650,9 +44003,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-43"
+				"name": "*villager-44"
 			},
-			"#44#": {
+			"#45#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(watching the road for inspectors)",
@@ -43678,9 +44031,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-44"
+				"name": "*villager-45"
 			},
-			"#45#": {
+			"#46#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding herbs in a bowl)",
@@ -43706,9 +44059,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-45"
+				"name": "*villager-46"
 			},
-			"#46#": {
+			"#47#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(murmuring to the river's dead)",
@@ -43734,9 +44087,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-46"
+				"name": "*villager-47"
 			},
-			"#47#": {
+			"#48#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(clearing a very loud throat)",
@@ -43762,9 +44115,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-47"
+				"name": "*villager-48"
 			},
-			"#48#": {
+			"#49#": {
 				"role": "villager",
 				"mdlid": "EP574",
 				"msg": "(leaning on a long spear)",
@@ -43790,9 +44143,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-48"
+				"name": "*villager-49"
 			},
-			"#49#": {
+			"#50#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(cupping a small flame in both hands)",
@@ -43818,9 +44171,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-49"
+				"name": "*villager-50"
 			},
-			"#50#": {
+			"#51#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on a long oak staff)",
@@ -43846,9 +44199,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-50"
+				"name": "*villager-51"
 			},
-			"#51#": {
+			"#52#": {
 				"role": "villager",
 				"mdlid": "EP495",
 				"msg": "(knocking snow off a long carrying-pole)",
@@ -43874,9 +44227,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-51"
+				"name": "*villager-52"
 			},
-			"#52#": {
+			"#53#": {
 				"role": "villager",
 				"mdlid": "EP371",
 				"msg": "(reciting the names of the dead under her breath)",
@@ -43902,9 +44255,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-52"
+				"name": "*villager-53"
 			},
-			"#53#": {
+			"#54#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(spinning a long staff idly)",
@@ -43930,9 +44283,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-53"
+				"name": "*villager-54"
 			},
-			"#54#": {
+			"#55#": {
 				"role": "villager",
 				"mdlid": "EP575",
 				"msg": "(praying under her breath for her village)",
@@ -43958,9 +44311,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-54"
+				"name": "*villager-55"
 			},
-			"#55#": {
+			"#56#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(praying into the wind)",
@@ -43986,9 +44339,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-55"
+				"name": "*villager-56"
 			},
-			"#56#": {
+			"#57#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on an oak staff against the wind)",
@@ -44014,9 +44367,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-56"
+				"name": "*villager-57"
 			},
-			"#57#": {
+			"#58#": {
 				"role": "villager",
 				"mdlid": "EP463",
 				"msg": "(reciting a Tao verse slightly wrong)",
@@ -44042,9 +44395,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-57"
+				"name": "*villager-58"
 			},
-			"#58#": {
+			"#59#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding something that smells of the sea)",
@@ -44070,9 +44423,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-58"
+				"name": "*villager-59"
 			},
-			"#59#": {
+			"#60#": {
 				"role": "villager",
 				"mdlid": "EP614",
 				"msg": "(squinting at the water, counting breaths)",
@@ -44098,9 +44451,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-59"
+				"name": "*villager-60"
 			},
-			"#60#": {
+			"#61#": {
 				"role": "villager",
 				"mdlid": "EP616",
 				"msg": "(humming to a kami who is very, very old)",
@@ -44126,9 +44479,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-60"
+				"name": "*villager-61"
 			},
-			"#61#": {
+			"#62#": {
 				"role": "villager",
 				"mdlid": "EP551",
 				"msg": "(polishing a yari that is already very clean)",
@@ -44154,9 +44507,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-61"
+				"name": "*villager-62"
 			},
-			"#62#": {
+			"#63#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(practising a mudra, and getting it slightly wrong)",
@@ -44182,9 +44535,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-62"
+				"name": "*villager-63"
 			},
-			"#63#": {
+			"#64#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "(watching the ridge, very still)",
@@ -44210,9 +44563,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-63"
+				"name": "*villager-64"
 			},
-			"#64#": {
+			"#65#": {
 				"role": "villager",
 				"mdlid": "EP588",
 				"msg": "(rolling bandages, humming a court song)",
@@ -44238,9 +44591,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-64"
+				"name": "*villager-65"
 			},
-			"#65#": {
+			"#66#": {
 				"role": "villager",
 				"mdlid": "EP635",
 				"msg": "(practising a bow nobody will ever see)",
@@ -44266,9 +44619,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-65"
+				"name": "*villager-66"
 			},
-			"#66#": {
+			"#67#": {
 				"role": "villager",
 				"mdlid": "EP636",
 				"msg": "(sweeping the road as he walks, out of habit)",
@@ -44294,9 +44647,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-66"
+				"name": "*villager-67"
 			},
-			"#67#": {
+			"#68#": {
 				"role": "villager",
 				"mdlid": "EP637",
 				"msg": "(sniffing the wind toward the river, frowning)",
@@ -44322,9 +44675,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-67"
+				"name": "*villager-68"
 			},
-			"#68#": {
+			"#69#": {
 				"role": "villager",
 				"mdlid": "EP661",
 				"msg": "(not looking at the horizon where the city is)",
@@ -44350,9 +44703,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-68"
+				"name": "*villager-69"
 			},
-			"#69#": {
+			"#70#": {
 				"role": "villager",
 				"mdlid": "EP662",
 				"msg": "(gone from where she was standing; back again)",
@@ -44378,9 +44731,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-69"
+				"name": "*villager-70"
 			},
-			"#70#": {
+			"#71#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -44406,9 +44759,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-70"
+				"name": "*villager-71"
 			},
-			"#71#": {
+			"#72#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -44434,9 +44787,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-71"
+				"name": "*villager-72"
 			},
-			"#72#": {
+			"#73#": {
 				"role": "villager",
 				"mdlid": "EP687",
 				"msg": "(sniffing the air for the smell of rain)",
@@ -44462,9 +44815,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-72"
+				"name": "*villager-73"
 			},
-			"#73#": {
+			"#74#": {
 				"role": "villager",
 				"mdlid": "EP688",
 				"msg": "(checking both swords, then the path, then both swords)",
@@ -44490,9 +44843,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-73"
+				"name": "*villager-74"
 			},
-			"#74#": {
+			"#75#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the air for damp, out of habit)",
@@ -44518,9 +44871,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-74"
+				"name": "*villager-75"
 			},
-			"#75#": {
+			"#76#": {
 				"role": "villager",
 				"mdlid": "EP1100",
 				"msg": "(whistling to a horse that isn't there)",
@@ -44546,9 +44899,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-75"
+				"name": "*villager-76"
 			},
-			"#76#": {
+			"#77#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -44574,9 +44927,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-76"
+				"name": "*villager-77"
 			},
-			"#77#": {
+			"#78#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -44602,9 +44955,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-77"
+				"name": "*villager-78"
 			},
-			"#78#": {
+			"#79#": {
 				"role": "villager",
 				"mdlid": "EP1107",
 				"msg": "(humming a different song, on purpose)",
@@ -44630,9 +44983,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-78"
+				"name": "*villager-79"
 			},
-			"#79#": {
+			"#80#": {
 				"role": "villager",
 				"mdlid": "EP1108",
 				"msg": "(warming her hands on nothing)",
@@ -44658,9 +45011,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-79"
+				"name": "*villager-80"
 			},
-			"#80#": {
+			"#81#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the wind for rain)",
@@ -44686,9 +45039,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-80"
+				"name": "*villager-81"
 			},
-			"#81#": {
+			"#82#": {
 				"role": "villager",
 				"mdlid": "EP1112",
 				"msg": "(checking the wax in his ears, again)",
@@ -44714,9 +45067,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-81"
+				"name": "*villager-82"
 			},
-			"#82#": {
+			"#83#": {
 				"role": "villager",
 				"mdlid": "EP1127",
 				"msg": "(checking the fuses, one by one)",
@@ -44742,9 +45095,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-82"
+				"name": "*villager-83"
 			},
-			"#83#": {
+			"#84#": {
 				"role": "villager",
 				"mdlid": "EP1128",
 				"msg": "(watching the sky for wings)",
@@ -44770,9 +45123,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-83"
+				"name": "*villager-84"
 			},
-			"#84#": {
+			"#85#": {
 				"role": "villager",
 				"mdlid": "EP1139",
 				"msg": "(polishing a very old blade, very carefully)",
@@ -44798,9 +45151,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-84"
+				"name": "*villager-85"
 			},
-			"#85#": {
+			"#86#": {
 				"role": "villager",
 				"mdlid": "EP1140",
 				"msg": "(sniffing the air, as if it were soup)",
@@ -44826,9 +45179,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-85"
+				"name": "*villager-86"
 			},
-			"#86#": {
+			"#87#": {
 				"role": "villager",
 				"mdlid": "EP1149",
 				"msg": "(counting arrows, then goats, then arrows)",
@@ -44854,9 +45207,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-86"
+				"name": "*villager-87"
 			},
-			"#87#": {
+			"#88#": {
 				"role": "villager",
 				"mdlid": "EP1150",
 				"msg": "(sifting green dust through her fingers)",
@@ -44882,9 +45235,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-87"
+				"name": "*villager-88"
 			},
-			"#88#": {
+			"#89#": {
 				"role": "villager",
 				"mdlid": "EP1155",
 				"msg": "(squinting up at the smoke on the mountain)",
@@ -44910,9 +45263,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-88"
+				"name": "*villager-89"
 			},
-			"#89#": {
+			"#90#": {
 				"role": "villager",
 				"mdlid": "EP1156",
 				"msg": "(holding up a wet finger, frowning at the smoke)",
@@ -44938,9 +45291,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-89"
+				"name": "*villager-90"
 			},
-			"#90#": {
+			"#91#": {
 				"role": "villager",
 				"mdlid": "EP1161",
 				"msg": "(cracking his knuckles at the forest)",
@@ -44966,9 +45319,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-90"
+				"name": "*villager-91"
 			},
-			"#91#": {
+			"#92#": {
 				"role": "villager",
 				"mdlid": "EP1162",
 				"msg": "(counting arrowheads, lips moving)",
@@ -44994,9 +45347,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-91"
+				"name": "*villager-92"
 			},
-			"#92#": {
+			"#93#": {
 				"role": "custom",
 				"mdlid": "EP309",
 				"pos": [
@@ -45150,9 +45503,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*custom-92"
+				"name": "*custom-93"
 			},
-			"#93#": {
+			"#94#": {
 				"role": "custom",
 				"mdlid": "EP212",
 				"pos": [
@@ -45186,53 +45539,16 @@
 						"cmdblock": []
 					}
 				],
-				"name": "*custom-93",
+				"name": "*custom-94",
 				"memo": "barricade"
 			},
-			"#94#": {
+			"#95#": {
 				"role": "custom",
 				"mdlid": "EP221",
 				"pos": [
 					132,
 					4,
 					18,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G347",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-94",
-				"memo": "barricade"
-			},
-			"#95#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					19,
 					0
 				],
 				"reqs0": [
@@ -45269,7 +45585,7 @@
 				"pos": [
 					132,
 					4,
-					20,
+					19,
 					0
 				],
 				"reqs0": [
@@ -45302,11 +45618,11 @@
 			},
 			"#97#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "EP212",
 				"pos": [
 					132,
 					4,
-					21,
+					20,
 					0
 				],
 				"reqs0": [
@@ -45339,11 +45655,11 @@
 			},
 			"#98#": {
 				"role": "custom",
-				"mdlid": "EP212",
+				"mdlid": "EP221",
 				"pos": [
 					132,
 					4,
-					22,
+					21,
 					0
 				],
 				"reqs0": [
@@ -45380,7 +45696,7 @@
 				"pos": [
 					132,
 					4,
-					23,
+					22,
 					0
 				],
 				"reqs0": [
@@ -45412,6 +45728,43 @@
 				"memo": "barricade"
 			},
 			"#100#": {
+				"role": "custom",
+				"mdlid": "EP212",
+				"pos": [
+					132,
+					4,
+					23,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G347",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-100",
+				"memo": "barricade"
+			},
+			"#101#": {
 				"role": "villager",
 				"mdlid": "EP347",
 				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
@@ -45435,10 +45788,10 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
-				"name": "*villager-100",
+				"name": "*villager-101",
 				"memo": "barricade"
 			},
-			"#101#": {
+			"#102#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -45466,9 +45819,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-101"
+				"name": "*portal-102"
 			},
-			"#102#": {
+			"#103#": {
 				"role": "portal",
 				"pos": [
 					160,
@@ -45496,7 +45849,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-102",
+				"name": "*portal-103",
 				"reqs0": [
 					{
 						"lvar": "G347",
@@ -53596,6 +53949,20 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: Kyuden Doji, by sea. Board the ship at the Crane port and sail for Kyuden Doji; the castle gate is up the town's main street. (Chapter 4, recommended level 41)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 219,
+											"desc": "RT objective"
+										},
+										{
 											"cmd": "cmd_compute",
 											"lvar": "G403",
 											"op": "=",
@@ -56357,7 +56724,7 @@
 				"wipe": 2,
 				"dest": {
 					"mapid": "M216",
-					"evid": 6
+					"evid": 7
 				},
 				"mdl": {
 					"r": [
@@ -84756,6 +85123,20 @@
 											"text": "A play about a demon, banned for four hundred years. Rensei rehearsed it in secret, faced his father on the white sand - and found a new hilt-wrap on his sword with no note at all.",
 											"name": "",
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the unsigned letter on the table, here at court - the end of Rensei's road. There the next traveler's road begins; when all eight are walked, the finale.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 220,
+											"desc": "RT objective"
 										}
 									]
 								]
@@ -124075,6 +124456,26 @@
 											"desc": "RT ladder hint"
 										},
 										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: Garden Under Shadow City. Back west to the academy, out its south gate, then east along the coast road. (Chapter 2, recommended level 20)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 213,
+											"desc": "RT objective"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1242",
+											"op": "=",
+											"rvar": true
+										},
+										{
 											"cmd": "cmd_mapmove",
 											"dest": {
 												"mapid": "M201",
@@ -127338,6 +127739,26 @@
 											"name": "",
 											"uiclose": 2,
 											"desc": "RT ladder hint"
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: Garden Under Shadow City. Back west to the academy, out its south gate, then east along the coast road. (Chapter 2, recommended level 20)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 213,
+											"desc": "RT objective"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1242",
+											"op": "=",
+											"rvar": true
 										},
 										{
 											"cmd": "cmd_mapmove",
@@ -152087,6 +152508,20 @@
 											"text": "A raid broke a shrine and freed a Bloodspeaker. Shizue followed the truth into her own family, and bound the spirit in jade. Now Toturi's Winter Court awaits - and an Imperial magistrate who prefers things inconclusive.",
 											"name": "",
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: Toturi's Winter Court at Shiro Akodo. Take the winter road west of Lord Hiruto's town. (Chapter 2, recommended level 20)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 221,
+											"desc": "RT objective"
 										},
 										{
 											"cmd": "cmd_compute",
@@ -189347,6 +189782,20 @@
 											"text": "A cowardly oni ate a good man one treasure at a time. Shizue found the pattern, armed herself in jade without knowing why, and made the Lion Champion learn her name.",
 											"name": "",
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the karo's office at Shiro Akodo - the door at the back of the castle grounds. (Chapter 3, recommended level 30)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 222,
+											"desc": "RT objective"
 										},
 										{
 											"cmd": "cmd_compute",
@@ -244970,6 +245419,20 @@
 											"text": "The same ford, the same banner, the same blue-eyed hand pushing both armies into the river. The battle stopped. The war did not. And a river stone points north and east, to Shinomen.",
 											"name": "",
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the road-marker in the Lion camp at the ford - the end of Shizue's road. There the next traveler's road begins; when all eight are walked, the finale.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 223,
+											"desc": "RT objective"
 										},
 										{
 											"cmd": "cmd_compute",
@@ -308436,6 +308899,20 @@
 											"text": "Haruki walked through the night he broke Mieko, met both halves of her, and gave up part of his own Void to make her whole. She doesn't forgive him - yet. She does want to help hunt the Bride of Fu Leng.",
 											"name": "",
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the road-marker in the coast temple town - the end of Haruki's road. There the next traveler's road begins; when all eight are walked, the finale.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 224,
+											"desc": "RT objective"
 										},
 										{
 											"cmd": "cmd_memberop",
@@ -573558,6 +574035,20 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the road-marker in the Dragon mountain town - the end of Mitsue's road. There the next traveler's road begins; when all eight are walked, the finale.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 225,
+											"desc": "RT objective"
+										},
+										{
 											"cmd": "cmd_compute",
 											"lvar": "G962",
 											"op": "=",
@@ -653483,6 +653974,20 @@
 											"text": "In a castle where the wind never stopped, Tamotsu paid a demon to leave, and it went. An old man died saying sorry at last. A nameless peasant became the bridge between two broken houses - whether he likes it or not.",
 											"name": "",
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the road-marker on the valley road home - the end of Tamotsu's road. There the next traveler's road begins; when all eight are walked, the finale.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 226,
+											"desc": "RT objective"
 										},
 										{
 											"cmd": "cmd_if",
@@ -753036,6 +753541,20 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
+											"text": "Objective: the road-marker in the Oracle's shrine town - the end of Sayo's road. There the next traveler's road begins; when all eight are walked, the finale.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 227,
+											"desc": "RT objective"
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
 											"text": "(Sayo's road is walked. Hiro's \"The Tiger in the Blood\" waits for her in Cakon. And at Rank 4, Lv 51: her fourth ronin technique.)",
 											"name": "",
 											"uiclose": 2
@@ -794727,6 +795246,20 @@
 											"text": "Natsuko followed her grieving lord into the Shadowlands and found her father's road was real. She brought Kage home - and learned that a name left in the dark doesn't stay lost.",
 											"name": "",
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: Hiruma Ryoichi, in the garrison yard, has news. (Chapter 4, recommended level 34)",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 215,
+											"desc": "RT objective"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -946058,6 +946591,20 @@
 											"text": "A wedding at speed, a barrel in the cellar, and a demon in a bride's face. Natsuko hunted her through a dark castle using pebbles and jade dust, and herded her out onto the Wall. She escaped north on smoke - and Natsuko is following.",
 											"name": "",
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the road-marker in Kyuden Hida's summer town - the end of Natsuko's road. There the next traveler's road begins; when all eight are walked, the finale.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 216,
+											"desc": "RT objective"
 										},
 										{
 											"cmd": "cmd_memberop",

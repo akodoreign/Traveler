@@ -5033,6 +5033,16 @@
 		"name": "road walked: Sayo (Ronin)",
 		"type": 1
 	},
+	"G1242": {
+		"defval": false,
+		"name": "Crane Ch1 -> Ch2: the way-to-Garden-Under-Shadow objective shown",
+		"type": 1
+	},
+	"G1243": {
+		"defval": false,
+		"name": "Crane Ch2: the castle-gate-guard objective shown",
+		"type": 1
+	},
 	"G1160": {
 		"defval": 0,
 		"name": "finale Party B (bitmask over P100-P107)",

@@ -3893,6 +3893,15 @@ def cr1(sid, **kw):
     return script_scene(CR1, sid, **kw)
 
 
+# (user 2026-11-14: "my crane save is stuck with no guidance of where to go") Ch1's end posted no objective, so the
+# Story box kept showing the castle guest room. The way on: academy south gate -> coast road -> Garden Under Shadow
+# City -> the castle gate guard (Ch2). Shown at the chapter's end, and once on the way for saves made after it.
+OBJ_CR2_ROAD = ("Objective: Garden Under Shadow City. Back west to the academy, out its south gate, then east along "
+                "the coast road. (Chapter 2, recommended level 20)")
+OBJ_CR2_GATE = ("Objective: the castle gate at the back of the town. Lady Sanae's yojimbo is expected: speak to the "
+                "gate guard.")
+
+
 # ---- M099 the prologue: choose the starter (OCTOPATH-FIT §1: choose 1 of 8; the starter's Ch1 plays solo)
 START_NATSUKO = {"mapid": "M100", "pos": [20.0 + PAD_X / 2.0, 8.5, 6.0 + PAD_BOTTOM / 2.0, 0.0]}
 def spot(mdl):
@@ -4075,6 +4084,7 @@ def road_west():
     ev.portal(1, 15, "M200", 1, d=1)                                       # event 1: back to the academy
     ev.portal(118, 15, "M202", 1, d=3)                                     # event 2: on to Pleasant Eaves
     ev.scene(4, 15, "G333", S02_CR1, after="G301")
+    ev.scene(96, 15, "G1242", [narrate(OBJ_CR2_ROAD)], after=[flag("G321"), flag("G346", False)])   # (saves past Ch1)
     ev.follower(3, 17, "EP356", "Lady Doji Sanae, behind the screen: \"Walk, Rensei-san. Do not march.\"", gap=1.8,
                 reqs=[flag("G303", False)])
     ev.scene(60, 15, "G334", FOUR_DAYS, touch=True)
@@ -4522,8 +4532,8 @@ S09_ROAD = cr1("S09", start_at="(On the road east.", stop_at="[CHAPTER COMPLETE]
     narrate("Sent to make a fallen prodigy disappear, Rensei found a man who could cut twice and then shake for an hour "
             "- and stood beside him."),
     setf("G232", 0), narrate("Kitsuki Seigen and Matsu Kiku go their own ways. (Their side stories come later.)"),
-    setf("G321"), go("M201", 100, 15)]
-S09 = [if_([route(4)], S09_DUEL, [if_([route(3)], S09_FLEES, S09_DIES)])] + DARK + S09_ROAD
+    setf("G321"), narrate(OBJ_CR2_ROAD), setf("G1242"), go("M201", 100, 15)]
+S09 =[if_([route(4)], S09_DUEL, [if_([route(3)], S09_FLEES, S09_DIES)])] + DARK + S09_ROAD
 
 
 def boss_yasurugi(gid):
@@ -4642,7 +4652,9 @@ def crane_coast_road():
     ev.chest(88, 21, "N000", 300)
     ev.talk(8, 19, "CE000", [(None, [narrate("A road-stone: \"Garden Under Shadow City, a day south. The Crab border "
                                               "beyond the land-bridge.\" (Danger 20-25)")])], trigger=1)
-    port = DOOR_EV[("M216", "port")] = ev.portal(60, 9, "M220", 1, d=0)       # the shore path (Crane Ch3)
+    ev.scene(10, 16, "G1242", [narrate("Objective: Garden Under Shadow City, east along this coast road. (Chapter 2, "
+                                       "recommended level 20)")], after=[flag("G321"), flag("G346", False)])
+    port =DOOR_EV[("M216", "port")] = ev.portal(60, 9, "M220", 1, d=0)       # the shore path (Crane Ch3)
     ev.ev["#%d#" % port]["reqs0"] = [flag("G362")]
     ev.talk(60, 11, "CE000", [(None, [narrate("A shore path down to the Crane port. Lady Sanae's business isn't "
                                               "there. Yet."), step_back(0, 2.0)]), ([flag("G362")], [])], trigger=5)
@@ -4675,7 +4687,7 @@ def garden_port():
         fb(m, x, 19, 2, LAMP_STREET)
     ev = Events(m)
     ev.portal(1, 16, "M216", 2, d=1)                                        # event 1: the coast road
-    south = ev.portal(108, 16, "M212", 1, d=3)                              # event 2: the land-bridge (after S01)
+    south = ev.portal(108, 16, "M212", 1, d=3)                            # event 2: the land-bridge (after S01)
     ev.ev["#%d#" % south]["reqs0"] = [flag("G347")]
     ev.talk(106, 16, "CE000", [(None, [narrate("The road to the land-bridge. Tomorrow, at low tide."),
                                        step_back(-2.0, 0)]), ([flag("G347")], [])], trigger=5)
@@ -4688,6 +4700,7 @@ def garden_port():
     garden = ev.portal(51, 36, "M211", 1, d=0)                              # the castle gate (after the chapter icon)
     assert garden == 5                                                      # M211's way out returns here
     ev.ev["#%d#" % garden]["reqs0"] = [flag("G346")]
+    ev.scene(6, 16, "G1243", [narrate(OBJ_CR2_GATE)], after=[flag("G321"), flag("G346", False)])  # (after event 5)
     ev.inn(10, 19, EP_SERVICE["innkeeper"], 60)
     ev.clerk(46, 19, EP_SERVICE["quartermaster"], "R116")
     ev.clerk(60, 19, EP_SERVICE["merchant"], "R117")
@@ -18709,8 +18722,64 @@ def register(specs, events):
             e["encount"], e["encntrate"] = groups, ENC_RATE
         mp[sp.mid] = e
     ladder_hint_pass(mp)
+    chapter_end_pass(mp)
     objective_pass(mp)
     json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="	")
+
+
+# (user 2026-11-14: "my crane save is stuck with no guidance of where to go") A scan found 13 chapter ends that post no
+# objective, so the Story box kept the old chapter's last line. Each gets the way to the next chapter's start (or, at
+# a Ch4 end, to that road's end marker - finale_gate), inserted after its "- complete." line and the summary under it.
+def _end_marker(place, who):
+    return ("Objective: %s - the end of %s's road. There the next traveler's road begins; when all eight are walked, "
+            "the finale." % (place, who))
+
+
+CHAPTER_END_OBJ = {
+    "The Iron Cranes": "Objective: the Crane port. West along the coast road: the shore path leads down to it. "
+                       "(Chapter 3, recommended level 30)",
+    "The White Squid": "Objective: Kyuden Doji, by sea. Board the ship at the Crane port and sail for Kyuden Doji; "
+                       "the castle gate is up the town's main street. (Chapter 4, recommended level 41)",
+    "Beyond the Wall": "Objective: Hiruma Ryoichi, in the garrison yard, has news. (Chapter 4, recommended level 34)",
+    "The Blood of Family": "Objective: Toturi's Winter Court at Shiro Akodo. Take the winter road west of Lord "
+                           "Hiruto's town. (Chapter 2, recommended level 20)",
+    "Shadow of a Doubt": "Objective: the karo's office at Shiro Akodo - the door at the back of the castle grounds. "
+                         "(Chapter 3, recommended level 30)",
+    "The Play No One Performs": _end_marker("the unsigned letter on the table, here at court", "Rensei"),
+    "Sorrow's Path": _end_marker("the road-marker in the Lion camp at the ford", "Shizue"),
+    "Howl": _end_marker("the road-marker in the coast temple town", "Haruki"),
+    "The Eve": _end_marker("the road-marker in the Dragon mountain town", "Mitsue"),
+    "Regret": _end_marker("the road-marker on the valley road home", "Tamotsu"),
+    "The Oracle's Choice": _end_marker("the road-marker in the Oracle's shrine town", "Sayo"),
+    "The Fairest One of All": _end_marker("the road-marker in Kyuden Hida's summer town", "Natsuko"),
+}
+
+
+def chapter_end_pass(mp):
+    n = 0
+
+    def walk(o):
+        nonlocal n
+        if isinstance(o, dict):
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for i, c in enumerate(o):
+                t = c.get("text", "") if isinstance(c, dict) and c.get("cmd") == "cmd_showmsg" else ""
+                mt = re.match(r'"(.+)" - complete\.$', t)
+                if mt and mt.group(1) in CHAPTER_END_OBJ and "Objective" not in json.dumps(o[i + 1:]):
+                    j = i + 1                                                   # after the summary line, if any
+                    if j < len(o) and isinstance(o[j], dict) and o[j].get("cmd") == "cmd_showmsg" and \
+                            not o[j].get("name"):
+                        j += 1
+                    o.insert(j, narrate(CHAPTER_END_OBJ[mt.group(1)]))
+                    n += 1
+                    break
+            for v in o:
+                walk(v)
+    for mid in mp:
+        walk((mp[mid] or {}).get("event") or {})
+    print("chapter ends given an objective:", n)
 
 
 def ladder_hint_pass(mp):
