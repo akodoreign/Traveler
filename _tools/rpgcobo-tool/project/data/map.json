@@ -13639,7 +13639,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Kitsuki Seigen will answer the Guest call in battle. (One guest at a time.)",
+											"text": "Kitsuki Seigen will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -16849,7 +16849,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Matsu Kiku will answer the Guest call in battle. (One guest at a time.)",
+														"text": "Matsu Kiku will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -134584,6 +134584,11 @@
 						"lvar": "G445",
 						"op": "!=",
 						"rvar": true
+					},
+					{
+						"lvar": "G1324",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"pop": null,
@@ -135194,7 +135199,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Shiba Ashimita will answer the Guest call in battle. (One guest at a time.)",
+														"text": "Shiba Ashimita will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 														"name": "",
 														"uiclose": 2
 													},
@@ -135900,7 +135905,7 @@
 																			{
 																				"cmd": "cmd_showmsg",
 																				"key": "message_talk",
-																				"text": "Shiba Ashimita will answer the Guest call in battle. (One guest at a time.)",
+																				"text": "Shiba Ashimita will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 																				"name": "",
 																				"uiclose": 2
 																			},
@@ -143565,7 +143570,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Akodo Ijako will answer the Guest call in battle. (One guest at a time.)",
+											"text": "Akodo Ijako will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -143951,7 +143956,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "Shiba Ashimita will answer the Guest call in battle. (One guest at a time.)",
+																	"text": "Shiba Ashimita will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 																	"name": "",
 																	"uiclose": 2
 																},
@@ -146994,7 +146999,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Shiba Ashimita will answer the Guest call in battle. (One guest at a time.)",
+														"text": "Shiba Ashimita will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 														"name": "",
 														"uiclose": 2
 													},
@@ -147740,7 +147745,7 @@
 																			{
 																				"cmd": "cmd_showmsg",
 																				"key": "message_talk",
-																				"text": "Shiba Ashimita will answer the Guest call in battle. (One guest at a time.)",
+																				"text": "Shiba Ashimita will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 																				"name": "",
 																				"uiclose": 2
 																			},
@@ -148164,7 +148169,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "Shiba Ashimita will answer the Guest call in battle. (One guest at a time.)",
+																	"text": "Shiba Ashimita will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 																	"name": "",
 																	"uiclose": 2
 																},
@@ -150860,7 +150865,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Shiba Ashimita will answer the Guest call in battle. (One guest at a time.)",
+														"text": "Shiba Ashimita will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 														"name": "",
 														"uiclose": 2
 													},
@@ -151036,6 +151041,11 @@
 				"reqs0": [
 					{
 						"lvar": "G457",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1351",
 						"op": "==",
 						"rvar": false
 					}
@@ -153297,6 +153307,11 @@
 				"reqs0": [
 					{
 						"lvar": "G585",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1350",
 						"op": "==",
 						"rvar": false
 					}
@@ -179712,7 +179727,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Moto Benjiro will answer the Guest call in battle. (One guest at a time.)",
+								"text": "Moto Benjiro will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 								"name": "",
 								"uiclose": 2
 							},
@@ -183512,7 +183527,13 @@
 				],
 				"moveaction": "stop",
 				"movespd": 4,
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1350",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"pop": null,
 				"standani": null,
 				"col": 0,
@@ -210952,7 +210973,13 @@
 				],
 				"moveaction": "stop",
 				"movespd": 4,
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1348",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"pop": null,
 				"standani": null,
 				"col": 0,
@@ -226864,7 +226891,13 @@
 				],
 				"moveaction": "stop",
 				"movespd": 4,
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1348",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"pop": null,
 				"standani": null,
 				"col": 0,
@@ -345047,7 +345080,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Kitsuki Momo will answer the Guest call in battle. (One guest at a time.)",
+								"text": "Kitsuki Momo will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 								"name": "",
 								"uiclose": 2
 							}
@@ -492297,7 +492330,13 @@
 				],
 				"moveaction": "stop",
 				"movespd": 4,
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1348",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"pop": null,
 				"standani": null,
 				"col": 0,
@@ -614124,7 +614163,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Iuchi Karasu will answer the Guest call in battle. (One guest at a time.)",
+											"text": "Iuchi Karasu will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -642570,7 +642609,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Naohida will answer the Guest call in battle. (One guest at a time.)",
+											"text": "Naohida will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -673531,7 +673570,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Hiro will answer the Guest call in battle. (One guest at a time.)",
+											"text": "Hiro will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -689730,7 +689769,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Jinnai will answer the Guest call in battle. (One guest at a time.)",
+											"text": "Jinnai will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -745266,7 +745305,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Hiro will answer the Guest call in battle. (One guest at a time.)",
+											"text": "Hiro will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -763106,7 +763145,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Jinnai will answer the Guest call in battle. (One guest at a time.)",
+											"text": "Jinnai will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -764801,7 +764840,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Hiruma Kage will answer the Guest call in battle. (One guest at a time.)",
+														"text": "Hiruma Kage will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -795218,7 +795257,13 @@
 				],
 				"moveaction": "stop",
 				"movespd": 4,
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1340",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"pop": null,
 				"standani": null,
 				"col": 0,
@@ -795238,7 +795283,13 @@
 				],
 				"moveaction": "stop",
 				"movespd": 4,
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1341",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"pop": null,
 				"standani": null,
 				"col": 0,
@@ -797781,7 +797832,13 @@
 				],
 				"moveaction": "stop",
 				"movespd": 4,
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1340",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"pop": null,
 				"standani": null,
 				"col": 0,
@@ -797801,7 +797858,13 @@
 				],
 				"moveaction": "stop",
 				"movespd": 4,
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1341",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"pop": null,
 				"standani": null,
 				"col": 0,
@@ -799459,6 +799522,11 @@
 						"lvar": "G292",
 						"op": "==",
 						"rvar": true
+					},
+					{
+						"lvar": "G1343",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"pop": null,
@@ -800110,6 +800178,11 @@
 						"lvar": "G1213",
 						"op": "==",
 						"rvar": true
+					},
+					{
+						"lvar": "G1344",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"pop": null,
@@ -817460,6 +817533,11 @@
 						"lvar": "G025",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1342",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"pop": null,
@@ -817491,6 +817569,11 @@
 						"lvar": "G026",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1342",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"pop": null,
@@ -817517,6 +817600,11 @@
 						"lvar": "G026",
 						"op": "==",
 						"rvar": true
+					},
+					{
+						"lvar": "G1342",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"pop": null,
@@ -820124,6 +820212,11 @@
 					},
 					{
 						"lvar": "G049",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1342",
 						"op": "==",
 						"rvar": false
 					}
@@ -823167,6 +823260,11 @@
 					},
 					{
 						"lvar": "G049",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1342",
 						"op": "==",
 						"rvar": false
 					}
@@ -826261,6 +826359,11 @@
 						"lvar": "G049",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1342",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"pop": null,
@@ -829199,6 +829302,11 @@
 				"reqs0": [
 					{
 						"lvar": "G049",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1342",
 						"op": "==",
 						"rvar": false
 					}
@@ -870612,7 +870720,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "Kitsu Takeo will answer the Guest call in battle. (One guest at a time.)",
+																	"text": "Kitsu Takeo will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 																	"name": "",
 																	"uiclose": 2
 																}
@@ -870713,7 +870821,7 @@
 																			{
 																				"cmd": "cmd_showmsg",
 																				"key": "message_talk",
-																				"text": "Kitsu Takeo will answer the Guest call in battle. (One guest at a time.)",
+																				"text": "Kitsu Takeo will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 																				"name": "",
 																				"uiclose": 2
 																			}
@@ -871133,7 +871241,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Yogo Mai will answer the Guest call in battle. (One guest at a time.)",
+											"text": "Yogo Mai will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 											"name": "",
 											"uiclose": 2
 										}
@@ -874686,7 +874794,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Daidoji Sakura will answer the Guest call in battle. (One guest at a time.)",
+														"text": "Daidoji Sakura will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
 														"name": "",
 														"uiclose": 2
 													}
@@ -877433,43 +877541,14 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Except someone's started forging them. Nasty ones. Ruining people.",
+								"text": "And now I'm writing a novel. The whole Winter Court, very thinly disguised. Only - I can't keep their faces straight.",
 								"name": "Ide Fujio",
 								"uiclose": 2
 							},
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Three people here could copy my hand: a Doji poet, a Kakita calligrapher and a Yogo scribe.",
-								"name": "Ide Fujio",
-								"uiclose": 2
-							},
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
-								"text": "Tell me about the forgeries. Not the words. The paper.",
-								"name": "Hiruma Natsuko",
-								"uiclose": 2,
-								"emo": "determined"
-							},
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
-								"text": "...The paper? Cheap. Grey ink - slate ground in water, not good pine soot. And the brush drags left, like a man writing with his wrong hand.",
-								"name": "Ide Fujio",
-								"uiclose": 2
-							},
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
-								"text": "The Doji poet writes only on gold-flecked paper. The Kakita calligrapher would sooner die than touch slate ink.",
-								"name": "Ide Fujio",
-								"uiclose": 2
-							},
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
-								"text": "And the Yogo scribe is left-handed, and copies tax rolls all day for the Crab, on whatever they give him.",
+								"text": "I've painted them on cards, two of each. Pair them up for me, Hiruma. If I can remember who is who, my heroine won't marry the wrong cousin in chapter six.",
 								"name": "Ide Fujio",
 								"uiclose": 2
 							},
@@ -877479,68 +877558,247 @@
 								"cmdblocks": [
 									[
 										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "On cheap paper? She'd faint. Think again, Hiruma.",
-											"name": "Ide Fujio",
-											"uiclose": 2
+											"cmd": "cmd_compute",
+											"lvar": "G1231",
+											"op": "=",
+											"rvar": 0
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1231\"] = ::Rokugan.miniGame( \"memory\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "G1231",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Every face in its place! Now I'll know them across a crowded garden.",
+														"name": "Ide Fujio",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "One more face for the book, though. Someone's been forging my letters - nasty ones. The scribe who did it says a lady paid him. Blue eyes, very blue.",
+														"name": "Ide Fujio",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Blue eyes.",
+														"name": "Hiruma Natsuko",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I never write about blue eyes. Here - a Crab should have this. My uncle won it at dice and never wore it.",
+														"name": "Ide Fujio",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_itemop",
+														"itemid": "A115",
+														"op": 0,
+														"num": 1,
+														"LV": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Got the Jade Finger.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "If you ever need a distraction in a fight, call me. I'll write something.",
+														"name": "Ide Fujio",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G235",
+														"op": "=",
+														"rvar": true
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G232",
+														"op": "=",
+														"rvar": 3
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Ide Fujio will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G1231",
+																"op": "==",
+																"rvar": 2
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Ah. Even you mixed up the Kakita and the Doji. Everybody does. Another day, Hiruma.",
+																	"name": "Ide Fujio",
+																	"uiclose": 2
+																}
+															],
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Three people here could copy my hand: a Doji poet, a Kakita calligrapher and a Yogo scribe.",
+																	"name": "Ide Fujio",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Tell me about the forgeries. Not the words. The paper.",
+																	"name": "Hiruma Natsuko",
+																	"uiclose": 2,
+																	"emo": "determined"
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "...The paper? Cheap. Grey ink - slate ground in water, not good pine soot. And the brush drags left, like a man writing with his wrong hand.",
+																	"name": "Ide Fujio",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The Doji poet writes only on gold-flecked paper. The Kakita calligrapher would sooner die than touch slate ink.",
+																	"name": "Ide Fujio",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "And the Yogo scribe is left-handed, and copies tax rolls all day for the Crab, on whatever they give him.",
+																	"name": "Ide Fujio",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_choices",
+																	"backenable": false,
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "On cheap paper? She'd faint. Think again, Hiruma.",
+																				"name": "Ide Fujio",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Slate ink? He'd commit seppuku first. Think again.",
+																				"name": "Ide Fujio",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "The Yogo scribe has grey ink under his fingernails. He folds at once.",
+																				"name": "",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "A woman paid me! Lovely, she was. Blue eyes. I never saw her face again.",
+																				"name": "Yogo scribe",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Blue eyes. I never write about blue eyes.",
+																				"name": "Ide Fujio",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Hiruma, you've saved my career and several marriages. If you ever need a distraction in a fight, call me. I'll write something.",
+																				"name": "Ide Fujio",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_compute",
+																				"lvar": "G235",
+																				"op": "=",
+																				"rvar": true
+																			},
+																			{
+																				"cmd": "cmd_compute",
+																				"lvar": "G232",
+																				"op": "=",
+																				"rvar": 3
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Ide Fujio will answer your call in battle: Support, a free action once a round. (A guest's calls run out, and they don't come again.)",
+																				"name": "",
+																				"uiclose": 2
+																			}
+																		]
+																	],
+																	"pos": {
+																		"left": 430,
+																		"right": 430,
+																		"y": 380
+																	},
+																	"text0": "The Doji poet.",
+																	"text1": "The Kakita calligrapher.",
+																	"text2": "The Yogo scribe."
+																}
+															]
+														]
+													}
+												]
+											]
 										}
 									],
 									[
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Slate ink? He'd commit seppuku first. Think again.",
+											"text": "Later, then. The faces will keep. Unlike the gossip.",
 											"name": "Ide Fujio",
-											"uiclose": 2
-										}
-									],
-									[
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "The Yogo scribe has grey ink under his fingernails. He folds at once.",
-											"name": "",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "A woman paid me! Lovely, she was. Blue eyes. I never saw her face again.",
-											"name": "Yogo scribe",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "Blue eyes. I never write about blue eyes.",
-											"name": "Ide Fujio",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "Hiruma, you've saved my career and several marriages. If you ever need a distraction in a fight, call me. I'll write something.",
-											"name": "Ide Fujio",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_compute",
-											"lvar": "G235",
-											"op": "=",
-											"rvar": true
-										},
-										{
-											"cmd": "cmd_compute",
-											"lvar": "G232",
-											"op": "=",
-											"rvar": 3
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "Ide Fujio will answer the Guest call in battle. (One guest at a time.)",
-											"name": "",
 											"uiclose": 2
 										}
 									]
@@ -877550,9 +877808,8 @@
 									"right": 430,
 									"y": 380
 								},
-								"text0": "The Doji poet.",
-								"text1": "The Kakita calligrapher.",
-								"text2": "The Yogo scribe."
+								"text0": "Play his card game.",
+								"text1": "Not now."
 							}
 						]
 					}
@@ -877617,6 +877874,78 @@
 											"uiclose": 2
 										}
 									],
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1231",
+											"op": "=",
+											"rvar": 0
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1231\"] = ::Rokugan.miniGame( \"memory\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "G1231",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Faster than last time! Chapter nine is saved. Take this - I owe you more than ink.",
+														"name": "Ide Fujio",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_itemop",
+														"itemid": "I131",
+														"op": 0,
+														"num": 1,
+														"LV": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Got a Ginseng Tonic.",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G1231",
+																"op": "==",
+																"rvar": 2
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The faces won that round.",
+																	"name": "Ide Fujio",
+																	"uiclose": 2
+																}
+															],
+															[]
+														]
+													}
+												]
+											]
+										}
+									],
 									[]
 								],
 								"pos": {
@@ -877625,7 +877954,8 @@
 									"y": 380
 								},
 								"text0": "Ask Ide Fujio to come along.",
-								"text1": "Not now."
+								"text1": "Play Faces of the Court again.",
+								"text2": "Not now."
 							}
 						]
 					},
@@ -877653,6 +877983,92 @@
 								"text": "My brush is wet and my reputation is terrible. Ready.",
 								"name": "Ide Fujio",
 								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1231",
+											"op": "=",
+											"rvar": 0
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1231\"] = ::Rokugan.miniGame( \"memory\");"
+										},
+										{
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "G1231",
+													"op": "==",
+													"rvar": 1
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Faster than last time! Chapter nine is saved. Take this - I owe you more than ink.",
+														"name": "Ide Fujio",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_itemop",
+														"itemid": "I131",
+														"op": 0,
+														"num": 1,
+														"LV": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Got a Ginseng Tonic.",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G1231",
+																"op": "==",
+																"rvar": 2
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The faces won that round.",
+																	"name": "Ide Fujio",
+																	"uiclose": 2
+																}
+															],
+															[]
+														]
+													}
+												]
+											]
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Play Faces of the Court again.",
+								"text1": "Not now."
 							}
 						]
 					}
@@ -917106,6 +917522,11 @@
 						"lvar": "G255",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1346",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"pop": null,
@@ -919871,6 +920292,11 @@
 					},
 					{
 						"lvar": "G255",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1346",
 						"op": "==",
 						"rvar": false
 					}
@@ -922640,6 +923066,11 @@
 						"lvar": "G255",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1346",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"pop": null,
@@ -925278,6 +925709,11 @@
 					},
 					{
 						"lvar": "G255",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1346",
 						"op": "==",
 						"rvar": false
 					}

@@ -5388,6 +5388,311 @@
 		"name": "route gate 19 open (RokuganField routeFlags)",
 		"type": 1
 	},
+	"G1320": {
+		"defval": false,
+		"name": "in the party: P100",
+		"type": 1
+	},
+	"G1321": {
+		"defval": false,
+		"name": "in the party: P101",
+		"type": 1
+	},
+	"G1322": {
+		"defval": false,
+		"name": "in the party: P102",
+		"type": 1
+	},
+	"G1323": {
+		"defval": false,
+		"name": "in the party: P103",
+		"type": 1
+	},
+	"G1324": {
+		"defval": false,
+		"name": "in the party: P104",
+		"type": 1
+	},
+	"G1325": {
+		"defval": false,
+		"name": "in the party: P105",
+		"type": 1
+	},
+	"G1326": {
+		"defval": false,
+		"name": "in the party: P106",
+		"type": 1
+	},
+	"G1327": {
+		"defval": false,
+		"name": "in the party: P107",
+		"type": 1
+	},
+	"G1328": {
+		"defval": false,
+		"name": "in the party: P108",
+		"type": 1
+	},
+	"G1329": {
+		"defval": false,
+		"name": "in the party: P109",
+		"type": 1
+	},
+	"G1330": {
+		"defval": false,
+		"name": "in the party: P110",
+		"type": 1
+	},
+	"G1331": {
+		"defval": false,
+		"name": "in the party: P111",
+		"type": 1
+	},
+	"G1332": {
+		"defval": false,
+		"name": "in the party: P112",
+		"type": 1
+	},
+	"G1333": {
+		"defval": false,
+		"name": "in the party: P113",
+		"type": 1
+	},
+	"G1334": {
+		"defval": false,
+		"name": "in the party: P114",
+		"type": 1
+	},
+	"G1335": {
+		"defval": false,
+		"name": "in the party: P115",
+		"type": 1
+	},
+	"G1336": {
+		"defval": false,
+		"name": "in the party: P116",
+		"type": 1
+	},
+	"G1337": {
+		"defval": false,
+		"name": "in the party: P117",
+		"type": 1
+	},
+	"G1338": {
+		"defval": false,
+		"name": "in the party: P118",
+		"type": 1
+	},
+	"G1339": {
+		"defval": false,
+		"name": "in the party: P119",
+		"type": 1
+	},
+	"G1340": {
+		"defval": false,
+		"name": "in the party: P120",
+		"type": 1
+	},
+	"G1341": {
+		"defval": false,
+		"name": "in the party: P121",
+		"type": 1
+	},
+	"G1342": {
+		"defval": false,
+		"name": "in the party: P122",
+		"type": 1
+	},
+	"G1343": {
+		"defval": false,
+		"name": "in the party: P123",
+		"type": 1
+	},
+	"G1344": {
+		"defval": false,
+		"name": "in the party: P124",
+		"type": 1
+	},
+	"G1345": {
+		"defval": false,
+		"name": "in the party: P125",
+		"type": 1
+	},
+	"G1346": {
+		"defval": false,
+		"name": "in the party: P126",
+		"type": 1
+	},
+	"G1347": {
+		"defval": false,
+		"name": "in the party: P127",
+		"type": 1
+	},
+	"G1348": {
+		"defval": false,
+		"name": "in the party: P128",
+		"type": 1
+	},
+	"G1349": {
+		"defval": false,
+		"name": "in the party: P129",
+		"type": 1
+	},
+	"G1350": {
+		"defval": false,
+		"name": "in the party: P130",
+		"type": 1
+	},
+	"G1351": {
+		"defval": false,
+		"name": "in the party: P131",
+		"type": 1
+	},
+	"G1352": {
+		"defval": false,
+		"name": "in the party: P132",
+		"type": 1
+	},
+	"G1353": {
+		"defval": false,
+		"name": "in the party: P133",
+		"type": 1
+	},
+	"G1354": {
+		"defval": false,
+		"name": "in the party: P134",
+		"type": 1
+	},
+	"G1355": {
+		"defval": false,
+		"name": "in the party: P135",
+		"type": 1
+	},
+	"G1356": {
+		"defval": false,
+		"name": "in the party: P136",
+		"type": 1
+	},
+	"G1357": {
+		"defval": false,
+		"name": "in the party: P137",
+		"type": 1
+	},
+	"G1358": {
+		"defval": false,
+		"name": "in the party: P138",
+		"type": 1
+	},
+	"G1359": {
+		"defval": false,
+		"name": "in the party: P139",
+		"type": 1
+	},
+	"G1360": {
+		"defval": false,
+		"name": "in the party: P140",
+		"type": 1
+	},
+	"G1361": {
+		"defval": false,
+		"name": "in the party: P141",
+		"type": 1
+	},
+	"G1362": {
+		"defval": 0,
+		"name": "guests met (bits by guest number; RokuganBattle guestSkills)",
+		"type": 2
+	},
+	"G1363": {
+		"defval": false,
+		"name": "the finale: 8 party places (RokuganParty partyCap)",
+		"type": 1
+	},
+	"G1365": {
+		"defval": 0,
+		"name": "guest 1: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1366": {
+		"defval": 0,
+		"name": "guest 2: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1367": {
+		"defval": 0,
+		"name": "guest 3: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1368": {
+		"defval": 0,
+		"name": "guest 4: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1369": {
+		"defval": 0,
+		"name": "guest 5: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1370": {
+		"defval": 0,
+		"name": "guest 6: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1371": {
+		"defval": 0,
+		"name": "guest 7: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1372": {
+		"defval": 0,
+		"name": "guest 8: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1373": {
+		"defval": 0,
+		"name": "guest 9: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1374": {
+		"defval": 0,
+		"name": "guest 10: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1375": {
+		"defval": 0,
+		"name": "guest 11: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1376": {
+		"defval": 0,
+		"name": "guest 12: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1377": {
+		"defval": 0,
+		"name": "guest 13: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1378": {
+		"defval": 0,
+		"name": "guest 14: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1379": {
+		"defval": 0,
+		"name": "guest 15: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1380": {
+		"defval": 0,
+		"name": "guest 16: calls spent (lifetime)",
+		"type": 2
+	},
+	"G1381": {
+		"defval": 0,
+		"name": "guest 17: calls spent (lifetime)",
+		"type": 2
+	},
 	"G1244": {
 		"defval": 0,
 		"name": "Journal: the tracked entry (0 = the main story; RokuganJournal.sk)",

@@ -598,6 +598,7 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 	action = @( opd, id, arg, self){
 		switch( id){
 		case "preturn":		::Rokugan.onPreTurn( self); break;
+		case "turn":		if( ::rpgstage["battle"]) ::Rokugan.supportInject( ::rpgstage.battle); break;	//	free Support calls first
 		case "attack":		if( arg.dst == self) ::Rokugan.onAttack( arg); break;
 		//	logged on "recoil", not "condchk": opt_putcond returns true from condchk, which ends emitOption's chain, so a
 		//	hit that puts a condition (Prone, Poison, Blind...) never reached a condchk logger
@@ -763,9 +764,25 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 
 //	Battle command: Call (battlecmd7, the old Guest slot) -> the guest's action and the hireling's action. With one of
 //	them it runs at once; with both, a small list (uses left on the right).
+//	(user 2026-11-14: "make sure guest calls get added into the call menu and obtainable one time") every guest met
+//	keeps their call in Support for good, once each: their join flag (gen_maps GUESTS), or having been the current
+//	guest (G232; rpgvar G1362 = bits by guest number, for the guests set straight through G232).
+::Rokugan.GUEST_FLAGS <- { [1] = "G233", [2] = "G234", [3] = "G235", [4] = "G236", [5] = "G302", [6] = "G305",
+	[7] = "G368", [8] = "G456", [9] = "G462", [10] = "G507", [11] = "G715", [17] = "G1212" };
+::Rokugan.guestSkills <- function(){
+	local bits = int( ::rpgvar["G1362"] || 0), cur = int( ::rpgvar["G232"] || 0), a = [];
+	if( cur > 0 && cur < 31 && !(bits & (1 << cur))){ bits = bits | (1 << cur); ::rpgvar["G1362"] = bits; }
+	for( local n = 1; n < length( this.GUEST_SKILLS); n ++){
+		local f = (n in this.GUEST_FLAGS) ? this.GUEST_FLAGS[n] : null;
+		if( !(bits & (1 << n)) && !(f && ::rpgvar[f])) continue;
+		local sk = (n == 10 && ::rpgvar["G1214"]) ? ::conf.skill["S634"] : ::conf.skill[this.GUEST_SKILLS[n]];
+		if( sk && a.indexOf( sk) < 0) a .. sk;
+	}
+	return a;
+};
 ::Rokugan.callables <- function( pc){
-	local a = [], g = this.guestSkill(), h = this.hireSkill();
-	if( g) a .. { sk = g, left = this.usesLeft( pc, g) };
+	local a = [], h = this.hireSkill();
+	if( !::Rokugan["sumai_party"]) foreach( g in this.guestSkills()) a .. { sk = g, left = this.usesLeft( pc, g) };
 	if( h) a .. { sk = h, left = this.hireCharges() };
 	foreach( sk in this.exploitsFor( pc)) a .. { sk = sk, left = this.usesLeft( pc, sk) };	//	the finale (Hazard)
 	return a;
@@ -777,17 +794,51 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 	props = []
 
 	function isDisabled( bcmd, pc){
-		return !::Rokugan.callables( pc).find( @( v) v.left > 0);
+		return ::Rokugan.supportUsed() || !::Rokugan.callables( pc).find( @( v) v.left > 0);
 	}
 
 	function selectSkill( bcmd, pc){
 		local a = ::Rokugan.callables( pc).filter( @( v) v.left > 0);
-		if( length( a) == 1) return a[0].sk;
-		playSound( "SE013");
-		local items = a.map( @( v, i)({ idx = i, val = v.sk, disable = false, _name = "i" .. i,
-			lbl = v.sk.name, rlbl = "x%d" % v.left, grayout = "off" }));
-		return ::showSkillList( pc, items) || false;
+		local sk = null;
+		if( length( a) == 1) sk = a[0].sk;
+		else{
+			playSound( "SE013");
+			local items = a.map( @( v, i)({ idx = i, val = v.sk, disable = false, _name = "i" .. i,
+				lbl = v.sk.name, rlbl = "x%d" % v.left, grayout = "off" }));
+			sk = ::showSkillList( pc, items) || false;
+		}
+		if( sk) ::Rokugan.supportPick = true;					//	(chooseCommand below: a free action)
+		return sk;
 	}
+};
+
+//	(user 2026-11-14: "lets make support a free action but only once per full round, since they don't get used with all
+//	the new combos") A Support call doesn't use the caller's turn: it is set aside, the same character then picks their
+//	own action, and the call goes first when the round starts. One call per round for the whole party.
+::Rokugan.supportPick <- false;
+::Rokugan.supportTurn <- -1;
+::Rokugan.freecmds <- [];
+::Rokugan.supportUsed <- function(){
+	local b = ::rpgstage ? ::rpgstage["battle"] : null;
+	return b && ("turn" in b) && this.supportTurn == b.turn;
+};
+::TurnBattleRunner._rt_choose_free <- ::TurnBattleRunner.chooseCommand;
+::TurnBattleRunner.chooseCommand <- function( pc){
+	for( ;;){
+		::Rokugan.supportPick = false;
+		local cmd = this._rt_choose_free( pc);
+		if( !cmd || !::Rokugan.supportPick) return cmd;
+		::Rokugan.supportPick = false;
+		::Rokugan.freecmds .. cmd;
+		::Rokugan.supportTurn = this.turn;
+		pc.setSkill( null);
+		log( "support (free action): %S calls %S" % (pc.name, cmd.skill.name));
+	}
+};
+::Rokugan.supportInject <- function( b){
+	if( !length( this.freecmds)) return;
+	b.cmdqueue = ::RTU.concat( this.freecmds, b.cmdqueue);		//	(RokuganUtil: no insert() here)
+	this.freecmds = [];
 };
 
 //	Spending a charge. The last one: the hireling says so, and walks home after the fight (launch wrapper below).
@@ -827,11 +878,13 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 ::TurnBattleRunner.setupCharas <- function(){
 	this._rt_setup_h();
 	::Rokugan.hire3d = null;
+	::Rokugan.freecmds = [];
+	::Rokugan.supportTurn = -1;
 	local sk = ::Rokugan.hireSkill();
 	if( !sk || !sk["rt_hmdl"]) return;
 	try{
 		local m = stage.getLocation( "*memberloc");
-		local back = Vector3D( 1.6, 0, -1.9).rotate( m.dir, 0, 0);
+		local back = Vector3D( 0.0, 0, -3.4).rotate( m.dir, 0, 0);	//	the third row (RokuganParty: rows 0 and -1.7)
 		local p = Vector3D( m.pos).add( back.x, back.y, back.z);
 		local rp3d = RPG3DObject.create3DObject( { mdlid = sk.rt_hmdl });
 		rp3d.manuaction = ManualMoveAction( rp3d);

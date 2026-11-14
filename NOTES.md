@@ -4940,3 +4940,10 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
 - Encounters: tier = ladder band (ladders.py position: 1 after Ch1 ... 4 after Ch4); rows copied from both paths' re-levelled ladder groups (no new foe ids). Road-stones give each end's danger.
 - Caves M480-M489 (1-2 per route, 1-2 bands harder than the road, Lv 22-50), route_cave(): 5 chambers, 4-wide tunnels, chests by tier; cave_sprawl grows galleries + shrine.
 - Cave walkways (user: a full block to every object): walkcheck.py --wide (2x2 body) and --caves; walkcheck.widen() runs in gen_maps.make() for every cave map: cuts the narrowest path to each missed object to 2x2 (lowers rims, removes rubble, steps a chest out of a one-cell gap). All caves pass --wide; walkcheck now seeds portal landings too.
+
+## 2026-11-14: party slots, Support free action, Memory, cave mounds (version 16, in test)
+- RokuganParty.sk: members = 8 slots (index = battle slot: 0-3 front, 4-7 second row, formation = row); cap 4, 8 in the finale (G1363, fJoinAll); slot 1 refilled automatically; Formation menu picks any slot; hireling = third row (RokuganBattle setupCharas). partyFlags G1320+n (P100-P141 in party) -> gen_maps party_npc_pass hides those NPC copies.
+- Support (battlecmd "guest"): free action, once per round (chooseCommand wrapper; calls queued first at "turn"). Guest calls = lifetime charges rt_uses x GUEST_LIFE (RokuganAI guestVar, G1365+n); every guest met stays listed (G1362 bits + GUESTS flags).
+- Memory (RokuganMini RTMemory, Ide Fujio M144): 8x8, bust faces; card back tools/gen_cardback.py. First win: Jade Finger + guest; repeats: Ginseng Tonic. Fallback = the old forged-letters puzzle.
+- gen_maps cave_mounds(): a stepped rock mound behind every outdoor cave mouth (fb 3/21).
+- ENGINE DIALECT: arrays have no remove()/insert(); `delete a[0]` returns nothing; strings have no find()/tointeger() (use int(), split()). Helpers: RokuganUtil.sk ::RTU (first, rest, front, concat, has).

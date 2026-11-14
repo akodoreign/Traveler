@@ -1928,6 +1928,12 @@ def main():
     for _k in range(20):                                # connecting routes: gate k open (gen_maps ROUTE_GATES,
         gv["G%d" % (1300 + _k)] = {"defval": False, "name": "route gate %d open (RokuganField routeFlags)" % _k,
                                    "type": 1}                                           # set on every map launch)
+    for _n in range(100, 142):                          # RokuganParty partyFlags: Pnnn is in the party (gen_maps
+        gv["G%d" % (1220 + _n)] = {"defval": False, "name": "in the party: P%d" % _n, "type": 1}   # party_npc_pass)
+    gv["G1362"] = {"defval": 0, "name": "guests met (bits by guest number; RokuganBattle guestSkills)", "type": 2}
+    gv["G1363"] = {"defval": False, "name": "the finale: 8 party places (RokuganParty partyCap)", "type": 1}
+    for _n in range(1, 18):                             # RokuganAI guestVar: lifetime calls spent
+        gv["G%d" % (1364 + _n)] = {"defval": 0, "name": "guest %d: calls spent (lifetime)" % _n, "type": 2}
     gv["G1244"] = {"defval": 0,"name": "Journal: the tracked entry (0 = the main story; RokuganJournal.sk)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}
     gv["G1092"] = {"defval": 0, "name": "ronin_technique_second (Ronin Ch2 Rank 2: 1-3 another school's R1, 4 Punish "
@@ -5202,7 +5208,8 @@ def main():
     st.update({"title": "Rokugan Traveler", "subtitle": "An unofficial L5R fan game", "projname": "RokuganTraveler",
                "projlang": "en", "inimembers": ["P100"], "battlecmd4": "boost",   # Octopath: each chapter starts solo
                "inimap": __import__("gen_maps").START,
-               "battlecmd5": "talent", "battlecmd7": "guest"})   # Guest replaces Formation (no Octopath rows)
+               "battlecmd5": "talent", "battlecmd7": "guest",    # Guest replaces Formation (no Octopath rows)
+               "maxmembers": 8})        # (user 2026-11-14) 8 places in two rows; at most 4 until the finale (RokuganParty)
     save("setting", st)
 
     # ---- plugin.json

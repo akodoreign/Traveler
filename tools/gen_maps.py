@@ -1821,7 +1821,8 @@ GUESTS = {5: ("seigen", "Kitsuki Seigen", "G302"), 6: ("kiku", "Matsu Kiku", "G3
 
 def guest_join(n):
     key, name, f = GUESTS[n]
-    return [setf(f), setf("G232", n), narrate("%s will answer the Guest call in battle. (One guest at a time.)" % name)]
+    return [setf(f), setf("G232", n), narrate("%s will answer your call in battle: Support, a free action once a round. (A guest's calls run out, "
+                                          "and they don't come again.)" % name)]
 
 
 def guest_npc(ev, x, z, n, story, again, current, d=2, extra=None):
@@ -1882,13 +1883,8 @@ MAI_SS = [
         say("Yogo Mai", "Call me if you need someone to talk to. Or someone to talk.")] + guest_join(2)),
         ("Not now.", [say("Yogo Mai", "It will still be here. It has nowhere to go, poor thing.")]))]
 
-FUJIO_SS = [
-    narrate("A dashing Ide in Unicorn purple writes furiously in a corner while ladies read over his shoulder and "
-            "gasp. Ide Fujio."),
-    say("Ide Fujio", "Letters! Romantic, scandalous, anonymous. The whole court reads them. Nobody knows they're "
-                     "mine."),
-    say("Ide Fujio", "(lowering his voice) Except someone's started forging them. Nasty ones. Ruining people."),
-    say("Ide Fujio", "Three people here could copy my hand: a Doji poet, a Kakita calligrapher and a Yogo scribe."),
+FUJIO_OLD = [                                                              # (the mini-game couldn't run: the old
+    say("Ide Fujio", "Three people here could copy my hand: a Doji poet, a Kakita calligrapher and a Yogo scribe."),  # puzzle)
     say("Natsuko", "Tell me about the forgeries. Not the words. The paper."),
     say("Ide Fujio", "...The paper? Cheap. Grey ink - slate ground in water, not good pine soot. And the brush drags "
                      "left, like a man writing with his wrong hand."),
@@ -1904,6 +1900,33 @@ FUJIO_SS = [
                 say("Ide Fujio", "(shuddering) Blue eyes. I never write about blue eyes."),
                 say("Ide Fujio", "Hiruma, you've saved my career and several marriages. If you ever need a "
                                  "distraction in a fight, call me. I'll write something.")] + guest_join(3)))]
+
+# (user 2026-11-14) Fujio's questions became a game of Memory (RokuganMini.sk RTMemory: the court's busts on cards):
+# the first win gives a good accessory (the Jade Finger) and Fujio as a guest; every later win a Ginseng Tonic.
+FUJIO_WON = [
+    say("Ide Fujio", "Every face in its place! Now I'll know them across a crowded garden."),
+    say("Ide Fujio", "(lowering his voice) One more face for the book, though. Someone's been forging my letters - "
+                     "nasty ones. The scribe who did it says a lady paid him. Blue eyes, very blue."),
+    say("Natsuko", "Blue eyes."),
+    say("Ide Fujio", "(shuddering) I never write about blue eyes. Here - a Crab should have this. My uncle won it at "
+                     "dice and never wore it.")] + got("A115", "the Jade Finger") + [
+    say("Ide Fujio", "If you ever need a distraction in a fight, call me. I'll write something.")] + guest_join(3)
+FUJIO_LOST = [say("Ide Fujio", "Ah. Even you mixed up the Kakita and the Doji. Everybody does. Another day, Hiruma.")]
+FUJIO_AGAIN = ("Play Faces of the Court again.", mini_game("memory", [
+    say("Ide Fujio", "Faster than last time! Chapter nine is saved. Take this - I owe you more than ink.")] +
+    got("I131", "a Ginseng Tonic"), [say("Ide Fujio", "(gathering the cards) The faces won that round.")], []))
+
+FUJIO_SS = [
+    narrate("A dashing Ide in Unicorn purple writes furiously in a corner while ladies read over his shoulder and "
+            "gasp. Ide Fujio."),
+    say("Ide Fujio", "Letters! Romantic, scandalous, anonymous. The whole court reads them. Nobody knows they're "
+                     "mine."),
+    say("Ide Fujio", "And now I'm writing a novel. The whole Winter Court, very thinly disguised. Only - I can't keep "
+                     "their faces straight."),
+    say("Ide Fujio", "I've painted them on cards, two of each. Pair them up for me, Hiruma. If I can remember who is "
+                     "who, my heroine won't marry the wrong cousin in chapter six."),
+    choices(("Play his card game.", mini_game("memory", FUJIO_WON, FUJIO_LOST, FUJIO_OLD)),
+            ("Not now.", [say("Ide Fujio", "Later, then. The faces will keep. Unlike the gossip.")]))]
 
 SAKURA_SS = [
     narrate("A Crane yojimbo in Phoenix colours stands alone by the garden wall, and the court whispers "
@@ -2081,7 +2104,7 @@ def castle_3f():
                 trigger=1)
         ev.chest(35, 13, "I122", 1)                                        # Blue-Silk Veil Thread
         guest_npc(ev, 12, 9, 3, FUJIO_SS, "Need a scandal, Hiruma? I have several drafted.",
-                  "My brush is wet and my reputation is terrible. Ready.")
+                  "My brush is wet and my reputation is terrible. Ready.", extra=FUJIO_AGAIN)
     return castle_floor("M144", "Kyuden Hida - 3F guest wings", 38, 14, [
         ("screen", 10, 6, 1), ("screen", 21, 6, 1), ("screen", 30, 6, 1), ("futon", 3, 11), ("futon", 32, 11),
         ("doc", 6, 13), ("candle", 13, 14), ("lowchest", 23, 14)],
@@ -19455,6 +19478,58 @@ def hire_followers(ev):
         ev.follower(2, 2, SC[h["key"]], h["bark"], gap=1.4, reqs=[{"lvar": "G293", "op": "==", "rvar": h["n"]}])
 
 
+_PARTY_MDL = {}
+
+
+def party_npc_pass(ev):
+    """(user 2026-11-14: "make sure NPCs do not spawn while they are already in the party") A map NPC drawn with a
+    player character's model (villagers and talk-only events) stays away while that character is in the party (flag
+    G1220 + number, plugin RokuganParty partyFlags). Hireling followers (G293) and scenes are left alone."""
+    if not _PARTY_MDL:
+        pl = json.load(open(os.path.join(PROJ, "data", "player.json"), encoding="utf-8"))
+        for pid, p in pl.items():
+            if isinstance(p, dict) and p.get("mdlid") and re.fullmatch(r"P1[0-4]\d", pid) and int(pid[1:]) <= 141:
+                _PARTY_MDL.setdefault(p["mdlid"], pid)
+        _PARTY_MDL.setdefault("-", None)
+    for e in ev.ev.values():
+        pid = _PARTY_MDL.get(e.get("mdlid"))
+        if not pid or e.get("memo") == "barricade" or "G293" in json.dumps(e.get("reqs0")):
+            continue
+        role, pages = e.get("role"), e.get("page") or []
+        if role != "villager" and not (role == "custom" and pages and all(pg.get("trigger") == 1 for pg in pages)):
+            continue
+        f = "G%d" % (1220 + int(pid[1:]))
+        reqs = list(e.get("reqs0") or [])
+        if not any(r.get("lvar") == f for r in reqs):
+            e["reqs0"] = reqs + [flag(f, False)]
+
+
+def cave_mounds(m, ev):
+    """(user 2026-11-14: "caves should have a mound or something behind them") Every cave-mouth model outdoors (fb 3/21)
+    gets a rocky mound behind it, rising in steps away from the mouth; level ground with nothing on it only."""
+    taken = {(e["pos"][0], e["pos"][2]) for e in ev.ev.values() if "pos" in e}
+    solid = set()
+    for o in m.objs:
+        if o["t"] == "fill":
+            solid.update((o["x"] + a, o["z"] + b) for a in range(o["w"]) for b in range(o["d"]))
+    for o in [o for o in m.objs if o["t"] == "fb" and o.get("fbtype") == 3 and o.get("fbparam") == 21]:
+        cx, cz = o["x"], o["z"]
+        h0 = int(m.hgt[cz, cx])
+        for dz in range(1, 8):                                               # behind = further from the camera
+            half = 6 - dz // 2
+            for dx in range(-half, half + 1):
+                x, z = cx + dx, cz + dz
+                if not (0 <= x < m.w and 0 <= z < m.d) or (x, z) in taken or (x, z) in solid \
+                        or int(m.hgt[z, x]) != h0 or (int(m.blk[z, x]) & 31) == 8 or int(m.blk[z, x]) == ROAD:
+                    continue
+                rise = min(dz + 2, 7) - abs(dx) // 3
+                if rise > 0:
+                    m.hgt[z, x] = h0 + rise
+                    m.blk[z, x] = T(2, 0) if abs(dx) < half - 1 else T(2, 1)
+        m.objs = [t for t in m.objs if not (t["t"] == "fb" and t.get("fbtype") == 20
+                                             and cx - 6 <= t["x"] <= cx + 6 and cz + 1 <= t["z"] <= cz + 7)]
+
+
 def make(i):
     if not DOOR_EV or ("M141", "castle") not in DOOR_EV:   # portals reference other maps' door ids
         wall_garrison()
@@ -19523,6 +19598,10 @@ def make(i):
         portals_off_side_walls(m, ev)
         arrivals_face_open_ground(m, ev)
         people_off_blocks(m, ev)
+    if ev is not None:
+        party_npc_pass(ev)
+    if ev is not None and "M100" <= i < "M800" and i not in CAVE_MAPS and i not in INTERIORS and i not in ROOM_OFS:
+        cave_mounds(m, ev)
     if ev is not None and i in CAVE_MAPS:                                  # (user 2026-11-14) a full body's width to
         sys.modules.setdefault("gen_maps", sys.modules[__name__])          # every object in a cave (walkcheck.py)
         import walkcheck as _walk

@@ -13,17 +13,19 @@ sys.path.insert(0, HERE)
 import playbot  # noqa: E402
 
 SPOTS = {"yumi": (30, 10, ["G1231", "G219", "G205", "G1232"]),
-         "race": (21, 9, ["G1231", "G1233", "G233", "G232"])}
+         "race": (21, 9, ["G1231", "G1233", "G233", "G232"]),
+         "memory": (12, 9, ["G1231", "G235", "G232"], "M144")}   # Ide Fujio, 3F (Faces of the Court)
 
 
 def run(game, plan, vars_):
-    x, z, show = SPOTS[game]
-    bx, bz = playbot.block("M142", x, z)
-    sx, sz = playbot.block("M142", x - 2, z)
+    x, z, show = SPOTS[game][:3]
+    mp = SPOTS[game][3] if len(SPOTS[game]) > 3 else "M142"
+    bx, bz = playbot.block(mp, x, z)
+    sx, sz = playbot.block(mp, x - 2, z)
     name = "mini_" + game
     lines = ["answer 0", "talkto %.1f %.1f" % (bx, bz), "wait 1500", "until G1231 240000", "wait 3000",
              "vars " + " ".join(show), "shot after"]
-    kept, timed_out = playbot.launch(name, "M142", sx, sz, lines, vars_=vars_, lv="22", secs=400.0, quiet=True,
+    kept, timed_out = playbot.launch(name, mp, sx, sz, lines, vars_=vars_, lv="22", secs=400.0, quiet=True,
                                      extra=["mini " + plan, "minishot " + name])
     for ln in kept:
         if any(k in ln for k in ("mini", "yumi", "race", "BOT var", "CHOICE", "rror", "xception", "BOT flag")):

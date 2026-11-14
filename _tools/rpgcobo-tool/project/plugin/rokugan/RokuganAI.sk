@@ -246,9 +246,22 @@ local log( s){ printf( "[RT] %S\n", s); }
 ::Rokugan.usesKey <- function( sk){						//	skills with the same rt_usekey share one count (the
 	return sk["rt_usekey"] || sk.name;						//	Ember Charm's Spark and Rekindle, Ronin Ch4)
 };
+//	(user 2026-11-14: "they drop out of the list once used up. and if they are "guest" not hires they can't be got
+//	again") A guest's call is a lifetime supply: GUEST_LIFE x its rt_uses, spent across every battle (rpgvar
+//	G1364 + the guest's number = calls spent). At 0 it leaves the Support list for good; asking the guest along again
+//	gives nothing back.
+::Rokugan.GUEST_LIFE <- 3;
+::Rokugan.guestVar <- function( sk){
+	if( !sk || !sk["rt_guest"] || !("GUEST_SKILLS" in ::Rokugan)) return null;
+	foreach( n, id in this.GUEST_SKILLS) if( id && ::conf.skill[id] == sk) return "G%d" % (1364 + n);
+	if( ::conf.skill["S634"] == sk) return "G1374";						//	Benjiro's Death Trance (guest 10)
+	return null;
+};
 ::Rokugan.usesLeft <- function( pc, sk){
 	local n = sk["rt_uses"];
 	if( !n) return 99;
+	local gv = this.guestVar( sk);
+	if( gv) return n * this.GUEST_LIFE - int( ::rpgvar[gv] || 0);
 	return n - (this.usesState( pc, sk).uses[this.usesKey( sk)] || 0);
 };
 ::Rokugan._rt_pre_uses <- ::Rokugan.onPreCommand;
@@ -258,6 +271,10 @@ local log( s){ printf( "[RT] %S\n", s); }
 		if( this.usesLeft( pc, sk) <= 0){
 			this.pop( pc, "NO USES LEFT", 0xff8080ff);
 			cmd.skill = pc.getAttackSkill();
+		}else if( this.guestVar( sk)){
+			local gv = this.guestVar( sk);
+			::rpgvar[gv] = int( ::rpgvar[gv] || 0) + 1;
+			log( "%S calls %S (%d left, ever)" % (pc.name, sk.name, this.usesLeft( pc, sk)));
 		}else{
 			local st = this.usesState( pc, sk);
 			local k = this.usesKey( sk);

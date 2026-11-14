@@ -1208,6 +1208,7 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	::rpgvar["G608"] = false;						//	Yosai waits beside the inns
 	::rpgvar["G1230"] = false;						//	this road's end-marker objective shows again
 	::rpgvar["G1227"] = 0;							//	the Story box: this road's objectives, not the last one's
+	::rpgvar["G1363"] = false;						//	RokuganParty: 4 places on a traveler's own road
 	try{ ::rpgstage.changePlayer3D( ::rpgstage.stat.statmap.playermodel); }catch( ex){ printexception( ex); }
 	printf( "[RT] road begins: %S (%d of 8 walked)\n", pid, this.pathsWalked());
 };
@@ -1272,10 +1273,11 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	local b = 0;
 	foreach( k, p in order){
 		this.fCatchUp( p);
-		if( k < 4) ::rpgstat.members[k] = p;
+		if( k < 8) ::rpgstat.members[k] = p;					//	(user 2026-11-14: two rows of four in the finale)
 		else b = b | (1 << this.TRAVELERS.indexOf( p.dataid));
 	}
 	::rpgvar["G1160"] = b;
+	::rpgvar["G1363"] = true;										//	RokuganParty: 8 places from here on
 	this.fRefresh();
 };
 //	The epilogue (E01): one traveler walks their coda alone; the other seven wait in the reserve.
@@ -1347,7 +1349,7 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 			f.trail .. (gy != null ? Vector3D( q.x, gy, q.z) : Vector3D( pl.pos));
 		}
 		f.trail .. Vector3D( pl.pos);
-		for( local i = 1; i < length( mem) && i < 4; i ++){
+		for( local i = 1; i < length( mem) && i < 8; i ++){
 			local cp = ::conf.player[mem[i].dataid], mdl = cp ? cp["mdlid"] : null;
 			if( "lookFor" in ::Rokugan){ local lk = null; try{ lk = ::Rokugan.lookFor( mem[i]); }catch( ex){} if( lk) mdl = lk; }
 			if( !mdl) continue;

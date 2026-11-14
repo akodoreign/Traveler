@@ -1,0 +1,135 @@
+//	Party slots (user 2026-11-14: "lets give the travelers an additional row for party members (so 3 rows deep, 2 for
+//	travelers and companions, 3rd row for hires)"; "formation lets have them be moved around to one of the slots of 8,
+//	not shifting in the same row"; "we will limit party size to 4 still until final chapters. 4 + hireables.")
+//	::rpgstat.members is 8 long and its index IS the battle slot: 0-3 the front row, 4-7 the second row (the engine's
+//	back-row rule: half the chance to be targeted). The hireling stands behind them, in a third row (RokuganBattle).
+//	At most 4 members, 8 in the finale (rpgvar G1363, set by ::Rokugan.fJoinAll).
+::Rokugan.PARTY_SLOTS <- 8;
+::Rokugan.partyCap <- function(){ return ::rpgvar["G1363"] ? 8 : 4; };
+::Rokugan.partyCount <- function(){ return length( ::rpgstat.members.filter( @( v) v)); };
+
+::Rokugan.fitParty <- function(){
+	local m = ::rpgstat ? ::rpgstat["members"] : null;
+	if( !m) return;
+	while( length( m) < this.PARTY_SLOTS) m.append( null);
+	//	(user: "make sure leaving slot 1 open doesn't crash the game menu") slot 1 always holds someone: the engine's
+	//	menus, the field model and the followers read members[0]. Whoever is first in the other places steps in.
+	if( !m[0]) for( local k = 1; k < length( m); k ++) if( m[k]){
+		m[0] = m[k]; m[k] = null;
+		printf( "[RT] slot 1 was empty: %S leads\n", m[0].dataid);
+		break;
+	}
+	foreach( i, p in m) if( p) p.formation = i >= 4 ? 1 : 0;
+};
+
+//	One flag per player character while they are in the party (G1320 + number - 100: P100 -> G1320 ... P141 -> G1361).
+//	tools/gen_maps.py party_npc_pass hides a character's map NPC (villagers, talk events) while the flag is on.
+::Rokugan.partysig <- "";
+::Rokugan.partyFlags <- function(){
+	local m = ::rpgstat ? ::rpgstat["members"] : null;
+	if( !m) return;
+	local sig = m.map( @( v) v ? v.dataid : "-").join( ",");
+	if( sig == this.partysig) return;
+	if( !m[0] && m.find( @( v) v)){ this.fitParty(); sig = m.map( @( v) v ? v.dataid : "-").join( ","); }	//	a leave
+	this.partysig = sig;
+	for( local n = 100; n <= 141; n ++) ::rpgvar["G%d" % (1220 + n)] = false;
+	foreach( p in m){
+		if( !p || length( p.dataid) != 4 || p.dataid[0] != 'P') continue;
+		local n = int( p.dataid.slice( 1));
+		if( n >= 100 && n <= 141) ::rpgvar["G%d" % (1220 + n)] = true;
+	}
+};
+
+::RPGStage._rt_launch_party <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	try{ ::Rokugan.fitParty(); ::Rokugan.partysig = ""; ::Rokugan.partyFlags(); }catch( ex){ printexception( ex); }
+	return this._rt_launch_party( opt);
+};
+::RPGStage._rt_body_party <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	this._rt_body_party( dt);
+	try{ ::Rokugan.partyFlags(); }catch( ex){ printexception( ex); }
+};
+
+//	Joining (event command "member: join, any slot"): the first free slot, front row first, up to the cap.
+foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]){
+	cls._rt_memberop <- cls.memberOp;
+	cls.memberOp <- function( cmd){
+		::Rokugan.fitParty();
+		local slot = cmd.slot && int( cmd.slot);
+		if( slot == -1){
+			local p = cmd.playerid["player"] || ::rpgstat.playermap[cmd.playerid];
+			if( ::rpgstat.members.indexOf( p) < 0 && ::Rokugan.partyCount() >= ::Rokugan.partyCap()){
+				::rpgvar.ERROR = 13126;
+				printf( "[RT] party full (%d): %S can't join\n", ::Rokugan.partyCap(), p ? p.dataid : "?");
+				return;
+			}
+		}
+		this._rt_memberop( cmd);
+		::Rokugan.fitParty();
+	};
+}
+
+//	Battle positions by slot: four columns, two rows (2 m apart, the second row 1.7 m behind).
+::TurnBattleRunner._rt_basepos <- ::TurnBattleRunner.getBasePosition;
+::TurnBattleRunner.getBasePosition <- function( pc){
+	local i = ::rpgstat.members.indexOf( pc);
+	if( i < 0) return this._rt_basepos( pc);
+	local m = stage.getLocation( "*memberloc");
+	local col = i % 4, row = i / 4;
+	local side = Vector3D( 1, 0, 0).rotate( m.dir, 0, 0), back = Vector3D( 0, 0, -1.7 * row).rotate( m.dir, 0, 0);
+	local p = Vector3D( m.pos) + side * ((1.5 - col) * 2.0) + back;
+	return (p.x, p.y, p.z, m.dir);
+};
+
+//	Main menu - Formation: pick a member, then any of the 8 slots (an empty slot: move; a taken one: swap). Slot 1 is
+//	the leader's and is never left empty.
+::Rokugan.slotName <- function( i){ return (i < 4 ? "Front row %d" : "Second row %d") % (i % 4 + 1); };
+local formationUI = function( prms){
+	::Rokugan.fitParty();
+	local p = ::rpgstat.playermap[prms.playerid];
+	local m = ::rpgstat.members, from = m.indexOf( p);
+	if( from < 0) return true;
+	local makelist = @() m.map( @( v, i)({ _name = "i" .. i, item = i,
+		lbl = (i == from ? "> " : "") .. ::Rokugan.slotName( i) .. ": " .. (v ? v.name : "(empty)"), rlbl = "" }));
+	local view = RPGMain.showView({
+		uipath = "menu_item.ui"
+		name = "menu_sub"
+		layer = "menu"
+		binds = {
+			tablist = [{ _name = "tab0", lbl = "Formation", tgl = 10 }],
+			itemlist = makelist(),
+			desclbl = ("Move %S to which place?\n\nFront row: hits and is hit as usual.\nSecond row: half as likely to be "
+				.. "targeted.\nHirelings stand behind, in the third row.") % p.name,
+		},
+		action = "show"
+		focus = "i" .. from
+	});
+	local r = RPGMain.uiLoop( {
+		"action" : @( e){
+			local to = e.item ? e.item["item"] : null;
+			if( to == null || to == from){ ::playSound( "SE004"); return "back"; }
+			if( from == 0 && !m[to] && ::Rokugan.partyCount() > 1){ ::playSound( "SE002"); return; }	//	keep a leader
+			local other = m[to];
+			m[to] = p; m[from] = other;
+			if( !m[0]) for( local k = 1; k < length( m); k ++) if( m[k]){ m[0] = m[k]; m[k] = null; break; }
+			::Rokugan.fitParty();
+			::playSound( "SE003");
+			printf( "[RT] formation: %S -> %S\n", p.dataid, ::Rokugan.slotName( to));
+			return "moved";
+		}
+		"select" : @( e){}
+		"back" : @( e){ ::playSound( "SE004"); return "back"; }
+		"cancel" : @( e){ return "cancel"; }
+	});
+	view.actionAndDie( "hide");
+	try{ ::rpgstage.changePlayer3D( ::rpgstage.stat.statmap.playermodel); }catch( ex){}
+	return r != "cancel";
+};
+foreach( u in ::RPGSystem.ui){
+	if( u && u["key"] == "menu_formation"){
+		u.uifunc = formationUI;
+		u.lbl = "Formation";
+		if( "nochange_menuui" in u) u.nochange_menuui = false;
+	}
+}

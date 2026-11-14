@@ -1,0 +1,29 @@
+//	RokuganUtil.sk : small helpers this engine's arrays lack (user 2026-11-14: "you can make plug in"). The Squirrel
+//	dialect here has no array remove() / insert(), and `delete a[0]` returns nothing: these build new arrays from
+//	length, indexing and append() only, which every plugin already relies on.
+::RTU <- {
+	//	the first element, or null (the array itself is left alone)
+	first = function( a){ return (a && length( a)) ? a[0] : null; },
+	//	a new array without the first element
+	rest = function( a){
+		local r = [];
+		if( a) for( local i = 1; i < length( a); i++) r.append( a[i]);
+		return r;
+	},
+	//	a new array with v in front
+	front = function( v, a){
+		local r = [v];
+		if( a) foreach( x in a) r.append( x);
+		return r;
+	},
+	//	a new array: b's elements, then a's
+	concat = function( b, a){
+		local r = [];
+		if( b) foreach( x in b) r.append( x);
+		if( a) foreach( x in a) r.append( x);
+		return r;
+	},
+	//	whether a string holds the substring s (no string find() either)
+	has = function( str, s){ return length( str.split( s)) > 1 || str == s; },
+};
+printf( "Rokugan util loaded\n");

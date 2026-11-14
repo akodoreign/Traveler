@@ -656,6 +656,228 @@ class RTRace extends RTMini
 ::RTRace <- RTRace;
 
 ///////////////////////////////////////////////////////////////////////////////
+//	Memory (user 2026-11-14: "change the writers questions in 1f hida castle to a game of Memory using the bust images on
+//	cards. flip a pair. and have it so hes saying things like how this will help him remember who is who for his
+//	novel"): Ide Fujio's cards, six pairs of Winter Court faces (the dialog busts), 12 face down in a 4 x 3 grid. Arrows
+//	move, Z / Space / Enter flips. A wrong pair turns back over; MEM_MISSES wrong pairs and the round is lost.
+local MEM_NAMES = ["Ide Fujio", "Kitsu Takeo", "Yogo Mai", "Daidoji Sakura", "Hida Sachiko", "Yasuki Kurako",
+	"Yogo Shigeru", "Kuni Taira", "Asako Kuhime", "Isawa Mutsuye", "Hiruma Natsuko", "Hida Kisada",
+	"Hiruma Ryoichi", "Hiruma Goro", "Gonta", "Hiruma Kage"];		//	(user: "include kisada and the crab crew")
+local MEM_ALWAYS = ["Hida Kisada", "Hida Sachiko"];					//	always dealt: the Champion and the Crab crew's
+																	//	captain; four more from the rest
+//	(user: "can we expand it to like 8x8 grid") 8 x 8 = 32 pairs: the court and the Crab crew first, then anyone else
+//	with a bust (Fujio's novel has a large cast). Names show in the bottom line as cards turn (too small to print).
+local MEM_COLS = 8, MEM_ROWS = 8, MEM_MISSES = 40, MEM_CW = 64.0, MEM_CH = 72.0, MEM_GAP = 5.0;
+local MEM_PAIRS = MEM_COLS * MEM_ROWS / 2;
+local MEM_HIT = ["%S! Of course. Chapter three, the tea scene.", "%S - yes! I had them marrying the wrong cousin.",
+	"%S. Good. Now I'll know them across a crowded garden.", "%S! That face goes on the cover."];
+local MEM_MISS = ["No, no - who is THAT?", "They all wear the same face at court. That's my whole problem.",
+	"Hm. My heroine has two husbands now.", "Again. Slowly. Like reading a love letter.",
+	"If I mix those two up in print, someone challenges me to a duel."];
+class RTMemory extends RTMini
+{
+	cards = null; cur = 0; open = null; misses = 0; matched = 0; peek = 0.0; lmsg = null; ltries = null; cursor = null;
+	aiT = 0.0; aiPlan = null; hits = 0; flips = 0;
+
+	constructor( r){
+		super( r, 0x1e1614ff);
+		game = "memory";
+		rect( 0, 0, W, 48, 0x120c0cff);
+		rect( 0, 48, W, 2, 0xc9a45cff);
+		local t = label( 30, 6, 600, 40, 28, 0xf4e2b0ff);
+		t.setText( "Ide Fujio's Faces of the Court");
+		ltries = label( W - 360, 10, 330, 34, 20, 0xd9c9a0ff, 2);
+		rect( 0, H - 50, W, 50, 0x120c0cff);
+		rect( 0, H - 50, W, 2, 0xc9a45cff);
+		lmsg = label( 30, H - 44, W - 60, 40, 20, 0xf4f0e6ff, 1);
+		cursor = [rect( 0, 0, 10, 4, 0xffe08aff), rect( 0, 0, 10, 4, 0xffe08aff), rect( 0, 0, 4, 10, 0xffe08aff),
+			rect( 0, 0, 4, 10, 0xffe08aff)];
+		try{
+			deal();
+			buildPanel();
+			intro();
+		}catch( ex){											//	(user 2026-11-14: a failed deal left the screen
+			printexception( ex);								//	up and the game frozen) -> done at once: the event
+			log( "memory: could not deal, narrated outcome");		//	closes this and runs the old puzzle instead
+			err = true; done = true;
+		}
+	}
+	function shuffle( a){
+		for( local i = length( a) - 1; i > 0; i--){ local j = int( frand( 0.0, i + 0.999)); local t = a[i]; a[i] = a[j]; a[j] = t; }
+		return a;
+	}
+	function faces(){
+		local seen = {}, court = [], others = [];
+		local add = function( nm, into){
+			local key = ::Rokugan.bustKey( nm);
+			if( !key || (key in seen)) return;
+			local tex = ::Rokugan.bustTexture( "/resource/bust/" .. key .. "/neutral.png");
+			if( !tex) return;
+			seen[key] <- true;
+			into.append( { name = nm, tex = tex });
+		};
+		foreach( nm in MEM_ALWAYS) add( nm, court);
+		foreach( nm in shuffle( MEM_NAMES.filter( @( v) MEM_ALWAYS.indexOf( v) < 0))) add( nm, court);
+		if( length( court) < MEM_PAIRS && ("bustnames" in ::Rokugan)){		//	the rest of the cast: full names only
+			local names = [];
+			foreach( nm, key in ::Rokugan.bustnames) if( length( nm.split( " ")) > 1 && !(key in seen)) names.append( nm);
+			foreach( nm in shuffle( names)){ if( length( court) + length( others) >= MEM_PAIRS) break; add( nm, others); }
+		}
+		local a = court ... others;
+		if( length( a) < MEM_PAIRS) throw "memory: only %d busts" % [length( a)];
+		return a.slice( 0, MEM_PAIRS);
+	}
+	function deal(){
+		if( cards) foreach( c in cards) foreach( v in [c.back, c.mark, c.front, c.img]) v.removeFromParent();
+		local f = faces(), deck = [];
+		foreach( i, v in f){ deck.append( i); deck.append( i); }
+		shuffle( deck);
+		local x0 = (W - (MEM_COLS * MEM_CW + (MEM_COLS - 1) * MEM_GAP)) / 2, y0 = 56.0;		//	(to y 667: above the bar)
+		cards = [];
+		foreach( k, id in deck){
+			local x = x0 + (k % MEM_COLS) * (MEM_CW + MEM_GAP), y = y0 + (k / MEM_COLS) * (MEM_CH + MEM_GAP);
+			local front = rect( x, y, MEM_CW, MEM_CH, 0xeadfc4ff);
+			local tex = f[id].tex, iw = MEM_CW - 4, ih = MEM_CH - 4;
+			local s = Math.min( iw / tex.width, ih / tex.height);
+			local img = ::SKImageView( Sprite( tex));
+			img.sp.blend = SK_PMAMIX;
+			img.enabled = false;
+			img.setRect( x + (MEM_CW - tex.width * s) / 2, y + 2, tex.width * s, tex.height * s);
+			root.addChild( img); views.append( img);
+			//	the back: crimson lacquer, seigaiha waves, a gold mitsudomoe (tools/gen_cardback.py)
+			local btex = ::Rokugan.bustTexture( "/resource/efx/rt_memory_back.png"), back = null;
+			if( btex){
+				back = ::SKImageView( Sprite( btex));
+				back.sp.blend = SK_PMAMIX;
+				back.enabled = false;
+				back.setRect( x, y, MEM_CW, MEM_CH);
+				root.addChild( back); views.append( back);
+			}else back = rect( x, y, MEM_CW, MEM_CH, 0x7a2a22ff);
+			local mark = rect( x, y, 1, 1, 0x00000000);								//	(kept for the plain fallback)
+			cards.append( { id = id, name = f[id].name, x = x, y = y, up = false, done = false, front = front, img = img,
+				back = back, mark = mark });
+		}
+		cur = 0; open = []; misses = 0; matched = 0; peek = 0.0; hits = 0; flips = 0;
+		aiPlan = null; aiT = 0.0;
+		lmsg.setText( "");
+		draw();
+	}
+	function draw(){
+		if( !cards || length( cards) < MEM_COLS * MEM_ROWS) return;
+		foreach( c in cards){
+			local show = c.up || c.done;
+			c.back.setVisible( !show); c.mark.setVisible( !show);
+			foreach( v in [c.front, c.img]) v.setVisible( show);
+			c.front.setColor( c.done ? 0xb8d0a0ff : 0xeadfc4ff);
+		}
+		local c = cards[cur], x = c.x - 3, y = c.y - 3, w = MEM_CW + 6, h = MEM_CH + 6;
+		cursor[0].setRect( x, y, w, 3); cursor[1].setRect( x, y + h - 3, w, 3);
+		cursor[2].setRect( x, y, 3, h); cursor[3].setRect( x + w - 3, y, 3, h);
+		foreach( v in cursor) v.setVisible( state == "play");
+		ltries.setText( "Pairs %d / %d     Misses %d / %d" % [matched, MEM_PAIRS, misses, MEM_MISSES]);
+	}
+	function intro(){
+		state = "intro";
+		showPanel( true, "Faces of the Court", [
+			"\"Sixty-four cards, thirty-two faces, two of each. Help me pair them up.\"",
+			"\"If I can remember who is who, my novel won't marry the wrong cousins.\"",
+			"Arrows move. Z / Space / Enter turns a card over.",
+			"Find all six pairs before " .. MEM_MISSES .. " wrong guesses."], ["Deal the cards"]);
+		shot( "intro");
+	}
+	function flip( k){
+		local c = cards[k];
+		if( c.up || c.done || length( open) >= 2) return;
+		c.up = true; open.append( k); flips++;
+		sfx( "SE000");
+		if( length( open) == 1) lmsg.setText( c.name .. "...");						//	(the cards are too small for names)
+		if( length( open) == 2){
+			local a = cards[open[0]], b = cards[open[1]];
+			if( a.id == b.id){
+				a.done = b.done = true; a.up = b.up = false; open = []; matched++; hits++;
+				lmsg.setText( "Fujio: " .. (MEM_HIT[(hits - 1) % length( MEM_HIT)] % [a.name]));
+				sfx( "SE003");
+			}else{
+				peek = 1100.0;
+				lmsg.setText( a.name .. " and " .. b.name .. ".   Fujio: " .. MEM_MISS[misses % length( MEM_MISS)]);
+			}
+		}
+		draw();
+	}
+	function aiStep( dt){
+		local m = aiMode();
+		if( !m || state != "play" || peek > 0.0) return;
+		aiT -= dt;
+		if( aiT > 0.0) return;
+		aiT = 280.0;
+		if( !aiPlan || !length( aiPlan)){
+			local left = [];
+			foreach( i, c in cards) if( !c.done) left.append( i);
+			if( m == "win"){ foreach( i in left) foreach( j in left) if( !aiPlan && i < j && cards[i].id == cards[j].id) aiPlan = [i, j]; }
+			else{															//	(a random wrong pair each time)
+				shuffle( left);
+				foreach( i in left) foreach( j in left) if( !aiPlan && i != j && cards[i].id != cards[j].id) aiPlan = [i, j];
+			}
+			if( !aiPlan) return;
+		}
+		local k = ::RTU.first( aiPlan);									//	(RokuganUtil: no remove() here)
+		aiPlan = ::RTU.rest( aiPlan);
+		if( k == null) return;
+		cur = k;
+		flip( k);
+	}
+	function step( dt){
+		if( state != "play"){ draw(); return; }
+		aiStep( dt);
+		if( shotname && st > 3000.0 && st - dt <= 3000.0) shot( "play");
+		if( peek > 0.0){
+			peek -= dt;
+			if( peek <= 0.0){
+				foreach( k in open) cards[k].up = false;
+				open = []; misses++;
+				sfx( "SE004");
+				draw();
+				if( misses >= MEM_MISSES) finish( false);
+			}
+			return;
+		}
+		local col = cur % MEM_COLS, row = cur / MEM_COLS;
+		if( hit.left){ col = (col + MEM_COLS - 1) % MEM_COLS; sfx( "SE001"); }
+		if( hit.right){ col = (col + 1) % MEM_COLS; sfx( "SE001"); }
+		if( hit.up){ row = (row + MEM_ROWS - 1) % MEM_ROWS; sfx( "SE001"); }
+		if( hit.down){ row = (row + 1) % MEM_ROWS; sfx( "SE001"); }
+		cur = row * MEM_COLS + col;
+		if( hit.fire) flip( cur);
+		draw();
+		if( matched >= MEM_PAIRS) finish( true);
+	}
+	function finish( won){
+		log( "memory: round %d over, %S (%d pairs, %d misses, %d flips, %.1f s)" % [round + 1, won ? "won" : "lost", matched,
+			misses, flips, st / 1000.0]);
+		aidown = {};
+		if( won){
+			state = "won"; sfx( "SE018");
+			showPanel( true, "Every face in its place!", ["\"Thirty-two pairs, and only " .. misses .. " stumbles!\"",
+				"\"I'll never confuse them again. Well. Rarely.\"", "Ide Fujio scribbles a note in the margin.", ""], ["Done"]);
+		}else{
+			state = "lost"; sfx( "SE012");
+			showPanel( true, "The faces win.", ["\"Even you mixed up the Kakita and the Doji. Everyone does.\"",
+				"\"Shall I shuffle them again?\"", "", "Try again?"], ["Yes", "No"]);
+		}
+		shot( state);
+	}
+	function chosen( i){
+		if( state == "intro"){ state = "play"; st = 0.0; log( "memory: round %d starts (%S)" % [round + 1, aiMode() || "player"]); draw(); return; }
+		if( state == "won"){ result = 1; done = true; return; }
+		if( state == "lost"){
+			if( i == 0){ round++; deal(); intro(); }
+			else{ result = 2; done = true; }
+		}
+	}
+}
+::RTMemory <- RTMemory;
+
+///////////////////////////////////////////////////////////////////////////////
 //	The blocking call for event scripts: 1 won, 2 lost and declined, 0 could not run (the event's narrated fallback).
 ::Rokugan.miniGame <- function( kind){
 	local g = null;
@@ -663,7 +885,7 @@ class RTRace extends RTMini
 		local root = ::rootview ? ::rootview.findChild( "stageui") : null;
 		if( !root){ log( "mini-game " .. kind .. ": no stage UI, narrated outcome"); return 0; }
 		if( ::arguments.indexOf( "-rtminifail") >= 0) throw "test: -rtminifail";		//	(tests the fallback)
-		g = kind == "yumi" ? ::RTYumi( root) : ::RTRace( root);
+		g = kind == "yumi" ? ::RTYumi( root) : kind == "memory" ? ::RTMemory( root) : ::RTRace( root);
 	}catch( ex){
 		printexception( ex);
 		log( "mini-game " .. kind .. ": could not start, narrated outcome");
