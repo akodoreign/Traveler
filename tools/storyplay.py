@@ -616,7 +616,7 @@ def main():
         json.dump(d, open(tmp, "w"))
         os.replace(tmp, cmdf)                                     # (never a half-written file)
     cmd(0, [])
-    subprocess.run(["taskkill", "/IM", "rpgcobo.exe", "/F"], capture_output=True)
+    pass                                                                  # (never kill engines this script did not start: the user and other agents run their own)
     log = os.path.join(out, "log_resume.txt" if resume else "log.txt")
     if resume:
         args = [os.path.join(TOOL, "rpgcobo.exe")] + resume_args(ck, name, opts["--lv"])

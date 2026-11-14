@@ -4894,3 +4894,12 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
 - Push = `python tools/release.py <message file>`: sync_licensed, version.json +1, rt_manifest.json (CRC32 as signed-int TEXT - the engine's JSON reader clamps big/negative numbers), commit, push origin licensed-demo:main. Version 4 = 3c2788b.
 - In game: title "Update / Verify" (gen_data title_update_entry -> RokuganUpdate.sk). Manages only _tools/rpgcobo-tool/ (engine file security: writes only in its folder, never exe/dll/bat/ps1/sakana.proj); records the install in _tools/rpgcobo-tool/rt_version.json + rt_manifest.json (gitignored). URLs carry ?t= to skip raw.githubusercontent's 5-min cache. sakana.proj allows https raw.githubusercontent.com.
 - Test: `-rtupdtest fast|verify|fix` (run in D:/RokuganTraveler-licensed; the dev folder has no version.json, so the button refuses there). Engine test windows sit black while they scan - warn the user first.
+
+
+## 2026-11-14: traveler select, chapter-end objectives, Journal, update notice (versions 9-11)
+- One save walks all 8 roads: each path's end marker (finale_gate) sets G1234-G1241 (road walked), offers a save and opens path_menu() (gen_maps; loop on event-local Y - only W-Z exist). Walked roads are refused and marked with their level; option 9 = the finale once all 8 are walked (::Rokugan.pathFinale, then fJoinAll on M444). ::Rokugan.pathBegin empties the party, clears G608 (Yosai), G1230, G1227.
+- chapter_end_pass (gen_maps, before objective_pass): 12 chapter ends had no objective (the user's Crane save was stuck after Ch1). Crane Ch1 -> Ch2 also has once-scenes for old saves (G1242/G1243).
+- Journal: RokuganJournal.sk (menu_journal, menu_item.ui), RokuganJournalData.sk (journal_pass from ladders.py). Tracked entry = G1244, shown in the HUD Story box. Side quests are a hand table (JOURNAL_SIDE): add new side stories there.
+- Title: yellow 'Update available' line when GitHub's version.json is newer (RokuganUpdate.sk updNoticeCheck).
+- The engine runs ONE instance at a time (a second exits with code 7): test launchers must wait for a gap (scratchpad shotrun.py pattern). -rtmenuhold keeps a -rtmenutest menu open 6 s for -rtshot.
+- NEXT (user): connect the overland maps with more routes (from the world map), scatter caves matched to each route's difficulty, then check every cave has a full walkable block to every object.

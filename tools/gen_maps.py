@@ -18931,11 +18931,40 @@ def objective_pass(mp):
     print("objectives: %d (HUD list %s)" % (len(objs), out))
 
 
+def free_engine(wait_s=3600):
+    """The engine runs one instance at a time (a second exits with code 7), and the build needs it. Test instances
+    (launched with -map / -battle / -rt...) are stopped; the user's own game (a plain -testplay) never is: the build
+    waits until it is closed (user 2026-11-13: don't kill the user's game)."""
+    import time
+    t0, said = time.time(), False
+    while True:
+        out = subprocess.run(["powershell", "-NoProfile", "-Command",
+                              "Get-CimInstance Win32_Process -Filter \"name='rpgcobo.exe'\" | "
+                              "ForEach-Object { \"$($_.ProcessId)`t$($_.CommandLine)\" }"],
+                             capture_output=True, text=True).stdout
+        procs = [ln.split("\t", 1) for ln in out.splitlines() if "\t" in ln]
+        if not procs:
+            return
+        users = [p for p, c in procs if not any(f in c for f in (" -map", " -battle", " -event", " -rt"))]
+        for pid, cmd in procs:
+            if pid not in users:
+                subprocess.run(["taskkill", "/PID", pid, "/F"], capture_output=True)
+        if not users:
+            time.sleep(0.5)
+            continue
+        if not said:
+            print("gen_maps: the game is open (PID %s) - waiting for it to close before building." % users[0])
+            said = True
+        if time.time() - t0 > wait_s:
+            sys.exit("gen_maps: the game stayed open; build skipped.")
+        time.sleep(5)
+
+
 def build(specs):
     job = {"maps": [s.write() for s in specs]}
     jpath = os.path.join(JOBDIR, "job.json")
     json.dump(job, open(jpath, "w", encoding="utf-8"))
-    subprocess.run(["taskkill", "/IM", "rpgcobo.exe", "/F"], capture_output=True)
+    free_engine()
     logp = os.path.join(JOBDIR, "build.log")
     import time
     with open(logp, "w", encoding="utf-8", errors="replace") as lf:

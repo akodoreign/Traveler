@@ -305,6 +305,11 @@
 	["Retainer Captain"] = "npc_retainer_captain",
 	["Boatman"] = "npc_boatman",
 	["Outfitter"] = "npc_outfitter",
+	["Jade-dust Pedlar"] = "npc_jade_dust_pedlar",
+	["Goat-herd Archer"] = "npc_goat_herd_archer",
+	["Sparrow Ronin"] = "npc_sparrow_ronin",
+	["Wandering Air-Shugenja"] = "npc_wandering_air_shugenja",
+	["Mantis Ferry Archer"] = "npc_mantis_ferry_archer",
 };
 ::Rokugan.bustemos <- {
 	["natsuko"] = ["neutral", "happy", "angry", "sad", "surprised", "worried", "determined", "hurt"],
@@ -601,6 +606,11 @@
 	["npc_retainer_captain"] = ["neutral"],
 	["npc_boatman"] = ["neutral"],
 	["npc_outfitter"] = ["neutral"],
+	["npc_jade_dust_pedlar"] = ["neutral"],
+	["npc_goat_herd_archer"] = ["neutral"],
+	["npc_sparrow_ronin"] = ["neutral"],
+	["npc_wandering_air_shugenja"] = ["neutral"],
+	["npc_mantis_ferry_archer"] = ["neutral"],
 };
 ::Rokugan.bustfaces <- {
 	["natsuko"] = { ["base"] = [0.5325, 0.2755, 0.5304], ["travel"] = [0.5325, 0.2451, 0.5107], ["court"] = [0.5325, 0.2755, 0.5304], ["bath"] = [0.5337, 0.2701, 0.5269], ["night"] = [0.5325, 0.2755, 0.5304] },
@@ -897,6 +907,11 @@
 	["npc_retainer_captain"] = { ["base"] = [0.5000, 0.1767, 0.4267] },
 	["npc_boatman"] = { ["base"] = [0.5000, 0.2183, 0.4683] },
 	["npc_outfitter"] = { ["base"] = [0.5000, 0.2800, 0.5300] },
+	["npc_jade_dust_pedlar"] = { ["base"] = [0.5000, 0.3267, 0.5767] },
+	["npc_goat_herd_archer"] = { ["base"] = [0.5000, 0.1850, 0.4350] },
+	["npc_sparrow_ronin"] = { ["base"] = [0.5000, 0.3600, 0.6100] },
+	["npc_wandering_air_shugenja"] = { ["base"] = [0.5000, 0.1783, 0.4283] },
+	["npc_mantis_ferry_archer"] = { ["base"] = [0.5000, 0.1950, 0.4450] },
 };
 ::Rokugan.bustmapscene <- { ["M142"] = "court", ["M143"] = "court", ["M144"] = "court", ["M145"] = "court", ["M146"] = "court", ["M229"] = "court" };
 ::Rokugan.bustvars <- {
@@ -1194,4 +1209,9 @@
 	["npc_retainer_captain"] = [],
 	["npc_boatman"] = [],
 	["npc_outfitter"] = [],
+	["npc_jade_dust_pedlar"] = [],
+	["npc_goat_herd_archer"] = [],
+	["npc_sparrow_ronin"] = [],
+	["npc_wandering_air_shugenja"] = [],
+	["npc_mantis_ferry_archer"] = [],
 };

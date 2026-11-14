@@ -64,7 +64,7 @@ def launch(name, mid, bx, bz, lines, vars_="", lv="9", party="", choice="", secs
     for f in os.listdir(shots):
         if f.startswith("bot_%s_" % name):
             os.remove(os.path.join(shots, f))
-    subprocess.run(["taskkill", "/IM", "rpgcobo.exe", "/F"], capture_output=True)
+    pass                                                                  # (never kill engines this script did not start: the user and other agents run their own)
     packed = ["bot " + "|".join(ln.replace(" ", ",") for ln in lines)]
     if choice:
         packed.append("choice " + choice)
