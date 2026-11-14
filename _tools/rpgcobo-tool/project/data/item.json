@@ -230,10 +230,10 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "30",
+		"atkform": "50",
 		"cmdtgt": 8,
 		"consume": 1,
-		"desc": "Revives a fallen ally.",
+		"desc": "A Kuni field draught, bitter and hot. Wakes a fallen ally with half their HP.",
 		"dmgform": 5,
 		"dmgtype": 2,
 		"endact": {
@@ -254,7 +254,7 @@
 		"name": "Revival Draught",
 		"occasion": 3,
 		"option": [],
-		"price": 5,
+		"price": 450,
 		"remconds": 1,
 		"skilltype": "heal",
 		"spdrate": 1.0,
@@ -822,6 +822,120 @@
 		"option": [],
 		"price": 30,
 		"remconds": 8,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I460": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "25",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Pungent salts in a twist of paper. Wakes a fallen ally with a quarter of their HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 636,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Smelling Salts",
+		"occasion": 3,
+		"option": [],
+		"price": 120,
+		"remconds": 1,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I461": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "100",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "A sealed lacquer vial from a Fortune's shrine. Wakes a fallen ally with all their HP. Rare: no merchant sells it.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 636,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Breath of Jurojin",
+		"occasion": 3,
+		"option": [],
+		"price": 2500,
+		"remconds": 1,
 		"skilltype": "heal",
 		"spdrate": 1.0,
 		"speed": 1.0,

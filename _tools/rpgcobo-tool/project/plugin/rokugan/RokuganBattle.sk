@@ -872,6 +872,51 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 	printf( "[RT] hireling %S goes home to %S\n", sk.rt_hname, sk.rt_hhome);
 };
 
+//	Knocked out (user 2026-11-14: "for when a party member falls, can use the pixel art already created for them"): a
+//	party member doesn't dissolve like a slain foe. They fall with their own sheet's collapse frames (79-83) and lie in
+//	the "die" pose (77-78) until woken (Smelling Salts, Revival Draught, Breath of Jurojin, Raise...), then stand.
+::Rokugan.downed <- {};										//	rp3d -> true while lying down
+::RPG3DPicture._rt_death <- ::RPG3DPicture.deathAnime;
+::RPG3DPicture.deathAnime <- function(){
+	if( this["rpgobj"] && (this.rpgobj instanceof ::RPGPlayer)){
+		anime2( #{ id = "collapse"});
+		playSound( "SE111");
+		::Rokugan.downed[this] <- skGetTime();
+		return;
+	}
+	this._rt_death();
+};
+::Rokugan.downTick <- function( b){
+	if( !b || !("members" in b)) return;
+	foreach( pc in b.members){
+		if( !pc) continue;
+		local rp = null;
+		try{ rp = b.getChara3D( pc); }catch( ex){}
+		if( !rp) continue;
+		if( pc.isDead()){
+			if( !(rp in this.downed)) this.downed[rp] <- skGetTime();
+			local t = this.downed[rp], now = skGetTime();
+			//	the fall over (700 ms), lie still - and keep lying: the turn's stance changes ("fight", "stand") reach
+			//	the fallen too, so the pose is put back a few times a second (77-78 are both lying frames)
+			if( t >= 0 && now - t > 700){ rp.anime2( #{ id = "die"}); this.downed[rp] = -now; }
+			else if( t < 0 && now + t > 300){ rp.anime2( #{ id = "die"}); this.downed[rp] = -now; }
+			if( rp.fxtype != 0){ rp.fxtype = 0; rp.fxw = 0.0; rp.fxspd = 0.0; }	//	(never the foes' dissolve)
+		}else if( rp in this.downed){								//	woken: back on their feet
+			delete this.downed[rp];
+			rp.fxtype = 0; rp.fxw = 0.0; rp.fxspd = 0.0;
+			rp.anime2( #{ id = "stand"});
+			log( "%S is back on their feet" % pc.name);
+		}
+	}
+};
+::RPGStage._rt_body_down <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	this._rt_body_down( dt);
+	if( this["battle"]) try{ ::Rokugan.downTick( this.battle); }catch( ex){
+		if( !::Rokugan["downerr"]){ ::Rokugan.downerr <- true; printexception( ex); }
+	}
+};
+
 //	The back row: the hireling stands behind the party (visual only: not a member, never targeted).
 ::Rokugan.hire3d <- null;
 ::TurnBattleRunner._rt_setup_h <- ::TurnBattleRunner.setupCharas;
@@ -880,6 +925,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 	::Rokugan.hire3d = null;
 	::Rokugan.freecmds = [];
 	::Rokugan.supportTurn = -1;
+	::Rokugan.downed = {};
 	local sk = ::Rokugan.hireSkill();
 	if( !sk || !sk["rt_hmdl"]) return;
 	try{

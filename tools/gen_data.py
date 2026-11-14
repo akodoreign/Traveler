@@ -446,6 +446,18 @@ def crab_items(it):
     egg.update({"name": "Painted Egg", "desc": "Daubed with a child's nightmare. Cracking it cures Silence. (Ryozo's)",
                 "remconds": 1 << 3, "price": 30})
     it["I114"] = egg
+    # (user 2026-11-14: "knock out and wake up items. 25% 50% and 100% (rare) ones") revive a fallen ally (Down, K000)
+    # with that share of their HP: the template's Revival Draught (dmgform 5 = % of max HP, remconds bit 0 = Down)
+    def wake(iid, name, pct, price, desc):
+        x = copy.deepcopy(it["I016"])
+        x.update({"name": name, "atkform": str(pct), "price": price, "desc": desc, "remconds": 1})
+        it[iid] = x
+    wake("I460", "Smelling Salts", 25, 120, "Pungent salts in a twist of paper. Wakes a fallen ally with a quarter "
+                                            "of their HP.")
+    wake("I016", "Revival Draught", 50, 450, "A Kuni field draught, bitter and hot. Wakes a fallen ally with half "
+                                             "their HP.")
+    wake("I461", "Breath of Jurojin", 100, 2500, "A sealed lacquer vial from a Fortune's shrine. Wakes a fallen ally "
+                                                 "with all their HP. Rare: no merchant sells it.")
     heal("I190", "Ginseng Tonic", 70, 400, "A bitter root tonic from the year-400 market. Restores most of your HP.")
     heal("I115", "Drop Soup", 30, 0, "No egg. Just the drop. Very pure. Very Crab. Kiyo's thank-you.")
     k = copy.deepcopy(it["I000"])
@@ -1102,6 +1114,13 @@ def crab_armor(ar):
 
 def crab_stores(st):
     def store(rid, name, items):
+        # (user 2026-11-14: wake-up items) any shop with field medicine also sells Smelling Salts (25%); one with the
+        # Ginseng Tonic also the Revival Draught (50%). Breath of Jurojin (100%) is never sold.
+        items = list(items)
+        if any(i in items for i in ("I100", "I101", "I131")) and "I460" not in items:
+            items.append("I460")
+        if "I131" in items and "I016" not in items:
+            items.append("I016")
         st[rid] = {"desc": "", "icon": "", "name": name, "type": 0,
                    "items": [{"dataid": d, "price": None, "reqfail": 0, "reqs": None} for d in items]}
     store("R100", "Garrison Armoury", ["W101", "W103", "A100", "A101", "A102"])
@@ -5259,8 +5278,7 @@ def english_leftovers():
              "item": {"I000": {"desc": "A useless thing."}, "I001": {"desc": "Restores HP."},
                       "I004": {"desc": "A night's rest in the open: restores the whole party's HP and MP. Not usable "
                                        "in dangerous places."},
-                      "I010": {"desc": "Restores HP."}, "I011": {"desc": "Restores HP."},
-                      "I016": {"desc": "Revives a fallen ally."}},
+                      "I010": {"desc": "Restores HP."}, "I011": {"desc": "Restores HP."}},   # (I016: wake())
              "job": {"J105": {"desc": "Attack up at the start of each battle."}},   # (J000: jobs_data.py)
              "cond": {"K005": {"desc": "Asleep: can't act for a while. A physical hit wakes them."}},
              "skill": {"S003": {"desc": "A plain attack with no weapon."}, "S190": {"name": "Auto-Revive"}},

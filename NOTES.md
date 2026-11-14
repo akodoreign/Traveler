@@ -4762,6 +4762,12 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   NOTES.md changed (lead's release.py notes). Checks: no tools/*.py changed since; no backups in resource; 0 new boss
   files. Newest bot log (story_3, 11-12 08:34) predates the 11-13 plugin edits (RokuganUpdate/Field/Objectives) - no
   engine run has verified them yet.
+- 2026-11-14 15:45 push agent: released version 18 = 783b526 via release.py (22 files since v17 8243e4a): quest marker
+  1/4 size, glides to the screen edge toward the exit, nearest exit when the hop is a story move, map-to-road
+  assignment fixed (gen_maps marker_pass); RokuganParty memberOp hook renamed (_rt_memberop_party) + Formation hook;
+  hum_ashigaru/bandit_captain/blood_acolyte sheets, Gendo ref-pass frames; anim_harmonize drift guard; bot evalf.
+  Checks: 3 changed tools compile; no .tmp/.orig in resource; all changed PNGs load; 0 new boss files. Note: the
+  commit message wrongly says "Iuchi Gendo" - he is Kitsuki Gendo (not amended: no force-push).
 
 ## 2026-11-11 (evening): Progression v2 - ranks, jobs, kata/kiho, Void, Support (user's design pass)
 Spec: `docs/rules/progression-v2.md` (the user's decisions, quoted). Built (lead):
@@ -4947,3 +4953,10 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
 - Memory (RokuganMini RTMemory, Ide Fujio M144): 8x8, bust faces; card back tools/gen_cardback.py. First win: Jade Finger + guest; repeats: Ginseng Tonic. Fallback = the old forged-letters puzzle.
 - gen_maps cave_mounds(): a stepped rock mound behind every outdoor cave mouth (fb 3/21).
 - ENGINE DIALECT: arrays have no remove()/insert(); `delete a[0]` returns nothing; strings have no find()/tointeger() (use int(), split()). Helpers: RokuganUtil.sk ::RTU (first, rest, front, concat, has).
+
+## 2026-11-14: tester - version 17 engine pass (routes, party, Support, marker, Cakon)
+- Passed: route ends + gates, caves load/fight/mounds, Formation move/swap, cap 4, slot 1 refill, hireling third row,
+  Support free action once per round (real menu), party NPC flags, tracked-quest marker, Cakon odd jobs (Sayo Lv 5).
+- Fixed: RokuganParty Formation override (RPGSystem.ui isn't iterable - look up by key); memberOp wrapper name clash;
+  gen_maps marker_pass MK_PATH (all roads at once + end maps + spans; end beat keyed on PATH_WALKED) and RokuganMarker
+  (finale beats only in the finale; road owner = first traveler). Details: _art/preview/agents/team/tester.md.
