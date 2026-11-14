@@ -1,0 +1,167 @@
+//	RokuganJournal.sk : the main menu's Journal (user 2026-11-14: "add journal to the menu in game and add selectable
+//	objectives there, this can be sidequests or unlocked main story quests").
+//	Tabs: Story (this road's objective + the eight roads), Side quests (open ones), Training (the levelling ladders a
+//	finished chapter opened: tools/ladders.py, RokuganJournalData.sk), Done. Choosing an entry tracks it: the field HUD's
+//	Story box (RokuganHUD.sk) shows the tracked entry until it is done, then falls back to the main story.
+//	rpgvar G1244 = the tracked entry (0 = the main story).
+
+local TRACK = "G1244";
+
+//	Side quests: who = whose road it belongs to (null = any), open = all these flags set, done = this flag set (or a
+//	list: any of them). Text = where to go.
+::Rokugan.JOURNAL_SIDE <- [
+	{ id = 1, who = "P100", title = "Takeo: the horses", open = ["G054"], done = "G233",
+	  text = "Kyuden Hida, 1F: Kitsu Takeo has a side story (the \"?\" over his head). He answers the Guest call after." },
+	{ id = 2, who = "P100", title = "Mai: tea, confessions", open = ["G054"], done = "G234",
+	  text = "Kyuden Hida, 1F: Yogo Mai has a side story (the \"?\"). She answers the Guest call after." },
+	{ id = 3, who = "P100", title = "Fujio: a scandal", open = ["G054"], done = "G235",
+	  text = "Kyuden Hida, 3F: Ide Fujio has a side story (the \"?\"). He answers the Guest call after." },
+	{ id = 4, who = "P100", title = "Sakura: the spear", open = ["G054"], done = "G236",
+	  text = "Kyuden Hida, 2F: Daidoji Sakura has a side story (the \"?\"). She answers the Guest call after." },
+	{ id = 5, who = "P100", title = "Archery contest", open = ["G054"], done = "G1232",
+	  text = "Kyuden Hida, the 1F yard during Winter Court: win the Yumi contest with the bow." },
+	{ id = 6, who = "P100", title = "Takeo's three laps", open = ["G233"], done = "G1233",
+	  text = "Kyuden Hida: ask Kitsu Takeo to race the yard again, and win his three laps." },
+	{ id = 7, who = "P100", title = "The Bent Sword", open = ["G255"], done = "G292",
+	  text = "The Hiruma barracks at the foot of the Kaiu Wall: Hiruma Goro, turning his bent katana over. (Lv 32+; "
+		.. "not while Chapter 4 keeps Natsuko at Kyuden Hida.)" },
+	{ id = 8, who = "P100", title = "The Last Hunt", open = ["G286", "G233", "G234", "G235", "G236"],
+	  done = "G1213", text = "The Kaiu Wall garrison yard: Isawa Michio's table, and the four Kyuden Hida guests. (Lv 45+)" },
+	{ id = 9, who = null, title = "The Moto Curse", open = ["G507", "G1162"], done = "G1214",
+	  text = "The Plains of Thunder road: Moto Benjiro, in white death-paint, at the side of the road." },
+	{ id = 10, who = null, title = "Shiro Hiruma", open = ["G1215"], done = "G1218",
+	  text = "The Shadowlands deep, east along the Hiruma road: Shiro Hiruma, the castle on Natsuko's father's map. "
+		.. "The outer bailey, Oni no Okura's hall, then the keep." },
+];
+
+local has = function( f){ return !!::rpgvar[f]; };
+local allOf = function( a){ foreach( f in a) if( !::rpgvar[f]) return false; return true; };
+
+::Rokugan.journalLead <- function(){
+	local m = ::rpgstat ? ::rpgstat.members.find( @( v) v && ::Rokugan.TRAVELERS.indexOf( v.dataid) >= 0) : null;
+	return m ? m.dataid : null;
+};
+::Rokugan.journalMainText <- function(){
+	local oi = int( ::rpgvar["G1227"] || 0) - 1, objs = this["OBJECTIVES"] || [];
+	return (oi >= 0 && oi < length( objs)) ? objs[oi] : "No objective yet. Talk to the people around you.";
+};
+::Rokugan.journalSideOpen <- function( q){
+	local lead = this.journalLead();
+	if( q.who && q.who != lead) return false;
+	return allOf( q.open) && !has( q.done);
+};
+//	The Training entry of this road that is open now: the newest ladder whose chapter is done and whose next one isn't.
+::Rokugan.journalLadders <- function( done = false){
+	local lead = this.journalLead(), out = [];
+	foreach( i, l in (this["JOURNAL_LADDERS"] || [])){
+		if( l.pid != lead || !has( l.flag)) continue;
+		local over = l.next && has( l.next);
+		if( over == done) out.append( { id = 1000 + i, title = "Training: Lv %d-%d" % (l.lo, l.hi),
+			text = "Foes here have grown to match the road ahead: " .. l.where .. ". Toughen up before the next chapter." });
+	}
+	return out;
+};
+
+//	The tracked entry as [title, text], or null for the main story (also when the tracked one is done or gone).
+::Rokugan.journalTracked <- function(){
+	local t = int( ::rpgvar[TRACK] || 0);
+	if( t <= 0) return null;
+	if( t >= 1000){
+		foreach( e in this.journalLadders()) if( e.id == t) return [e.title, e.text];
+		return null;
+	}
+	foreach( q in this.JOURNAL_SIDE) if( q.id == t && this.journalSideOpen( q)) return [q.title, q.text];
+	return null;
+};
+
+::Rokugan.journalTabs <- function(){
+	local lead = this.journalLead(), story = [], side = [], train = this.journalLadders(), done = [];
+	story.append( { id = 0, title = "Main story", text = this.journalMainText() });
+	foreach( pid in this.TRAVELERS){
+		if( pid == lead) continue;
+		local p = ::rpgstat.playermap[pid];
+		story.append( { id = -1, title = this.PATH_NAME[pid], text = this.pathWalked( pid)
+			? "Road walked (Lv %d). Waiting for the others, for the finale." % (p ? p.LV : 1)
+			: "Road not yet walked. Choose this traveler when a road ends (the road-marker at its last map)." });
+	}
+	foreach( q in this.JOURNAL_SIDE){
+		if( q.who && q.who != lead) continue;
+		if( has( q.done)) done.append( { id = -1, title = q.title, text = "Done." });
+		else if( allOf( q.open)) side.append( { id = q.id, title = q.title, text = q.text });
+	}
+	foreach( e in this.journalLadders( true)) done.append( { id = -1, title = e.title, text = "Passed: a newer training ground is open on this road." });
+	if( !length( side)) side.append( { id = -1, title = "(nothing open on this road yet)", text = "Side stories show up "
+		.. "as a \"?\" over someone's head." });
+	if( !length( train)) train.append( { id = -1, title = "(no training open)", text = "Finishing a chapter opens training "
+		.. "grounds: the road's earlier maps, with foes at the next chapter's level." });
+	if( !length( done)) done.append( { id = -1, title = "(nothing yet)", text = "" });
+	return [story, side, train, done];
+};
+
+local journalUI = function( prms){
+	local tabptr = ptr( 0), names = ["Story", "Side quests", "Training", "Done"];
+	local tabs = ::Rokugan.journalTabs();
+	local makelist = function( tab){
+		local cur = int( ::rpgvar[TRACK] || 0), tr = ::Rokugan.journalTracked();
+		//	(a 3-column grid: the tracked mark goes in front, not in rlbl, which overlaps long titles)
+		return tabs[tab].map( @( e, i) ({
+			_name = "i" .. i, item = e, rlbl = "",
+			lbl = ((e.id >= 0 && ((e.id == 0 && !tr) || (e.id > 0 && e.id == cur && tr))) ? "> " : "") .. e.title
+		}));
+	};
+	local view = RPGMain.showView({
+		uipath = "menu_item.ui"
+		name = "menu_sub"
+		layer = "menu"
+		binds = {
+			tablist = names.map( @( v, i)({ _name = "tab" .. i, lbl = v, tgl = @() (i == ~tabptr) ? 10 : 0 })),
+			itemlist = makelist( 0),
+			desclbl = tabs[0][0].title .. "\n\n" .. tabs[0][0].text .. "\n\n(Choose an entry to track it in the Story box.)",
+		},
+		action = "show"
+		focus = "i0"
+	});
+	local remake = function(){ view.setValue( "itemlist", makelist( ~tabptr)); };
+	local settab = function( t){ ::playSound( "SE000"); tabptr << t; remake(); view.setValue( "desclbl", ""); view.focusTo( "i0"); };
+	for( ;;){
+		local r = RPGMain.uiLoop( {
+			"action" : @( e){
+				switch( e.name){
+				case "tabinc": settab( (~tabptr + 1) % 4); return;
+				case "tabdec": settab( (~tabptr + 3) % 4); return;
+				case "tab0": case "tab1": case "tab2": case "tab3": settab( e.name[3] - '0'); return;
+				}
+				local it = e.item ? e.item["item"] : null;
+				if( !it || it.id < 0){ ::playSound( "SE002"); return; }
+				::rpgvar[TRACK] = it.id;							//	0 = back to the main story
+				::playSound( "SE003");
+				printf( "[RT] journal: tracking %d (%S)\n", it.id, it.title);
+				return "tracked";
+			}
+			"page" : @( e){ settab( (~tabptr + e.count + 8) % 4); }
+			"select" : @( e){ local it = e.item ? e.item["item"] : null; view.setValue( "desclbl", it ? it.title .. "\n\n" .. it.text : ""); }
+			"back" : @( e){ ::playSound( "SE004"); return "back"; }
+			"cancel" : @( e){ return "cancel"; }
+		});
+		if( r == "tracked"){ remake(); continue; }
+		if( r == "cancel") return false;
+		view.actionAndDie( "hide");
+		return true;
+	}
+};
+
+RPGSystem.ui ..
+{
+	key = "menu_journal"
+	lbl = "Journal"
+	type = "submenu"
+	topinfo = "Journal"
+	icon = ""
+	order = 15
+	menustat = 3
+	props = []
+	uifunc = journalUI
+};
+
+printf( "Rokugan Journal loaded: %d side quests, %d training entries\n", length( ::Rokugan.JOURNAL_SIDE),
+	length( ::Rokugan["JOURNAL_LADDERS"] || []));

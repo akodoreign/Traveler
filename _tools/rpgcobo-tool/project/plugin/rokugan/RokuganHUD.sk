@@ -10,7 +10,7 @@
 local log( s){ printf( "[RT] %S\n", s); }
 local W_BOX = 440, PAD = 12, LINE = 22, CHARS = 42, MARGIN = 18, BOTTOM = 62, GAP = 8;	//	BOTTOM: above the key-hint bar
 
-::Rokugan.hud <- { root = null, views = [], key = null, on = false, tex = null };
+::Rokugan.hud <- { root = null, views = [], key = null, on = false, tex = null, title = "Story" };
 
 ::Rokugan.areaLevels <- function( map){
 	local lo = 999, hi = 0;
@@ -93,7 +93,7 @@ local hudSprite = function(){
 		local sh = 2 * PAD + LINE * (length( story) + 1);
 		local sy = ly - GAP - sh;
 		box( sy, sh);
-		text( x + PAD, sy + PAD - 1, "Story", 18, 0xc9a45cff);
+		text( x + PAD, sy + PAD - 1, H["title"] || "Story", 18, 0xc9a45cff);
 		foreach( i, s in story) text( x + PAD, sy + PAD - 1 + LINE * (i + 1), s, 17, 0xf4f0e6ff);
 	}
 };
@@ -103,7 +103,8 @@ local hudSprite = function(){
 	local root = ::rootview.findChild( "stageui");
 	if( !root) return;
 	local H = this.hud;
-	local on = !st["battle"] && !st["mainevent"] && !!st["map"] && ::arguments.indexOf( "-rthud0") < 0;
+	local on = !st["battle"] && !st["mainevent"] && !!st["map"] && ::arguments.indexOf( "-rthud0") < 0
+		&& !::rootview.findChild( "menu_main") && !::rootview.findChild( "menu_sub");		//	(not under a menu)
 	if( !on){
 		if( H.on) foreach( v in H.views) v.setVisible( false);
 		H.on = false;
@@ -111,10 +112,13 @@ local hudSprite = function(){
 	}
 	local oi = int( ::rpgvar["G1227"] || 0) - 1, objs = this["OBJECTIVES"] || [];	//	G1227 is 1-based (0 = none yet)
 	local lv = this.areaLevels( st.map), clv = int( ::rpgvar["G1228"] || 0);
-	local key = "%S|%d|%S|%d" % (st["mapid"], oi, lv ? lv[0] .. "-" .. lv[1] : "-", clv);
+	//	(user 2026-11-14) a quest tracked in the Journal (RokuganJournal.sk) takes the box while it is open
+	local tr = ("journalTracked" in this) ? this.journalTracked() : null;
+	local key = "%S|%d|%S|%d|%S" % (st["mapid"], oi, lv ? lv[0] .. "-" .. lv[1] : "-", clv, tr ? tr[0] : "");
 	if( key != H.key || H.root != root){
 		H.key = key; H.root = root;
-		local story = (oi >= 0 && oi < length( objs)) ? wrap( objs[oi], CHARS) : [];
+		local story = tr ? wrap( tr[1], CHARS) : (oi >= 0 && oi < length( objs)) ? wrap( objs[oi], CHARS) : [];
+		H.title = tr ? (length( tr[0]) > 34 ? tr[0].substring( 0, 33) .. "..." : tr[0]) : "Story";
 		if( length( story) > 5) story = story.slice( 0, 5);
 		local level = lv ? (lv[0] == lv[1] ? "Recommended level: %d" % lv[0] : "Recommended level: %d-%d" % (lv[0], lv[1]))
 			: clv > 0 ? "Recommended level: %d (no battles here)" % clv : "No battles here";

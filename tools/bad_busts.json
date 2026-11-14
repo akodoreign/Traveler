@@ -231,6 +231,38 @@
    "why": "candidates are young; a feuding old grandmother ('Forty years...')",
    "look": "cranky old grandmother, 70s, wrinkled sly face, thin grey hair in a bun, faded green and orange kimono, wooden ladle",
    "seed_add": 300
+  },
+  {
+   "speaker": "Bloodspeaker",
+   "file": "npc_bloodspeaker/neutral.png",
+   "found": "2026-11-14 bust monitor batch 7 (candidates rejected)",
+   "why": "candidates have loudspeakers in the background (the word 'speaker') and read as plain boys",
+   "look": "maho cultist sorcerer, gaunt pale man, 40s, sunken red-rimmed eyes, ritual scars on cheeks, dark red hooded robe, bloodstained fingers, no loudspeakers",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Refugee Herbalist",
+   "file": "npc_refugee_herbalist/neutral.png",
+   "found": "2026-11-14 bust monitor batch 7 (candidates rejected)",
+   "why": "candidates are young men; she was a midwife in Motobu",
+   "look": "tired middle-aged woman, 40s, former midwife, kind weary face, hair tied in a dusty headscarf, travel-worn brown kimono, herb satchel",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Auntie Fumi",
+   "file": "npc_auntie_fumi/neutral.png",
+   "found": "2026-11-14 bust monitor batch 7 (candidates rejected)",
+   "why": "candidates are young girls; a village auntie who knew Sayo as a child",
+   "look": "warm plump village auntie, 50s, round smiling face, greying black hair in a bun, faded blue work kimono, apron",
+   "seed_add": 300
+  },
+  {
+   "speaker": "Otomo Shinken",
+   "file": "npc_otomo_shinken/neutral.png",
+   "found": "2026-11-14 bust monitor batch 7 (candidates rejected)",
+   "why": "candidates are women; he is the vain Imperial magistrate ('Thanks to my diligence!')",
+   "look": "pompous imperial magistrate, man, 40s, smug face, thin moustache, tall black eboshi court hat, gold and green imperial silk robes",
+   "seed_add": 300
   }
  ]
 }

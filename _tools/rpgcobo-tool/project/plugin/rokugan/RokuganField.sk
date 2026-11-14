@@ -1035,6 +1035,10 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 			}
 			if( n.k <= 6 && ("back" in funcmap)){
 				local r = null;
+				if( n.k == 1 && ::arguments.indexOf( "-rtmenuhold") >= 0){	//	-rtmenuhold: stay open 6 s (for -rtshot)
+					if( "select" in funcmap) try{ funcmap.select( { item = { item = null }, name = "i0" }); }catch( ex){}
+					sleep( 6000);
+				}
 				try{ r = funcmap.back( {}); }catch( ex){ printf( "[RT] MENUTEST back threw %S\n", "" .. ex); printexception( ex); }
 				printf( "[RT] MENUTEST back -> %S\n", "" .. r);
 				return r;

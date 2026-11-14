@@ -1922,6 +1922,7 @@ def main():
                     ("G1243", "Crane Ch2: the castle-gate-guard objective shown")):
         gv[gid] = {"defval": False, "name": nm, "type": 1}
     gv["G1160"] = {"defval": 0, "name": "finale Party B (bitmask over P100-P107)", "type": 2}
+    gv["G1244"] = {"defval": 0, "name": "Journal: the tracked entry (0 = the main story; RokuganJournal.sk)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}
     gv["G1092"] = {"defval": 0, "name": "ronin_technique_second (Ronin Ch2 Rank 2: 1-3 another school's R1, 4 Punish "
                                         "the Arrogant, 5 Taking the Measure, 6 Will Not Flesh)", "type": 2}

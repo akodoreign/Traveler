@@ -5048,6 +5048,11 @@
 		"name": "finale Party B (bitmask over P100-P107)",
 		"type": 2
 	},
+	"G1244": {
+		"defval": 0,
+		"name": "Journal: the tracked entry (0 = the main story; RokuganJournal.sk)",
+		"type": 2
+	},
 	"G1189": {
 		"defval": 0,
 		"name": "finale: Nashiko's shields broken in the debate (0-8)",
