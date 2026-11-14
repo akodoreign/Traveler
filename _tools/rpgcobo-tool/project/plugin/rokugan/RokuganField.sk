@@ -996,6 +996,12 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	//	times and say "[RT] LOADSHOT done" (tools/dumpsave.py --shot)
 	//	-rtmenutest KEY: opens that menu UI (menu_equip, menu_job, menu_skill, menu_main) for the leader and answers its
 	//	first selection with "back", logging each step - a menu that won't close shows up as no "MENUTEST closed" line
+	//	-rtrootdump: list the root view's children (a code-made view with no viewdata breaks the resize layout pass)
+	if( ::arguments.indexOf( "-rtrootdump") >= 0) newthread().start( @(){
+		sleep( 3000);
+		foreach( i, c in ::rootview.children) printf( "[RT] root child %d %S %S viewdata=%S\n", i, "" .. c.name,
+			"" .. c, c.viewdata ? "yes" : "NULL");
+	});
 	//	-rtupdtest fast|verify: the title Update / Verify scan against GitHub, logged only (RokuganUpdate.sk)
 	local ui = ::arguments.indexOf( "-rtupdtest");
 	if( ui >= 0 && !::Rokugan["updtested"]){ ::Rokugan.updtested <- true; ::Rokugan.updTest( ::arguments[ui + 1]); }

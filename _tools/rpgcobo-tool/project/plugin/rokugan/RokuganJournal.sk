@@ -189,5 +189,29 @@ RPGSystem.ui ..
 	uifunc = journalUI
 };
 
+//	(tester 2026-11-14) Two engine-side guards:
+//	- choice menus template only text0-text7: the traveler select's 9th option (text8) showed "${...}" raw
+//	- a root view child made in code (no viewdata) threw in the resize layout pass (SKView.getOriginalSize reads
+//	  viewdata.link) on every map move: such a child is skipped, the others are laid out as before
+try{
+	foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]){
+		foreach( k in ["text8", "text9", "text10", "text11"]) if( !(k in cls.tmplmap)) cls.tmplmap[k] <- 1;
+	}
+}catch( ex){ printf( "[RT] tmplmap guard failed: %S\n", "" .. ex); }
+try{
+	::SKRootView.updateLayout <- function(){
+		prjmat = Matrix.fromOrtho( 0, bnd.w * scale.x, bnd.h * scale.y, 0, -2000, 2000);
+		local _w = bnd.w, _h = bnd.h;
+		if( resizemode == 2){
+			foreach( c in children){
+				if( !c.viewdata) continue;									//	(a code-made view: keep its rect)
+				c.stretchSize( _w, _h, true);
+			}
+		}
+		updateMatrixAll();
+		skSetFontResolution( getMaxResolution());
+	};
+}catch( ex){ printf( "[RT] root layout guard failed: %S\n", "" .. ex); }
+
 printf( "Rokugan Journal loaded: %d side quests, %d training entries\n", length( ::Rokugan.JOURNAL_SIDE),
 	length( ::Rokugan["JOURNAL_LADDERS"] || []));

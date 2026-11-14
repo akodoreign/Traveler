@@ -320,6 +320,7 @@ if( ::arguments.indexOf( "-rttitlepick") >= 0){
 //	quests, 2 Training, 3 Done) and entry IDX there, as a player choosing it; later waits go on to -rtmenutest (back out).
 if( ::arguments.indexOf( "-rtjournaltrack") >= 0){
 	local ti = ::arguments[::arguments.indexOf( "-rtjournaltrack") + 1].split( ",").map( @( v) int( v)), jd = { done = false };
+	local jwrap = function(){
 	local _jloop = ::RPGMain.uiLoop;
 	::RPGMain.uiLoop <- function( funcmap){
 		if( !jd.done && ("page" in funcmap) && ("action" in funcmap)){
@@ -336,4 +337,7 @@ if( ::arguments.indexOf( "-rtjournaltrack") >= 0){
 		}
 		return _jloop( funcmap);
 	};
+	};
+	//	(-rtmenutest wraps uiLoop when the first stage launches: this goes on top of it, a second later)
+	newthread().start( @(){ while( !::rpgstage) sleep( 200); sleep( 1000); jwrap(); printf( "[RT] JOURNAL hook on\n"); });
 }

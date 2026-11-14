@@ -4903,3 +4903,10 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
 - Title: yellow 'Update available' line when GitHub's version.json is newer (RokuganUpdate.sk updNoticeCheck).
 - The engine runs ONE instance at a time (a second exits with code 7): test launchers must wait for a gap (scratchpad shotrun.py pattern). -rtmenuhold keeps a -rtmenutest menu open 6 s for -rtshot.
 - NEXT (user): connect the overland maps with more routes (from the world map), scatter caves matched to each route's difficulty, then check every cave has a full walkable block to every object.
+
+
+## 2026-11-14: side quests + job slots (version 13)
+- gen_maps SIDE_QUESTS: (key, road, title, giver map/x/z/sprite/name, opens, hunt map, gids, texts, zeni, job). Flags G1250+3k (taken/hunted/done; room for 16). One giver NPC per spot carries its whole chain. Hunts = arrival scenes on the hunt map (lost fight clears the flag: retry). Journal reads JOURNAL_QUESTS (journal_pass).
+- Generic jobs: jobs_data GENERIC_JOBS (J020 Yojimbo, J021 Courtier, J022 Sergeant, J023 Sohei; rt_unlock = the quest's done flag; ensureJobs gives them to every traveler).
+- Job slots: jobs_data JOB_SLOTS = Job + Trait 1-4; traits jobslotbits 30; RokuganJobs fitJobSlots resizes old saves.
+- Next batch: chains for Dragon, Scorpion, Unicorn, Ronin (and more generic jobs).
