@@ -1768,8 +1768,11 @@ def castle_1f():
             fb(m, x, 14, 4, IN["shield"], y=1)
         arch_won = [narrate("Natsuko's arrow splits the straw goblin's nose. The court applauds. "
                             "Asako Kuhime claps a beat too late."), setf("G219", 1)]
+        # (user 2026-11-14: the mini-games give prizes) the contest's prize; every later win at the butts a tonic
+        arch_prize = [say("Yasuki Kurako", "The prize, Hiruma. A pilgrim's charm from the mountain shrines - it "
+                                           "keeps the feet sure.")] + got("A137", "the Mountain's-Feet Charm")
         arch = [setf("W", 0)] + ch2("S02", start_at="(The court gathers", stop_at="> CHOICE") + [
-            choices(("Shoot to win.", mini_game("yumi", arch_won + [setf("G1232")], [
+            choices(("Shoot to win.", mini_game("yumi", arch_won + arch_prize + [setf("G1232")], [
                 narrate("Natsuko's arrows find the straw, and not much else. A Crane courtier takes the prize."),
                 say("Isawa Mutsuye", "You're kind to let him have it."), setf("G219", 2)], arch_won)),
                     ("Shoot to lose politely.", [narrate("The arrow lands politely in the straw."),
@@ -1781,13 +1784,15 @@ def castle_1f():
         ev.talk(25, 13, "CE000", [(None, [                                  # (after the contest - Kurako has gone up
             narrate("The archery butts. A quiver of practice arrows leans on the rail."),   # to 4F: shoot again, for fun)
             choices(("Shoot another round.", mini_game("yumi", [
-                narrate("A servant runs the arrows back, grinning. \"Every one of them, Hiruma-sama!\""), setf("G1232")],
+                narrate("A servant runs the arrows back, grinning. \"Every one of them, Hiruma-sama!\""), setf("G1232")]
+                + got("I131", "a Ginseng Tonic"),
                 [narrate("Natsuko looks at the wind, then at the straw. The straw wins this time.")], [])),
                     ("Leave the bow.", []))])], reqs=[flag("G205")], trigger=1)
         guest_npc(ev, 21, 9, 1, TAKEO_SS, "The horses are saddled, Hiruma. Ride with me?",
                   "I'm with you. Charge first, think later.",
                   extra=("Race the yard again.", mini_game("race", [
-                      say("Kitsu Takeo", "Ha! The Matsu won't even look at us now."), setf("G1233")],
+                      say("Kitsu Takeo", "Ha! The Matsu won't even look at us now. Here - the stable's tonic, for "
+                                         "the rider.")] + got("I131", "a Ginseng Tonic") + [setf("G1233")],
                       [say("Kitsu Takeo", "The horses are tired. Or we are. Again some other day.")], [])))
         guest_npc(ev, 36, 6, 2, MAI_SS, "More tea, Hiruma? Or more confessions?", "Ready when you are. I'll ask nicely.")
         # basement stair: Yogo Shigeru and Kuni Taira over the troll notes
@@ -3977,7 +3982,10 @@ def path_menu(prompt="Whose journey begins?"):
                        go("M444", 4, 15)],
                       [narrate("${::Rokugan.finaleLockedText()}")])]))
     menu = choices(*opts)
-    menu["pos"] = {"left": 190, "right": 190, "y": 70}          # 9 rows of "Name (Clan)  - road walked (Lv NN)"
+    # (user 2026-11-14 shot: the top rows were off screen) RPGMain.showView centres the view's base height on pos.y and
+    # the list then grows past it; top + bottom stretch the view over the screen instead, above the message box, so all
+    # 9 rows of "Name (Clan)  - road walked (Lv NN)" fit
+    menu["pos"] = {"left": 190, "right": 190, "top": 24, "bottom": 170}
     return [script("Y = true;"),
             {"cmd": "cmd_loop", "reqs": [flag("Y")], "cmdblocks": [[narrate(prompt), menu]]}]
 
@@ -18958,6 +18966,100 @@ ENCOUNTERS.update(ROUTE_ENC)
 ENCOUNTER_MAPS |= set(ROUTE_ENC)
 
 
+def marker_pass(mp):
+    """(user 2026-11-14: "a floating quest marker ... that shows you where to go next according to your currently
+    selected quest, edge of screen taking the player to the next map over, to a door, etc.") Writes
+    RokuganMarkerData.sk for plugin RokuganMarker.sk, all in world units (blocks / 2):
+      MK_EXITS  map -> [[dest map, x, z, half x, half z], ...]  the ways out a player can walk (doors, edges, portals)
+      MK_LINKS  map -> [dest map, ...]                           every map move, story ones too (for the road search)
+      MK_BEATS  [[map, x, z, [[lvar, op, rvar], ...]], ...]      once-scenes: due when their reqs hold
+      MK_PATH   map -> traveler                                  whose road a map belongs to (from PATH_START)
+      MK_QUEST  quest id -> [giver map, x, z, hunt map, x, z]    the Journal's side quests and odd jobs"""
+    exits, links, beats = {}, {}, []
+    route_ids = {r[0] for r in ROUTES} | {c[0] for r in ROUTES for c in r[6]}
+
+    def dests(e):
+        out = set()
+        if e.get("role") == "portal" and (e.get("dest") or {}).get("mapid"):
+            out.add(e["dest"]["mapid"])
+        for s in json.dumps(e.get("page") or []).split('"cmd_mapmove"')[1:]:
+            mm = re.search(r'"mapid": "(M\d{3})"', s)
+            if mm:
+                out.add(mm.group(1))
+        return out
+    for mid, m in mp.items():
+        if not re.fullmatch(r"M\d{3}", mid) or "M800" <= mid < "M900" or mid in DEBUG_MAPS:
+            continue
+        for e in (m.get("event") or {}).values():
+            if not isinstance(e, dict) or "pos" not in e:
+                continue
+            js = json.dumps(e)
+            pages = e.get("page") or []
+            trig = {pg.get("trigger") for pg in pages}
+            x, z = e["pos"][0] / 2.0, e["pos"][2] / 2.0
+            ds = dests(e) - {mid}
+            if ds and "pathBegin" not in js and "pathFinale" not in js:
+                links.setdefault(mid, set()).update(ds)
+                if e.get("role") == "portal" or trig & {1, 5}:
+                    r = (e.get("mdl") or {}).get("r") or [0, 1.0, 0, 1.0, 1.0, 0.5]
+                    long_z = len(e["pos"]) > 3 and e["pos"][3] in (1, 3)
+                    hx, hz = (r[5], r[3]) if long_z else (r[3], r[5])
+                    for dm in sorted(ds):
+                        exits.setdefault(mid, []).append([dm, round(x, 2), round(z, 2), round(hx, 2), round(hz, 2)])
+            for pg in pages:
+                if pg.get("trigger") not in (5, 6):
+                    continue
+                cb = pg.get("cmdblock") or []
+                if cb and cb[0].get("cmd") == "cmd_if":
+                    reqs = cb[0].get("reqs") or []
+                    if reqs and reqs[0].get("op") == "==" and reqs[0].get("rvar") is False:
+                        beats.append([mid, round(x, 2), round(z, 2),
+                                      [[r_.get("lvar"), r_.get("op"), r_.get("rvar")] for r_ in reqs]])
+    path_of = {}
+    for pid, f, dest in PATH_START:                                         # breadth-first along each road
+        start = (dest.get("dest") or {}).get("mapid")
+        q = [start]
+        while q:
+            cur = q.pop(0)
+            if not cur or cur in path_of or cur in route_ids or "M444" <= cur <= "M469":
+                continue
+            path_of[cur] = pid
+            q += sorted(links.get(cur, ()))
+    quest = {}
+
+    def find(mid, needle):
+        for e in ((mp.get(mid) or {}).get("event") or {}).values():
+            if isinstance(e, dict) and "pos" in e and needle in json.dumps(e):
+                return [mid, round(e["pos"][0] / 2.0, 2), round(e["pos"][2] / 2.0, 2)]
+        return None
+    for k, q_ in enumerate(SIDE_QUESTS):
+        key, road, title, gmap, x, z, spr, gname, opens, hmap, gids, *_ = q_
+        g = find(gmap, json.dumps("Side quest: %s" % title)[1:-1])
+        h = find(hmap, '"lvar": "%s", "op": "==", "rvar": false' % SQ_FLAGS[key][1])
+        if g and h:
+            quest[100 + k] = g + h
+    for k, q_ in enumerate(FETCH_QUESTS):
+        key, title, gmap, gx, gz, spr, gname, imap, *_ = q_
+        g = find(gmap, json.dumps("Odd job: %s" % title)[1:-1])
+        h = find(imap, '"lvar": "%s", "op": "=", "rvar": true' % FQ_FLAGS[key][1])
+        if g and h:
+            quest[200 + k] = g + h
+
+    def sq(v):
+        return json.dumps(v).replace("false", "false").replace("true", "true").replace("null", "null")
+    out = os.path.join(PROJ, "plugin", "rokugan", "RokuganMarkerData.sk")
+    with open(out, "w", encoding="utf-8") as f:
+        f.write("//\tgenerated by tools/gen_maps.py marker_pass (the floating quest marker, RokuganMarker.sk)\n")
+        f.write("::Rokugan.MK_EXITS <- {\n%s\n};\n" % ",\n".join('\t%s = %s' % (k, sq(v)) for k, v in sorted(exits.items())))
+        f.write("::Rokugan.MK_LINKS <- {\n%s\n};\n" % ",\n".join('\t%s = %s' % (k, sq(sorted(v)))
+                                                              for k, v in sorted(links.items())))
+        f.write("::Rokugan.MK_BEATS <- [\n%s\n];\n" % ",\n".join("\t" + sq(b) for b in beats))
+        f.write("::Rokugan.MK_PATH <- {\n%s\n};\n" % ",\n".join('\t%s = "%s"' % (k, v) for k, v in sorted(path_of.items())))
+        f.write("::Rokugan.MK_QUEST <- {\n%s\n};\n" % ",\n".join('\t[%d] = %s' % (k, sq(v)) for k, v in sorted(quest.items())))
+    print("marker: %d maps with exits, %d story beats, %d maps on roads, %d quests" % (
+        len(exits), len(beats), len(path_of), len(quest)))
+
+
 def route_pass():
     """Writes RokuganRouteData.sk: the gate flags for plugin RokuganField routeFlags."""
     path = os.path.join(PROJ, "plugin", "rokugan", "RokuganRouteData.sk")
@@ -19019,6 +19121,7 @@ def register(specs, events):
     objective_pass(mp)
     journal_pass(mp)
     route_pass()
+    marker_pass(mp)
     json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="	")
 
 
@@ -19049,6 +19152,17 @@ def journal_pass(mp):
                           100 + k, road, json.dumps(title), json.dumps(opens_f), taken, hunted, done,
                           json.dumps(job), json.dumps("%s: %s has work." % (gplace, _the(gname))),
                           json.dumps(remind), json.dumps("Back to %s in %s." % (_the(gname), gplace))))
+    for k, q in enumerate(FETCH_QUESTS):                                   # the Cakon odd jobs: "hunted" = found
+        key, title, gmap, gx, gz, spr, gname, imap, ix, iz, offer, found, thanks, zeni = q
+        taken, got_, done = FQ_FLAGS[key]
+        gplace = (mp.get(gmap) or {}).get("name") or gmap
+        iplace = (mp.get(imap) or {}).get("name") or imap
+        quests.append('\t{ id = %d, who = "P107", title = %s, open = %s, taken = "%s", hunted = "%s", done = "%s", '
+                      'job = null, offer = %s, hunt = %s, back = %s }' % (
+                          200 + k, json.dumps("Odd job: " + title), json.dumps([FQ_OPEN]), taken, got_, done,
+                          json.dumps("%s: %s has an odd job." % (gplace, _the(gname))),
+                          json.dumps("Find it: %s." % iplace),
+                          json.dumps("Back to %s in %s." % (_the(gname), gplace))))
     with open(out, "w", encoding="utf-8") as f:
         f.write("//\tGenerated by tools/gen_maps.py journal_pass: the Journal's Training entries (tools/ladders.py)\n"
                 "//\tand side quests (SIDE_QUESTS).\n")
@@ -19147,6 +19261,61 @@ SIDE_QUESTS = [
      "The mountain stays up there; the village stays down here. That's all a sohei does.", 1200, "J023"),
 ]
 SQ_FLAGS = {q[0]: _sq(k) for k, q in enumerate(SIDE_QUESTS)}
+
+# (user 2026-11-14: "give the ronin a bunch of fetch quests in the first city to gain some exp and levels (should be
+# level 4 before trying to fight the first bunch of enemies)") Odd jobs in Cakon (Ronin Ch1, after S01): each pays zeni
+# and one level's EXP (RokuganField questExp, up to Lv 5). Flags G1382 + 3k: taken / found / done.
+#   (key, title, giver map, x, z, sprite, giver, item map, x, z, offer, found, thanks, zeni)
+FETCH_QUESTS = [
+    ("fq_float", "The Net Float", "M415", 46, 12, "bargeman", "Net-mender", "M415", 80, 26,
+     "A gull took my net float, the painted one, into the warehouse yard. My knees don't do warehouse yards.",
+     "Behind the warehouse, wedged under a crate: a painted net float, pecked but whole.",
+     "My float! Painted it myself. Badly. Here - for your trouble.", 40),
+    ("fq_oil", "Lamp Oil for the Musicians", "M415", 30, 12, "merchant", "Chandler", "M416", 98, 13,
+     "The street musicians in the market owe me for oil and I owe them a jar more. Carry it over? East, past the "
+     "docks.",
+     "Sayo hands the jar to the musicians. They play her a little thank-you tune, badly in tune.",
+     "Delivered? And they didn't make you dance? Here's your cut.", 50),
+    ("fq_kite", "The Kite on the Roof", "M416", 72, 15, "kitechild", "Kite child", "M416", 28, 21,
+     "My kite's stuck on the House of Tranquillity! The doorman says O-Sode doesn't see kites. Can you get it?",
+     "A quick climb up the gutter of the House of Tranquillity. The kite comes free with only a small tear.",
+     "You got it! You're the best ronin! You're the only ronin I know, but still!", 30),
+    ("fq_plums", "Plums for O-Sode", "M416", 44, 16, "doorman", "O-Sode's maid", "M415", 88, 12,
+     "My lady wants fresh plums from the river boats, and the doorman won't let me past the gate after dark. Would "
+     "you fetch some from the docks?",
+     "A plum seller at the end of the pier. Sayo buys a small basket and eats only one.",
+     "Plums! Oh, she'll be pleased. Please - take this, and say nothing about the one that's missing.", 60),
+    ("fq_flute", "The Spare Flute", "M416", 100, 16, "musician", "Young flautist", "M415", 16, 11,
+     "My spare flute rolled off the barge at the docks this morning. Bamboo floats. I hope.",
+     "A bamboo flute bobbing against the barge's side. Sayo fishes it out with a boathook.",
+     "My flute! A little wet, but it plays. (it squeaks) ...Mostly plays. Here.", 40),
+]
+FQ_FLAGS = {q[0]: tuple("G%d" % (1382 + 3 * k + o) for o in range(3)) for k, q in enumerate(FETCH_QUESTS)}
+FQ_OPEN = "G1040"                                                          # Ronin Ch1 S01 (Sayo arrives in Cakon)
+
+
+def fetch_events(ev, mid):
+    """Givers and the places their things are found (builder coordinates; before pad)."""
+    for k, q in enumerate(FETCH_QUESTS):
+        key, title, gmap, gx, gz, spr, gname, imap, ix, iz, offer, found, thanks, zeni = q
+        taken, got_, done = FQ_FLAGS[key]
+        if mid == gmap:
+            ev.talk(gx, gz, SC[spr], [
+                (None, [say(gname, "Busy, busy.")]),
+                ([flag(FQ_OPEN), flag(taken, False)],
+                 [narrate("Odd job: %s" % title), say(gname, offer),
+                  choices(("\"I'll do it.\"", [setf(taken), narrate("Odd job taken: %s. (The Journal tracks it.)" %
+                                                                     title)]),
+                          ("\"Not now.\"", []))]),
+                ([flag(taken), flag(got_, False)], [say(gname, "Any luck?")]),
+                ([flag(got_), flag(done, False)],
+                 [say(gname, thanks), setf(done), {"cmd": "cmd_moneyop", "op": 0, "amount": zeni},
+                  narrate("Got %d zeni." % zeni), script("::Rokugan.questExp( 5);"),
+                  narrate("${::Rokugan.lastExpText(0)}"), narrate("Odd job done: %s." % title)]),
+                ([flag(done)], [say(gname, "Thanks again, ronin.")])], d=2)
+        if mid == imap:
+            ev.talk(ix, iz, "CE000", [(None, [narrate(found), setf(got_), narrate("Back to %s." % _the(gname))])],
+                    reqs=[flag(taken), flag(got_, False)], trigger=1)
 
 
 def _the(g):
@@ -19572,6 +19741,8 @@ def make(i):
                  after=[flag(own)])
     if ev is not None and any(i in (q[3], q[9]) for q in SIDE_QUESTS):      # side-quest givers and hunts
         side_quest_events(m, ev, i)
+    if ev is not None and any(i in (q[2], q[7]) for q in FETCH_QUESTS):    # Cakon odd jobs (Ronin Ch1)
+        fetch_events(ev, i)
     if ev is not None and hasattr(m, "cave_floor"):
         _cave.sprawl(m, ev, i, (ROCK_S, ROCK_M), save_shrine)
     library_to_ours(m, ev, battle="M800" <= i < "M900")

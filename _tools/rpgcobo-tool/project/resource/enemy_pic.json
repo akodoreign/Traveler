@@ -631568,5 +631568,46 @@
 		},
 		"pic3d": "/resource/enemy_pic/trav_rensei__kakita_hachimaki.png",
 		"scale": 0.667
+	},
+	"EP361": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 1,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			1,
+			1
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.5
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "quest marker (tools/gen_questmarker.py)",
+		"name": {
+			"en": "Quest marker",
+			"ja": "Quest marker"
+		},
+		"pic3d": "/resource/enemy_pic/questmarker.png",
+		"scale": 0.35
 	}
 }

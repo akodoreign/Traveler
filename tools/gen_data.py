@@ -1930,6 +1930,9 @@ def main():
                                    "type": 1}                                           # set on every map launch)
     for _n in range(100, 142):                          # RokuganParty partyFlags: Pnnn is in the party (gen_maps
         gv["G%d" % (1220 + _n)] = {"defval": False, "name": "in the party: P%d" % _n, "type": 1}   # party_npc_pass)
+    for _k in range(5):                                 # Cakon odd jobs (gen_maps FETCH_QUESTS): taken / found / done
+        for _o, _what in enumerate(("taken", "found", "done")):
+            gv["G%d" % (1382 + 3 * _k + _o)] = {"defval": False, "name": "odd job %d: %s" % (_k, _what), "type": 1}
     gv["G1362"] = {"defval": 0, "name": "guests met (bits by guest number; RokuganBattle guestSkills)", "type": 2}
     gv["G1363"] = {"defval": False, "name": "the finale: 8 party places (RokuganParty partyCap)", "type": 1}
     for _n in range(1, 18):                             # RokuganAI guestVar: lifetime calls spent

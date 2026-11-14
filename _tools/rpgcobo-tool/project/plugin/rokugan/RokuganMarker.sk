@@ -1,0 +1,141 @@
+//	RokuganMarker.sk : the floating quest marker (user 2026-11-14: "add a floating quest marker (maybe a white/silver
+//	sparkly cross mixed with a star) that shows you where to go next according to your currently selected quest, edge of
+//	screen taking the player to the next map over, to a door, etc. It needs to float so it can go to a cave or tree").
+//	Data: RokuganMarkerData.sk (tools/gen_maps.py marker_pass). Model: EP361 (tools/gen_questmarker.py).
+//	Target: the Journal's tracked quest (G1244 > 0: its giver, then where the work is, then the giver again), else the
+//	main story: the next once-scene on the leader's road whose conditions hold. On another map: the way out toward it
+//	(a door, a portal, or the stretch of map edge nearest the player). -rtnomarker turns it off.
+::Rokugan.mk <- { obj = null, stage = null, t = 0.0, goal = null, at = null, key = "" };
+
+::Rokugan.mkReq <- function( r){
+	local v = ::rpgvar[r[0]], w = r[2];
+	if( v == null) v = (typeof( w) == "bool") ? false : 0;
+	switch( r[1]){
+	case "==": return v == w;
+	case "!=": return v != w;
+	case ">": return v > w;
+	case "<": return v < w;
+	case ">=": return v >= w;
+	case "<=": return v <= w;
+	}
+	return false;
+};
+::Rokugan.mkReqs <- function( rs){ foreach( r in rs) if( !this.mkReq( r)) return false; return true; };
+
+//	map distances from `from` over every link (doors and story moves), and the first map on the way to each
+::Rokugan.mkRoad <- function( from){
+	local dist = {}, first = {}, q = [from];
+	dist[from] <- 0;
+	for( local i = 0; i < length( q); i++){
+		local cur = q[i];
+		if( !(cur in this.MK_LINKS)) continue;
+		foreach( nx in this.MK_LINKS[cur]){
+			if( nx in dist) continue;
+			dist[nx] <- dist[cur] + 1;
+			first[nx] <- cur == from ? nx : first[cur];
+			q.append( nx);
+		}
+	}
+	return { dist = dist, first = first };
+};
+
+//	the goal: [map, x, z] or null
+::Rokugan.mkGoal <- function( cur, road){
+	local tid = int( ::rpgvar["G1244"] || 0);
+	if( tid > 0 && ("JOURNAL_QUESTS" in ::Rokugan) && (tid in this.MK_QUEST)){
+		local q = this.JOURNAL_QUESTS.filter( @( v) v.id == tid);
+		local t = this.MK_QUEST[tid];
+		if( length( q)){
+			q = q[0];
+			if( ::rpgvar[q.done]) return null;
+			if( ::rpgvar[q.taken] && !::rpgvar[q.hunted]) return [t[3], t[4], t[5]];
+			return [t[0], t[1], t[2]];
+		}
+	}
+	local lead = ::rpgstat.members[0], pid = lead ? lead.dataid : null;
+	local best = null, bs = -1, bd = 9999;
+	foreach( b in this.MK_BEATS){
+		local mp = b[0];
+		if( pid && (mp in this.MK_PATH) && this.MK_PATH[mp] != pid) continue;	//	another traveler's road
+		if( !(mp in road.dist)) continue;
+		if( !this.mkReqs( b[3])) continue;
+		local spec = 0, d = road.dist[mp];									//	the furthest-along beat (most story
+		foreach( i, r in b[3]) if( i > 0 && ((r[1] == "==" && r[2] == true) || r[1] == ">" || r[1] == ">="	//	flags it
+			|| (r[1] == "!=" && (r[2] == false || r[2] == 0)))) spec++;		//	needs set), then the nearest
+		if( spec > bs || (spec == bs && d < bd)){ best = b; bs = spec; bd = d; }
+	}
+	return best ? [best[0], best[1], best[2]] : null;
+};
+
+//	where to float: the goal itself, or the way out toward its map
+::Rokugan.mkPoint <- function( st, goal, road){
+	local cur = st.mapid;
+	if( goal[0] == cur) return [goal[1], goal[2]];
+	if( !(goal[0] in road.first)) return null;
+	local hop = road.first[goal[0]];
+	if( !(cur in this.MK_EXITS)) return null;
+	local p = st.player3d.pos, best = null, bd = 999999.0;			//	(no 1e9 literals in this dialect)
+	foreach( e in this.MK_EXITS[cur]){
+		if( e[0] != hop) continue;
+		//	the nearest point of the exit's box (an edge strip is long: float where the player would cross it)
+		local x = Math.clamp( p.x, e[1] - e[3], e[1] + e[3]), z = Math.clamp( p.z, e[2] - e[4], e[2] + e[4]);
+		local d = (x - p.x) * (x - p.x) + (z - p.z) * (z - p.z);
+		if( d < bd){ bd = d; best = [x, z]; }
+	}
+	return best;
+};
+
+::Rokugan.mkHide <- function(){
+	local k = this.mk;
+	if( k.obj){ try{ k.obj.setVisible( false); }catch( ex){} }
+};
+
+::Rokugan.mkTick <- function( st, dt){
+	local k = this.mk;
+	if( ::arguments.indexOf( "-rtnomarker") >= 0 || !("MK_LINKS" in ::Rokugan)) return;
+	if( st["battle"] || !st["player3d"] || !st["scn"] || st.mainevent){ this.mkHide(); return; }
+	if( k.stage != st){												//	a new map: a new marker object
+		k.stage = st; k.obj = null; k.goal = null; k.at = null; k.t = 0.0; k.key = "";
+		try{
+			k.obj = RPG3DObject.create3DObject( { mdlid = "EP361" });
+			st.scn.addObject( k.obj);
+		}catch( ex){ printexception( ex); k.obj = null; }
+	}
+	if( !k.obj) return;
+	k.t -= dt;
+	if( k.t <= 0.0){													//	twice a second: the goal and the spot
+		k.t = 500.0;
+		local road = this.mkRoad( st.mapid);
+		k.goal = this.mkGoal( st.mapid, road);
+		k.at = k.goal ? this.mkPoint( st, k.goal, road) : null;
+		local key = k.goal ? "%S %.1f %.1f" % [k.goal[0], k.goal[1], k.goal[2]] : "-";
+		if( key != k.key){
+			k.key = key;
+			printf( "[RT] marker: %S (on %S) at %S, player %.1f %.1f\n", key, st.mapid,
+				k.at ? "%.1f %.1f" % [k.at[0], k.at[1]] : "-", st.player3d.pos.x, st.player3d.pos.z);
+		}
+	}
+	if( !k.at){ this.mkHide(); return; }
+	local pl = st.player3d, x = k.at[0], z = k.at[1];
+	//	off screen: pin it at the screen's edge, in the goal's direction (the camera looks north: +z is up the screen)
+	local dx = x - pl.pos.x, dz = z - pl.pos.z, f = 1.0;
+	if( dx > 11.0 || dx < -11.0) f = Math.min( f, 11.0 / (dx < 0 ? -dx : dx));
+	if( dz > 7.0) f = Math.min( f, 7.0 / dz);
+	if( dz < -4.5) f = Math.min( f, 4.5 / -dz);
+	x = pl.pos.x + dx * f; z = pl.pos.z + dz * f;
+	local gy = null;
+	try{ gy = ::Rokugan.floorAt( pl, x, z, pl.pos.y + 4.0, -8.0); }catch( ex){}
+	local ms = skGetTime() / 1000.0;
+	local y = (gy != null ? gy : pl.pos.y) + 2.2 + Math.sin( ms * 2.4) * 0.18;	//	floating, bobbing gently
+	k.obj.setVisible( true);
+	k.obj.setPosition( (x, y, z, 0.0));
+};
+
+::RPGStage._rt_body_mk <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	this._rt_body_mk( dt);
+	try{ ::Rokugan.mkTick( this, dt); }catch( ex){
+		if( !::Rokugan.mk["err"]){ ::Rokugan.mk.err <- true; printexception( ex); }
+	}
+};
+printf( "Rokugan quest marker loaded\n");

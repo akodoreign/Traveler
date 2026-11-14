@@ -811,6 +811,7 @@ class RTMemory extends RTMini
 		if( aiT > 0.0) return;
 		aiT = 280.0;
 		if( !aiPlan || !length( aiPlan)){
+			aiPlan = null;													//	(an empty array is not null: plan anew)
 			local left = [];
 			foreach( i, c in cards) if( !c.done) left.append( i);
 			if( m == "win"){ foreach( i in left) foreach( j in left) if( !aiPlan && i < j && cards[i].id == cards[j].id) aiPlan = [i, j]; }
@@ -828,6 +829,8 @@ class RTMemory extends RTMini
 	}
 	function step( dt){
 		if( state != "play"){ draw(); return; }
+		if( int( st / 5000.0) != int( (st - dt) / 5000.0))
+			log( "memory: %.0f s, %d pairs, %d misses, %d flips, open %d, peek %.0f" % [st / 1000.0, matched, misses, flips, length( open), peek]);
 		aiStep( dt);
 		if( shotname && st > 3000.0 && st - dt <= 3000.0) shot( "play");
 		if( peek > 0.0){
@@ -893,8 +896,10 @@ class RTMemory extends RTMini
 		return 0;
 	}
 	log( "mini-game " .. kind .. " open");
+	local w0 = skGetTime();
 	while( !g.done){
 		sleep( 40);
+		if( skGetTime() - w0 > 5000){ w0 = skGetTime(); log( "mini-game %S waiting (state %S, last tick %d ms ago)" % [kind, "" .. g.state, skGetTime() - g.lastTick]); }
 		if( g.shotreq){ local s = g.shotreq; g.shotreq = null; sleep( 250); this.rtshot( s); }	//	(a frame for a new panel)
 		if( skGetTime() - g.lastTick > 8000){ log( "mini-game " .. kind .. ": stalled"); g.err = true; break; }
 	}

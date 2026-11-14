@@ -5598,6 +5598,81 @@
 		"name": "in the party: P141",
 		"type": 1
 	},
+	"G1382": {
+		"defval": false,
+		"name": "odd job 0: taken",
+		"type": 1
+	},
+	"G1383": {
+		"defval": false,
+		"name": "odd job 0: found",
+		"type": 1
+	},
+	"G1384": {
+		"defval": false,
+		"name": "odd job 0: done",
+		"type": 1
+	},
+	"G1385": {
+		"defval": false,
+		"name": "odd job 1: taken",
+		"type": 1
+	},
+	"G1386": {
+		"defval": false,
+		"name": "odd job 1: found",
+		"type": 1
+	},
+	"G1387": {
+		"defval": false,
+		"name": "odd job 1: done",
+		"type": 1
+	},
+	"G1388": {
+		"defval": false,
+		"name": "odd job 2: taken",
+		"type": 1
+	},
+	"G1389": {
+		"defval": false,
+		"name": "odd job 2: found",
+		"type": 1
+	},
+	"G1390": {
+		"defval": false,
+		"name": "odd job 2: done",
+		"type": 1
+	},
+	"G1391": {
+		"defval": false,
+		"name": "odd job 3: taken",
+		"type": 1
+	},
+	"G1392": {
+		"defval": false,
+		"name": "odd job 3: found",
+		"type": 1
+	},
+	"G1393": {
+		"defval": false,
+		"name": "odd job 3: done",
+		"type": 1
+	},
+	"G1394": {
+		"defval": false,
+		"name": "odd job 4: taken",
+		"type": 1
+	},
+	"G1395": {
+		"defval": false,
+		"name": "odd job 4: found",
+		"type": 1
+	},
+	"G1396": {
+		"defval": false,
+		"name": "odd job 4: done",
+		"type": 1
+	},
 	"G1362": {
 		"defval": 0,
 		"name": "guests met (bits by guest number; RokuganBattle guestSkills)",

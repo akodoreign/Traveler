@@ -1228,6 +1228,24 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	try{ ::Rokugan.routeFlags(); }catch( ex){ printexception( ex); }
 	return this._rt_launch_route( opt);
 };
+//	Odd jobs (user 2026-11-14: "give the ronin a bunch of fetch quests in the first city to gain some exp and levels
+//	(should be level 4 before trying to fight the first bunch of enemies)"): a finished job is worth one level's EXP at
+//	the party's current level, up to level `cap`. tools/gen_maps.py FETCH_QUESTS; the line after it shows the result.
+::Rokugan.expText <- "";
+::Rokugan.questExp <- function( cap){
+	local out = [];
+	foreach( p in ::rpgstat.members){
+		if( !p) continue;
+		if( p.LV >= cap){ out.append( "%S: Lv %d" % [p.name, p.LV]); continue; }
+		local need = ::RPGSystem.getExpByLV( p.LV + 1, p.data.expcurv) - ::RPGSystem.getExpByLV( p.LV, p.data.expcurv);
+		local up = p.addExp( need);
+		if( up){ p.HP = p.MAXHP; p.MP = p.MAXMP; }
+		out.append( "%S: +%d EXP%S" % [p.name, need, up ? ", Lv " .. p.LV .. "!" : ""]);
+	}
+	this.expText = "(" .. out.join( "   ") .. ")";
+	printf( "[RT] odd job: %S\n", this.expText);
+};
+::Rokugan.lastExpText <- function( _ = 0){ return this.expText; };
 //	The finale: the traveler who walked last leads (fJoinAll brings the other seven on the plain).
 ::Rokugan.pathFinale <- function(){
 	local p = ::rpgstat.members.find( @( v) v && ::Rokugan.TRAVELERS.indexOf( v.dataid) >= 0);

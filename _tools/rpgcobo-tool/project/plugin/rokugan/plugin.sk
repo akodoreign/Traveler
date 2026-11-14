@@ -55,7 +55,9 @@ function loadPlugin( args, opt){
 	runsk( srcdir .. "/RokuganRouteData.sk");	//	the connecting routes' gates (tools/gen_maps.py route_pass)
 	runsk( srcdir .. "/RokuganJournalData.sk");	//	the Journal's training entries (tools/gen_maps.py journal_pass)
 	runsk( srcdir .. "/RokuganJournal.sk");		//	the main menu's Journal: trackable objectives (after RokuganField)
-	runsk( srcdir .. "/RokuganParty.sk");		//	8 battle places in two rows, Formation picks a place, party flags
+	runsk( srcdir .. "/RokuganParty.sk");
+	runsk( srcdir .. "/RokuganMarkerData.sk");	//	the quest marker's map data (tools/gen_maps.py marker_pass)
+	runsk( srcdir .. "/RokuganMarker.sk");		//	the floating quest marker (after RokuganJournal: tracked quests)		//	8 battle places in two rows, Formation picks a place, party flags
 	runsk( srcdir .. "/RokuganLook.sk");		//	equipment you can see (after RokuganField: wraps updateStageBody)
 	runsk( srcdir .. "/RokuganBustGeneric.sk");	//	stand-in busts for speakers without one
 	runsk( srcdir .. "/RokuganBustData.sk");	//	dialog busts: name -> images (tools/gen_busts.py)

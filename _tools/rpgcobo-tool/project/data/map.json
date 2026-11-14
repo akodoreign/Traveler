@@ -8889,7 +8889,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -88755,7 +88756,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -89253,7 +89255,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -233227,7 +233230,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -233725,7 +233729,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -314720,7 +314725,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -315218,7 +315224,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -448775,7 +448782,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -449273,7 +449281,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -557299,7 +557308,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -557797,7 +557807,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -660163,7 +660174,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -660661,7 +660673,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -666760,6 +666773,690 @@
 				"name": "*custom-87"
 			},
 			"#88#": {
+				"role": "custom",
+				"mdlid": "EP1116",
+				"pos": [
+					72,
+					4,
+					16,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Busy, busy.",
+								"name": "Net-mender",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1040",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1382",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Odd job: The Net Float",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A gull took my net float, the painted one, into the warehouse yard. My knees don't do warehouse yards.",
+								"name": "Net-mender",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1382",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Odd job taken: The Net Float. (The Journal tracks it.)",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1382",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1383",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Any luck?",
+								"name": "Net-mender",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1383",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1384",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "My float! Painted it myself. Badly. Here - for your trouble.",
+								"name": "Net-mender",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1384",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_moneyop",
+								"op": 0,
+								"amount": 40
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 40 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.questExp( 5);"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "${::Rokugan.lastExpText(0)}",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Odd job done: The Net Float.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1384",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Thanks again, ronin.",
+								"name": "Net-mender",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-88"
+			},
+			"#89#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					106,
+					4,
+					30,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Behind the warehouse, wedged under a crate: a painted net float, pecked but whole.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1383",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Back to the Net-mender.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": [
+					{
+						"lvar": "G1382",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G1383",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-89"
+			},
+			"#90#": {
+				"role": "custom",
+				"mdlid": "EP340",
+				"pos": [
+					56,
+					4,
+					16,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Busy, busy.",
+								"name": "Chandler",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1040",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1385",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Odd job: Lamp Oil for the Musicians",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The street musicians in the market owe me for oil and I owe them a jar more. Carry it over? East, past the docks.",
+								"name": "Chandler",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1385",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Odd job taken: Lamp Oil for the Musicians. (The Journal tracks it.)",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1385",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1386",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Any luck?",
+								"name": "Chandler",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1386",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1387",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Delivered? And they didn't make you dance? Here's your cut.",
+								"name": "Chandler",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1387",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_moneyop",
+								"op": 0,
+								"amount": 50
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 50 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.questExp( 5);"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "${::Rokugan.lastExpText(0)}",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Odd job done: Lamp Oil for the Musicians.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1387",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Thanks again, ronin.",
+								"name": "Chandler",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-90"
+			},
+			"#91#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					114,
+					4,
+					16,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A plum seller at the end of the pier. Sayo buys a small basket and eats only one.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1392",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Back to the O-Sode's maid.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": [
+					{
+						"lvar": "G1391",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G1392",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-91"
+			},
+			"#92#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					42,
+					4,
+					15,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A bamboo flute bobbing against the barge's side. Sayo fishes it out with a boathook.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1395",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Back to the Young flautist.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": [
+					{
+						"lvar": "G1394",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G1395",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-92"
+			},
+			"#93#": {
 				"role": "portal",
 				"pos": [
 					154,
@@ -666787,9 +667484,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-88"
+				"name": "*portal-93"
 			},
-			"#89#": {
+			"#94#": {
 				"role": "portal",
 				"pos": [
 					78,
@@ -666817,7 +667514,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-89"
+				"name": "*portal-94"
 			}
 		},
 		"exitmap": {
@@ -670207,6 +670904,852 @@
 				"name": "*villager-92"
 			},
 			"#93#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					124,
+					4,
+					17,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Sayo hands the jar to the musicians. They play her a little thank-you tune, badly in tune.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1386",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Back to the Chandler.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": [
+					{
+						"lvar": "G1385",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G1386",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-93"
+			},
+			"#94#": {
+				"role": "custom",
+				"mdlid": "EP333",
+				"pos": [
+					98,
+					4,
+					19,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Busy, busy.",
+								"name": "Kite child",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1040",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1388",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Odd job: The Kite on the Roof",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "My kite's stuck on the House of Tranquillity! The doorman says O-Sode doesn't see kites. Can you get it?",
+								"name": "Kite child",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1388",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Odd job taken: The Kite on the Roof. (The Journal tracks it.)",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1388",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1389",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Any luck?",
+								"name": "Kite child",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1389",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1390",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "You got it! You're the best ronin! You're the only ronin I know, but still!",
+								"name": "Kite child",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1390",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_moneyop",
+								"op": 0,
+								"amount": 30
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 30 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.questExp( 5);"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "${::Rokugan.lastExpText(0)}",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Odd job done: The Kite on the Roof.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1390",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Thanks again, ronin.",
+								"name": "Kite child",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-94"
+			},
+			"#95#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					54,
+					4,
+					25,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A quick climb up the gutter of the House of Tranquillity. The kite comes free with only a small tear.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1389",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Back to the Kite child.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": [
+					{
+						"lvar": "G1388",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G1389",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-95"
+			},
+			"#96#": {
+				"role": "custom",
+				"mdlid": "EP1119",
+				"pos": [
+					70,
+					4,
+					20,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Busy, busy.",
+								"name": "O-Sode's maid",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1040",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1391",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Odd job: Plums for O-Sode",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "My lady wants fresh plums from the river boats, and the doorman won't let me past the gate after dark. Would you fetch some from the docks?",
+								"name": "O-Sode's maid",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1391",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Odd job taken: Plums for O-Sode. (The Journal tracks it.)",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1391",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1392",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Any luck?",
+								"name": "O-Sode's maid",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1392",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1393",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Plums! Oh, she'll be pleased. Please - take this, and say nothing about the one that's missing.",
+								"name": "O-Sode's maid",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1393",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_moneyop",
+								"op": 0,
+								"amount": 60
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 60 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.questExp( 5);"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "${::Rokugan.lastExpText(0)}",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Odd job done: Plums for O-Sode.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1393",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Thanks again, ronin.",
+								"name": "O-Sode's maid",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-96"
+			},
+			"#97#": {
+				"role": "custom",
+				"mdlid": "EP1118",
+				"pos": [
+					126,
+					4,
+					20,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Busy, busy.",
+								"name": "Young flautist",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1040",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1394",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Odd job: The Spare Flute",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "My spare flute rolled off the barge at the docks this morning. Bamboo floats. I hope.",
+								"name": "Young flautist",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1394",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Odd job taken: The Spare Flute. (The Journal tracks it.)",
+											"name": "",
+											"uiclose": 2
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "\"I'll do it.\"",
+								"text1": "\"Not now.\""
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1394",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1395",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Any luck?",
+								"name": "Young flautist",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1395",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1396",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "My flute! A little wet, but it plays. ...Mostly plays. Here.",
+								"name": "Young flautist",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1396",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_moneyop",
+								"op": 0,
+								"amount": 40
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got 40 zeni.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.questExp( 5);"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "${::Rokugan.lastExpText(0)}",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Odd job done: The Spare Flute.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1396",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Thanks again, ronin.",
+								"name": "Young flautist",
+								"uiclose": 2
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-97"
+			},
+			"#98#": {
 				"role": "portal",
 				"pos": [
 					1,
@@ -670234,9 +671777,9 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-93"
+				"name": "*portal-98"
 			},
-			"#94#": {
+			"#99#": {
 				"role": "portal",
 				"pos": [
 					160,
@@ -670264,7 +671807,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-94"
+				"name": "*portal-99"
 			}
 		},
 		"exitmap": {
@@ -743993,7 +745536,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -744491,7 +746035,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -870259,6 +871804,27 @@
 														"rvar": 1
 													},
 													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "The prize, Hiruma. A pilgrim's charm from the mountain shrines - it keeps the feet sure.",
+														"name": "Yasuki Kurako",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_itemop",
+														"itemid": "A137",
+														"op": 0,
+														"num": 1,
+														"LV": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Got the Mountain's-Feet Charm.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
 														"cmd": "cmd_compute",
 														"lvar": "G1232",
 														"op": "=",
@@ -870503,6 +872069,20 @@
 														"lvar": "G1232",
 														"op": "=",
 														"rvar": true
+													},
+													{
+														"cmd": "cmd_itemop",
+														"itemid": "I131",
+														"op": 0,
+														"num": 1,
+														"LV": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Got a Ginseng Tonic.",
+														"name": "",
+														"uiclose": 2
 													}
 												],
 												[
@@ -870951,8 +872531,22 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Ha! The Matsu won't even look at us now.",
+														"text": "Ha! The Matsu won't even look at us now. Here - the stable's tonic, for the rider.",
 														"name": "Kitsu Takeo",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_itemop",
+														"itemid": "I131",
+														"op": 0,
+														"num": 1,
+														"LV": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Got a Ginseng Tonic.",
+														"name": "",
 														"uiclose": 2
 													},
 													{
@@ -871057,8 +872651,22 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Ha! The Matsu won't even look at us now.",
+														"text": "Ha! The Matsu won't even look at us now. Here - the stable's tonic, for the rider.",
 														"name": "Kitsu Takeo",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_itemop",
+														"itemid": "I131",
+														"op": 0,
+														"num": 1,
+														"LV": 1
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Got a Ginseng Tonic.",
+														"name": "",
 														"uiclose": 2
 													},
 													{
@@ -932413,7 +934021,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
@@ -932911,7 +934520,8 @@
 														"pos": {
 															"left": 190,
 															"right": 190,
-															"y": 70
+															"top": 24,
+															"bottom": 170
 														},
 														"text0": "${::Rokugan.pathLabel(\"P100\")}",
 														"text1": "${::Rokugan.pathLabel(\"P101\")}",
