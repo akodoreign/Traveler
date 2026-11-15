@@ -1,0 +1,271 @@
+"""Direct pixel corrections for an animation sheet (user 2026-11-15: "make corrections to the pixel art sheets directly
+... enhance 1 then match features image 1 and 2, then 1 and 3 etc"; chosen: palette lock, size / position match,
+cleanup + consistent outline, enhance the reference frame; the head transplant only for stationary NPCs).
+
+Per facing (side / front / back) one reference frame (stand frame 0, stand_f, stand_b):
+  1. enhance the reference: hard alpha, specks removed, a one-pixel outline in the sheet's own darkest ink;
+  2. palette lock: every frame's colours snap to the palette of the enhanced reference frames (no shade shimmer);
+  3. size / position: upright frames (stand, walk, run, talk, nod - not attacks, casts, falls, sitting) are scaled to the
+     reference's body height and set on its foot line and centre, so the figure doesn't pop or float;
+  4. cleanup: hard alpha, specks gone, the same outline.
+Writes previews only, unless --install: _art/preview/fixsheet/<sheet>_compare.png (before over after) and
+<sheet>_walk.gif. python -E tools/fix_sheet.py trav_natsuko [--install]"""
+import json
+import os
+import sys
+
+import cv2
+import numpy as np
+from PIL import Image
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+RES = os.path.join(HERE, "..", "_tools", "rpgcobo-tool", "project", "resource")
+OUT = os.path.join(HERE, "..", "_art", "preview", "fixsheet")
+UPRIGHT = {"stand", "walk", "run", "talk", "nod", "stand_f", "walk_f", "stand_b", "walk_b", "talk_f", "nod_f",
+           "nod_b"}
+
+
+def facing(aid):
+    return "front" if aid.endswith("_f") else "back" if aid.endswith("_b") else "side"
+
+
+def clean(fr, ink, min_px=6):
+    """Solid pixels made fully solid, specks under min_px gone, a one-pixel outline (ink) on the edge of the BODY only
+    (thin parts - a spear shaft, a tassel - keep their colour; they are all edge). Faint pixels (the ground shadow)
+    are left as they are."""
+    a = fr[..., 3] >= 128
+    n, lab, st, _ = cv2.connectedComponentsWithStats(a.astype(np.uint8), connectivity=8)
+    keep = np.zeros_like(a)
+    for k in range(1, n):
+        if st[k, cv2.CC_STAT_AREA] >= min_px:
+            keep |= lab == k
+    out = fr.copy()
+    faint = (fr[..., 3] > 0) & (fr[..., 3] < 128)
+    out[..., 3] = np.where(keep, 255, np.where(faint, fr[..., 3], 0))
+    gone = ~keep & ~faint
+    out[gone, :3] = 0
+    k3 = np.ones((3, 3), np.uint8)
+    body = cv2.dilate(cv2.erode(keep.astype(np.uint8), k3, iterations=2), k3, iterations=3).astype(bool)
+    edge = keep & ~cv2.erode(keep.astype(np.uint8), k3).astype(bool) & body
+    lum = out[..., :3].astype(int).sum(-1)
+    dark = lum <= int(np.sum(ink[:3])) + 60                                 # already ink-dark: leave it
+    out[edge & ~dark, :3] = ink[:3]
+    return out
+
+
+def denoise(fr, ink):
+    """(user 2026-11-15, marked shots) generator noise inside the figure, after the palette lock:
+    - a lone pixel whose colour appears nowhere else in its 3x3 takes the colour most of its neighbours share;
+    - a small bright smear (<= 14 px) inside dark armour, not touching the edge (a spear tip) and not inside skin
+      (the eyes), takes the armour colour around it;
+    - a one-pixel spur of outline ink (one solid neighbour) is trimmed."""
+    out = fr.copy()
+    h, w = fr.shape[:2]
+    solid = out[..., 3] == 255
+    rgb = out[..., :3].astype(np.int32)
+    key = (rgb[..., 0] << 16) | (rgb[..., 1] << 8) | rgb[..., 2]
+    for y in range(1, h - 1):
+        for x in range(1, w - 1):
+            if not solid[y, x]:
+                continue
+            nb = [(key[y + dy, x + dx], (y + dy, x + dx)) for dy in (-1, 0, 1) for dx in (-1, 0, 1)
+                  if (dy or dx) and solid[y + dy, x + dx]]
+            if len(nb) < 6 or any(k == key[y, x] for k, _ in nb):
+                continue
+            vals = [k for k, _ in nb]
+            best = max(set(vals), key=vals.count)
+            me = int(rgb[y, x].sum())
+            bl = ((best >> 16) & 255) + ((best >> 8) & 255) + (best & 255)
+            if vals.count(best) >= 4 and me >= bl - 150:          # a dark dot on lighter ground is an eye: keep
+                out[y, x, :3] = [(best >> 16) & 255, (best >> 8) & 255, best & 255]
+    lum = out[..., :3].astype(int).sum(-1)
+    sat = out[..., :3].astype(int).max(-1) - out[..., :3].astype(int).min(-1)
+    is_ink = np.all(out[..., :3] == np.array(ink[:3], np.uint8), -1)
+    # (only grey-white noise: a lit face, an eye, a glowing orb are coloured or framed by outline ink - keep those)
+    bright = solid & (lum > 560) & (sat < 40)
+    n, lab, st, _ = cv2.connectedComponentsWithStats(bright.astype(np.uint8), connectivity=8)
+    edge_near = cv2.dilate((~solid).astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)
+    # the torso: the biggest blob left after erosion (a staff is thin, so its orb drops off and is never "noise")
+    er = cv2.erode(solid.astype(np.uint8), np.ones((3, 3), np.uint8), iterations=2)
+    bn, blab, bst, _ = cv2.connectedComponentsWithStats(er, connectivity=4)
+    torso = np.zeros_like(solid)
+    if bn > 1:
+        torso = cv2.dilate((blab == 1 + bst[1:, cv2.CC_STAT_AREA].argmax()).astype(np.uint8), np.ones((3, 3), np.uint8),
+                           iterations=3).astype(bool)
+    for k in range(1, n):
+        if st[k, cv2.CC_STAT_AREA] > 14:
+            continue
+        m = lab == k
+        if not (m & torso).all():
+            continue                                                       # off the body: an orb, a blade
+        if (m & edge_near).any():
+            continue                                                       # touches the outside: a tip, a rim light
+        ring = cv2.dilate(m.astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool) & ~m & solid
+        if not ring.any() or lum[ring].mean() > 300:
+            continue                                                       # skin or light cloth around it: keep
+        if sat[ring].mean() > 45 or (is_ink[ring] | (lum[ring] < 150)).mean() > 0.4:
+            continue                                                       # skin / hair, or an outlined detail
+        rr = out[ring][:, :3].astype(np.int32)
+        rk = (rr[:, 0] << 16) | (rr[:, 1] << 8) | rr[:, 2]
+        best = np.bincount(np.unique(rk, return_inverse=True)[1]).argmax()
+        out[m, :3] = rr[np.unique(rk, return_inverse=True)[1] == best][0]
+    solid = out[..., 3] == 255
+    inkm = np.all(out[..., :3] == np.array(ink[:3], np.uint8), -1) & solid
+    n4 = (np.roll(solid, 1, 0).astype(int) + np.roll(solid, -1, 0) + np.roll(solid, 1, 1) + np.roll(solid, -1, 1))
+    spur = inkm & (n4 <= 1)
+    out[spur, 3] = 0
+    out[spur, :3] = 0
+    return out
+
+
+def palette_of(frames, n=40):
+    px = np.concatenate([f[f[..., 3] > 0][:, :3] for f in frames]).astype(np.float32)
+    k = min(n, len(np.unique(px.astype(np.uint8), axis=0)))
+    _c, _l, centers = cv2.kmeans(px, k, None, (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.5), 3,
+                                 cv2.KMEANS_PP_CENTERS)
+    return centers.astype(np.float32)
+
+
+def lock(fr, pal, far=48.0):
+    """Snap to the reference palette - but a colour with no close match (a lit face where the references are in
+    shade) keeps its own: forcing it went to the nearest dark (hair brown on faces)."""
+    out = fr.copy()
+    m = out[..., 3] > 0
+    px = out[m][:, :3].astype(np.float32)
+    d = ((px[:, None, :] - pal[None, :, :]) ** 2).sum(-1)
+    best = d.argmin(1)
+    near = d[np.arange(len(best)), best] <= far * far
+    snapped = px.copy()
+    snapped[near] = pal[best[near]]
+    out[m, :3] = snapped.round().astype(np.uint8)
+    return out
+
+
+def bbox(fr):
+    """The BODY's box: solid pixels opened by 2 (a spear or a tassel is thin and drops out), so a raised weapon
+    doesn't make a frame look tall."""
+    solid = (fr[..., 3] >= 128).astype(np.uint8)
+    k3 = np.ones((3, 3), np.uint8)
+    body = cv2.dilate(cv2.erode(solid, k3, iterations=2), k3, iterations=2)
+    ys, xs = np.nonzero(body if body.any() else solid)
+    return (xs.min(), ys.min(), xs.max(), ys.max()) if len(xs) else None
+
+
+def full_box(fr):
+    ys, xs = np.nonzero(fr[..., 3] > 0)
+    return (xs.min(), ys.min(), xs.max(), ys.max()) if len(xs) else None
+
+
+def fit(fr, ref_box):
+    """Scale to the reference's body height (nearest neighbour: pixel art), feet on its foot line, centred on it."""
+    b = bbox(fr)
+    if not b or not ref_box:
+        return fr
+    h, rh = b[3] - b[1] + 1, ref_box[3] - ref_box[1] + 1
+    s = rh / float(h)
+    if abs(s - 1) < 0.04 or abs(s - 1) > 0.25:                           # (tiny: leave; huge: a crouch, not drift)
+        s = 1.0
+    fb_ = full_box(fr)                                                      # move the whole drawing (weapon too)
+    crop = fr[fb_[1]:fb_[3] + 1, fb_[0]:fb_[2] + 1]
+    if s != 1.0:
+        crop = cv2.resize(crop, (max(1, int(round(crop.shape[1] * s))), max(1, int(round(crop.shape[0] * s)))),
+                          interpolation=cv2.INTER_NEAREST)
+    # where the body's feet and centre land after scaling, inside the crop
+    bx_c = ((b[0] + b[2]) / 2.0 - fb_[0]) * s
+    by_f = (b[3] + 1 - fb_[1]) * s
+    out = np.zeros_like(fr)
+    ch, cw = crop.shape[:2]
+    cx = (ref_box[0] + ref_box[2]) / 2.0
+    x0, y0 = int(round(cx - bx_c)), int(round(ref_box[3] + 1 - by_f))
+    sx0, sy0 = max(0, -x0), max(0, -y0)                                     # clip to the frame
+    dx0, dy0 = max(0, x0), max(0, y0)
+    w_ = min(cw - sx0, fr.shape[1] - dx0)
+    h_ = min(ch - sy0, fr.shape[0] - dy0)
+    if w_ > 0 and h_ > 0:
+        out[dy0:dy0 + h_, dx0:dx0 + w_] = crop[sy0:sy0 + h_, sx0:sx0 + w_]
+    return out
+
+
+def main():
+    key = sys.argv[1]
+    install = "--install" in sys.argv
+    j = json.load(open(os.path.join(RES, "enemy_pic.json"), encoding="utf-8"))
+    ep = next(e for e in j.values() if isinstance(e, dict) and e.get("pic3d", "").endswith("/%s.png" % key))
+    cols, rows = ep["aniuv"]
+    path = os.path.join(RES, "enemy_pic", key + ".png")
+    bk0 = os.path.join(OUT, key + "_before.png")                            # (always from the ORIGINAL sheet)
+    sheet = np.array(Image.open(bk0 if os.path.exists(bk0) else path).convert("RGBA"))
+    fh, fw = sheet.shape[0] // rows, sheet.shape[1] // cols
+    frames = [sheet[(i // cols) * fh:(i // cols + 1) * fh, (i % cols) * fw:(i % cols + 1) * fw].copy()
+              for i in range(cols * rows)]
+    role = {}                                                               # frame -> its animation id
+    for a in ep["animap"]:
+        for f in range(a["st"], a["en"]):
+            role.setdefault(f, a["id"])
+    refs = {}
+    for a in ep["animap"]:
+        if a["id"] in ("stand", "stand_f", "stand_b"):
+            refs[facing(a["id"])] = a["st"]
+    lit = [f for f in frames if (f[..., 3] > 0).any()]
+    lum = np.concatenate([f[f[..., 3] > 0][:, :3] for f in lit]).astype(int)
+    ink = lum[lum.sum(1).argmin()].astype(np.uint8).tolist() + [255]       # the sheet's darkest ink
+    enh = {fc: clean(frames[i], ink) for fc, i in refs.items()}            # 1. the enhanced references
+    pal = palette_of(list(enh.values()))
+    enh = {fc: denoise(lock(f, pal), ink) for fc, f in enh.items()}
+    ref_box = {fc: bbox(f) for fc, f in enh.items()}
+    fixed = []
+    for i, fr in enumerate(frames):
+        if not (fr[..., 3] > 0).any():
+            fixed.append(fr)
+            continue
+        aid = role.get(i, "")
+        fc = facing(aid)
+        if i in refs.values():
+            fixed.append(enh[fc])
+            continue
+        f2 = clean(fr, ink)
+        f2 = denoise(lock(f2, pal), ink)                                    # 2. palette lock + noise
+        if aid in UPRIGHT and fc in ref_box:
+            f2 = fit(f2, ref_box[fc])                                       # 3. size and foot line
+        fixed.append(f2)
+    os.makedirs(OUT, exist_ok=True)
+    new = np.zeros_like(sheet)
+    for i, f in enumerate(fixed):
+        new[(i // cols) * fh:(i // cols + 1) * fh, (i % cols) * fw:(i % cols + 1) * fw] = f
+    # previews: before / after for the upright rows (x3), and a walk-cycle gif side by side
+    show = [i for i in range(len(frames)) if role.get(i, "") in UPRIGHT][:48]
+    z = 3
+    comp = Image.new("RGBA", (len(show[:24]) * fw * z, 4 * fh * z), (48, 52, 60, 255))
+    for row, idx in enumerate((show[:24], show[24:48])):
+        for k, i in enumerate(idx):
+            for half, src in enumerate((frames, fixed)):
+                im = Image.fromarray(src[i]).resize((fw * z, fh * z), Image.NEAREST)
+                comp.alpha_composite(im, (k * fw * z, (row * 2 + half) * fh * z))
+    for name in (key + "_compare.png", key + "_compare_2.png", key + "_compare_3.png"):
+        try:                                                               # (a preview open in a viewer is locked)
+            comp.save(os.path.join(OUT, name))
+            break
+        except OSError:
+            continue
+    walk = [i for i in range(len(frames)) if role.get(i) == "walk"]
+    gif = []
+    for i in walk:
+        g = Image.new("RGBA", (fw * z * 2 + 8, fh * z), (48, 52, 60, 255))
+        g.alpha_composite(Image.fromarray(frames[i]).resize((fw * z, fh * z), Image.NEAREST), (0, 0))
+        g.alpha_composite(Image.fromarray(fixed[i]).resize((fw * z, fh * z), Image.NEAREST), (fw * z + 8, 0))
+        gif.append(g.convert("P", palette=Image.ADAPTIVE))
+    if gif:
+        gif[0].save(os.path.join(OUT, key + "_walk.gif"), save_all=True, append_images=gif[1:], duration=120, loop=0)
+    if install:
+        bk = os.path.join(OUT, key + "_before.png")
+        if not os.path.exists(bk):                                         # (keep the FIRST original: a rerun
+            Image.fromarray(sheet).save(bk)                                # mustn't back up a corrected sheet)
+        Image.fromarray(new).save(path)
+        print("installed", path)
+    else:
+        Image.fromarray(new).save(os.path.join(OUT, key + "_fixed.png"))
+    print(key, "frames", len(frames), "palette", len(pal), "upright fitted", sum(1 for i in role if role[i] in UPRIGHT))
+
+
+if __name__ == "__main__":
+    main()
