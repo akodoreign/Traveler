@@ -4771,6 +4771,7 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   hum_ashigaru/bandit_captain/blood_acolyte sheets, Gendo ref-pass frames; anim_harmonize drift guard; bot evalf.
   Checks: 3 changed tools compile; no .tmp/.orig in resource; all changed PNGs load; 0 new boss files. Note: the
   commit message wrongly says "Iuchi Gendo" - he is Kitsuki Gendo (not amended: no force-push).
+- 2026-11-15: v32 d0b68d2 (stationary-NPC head transplant, crest-safe cleanup; v29-v31 sprite cleanup before it).
 
 ## 2026-11-11 (evening): Progression v2 - ranks, jobs, kata/kiho, Void, Support (user's design pass)
 Spec: `docs/rules/progression-v2.md` (the user's decisions, quoted). Built (lead):

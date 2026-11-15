@@ -636468,13 +636468,13 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP438): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 2)",
 		"name": {
 			"en": "Nukekubi",
 			"ja": "Nukekubi"
 		},
-		"pic3d": "/resource/enemy_pic/ph_nukekubi.png",
-		"scale": 0.525
+		"pic3d": "/resource/enemy_pic/foe_nukekubi.png",
+		"scale": 0.5
 	},
 	"EP2618": {
 		"animap": [
@@ -636726,13 +636726,13 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP117): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 0)",
 		"name": {
 			"en": "Fudoshi",
 			"ja": "Fudoshi"
 		},
-		"pic3d": "/resource/enemy_pic/ph_tanglevines.png",
-		"scale": 0.63
+		"pic3d": "/resource/enemy_pic/foe_tanglevines.png",
+		"scale": 0.65
 	},
 	"EP2620": {
 		"animap": [
@@ -638993,13 +638993,13 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP117): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 2)",
 		"name": {
 			"en": "Takesasu",
 			"ja": "Takesasu"
 		},
-		"pic3d": "/resource/enemy_pic/ph_stinger_plant.png",
-		"scale": 0.63
+		"pic3d": "/resource/enemy_pic/foe_stinger_plant.png",
+		"scale": 0.65
 	},
 	"EP2631": {
 		"animap": [
