@@ -4971,3 +4971,10 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
 ## 2026-11-15: GPU queues resume after restart + environment art queue
 - tools/start_queues.ps1 (logon task "Rokugan GPU queues", 2 min after logon; tools/install_queue_task.ps1 registers it): resumes gen_pixeldrive, pixelai_redo (keys in _art/preview/agents/pixelai/redo_queue.txt without a sheets/<key>/complete marker) and gen_envart. Log: _art/preview/agents/pixelai/start_queues.log.
 - tools/gen_envart.py: 141 environment sprites (terrain, animated grass/water, buildings/castles, modular wall/roof/fence pieces, paths, interiors) as 4 candidates each -> _art/envart/<cat>/<key>/, contact_<cat>.png. Waits for pixeldrive + redo to finish. Placing picks in maps is a later by-eye step.
+
+## 2026-11-15: Cutout rig, HD sheets, conversation gestures
+- tools/rig_anim.py: cutout rig - the master drawing cut into parts by the procedural rig's bones (gen_sprites2d / gen_sidecast / gen_human_enemies T), each part moved to the frame's pose; waist part; weapon measured from the drawing. Side walk/run (rigged at 2x on HD sheets). Gestures: facepalm, shrug, crossarms, scratch, point (IK arms drawn in the character's colours), side + front views.
+- HD sheets: resource/enemy_pic2x/<key>.png (2x, rows 12 = gestures, 13 = front gestures), entries point there with scale halved (scale1x kept) via tools/hd_sheets.py; the 1x enemy_pic sheets stay the tools' working copies (tools must take the 1x grid themselves, not the entry's aniuv).
+- Dialogue: gen_maps gesture()/gestures()/say_g(); acting cues on a traveler's own road gesture automatically (gesture_pass). Gestures hold through the line via <id>_hold (looping).
+- Engine fix: src/rpg/RPG3DObject.sk RPG3DPicture.anime2 returns its layer (cmd_anime can lock sprite animations).
+- Playtest: rpgcobo -rtanim <id>; snapmaps.py --anim <id> --dir 90 --party P132.
