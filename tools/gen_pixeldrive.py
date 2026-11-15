@@ -320,7 +320,10 @@ def animap(sheet):
         for v in json.load(open(os.path.join(g.PROJ, "resource", "enemy_pic.json"), encoding="utf-8")).values():
             if isinstance(v, dict) and v.get("pic3d"):
                 ANIMAP[os.path.basename(v["pic3d"])] = v.get("animap", [])
-    return ANIMAP.get(sheet, [])
+    # (user 2026-11-15: "cut the amount of backlog ... by using the new rigging") animations fix_sheet / rig_anim now
+    # build from the stand master are not drawn any more: walk / run (all facings), nod, the gesture rows
+    skip = ("walk", "run", "walk_f", "run_f", "walk_b", "run_b", "nod", "nod_f", "nod_b")
+    return [a for a in ANIMAP.get(sheet, []) if a["id"] not in skip and a["st"] < 154]
 
 
 def chain(spec, pal, sheet_path, rng, aid, od, start=None):
