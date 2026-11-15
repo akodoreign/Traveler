@@ -19253,11 +19253,18 @@ def sea_map(mid, name, w, d, islands, piers, deep_open, lanes=(), shore=7, seed=
             land[max(tz - 2, 0):tz + 3, max(tx - 2, 0):tx + 3], m.blk[max(tz - 2, 0):tz + 3, max(tx - 2, 0):tx + 3],
             SHALLOW_WATER)
         fb(m, px, pz, 2, LAMP_STREET)
+        # (user 2026-11-15: "the dock conversation pops up so you cant sail ... should have a yes no there")
+        # landfall asks first, and the ship sets out 3 cells further out to sea than the trigger
+        land_q = [narrate("Landfall: %s." % pname),
+                  choices(("Go ashore.", dest), ("Keep sailing.", []))]
         pages = [(None, [narrate(closed)])] if reqs else []
-        pages.append((reqs, [narrate("Landfall: %s." % pname)] + dest) if reqs else
-                     (None, [narrate("Landfall: %s." % pname)] + dest))
+        pages.append((reqs, land_q) if reqs else (None, land_q))
         ev.talk(tx, tz, "CE000", pages, trigger=5)
-        places[key] = (tx, tz)
+        ax, az = tx + dx * 3, tz + dz * 3
+        m.walls = [c for c in m.walls if abs(c[0] - ax) > 2 or abs(c[1] - az) > 2]
+        sl = np.s_[max(az - 2, 0):az + 3, max(ax - 2, 0):ax + 3]
+        m.blk[sl] = np.where(land[sl], m.blk[sl], SHALLOW_WATER)
+        places[key] = (ax, az) if 0 <= ax < w and 0 <= az < d and not land[az, ax] else (tx, tz)
     SEA_MAPS[mid] = places
     return m, ev
 

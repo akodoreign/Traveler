@@ -65260,7 +65260,7 @@
 																		"pos": [
 																			42.0,
 																			null,
-																			21.5,
+																			20.0,
 																			0.0
 																		]
 																	},
@@ -65287,7 +65287,7 @@
 																	"dest": {
 																		"mapid": "M491",
 																		"pos": [
-																			67.5,
+																			66.0,
 																			null,
 																			31.0,
 																			0.0
@@ -65318,7 +65318,7 @@
 																		"pos": [
 																			61.0,
 																			null,
-																			15.5,
+																			17.0,
 																			0.0
 																		]
 																	},
@@ -65347,7 +65347,7 @@
 																		"pos": [
 																			28.0,
 																			null,
-																			37.5,
+																			36.0,
 																			0.0
 																		]
 																	},
@@ -65378,7 +65378,7 @@
 																		"pos": [
 																			42.0,
 																			null,
-																			21.5,
+																			20.0,
 																			0.0
 																		]
 																	},
@@ -65405,7 +65405,7 @@
 																	"dest": {
 																		"mapid": "M490",
 																		"pos": [
-																			67.5,
+																			66.0,
 																			null,
 																			31.0,
 																			0.0
@@ -65436,7 +65436,7 @@
 																		"pos": [
 																			61.0,
 																			null,
-																			15.5,
+																			17.0,
 																			0.0
 																		]
 																	},
@@ -65465,7 +65465,7 @@
 																		"pos": [
 																			28.0,
 																			null,
-																			37.5,
+																			36.0,
 																			0.0
 																		]
 																	},
@@ -356027,7 +356027,7 @@
 											"dest": {
 												"mapid": "M492",
 												"pos": [
-													34.0,
+													35.5,
 													null,
 													25.0,
 													0.0
@@ -470671,7 +470671,7 @@
 											"dest": {
 												"mapid": "M492",
 												"pos": [
-													34.0,
+													35.5,
 													null,
 													25.0,
 													0.0
@@ -1118818,40 +1118818,56 @@
 								"uiclose": 2
 							},
 							{
-								"cmd": "cmd_screenfxon",
-								"color": 657231871,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_screenfxon",
-								"color": 255,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1600
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1800
-							},
-							{
-								"cmd": "cmd_mapmove",
-								"dest": {
-									"mapid": "M220",
-									"pos": [
-										19.0,
-										null,
-										7.0,
-										0.0
-									]
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 657231871,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 255,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1600
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1800
+										},
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M220",
+												"pos": [
+													19.0,
+													null,
+													7.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
 								},
-								"wipe": 1,
-								"remap": true
+								"text0": "Go ashore.",
+								"text1": "Keep sailing."
 							}
 						]
 					}
@@ -1118929,40 +1118945,56 @@
 								"uiclose": 2
 							},
 							{
-								"cmd": "cmd_screenfxon",
-								"color": 657231871,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_screenfxon",
-								"color": 255,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1600
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1800
-							},
-							{
-								"cmd": "cmd_mapmove",
-								"dest": {
-									"mapid": "M222",
-									"pos": [
-										16.0,
-										null,
-										10.0,
-										0.0
-									]
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 657231871,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 255,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1600
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1800
+										},
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M222",
+												"pos": [
+													16.0,
+													null,
+													10.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
 								},
-								"wipe": 1,
-								"remap": true
+								"text0": "Go ashore.",
+								"text1": "Keep sailing."
 							}
 						]
 					}
@@ -1119040,40 +1119072,56 @@
 								"uiclose": 2
 							},
 							{
-								"cmd": "cmd_screenfxon",
-								"color": 657231871,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_screenfxon",
-								"color": 255,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1600
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1800
-							},
-							{
-								"cmd": "cmd_mapmove",
-								"dest": {
-									"mapid": "M223",
-									"pos": [
-										16.0,
-										null,
-										10.0,
-										0.0
-									]
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 657231871,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 255,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1600
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1800
+										},
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M223",
+												"pos": [
+													16.0,
+													null,
+													10.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
 								},
-								"wipe": 1,
-								"remap": true
+								"text0": "Go ashore.",
+								"text1": "Keep sailing."
 							}
 						]
 					}
@@ -1119151,77 +1119199,93 @@
 								"uiclose": 2
 							},
 							{
-								"cmd": "cmd_if",
-								"reqs": [
-									{
-										"lvar": "G395",
-										"op": "==",
-										"rvar": true
-									}
-								],
+								"cmd": "cmd_choices",
+								"backenable": false,
 								"cmdblocks": [
 									[
 										{
-											"cmd": "cmd_screenfxon",
-											"color": 657231871,
-											"num": 1,
-											"sfxid": "color0",
-											"time": 1200
-										},
-										{
-											"cmd": "cmd_wait",
-											"time": 1200
-										},
-										{
-											"cmd": "cmd_screenfxon",
-											"color": 255,
-											"num": 1,
-											"sfxid": "color0",
-											"time": 1600
-										},
-										{
-											"cmd": "cmd_wait",
-											"time": 1800
-										},
-										{
-											"cmd": "cmd_mapmove",
-											"dest": {
-												"mapid": "M225",
-												"pos": [
-													16.0,
-													null,
-													10.0,
-													0.0
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "G395",
+													"op": "==",
+													"rvar": true
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_screenfxon",
+														"color": 657231871,
+														"num": 1,
+														"sfxid": "color0",
+														"time": 1200
+													},
+													{
+														"cmd": "cmd_wait",
+														"time": 1200
+													},
+													{
+														"cmd": "cmd_screenfxon",
+														"color": 255,
+														"num": 1,
+														"sfxid": "color0",
+														"time": 1600
+													},
+													{
+														"cmd": "cmd_wait",
+														"time": 1800
+													},
+													{
+														"cmd": "cmd_mapmove",
+														"dest": {
+															"mapid": "M225",
+															"pos": [
+																16.0,
+																null,
+																10.0,
+																0.0
+															]
+														},
+														"wipe": 1,
+														"remap": true
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "By dusk the sky is black, and the sea stands up.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_mapmove",
+														"dest": {
+															"mapid": "M224",
+															"pos": [
+																28.0,
+																null,
+																8.0,
+																0.0
+															]
+														},
+														"wipe": 1,
+														"remap": true
+													}
 												]
-											},
-											"wipe": 1,
-											"remap": true
+											]
 										}
 									],
-									[
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "By dusk the sky is black, and the sea stands up.",
-											"name": "",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_mapmove",
-											"dest": {
-												"mapid": "M224",
-												"pos": [
-													28.0,
-													null,
-													8.0,
-													0.0
-												]
-											},
-											"wipe": 1,
-											"remap": true
-										}
-									]
-								]
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Go ashore.",
+								"text1": "Keep sailing."
 							}
 						]
 					}
@@ -1119430,40 +1119494,56 @@
 								"uiclose": 2
 							},
 							{
-								"cmd": "cmd_screenfxon",
-								"color": 657231871,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_screenfxon",
-								"color": 255,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1600
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1800
-							},
-							{
-								"cmd": "cmd_mapmove",
-								"dest": {
-									"mapid": "M220",
-									"pos": [
-										19.0,
-										null,
-										7.0,
-										0.0
-									]
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 657231871,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 255,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1600
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1800
+										},
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M220",
+												"pos": [
+													19.0,
+													null,
+													7.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
 								},
-								"wipe": 1,
-								"remap": true
+								"text0": "Go ashore.",
+								"text1": "Keep sailing."
 							}
 						]
 					}
@@ -1119541,40 +1119621,56 @@
 								"uiclose": 2
 							},
 							{
-								"cmd": "cmd_screenfxon",
-								"color": 657231871,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_screenfxon",
-								"color": 255,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1600
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1800
-							},
-							{
-								"cmd": "cmd_mapmove",
-								"dest": {
-									"mapid": "M222",
-									"pos": [
-										16.0,
-										null,
-										10.0,
-										0.0
-									]
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 657231871,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 255,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1600
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1800
+										},
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M222",
+												"pos": [
+													16.0,
+													null,
+													10.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
 								},
-								"wipe": 1,
-								"remap": true
+								"text0": "Go ashore.",
+								"text1": "Keep sailing."
 							}
 						]
 					}
@@ -1119652,40 +1119748,56 @@
 								"uiclose": 2
 							},
 							{
-								"cmd": "cmd_screenfxon",
-								"color": 657231871,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_screenfxon",
-								"color": 255,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1600
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1800
-							},
-							{
-								"cmd": "cmd_mapmove",
-								"dest": {
-									"mapid": "M223",
-									"pos": [
-										16.0,
-										null,
-										10.0,
-										0.0
-									]
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 657231871,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 255,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1600
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1800
+										},
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M223",
+												"pos": [
+													16.0,
+													null,
+													10.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
 								},
-								"wipe": 1,
-								"remap": true
+								"text0": "Go ashore.",
+								"text1": "Keep sailing."
 							}
 						]
 					}
@@ -1119763,77 +1119875,93 @@
 								"uiclose": 2
 							},
 							{
-								"cmd": "cmd_if",
-								"reqs": [
-									{
-										"lvar": "G395",
-										"op": "==",
-										"rvar": true
-									}
-								],
+								"cmd": "cmd_choices",
+								"backenable": false,
 								"cmdblocks": [
 									[
 										{
-											"cmd": "cmd_screenfxon",
-											"color": 657231871,
-											"num": 1,
-											"sfxid": "color0",
-											"time": 1200
-										},
-										{
-											"cmd": "cmd_wait",
-											"time": 1200
-										},
-										{
-											"cmd": "cmd_screenfxon",
-											"color": 255,
-											"num": 1,
-											"sfxid": "color0",
-											"time": 1600
-										},
-										{
-											"cmd": "cmd_wait",
-											"time": 1800
-										},
-										{
-											"cmd": "cmd_mapmove",
-											"dest": {
-												"mapid": "M225",
-												"pos": [
-													16.0,
-													null,
-													10.0,
-													0.0
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "G395",
+													"op": "==",
+													"rvar": true
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_screenfxon",
+														"color": 657231871,
+														"num": 1,
+														"sfxid": "color0",
+														"time": 1200
+													},
+													{
+														"cmd": "cmd_wait",
+														"time": 1200
+													},
+													{
+														"cmd": "cmd_screenfxon",
+														"color": 255,
+														"num": 1,
+														"sfxid": "color0",
+														"time": 1600
+													},
+													{
+														"cmd": "cmd_wait",
+														"time": 1800
+													},
+													{
+														"cmd": "cmd_mapmove",
+														"dest": {
+															"mapid": "M225",
+															"pos": [
+																16.0,
+																null,
+																10.0,
+																0.0
+															]
+														},
+														"wipe": 1,
+														"remap": true
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "By dusk the sky is black, and the sea stands up.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_mapmove",
+														"dest": {
+															"mapid": "M224",
+															"pos": [
+																28.0,
+																null,
+																8.0,
+																0.0
+															]
+														},
+														"wipe": 1,
+														"remap": true
+													}
 												]
-											},
-											"wipe": 1,
-											"remap": true
+											]
 										}
 									],
-									[
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "By dusk the sky is black, and the sea stands up.",
-											"name": "",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_mapmove",
-											"dest": {
-												"mapid": "M224",
-												"pos": [
-													28.0,
-													null,
-													8.0,
-													0.0
-												]
-											},
-											"wipe": 1,
-											"remap": true
-										}
-									]
-								]
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Go ashore.",
+								"text1": "Keep sailing."
 							}
 						]
 					}
@@ -1120152,40 +1120280,56 @@
 								"uiclose": 2
 							},
 							{
-								"cmd": "cmd_screenfxon",
-								"color": 657231871,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_screenfxon",
-								"color": 255,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1600
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1800
-							},
-							{
-								"cmd": "cmd_mapmove",
-								"dest": {
-									"mapid": "M304",
-									"pos": [
-										46.0,
-										null,
-										7.0,
-										0.0
-									]
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 657231871,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 255,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1600
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1800
+										},
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M304",
+												"pos": [
+													46.0,
+													null,
+													7.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
 								},
-								"wipe": 1,
-								"remap": true
+								"text0": "Go ashore.",
+								"text1": "Keep sailing."
 							}
 						]
 					}
@@ -1120236,40 +1120380,56 @@
 								"uiclose": 2
 							},
 							{
-								"cmd": "cmd_screenfxon",
-								"color": 657231871,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1200
-							},
-							{
-								"cmd": "cmd_screenfxon",
-								"color": 255,
-								"num": 1,
-								"sfxid": "color0",
-								"time": 1600
-							},
-							{
-								"cmd": "cmd_wait",
-								"time": 1800
-							},
-							{
-								"cmd": "cmd_mapmove",
-								"dest": {
-									"mapid": "M315",
-									"pos": [
-										24.0,
-										null,
-										7.5,
-										0.0
-									]
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 657231871,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1200
+										},
+										{
+											"cmd": "cmd_screenfxon",
+											"color": 255,
+											"num": 1,
+											"sfxid": "color0",
+											"time": 1600
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 1800
+										},
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M315",
+												"pos": [
+													24.0,
+													null,
+													7.5,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
 								},
-								"wipe": 1,
-								"remap": true
+								"text0": "Go ashore.",
+								"text1": "Keep sailing."
 							}
 						]
 					}
