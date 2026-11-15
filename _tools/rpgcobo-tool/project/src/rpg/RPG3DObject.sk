@@ -1,3 +1,4 @@
+//	Modified for the Rokugan Traveler fan project (2026). Original: RPG-Cobo, Apache-2.0.
 import VirtualKeyCode;
 import AnimationPart;
 import CollisionGroupID;

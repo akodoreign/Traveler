@@ -6,7 +6,8 @@ ENGINE = "_tools/rpgcobo-tool"
 TOP = ["tools", "docs", "NOTES.md", "HOW TO PLAY.txt", "Play Rokugan Traveler.bat", ENGINE]
 SKIP_ENGINE = {"tmp", "backup", "build", "log", "savedata"}
 CHANGED = ["project/src/rpg/action/PlayerMoveAction.sk", "project/src/rpg/RPGMain.sk", "project/src/rpg/RPGObjects.sk",
-           "project/src/rpg/RPGEvent.sk", "project/src/rpg/battle/BattleRunnerBase.sk", "project/system/ui/GPUI.sk", "project/testplay.sk"]
+           "project/src/rpg/RPGEvent.sk", "project/src/rpg/battle/BattleRunnerBase.sk", "project/system/ui/GPUI.sk", "project/testplay.sk",
+           "project/src/rpg/RPG3DObject.sk"]   # (2026-11-15: RPG3DPicture.anime2 returns its layer - cmd_anime locks sprites)
 MARK = b"//\tModified for the Rokugan Traveler fan project (2026). Original: RPG-Cobo, Apache-2.0."
 dry = "--dry" in sys.argv
 seen, copied, new_boss = set(), 0, []
