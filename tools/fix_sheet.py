@@ -58,8 +58,35 @@ _EYE, _HI = (40, 26, 24), (222, 214, 204)
 PATCH = {
     # (offered 11-15: grey "goggles" where the front-view eyes should be) dark irises with a highlight
     "trav_natsuko": {"front": [(38, 28, _HI), (39, 28, _EYE), (38, 29, _EYE), (39, 29, _EYE),
-                               (42, 28, _HI), (43, 28, _EYE), (42, 29, _EYE), (43, 29, _EYE)]},
+                               (42, 28, _HI), (43, 28, _EYE), (42, 29, _EYE), (43, 29, _EYE)],
+                     # (user 2026-11-15, red circle on the rig preview) generator specks through the sash: majority
+                     # colour inside the waist box (x0, y0, x1, y1)
+                     "side": [("smooth", 32, 41, 50, 52)]},
 }
+def smooth_box(fr, x0, y0, x1, y1, passes=2):
+    """Majority colour inside a box (solid pixels only, ink outline kept): specks go, shapes of 3+ px stay."""
+    out = fr.copy()
+    for _ in range(passes):
+        src = out.copy()
+        for y in range(y0, y1 + 1):
+            for x in range(x0, x1 + 1):
+                if src[y, x, 3] < 128 or src[y, x, :3].sum() == 0:
+                    continue
+                nb = src[y - 1:y + 2, x - 1:x + 2].reshape(-1, 4)
+                nb = nb[(nb[:, 3] >= 128) & (nb[:, :3].sum(1) > 0)]
+                if len(nb) < 5:
+                    continue
+                # a speck: much brighter than its neighbourhood (pairs of specks too) -> a typical neighbour colour
+                nl = nb[:, :3].astype(int).sum(1)
+                me = int(src[y, x, :3].astype(int).sum())
+                med = int(np.median(nl))
+                if me > med + 150:
+                    dark = nb[nl <= med + 40]
+                    if len(dark):
+                        out[y, x, :3] = dark[np.argmin(np.abs(dark[:, :3].astype(int).sum(1) - med))][:3]
+    return out
+
+
 GLARE = {"trav_natsuko"}       # sheets whose dark armour carries white glare patches (user 2026-11-15 marks)
 
 
@@ -583,12 +610,29 @@ def main():
     enh = {fc: denoise(lock(f, pal), ink, glare) for fc, f in enh.items()}
     for fc, pts in PATCH.get(key, {}).items():                             # hand fixes on the masters
         if fc in enh:
-            for x, y, rgb in pts:
+            for p in pts:
+                if p[0] == "smooth":
+                    enh[fc] = smooth_box(enh[fc], *p[1:])
+                    continue
+                x, y, rgb = p
                 enh[fc][y, x, :3] = rgb
                 enh[fc][y, x, 3] = 255
     ref_box = {fc: bbox(f) for fc, f in enh.items()}
+    # (user 2026-11-15: the rig "looks a lot better, apply across the board") side walk / run from the cutout rig:
+    # the master cut into parts by the procedural rig's bones, each part moved to the frame's pose
+    rig = {}
+    if moves and "side" in enh:
+        try:
+            import rig_anim
+            rig_ids = [n for n in range(len(frames)) if role.get(n) in ("walk", "run")
+                       and n < len(rig_anim.s2.FRAMES) and rig_anim.s2.FRAMES[n][0] in ("walk8", "run")]
+            rig, _lab = rig_anim.rig_frames(key, enh["side"], rig_ids)
+        except Exception as ex:
+            print("rig skipped:", ex)
+            rig = {}
+    msolid = int((enh["side"][..., 3] >= 128).sum()) if "side" in enh else 0
     fixed = []
-    nflow = [0, 0]                                                          # flow-warped / fell back
+    nflow = [0, 0, 0]                                                        # flow-warped / fell back
     for i, fr in enumerate(frames):
         if not (fr[..., 3] > 0).any():
             fixed.append(fr)
@@ -603,7 +647,10 @@ def main():
         if aid in UPRIGHT and fc in ref_box:
             f2 = fit(f2, ref_box[fc])                                       # 3. size and foot line
         flowed = False
-        if moves and aid in FLOW_IDS and fc in enh:                         # 5a. the AI frame's motion on the
+        if i in rig and 0.85 * msolid <= int((rig[i][..., 3] >= 128).sum()) <= 1.15 * msolid:
+            f2, flowed = rig[i], True                                       # 5r. the cutout rig
+            nflow[2] += 1
+        elif moves and aid in FLOW_IDS and fc in enh:                       # 5a. the AI frame's motion on the
             fw_, sc = flow_from_ref(enh[fc], f2)                            #     master's pixels, if it matches
             if sc >= FLOW_IOU:
                 f2, flowed = fw_, True
@@ -657,7 +704,7 @@ def main():
         print("installed", path)
     else:
         Image.fromarray(new).save(os.path.join(OUT, key + "_fixed.png"))
-    print(key, "frames", len(frames), "palette", len(pal), "upright fitted", sum(1 for i in role if role[i] in UPRIGHT), "flow", nflow[0], "fallback", nflow[1])
+    print(key, "frames", len(frames), "palette", len(pal), "upright fitted", sum(1 for i in role if role[i] in UPRIGHT), "flow", nflow[0], "fallback", nflow[1], "rig", nflow[2])
 
 
 if __name__ == "__main__":
