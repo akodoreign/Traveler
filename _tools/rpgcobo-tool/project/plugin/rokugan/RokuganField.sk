@@ -1410,7 +1410,10 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	local f = this.pfol, pl = st["player3d"];
 	if( st["battle"] || !pl || !st["scn"]) return;
 	local mem = ::rpgstat.members.filter( @( v) v);
-	if( ::Rokugan["seaOn"] && length( mem) > 1) mem = [mem[0]];			//	at sea: the crew stay aboard the junk
+	//	at sea: the crew stay aboard the junk. (user 2026-11-15: Yosai chased the boat "right after a fight ... while at
+	//	sea") - read the sea from THIS field stage's map: the battle stage's launch had set the global seaOn false)
+	local smid = st["mapid"];
+	if( smid && (smid in ::Rokugan.SEA_MAPS) && length( mem) > 1) mem = [mem[0]];
 	local sig = mem.map( @( v) ("lookSig" in ::Rokugan) ? ::Rokugan.lookSig( v) : v.dataid).join( ",");	//	(+ equipment looks)
 	if( f.stage != st || f.sig != sig){
 		if( f.stage == st) foreach( o in f.objs) try{ st.scn.removeObject( o); }catch( ex){}

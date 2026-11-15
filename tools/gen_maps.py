@@ -1456,9 +1456,11 @@ def yosai_inn(ev, x, z, mid):
             setf("G607")] + ask
     first = [(None, meet)] if mid in YOSAI_MEET else [(None, [])]
     line = YOSAI_SAYS.get(mid, YOSAI_ANY[sum(map(ord, mid)) % len(YOSAI_ANY)])
+    # (user 2026-11-15: "he likes to show up at inns while in party") G608 can be stale (a path start clears it, the
+    # Dragon story adds him without it): also hide him while P132 is actually in the party (RokuganParty G1220 + 132)
     return ev.talk(x, z, SC["yosai"], first + [([flag("G607")], [say("Yosai", line)] + ask)],
-            reqs=([flag("G608", False)] if mid in YOSAI_MEET else [flag("G607"), flag("G608", False),
-                                                                   flag("G759", False)]))
+            reqs=([flag("G608", False), flag("G1352", False)] if mid in YOSAI_MEET else
+                  [flag("G607"), flag("G608", False), flag("G759", False), flag("G1352", False)]))
 
 
 # Duels are one on one: Togashi Yosai steps aside for any duel group (enemies with rt_duel / rt_firstblood, read from

@@ -15,6 +15,7 @@ sys.path.insert(0, HERE)
 import gen_maps as gm  # noqa: E402
 
 TOOL = gm.TOOL
+PARTY = ""                                                  # --party P132,P123: these join first (-rtparty)
 
 
 def snap(mid, x, z, rtvar, wait=4.0):
@@ -43,7 +44,8 @@ def snap(mid, x, z, rtvar, wait=4.0):
             os.remove(raw)
         proc = engine_lock.launch([os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-map", mid,
                                  "[%.1f,%.2f,%.1f,0.0]" % (pos[0], pos[1], pos[2]), "-rtvar", rtvar, "-rtfast",
-                                 "-rtshot", "tmp/rt_shot/snap_%s.raw" % mid, str(int(wait * 1000) + 3000)],
+                                 "-rtshot", "tmp/rt_shot/snap_%s.raw" % mid, str(int(wait * 1000) + 3000)] +
+                                (["-rtparty", PARTY] if PARTY else []),
                                 cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
     t0 = time.time()
     while time.time() - t0 < 90 and not (os.path.exists(raw) and os.path.getsize(raw) > 8):
@@ -70,6 +72,11 @@ def main():
     if "--vars" in args:
         i = args.index("--vars")
         rtvar = args[i + 1]
+        args = args[:i] + args[i + 2:]
+    global PARTY
+    if "--party" in args:
+        i = args.index("--party")
+        PARTY = args[i + 1]
         args = args[:i] + args[i + 2:]
     for a in args:
         mid, xz = a.split(":")

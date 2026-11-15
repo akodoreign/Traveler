@@ -342,6 +342,108 @@ def move_from_ref(ref, aid, k, n, cut=0.6):
     return out
 
 
+FLOW_Z, FLOW_SIGMA, FLOW_MAX, FLOW_IOU = 4, 9.0, 6.0, 0.72
+FLOW_IDS = {"walk", "run", "walk_f", "run_f", "walk_b", "run_b", "talk", "talk_f", "talk_b"}
+
+
+def flow_from_ref(master, fr):
+    """(user 2026-11-15: "can you get more of the animation back") the MOTION of an AI frame, the PIXELS of the
+    master: dense optical flow from the (cleaned, fitted) AI frame back to the master, smoothed (so a spear moves as
+    one piece) and capped, then the master is remapped along it (nearest: pixel art). Returns (frame, score); score is
+    the outline match (IoU) between the warped master and the AI frame - a drifted pose (a sword lunge in a walk)
+    scores low and the caller falls back to the procedural motion."""
+    h, w = master.shape[:2]
+
+    def gray(f):
+        g = (f[..., :3].astype(np.float32).mean(-1) * (f[..., 3] > 0)).astype(np.uint8)
+        return cv2.resize(g, (w * FLOW_Z, h * FLOW_Z), interpolation=cv2.INTER_NEAREST)
+    dis = cv2.DISOpticalFlow_create(cv2.DISOPTICAL_FLOW_PRESET_MEDIUM)
+    fl = dis.calc(gray(fr), gray(master), None)
+    fl = cv2.GaussianBlur(fl, (0, 0), FLOW_SIGMA)
+    fl = cv2.resize(fl, (w, h), interpolation=cv2.INTER_AREA) / FLOW_Z
+    mag = np.sqrt((fl ** 2).sum(-1, keepdims=True))
+    fl = fl * np.minimum(1.0, FLOW_MAX / np.maximum(mag, 1e-6))
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    out = cv2.remap(master, xx + fl[..., 0], yy + fl[..., 1], interpolation=cv2.INTER_NEAREST,
+                    borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+    a, b = out[..., 3] >= 128, fr[..., 3] >= 128
+    iou = (a & b).sum() / float(max(1, (a | b).sum()))
+    return out, iou
+
+
+def animate_move(ref, aid, k, n, cut=0.6):
+    """(user 2026-11-15: "can you get more of the animation back using your current technique?") walk / run from the
+    stand frame alone (one outfit), with more life than move_from_ref:
+    side  - a signed scissor stride (3 px walking, 4 running) whose legs swap each step; the upper body leans into
+            the move (1 / 2 px at the head, sheared from the hips); the body dips at the wide stride (1 / 2 px);
+            the trailing foot lifts 1 px at toe-off
+    front / back - the feet lift in turn (1 / 2 px), the body dips while both feet are down and shifts 1 px over
+            the planted foot (weight shift)."""
+    rb = bbox(ref)
+    if not rb:
+        return ref.copy()
+    h, w = ref.shape[:2]
+    top, feet = rb[1], rb[3]
+    H = feet - top + 1
+    hip = top + int(round(H * cut))
+    run = aid.startswith("run")
+    out = np.zeros_like(ref)
+    ph = 2 * np.pi * k / max(1, n)
+    ys, xs = np.nonzero(ref[..., 3] > 0)
+    lowx = xs[ys >= hip]
+    cx = (lowx.min() + lowx.max()) / 2.0 if len(lowx) else w / 2.0
+
+    def put(y, x, ty, tx, over):
+        if 0 <= ty < h and 0 <= tx < w and (over or out[ty, tx, 3] == 0):
+            out[ty, tx] = ref[y, x]
+
+    if facing(aid) == "side":
+        amp, lean = (4, 2) if run else (3, 1)
+        s = np.sin(ph)
+        a = s * amp
+        wide = abs(s) > 0.7
+        dip = (2 if run else 1) if wide else 0
+        back_left = s >= 0                                 # which half trails this step
+        order = np.argsort(ys, kind="stable")
+        for y, x in zip(ys[order], xs[order]):             # legs first (only into empty pixels) ...
+            if y < hip:
+                continue
+            t = (y - hip) / float(max(1, feet - hip))
+            off = int(round(a * t))
+            left = x < cx
+            tx = x - off if left else x + off
+            ty = y - 1 if (wide and y >= feet - 1 and left == back_left) else y
+            put(y, x, ty, tx, False)
+        for y, x in zip(ys, xs):                           # ... then the leaning, dipping upper body over them
+            if y >= hip:
+                continue
+            sh = int(round(lean * (hip - y) / float(max(1, hip - top))))
+            put(y, x, y + dip, x + sh, True)
+        for d in range(dip):                               # close the seam the dip opens at the hip
+            row = hip + d
+            if row < h:
+                m = (out[row, :, 3] == 0) & (ref[hip - 1, :, 3] > 0)
+                out[row][m] = ref[hip - 1][m]
+    else:
+        lift = 2 if run else 1
+        quarter = int(4 * k / max(1, n)) % 4               # 0: left foot up, 1: both down, 2: right up, 3: down
+        bob = 1 if quarter in (1, 3) else 0
+        sway = {0: 1, 2: -1}.get(quarter, 0)               # weight over the planted foot
+        foot0 = feet - max(3, int(round(H * 0.14)))
+        for y, x in zip(ys, xs):
+            if y >= foot0:
+                up = (quarter == 0 and x < cx) or (quarter == 2 and x >= cx)
+                put(y, x, y - lift if up else y, x, False)
+        for y, x in zip(ys, xs):
+            if y < foot0:
+                put(y, x, y + bob, x + sway, True)
+        for d in range(bob):
+            row = foot0 + d
+            m = (out[row, :, 3] == 0) & (ref[foot0 - 1, :, 3] > 0)
+            out[row][m] = np.roll(ref[foot0 - 1], sway, axis=0)[m]
+    return out
+
+
 def still_from_ref(ref, aid, k, n):
     """(user 2026-11-15: "look at how the shirts change to different types in all the npc animations") a standing /
     talking / nodding frame IS the stand frame - the outfit can't drift - with the head moved: a nod dips it 1-2 px
@@ -351,9 +453,20 @@ def still_from_ref(ref, aid, k, n):
     if not rb:
         return out
     hh = max(4, int(round((rb[3] - rb[1] + 1) * HEAD)))
-    if aid.startswith("stand"):
-        dy = (k // 2) % 2                                  # breathing: the head settles 1 px, then back
-    elif aid.startswith("nod"):
+    if aid.startswith("stand") or aid.startswith("talk"):
+        # (user 2026-11-15: "get more of the animation back") breathing: the whole upper body settles 1 px on the
+        # out-breath (the legs stay planted); talking adds a head bob on top
+        if (k // 2) % 2:
+            hip = rb[1] + int(round((rb[3] - rb[1] + 1) * 0.6))
+            up = ref[:hip].copy()
+            out[:hip] = 0                                  # the upper body comes down a row; the legs stay
+            m = up[..., 3] > 0
+            dst = out[1:hip + 1]
+            dst[m] = up[m]
+            ref = out.copy()
+        if aid.startswith("stand"):
+            return out
+    if aid.startswith("nod"):
         dy = (0, 1, 2, 2, 1, 0)[min(5, int(6 * k / max(1, n)))]
     else:
         dy = k % 2
@@ -475,6 +588,7 @@ def main():
                 enh[fc][y, x, 3] = 255
     ref_box = {fc: bbox(f) for fc, f in enh.items()}
     fixed = []
+    nflow = [0, 0]                                                          # flow-warped / fell back
     for i, fr in enumerate(frames):
         if not (fr[..., 3] > 0).any():
             fixed.append(fr)
@@ -488,10 +602,20 @@ def main():
         f2 = denoise(lock(f2, pal), ink, glare)                                    # 2. palette lock + noise
         if aid in UPRIGHT and fc in ref_box:
             f2 = fit(f2, ref_box[fc])                                       # 3. size and foot line
-        if moves and aid in MOVE and fc in enh:                             # 5. one outfit: walk / run drawn
-            st_, en_ = span.get(i, (i, i + 1))                              #    from the stand frame alone
-            f2 = move_from_ref(enh[fc], aid, i - st_, en_ - st_)
-        if moves and aid in STILL and fc in enh:                            # 6. one outfit: still frames are the
+        flowed = False
+        if moves and aid in FLOW_IDS and fc in enh:                         # 5a. the AI frame's motion on the
+            fw_, sc = flow_from_ref(enh[fc], f2)                            #     master's pixels, if it matches
+            if sc >= FLOW_IOU:
+                f2, flowed = fw_, True
+                nflow[0] += 1
+            else:
+                nflow[1] += 1
+        if flowed:
+            pass
+        elif moves and aid in MOVE and fc in enh:                           # 5b. one outfit: walk / run drawn
+            st_, en_ = span.get(i, (i, i + 1))                              #     from the stand frame alone
+            f2 = animate_move(enh[fc], aid, i - st_, en_ - st_)
+        elif moves and aid in STILL and fc in enh:                          # 6. one outfit: still frames are the
             st_, en_ = span.get(i, (i, i + 1))                              #    stand frame, the head moving
             f2 = still_from_ref(enh[fc], aid, i - st_, en_ - st_)
         elif heads and aid in STILL and fc in enh:
@@ -533,7 +657,7 @@ def main():
         print("installed", path)
     else:
         Image.fromarray(new).save(os.path.join(OUT, key + "_fixed.png"))
-    print(key, "frames", len(frames), "palette", len(pal), "upright fitted", sum(1 for i in role if role[i] in UPRIGHT))
+    print(key, "frames", len(frames), "palette", len(pal), "upright fitted", sum(1 for i in role if role[i] in UPRIGHT), "flow", nflow[0], "fallback", nflow[1])
 
 
 if __name__ == "__main__":
