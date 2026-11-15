@@ -15,6 +15,7 @@ import os
 import sys
 import time
 
+import cv2
 import numpy as np
 from PIL import Image, ImageDraw
 
@@ -35,24 +36,48 @@ W, H, GROUND = 80, 68, 3               # idle frame (animate pads it to 96 wide:
 
 # key: (prompt, figure height in px of the 68-px frame, flying, scale in battle)
 FOES = {
-    "zokujin_miner": ("small stocky stone-skinned humanoid, grey rocky skin like granite, glowing amber eyes, bald, "
-                      "short legs, holding a stone pick, loincloth, cave dweller, not a goblin", 40, False, 0.55),
-    "zokujin_hunter": ("small stocky stone-skinned humanoid hunter, grey rocky granite skin, glowing amber eyes, "
-                       "holding a stone-tipped spear, crouching, fur loincloth, not a goblin", 40, False, 0.55),
-    "monkeys": ("three small brown macaque monkeys huddled together, red faces, one holding a stolen rice ball",
+    "zokujin_miner": ("1boy, male, short stout dwarf-like creature, chibi proportions, broad shoulders, big head, "
+                      "big hands, craggy cracked grey stone skin like granite, glowing amber eyes, bald, short thick "
+                      "legs, holding a stone pickaxe, loincloth, cave dweller", 40, False, 0.55),
+    "zokujin_hunter": ("stone golem dwarf, 1boy, male, short stout dwarf-like hunter, grey granite body, no flesh, chibi proportions, broad shoulders, big head, "
+                       "craggy cracked grey stone skin like granite, glowing amber eyes, holding a stone-tipped spear, "
+                       "crouching, fur loincloth", 40, False, 0.55),
+    "monkeys": ("japanese macaque monkey, small, long thin limbs, pink red face, grey-brown fur, short tail, "
+                "crouching on all fours, holding a stolen rice ball, animal, not a bear",
                 34, False, 0.5),
     "ningyo": ("feral ningyo merfolk, human torso and fish tail, pale blue-green scales, wild seaweed hair, "
                "sharp teeth, clawed hands, rising from the water on its tail", 54, False, 0.65),
     "tsuno": ("tsuno ravager, muscular horned demon beast-man warrior, two long curved horns, dark red-brown skin, "
               "bestial face with fangs, crude black armor, holding a heavy curved blade", 60, False, 0.7),
-    "nukekubi": ("nukekubi, a flying disembodied human head with very long black hair streaming behind it, pale "
-                 "face, glowing eyes, bared teeth, no body, floating in the air", 34, True, 0.5),
+    "nukekubi": ("nukekubi, a large disembodied human head seen from the side, big pale white face clearly "
+                 "visible, red glowing eyes, bared teeth, long black hair streaming behind it, no body, no neck, "
+                 "floating", 34, True, 0.5),
     "onibaba": ("onibaba, a demon crone, hunched old woman with grey-blue skin, wild white hair, small horns, "
                 "fangs, ragged dark kimono, holding a large kitchen knife", 54, False, 0.68),
     "hyakuhei": ("hyakuhei, a hulking mass of many dead samurai soldiers fused into one body, many arms holding "
                  "rusty spears and swords, rotten armor plates, several skull faces, undead", 62, False, 0.75),
 }
-NEG_X = ", facing left, from behind, back view, multiple characters, background scenery, text"
+NEG_X = (", facing left, from behind, back view, multiple characters, background scenery, text, slender, "
+         "tall, thin, alien")
+NEG_PER = {"zokujin_miner": ", 1girl, woman, female, breasts, goblin, green skin",
+           "zokujin_hunter": ", 1girl, woman, female, breasts, goblin, green skin",
+           "tsuno": ", 1girl, woman", "hyakuhei": ", 1girl, woman", "ningyo": ", legs, feet"}
+
+
+HUMAN_BASES = ("hum_",)          # human-rig foes: drawn through gen_human_enemies + pixeldrive, not here
+
+
+def foe_def(key):
+    """FOES entry, or one derived from tools/new_foes.py (name + description; size and scale from the base sheet)."""
+    if key in FOES:
+        return FOES[key]
+    ent = next(f for f in new_foes.NEW_FOES if f[2] == key)
+    j = json.load(open(os.path.join(RES, "enemy_pic.json"), encoding="utf-8"))
+    base = j[ent[4]]
+    sc = float(base.get("scale", 0.6))
+    height = int(min(62, max(30, 62 * sc / 0.75)))
+    flying = any(w in ent[13].lower() for w in ("flies", "flying", "wings", "hover"))
+    return ("%s, %s, monster, creature" % (ent[3], ent[13]), height, flying, sc)
 
 
 def wf_txt2img(pos, neg, seed):
@@ -89,6 +114,14 @@ def to_frame(big, height, flying, flip=False, colors=24):
     """1024 AI image -> 80x68 RGBA idle frame: key out the white background, crop, scale to the figure height,
     quantize, outline-dark edge kept, standing on the ground line (or hovering when flying)."""
     a = g.key_out(big.convert("RGB"), holes=True)
+    al_ = (np.asarray(a)[..., 3] > 40).astype(np.uint8)        # keep the main figure: drop stray small sprites
+    n_, lbl, st_, _ = cv2.connectedComponentsWithStats(cv2.dilate(al_, np.ones((9, 9), np.uint8)), connectivity=8)
+    if n_ > 2:
+        big_k = 1 + int(np.argmax(st_[1:, cv2.CC_STAT_AREA]))
+        keep = (lbl == big_k) & (al_ > 0)
+        arr = np.asarray(a).copy()
+        arr[~keep] = 0
+        a = Image.fromarray(arr, "RGBA")
     bb = a.getbbox()
     if not bb:
         return None
@@ -113,11 +146,11 @@ def to_frame(big, height, flying, flip=False, colors=24):
 
 def draw(keys, seed0=31, n=4):
     for key in keys:
-        prompt, height, flying, _ = FOES[key]
+        prompt, height, flying, _ = foe_def(key)
         od = os.path.join(WORK, key)
         os.makedirs(od, exist_ok=True)
         pos = gp.STYLE.replace("standing, ", "" if flying else "standing, ") + ", " + prompt
-        neg = gp.NEG + NEG_X
+        neg = gp.NEG + NEG_X + NEG_PER.get(key, "")
         tiles = []
         for k in range(n):
             big = run(pos, neg, seed0 * 100 + k)
@@ -139,7 +172,7 @@ def draw(keys, seed0=31, n=4):
 def install(key, n, flip):
     ent = next(f for f in new_foes.NEW_FOES if f[2] == key)
     ep, name = ent[1], ent[3]
-    _, height, flying, scale = FOES[key]
+    _, height, flying, scale = foe_def(key)
     big = Image.open(os.path.join(WORK, key, "big_%d.png" % n))
     base = to_frame(big, height, flying, flip)
     frames = [base]
@@ -170,7 +203,8 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     if a and a[0] == "draw":
         seed = int(a[a.index("--seed") + 1]) if "--seed" in a else 31
-        keys = [k for k in a[1:] if k in FOES] or list(FOES)
+        allk = [f[2] for f in new_foes.NEW_FOES]
+        keys = [k for k in a[1:] if k in allk] or list(FOES)
         draw(keys, seed)
     elif a and a[0] == "install":
         install(a[1], int(a[2]), "--flip" in a)
