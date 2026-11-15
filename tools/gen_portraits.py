@@ -122,6 +122,8 @@ def main():
         if not os.path.exists(path):
             continue
         cols, rows = (e.get("aniuv") or [1, 1])[:2]
+        if "/enemy_pic2x/" in e["pic3d"]:
+            rows = 11                                      # (the entry describes the 14x12 HD sheet; this is the 1x)
         ours = name.startswith(("trav_", "side_", "hum_"))
         crop = head_crop(Image.open(path), max(1, cols), max(1, rows), ours=ours, T=our_spec(name) if ours else None)
         if crop is None:

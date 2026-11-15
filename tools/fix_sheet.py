@@ -577,7 +577,11 @@ def main():
     path = os.path.join(RES, "enemy_pic", key + ".png")
     bk0 = os.path.join(OUT, key + "_before.png")                            # (always from the ORIGINAL sheet)
     sheet = np.array(Image.open(bk0 if os.path.exists(bk0) else path).convert("RGBA"))
-    fh, fw = sheet.shape[0] // rows, sheet.shape[1] // cols
+    # (the game entry may describe the HD sheet - 14x12 - while this works on the 1x original: rows from the image,
+    # the character frames being 80x68)
+    fw = sheet.shape[1] // cols
+    rows = max(1, int(round(sheet.shape[0] / (fw * 68.0 / 80.0))))
+    fh = sheet.shape[0] // rows
     frames = [sheet[(i // cols) * fh:(i // cols + 1) * fh, (i % cols) * fw:(i % cols + 1) * fw].copy()
               for i in range(cols * rows)]
     role, span = {}, {}                                                     # frame -> its animation id / range
@@ -714,6 +718,16 @@ def main():
             g = rig_anim.gesture_frames_hd(key, enh["side"], 2)
             if g:
                 up = np.repeat(np.repeat(new, 2, 0), 2, 1)
+                # ("you may have to scale riggings as well") walk / run rigged on the 2x master: half-pixel limb
+                # steps and finer edges on turned parts, instead of the 1x rig frames blown up
+                if rig:
+                    m2 = np.repeat(np.repeat(enh["side"], 2, 0), 2, 1)
+                    r2, _l2 = rig_anim.rig_frames(key, m2, sorted(rig), 2)
+                    s2n = int((m2[..., 3] >= 128).sum())
+                    for n_, f_ in r2.items():
+                        if 0.85 * s2n <= int((f_[..., 3] >= 128).sum()) <= 1.15 * s2n:
+                            y_, x_ = (n_ // cols) * fh * 2, (n_ % cols) * fw * 2
+                            up[y_:y_ + fh * 2, x_:x_ + fw * 2] = f_
                 row = np.zeros((fh * 2, up.shape[1], 4), np.uint8)
                 for q, f in enumerate(g[:cols]):
                     row[:, q * fw * 2:(q + 1) * fw * 2] = f

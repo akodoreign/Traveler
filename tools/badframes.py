@@ -35,7 +35,7 @@ def check(epid, pics, fix=False):
     e = pics[epid]
     path = os.path.join(RES, "enemy_pic", os.path.basename(e["pic3d"]))
     im = Image.open(path).convert("RGBA")
-    cols, rows = e.get("aniuv") or (14, 11)
+    cols, rows = _grid_1x(e)
     fw, fh = im.size[0] // cols, im.size[1] // rows
     box = lambda i: ((i % cols) * fw, (i // cols) * fh, (i % cols + 1) * fw, (i // cols + 1) * fh)  # noqa: E731
     m = {}
@@ -69,6 +69,15 @@ def check(epid, pics, fix=False):
     return bad
 
 
+def _grid_1x(e):
+    """Grid of the 1x working sheet in resource/enemy_pic. Since v43 the character entries point at the 2x copy
+    (enemy_pic2x, aniuv [14, 12]: an extra gesture row); the 1x sheet keeps its own 14 x 11 grid."""
+    cols, rows = e.get("aniuv") or (14, 11)
+    if "enemy_pic2x" in e.get("pic3d", ""):
+        rows = 11
+    return cols, rows
+
+
 def apply_fixes(pics):
     """tools/frame_fixes.json: copy each listed good frame over the bad one (from the .orig.png, so it repeats safely)."""
     fixes = json.load(open(os.path.join(HERE, "frame_fixes.json"), encoding="utf-8"))
@@ -100,7 +109,7 @@ def apply_fixes(pics):
         path = os.path.join(RES, "enemy_pic", os.path.basename(e["pic3d"]))
         orig = os.path.join(ORIG, os.path.basename(path))                # (outside the game's resources)
         cur = Image.open(path).convert("RGBA")
-        cols, rows = e.get("aniuv") or (14, 11)
+        cols, rows = _grid_1x(e)
         fw, fh = cur.size[0] // cols, cur.size[1] // rows
         box = lambda i: ((i % cols) * fw, (i // cols) * fh, (i % cols + 1) * fw, (i // cols + 1) * fh)  # noqa: E731
         if os.path.exists(orig):                                            # redrawn since (the sprite runner)? then

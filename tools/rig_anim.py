@@ -25,6 +25,7 @@ ROOT = os.path.normpath(os.path.join(HERE, ".."))
 RES = os.path.join(ROOT, "_tools", "rpgcobo-tool", "project", "resource")
 FIXD = os.path.join(ROOT, "_art", "preview", "fixsheet")
 FW, FH, COLS = 80, 68, 14
+ZF = 1                     # the pixel scale the rig works at (2: on the HD master - thresholds scale with it)
 
 # parts, back to front: (name, bone from, bone to); "body" is hip -> shoulder midpoint, the head rides on it
 PARTS = [("thigh_b", "hip", "kn_b"), ("shin_b", "kn_b", "ft_b"),
@@ -116,7 +117,7 @@ def weapon_reach(master, J):
     u = (b - a) / max(1e-6, np.linalg.norm(b - a))
     along = (px - a) @ u
     perp = np.abs((px - a) @ np.array([-u[1], u[0]]))
-    on = (perp <= 1.6) & (along > 0)
+    on = (perp <= 1.6 * ZF) & (along > 0)
     L = float(along[on].max()) if on.any() else 26.0
     J["wtip"] = a + u * max(8.0, L + 1)
     return J
@@ -144,7 +145,7 @@ def smooth_labels(lab, passes=2):
             continue
         keep = 1 + int(np.argmax(st[1:, cv2.CC_STAT_AREA]))
         for c in range(1, n):
-            if c == keep or st[c, cv2.CC_STAT_AREA] > 8:
+            if c == keep or st[c, cv2.CC_STAT_AREA] > 8 * ZF * ZF:
                 continue
             m = cc == c
             ring = cv2.dilate(m.astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool) & ~m & (lab >= 0)
@@ -175,7 +176,7 @@ def labels(master, J):
     px = np.stack([xs, ys], 1).astype(float)
     d = np.stack([seg_dist(px, J[a], J[b]) for _n, a, b in PARTS], 1)
     wi = [p[0] for p in PARTS].index("weapon")
-    d[:, wi] = np.where(d[:, wi] <= 1.6, d[:, wi] - 3.0, 99.0)   # the weapon wins its own thin line
+    d[:, wi] = np.where(d[:, wi] <= 1.6 * ZF, d[:, wi] - 3.0 * ZF, 99.0)   # the weapon wins its own thin line
     # the head (well above the shoulders) is body, whatever the arms say; so is the torso core - in side view the
     # back arm lies over the torso, and only what sticks out of the body may swing (Rensei's chest tore off with it)
     bi = [p[0] for p in PARTS].index("body")
@@ -194,7 +195,7 @@ def labels(master, J):
     legs_i = [i for i, p in enumerate(PARTS) if p[0] in ("thigh_b", "thigh_f", "shin_b", "shin_f")]
     best[near_hip & (np.isin(best, legs_i) | (best == bi)) & (ys >= J["hip"][1] - 2)] = wai
     lab[ys, xs] = best
-    return smooth_labels(lab)
+    return smooth_labels(lab, 2 * ZF)
 
 
 def xform(a0, b0, a1, b1):
@@ -244,7 +245,7 @@ def rig_frame(master, lab, J0, J1):
     if n > 2:
         main_c = 1 + int(np.argmax(st[1:, cv2.CC_STAT_AREA]))
         for c in range(1, n):
-            if c != main_c and st[c, cv2.CC_STAT_AREA] < 12:
+            if c != main_c and st[c, cv2.CC_STAT_AREA] < 12 * ZF * ZF:
                 out[cc == c] = 0
     shadow = (master[..., 3] > 0) & (master[..., 3] < 128)  # the soft ground shadow stays put
     out[shadow & (out[..., 3] == 0)] = master[shadow & (out[..., 3] == 0)]
@@ -259,7 +260,9 @@ def to_master_space(J, rig_box, m_box):
     return {k: (v - rc) * s + mc for k, v in J.items()}
 
 
-def rig_frames(key, master, frame_ids):
+def rig_frames(key, master, frame_ids, z=1):
+    global ZF
+    ZF = z
     T = traveler(key)
     if T is None:
         return {}, None
@@ -280,6 +283,7 @@ def rig_frames(key, master, frame_ids):
         u = J["wtip"] - J["ha_f"]
         J["wtip"] = J["ha_f"] + u / max(1e-6, np.linalg.norm(u)) * reach
         out[n] = rig_frame(master, lab, J0, J)
+    ZF = 1
     return out, lab
 
 
@@ -506,7 +510,7 @@ def gesture_frame(master, lab, J0, J1, tilt, neck, head_c, arms=True):
     if n > 2:
         main_c = 1 + int(np.argmax(st[1:, cv2.CC_STAT_AREA]))
         for c in range(1, n):
-            if c != main_c and st[c, cv2.CC_STAT_AREA] < 12:
+            if c != main_c and st[c, cv2.CC_STAT_AREA] < 12 * ZF * ZF:
                 out[cc == c] = 0
     shadow = (master[..., 3] > 0) & (master[..., 3] < 128)
     out[shadow & (out[..., 3] == 0)] = master[shadow & (out[..., 3] == 0)]
