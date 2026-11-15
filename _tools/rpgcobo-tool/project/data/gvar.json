@@ -5673,6 +5673,11 @@
 		"name": "odd job 4: done",
 		"type": 1
 	},
+	"G1399": {
+		"defval": 0,
+		"name": "the sea: the place last boarded from (1 port, 2 Cove Fort, 3 Temples, 4 the Isle; RokuganField SEA_FROM)",
+		"type": 2
+	},
 	"G1398": {
 		"defval": 0,
 		"name": "a save-then-move scene's owed map move (gen_maps resume_pass)",

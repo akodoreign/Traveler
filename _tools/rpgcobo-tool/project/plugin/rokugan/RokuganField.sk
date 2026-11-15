@@ -1265,6 +1265,37 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	else d.evid <- r.evid;
 	::RPGMain.moveMap( { dest = d, wipe = 1, remap = true });
 };
+//	The sea maps (tools/gen_maps.py sea_map; user 2026-11-14: "zoom out from the junk ... the little ship that you sail
+//	around"): on M490-M492 the field leader is drawn as the junk (EP2650), the party followers stay aboard (hidden),
+//	battles show the party as usual. Landing back on a port records where you boarded from (G1399) so the ship's helm
+//	puts you out at that place's pier.
+::Rokugan.SEA_MAPS <- { M490 = 1, M491 = 1, M492 = 1 };
+::Rokugan.SEA_FROM <- { M220 = 1, M228 = 1, M222 = 2, M223 = 3, M225 = 4 };
+::Rokugan.SEA_SHIP <- "EP2650";
+::Rokugan.seaOn <- false;
+::Rokugan.seaMaking <- false;									//	true only while the leader is rebuilt below
+::RPG3DObject._rt_create_sea <- ::RPG3DObject.create3DObject;
+::RPG3DObject.create3DObject <- function( v){
+	if( ::Rokugan.seaMaking && v && !v["mdl"]) return ::RPG3DObject._rt_create_sea( { mdlid = ::Rokugan.SEA_SHIP });
+	return ::RPG3DObject._rt_create_sea( v);
+};
+::RPGStage._rt_launch_sea <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	try{
+		local mid = this["mapid"];
+		::Rokugan.seaOn = mid && (mid in ::Rokugan.SEA_MAPS);
+		if( mid && (mid in ::Rokugan.SEA_FROM)) ::rpgvar["G1399"] = ::Rokugan.SEA_FROM[mid];
+	}catch( ex){ printexception( ex); }
+	local r = this._rt_launch_sea( opt);
+	if( ::Rokugan.seaOn){
+		::Rokugan.seaMaking = true;
+		try{ if( this["player3d"]) this.player3d.rpgobj = null; this.changePlayer3D( this.stat.statmap.playermodel); }
+		catch( ex){ printexception( ex); }
+		::Rokugan.seaMaking = false;
+		printf( "[RT] at sea on %S: the junk\n", this.mapid);
+	}
+	return r;
+};
 ::RPGStage._rt_body_resume <- ::RPGStage.updateStageBody;
 ::RPGStage.updateStageBody <- function( dt){
 	this._rt_body_resume( dt);
@@ -1379,6 +1410,7 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	local f = this.pfol, pl = st["player3d"];
 	if( st["battle"] || !pl || !st["scn"]) return;
 	local mem = ::rpgstat.members.filter( @( v) v);
+	if( ::Rokugan["seaOn"] && length( mem) > 1) mem = [mem[0]];			//	at sea: the crew stay aboard the junk
 	local sig = mem.map( @( v) ("lookSig" in ::Rokugan) ? ::Rokugan.lookSig( v) : v.dataid).join( ",");	//	(+ equipment looks)
 	if( f.stage != st || f.sig != sig){
 		if( f.stage == st) foreach( o in f.objs) try{ st.scn.removeObject( o); }catch( ex){}

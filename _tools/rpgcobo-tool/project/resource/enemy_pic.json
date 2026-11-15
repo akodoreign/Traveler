@@ -640327,5 +640327,558 @@
 		},
 		"pic3d": "/resource/enemy_pic/ph_plague_zombie.png",
 		"scale": 0.48300000000000004
+	},
+	"EP2650": {
+		"animap": [
+			{
+				"id": "aim",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "atk",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "atk_draw",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "atk_main",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "atk_overhead",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "atk_slash",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "atk_thrust",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "avoid",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "blast1",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "bow1",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "cast_area",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "cast_bolt",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "cast_heal",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "cast_summon",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "cast_void",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "cast_ward",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "chant",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "guard",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "item",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "laugh",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "magic1",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "rei",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "rei_b",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "rei_f",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "rei_full",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "shield",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "slash1",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stick1",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_b",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "think",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 0,
+				"en": 2,
+				"spd": 1.2,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			2,
+			1
+		],
+		"atkpos": [
+			0.25,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": true,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "the player's ship on the sea maps (tools/gen_ship_sprite.py)",
+		"name": {
+			"en": "Your ship",
+			"ja": "Your ship"
+		},
+		"pic3d": "/resource/enemy_pic/sea_junk.png",
+		"scale": 0.667
 	}
 }

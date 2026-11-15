@@ -74,7 +74,8 @@ class MapSpec:
         path = os.path.join(JOBDIR, "%s_cells.png" % self.mid)
         Image.fromarray(img, "RGBA").save(path)
         return {"id": self.mid, "cells": "tmp/rt_mapgen/%s_cells.png" % self.mid, "objs": self.objs, "hgt": 64,
-                "out": "project/data/mapdata/%s.bw" % self.mid, "bed": SAND,
+                "out": "project/data/mapdata/%s.bw" % self.mid, "bed": getattr(self, "bed", SAND),
+                "barrier": getattr(self, "barrier", True),                # (a sea map: open water is the floor)
                 "walls": [[int(x), int(z)] for x, z in self.walls]}
 
 
@@ -1527,6 +1528,19 @@ def world(mid, x, z, d=0.0, padded=True):
 def go(mid, x, z, padded=True, wipe=1):
     return {"cmd": "cmd_mapmove", "dest": {"mapid": mid, "pos": world(mid, x, z, 0.0, padded)}, "wipe": wipe,
             "remap": True}
+
+
+def ferry_out():
+    """(the sea maps, near the end) The Tortoise Island ferry: out onto the Mantis isles at the Isle of Silk's pier."""
+    if "M492" not in SEA_MAPS:
+        mantis_sea()
+    return [narrate("The ferryman pushes off. \"You steer, magistrate-sama. I'll complain.\""),
+            go("M492", *SEA_MAPS["M492"]["M304"])]
+
+
+def orochi_out():
+    """(the sea maps) The post-game: the Crane sea's deep water, out where the black water turns."""
+    return [go("M491", 20, 18)]
 
 
 # ---- R hida_wall_road
@@ -5189,6 +5203,9 @@ def crane_port():
     for x in (8, 68):
         fill(m, x, 3, 2, 4, 1, 7, PLANK)                                    # the piers
     ship(m, 13, 2)                                                          # your ship (S01)
+    fill(m, 12, 3, 4, 1, 1, 2, PLANK)                                       # (user: "walk into the water mid screen
+    #                                                                         ... should be a bridge") the gangplank,
+    #                                                                         pier to deck: walk aboard
     ship(m, 73, 2, n=18)                                                    # Yasuki Tessai's ship
     m.rect(0, 14, 110, 5, ROAD, 3)                                          # the harbour street
     building(m, 3, 22, 14, 8, two_storey=True)                              # Lady Sanae's quarters
@@ -5249,6 +5266,12 @@ def crane_port():
                                                "Squid.")]),
         ([flag("G388")], [say("Ship's master", "She's ready, captain. Mind the bits underneath."),
                           choices(("Go aboard.", [go("M221", 30, 12)]), ("Not yet.", []))])])
+    ev.talk(17, 4, "CE000", [                                               # up the gangplank, onto the deck
+        (None, [narrate("Your ship. The crew are still loading. (The docks first: someone there knows where the "
+                        "Squid went.)")]),
+        ([flag("G388")], [narrate("The deck of your ship."), choices(("Go aboard.", [go("M221", 30, 12)]),
+                                                                    ("Not yet.", []))])],
+        reqs=[flag("G385")], trigger=5)
     ev.inn(57, 20, EP_SERVICE["innkeeper"], 80)
     ev.clerk(27, 20, EP_SERVICE["quartermaster"], "R119")
     ev.clerk(42, 20, EP_SERVICE["merchant"], "R120")
@@ -5338,7 +5361,23 @@ def ship_deck():
     ev.clerk(20, 11, SC["shipmaster"], "R121")
     fill(m, 33, 4, 14, 2, 2, 1, DARKWOOD)                                   # the chart table (2 high: at 1 the
                                                                             # step-up lifted you onto the chart)
-    ev.talk(34, 14, "CE000", sea_chart(), trigger=1)
+    # (user 2026-11-14: sailing on a sea map) the helm: out onto the Crane sea, at the pier of the place you boarded
+    # from (plugin seaFrom sets G1399), the open sea once the hull is patched (G392, after Cove Fort)
+    if "M490" not in SEA_MAPS and "_crane_sea" in globals():
+        _crane_sea(False)
+    spots = SEA_MAPS.get("M490", {})
+
+    def out_at(sea):
+        return [if_([{"lvar": "G1399", "op": "==", "rvar": k + 1}], [go(sea, *spots[key])], [])
+                for k, key in enumerate(("M220", "M222", "M223", "M225")) if key in spots and k > 0] + \
+               [if_([{"lvar": "G1399", "op": "<=", "rvar": 1}], [go(sea, *spots["M220"])], [])]
+    if spots:
+        ev.talk(34, 14, "CE000", [(None, [
+            narrate("The helm. The ship's master hands it over with a look that says: gently."),
+            choices(("Take the helm.", DARK + [if_([flag("G392")], out_at("M491"), out_at("M490"))]),
+                    ("Stay aboard.", []))])], trigger=1)
+    else:
+        ev.talk(34, 14, "CE000", sea_chart(), trigger=1)
     ev.talk(45, 14, "CE000", [(None, [narrate("The captain's cabin: a bunk, a lamp, a basin that never stops "
                                               "sliding."), SAVE_CHOICE])], trigger=1)
     inn_guest(ev, 38, 13, 5, "Ghosts don't get seasick, boy. Luckily I'm not a ghost. Call me when you want to think.")
@@ -5371,8 +5410,10 @@ S03_CR3 = cr3("S03", stop_at="[BATTLE") + [
             "it. Her weak points: Yumi and Air."),
     battle("M001", 36)] + cr3("S03", start_at="(Defeated, she sits") + got("I144", "Tadanobu's Letters") + [
     setf("G391"), setf("G392"),
+    narrate("The crew strip the pirates' store for timber and pitch. By evening the ship's master pronounces the hull "
+            "patched: \"Now she'll take deep water, captain. The dark blue. Mind it anyway.\""),
     narrate("Chihaya's charm is paper and ink, and it worked. The Asahina know charms. Objective: the Temples of the "
-            "Sun (the sea chart).")]
+            "Sun (take the helm).")]
 
 
 def cove_fort():
@@ -8983,7 +9024,7 @@ def silk_docks():
         ([flag("G727"), {"lvar": "NUM_I179", "op": ">=", "rvar": 1}],
          [say("Ferryman", "That's a Tortoise token. Tortoise Island, then. It's grey, it's wet, and the fish are "
                           "rude."),
-          choices(("Take the ferry to Tortoise Island.", DARK + [go("M315", 22, 11)]), ("Not yet.", []))])]),
+          choices(("Take the ferry to Tortoise Island.", DARK + ferry_out()), ("Not yet.", []))])]),
     ev.talk(88, 28, "CE000", [(None, [narrate("Yoritomo's tax shed. A bribe ledger, and a jar of good sake behind "
                                               "it.")] + got("I125", "Fine Sake") + [setf("G733")]),
                               ([flag("G733")], [narrate("The tax shed.")])], trigger=1)
@@ -10296,7 +10337,7 @@ def shiro_kitsuki():
     ev.inn(12, 18, EP_SERVICE["innkeeper"], 150)
     ev.clerk(84, 18, EP_SERVICE["merchant"], "R143")
     ev.talk(2, 14, "CE000", [(None, [narrate("The coast road, and a ferry to Tortoise Island."),
-                                     choices(("Take the ferry to Tortoise Island.", DARK + [go("M315", 22, 11)]),
+                                     choices(("Take the ferry to Tortoise Island.", DARK + ferry_out()),
                                              ("Stay.", []))])], trigger=1)
     ev.talk(46, 14, "CE000", [(None, [narrate("A bench under a persimmon tree.")]),
                               ([flag("G825", False), flag("G823")],
@@ -18189,7 +18230,7 @@ OROCHI_SHIP = [narrate("A Crane ship's master, ashore at the shrine for jade, wi
                say("Ship's master", "He's been saying that for a year. ...I've started to believe him. I'll take you out "
                                     "there, if you want to look. I'm not staying to watch."),
                narrate("(A superboss: the Orochi. Recommended level 95+.)"),
-               choices(("Sail out to the storm. (Two days)", DARK + [go("M464", 30, 12)]), ("Not now.", []))]
+               choices(("Sail out to the storm. (Two days)", DARK + orochi_out()), ("Not now.", []))]
 OROCHI = [narrate("Night, and the storm. The ship heels over in water the colour of ink."),
           narrate("Then the sea stands up. A head the size of a gatehouse rises out of it, green as deep water, and "
                   "looks down at the deck with eyes gold in the lightning."),
@@ -19035,6 +19076,20 @@ def marker_pass(mp):
                     hx, hz = (r[5], r[3]) if long_z else (r[3], r[5])
                     for dm in sorted(ds):
                         exits.setdefault(mid, []).append([dm, round(x, 2), round(z, 2), round(hx, 2), round(hz, 2)])
+            # (user 2026-11-14: "the quest marker should move over to the NPC you have to talk to about tagging along,
+            # then back to the ship guy") a talk that hands out the next objective is a beat too: due while its page's
+            # conditions hold and the first flag it sets is still unset
+            for pg in pages:
+                if pg.get("trigger") not in (1, 2) or "Objective:" not in json.dumps(pg.get("cmdblock") or []):
+                    continue
+                sets = re.search(r'\{"cmd": "cmd_compute", "lvar": "(G\d+)", "op": "=", "rvar": true\}',
+                                 json.dumps(pg.get("cmdblock") or []))
+                if not sets:
+                    continue
+                reqs = list(e.get("reqs0") or []) + list(pg.get("reqs") or [])
+                beats.append([mid, round(x, 2), round(z, 2),
+                              [[sets.group(1), "==", False]] + [[r_.get("lvar"), r_.get("op"), r_.get("rvar")]
+                                                                 for r_ in reqs]])
             for pg in pages:
                 if pg.get("trigger") not in (5, 6):
                     continue
@@ -19126,6 +19181,144 @@ def marker_pass(mp):
         f.write("::Rokugan.MK_QUEST <- {\n%s\n};\n" % ",\n".join('\t[%d] = %s' % (k, sq(v)) for k, v in sorted(quest.items())))
     print("marker: %d maps with exits, %d story beats, %d maps on roads, %d quests" % (
         len(exits), len(beats), len(path_of), len(quest)))
+
+
+# ------------------------------------------------------------------------------------------- the sea maps
+# (user 2026-11-14: "can we do the sailing more like you zoom out from the junk and get ocean maps, light blue for
+# where you can go before you get your ship fixed. and dark blue for the deeper areas. then have it actually little
+# islands (or bigger one) that you sail the little ship around to, and actually trigger rng encounters. (do this for
+# any other sailing ones as well)") The player sails as a little junk (EP2650, tools/gen_ship_sprite.py; plugin
+# RokuganField seaShip) over open water: the water is the floor (barrier off), land stands too high to step onto,
+# and each place is a pier - sail into the water at its end to land. Light blue = shallows, dark blue = deep water.
+# Before the hull is patched (Crane: after Cove Fort, G392) the deep water is walled off (the "-shallows" map).
+DEEP_WATER = 8 | (0 << 5)                                                  # map_vox water #0 renders navy: the deep
+SHALLOW_WATER = 8 | (1 << 5)                                               # #1 renders a lighter teal: the shallows
+SEA_SHIP = "EP2650"
+SEA_MAPS = {}                                                              # sea map -> its places (for the plugin)
+
+
+def sea_map(mid, name, w, d, islands, piers, deep_open, lanes=(), shore=7, seed=3):
+    """islands: (cx, cz, rx, rz, ground); piers: (key, x, z, dir, name, dest cmds, reqs or None, closed line);
+    lanes: (x0, z0, x1, z1, width) of extra shallow water. The ship is walled out of deep water unless deep_open."""
+    m = MapSpec(mid, name, w, d, base=DEEP_WATER, y=1)
+    m.barrier = False
+    m.bed = DIRT3
+    zz, xx = np.mgrid[0:d, 0:w]
+    rng = np.random.default_rng(seed)
+    land = np.zeros((d, w), bool)
+    masks = []
+    for cx, cz, rx, rz, g in islands:
+        ang = np.arctan2(zz - cz, xx - cx)
+        wob = 1 + 0.16 * np.sin(ang * 4 + rng.uniform(0, 6)) + 0.08 * np.sin(ang * 7 + rng.uniform(0, 6))
+        mk = ((xx - cx) / rx) ** 2 + ((zz - cz) / rz) ** 2 <= wob
+        masks.append((mk, g))
+        land |= mk
+    shallow = np.zeros((d, w), bool)
+    if land.any():                                                         # (shallows: near any shore)
+        import cv2 as _cv2
+        shallow |= _cv2.distanceTransform((~land).astype(np.uint8), _cv2.DIST_L2, 5) <= shore
+    for x0, z0, x1, z1, wd in lanes:
+        n = int(max(abs(x1 - x0), abs(z1 - z0))) + 2
+        for t in np.linspace(0, 1, n):
+            px, pz = x0 + (x1 - x0) * t, z0 + (z1 - z0) * t
+            shallow |= (xx - px) ** 2 + (zz - pz) ** 2 <= (wd / 2.0) ** 2
+    shallow &= ~land
+    m.blk[shallow] = SHALLOW_WATER
+    for mk, g in masks:                                                    # the land, above the reach of a jump
+        m.blk[mk] = g
+        m.hgt[mk] = 4
+    beach = land & ~np.array([[land[max(z - 1, 0):z + 2, max(x - 1, 0):x + 2].all() for x in range(w)]
+                              for z in range(d)])
+    m.blk[beach] = SAND
+    for _ in range(int(land.sum() / 40)):                                  # trees on the land, away from the beach
+        z, x = np.argwhere(land & ~beach)[int(rng.integers(0, max(1, int((land & ~beach).sum()))))]
+        m.tree(int(x), int(z), (TREE_L, TREE_M, TREE_S)[int(rng.integers(0, 3))])
+    if not deep_open:                                                      # the hull isn't patched: no deep water
+        m.walls = [(int(x), int(z)) for z, x in np.argwhere(~shallow & ~land)]
+    ev = Events(m)
+    places = {}
+    for key, px, pz, dr, pname, dest, reqs, closed in piers:
+        dx, dz = {"n": (0, 1), "s": (0, -1), "e": (1, 0), "w": (-1, 0)}[dr]   # from the shore out to sea
+        n_ = 0
+        while 0 <= px < w and 0 <= pz < d and land[pz, px] and n_ < 40:   # out to where the shore ends
+            px, pz, n_ = px + dx, pz + dz, n_ + 1
+        px, pz = px - dx, pz - dz                                          # (the last land cell: the pier's foot)
+        for k in range(0, 5):                                              # the pier: planks out over the water
+            cx, cz = px + dx * k, pz + dz * k
+            if 0 <= cx < w and 0 <= cz < d:
+                m.rect(cx, cz, 1, 1, PLANK, 4)
+        tx, tz = px + dx * 6, pz + dz * 6                                  # the landing spot, in the water at its end
+        m.walls = [c for c in m.walls if abs(c[0] - tx) > 2 or abs(c[1] - tz) > 2]
+        m.blk[max(tz - 2, 0):tz + 3, max(tx - 2, 0):tx + 3] = np.where(
+            land[max(tz - 2, 0):tz + 3, max(tx - 2, 0):tx + 3], m.blk[max(tz - 2, 0):tz + 3, max(tx - 2, 0):tx + 3],
+            SHALLOW_WATER)
+        fb(m, px, pz, 2, LAMP_STREET)
+        pages = [(None, [narrate(closed)])] if reqs else []
+        pages.append((reqs, [narrate("Landfall: %s." % pname)] + dest) if reqs else
+                     (None, [narrate("Landfall: %s." % pname)] + dest))
+        ev.talk(tx, tz, "CE000", pages, trigger=5)
+        places[key] = (tx, tz)
+    SEA_MAPS[mid] = places
+    return m, ev
+
+
+def _crane_sea(deep_open):
+    mid = "M491" if deep_open else "M490"
+    def back(dest, x, z):
+        return DARK + [go(dest, x, z)]
+    first_isle = [if_([flag("G395")], back("M225", 6, 16), [
+        narrate("By dusk the sky is black, and the sea stands up."), go("M224", 30, 12)])]
+    m, ev = sea_map(mid, "The Crane sea" + ("" if deep_open else " - the shallows"), 150, 90, islands=[
+        (75, 96, 90, 20, GRASS),                                           # the Crane mainland (north)
+        (58, 50, 9, 6, GRASS2),                                            # Cove Fort's island
+        (126, 60, 11, 8, GRASS),                                           # the Temples of the Sun
+        (96, 14, 10, 7, GRASS2)],                                          # the Isle of the Heavenly Sheen (south)
+        piers=[("M220", 30, 76, "s", "the Crane port", back("M220", 12, 10), None, ""),
+               ("M222", 58, 44, "s", "Cove Fort", back("M222", 6, 16), [flag("G389")],
+                "An island with a palisade. The ship's master shakes his head: no reason to land there. Yet."),
+               ("M223", 114, 58, "w", "the Temples of the Sun", back("M223", 6, 16), [flag("G392")],
+                "Temple roofs among the trees. Nothing calls you ashore. Yet."),
+               ("M225", 96, 22, "n", "the Isle of the Heavenly Sheen", first_isle, [flag("G394")],
+                "A pale island far out on the deep water. Not yet.")],
+        deep_open=deep_open,
+        lanes=[(30, 68, 58, 58, 10), (58, 58, 114, 60, 10)])
+    if deep_open and "M464" in MAPS:                                       # the post-game: the Orochi's water
+        m.rect(16, 6, 8, 6, TAR, 1)
+        ev.talk(20, 8, "CE000", [(None, [narrate("Black water, turning slowly. Nothing lives here.")]),
+                                 ([flag("G1207")], [narrate("The water turns. Something enormous turns with it."),
+                                                    choices(("Sail into it.", DARK + [go("M464", 30, 12)]),
+                                                            ("Not now.", []))])], trigger=5)
+    return m, ev
+
+
+def crane_sea_shallows():
+    return _crane_sea(False)
+
+
+def crane_sea():
+    return _crane_sea(True)
+
+
+def mantis_sea():
+    """Dragon Ch2: the ferry from the Isle of Silk to Tortoise Island, as a short sail (all shallows: a ferry)."""
+    m, ev = sea_map("M492", "The Mantis isles", 120, 70, islands=[
+        (22, 52, 16, 12, SAND), (98, 18, 14, 11, GRASS2)],
+        piers=[("M304", 36, 46, "e", "the Isle of Silk", DARK + [go("M304", 66, 10)], None, ""),
+               ("M315", 86, 22, "w", "Tortoise Island", DARK + [go("M315", 22, 11)], None, "")],
+        deep_open=False, lanes=[(40, 46, 82, 22, 14)], shore=9, seed=5)
+    return m, ev
+
+
+MAPS.update({"M490": crane_sea_shallows, "M491": crane_sea, "M492": mantis_sea})
+RSET.update({"M490": "rt_hd2d_field", "M491": "rt_hd2d_field", "M492": "rt_hd2d_field"})
+MUSIC_OVERRIDE.update({"M490": "sea", "M491": "sea", "M492": "sea"})
+_SEA_ROWS = [("Sea: wako raiders", ["E333", "E333"], 35), ("Sea: a sea serpent eel", ["E334", "E333"], 25),
+             ("Sea: tide crabs", ["E335", "E335", "E335"], 20), ("Sea: a Mantis corsair", ["E336", "E333"], 15)]
+ENCOUNTERS["M490"] = ("M827", list(_SEA_ROWS))
+ENCOUNTERS["M491"] = ("M827", list(_SEA_ROWS) + [("Deep water: the Umibozu", ["E337"], 8)])
+ENCOUNTERS["M492"] = ("M853", [(r[0].replace("Cove:", "Sea:"), r[1], r[2]) for r in ENCOUNTERS.get("M318", ("", []))[1]
+                               if "(Lv" not in r[0]][:4] or list(_SEA_ROWS))    # (Dragon Ch2's own sea foes)
+ENCOUNTER_MAPS |= {"M490", "M491", "M492"}
 
 
 RESUME = []
@@ -19838,8 +20031,8 @@ def make(i):
         kh_town()
     r = MAPS[i]()
     m, ev = r if isinstance(r, tuple) else (r, None)
-    if ev is not None and "M100" <= i < "M800":
-        for h in _hire.HIRELINGS:
+    if ev is not None and "M100" <= i < "M800" and i not in ("M490", "M491", "M492"):   # (at sea: nobody walks
+        for h in _hire.HIRELINGS:                                                          # behind the junk - user)
             for mid, x, z in h["spots"]:
                 if mid == i:
                     if i in ROOM_OFS:                                       # (tester 2026-11-11: the Shadow Hunter
@@ -19891,10 +20084,10 @@ def make(i):
             edge_triggers(m, ev)
     if ev is not None and (i in INTERIORS or i in ROOM_OFS):
         floor_arrows(m, ev)
-    elif ev is not None and "M100" <= i < "M800":
+    elif ev is not None and "M100" <= i < "M800" and i not in ("M490", "M491", "M492"):   # (at sea: the pier's lamp
         # (user 2026-11-12: "need an indicator what tile to step on to get out of the kaiu tunnels and into the
         # shadowlands") caves: every exit inside the map; elsewhere: the invisible walk-on spots that move you on
-        floor_arrows(m, ev, walkon_only=i not in CAVE_MAPS)
+        floor_arrows(m, ev, walkon_only=i not in CAVE_MAPS)                                 # marks the landing)
     if ev is not None:
         settle_floaters(m, ev)
     if ev is not None:
