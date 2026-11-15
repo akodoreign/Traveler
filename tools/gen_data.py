@@ -829,6 +829,53 @@ def foe_stats(lv, hpx=1.0, atkx=1.0, vs="avg"):
             "AGI": int(round(0.9 * pc["AGI"]))}
 
 
+def rebalance_random_foes(e):
+    """(user 2026-11-14: "EXP and HP for all foes probably need rebalanced now, as well as areas now that we have more
+    of them") Every foe met in random encounters on the game's maps (gen_maps ENCOUNTERS, M100-M799; bosses and set
+    fights keep their own numbers):
+    - EXP from one rule: a level's worth of EXP (the travelers' curve) over EXP_BATTLES fights of ~1.9 foes, times
+      the foe's toughness (its HP against foe_stats at its level, ^0.6). Before this, Lv 10-19 took ~20 fights a level
+      and Lv 0-4 under 3.
+    - HP only where it fell far off the curve: kept within 0.45x - 2.6x of foe_stats (fragile flyers stay fragile)."""
+    import gen_maps as _gm
+    rand = set()
+    for mid, (_bm, rows) in _gm.ENCOUNTERS.items():
+        if "M100" <= mid < "M800":
+            for r in rows:
+                rand.update(r[1])
+    m0, n0 = 50.0, 0.5 + 40 / 150.0                      # player.json expcurv [50, 40] (RPGSystem.getExpByLV)
+
+    def need(lv):
+        m, n, v = m0, n0, 0.0
+        for _ in range(lv - 1):
+            v += m
+            m *= 1 + n
+            n *= 0.91
+        return v
+    done = 0
+    for eid in sorted(rand):
+        x = e.get(eid)
+        if not isinstance(x, dict) or not x.get("LV"):
+            continue
+        lv = int(x["LV"])
+        f = foe_stats(lv)["MAXHP"]
+        ratio = (x.get("MAXHP") or f) / float(f)
+        if ratio > 2.6 or ratio < 0.45:
+            ratio = min(2.6, max(0.45, ratio))
+            x["MAXHP"] = int(round(f * ratio))
+        if not x.get("exp"):                             # a foe meant to give nothing (a hazard, a test)
+            continue
+        battles = EXP_BATTLES[0] if lv < 10 else EXP_BATTLES[1] if lv < 20 else EXP_BATTLES[2] if lv < 40 \
+            else EXP_BATTLES[3]
+        step = need(lv + 1) - need(lv)
+        x["exp"] = max(1, int(round(step / (battles * 1.9) * min(1.8, max(0.6, ratio ** 0.6)))))   # (~1.9 foes a group, measured)
+        done += 1
+    print("rebalanced %d random-encounter foes (EXP from the level curve; HP outliers)" % done)
+
+
+EXP_BATTLES = (5, 7, 9, 10)                              # fights per level: Lv 1-9, 10-19, 20-39, 40+
+
+
 TIER_PRICE = {"I": 30, "II": 120, "III": 300, "IV": 600, "V": 1200}
 FOOD = {"Crab Meat": 15, "Boar Meat": 25, "Fish Stew": 25, "Eel": 30, "Cucumber": 25, "Hornet Honey": 30}
 
@@ -866,6 +913,11 @@ def bestiary_drops(e, it):
         it[iid] = x
         by_name[name] = iid
         return iid
+    import new_foes as _nf                                 # (2026-11-14) the Enemies of the Empire batch
+    for f in _nf.NEW_FOES:
+        lv = f[8]
+        rows[f[3]] = ("I" if lv < 15 else "II" if lv < 28 else "III" if lv < 40 else "IV" if lv < 55 else "V",
+                      f[14], f[15])
     rows["Nezumi Warrior"] = ("I", "Rice Ball", "Shiny Trinket")
     rows["Goblin in a Hat"] = ("I",) + rows.get("Goblin", ("I", "Goblin Knife", "Shiny Trinket"))[1:]
     done = 0
@@ -4673,6 +4725,17 @@ def main():
         e[eid]["mdlid"] = mdl                                # boss art (tools/gen_bossart.py): bosses and mid-bosses
                                                              # ONLY; random-encounter foes keep the cast-style sprites
                                                              # (user). Never put these ids in an ENCOUNTERS table.
+    # (user 2026-11-14: "a whole new batch of types of monsters and human foes ... based on all the reference books")
+    # tools/new_foes.py: Enemies of the Empire's beasts, ancient races, spirits, undead and ronin, at their places'
+    # levels; sprites are placeholders (EP2600+, gen_placeholder_foes.py) until the art agent draws them
+    import new_foes as _nf
+    for (eid, ep, key, name, base_ep, _h, _s, _v, lv, hpx, atkx, res, weak, desc, _d, _st) in _nf.NEW_FOES:
+        st_ = foe_stats(lv, hpx, atkx)
+        x = copy.deepcopy(e["E001"])
+        x.update({"name": name, "mdlid": ep, "LV": lv, "MAXHP": st_["MAXHP"], "PATK": st_["PATK"],
+                  "PDEF": st_["PDEF"], "MDEF": st_["MDEF"], "AGI": st_["AGI"], "RES": res, "desc": desc,
+                  "exp": 6 + 3 * lv, "money": int(10 + 4 * lv), "defskillid": "S003", "option": [weak_opt(*weak)]})
+        e[eid] = x
     itm = json.load(open(os.path.join(DATA, "item.json"), encoding="utf-8"))   # saved above: add drop items
     n_drops = bestiary_drops(e, itm)
     for eid, iid, rate in (("E576", "A169", 8.0), ("E581", "A169", 25.0), ("E577", "A165", 15.0)):
@@ -4746,6 +4809,7 @@ def main():
     for x in e.values():                                # job EXP (jobs_data.py): the same from every foe
         if isinstance(x, dict) and "jxp" in x:
             x["jxp"] = _jobs.ENEMY_JXP
+    rebalance_random_foes(e)
     save("enemy", e)
     print("bestiary drops:", n_drops, "enemies")
 

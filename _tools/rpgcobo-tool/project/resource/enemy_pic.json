@@ -631609,5 +631609,9147 @@
 		},
 		"pic3d": "/resource/enemy_pic/questmarker.png",
 		"scale": 0.0875
+	},
+	"EP2600": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP439): needs drawn art",
+		"name": {
+			"en": "Anaguma Badger",
+			"ja": "Anaguma Badger"
+		},
+		"pic3d": "/resource/enemy_pic/ph_badger.png",
+		"scale": 0.6825000000000001
+	},
+	"EP2601": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP164): needs drawn art",
+		"name": {
+			"en": "River Wani",
+			"ja": "River Wani"
+		},
+		"pic3d": "/resource/enemy_pic/ph_crocodile.png",
+		"scale": 0.6825000000000001
+	},
+	"EP2602": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP441): needs drawn art",
+		"name": {
+			"en": "Aoizame Shark",
+			"ja": "Aoizame Shark"
+		},
+		"pic3d": "/resource/enemy_pic/ph_aoizame.png",
+		"scale": 0.735
+	},
+	"EP2603": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 4.8,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 24,
+				"en": 30,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.75,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP416): needs drawn art",
+		"name": {
+			"en": "Desperate Fisherman",
+			"ja": "Desperate Fisherman"
+		},
+		"pic3d": "/resource/enemy_pic/ph_fisherman.png",
+		"scale": 0.48300000000000004
+	},
+	"EP2604": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 4.8,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 24,
+				"en": 30,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.75,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP417): needs drawn art",
+		"name": {
+			"en": "Scourge of the Seas",
+			"ja": "Scourge of the Seas"
+		},
+		"pic3d": "/resource/enemy_pic/ph_pirate.png",
+		"scale": 0.48300000000000004
+	},
+	"EP2605": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP440): needs drawn art",
+		"name": {
+			"en": "Bakeneko",
+			"ja": "Bakeneko"
+		},
+		"pic3d": "/resource/enemy_pic/ph_bakeneko.png",
+		"scale": 0.6825000000000001
+	},
+	"EP2606": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP439): needs drawn art",
+		"name": {
+			"en": "Mujina",
+			"ja": "Mujina"
+		},
+		"pic3d": "/resource/enemy_pic/ph_mujina.png",
+		"scale": 0.6825000000000001
+	},
+	"EP2607": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 4.8,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 24,
+				"en": 30,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.75,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP513): needs drawn art",
+		"name": {
+			"en": "Ronin Shugenja",
+			"ja": "Ronin Shugenja"
+		},
+		"pic3d": "/resource/enemy_pic/ph_ronin_shugenja.png",
+		"scale": 0.48300000000000004
+	},
+	"EP2608": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP173): needs drawn art",
+		"name": {
+			"en": "Monkey Troop",
+			"ja": "Monkey Troop"
+		},
+		"pic3d": "/resource/enemy_pic/ph_monkeys.png",
+		"scale": 0.47250000000000003
+	},
+	"EP2609": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 4.8,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 24,
+				"en": 30,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.75,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP406): needs drawn art",
+		"name": {
+			"en": "Banished Duelist",
+			"ja": "Banished Duelist"
+		},
+		"pic3d": "/resource/enemy_pic/ph_banished_duelist.png",
+		"scale": 0.48300000000000004
+	},
+	"EP2610": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP440): needs drawn art",
+		"name": {
+			"en": "Tora Tiger",
+			"ja": "Tora Tiger"
+		},
+		"pic3d": "/resource/enemy_pic/ph_tiger.png",
+		"scale": 0.6825000000000001
+	},
+	"EP2611": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 4.8,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 24,
+				"en": 30,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.75,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP402): needs drawn art",
+		"name": {
+			"en": "Bandit Lord",
+			"ja": "Bandit Lord"
+		},
+		"pic3d": "/resource/enemy_pic/ph_bandit_lord.png",
+		"scale": 0.48300000000000004
+	},
+	"EP2612": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP166): needs drawn art",
+		"name": {
+			"en": "Ozaru",
+			"ja": "Ozaru"
+		},
+		"pic3d": "/resource/enemy_pic/ph_ape.png",
+		"scale": 0.8400000000000001
+	},
+	"EP2613": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 4.8,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 24,
+				"en": 30,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.75,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP405): needs drawn art",
+		"name": {
+			"en": "Disgraced Yojimbo",
+			"ja": "Disgraced Yojimbo"
+		},
+		"pic3d": "/resource/enemy_pic/ph_disgraced_yojimbo.png",
+		"scale": 0.48300000000000004
+	},
+	"EP2614": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP441): needs drawn art",
+		"name": {
+			"en": "Tsumunagi",
+			"ja": "Tsumunagi"
+		},
+		"pic3d": "/resource/enemy_pic/ph_blood_eel.png",
+		"scale": 0.735
+	},
+	"EP2615": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP459): needs drawn art",
+		"name": {
+			"en": "Aka-name",
+			"ja": "Aka-name"
+		},
+		"pic3d": "/resource/enemy_pic/ph_aka_name.png",
+		"scale": 0.63
+	},
+	"EP2616": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP442): needs drawn art",
+		"name": {
+			"en": "Sanshu Denki",
+			"ja": "Sanshu Denki"
+		},
+		"pic3d": "/resource/enemy_pic/ph_muck_monster.png",
+		"scale": 0.9450000000000001
+	},
+	"EP2617": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP438): needs drawn art",
+		"name": {
+			"en": "Nukekubi",
+			"ja": "Nukekubi"
+		},
+		"pic3d": "/resource/enemy_pic/ph_nukekubi.png",
+		"scale": 0.525
+	},
+	"EP2618": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP459): needs drawn art",
+		"name": {
+			"en": "Feral Ningyo",
+			"ja": "Feral Ningyo"
+		},
+		"pic3d": "/resource/enemy_pic/ph_ningyo.png",
+		"scale": 0.63
+	},
+	"EP2619": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP117): needs drawn art",
+		"name": {
+			"en": "Fudoshi",
+			"ja": "Fudoshi"
+		},
+		"pic3d": "/resource/enemy_pic/ph_tanglevines.png",
+		"scale": 0.63
+	},
+	"EP2620": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.0
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP106): needs drawn art",
+		"name": {
+			"en": "Goblin Sneak",
+			"ja": "Goblin Sneak"
+		},
+		"pic3d": "/resource/enemy_pic/ph_goblin_sneak.png",
+		"scale": 0.5
+	},
+	"EP2621": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.0
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP106): needs drawn art",
+		"name": {
+			"en": "Goblin Chucker",
+			"ja": "Goblin Chucker"
+		},
+		"pic3d": "/resource/enemy_pic/ph_goblin_chucker.png",
+		"scale": 0.5
+	},
+	"EP2622": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 4.8,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 30,
+				"en": 36,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.75,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP421): needs drawn art",
+		"name": {
+			"en": "Conspiratorial Madman",
+			"ja": "Conspiratorial Madman"
+		},
+		"pic3d": "/resource/enemy_pic/ph_madman.png",
+		"scale": 0.48300000000000004
+	},
+	"EP2623": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 4.8,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 30,
+				"en": 36,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.75,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP425): needs drawn art",
+		"name": {
+			"en": "Kolat Master Killer",
+			"ja": "Kolat Master Killer"
+		},
+		"pic3d": "/resource/enemy_pic/ph_kolat_killer.png",
+		"scale": 0.48300000000000004
+	},
+	"EP2624": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP163): needs drawn art",
+		"name": {
+			"en": "Nikumizu",
+			"ja": "Nikumizu"
+		},
+		"pic3d": "/resource/enemy_pic/ph_heart_grubs.png",
+		"scale": 0.63
+	},
+	"EP2625": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP169): needs drawn art",
+		"name": {
+			"en": "Ghul",
+			"ja": "Ghul"
+		},
+		"pic3d": "/resource/enemy_pic/ph_ghul.png",
+		"scale": 0.6825000000000001
+	},
+	"EP2626": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.0
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP106): needs drawn art",
+		"name": {
+			"en": "Goblin Berserker",
+			"ja": "Goblin Berserker"
+		},
+		"pic3d": "/resource/enemy_pic/ph_goblin_berserker.png",
+		"scale": 0.5
+	},
+	"EP2627": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP167): needs drawn art",
+		"name": {
+			"en": "Hanemuri",
+			"ja": "Hanemuri"
+		},
+		"pic3d": "/resource/enemy_pic/ph_hanemuri.png",
+		"scale": 0.6825000000000001
+	},
+	"EP2628": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			200,
+			-20,
+			-10
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP118): needs drawn art",
+		"name": {
+			"en": "Ogre Hag",
+			"ja": "Ogre Hag"
+		},
+		"pic3d": "/resource/enemy_pic/ph_ogre_hag.png",
+		"scale": 1.1550000000000002
+	},
+	"EP2629": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			200,
+			-20,
+			-10
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP118): needs drawn art",
+		"name": {
+			"en": "Free Ogre",
+			"ja": "Free Ogre"
+		},
+		"pic3d": "/resource/enemy_pic/ph_free_ogre.png",
+		"scale": 1.1550000000000002
+	},
+	"EP2630": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP117): needs drawn art",
+		"name": {
+			"en": "Takesasu",
+			"ja": "Takesasu"
+		},
+		"pic3d": "/resource/enemy_pic/ph_stinger_plant.png",
+		"scale": 0.63
+	},
+	"EP2631": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.0
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP106): needs drawn art",
+		"name": {
+			"en": "Zokujin Miner",
+			"ja": "Zokujin Miner"
+		},
+		"pic3d": "/resource/enemy_pic/ph_zokujin_miner.png",
+		"scale": 0.5
+	},
+	"EP2632": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.0
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP106): needs drawn art",
+		"name": {
+			"en": "Zokujin Stonehunter",
+			"ja": "Zokujin Stonehunter"
+		},
+		"pic3d": "/resource/enemy_pic/ph_zokujin_hunter.png",
+		"scale": 0.5
+	},
+	"EP2633": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP169): needs drawn art",
+		"name": {
+			"en": "Onibaba",
+			"ja": "Onibaba"
+		},
+		"pic3d": "/resource/enemy_pic/ph_onibaba.png",
+		"scale": 0.6825000000000001
+	},
+	"EP2634": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP167): needs drawn art",
+		"name": {
+			"en": "Tsuno Ravager",
+			"ja": "Tsuno Ravager"
+		},
+		"pic3d": "/resource/enemy_pic/ph_tsuno.png",
+		"scale": 0.6825000000000001
+	},
+	"EP2635": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP446): needs drawn art",
+		"name": {
+			"en": "Lesser Shadowspawn",
+			"ja": "Lesser Shadowspawn"
+		},
+		"pic3d": "/resource/enemy_pic/ph_shadowspawn.png",
+		"scale": 0.63
+	},
+	"EP2636": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 4.8,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 30,
+				"en": 36,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.75,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP432): needs drawn art",
+		"name": {
+			"en": "Hyakuhei",
+			"ja": "Hyakuhei"
+		},
+		"pic3d": "/resource/enemy_pic/ph_hyakuhei.png",
+		"scale": 0.48300000000000004
+	},
+	"EP2637": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "fight",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sick",
+				"st": 0,
+				"en": 8,
+				"spd": 4.8,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "idle",
+				"st": 0,
+				"en": 8,
+				"spd": 8.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk",
+				"st": 8,
+				"en": 16,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run",
+				"st": 16,
+				"en": 22,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash",
+				"st": 16,
+				"en": 22,
+				"spd": 15.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "jump",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "aim",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimw",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimp",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "aimb",
+				"st": 22,
+				"en": 23,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "spell",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 48,
+				"en": 50,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "chant",
+				"st": 50,
+				"en": 54,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "damage",
+				"st": 70,
+				"en": 72,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 73,
+				"en": 75,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "shield",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "guard",
+				"st": 75,
+				"en": 76,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "die",
+				"st": 77,
+				"en": 78,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "collapse",
+				"st": 79,
+				"en": 83,
+				"spd": 7.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "victory",
+				"st": 85,
+				"en": 87,
+				"spd": 2.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "victory_in",
+				"st": 83,
+				"en": 87,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "item",
+				"st": 66,
+				"en": 70,
+				"spd": 6.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk",
+				"st": 87,
+				"en": 91,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod",
+				"st": 91,
+				"en": 95,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei",
+				"st": 95,
+				"en": 98,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_full",
+				"st": 95,
+				"en": 101,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "seiza",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "sit",
+				"st": 101,
+				"en": 103,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "seiza_rei",
+				"st": 103,
+				"en": 106,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "think",
+				"st": 106,
+				"en": 108,
+				"spd": 1.5,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "surprise",
+				"st": 108,
+				"en": 110,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "laugh",
+				"st": 110,
+				"en": 112,
+				"spd": 6.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_f",
+				"st": 112,
+				"en": 116,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_f",
+				"st": 116,
+				"en": 124,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_f",
+				"st": 116,
+				"en": 124,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "stand_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "walk_b",
+				"st": 128,
+				"en": 136,
+				"spd": 13.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "run_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "dash_b",
+				"st": 128,
+				"en": 136,
+				"spd": 18.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "talk_f",
+				"st": 136,
+				"en": 140,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_f",
+				"st": 140,
+				"en": 144,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_f",
+				"st": 144,
+				"en": 147,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "talk_b",
+				"st": 124,
+				"en": 128,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "nod_b",
+				"st": 147,
+				"en": 151,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "rei_b",
+				"st": 151,
+				"en": 154,
+				"spd": 5.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_slash",
+				"st": 24,
+				"en": 30,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_thrust",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_overhead",
+				"st": 36,
+				"en": 42,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_draw",
+				"st": 42,
+				"en": 48,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "punch1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 30,
+				"en": 36,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk_main",
+				"st": 30,
+				"en": 36,
+				"spd": 14.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_bolt",
+				"st": 54,
+				"en": 56,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_area",
+				"st": 56,
+				"en": 58,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_heal",
+				"st": 58,
+				"en": 60,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_ward",
+				"st": 60,
+				"en": 62,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_summon",
+				"st": 62,
+				"en": 64,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "cast_void",
+				"st": 64,
+				"en": 66,
+				"spd": 4.0,
+				"loop": false,
+				"replay": true
+			}
+		],
+		"aniuv": [
+			14,
+			11
+		],
+		"atkpos": [
+			0.75,
+			0.55
+		],
+		"cntpos": [
+			0.5,
+			0.6
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.029411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP432): needs drawn art",
+		"name": {
+			"en": "Plague Zombie",
+			"ja": "Plague Zombie"
+		},
+		"pic3d": "/resource/enemy_pic/ph_plague_zombie.png",
+		"scale": 0.48300000000000004
 	}
 }

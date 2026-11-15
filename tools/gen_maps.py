@@ -18977,6 +18977,16 @@ for _r in ROUTES:
 ENCOUNTERS.update(ROUTE_ENC)
 ENCOUNTER_MAPS |= set(ROUTE_ENC)
 
+# (user 2026-11-14) the Enemies of the Empire batch (tools/new_foes.py): new groups at each place's level. A table
+# shared by several maps (the shifting waste) gets them on every map that shares it.
+import new_foes as _nfoes                                                   # noqa: E402
+for _mid, _rows in _nfoes.PLACE.items():
+    _old = ENCOUNTERS.get(_mid)
+    _new = (_old[0] if _old else "M801", list(_old[1] if _old else []) + list(_rows))
+    for _k in [k for k, v in ENCOUNTERS.items() if _old is not None and v is _old] or [_mid]:
+        ENCOUNTERS[_k] = _new
+        ENCOUNTER_MAPS.add(_k)
+
 
 def marker_pass(mp):
     """(user 2026-11-14: "a floating quest marker ... that shows you where to go next according to your currently

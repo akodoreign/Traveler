@@ -61586,7 +61586,7 @@
 			},
 			"#22#": {
 				"role": "itemchest",
-				"itemid": "I269",
+				"itemid": "I203",
 				"num": 2,
 				"mdlid": "CV036",
 				"pos": [
@@ -61602,7 +61602,7 @@
 			},
 			"#23#": {
 				"role": "itemchest",
-				"itemid": "I240",
+				"itemid": "I274",
 				"num": 2,
 				"mdlid": "CV036",
 				"pos": [
@@ -72399,7 +72399,7 @@
 										},
 										{
 											"cmd": "cmd_itemop",
-											"itemid": "I238",
+											"itemid": "I272",
 											"op": 0,
 											"num": 2,
 											"LV": 1
@@ -83275,7 +83275,7 @@
 			},
 			"#10#": {
 				"role": "itemchest",
-				"itemid": "I237",
+				"itemid": "I271",
 				"num": 3,
 				"mdlid": "CV036",
 				"pos": [
@@ -83291,7 +83291,7 @@
 			},
 			"#11#": {
 				"role": "itemchest",
-				"itemid": "I269",
+				"itemid": "I203",
 				"num": 3,
 				"mdlid": "CV036",
 				"pos": [
@@ -83307,7 +83307,7 @@
 			},
 			"#12#": {
 				"role": "itemchest",
-				"itemid": "I240",
+				"itemid": "I274",
 				"num": 1,
 				"mdlid": "CV036",
 				"pos": [
@@ -85909,7 +85909,7 @@
 							},
 							{
 								"cmd": "cmd_itemop",
-								"itemid": "I252",
+								"itemid": "I225",
 								"op": 0,
 								"num": 1,
 								"LV": 1
@@ -126414,7 +126414,7 @@
 							},
 							{
 								"cmd": "cmd_itemop",
-								"itemid": "I206",
+								"itemid": "I244",
 								"op": 0,
 								"num": 3,
 								"LV": 1
@@ -126428,7 +126428,7 @@
 							},
 							{
 								"cmd": "cmd_itemop",
-								"itemid": "I240",
+								"itemid": "I274",
 								"op": 0,
 								"num": 1,
 								"LV": 1
@@ -233417,7 +233417,7 @@
 										},
 										{
 											"cmd": "cmd_itemop",
-											"itemid": "I268",
+											"itemid": "I301",
 											"op": 0,
 											"num": 2,
 											"LV": 1
@@ -236190,7 +236190,7 @@
 							},
 							{
 								"cmd": "cmd_itemop",
-								"itemid": "I230",
+								"itemid": "I264",
 								"op": 0,
 								"num": 1,
 								"LV": 1
@@ -283904,7 +283904,7 @@
 										},
 										{
 											"cmd": "cmd_itemop",
-											"itemid": "I268",
+											"itemid": "I301",
 											"op": 0,
 											"num": 2,
 											"LV": 1
@@ -466662,7 +466662,7 @@
 							},
 							{
 								"cmd": "cmd_itemop",
-								"itemid": "I241",
+								"itemid": "I275",
 								"op": 0,
 								"num": 1,
 								"LV": 1
@@ -515946,7 +515946,7 @@
 									[
 										{
 											"cmd": "cmd_itemop",
-											"itemid": "I207",
+											"itemid": "I245",
 											"op": 0,
 											"num": 2,
 											"LV": 1
@@ -614742,7 +614742,7 @@
 			},
 			"#9#": {
 				"role": "itemchest",
-				"itemid": "I290",
+				"itemid": "I322",
 				"num": 3,
 				"mdlid": "CV036",
 				"pos": [
@@ -959577,7 +959577,7 @@
 			},
 			"#6#": {
 				"role": "itemchest",
-				"itemid": "I258",
+				"itemid": "I291",
 				"num": 1,
 				"mdlid": "CV036",
 				"pos": [
@@ -1021868,6 +1021868,45 @@
 				"mapid": "M817",
 				"name": "Deep: an orochi-spawn",
 				"rate": 3
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E053",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M817",
+				"name": "Fallen road: an onibaba",
+				"rate": 15
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E057",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E057",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M817",
+				"name": "Fallen road: plague zombies",
+				"rate": 20
 			}
 		],
 		"event": {
@@ -1024254,6 +1024293,45 @@
 				"mapid": "M817",
 				"name": "Deep: an orochi-spawn",
 				"rate": 10
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E054",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E054",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 6,
+				"mapid": "M817",
+				"name": "Hiruma road: tsuno ravagers",
+				"rate": 15
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E056",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M817",
+				"name": "Hiruma road: the hyakuhei",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1026839,6 +1026917,45 @@
 				"mapid": "M817",
 				"name": "Deep: an orochi-spawn",
 				"rate": 4
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E055",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E055",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M817",
+				"name": "Waste: lesser shadowspawn",
+				"rate": 15
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E054",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M817",
+				"name": "Waste: a tsuno",
+				"rate": 10
 			}
 		],
 		"event": {
@@ -1029346,6 +1029463,45 @@
 				"mapid": "M817",
 				"name": "Deep: an orochi-spawn",
 				"rate": 4
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E055",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E055",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M817",
+				"name": "Waste: lesser shadowspawn",
+				"rate": 15
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E054",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M817",
+				"name": "Waste: a tsuno",
+				"rate": 10
 			}
 		],
 		"event": {
@@ -1031853,6 +1032009,45 @@
 				"mapid": "M817",
 				"name": "Deep: an orochi-spawn",
 				"rate": 4
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E055",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E055",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M817",
+				"name": "Waste: lesser shadowspawn",
+				"rate": 15
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E054",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M817",
+				"name": "Waste: a tsuno",
+				"rate": 10
 			}
 		],
 		"event": {
@@ -1034376,6 +1034571,45 @@
 				"mapid": "M817",
 				"name": "Deep: an orochi-spawn",
 				"rate": 4
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E055",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E055",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M817",
+				"name": "Waste: lesser shadowspawn",
+				"rate": 15
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E054",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M817",
+				"name": "Waste: a tsuno",
+				"rate": 10
 			}
 		],
 		"event": {
@@ -1036883,6 +1037117,45 @@
 				"mapid": "M817",
 				"name": "Deep: an orochi-spawn",
 				"rate": 4
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E055",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E055",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M817",
+				"name": "Waste: lesser shadowspawn",
+				"rate": 15
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E054",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M817",
+				"name": "Waste: a tsuno",
+				"rate": 10
 			}
 		],
 		"event": {
@@ -1039406,6 +1039679,45 @@
 				"mapid": "M817",
 				"name": "Deep: an orochi-spawn",
 				"rate": 4
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E055",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E055",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M817",
+				"name": "Waste: lesser shadowspawn",
+				"rate": 15
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E054",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M817",
+				"name": "Waste: a tsuno",
+				"rate": 10
 			}
 		],
 		"event": {
@@ -1052576,6 +1052888,45 @@
 				"mapid": "M814",
 				"name": "Border: glory-hungry bushi (Lv 25)",
 				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E034",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E034",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M814",
+				"name": "Sea cave: blood eels",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E035",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M814",
+				"name": "Sea cave: an aka-name",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1055101,6 +1055452,50 @@
 				"gid": 6,
 				"mapid": "M814",
 				"name": "Cove: eel and wako (Lv 35)",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E043",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M814",
+				"name": "Smugglers' cave: a Kolat killer",
+				"rate": 15
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E044",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E044",
+						"x": -1.6,
+						"z": -1.9
+					},
+					{
+						"id": "E044",
+						"x": 0.5,
+						"z": -0.3
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M814",
+				"name": "Smugglers' cave: heart grubs",
 				"rate": 20
 			}
 		],
@@ -1057639,6 +1058034,45 @@
 				"mapid": "M811",
 				"name": "Road: wild boar (Lv 10)",
 				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E023",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E023",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M811",
+				"name": "Coast road: desperate fishermen",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E020",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M811",
+				"name": "Coast road: a badger",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1063184,6 +1063618,45 @@
 				"mapid": "M865",
 				"name": "River road: kappa (Lv 24)",
 				"rate": 25
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E036",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M865",
+				"name": "River cave: the muck",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E037",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E037",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M865",
+				"name": "River cave: nukekubi",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1065685,6 +1066158,45 @@
 				"mapid": "M861",
 				"name": "Paddies: a dock ruffian (Lv 12)",
 				"rate": 25
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E021",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M861",
+				"name": "River bank: a wani",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E025",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E025",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M861",
+				"name": "River bank: bakeneko",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1071041,6 +1071553,50 @@
 				"mapid": "M840",
 				"name": "North road: a frost spirit (Lv 36)",
 				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E045",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E045",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M840",
+				"name": "Hill cave: ghuls",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E046",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E046",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M840",
+				"name": "Hill cave: goblin berserkers",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1073541,6 +1074097,50 @@
 				"mapid": "M841",
 				"name": "Pilgrim road: a Shosuro renegade (Lv 48)",
 				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E051",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E051",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M841",
+				"name": "Old mine: zokujin miners",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E052",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E051",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M841",
+				"name": "Old mine: a stonehunter",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1076046,6 +1076646,45 @@
 				"mapid": "M837",
 				"name": "River road: kappa (Lv 24)",
 				"rate": 25
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E030",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M837",
+				"name": "Lion hills: a tiger",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E031",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E033",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M837",
+				"name": "Lion hills: the bandit lord",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1081480,6 +1082119,50 @@
 				"mapid": "M891",
 				"name": "Fever road: looters (Lv 35)",
 				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E047",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E047",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M891",
+				"name": "Ice cave: hanemuri",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E048",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E049",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M891",
+				"name": "Ice cave: the ogre hag",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1083975,6 +1084658,40 @@
 				"mapid": "M888",
 				"name": "Pass: a yurei (Lv 26)",
 				"rate": 25
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E032",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M888",
+				"name": "Snow road: an ozaru",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E033",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M888",
+				"name": "Snow road: a disgraced yojimbo",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1089346,6 +1090063,45 @@
 				"mapid": "M888",
 				"name": "Border: glory-hungry bushi (Lv 25)",
 				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E038",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E038",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M888",
+				"name": "Tide cave: feral ningyo",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E034",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M888",
+				"name": "Tide cave: a blood eel",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1091868,6 +1092624,45 @@
 				"mapid": "M885",
 				"name": "Road: wild boar (Lv 10)",
 				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E024",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E023",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M885",
+				"name": "Doji coast: pirates",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E022",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M885",
+				"name": "Doji coast: a shark in the shallows",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1097335,6 +1098130,50 @@
 				"mapid": "M844",
 				"name": "Plains: a shadow in black (Lv 23)",
 				"rate": 25
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E039",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E039",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M844",
+				"name": "Fox cave: tanglevines",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E040",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E040",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M844",
+				"name": "Fox cave: goblin sneaks",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1099829,6 +1100668,40 @@
 				"gid": 6,
 				"mapid": "M835",
 				"name": "Grove: a viper (Lv 9)",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E026",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M835",
+				"name": "Northern road: a mujina",
+				"rate": 15
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E027",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M835",
+				"name": "Northern road: a ronin shugenja",
 				"rate": 20
 			}
 		],
@@ -1105216,6 +1106089,45 @@
 				"mapid": "M869",
 				"name": "Valley: mountain wolves (Lv 35)",
 				"rate": 35
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E049",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M869",
+				"name": "Mountain cave: a free ogre",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E050",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E050",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M869",
+				"name": "Mountain cave: stinger plants",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1107732,6 +1108644,55 @@
 				"mapid": "M875",
 				"name": "Grove: a viper (Lv 9)",
 				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E028",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E028",
+						"x": -1.6,
+						"z": -1.9
+					},
+					{
+						"id": "E028",
+						"x": 0.5,
+						"z": -0.3
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M875",
+				"name": "Northern road: a monkey troop",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E020",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E020",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M875",
+				"name": "Northern road: badgers",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1113103,6 +1114064,50 @@
 				"mapid": "M826",
 				"name": "Plains: a shadow in black (Lv 23)",
 				"rate": 25
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E041",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E041",
+						"x": -1.6,
+						"z": -1.9
+					},
+					{
+						"id": "E041",
+						"x": 0.5,
+						"z": -0.3
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M826",
+				"name": "Bandit cave: goblin chuckers",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E042",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M826",
+				"name": "Bandit cave: a madman",
+				"rate": 15
 			}
 		],
 		"event": {
@@ -1115641,6 +1116646,40 @@
 				"mapid": "M821",
 				"name": "Grove: a viper (Lv 9)",
 				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E029",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 7,
+				"mapid": "M821",
+				"name": "Hill road: a banished duelist",
+				"rate": 20
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E025",
+						"x": -0.9,
+						"z": 1.5
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 8,
+				"mapid": "M821",
+				"name": "Hill road: bakeneko",
+				"rate": 15
 			}
 		],
 		"event": {

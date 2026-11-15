@@ -3771,7 +3771,7 @@
 		"desc": "Worth something to a merchant.",
 		"icon": "",
 		"itemtype": 0,
-		"name": "Goblin Knife",
+		"name": "Badger Pelt",
 		"option": [],
 		"price": 30,
 		"skilltype": "unusable",
@@ -3783,7 +3783,7 @@
 		"desc": "Worth something to a merchant.",
 		"icon": "",
 		"itemtype": 0,
-		"name": "Shiny Trinket",
+		"name": "Wani Hide",
 		"option": [],
 		"price": 30,
 		"skilltype": "unusable",
@@ -3795,7 +3795,7 @@
 		"desc": "Worth something to a merchant.",
 		"icon": "",
 		"itemtype": 0,
-		"name": "Beetle Shell",
+		"name": "Shark Tooth",
 		"option": [],
 		"price": 30,
 		"skilltype": "unusable",
@@ -3803,6 +3803,507 @@
 		"occasion": 0
 	},
 	"I203": {
+		"H1": null,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "item",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "30",
+		"cmdtgt": 8,
+		"consume": 1,
+		"desc": "Food. Restores a little HP.",
+		"dmgform": 5,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"flags": 255,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"itemtype": 0,
+		"name": "Eel",
+		"occasion": 3,
+		"option": [],
+		"price": 15,
+		"remconds": 0,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"speed": 1.0,
+		"stacknum": 99,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
+	},
+	"I204": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Pirate's Sash",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I205": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Bakeneko Whisker",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I206": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Mujina Mask",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I207": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ofuda Bundle",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I208": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Monkey Charm",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I209": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Chipped Tsuba",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I210": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Duelist's Cord",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I211": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Tiger Pelt",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I212": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Stolen Mon",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I213": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Captain's Purse",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I214": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ozaru Fur",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I215": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Yojimbo's Badge",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I216": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Aka-name Tongue",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I217": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Muck Pearl",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I218": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Nukekubi Hair",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I219": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ningyo Scale",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I220": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Tainted Vine",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I221": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Goblin Knife",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I222": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Goblin Sling",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I223": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Bloody Scroll",
+		"option": [],
+		"price": 120,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I224": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Kolat Coin",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I225": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Poison Kit",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I226": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Grub Husk",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I227": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ghul Claw",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I228": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Goblin Fang",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I229": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Hanemuri Wing",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I230": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Hag's Charm",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I231": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Ogre Tusk",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I232": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Stinger Barb",
+		"option": [],
+		"price": 300,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I233": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Stonehunter's Spear",
+		"option": [],
+		"price": 600,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I234": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Crone's Knife",
+		"option": [],
+		"price": 1200,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I235": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Tsuno Horn",
+		"option": [],
+		"price": 1200,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I236": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Shadow Fragment",
+		"option": [],
+		"price": 1200,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I237": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Rusted Mon",
+		"option": [],
+		"price": 1200,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I238": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Plague Cloth",
+		"option": [],
+		"price": 1200,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I239": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Shiny Trinket",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I240": {
+		"consume": 1,
+		"desc": "Worth something to a merchant.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Beetle Shell",
+		"option": [],
+		"price": 30,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I241": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -3814,7 +4315,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I204": {
+	"I242": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -3826,7 +4327,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I205": {
+	"I243": {
 		"H1": null,
 		"aimani": {
 			"id": "aim",
@@ -3883,7 +4384,7 @@
 			"scp": null
 		}
 	},
-	"I206": {
+	"I244": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -3895,7 +4396,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I207": {
+	"I245": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -3907,7 +4408,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I208": {
+	"I246": {
 		"H1": null,
 		"aimani": {
 			"id": "aim",
@@ -3964,7 +4465,7 @@
 			"scp": null
 		}
 	},
-	"I209": {
+	"I247": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -3976,7 +4477,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I210": {
+	"I248": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -3988,31 +4489,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I211": {
-		"consume": 1,
-		"desc": "Worth something to a merchant.",
-		"icon": "",
-		"itemtype": 0,
-		"name": "Captain's Purse",
-		"option": [],
-		"price": 300,
-		"skilltype": "unusable",
-		"stacknum": 99,
-		"occasion": 0
-	},
-	"I212": {
-		"consume": 1,
-		"desc": "Worth something to a merchant.",
-		"icon": "",
-		"itemtype": 0,
-		"name": "Kolat Coin",
-		"option": [],
-		"price": 600,
-		"skilltype": "unusable",
-		"stacknum": 99,
-		"occasion": 0
-	},
-	"I213": {
+	"I249": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4024,7 +4501,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I214": {
+	"I250": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4036,31 +4513,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I215": {
-		"consume": 1,
-		"desc": "Worth something to a merchant.",
-		"icon": "",
-		"itemtype": 0,
-		"name": "Chipped Tsuba",
-		"option": [],
-		"price": 120,
-		"skilltype": "unusable",
-		"stacknum": 99,
-		"occasion": 0
-	},
-	"I216": {
-		"consume": 1,
-		"desc": "Worth something to a merchant.",
-		"icon": "",
-		"itemtype": 0,
-		"name": "Duelist's Cord",
-		"option": [],
-		"price": 300,
-		"skilltype": "unusable",
-		"stacknum": 99,
-		"occasion": 0
-	},
-	"I217": {
+	"I251": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4072,7 +4525,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I218": {
+	"I252": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4084,7 +4537,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I219": {
+	"I253": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4096,7 +4549,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I220": {
+	"I254": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4108,7 +4561,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I221": {
+	"I255": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4120,7 +4573,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I222": {
+	"I256": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4132,7 +4585,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I223": {
+	"I257": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4144,7 +4597,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I224": {
+	"I258": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4156,7 +4609,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I225": {
+	"I259": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4168,7 +4621,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I226": {
+	"I260": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4180,7 +4633,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I227": {
+	"I261": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4192,7 +4645,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I228": {
+	"I262": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4204,7 +4657,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I229": {
+	"I263": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4216,7 +4669,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I230": {
+	"I264": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4228,7 +4681,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I231": {
+	"I265": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4240,7 +4693,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I232": {
+	"I266": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4252,7 +4705,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I233": {
+	"I267": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4264,7 +4717,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I234": {
+	"I268": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4276,7 +4729,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I235": {
+	"I269": {
 		"H1": null,
 		"aimani": {
 			"id": "aim",
@@ -4333,7 +4786,7 @@
 			"scp": null
 		}
 	},
-	"I236": {
+	"I270": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4345,7 +4798,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I237": {
+	"I271": {
 		"H1": null,
 		"aimani": {
 			"id": "aim",
@@ -4402,7 +4855,7 @@
 			"scp": null
 		}
 	},
-	"I238": {
+	"I272": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4414,7 +4867,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I239": {
+	"I273": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4426,7 +4879,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I240": {
+	"I274": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4438,7 +4891,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I241": {
+	"I275": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4450,7 +4903,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I242": {
+	"I276": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4462,7 +4915,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I243": {
+	"I277": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4474,7 +4927,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I244": {
+	"I278": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4486,7 +4939,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I245": {
+	"I279": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4498,7 +4951,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I246": {
+	"I280": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4510,7 +4963,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I247": {
+	"I281": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4522,7 +4975,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I248": {
+	"I282": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4534,7 +4987,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I249": {
+	"I283": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4546,7 +4999,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I250": {
+	"I284": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4558,7 +5011,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I251": {
+	"I285": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4570,19 +5023,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I252": {
-		"consume": 1,
-		"desc": "Worth something to a merchant.",
-		"icon": "",
-		"itemtype": 0,
-		"name": "Poison Kit",
-		"option": [],
-		"price": 300,
-		"skilltype": "unusable",
-		"stacknum": 99,
-		"occasion": 0
-	},
-	"I253": {
+	"I286": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4594,7 +5035,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I254": {
+	"I287": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4606,7 +5047,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I255": {
+	"I288": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4618,7 +5059,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I256": {
+	"I289": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4630,7 +5071,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I257": {
+	"I290": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4642,7 +5083,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I258": {
+	"I291": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4654,7 +5095,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I259": {
+	"I292": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4666,7 +5107,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I260": {
+	"I293": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4678,7 +5119,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I261": {
+	"I294": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4690,7 +5131,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I262": {
+	"I295": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4702,7 +5143,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I263": {
+	"I296": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4714,7 +5155,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I264": {
+	"I297": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4726,7 +5167,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I265": {
+	"I298": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4738,7 +5179,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I266": {
+	"I299": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4750,7 +5191,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I267": {
+	"I300": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4762,7 +5203,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I268": {
+	"I301": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4774,64 +5215,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I269": {
-		"H1": null,
-		"aimani": {
-			"id": "aim",
-			"mdlid": "CV000",
-			"part": 0,
-			"spd": 1.0
-		},
-		"atkact": {
-			"atkani": {
-				"id": "item",
-				"mdlid": "CV000",
-				"part": 0,
-				"spd": 1.0
-			},
-			"atkdelay": 100,
-			"atkefx": null,
-			"atksnd": null,
-			"id": "atk_normal",
-			"scp": null
-		},
-		"atkform": "30",
-		"cmdtgt": 8,
-		"consume": 1,
-		"desc": "Food. Restores a little HP.",
-		"dmgform": 5,
-		"dmgtype": 2,
-		"endact": {
-			"id": "noop",
-			"scp": null
-		},
-		"flags": 255,
-		"hitact": {
-			"hitani": null,
-			"hitdelay": 100,
-			"hitefx": "FX016",
-			"hitsnd": "SE220",
-			"id": "hit_normal",
-			"scp": null
-		},
-		"icon": "",
-		"itemtype": 0,
-		"name": "Eel",
-		"occasion": 3,
-		"option": [],
-		"price": 150,
-		"remconds": 0,
-		"skilltype": "heal",
-		"spdrate": 1.0,
-		"speed": 1.0,
-		"stacknum": 99,
-		"useact": {
-			"eefx": "FX099",
-			"id": "use_normal",
-			"scp": null
-		}
-	},
-	"I270": {
+	"I302": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4843,7 +5227,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I271": {
+	"I303": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4855,7 +5239,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I272": {
+	"I304": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4867,7 +5251,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I273": {
+	"I305": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4879,7 +5263,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I274": {
+	"I306": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4891,7 +5275,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I275": {
+	"I307": {
 		"H1": null,
 		"aimani": {
 			"id": "aim",
@@ -4948,7 +5332,7 @@
 			"scp": null
 		}
 	},
-	"I276": {
+	"I308": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4960,7 +5344,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I277": {
+	"I309": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4972,7 +5356,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I278": {
+	"I310": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4984,7 +5368,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I279": {
+	"I311": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -4996,7 +5380,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I280": {
+	"I312": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5008,7 +5392,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I281": {
+	"I313": {
 		"H1": null,
 		"aimani": {
 			"id": "aim",
@@ -5065,7 +5449,7 @@
 			"scp": null
 		}
 	},
-	"I282": {
+	"I314": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5077,7 +5461,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I283": {
+	"I315": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5089,7 +5473,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I284": {
+	"I316": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5101,7 +5485,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I285": {
+	"I317": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5113,7 +5497,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I286": {
+	"I318": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5125,7 +5509,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I287": {
+	"I319": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5137,7 +5521,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I288": {
+	"I320": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5149,7 +5533,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I289": {
+	"I321": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5161,7 +5545,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I290": {
+	"I322": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5173,7 +5557,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I291": {
+	"I323": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5185,7 +5569,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I292": {
+	"I324": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5197,7 +5581,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I293": {
+	"I325": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5209,7 +5593,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I294": {
+	"I326": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5221,7 +5605,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I295": {
+	"I327": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5233,7 +5617,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I296": {
+	"I328": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
@@ -5245,7 +5629,7 @@
 		"stacknum": 99,
 		"occasion": 0
 	},
-	"I297": {
+	"I329": {
 		"consume": 1,
 		"desc": "Worth something to a merchant.",
 		"icon": "",
