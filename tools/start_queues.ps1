@@ -37,6 +37,13 @@ elseif (Test-Path $qf) {
     } else { Note "redo queue finished" }
 }
 
+# 4. the sheet watcher: remasters (fix_sheet) every character sheet the queues finish, every 30 min
+if (Running "fix_new_sheets.py") { Note "sheet watcher already running" }
+else {
+    $id = Start-Detached ("`"" + (Join-Path $root "tools\fix_new_sheets.py") + "`" --loop 30 --workers 2 --log `"" + (Join-Path $root "_art\preview\fixsheet\fix_new.log") + "`"")
+    Note "sheet watcher started pid $id"
+}
+
 # 3. the environment art (waits for 1 and 2 by itself)
 if (Running "gen_envart.py") { Note "envart already running" }
 elseif (Test-Path (Join-Path $root "_art\envart\ALL_DONE")) { Note "envart finished" }

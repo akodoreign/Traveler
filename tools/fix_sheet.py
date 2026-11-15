@@ -53,6 +53,13 @@ def clean(fr, ink, min_px=6):
     return out
 
 
+# Hand pixel patches on a facing's master frame (every derived frame inherits them): {key: {facing: [(x, y, rgb)]}}
+_EYE, _HI = (40, 26, 24), (222, 214, 204)
+PATCH = {
+    # (offered 11-15: grey "goggles" where the front-view eyes should be) dark irises with a highlight
+    "trav_natsuko": {"front": [(38, 28, _HI), (39, 28, _EYE), (38, 29, _EYE), (39, 29, _EYE),
+                               (42, 28, _HI), (43, 28, _EYE), (42, 29, _EYE), (43, 29, _EYE)]},
+}
 GLARE = {"trav_natsuko"}       # sheets whose dark armour carries white glare patches (user 2026-11-15 marks)
 
 
@@ -270,6 +277,71 @@ MOVE = {"walk", "run", "walk_f", "run_f", "walk_b", "run_b"}   # (user 2026-11-1
 CUT = 0.56                                           # sword-lunges and staff swings, a new pose every frame)
 
 
+def move_from_ref(ref, aid, k, n, cut=0.6):
+    """(user 2026-11-15: "its the multiple different outfits that all animate together (even though they are same
+    color)") a walk / run frame drawn from the stand frame ONLY - the AI walk frames each wore a differently cut
+    outfit. Side view: the lower body scissors open from the hips (left half back, right half forward, more at the
+    feet), the body dips 1 px at the widest stride. Front / back: the feet lift 1 px in turn, the body bobs."""
+    rb = bbox(ref)
+    if not rb:
+        return ref.copy()
+    h, w = ref.shape[:2]
+    H = rb[3] - rb[1] + 1
+    hip = rb[1] + int(round(H * cut))
+    feet = rb[3]
+    run = aid.startswith("run")
+    out = np.zeros_like(ref)
+    ph = 2 * np.pi * k / max(1, n)
+    if facing(aid) == "side":
+        amp = 3 if run else 2
+        # (user 2026-11-15: "the left leg always stays back") signed stride: the legs swap on every step, so the
+        # back leg comes through to the front - open one way, closed, open the other way, closed
+        s = np.sin(ph)
+        a = s * amp
+        dip = 1 if abs(a) >= amp * 0.7 else 0
+        solid = ref[..., 3] > 0
+        xs = np.nonzero(solid[hip:feet + 1].any(0))[0]
+        cx = (xs.min() + xs.max()) / 2.0 if len(xs) else w / 2.0
+        for y in range(h):
+            row = ref[y]
+            ty = y + dip if y < hip else y                 # the body dips onto the legs; the feet stay planted
+            if not 0 <= ty < h:
+                continue
+            if y < hip:
+                m = row[:, 3] > 0
+                out[ty][m] = row[m]
+                continue
+            t = (y - hip) / float(max(1, feet - hip))
+            off = int(round(a * t))
+            xs_ = np.nonzero(row[:, 3] > 0)[0]
+            near_first = sorted(xs_, key=lambda x: (x < cx) == (s >= 0))   # the leg swinging forward is drawn on top
+            for x in near_first:
+                tx = x - off if x < cx else x + off
+                if 0 <= tx < w and out[y, tx, 3] == 0:
+                    out[y, tx] = row[x]
+        if dip:                                             # close the 1-px seam the dip opens at the hip
+            seam = out[hip]
+            m = (seam[:, 3] == 0) & (ref[hip - 1, :, 3] > 0)
+            out[hip][m] = ref[hip - 1][m]
+    else:
+        lift = 2 if run else 1
+        quarter = int(4 * k / max(1, n)) % 4               # 0: left up, 1: down, 2: right up, 3: down
+        bob = 1 if quarter in (1, 3) else 0
+        foot0 = feet - max(3, int(round(H * 0.14)))
+        xs = np.nonzero((ref[foot0:feet + 1, :, 3] > 0).any(0))[0]
+        cx = (xs.min() + xs.max()) / 2.0 if len(xs) else w / 2.0
+        for y in range(h):
+            for x in np.nonzero(ref[y, :, 3] > 0)[0]:
+                ty = y
+                if y < foot0:
+                    ty = y + bob
+                elif (quarter == 0 and x < cx) or (quarter == 2 and x >= cx):
+                    ty = y - lift
+                if 0 <= ty < h and (out[ty, x, 3] == 0 or y < foot0):
+                    out[ty, x] = ref[y, x]
+    return out
+
+
 def still_from_ref(ref, aid, k, n):
     """(user 2026-11-15: "look at how the shirts change to different types in all the npc animations") a standing /
     talking / nodding frame IS the stand frame - the outfit can't drift - with the head moved: a nod dips it 1-2 px
@@ -396,6 +468,11 @@ def main():
     enh = {fc: clean(frames[i], ink) for fc, i in refs.items()}            # 1. the enhanced references
     pal = palette_of(list(enh.values()))
     enh = {fc: denoise(lock(f, pal), ink, glare) for fc, f in enh.items()}
+    for fc, pts in PATCH.get(key, {}).items():                             # hand fixes on the masters
+        if fc in enh:
+            for x, y, rgb in pts:
+                enh[fc][y, x, :3] = rgb
+                enh[fc][y, x, 3] = 255
     ref_box = {fc: bbox(f) for fc, f in enh.items()}
     fixed = []
     for i, fr in enumerate(frames):
@@ -411,8 +488,9 @@ def main():
         f2 = denoise(lock(f2, pal), ink, glare)                                    # 2. palette lock + noise
         if aid in UPRIGHT and fc in ref_box:
             f2 = fit(f2, ref_box[fc])                                       # 3. size and foot line
-        if moves and aid in MOVE and fc in enh:
-            f2 = body_transplant(f2, enh[fc])                               # 5. one body, moving legs
+        if moves and aid in MOVE and fc in enh:                             # 5. one outfit: walk / run drawn
+            st_, en_ = span.get(i, (i, i + 1))                              #    from the stand frame alone
+            f2 = move_from_ref(enh[fc], aid, i - st_, en_ - st_)
         if moves and aid in STILL and fc in enh:                            # 6. one outfit: still frames are the
             st_, en_ = span.get(i, (i, i + 1))                              #    stand frame, the head moving
             f2 = still_from_ref(enh[fc], aid, i - st_, en_ - st_)

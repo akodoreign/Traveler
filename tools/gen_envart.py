@@ -47,7 +47,42 @@ NEG = ("person, people, character, human, animal, text, letters, watermark, sign
        "3d render, blurry, jpeg artifacts, modern, western, chinese")
 
 # (key, prompt, in-game height px, animation or None)   heights: a traveler ~60 px = ~1.7 m (~35 px per metre)
+TILE_STYLE = ("seamless tileable texture, top-down view, flat even lighting, pixel art, 16-bit JRPG ground tile, "
+              "repeating pattern, fills the whole image edge to edge, feudal Japan")
+TILE_NEG = ("object, single object, border, frame, vignette, perspective, horizon, shadow gradient, text, watermark, "
+            "person, character, photo, 3d render, blurry")
 CATALOG = {
+    # (user 2026-11-15: "eventually get to tile building with new textures (including animated grass, water, etc)")
+    # the blocks are palette voxels, so a tile is a seamless pixel texture the block builder maps voxel-for-pixel:
+    # drawn at 1024, made seamless, then 32 and 16 px (tile_32 / tile_16); animated ones get a seamless 4-frame strip
+    "tiles": [
+        ("grass", "short green grass with small clover and tiny flowers", 32, "tile_sway"),
+        ("grass_tall", "dense tall green grass blades", 32, "tile_sway"),
+        ("grass_dry", "dry autumn grass, yellow-brown", 32, "tile_sway"),
+        ("moss", "soft green moss on damp ground", 32, None),
+        ("dirt", "packed brown dirt road with small pebbles", 32, None),
+        ("mud", "wet dark mud with puddles", 32, "tile_shimmer"),
+        ("sand", "pale beach sand with ripples", 32, None),
+        ("snow", "fresh white snow with soft blue shadows", 32, None),
+        ("gravel", "grey gravel", 32, None),
+        ("gravel_raked", "raked white zen garden gravel with parallel wave lines", 32, None),
+        ("cobbles", "rounded grey cobblestones", 32, None),
+        ("flagstones", "large irregular grey flagstones with moss in the cracks", 32, None),
+        ("stone_wall", "fitted grey castle wall stones", 32, None),
+        ("plaster", "white plaster wall with faint cracks", 32, None),
+        ("wood_planks", "dark wooden floor planks", 32, None),
+        ("tatami", "woven tatami mat straw texture", 32, None),
+        ("roof_tiles", "grey japanese kawara roof tiles in rows", 32, None),
+        ("thatch", "straw thatch", 32, None),
+        ("bark", "rough tree bark", 32, None),
+        ("cave_rock", "dark wet cave rock", 32, None),
+        ("tainted_ground", "cracked black earth with sickly purple-green glowing veins, corrupted", 32, "tile_shimmer"),
+        ("rice_paddy", "flooded rice paddy, green shoots in shallow water", 32, "tile_shimmer"),
+        ("water_shallow", "clear shallow turquoise water over sand, light ripples", 32, "tile_shimmer"),
+        ("water_deep", "deep dark blue sea water with small wave crests", 32, "tile_flow"),
+        ("water_river", "flowing blue river water with white streaks", 32, "tile_flow"),
+        ("lava", "glowing molten lava with dark crust", 32, "tile_flow"),
+    ],
     "terrain": [
         ("boulder", "a large weathered grey granite boulder with moss patches", 40, None),
         ("rock_cluster", "a cluster of three mossy grey rocks of different sizes", 26, None),
@@ -306,6 +341,73 @@ def animate(sp, mode, n=4):
     return frames
 
 
+def seamless(img):
+    """1024 texture -> tileable: blend it with its half-offset copy, the copy weighted near the edges (where the
+    original's seams would show)."""
+    a = np.asarray(img.convert("RGB")).astype(np.float32)
+    h, w = a.shape[:2]
+    b = np.roll(np.roll(a, h // 2, 0), w // 2, 1)
+    yy, xx = np.mgrid[0:h, 0:w]
+    d = np.minimum(np.minimum(xx, w - 1 - xx) / (w / 2.0), np.minimum(yy, h - 1 - yy) / (h / 2.0))
+    wt = np.clip(d * 2.2, 0, 1)[..., None]                 # the original in the middle, the copy at the edges
+    return Image.fromarray((a * wt + b * (1 - wt)).astype(np.uint8))
+
+
+def tile_frames(tile, mode, n=4):
+    """Seamless animation of a tile: everything wraps (np.roll), so frames tile too."""
+    base = np.asarray(tile).astype(np.float32)
+    h, w = base.shape[:2]
+    yy, xx = np.mgrid[0:h, 0:w]
+    out = []
+    for f in range(n):
+        ph = 2 * np.pi * f / n
+        if mode == "tile_flow":
+            fr = np.roll(base, f * (h // n), axis=0)
+        else:
+            fr = base.copy()
+        k = 2 * np.pi / w
+        amp = 0.10 if mode == "tile_sway" else 0.14
+        wave = 1 + amp * np.sin(xx * k * 2 + yy * k * (1 if mode == "tile_sway" else 2) + ph)
+        fr = np.clip(fr * wave[..., None], 0, 255)
+        out.append(Image.fromarray(fr.astype(np.uint8)))
+    return out
+
+
+def draw_tile(d, key, prompt, size, anim, seed0=1):
+    for k in range(N_CAND):
+        if os.path.exists(os.path.join(d, "cand_%d.png" % k)):
+            continue
+        seed = (zlib.crc32(key.encode()) % 9000 + seed0) * 100 + k
+        big = gen(TILE_STYLE + ", " + prompt, TILE_NEG, seed)
+        big.save(os.path.join(d, "big_%d.png" % k))
+        sm = seamless(big)
+        for px in (32, 16):
+            t = sm.resize((px, px), Image.BOX).quantize(16, method=Image.Quantize.MEDIANCUT).convert("RGB")
+            t.save(os.path.join(d, "tile%d_%d.png" % (px, k)))
+            if anim and px == 32:
+                fr = tile_frames(t, anim)
+                strip = Image.new("RGB", (px * len(fr), px))
+                for i, f in enumerate(fr):
+                    strip.paste(f, (i * px, 0))
+                strip.save(os.path.join(d, "anim_%d.png" % k))
+                gif = [Image.new("RGB", (px * 3, px * 3)) for _ in fr]
+                for g_, f in zip(gif, fr):
+                    for ty in range(3):
+                        for tx in range(3):
+                            g_.paste(f, (tx * px, ty * px))
+                gif = [g_.resize((px * 9, px * 9), Image.NEAREST).convert("P", palette=Image.ADAPTIVE) for g_ in gif]
+                gif[0].save(os.path.join(d, "anim_%d.gif" % k), save_all=True, append_images=gif[1:], duration=180,
+                            loop=0)
+        prev = Image.new("RGB", (32 * 3, 32 * 3))                      # a 3x3 repeat shows the seams (if any)
+        t32 = Image.open(os.path.join(d, "tile32_%d.png" % k))
+        for ty in range(3):
+            for tx in range(3):
+                prev.paste(t32, (tx * 32, ty * 32))
+        prev.save(os.path.join(d, "cand_%d.png" % k))                  # last: marks the candidate finished
+        log("tiles", key, "candidate", k)
+    open(os.path.join(d, "done"), "w").write("1")
+
+
 def item_dir(cat, key):
     return os.path.join(OUT, cat, key)
 
@@ -315,6 +417,8 @@ def draw_item(cat, key, prompt, height, anim, seed0=1):
     os.makedirs(d, exist_ok=True)
     if os.path.exists(os.path.join(d, "done")):
         return
+    if cat == "tiles":
+        return draw_tile(d, key, prompt, height, anim, seed0)
     pos = STYLE + ", " + prompt
     for k in range(N_CAND):
         if os.path.exists(os.path.join(d, "cand_%d.png" % k)):
