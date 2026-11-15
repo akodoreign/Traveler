@@ -619,6 +619,9 @@ def contact(key, before, after, am, frames):
 
 
 def install(key, sheet, out):
+    if os.path.exists(os.path.join(ROOT, "_art", "preview", "fixsheet", sheet[:-4] + "_before.png")):
+        log("skip install %s: tools/fix_sheet.py owns it (delete its _before.png to take this art)" % sheet)
+        return
     os.makedirs(BACKUP, exist_ok=True)
     b = os.path.join(BACKUP, sheet)
     if not os.path.exists(b):

@@ -53,7 +53,10 @@ def clean(fr, ink, min_px=6):
     return out
 
 
-def denoise(fr, ink):
+GLARE = {"trav_natsuko"}       # sheets whose dark armour carries white glare patches (user 2026-11-15 marks)
+
+
+def denoise(fr, ink, glare=False):
     """(user 2026-11-15, marked shots) generator noise inside the figure, after the palette lock:
     - a lone pixel whose colour appears nowhere else in its 3x3 takes the colour most of its neighbours share;
     - a small bright smear (<= 14 px) inside dark armour, not touching the edge (a spear tip) and not inside skin
@@ -83,6 +86,13 @@ def denoise(fr, ink):
     is_ink = np.all(out[..., :3] == np.array(ink[:3], np.uint8), -1)
     # (only grey-white noise: a lit face, an eye, a glowing orb are coloured or framed by outline ink - keep those)
     bright = solid & (lum > 560) & (sat < 40)
+    if glare:                                   # (opt-in per sheet: dark-armour figures; orbs / beards elsewhere)
+        bright = solid & (lum > 540) & (sat < 60)
+        # a glare spot plus the light grey halo it sits in (judged as one patch, so the halo isn't the ground)
+        light = solid & (lum > 300) & (sat < 60)
+        ln, llab = cv2.connectedComponents(light.astype(np.uint8), connectivity=8)
+        seeds = np.unique(llab[bright])
+        bright = np.isin(llab, seeds[seeds > 0])
     n, lab, st, _ = cv2.connectedComponentsWithStats(bright.astype(np.uint8), connectivity=8)
     edge_near = cv2.dilate((~solid).astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)
     # the torso: the biggest blob left after erosion (a staff is thin, so its orb drops off and is never "noise")
@@ -93,10 +103,26 @@ def denoise(fr, ink):
         torso = cv2.dilate((blab == 1 + bst[1:, cv2.CC_STAT_AREA].argmax()).astype(np.uint8), np.ones((3, 3), np.uint8),
                            iterations=3).astype(bool)
     for k in range(1, n):
-        if st[k, cv2.CC_STAT_AREA] > 14:
-            continue
+        area = st[k, cv2.CC_STAT_AREA]
         m = lab == k
-        if not (m & torso).all():
+        if glare and area <= 60 and not (m & ~torso).any():
+            # (user 2026-11-15, Natsuko marks 2) a white / blue-grey glare patch inside dark armour, even at the
+            # outline (a collar plate, a foot): each pixel takes the colour of the nearest armour pixel around it
+            ring = cv2.dilate(m.astype(np.uint8), np.ones((5, 5), np.uint8)).astype(bool) & ~m & solid
+            body0 = ring & ~is_ink
+            body = body0 & (sat < 60)                                      # the grey armour, not the neck skin
+            if body.sum() >= 6 and body.sum() >= 0.5 * body0.sum() and lum[body].mean() <= 330 \
+                    and sat[body].mean() <= 45:
+                _d, lb = cv2.distanceTransformWithLabels((~body).astype(np.uint8), cv2.DIST_L2, 3,
+                                                         labelType=cv2.DIST_LABEL_PIXEL)
+                ys, xs = np.nonzero(body)
+                src = np.zeros((lb.max() + 1, 3), np.uint8)
+                src[lb[ys, xs]] = out[ys, xs, :3]
+                out[m, :3] = src[lb[m]]
+            continue
+        if area > 14:
+            continue
+        if (m & ~torso).any():
             continue                                                       # off the body: an orb, a blade
         if (m & edge_near).any():
             continue                                                       # touches the outside: a tip, a rim light
@@ -189,6 +215,7 @@ def fit(fr, ref_box):
 def main():
     key = sys.argv[1]
     install = "--install" in sys.argv
+    glare = "--glare" in sys.argv or key in GLARE
     j = json.load(open(os.path.join(RES, "enemy_pic.json"), encoding="utf-8"))
     ep = next(e for e in j.values() if isinstance(e, dict) and e.get("pic3d", "").endswith("/%s.png" % key))
     cols, rows = ep["aniuv"]
@@ -211,7 +238,7 @@ def main():
     ink = lum[lum.sum(1).argmin()].astype(np.uint8).tolist() + [255]       # the sheet's darkest ink
     enh = {fc: clean(frames[i], ink) for fc, i in refs.items()}            # 1. the enhanced references
     pal = palette_of(list(enh.values()))
-    enh = {fc: denoise(lock(f, pal), ink) for fc, f in enh.items()}
+    enh = {fc: denoise(lock(f, pal), ink, glare) for fc, f in enh.items()}
     ref_box = {fc: bbox(f) for fc, f in enh.items()}
     fixed = []
     for i, fr in enumerate(frames):
@@ -224,7 +251,7 @@ def main():
             fixed.append(enh[fc])
             continue
         f2 = clean(fr, ink)
-        f2 = denoise(lock(f2, pal), ink)                                    # 2. palette lock + noise
+        f2 = denoise(lock(f2, pal), ink, glare)                                    # 2. palette lock + noise
         if aid in UPRIGHT and fc in ref_box:
             f2 = fit(f2, ref_box[fc])                                       # 3. size and foot line
         fixed.append(f2)

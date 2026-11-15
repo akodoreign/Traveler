@@ -37,8 +37,12 @@ def main():
         if not (os.path.exists(os.path.join(d, "complete")) or "--started" in a or key in want):
             continue
         sheet = json.load(open(spec, encoding="utf-8"))["sheet"]
+        fixed_ = os.path.join(HERE, "..", "_art", "preview", "fixsheet", sheet[:-4] + "_before.png")
         if "__" in key:                                   # a look spec carries its base sheet name: the look sheet is
             sheet = "trav_%s.png" % key                    # trav_<key> (gen_pixeldrive worklist)
+        fixed_ = os.path.join(HERE, "..", "_art", "preview", "fixsheet", sheet[:-4] + "_before.png")
+        if os.path.exists(fixed_) and key not in want:   # (lead 11-15) tools/fix_sheet.py owns this sheet now: its
+            continue                                      # _before.png is the original; delete it to reinstall
         if not os.path.exists(os.path.join(ORIG, sheet)):
             shutil.copy(os.path.join(PIC, sheet), os.path.join(ORIG, sheet))
         im = Image.open(os.path.join(ORIG, sheet)).convert("RGBA")
