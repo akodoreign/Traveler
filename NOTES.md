@@ -4966,3 +4966,7 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
   (finale beats only in the finale; road owner = first traveler). Details: _art/preview/agents/team/tester.md.
 - 2026-11-15 00:45: version 25 (d20be03) - two harmonised side-cast sheets + tools/gen_foe_art.py (WIP). (lead, scheduled push)
 - 2026-11-15 07:15: version 26 - first drawn new-foe sprites (5) + 3 AI enemy sheets. (lead, scheduled push)
+
+## 2026-11-15: GPU queues resume after restart + environment art queue
+- tools/start_queues.ps1 (logon task "Rokugan GPU queues", 2 min after logon; tools/install_queue_task.ps1 registers it): resumes gen_pixeldrive, pixelai_redo (keys in _art/preview/agents/pixelai/redo_queue.txt without a sheets/<key>/complete marker) and gen_envart. Log: _art/preview/agents/pixelai/start_queues.log.
+- tools/gen_envart.py: 141 environment sprites (terrain, animated grass/water, buildings/castles, modular wall/roof/fence pieces, paths, interiors) as 4 candidates each -> _art/envart/<cat>/<key>/, contact_<cat>.png. Waits for pixeldrive + redo to finish. Placing picks in maps is a later by-eye step.

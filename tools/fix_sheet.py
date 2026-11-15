@@ -266,11 +266,98 @@ def head_transplant(fr, ref):
     return out
 
 
+MOVE = {"walk", "run", "walk_f", "run_f", "walk_b", "run_b"}   # (user 2026-11-15 video: the side walk / run were
+CUT = 0.56                                           # sword-lunges and staff swings, a new pose every frame)
+
+
+def still_from_ref(ref, aid, k, n):
+    """(user 2026-11-15: "look at how the shirts change to different types in all the npc animations") a standing /
+    talking / nodding frame IS the stand frame - the outfit can't drift - with the head moved: a nod dips it 1-2 px
+    through the middle of the animation, talking bobs it 1 px on alternate frames."""
+    out = ref.copy()
+    rb = bbox(ref)
+    if not rb:
+        return out
+    hh = max(4, int(round((rb[3] - rb[1] + 1) * HEAD)))
+    if aid.startswith("stand"):
+        dy = (k // 2) % 2                                  # breathing: the head settles 1 px, then back
+    elif aid.startswith("nod"):
+        dy = (0, 1, 2, 2, 1, 0)[min(5, int(6 * k / max(1, n)))]
+    else:
+        dy = k % 2
+    if not dy:
+        return out
+    y0, y1 = max(0, rb[1] - 3), rb[1] + hh
+    band = ref[y0:y1].copy()
+    out[y0:y1 + dy] = np.where(ref[y0:y1 + dy, :, 3:4] > 0, out[y0:y1 + dy], 0)
+    out[y0:y0 + dy] = 0                                    # the top rows the head leaves
+    dst = out[y0 + dy:y1 + dy]
+    m = band[..., 3] > 0
+    dst[m] = band[m]
+    return out
+
+
+def body_transplant(fr, ref, cut=CUT, bob_max=2):
+    """(user 2026-11-15, the walking video) the stand frame's whole upper body (head, arms, the weapon as it is held
+    standing) on a walk / run frame, which keeps only its own legs: one character whose legs move, not a new drawing
+    every frame. The waist line follows the walk frame's own height (the step bob), capped at bob_max px."""
+    rb, fb = bbox(ref), bbox(fr)
+    if not rb or not fb:
+        return fr
+    h, w = fr.shape[:2]
+    k3 = np.ones((3, 3), np.uint8)
+    rh, fh_ = rb[3] - rb[1] + 1, fb[3] - fb[1] + 1
+    rcut = rb[1] + int(round(rh * cut))
+    # where the waist sits in this frame, measured up from its feet; the bob is capped
+    drop = int(np.clip((rh - fh_) * cut, -bob_max, bob_max))
+    fcut = rb[3] - (rb[3] - rcut) + drop                   # feet are on the same line after fit()
+    fcut = int(np.clip(fcut, 1, h - 2))
+    # the legs: this frame below the waist, thin things (a blade, a staff end) dropped
+    solid = (fr[..., 3] >= 128).astype(np.uint8)
+    low = solid.copy()
+    low[:fcut] = 0
+    op = cv2.dilate(cv2.erode(low, k3, iterations=1), k3, iterations=1)
+    n, lab, st, _ = cv2.connectedComponentsWithStats(op, connectivity=8)
+    keep = np.zeros_like(low, bool)
+    for i in range(1, n):
+        if st[i, cv2.CC_STAT_AREA] >= 12 and st[i, cv2.CC_STAT_TOP] + st[i, cv2.CC_STAT_HEIGHT] >= fb[3] - 2:
+            keep |= lab == i                               # leg masses that reach the feet
+    keep = cv2.dilate(keep.astype(np.uint8), k3, iterations=1).astype(bool) & (low > 0)
+    keep |= (fr[..., 3] > 0) & (fr[..., 3] < 128)          # (the soft ground shadow stays)
+    out = np.zeros_like(fr)
+    out[keep] = fr[keep]
+    # (user 2026-11-15: "the shirts change to different types") the legs wear the stand frame's trousers: every leg
+    # colour snaps to the nearest colour of the stand frame's lower body
+    rlow = ref[rcut:][ref[rcut:, :, 3] >= 128][:, :3].astype(np.float32)
+    legs = keep & (fr[..., 3] >= 128)
+    if len(rlow) and legs.any():
+        pal = np.unique(rlow, axis=0)
+        px = out[legs][:, :3].astype(np.float32)
+        best = ((px[:, None, :] - pal[None, :, :]) ** 2).sum(-1).argmin(1)
+        out[legs, :3] = pal[best].astype(np.uint8)
+    # centre the stand body over the legs (the hip row's mass centre)
+    def hip_cx(a, row):
+        xs = np.nonzero(a[max(0, row):row + 3].any(0))[0]
+        return (xs.min() + xs.max()) / 2.0 if len(xs) else None
+    lc = hip_cx(keep, fcut)
+    rsol = ref[..., 3] >= 128
+    rc = hip_cx(rsol, rcut)
+    dx = int(round(lc - rc)) if lc is not None and rc is not None else 0
+    dx = int(np.clip(dx, -3, 3))
+    dy = fcut - rcut
+    ys, xs = np.nonzero(ref[:rcut + 1, :, 3] > 0)          # the upper body, one row of overlap at the waist
+    ty, tx = ys + dy, xs + dx
+    ok = (ty >= 0) & (ty < h) & (tx >= 0) & (tx < w)
+    out[ty[ok], tx[ok]] = ref[ys[ok], xs[ok]]
+    return out
+
+
 def main():
     key = sys.argv[1]
     install = "--install" in sys.argv
     glare = "--glare" in sys.argv or key in GLARE
     st_path = os.path.join(OUT, "stationary.txt")
+    moves = "--no-outfit" not in sys.argv              # (user 2026-11-15: on for every sheet)
     heads = "--head" in sys.argv or (os.path.exists(st_path) and key in open(st_path).read().split())
     j = json.load(open(os.path.join(RES, "enemy_pic.json"), encoding="utf-8"))
     ep = next(e for e in j.values() if isinstance(e, dict) and e.get("pic3d", "").endswith("/%s.png" % key))
@@ -281,14 +368,28 @@ def main():
     fh, fw = sheet.shape[0] // rows, sheet.shape[1] // cols
     frames = [sheet[(i // cols) * fh:(i // cols + 1) * fh, (i % cols) * fw:(i % cols + 1) * fw].copy()
               for i in range(cols * rows)]
-    role = {}                                                               # frame -> its animation id
+    role, span = {}, {}                                                     # frame -> its animation id / range
     for a in ep["animap"]:
         for f in range(a["st"], a["en"]):
             role.setdefault(f, a["id"])
+            span.setdefault(f, (a["st"], a["en"]))
     refs = {}
     for a in ep["animap"]:
         if a["id"] in ("stand", "stand_f", "stand_b"):
             refs[facing(a["id"])] = a["st"]
+    # (side_tama: its first back frame is bare-backed, no hat - an outfit outlier) the front / back reference is the
+    # stand frame whose colours best match the side reference's outfit, not simply the first one
+    def hist(f):
+        px = f[f[..., 3] >= 128][:, :3] // 32
+        hh_ = np.bincount((px[:, 0] * 64 + px[:, 1] * 8 + px[:, 2]).astype(int), minlength=512).astype(float)
+        return hh_ / max(1.0, hh_.sum())
+    if "side" in refs:
+        hs = hist(frames[refs["side"]])
+        for a in ep["animap"]:
+            if a["id"] in ("stand_f", "stand_b"):
+                cand = [i for i in range(a["st"], a["en"]) if (frames[i][..., 3] > 0).any()]
+                if cand:
+                    refs[facing(a["id"])] = min(cand, key=lambda i: np.abs(hist(frames[i]) - hs).sum())
     lit = [f for f in frames if (f[..., 3] > 0).any()]
     lum = np.concatenate([f[f[..., 3] > 0][:, :3] for f in lit]).astype(int)
     ink = lum[lum.sum(1).argmin()].astype(np.uint8).tolist() + [255]       # the sheet's darkest ink
@@ -310,7 +411,12 @@ def main():
         f2 = denoise(lock(f2, pal), ink, glare)                                    # 2. palette lock + noise
         if aid in UPRIGHT and fc in ref_box:
             f2 = fit(f2, ref_box[fc])                                       # 3. size and foot line
-        if heads and aid in STILL and fc in enh:
+        if moves and aid in MOVE and fc in enh:
+            f2 = body_transplant(f2, enh[fc])                               # 5. one body, moving legs
+        if moves and aid in STILL and fc in enh:                            # 6. one outfit: still frames are the
+            st_, en_ = span.get(i, (i, i + 1))                              #    stand frame, the head moving
+            f2 = still_from_ref(enh[fc], aid, i - st_, en_ - st_)
+        elif heads and aid in STILL and fc in enh:
             f2 = head_transplant(f2, enh[fc])                               # 4. stationary NPCs: one steady face
         fixed.append(f2)
     os.makedirs(OUT, exist_ok=True)
