@@ -501165,12 +501165,26 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "rei"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Your fish, my lord.",
 											"name": "Shosuro Mitsue",
 											"uiclose": 2,
 											"emo": "neutral"
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -620283,12 +620297,26 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "laugh"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "I'm Ide, Tsune-sama. Being liked is our only weapon. I keep it sharp.",
 											"name": "Ide Tamotsu",
 											"uiclose": 2,
 											"emo": "happy"
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -637033,12 +637061,26 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "rei"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "I'm sure he does, my lady.",
 											"name": "Ide Tamotsu",
 											"uiclose": 2,
 											"emo": "happy"
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -639470,12 +639512,26 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "rei"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Sensei. Wiser than ever.",
 											"name": "Ide Tamotsu",
 											"uiclose": 2,
 											"emo": "happy"
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -668716,12 +668772,26 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "laugh"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Exactly.",
 											"name": "Ide Tamotsu",
 											"uiclose": 2,
 											"emo": "happy"
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -706028,12 +706098,26 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "laugh"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "I did. It just wasn't your dock yet.",
 											"name": "Sayo",
 											"uiclose": 2,
 											"emo": "happy"
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -710307,12 +710391,26 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "laugh"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Throw some silver to the musicians. I'll know what it means.",
 											"name": "Sayo",
 											"uiclose": 2,
 											"emo": "happy"
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
 										},
 										{
 											"cmd": "cmd_if",
@@ -748210,12 +748308,26 @@
 											"cmdblocks": [
 												[
 													{
+														"cmd": "cmd_anime",
+														"who": 1,
+														"ani": {
+															"id": "laugh"
+														}
+													},
+													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "Come on. The sand's warm.",
 														"name": "Sayo",
 														"uiclose": 2,
 														"emo": "happy"
+													},
+													{
+														"cmd": "cmd_anime",
+														"who": 1,
+														"ani": {
+															"id": "stand"
+														}
 													},
 													{
 														"cmd": "cmd_compute",
@@ -791010,12 +791122,26 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_anime",
+								"who": 1,
+								"ani": {
+									"id": "rei"
+								}
+							},
+							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Of course, holy one. Quietly. Tonight. Right.",
 								"name": "Sayo",
 								"uiclose": 2,
 								"emo": "happy"
+							},
+							{
+								"cmd": "cmd_anime",
+								"who": 1,
+								"ani": {
+									"id": "stand"
+								}
 							}
 						]
 					}
@@ -791477,12 +791603,26 @@
 											"emo": "happy"
 										},
 										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "laugh"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Sayo's the only one I picked. I'll keep it.",
 											"name": "Sayo",
 											"uiclose": 2,
 											"emo": "determined"
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -797043,12 +797183,26 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "laugh"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Ume-baa!",
 											"name": "Sayo",
 											"uiclose": 2,
 											"emo": "happy"
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -806298,12 +806452,26 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "point"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "It is. (pointing at Akari) There's a true line. It goes from her to the fire.",
 											"name": "Sayo",
 											"uiclose": 2,
 											"emo": "determined"
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -850786,11 +850954,25 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "facepalm"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Natsuko thinks about grey mud on a hem, and says nothing.",
 											"name": "",
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
 										},
 										{
 											"cmd": "cmd_compute",

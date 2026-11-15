@@ -390,16 +390,17 @@ def arm_colours(master, lab, J0, head_c):
     return sleeve, skin, ink
 
 
-def draw_arm_px(out, S, E, H, sleeve, skin, ink):
+def draw_arm_px(out, S, E, H, sleeve, skin, ink, z=1):
     """A clean pixel-art arm: sleeve capsules shoulder->elbow (r 2) and elbow->hand (r 1.5), a darker underside,
-    a 1-px ink outline, a 2x2 skin hand."""
+    a 1-px ink outline, a 2x2 skin hand. z=2: drawn on a 2x canvas (joints already x2) - the same arm with a 1-px
+    outline at the finer grid (the HD sheets' extra detail)."""
     h, w = out.shape[:2]
     yy, xx = np.mgrid[0:h, 0:w]
     px = np.stack([xx.ravel(), yy.ravel()], 1).astype(float)
     d1 = seg_dist(px, S, E).reshape(h, w)
     d2 = seg_dist(px, E, H).reshape(h, w)
-    body = (d1 <= 2.0) | (d2 <= 1.5)
-    edge = ((d1 <= 3.0) | (d2 <= 2.5)) & ~body
+    body = (d1 <= 2.0 * z) | (d2 <= 1.5 * z)
+    edge = ((d1 <= 2.0 * z + 1) | (d2 <= 1.5 * z + 1)) & ~body
     dark = tuple(int(c * 0.7) for c in sleeve)
     under = body & (np.roll(body, -1, 0) == 0)             # the lowest sleeve row: shade
     out[edge & (out[..., 3] < 128)] = list(ink) + [255]
@@ -407,14 +408,51 @@ def draw_arm_px(out, S, E, H, sleeve, skin, ink):
     out[body] = list(sleeve) + [255]
     out[under & body] = list(dark) + [255]
     hx, hy = int(round(H[0])), int(round(H[1]))
-    for dy in (0, 1):
-        for dx in (0, 1):
+    r = 1 if z == 1 else 2
+    for dy in range(-r + 1, r + 1):
+        for dx in range(-r + 1, r + 1):
             if 0 <= hy + dy - 1 < h and 0 <= hx + dx - 1 < w:
                 out[hy + dy - 1, hx + dx - 1] = list(skin) + [255]
+    if z > 1:                                              # a knuckle shade on the HD hand
+        sk2 = tuple(int(c * 0.82) for c in skin)
+        if 0 <= hy + r - 1 < h and 0 <= hx - r < w:
+            out[hy + r - 1, max(0, hx - r):hx + r] = list(sk2) + [255]
     return out
 
 
-def gesture_frame(master, lab, J0, J1, tilt, neck, head_c):
+def gesture_frames_hd(key, master, z=2):
+    """The gesture row for the HD (z x) sheet: the rig body at 1x, upscaled (nearest), then the gesturing arms drawn
+    at the z-times grid (finer outline and hands)."""
+    T = traveler(key)
+    if T is None or master is None:
+        return None
+    k0, i0 = s2.FRAMES[0]
+    rig0 = np.asarray(s2.frame(T, k0, i0))
+    rbox, mbox = bbox(rig0[..., 3] >= 128), bbox(master[..., 3] >= 128)
+    if not rbox or not mbox:
+        return None
+    J0 = to_master_space(joints(T, k0, i0), rbox, mbox)
+    lab = labels(master, J0)
+    names = [p[0] for p in PARTS]
+    hy, hx = np.nonzero((lab == names.index("body")) & (np.arange(master.shape[0])[:, None] < J0["shm"][1] - 1))
+    head_c = np.array([hx.mean(), hy.mean()]) if len(hx) else J0["shm"] + np.array([0.0, -8.0])
+    neck = J0["shm"] + np.array([0.0, -1.0])
+    sleeve, skin, ink = arm_colours(master, lab, J0, head_c)
+    out = []
+    for name, n in GESTURES:
+        for k in range(n):
+            J, tilt = gesture_joints(J0, head_c, name, k, n)
+            f1 = gesture_frame(master, lab, J0, J, tilt, neck, head_c, arms=False)
+            fz = np.repeat(np.repeat(f1, z, 0), z, 1)
+            c = (z - 1) / 2.0                              # pixel centres on the finer grid
+            if np.linalg.norm(J["ha_b"] - J0["ha_b"]) > 1.5:
+                fz = draw_arm_px(fz, J["sh_b"] * z + c, J["el_b"] * z + c, J["ha_b"] * z + c, sleeve, skin, ink, z)
+            fz = draw_arm_px(fz, J["sh_f"] * z + c, J["el_f"] * z + c, J["ha_f"] * z + c, sleeve, skin, ink, z)
+            out.append(fz)
+    return out
+
+
+def gesture_frame(master, lab, J0, J1, tilt, neck, head_c, arms=True):
     """Like rig_frame, plus: the head (body pixels above the neck) tilts about the neck; the weapon stands upright
     behind the body, held at the back hand (the front arm is busy); the front arm draws over the head."""
     h, w = master.shape[:2]
@@ -457,10 +495,11 @@ def gesture_frame(master, lab, J0, J1, tilt, neck, head_c):
     out = fill_seams(out, master[..., 3] > 0)
     # the gesturing arm(s), drawn clean in the character's colours (the AI drawings paint the arms over the chest,
     # so there is no clean arm to cut out and move)
-    sleeve, skin, ink = arm_colours(master, lab, J0, head_c)
-    if np.linalg.norm(J1["ha_b"] - J0["ha_b"]) > 1.5:
-        out = draw_arm_px(out, J1["sh_b"], J1["el_b"], J1["ha_b"], sleeve, skin, ink)
-    out = draw_arm_px(out, J1["sh_f"], J1["el_f"], J1["ha_f"], sleeve, skin, ink)
+    if arms:
+        sleeve, skin, ink = arm_colours(master, lab, J0, head_c)
+        if np.linalg.norm(J1["ha_b"] - J0["ha_b"]) > 1.5:
+            out = draw_arm_px(out, J1["sh_b"], J1["el_b"], J1["ha_b"], sleeve, skin, ink)
+        out = draw_arm_px(out, J1["sh_f"], J1["el_f"], J1["ha_f"], sleeve, skin, ink)
     import cv2
     solid = (out[..., 3] >= 128).astype(np.uint8)
     n, cc, st, _ = cv2.connectedComponentsWithStats(solid, connectivity=8)

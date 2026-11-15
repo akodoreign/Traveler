@@ -704,6 +704,27 @@ def main():
         print("installed", path)
     else:
         Image.fromarray(new).save(os.path.join(OUT, key + "_fixed.png"))
+    # (user 2026-11-15: "upscale these a small bit to use in game ... you may have to scale riggings as well") the HD
+    # sheet the game shows: this sheet at 2x (nearest) + a 12th row of conversation gestures (rig body at 1x, arms
+    # drawn on the 2x grid). The 1x sheet stays the tools' working copy; tools/hd_sheets.py points the game at this.
+    hd = None
+    if moves and "side" in enh:
+        try:
+            import rig_anim
+            g = rig_anim.gesture_frames_hd(key, enh["side"], 2)
+            if g:
+                up = np.repeat(np.repeat(new, 2, 0), 2, 1)
+                row = np.zeros((fh * 2, up.shape[1], 4), np.uint8)
+                for q, f in enumerate(g[:cols]):
+                    row[:, q * fw * 2:(q + 1) * fw * 2] = f
+                hd = np.concatenate([up, row], 0)
+        except Exception as ex:
+            print("hd skipped:", ex)
+    if hd is not None:
+        hd_dir = os.path.join(RES, "enemy_pic2x") if install else OUT
+        os.makedirs(hd_dir, exist_ok=True)
+        from atomic_io import save_png
+        save_png(Image.fromarray(hd), os.path.join(hd_dir, key + (".png" if install else "_hd.png")))
     print(key, "frames", len(frames), "palette", len(pal), "upright fitted", sum(1 for i in role if role[i] in UPRIGHT), "flow", nflow[0], "fallback", nflow[1], "rig", nflow[2])
 
 

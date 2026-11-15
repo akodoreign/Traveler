@@ -412,11 +412,75 @@ FULL_NAMES = {"Oni No Kommei": "Oni no Kommei", "Natsuko": "Hiruma Natsuko", "Re
               "Goro": "Hiruma Goro"}
 
 
+def gesture(gid, who=1):
+    """(user 2026-11-15: "now we can add animations to even conversations ... the pixel art can do a face palm")
+    play a conversation gesture on the player (who=1) or this event (who=2): facepalm, shrug, crossarms, scratch,
+    point (HD sheets' gesture row, tools/rig_anim.py GESTURES) or any sheet animation (nod, think, surprise...)."""
+    return {"cmd": "cmd_anime", "who": who, "ani": {"id": gid}}
+
+
+def say_g(name, text, gid, who=1):
+    """A line with a gesture: the speaker gestures, speaks, then stands again."""
+    return [gesture(gid, who), say(name, text), gesture("stand", who)]
+
+
+CUE_GEST = [(r"face ?palm|face in (his|her) hands?|palm to (his|her) face", "facepalm"),
+            (r"shrug", "shrug"), (r"arms folded|folds (his|her) arms|cross(es|ing)? (his|her) arms", "crossarms"),
+            (r"scratch", "scratch"), (r"\bpoint", "point"), (r"laugh|grinning|\bgrin", "laugh"),
+            (r"\bbow", "rei"), (r"\bnod", "nod"), (r"thinking|pondering|frown", "think"),
+            (r"startled|surprised|blinks|gasp", "surprise")]
+
+
 def say(name, text):
+    gid = None                                   # (user 2026-11-15) an acting cue becomes a gesture (gesture_pass)
+    for cue in re.findall(r"\(([^()]{2,60})\)", text):
+        for pat, g_ in CUE_GEST:
+            if re.search(pat, cue.lower()):
+                gid = gid or g_
     text = _clean(text)                          # acting cues out, like the production-script lines
     text = re.sub(r"\s*\([A-Z][^()]*\)\s*$", "", text)   # a trailing stage direction: "Yes, my lady. (He does not stop.)"
-    return {"cmd": "cmd_showmsg", "key": "message_talk", "text": text, "name": FULL_NAMES.get(name, name),
-            "uiclose": 2}
+    d = {"cmd": "cmd_showmsg", "key": "message_talk", "text": text, "name": FULL_NAMES.get(name, name),
+         "uiclose": 2}
+    if gid:
+        d["_g"] = gid
+    return d
+
+
+MAP_PATH = {}                                    # map -> traveler pid (marker_pass), for gesture_pass
+
+
+def gesture_pass(mp):
+    """A line whose acting cue implies a gesture ("(shrugging)", "(laughing)", "(bowing)") plays it - only when the
+    speaker is the traveler whose road the map is (the player: cmd_anime who=1; anyone else can't be targeted
+    safely from a scene). The marker key is removed everywhere."""
+    pl = json.load(open(os.path.join(PROJ, "data", "player.json"), encoding="utf-8"))
+    pname = {pid: (p.get("name") or {}).get("en") if isinstance(p.get("name"), dict) else p.get("name")
+             for pid, p in pl.items() if isinstance(p, dict)}
+    n = 0
+
+    def walk(o, lead):
+        nonlocal n
+        if isinstance(o, dict):
+            o.pop("_g", None)
+            for v in o.values():
+                walk(v, lead)
+        elif isinstance(o, list):
+            i = 0
+            while i < len(o):
+                c = o[i]
+                if isinstance(c, dict) and c.get("_g"):
+                    g_ = c.pop("_g")
+                    if lead and c.get("name") == lead:
+                        o[i:i + 1] = [gesture(g_), c, gesture("stand")]
+                        n += 1
+                        i += 2
+                walk(o[i] if i < len(o) else None, lead)
+                i += 1
+    for mid, m in mp.items():
+        if not isinstance(m, dict):
+            continue
+        walk(m.get("event"), pname.get(MAP_PATH.get(mid)))
+    print("gesture_pass: %d lines gesture" % n)
 
 
 def full_first(text, named):
@@ -3529,7 +3593,9 @@ CH4_START = [narrate("CHAPTER 4 - The Fairest One of All. (Recommended level 34)
                                      "Every Hiruma at court. You leave today."),
              say("Natsuko", "Married? To whom?"),
              say("Hiruma messenger", "Asako Kuhime. Lady Mutsuye's dearest friend."),
+             gesture("facepalm"),                                           # (user: "a face palm as well")
              narrate("Natsuko thinks about grey mud on a hem, and says nothing."),
+             gesture("stand"),
              setf("G270"), go("M146", 20, 11, padded=False)]
 S01_CH4 = ch4("S01", stop_at="[IF same_woman_proven]") + [
     narrate("(Free roam in the castle town: the stalls sell Kaiu-forged gear. Night will fall when you return to the "
@@ -19101,7 +19167,8 @@ def marker_pass(mp):
                     if reqs and reqs[0].get("op") == "==" and reqs[0].get("rvar") is False:
                         beats.append([mid, round(x, 2), round(z, 2),
                                       [[r_.get("lvar"), r_.get("op"), r_.get("rvar")] for r_ in reqs]])
-    path_of = {}
+    path_of = MAP_PATH
+    path_of.clear()
     # (tester 2026-11-14: one road after another let the Crab road flood every map its story links reach - the Crane
     # maps came out "P100", and no map was Crane's or Phoenix's) all eight roads at once, breadth-first: a map belongs
     # to the road that reaches it first
@@ -19448,6 +19515,7 @@ def register(specs, events):
     route_pass()
     resume_pass(mp)
     marker_pass(mp)
+    gesture_pass(mp)
     json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="	")
 
 

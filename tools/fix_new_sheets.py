@@ -95,6 +95,9 @@ def one_pass(workers, dry):
     if todo:
         subprocess.run([PY, "-E", os.path.join(HERE, "gen_portraits.py")], capture_output=True, cwd=ROOT)
         log("portraits regenerated")
+    # every pass: point the game at the HD sheets (also repairs entries another tool rewrote back to 1x)
+    rc, out, err = run([os.path.join(HERE, "hd_sheets.py")])
+    log("hd:", out if rc == 0 else err)
 
 
 def main():
