@@ -16,6 +16,8 @@ import gen_maps as gm  # noqa: E402
 
 TOOL = gm.TOOL
 PARTY = ""                                                  # --party P132,P123: these join first (-rtparty)
+DIR = 0.0                                                   # --dir 90: the player faces that way
+ANIM = ""                                                   # --anim facepalm: the player plays it (-rtanim)
 
 
 def snap(mid, x, z, rtvar, wait=4.0):
@@ -43,9 +45,9 @@ def snap(mid, x, z, rtvar, wait=4.0):
         if os.path.exists(raw):
             os.remove(raw)
         proc = engine_lock.launch([os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-map", mid,
-                                 "[%.1f,%.2f,%.1f,0.0]" % (pos[0], pos[1], pos[2]), "-rtvar", rtvar, "-rtfast",
+                                 "[%.1f,%.2f,%.1f,%.1f]" % (pos[0], pos[1], pos[2], DIR), "-rtvar", rtvar, "-rtfast",
                                  "-rtshot", "tmp/rt_shot/snap_%s.raw" % mid, str(int(wait * 1000) + 3000)] +
-                                (["-rtparty", PARTY] if PARTY else []),
+                                (["-rtparty", PARTY] if PARTY else []) + (["-rtanim", ANIM] if ANIM else []),
                                 cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
     t0 = time.time()
     while time.time() - t0 < 90 and not (os.path.exists(raw) and os.path.getsize(raw) > 8):
@@ -73,7 +75,16 @@ def main():
         i = args.index("--vars")
         rtvar = args[i + 1]
         args = args[:i] + args[i + 2:]
-    global PARTY
+    global PARTY, ANIM
+    global DIR
+    if "--dir" in args:
+        i = args.index("--dir")
+        DIR = float(args[i + 1])
+        args = args[:i] + args[i + 2:]
+    if "--anim" in args:
+        i = args.index("--anim")
+        ANIM = args[i + 1]
+        args = args[:i] + args[i + 2:]
     if "--party" in args:
         i = args.index("--party")
         PARTY = args[i + 1]

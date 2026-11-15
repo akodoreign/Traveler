@@ -419,9 +419,21 @@ def gesture(gid, who=1):
     return {"cmd": "cmd_anime", "who": who, "ani": {"id": gid}}
 
 
+GESTURE_MS = {"facepalm": 800, "shrug": 600, "crossarms": 500, "scratch": 450, "point": 400}
+
+
+def gestures(gid, who=1):
+    """A gesture that HOLDS through the next line: the move plays (the engine locks a one-shot animation only while it
+    runs, then the idle takes over), a wait for it, then its looping _hold (the last pose, locked until the event ends
+    or the next animation - gesture("stand") after the line)."""
+    if gid not in GESTURE_MS:
+        return [gesture(gid, who)]
+    return [gesture(gid, who), {"cmd": "cmd_wait", "time": GESTURE_MS[gid]}, gesture(gid + "_hold", who)]
+
+
 def say_g(name, text, gid, who=1):
     """A line with a gesture: the speaker gestures, speaks, then stands again."""
-    return [gesture(gid, who), say(name, text), gesture("stand", who)]
+    return gestures(gid, who) + [say(name, text), gesture("stand", who)]
 
 
 CUE_GEST = [(r"face ?palm|face in (his|her) hands?|palm to (his|her) face", "facepalm"),
@@ -471,9 +483,10 @@ def gesture_pass(mp):
                 if isinstance(c, dict) and c.get("_g"):
                     g_ = c.pop("_g")
                     if lead and c.get("name") == lead:
-                        o[i:i + 1] = [gesture(g_), c, gesture("stand")]
+                        seq = gestures(g_) + [c, gesture("stand")]
+                        o[i:i + 1] = seq
                         n += 1
-                        i += 2
+                        i += len(seq) - 1
                 walk(o[i] if i < len(o) else None, lead)
                 i += 1
     for mid, m in mp.items():
@@ -3593,7 +3606,7 @@ CH4_START = [narrate("CHAPTER 4 - The Fairest One of All. (Recommended level 34)
                                      "Every Hiruma at court. You leave today."),
              say("Natsuko", "Married? To whom?"),
              say("Hiruma messenger", "Asako Kuhime. Lady Mutsuye's dearest friend."),
-             gesture("facepalm"),                                           # (user: "a face palm as well")
+             *gestures("facepalm"),                                         # (user: "a face palm as well")
              narrate("Natsuko thinks about grey mud on a hem, and says nothing."),
              gesture("stand"),
              setf("G270"), go("M146", 20, 11, padded=False)]

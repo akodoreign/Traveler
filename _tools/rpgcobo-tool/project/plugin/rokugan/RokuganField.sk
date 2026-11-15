@@ -297,7 +297,26 @@ class RTFollowAction extends EventMoveAction
 			printf( "[RT] party + %S LV%d\n", p.name, p.LV);
 		}
 	}
+	//	-rtanim facepalm[,dir]: playtest helper - the player plays that animation about a second after arriving
+	//	(checks the HD sheets' conversation gestures without walking to a scene)
+	i = args.indexOf( "-rtanim");
+	if( i >= 0 && i + 1 < length( args) && !("rtanim_id" in ::Rokugan)) ::Rokugan.rtanim_id <- args[i+1];
 	return _rt_launch2( opt);
+};
+::RPGStage._rt_body_rtanim <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	this._rt_body_rtanim( dt);
+	if( ("rtanim_id" in ::Rokugan) && ::Rokugan.rtanim_id && this["player3d"] && !this["battle"]){
+		::Rokugan.rtanim_t <- (("rtanim_t" in ::Rokugan) ? ::Rokugan.rtanim_t : 0) + 1;
+		if( ::Rokugan.rtanim_t == 60){
+			try{
+				local al = this.player3d.anime2( { id = ::Rokugan.rtanim_id });
+				if( al) al.locked = 1;						//	(as RPGEventRunner.startAnime locks an event's animation)
+				printf( "[RT] rtanim %S %S\n", ::Rokugan.rtanim_id, al ? "locked" : "no layer");
+			}
+			catch( ex){ printexception( ex); }
+		}
+	}
 };
 
 //	Sumai (Natsuko's path action): the bout is fought bare-handed. sumaiBegin swaps the traveler's weapon for

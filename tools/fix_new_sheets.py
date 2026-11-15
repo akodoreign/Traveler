@@ -33,8 +33,8 @@ def log(*a):
 
 def sheets():
     j = json.load(open(os.path.join(RES, "enemy_pic.json"), encoding="utf-8"))
-    ks = {os.path.basename(v["pic3d"])[:-4] for v in j.values()
-          if isinstance(v, dict) and v.get("aniuv") == [14, 11] and v.get("pic3d")}
+    ks = {os.path.basename(v["pic3d"])[:-4] for v in j.values()     # ([14, 12]: entries on the HD sheets)
+          if isinstance(v, dict) and v.get("aniuv") in ([14, 11], [14, 12], [14, 13]) and v.get("pic3d")}
     return sorted(k for k in ks if os.path.exists(os.path.join(RES, "enemy_pic", k + ".png")))
 
 

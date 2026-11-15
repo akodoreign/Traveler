@@ -806459,6 +806459,17 @@
 											}
 										},
 										{
+											"cmd": "cmd_wait",
+											"time": 400
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "point_hold"
+											}
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "It is. (pointing at Akari) There's a true line. It goes from her to the fire.",
@@ -850958,6 +850969,17 @@
 											"who": 1,
 											"ani": {
 												"id": "facepalm"
+											}
+										},
+										{
+											"cmd": "cmd_wait",
+											"time": 800
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "facepalm_hold"
 											}
 										},
 										{

@@ -17,6 +17,7 @@ sys.path.insert(0, HERE)
 RES = os.path.join(HERE, "..", "_tools", "rpgcobo-tool", "project", "resource")
 JP = os.path.join(RES, "enemy_pic.json")
 LOCK = JP + ".lock"
+HD_ROWS = {}
 GESTURES = [("facepalm", 4, 5.0), ("shrug", 3, 5.0), ("crossarms", 2, 4.0), ("scratch", 3, 7.0), ("point", 2, 5.0)]
 
 
@@ -51,24 +52,38 @@ def main():
             if only and key not in only:
                 continue
             hd = os.path.join(RES, "enemy_pic2x", key + ".png")
-            if not os.path.exists(hd) or e.get("aniuv") not in ([14, 11], [14, 12]):
+            if not os.path.exists(hd) or e.get("aniuv") not in ([14, 11], [14, 12], [14, 13]):
                 continue
+            rows = HD_ROWS.get(hd)
+            if rows is None:
+                from PIL import Image
+                with Image.open(hd) as im:
+                    rows = HD_ROWS[hd] = int(round(im.size[1] / 136.0))
             want_pic = "/resource/enemy_pic2x/%s.png" % key
             if "scale1x" not in e:
                 e["scale1x"] = e.get("scale", 1.0)
-            changed = e["pic3d"] != want_pic or e.get("aniuv") != [14, 12] or \
+            changed = e["pic3d"] != want_pic or e.get("aniuv") != [14, rows] or \
                 abs(e.get("scale", 0) - e["scale1x"] / 2.0) > 1e-9
             e["pic3d"] = want_pic
             e["scale"] = e["scale1x"] / 2.0
-            e["aniuv"] = [14, 12]
+            e["aniuv"] = [14, rows]
             have = {x["id"] for x in e.get("animap", [])}
             st = 154
-            for gid, cnt, spd in GESTURES:
-                if gid not in have:
-                    e.setdefault("animap", []).append({"id": gid, "st": st, "en": st + cnt, "spd": spd,
-                                                       "loop": False, "replay": False})
-                    changed = True
-                st += cnt
+            for suffix, row in (("", 12), ("_f", 13)):              # side gestures row 12, front-view row 13
+                st = 14 * (row - 1)
+                for gid, cnt, spd in GESTURES:
+                    if row <= rows and gid + suffix not in have:
+                        e.setdefault("animap", []).append({"id": gid + suffix, "st": st, "en": st + cnt,
+                                                           "spd": spd, "loop": False, "replay": False})
+                        changed = True
+                    # the held last pose (looping: the engine keeps a looping event animation locked) - the
+                    # gesture stays through the line it goes with (gen_maps gestures())
+                    if row <= rows and gid + "_hold" + suffix not in have:
+                        e.setdefault("animap", []).append({"id": gid + "_hold" + suffix, "st": st + cnt - 1,
+                                                           "en": st + cnt, "spd": 1.0, "loop": True,
+                                                           "replay": False})
+                        changed = True
+                    st += cnt
             n += changed
         print("HD entries updated:", n)
         if not dry and n:

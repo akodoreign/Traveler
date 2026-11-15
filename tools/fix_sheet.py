@@ -732,6 +732,13 @@ def main():
                 for q, f in enumerate(g[:cols]):
                     row[:, q * fw * 2:(q + 1) * fw * 2] = f
                 hd = np.concatenate([up, row], 0)
+                if "front" in enh:                                  # row 13: the same gestures facing the camera
+                    gf = rig_anim.front_gestures_hd(enh["front"], 2)
+                    if gf:
+                        row_f = np.zeros_like(row)
+                        for q, f in enumerate(gf[:cols]):
+                            row_f[:, q * fw * 2:(q + 1) * fw * 2] = f
+                        hd = np.concatenate([hd, row_f], 0)
         except Exception as ex:
             print("hd skipped:", ex)
     if hd is not None:

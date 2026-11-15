@@ -116,6 +116,11 @@ local ANI_FALLBACK = { item = ["magic1", "spell"], chant = ["spell", "magic1"], 
 	atk_slash = ATK_FB, atk_thrust = ATK_FB, atk_overhead = ATK_FB, atk_draw = ATK_FB, atk_main = ATK_FB,
 	talk = ["stand"], nod = ["stand"], rei = ["stand"], rei_full = ["stand"], seiza = ["stand"], sit = ["stand"],
 	seiza_rei = ["stand"], think = ["stand"], surprise = ["damage"], laugh = ["victory", "stand"] };
+//	the HD sheets' conversation gestures (tools/rig_anim.py): a sheet without the gesture rows just stands
+foreach( g in ["facepalm", "shrug", "crossarms", "scratch", "point"]){
+	ANI_FALLBACK[g] <- ["stand"];
+	ANI_FALLBACK[g + "_hold"] <- ["stand"];
+}
 ::RPG3DPicture._rt_anime2_fb <- ::RPG3DPicture.anime2;
 ::RPG3DPicture.anime2 <- function( t){
 	local id = t["id"];

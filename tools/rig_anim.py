@@ -456,6 +456,97 @@ def gesture_frames_hd(key, master, z=2):
     return out
 
 
+def front_gestures_hd(master, z=2):
+    """Front-view gestures (facepalm_f, shrug_f, crossarms_f, scratch_f, point_f; 14 frames like GESTURES) from the
+    front master: shoulders from the silhouette just under the head, the head from the pixels above the neck; the
+    gesturing side's hanging sleeve is cut away (no third arm) and a fresh arm drawn on the z-times grid."""
+    import cv2
+    sol = master[..., 3] >= 128
+    b = bbox(sol)
+    if not b:
+        return None
+    H = b[3] - b[1] + 1
+    neck_y = b[1] + int(round(H * 0.36))
+    sh_y = neck_y + 2
+    waist_y = b[1] + int(round(H * 0.62))
+    xs = np.nonzero(sol[sh_y])[0]
+    if len(xs) < 4:
+        return None
+    L, R = xs.min(), xs.max()
+    cx = (L + R) / 2.0
+    hy, hx = np.nonzero(sol[:neck_y])
+    head_c = np.array([hx.mean(), hy.mean()]) if len(hx) else np.array([cx, b[1] + 6.0])
+    head_top = b[1]
+    sh = {"r": np.array([R - 2.0, sh_y]), "l": np.array([L + 2.0, sh_y])}   # r = the viewer's right
+    upper = (waist_y - sh_y) * 0.55
+    fore = (waist_y - sh_y) * 0.5
+    ys_, xs_ = np.nonzero(sol)
+    rgb = master[ys_, xs_, :3].astype(int)
+    near = (np.abs(ys_ - sh_y - 3) <= 3) & ((xs_ >= R - 4) | (xs_ <= L + 4)) & (rgb.sum(1) > 60)
+    if near.any():
+        k_, c_ = np.unique(rgb[near], axis=0, return_counts=True)
+        sleeve = tuple(int(v) for v in k_[c_.argmax()])
+    else:
+        sleeve = (90, 90, 110)
+    warm = (rgb[:, 0] > rgb[:, 1] + 15) & (rgb[:, 1] > rgb[:, 2]) & (rgb[:, 0] > 110) & (ys_ < neck_y)
+    if warm.any():
+        k_, c_ = np.unique(rgb[warm], axis=0, return_counts=True)
+        skin = tuple(int(v) for v in k_[c_.argmax()])
+    else:
+        skin = (206, 150, 112)
+    ink = tuple(int(v) for v in rgb[rgb.sum(1).argmin()])
+
+    def cut(fr, side):
+        """The hanging sleeve on that side: the outer 4 columns from the shoulder to the waist, re-outlined."""
+        out = fr.copy()
+        x0, x1 = (R - 3, R + 1) if side == "r" else (L, L + 4)
+        out[sh_y + 2:waist_y + 3, x0:x1] = 0
+        a = (out[..., 3] >= 128).astype(np.uint8)
+        edge = a.astype(bool) & ~cv2.erode(a, np.ones((3, 3), np.uint8)).astype(bool)
+        band = np.zeros_like(edge)
+        band[sh_y + 1:waist_y + 4, max(0, x0 - 2):x1 + 2] = True
+        out[edge & band, :3] = ink
+        return out
+
+    def head_dip(fr, d):
+        if not d:
+            return fr
+        out = fr.copy()
+        top = fr[:neck_y].copy()
+        out[:neck_y] = 0
+        m = top[..., 3] > 0
+        dst = out[d:neck_y + d]
+        dst[m[:neck_y + d - d]] = top[m]
+        return out
+
+    plan = {
+        "facepalm": [("r", lambda k: head_c + np.array([1.0, 3.0]), (1, 2, 2, 2))],
+        "shrug": [("r", lambda k: sh["r"] + np.array([7.0, 9.0 - k]), (0, 0, 0)),
+                  ("l", lambda k: sh["l"] + np.array([-7.0, 9.0 - k]), (0, 0, 0))],
+        "crossarms": [("r", lambda k: np.array([cx - 2.0, sh_y + 8.0 + k]), (0, 0)),
+                      ("l", lambda k: np.array([cx + 2.0, sh_y + 8.0]), (0, 0))],
+        "scratch": [("r", lambda k: np.array([head_c[0] + 5.0, head_top + 4.0 - (k % 2)]), (1, 1, 1))],
+        "point": [("r", lambda k: sh["r"] + np.array([upper + fore - 1.0, -1.0 + k]), (0, 0))],
+    }
+    frames = []
+    for name, n in GESTURES:
+        for k in range(n):
+            arms = plan[name]
+            f1 = master.copy()
+            for side, _t, _d in arms:
+                f1 = cut(f1, side)
+            f1 = head_dip(f1, arms[0][2][k])
+            fz = np.repeat(np.repeat(f1, z, 0), z, 1)
+            c = (z - 1) / 2.0
+            for side, tgt, _d in arms:
+                S = sh[side]
+                T_ = tgt(k)
+                E = ik(S, T_, upper, fore)
+                fz = draw_arm_px(fz, S * z + c, E * z + c, T_ * z + c, sleeve, skin, ink, z)
+            frames.append(fz)
+    return frames
+
+
 def gesture_frame(master, lab, J0, J1, tilt, neck, head_c, arms=True):
     """Like rig_frame, plus: the head (body pixels above the neck) tilts about the neck; the weapon stands upright
     behind the body, held at the back hand (the front arm is busy); the front arm draws over the head."""

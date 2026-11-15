@@ -1330,9 +1330,11 @@ class RPG3DPicture extends RPG3DObject
 	}
 
 	function anime2( t){
-		super.anime2( t);
+		//	(Rokugan Traveler modification 2026-11-15: return the animation layer. Without it RPGEventRunner.startAnime
+		//	got null for every sprite, never locked the animation, and the idle replaced a cmd_anime at once.)
+		return super.anime2( t);
 	}
-	
+
 	//	ピクチャレベルのエフェクトを再生する。
 	//	die : 死亡エフェクト。
 	//	raise : 復活や仲間呼びなどで増えた場合のエフェクト。
