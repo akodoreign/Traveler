@@ -954,7 +954,7 @@
 	["npc_hantei_kusada"] = { ["base"] = [0.5000, 0.1300, 0.3800] },
 	["npc_lion_sergeant"] = { ["base"] = [0.5000, 0.2000, 0.4500] },
 	["npc_masked_citizen"] = { ["base"] = [0.5000, 0.2000, 0.4500] },
-	["npc_matsu_hanae"] = { ["base"] = [0.5000, 0.2483, 0.4983] },
+	["npc_matsu_hanae"] = {  },
 	["npc_ship_s_master"] = { ["base"] = [0.5000, 0.2700, 0.5200] },
 	["npc_matsu_kiku"] = { ["base"] = [0.5000, 0.1800, 0.4300] },
 	["npc_stich_kik"] = { ["base"] = [0.5000, 0.2300, 0.4800] },

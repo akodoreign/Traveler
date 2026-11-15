@@ -14,5 +14,13 @@
 	"noitems": {
 		"en": "Nothing to take!",
 		"ja": "Nothing to take!"
+	},
+	"gotitem": {
+		"en": "Got ${v}!",
+		"ja": "Got ${v}!"
+	},
+	"gotitem_n": {
+		"en": "Got ${v} x${n}!",
+		"ja": "Got ${v} x${n}!"
 	}
 }

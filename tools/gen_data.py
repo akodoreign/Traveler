@@ -417,8 +417,11 @@ def crab_items(it):
     """Crab Ch1 consumables (rules/equipment.md: Rice Ball 20 zeni, Salt Herring, Eye Drops, Jade Dust...)."""
     def heal(iid, name, pct, price, desc):
         x = copy.deepcopy(it["I001"])
-        x.update({"name": name, "atkform": str(pct), "price": price, "desc": desc})
+        # (2026-11-14: the "Healing item" formula took atkform as flat HP - a Ginseng Tonic healed 60 of 900) a share
+        # of the target's max HP, as the pct argument always meant (as wake() below)
+        x.update({"name": name, "atkform": "dst.MAXHP*%d/100" % pct, "price": price, "desc": desc})
         it[iid] = x
+    it["I001"]["atkform"] = "dst.MAXHP*15/100"          # the Healing Herb (quest rewards): 15% (was a flat 10 HP)
     heal("I100", "Rice Ball", 20, 20, "A Wall ration wrapped in leaves. Restores some HP.")
     heal("I101", "Herbal Salve", 40, 60, "Bitter green paste. Restores a good deal of HP.")
     heal("I102", "Salt Herring", 15, 2, "Two zeni, or one if you smile.")
@@ -450,7 +453,9 @@ def crab_items(it):
     # with that share of their HP: the template's Revival Draught (dmgform 5 = % of max HP, remconds bit 0 = Down)
     def wake(iid, name, pct, price, desc):
         x = copy.deepcopy(it["I016"])
-        x.update({"name": name, "atkform": str(pct), "price": price, "desc": desc, "remconds": 1})
+        # (tester 2026-11-14: "atkform" replaces the formula's atk outright - "25" woke Goro with 25 of 931 HP; the
+        # share of max HP has to be the expression itself)
+        x.update({"name": name, "atkform": "dst.MAXHP*%d/100" % pct, "price": price, "desc": desc, "remconds": 1})
         it[iid] = x
     wake("I460", "Smelling Salts", 25, 120, "Pungent salts in a twist of paper. Wakes a fallen ally with a quarter "
                                             "of their HP.")
@@ -636,7 +641,7 @@ def crab_items(it):
     for iid, name, pct, price, desc in (("I125", "Fine Sake", 30, 120, "Restores SP."),
                                         ("I168", "Rejuvenating Tea", 25, 50, "A Phoenix temple tea. Restores some SP.")):
         k = copy.deepcopy(it["I001"])                   # heal template, dmgtype 4: SP (engine DamageTypePID)
-        k.update({"name": name, "desc": desc, "price": price, "atkform": str(pct), "dmgtype": 4})
+        k.update({"name": name, "desc": desc, "price": price, "atkform": "dst.MAXMP*%d/100" % pct, "dmgtype": 4})
         it[iid] = k
     caltrop = copy.deepcopy(it["I104"])
     caltrop.update({"name": "Kaiu Iron Caltrops", "desc": "Scattered underfoot: every enemy slows.", "price": 150,
@@ -1434,7 +1439,11 @@ def main():
     dc.update({"money": {"en": " zeni", "ja": " zeni"},
                "stealok": {"en": "Stole $v!", "ja": "Stole $v!"},
                "stealfail": {"en": "Couldn't steal anything...", "ja": "Couldn't steal anything..."},
-               "noitems": {"en": "Nothing to take!", "ja": "Nothing to take!"}})
+               "noitems": {"en": "Nothing to take!", "ja": "Nothing to take!"},
+               # (tester 2026-11-14: the chest line ended in a full-width "！"; ASCII terms) no article either: "Got
+               # Breath of Jurojin!", "Got Herbal Salve x3!"
+               "gotitem": {"en": "Got ${v}!", "ja": "Got ${v}!"},
+               "gotitem_n": {"en": "Got ${v} x${n}!", "ja": "Got ${v} x${n}!"}})
     save("dict", dc)
     mc = load("macro")                                    # English for the template's service scripts
     for mid, path, text in MACRO_TEXT:

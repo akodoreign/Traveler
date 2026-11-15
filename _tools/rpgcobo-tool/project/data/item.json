@@ -31,7 +31,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "10",
+		"atkform": "dst.MAXHP*15/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "Restores HP.",
@@ -230,7 +230,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "50",
+		"atkform": "dst.MAXHP*50/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "A Kuni field draught, bitter and hot. Wakes a fallen ally with half their HP.",
@@ -462,7 +462,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "20",
+		"atkform": "dst.MAXHP*20/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "A Wall ration wrapped in leaves. Restores some HP.",
@@ -519,7 +519,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "40",
+		"atkform": "dst.MAXHP*40/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "Bitter green paste. Restores a good deal of HP.",
@@ -576,7 +576,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "15",
+		"atkform": "dst.MAXHP*15/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "Two zeni, or one if you smile.",
@@ -853,7 +853,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "25",
+		"atkform": "dst.MAXHP*25/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "Pungent salts in a twist of paper. Wakes a fallen ally with a quarter of their HP.",
@@ -910,7 +910,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "100",
+		"atkform": "dst.MAXHP*100/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "A sealed lacquer vial from a Fortune's shrine. Wakes a fallen ally with all their HP. Rare: no merchant sells it.",
@@ -967,7 +967,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "70",
+		"atkform": "dst.MAXHP*70/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "A bitter root tonic from the year-400 market. Restores most of your HP.",
@@ -1024,7 +1024,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "30",
+		"atkform": "dst.MAXHP*30/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "No egg. Just the drop. Very pure. Very Crab. Kiyo's thank-you.",
@@ -1957,7 +1957,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "30",
+		"atkform": "dst.MAXMP*30/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "Restores SP.",
@@ -2128,7 +2128,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "25",
+		"atkform": "dst.MAXMP*25/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "A Phoenix temple tea. Restores some SP.",
@@ -2522,7 +2522,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "60",
+		"atkform": "dst.MAXHP*60/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "A Kaiu field tonic. Restores a great deal of HP.",
@@ -2579,7 +2579,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "60",
+		"atkform": "dst.MAXHP*60/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "A Seppun duelist's medicine case. Restores a great deal of HP.",
@@ -3149,7 +3149,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "25",
+		"atkform": "dst.MAXHP*25/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "A carrot from a woodchuck's hoard. The woodchuck has been informed. Restores a little HP.",
@@ -3206,7 +3206,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "0",
+		"atkform": "dst.MAXHP*0/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "A twist of beeswax. In battle: put the wax back in an ally's ears (Covered Ears again).",
@@ -3393,7 +3393,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "100",
+		"atkform": "dst.MAXHP*100/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "Tomie Cho's tea. It really is very good tea. Restores all HP.",
@@ -3450,7 +3450,7 @@
 			"id": "atk_normal",
 			"scp": null
 		},
-		"atkform": "35",
+		"atkform": "dst.MAXHP*35/100",
 		"cmdtgt": 8,
 		"consume": 1,
 		"desc": "A pounded rice cake from the Village of the Wounded Lion. The villagers leave them on the snow mounds and won't say why. Restores some HP.",

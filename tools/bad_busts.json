@@ -22,9 +22,10 @@
    "speaker": "Fishwife",
    "file": "npc_village_herbalist/neutral.png",
    "found": "2026-11-11 story_0 (Hoshi-no-Ichi)",
-   "why": "no own bust: RokuganBustGeneric.sk lends her the Village Herbalist (a pale silver-haired girl in a green hood); she hawks salt herring ('Two zeni, or one if you smile') - a loud middle-aged fisherwoman",
-   "look": "middle-aged fisherwoman, 40s, tanned weathered face, broad grin, hair in a headscarf, sleeves tied back with a tasuki cord, patched indigo work kimono",
-   "fixed": "2026-11-11 own key npc_fishwife, cand_s83508 (headscarf, tasuki, indigo kimono, grin; reads 20s-30s rather than 40s)"
+   "why": "no own bust: RokuganBustGeneric.sk lends her the Village Herbalist (a pale silver-haired girl in a green hood); she hawks salt herring ('Two zeni, or one if you smile') - a loud middle-aged fisherwoman; round 1 pick read 20s (lead: should read 40s); round 2 drew crows (from the words \"crow's feet\") and still read young",
+   "look": "(mature:1.2) middle-aged woman, 45 years old, mother, wrinkles around the eyes, sagging cheeks, sun-tanned weathered skin, broad grin, black hair with grey streaks in a headscarf, sleeves tied back with a tasuki cord, patched indigo work kimono, holding a salted fish",
+   "seed_add": 600,
+   "fixed": "2026-11-14 round 3: weathered grin, grey streak, salted fish (reads 30s-40s)"
   },
   {
    "speaker": "Hida Kisada",

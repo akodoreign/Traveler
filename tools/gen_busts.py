@@ -209,6 +209,7 @@ if os.path.exists(_PICKS):
                          variants=[], npc=True)
 for _k, _s in NPC_PICK.items():
     CHARS[_k]["seed"] = _s
+CHARS["npc_matsu_hanae"]["cut_bg_islands"] = True   # white background kept between rope and staff (enclosed)
 for _n in ("Mieko (dark)", "Dark Mieko", "Gentle Mieko", "Mieko (???)"):    # the same Isawa Mieko (scene labels)
     CHARS["npc_isawa_mieko"]["names"].append(_n)
 
@@ -587,7 +588,7 @@ def repair_holes(bg, dist, h, w, hair_y, prot, cv2):
     return ~fig
 
 
-def cut_enclosed_bg(m, dist, prot, hair_y, flood, cv2, lum=None):
+def cut_enclosed_bg(m, dist, prot, hair_y, flood, cv2, lum=None, force=False):
     """BiRefNet sometimes keeps a patch of the flat background enclosed between hair and face (npc_akodo_rin): cut
     kept regions of the pure background colour that are big and flat (eye whites, teeth and highlights are small or
     shaded), above the shoulders, not in the face core, and - what tells it from a white towel or hat top (pure white
@@ -616,7 +617,7 @@ def cut_enclosed_bg(m, dist, prot, hair_y, flood, cv2, lum=None):
             continue
         if np.median(dist[isl]) > 2:
             continue
-        if flood[isl].mean() < 0.5:
+        if flood[isl].mean() < 0.5 and not force:            # force: CHARS cut_bg_islands (checked by eye)
             # enclosed (the flood can't get in): a gap between hair strands and the neck (Natsuko's ponytail, Rensei,
             # Shizue's bath hair) is ringed by dark hair/lineart; a towel or hat top by light cloth shading. Only with
             # a face box: its core protects the eye whites, which are ringed by dark lashes too (NPCs: flood rule only)
@@ -673,7 +674,8 @@ def cut_edge_hue(m, a, dist, prot, hue, cv2):
     return m
 
 
-def key_out(im, tol=12, protect=None, hair_y=None, holes=True, repair=False, fixed_alpha=None, edge_hue=None):
+def key_out(im, tol=12, protect=None, hair_y=None, holes=True, repair=False, fixed_alpha=None, edge_hue=None,
+            bg_islands=False):
     """Flat background -> alpha. Flood fill from the border through pixels close to the corner colour, then soften the
     edge by one pixel and pull the background tint out of the semi-transparent rim."""
     a = np.asarray(im.convert("RGB")).astype(np.int16)
@@ -748,11 +750,18 @@ def key_out(im, tol=12, protect=None, hair_y=None, holes=True, repair=False, fix
         try:                                                      # eye whites, white kimono, hair, white fringes)
             m = np.asarray(fg_mask(im)).astype(np.float32) / 255.0
             m = np.clip((m - 0.08) / 0.84, 0, 1)                  # firm up the soft band a little
-            m = cut_enclosed_bg(m, dist, prot, hair_y, flood, cv2, lum=a.mean(axis=2))
+            m = cut_enclosed_bg(m, dist, prot, hair_y, flood, cv2, lum=a.mean(axis=2), force=bg_islands)
             if edge_hue:
                 m = cut_edge_hue(m, a, dist, prot, edge_hue, cv2)
             if prot.any():
                 m = np.maximum(m, prot.astype(np.float32))        # the face core never goes see-through
+            # loose specks floating free of the figure (leaf stems by Sayo's hair, dust): drop small detached bits
+            n_, lab_, st_, _ = cv2.connectedComponentsWithStats((m > 0.1).astype(np.uint8), 8)
+            if n_ > 2:
+                big_ = 1 + int(np.argmax(st_[1:, cv2.CC_STAT_AREA]))
+                for i_ in range(1, n_):
+                    if i_ != big_ and st_[i_, cv2.CC_STAT_AREA] < 0.003 * m.size:
+                        m[lab_ == i_] = 0
             alpha = m
         except Exception as ex:                                   # ComfyUI down: the colour key stands
             print("bust mask unavailable (%s): colour key used" % ex)
@@ -806,7 +815,8 @@ def stage_export(key):
             if fm is not None and c.get("flip"):
                 fm = fm.transpose(Image.FLIP_LEFT_RIGHT)
             rgba = key_out(im, protect=fm, hair_y=c.get("neck_y"), holes=c.get("holes", c.get("bg", "white") == "white"),
-                           repair=True, fixed_alpha=base_alpha, edge_hue=c.get("cut_edge_hue"))
+                           repair=True, fixed_alpha=base_alpha, edge_hue=c.get("cut_edge_hue"),
+                           bg_islands=c.get("cut_bg_islands", False))
             if base_alpha is None:                            # one silhouette per variant (the face pass is inside)
                 base_alpha = rgba.getchannel("A")
                 bb = base_alpha.point(lambda v: 255 if v > 8 else 0).getbbox()

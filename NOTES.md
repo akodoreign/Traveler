@@ -4740,6 +4740,9 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   Redos done (lead): Hida yojimbo without the crab, bo-staff monk older (40s sohei), Refugee Herbalist without the
   red-cross mark, Crane Field Medic (no crosses). Non-human speakers (kami, spirits, demon, goblin, naga, monsters)
   stay on stand-ins on purpose.
+- (busts, 2026-11-14 polish) Matsu Hanae's kept white patch cut (CHARS cut_bg_islands); loose specks detached from
+  the figure are dropped after the BiRefNet mask (Sayo's leaf stems); Fishwife redrawn older (round 3 - beware
+  "crow's feet": it draws crows). Kitsuki Oharu already distinct.
 
 ## 2026-11-11: Agent team - pushes
 - 2026-11-11 ~08:45 push 9c5658a (licensed-demo -> main, 476 files): Rest revives the fallen, Sumai foes face the player,
