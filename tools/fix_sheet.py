@@ -105,6 +105,8 @@ def denoise(fr, ink, glare=False):
     for k in range(1, n):
         area = st[k, cv2.CC_STAT_AREA]
         m = lab == k
+        if area >= 4 and cv2.connectedComponents(m.astype(np.uint8), connectivity=4)[0] - 1 >= 3:
+            continue                     # (side_gesshin's white X mon) a drawn pattern, diagonal strokes: not a smear
         if glare and area <= 60 and not (m & ~torso).any():
             # (user 2026-11-15, Natsuko marks 2) a white / blue-grey glare patch inside dark armour, even at the
             # outline (a collar plate, a foot): each pixel takes the colour of the nearest armour pixel around it
@@ -212,10 +214,64 @@ def fit(fr, ref_box):
     return out
 
 
+STILL = {"stand", "talk", "nod", "stand_f", "talk_f", "nod_f", "stand_b", "talk_b", "nod_b"}
+HEAD = 0.33                                          # the chibi head: the top third of the body box (0.42 took
+#                                                      the shoulders and a chest crest with it)
+
+
+def _head_span(fr, box):
+    solid = (fr[..., 3] >= 128).astype(np.uint8)
+    k3 = np.ones((3, 3), np.uint8)
+    body = cv2.dilate(cv2.erode(solid, k3, iterations=2), k3, iterations=2).astype(bool)
+    hh = max(4, int(round((box[3] - box[1] + 1) * HEAD)))
+    band = body[box[1]:box[1] + hh]
+    xs = np.nonzero(band.any(0))[0]
+    return hh, (xs.min(), xs.max()) if len(xs) else (box[0], box[2])
+
+
+def head_transplant(fr, ref):
+    """(user 2026-11-15, option 2 "good for stationary NPCs") the enhanced reference's head pasted onto a standing /
+    talking / nodding frame: same face every frame, set on this frame's own head position (a nod keeps its dip)."""
+    rb, fb = bbox(ref), bbox(fr)
+    if not rb or not fb:
+        return fr
+    hh, (rx0, rx1) = _head_span(ref, rb)
+    _hh, (fx0, fx1) = _head_span(fr, fb)
+    dx = int(round((fx0 + fx1) / 2.0 - (rx0 + rx1) / 2.0))
+    dy = fb[1] - rb[1]
+    out = fr.copy()
+    h, w = fr.shape[:2]
+    y0, y1 = max(0, rb[1] - 3), rb[1] + hh                                  # (-3: hair tufts above the body box)
+    x0, x1 = max(0, rx0 - 2), min(w, rx1 + 3)
+    # clear this frame's own head, then lay the reference head in
+    cy0, cy1 = max(0, y0 + dy), min(h, y1 + dy)
+    cx0, cx1 = max(0, x0 + dx), min(w, x1 + dx)
+    # only the head MASS (the opened body: a spear shaft or staff through the band is thin, so it stays)
+    k3 = np.ones((3, 3), np.uint8)
+    solid = (fr[..., 3] >= 128).astype(np.uint8)
+    mass = cv2.dilate(cv2.erode(solid, k3, iterations=2), k3, iterations=3).astype(bool)
+    box = np.zeros_like(mass)
+    box[cy0:cy1, cx0:cx1] = True
+    out[mass & box] = 0
+    for y in range(y0, y1):
+        ty = y + dy
+        if not 0 <= ty < h:
+            continue
+        for x in range(x0, x1):
+            tx = x + dx
+            if 0 <= tx < w and ref[y, x, 3] > 0:
+                out[ty, tx] = ref[y, x]
+    # the band just below the head keeps this frame's pixels; anything the clear cut off in the band edges that the
+    # reference has no pixel for stays empty (the reference head is the complete head)
+    return out
+
+
 def main():
     key = sys.argv[1]
     install = "--install" in sys.argv
     glare = "--glare" in sys.argv or key in GLARE
+    st_path = os.path.join(OUT, "stationary.txt")
+    heads = "--head" in sys.argv or (os.path.exists(st_path) and key in open(st_path).read().split())
     j = json.load(open(os.path.join(RES, "enemy_pic.json"), encoding="utf-8"))
     ep = next(e for e in j.values() if isinstance(e, dict) and e.get("pic3d", "").endswith("/%s.png" % key))
     cols, rows = ep["aniuv"]
@@ -254,6 +310,8 @@ def main():
         f2 = denoise(lock(f2, pal), ink, glare)                                    # 2. palette lock + noise
         if aid in UPRIGHT and fc in ref_box:
             f2 = fit(f2, ref_box[fc])                                       # 3. size and foot line
+        if heads and aid in STILL and fc in enh:
+            f2 = head_transplant(f2, enh[fc])                               # 4. stationary NPCs: one steady face
         fixed.append(f2)
     os.makedirs(OUT, exist_ok=True)
     new = np.zeros_like(sheet)

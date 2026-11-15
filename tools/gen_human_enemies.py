@@ -249,8 +249,43 @@ ENEMIES = [
     dict(key="ghost_guard", sashimono=(150, 196, 176), name="Ghost-Guard", skin=(206, 222, 220), hair=(200, 214, 214), hairstyle="chonmage",
          build="armored", armor=(150, 196, 176), lace=(226, 236, 232), weapon="yari", hat="jingasa",
          hat_col=(170, 200, 190), face="square", eyes="glow", glow=(220, 250, 240), brow="stern", mouth="open"),
+    # New foe types (tools/new_foes.py, Enemies of the Empire; lead 2026-11-15): the human-rig ones get real sheets
+    # here instead of their PLACEHOLDER recolours. "ep" fixes their sprite id (EP2600+ from new_foes, not epid(n)).
+    dict(key="fisherman", ep="EP2603", name="Desperate Fisherman", skin=TAN, hair=GREY, hairstyle="short",
+         build="peasant", head="headcloth", cloth=(90, 110, 120), top=(96, 110, 104), lower=(110, 96, 74),
+         accent=(70, 90, 100), facial="stubble", weapon="yari", rusty=True, face="long", eyes="old", brow="worried",
+         mouth="frown"),
+    dict(key="pirate", ep="EP2604", name="Scourge of the Seas", skin=TAN, hair=BLACK, hairstyle="long", bangs="side",
+         build="armored_light", armor=(60, 64, 80), lace=(176, 40, 40), top=(160, 40, 40), lower=(50, 54, 70),
+         accent=(176, 40, 40), head="hachimaki", band=(176, 40, 40), weapon="kakita", facial="goatee", scar=True,
+         face="sharp", brow="angled", mouth="grin"),
+    dict(key="ronin_shugenja", ep="EP2607", name="Ronin Shugenja", skin=TAN, hair=BLACK, hairstyle="ponytail",
+         build="robe", top=(120, 110, 90), lower=(80, 74, 62), accent=(150, 120, 60), hat="kasa",
+         hat_col=(170, 140, 90), weapon="none", props=["scroll", "ofuda"], face="long", facial="stubble",
+         brow="stern"),
+    dict(key="banished_duelist", ep="EP2609", name="Banished Duelist", skin=SKIN, hair=BLACK, hairstyle="long",
+         bangs="center", top=(70, 70, 80), lower=(50, 50, 58), accent=(120, 30, 40), hat="kasa",
+         hat_col=(110, 90, 60), idle="iai", weapon="katana", props=["daisho"], eyes="narrow", face="sharp",
+         scar=True),
+    dict(key="bandit_lord", ep="EP2611", name="Bandit Lord", skin=TAN, hair=BLACK, hairstyle="mane",
+         build="armored", haori=(80, 50, 36), trim="fur", armor=(90, 70, 56), lace=(170, 140, 60),
+         facial="beard", scar=True, weapon="nodachi", height=2, wide=2, face="square", brow="thick", mouth="grin",
+         **RAG),
+    dict(key="disgraced_yojimbo", ep="EP2613", name="Disgraced Yojimbo", skin=TAN, hair=BLACK, hairstyle="chonmage",
+         build="armored_light", armor=(96, 90, 84), lace=(110, 100, 80), top=(100, 92, 80), lower=(70, 64, 56),
+         weapon="katana", props=["daisho"], facial="stubble", scar=True, face="square", eyes="half", brow="worried",
+         mouth="frown"),
+    dict(key="madman", ep="EP2622", name="Conspiratorial Madman", skin=PALE, hair=(120, 110, 100), hairstyle="mane",
+         build="peasant", top=(130, 120, 100), lower=(100, 90, 76), accent=(150, 40, 40), weapon="tanto",
+         face="long", eyes="wide", brow="worried", mouth="grin", facial="stubble"),
+    dict(key="kolat_killer", ep="EP2623", name="Kolat Master Killer", skin=SKIN, hair=BLACK, hairstyle="short",
+         bangs="none", head="headcloth", cloth=(24, 22, 28), cloth_dots=False, top=(28, 26, 32), lower=(22, 20, 26),
+         accent=(120, 20, 30), mask="cloth", mask_col=(24, 22, 28), eyes="narrow", weapon="katana",
+         props=["daisho"]),
+    dict(key="plague_zombie", ep="EP2637", name="Plague Zombie", skin=(140, 150, 104), hair=(60, 60, 50),
+         hairstyle="mane", build="peasant", top=(100, 96, 60), lower=(74, 70, 50), accent=(90, 120, 50),
+         eyes="glow", glow=(180, 230, 90), weapon="none", face="long", mouth="open"),
 ]
-
 
 def epid(n):
     """EP400-435 for the first 36 entries (E200-E227 and the Crab chapters), then EP500-519, then EP1300+ (EP436-439
@@ -260,7 +295,7 @@ def epid(n):
     return "EP%03d" % (500 + n - 36) if n < 56 else "EP%d" % (1300 + n - 56)
 
 
-EP = {c["key"]: epid(n) for n, c in enumerate(ENEMIES)}                  # gen_data: sprite ids by key
+EP = {c["key"]: c.get("ep") or epid(n) for n, c in enumerate(ENEMIES)}                  # gen_data: sprite ids by key
 
 
 def config(c):
@@ -272,6 +307,8 @@ def config(c):
 
 def main():
     preview_only = "--preview-only" in sys.argv
+    # --only k1,k2: draw just these (2026-11-15: a full run would overwrite every installed AI hum_ sheet)
+    only = set(sys.argv[sys.argv.index("--only") + 1].split(",")) if "--only" in sys.argv else None
     jpath = os.path.join(g.RES, "enemy_pic.json")
     j = json.load(open(jpath, encoding="utf-8"))
     tmpl = j["EP000"]
@@ -280,6 +317,8 @@ def main():
     sheet = Image.new("RGBA", (cw * per, ch * rows), (64, 90, 58, 255))
     d = ImageDraw.Draw(sheet)
     for n, c in enumerate(ENEMIES):
+        if only and c["key"] not in only:
+            continue
         T = config(c)
         r, cc = n // per, n % per
         for k, (kind, i) in enumerate((("idle", 0), ("attack", 0), ("attack", 1))):
@@ -296,7 +335,7 @@ def main():
                       "cntpos": [0.5, 0.6], "scale": 1.05 * g.CAST_SCALE * g.HUMAN_SCALE * c.get("scale", 1.0), "flipx": False})  # engine draws enemies larger than party
             e["animap"] = [{"id": k, "st": v[0], "en": v[1], "spd": v[2], "loop": v[3], "replay": not v[3]}
                            for k, v in g.animap_for(T).items()]          # v4 layout: per-weapon main attack
-            j[epid(n)] = e
+            j[c.get("ep") or epid(n)] = e
         print("drew", c["name"])
     if not preview_only:
         json.dump(j, open(jpath, "w", encoding="utf-8"), ensure_ascii=False, indent="\t")

@@ -1,0 +1,153 @@
+{
+ "key": "plague_zombie",
+ "name": "Plague Zombie",
+ "kind": "enemy",
+ "sheet": "hum_plague_zombie.png",
+ "prompt": "1boy, male focus, man, Plague Zombie, grey skin, dark brown hair, mane hair, light brown kimono, brown hakama, feudal japan",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes, facing left, from behind",
+ "seed": 11,
+ "candidates": 2,
+ "groups": {
+  "outline": {
+   "base": "#141218",
+   "ramp": [
+    "#141218",
+    "#26242e"
+   ],
+   "anywhere": true
+  },
+  "steel": {
+   "base": "#a0aab8",
+   "ramp": [
+    "#5a606c",
+    "#969fae",
+    "#cdd5e1",
+    "#f8f8fc"
+   ],
+   "detect": [
+    "#3f3e54",
+    "#82809f",
+    "#c8d2e0",
+    "#fdfeff",
+    "#ffffff"
+   ]
+  },
+  "wood": {
+   "base": "#2a201e",
+   "ramp": [
+    "#1c1614",
+    "#2a201e",
+    "#44342a"
+   ],
+   "detect": [
+    "#1b0605",
+    "#572719",
+    "#8c5e36",
+    "#af8155",
+    "#cea67c"
+   ]
+  },
+  "skin": {
+   "base": "#8c9668",
+   "ramp": [
+    "#251e13",
+    "#615d3a",
+    "#8c9668",
+    "#b2b993",
+    "#d5d8c5"
+   ],
+   "detect": [
+    "#251e13",
+    "#615d3a",
+    "#8c9668",
+    "#b2b993",
+    "#d5d8c5"
+   ]
+  },
+  "hair": {
+   "base": "#3c3c32",
+   "ramp": [
+    "#070604",
+    "#070705",
+    "#3c3c32",
+    "#5f5f59",
+    "#7e7e7e"
+   ],
+   "detect": [
+    "#070604",
+    "#070705",
+    "#3c3c32",
+    "#5f5f59",
+    "#7e7e7e"
+   ]
+  },
+  "top": {
+   "base": "#64603c",
+   "ramp": [
+    "#070403",
+    "#2f2617",
+    "#64603c",
+    "#87835e",
+    "#a6a288"
+   ],
+   "detect": [
+    "#070403",
+    "#2f2617",
+    "#64603c",
+    "#87835e",
+    "#a6a288"
+   ]
+  },
+  "lower": {
+   "base": "#4a4632",
+   "ramp": [
+    "#070503",
+    "#15110c",
+    "#4a4632",
+    "#6d6955",
+    "#8c897d"
+   ],
+   "detect": [
+    "#070503",
+    "#15110c",
+    "#4a4632",
+    "#6d6955",
+    "#8c897d"
+   ]
+  },
+  "accent": {
+   "base": "#5a7832",
+   "ramp": [
+    "#070601",
+    "#404315",
+    "#5a7831",
+    "#7f9b50",
+    "#a3ba76"
+   ],
+   "detect": [
+    "#070601",
+    "#404315",
+    "#5a7831",
+    "#7f9b50",
+    "#a3ba76"
+   ]
+  },
+  "glow": {
+   "base": "#b4e65a",
+   "ramp": [
+    "#755c18",
+    "#b0b133",
+    "#b3e659",
+    "#d6ff7d",
+    "#e3ff9b"
+   ],
+   "detect": [
+    "#755c18",
+    "#b0b133",
+    "#b3e659",
+    "#d6ff7d",
+    "#e3ff9b"
+   ]
+  }
+ }
+}

@@ -218,6 +218,94 @@ def install(key, n, flip):
     print("installed", key, ep, name, fname)
 
 
+# ---- silhouette + img2img (lead 2026-11-15): for foes text-to-image keeps drawing as something else (Nukekubi as a
+# head on a stick, the plant monsters as girls / lizards): a rough shape drawn here fixes the composition, the model
+# only paints it (init = the blurred shape, canny control from it, denoise 0.55-0.7).
+def sil_nukekubi():
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    for k in range(9):                                    # hair streaming back (left) in long strands
+        y = 22 + k * 3
+        d.line([(38, y - 4), (24, y), (10, y + 2 + (k % 3)), (2, y + 6)], fill=(20, 18, 24, 255), width=2)
+    d.ellipse([30, 14, 58, 44], fill=(232, 226, 214, 255))     # big pale face, side view, looking right
+    d.ellipse([28, 12, 50, 30], fill=(24, 20, 26, 255))        # hair cap
+    d.ellipse([46, 24, 51, 28], fill=(220, 40, 40, 255))       # red eye
+    d.polygon([(50, 36), (58, 34), (55, 40)], fill=(150, 30, 30, 255))   # open mouth
+    d.line([(51, 37), (56, 36)], fill=(250, 250, 250, 255))   # teeth
+    return im
+
+
+def sil_plant(stingers):
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    gx = H - GROUND
+    d.ellipse([22, gx - 8, 58, gx + 1], fill=(70, 50, 30, 255))          # root mound
+    if stingers:                                            # bamboo-like stalks with stinger tips, leaning right
+        for x0, h_, lean in ((30, 50, 6), (38, 58, 10), (46, 46, 14), (34, 36, 4), (52, 34, 12)):
+            d.line([(x0, gx - 4), (x0 + lean, gx - h_)], fill=(110, 140, 60, 255), width=3)
+            for t in range(1, 4):
+                y = gx - 4 - h_ * t // 4
+                d.line([(x0 + lean * t // 4 - 2, y), (x0 + lean * t // 4 + 2, y)], fill=(70, 90, 40, 255))
+            tx, ty = x0 + lean, gx - h_
+            d.polygon([(tx - 2, ty + 2), (tx + 6, ty - 6), (tx + 2, ty + 3)], fill=(220, 210, 160, 255))
+    else:                                                   # a writhing knot of thorny vines, reaching right
+        import math
+        for k in range(7):
+            pts = []
+            for t in range(14):
+                a = t / 13.0
+                x = 26 + a * 34 + 6 * math.sin(a * 6 + k)
+                y = gx - 6 - a * (20 + 4 * k) * 0.9 + 5 * math.cos(a * 5 + k * 1.3)
+                pts.append((x, y))
+            d.line(pts, fill=(60 + 8 * k, 90 + 6 * k, 40, 255), width=3)
+            for (x, y) in pts[3::3]:
+                d.line([(x, y), (x + 3, y - 3)], fill=(190, 170, 120, 255))
+    return im
+
+
+SILS = {"nukekubi": sil_nukekubi, "tanglevines": lambda: sil_plant(False), "stinger_plant": lambda: sil_plant(True)}
+SIL_PROMPT = {"nukekubi": "nukekubi, a floating disembodied human head in side view, pale face, red eyes, open mouth "
+                          "with teeth, long black hair streaming behind it, yokai, no body",
+              "tanglevines": "fudoshi, a monster made of a writhing knot of thorny green vines and roots, plant creature, "
+                             "no face, no human",
+              "stinger_plant": "takesasu, a monstrous bamboo plant with sharp stinger spikes at the tips of its stalks, "
+                               "plant creature, no face, no animal"}
+
+
+def draw_sil(key, seed0=71, n=4):
+    _, height, flying, _ = foe_def(key)
+    od = os.path.join(WORK, key)
+    os.makedirs(od, exist_ok=True)
+    s = SILS[key]()
+    s.save(os.path.join(od, "silhouette.png"))
+    white = Image.new("RGBA", s.size, (255, 255, 255, 255))
+    white.alpha_composite(s)
+    from PIL import ImageFilter
+    init = pd.pa.up(white.convert("RGB")).filter(ImageFilter.GaussianBlur(3))
+    ctrl = pd.pa.control(s)
+    pos = gp.STYLE.replace("standing, ", "") + ", " + SIL_PROMPT[key]
+    neg = gp.NEG + NEG_X + NEG_PER.get(key, "") + NEG_PER2.get(key, "") + ", girl, woman, person, lizard"
+    tiles = []
+    for k in range(n):
+        den = (0.55, 0.62, 0.68, 0.72)[k % 4]
+        big = pd.submit_wait(pos, neg, [seed0 * 100 + k], init, ctrl, den, "foesil_%s_%d" % (key, k))[0]
+        big.save(os.path.join(od, "big_%d.png" % k))
+        fr = to_frame(big, height, flying)
+        if fr:
+            fr.save(os.path.join(od, "cand_%d.png" % k))
+            tiles.append((k, fr))
+        print(time.strftime("%H:%M"), key, "silhouette candidate", k, flush=True)
+    sheet = Image.new("RGB", (W * 3 * (len(tiles) + 1), H * 3 + 14), (110, 150, 110))
+    d = ImageDraw.Draw(sheet)
+    f = s.resize((W * 3, H * 3), Image.NEAREST)
+    sheet.paste(f, (0, 14), f)
+    d.text((3, 2), "silhouette", fill=(255, 255, 0))
+    for i, (k, fr) in enumerate(tiles):
+        f = fr.resize((W * 3, H * 3), Image.NEAREST)
+        sheet.paste(f, ((i + 1) * W * 3, 14), f)
+        d.text(((i + 1) * W * 3 + 3, 2), "%s cand %d" % (key, k), fill=(255, 255, 0))
+    sheet.save(os.path.join(od, "contact.png"))
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if a and a[0] == "draw":
@@ -225,5 +313,8 @@ if __name__ == "__main__":
         allk = [f[2] for f in new_foes.NEW_FOES]
         keys = [k for k in a[1:] if k in allk] or list(FOES)
         draw(keys, seed)
+    elif a and a[0] == "sil":
+        for k in [k for k in a[1:] if k in SILS] or list(SILS):
+            draw_sil(k)
     elif a and a[0] == "install":
         install(a[1], int(a[2]), "--flip" in a)

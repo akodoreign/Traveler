@@ -631989,13 +631989,13 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP441): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 2)",
 		"name": {
 			"en": "Aoizame Shark",
 			"ja": "Aoizame Shark"
 		},
-		"pic3d": "/resource/enemy_pic/ph_aoizame.png",
-		"scale": 0.735
+		"pic3d": "/resource/enemy_pic/foe_aoizame.png",
+		"scale": 0.6
 	},
 	"EP2603": {
 		"animap": [
@@ -632425,48 +632425,48 @@
 			},
 			{
 				"id": "slash1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "punch1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "stick1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "bow1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 12.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "atk",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "atk_main",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
@@ -632542,12 +632542,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP416): needs drawn art",
+		"memo": "human enemy sprite (tools/gen_human_enemies.py)",
 		"name": {
 			"en": "Desperate Fisherman",
 			"ja": "Desperate Fisherman"
 		},
-		"pic3d": "/resource/enemy_pic/ph_fisherman.png",
+		"pic3d": "/resource/enemy_pic/hum_fisherman.png",
 		"scale": 0.48300000000000004
 	},
 	"EP2604": {
@@ -632978,48 +632978,48 @@
 			},
 			{
 				"id": "slash1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "punch1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "stick1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "bow1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 12.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "atk",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "atk_main",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
@@ -633095,12 +633095,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP417): needs drawn art",
+		"memo": "human enemy sprite (tools/gen_human_enemies.py)",
 		"name": {
 			"en": "Scourge of the Seas",
 			"ja": "Scourge of the Seas"
 		},
-		"pic3d": "/resource/enemy_pic/ph_pirate.png",
+		"pic3d": "/resource/enemy_pic/hum_pirate.png",
 		"scale": 0.48300000000000004
 	},
 	"EP2605": {
@@ -633353,13 +633353,13 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP439): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 3)",
 		"name": {
 			"en": "Mujina",
 			"ja": "Mujina"
 		},
-		"pic3d": "/resource/enemy_pic/ph_mujina.png",
-		"scale": 0.6825000000000001
+		"pic3d": "/resource/enemy_pic/foe_mujina.png",
+		"scale": 0.6
 	},
 	"EP2607": {
 		"animap": [
@@ -633789,48 +633789,48 @@
 			},
 			{
 				"id": "slash1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "punch1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "stick1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "bow1",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 12.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "atk",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "atk_main",
-				"st": 24,
-				"en": 30,
+				"st": 30,
+				"en": 36,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
@@ -633906,12 +633906,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP513): needs drawn art",
+		"memo": "human enemy sprite (tools/gen_human_enemies.py)",
 		"name": {
 			"en": "Ronin Shugenja",
 			"ja": "Ronin Shugenja"
 		},
-		"pic3d": "/resource/enemy_pic/ph_ronin_shugenja.png",
+		"pic3d": "/resource/enemy_pic/hum_ronin_shugenja.png",
 		"scale": 0.48300000000000004
 	},
 	"EP2608": {
@@ -634588,12 +634588,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP406): needs drawn art",
+		"memo": "human enemy sprite (tools/gen_human_enemies.py)",
 		"name": {
 			"en": "Banished Duelist",
 			"ja": "Banished Duelist"
 		},
-		"pic3d": "/resource/enemy_pic/ph_banished_duelist.png",
+		"pic3d": "/resource/enemy_pic/hum_banished_duelist.png",
 		"scale": 0.48300000000000004
 	},
 	"EP2610": {
@@ -635270,12 +635270,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP402): needs drawn art",
+		"memo": "human enemy sprite (tools/gen_human_enemies.py)",
 		"name": {
 			"en": "Bandit Lord",
 			"ja": "Bandit Lord"
 		},
-		"pic3d": "/resource/enemy_pic/ph_bandit_lord.png",
+		"pic3d": "/resource/enemy_pic/hum_bandit_lord.png",
 		"scale": 0.48300000000000004
 	},
 	"EP2612": {
@@ -635399,13 +635399,13 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP166): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 3, mirrored)",
 		"name": {
 			"en": "Ozaru",
 			"ja": "Ozaru"
 		},
-		"pic3d": "/resource/enemy_pic/ph_ape.png",
-		"scale": 0.8400000000000001
+		"pic3d": "/resource/enemy_pic/foe_ape.png",
+		"scale": 0.75
 	},
 	"EP2613": {
 		"animap": [
@@ -635952,12 +635952,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP405): needs drawn art",
+		"memo": "human enemy sprite (tools/gen_human_enemies.py)",
 		"name": {
 			"en": "Disgraced Yojimbo",
 			"ja": "Disgraced Yojimbo"
 		},
-		"pic3d": "/resource/enemy_pic/ph_disgraced_yojimbo.png",
+		"pic3d": "/resource/enemy_pic/hum_disgraced_yojimbo.png",
 		"scale": 0.48300000000000004
 	},
 	"EP2614": {
@@ -636339,13 +636339,13 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP442): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 1)",
 		"name": {
 			"en": "Sanshu Denki",
 			"ja": "Sanshu Denki"
 		},
-		"pic3d": "/resource/enemy_pic/ph_muck_monster.png",
-		"scale": 0.9450000000000001
+		"pic3d": "/resource/enemy_pic/foe_muck_monster.png",
+		"scale": 0.7
 	},
 	"EP2617": {
 		"animap": [
@@ -637537,12 +637537,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP421): needs drawn art",
+		"memo": "human enemy sprite (tools/gen_human_enemies.py)",
 		"name": {
 			"en": "Conspiratorial Madman",
 			"ja": "Conspiratorial Madman"
 		},
-		"pic3d": "/resource/enemy_pic/ph_madman.png",
+		"pic3d": "/resource/enemy_pic/hum_madman.png",
 		"scale": 0.48300000000000004
 	},
 	"EP2623": {
@@ -637973,48 +637973,48 @@
 			},
 			{
 				"id": "slash1",
-				"st": 30,
-				"en": 36,
+				"st": 24,
+				"en": 30,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "punch1",
-				"st": 30,
-				"en": 36,
+				"st": 24,
+				"en": 30,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "stick1",
-				"st": 30,
-				"en": 36,
+				"st": 24,
+				"en": 30,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "bow1",
-				"st": 30,
-				"en": 36,
+				"st": 24,
+				"en": 30,
 				"spd": 12.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "atk",
-				"st": 30,
-				"en": 36,
+				"st": 24,
+				"en": 30,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
 			},
 			{
 				"id": "atk_main",
-				"st": 30,
-				"en": 36,
+				"st": 24,
+				"en": 30,
 				"spd": 14.0,
 				"loop": false,
 				"replay": true
@@ -638090,12 +638090,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP425): needs drawn art",
+		"memo": "human enemy sprite (tools/gen_human_enemies.py)",
 		"name": {
 			"en": "Kolat Master Killer",
 			"ja": "Kolat Master Killer"
 		},
-		"pic3d": "/resource/enemy_pic/ph_kolat_killer.png",
+		"pic3d": "/resource/enemy_pic/hum_kolat_killer.png",
 		"scale": 0.48300000000000004
 	},
 	"EP2624": {
@@ -638219,13 +638219,13 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP163): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 1, mirrored)",
 		"name": {
 			"en": "Nikumizu",
 			"ja": "Nikumizu"
 		},
-		"pic3d": "/resource/enemy_pic/ph_heart_grubs.png",
-		"scale": 0.63
+		"pic3d": "/resource/enemy_pic/foe_heart_grubs.png",
+		"scale": 0.5
 	},
 	"EP2625": {
 		"animap": [
@@ -638470,20 +638470,20 @@
 		"flipx": false,
 		"gndpos": [
 			0.5,
-			0.0
+			0.029411764705882353
 		],
 		"hsv": [
 			0,
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP106): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 2)",
 		"name": {
 			"en": "Goblin Berserker",
 			"ja": "Goblin Berserker"
 		},
-		"pic3d": "/resource/enemy_pic/ph_goblin_berserker.png",
-		"scale": 0.5
+		"pic3d": "/resource/enemy_pic/foe_goblin_berserker.png",
+		"scale": 0.55
 	},
 	"EP2627": {
 		"animap": [
@@ -640320,12 +640320,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP432): needs drawn art",
+		"memo": "human enemy sprite (tools/gen_human_enemies.py)",
 		"name": {
 			"en": "Plague Zombie",
 			"ja": "Plague Zombie"
 		},
-		"pic3d": "/resource/enemy_pic/ph_plague_zombie.png",
+		"pic3d": "/resource/enemy_pic/hum_plague_zombie.png",
 		"scale": 0.48300000000000004
 	},
 	"EP2650": {
