@@ -2013,6 +2013,7 @@ def main():
     for _k in range(5):                                 # Cakon odd jobs (gen_maps FETCH_QUESTS): taken / found / done
         for _o, _what in enumerate(("taken", "found", "done")):
             gv["G%d" % (1382 + 3 * _k + _o)] = {"defval": False, "name": "odd job %d: %s" % (_k, _what), "type": 1}
+    gv["G1398"] = {"defval": 0, "name": "a save-then-move scene's owed map move (gen_maps resume_pass)", "type": 2}
     gv["G1362"] = {"defval": 0, "name": "guests met (bits by guest number; RokuganBattle guestSkills)", "type": 2}
     gv["G1363"] = {"defval": False, "name": "the finale: 8 party places (RokuganParty partyCap)", "type": 1}
     for _n in range(1, 18):                             # RokuganAI guestVar: lifetime calls spent

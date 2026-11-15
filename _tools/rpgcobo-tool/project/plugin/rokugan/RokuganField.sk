@@ -1250,6 +1250,26 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	printf( "[RT] odd job: %S\n", this.expText);
 };
 ::Rokugan.lastExpText <- function( _ = 0){ return this.expText; };
+//	(2026-11-15 bug report: Scorpion S01, save at the end of the eavesdropping, reload: softlocked in the garden) a save
+//	taken inside a scene that then changes map carries G1398 = the move it still owed (tools/gen_maps.py resume_pass,
+//	RokuganResumeData.sk). Back on the field with no scene running, that move happens now.
+::Rokugan.resumeTick <- function( st){
+	local k = int( ::rpgvar["G1398"] || 0);
+	if( k <= 0 || st["battle"] || !st["player3d"] || st.mainevent) return;
+	::rpgvar["G1398"] = 0;
+	local r = ("RESUME" in ::Rokugan) && k < length( this.RESUME) ? this.RESUME[k] : null;
+	if( !r) return;
+	printf( "[RT] resume after load: on to %S (save-then-move scene %d)\n", r.mapid, k);
+	local d = { mapid = r.mapid };
+	if( "pos" in r) d.pos <- (r.pos[0], null, r.pos[2], r.pos[3]);
+	else d.evid <- r.evid;
+	::RPGMain.moveMap( { dest = d, wipe = 1, remap = true });
+};
+::RPGStage._rt_body_resume <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	this._rt_body_resume( dt);
+	try{ ::Rokugan.resumeTick( this); }catch( ex){ printexception( ex); }
+};
 //	The finale: the traveler who walked last leads (fJoinAll brings the other seven on the plain).
 ::Rokugan.pathFinale <- function(){
 	local p = ::rpgstat.members.find( @( v) v && ::Rokugan.TRAVELERS.indexOf( v.dataid) >= 0);

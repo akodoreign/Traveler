@@ -88518,6 +88518,11 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 1;"
+										},
+										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -88572,6 +88577,11 @@
 											},
 											"text0": "Rest and save.",
 											"text1": "Not yet."
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -96225,10 +96235,20 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 2;"
+										},
+										{
 											"cmd": "cmd_showui",
 											"key": "menu_save",
 											"op": null,
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_script",
@@ -97778,6 +97798,11 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 3;"
+										},
+										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -97837,6 +97862,11 @@
 											},
 											"text0": "Rest and save.",
 											"text1": "Not yet."
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -140959,6 +140989,11 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 4;"
+										},
+										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -141013,6 +141048,11 @@
 											},
 											"text0": "Rest and save.",
 											"text1": "Not yet."
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -245829,6 +245869,11 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 5;"
+										},
+										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -245883,6 +245928,11 @@
 											},
 											"text0": "Rest and save.",
 											"text1": "Not yet."
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -248326,10 +248376,20 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 6;"
+										},
+										{
 											"cmd": "cmd_showui",
 											"key": "menu_save",
 											"op": null,
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_script",
@@ -252132,6 +252192,11 @@
 								"text1": "Leave it."
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::rpgvar[\"G1398\"] = 7;"
+							},
+							{
 								"cmd": "cmd_choices",
 								"backenable": false,
 								"cmdblocks": [
@@ -252186,6 +252251,11 @@
 								},
 								"text0": "Rest and save.",
 								"text1": "Not yet."
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::rpgvar[\"G1398\"] = 0;"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -339552,10 +339622,20 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 8;"
+										},
+										{
 											"cmd": "cmd_showui",
 											"key": "menu_save",
 											"op": null,
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_script",
@@ -356381,6 +356461,11 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 9;"
+										},
+										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -356435,6 +356520,11 @@
 											},
 											"text0": "Rest and save.",
 											"text1": "Not yet."
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_screenfxon",
@@ -444836,6 +444926,11 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 10;"
+										},
+										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -444890,6 +444985,11 @@
 											},
 											"text0": "Rest and save.",
 											"text1": "Not yet."
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -479011,10 +479111,20 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 11;"
+										},
+										{
 											"cmd": "cmd_showui",
 											"key": "menu_save",
 											"op": null,
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_script",
@@ -481941,6 +482051,11 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 12;"
+										},
+										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -481997,6 +482112,11 @@
 											"text1": "Not yet."
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
+										},
+										{
 											"cmd": "cmd_compute",
 											"lvar": "G837",
 											"op": "=",
@@ -482050,6 +482170,91 @@
 				"name": "*custom-9"
 			},
 			"#10#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					62,
+					4,
+					18,
+					0
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 5,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 6,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G837",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_screenfxon",
+								"color": 657231871,
+								"num": 1,
+								"sfxid": "color0",
+								"time": 1200
+							},
+							{
+								"cmd": "cmd_wait",
+								"time": 1200
+							},
+							{
+								"cmd": "cmd_screenfxon",
+								"color": 255,
+								"num": 1,
+								"sfxid": "color0",
+								"time": 1600
+							},
+							{
+								"cmd": "cmd_wait",
+								"time": 1800
+							},
+							{
+								"cmd": "cmd_mapmove",
+								"dest": {
+									"mapid": "M346",
+									"pos": [
+										6.5,
+										null,
+										7.0,
+										0.0
+									]
+								},
+								"wipe": 1,
+								"remap": true
+							}
+						]
+					}
+				],
+				"name": "*custom-10"
+			},
+			"#11#": {
 				"role": "villager",
 				"mdlid": "EP387",
 				"msg": "Three quivers left. Two. Whatever. Point me at it.",
@@ -482075,9 +482280,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-10"
+				"name": "*villager-11"
 			},
-			"#11#": {
+			"#12#": {
 				"role": "villager",
 				"mdlid": "EP388",
 				"msg": "(listening to the ground) ...The stones are counting.",
@@ -482103,9 +482308,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-11"
+				"name": "*villager-12"
 			},
-			"#12#": {
+			"#13#": {
 				"role": "villager",
 				"mdlid": "EP389",
 				"msg": "That wall's leaning. Everything's leaning.",
@@ -482131,9 +482336,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-12"
+				"name": "*villager-13"
 			},
-			"#13#": {
+			"#14#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "Drink your tea. No, all of it.",
@@ -482159,9 +482364,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-13"
+				"name": "*villager-14"
 			},
-			"#14#": {
+			"#15#": {
 				"role": "villager",
 				"mdlid": "EP391",
 				"msg": "Smells like rain. Smells like goblin.",
@@ -482187,9 +482392,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-14"
+				"name": "*villager-15"
 			},
-			"#15#": {
+			"#16#": {
 				"role": "villager",
 				"mdlid": "EP392",
 				"msg": "My knees say it'll snow.",
@@ -482215,9 +482420,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-15"
+				"name": "*villager-16"
 			},
-			"#16#": {
+			"#17#": {
 				"role": "villager",
 				"mdlid": "EP342",
 				"msg": "Big sky. Good hills. Bad soup.",
@@ -482243,9 +482448,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-16"
+				"name": "*villager-17"
 			},
-			"#17#": {
+			"#18#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "Smoke on the wind. Something big, east.",
@@ -482271,9 +482476,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-17"
+				"name": "*villager-18"
 			},
-			"#18#": {
+			"#19#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(writing on an ofuda) Hold still. No, the other arm.",
@@ -482299,9 +482504,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-18"
+				"name": "*villager-19"
 			},
-			"#19#": {
+			"#20#": {
 				"role": "villager",
 				"mdlid": "EP395",
 				"msg": "Third stone's safe. All the others: squish.",
@@ -482327,9 +482532,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-19"
+				"name": "*villager-20"
 			},
-			"#20#": {
+			"#21#": {
 				"role": "villager",
 				"mdlid": "EP462",
 				"msg": "(muttering a prayer for the Green Ronin, then one for you)",
@@ -482355,9 +482560,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-20"
+				"name": "*villager-21"
 			},
-			"#21#": {
+			"#22#": {
 				"role": "villager",
 				"mdlid": "EP473",
 				"msg": "(watching the trees) ...Something's in there.",
@@ -482383,9 +482588,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-21"
+				"name": "*villager-22"
 			},
-			"#22#": {
+			"#23#": {
 				"role": "villager",
 				"mdlid": "EP541",
 				"msg": "(two lanterns bobbing on a rope between them)",
@@ -482411,9 +482616,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-22"
+				"name": "*villager-23"
 			},
-			"#23#": {
+			"#24#": {
 				"role": "villager",
 				"mdlid": "EP485",
 				"msg": "(watching the tide) ...Low water in an hour.",
@@ -482439,9 +482644,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-23"
+				"name": "*villager-24"
 			},
-			"#24#": {
+			"#25#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(murmuring the tide prayers)",
@@ -482467,9 +482672,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-24"
+				"name": "*villager-25"
 			},
-			"#25#": {
+			"#26#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(testing the wind with a wet finger)",
@@ -482495,9 +482700,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-25"
+				"name": "*villager-26"
 			},
-			"#26#": {
+			"#27#": {
 				"role": "villager",
 				"mdlid": "EP543",
 				"msg": "(murmuring to the breeze)",
@@ -482523,9 +482728,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-26"
+				"name": "*villager-27"
 			},
-			"#27#": {
+			"#28#": {
 				"role": "villager",
 				"mdlid": "EP549",
 				"msg": "(composing under her breath)",
@@ -482551,9 +482756,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-27"
+				"name": "*villager-28"
 			},
-			"#28#": {
+			"#29#": {
 				"role": "villager",
 				"mdlid": "EP553",
 				"msg": "(trimming a wick)",
@@ -482579,9 +482784,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-28"
+				"name": "*villager-29"
 			},
-			"#29#": {
+			"#30#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(leaning on the spear)",
@@ -482607,9 +482812,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-29"
+				"name": "*villager-30"
 			},
-			"#30#": {
+			"#31#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(whispering to ancestors who don't answer)",
@@ -482635,9 +482840,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-30"
+				"name": "*villager-31"
 			},
-			"#31#": {
+			"#32#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(polishing a jade disc)",
@@ -482663,9 +482868,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-31"
+				"name": "*villager-32"
 			},
-			"#32#": {
+			"#33#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(humming the Ballad of Matsu Joruri)",
@@ -482691,9 +482896,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-32"
+				"name": "*villager-33"
 			},
-			"#33#": {
+			"#34#": {
 				"role": "villager",
 				"mdlid": "EP542",
 				"msg": "(stringing a hunting bow)",
@@ -482719,9 +482924,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-33"
+				"name": "*villager-34"
 			},
-			"#34#": {
+			"#35#": {
 				"role": "villager",
 				"mdlid": "EP555",
 				"msg": "(watching the road for inspectors)",
@@ -482747,9 +482952,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-34"
+				"name": "*villager-35"
 			},
-			"#35#": {
+			"#36#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding herbs in a bowl)",
@@ -482775,9 +482980,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-35"
+				"name": "*villager-36"
 			},
-			"#36#": {
+			"#37#": {
 				"role": "villager",
 				"mdlid": "EP561",
 				"msg": "(murmuring to the river's dead)",
@@ -482803,9 +483008,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-36"
+				"name": "*villager-37"
 			},
-			"#37#": {
+			"#38#": {
 				"role": "villager",
 				"mdlid": "EP573",
 				"msg": "(clearing a very loud throat)",
@@ -482831,9 +483036,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-37"
+				"name": "*villager-38"
 			},
-			"#38#": {
+			"#39#": {
 				"role": "villager",
 				"mdlid": "EP574",
 				"msg": "(leaning on a long spear)",
@@ -482859,9 +483064,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-38"
+				"name": "*villager-39"
 			},
-			"#39#": {
+			"#40#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(cupping a small flame in both hands)",
@@ -482887,9 +483092,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-39"
+				"name": "*villager-40"
 			},
-			"#40#": {
+			"#41#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on a long oak staff)",
@@ -482915,9 +483120,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-40"
+				"name": "*villager-41"
 			},
-			"#41#": {
+			"#42#": {
 				"role": "villager",
 				"mdlid": "EP495",
 				"msg": "(knocking snow off a long carrying-pole)",
@@ -482943,9 +483148,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-41"
+				"name": "*villager-42"
 			},
-			"#42#": {
+			"#43#": {
 				"role": "villager",
 				"mdlid": "EP371",
 				"msg": "(reciting the names of the dead under her breath)",
@@ -482971,9 +483176,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-42"
+				"name": "*villager-43"
 			},
-			"#43#": {
+			"#44#": {
 				"role": "villager",
 				"mdlid": "EP394",
 				"msg": "(spinning a long staff idly)",
@@ -482999,9 +483204,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-43"
+				"name": "*villager-44"
 			},
-			"#44#": {
+			"#45#": {
 				"role": "villager",
 				"mdlid": "EP575",
 				"msg": "(praying under her breath for her village)",
@@ -483027,9 +483232,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-44"
+				"name": "*villager-45"
 			},
-			"#45#": {
+			"#46#": {
 				"role": "villager",
 				"mdlid": "EP486",
 				"msg": "(praying into the wind)",
@@ -483055,9 +483260,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-45"
+				"name": "*villager-46"
 			},
-			"#46#": {
+			"#47#": {
 				"role": "villager",
 				"mdlid": "EP378",
 				"msg": "(leaning on an oak staff against the wind)",
@@ -483083,9 +483288,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-46"
+				"name": "*villager-47"
 			},
-			"#47#": {
+			"#48#": {
 				"role": "villager",
 				"mdlid": "EP463",
 				"msg": "(reciting a Tao verse slightly wrong)",
@@ -483111,9 +483316,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-47"
+				"name": "*villager-48"
 			},
-			"#48#": {
+			"#49#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(grinding something that smells of the sea)",
@@ -483139,9 +483344,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-48"
+				"name": "*villager-49"
 			},
-			"#49#": {
+			"#50#": {
 				"role": "villager",
 				"mdlid": "EP614",
 				"msg": "(squinting at the water, counting breaths)",
@@ -483167,9 +483372,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-49"
+				"name": "*villager-50"
 			},
-			"#50#": {
+			"#51#": {
 				"role": "villager",
 				"mdlid": "EP616",
 				"msg": "(humming to a kami who is very, very old)",
@@ -483195,9 +483400,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-50"
+				"name": "*villager-51"
 			},
-			"#51#": {
+			"#52#": {
 				"role": "villager",
 				"mdlid": "EP551",
 				"msg": "(polishing a yari that is already very clean)",
@@ -483223,9 +483428,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-51"
+				"name": "*villager-52"
 			},
-			"#52#": {
+			"#53#": {
 				"role": "villager",
 				"mdlid": "EP564",
 				"msg": "(practising a mudra, and getting it slightly wrong)",
@@ -483251,9 +483456,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-52"
+				"name": "*villager-53"
 			},
-			"#53#": {
+			"#54#": {
 				"role": "villager",
 				"mdlid": "EP393",
 				"msg": "(watching the ridge, very still)",
@@ -483279,9 +483484,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-53"
+				"name": "*villager-54"
 			},
-			"#54#": {
+			"#55#": {
 				"role": "villager",
 				"mdlid": "EP588",
 				"msg": "(rolling bandages, humming a court song)",
@@ -483307,9 +483512,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-54"
+				"name": "*villager-55"
 			},
-			"#55#": {
+			"#56#": {
 				"role": "villager",
 				"mdlid": "EP635",
 				"msg": "(practising a bow nobody will ever see)",
@@ -483335,9 +483540,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-55"
+				"name": "*villager-56"
 			},
-			"#56#": {
+			"#57#": {
 				"role": "villager",
 				"mdlid": "EP636",
 				"msg": "(sweeping the road as he walks, out of habit)",
@@ -483363,9 +483568,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-56"
+				"name": "*villager-57"
 			},
-			"#57#": {
+			"#58#": {
 				"role": "villager",
 				"mdlid": "EP637",
 				"msg": "(sniffing the wind toward the river, frowning)",
@@ -483391,9 +483596,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-57"
+				"name": "*villager-58"
 			},
-			"#58#": {
+			"#59#": {
 				"role": "villager",
 				"mdlid": "EP661",
 				"msg": "(not looking at the horizon where the city is)",
@@ -483419,9 +483624,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-58"
+				"name": "*villager-59"
 			},
-			"#59#": {
+			"#60#": {
 				"role": "villager",
 				"mdlid": "EP662",
 				"msg": "(gone from where she was standing; back again)",
@@ -483447,9 +483652,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-59"
+				"name": "*villager-60"
 			},
-			"#60#": {
+			"#61#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -483475,9 +483680,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-60"
+				"name": "*villager-61"
 			},
-			"#61#": {
+			"#62#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -483503,9 +483708,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-61"
+				"name": "*villager-62"
 			},
-			"#62#": {
+			"#63#": {
 				"role": "villager",
 				"mdlid": "EP687",
 				"msg": "(sniffing the air for the smell of rain)",
@@ -483531,9 +483736,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-62"
+				"name": "*villager-63"
 			},
-			"#63#": {
+			"#64#": {
 				"role": "villager",
 				"mdlid": "EP688",
 				"msg": "(checking both swords, then the path, then both swords)",
@@ -483559,9 +483764,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-63"
+				"name": "*villager-64"
 			},
-			"#64#": {
+			"#65#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the air for damp, out of habit)",
@@ -483587,9 +483792,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-64"
+				"name": "*villager-65"
 			},
-			"#65#": {
+			"#66#": {
 				"role": "villager",
 				"mdlid": "EP1100",
 				"msg": "(whistling to a horse that isn't there)",
@@ -483615,9 +483820,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-65"
+				"name": "*villager-66"
 			},
-			"#66#": {
+			"#67#": {
 				"role": "villager",
 				"mdlid": "EP673",
 				"msg": "(standing exactly between two things, out of habit)",
@@ -483643,9 +483848,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-66"
+				"name": "*villager-67"
 			},
-			"#67#": {
+			"#68#": {
 				"role": "villager",
 				"mdlid": "EP390",
 				"msg": "(gathering roots from the roadside as she walks)",
@@ -483671,9 +483876,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-67"
+				"name": "*villager-68"
 			},
-			"#68#": {
+			"#69#": {
 				"role": "villager",
 				"mdlid": "EP1107",
 				"msg": "(humming a different song, on purpose)",
@@ -483699,9 +483904,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-68"
+				"name": "*villager-69"
 			},
-			"#69#": {
+			"#70#": {
 				"role": "villager",
 				"mdlid": "EP1108",
 				"msg": "(warming her hands on nothing)",
@@ -483727,9 +483932,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-69"
+				"name": "*villager-70"
 			},
-			"#70#": {
+			"#71#": {
 				"role": "villager",
 				"mdlid": "EP699",
 				"msg": "(testing the wind for rain)",
@@ -483755,9 +483960,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-70"
+				"name": "*villager-71"
 			},
-			"#71#": {
+			"#72#": {
 				"role": "villager",
 				"mdlid": "EP1112",
 				"msg": "(checking the wax in his ears, again)",
@@ -483783,9 +483988,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-71"
+				"name": "*villager-72"
 			},
-			"#72#": {
+			"#73#": {
 				"role": "villager",
 				"mdlid": "EP1127",
 				"msg": "(checking the fuses, one by one)",
@@ -483811,9 +484016,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-72"
+				"name": "*villager-73"
 			},
-			"#73#": {
+			"#74#": {
 				"role": "villager",
 				"mdlid": "EP1128",
 				"msg": "(watching the sky for wings)",
@@ -483839,9 +484044,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-73"
+				"name": "*villager-74"
 			},
-			"#74#": {
+			"#75#": {
 				"role": "villager",
 				"mdlid": "EP1139",
 				"msg": "(polishing a very old blade, very carefully)",
@@ -483867,9 +484072,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-74"
+				"name": "*villager-75"
 			},
-			"#75#": {
+			"#76#": {
 				"role": "villager",
 				"mdlid": "EP1140",
 				"msg": "(sniffing the air, as if it were soup)",
@@ -483895,9 +484100,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-75"
+				"name": "*villager-76"
 			},
-			"#76#": {
+			"#77#": {
 				"role": "villager",
 				"mdlid": "EP1149",
 				"msg": "(counting arrows, then goats, then arrows)",
@@ -483923,9 +484128,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-76"
+				"name": "*villager-77"
 			},
-			"#77#": {
+			"#78#": {
 				"role": "villager",
 				"mdlid": "EP1150",
 				"msg": "(sifting green dust through her fingers)",
@@ -483951,9 +484156,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-77"
+				"name": "*villager-78"
 			},
-			"#78#": {
+			"#79#": {
 				"role": "villager",
 				"mdlid": "EP1155",
 				"msg": "(squinting up at the smoke on the mountain)",
@@ -483979,9 +484184,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-78"
+				"name": "*villager-79"
 			},
-			"#79#": {
+			"#80#": {
 				"role": "villager",
 				"mdlid": "EP1156",
 				"msg": "(holding up a wet finger, frowning at the smoke)",
@@ -484007,9 +484212,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-79"
+				"name": "*villager-80"
 			},
-			"#80#": {
+			"#81#": {
 				"role": "villager",
 				"mdlid": "EP1161",
 				"msg": "(cracking his knuckles at the forest)",
@@ -484035,9 +484240,9 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-80"
+				"name": "*villager-81"
 			},
-			"#81#": {
+			"#82#": {
 				"role": "villager",
 				"mdlid": "EP1162",
 				"msg": "(counting arrowheads, lips moving)",
@@ -484063,7 +484268,7 @@
 				"gap": 1.4,
 				"col": 0,
 				"flags": 1,
-				"name": "*villager-81"
+				"name": "*villager-82"
 			}
 		},
 		"exitmap": {
@@ -522378,6 +522583,11 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 13;"
+										},
+										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -522432,6 +522642,11 @@
 											},
 											"text0": "Rest and save.",
 											"text1": "Not yet."
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_screenfxon",
@@ -552254,6 +552469,11 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 14;"
+										},
+										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -552308,6 +552528,11 @@
 											},
 											"text0": "Rest and save.",
 											"text1": "Not yet."
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_screenfxon",
@@ -594863,10 +595088,20 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 15;"
+										},
+										{
 											"cmd": "cmd_showui",
 											"key": "menu_save",
 											"op": null,
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_script",
@@ -705055,10 +705290,20 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 16;"
+										},
+										{
 											"cmd": "cmd_showui",
 											"key": "menu_save",
 											"op": null,
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_script",
@@ -797373,10 +797618,20 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 17;"
+										},
+										{
 											"cmd": "cmd_showui",
 											"key": "menu_save",
 											"op": null,
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_script",
@@ -820743,6 +820998,11 @@
 						]
 					},
 					{
+						"cmd": "cmd_script",
+						"desc": "SCRIPT",
+						"code": "::rpgvar[\"G1398\"] = 18;"
+					},
+					{
 						"ani": {
 							"id": "stand"
 						},
@@ -821164,6 +821424,11 @@
 								"text2": "Not yet."
 							}
 						]
+					},
+					{
+						"cmd": "cmd_script",
+						"desc": "SCRIPT",
+						"code": "::rpgvar[\"G1398\"] = 0;"
 					},
 					{
 						"ani": {
@@ -988263,10 +988528,20 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 19;"
+										},
+										{
 											"cmd": "cmd_showui",
 											"key": "menu_save",
 											"op": null,
 											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_script",

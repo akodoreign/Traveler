@@ -631731,12 +631731,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP439): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 3, mirrored)",
 		"name": {
 			"en": "Anaguma Badger",
 			"ja": "Anaguma Badger"
 		},
-		"pic3d": "/resource/enemy_pic/ph_badger.png",
+		"pic3d": "/resource/enemy_pic/foe_badger.png",
 		"scale": 0.6825000000000001
 	},
 	"EP2601": {
@@ -631860,12 +631860,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP164): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 2)",
 		"name": {
 			"en": "River Wani",
 			"ja": "River Wani"
 		},
-		"pic3d": "/resource/enemy_pic/ph_crocodile.png",
+		"pic3d": "/resource/enemy_pic/foe_crocodile.png",
 		"scale": 0.6825000000000001
 	},
 	"EP2602": {
@@ -633224,12 +633224,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP440): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 2, mirrored)",
 		"name": {
 			"en": "Bakeneko",
 			"ja": "Bakeneko"
 		},
-		"pic3d": "/resource/enemy_pic/ph_bakeneko.png",
+		"pic3d": "/resource/enemy_pic/foe_bakeneko.png",
 		"scale": 0.6825000000000001
 	},
 	"EP2606": {
@@ -634035,13 +634035,13 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP173): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 1, mirrored)",
 		"name": {
 			"en": "Monkey Troop",
 			"ja": "Monkey Troop"
 		},
-		"pic3d": "/resource/enemy_pic/ph_monkeys.png",
-		"scale": 0.47250000000000003
+		"pic3d": "/resource/enemy_pic/foe_monkeys.png",
+		"scale": 0.5
 	},
 	"EP2609": {
 		"animap": [
@@ -634717,12 +634717,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP440): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 2)",
 		"name": {
 			"en": "Tora Tiger",
 			"ja": "Tora Tiger"
 		},
-		"pic3d": "/resource/enemy_pic/ph_tiger.png",
+		"pic3d": "/resource/enemy_pic/foe_tiger.png",
 		"scale": 0.6825000000000001
 	},
 	"EP2611": {
@@ -636081,12 +636081,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP441): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 1)",
 		"name": {
 			"en": "Tsumunagi",
 			"ja": "Tsumunagi"
 		},
-		"pic3d": "/resource/enemy_pic/ph_blood_eel.png",
+		"pic3d": "/resource/enemy_pic/foe_blood_eel.png",
 		"scale": 0.735
 	},
 	"EP2615": {
@@ -636210,12 +636210,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP459): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 1, mirrored)",
 		"name": {
 			"en": "Aka-name",
 			"ja": "Aka-name"
 		},
-		"pic3d": "/resource/enemy_pic/ph_aka_name.png",
+		"pic3d": "/resource/enemy_pic/foe_aka_name.png",
 		"scale": 0.63
 	},
 	"EP2616": {
@@ -636848,19 +636848,19 @@
 		"flipx": false,
 		"gndpos": [
 			0.5,
-			0.0
+			0.029411764705882353
 		],
 		"hsv": [
 			0,
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP106): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 2)",
 		"name": {
 			"en": "Goblin Sneak",
 			"ja": "Goblin Sneak"
 		},
-		"pic3d": "/resource/enemy_pic/ph_goblin_sneak.png",
+		"pic3d": "/resource/enemy_pic/foe_goblin_sneak.png",
 		"scale": 0.5
 	},
 	"EP2621": {
@@ -636977,19 +636977,19 @@
 		"flipx": false,
 		"gndpos": [
 			0.5,
-			0.0
+			0.029411764705882353
 		],
 		"hsv": [
 			0,
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP106): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 0, mirrored)",
 		"name": {
 			"en": "Goblin Chucker",
 			"ja": "Goblin Chucker"
 		},
-		"pic3d": "/resource/enemy_pic/ph_goblin_chucker.png",
+		"pic3d": "/resource/enemy_pic/foe_goblin_chucker.png",
 		"scale": 0.5
 	},
 	"EP2622": {
@@ -638348,12 +638348,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP169): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 0, mirrored)",
 		"name": {
 			"en": "Ghul",
 			"ja": "Ghul"
 		},
-		"pic3d": "/resource/enemy_pic/ph_ghul.png",
+		"pic3d": "/resource/enemy_pic/foe_ghul.png",
 		"scale": 0.6825000000000001
 	},
 	"EP2626": {
@@ -638606,12 +638606,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP167): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 0)",
 		"name": {
 			"en": "Hanemuri",
 			"ja": "Hanemuri"
 		},
-		"pic3d": "/resource/enemy_pic/ph_hanemuri.png",
+		"pic3d": "/resource/enemy_pic/foe_hanemuri.png",
 		"scale": 0.6825000000000001
 	},
 	"EP2628": {
@@ -638735,12 +638735,12 @@
 			-20,
 			-10
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP118): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 0)",
 		"name": {
 			"en": "Ogre Hag",
 			"ja": "Ogre Hag"
 		},
-		"pic3d": "/resource/enemy_pic/ph_ogre_hag.png",
+		"pic3d": "/resource/enemy_pic/foe_ogre_hag.png",
 		"scale": 1.1550000000000002
 	},
 	"EP2629": {
@@ -638864,12 +638864,12 @@
 			-20,
 			-10
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP118): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 0, mirrored)",
 		"name": {
 			"en": "Free Ogre",
 			"ja": "Free Ogre"
 		},
-		"pic3d": "/resource/enemy_pic/ph_free_ogre.png",
+		"pic3d": "/resource/enemy_pic/foe_free_ogre.png",
 		"scale": 1.1550000000000002
 	},
 	"EP2630": {
@@ -639244,20 +639244,20 @@
 		"flipx": false,
 		"gndpos": [
 			0.5,
-			0.0
+			0.029411764705882353
 		],
 		"hsv": [
 			0,
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP106): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 1, mirrored)",
 		"name": {
 			"en": "Zokujin Stonehunter",
 			"ja": "Zokujin Stonehunter"
 		},
-		"pic3d": "/resource/enemy_pic/ph_zokujin_hunter.png",
-		"scale": 0.5
+		"pic3d": "/resource/enemy_pic/foe_zokujin_hunter.png",
+		"scale": 0.55
 	},
 	"EP2633": {
 		"animap": [
@@ -639638,12 +639638,12 @@
 			0,
 			0
 		],
-		"memo": "PLACEHOLDER (tools/gen_placeholder_foes.py, from EP446): needs drawn art",
+		"memo": "AI foe art (tools/gen_foe_art.py, candidate 0)",
 		"name": {
 			"en": "Lesser Shadowspawn",
 			"ja": "Lesser Shadowspawn"
 		},
-		"pic3d": "/resource/enemy_pic/ph_shadowspawn.png",
+		"pic3d": "/resource/enemy_pic/foe_shadowspawn.png",
 		"scale": 0.63
 	},
 	"EP2636": {

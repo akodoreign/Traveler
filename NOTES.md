@@ -4964,3 +4964,4 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
   gen_maps marker_pass MK_PATH (all roads at once + end maps + spans; end beat keyed on PATH_WALKED) and RokuganMarker
   (finale beats only in the finale; road owner = first traveler). Details: _art/preview/agents/team/tester.md.
 - 2026-11-15 00:45: version 25 (d20be03) - two harmonised side-cast sheets + tools/gen_foe_art.py (WIP). (lead, scheduled push)
+- 2026-11-15 07:15: version 26 - first drawn new-foe sprites (5) + 3 AI enemy sheets. (lead, scheduled push)

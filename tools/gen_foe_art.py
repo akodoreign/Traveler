@@ -57,6 +57,25 @@ FOES = {
     "hyakuhei": ("hyakuhei, a hulking mass of many dead samurai soldiers fused into one body, many arms holding "
                  "rusty spears and swords, rotten armor plates, several skull faces, undead", 62, False, 0.75),
 }
+FOES.update({
+    "aoizame": ("a blue shark swimming, side view, fins, open jaws, fish, animal, no legs", 36, True, 0.6),
+    "mujina": ("mujina, a badger spirit with a featureless smooth blank face, standing upright in a ragged brown "
+               "kimono, badger tail, yokai", 52, False, 0.6),
+    "ape": ("ozaru, a huge grey-furred mountain ape, gorilla-like, knuckles on the ground, red face, angry, animal",
+            56, False, 0.75),
+    "muck_monster": ("a shapeless swamp mud monster, dripping brown-green muck body, two glowing eyes, mud arms, "
+                     "rotting reeds sticking out", 50, False, 0.7),
+    "tanglevines": ("a mass of thorny writhing tangled vines and roots shaped like a monster, plant creature, no face",
+                    48, False, 0.65),
+    "heart_grubs": ("a cluster of fat pale red parasite grubs, maggots, worm creature, wet", 28, False, 0.5),
+    "goblin_berserker": ("a frenzied green goblin berserker, big axe raised, foaming mouth, war paint, muscular "
+                         "small goblin", 46, False, 0.55),
+    "stinger_plant": ("a carnivorous bamboo-like plant monster with long sharp stinger spikes, plant creature",
+                      52, False, 0.65),
+})
+NEG_PER2 = {"aoizame": ", legs, standing, anthropomorphic", "mujina": ", eyes, mouth, nose",
+            "ape": ", human, clothes", "tanglevines": ", goblin, humanoid, face",
+            "stinger_plant": ", lizard, animal", "muck_monster": ", lizard, pink"}
 NEG_X = (", facing left, from behind, back view, multiple characters, background scenery, text, slender, "
          "tall, thin, alien")
 NEG_PER = {"zokujin_miner": ", 1girl, woman, female, breasts, goblin, green skin",
@@ -150,7 +169,7 @@ def draw(keys, seed0=31, n=4):
         od = os.path.join(WORK, key)
         os.makedirs(od, exist_ok=True)
         pos = gp.STYLE.replace("standing, ", "" if flying else "standing, ") + ", " + prompt
-        neg = gp.NEG + NEG_X + NEG_PER.get(key, "")
+        neg = gp.NEG + NEG_X + NEG_PER.get(key, "") + NEG_PER2.get(key, "")
         tiles = []
         for k in range(n):
             big = run(pos, neg, seed0 * 100 + k)

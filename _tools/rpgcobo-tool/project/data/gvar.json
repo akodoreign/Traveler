@@ -5673,6 +5673,11 @@
 		"name": "odd job 4: done",
 		"type": 1
 	},
+	"G1398": {
+		"defval": 0,
+		"name": "a save-then-move scene's owed map move (gen_maps resume_pass)",
+		"type": 2
+	},
 	"G1362": {
 		"defval": 0,
 		"name": "guests met (bits by guest number; RokuganBattle guestSkills)",
