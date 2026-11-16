@@ -46,6 +46,7 @@ class MapSpec:
         self.hgt = np.full((d, w), y, np.int32)
         self.objs = []
         self.walls = []                 # extra invisible-wall cells [(x, z)] (water is walled automatically)
+        self.buildings = []             # (x, z, w, d) footprints with usable front doors
 
     def rect(self, x, z, w, d, blk=None, y=None):
         if blk is not None:
@@ -149,6 +150,8 @@ def building(m, x, z, w, d, wall_h=4, door=True, roof=ROOF, wall=PLASTER, two_st
     Scale (user: buildings didn't scale with the cast; 2 blocks = 1 m): every storey is 2 blocks taller than the
     wall_h asked for and the doorway is 4 blocks (2 m), so a doorway clears a head and walls stand ~1.8x the cast
     (Octopath's towns run tall)."""
+    if door:
+        m.buildings.append((int(x), int(z), int(w), int(d)))
     wall_h += STOREY_EXTRA
     y0 = int(m.hgt[z:z + d, x:x + w].max())
     fill(m, x, y0 + 1, z, w, 1, d, STONEW)                                   # footing
@@ -3063,9 +3066,18 @@ def furnish(m, kind, x, z, rot=0, y=1):
     return True
 
 
-def interior(mid, name, w, d, layout, exit_to, npcs=(), chests=(), scenes=()):
+def interior(mid, name, w, d, layout, exit_to, npcs=(), chests=(), scenes=(), scale=2):
     """A cut-away room: plank floor, back + side walls in plaster on dark-wood posts, low front sill (camera side
     open, Octopath style), exit portal centred on the front edge. layout: list of (kind, x, z[, rot])."""
+    if scale < 1:
+        raise ValueError("interior scale must be positive")
+    if scale != 1:
+        scale_pos = lambda x, z: (1 + (x - 1) * scale, 1 + (z - 1) * scale)
+        w, d = w * scale, d * scale
+        layout = [(it[0], *scale_pos(it[1], it[2]), *it[3:]) for it in layout]
+        npcs = [(*scale_pos(x, z), mdl, kind, arg) for x, z, mdl, kind, arg in npcs]
+        chests = [(*scale_pos(x, z), item, num) for x, z, item, num in chests]
+        scenes = [(scale_pos(*sc[0]), *sc[1:]) for sc in scenes]
     W, D = w + 2, d + 3
     m = MapSpec(mid, name, W, D, base=DARKWOOD, y=0)
     m.rect(1, 1, w, d + 1, PLANK, 1)                                      # floor (y=1 top)
@@ -3292,6 +3304,98 @@ INTERIORS = {"M110": office, "M111": barracks, "M112": armoury, "M113": jadestor
              "M160": kh_inn, "M161": kh_forge, "M162": kh_armoury, "M163": kh_jade, "M164": kh_dojo,
              "M165": kh_tea, "M142": castle_1f, "M143": castle_2f, "M144": castle_3f, "M145": castle_4f,
              "M146": castle_6f}
+
+AUTO_INTERIOR_PARENTS = (
+    "M202", "M210", "M213", "M220", "M223", "M228", "M241", "M252", "M255", "M267",
+    "M282", "M285", "M288", "M297", "M304", "M315", "M343", "M347", "M360", "M369",
+    "M379", "M387", "M415", "M416", "M424", "M430", "M438", "M445", "M457",
+)
+AUTO_INTERIOR_CAPACITY = {
+    "M202": 2, "M210": 3, "M213": 2, "M220": 4, "M223": 3, "M228": 5, "M241": 4, "M252": 3,
+    "M255": 4, "M267": 2, "M282": 3, "M285": 2, "M288": 3, "M297": 3, "M304": 2, "M315": 3,
+    "M343": 3, "M347": 4, "M360": 3, "M369": 4, "M379": 3, "M387": 2, "M415": 3, "M416": 3,
+    "M424": 2, "M430": 3, "M438": 4, "M445": 3, "M457": 2,
+}
+# M900+ is outside the battle-map range; reserved capacities keep IDs stable in targeted builds.
+AUTO_INTERIOR_ID_POOL = ["M%03d" % n for a, b in ((900, 979), (986, 994), (996, 999))
+                         for n in range(a, b + 1)]
+if sum(AUTO_INTERIOR_CAPACITY.values()) > len(AUTO_INTERIOR_ID_POOL):
+    raise RuntimeError("Not enough unused map IDs for generated service interiors")
+AUTO_INTERIOR_PARENT = {}
+AUTO_INTERIOR_IDS = {}
+_auto_id_iter = iter(AUTO_INTERIOR_ID_POOL)
+for _parent_mid in AUTO_INTERIOR_PARENTS:
+    AUTO_INTERIOR_IDS[_parent_mid] = []
+    for _slot in range(AUTO_INTERIOR_CAPACITY[_parent_mid]):
+        _auto_mid = next(_auto_id_iter)
+        AUTO_INTERIOR_PARENT[_auto_mid] = _parent_mid
+        AUTO_INTERIOR_IDS[_parent_mid].append(_auto_mid)
+AUTO_INTERIOR_CACHE = {}
+
+
+def auto_service_interiors(mid, m, ev):
+    """Move service NPCs at a building facade into generated rooms; leave outdoor stalls alone."""
+    buildings = sorted(set(getattr(m, "buildings", [])))
+    services = {}
+    for event_id, event in list(ev.ev.items()):
+        if event.get("role") not in ("clerk", "hotel"):
+            continue
+        x, z = event["pos"][0], event["pos"][2]
+        candidates = []
+        for bx, bz, bw, bd in buildings:
+            door_x, door_z = door_of(bx, bz, bw)
+            if abs(z - door_z) > 2 or not bx - 1 <= x <= bx + bw:
+                continue
+            edge_distance = max(bx - x, 0, x - (bx + bw - 1))
+            candidates.append(((abs(z - door_z), edge_distance, abs(x - door_x)), (bx, bz, bw, bd)))
+        if candidates:
+            footprint = min(candidates, key=lambda candidate: candidate[0])[1]
+            services.setdefault(footprint, []).append((event_id, event))
+
+    room_index = 0
+    for (bx, bz, bw, bd), occupants in sorted(services.items()):
+        door_x, door_z = door_of(bx, bz, bw)
+        doorway_tiles = ((door_x, door_z), (door_x - 1, door_z))
+        occupant_ids = {event_id for event_id, _ in occupants}
+        if any(event.get("role") == "portal" and (event["pos"][0], event["pos"][2]) in doorway_tiles
+               for event in ev.ev.values()):
+            continue
+        open_tiles = [tile for tile in doorway_tiles if not any(
+            event_id not in occupant_ids and (event["pos"][0], event["pos"][2]) == tile
+            for event_id, event in ev.ev.items())]
+        if not open_tiles:
+            continue
+        door_x, door_z = open_tiles[0]
+        if room_index >= AUTO_INTERIOR_CAPACITY[mid]:
+            raise RuntimeError("%s has more service buildings than its auto-interior ID range" % mid)
+
+        room_mid = AUTO_INTERIOR_IDS[mid][room_index]
+        room_index += 1
+        room_w, room_d = max(20, bw * 2), max(14, bd * 2)
+        counter_z = room_d - 6
+        spacing = 6
+        counter_start = (room_w - (len(occupants) - 1) * spacing) // 2 - 2
+        layout = []
+        npcs = []
+        for index, (_, event) in enumerate(occupants):
+            counter_x = max(2, min(room_w - 4, counter_start + index * spacing))
+            layout.append(("counter", counter_x, counter_z))
+            npcs.append((counter_x + 3, counter_z, event["mdlid"], "clerk" if event["role"] == "clerk" else "inn",
+                         event.get("storeid", event.get("price", 0))))
+        layout.extend((("shelf", 2, room_d - 9), ("barrel", room_w - 4, room_d - 9)))
+        if any(event["role"] == "hotel" for _, event in occupants):
+            layout.extend((("hearth", 3, 3), ("futon", 5, 5), ("futon", 9, 5)))
+        else:
+            layout.extend((("sword", 4, 5), ("box", room_w - 5, 3)))
+
+        door_event = ev.portal(door_x, door_z, room_mid, 1, d=0)
+        label = "Inn" if all(event["role"] == "hotel" for _, event in occupants) else "Shop"
+        room, room_ev = interior(room_mid, "%s - %s" % (m.name, label), room_w, room_d, layout,
+                                 (mid, door_event), npcs=npcs, scale=1)
+        room_ev.inns = []
+        AUTO_INTERIOR_CACHE[room_mid] = (room, room_ev)
+        for event_id, _ in occupants:
+            ev.ev.pop(event_id)
 
 
 import math  # noqa: E402
@@ -19539,6 +19643,9 @@ ENCOUNTERS["M493"] = ("M827", list(_SEA_ROWS))
 ENCOUNTERS["M494"] = ("M827", list(_SEA_ROWS) + [("Deep water: the Umibozu", ["E337"], 8)])
 ENCOUNTER_MAPS |= {"M490", "M491", "M492", "M493", "M494"}
 SEA_MAP_IDS = {"M490", "M491", "M492", "M493", "M494"}
+_auto_map_collisions = set(AUTO_INTERIOR_PARENT).intersection(MAPS)
+if _auto_map_collisions:
+    raise RuntimeError("Generated interior IDs overlap map builders: %s" % ", ".join(sorted(_auto_map_collisions)))
 
 
 RESUME = []
@@ -19627,7 +19734,16 @@ def register(specs, events):
             continue
         e = json.loads(json.dumps(base))
         ev = events.get(sp.mid)
-        e["camwork"] = {"fovy": 30, "hpb": [0, 38, 0], "viewport": 8.0 if sp.mid in INTERIORS else 15.0, "yoffs": 0.5}
+        previous = mp.get(sp.mid)
+        if sp.mid in INTERIORS or sp.mid in ROOM_OFS:
+            e["weather"] = {"type": None}
+        elif previous is not None:
+            if "weather" in previous:
+                e["weather"] = previous["weather"]
+            else:
+                e.pop("weather", None)
+        e["camwork"] = {"fovy": 30, "hpb": [0, 38, 0],
+                        "viewport": 8.0 if sp.mid in INTERIORS or sp.mid in ROOM_OFS else 15.0, "yoffs": 0.5}
         e.update({"name": sp.name, "size": [sp.w, 64, sp.d], "event": ev.ev if ev else {},
                   "encount": [], "encntrate": 0.0, "rsetid": RSET.get(sp.mid, "rt_hd2d_field"),
                   "bgmid": music_for(sp)})
@@ -20280,7 +20396,14 @@ def make(i):
         wall_garrison()
         hoshi_town()
         kh_town()
-    r = MAPS[i]()
+    if i in AUTO_INTERIOR_PARENT:
+        if i not in AUTO_INTERIOR_CACHE:
+            make(AUTO_INTERIOR_PARENT[i])
+        if i not in AUTO_INTERIOR_CACHE:
+            raise KeyError("No generated service interior for %s" % i)
+        r = AUTO_INTERIOR_CACHE[i]
+    else:
+        r = MAPS[i]()
     m, ev = r if isinstance(r, tuple) else (r, None)
     if ev is not None and "M100" <= i < "M800" and i not in SEA_MAP_IDS:   # (at sea: nobody walks
         for h in _hire.HIRELINGS:                                                          # behind the junk - user)
@@ -20300,6 +20423,8 @@ def make(i):
             p = ev.ev["#%d#" % k]["pos"]
             ev.ev["#%d#" % k]["pos"] = [p[0] + done[0] - raw[0], p[1] + done[1] - raw[1], p[2] + done[2] - raw[2],
                                         p[3]]
+        if i in AUTO_INTERIOR_PARENTS:
+            auto_service_interiors(i, m, ev)
     if ev is not None and i in FINALE_GATES:                                 # the road to the finale
         gx, gz = FINALE_GATES[i][:2]
         if i in ROOM_OFS:                                                   # interiors were already embedded:
@@ -20369,21 +20494,36 @@ DEBUG_MAPS = {"M090", "M091", "M092", "M094"}                             # prob
 def register_all():
     """Re-register every game map (all but DEBUG_MAPS) in map.json without rebuilding .bw files (called by gen_data.py)."""
     specs, events = [], {}
+    AUTO_INTERIOR_CACHE.clear()
     for i in [k for k in MAPS if k not in DEBUG_MAPS]:
         m, ev = make(i)
         specs.append(m)
         events[m.mid] = ev
+    add_auto_interiors(specs, events)
     register(specs, events)
+
+
+def add_auto_interiors(specs, events):
+    seen = {spec.mid for spec in specs}
+    for mid in sorted(AUTO_INTERIOR_CACHE):
+        if mid in seen:
+            continue
+        m, ev = make(mid)
+        specs.append(m)
+        if ev:
+            events[m.mid] = ev
 
 
 def main():
     ids = sys.argv[1:] or [k for k in MAPS if k not in DEBUG_MAPS]
     specs, events = [], {}
+    AUTO_INTERIOR_CACHE.clear()
     for i in ids:
         m, ev = make(i)
         specs.append(m)
         if ev:
             events[m.mid] = ev
+    add_auto_interiors(specs, events)
     register(specs, events)
     build(specs)
 

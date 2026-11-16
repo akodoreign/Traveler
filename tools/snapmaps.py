@@ -21,10 +21,10 @@ ANIM = ""                                                   # --anim facepalm: t
 
 
 def snap(mid, x, z, rtvar, wait=4.0):
-    padded = not (mid in gm.INTERIORS or mid in gm.ROOM_DIMS)
+    padded = not (mid in gm.INTERIORS or mid in gm.AUTO_INTERIOR_PARENT or mid in gm.ROOM_DIMS)
     if mid in gm.ROOM_DIMS:
         pos = gm.world(mid, x, z, 0.0, padded=False)
-    elif mid in gm.INTERIORS:
+    elif mid in gm.INTERIORS or mid in gm.AUTO_INTERIOR_PARENT:
         gm.make(mid)
         ox, oz = gm.ROOM_OFS[mid]
         pos = [(x + ox) / 2.0, None, (z + oz) / 2.0, 0.0]
