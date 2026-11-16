@@ -1088,7 +1088,7 @@ class RPGStageEventRunner extends RPGEventRunner
 	function setEventSnapshot( es){
 		mode = es["mode"] ? 1 : 0;	//	mode=2は並列実行中。イベント実行を途中から再開は出来ないのでscout状態から再開するように。。。
 		// spawnandran = !!es["spawnandran"];
-		if( es["spawnpos"]) spawnpos = es.spawnpos;		//	この位置は保存時のイベントの位置を指す。
+		if( es["spawnpos"] && data["role"] != "portal") spawnpos = es.spawnpos;	//	旧セーブのポータル位置は復元しない。
 		//	移動アクションの復元を最低限できるようにする。。。主にManualPlayActionの移動ルートを途中から再生したい。
 		local act = es["act"];
 		if( act){	//	これ入ってる時点で
@@ -1108,9 +1108,10 @@ class RPGStageEventRunner extends RPGEventRunner
 		if( pageidx >= 0) es.pageidx <- pageidx
 		// if( spawnandran) es.spawnandran <- true;
 		if( rp3d){
-			// es.spawnpos <- (rp3d.pos.x, rp3d.pos.y, rp3d.pos.z, rp3d.dir);	//	spawnposは現在スポーンしてたらその位置を入れる。
-			local p = v_0( rp3d.pos).add( rp3d.pivot);
-			es.spawnpos <- (p.x,p.y,p.z,rp3d.dir);
+			if( data["role"] != "portal"){
+				local p = v_0( rp3d.pos).add( rp3d.pivot);
+				es.spawnpos <- (p.x,p.y,p.z,rp3d.dir);
+			}
 			if( rp3d.mainaction["getSnapshot"]){
 				local act = rp3d.mainaction.getSnapshot(); if( act) es.act <- act;
 			}
