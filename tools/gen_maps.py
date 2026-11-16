@@ -5518,13 +5518,21 @@ def ship_deck():
     # from (plugin seaFrom sets G1399), the open sea once the hull is patched (G392, after Cove Fort)
     if "M490" not in SEA_MAPS and "_crane_sea" in globals():
         _crane_sea(False)
-    spots = SEA_MAPS.get("M490", {})
+    if "M491" not in SEA_MAPS and "_crane_sea" in globals():
+        _crane_sea(True)
+    if "M493" not in SEA_MAPS and "crane_sea_outer" in globals():
+        crane_sea_outer()
+    if "M494" not in SEA_MAPS and "crane_sea_doji" in globals():
+        crane_sea_doji()
 
     def out_at(sea):
-        return [if_([{"lvar": "G1399", "op": "==", "rvar": k + 1}], [go(sea, *spots[key])], [])
-                for k, key in enumerate(("M220", "M222", "M223", "M225")) if key in spots and k > 0] + \
-               [if_([{"lvar": "G1399", "op": "<=", "rvar": 1}], [go(sea, *spots["M220"])], [])]
-    if spots:
+        origins = ((2, "M222", sea), (3, "M223", sea), (4, "M225", sea), (5, "M228", "M494"))
+        return [if_([{"lvar": "G1399", "op": "==", "rvar": index}],
+                    [go(dest, *SEA_MAPS[dest][key])], [])
+                for index, key, dest in origins if dest in SEA_MAPS and key in SEA_MAPS[dest]] + [
+                    if_([{"lvar": "G1399", "op": "<=", "rvar": 1}],
+                        [go(sea, *SEA_MAPS[sea]["M220"])], [])]
+    if "M220" in SEA_MAPS["M490"] and "M228" in SEA_MAPS.get("M494", {}):
         ev.talk(34, 14, "CE000", [(None, [
             narrate("The helm. The ship's master hands it over with a look that says: gently."),
             choices(("Take the helm.", DARK + [if_([flag("G392")], out_at("M491"), out_at("M490"))]),
@@ -19423,6 +19431,16 @@ def sea_map(mid, name, w, d, islands, piers, deep_open, lanes=(), shore=7, seed=
     return m, ev
 
 
+def sea_channel(m, ev, x, z, dest, dx, dz, description):
+    """A two-way sea-map passage. Keep its trigger and arrival points on open water."""
+    assert 0 <= x < m.w and 0 <= z < m.d
+    assert (int(m.blk[z, x]) & 31) == 8 and int(m.hgt[z, x]) == 1
+    ev.talk(x, z, "CE000", [(None, [
+        narrate(description),
+        choices(("Sail through.", [go(dest, dx, dz)]), ("Stay in these waters.", []))
+    ])], trigger=5)
+
+
 def _crane_sea(deep_open):
     mid = "M491" if deep_open else "M490"
     def back(dest, x, z):
@@ -19443,6 +19461,9 @@ def _crane_sea(deep_open):
                 "A pale island far out on the deep water. Not yet.")],
         deep_open=deep_open,
         lanes=[(30, 68, 58, 58, 10), (58, 58, 114, 60, 10)])
+    if deep_open:
+        sea_channel(m, ev, 144, 36, "M493", 12, 36,
+                    "The Crane coast bends east around a string of green islands.")
     if deep_open and "M464" in MAPS:                                       # the post-game: the Orochi's water
         m.rect(16, 6, 8, 6, TAR, 1)
         ev.talk(20, 8, "CE000", [(None, [narrate("Black water, turning slowly. Nothing lives here.")]),
@@ -19460,6 +19481,32 @@ def crane_sea():
     return _crane_sea(True)
 
 
+def crane_sea_outer():
+    m, ev = sea_map("M493", "The Crane sea - the outer coast", 150, 90, islands=[
+        (75, 100, 110, 24, GRASS),                                         # the Crane mainland, north
+        (49, 48, 13, 9, SAND), (98, 31, 12, 8, GRASS2),
+        (119, 57, 8, 7, SAND)],
+        piers=[], deep_open=True, lanes=[(15, 36, 135, 36, 8)], shore=7, seed=17)
+    sea_channel(m, ev, 5, 36, "M491", 138, 36,
+                "The route west leads back to the Crane port.")
+    sea_channel(m, ev, 144, 43, "M494", 12, 43,
+                "Beyond the last island, the coast turns north toward Kyuden Doji.")
+    return m, ev
+
+
+def crane_sea_doji():
+    m, ev = sea_map("M494", "The Crane sea - the Doji coast", 150, 90, islands=[
+        (75, 101, 112, 24, GRASS2),                                        # the Crane mainland, north
+        (43, 42, 12, 8, SAND), (100, 34, 11, 8, GRASS),
+        (115, 57, 9, 7, SAND)],
+        piers=[("M228", 74, 82, "s", "Kyuden Doji", DARK + [go("M228", 8, 10)], [flag("G403")],
+                "The harbor steps of Kyuden Doji lie beyond the northern shoals.")],
+        deep_open=True, lanes=[(15, 43, 135, 43, 8)], shore=7, seed=23)
+    sea_channel(m, ev, 5, 43, "M493", 138, 43,
+                "The route west follows the Crane coast.")
+    return m, ev
+
+
 def mantis_sea():
     """Dragon Ch2: the ferry from the Isle of Silk to Tortoise Island, as a short sail (all shallows: a ferry)."""
     m, ev = sea_map("M492", "The Mantis isles", 120, 70, islands=[
@@ -19470,16 +19517,21 @@ def mantis_sea():
     return m, ev
 
 
-MAPS.update({"M490": crane_sea_shallows, "M491": crane_sea, "M492": mantis_sea})
-RSET.update({"M490": "rt_hd2d_field", "M491": "rt_hd2d_field", "M492": "rt_hd2d_field"})
-MUSIC_OVERRIDE.update({"M490": "sea", "M491": "sea", "M492": "sea"})
+MAPS.update({"M490": crane_sea_shallows, "M491": crane_sea, "M492": mantis_sea,
+             "M493": crane_sea_outer, "M494": crane_sea_doji})
+RSET.update({"M490": "rt_hd2d_field", "M491": "rt_hd2d_field", "M492": "rt_hd2d_field",
+             "M493": "rt_hd2d_field", "M494": "rt_hd2d_field"})
+MUSIC_OVERRIDE.update({"M490": "sea", "M491": "sea", "M492": "sea", "M493": "sea", "M494": "sea"})
 _SEA_ROWS = [("Sea: wako raiders", ["E333", "E333"], 35), ("Sea: a sea serpent eel", ["E334", "E333"], 25),
              ("Sea: tide crabs", ["E335", "E335", "E335"], 20), ("Sea: a Mantis corsair", ["E336", "E333"], 15)]
 ENCOUNTERS["M490"] = ("M827", list(_SEA_ROWS))
 ENCOUNTERS["M491"] = ("M827", list(_SEA_ROWS) + [("Deep water: the Umibozu", ["E337"], 8)])
 ENCOUNTERS["M492"] = ("M853", [(r[0].replace("Cove:", "Sea:"), r[1], r[2]) for r in ENCOUNTERS.get("M318", ("", []))[1]
                                if "(Lv" not in r[0]][:4] or list(_SEA_ROWS))    # (Dragon Ch2's own sea foes)
-ENCOUNTER_MAPS |= {"M490", "M491", "M492"}
+ENCOUNTERS["M493"] = ("M827", list(_SEA_ROWS))
+ENCOUNTERS["M494"] = ("M827", list(_SEA_ROWS) + [("Deep water: the Umibozu", ["E337"], 8)])
+ENCOUNTER_MAPS |= {"M490", "M491", "M492", "M493", "M494"}
+SEA_MAP_IDS = {"M490", "M491", "M492", "M493", "M494"}
 
 
 RESUME = []
@@ -20223,7 +20275,7 @@ def make(i):
         kh_town()
     r = MAPS[i]()
     m, ev = r if isinstance(r, tuple) else (r, None)
-    if ev is not None and "M100" <= i < "M800" and i not in ("M490", "M491", "M492"):   # (at sea: nobody walks
+    if ev is not None and "M100" <= i < "M800" and i not in SEA_MAP_IDS:   # (at sea: nobody walks
         for h in _hire.HIRELINGS:                                                          # behind the junk - user)
             for mid, x, z in h["spots"]:
                 if mid == i:
@@ -20276,7 +20328,7 @@ def make(i):
             edge_triggers(m, ev)
     if ev is not None and (i in INTERIORS or i in ROOM_OFS):
         floor_arrows(m, ev)
-    elif ev is not None and "M100" <= i < "M800" and i not in ("M490", "M491", "M492"):   # (at sea: the pier's lamp
+    elif ev is not None and "M100" <= i < "M800" and i not in SEA_MAP_IDS:   # (at sea: the pier's lamp
         # (user 2026-11-12: "need an indicator what tile to step on to get out of the kaiu tunnels and into the
         # shadowlands") caves: every exit inside the map; elsewhere: the invisible walk-on spots that move you on
         floor_arrows(m, ev, walkon_only=i not in CAVE_MAPS)                                 # marks the landing)

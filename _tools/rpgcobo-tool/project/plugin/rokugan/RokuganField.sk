@@ -1285,11 +1285,11 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	::RPGMain.moveMap( { dest = d, wipe = 1, remap = true });
 };
 //	The sea maps (tools/gen_maps.py sea_map; user 2026-11-14: "zoom out from the junk ... the little ship that you sail
-//	around"): on M490-M492 the field leader is drawn as the junk (EP2650), the party followers stay aboard (hidden),
+//	around"): on M490-M494 the field leader is drawn as the junk (EP2650), the party followers stay aboard (hidden),
 //	battles show the party as usual. Landing back on a port records where you boarded from (G1399) so the ship's helm
 //	puts you out at that place's pier.
-::Rokugan.SEA_MAPS <- { M490 = 1, M491 = 1, M492 = 1 };
-::Rokugan.SEA_FROM <- { M220 = 1, M228 = 1, M222 = 2, M223 = 3, M225 = 4 };
+::Rokugan.SEA_MAPS <- { M490 = 1, M491 = 1, M492 = 1, M493 = 1, M494 = 1 };
+::Rokugan.SEA_FROM <- { M220 = 1, M228 = 5, M222 = 2, M223 = 3, M225 = 4 };
 ::Rokugan.SEA_SHIP <- "EP2650";
 ::Rokugan.seaOn <- false;
 ::Rokugan.seaMaking <- false;									//	true only while the leader is rebuilt below
