@@ -20474,8 +20474,9 @@ _PARTY_MDL = {}
 
 def party_npc_pass(ev):
     """(user 2026-11-14: "make sure NPCs do not spawn while they are already in the party") A map NPC drawn with a
-    player character's model (villagers and talk-only events) stays away while that character is in the party (flag
-    G1220 + number, plugin RokuganParty partyFlags). Hireling followers (G293) and scenes are left alone."""
+    player character's model (villagers and non-scene custom events) stays away while that character is in the party
+    (flag G1220 + number, plugin RokuganParty partyFlags). Gate every NPC page so page-specific conditions cannot
+    override it. Hireling followers (G293) and scenes are left alone."""
     if not _PARTY_MDL:
         pl = json.load(open(os.path.join(PROJ, "data", "player.json"), encoding="utf-8"))
         for pid, p in pl.items():
@@ -20487,12 +20488,22 @@ def party_npc_pass(ev):
         if not pid or e.get("memo") == "barricade" or "G293" in json.dumps(e.get("reqs0")):
             continue
         role, pages = e.get("role"), e.get("page") or []
-        if role != "villager" and not (role == "custom" and pages and all(pg.get("trigger") == 1 for pg in pages)):
+        if role != "villager" and not (role == "custom" and pages and
+                                       all(pg.get("trigger") in (0, 1, 2, 3, 4) for pg in pages)):
             continue
         f = "G%d" % (1220 + int(pid[1:]))
         reqs = list(e.get("reqs0") or [])
         if not any(r.get("lvar") == f for r in reqs):
-            e["reqs0"] = reqs + [flag(f, False)]
+            reqs.append(flag(f, False))
+        e["reqs0"] = reqs
+        for i, pg in enumerate(pages):
+            page_reqs = pg.get("reqs")
+            if page_reqs is None:
+                page_reqs = e.get("reqs%d" % i)
+            page_reqs = list(page_reqs or [])
+            if not any(r.get("lvar") == f for r in page_reqs):
+                page_reqs.append(flag(f, False))
+            pg["reqs"] = page_reqs
 
 
 def cave_mounds(m, ev):

@@ -4821,7 +4821,13 @@
 					55,
 					2
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1341",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"role": "villager",
 				"spawndist": 1,
 				"standani": null
@@ -5101,7 +5107,13 @@
 					66,
 					2
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1340",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"role": "villager",
 				"spawndist": 1,
 				"standani": null
@@ -8001,7 +8013,13 @@
 					12,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1320",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -8015,7 +8033,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1320",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -8031,7 +8055,13 @@
 					12,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1321",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -8045,7 +8075,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1321",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -8061,7 +8097,13 @@
 					12,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1323",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -8075,7 +8117,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1323",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -8091,7 +8139,13 @@
 					12,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1324",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -8105,7 +8159,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1324",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -8121,7 +8181,13 @@
 					12,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1322",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -8135,7 +8201,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1322",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -8151,7 +8223,13 @@
 					12,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1325",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -8165,7 +8243,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1325",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -8181,7 +8265,13 @@
 					14,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1326",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -8195,7 +8285,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1326",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -8211,7 +8307,13 @@
 					14,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1327",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -8225,7 +8327,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1327",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -23493,7 +23601,18 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -23622,6 +23741,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -37234,7 +37358,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -37252,6 +37397,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -52223,7 +52373,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -52241,6 +52412,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -61587,7 +61763,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G368",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G303",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G232",
+								"op": "!=",
+								"rvar": 7
+							},
+							{
+								"lvar": "G1343",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -61644,6 +61841,11 @@
 						"lvar": "G232",
 						"op": "!=",
 						"rvar": 7
+					},
+					{
+						"lvar": "G1343",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -64779,7 +64981,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -64797,6 +65020,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -65922,7 +66150,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G368",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G303",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G232",
+								"op": "!=",
+								"rvar": 7
+							},
+							{
+								"lvar": "G1343",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -65979,6 +66228,11 @@
 						"lvar": "G232",
 						"op": "!=",
 						"rvar": 7
+					},
+					{
+						"lvar": "G1343",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -73881,7 +74135,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -73899,6 +74174,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -85784,7 +86064,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G368",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G303",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G232",
+								"op": "!=",
+								"rvar": 7
+							},
+							{
+								"lvar": "G1343",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -85841,6 +86142,11 @@
 						"lvar": "G232",
 						"op": "!=",
 						"rvar": 7
+					},
+					{
+						"lvar": "G1343",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -88868,7 +89174,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -88886,6 +89213,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -127902,7 +128234,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -127920,6 +128273,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -137248,6 +137606,11 @@
 						"lvar": "G442",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1347",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -137263,7 +137626,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G442",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1347",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -137284,6 +137658,11 @@
 						"lvar": "G442",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1348",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -137299,7 +137678,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G442",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1348",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -137320,6 +137710,11 @@
 						"lvar": "G442",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1348",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -137335,7 +137730,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G442",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1348",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -140336,6 +140742,11 @@
 						"lvar": "G444",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1350",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -140351,7 +140762,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G444",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1350",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -140418,6 +140840,11 @@
 						"lvar": "G600",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1351",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -140433,7 +140860,23 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G444",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G600",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1351",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -142438,6 +142881,11 @@
 						"lvar": "G602",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1323",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -142453,7 +142901,23 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G585",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G602",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1323",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -142563,6 +143027,11 @@
 						"lvar": "G1202",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1350",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -142578,7 +143047,23 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1197",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1202",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1350",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -145348,7 +145833,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G462",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G444",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G232",
+								"op": "!=",
+								"rvar": 9
+							},
+							{
+								"lvar": "G1351",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -145405,6 +145911,11 @@
 						"lvar": "G232",
 						"op": "!=",
 						"rvar": 9
+					},
+					{
+						"lvar": "G1351",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -148110,7 +148621,18 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -148239,6 +148761,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -154317,7 +154844,13 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1347",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -154468,6 +155001,11 @@
 								"lvar": "G461",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1347",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -154482,7 +155020,13 @@
 						]
 					}
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1347",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -170656,7 +171200,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G462",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G444",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G232",
+								"op": "!=",
+								"rvar": 9
+							},
+							{
+								"lvar": "G1351",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -170713,6 +171278,11 @@
 						"lvar": "G232",
 						"op": "!=",
 						"rvar": 9
+					},
+					{
+						"lvar": "G1351",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -171237,6 +171807,11 @@
 						"lvar": "G591",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1351",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -171252,7 +171827,23 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G585",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G591",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1351",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -174496,7 +175087,18 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -174625,6 +175227,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -183440,7 +184047,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G462",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G444",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G232",
+								"op": "!=",
+								"rvar": 9
+							},
+							{
+								"lvar": "G1351",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -183497,6 +184125,11 @@
 						"lvar": "G232",
 						"op": "!=",
 						"rvar": 9
+					},
+					{
+						"lvar": "G1351",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -186421,7 +187054,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -186439,6 +187093,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -190585,7 +191244,23 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G498",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G509",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1349",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -190606,6 +191281,11 @@
 					},
 					{
 						"lvar": "G509",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1349",
 						"op": "==",
 						"rvar": false
 					}
@@ -201575,6 +202255,11 @@
 						"lvar": "G509",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1349",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -201590,7 +202275,23 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G507",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G509",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1349",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -224577,7 +225278,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -224595,6 +225317,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -242088,7 +242815,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G462",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G444",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G232",
+								"op": "!=",
+								"rvar": 9
+							},
+							{
+								"lvar": "G1351",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -242145,6 +242893,11 @@
 						"lvar": "G232",
 						"op": "!=",
 						"rvar": 9
+					},
+					{
+						"lvar": "G1351",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -242452,7 +243205,13 @@
 					23,
 					2
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1350",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -242466,7 +243225,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1350",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -242487,6 +243252,11 @@
 						"lvar": "G573",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1347",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -242502,7 +243272,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G573",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1347",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -245103,7 +245884,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -245121,6 +245923,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -246910,7 +247717,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G462",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G444",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G232",
+								"op": "!=",
+								"rvar": 9
+							},
+							{
+								"lvar": "G1351",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -246967,6 +247795,11 @@
 						"lvar": "G232",
 						"op": "!=",
 						"rvar": 9
+					},
+					{
+						"lvar": "G1351",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -247576,7 +248409,13 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1348",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -247815,6 +248654,11 @@
 								"lvar": "G552",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1348",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -248010,7 +248854,13 @@
 						]
 					}
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1348",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -248035,7 +248885,13 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1348",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -248248,6 +249104,11 @@
 								"lvar": "G553",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1348",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -248443,7 +249304,13 @@
 						]
 					}
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1348",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -248707,7 +249574,13 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1347",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -248736,6 +249609,11 @@
 							},
 							{
 								"lvar": "G559",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1347",
 								"op": "==",
 								"rvar": false
 							}
@@ -249341,6 +250219,11 @@
 								"lvar": "G559",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1347",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -249355,7 +250238,13 @@
 						]
 					}
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1347",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -249380,7 +250269,13 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1350",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -249406,6 +250301,11 @@
 								"lvar": "G555",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1350",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -249420,7 +250320,13 @@
 						]
 					}
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1350",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -252152,7 +253058,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -252170,6 +253097,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -252527,6 +253459,11 @@
 						"lvar": "G558",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1350",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -252542,7 +253479,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G558",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1350",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -252609,6 +253557,11 @@
 						"lvar": "G558",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1321",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -252624,7 +253577,23 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G557",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G558",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1321",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -278334,7 +279303,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -278352,6 +279342,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -290953,7 +291948,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -290971,6 +291987,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -300979,6 +302000,11 @@
 						"lvar": "G662",
 						"op": "==",
 						"rvar": true
+					},
+					{
+						"lvar": "G1353",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -300994,7 +302020,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G662",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1353",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -303980,7 +305017,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -303998,6 +305056,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -315240,7 +316303,13 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1348",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -315417,6 +316486,11 @@
 							},
 							{
 								"lvar": "G657",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1348",
 								"op": "==",
 								"rvar": false
 							}
@@ -315672,6 +316746,11 @@
 								"lvar": "G657",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1348",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -315686,7 +316765,13 @@
 						]
 					}
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1348",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -336422,7 +337507,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -336440,6 +337546,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -347806,7 +348917,13 @@
 					16,
 					2
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1324",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -347820,7 +348937,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1324",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -366996,7 +368119,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -367014,6 +368158,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -367241,6 +368390,11 @@
 						"lvar": "G712",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1352",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -367256,7 +368410,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G712",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -392372,7 +393537,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -392390,6 +393576,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -410260,6 +411451,11 @@
 						"lvar": "G749",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1354",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -410275,7 +411471,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G749",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1354",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -420939,7 +422146,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -420957,6 +422185,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -428856,6 +430089,11 @@
 						"lvar": "G793",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1354",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -428871,7 +430109,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G793",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1354",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -439291,7 +440540,13 @@
 					16,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1355",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -439305,7 +440560,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1355",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -460313,7 +461574,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -460331,6 +461613,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -473559,7 +474846,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -473577,6 +474885,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -487176,7 +488489,18 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -487305,6 +488629,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -494712,7 +496041,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -494730,6 +496080,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -504281,6 +505636,11 @@
 						"lvar": "G853",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1356",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -504296,7 +505656,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G853",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1356",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -509264,7 +510635,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -509282,6 +510674,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -528596,7 +529993,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -528614,6 +530032,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -537050,6 +538473,11 @@
 						"lvar": "G893",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1357",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -537065,7 +538493,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G893",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1357",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -560049,7 +561488,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -560067,6 +561527,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -562108,6 +563573,11 @@
 						"lvar": "G967",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1358",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -562123,7 +563593,23 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G919",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G967",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1358",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -592247,7 +593733,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -592265,6 +593772,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -601199,7 +602711,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -601217,6 +602750,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -614613,6 +616151,11 @@
 						"lvar": "G952",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1325",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -614628,7 +616171,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G952",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1325",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -624423,7 +625977,18 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -624552,6 +626117,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -672751,7 +674321,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -672769,6 +674360,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -689013,7 +690609,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -689031,6 +690648,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -709751,7 +711373,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -709769,6 +711412,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -745763,7 +747411,18 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -745892,6 +747551,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -762275,6 +763939,11 @@
 						"lvar": "G1098",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1361",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -762290,7 +763959,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1098",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1361",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -765010,7 +766690,18 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -765139,6 +766830,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -794958,7 +796654,18 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -795087,6 +796794,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -822094,7 +823806,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -822112,6 +823845,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -822962,6 +824700,11 @@
 						"lvar": "G1178",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1342",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -822977,7 +824720,23 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G051",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1178",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1342",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -851033,7 +852792,18 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G255",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1340",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -851062,6 +852832,11 @@
 							},
 							{
 								"lvar": "G240",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1340",
 								"op": "==",
 								"rvar": false
 							}
@@ -851254,6 +853029,11 @@
 								"lvar": "G240",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1340",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -851271,6 +853051,11 @@
 				"reqs0": [
 					{
 						"lvar": "G255",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1340",
 						"op": "==",
 						"rvar": false
 					}
@@ -851773,7 +853558,13 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1341",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -851802,6 +853593,11 @@
 							},
 							{
 								"lvar": "G270",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1341",
 								"op": "==",
 								"rvar": false
 							}
@@ -851935,6 +853731,11 @@
 								"lvar": "G270",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1341",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -851949,7 +853750,13 @@
 						]
 					}
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1341",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -867516,7 +869323,23 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G016",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G015",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1345",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -867942,6 +869765,11 @@
 					},
 					{
 						"lvar": "G015",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1345",
 						"op": "==",
 						"rvar": false
 					}
@@ -891488,7 +893316,18 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -891617,6 +893456,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -912638,7 +914482,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -912656,6 +914521,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -919452,7 +921322,13 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1343",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -919478,6 +921354,11 @@
 								"lvar": "G216",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1343",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -919525,6 +921406,11 @@
 								"lvar": "G1224",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1343",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -919539,7 +921425,13 @@
 						]
 					}
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1343",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -924018,7 +925910,13 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1340",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": [
 							{
@@ -924465,6 +926363,11 @@
 								"lvar": "G208",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1340",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -924479,7 +926382,13 @@
 						]
 					}
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1340",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -927976,7 +929885,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -927994,6 +929924,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -942544,6 +944479,11 @@
 						"lvar": "G051",
 						"op": "==",
 						"rvar": true
+					},
+					{
+						"lvar": "G1342",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -942559,7 +944499,28 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1197",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1199",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G051",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1342",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -960585,6 +962546,11 @@
 						"lvar": "G241",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1342",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -960600,7 +962566,23 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G051",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G241",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1342",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -960631,6 +962613,11 @@
 						"lvar": "G241",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1345",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -960646,7 +962633,28 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G015",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G051",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G241",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1345",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -974262,6 +976270,11 @@
 						"lvar": "G249",
 						"op": "==",
 						"rvar": false
+					},
+					{
+						"lvar": "G1346",
+						"op": "==",
+						"rvar": false
 					}
 				],
 				"col": 0,
@@ -974277,7 +976290,18 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G249",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1346",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -986159,7 +988183,28 @@
 						"moveaction": "stop",
 						"movespd": 4,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G607",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G608",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G759",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					},
@@ -986177,6 +988222,11 @@
 								"lvar": "G607",
 								"op": "==",
 								"rvar": true
+							},
+							{
+								"lvar": "G1352",
+								"op": "==",
+								"rvar": false
 							}
 						],
 						"standani": null,
@@ -1011585,7 +1013635,13 @@
 					20,
 					2
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1320",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -1011599,7 +1013655,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1320",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -1011615,7 +1013677,13 @@
 					20,
 					2
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1321",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -1011629,7 +1013697,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1321",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -1011645,7 +1013719,13 @@
 					20,
 					2
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1322",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -1011659,7 +1013739,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1322",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -1011675,7 +1013761,13 @@
 					20,
 					2
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1323",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -1011689,7 +1013781,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1323",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -1011705,7 +1013803,13 @@
 					10,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1324",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -1011719,7 +1013823,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1324",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -1011735,7 +1013845,13 @@
 					10,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1325",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -1011749,7 +1013865,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1325",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
@@ -1011765,7 +1013887,13 @@
 					10,
 					0
 				],
-				"reqs0": null,
+				"reqs0": [
+					{
+						"lvar": "G1326",
+						"op": "==",
+						"rvar": false
+					}
+				],
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -1011779,7 +1013907,13 @@
 						"moveaction": "stop",
 						"movespd": 0,
 						"pararun": false,
-						"reqs": null,
+						"reqs": [
+							{
+								"lvar": "G1326",
+								"op": "==",
+								"rvar": false
+							}
+						],
 						"standani": null,
 						"cmdblock": []
 					}
