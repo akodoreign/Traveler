@@ -45620,8 +45620,8 @@
 				"role": "portal",
 				"pos": [
 					86,
-					3,
-					13,
+					4,
+					7,
 					0
 				],
 				"back": false,
@@ -45658,7 +45658,7 @@
 				"mdlid": "CE000",
 				"pos": [
 					86,
-					3,
+					4,
 					15,
 					2
 				],
@@ -45678,7 +45678,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "A shore path down to the Crane port. Lady Sanae's business isn't there. Yet.",
+								"text": "A plank bridge crosses the bay to the Crane port. Lady Sanae's business isn't there. Yet.",
 								"name": "",
 								"uiclose": 2
 							},

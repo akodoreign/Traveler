@@ -4951,6 +4951,12 @@ def crane_coast_road():
     m.rect(0, 0, 120, 8, WATER, 1)                                          # Earthquake Bay
     m.rect(0, 8, 120, 4, SAND, 2)
     m.rect(0, 14, 120, 5, ROAD, 3)
+    m.rect(57, 0, 6, 19, PLANK, 3)                                         # the dock bridge across the bay
+    for z in range(0, 9, 2):
+        fill(m, 56, 1, z, 1, 3, 1, DARKWOOD)
+        fill(m, 63, 1, z, 1, 3, 1, DARKWOOD)
+    fill(m, 56, 4, 0, 1, 2, 9, DARKWOOD)
+    fill(m, 63, 4, 0, 1, 2, 9, DARKWOOD)
     for x in range(0, 120):
         m.rect(x, 26, 1, 14, T(2, 0), 4 + (x * 5) % 3)
     for x in range(4, 116, 8):
@@ -4968,10 +4974,11 @@ def crane_coast_road():
                                               "beyond the land-bridge.\" (Danger 20-25)")])], trigger=1)
     ev.scene(10, 16, "G1242", [narrate("Objective: Garden Under Shadow City, east along this coast road. (Chapter 2, "
                                        "recommended level 20)")], after=[flag("G321"), flag("G346", False)])
-    port =DOOR_EV[("M216", "port")] = ev.portal(60, 9, "M220", 1, d=0)       # the shore path (Crane Ch3)
+    port = DOOR_EV[("M216", "port")] = ev.portal(60, 3, "M220", 1, d=0)     # the bridge to the Crane port
     ev.ev["#%d#" % port]["reqs0"] = [flag("G362")]
-    ev.talk(60, 11, "CE000", [(None, [narrate("A shore path down to the Crane port. Lady Sanae's business isn't "
-                                              "there. Yet."), step_back(0, 2.0)]), ([flag("G362")], [])], trigger=5)
+    ev.talk(60, 11, "CE000", [(None, [narrate("A plank bridge crosses the bay to the Crane port. Lady Sanae's "
+                                              "business isn't there. Yet."), step_back(0, 2.0)]),
+                              ([flag("G362")], [])], trigger=5)
     return m, ev
 
 
