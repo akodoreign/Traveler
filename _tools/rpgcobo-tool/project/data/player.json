@@ -40256,6 +40256,11 @@
 		},
 		"lvoption": [
 			{
+				"LV": 1,
+				"opttype": "opt_getskill",
+				"skillid": "S906"
+			},
+			{
 				"LV": 15,
 				"opttype": "opt_getskill",
 				"skillid": "S866"
@@ -40276,22 +40281,22 @@
 				"skillid": "S869"
 			},
 			{
-				"LV": 15,
+				"LV": 5,
 				"opttype": "opt_getskill",
 				"skillid": "S795"
 			},
 			{
-				"LV": 30,
+				"LV": 20,
 				"opttype": "opt_getskill",
 				"skillid": "S796"
 			},
 			{
-				"LV": 45,
+				"LV": 35,
 				"opttype": "opt_getskill",
 				"skillid": "S797"
 			},
 			{
-				"LV": 60,
+				"LV": 50,
 				"opttype": "opt_getskill",
 				"skillid": "S798"
 			}
@@ -40300,7 +40305,7 @@
 		"name": "Shiba Ashimita",
 		"picid": "",
 		"voiceid": "",
-		"rt_school_key": "shiba",
+		"rt_school_key": "shiba_yojimbo",
 		"rt_class": "samurai",
 		"rt_clan": "phoenix",
 		"rt_mpref": [

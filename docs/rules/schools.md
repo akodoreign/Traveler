@@ -135,6 +135,17 @@ technique** she learns (Warrior = damage-dealer, Duelist = speed/crit, Yojimbo =
 (herbal concoctions, from Medicine/Herbalism skill ranks) stays constant. This makes Sayo the most customisable
 traveler — fitting "wave-woman, versatility", and honors the canon rule.
 
+## Shiba Ashimita — Shiba Yojimbo School (Phoenix, bushi)
+*Rank 1 at Lv 1; Ranks 2–5 automatically unlock at Lv 15, 30, 45, and 60. The game translation emphasizes protecting
+others and standing firm rather than reproducing every tabletop roll.*
+| Rank (Lv) | Technique | Octopath translation |
+|---|---|---|
+| R1 (1) | **A Single Life** — sacrifice himself to protect his charge | When Ashimita Defends, the next single-target attack aimed at an ally is redirected to him. |
+| R2 (15) | **Shield of Honor** — improve his defense while guarding | +15% evasion and 10% less damage taken. |
+| R3 (30) | **No Illusions** — remain attuned to the person under his protection | Reads every foe's weaknesses at the start of battle. |
+| R4 (45) | **Sword of the Phoenix** — strike while continuing to guard | His weapon attack hits twice. |
+| R5 (60) | **Purity of Fire** — become exceptionally difficult to harm | Takes 20% less damage. |
+
 ---
 
 ## Follow-ups

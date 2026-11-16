@@ -29,7 +29,7 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 		if( !st){
 			//	(user 2026-11-12: everyone but the Void shugenja starts with 0 VP; the Ishiken-do job / trait raises it)
 			st = { started = false, boosted = false, boostsel = 0, bp = 0, res = 0, maxres = 0, known = 0, broken = false,
-				taunt = 0, focus = 0, attune = false };
+				taunt = 0, intercept = 0, focus = 0, attune = false };
 			if( chr instanceof ::RPGEnemy){
 				st.maxres = st.res = Math.max( int( chr.RES || 2), 1);
 			}else if( this.isShugenja( chr)){
@@ -190,6 +190,7 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 			return;
 		}
 		if( st.taunt > 0) st.taunt--;
+		if( chr.dataid == "P131") st.intercept = 0;
 		if( st.started && !st.boosted) st.bp = Math.min( st.bp + 1, this.vpMax( chr));
 		st.started = true;
 		st.boosted = false;
@@ -209,6 +210,17 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 	function applyTaunt( cmd){
 		local b = ::rpgstage["battle"];
 		if( !b || !cmd.dsts || length( cmd.dsts) != 1 || !(cmd.dsts[0] instanceof ::RPGPlayer)) return;
+		foreach( m in b.members){
+			if( !m || m.isDead() || m.dataid != "P131") continue;
+			local st = state( m);
+			if( st.intercept > 0 && cmd.dsts[0] != m){
+				st.intercept = 0;
+				cmd.dsts = [m];
+				pop( m, "INTERCEPT", 0xc0e0c0ff);
+				log( "%S intercepts %S's attack for an ally (A Single Life)" % (m.name, cmd.src.name));
+				return;
+			}
+		}
 		foreach( m in b.members){
 			if( m && !m.isDead() && state( m).taunt > 0 && cmd.dsts[0] != m){
 				log( "%S is drawn to %S (Razor's Edge)" % (cmd.src.name, m.name));
@@ -337,6 +349,16 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 				}
 			}
 			return;
+		}
+		if( pc instanceof ::RPGPlayer && pc.dataid == "P131"){
+			local st = state( pc);
+			if( cmd.skill && cmd.skill["name"] == "Defend"){
+				st.intercept = 1;
+				pop( pc, "A SINGLE LIFE", 0xc0e0c0ff);
+				log( "%S prepares to intercept one attack (A Single Life)" % pc.name);
+			}else{
+				st.intercept = 0;
+			}
 		}
 		//	Void spells: pay VP (skill field rt_vp from gen_data); Drawing the Void grants +1 VP (may exceed the cap)
 		if( cmd.skill){

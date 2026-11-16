@@ -157,7 +157,7 @@ the only traveler with all five by R2, and so the first to run 3 kata at once.*
 | Hida's Avalanche | Hida NPC (Wall sergeant guest / Crab rival boss) | Stacking damage vs. one target, falling evasion; carries over on a kill. |
 | Endless Strike | **Mirumoto Hikaru** (ageless Dragon, Ronin Ch3) | Up to 3 extra hits at reduced damage (checked on the page image). |
 | Eyes of the Phoenix | **Shiba Toshiro / Shiba Ashimita** + Haruki | Pair kata: the Shiba acts just after Haruki; Haruki may spend 1 VP to give the Shiba +30% Evasion vs. one attack; Haruki's buffs on him can't fail; the Shiba adds Haruki's Void to attack. Lovely Phoenix-arc beat. |
-| Tail of the Sun · Touching the Infinite · Deeper Reflection · Heaven's Wing | Shiba guests (Yari = naginata) | Heaven's Wing: dump all VP for that many extra attacks, then forced Defend. Deeper Reflection: +2 VP for the battle. |
+| Tail of the Sun · Deeper Reflection · Touching the Infinite · Heaven's Wing | Shiba guests (Yari = naginata) | Ashimita unlocks them at Lv 5, 20, 35, and 50, independently of his school ranks (15/30/45/60). Heaven's Wing: dump all VP for that many extra attacks, then forced Defend. Deeper Reflection: +2 VP for the battle. |
 | Watchful Falcon, One Leg Stance (yari) | **Daidoji Sakura**, Doji Chiyo | Crane guests. |
 | The Soul's Roar, Tsuko's Storm | **Matsu Kiku** (guest) | |
 | Sundering Grace, Choking Air | **Bayushi Hideki** (guest) | |

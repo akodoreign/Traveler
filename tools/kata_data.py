@@ -150,13 +150,13 @@ KATA = [
 # Shiba Ashimita (Phoenix yojimbo; kata.md "Shiba guests (Yari = naginata)"). User 2026-11-12: "Phoenix yojimbo + the
 # naginata kata + water spell Stand Against the Waves should be almost god like in number of attacks and damage".
 KATA += [
-    ("S795", "K132", "P131", 15, "kata", "Tail of the Sun", 1.2, 3, [("AGI", 30), ("PATK", 15)], None,
+    ("S795", "K132", "P131", 5, "kata", "Tail of the Sun", 1.2, 3, [("AGI", 30), ("PATK", 15)], None,
      "Shiba kata (naginata). The blade circles like the sun: x1.2, Speed +30% and ATK +15% for 3 turns."),
-    ("S796", "K133", "P131", 30, "kata", "Deeper Reflection", 1.0, 99, [("MDEF", 20)], None,
+    ("S796", "K133", "P131", 20, "kata", "Deeper Reflection", 1.0, 99, [("MDEF", 20)], None,
      "Shiba kata (naginata). Stillness before the storm: +2 VP, MDEF +20% for the whole battle."),
-    ("S797", "K134", "P131", 45, "kata", "Touching the Infinite", 1.0, 3, [("PEVA", 25), ("CRI", 15)], None,
+    ("S797", "K134", "P131", 35, "kata", "Touching the Infinite", 1.0, 3, [("PEVA", 25), ("CRI", 15)], None,
      "Shiba kata (naginata). Evasion +25%, criticals +15% for 3 turns."),
-    ("S798", "K135", "P131", 60, "kata", "Heaven's Wing", 1.0, 2, [("PDEF", -20)], None,
+    ("S798", "K135", "P131", 50, "kata", "Heaven's Wing", 1.0, 2, [("PDEF", -20)], None,
      "Shiba kata (naginata). Spend every VP held: one extra cut for each, now; then the guard is open (DEF -20%)."),
 ]
 

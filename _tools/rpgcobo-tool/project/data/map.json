@@ -144818,8 +144818,8 @@
 			"#1#": {
 				"role": "portal",
 				"pos": [
-					76,
-					4,
+					75,
+					8,
 					34,
 					0
 				],
@@ -170361,8 +170361,8 @@
 			"#2#": {
 				"role": "portal",
 				"pos": [
-					102,
-					4,
+					101,
+					8,
 					34,
 					0
 				],
@@ -170647,10 +170647,9 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Shiba-san. I challenge you. First blood.",
+											"text": "guard. I challenge you. First blood.",
 											"name": "Akodo Shizue",
-											"uiclose": 2,
-											"emo": "determined"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_script",
@@ -171340,8 +171339,7 @@
 											"key": "message_talk",
 											"text": "Yes, Kamasari-sama.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -171369,8 +171367,7 @@
 											"key": "message_talk",
 											"text": "You... you're in pain.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -171391,8 +171388,7 @@
 											"key": "message_talk",
 											"text": "Could I try to... calm him? Your grandfather? I'm a shugenja.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -171420,8 +171416,7 @@
 											"key": "message_talk",
 											"text": "Oh no. I'm so sorry-",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "worried"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -171744,8 +171739,7 @@
 											"key": "message_talk",
 											"text": "The kami are only frightened, grandmother. Walk with me to the shrine; they'll hear you again, when they're ready.",
 											"name": "Isawa Haruki",
-											"uiclose": 2,
-											"emo": "neutral"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -393244,6 +393238,11 @@
 											"time": 1800
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 10;"
+										},
+										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -393298,6 +393297,11 @@
 											},
 											"text0": "Rest and save.",
 											"text1": "Not yet."
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -441715,7 +441719,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 10;"
+											"code": "::rpgvar[\"G1398\"] = 11;"
 										},
 										{
 											"cmd": "cmd_choices",
@@ -475917,7 +475921,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 11;"
+											"code": "::rpgvar[\"G1398\"] = 12;"
 										},
 										{
 											"cmd": "cmd_showui",
@@ -478857,7 +478861,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 12;"
+											"code": "::rpgvar[\"G1398\"] = 13;"
 										},
 										{
 											"cmd": "cmd_choices",
@@ -519418,7 +519422,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 13;"
+											"code": "::rpgvar[\"G1398\"] = 14;"
 										},
 										{
 											"cmd": "cmd_choices",
@@ -549316,7 +549320,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 14;"
+											"code": "::rpgvar[\"G1398\"] = 15;"
 										},
 										{
 											"cmd": "cmd_choices",
@@ -591945,7 +591949,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 15;"
+											"code": "::rpgvar[\"G1398\"] = 16;"
 										},
 										{
 											"cmd": "cmd_showui",
@@ -702223,7 +702227,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 16;"
+											"code": "::rpgvar[\"G1398\"] = 17;"
 										},
 										{
 											"cmd": "cmd_showui",
@@ -794676,7 +794680,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 17;"
+											"code": "::rpgvar[\"G1398\"] = 18;"
 										},
 										{
 											"cmd": "cmd_showui",
@@ -818095,7 +818099,7 @@
 					{
 						"cmd": "cmd_script",
 						"desc": "SCRIPT",
-						"code": "::rpgvar[\"G1398\"] = 18;"
+						"code": "::rpgvar[\"G1398\"] = 19;"
 					},
 					{
 						"ani": {
@@ -985689,7 +985693,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 19;"
+											"code": "::rpgvar[\"G1398\"] = 20;"
 										},
 										{
 											"cmd": "cmd_showui",

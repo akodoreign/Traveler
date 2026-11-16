@@ -194,7 +194,7 @@ for _k, (_pid, (_school, _techs)) in enumerate(sorted(ADV_SCHOOLS.items())):
             "Advanced school technique (Lv %d). %s" % (ADV_LEVELS[_i], ADV_EFFECT[_i]))
 # Companions' school ranks (user 2026-11-12: "make sure all the companions got the new school rank up techniques at the
 # right levels as well"): their own schools' 3e technique names (core: Hida, Matsu Berserker, Yoritomo, Seppun
-# Guardsman, Shiba; The Four Winds: Shinjo, Doji Magistrate; Hiruma / Akodo as the travelers'). Shugenja companions get
+# Guardsman, Shiba Yojimbo; The Four Winds: Shinjo, Doji Magistrate; Hiruma / Akodo as the travelers'). Shugenja companions get
 # two spells per rank instead (3e core). Effects: plugin RokuganVoidCrit.sk COMP_FX (cumulative per rank).
 COMP_SCHOOLS = {
     "P120": ("hida", ["The Mountain Does Not Move", "Two Pincers, One Mind", "Fury of Hida",
@@ -212,7 +212,7 @@ COMP_SCHOOLS = {
                        "Akodo's Final Lesson"]),
     "P128": ("matsu", ["Matsu's Fury", "The Lion's Charge", "Matsu's Courage", "The Lion's Victory"]),
     "P141": ("matsu", ["Matsu's Fury", "The Lion's Charge", "Matsu's Courage", "The Lion's Victory"]),
-    "P131": ("shiba", ["Dancing with the Elements", "One with the Void", "Move with the World", "Touch of the Void"]),
+    "P131": ("shiba_yojimbo", ["Shield of Honor", "No Illusions", "Sword of the Phoenix", "Purity of Fire"]),
     "P133": ("doji", ["The Eyes of Doji", "Strike of the Just", "Judgment's Swift Blade", "Eternal Justice"]),
     "P134": ("seppun", ["The Clouds Part", "With Heaven's Speed", "The Sun's Light Reveals", "Heaven Never Falls"]),
     "P136": ("yoritomo", ["Voice of the Storm", "Strike of the Mantis", "The Rolling Wave", "Hand of Osano-Wo"]),
@@ -230,7 +230,9 @@ COMP_FX_TEXT = {
     "hiruma": ["+15% damage.", "+15% evasion.", "The weapon attack strikes twice.", "+15% critical hits."],
     "akodo": ["+15% damage.", "The weapon attack strikes twice.", "+10% damage.", "+20% critical hits."],
     "matsu": ["+20% damage.", "The weapon attack strikes twice.", "Takes 10% less damage.", "+20% damage."],
-    "shiba": ["+15% evasion.", "Takes 10% less damage.", "+15% damage.", "The weapon attack strikes twice."],
+    "shiba_yojimbo": ["+15% evasion and takes 10% less damage.",
+                      "Reads every foe's weaknesses at the start of battle.",
+                      "The weapon attack strikes twice.", "Takes 20% less damage."],
     "doji": ["Every foe's weaknesses are read at the start of a battle.", "+20% damage.",
              "The weapon attack strikes twice.", "+20% critical hits."],
     "seppun": ["+15% evasion.", "Speed up for the whole battle.", "+20% critical hits.", "Takes 15% less damage."],
@@ -249,6 +251,10 @@ for _k, (_pid, (_school, _techs)) in enumerate(sorted(COMP_SCHOOLS.items())):
         else:
             COMP_RANK_SKILLS[_sid] = (_pid, RANK_LEVELS[_i], "Insight Rank %d: Mastery %d Spells" % (_i + 2, _i + 2),
                                       "Two new spells (3e: two per Insight Rank).")
+COMP_RANK1_SKILLS = {
+    "S906": ("P131", 1, "A Single Life", "When Ashimita Defends, the next single-target attack aimed at an ally "
+                                          "is redirected to him.")
+}
 RANK_SKILLS = {}
 for _pid, _base in RANK_PIDS.items():
     for _i in range(4):
@@ -261,7 +267,9 @@ def rank_options(pid):
     base = RANK_PIDS.get(pid)
     if base is None:                           # a companion: their school's ranks (shugenja: + two spells per rank)
         o = [{"LV": lv, "opttype": "opt_getskill", "skillid": sid}
-             for sid, (p_, lv, _n, _d) in sorted(COMP_RANK_SKILLS.items()) if p_ == pid]
+             for sid, (p_, lv, _n, _d) in sorted(COMP_RANK1_SKILLS.items()) if p_ == pid]
+        o += [{"LV": lv, "opttype": "opt_getskill", "skillid": sid}
+              for sid, (p_, lv, _n, _d) in sorted(COMP_RANK_SKILLS.items()) if p_ == pid]
         return o                               # (shugenja companions' spells: rank_spells, added with their kit)
     o = [{"LV": lv, "opttype": "opt_getskill", "skillid": "S%03d" % (base + i)} for i, lv in enumerate(RANK_LEVELS)]
     if pid == "P102":                          # Gendo R2 Wisdom the Wind Brings: confuse, fear, charm can't take hold
@@ -3171,6 +3179,7 @@ def main():
     # School ranks (docs/rules/progression-v2.md, user 2026-11-11): passive skills, given at Lv 15/30/45/60 by the
     # players' lvoption (RANK_OPTIONS below); the level-up panel names them. Effects: plugin RokuganRanks.sk.
     for sid, (name, desc) in (list(RANK_SKILLS.items()) + [(k, (v[2], v[3])) for k, v in ADV_SKILLS.items()] +
+                              [(k, (v[2], v[3])) for k, v in COMP_RANK1_SKILLS.items()] +
                               [(k, (v[2], v[3])) for k, v in COMP_RANK_SKILLS.items()]):
         r = copy.deepcopy(noop)
         # (user 2026-11-12: "new schools are not showing up as School selections") listed under School, greyed out:

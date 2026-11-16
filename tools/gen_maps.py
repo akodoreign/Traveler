@@ -6381,6 +6381,9 @@ def hiruto_town():
     building(m, 52, 20, 12, 7, wall=WOOD)                                   # the tea house
     shrine(m, 72, 21)                                                       # the silent shrine
     m.rect(0, 32, 100, 8, STONE, 9)                                         # the castle wall
+    m.rect(48, 26, 4, 6, DIRT)
+    for z, height in zip(range(26, 32), range(3, 9)):
+        m.hgt[z, 48:52] = height                                            # a walkable rise to the gate
     fill(m, 46, 10, 31, 8, 7, 2, DARKWOOD)                                  # the castle gate
     fill(m, 48, 10, 31, 4, 5, 1, VOID)
     for x in range(2, 100, 9):
@@ -6388,7 +6391,7 @@ def hiruto_town():
     for x in (2, 18, 32, 50, 66, 86):
         fb(m, x, 18, 2, LAMP_STREET)
     ev = Events(m)
-    ev.portal(50, 30, "M242", 1, d=0)                                       # event 1: the castle
+    ev.portal(49, 30, "M242", 1, d=0)                                       # event 1: the castle
     if "M250" in MAPS_LION:
         ev.portal(98, 15, "M250", 1, d=3)                                   # event 2: road_west_phoenix (after S05)
     ev.talk(96, 15, "CE000", [(None, [narrate("The east gate: the road to the Phoenix lands. Lord Hiruto's orders: "
@@ -6618,6 +6621,9 @@ def kamatori():
     building(m, 38, 20, 12, 7, wall=WOOD)                                   # the tea house
     shrine(m, 56, 21)                                                       # the town shrine
     m.rect(0, 32, 100, 12, STONE, 8)                                        # the castle: five towers, copper-edged
+    m.rect(74, 27, 4, 5, STONEW)
+    for z, height in zip(range(27, 32), range(4, 9)):
+        m.hgt[z, 74:78] = height                                            # a walkable rise to Hoju's study
     for x in (14, 32, 50, 68, 86):
         fill(m, x, 8, 33, 6, 10, 6, PLASTER)
         fill(m, x - 1, 18, 32, 8, 1, 8, ROOF)
@@ -6627,7 +6633,7 @@ def kamatori():
         fb(m, x, 18, 2, LAMP_STREET)
     ev = Events(m)
     ev.portal(1, 15, "M251", 2, d=1)                                        # event 1: the shrine road
-    ev.portal(76, 30, "M253", 1, d=0)                                       # event 2: Hoju's study
+    ev.portal(75, 30, "M253", 1, d=0)                                       # event 2: Hoju's study
     ev.clerk(10, 18, EP_SERVICE["merchant"], "R128")
     ev.inn(26, 18, EP_SERVICE["innkeeper"], 20)
     inn_guest(ev, 29, 18, 8, "The dead here are quiet. Kamatori's kami never left.", path="G444")

@@ -32765,11 +32765,11 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 2, Lv 15). +15% evasion. (Always active.)",
+		"desc": "School technique (Rank 2, Lv 15). +15% evasion and takes 10% less damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
-		"name": "Insight Rank 2: Dancing with the Elements",
+		"name": "Insight Rank 2: Shield of Honor",
 		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
@@ -32794,11 +32794,11 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 3, Lv 30). Takes 10% less damage. (Always active.)",
+		"desc": "School technique (Rank 3, Lv 30). Reads every foe's weaknesses at the start of battle. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
-		"name": "Insight Rank 3: One with the Void",
+		"name": "Insight Rank 3: No Illusions",
 		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
@@ -32823,11 +32823,11 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 4, Lv 45). +15% damage. (Always active.)",
+		"desc": "School technique (Rank 4, Lv 45). The weapon attack strikes twice. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
-		"name": "Insight Rank 4: Move with the World",
+		"name": "Insight Rank 4: Sword of the Phoenix",
 		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
@@ -32852,11 +32852,11 @@
 			0,
 			0
 		],
-		"desc": "School technique (Rank 5, Lv 60). The weapon attack strikes twice. (Always active.)",
+		"desc": "School technique (Rank 5, Lv 60). Takes 20% less damage. (Always active.)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"icon": "",
-		"name": "Insight Rank 5: Touch of the Void",
+		"name": "Insight Rank 5: Purity of Fire",
 		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
@@ -33901,6 +33901,35 @@
 		"eqtypebits": 2047,
 		"icon": "",
 		"name": "Insight Rank 5: The Lion's Victory",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		},
+		"rt_school": true,
+		"rt_passive": true
+	},
+	"S906": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 0,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "School technique (Rank 1, Lv 1). When Ashimita Defends, the next single-target attack aimed at an ally is redirected to him. (Always active.)",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "A Single Life",
 		"occasion": 1,
 		"option": [],
 		"skilltype": "noop",
@@ -38330,7 +38359,7 @@
 		"cmdtgt": 1,
 		"consume": [
 			1,
-			9
+			5
 		],
 		"desc": "Shiba kata (naginata). The blade circles like the sun: x1.2, Speed +30% and ATK +15% for 3 turns. (Kata) Needs: yari / naginata.",
 		"dmgform": 0,
@@ -38411,7 +38440,7 @@
 		"cmdtgt": 1,
 		"consume": [
 			1,
-			14
+			10
 		],
 		"desc": "Shiba kata (naginata). Stillness before the storm: +2 VP, MDEF +20% for the whole battle. (Kata) Needs: yari / naginata.",
 		"dmgform": 0,
@@ -38492,7 +38521,7 @@
 		"cmdtgt": 1,
 		"consume": [
 			1,
-			19
+			15
 		],
 		"desc": "Shiba kata (naginata). Evasion +25%, criticals +15% for 3 turns. (Kata) Needs: yari / naginata.",
 		"dmgform": 0,
@@ -38573,7 +38602,7 @@
 		"cmdtgt": 1,
 		"consume": [
 			1,
-			24
+			20
 		],
 		"desc": "Shiba kata (naginata). Spend every VP held: one extra cut for each, now; then the guard is open (DEF -20%). (Kata) Needs: yari / naginata.",
 		"dmgform": 0,
