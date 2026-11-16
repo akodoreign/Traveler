@@ -30,6 +30,7 @@ Don't draw a katana openly — **most samurai here carry straight tachi**."
 
 ## S02 — Three Dinners, One Hour
 MAP: `bayushi_mansion` / `doji_mansion` / `shiba_mansion` · TRIGGER: the invitations
+NARRATION: Three lacquered invitations lie before Gendo, each bearing a different clan crest.
 GENDO: (holding up three lacquered cards) One hour. Three lords. If I go to one, I insult two.
 GENDO: (polishing his spectacles, then hiding them) Every historian says these three ruled the Empire through a boy.
 GENDO: Nobody says what they served at dinner.

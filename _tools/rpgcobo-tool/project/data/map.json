@@ -425433,6 +425433,13 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
+											"text": "Three lacquered invitations lie before Kitsuki Gendo, each bearing a different clan crest.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
 											"text": "One hour. Three lords. If I go to one, I insult two.",
 											"name": "Kitsuki Gendo",
 											"uiclose": 2,
