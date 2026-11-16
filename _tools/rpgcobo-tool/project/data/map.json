@@ -193206,6 +193206,13 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
+											"text": "Beneath Akodo ancestor portraits, the Hall of Honors settles into silence.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
 											"text": "Tonight, histories. To know a man's ancestors is to know the man.",
 											"name": "Hostess",
 											"uiclose": 2

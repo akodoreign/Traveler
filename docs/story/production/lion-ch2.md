@@ -97,6 +97,7 @@ COURTIER: The Crane, of course. (looking at Atsuko)
 
 ## S04 — Beat 2: "To Know a Man's Ancestors"
 MAP: `shiro_akodo` (Hall of Honors, night) · TRIGGER: Beat 2
+NARRATION: Beneath Akodo ancestor portraits, the Hall of Honors settles into silence.
 HOSTESS: Tonight, histories. To know a man's ancestors is to know the man.
 (Guests rise in turn. Then Kafu.)
 AKODO KAFU: I'll tell of an Akodo who loved a Matsu woman, long ago.
