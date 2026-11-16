@@ -63,6 +63,7 @@ MAP: `shiro_akodo` · TRIGGER: explore between beats
 ## S03 — Beat 1: "Tranquillity" and "The Bracket"
 MAP: `shiro_akodo` (Central Garden → Central Dojo) · TRIGGER: Beat 1
 ### Painting contest (dialogue choice)
+NARRATION: The court gathers around blank silk in Shiro Akodo’s Central Garden.
 HOSTESS: The theme is *tranquillity*. Not the garden — what the garden *makes you feel*.
 > CHOICE "What will you paint?" [SET painting_answer]
   - "A single snowflake on a sword blade." → (best) the judges murmur; **Scroll of Acclaim** (+Glory)

@@ -6896,7 +6896,8 @@ def shiro_akodo_grounds():
 # ---- M257 the Hall of Honors: S01 and the hostess's four beats
 S01_CL2 = cl2("S01") + [setf("G490"), setf("G489"), SAVE_CHOICE,
                         narrate("Objective: the hostess, here in the Hall of Honors, announces the court's events.")]
-PAINT = [narrate("The Central Garden. The hostess: \"The theme is tranquillity. Not the garden - what the garden makes "
+PAINT = [narrate("The court gathers around blank silk in Shiro Akodo’s Central Garden."),
+         narrate("The Central Garden. The hostess: \"The theme is tranquillity. Not the garden - what the garden makes "
                  "you feel.\""),
          choices(("A single snowflake on a sword blade.", [setf("G492", 1), narrate("The judges murmur.")] +
                   got("I157", "a Scroll of Acclaim")),

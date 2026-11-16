@@ -192596,6 +192596,13 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
+											"text": "The court gathers around blank silk in Shiro Akodo’s Central Garden.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
 											"text": "The Central Garden. The hostess: \"The theme is tranquillity. Not the garden - what the garden makes you feel.\"",
 											"name": "",
 											"uiclose": 2
