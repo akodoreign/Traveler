@@ -4773,6 +4773,7 @@ work; Lion "wait at night" goes black; you can jump/fall off the Wall and get tr
   commit message wrongly says "Iuchi Gendo" - he is Kitsuki Gendo (not amended: no force-push).
 - 2026-11-15: v32 d0b68d2 (stationary-NPC head transplant, crest-safe cleanup; v29-v31 sprite cleanup before it).
 - 2026-11-15 (5-hour push): nothing new since v36 923b19a; no release.
+- 2026-11-15 (5-hour push): nothing new since v49 3b355f9.
 
 ## 2026-11-11 (evening): Progression v2 - ranks, jobs, kata/kiho, Void, Support (user's design pass)
 Spec: `docs/rules/progression-v2.md` (the user's decisions, quoted). Built (lead):
