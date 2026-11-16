@@ -121,6 +121,7 @@ TOTURI: (from the doorway, softly) Not without proof.
 ## S05 — Beat 3: "The Bushido Debate" and the Sword
 MAP: `shiro_akodo` (Hall of Honors) · TRIGGER: Beat 3
 ### SET-PIECE PREVIEW — the debate UI (low stakes; the finale's system)
+NARRATION: The Hall of Honors falls quiet as the speakers take their places.
 HOSTESS: The debate. Each speaker defends a tenet.
 MATSU SPEAKER: Honor is what our lord says it is. The lord defines it. We obey.
 > DEBATE "Honor" — choose your rebuttal (evidence from Ch1 flags)

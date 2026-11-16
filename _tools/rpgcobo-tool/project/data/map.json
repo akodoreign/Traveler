@@ -193384,6 +193384,13 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
+											"text": "The Hall of Honors falls quiet as the speakers take their places.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
 											"text": "The debate. Each speaker defends a tenet.",
 											"name": "Hostess",
 											"uiclose": 2
