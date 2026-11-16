@@ -22,13 +22,13 @@ Conversion table: `kata.md` §2.
 ## 2. Path actions use skills, not level
 | Path action | Traveler | Style | Skill | How the skill rank works |
 |---|---|---|---|---|
-| **Duel** | Shizue | honourable (battle) | **Iaijutsu** (+Kenjutsu) | The Rank gates which NPCs will accept the challenge. Iaijutsu masteries add **Focus** uses in the duel mini-battle. |
+| **Duel** | Shizue | honorable (battle) | **Iaijutsu** (+Kenjutsu) | The Rank gates which NPCs will accept the challenge. Iaijutsu masteries add **Focus** uses in the duel mini-battle. |
 | **Sumai** | Natsuko | chance | **Jiujutsu** | Odds = f(rank vs. NPC rank). Masteries add unarmed damage in the Sumai bout. |
 | **Charm** | Rensei | chance | **Etiquette** (Courtier assists) | Odds + (Etiquette masteries add +5/+10/+20 → +10/+20/+30%). |
-| **Bless** | Haruki | honourable (lead NPCs) | **Theology** | The rank gates who will follow him (NPC "piety rank"). |
-| **Discern** | Gendo | honourable | **Investigation** | The rank gates NPCs. R5 = one **re-examination** of an NPC already discerned (finds a second secret); R10 = two. |
+| **Bless** | Haruki | honorable (lead NPCs) | **Theology** | The rank gates who will follow him (NPC "piety rank"). |
+| **Discern** | Gendo | honorable | **Investigation** | The rank gates NPCs. R5 = one **re-examination** of an NPC already discerned (finds a second secret); R10 = two. |
 | **Eavesdrop** | Mitsue | chance | **Stealth** (Investigation assists) | Odds by rank. **Low Skill:** a failure costs Honor (as OT1's failed Scrutinize). |
-| **Barter** | Tamotsu | honourable (buy from NPCs) | **Commerce** | 3e haggle: **5% → 10% (R5) → 15% (R7) → 20% (R10)** off. Plus Etiquette for the price "TN". |
+| **Barter** | Tamotsu | honorable (buy from NPCs) | **Commerce** | 3e haggle: **5% → 10% (R5) → 15% (R7) → 20% (R10)** off. Plus Etiquette for the price "TN". |
 | **Pilfer** | Sayo | chance | **Sleight of Hand** | Odds by rank. **Low Skill:** a failure costs Honor and a witnessed success costs Honor too. *The wave-woman pays a different price than samurai.* |
 
 ## 3. Per-traveler skill lists (3e school skills + character skills)

@@ -92,7 +92,7 @@ AKODO SHOGEN: (picking up a bokken) But first, show me why I should bother.
 [PA Duel Shogen] [BATTLE b_shogen_test]
 ### Barks
 - AKODO SHOGEN (Fury Without End stance): "Pain is a rumour. Ignore it."
-- Win or lose honourably:
+- Win or lose honorably:
 AKODO SHOGEN: You read it. You came anyway. Why?
 SHIZUE: Because if my lord wanted me dead, I wanted to hear him say it to my face.
 SHIZUE: And if he didn't, someone else did, and I wanted to know who.

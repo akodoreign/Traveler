@@ -7850,7 +7850,7 @@
 			0,
 			24
 		],
-		"desc": "Light of Yakamo (Fire 4). Holy sunlight: more damage vs. dishonourable (Honor < 2) and Tainted foes; Honor-0 foes blinded",
+		"desc": "Light of Yakamo (Fire 4). Holy sunlight: more damage vs. dishonorable (Honor < 2) and Tainted foes; Honor-0 foes blinded",
 		"dmgform": 1,
 		"dmgrate": [
 			0.9,
@@ -34900,7 +34900,7 @@
 			1,
 			24
 		],
-		"desc": "Kakita kata. Honourable foes hardly target him; his damage -15%. The whole battle. (Kata)",
+		"desc": "Kakita kata. Honorable foes hardly target him; his damage -15%. The whole battle. (Kata)",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,

@@ -63,7 +63,7 @@ by saying nothing* (the guilt deepens; banter changes)
 `[FLAG mieko_midnight_seen]`
 
 ## Scene 5 — "The Traitor's Torii" (set-piece: debate)
-**Where/When:** a hidden mountain torii honouring **Shiba Mitsuhide** *(orig.)*, a Phoenix Champion branded a traitor
+**Where/When:** a hidden mountain torii honoring **Shiba Mitsuhide** *(orig.)*, a Phoenix Champion branded a traitor
 centuries ago for refusing an order to burn a village
 **Beat:** A mob of grieving envoys and townsfolk wants to burn it as "an insult to the dead". **Haruki must defend it
 with words.**

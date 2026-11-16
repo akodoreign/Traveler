@@ -81,5 +81,5 @@ threads, setting clan against clan so that when the great storm breaks, the Empi
   (aftermath, testimony, a single image) rather than shown.
 - Each traveler's story should be able to stand alone; the shared thread appears as small, deliberate echoes
   (the blue-eyed woman, jade burning only bare skin, scalding sake untouched).
-- Rokugani values are presented sincerely; the stories question them from inside (honour vs. compassion, testimony vs.
+- Rokugani values are presented sincerely; the stories question them from inside (honor vs. compassion, testimony vs.
   truth, caste vs. worth).

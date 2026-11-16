@@ -33,7 +33,7 @@ TAMOTSU: Good. Understanding yourself is overrated. (handing him a jade knife) B
 
 ## S02 — The Wind Tunnel
 MAP: `wind_tunnel_1–2` · TRIGGER: approach, ears covered
-[IF mirumoto_terms honour] MIRUMOTO TSUKARU: (at the tunnel mouth, pulling one plug) We came for the children. We hold
+[IF mirumoto_terms honor] MIRUMOTO TSUKARU: (at the tunnel mouth, pulling one plug) We came for the children. We hold
 the door. (b_tunnel_legion: enemies start at −1 Resolve) [END]
 ### Covered Ears (on)
 (Karasu is a story companion here — NOTE lines, no battle slot. Naohida is the guest.)

@@ -58,7 +58,7 @@ assassins), with **no full heal between them** (items and Remedy only), and a fe
 
 ## Scene 7 — BOSS: "The Naga's Champion"
 **Beat:** At the top of the stair waits the **Great Naga's champion**, the Order's guardian: a naga warrior,
-honourable and not evil, sent to make sure the "right" choice happens.
+honorable and not evil, sent to make sure the "right" choice happens.
 `[BATTLE]` **Naga champion**:
 - Resolve 16. Weak: **Air**, **Yari**, **Fire**; resists Water.
 - No extra gimmick (the race was the set-piece).

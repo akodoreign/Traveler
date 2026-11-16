@@ -195,9 +195,9 @@ DOJI NASHIKO (attack): Every clan asks its samurai to lie. Sincerity is just lyi
 ### Honor — Shizue
 DOJI NASHIKO (doubt — Compassion): Cold little strategist. Do you feel anything, or only count?
 SHIZUE: (beat) …Sometimes I only count.
-DOJI NASHIKO (attack): Honour is a word lords use to keep you in line. Your cousin started a war in its name.
+DOJI NASHIKO (attack): Honor is a word lords use to keep you in line. Your cousin started a war in its name.
 > REBUTTAL
-  - (strong) SHIZUE: (setting the "Duty" plaque on the mat between them) "I've seen my cousin start a war in its name. Honour isn't what my lord calls it. It's what I answer for when no one is watching."
+  - (strong) SHIZUE: (setting the "Duty" plaque on the mat between them) "I've seen my cousin start a war in its name. Honor isn't what my lord calls it. It's what I answer for when no one is watching."
     [IF report_truth] SHIZUE: "I told my Champion the Lion charged first. Nobody would ever have known." [END]
 ### Righteousness — Haruki
 DOJI NASHIKO (doubt — Sincerity): You hid your crime for twelve years, little Void. Sincere?
@@ -207,7 +207,7 @@ DOJI NASHIKO (attack): And where is justice? The guilty walk free while their re
   - (strong) HARUKI: "No court ever judged me for what I did at eight. So I judged myself. And I spent my life setting it right. That is righteousness: not waiting for someone else to do what's just."
     [IF whole] HARUKI: "I gave her back what I took. It cost me. It was supposed to." [END]
 ### Duty & Loyalty — Mitsue
-DOJI NASHIKO (doubt — Honor): A Scorpion with no honour at all. Nobody knows your name.
+DOJI NASHIKO (doubt — Honor): A Scorpion with no honor at all. Nobody knows your name.
 MITSUE: (lightly) That's rather the point.
 DOJI NASHIKO (attack): Lords never pay for their failures. *You* pay. And your Champion — oh, I know what he's planning. Do you?
 MITSUE: (the smile stays; the eyes don't) …

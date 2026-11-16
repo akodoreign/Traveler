@@ -1880,7 +1880,7 @@ def main():
                     ("G998", "Unicorn Ch3: S01 the star field (karasu_joined)"), ("G999", "Covered Ears (wax in)"),
                     ("G1000", "S02 shahai_trusts"), ("G1001", "b_tower_servants won"),
                     ("G1002", "S03 the woods (Daiyu)"), ("G1003", "daiyu_state shattered (else comforted)"),
-                    ("G1004", "S04 the Dragon ride"), ("G1005", "mirumoto_terms honour (else jade)"),
+                    ("G1004", "S04 the Dragon ride"), ("G1005", "mirumoto_terms honor (else jade)"),
                     ("G1006", "S05 the mine graves (Karasu)"), ("G1007", "b_mine_dead_a won"),
                     ("G1008", "b_mine_dead_b won"), ("G1009", "S06 the mine guardian laid to rest"),
                     ("G1010", "S07 Unicorn Ch3 complete"), ("G1012", "the wind-shaft ledge"),
@@ -4341,7 +4341,7 @@ def main():
     for eid in ("E521", "E522", "E523"):
         e[eid]["rt_flee"] = True                                                   # they fight to half, then go
     e["E521"]["rt_fleebark"] = "Not for Daigoro's money. Not for this."
-    e["E522"]["rt_fleebark"] = "(dropping the merchant's hat) First blood. My honour is satisfied. Good day."
+    e["E522"]["rt_fleebark"] = "(dropping the merchant's hat) First blood. My honor is satisfied. Good day."
     e["E523"]["rt_fleebark"] = "Caw! A worthy crossing! (it flaps off, sulking)"
     e["E523"]["rt_tengu"] = True
     e["E526"]["rt_tomie_old"] = True
@@ -4839,7 +4839,7 @@ def main():
     # yojimbo guards; Haruki's spells carry the fight (user: shugenja lean heavy on spells)
     travelers = [
         ("P100", "Hiruma Natsuko", "EP200", "W101", "Hiruma scout of the Kaiu Wall. Gallows humour; holds the line."),
-        ("P101", "Kakita Rensei", "EP201", "W100", "Kakita duelist, yojimbo to the Keeper of the House Honour."),
+        ("P101", "Kakita Rensei", "EP201", "W100", "Kakita duelist, yojimbo to the Keeper of the House Honor."),
         ("P102", "Kitsuki Gendo", "EP202", "W105", "Kitsuki junior yoriki. Evidence over testimony."),
         ("P103", "Akodo Shizue", "EP203", "W100", "Akodo strategist from a minor house. Thinks in go."),
         ("P104", "Isawa Haruki", "EP204", "W105", "Isawa shugenja of Water and Void. Counts on his fingers."),

@@ -7,7 +7,7 @@ Bestiary F: *Shiro Iuchi wind tunnel* (40–46).
 ```mermaid
 flowchart TD
   S01[S01 Siege camp: Naohida under a white flag; naohida_named: truce; Naohida joins as guest; nihime_told: Nihime arrives] --> MT{mirumoto_terms}
-  MT -->|honour| HB[the Dragon army holds the tunnel mouth: buff]
+  MT -->|honor| HB[the Dragon army holds the tunnel mouth: buff]
   MT -->|jade| JT[the Jade Toll, paid after the chapter]
   HB & JT --> S02[S02 Wind tunnel 1-2, ears covered: b_tunnel_legion]
   S02 --> S03{S03 The stairs: Shahai}
@@ -54,7 +54,7 @@ flowchart TD
 ## Flag payoffs added (F-2)
 | Flag | Payoff |
 |---|---|
-| `mirumoto_terms honour` | At the tunnel mouth: MIRUMOTO TSUKARU: "We came for the children. We hold the door." → `b_tunnel_legion` enemies start at **−1 Resolve** |
+| `mirumoto_terms honor` | At the tunnel mouth: MIRUMOTO TSUKARU: "We came for the children. We hold the door." → `b_tunnel_legion` enemies start at **−1 Resolve** |
 | `mirumoto_terms jade` | After the chapter: MIRUMOTO TABEZU: "The jade, Ide." → the **Jade Toll**: Jade-variant prices +25% in the valley shops (an Octopath-style lingering cost) |
 | `daiyu_state comforted` | At the settlement: IUCHI DAIYU: "I'll speak for the boy. I've listened long enough." (supports *heir*) |
 | `daiyu_state shattered` | At the settlement: IUCHI DAIYU: "My father did this. The Iuchi will say so, in court." (Honor +1; the Soshi soften on *treaty*) |

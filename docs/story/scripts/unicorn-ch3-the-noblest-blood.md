@@ -44,7 +44,7 @@ Unicorn family feud". Tamotsu must persuade them: **Barter** (supplies, a trade 
 demonstrate the wax. (If Gendo is present he speaks Dragon to them; a banter bonus.)
 MIRUMOTO TSUKARU: You want three thousand Dragons to ride into battle with wax in their ears?
 TAMOTSU: I want three thousand Dragons to ride *out* of it again, general. The wax is the cheap part.
-`[CHOICE 2]` *Promise the Mirumoto the jade from the mines* (they ride; a future trade cost) · *appeal to honour
+`[CHOICE 2]` *Promise the Mirumoto the jade from the mines* (they ride; a future trade cost) · *appeal to honor
 alone* (needs high Honor; free if it succeeds).
 
 ## Scene 5 — "The Jade Mines" (dungeon)

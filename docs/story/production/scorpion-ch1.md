@@ -32,7 +32,7 @@ SHOSURO NORIE: Three true rumours before the incense burns down, Mitsue. Begin.
 MITSUE: (as the maid, bowing) Yes, my lady. More tea?
 ### TUTORIAL — Path Action: Eavesdrop
 "**Eavesdrop** — listen in on an NPC's private conversation. Your chance depends on your **Stealth** rank.
-Failing in town costs **Honor** — it's a dishonourable act if you're caught."
+Failing in town costs **Honor** — it's a dishonorable act if you're caught."
 | Target (marked) | Rumour (on success) |
 |---|---|
 | Two courtiers by the koi pond | R1: "A **Miya caravan** of relics from some ruined capital stopped here last month." |

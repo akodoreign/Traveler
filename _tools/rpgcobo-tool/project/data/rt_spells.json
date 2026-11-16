@@ -543,7 +543,7 @@
   "name": "Light of Yakamo",
   "elem": "Fire",
   "ml": 4,
-  "effect": "Holy sunlight: more damage vs. dishonourable (Honor < 2) and Tainted foes; Honor-0 foes blinded",
+  "effect": "Holy sunlight: more damage vs. dishonorable (Honor < 2) and Tainted foes; Honor-0 foes blinded",
   "target": "all enemies",
   "sp": 24,
   "cat": "area",

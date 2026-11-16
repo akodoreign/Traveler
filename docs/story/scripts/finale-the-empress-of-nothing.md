@@ -78,7 +78,7 @@ Lion Ch2 and Phoenix Ch2.
 | Courage | Natsuko | "Courage is walking back into the dark every morning because someone has to." |
 | Courtesy | Rensei | "Etiquette can be a mask for knives. It's also the only thing that keeps two enemies at one table long enough to stop a war." |
 | Sincerity | Gendo | "Sincerity is knowing exactly what the lie costs, and paying it yourself." |
-| Honor | Shizue | "Honour is what I answer for when no one is watching." *(she sets the "Duty" plaque down between them)* |
+| Honor | Shizue | "Honor is what I answer for when no one is watching." *(she sets the "Duty" plaque down between them)* |
 | Righteousness | Haruki | "No court ever judged me. So I judged myself, and I spent my life setting it right." |
 | Duty & Loyalty | Mitsue | "Duty isn't a leash. It's the promise I keep when I know what it will cost — and I know better than anyone here." |
 | Compassion | Tamotsu | "Compassion is the rice you hand over anyway, especially when there's no profit in it." |

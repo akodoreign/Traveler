@@ -28,7 +28,7 @@ Katana Boost bonus.
 ## Scene 2 — "Silver for the Musicians"
 **Where/When:** Cakon market
 **Beat:** A young Crane noble with a **black eye**, **Mibu Kagemaro**, throws silver to the street musicians, then
-quietly hires "bold and honourable citizens". The facts:
+quietly hires "bold and honorable citizens". The facts:
 - A mercenary, **Daigoro**, killed the noble Mibu Ieko in a jealous brawl over the poet-geisha **O-Sode**.
 - Judge **Sono Kentanaga** (of a rival family) added a clause: if the execution isn't carried out in three days,
   Daigoro walks free.

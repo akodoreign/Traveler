@@ -59,7 +59,7 @@ AKODO IJAKO: *(lifting her mask)* The dead in this house are frightened, Shizue.
 `[BATTLE]` **Possessed Matsu Nagai** (mid-boss). Resolve 5. Weak: **Jade** (Hojiki's real stone), Water. Break
 the possession to save him.
 - After: Isawa Kamasari demands Hojiki in chains. **Duel path action**: Shizue may challenge Kamasari's yojimbo,
-  **Shiba Ashimita** (haunted by his grandfather's screaming ghost), to earn one more day. Win or lose honourably, and
+  **Shiba Ashimita** (haunted by his grandfather's screaming ghost), to earn one more day. Win or lose honorably, and
   Ashimita respects her.
 
 ## Scene 5 — "A Good Man, Technically Guilty"

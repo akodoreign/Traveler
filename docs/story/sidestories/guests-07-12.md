@@ -85,7 +85,7 @@ KITSU TAKEO: (quietly) And I love Yogo Mai. And she's Scorpion. And everything a
   - "Keep the secret." → nothing changes
 (At the end, at the family shrine, Takeo hears — for the first time — a voice.)
 ANCESTOR: …*Finally* you've stopped lying to yourself, boy. We couldn't hear you over the noise.
-**Virtue echo — Honor:** KITSU TAKEO: "Honour was keeping a promise I never wanted. Now it's telling the truth about it."
+**Virtue echo — Honor:** KITSU TAKEO: "Honor was keeping a promise I never wanted. Now it's telling the truth about it."
 [UPGRADE *Charge* → *Ancestor's Charge* (line attack + ancestor strike), 2 uses]
 
 ## 11. Yogo Mai — Scorpion / Yogo shugenja

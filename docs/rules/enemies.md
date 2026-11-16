@@ -30,7 +30,7 @@ Builds on DESIGN §2 (Suki = Octopath Break; *Resolve* points as shields) and th
 ## 2. Enemy families (templates)
 | Family | Typical weaknesses | Resists / immunities | Signature behaviour (from L5R) |
 |---|---|---|---|
-| **Bandits, ronin, ashigaru** | Katana, Yari, Yumi; Fire | — | Can **surrender** (Cite the Law, Settle the Account, Honourable Challenge) → no kill, bonus Honor; flee at low HP |
+| **Bandits, ronin, ashigaru** | Katana, Yari, Yumi; Fire | — | Can **surrender** (Cite the Law, Settle the Account, Honorable Challenge) → no kill, bonus Honor; flee at low HP |
 | **Samurai (clan soldiers)** | depends on school: heavy-armoured Crab → Tetsubo, Bo; Crane duelists → Yari, Yumi | Know the School bonuses apply | Use real **school techniques** and **kata** (`kata.md` §4); duelists counter Katana |
 | **Shadowlands goblins / bakemono** | **Jade**, Fire, Yari, Tetsubo | — | Swarms; Taint attacks |
 | **Ogres / trolls (carapace)** | **Jade**, **Tetsubo** (armour-breaker), Earth | Tanto (weak vs. carapace) | Carapace = +Def that Heavy Weapons ignore |

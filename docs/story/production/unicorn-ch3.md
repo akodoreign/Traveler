@@ -2,7 +2,7 @@
 
 **Traveler:** Ide Tamotsu · **Lv** 30–35 · **Outline:** `scripts/unicorn-ch3-the-noblest-blood.md`
 **Flags read:** `rin_joined`, `camps_fed`, `nihime_told` · **Flags set:** `shahai_trusts`, `daiyu_state`
-(comforted / shattered), `mirumoto_terms` (jade / honour), `karasu_joined`
+(comforted / shattered), `mirumoto_terms` (jade / honor), `karasu_joined`
 **Maps:** `star_field`, `shiro_iuchi_tower`, `iuchi_woods`, `mirumoto_camp`, `jade_mines_1–3`
 **Battles:** `b_tower_servants` (silent), `b_mine_dead_a/b`, `b_boss_mine_guardian`
 **Set-piece:** **Covered Ears** (wax earplugs). While on, spoken path actions are disabled and dialogue appears as
@@ -82,7 +82,7 @@ GENDO: And excellent hearing, general. For now.
 > CHOICE "Their price"
   - "Promise them the mine's jade." → [SET mirumoto_terms jade] (they ride; a trade cost later)
       MIRUMOTO TABEZU: (grinning) Jade, you said? (to Tsukaru) …I *like* jade.
-  - [IF Honor ≥ 3] "Appeal to honour alone." → [SET mirumoto_terms honour] (free)
+  - [IF Honor ≥ 3] "Appeal to honor alone." → [SET mirumoto_terms honor] (free)
       TAMOTSU: There are children in that castle with wax in their ears, general. That's all I have to offer.
       MIRUMOTO TSUKARU: (a long silence; then he takes the wax) …Saddle up.
 (The demonstration: Tamotsu has the Dragon officers put the wax in, then claps behind their heads. Nobody turns.)

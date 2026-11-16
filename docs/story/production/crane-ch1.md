@@ -51,7 +51,7 @@ KAKITA MASANORI: Adequate.
 RENSEI: (alone, to the empty sand) …Adequate.
 [SAVE]
 
-## S02 — The Keeper of the House Honour
+## S02 — The Keeper of the House Honor
 MAP: `road_west` (palanquin) · TRIGGER: auto
 (A plain palanquin on a mountain road. Rensei walks beside it in his new yojimbo's armour, rigidly correct.)
 LADY SANAE: (from inside, without opening the screen) Kakita Rensei.
@@ -59,8 +59,8 @@ RENSEI: My lady.
 LADY SANAE: You may stop walking as though your spine were a spear. We have four days of road.
 RENSEI: Yes, my lady. (He does not stop.)
 LADY SANAE: (the screen slides open: a calm, tired, observant woman in her forties) Do you know what I do, Rensei-san?
-RENSEI: You are Doji Sanae, Keeper of the House Honour, my lady.
-LADY SANAE: And what does the Keeper of the House Honour do?
+RENSEI: You are Doji Sanae, Keeper of the House Honor, my lady.
+LADY SANAE: And what does the Keeper of the House Honor do?
 RENSEI: (pause) …Keep it, my lady?
 LADY SANAE: (a faint smile) I see to it that certain things never happened.
 LADY SANAE: A Kakita prodigy named Kakita Morishu shamed his house a year ago and vanished.
@@ -208,8 +208,8 @@ MAP: `goroso_castle_hall` → `goroso_castle_corridor` · TRIGGER: travel to the
 NARRATION: Lord Akodo Goroso's castle stands on a hill raised by ten thousand peasant baskets. It guards Beiden Pass.
 (The hall. LORD AKODO GOROSO: scarred, two fingers missing, utterly certain. Sanae kneels before him. Rensei kneels
 at the back, by the door. Goroso does not look at him once.)
-AKODO GOROSO: The Crane send their Keeper of Honour to plead for a bandit.
-LADY SANAE: The Crane send their Keeper of Honour to understand, my lord. A Kakita in your cells is a Crane matter.
+AKODO GOROSO: The Crane send their Keeper of Honor to plead for a bandit.
+LADY SANAE: The Crane send their Keeper of Honor to understand, my lord. A Kakita in your cells is a Crane matter.
 AKODO GOROSO: A bandit in my cells is my matter. Heaven has an order. He broke it. He dies at dawn.
 (Sanae is dismissed. Rensei is told to wait in the corridor. He waits. He is ignored.)
 (In the corridor: two voices, around a corner. A "merchant" with swords under his cloak — BAYUSHI DEPURA — and the
@@ -231,7 +231,7 @@ RENSEI: (internal) Father always said a Kakita should fill a room. (beat) It's u
 ## S07 — Four Ways to Dawn
 MAP: `goroso_castle_corridor` (night, the guest room) · TRIGGER: after S06
 LADY SANAE: There are four ways this ends, Rensei-san. I will tell you all four, and then you will choose.
-LADY SANAE: One. A blade slipped into his cell. He takes the honourable path tonight. The House is clean.
+LADY SANAE: One. A blade slipped into his cell. He takes the honorable path tonight. The House is clean.
 LADY SANAE: Two. We do nothing. He dies in the yard. The House is shamed, but not *involved*.
 LADY SANAE: Three. His bandit friends strike from the crowd. Goroso is humiliated. The Lion will remember.
 LADY SANAE: Four. We demand trial by challenge. Goroso names a champion. Morishu fights for his own life.

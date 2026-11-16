@@ -52,7 +52,7 @@ KATA = [
     ("S751", "K081", R, 51, "kata", "One Strike Blade", 1.8, 1, [("AGI", 30)], None,
      "Kakita kata. Everything in one cut: x1.8, and Speed +30% next turn."),
     ("S752", "K082", R, 61, "kata", "One Truth", 1.0, 99, [("TGR", -80), ("PATK", -15)], None,
-     "Kakita kata. Honourable foes hardly target him; his damage -15%. The whole battle."),
+     "Kakita kata. Honorable foes hardly target him; his damage -15%. The whole battle."),
     ("S753", "K083", R, 70, "kata", "Standing on the Heavens", 1.0, 3, [("PEVA", 35)], None,
      "The sky does not get hit: +35% evasion for 3 turns."),
     # ---- Kitsuki Gendo (Mirumoto secondary school)

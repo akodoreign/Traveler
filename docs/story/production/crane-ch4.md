@@ -31,7 +31,7 @@ MAP: `doji_archives_1–3` · TRIGGER: descend
 (A library like a maze. Censor-monks with brushes and blades. Wards glowing on certain shelves.)
 CENSOR-MONK: The forbidden shelves are forbidden, young lord.
 > path actions
-  - [PA Charm Censor-monk] → RENSEI: "Lady Sanae of the House Honour sends me. She'd hate to have to come herself."
+  - [PA Charm Censor-monk] → RENSEI: "Lady Sanae of the House Honor sends me. She'd hate to have to come herself."
       CENSOR-MONK: (paling) …Shelf nine. Mind the guardian.
   - *Watchful Falcon* kata (if equipped) → hidden shelves glow on the map
 [BATTLE b_archive_spirits] (paper-spirits — weak to Fire, Tanto)
@@ -113,7 +113,7 @@ RENSEI: (taking his stance) Yes, Father.
 
 ## S06 — A Very Dull Sword
 MAP: `kyuden_doji` (court) · TRIGGER: after the duel
-LADY SANAE: One question, Rensei-san. The House's honour, or the Empire?
+LADY SANAE: One question, Rensei-san. The House's honor, or the Empire?
 > CHOICE "Sanae's question" [SET sanae_answer]
   - "The Empire." → LADY SANAE: "Brave. Foolish. Correct."
   - "The House." → LADY SANAE: "Honest. Also correct, in its way."

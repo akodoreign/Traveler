@@ -171,7 +171,7 @@ the engine prototype.
 | id | L | Foes | Resolve | Weak | Notes |
 |---|---|---|---|---|---|
 | b_warehouse_raid | 1 | Phoenix guard ×3 | 2 | Katana, Yari | Command tutorial |
-| b_duel_ashimita | 6 | Shiba Ashimita | 5 | Yari, Air | Duel; win or lose honourably |
+| b_duel_ashimita | 6 | Shiba Ashimita | 5 | Yari, Air | Duel; win or lose honorably |
 | b_bracket_1/2/3 | 20–22 | Ikoma bard / Matsu / Kaiu Yutaka | 3/4/6 | varies | Duel bracket |
 | b_fear_shades | 22 | fear-shade ×3 | 3 | Jade, Fire | Terror tutorial |
 | b_bridge_bandit | 30 | bandit chief | 5 | Katana, Yari | Duel |

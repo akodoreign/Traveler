@@ -17,7 +17,7 @@ Bosses are in `bosses.md`; the stat formula is in `bosses.md` §0 (mob HPx = 1.0
 - **V** = finale/post-game (54+; Shinomen and the Shadowlands deep)
 
 Columns: L · HPx · Res(olve) · Weak · Resist · Skills · Drop / Steal.
-**Human foes** follow the Honor rules: many **surrender** at low HP (Cite the Law, Settle the Account, Honourable
+**Human foes** follow the Honor rules: many **surrender** at low HP (Cite the Law, Settle the Account, Honorable
 Challenge). Sparing them gives Honor +; killing surrendered foes gives Honor −.
 
 ---
@@ -42,7 +42,7 @@ Challenge). Sparing them gives Honor +; killing surrendered foes gives Honor −
 | IV | Masterless Champion | 41–47 | 1.6 | 6 | Yari, Bo | Katana | *Strike Like Wind* (2 hits) | Fine Katana Fragment / Ronin's Writ |
 - They **can be hired** after the battle (Barter Coin: "a sword for coin"); spared ronin may appear as hired help.
 
-### A3. Contentious Samurai (*proud duelists, drunks, honour-seekers*)
+### A3. Contentious Samurai (*proud duelists, drunks, honor-seekers*)
 | Tier | Name | L | HPx | Res | Weak | Resist | Skills | Drop / Steal |
 |---|---|---|---|---|---|---|---|---|
 | I | Drunken Samurai | 4–9 | 1.2 | 3 | Bo, Water | — | *Sake Breath* (Confuse chance), *"Insult!"* (taunts a random ally) | Cheap Sake / Gaudy Fan |
@@ -50,7 +50,7 @@ Challenge). Sparing them gives Honor +; killing surrendered foes gives Honor −
 | III | Clan Duellist (Crane/Lion/Scorpion palette per region) | 29–35 | 1.4 | 5 | by clan* | Katana | *Clan Kata* (as `kata.md`) | Clan Mon Charm / Fine Hilt-wrap |
 | IV | Hatamoto's Champion | 41–47 | 1.6 | 6 | by clan* | Katana | *Kata + Iaijutsu opening* | Champion's Sageo / Glory Scroll |
 - *By clan: Crane duellists are weak to Yari/Air; Lion to Tanto/Water; Scorpion to Yumi/Jade; Crab to Air/Tanto.
-- **Honourable Challenge** (Shizue) or **Duel** turns the fight into a 1-on-1 and ends it on Suki. Glory + if won
+- **Honorable Challenge** (Shizue) or **Duel** turns the fight into a 1-on-1 and ends it on Suki. Glory + if won
   clean.
 - **Never surrender** (pride), but at 25% they **yield** to a Duel or Charm attempt.
 

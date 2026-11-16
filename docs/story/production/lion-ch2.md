@@ -120,12 +120,12 @@ TOTURI: (from the doorway, softly) Not without proof.
 MAP: `shiro_akodo` (Hall of Honors) · TRIGGER: Beat 3
 ### SET-PIECE PREVIEW — the debate UI (low stakes; the finale's system)
 HOSTESS: The debate. Each speaker defends a tenet.
-MATSU SPEAKER: Honour is what our lord says it is. The lord defines it. We obey.
+MATSU SPEAKER: Honor is what our lord says it is. The lord defines it. We obey.
 > DEBATE "Honor" — choose your rebuttal (evidence from Ch1 flags)
-  - "Whose honour was it at Sorrow's Path, when both armies called themselves righteous?" → **strong**
+  - "Whose honor was it at Sorrow's Path, when both armies called themselves righteous?" → **strong**
   - [IF climax_route A/B/C from Ch1] "My uncle told me to find the truth, even a Lion's truth." → **strong**
-  - "Honour is following orders well." → weak
-SHIZUE: (strong) Honour isn't a banner someone can steal from a wall.
+  - "Honor is following orders well." → weak
+SHIZUE: (strong) Honor isn't a banner someone can steal from a wall.
 (Silence. Then, from the high seats, for the first time:)
 AKODO TOTURI: Who is that?
 KARO: Akodo Hiruto's niece, my lord. A junior strategist.

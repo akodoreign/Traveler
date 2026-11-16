@@ -13,7 +13,7 @@ flowchart TD
   S03 -->|whole truth: Honor +1| SH[shattered]
   C & SH --> S04{S04 Mirumoto camp: Barter + Etiquette; their price: mirumoto_terms}
   S04 -->|jade| J[jade]
-  S04 -->|Honor >= 3: honour| H[honour]
+  S04 -->|Honor >= 3: honor| H[honor]
   J & H --> S05[S05 Jade mines 1-3: the quiet dead; raw jade; camps_fed: porters; save]
   S05 --> S06[S06 b_boss_mine_guardian] --> S07[S07 Jade carts; a deaf army; nihime_told: a note from Nihime]
 ```

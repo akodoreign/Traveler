@@ -87,7 +87,7 @@ Secondary-school ranks (schools.md):
 | Lv 41 | **One Leg Stance** (Kakita 3 · katana *or* yari, learned per weapon) ⚠ | Speed +20% (a large turn-order jump). **VP 2:** Evasion becomes Reflexes-scaled (×3 ≈ +30%). |
 | Lv 45 | **The World Is Empty** (IR3 · katana) | **All-in:** on activation, + attack and damage per VP held, this turn and the next. Then **all VP are lost**, damage −25%, and no VP regen for the rest of the battle. |
 | Lv 51 | **One Strike Blade** (Kakita 4) | Give up one hit of a multi-hit attack to gain either **Speed +30% for the rest of the battle** or **+30% on his next hit** this turn. Can't Defend while active. **VP 1:** +10% more. |
-| Lv 61 | **One Truth** (Kakita 5) | One attack action per turn; damage −20%. **Non-boss foes whose Honor doesn't exceed the party Honor tier can't target him** until he attacks them; dishonourable enemies with Honor 0 (Shadowlands, maho) ignore this. Hitting a slower foe: Reflexes contest → it **loses one of its actions** that round (works on multi-action bosses). **VP 2:** Honor +1. |
+| Lv 61 | **One Truth** (Kakita 5) | One attack action per turn; damage −20%. **Non-boss foes whose Honor doesn't exceed the party Honor tier can't target him** until he attacks them; dishonorable enemies with Honor 0 (Shadowlands, maho) ignore this. Hitting a slower foe: Reflexes contest → it **loses one of its actions** that round (works on multi-action bosses). **VP 2:** Honor +1. |
 | Lv 70 | **Standing on the Heavens** (IR5 · katana) | When an attack would hit him, spend 1 VP to **force a re-roll** (a strong dodge). If his VP reaches 0: Evasion −20% and no crits for the rest of the battle. |
 
 ### Kitsuki Gendo — investigator + Mirumoto two-sword breaker (Katana, Bo)
@@ -110,7 +110,7 @@ Secondary-school ranks (schools.md):
 | Lv 5 | **Striking as Water** (IR1, Water 3) | Damage +20%, Evasion −10%. Akodo add Water to damage, so it fits her. |
 | Lv 15 | **Striking as Fire** (IR1, Fire 3) | Accuracy +10% and Crit +5%; Speed −10%. |
 | Lv 41 | **Fury Without End** (Akodo 3) | Immune to Shaken, Terror and other "distraction" debuffs for the whole battle. **Price:** after the battle she is left at **1 HP with no VP regen until she rests at an inn or camp**. |
-| Lv 45 | **The Soul's Roar** (Matsu 2 ⇐ Akodo 3) | Attack and damage + (Honor tier × k); Evasion −10%. **VP 1:** twice the Honor bonus, Evasion −20%. Works with her R2 *Strength of Purity*: an honourable party makes her very strong. |
+| Lv 45 | **The Soul's Roar** (Matsu 2 ⇐ Akodo 3) | Attack and damage + (Honor tier × k); Evasion −10%. **VP 1:** twice the Honor bonus, Evasion −20%. Works with her R2 *Strength of Purity*: an honorable party makes her very strong. |
 | Lv 51 | **Gentle Blade of Winter** (Akodo 4 · katana) | Every ~10% of the target's max HP she deals adds one stack of **Shaken** (lasts 2 × Rank turns). **VP 2:** two stacks per trigger. |
 | Lv 55 | **Tsuko's Storm** (Akodo 4) | While she Boosted last turn, enemy bonuses against her (their crit and Boost bonus) are reduced. Switching it off mid-battle costs 1 VP. **VP 2:** reduced further. (Low priority; may cut.) |
 | Lv 61 | **Matsu's Vengeance** (Akodo 5) | Speed, attack and damage + (2 × Honor tier); **Evasion −40%**. Crits on "9s" (big crit-rate bonus). Damage gets a floor of Honor + 1. **VP 1:** Honor +1. Glass-cannon capstone. |

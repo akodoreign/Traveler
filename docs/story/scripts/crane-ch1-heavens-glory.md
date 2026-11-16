@@ -8,7 +8,7 @@
 - field puzzle (the lantern lures); a Rank-1 "nobody" stealth beat
 - guests: **Matsu Kiku**, **Kitsuki Seigen**
 
-Static NPCs keep their source names. **Lady Doji Sanae** is the renamed pregen honour-keeper (`04-cast` §B4).
+Static NPCs keep their source names. **Lady Doji Sanae** is the renamed pregen honor-keeper (`04-cast` §B4).
 
 ---
 
@@ -16,14 +16,14 @@ Static NPCs keep their source names. **Lady Doji Sanae** is the renamed pregen h
 **Where/When:** Kakita Dueling Academy, the graduation kata
 **Beat:** Rensei performs his graduation kata flawlessly. His father, **Kakita Masanori** *(orig.)*, notes one
 imperfection: "Your left foot hesitated." Rensei is assigned as yojimbo to **Lady Doji Sanae**, "Keeper of the
-House Honour". Nobody tells him what that means.
+House Honor". Nobody tells him what that means.
 `[BATTLE]` Tutorial: a bokken bout vs. a senior student. Teaches **Focus** (skip a turn, build stacks) and
 **Strike** (one huge hit); a perfect Strike at max stacks always crits.
 KAKITA MASANORI: Adequate.
 RENSEI: *(bowing, very still)* Thank you, Father.
 *(Later, alone, he practises the kata eleven more times. The left foot does not hesitate. He does it again anyway.)*
 
-## Scene 2 — "The Keeper of the House Honour"
+## Scene 2 — "The Keeper of the House Honor"
 **Where/When:** on the road west, Sanae's palanquin
 **Cast:** Rensei; Lady Doji Sanae (courteous, tired, terrifyingly observant); **Kitsuki Seigen** (her world-weary
 investigator, guest)
@@ -73,7 +73,7 @@ shook for an hour.
 RENSEI: *(quietly)* Two cuts… and then he shook.
 IMURO: You understand that?
 RENSEI: …I understand the second part.
-`[SYS]` Inn-style rest; **Travel Banter** (Kiku/Seigen on what "honour" costs).
+`[SYS]` Inn-style rest; **Travel Banter** (Kiku/Seigen on what "honor" costs).
 
 ## Scene 6 — "Castle on the Made Hill"
 **Where/When:** Lord Goroso's four-storey castle guarding Beiden Pass

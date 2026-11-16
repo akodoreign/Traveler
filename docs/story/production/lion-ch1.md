@@ -70,8 +70,8 @@ MIYA YACHIKO: (pleasantly) The Emperor's interest is in peace, my lord. And the 
 AKODO HIRUTO: Of course.
 (Later. Hiruto, alone with his family in the hall: his eldest HOJATO (monk-like), the sullen GUSAI, and Shizue.)
 AKODO HIRUTO: You will investigate. All of you.
-AKODO HOJATO: Father, bushido and honour are all we—
-AKODO HIRUTO: Bushido and honour have never once found a murderer, Hojato.
+AKODO HOJATO: Father, bushido and honor are all we—
+AKODO HIRUTO: Bushido and honor have never once found a murderer, Hojato.
 AKODO HIRUTO: Find the truth. If it's a Lion's truth, it is still the truth.
 SHIZUE: And if the truth starts a war, uncle?
 AKODO HIRUTO: (a long look) Then we will at least know what we are fighting about.
@@ -132,12 +132,12 @@ MATSU NAGAI (possessed, many voices): Phoenix! You killed my children! (no — n
 (Victory: Nagai collapses, himself again, weeping. Isawa Kamasari is furious.)
 ISAWA KAMASARI: Enough! Hojiki was named by the dead! I will have him in chains!
 SHIZUE: Give me one more day, Isawa-sama.
-ISAWA KAMASARI: For what? Lion honour?
+ISAWA KAMASARI: For what? Lion honor?
 SHIZUE: For the truth. You said you followed it here. Let me follow it a little further.
 SHIBA ASHIMITA: (stepping forward, wincing at a sound no one else hears) My lord. Let me test her.
 SHIBA ASHIMITA: If she can stand against me, she's earned her day.
 [PA Duel Ashimita] [BATTLE b_duel_ashimita]
-(win OR lose honourably → the day is granted)
+(win OR lose honorably → the day is granted)
 SHIBA ASHIMITA: (after) You fight like someone listening for the next move.
 SHIZUE: You fight like someone listening for something else entirely.
 SHIBA ASHIMITA: (a thin smile) My grandfather. He screams. He has since I was born.

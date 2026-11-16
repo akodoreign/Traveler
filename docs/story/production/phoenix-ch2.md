@@ -105,7 +105,7 @@ ISAWA MIEKO: Haruki-san? Why — why am I outside? Did I sleepwalk? How embarras
 
 ## S05 — The Traitor's Torii (set-piece: debate)
 MAP: `traitors_torii` · TRIGGER: the next day
-(A hidden mountain torii honouring SHIBA MITSUHIDE, a Phoenix Champion branded a traitor centuries ago — he refused
+(A hidden mountain torii honoring SHIBA MITSUHIDE, a Phoenix Champion branded a traitor centuries ago — he refused
 an order to burn a village. A mob of grieving envoys and townsfolk with torches.)
 MOB LEADER: A shrine to a traitor! At a memorial for our dead! Burn it!
 HARUKI: (stepping in front of the torii, shaking) Please. Let me speak.
@@ -113,7 +113,7 @@ HARUKI: (stepping in front of the torii, shaking) Please. Let me speak.
 - **Claim 1:** "He disobeyed his lord." → evidence choices:
   - "So did the boy who ran into a burning house to save his sister. Do we burn *his* memory?" → strong
   - "He had his reasons." → weak
-- **Claim 2:** "Honouring a traitor insults the loyal dead." → (party members may answer; e.g. SHIZUE: "The loyal
+- **Claim 2:** "Honoring a traitor insults the loyal dead." → (party members may answer; e.g. SHIZUE: "The loyal
   dead died *for* something. Ask what.") → strong
 - **Claim 3 (Haruki's key):** "There is no righteousness in disobedience."
   HARUKI: (strong) He refused an order to burn people. You'd burn his shrine for it.

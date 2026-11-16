@@ -82,7 +82,7 @@ Rank = earliest tier. Utility marked **F** = field skill (scroll or story).
 | Burn the Mind (3) | Big debuff; chance it **loses its turn** | 1 enemy | 16 | — |
 | Heart of the Inferno (3) | Heavy Fire blast. **Consumes a "spell scroll" item**, or Haruki takes half the damage. | all enemies | 16 | +damage |
 | Breath of the Fire Dragon (3) | For 2 turns his action becomes a strong Fire breath; he can't cast meanwhile | 1 enemy | 16 | — |
-| Light of Yakamo (4) | Holy sunlight: **more damage vs. dishonourable** (Honor < 2) and **Tainted** foes; Honor-0 foes blinded | all enemies | 24 | +damage |
+| Light of Yakamo (4) | Holy sunlight: **more damage vs. dishonorable** (Honor < 2) and **Tainted** foes; Honor-0 foes blinded | all enemies | 24 | +damage |
 | Death of Flame (4) | **Accuracy and E.Atk −** (big; 3e lowers Agility and Intelligence) | 1 enemy | 24 | +turns |
 | Fire Walking (4) | Ally immune to Fire until the first magical fire hits them | 1 ally | 24 | +1 target |
 | Wall of Fire (4) | Enemies take Fire damage **whenever they act**, 3 turns | all enemies | 24 | +turns |

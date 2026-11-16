@@ -3,7 +3,7 @@
 **Sources:**
 - *The Edge of Treachery* Ch. 1 (Gearin), **re-dated** from Hantei XXIII to **early spring 1123**: Lady Sanae
   replaces Daidoji Toshiya as the one who sends Rensei.
-- **Canon 1123** (*Imperial Histories* ch. 5): a dishonourable Lion samurai secretly stokes Crane–Mantis piracy. Here
+- **Canon 1123** (*Imperial Histories* ch. 5): a dishonorable Lion samurai secretly stokes Crane–Mantis piracy. Here
   he is the pirates' secret patron.
 
 Plot facts only; **all dialogue is original**.
@@ -48,7 +48,7 @@ CHIHAYA: *(mid-fight, laughing)* You fight like a painting, Crane! Pretty and *s
 **Beat:** The Asahina examine a charm. It's a fake, made with Bloodspeaker techniques: the work of a descendant of
 **Asahina Yajinden** (Iuchiban's artificer). The Asahina are horrified and want it hushed up.
 - **Reward:** *Asahina ward-paper* (accessory: halves the fake charms' buffs on nearby enemies).
-- Letters found on Chihaya are signed by **a Lion patron**: **Matsu Tadanobu** *(orig.)*, a dishonourable samurai
+- Letters found on Chihaya are signed by **a Lion patron**: **Matsu Tadanobu** *(orig.)*, a dishonorable samurai
   stoking the piracy to bleed the Crane (canon 1123).
 
 ## Scene 5 — "Gathering Storm" (travel)

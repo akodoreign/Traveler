@@ -460,6 +460,78 @@ def say(name, text):
 
 MAP_PATH = {}                                    # map -> traveler pid (marker_pass), for gesture_pass
 
+# (user 2026-11-15: "we need a preamble for most quest conversations. to much is missing from the text") scenes that
+# opened cold on a line of dialogue get a narrated lead-in (scene_pre_pass), keyed by the start of that line
+SCENE_PRE = {
+    "Is it supposed to... move like this?":
+        "The ship's deck, past the harbor wall. The planks roll underfoot. Kakita Rensei, who has never been to sea, "
+        "grips the rail.",
+    "One question, Rensei-san.":
+        "After the duel. Lady Doji Sanae receives Kakita Rensei in her rooms, the court's murmur still loud beyond "
+        "the screens.",
+    "You read it.":
+        "The old sensei waits in the dojo, a bokken across his knees. He knows what the letter said - and that Akodo "
+        "Shizue carried it anyway.",
+    "Well? Finish it.":
+        "The red torii on the cliff, in the rain. The dark Mieko is on her knees in the mud, the book fallen beside her.",
+    "Kappa in here.":
+        "The cove cave. Water drips from the roof, and something in the tide pools is watching. Togashi Yosai sniffs "
+        "the air.",
+    "The no-family man! Eat!":
+        "The Bayushi mansion. Bayushi Atsuki holds court among more food than a village eats in a week, and waves "
+        "Kitsuki Gendo in like an old friend.",
+    "Sit, sit. Seikidera says":
+        "The Doji mansion. Doji Tomeko pours the tea herself - a courtesy, and a test.",
+    "You are not who you say you are.":
+        "The Shiba mansion. Shiba Katsutoshi does not rise when Kitsuki Gendo enters. He studies him over the rim of "
+        "his cup.",
+    "...I did. And I'd do it again.":
+        "Cornered at last, the man behind the mask stops pretending.",
+}
+
+
+def scene_pre_pass(mp):
+    """A narrated lead-in before an autorun scene whose first line is dialogue (SCENE_PRE). Idempotent."""
+    n = 0
+
+    def first(o):
+        """(list, index) of the first message under o."""
+        if isinstance(o, list):
+            for i, c in enumerate(o):
+                if isinstance(c, dict) and c.get("cmd") == "cmd_showmsg":
+                    return o, i
+                r = first(c)
+                if r:
+                    return r
+        elif isinstance(o, dict):
+            for v in o.values():
+                r = first(v)
+                if r:
+                    return r
+        return None
+    for mid, m in mp.items():
+        if not isinstance(m, dict):
+            continue
+        for e in (m.get("event") or {}).values():
+            if not isinstance(e, dict):
+                continue
+            for pg in e.get("page") or []:
+                if pg.get("trigger") != 6:
+                    continue
+                r = first(pg.get("cmdblock"))
+                if not r:
+                    continue
+                lst, i = r
+                c = lst[i]
+                if not c.get("name"):
+                    continue
+                for k, pre in SCENE_PRE.items():
+                    if c.get("text", "").startswith(k):
+                        lst.insert(i, narrate(pre))
+                        n += 1
+                        break
+    print("scene_pre_pass: %d scenes given a lead-in" % n)
+
 
 def gesture_pass(mp):
     """A line whose acting cue implies a gesture ("(shrugging)", "(laughing)", "(bowing)") plays it - only when the
@@ -3306,7 +3378,7 @@ def ch3_gate(m, ev):
         reqs=[flag("G255", False)])
     ev.clerk(20, 39, EP_SERVICE["quartermaster"], "R113")
     ev.talk(23, 39, SC["townguard"], [                                     # storyboard crab-ch3: the blueprint trade
-        (None, [say("Kaiu smith", "Bring me a Kaiu blueprint some day and I'll forge it for nothing. Honour of the "
+        (None, [say("Kaiu smith", "Bring me a Kaiu blueprint some day and I'll forge it for nothing. Honor of the "
                                   "family.")]),
         ([{"lvar": "NUM_I124", "op": ">=", "rvar": 1}], [
             say("Kaiu smith", "That's my great-uncle's hand on that blueprint! Leave it with me."),
@@ -4168,7 +4240,7 @@ def kakita_academy():
                                                          "the row, in fresh ink.")])], trigger=1)
     ev.npc(20, 20, SC["senior_student"], "Adequate, he said. My father says worse to me every morning.",
            reqs=[flag("G301")])
-    ev.prop(58, 13, "EP356", msg="Lady Doji Sanae's palanquin. Plain lacquer: the Keeper of the House Honour travels "
+    ev.prop(58, 13, "EP356", msg="Lady Doji Sanae's palanquin. Plain lacquer: the Keeper of the House Honor travels "
             "without a fuss.", reqs=[flag("G301")], d=3)
     south = DOOR_EV[("M200", "south")] = ev.portal(32, 1, "M216", 1, d=0)   # the coast road south (after Crane Ch1)
     ev.ev["#%d#" % south]["reqs0"] = [flag("G321")]
@@ -4616,7 +4688,7 @@ def goroso_corridor():
         tatanko = [(None, [say("Akodo Tatanko", "The Crane are very welcome. The Crane are always very welcome.")])]
         ev.talk(13, 12, SC["tatanko"], with_charm(tatanko, "Akodo Tatanko", 45, [
             say("Akodo Tatanko", "Forty families ran into that forest. Forty families of rice, gone untaxed."),
-            say("Akodo Tatanko", "Bring the labour back, and my husband's honour will survive a great deal."),
+            say("Akodo Tatanko", "Bring the labour back, and my husband's honor will survive a great deal."),
             setf("G318")],
             "You are very young, Kakita-san. It is charming. Elsewhere.", town="G342", done="G318", place="The castle",
             line="My lady, the estate's accounts must weigh on you. May I ask what the forest has cost?"),
@@ -5928,10 +6000,10 @@ def shelves(m, rows):
                 fill(m, x + (i if ax else 0), 2, z + (0 if ax else i), 1, 4, 1, DARKWOOD)
 
 
-CENSOR_CHARM = [say("Rensei", "Lady Sanae of the House Honour sends me. She'd hate to have to come herself."),
+CENSOR_CHARM = [say("Rensei", "Lady Sanae of the House Honor sends me. She'd hate to have to come herself."),
                 say("Censor-monk", "...Shelf nine. Mind the guardian."), setf("G418")]
 CENSOR = [(None, [say("Censor-monk", "The forbidden shelves are forbidden, young lord."), choices(
-    ("Charm: \"Lady Sanae of the House Honour sends me.\"", CENSOR_CHARM),
+    ("Charm: \"Lady Sanae of the House Honor sends me.\"", CENSOR_CHARM),
     ("Watchful Falcon: watch the shelves.", [
         narrate("Rensei settles into the falcon's stillness. Along the far wall, a shelf that is on no catalogue, and "
                 "a draught behind it: a hidden way down."), setf("G418")]),
@@ -6256,7 +6328,7 @@ ESC2 = [setf("G454"), narrate("Scouts ride in through the gate."), say("Ukita", 
                                                                                "moving.")]
 ESC3 = [setf("G455"), narrate("A cry from the chapel. Kitsu Togawa has been found choked - from the inside."),
         say("Ijako", "Not a hand. Something inside him.")]
-DUEL_ASHIMITA = [narrate("A duel: first blood, no seconds. (Win or lose, fight it honourably.)"),
+DUEL_ASHIMITA = [narrate("A duel: first blood, no seconds. (Win or lose, fight it honorably.)"),
                  dict(battle("M001", 52), losefunc=1)]
 ESC4 = [setf("G457"), narrate("A scream from the guest wing. Matsu Nagai has drawn on the Phoenix, his eyes red."),
         say("Nagai", "Phoenix! You killed my children! You bound me!"),
@@ -6453,7 +6525,7 @@ S05_CL1 = cl1("S05", stop_at="> CHOICE") + [choices(
     ("Hand him to the Phoenix.", [setf("G469"), say("Kamasari", "At last. Bring him."),
                                   narrate("Akodo Hojiki goes to the Phoenix guest wing in chains, and does not "
                                           "argue.")]),
-    ("Keep him under Lion guard.", [say("Kamasari", "Under Lion guard. Of course. Lion honour guards Lion hands."),
+    ("Keep him under Lion guard.", [say("Kamasari", "Under Lion guard. Of course. Lion honor guards Lion hands."),
                                     narrate("Isawa Kamasari is furious. Miya Yachiko smiles, a little too much.")])),
     setf("G468"), setf("G467"),
     narrate("Lord Hiruto grants a truce ride. Shiba Ashimita will guide Akodo Shizue east, to the Phoenix castle "
@@ -6848,9 +6920,9 @@ BEAT2 = cl2("S04", stop_at="> CHOICE") + [choices(
     ("\"The day my cousin started a war.\"", [narrate("A hush. Honest. (Honor +1)")]))] + got(
     "I156", "a Jade Flesh-cutter Arrow") + [setf("G496"), setf("G495")]
 BEAT3 = cl2("S05", stop_at="> DEBATE") + [choices(
-    ("\"Whose honour was it at Sorrow's Path, when both armies called themselves righteous?\"", []),
+    ("\"Whose honor was it at Sorrow's Path, when both armies called themselves righteous?\"", []),
     ("\"My uncle told me to find the truth, even a Lion's truth.\"", []),
-    ("\"Honour is following orders well.\"", [narrate("The Matsu speaker smiles. Weak."),
+    ("\"Honor is following orders well.\"", [narrate("The Matsu speaker smiles. Weak."),
                                               say("Shizue", "...And yet.")]))] + \
     cl2("S05", start_at="SHIZUE: (strong)", stop_at="### The sword") + got("A130", "Akodo's Leadership") + [
     setf("G499"), narrate("Days later. Akodo Kafu no longer wears his ancestral katana."),
@@ -7322,7 +7394,7 @@ def mountain_pass_2():
 
 
 # ---- M271 Kaze-no-Tani (S05A: Shogen's test; route A's boss at the gate; route B's coda after the pass)
-SHOGEN = cl3("S05A", stop_at="[PA Duel") + [narrate("A Duel: first blood. Win or lose honourably."),
+SHOGEN = cl3("S05A", stop_at="[PA Duel") + [narrate("A Duel: first blood. Win or lose honorably."),
                                            dict(battle("M001", 66), losefunc=1)] + \
     cl3("S05A", start_at="AKODO SHOGEN: You read it.") + [setf("G532"), setf("G531"),
     narrate("Shogen pours bitter tea into two chipped cups. The cold goes out of her hands."), *REST] + KILLERS + [
@@ -8271,7 +8343,7 @@ DEBATE = cp2("S05", stop_at="### DEBATE") + [
              strong("Haruki", ["So did the boy who ran into a burning house to save his sister. Do we burn his memory "
                                "too?"])),
             ("\"He had his reasons.\"", [say("Haruki", "He had his reasons."), narrate("(A weak answer.)")])),
-    narrate("Claim 2: \"Honouring a traitor insults the loyal dead.\""),
+    narrate("Claim 2: \"Honoring a traitor insults the loyal dead.\""),
     choices(("\"The loyal dead would want peace.\"", [say("Haruki", "The loyal dead would want us at peace."),
                                                      narrate("(A weak answer.)")]),
             ("Let Ashimita answer.", strong("Ashimita", ["My grandfather screams at me for every order I've ever "
@@ -10532,7 +10604,7 @@ S01_SCP1 = [narrate("CHAPTER 1 - Blood and Iron."),
             say("Norie", "Three true rumours before the incense burns down, Mitsue. Begin."),
             say("Mitsue", "Yes, my lady. More tea?"),
             narrate("Eavesdrop: Mitsue's path action. Listen in on a private conversation; the chance depends on her "
-                    "Stealth. Each target can be tried once. Failing in town costs Honor: it is a dishonourable act "
+                    "Stealth. Each target can be tried once. Failing in town costs Honor: it is a dishonorable act "
                     "if you're caught."),
             narrate("Objective: three marked conversations. The courtiers by the koi pond, the Mantis envoy at the "
                     "dinner pavilion, the pale courtier who won't eat.")]
@@ -11102,7 +11174,7 @@ S06_BARGE = [narrate("A drifting barge, tangled in the reeds. Gulls and ravens o
              say("Hana", "(falling to her knees) ...My lord. It was never you. All spring, it was never you."),
              say("Mitsue", "(covering them again, gently) Then he didn't fail you. Something wore him."),
              choices(("Burn the barge. The dead shouldn't drift.",
-                      [narrate("Rui strikes a light. The barge burns on the water, slowly, with every honour the "
+                      [narrate("Rui strikes a light. The barge burns on the water, slowly, with every honor the "
                                "marsh allows.")] + honor(1)),
                      ("Leave it for the eta. There's no time.",
                       [narrate("They leave it in the reeds. The ravens come back before they've gone ten steps.")])),
@@ -11547,7 +11619,7 @@ def hospitality_district():
         done="G888", done_line="Drink, drink. Three hundred years."))
     ev.talk(32, 20, EP_SERVICE["innkeeper"], [
         (None, [masked(), if_([flag("W")],
-                              [say("Crimson Blossom maid", "A room, honoured guest? Thirty zeni. We never sleep, but "
+                              [say("Crimson Blossom maid", "A room, honored guest? Thirty zeni. We never sleep, but "
                                                            "the beds are very good."),
                                choices(("Rest. (30 zeni)", [if_([{"lvar": "MONEY", "op": ">=", "rvar": 30}],
                                                                 [{"cmd": "cmd_moneyop", "op": 1, "amount": 30}] +
@@ -13960,13 +14032,13 @@ TERMS_JADE = [setf("G1005", False),
               say("Tabezu", "(grinning) Jade, you said? (to Tsukaru) ...I like jade.")]
 TERMS = [if_([{"lvar": "G060", "op": ">=", "rvar": 3}],
              [choices(("Promise them the mine's jade.", TERMS_JADE),
-                      ("Appeal to honour alone.",
+                      ("Appeal to honor alone.",
                        [setf("G1005"),
                         say("Tamotsu", "There are children in that castle with wax in their ears, general. That's all "
                                        "I have to offer."),
                         narrate("A long silence. Then Tsukaru holds out his hand for the wax."),
                         say("Tsukaru", "...Saddle up.")]))],
-             [narrate("(Honor 3 or more would let him appeal to their honour alone. Not today.)"),
+             [narrate("(Honor 3 or more would let him appeal to their honor alone. Not today.)"),
               choices(("Promise them the mine's jade.", TERMS_JADE))]),
          narrate("The demonstration: Tamotsu has the Dragon officers put the wax in, then claps, very loudly, behind "
                  "their heads. Nobody turns."),
@@ -14694,7 +14766,7 @@ def cakon_docks():
 # ---- M416 Cakon: the market (S02: Kagemaro; the Pilfer targets; S08 at the end)
 S02_RON1 = [narrate("Street musicians. A young noble with a fresh black eye throws a fistful of silver at them - too "
                     "much - then steps behind a stall, embarrassed: Mibu Kagemaro."),
-            say("Kagemaro", "(to the crowd, too loudly) I seek bold and honourable citizens! For a... delicate task!"),
+            say("Kagemaro", "(to the crowd, too loudly) I seek bold and honorable citizens! For a... delicate task!"),
             narrate("Nobody moves. Sayo walks up, chewing a rice ball."),
             say("Sayo", "I'm a citizen. Mostly bold."),
             say("Kagemaro", "You are... a ronin?"),
@@ -17517,16 +17589,16 @@ D_SINCERITY = [narrate("Sincerity - Kitsuki Gendo."),
 D_HONOR = [narrate("Honor - Akodo Shizue."),
            say("Doji Nashiko", "Cold little strategist. Do you feel anything, or only count?"),
            say("Shizue", "...Sometimes I only count."),
-           say("Doji Nashiko", "Honour is a word lords use to keep you in line. Your cousin started a war in its name."),
+           say("Doji Nashiko", "Honor is a word lords use to keep you in line. Your cousin started a war in its name."),
            choices(("Set the \"Duty\" plaque on the mat between them.",
                     [narrate("Shizue sets the \"Duty\" plaque on the mat between them.")] +
-                    shield("Shizue", ["I've seen my cousin start a war in its name. Honour isn't what my lord calls "
+                    shield("Shizue", ["I've seen my cousin start a war in its name. Honor isn't what my lord calls "
                                       "it.",
                                       "It's what I answer for when no one is watching."],
                     [if_([flag("G569")], [say("Shizue", "I told my Champion the Lion charged first. Nobody would ever "
                                                         "have known.")])])),
-                   ("\"The Lion have never lost their honour.\"",
-                    weak("Shizue", "The Lion have never lost their honour.", "Sorrow's Path, little Akodo. Count "
+                   ("\"The Lion have never lost their honor.\"",
+                    weak("Shizue", "The Lion have never lost their honor.", "Sorrow's Path, little Akodo. Count "
                                                                             "the bodies.")))]
 D_RIGHTEOUS = [narrate("Righteousness - Isawa Haruki."),
                say("Doji Nashiko", "You hid your crime for twelve years, little Void. Sincere?"),
@@ -17542,7 +17614,7 @@ D_RIGHTEOUS = [narrate("Righteousness - Isawa Haruki."),
                         weak("Haruki", "The Elemental Masters will judge you.", "They never judged you. Why would "
                                                                                 "they start with me?")))]
 D_DUTY = [narrate("Duty and Loyalty - Shosuro Mitsue."),
-          say("Doji Nashiko", "A Scorpion with no honour at all. Nobody knows your name."),
+          say("Doji Nashiko", "A Scorpion with no honor at all. Nobody knows your name."),
           say("Mitsue", "(lightly) That's rather the point."),
           say("Doji Nashiko", "Lords never pay for their failures. You pay. And your Champion - oh, I know what he's "
                          "planning. Do you?"),
@@ -19529,6 +19601,7 @@ def register(specs, events):
     resume_pass(mp)
     marker_pass(mp)
     gesture_pass(mp)
+    scene_pre_pass(mp)
     json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="	")
 
 
@@ -19676,6 +19749,33 @@ SIDE_QUESTS = [
      "You answered for the clan, and the clan saw it. Wear the title well.", 1500, "J001"),
 ]
 SQ_FLAGS = {q[0]: _sq(k) for k, q in enumerate(SIDE_QUESTS)}
+# (user 2026-11-15: "we need a preamble for most quest conversations. to much is missing from the text") who the giver
+# is and what's going on, before the ask
+SQ_PRE = {
+    "sq_salt": "A Hida yojimbo leans on the wall by the salt carts, rubbing a fresh bruise. He looks you over the way "
+               "a Crab looks over a wall: for the weak spots.",
+    "sq_nest": "The Hida yojimbo is back by the salt carts, a tide-crab claw the size of a shield propped beside him.",
+    "sq_letters": "A Daidoji courtier waits by the harbor, fan moving far too fast for the weather. Their courier came "
+                  "back this morning without his satchel - and without his dignity.",
+    "sq_bridge": "The Daidoji courtier again, composed now, a map of the coast road pinned flat under a closed fan.",
+    "sq_deserters": "A Lion sergeant stands at the edge of the square, armor dusty from the road, glaring east toward "
+                    "the shrine road. Pilgrims have been coming back from it with empty purses.",
+    "sq_drill": "The Lion sergeant is waiting, a list of names in his fist: the deserters still at large.",
+    "sq_painted": "A bo-staff monk sits by the fire, sleeve pulled down over a real Togashi tattoo. Travelers keep "
+                  "coming down the pass robbed, telling stories about tattooed monks.",
+    "sq_wolves": "The monk is watching the ridge line. At dusk the howling starts again, closer than last night.",
+    "sq_champion": "The Lion sergeant holds out a folded challenge, its seal broken. It is addressed to any Akodo, and "
+                   "it is rude.",
+}
+FQ_PRE = {
+    "fq_float": "An old net-mender sits on an upturned boat, mending by feel, one eye on the gulls.",
+    "fq_oil": "The chandler's stall smells of lamp oil and sesame. There is a jar ready on the counter and nobody to "
+              "carry it.",
+    "fq_kite": "A child stands in the street staring up at a rooftop with the full despair of the very young.",
+    "fq_plums": "A maid from O-Sode's house waits by the gate, wringing her sleeve. Night is falling, and she is on the "
+                "wrong side of the gate for it.",
+    "fq_flute": "A young flautist sits at the edge of the square with an empty flute case and a very long face.",
+}
 
 # (user 2026-11-14: "give the ronin a bunch of fetch quests in the first city to gain some exp and levels (should be
 # level 4 before trying to fight the first bunch of enemies)") Odd jobs in Cakon (Ronin Ch1, after S01): each pays zeni
@@ -19718,7 +19818,8 @@ def fetch_events(ev, mid):
             ev.talk(gx, gz, SC[spr], [
                 (None, [say(gname, "Busy, busy.")]),
                 ([flag(FQ_OPEN), flag(taken, False)],
-                 [narrate("Odd job: %s" % title), say(gname, offer),
+                 [narrate("Odd job: %s" % title)] + ([narrate(FQ_PRE[key])] if key in FQ_PRE else []) +
+                 [say(gname, offer),
                   choices(("\"I'll do it.\"", [setf(taken), narrate("Odd job taken: %s. (The Journal tracks it.)" %
                                                                      title)]),
                           ("\"Not now.\"", []))]),
@@ -19757,7 +19858,8 @@ def side_quest_events(m, ev, mid):
                            narrate("${::Rokugan.jobUnlockText(\"%s\")}" % job)]
             pages += [
                 (opens_f + [flag(taken, False)],
-                 [narrate("Side quest: %s" % title), say(gname, offer),
+                 [narrate("Side quest: %s" % title)] + ([narrate(SQ_PRE[key])] if key in SQ_PRE else []) +
+                 [say(gname, offer),
                   choices(("\"I'll do it.\"", [setf(taken), narrate("Side quest taken: %s. (%s) The Journal "
                                                                    "tracks it." % (title, remind))]),
                           ("\"Not now.\"", []))]),

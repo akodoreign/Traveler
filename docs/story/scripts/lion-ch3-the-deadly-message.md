@@ -32,7 +32,7 @@ messengers.***
 - Banter, if present: Gendo ("evidence is testimony"), Mitsue ("burn it"), Rensei ("deliver it; that is the
   point").
 - Ijako's ancestor at a roadside shrine: "A message is a blade. Who holds the hilt?"
-`[CHOICE 1]` **A · Deliver it anyway** (the honour route) · **B · Turn back and confront the karo**.
+`[CHOICE 1]` **A · Deliver it anyway** (the honor route) · **B · Turn back and confront the karo**.
 `[FLAG message_route]`
 
 ## Scene 4 — "The Pass" (dungeon)
@@ -44,7 +44,7 @@ finds a **Miya travel writ** and a letter to a *Crane* general in the same hand.
 **Beat:** The retired sensei **Akodo Shōgen** *(orig.)* reads the message and laughs: "Toturi remembers." It is an
 old Akodo test: he teaches only those who deliver *knowing* what it says.
 `[BATTLE]` *(Duel path-action battle)* **Shōgen's test**: a duel exchange, then two rounds of kata. Win or lose
-honourably, and he agrees to come down from the mountain. `[FLAG shogen_joined]`
+honorably, and he agrees to come down from the mountain. `[FLAG shogen_joined]`
 AKODO SHŌGEN: *(after)* You read it. You came anyway. Why?
 SHIZUE: Because if my lord wanted me dead, I wanted to hear him say it to my face. And if he didn't, someone else
 did, and I wanted to know who.

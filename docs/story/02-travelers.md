@@ -66,7 +66,7 @@ Cast balance: 4 women (Crab, Lion, Scorpion, Ronin), 4 men (Crane, Dragon, Phoen
 - **Personality:** brilliant, earnest, anxious; tries to be perfect because his father demands it. Funny when he forgets
   to be formal. Afraid he's an over-sharpened sword.
 - **Wound/motive:** top student at the Kakita academy, assigned as yojimbo to **Lady Doji Sanae**, "Keeper of the House
-  Honour" — the Crane's quiet fixer of embarrassments. He wants to prove a duelist's blade means something beyond
+  Honor" — the Crane's quiet fixer of embarrassments. He wants to prove a duelist's blade means something beyond
   ceremony.
 - **Battle:** Kakita duelist — single-target crits. Weapons: **Katana, Tanto**. **Talent: "Iaijutsu"** — *Focus* (skip a
   turn, build a stack) then *Strike* (huge single hit, guaranteed crit at max stacks). **Path Action: Charm** (lead
@@ -79,7 +79,7 @@ Cast balance: 4 women (Crab, Lion, Scorpion, Ronin), 4 men (Crane, Dragon, Phoen
 | 1 | **Heaven's Glory** | And Does Not Descend | Sanae and Rensei pass through Lord Akodo Goroso's harsh domain near Beiden Pass hunting a disgraced Kakita prodigy — and find an eta trying to trade a priceless wakizashi for sake. The prodigy is the forest bandits' **Green Ronin**, captured and set to die at dawn. Two Crane killers with a seppuku letter, a scheming headman, a pregnant wife at the gates. Rensei sees himself in the broken boy. Choose: hidden shame, public death, rescue, or a duel. | **Kakita Yasurugi** (silent, inhumanly calm duelist) — an iaijutsu duel boss |
 | 2 | **The Iron Cranes** | Of Family and Honor R1 | **Crossroads with the Crab traveler** (see 03). Sanae is sent to the Daidoji port Garden Under Shadow City to keep the Crane from war with the Crab. A dazzling courtier, **Doji Miyako**, has every general's ear; a Lion envoy who catches her in a lie is cut down in an instant duel. | The bewitched Daidoji generals at the border camp; Miyako escapes |
 | 3 | **The White Squid** | The Edge of Treachery (re-dated) | Pirates who seem to strike in two places on one day steal a Crane tribute meant for the Emperor. Rensei's lord sends him to bring back the captain's head. Four look-alike brothers; an albino maho-tsukai making fake charms; a rival Imperial magistrate racing them; a storm where sailors swear they saw the Orochi. | Four brother captains across islands → **Katsuo the White Brother** at the Squid Shrine |
-| 4 | **The Play No One Performs** | orig. | Sanae orders Rensei to help bury a terrible truth: the woman behind the border war was a **Doji** — Nashiko — and the Crane court destroyed four centuries ago was her doing. In the Kyuden Doji archives Rensei finds a forbidden **play** written about her (Nashiko doesn't know it exists): her colour-blindness, her terror of disfigurement, her wish to be called Empress. His father commands silence; Rensei must choose honour (silence) or the Empire (the truth). | His **father** in a formal duel (non-lethal "first blood") — the duel he's feared all his life |
+| 4 | **The Play No One Performs** | orig. | Sanae orders Rensei to help bury a terrible truth: the woman behind the border war was a **Doji** — Nashiko — and the Crane court destroyed four centuries ago was her doing. In the Kyuden Doji archives Rensei finds a forbidden **play** written about her (Nashiko doesn't know it exists): her colour-blindness, her terror of disfigurement, her wish to be called Empress. His father commands silence; Rensei must choose honor (silence) or the Empire (the truth). | His **father** in a formal duel (non-lethal "first blood") — the duel he's feared all his life |
 - **Ending beat:** Rensei carries the play's secrets to the finale; Sanae, unexpectedly, covers for him.
 
 ---
@@ -94,7 +94,7 @@ Cast balance: 4 women (Crab, Lion, Scorpion, Ronin), 4 men (Crane, Dragon, Phoen
   truth to matter — and learns, in the past, how history itself is just testimony.
 - **Battle:** Kitsuki/Mirumoto — two-sword multi-hit breaker; Discern reveals weaknesses. Weapons: **Katana, Bo**.
   **Talent: "Deduce"** — reveal an enemy's weaknesses and next action (Cyrus's Study Foe). **Path Action: Discern**
-  (learn information; level-gated, honourable).
+  (learn information; level-gated, honorable).
 - **Finale virtue:** **Sincerity (Makoto)** — "Every clan asks its samurai to lie. I have lied too — to protect a truth
   larger than me. Sincerity isn't never lying. It's knowing exactly what the lie costs, and paying it yourself."
 
@@ -117,9 +117,9 @@ Cast balance: 4 women (Crab, Lion, Scorpion, Ronin), 4 men (Crane, Dragon, Phoen
   started a war with the Phoenix in one reckless night. She believes someone outside the clans wants the Lion to bleed.
 - **Battle:** Akodo commander — party buffs, turn manipulation, counters. Weapons: **Katana, Yari**. **Talent:
   "Command"** — grant an ally an extra action / move an ally up the turn order. **Path Action: Duel** (challenge NPCs;
-  level-gated, honourable).
+  level-gated, honorable).
 - **Finale virtue:** **Honor** — "Lords use the word to keep us in line, yes. I've seen my cousin start a war in its
-  name. Honour isn't what my lord calls it. It's what I answer for when no one is watching."
+  name. Honor isn't what my lord calls it. It's what I answer for when no one is watching."
 
 | Ch | Title | Source | Outline | Boss |
 |---|---|---|---|---|
@@ -140,7 +140,7 @@ Cast balance: 4 women (Crab, Lion, Scorpion, Ronin), 4 men (Crane, Dragon, Phoen
   himself, and has never told anyone.
 - **Battle:** Isawa shugenja — elemental caster and the party's main healer. Weapon: **Bo**. **Talent: "Attune"** —
   choose an element for the turn; spells of that element are boosted. **Path Action: Bless** (lead NPCs; level-gated,
-  honourable).
+  honorable).
 - **Finale virtue:** **Righteousness (Gi)** — "Where is justice? Not in the courts, you're right. I split a girl's soul
   when I was eight and no court ever judged me. So I judged myself, and I spent my life setting it right. That is
   righteousness: not waiting for someone else to do what is just."
@@ -190,7 +190,7 @@ Cast balance: 4 women (Crab, Lion, Scorpion, Ronin), 4 men (Crane, Dragon, Phoen
   refugee camps. He was a pupil of old **Shinjo Miyahana**, as was a peasant boy named **Naohida**.
 - **Battle:** Ide emissary — support: buffs, debuff-cleansing, money skills (Tressa-like). Weapons: **Yumi, Yari**.
   **Talent: "Barter Coin"** — spend gold for effects (hire help, bribe an enemy to skip a turn, buy a party buff).
-  **Path Action: Barter** (obtain items for money; honourable).
+  **Path Action: Barter** (obtain items for money; honorable).
 - **Finale virtue:** **Compassion (Jin)** — "Lords sell daughters and starve villages, and call it order. I've stood in
   the refugee camps, lady. Compassion isn't pretending the world is kind. It's the rice you hand over anyway, even when
   there's no profit in it — *especially* then."

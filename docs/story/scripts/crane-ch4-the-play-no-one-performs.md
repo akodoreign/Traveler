@@ -59,7 +59,7 @@ KAKITA MASANORI: Your left foot still hesitates.
 RENSEI: *(Strike)* Yes, Father. *(beat)* It's waiting for me to decide. *(the cut lands)*
 
 ## Scene 6 — "A Very Dull Sword" (ending)
-`[CHOICE 2]` Sanae asks whether he'd keep the House's honour or save the Empire. *The Empire* · *the House* (both
+`[CHOICE 2]` Sanae asks whether he'd keep the House's honor or save the Empire. *The Empire* · *the House* (both
 answers end the same way; she was only watching how he chose).
 LADY SANAE: *(burning a *blank* scroll in the brazier for the watching court)* There. The play is destroyed.
 *(handing Rensei the real one under her sleeve)* A sword that only cuts what it's told to is a very dull sword,

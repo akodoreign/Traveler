@@ -98,8 +98,8 @@ same UI, low stakes. Shizue argues *Honor*.
 - **After:** the **Crane banner of Sorrow's Path**, the Lion's great trophy, is gone from the Hall of Akodo. The
   court erupts; every eye turns to **Daidoji Atsuko**.
 
-SHIZUE: *(rebutting a Matsu speaker)* You say honour is the lord's to define. Then whose honour was it at Sorrow's
-Path, when both armies called themselves righteous? Honour isn't a banner someone can steal from a wall.
+SHIZUE: *(rebutting a Matsu speaker)* You say honor is the lord's to define. Then whose honor was it at Sorrow's
+Path, when both armies called themselves righteous? Honor isn't a banner someone can steal from a wall.
 *(Silence. Then, from the high seats, Toturi, for the first time:)*
 AKODO TOTURI: Who is that?
 KARO: Akodo Hiruto's niece, my lord. A junior strategist.

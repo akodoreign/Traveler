@@ -13,9 +13,9 @@ weretiger's 3 forms are standard boss phases.
 **Storyboard:** `storyboards/ronin-ch1.md` (Cakon is a Mantis-ferry port).
 
 ### RECRUIT VARIANT (Sayo is not the starter)
-**Join point:** `cakon_market`, during Kagemaro's call for "bold and honourable citizens". Sayo answers (S02 as
+**Join point:** `cakon_market`, during Kagemaro's call for "bold and honorable citizens". Sayo answers (S02 as
 written); afterwards, talk to her.
-SAYO: (chewing a rice ball) You lot look bold. Are you honourable? (beat) Doesn't matter. I'm not either.
+SAYO: (chewing a rice ball) You lot look bold. Are you honorable? (beat) Doesn't matter. I'm not either.
 SAYO: Sayo. Ronin's daughter. Herbalist. Something's eating people in the village outside the walls, and nobody here
 will go and look.
 SAYO: I'm going to look. You can come. You probably can't come all the way. (cheerfully) I'll explain at the bridge.
@@ -61,7 +61,7 @@ MAP: `cakon_market` · TRIGGER: walk into the market
 NARRATION: Cakon. A Crane river city. Very clean on top. Very busy underneath.
 (Street musicians. A young noble with a fresh black eye throws a fistful of silver at them — too much — then steps
 behind a stall, embarrassed: MIBU KAGEMARO.)
-MIBU KAGEMARO: (to the crowd, too loudly) I seek bold and honourable citizens! For a… delicate task!
+MIBU KAGEMARO: (to the crowd, too loudly) I seek bold and honorable citizens! For a… delicate task!
 (Nobody moves. Sayo walks up, chewing a rice ball.)
 SAYO: I'm a citizen. Mostly bold.
 MIBU KAGEMARO: You are… a ronin?

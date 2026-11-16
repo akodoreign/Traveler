@@ -53,7 +53,7 @@ Hida Sachiko (comic Wall Crab), **Squeak-of-Many-Eggs** (orig., young nezumi), H
 Antagonists: Seppun Ryozo, the nameless oni, Oni no Kommei, Nashiko (as Asako Kuhime).
 
 ### Kakita Rensei (Crane)
-Lady Doji Sanae (orig., Keeper of the House Honour), Kakita Masanori (orig., father), Kakita Morishu / the Green Ronin,
+Lady Doji Sanae (orig., Keeper of the House Honor), Kakita Masanori (orig., father), Kakita Morishu / the Green Ronin,
 Sariko, Torishigawa, Kakita Yasurugi (silent duelist). Antagonists: Lord Akodo Goroso, the White Squid brothers, Doji
 Miyako (Nashiko).
 
@@ -127,7 +127,7 @@ Oracle's choice.
 | 17 | **Asahina Yoshiro** | Crane / Asahina shugenja | *Peace Ward* (party damage reduction, 2) | Dragon Ch2 | Survived a cursed boating trip that killed his love | Rensei, Haruki |
 | 18 | **Shosuro Kenta** | Scorpion / Bayushi bushi | *Ambush* (first-strike crit, 1), *Disguise* (2) | Dragon Ch1 | Disillusioned spy who saw what the Lion did at Beiden Pass | Mitsue |
 | 19 | **Matsu Kiku** | Lion / Matsu | *Battle-Joy* (big damage, self-debuff after, 1) | Crane Ch1 | Gentle outside battle; terrified of her own battle-joy; secretly loves Crane art | Shizue, Rensei |
-| 20 | **Kitsuki Seigen** | Dragon / Kitsuki | *Evidence* (reveal weakness & next move, 2) | Crane Ch1 | World-weary ex-magistrate serving the Crane honour-keeper | Gendo |
+| 20 | **Kitsuki Seigen** | Dragon / Kitsuki | *Evidence* (reveal weakness & next move, 2) | Crane Ch1 | World-weary ex-magistrate serving the Crane honor-keeper | Gendo |
 | 21 | **Iuchi Karasu** | Unicorn / Iuchi shugenja | *Jade Strike* (anti-Taint, 2), deadpan quips | Unicorn Ch3 | Porcelain mask, glowing eyes; months a Shadowlands prisoner | Everyone (comic) |
 | 22 | **Moto Benjiro** | Unicorn / Moto bushi | *Death Trance* (party fear immunity, 1), *Oni-Bane* (2) | Lion Ch2 | Rides into the Shadowlands to die well; the Moto curse | Natsuko, Shizue |
 | 23 | **Shiba Ashimita** | Phoenix / Shiba bushi | *Guardian* (2), *Grandfather's Storm* (spirit sense, 1) | Lion/Phoenix crossroads | Haunted since birth by his grandfather's screaming ghost | Haruki |

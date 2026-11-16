@@ -63,7 +63,7 @@ some accuracy**, and gains from Boost.
 | **Lion's Charge** | Spears 3 | Yari charge: +50% damage on turn 1 (3e: the Yari's charge bonus) |
 | **Akodo Formation** | Battle 4 | Party Def +20% and immune to back attacks, 3 turns |
 | **Read the Field** | Battle 3 | Reveal all enemies' next actions this turn; party Speed +10% |
-| **Honourable Challenge** | Iaijutsu 3 | Single out an enemy captain: only it can act against her, she gets +30% vs. it. Honor + if she wins. |
+| **Honorable Challenge** | Iaijutsu 3 | Single out an enemy captain: only it can act against her, she gets +30% vs. it. Honor + if she wins. |
 | **Storyteller's Courage** | Storytelling 3 | Cure Terror on the party and raise morale (+VP to one ally) |
 
 ### Mitsue — Shosuro infiltrator

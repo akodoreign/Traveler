@@ -9776,7 +9776,7 @@
 				],
 				"pop": null,
 				"standani": null,
-				"msg": "Lady Doji Sanae's palanquin. Plain lacquer: the Keeper of the House Honour travels without a fuss.",
+				"msg": "Lady Doji Sanae's palanquin. Plain lacquer: the Keeper of the House Honor travels without a fuss.",
 				"col": 0,
 				"flags": 1,
 				"spawndist": 1,
@@ -16264,7 +16264,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "You are Doji Sanae, Keeper of the House Honour, my lady.",
+											"text": "You are Doji Sanae, Keeper of the House Honor, my lady.",
 											"name": "Kakita Rensei",
 											"uiclose": 2,
 											"emo": "neutral"
@@ -16272,7 +16272,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "And what does the Keeper of the House Honour do?",
+											"text": "And what does the Keeper of the House Honor do?",
 											"name": "Doji Sanae",
 											"uiclose": 2
 										},
@@ -21356,7 +21356,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "A Kakita does not beg. But a Kakita may... propose an arrangement. Of mutual honour.",
+														"text": "A Kakita does not beg. But a Kakita may... propose an arrangement. Of mutual honor.",
 														"name": "Kakita Rensei",
 														"uiclose": 2,
 														"emo": "neutral"
@@ -21380,7 +21380,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "Mutual honour! I haven't had any in years. Lead on.",
+																	"text": "Mutual honor! I haven't had any in years. Lead on.",
 																	"name": "Ronin Yojimbo",
 																	"uiclose": 2
 																},
@@ -38988,14 +38988,14 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "The Crane send their Keeper of Honour to plead for a bandit.",
+											"text": "The Crane send their Keeper of Honor to plead for a bandit.",
 											"name": "Akodo Goroso",
 											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "The Crane send their Keeper of Honour to understand, my lord. A Kakita in your cells is a Crane matter.",
+											"text": "The Crane send their Keeper of Honor to understand, my lord. A Kakita in your cells is a Crane matter.",
 											"name": "Doji Sanae",
 											"uiclose": 2
 										},
@@ -41926,7 +41926,7 @@
 																			{
 																				"cmd": "cmd_showmsg",
 																				"key": "message_talk",
-																				"text": "Bring the labour back, and my husband's honour will survive a great deal.",
+																				"text": "Bring the labour back, and my husband's honor will survive a great deal.",
 																				"name": "Akodo Tatanko",
 																				"uiclose": 2
 																			},
@@ -42099,7 +42099,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "One. A blade slipped into his cell. He takes the honourable path tonight. The House is clean.",
+								"text": "One. A blade slipped into his cell. He takes the honorable path tonight. The House is clean.",
 								"name": "Doji Sanae",
 								"uiclose": 2
 							},
@@ -50111,7 +50111,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Honoured priest, the border is a hair from war. Would Suitengu walk with us that far?",
+														"text": "Honored priest, the border is a hair from war. Would Suitengu walk with us that far?",
 														"name": "Kakita Rensei",
 														"uiclose": 2,
 														"emo": "neutral"
@@ -52487,6 +52487,13 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
+								"text": "A Daidoji courtier waits by the harbor, fan moving far too fast for the weather. Their courier came back this morning without his satchel - and without his dignity.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
 								"text": "A border patrol took my courier's satchel on the coast road. The letters are poems. Very compromising poems. Discreetly, Kakita-sama.",
 								"name": "Daidoji courtier",
 								"uiclose": 2
@@ -52681,6 +52688,13 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Side quest: The Tide-Crab Bridge",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The Daidoji courtier again, composed now, a map of the coast road pinned flat under a closed fan.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -65134,6 +65148,13 @@
 											"lvar": "G386",
 											"op": "=",
 											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "The ship's deck, past the harbor wall. The planks roll underfoot. Kakita Rensei, who has never been to sea, grips the rail.",
+											"name": "",
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -90339,7 +90360,14 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "One question, Rensei-san. The House's honour, or the Empire?",
+											"text": "After the duel. Lady Doji Sanae receives Kakita Rensei in her rooms, the court's murmur still loud beyond the screens.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "One question, Rensei-san. The House's honor, or the Empire?",
 											"name": "Doji Sanae",
 											"uiclose": 2
 										},
@@ -97093,7 +97121,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Lady Sanae of the House Honour sends me. She'd hate to have to come herself.",
+											"text": "Lady Sanae of the House Honor sends me. She'd hate to have to come herself.",
 											"name": "Kakita Rensei",
 											"uiclose": 2,
 											"emo": "happy"
@@ -97130,11 +97158,11 @@
 									[]
 								],
 								"pos": {
-									"left": 335,
-									"right": 335,
+									"left": 341,
+									"right": 341,
 									"y": 380
 								},
-								"text0": "Charm: \"Lady Sanae of the House Honour sends me.\"",
+								"text0": "Charm: \"Lady Sanae of the House Honor sends me.\"",
 								"text1": "Watchful Falcon: watch the shelves.",
 								"text2": "Leave."
 							}
@@ -140478,14 +140506,14 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Father, bushido and honour are all we-",
+											"text": "Father, bushido and honor are all we-",
 											"name": "Akodo Hojato",
 											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Bushido and honour have never once found a murderer, Hojato.",
+											"text": "Bushido and honor have never once found a murderer, Hojato.",
 											"name": "Akodo Hiruto",
 											"uiclose": 2
 										},
@@ -140857,7 +140885,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "For what? Lion honour?",
+														"text": "For what? Lion honor?",
 														"name": "Isawa Kamasari",
 														"uiclose": 2
 													},
@@ -141563,7 +141591,7 @@
 																			{
 																				"cmd": "cmd_showmsg",
 																				"key": "message_talk",
-																				"text": "For what? Lion honour?",
+																				"text": "For what? Lion honor?",
 																				"name": "Isawa Kamasari",
 																				"uiclose": 2
 																			},
@@ -148255,6 +148283,13 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
+								"text": "A Lion sergeant stands at the edge of the square, armor dusty from the road, glaring east toward the shrine road. Pilgrims have been coming back from it with empty purses.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
 								"text": "Ashigaru deserters on the shrine road, robbing pilgrims in a Lion's name. Bring them to heel, Akodo-sama.",
 								"name": "Lion sergeant",
 								"uiclose": 2
@@ -148449,6 +148484,13 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Side quest: The Sergeant's Drill",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The Lion sergeant is waiting, a list of names in his fist: the deserters still at large.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -148661,6 +148703,13 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Side quest: The Champion's Challenge",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The Lion sergeant holds out a folded challenge, its seal broken. It is addressed to any Akodo, and it is rude.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -150756,7 +150805,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "For what? Lion honour?",
+																	"text": "For what? Lion honor?",
 																	"name": "Isawa Kamasari",
 																	"uiclose": 2
 																},
@@ -153479,7 +153528,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Under Lion guard. Of course. Lion honour guards Lion hands.",
+											"text": "Under Lion guard. Of course. Lion honor guards Lion hands.",
 											"name": "Isawa Kamasari",
 											"uiclose": 2
 										},
@@ -153799,7 +153848,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "For what? Lion honour?",
+														"text": "For what? Lion honor?",
 														"name": "Isawa Kamasari",
 														"uiclose": 2
 													},
@@ -154545,7 +154594,7 @@
 																			{
 																				"cmd": "cmd_showmsg",
 																				"key": "message_talk",
-																				"text": "For what? Lion honour?",
+																				"text": "For what? Lion honor?",
 																				"name": "Isawa Kamasari",
 																				"uiclose": 2
 																			},
@@ -154969,7 +155018,7 @@
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
-																	"text": "For what? Lion honour?",
+																	"text": "For what? Lion honor?",
 																	"name": "Isawa Kamasari",
 																	"uiclose": 2
 																},
@@ -157665,7 +157714,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "For what? Lion honour?",
+														"text": "For what? Lion honor?",
 														"name": "Isawa Kamasari",
 														"uiclose": 2
 													},
@@ -193270,7 +193319,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Honour is what our lord says it is. The lord defines it. We obey.",
+											"text": "Honor is what our lord says it is. The lord defines it. We obey.",
 											"name": "Matsu Speaker",
 											"uiclose": 2
 										},
@@ -193299,18 +193348,18 @@
 												]
 											],
 											"pos": {
-												"left": 137,
-												"right": 137,
+												"left": 143,
+												"right": 143,
 												"y": 380
 											},
-											"text0": "\"Whose honour was it at Sorrow's Path, when both armies called themselves righteous?\"",
+											"text0": "\"Whose honor was it at Sorrow's Path, when both armies called themselves righteous?\"",
 											"text1": "\"My uncle told me to find the truth, even a Lion's truth.\"",
-											"text2": "\"Honour is following orders well.\""
+											"text2": "\"Honor is following orders well.\""
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Honour isn't a banner someone can steal from a wall.",
+											"text": "Honor isn't a banner someone can steal from a wall.",
 											"name": "Akodo Shizue",
 											"uiclose": 2,
 											"emo": "determined"
@@ -214998,6 +215047,13 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
+											"text": "The old sensei waits in the dojo, a bokken across his knees. He knows what the letter said - and that Akodo Shizue carried it anyway.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
 											"text": "You read it.",
 											"name": "Akodo Kagehisa",
 											"uiclose": 2
@@ -235472,7 +235528,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A Duel: first blood. Win or lose honourably.",
+											"text": "A Duel: first blood. Win or lose honorably.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -278207,6 +278263,13 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
+								"text": "A bo-staff monk sits by the fire, sleeve pulled down over a real Togashi tattoo. Travelers keep coming down the pass robbed, telling stories about tattooed monks.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
 								"text": "Men with painted-on tattoos rob travellers on the pass and call it the Togashi way. It is not the Togashi way. Help me show them.",
 								"name": "A bo-staff monk",
 								"uiclose": 2
@@ -278401,6 +278464,13 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Side quest: Wolves of the Snowbound Pass",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The monk is watching the ridge line. At dusk the howling starts again, closer than last night.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -296510,7 +296580,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A hidden mountain torii honouring Shiba Mitsuhide, a Phoenix Champion branded a traitor centuries ago - he refused an order to burn a village. A mob of grieving envoys and townsfolk with torches.",
+											"text": "A hidden mountain torii honoring Shiba Mitsuhide, a Phoenix Champion branded a traitor centuries ago - he refused an order to burn a village. A mob of grieving envoys and townsfolk with torches.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -296605,7 +296675,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Claim 2: \"Honouring a traitor insults the loyal dead.\"",
+											"text": "Claim 2: \"Honoring a traitor insults the loyal dead.\"",
 											"name": "",
 											"uiclose": 2
 										},
@@ -349948,6 +350018,13 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
+											"text": "The red torii on the cliff, in the rain. The dark Mieko is on her knees in the mud, the book fallen beside her.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
 											"text": "Well? Finish it.",
 											"name": "Mieko (dark)",
 											"uiclose": 2
@@ -398202,6 +398279,13 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
+											"text": "The cove cave. Water drips from the roof, and something in the tide pools is watching. Togashi Yosai sniffs the air.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
 											"text": "Kappa in here. Bow to one and it has to bow back: the water spills out of its head and it forgets how to fight. Very polite way to win.",
 											"name": "Togashi Yosai",
 											"uiclose": 2
@@ -433556,6 +433640,13 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
+											"text": "The Bayushi mansion. Bayushi Atsuki holds court among more food than a village eats in a week, and waves Kitsuki Gendo in like an old friend.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
 											"text": "The no-family man! Eat! Eat!",
 											"name": "Bayushi Atsuki",
 											"uiclose": 2
@@ -436299,6 +436390,13 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
+											"text": "The Doji mansion. Doji Tomeko pours the tea herself - a courtesy, and a test.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
 											"text": "Sit, sit. Seikidera says you fought like a brush.",
 											"name": "Doji Tomeko",
 											"uiclose": 2
@@ -438818,6 +438916,13 @@
 											"lvar": "G771",
 											"op": "=",
 											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "The Shiba mansion. Shiba Katsutoshi does not rise when Kitsuki Gendo enters. He studies him over the rim of his cup.",
+											"name": "",
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -477881,7 +477986,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Eavesdrop: Mitsue's path action. Listen in on a private conversation; the chance depends on her Stealth. Each target can be tried once. Failing in town costs Honor: it is a dishonourable act if you're caught.",
+											"text": "Eavesdrop: Mitsue's path action. Listen in on a private conversation; the chance depends on her Stealth. Each target can be tried once. Failing in town costs Honor: it is a dishonorable act if you're caught.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -512671,7 +512776,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "Rui strikes a light. The barge burns on the water, slowly, with every honour the marsh allows.",
+														"text": "Rui strikes a light. The barge burns on the water, slowly, with every honor the marsh allows.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -533152,7 +533257,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A room, honoured guest? Thirty zeni. We never sleep, but the beds are very good.",
+											"text": "A room, honored guest? Thirty zeni. We never sleep, but the beds are very good.",
 											"name": "Crimson Blossom maid",
 											"uiclose": 2
 										},
@@ -541219,6 +541324,13 @@
 											"lvar": "G916",
 											"op": "=",
 											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Cornered at last, the man behind the mask stops pretending.",
+											"name": "",
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -668708,14 +668820,14 @@
 															"y": 380
 														},
 														"text0": "Promise them the mine's jade.",
-														"text1": "Appeal to honour alone."
+														"text1": "Appeal to honor alone."
 													}
 												],
 												[
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "(Honor 3 or more would let him appeal to their honour alone. Not today.)",
+														"text": "(Honor 3 or more would let him appeal to their honor alone. Not today.)",
 														"name": "",
 														"uiclose": 2
 													},
@@ -709200,6 +709312,13 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
+								"text": "An old net-mender sits on an upturned boat, mending by feel, one eye on the gulls.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
 								"text": "A gull took my net float, the painted one, into the warehouse yard. My knees don't do warehouse yards.",
 								"name": "Net-mender",
 								"uiclose": 2
@@ -709500,6 +709619,13 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Odd job: Lamp Oil for the Musicians",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The chandler's stall smells of lamp oil and sesame. There is a jar ready on the counter and nobody to carry it.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -710075,7 +710201,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "I seek bold and honourable citizens! For a... delicate task!",
+											"text": "I seek bold and honorable citizens! For a... delicate task!",
 											"name": "Mibu Kagemaro",
 											"uiclose": 2
 										},
@@ -713417,6 +713543,13 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
+								"text": "A child stands in the street staring up at a rooftop with the full despair of the very young.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
 								"text": "My kite's stuck on the House of Tranquillity! The doorman says O-Sode doesn't see kites. Can you get it?",
 								"name": "Kite child",
 								"uiclose": 2
@@ -713723,6 +713856,13 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
+								"text": "A maid from O-Sode's house waits by the gate, wringing her sleeve. Night is falling, and she is on the wrong side of the gate for it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
 								"text": "My lady wants fresh plums from the river boats, and the doorman won't let me past the gate after dark. Would you fetch some from the docks?",
 								"name": "O-Sode's maid",
 								"uiclose": 2
@@ -713951,6 +714091,13 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Odd job: The Spare Flute",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A young flautist sits at the edge of the square with an empty flute case and a very long face.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -841906,7 +842053,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Honour is a word lords use to keep you in line. Your cousin started a war in its name.",
+											"text": "Honor is a word lords use to keep you in line. Your cousin started a war in its name.",
 											"name": "Doji Nashiko",
 											"uiclose": 2
 										},
@@ -841925,7 +842072,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "I've seen my cousin start a war in its name. Honour isn't what my lord calls it.",
+														"text": "I've seen my cousin start a war in its name. Honor isn't what my lord calls it.",
 														"name": "Akodo Shizue",
 														"uiclose": 2,
 														"emo": "determined"
@@ -841978,7 +842125,7 @@
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The Lion have never lost their honour.",
+														"text": "The Lion have never lost their honor.",
 														"name": "Akodo Shizue",
 														"uiclose": 2,
 														"emo": "neutral"
@@ -842005,7 +842152,7 @@
 												"y": 380
 											},
 											"text0": "Set the \"Duty\" plaque on the mat between them.",
-											"text1": "\"The Lion have never lost their honour.\""
+											"text1": "\"The Lion have never lost their honor.\""
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -842136,7 +842283,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A Scorpion with no honour at all. Nobody knows your name.",
+											"text": "A Scorpion with no honor at all. Nobody knows your name.",
 											"name": "Doji Nashiko",
 											"uiclose": 2
 										},
@@ -850432,7 +850579,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Bring me a Kaiu blueprint some day and I'll forge it for nothing. Honour of the family.",
+								"text": "Bring me a Kaiu blueprint some day and I'll forge it for nothing. Honor of the family.",
 								"name": "Kaiu smith",
 								"uiclose": 2
 							}
@@ -865972,6 +866119,13 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
+								"text": "A Hida yojimbo leans on the wall by the salt carts, rubbing a fresh bruise. He looks you over the way a Crab looks over a wall: for the weak spots.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
 								"text": "Goblins keep hitting the salt carts on the Coast Road. Nobody's paid me to stop them. You look like nobody's paid you either.",
 								"name": "Hida yojimbo",
 								"uiclose": 2
@@ -866166,6 +866320,13 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Side quest: The Tide-Crab Nest",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The Hida yojimbo is back by the salt carts, a tide-crab claw the size of a shield propped beside him.",
 								"name": "",
 								"uiclose": 2
 							},

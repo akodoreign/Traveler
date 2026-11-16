@@ -58,7 +58,7 @@ General translation rules used below:
 | Rank (Lv) | 3e technique | Octopath translation |
 |---|---|---|
 | R1 (1) | **Way of the Lion** — ignore armour or gain a free raise; free raise on first strike and against foes who raised against her; +Water to damage | **Talent "Command"** (extra action / turn order) + passive: ignores enemy defence buffs on her first hit each battle. |
-| R2 (21) | **Strength of Purity** — add twice Honor to attack *or* damage; cheaper Honor rolls | Damage scales with the party's **Honor** (the town-reputation meter) — honourable play makes her stronger. |
+| R2 (21) | **Strength of Purity** — add twice Honor to attack *or* damage; cheaper Honor rolls | Damage scales with the party's **Honor** (the town-reputation meter) — honorable play makes her stronger. |
 | R3 (41) | **Strength of My Ancestors** — extra attack per round; twice Water to damage | Her attacks hit twice; "the ancestors strike too" (visual). |
 | R4 (51) | **Triumph Before Battle** — break an enemy's full defence; Honor bonus to both attack and damage | Her attacks remove enemy Guard/Defend stance; Honor bonus to all damage. |
 | R5 (61) | **Akodo's Final Lesson** — three times Water to damage; a Bugei roll that meets the base TN always succeeds | Her attacks can't miss; big damage up. |
@@ -133,7 +133,7 @@ Options (paraphrased):
 **Octopath translation — Sayo's branching tree:** at each Rank threshold the player **chooses which ronin school's next
 technique** she learns (Warrior = damage-dealer, Duelist = speed/crit, Yojimbo = protector). Her **Talent "Remedy"**
 (herbal concoctions, from Medicine/Herbalism skill ranks) stays constant. This makes Sayo the most customisable
-traveler — fitting "wave-woman, versatility", and honours the canon rule.
+traveler — fitting "wave-woman, versatility", and honors the canon rule.
 
 ---
 
