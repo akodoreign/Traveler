@@ -61,7 +61,8 @@
 	local best = null, bs = -1, bd = 9999;
 	foreach( b in this.MK_BEATS){
 		local mp = b[0];
-		if( pid && (mp in this.MK_PATH) && this.MK_PATH[mp] != pid) continue;	//	another traveler's road
+		if( pid && (mp in this.MK_PATH) && this.MK_PATH[mp] != pid
+			&& (!(mp in this.MK_SHARED_PATH) || this.MK_SHARED_PATH[mp].indexOf( pid) < 0)) continue;
 		if( !(mp in this.MK_PATH) && !::rpgvar["G1363"]) continue;		//	the finale's maps: only in the finale
 		if( !(mp in road.dist)) continue;
 		if( !this.mkReqs( b[3])) continue;

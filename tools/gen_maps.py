@@ -19445,6 +19445,7 @@ def marker_pass(mp):
       MK_LINKS  map -> [dest map, ...]                           every map move, story ones too (for the road search)
       MK_BEATS  [[map, x, z, [[lvar, op, rvar], ...]], ...]      once-scenes: due when their reqs hold
       MK_PATH   map -> traveler                                  whose road a map belongs to (from PATH_START)
+      MK_SHARED_PATH map -> travelers                             shared cross-road maps used by more than one story
       MK_QUEST  quest id -> [giver map, x, z, hunt map, x, z]    the Journal's side quests and odd jobs"""
     exits, links, beats = {}, {}, []
     route_ids = {r[0] for r in ROUTES} | {c[0] for r in ROUTES for c in r[6]}
@@ -19529,6 +19530,8 @@ def marker_pass(mp):
         inside = [p for p, (a, b) in span.items() if a <= m_ <= b]
         if len(inside) == 1:
             path_of[m_] = inside[0]
+    # Phoenix's Chapter 1 route returns to Hiruto through the Lion's shrine road and castle.
+    shared_path = {m_: sorted({path_of[m_], "P104"}) for m_ in ("M241", "M242", "M250") if m_ in path_of}
     # the end-of-road objective (scene "G1230", shown once) stays due until that road is walked
     for b in beats:
         if b[3] and b[3][0][0] == "G1230" and path_of.get(b[0]) in PATH_WALKED:
@@ -19581,6 +19584,8 @@ def marker_pass(mp):
                                                               for k, v in sorted(links.items())))
         f.write("::Rokugan.MK_BEATS <- [\n%s\n];\n" % ",\n".join("\t" + sq(b) for b in beats))
         f.write("::Rokugan.MK_PATH <- {\n%s\n};\n" % ",\n".join('\t%s = "%s"' % (k, v) for k, v in sorted(path_of.items())))
+        f.write("::Rokugan.MK_SHARED_PATH <- {\n%s\n};\n" % ",\n".join(
+            '\t%s = %s' % (k, sq(v)) for k, v in sorted(shared_path.items())))
         f.write("::Rokugan.MK_QUEST <- {\n%s\n};\n" % ",\n".join('\t[%d] = %s' % (k, sq(v)) for k, v in sorted(quest.items())))
     print("marker: %d maps with exits, %d story beats, %d maps on roads, %d quests" % (
         len(exits), len(beats), len(path_of), len(quest)))

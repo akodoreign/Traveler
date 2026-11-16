@@ -1231,7 +1231,7 @@ class RPGStageEventRunner extends RPGEventRunner
 				if( trgcooltime) trgcooltime=Math.max( trgcooltime-dt, 0);
 				if( trgdisable) trgdisable=eventTriggerCheck();
 				if( eventTriggerable() && eventTriggerCheck()){
-					// trgdisable = true;
+					trgdisable = true;
 					return run_running();
 				}
 			}
