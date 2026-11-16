@@ -19051,8 +19051,8 @@ apply_ladders()
 # closed end is the usual barricade with a guard who says why. The gates are flags G1300+ (RokuganRouteData.sk ->
 # plugin RokuganField routeFlags, set on every map launch).
 #   (route id, name, theme, tier, (hub A, side of hub A, [pids]), (hub B, side, [pids]), [(cave id, name, +tier)])
-# tier = the levelling-ladder band (tools/ladders.py: 1 = after Ch1 ... 4 = after Ch4); a cave fights one or two bands
-# harder than its road.
+# tier is the minimum danger band: 1 starts with the paths' original low-level foes, while higher tiers start with
+# progressively later chapter ladders. Completing each path goal advances that path's route encounters.
 ROUTES = [
     ("M470", "The Yasuki coast road", "coast", 1, ("M103", "e", ["P100"]), ("M213", "f", ["P101"]),
      [("M480", "The Yasuki sea cave", 1), ("M481", "The smugglers' cave, deep", 2)]),
@@ -19062,11 +19062,11 @@ ROUTES = [
      [("M483", "The hill cave", 1), ("M484", "The old mine, deep", 2)]),
     ("M473", "The snow road to Zumiki", "snow", 2, ("M430", "b", ["P107"]), ("M282", "f", ["P104"]),
      [("M485", "The ice cave", 1)]),
-    ("M474", "The Doji coast road", "coast", 1, ("M415", "b", ["P107"]), ("M228", "w", ["P101"]),
+    ("M474", "The Doji coast road", "coast", 4, ("M415", "b", ["P107"]), ("M228", "w", ["P101"]),
      [("M486", "The tide cave", 1)]),
-    ("M475", "The northern road - Phoenix lands", "hills", 1, ("M252", "b", ["P104", "P103"]),
+    ("M475", "The northern road - Phoenix lands", "hills", 2, ("M252", "b", ["P104", "P103"]),
      ("M379", "f", ["P105"]), [("M487", "The fox cave", 1)]),
-    ("M476", "The northern road - Dragon lands", "mountain", 1, ("M387", "b", ["P106"]), ("M379", "b", ["P105"]),
+    ("M476", "The northern road - Dragon lands", "mountain", 3, ("M387", "b", ["P106"]), ("M379", "b", ["P105"]),
      [("M488", "The mountain cave", 2)]),
     ("M477", "The Beiden hill road", "hills", 1, ("M202", "f", ["P101"]), ("M347", "f", ["P105"]),
      [("M489", "The bandit cave", 1)]),
@@ -19080,6 +19080,10 @@ ROUTE_LOOT = {1: [("I100", 3), ("N000", 150), ("I101", 2), ("I001", 2)],
               2: [("I445", 2), ("N000", 300), ("I447", 2), ("I101", 3)],
               3: [("I446", 1), ("N000", 600), ("I461", 1), ("I445", 3)],      # (I461 Breath of Jurojin: rare,
               4: [("I461", 1), ("N000", 1000), ("I446", 2), ("I447", 3)]}     # 100% revive, only in deep caves)
+ROUTE_CAVE_GEAR = {
+    "M480": "A125", "M481": "A169", "M482": "W114", "M483": "A137", "M484": "W134",
+    "M485": "W122", "M486": "W110", "M487": "W115", "M488": "W127", "M489": "A170",
+}
 
 
 def _route_gate(pids):
@@ -19097,13 +19101,15 @@ for _r in ROUTES:                                                          # gat
 
 
 def _tier_rows(pid, tier):
-    """The re-levelled encounter rows of a path's ladder band (ENCOUNTERS after apply_ladders), conditions dropped."""
+    """Re-levelled rows and their goal gates for one path's ladder band."""
     import ladders as _lad
     rows, bmap = [], None
     for i, (path, done, maps) in enumerate(_lad.LADDERS):
         t = 1 if i < 8 else 2 if i < 15 else 3 if i < 23 else 4
         if LADDER_PID_EARLY.get(path) != pid or t != tier:
             continue
+        next_done = next((d for j, (p, d, _maps) in enumerate(_lad.LADDERS[i + 1:], i + 1)
+                          if p == path), None)
         for mid, _lo, _hi in maps:
             if mid not in ENCOUNTERS:
                 continue
@@ -19111,7 +19117,14 @@ def _tier_rows(pid, tier):
             for r in table:
                 c = r[3] if len(r) > 3 else {}
                 if done in (c.get("rt_if"), c.get("rt_if2")):
-                    rows.append((r[0], list(r[1]), r[2]))
+                    extra = dict(c)
+                    if next_done and next_done not in (extra.get("rt_ifnot"), extra.get("rt_ifnot2")):
+                        key = "rt_ifnot" if "rt_ifnot" not in extra else "rt_ifnot2"
+                        if key in extra:
+                            raise RuntimeError("%s %s: no condition slot for next ladder goal %s" %
+                                               (mid, r[0], next_done))
+                        extra[key] = next_done
+                    rows.append((r[0], list(r[1]), r[2], extra, done))
                     bmap = bmap or bm
     return rows, bmap
 
@@ -19120,27 +19133,82 @@ LADDER_PID_EARLY = {"Crab": "P100", "Crane": "P101", "Dragon": "P102", "Lion": "
                     "Scorpion": "P105", "Unicorn": "P106", "Ronin": "P107"}
 
 
+def _base_rows(pid):
+    """Original, low-level groups from the first available map in a path's first ladder."""
+    import ladders as _lad
+    for i, (path, done, maps) in enumerate(_lad.LADDERS):
+        if i >= 8 or LADDER_PID_EARLY.get(path) != pid:
+            continue
+        for mid, _lo, _hi in maps:
+            if mid not in ENCOUNTERS:
+                continue
+            bm, table = ENCOUNTERS[mid]
+            rows = []
+            for r in table:
+                extra = dict(r[3]) if len(r) > 3 else {}
+                if done in (extra.get("rt_if"), extra.get("rt_if2")):
+                    continue
+                rows.append((r[0], list(r[1]), r[2], extra, None))
+            if rows:
+                return rows, bm
+    return [], None
+
+
 def route_encounters(pids_a, pids_b, tier):
-    """Up to 6 groups: both ends' paths at this band (the nearest band that has any)."""
-    for t in [tier] + sorted({1, 2, 3, 4} - {tier}, key=lambda v: abs(v - tier)):
-        ra, rb, bm = [], [], None
-        for pid in pids_a:
-            rows, b = _tier_rows(pid, t)
-            ra += rows
+    """Start at the route's minimum band, then let each path's goal flags advance its encounters."""
+    start_stage = 0 if tier == 1 else tier
+
+    def stage_one_rows(rows):
+        return [r for r in rows
+                if (match := re.search(r"\(Lv (\d+)\)", r[0])) and 8 <= int(match.group(1)) <= 10]
+
+    def rows_for(pids, stage):
+        out, bm = [], None
+        for pid in pids:
+            rows, b = _base_rows(pid) if stage == 0 else _tier_rows(pid, stage)
+            out += rows
             bm = bm or b
-        for pid in pids_b:
-            rows, b = _tier_rows(pid, t)
-            rb += rows
-            bm = bm or b
-        mix = [r for pair in zip(ra, rb) for r in pair] + ra[len(rb):] + rb[len(ra):]
-        if mix:
-            return bm, mix[:6]
-    return None, []
+        return out, bm
+
+    def mix_rows(ra, rb):
+        return [r for pair in zip(ra, rb) for r in pair] + ra[len(rb):] + rb[len(ra):]
+
+    def public_rows(rows, initial=False):
+        out = []
+        for name, foes, rate, extra, done in rows:
+            extra = dict(extra)
+            if initial and done:
+                for key in ("rt_if", "rt_if2"):
+                    if extra.get(key) == done:
+                        extra.pop(key)
+            out.append((name, foes, rate, extra))
+        return out
+
+    ra, bm_a = rows_for(pids_a, start_stage)
+    rb, bm_b = rows_for(pids_b, start_stage)
+    bm = bm_a or bm_b
+    initial = mix_rows(ra, rb)
+    if start_stage == 1:
+        initial = stage_one_rows(initial)
+    initial = initial[:6]
+    rows = public_rows(initial, initial=True)
+
+    for stage in range(start_stage + 1, 5):
+        ra, bm_a = rows_for(pids_a, stage)
+        rb, bm_b = rows_for(pids_b, stage)
+        bm = bm or bm_a or bm_b
+        current = mix_rows(ra, rb)
+        if stage == 1:
+            current = stage_one_rows(current)
+        rows.extend(public_rows(current[:6]))
+    return bm, rows
 
 
-def _danger(rows):
-    lv = [int(x) for r in rows for x in re.findall(r"\(Lv (\d+)\)", r[0])]
-    return "Danger %d-%d" % (min(lv), max(lv)) if lv else "Danger unknown"
+ROUTE_START_LEVELS = {1: "2-6", 2: "22-29", 3: "28-40", 4: "44-50"}
+
+
+def route_danger(tier):
+    return "Danger %s (scales with goals)" % ROUTE_START_LEVELS[min(tier, 4)]
 
 
 def _edge_spot(m, ev, side):
@@ -19244,16 +19312,14 @@ def route_map(r):
                            "this way opens." % (ROUTE_NAME[pids[0]], ROUTE_NAME[pids[0]]))
     for i, (cid, cname, plus) in enumerate(caves):                         # events 3, 4: the caves
         ev.portal(cave_x[i], 25, cid, 1, d=0)
-    bm, rows = ROUTE_ENC.get(rid, (None, []))
     for k, (hub, pids, pos) in enumerate(ends):
         sx = min(max(pos[0] + (4 if k == 0 else -4), 3), W - 4)
         ev.talk(sx, 14, "CE000", [(None, [narrate("A road-stone: \"This way: %s. Back: %s. %s.\"" % (
             MAP_TITLE.get(ends[1 - k][0], "the next lands"), MAP_TITLE.get(ends[k][0], "the last lands"),
-            _danger(rows)))])], trigger=1)
+            route_danger(tier)))])], trigger=1)
     for i, cx in enumerate(cave_x):
-        cbm, crows = ROUTE_ENC.get(caves[i][0], (None, []))
         ev.talk(cx + 3, 24, "CE000", [(None, [narrate("A cave mouth. Cold air, and old bones by the entrance. "
-                                                      "(%s)" % _danger(crows))])], trigger=1)
+                                                      "(%s)" % route_danger(min(tier + caves[i][2], 4)))])], trigger=1)
     loot = ROUTE_LOOT[min(tier, 4)]
     ev.chest(30, 11, *loot[0])
     ev.chest(W - 34, 26 if theme != "coast" else 11, *loot[1])
@@ -19280,21 +19346,29 @@ def route_cave(cid, name, tier, rid, back_ev, seed):
     ev.portal(20, 1, rid, back_ev, d=2)                                     # event 1: out to the road
     loot = ROUTE_LOOT[min(tier, 4)]
     for k, (cx, cz, rx, rz) in enumerate(rooms[1:], 1):
-        ev.chest(cx + 2, cz, *loot[k % len(loot)])
+        reward = (ROUTE_CAVE_GEAR[cid], 1) if k == len(rooms) - 1 else loot[k % len(loot)]
+        ev.chest(cx + 2, cz, *reward)
     return m, ev
 
 
 ROUTE_ENC = {}
+ROUTE_START_TIER = {}
+ROUTE_PATHS = {}
 for _r in ROUTES:
     _rid, _nm, _th, _tier, _A, _B, _caves = _r
+    ROUTE_START_TIER[_rid] = _tier
+    ROUTE_PATHS[_rid] = (_A[2], _B[2])
     _bm, _rows = route_encounters(_A[2], _B[2], _tier)
     if _rows:
         ROUTE_ENC[_rid] = (_bm, _rows)
     for _i, (_cid, _cn, _plus) in enumerate(_caves):
-        _cbm, _crows = route_encounters(_A[2], _B[2], min(_tier + _plus, 4))
+        _cave_tier = min(_tier + _plus, 4)
+        ROUTE_START_TIER[_cid] = _cave_tier
+        ROUTE_PATHS[_cid] = (_A[2], _B[2])
+        _cbm, _crows = route_encounters(_A[2], _B[2], _cave_tier)
         if _crows:
             ROUTE_ENC[_cid] = (_cbm, _crows)
-        MAPS[_cid] = (lambda c=_cid, n=_cn, t=min(_tier + _plus, 4), r=_rid, k=_i, s=int(_cid[1:]):
+        MAPS[_cid] = (lambda c=_cid, n=_cn, t=_cave_tier, r=_rid, k=_i, s=int(_cid[1:]):
                       route_cave(c, n, t, r, 3 + k, s))
         RSET[_cid] = "rt_hd2d_cave"
     for _k, (_hub, _side, _pids) in enumerate((_A, _B)):
@@ -19303,10 +19377,59 @@ for _r in ROUTES:
 ENCOUNTERS.update(ROUTE_ENC)
 ENCOUNTER_MAPS |= set(ROUTE_ENC)
 
+
+def _route_goal(pid, tier):
+    import ladders as _lad
+    for i, (path, done, _maps) in enumerate(_lad.LADDERS):
+        ladder_tier = 1 if i < 8 else 2 if i < 15 else 3 if i < 23 else 4
+        if LADDER_PID_EARLY.get(path) == pid and ladder_tier == tier:
+            return done
+    return None
+
+
+def _route_special_rows(mid, rows, foe_levels):
+    """Keep route-specific foes in their matching danger band and advance them with their route."""
+    tier = ROUTE_START_TIER.get(mid)
+    if tier is None:
+        return rows
+
+    def foe_tier(level):
+        return 1 if level <= 18 else 2 if level <= 29 else 3 if level <= 40 else 4
+
+    active_tier = 1 if tier == 1 else tier
+    pids = [pid for end in ROUTE_PATHS[mid] for pid in end]
+    out = []
+    for name, enemies, rate in rows:
+        levels = [foe_levels[eid] for eid in enemies if eid in foe_levels]
+        if not levels or foe_tier(max(levels)) != active_tier:
+            continue
+        extra = {}
+        if tier == 1:
+            goal = _route_goal(pids[0], 1)
+            next_goal = _route_goal(pids[0], 2)
+            if not goal:
+                continue
+            extra["rt_if"] = goal
+            if next_goal:
+                extra["rt_ifnot"] = next_goal
+        else:
+            next_goals = list(dict.fromkeys(_route_goal(pid, tier + 1) for pid in pids if tier < 4))
+            next_goals = [goal for goal in next_goals if goal]
+            for flag in next_goals[:2]:
+                key = "rt_ifnot2" if "rt_ifnot" in extra else "rt_ifnot"
+                extra[key] = flag
+        out.append((name, enemies, rate, extra))
+    return out
+
+
 # (user 2026-11-14) the Enemies of the Empire batch (tools/new_foes.py): new groups at each place's level. A table
 # shared by several maps (the shifting waste) gets them on every map that shares it.
 import new_foes as _nfoes                                                   # noqa: E402
+_NEW_FOE_LEVELS = {f[0]: f[8] for f in _nfoes.NEW_FOES}
 for _mid, _rows in _nfoes.PLACE.items():
+    _rows = _route_special_rows(_mid, _rows, _NEW_FOE_LEVELS)
+    if not _rows:
+        continue
     _old = ENCOUNTERS.get(_mid)
     _new = (_old[0] if _old else "M801", list(_old[1] if _old else []) + list(_rows))
     for _k in [k for k, v in ENCOUNTERS.items() if _old is not None and v is _old] or [_mid]:
