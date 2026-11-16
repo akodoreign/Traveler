@@ -20391,6 +20391,150 @@ def cave_mounds(m, ev):
                                              and cx - 6 <= t["x"] <= cx + 6 and cz + 1 <= t["z"] <= cz + 7)]
 
 
+CLAN_CASTLES = (
+    {"town": "M141", "anchor": "M142", "ids": ("M500", "M501", "M502", "M503", "M504"),
+     "name": "Kyuden Hida", "ground": SNOW, "stone": STONEW, "wall": PLASTER, "roof": ROOF,
+     "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": False},
+    {"town": "M228", "anchor": "M229", "ids": ("M505", "M506", "M507", "M508", "M509"),
+     "name": "Kyuden Doji", "ground": GRASS, "stone": STONE, "wall": PLASTER, "roof": ROOF,
+     "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": True},
+    {"town": "M255", "anchor": "M256", "ids": ("M510", "M511", "M512", "M513", "M514"),
+     "name": "Shiro Akodo", "ground": SNOW, "stone": STONEW, "wall": PLASTER, "roof": ROOF,
+     "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": False},
+    {"town": "M285", "anchor": "M288", "ids": ("M515", "M516", "M517", "M518", "M519"),
+     "name": "Kyuden Isawa", "ground": SAND, "stone": STONE, "wall": PLASTER, "roof": ROOF,
+     "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": True},
+    {"town": "M347", "anchor": "M348", "ids": ("M520", "M521", "M522", "M523", "M524"),
+     "name": "Kyuden Bayushi", "ground": DIRT, "stone": STONEW, "wall": DARKWOOD, "roof": ROOF,
+     "indoor_wall": DARKWOOD, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": False,
+     "access_point": (50, 17)},
+    {"town": "M343", "anchor": "M344", "ids": ("M525", "M526", "M527", "M528", "M529"),
+     "name": "Shiro Kitsuki", "ground": GRASS2, "stone": STONE, "wall": WOOD, "roof": ROOF,
+     "indoor_wall": WOOD, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": True},
+    {"town": "M391", "anchor": "M390", "ids": ("M530", "M531", "M532", "M533", "M534"),
+     "name": "Shiro Iuchi", "ground": GRASS, "stone": STONE, "wall": PLASTER, "roof": ROOF,
+     "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": False,
+     "access_point": (40, 8)},
+)
+CLAN_CASTLE_BY_TOWN = {castle["town"]: castle for castle in CLAN_CASTLES}
+CLAN_CASTLE_FLOORS = {
+    "reception": [("dais", 14, 10, 12, 2), ("screen", 3, 12, 6), ("candle", 5, 4),
+                  ("candle", 34, 4), ("tatami", 7, 4), ("tatami", 27, 4)],
+    "inner court": [("tatami", 7, 4), ("tatami", 28, 4), ("screen", 5, 12, 6),
+                    ("screen", 29, 12, 6), ("candle", 18, 5), ("book", 18, 12)],
+    "upper keep": [("dais", 14, 9, 12, 2), ("tatami", 6, 4), ("tatami", 28, 4),
+                   ("sword", 5, 12), ("sword", 33, 12), ("candle", 19, 13)],
+    "tower": [("dais", 14, 9, 12, 2), ("screen", 5, 12, 6), ("screen", 29, 12, 6),
+              ("candle", 6, 4), ("candle", 33, 4), ("doc", 18, 12)],
+}
+
+
+def _castle_anchor_event(ev, dest):
+    return next(((int(key[1:-1]), event) for key, event in ev.ev.items()
+                 if event.get("role") == "portal" and event.get("dest", {}).get("mapid") == dest), None)
+
+
+def _castle_access_tile(m, ev, anchor, preferred=None):
+    ax, az = preferred or (int(anchor["pos"][0]), int(anchor["pos"][2]))
+    occupied = [(int(e["pos"][0]), int(e["pos"][2])) for e in ev.ev.values() if e.get("pos")]
+    for radius in range(0 if preferred else 2, 13):
+        for dz in range(-radius, radius + 1):
+            dx = radius - abs(dz)
+            for ox in ((0,) if dx == 0 else (-dx, dx)):
+                x, z = ax + ox, az + dz
+                if not (6 <= x < m.w - 6 and 6 <= z < m.d - 6):
+                    continue
+                if (int(m.blk[z, x]) & 31) == 8 or (x, z) in m.walls:
+                    continue
+                if any(bx <= x < bx + bw and bz <= z < bz + bd for bx, bz, bw, bd in m.buildings):
+                    continue
+                if any(abs(x - ex) <= 2 and abs(z - ez) <= 2 for ex, ez in occupied):
+                    continue
+                blocked = False
+                for obj in m.objs:
+                    if obj["t"] == "fill" and obj["x"] <= x < obj["x"] + obj["w"] \
+                            and obj["z"] <= z < obj["z"] + obj["d"]:
+                        if obj["y"] > int(m.hgt[z, x]) + 1 or obj["h"] > 1:
+                            blocked = True
+                            break
+                    elif obj["t"] in ("fb", "asset", "blk") and obj["x"] == x and obj["z"] == z:
+                        blocked = True
+                        break
+                if not blocked:
+                    return x, z
+    raise RuntimeError("No accessible castle entrance tile on %s" % m.mid)
+
+
+def _castle_town_access(mid, m, ev):
+    castle = CLAN_CASTLE_BY_TOWN.get(mid)
+    if castle is None:
+        return
+    anchor_entry = _castle_anchor_event(ev, castle["anchor"])
+    if anchor_entry is None:
+        raise RuntimeError("Missing existing castle route from %s to %s" % (mid, castle["anchor"]))
+    x, z = _castle_access_tile(m, ev, anchor_entry[1], castle.get("access_point"))
+    ev.portal(x, z, castle["ids"][0], 1, d=0)
+
+
+def clan_castle_yard(castle):
+    mid = castle["ids"][0]
+    m = MapSpec(mid, castle["name"] + " - outer grounds", 110, 84, base=castle["ground"], y=3)
+    m.rect(48, 4, 14, 76, castle["stone"], 4)
+    m.rect(4, 25, 102, 4, castle["stone"], 4)
+    if castle["pond"]:
+        m.rect(34, 34, 12, 10, castle["stone"], 3)
+        m.rect(35, 35, 10, 8, WATER, 2)
+        m.rect(64, 34, 12, 10, castle["stone"], 3)
+        m.rect(65, 35, 10, 8, WATER, 2)
+    for x, z in castle["garden"]:
+        m.tree(x, z, (TREE_M, TREE_L)[(x + z) % 2])
+
+    for x, z in ((5, 6), (81, 6), (5, 31), (81, 31), (5, 57), (81, 57)):
+        building(m, x, z, 24, 17, wall=castle["wall"], roof=castle["roof"], door=False)
+    building(m, 39, 5, 32, 19, wall_h=7, wall=castle["wall"], roof=castle["roof"], door=False,
+             two_storey=True)
+    building(m, 39, 56, 32, 20, wall_h=7, wall=castle["wall"], roof=castle["roof"], two_storey=True)
+
+    fill(m, 1, 4, 1, 108, 7, 2, castle["stone"])
+    fill(m, 1, 4, 3, 2, 7, 74, castle["stone"])
+    fill(m, 107, 4, 3, 2, 7, 74, castle["stone"])
+    fill(m, 1, 4, 80, 47, 7, 2, castle["stone"])
+    fill(m, 62, 4, 80, 47, 7, 2, castle["stone"])
+    fill(m, 46, 4, 78, 2, 7, 4, castle["stone"])
+    fill(m, 62, 4, 78, 2, 7, 4, castle["stone"])
+    for x in range(4, 107, 12):
+        fill(m, x, 11, 1, 2, 2, 2, castle["roof"])
+
+    yard_events = Events(m)
+    _, town_events = make(castle["town"])
+    town_entry = _castle_anchor_event(town_events, mid)
+    if town_entry is None:
+        raise RuntimeError("Missing return route from %s to %s" % (castle["town"], mid))
+    yard_events.portal(55, 80, castle["town"], town_entry[0], d=2)
+    reception_x, reception_z = door_of(39, 56, 32)
+    yard_events.portal(reception_x, reception_z, castle["ids"][1], 1, d=0)
+    return m, yard_events
+
+
+def clan_castle_floor(castle, level):
+    ids = castle["ids"]
+    labels = ("reception", "inner court", "upper keep", "tower")
+    down = (ids[0], 2) if level == 0 else (ids[level], 2)
+    up = (ids[level + 2], 1) if level < 3 else None
+    return castle_floor(ids[level + 1], "%s - %s" % (castle["name"], labels[level]), 38, 16,
+                        CLAN_CASTLE_FLOORS[labels[level]], up=up, down=down, wall=castle["indoor_wall"])
+
+
+def _clan_castle_floor_builder(castle, level):
+    return lambda: clan_castle_floor(castle, level)
+
+
+for _castle in CLAN_CASTLES:
+    MAPS[_castle["ids"][0]] = lambda castle=_castle: clan_castle_yard(castle)
+    for _level in range(4):
+        MAPS[_castle["ids"][_level + 1]] = _clan_castle_floor_builder(_castle, _level)
+
+
 def make(i):
     if not DOOR_EV or ("M141", "castle") not in DOOR_EV:   # portals reference other maps' door ids
         wall_garrison()
@@ -20405,6 +20549,8 @@ def make(i):
     else:
         r = MAPS[i]()
     m, ev = r if isinstance(r, tuple) else (r, None)
+    if ev is not None:
+        _castle_town_access(i, m, ev)
     if ev is not None and "M100" <= i < "M800" and i not in SEA_MAP_IDS:   # (at sea: nobody walks
         for h in _hire.HIRELINGS:                                                          # behind the junk - user)
             for mid, x, z in h["spots"]:
