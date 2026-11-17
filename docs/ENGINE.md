@@ -65,8 +65,24 @@ py -3.12 -E tools\rig3d_sheet.py trav_rensei --install        # bake 211 frames,
 `--review` writes `_art\preview\rig3d\review.png` (one row per character) without touching game
 assets. Baking keeps the legacy 182 frame indices and appends squat, celebration, critical and
 void_critical; a pose that leaves its 208x184 cell is an error, not a clipped frame.
-`tools\test_rig3d.py` checks the invariants. Equipment variants (`trav_<key>__<weapon>_<hat>`)
-still use their previous sheets.
+`tools\test_rig3d.py` checks the invariants.
+
+Equipment looks (`trav_<key>__<weapon>_<hat>`) are the same rig with swapped gear:
+`tools\rig3d_gear.py` draws the weapon or head item and `tools\rig3d_looks.py --install` bakes every
+look the plugin can select. Weapon families `club` and `gun` cover the tetsubo and musket.
+
+Cast batches are seven characters per pair of drawn atlases (heads + armless torsos; arms + legs):
+
+```powershell
+py -3.12 -E tools\cutout_prompt.py next                # the next seven keys and their art rows
+tools\cutout_batch.ps1 cast12 <cores image id> <limbs image id> "release message"
+```
+
+`cutout_prompt.py` writes the art description from each `gen_sidecast.CAST` entry (hirelings first,
+then cast order). The batch script cuts the atlases into parts (keying out a flat backdrop, finding
+the dummy's arm sockets for the shoulders), bakes and installs the seven sheets, runs the invariants
+and a real battle, and releases with `tools\release_here.py`. `tools\cutout_batches.json` records
+which keys are done; everything not listed there still uses its previous sheet.
 
 ## 3. The battle plugin (`plugin/rokugan/RokuganBattle.sk`)
 | System | Implementation |

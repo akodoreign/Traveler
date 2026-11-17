@@ -29,12 +29,12 @@ BUILD = {"armored": "full lamellar armor with {lace} lacing over a {top} kimono,
          "peasant": "a plain worn {top} work jacket with a rope belt, no armor",
          "heavy": "heavy lamellar armor with {lace} lacing, armor coloured {armor}, on a big broad torso",
          "round": "a {top} kimono over a round belly, {accent} sash, no armor"}
-HEAD = """Create an ORIGINAL pixel-art CHARACTER RIG PARTS ATLAS for a Japanese fantasy RPG on a plain flat pure WHITE background (no checkerboard, no texture). Production source artwork for puppet rigs, NOT animation frames, NOT assembled people. Exactly SIX equal-width COLUMNS and SEVEN equal-height ROWS: 42 isolated pieces, ONE centered piece per cell with generous white gutters; no text, labels or grid lines. Leave a clear empty margin on all four edges; every piece of the bottom row must be COMPLETE and fully inside the image. Every piece has a continuous dark outline. Crisp detailed illustrated pixel art like sophisticated adult-proportioned 1990s Japanese RPG battle sprites: thin dark outlines, restrained shaded cloth, readable faces, realistic anatomy, NOT chibi. All pieces at one consistent scale.
+HEAD = """Create an ORIGINAL pixel-art CHARACTER RIG PARTS ATLAS for a Japanese fantasy RPG on a plain flat solid MAGENTA (#FF00FF) background (no checkerboard, no texture, no shadows). Production source artwork for puppet rigs, NOT animation frames, NOT assembled people. Exactly SIX equal-width COLUMNS and SEVEN equal-height ROWS: 42 isolated pieces, ONE centered piece per cell with generous magenta gutters; no text, labels or grid lines. Leave a clear empty margin on all four edges; every piece of the bottom row must be COMPLETE and fully inside the image. Every piece has a continuous dark outline. Crisp detailed illustrated pixel art like sophisticated adult-proportioned 1990s Japanese RPG battle sprites: thin dark outlines, restrained shaded cloth, readable faces, realistic anatomy, NOT chibi. All pieces at one consistent scale.
 COLUMN 1: detached HEAD with a short neck, three-quarter view facing RIGHT. COLUMN 2: the same head, FRONT view. COLUMN 3: the same head, BACK view. Heads show head, hair, any headwear and a bare neck only: no shoulders, no collar.
 COLUMNS 4, 5 and 6 are SLEEVELESS TORSO CORES on a tailor's dummy, like armless vests: from the collar to just below the belt, with a short flare of cloth below the belt. ABSOLUTELY NO sleeves, NO arms, NO hanging sleeve cloth on either side, NO head, NO hair, NO legs. Each torso ends at both shoulders in the dummy's bare arm socket: a plain flat GREY-BROWN disc on EACH side, clearly visible. The dummy's neck stub on top is the same flat GREY-BROWN. COLUMN 4: three-quarter view facing RIGHT. COLUMN 5: FRONT view. COLUMN 6: BACK view. All three torsos in a row are the same garment and the same narrow armless silhouette.
 The seven ROWS, top to bottom, are seven different people; repeat each identity faithfully across the six cells:
 {rows}"""
-LIMB = """Create an ORIGINAL pixel-art CHARACTER RIG LIMBS ATLAS for a Japanese fantasy RPG on a plain flat pure WHITE background (no checkerboard, no texture). Every piece has a continuous dark outline; leave a clear empty margin on all four edges. Production modular artwork for puppet rigs, NOT poses, NOT animation frames, NOT assembled characters. Exactly SIX equal-width COLUMNS and SEVEN equal-height ROWS: 42 isolated pieces, one complete limb per cell, generous white gutters; no text, labels or grid. Crisp detailed illustrated pixel art for adult-proportioned 1990s Japanese RPG battle sprites: thin dark outlines, controlled fabric shading, realistic anatomy, NOT chibi. Every limb hangs perfectly straight and vertical, relaxed and unoccluded, complete at both ends for overlapping joints.
+LIMB = """Create an ORIGINAL pixel-art CHARACTER RIG LIMBS ATLAS for a Japanese fantasy RPG on a plain flat solid MAGENTA (#FF00FF) background (no checkerboard, no texture, no shadows). Every piece has a continuous dark outline; leave a clear empty margin on all four edges. Production modular artwork for puppet rigs, NOT poses, NOT animation frames, NOT assembled characters. Exactly SIX equal-width COLUMNS and SEVEN equal-height ROWS: 42 isolated pieces, one complete limb per cell, generous magenta gutters; no text, labels or grid. Crisp detailed illustrated pixel art for adult-proportioned 1990s Japanese RPG battle sprites: thin dark outlines, controlled fabric shading, realistic anatomy, NOT chibi. Every limb hangs perfectly straight and vertical, relaxed and unoccluded, complete at both ends for overlapping joints.
 COLUMN 1: a full relaxed LEFT ARM seen from the front, from the shoulder through the sleeve to a loosely curled hand at the bottom, holding nothing. COLUMN 2: the matching RIGHT ARM from the front. COLUMN 3: the LEFT ARM seen from behind. COLUMN 4: the RIGHT ARM seen from behind. COLUMN 5: one complete LEG in side view, straight and vertical, long and slim, from the hip through thigh and shin to the foot, toes pointing RIGHT; the foot is small and natural (about one fifth of the leg's height in length). COLUMN 6: the other leg in the same side view, toes also pointing RIGHT. Legs are two separate trouser legs with rounded hip ends, no pelvis, feet complete. Each arm cell contains ONLY the arm and its sleeve: no torso, no robe skirt, no trouser cloth and no second layer of differently coloured fabric beside or behind the arm. Sleeves are close-fitting kimono sleeves that end at the wrist, not wide hanging drapes.
 The seven ROWS, top to bottom, match seven different people:
 {rows}
@@ -49,7 +49,7 @@ def describe(key):
     c = next(character for character in sc.CAST if character["key"] == key)
     top, lower, accent, armor, lace = sc.CLAN[c["clan"]]
     tones = {name: colour(c.get(name) or default) for name, default in
-             (("top", c.get("haori") or top), ("lower", lower), ("accent", accent), ("armor", armor), ("lace", lace))}
+             (("top", top), ("lower", lower), ("accent", accent), ("armor", armor), ("lace", lace))}
     skin = "tan" if c["skin"] == sc.TAN else "pale" if c["skin"] == sc.PALE else "light"
     who = ("elderly " if c.get("age") == "old" else "") + ("woman" if c.get("female") else "man")
     if c.get("height", 0) <= -6:
@@ -72,7 +72,9 @@ def describe(key):
             face.append(f"{c[name]} {'brows' if name == 'brow' else name}")
     outfit = BUILD.get(build, "a {top} kimono with a {accent} sash, no armor").format(**tones)
     if c.get("haori") and not armored:
-        outfit = f"a {tones['top']} haori coat over a {colour(c.get('top', top))} kimono, {tones['accent']} sash, no armor"
+        coat = colour(c["haori"])
+        outfit = f"a {coat} haori coat over a {tones['top']} kimono, {tones['accent']} sash, no armor"
+        tones["top"] = coat
     if c.get("pattern"):
         outfit += f", subtle {c['pattern']} pattern"
     if c.get("trim") == "fur":
