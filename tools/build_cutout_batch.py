@@ -37,6 +37,14 @@ def footwear(spec):
 def atlas_parts(path, column_count=6, row_count=len(BATCH)):
     with Image.open(path) as source:
         pixels = np.array(source.convert("RGBA"))
+    if (pixels[..., 3] < 128).mean() < .2:     # no real transparency: a white or checkerboard backdrop was painted in
+        rgb = pixels[..., :3].astype(int)
+        blank = ((rgb.min(axis=-1) >= 212) & (rgb.max(axis=-1) - rgb.min(axis=-1) <= 8)).astype(np.uint8)
+        _, labels = cv2.connectedComponents(blank, connectivity=4)
+        border = np.unique(np.concatenate((labels[0], labels[-1], labels[:, 0], labels[:, -1])))
+        pixels[np.isin(labels, border[border > 0])] = 0
+        ragged = cv2.dilate((pixels[..., 3] == 0).astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)
+        pixels[ragged & (rgb.min(axis=-1) >= 190) & (rgb.max(axis=-1) - rgb.min(axis=-1) <= 12)] = 0
     count, labels, stats, centers = cv2.connectedComponentsWithStats(
         (pixels[..., 3] >= 128).astype(np.uint8), 8)
     columns = [[] for _ in range(column_count)]
