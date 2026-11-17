@@ -61,5 +61,14 @@
   "shrinekeeper",
   "craneguard",
   "healer"
+ ],
+ "cast8": [
+  "h_stagehand",
+  "h_suzume",
+  "h_kitsune",
+  "h_shinjo",
+  "h_hunter",
+  "h_mirumoto",
+  "h_tamori"
  ]
 }
