@@ -1,0 +1,547 @@
+{
+  "size": [
+    208,
+    208
+  ],
+  "origin": [
+    96,
+    128
+  ],
+  "weapon": "none",
+  "articulated_arms": true,
+  "parts": {
+    "body": {
+      "image": "_art/sources/cutout/side_akiko/body.png",
+      "anchor": [
+        54.5,
+        152.22
+      ],
+      "scale": 0.22598870056497175,
+      "sockets": {
+        "root": [
+          54.5,
+          152.22
+        ],
+        "neck": [
+          59.0,
+          7.0
+        ],
+        "shoulder_f": [
+          13.651851851851852,
+          53.63703703703704
+        ],
+        "shoulder_b": [
+          95.27586206896552,
+          45.06896551724138
+        ],
+        "hip_f": [
+          70.85000000000001,
+          152.22
+        ],
+        "hip_b": [
+          38.15,
+          152.22
+        ],
+        "saya": [
+          73.03,
+          148.22
+        ]
+      }
+    },
+    "head": {
+      "image": "_art/sources/cutout/side_akiko/head.png",
+      "anchor": [
+        58.300000000000004,
+        124.2
+      ],
+      "scale": 0.2028985507246377,
+      "sockets": {
+        "crown": [
+          53.0,
+          30.36
+        ]
+      }
+    },
+    "waist": {
+      "image": "_art/sources/cutout/side_akiko/waist.png",
+      "anchor": [
+        54.5,
+        152.22
+      ],
+      "scale": 0.22598870056497175
+    },
+    "body_front": {
+      "image": "_art/sources/cutout/side_akiko/body_front.png",
+      "anchor": [
+        58.5,
+        148.78
+      ],
+      "scale": 0.23121387283236994,
+      "sockets": {
+        "root": [
+          58.5,
+          148.78
+        ],
+        "neck": [
+          58.0,
+          7.0
+        ],
+        "shoulder_f": [
+          8.192307692307692,
+          48.276923076923076
+        ],
+        "shoulder_b": [
+          107.4453781512605,
+          49.260504201680675
+        ],
+        "hip_f": [
+          76.05,
+          148.78
+        ],
+        "hip_b": [
+          40.949999999999996,
+          148.78
+        ],
+        "saya": [
+          78.39,
+          144.78
+        ]
+      }
+    },
+    "head_front": {
+      "image": "_art/sources/cutout/side_akiko/head_front.png",
+      "anchor": [
+        55.5,
+        126.0
+      ],
+      "scale": 0.2,
+      "sockets": {
+        "crown": [
+          55.5,
+          30.8
+        ]
+      }
+    },
+    "waist_front": {
+      "image": "_art/sources/cutout/side_akiko/waist_front.png",
+      "anchor": [
+        58.5,
+        148.78
+      ],
+      "scale": 0.23121387283236994
+    },
+    "body_back": {
+      "image": "_art/sources/cutout/side_akiko/body_back.png",
+      "anchor": [
+        56.5,
+        143.62
+      ],
+      "scale": 0.23952095808383234,
+      "sockets": {
+        "root": [
+          56.5,
+          143.62
+        ],
+        "neck": [
+          56.0,
+          7.0
+        ],
+        "shoulder_f": [
+          7.465753424657534,
+          44.68493150684932
+        ],
+        "shoulder_b": [
+          102.88059701492537,
+          44.07462686567164
+        ],
+        "hip_f": [
+          73.45,
+          143.62
+        ],
+        "hip_b": [
+          39.55,
+          143.62
+        ],
+        "saya": [
+          75.71000000000001,
+          139.62
+        ]
+      }
+    },
+    "head_back": {
+      "image": "_art/sources/cutout/side_akiko/head_back.png",
+      "anchor": [
+        53.0,
+        124.2
+      ],
+      "scale": 0.2028985507246377,
+      "sockets": {
+        "crown": [
+          53.0,
+          30.36
+        ]
+      }
+    },
+    "waist_back": {
+      "image": "_art/sources/cutout/side_akiko/waist_back.png",
+      "anchor": [
+        56.5,
+        143.62
+      ],
+      "scale": 0.23952095808383234
+    },
+    "arm_front_left": {
+      "image": "_art/sources/cutout/side_akiko/arm_front_left.png",
+      "anchor": [
+        31.5,
+        17.0
+      ],
+      "scale": 0.22880067186350864,
+      "sockets": {
+        "elbow": [
+          25.0,
+          92.0
+        ],
+        "wrist": [
+          30.0,
+          152.0
+        ],
+        "grip": [
+          30.5,
+          173.0
+        ]
+      }
+    },
+    "arm_front_right": {
+      "image": "_art/sources/cutout/side_akiko/arm_front_right.png",
+      "anchor": [
+        21.0,
+        17.0
+      ],
+      "scale": 0.22849002145562716,
+      "sockets": {
+        "elbow": [
+          28.5,
+          92.0
+        ],
+        "wrist": [
+          22.5,
+          152.0
+        ],
+        "grip": [
+          21.5,
+          173.0
+        ]
+      }
+    },
+    "arm_back_left": {
+      "image": "_art/sources/cutout/side_akiko/arm_back_left.png",
+      "anchor": [
+        30.0,
+        17.0
+      ],
+      "scale": 0.2328428474783989,
+      "sockets": {
+        "elbow": [
+          27.0,
+          91.0
+        ],
+        "wrist": [
+          24.0,
+          150.0
+        ],
+        "grip": [
+          25.5,
+          170.0
+        ]
+      }
+    },
+    "arm_back_right": {
+      "image": "_art/sources/cutout/side_akiko/arm_back_right.png",
+      "anchor": [
+        23.5,
+        17.0
+      ],
+      "scale": 0.23288356821419678,
+      "sockets": {
+        "elbow": [
+          26.5,
+          91.0
+        ],
+        "wrist": [
+          29.0,
+          150.0
+        ],
+        "grip": [
+          27.5,
+          170.0
+        ]
+      }
+    },
+    "thigh_b": {
+      "image": "_art/sources/cutout/side_akiko/thigh_b.png",
+      "anchor": [
+        40.0,
+        12.0
+      ],
+      "scale": 0.24981294771068643,
+      "sockets": {
+        "knee": [
+          38.0,
+          95.0
+        ]
+      }
+    },
+    "shin_b": {
+      "image": "_art/sources/cutout/side_akiko/shin_b.png",
+      "anchor": [
+        38.0,
+        95.0
+      ],
+      "scale": 0.24981294771068643,
+      "sockets": {
+        "ankle": [
+          34.0,
+          176.0
+        ]
+      }
+    },
+    "foot_b": {
+      "image": "_art/sources/cutout/side_akiko/foot_b.png",
+      "anchor": [
+        34.0,
+        176.0
+      ],
+      "scale": 0.24981294771068643
+    },
+    "thigh_f": {
+      "image": "_art/sources/cutout/side_akiko/thigh_f.png",
+      "anchor": [
+        34.5,
+        12.0
+      ],
+      "scale": 0.2482992740665433,
+      "sockets": {
+        "knee": [
+          33.5,
+          95.0
+        ]
+      }
+    },
+    "shin_f": {
+      "image": "_art/sources/cutout/side_akiko/shin_f.png",
+      "anchor": [
+        33.5,
+        95.0
+      ],
+      "scale": 0.2482992740665433,
+      "sockets": {
+        "ankle": [
+          47.0,
+          176.0
+        ]
+      }
+    },
+    "foot_f": {
+      "image": "_art/sources/cutout/side_akiko/foot_f.png",
+      "anchor": [
+        47.0,
+        176.0
+      ],
+      "scale": 0.2482992740665433
+    },
+    "foot_b_outward": {
+      "source_part": "foot_b",
+      "mirror_x": true
+    },
+    "weapon": {
+      "image": "_art/sources/cutout/side_akiko/weapon.png",
+      "anchor": [
+        96,
+        96
+      ],
+      "scale": 1,
+      "sockets": {
+        "tip": [
+          116,
+          96
+        ],
+        "string": [
+          63,
+          96
+        ]
+      }
+    },
+    "foot_f_camera": {
+      "image": "_art/sources/cutout/side_akiko/foot_camera.png",
+      "anchor": [
+        73.5,
+        51.0
+      ],
+      "scale": 0.08552530551180937,
+      "mirror_x": true
+    },
+    "foot_b_camera": {
+      "image": "_art/sources/cutout/side_akiko/foot_camera.png",
+      "anchor": [
+        73.5,
+        51.0
+      ],
+      "scale": 0.08604668198923644,
+      "mirror_x": false
+    },
+    "foot_f_heel": {
+      "image": "_art/sources/cutout/side_akiko/foot_heel.png",
+      "anchor": [
+        53.5,
+        49.0
+      ],
+      "scale": 0.08847445397773383,
+      "mirror_x": true
+    },
+    "foot_b_heel": {
+      "image": "_art/sources/cutout/side_akiko/foot_heel.png",
+      "anchor": [
+        53.5,
+        49.0
+      ],
+      "scale": 0.08901380895438252,
+      "mirror_x": false
+    }
+  },
+  "nodes": {
+    "hips": {
+      "part": "body",
+      "visible": false
+    },
+    "body": {
+      "part": "body",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 30
+    },
+    "waist": {
+      "part": "waist",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 24
+    },
+    "head": {
+      "part": "head",
+      "parent": "body",
+      "socket": "neck",
+      "depth": 35
+    },
+    "thigh_b": {
+      "part": "thigh_b",
+      "parent": "hips",
+      "socket": "hip_b",
+      "depth": 10
+    },
+    "shin_b": {
+      "part": "shin_b",
+      "parent": "thigh_b",
+      "socket": "knee",
+      "depth": 11
+    },
+    "foot_b": {
+      "part": "foot_b",
+      "parent": "shin_b",
+      "socket": "ankle",
+      "depth": 9
+    },
+    "arm_b": {
+      "part": "arm_front_right",
+      "parent": "body",
+      "socket": "shoulder_b",
+      "depth": 25
+    },
+    "thigh_f": {
+      "part": "thigh_f",
+      "parent": "hips",
+      "socket": "hip_f",
+      "depth": 20
+    },
+    "shin_f": {
+      "part": "shin_f",
+      "parent": "thigh_f",
+      "socket": "knee",
+      "depth": 21
+    },
+    "foot_f": {
+      "part": "foot_f",
+      "parent": "shin_f",
+      "socket": "ankle",
+      "depth": 19
+    },
+    "arm_f": {
+      "part": "arm_front_left",
+      "parent": "body",
+      "socket": "shoulder_f",
+      "depth": 40
+    },
+    "weapon": {
+      "part": "weapon",
+      "parent": "arm_f",
+      "socket": "grip",
+      "depth": 39,
+      "visible": false
+    }
+  },
+  "views": {
+    "front": {
+      "hips": {
+        "part": "body_front"
+      },
+      "body": {
+        "part": "body_front"
+      },
+      "head": {
+        "part": "head_front"
+      },
+      "weapon": {
+        "visible": false
+      },
+      "arm_f": {
+        "part": "arm_front_left"
+      },
+      "arm_b": {
+        "part": "arm_front_right",
+        "depth": 40
+      }
+    },
+    "back": {
+      "hips": {
+        "part": "body_back"
+      },
+      "body": {
+        "part": "body_back"
+      },
+      "head": {
+        "part": "head_back"
+      },
+      "weapon": {
+        "visible": false
+      },
+      "arm_f": {
+        "part": "arm_back_left"
+      },
+      "arm_b": {
+        "part": "arm_back_right",
+        "depth": 40
+      }
+    }
+  },
+  "clips": {
+    "critical": {
+      "motion": "atk_slash",
+      "count": 6,
+      "speed": 12
+    },
+    "void_critical": {
+      "motion": "atk_draw",
+      "count": 8,
+      "speed": 8
+    }
+  }
+}

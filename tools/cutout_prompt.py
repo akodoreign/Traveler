@@ -87,7 +87,22 @@ def describe(key):
     return (f"{label}: {', '.join(face)}; {outfit}.", f"{label}: {skin} hands; {sleeves}; {legs}.")
 
 
+def pending():
+    """Cast keys not yet in a batch: hirelings first, then the cast list in order."""
+    import json
+    import hirelings
+    import rig3d
+    done = {key for batch in json.loads((rig3d.ROOT / "tools" / "cutout_batches.json").read_text()).values()
+            for key in batch} | {"yosai"}
+    order = [h["key"] for h in hirelings.HIRELINGS] + [c["key"] for c in sc.CAST]
+    return [key for key in dict.fromkeys(order) if key not in done]
+
+
 def main():
+    if sys.argv[1:] == ["next"]:
+        todo = pending()
+        print(f"{len(todo)} left; next: {' '.join(todo[:7])}")
+        sys.argv[1:] = todo[:7] + ["rows"]
     if len(sys.argv) not in (8, 9):
         sys.exit(__doc__)
     rows = [describe(key) for key in sys.argv[1:8]]

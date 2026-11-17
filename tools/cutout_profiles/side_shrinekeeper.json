@@ -1,0 +1,547 @@
+{
+  "size": [
+    208,
+    208
+  ],
+  "origin": [
+    96,
+    128
+  ],
+  "weapon": "none",
+  "articulated_arms": true,
+  "parts": {
+    "body": {
+      "image": "_art/sources/cutout/side_shrinekeeper/body.png",
+      "anchor": [
+        58.0,
+        157.38
+      ],
+      "scale": 0.2185792349726776,
+      "sockets": {
+        "root": [
+          58.0,
+          157.38
+        ],
+        "neck": [
+          62.5,
+          7.0
+        ],
+        "shoulder_f": [
+          13.55268817204301,
+          59.68817204301075
+        ],
+        "shoulder_b": [
+          95.921875,
+          68.68229166666667
+        ],
+        "hip_f": [
+          75.4,
+          157.38
+        ],
+        "hip_b": [
+          40.599999999999994,
+          157.38
+        ],
+        "saya": [
+          77.72,
+          153.38
+        ]
+      }
+    },
+    "head": {
+      "image": "_art/sources/cutout/side_shrinekeeper/head.png",
+      "anchor": [
+        59.95,
+        139.5
+      ],
+      "scale": 0.18064516129032257,
+      "sockets": {
+        "crown": [
+          54.5,
+          34.1
+        ]
+      }
+    },
+    "waist": {
+      "image": "_art/sources/cutout/side_shrinekeeper/waist.png",
+      "anchor": [
+        58.0,
+        157.38
+      ],
+      "scale": 0.2185792349726776
+    },
+    "body_front": {
+      "image": "_art/sources/cutout/side_shrinekeeper/body_front.png",
+      "anchor": [
+        64.5,
+        152.22
+      ],
+      "scale": 0.22598870056497175,
+      "sockets": {
+        "root": [
+          64.5,
+          152.22
+        ],
+        "neck": [
+          64.0,
+          7.0
+        ],
+        "shoulder_f": [
+          13.49074074074074,
+          62.651234567901234
+        ],
+        "shoulder_b": [
+          114.29347826086956,
+          62.09782608695652
+        ],
+        "hip_f": [
+          83.85000000000001,
+          152.22
+        ],
+        "hip_b": [
+          45.15,
+          152.22
+        ],
+        "saya": [
+          86.43,
+          148.22
+        ]
+      }
+    },
+    "head_front": {
+      "image": "_art/sources/cutout/side_shrinekeeper/head_front.png",
+      "anchor": [
+        51.5,
+        140.4
+      ],
+      "scale": 0.1794871794871795,
+      "sockets": {
+        "crown": [
+          51.5,
+          34.32
+        ]
+      }
+    },
+    "waist_front": {
+      "image": "_art/sources/cutout/side_shrinekeeper/waist_front.png",
+      "anchor": [
+        64.5,
+        152.22
+      ],
+      "scale": 0.22598870056497175
+    },
+    "body_back": {
+      "image": "_art/sources/cutout/side_shrinekeeper/body_back.png",
+      "anchor": [
+        63.0,
+        152.22
+      ],
+      "scale": 0.22598870056497175,
+      "sockets": {
+        "root": [
+          63.0,
+          152.22
+        ],
+        "neck": [
+          62.5,
+          7.0
+        ],
+        "shoulder_f": [
+          10.766756032171582,
+          55.656836461126005
+        ],
+        "shoulder_b": [
+          113.43225806451613,
+          52.99032258064516
+        ],
+        "hip_f": [
+          81.9,
+          152.22
+        ],
+        "hip_b": [
+          44.099999999999994,
+          152.22
+        ],
+        "saya": [
+          84.42,
+          148.22
+        ]
+      }
+    },
+    "head_back": {
+      "image": "_art/sources/cutout/side_shrinekeeper/head_back.png",
+      "anchor": [
+        51.5,
+        139.5
+      ],
+      "scale": 0.18064516129032257,
+      "sockets": {
+        "crown": [
+          51.5,
+          34.1
+        ]
+      }
+    },
+    "waist_back": {
+      "image": "_art/sources/cutout/side_shrinekeeper/waist_back.png",
+      "anchor": [
+        63.0,
+        152.22
+      ],
+      "scale": 0.22598870056497175
+    },
+    "arm_front_left": {
+      "image": "_art/sources/cutout/side_shrinekeeper/arm_front_left.png",
+      "anchor": [
+        29.0,
+        17.0
+      ],
+      "scale": 0.22898359739420937,
+      "sockets": {
+        "elbow": [
+          25.5,
+          92.0
+        ],
+        "wrist": [
+          31.5,
+          152.0
+        ],
+        "grip": [
+          32.0,
+          173.0
+        ]
+      }
+    },
+    "arm_front_right": {
+      "image": "_art/sources/cutout/side_shrinekeeper/arm_front_right.png",
+      "anchor": [
+        23.5,
+        17.0
+      ],
+      "scale": 0.22880603797912893,
+      "sockets": {
+        "elbow": [
+          28.0,
+          92.0
+        ],
+        "wrist": [
+          21.5,
+          152.0
+        ],
+        "grip": [
+          20.5,
+          173.0
+        ]
+      }
+    },
+    "arm_back_left": {
+      "image": "_art/sources/cutout/side_shrinekeeper/arm_back_left.png",
+      "anchor": [
+        27.5,
+        16.0
+      ],
+      "scale": 0.2365758743808367,
+      "sockets": {
+        "elbow": [
+          27.0,
+          89.0
+        ],
+        "wrist": [
+          25.0,
+          147.0
+        ],
+        "grip": [
+          25.5,
+          167.0
+        ]
+      }
+    },
+    "arm_back_right": {
+      "image": "_art/sources/cutout/side_shrinekeeper/arm_back_right.png",
+      "anchor": [
+        26.0,
+        16.0
+      ],
+      "scale": 0.23654397776942884,
+      "sockets": {
+        "elbow": [
+          26.0,
+          89.0
+        ],
+        "wrist": [
+          28.5,
+          147.0
+        ],
+        "grip": [
+          27.0,
+          167.0
+        ]
+      }
+    },
+    "thigh_b": {
+      "image": "_art/sources/cutout/side_shrinekeeper/thigh_b.png",
+      "anchor": [
+        40.0,
+        12.0
+      ],
+      "scale": 0.29236512745131177,
+      "sockets": {
+        "knee": [
+          38.0,
+          95.0
+        ]
+      }
+    },
+    "shin_b": {
+      "image": "_art/sources/cutout/side_shrinekeeper/shin_b.png",
+      "anchor": [
+        38.0,
+        95.0
+      ],
+      "scale": 0.29236512745131177,
+      "sockets": {
+        "ankle": [
+          33.0,
+          176.0
+        ]
+      }
+    },
+    "foot_b": {
+      "image": "_art/sources/cutout/side_shrinekeeper/foot_b.png",
+      "anchor": [
+        33.0,
+        176.0
+      ],
+      "scale": 0.29236512745131177
+    },
+    "thigh_f": {
+      "image": "_art/sources/cutout/side_shrinekeeper/thigh_f.png",
+      "anchor": [
+        34.0,
+        12.0
+      ],
+      "scale": 0.29070243819385005,
+      "sockets": {
+        "knee": [
+          34.0,
+          95.0
+        ]
+      }
+    },
+    "shin_f": {
+      "image": "_art/sources/cutout/side_shrinekeeper/shin_f.png",
+      "anchor": [
+        34.0,
+        95.0
+      ],
+      "scale": 0.29070243819385005,
+      "sockets": {
+        "ankle": [
+          47.5,
+          176.0
+        ]
+      }
+    },
+    "foot_f": {
+      "image": "_art/sources/cutout/side_shrinekeeper/foot_f.png",
+      "anchor": [
+        47.5,
+        176.0
+      ],
+      "scale": 0.29070243819385005
+    },
+    "foot_b_outward": {
+      "source_part": "foot_b",
+      "mirror_x": true
+    },
+    "weapon": {
+      "image": "_art/sources/cutout/side_shrinekeeper/weapon.png",
+      "anchor": [
+        96,
+        96
+      ],
+      "scale": 1,
+      "sockets": {
+        "tip": [
+          116,
+          96
+        ],
+        "string": [
+          63,
+          96
+        ]
+      }
+    },
+    "foot_f_camera": {
+      "image": "_art/sources/cutout/side_shrinekeeper/foot_camera.png",
+      "anchor": [
+        77.0,
+        62.0
+      ],
+      "scale": 0.08267684022026928,
+      "mirror_x": true
+    },
+    "foot_b_camera": {
+      "image": "_art/sources/cutout/side_shrinekeeper/foot_camera.png",
+      "anchor": [
+        77.0,
+        62.0
+      ],
+      "scale": 0.08314971514670334,
+      "mirror_x": false
+    },
+    "foot_f_heel": {
+      "image": "_art/sources/cutout/side_shrinekeeper/foot_heel.png",
+      "anchor": [
+        50.0,
+        59.0
+      ],
+      "scale": 0.08665168830778222,
+      "mirror_x": true
+    },
+    "foot_b_heel": {
+      "image": "_art/sources/cutout/side_shrinekeeper/foot_heel.png",
+      "anchor": [
+        50.0,
+        59.0
+      ],
+      "scale": 0.08714729760567946,
+      "mirror_x": false
+    }
+  },
+  "nodes": {
+    "hips": {
+      "part": "body",
+      "visible": false
+    },
+    "body": {
+      "part": "body",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 30
+    },
+    "waist": {
+      "part": "waist",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 24
+    },
+    "head": {
+      "part": "head",
+      "parent": "body",
+      "socket": "neck",
+      "depth": 35
+    },
+    "thigh_b": {
+      "part": "thigh_b",
+      "parent": "hips",
+      "socket": "hip_b",
+      "depth": 10
+    },
+    "shin_b": {
+      "part": "shin_b",
+      "parent": "thigh_b",
+      "socket": "knee",
+      "depth": 11
+    },
+    "foot_b": {
+      "part": "foot_b",
+      "parent": "shin_b",
+      "socket": "ankle",
+      "depth": 9
+    },
+    "arm_b": {
+      "part": "arm_front_right",
+      "parent": "body",
+      "socket": "shoulder_b",
+      "depth": 25
+    },
+    "thigh_f": {
+      "part": "thigh_f",
+      "parent": "hips",
+      "socket": "hip_f",
+      "depth": 20
+    },
+    "shin_f": {
+      "part": "shin_f",
+      "parent": "thigh_f",
+      "socket": "knee",
+      "depth": 21
+    },
+    "foot_f": {
+      "part": "foot_f",
+      "parent": "shin_f",
+      "socket": "ankle",
+      "depth": 19
+    },
+    "arm_f": {
+      "part": "arm_front_left",
+      "parent": "body",
+      "socket": "shoulder_f",
+      "depth": 40
+    },
+    "weapon": {
+      "part": "weapon",
+      "parent": "arm_f",
+      "socket": "grip",
+      "depth": 39,
+      "visible": false
+    }
+  },
+  "views": {
+    "front": {
+      "hips": {
+        "part": "body_front"
+      },
+      "body": {
+        "part": "body_front"
+      },
+      "head": {
+        "part": "head_front"
+      },
+      "weapon": {
+        "visible": false
+      },
+      "arm_f": {
+        "part": "arm_front_left"
+      },
+      "arm_b": {
+        "part": "arm_front_right",
+        "depth": 40
+      }
+    },
+    "back": {
+      "hips": {
+        "part": "body_back"
+      },
+      "body": {
+        "part": "body_back"
+      },
+      "head": {
+        "part": "head_back"
+      },
+      "weapon": {
+        "visible": false
+      },
+      "arm_f": {
+        "part": "arm_back_left"
+      },
+      "arm_b": {
+        "part": "arm_back_right",
+        "depth": 40
+      }
+    }
+  },
+  "clips": {
+    "critical": {
+      "motion": "atk_slash",
+      "count": 6,
+      "speed": 12
+    },
+    "void_critical": {
+      "motion": "atk_draw",
+      "count": 8,
+      "speed": 8
+    }
+  }
+}
