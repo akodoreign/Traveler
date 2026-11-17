@@ -10,6 +10,24 @@ import gen_maps as gm
 from test_castles import flood, walkable
 
 
+class InteriorDoorwayTests(unittest.TestCase):
+    def test_exit_fires_at_threshold_without_catching_arrivals(self):
+        maps = json.loads((Path(gm.PROJ) / "data" / "map.json").read_text(encoding="utf-8"))
+        for mid in ("M111", "M142", "M206", gm.TOWN_WARDS[0]["room"]):
+            with self.subTest(map=mid):
+                _, events = gm.make(mid)
+                generated = events.ev["#1#"]
+                shipped = maps[mid]["event"]["#1#"]
+                self.assertEqual(shipped["mdl"]["r"], generated["mdl"]["r"])
+                _, arrival_offset, _, width, _, depth = shipped["mdl"]["r"]
+                # A player stopped 0.4 m inside the doorway must fit;
+                # one entering from outside must spawn past the trigger.
+                self.assertGreater(depth - 0.38, 0.4)
+                self.assertLess(depth - 0.38, arrival_offset * 0.5 + 0.5)
+                if mid == "M206":
+                    self.assertGreater(width - 0.38, 0.75)
+
+
 class SettlementExpansionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

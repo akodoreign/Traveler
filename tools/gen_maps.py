@@ -1864,6 +1864,18 @@ def doorway(m, x, z, floor=1):
     fill(m, left, floor + 6, z, right - left + 1, 1, 1, DARKWOOD)
 
 
+def interior_doorway(m, event):
+    x, y, z, _ = event["pos"]
+    doorway(m, x, z, y - 1)
+    # The walk-on check requires the player's 0.38 m footprint to fit completely.
+    # Reach the foot of the frame without reaching the arrival point 1 m inside.
+    radius = event["mdl"]["r"]
+    radius[5] = max(radius[5], 0.9)
+    if x == 2:
+        # The post beside the left wall pushes approaching players toward the room.
+        radius[3] = max(radius[3], 1.25)
+
+
 def castle_floor(mid, name, w, d, layout, up=None, down=None, wall=PLASTER, extra=None):
     """A cut-away castle floor like interior() (tatami, plaster, dark wood): event 1 = the way down (the front door
     on 1F), event 2 = the way up (a stair at the back right). up / down = (map, event id)."""
@@ -1924,9 +1936,8 @@ def castle_floor(mid, name, w, d, layout, up=None, down=None, wall=PLASTER, extr
         extra(m, ev)
     for e in ev.ev.values():
         if e.get("role") == "portal" and e.get("memo") not in ("stairs", "stairwell"):
-            x, y, z, _ = e["pos"]
-            if 2 <= x < m.w - 2:
-                doorway(m, x, z, y - 1)
+            if 2 <= e["pos"][0] < m.w - 2:
+                interior_doorway(m, e)
     place_decor(ev, decor)
     ROOM_OFS[mid] = embed(m, ev)
     return m, ev
@@ -3133,8 +3144,8 @@ def interior(mid, name, w, d, layout, exit_to, npcs=(), chests=(), scenes=(), sc
         else:
             fb(m, x, z, 4, IN[kind], rot=rot, y=fy)
     ev = Events(m)
-    ev.portal(W // 2, 1, exit_to[0], exit_to[1], d=2)                     # event 1 = exit (arrivals step inward)
-    doorway(m, W // 2, 1)
+    exit_id = ev.portal(W // 2, 1, exit_to[0], exit_to[1], d=2)           # event 1 = exit (arrivals step inward)
+    interior_doorway(m, ev.ev["#%d#" % exit_id])
     for x, z, mdl, kind, arg in npcs:
         if kind == "clerk":
             ev.clerk(x, z, mdl, arg)
