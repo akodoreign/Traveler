@@ -185,7 +185,7 @@ def prepare(key, cores, limbs, feet):
             leg = leg.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
         hip, knee, ankle = (joint(leg, fraction) for fraction in (.06, .46, .85))
         length = np.linalg.norm(np.array(knee) - hip) + np.linalg.norm(np.array(ankle) - knee)
-        scale = BUILD.get(key, {}).get("leg", 50 if key == "gendo" else 48) / length
+        scale = BUILD.get(key, {}).get("leg", 50 if key == "gendo" else 48 + (spec.get("height", 0) if key in PLACE else 0)) / length
         pixels = np.array(leg)
         ys = np.arange(leg.height)[:, None]
         overlap = 2 / scale

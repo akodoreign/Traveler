@@ -1,0 +1,547 @@
+{
+  "size": [
+    208,
+    208
+  ],
+  "origin": [
+    96,
+    128
+  ],
+  "weapon": "none",
+  "articulated_arms": true,
+  "parts": {
+    "body": {
+      "image": "_art/sources/cutout/side_sanro/body.png",
+      "anchor": [
+        60.5,
+        163.4
+      ],
+      "scale": 0.21052631578947367,
+      "sockets": {
+        "root": [
+          60.5,
+          163.4
+        ],
+        "neck": [
+          66.0,
+          8.0
+        ],
+        "shoulder_f": [
+          13.625585023400935,
+          62.15600624024961
+        ],
+        "shoulder_b": [
+          114.01290322580645,
+          59.696774193548386
+        ],
+        "hip_f": [
+          78.65,
+          163.4
+        ],
+        "hip_b": [
+          42.349999999999994,
+          163.4
+        ],
+        "saya": [
+          81.07000000000001,
+          159.4
+        ]
+      }
+    },
+    "head": {
+      "image": "_art/sources/cutout/side_sanro/head.png",
+      "anchor": [
+        62.150000000000006,
+        143.1
+      ],
+      "scale": 0.1761006289308176,
+      "sockets": {
+        "crown": [
+          56.5,
+          34.98
+        ]
+      }
+    },
+    "waist": {
+      "image": "_art/sources/cutout/side_sanro/waist.png",
+      "anchor": [
+        60.5,
+        163.4
+      ],
+      "scale": 0.21052631578947367
+    },
+    "body_front": {
+      "image": "_art/sources/cutout/side_sanro/body_front.png",
+      "anchor": [
+        63.0,
+        156.52
+      ],
+      "scale": 0.21978021978021978,
+      "sockets": {
+        "root": [
+          63.0,
+          156.52
+        ],
+        "neck": [
+          62.5,
+          7.0
+        ],
+        "shoulder_f": [
+          8.44542772861357,
+          58.32743362831859
+        ],
+        "shoulder_b": [
+          116.21238938053096,
+          57.59587020648968
+        ],
+        "hip_f": [
+          81.9,
+          156.52
+        ],
+        "hip_b": [
+          44.099999999999994,
+          156.52
+        ],
+        "saya": [
+          84.42,
+          152.52
+        ]
+      }
+    },
+    "head_front": {
+      "image": "_art/sources/cutout/side_sanro/head_front.png",
+      "anchor": [
+        55.5,
+        139.5
+      ],
+      "scale": 0.18064516129032257,
+      "sockets": {
+        "crown": [
+          55.5,
+          34.1
+        ]
+      }
+    },
+    "waist_front": {
+      "image": "_art/sources/cutout/side_sanro/waist_front.png",
+      "anchor": [
+        63.0,
+        156.52
+      ],
+      "scale": 0.21978021978021978
+    },
+    "body_back": {
+      "image": "_art/sources/cutout/side_sanro/body_back.png",
+      "anchor": [
+        63.5,
+        159.96
+      ],
+      "scale": 0.21505376344086022,
+      "sockets": {
+        "root": [
+          63.5,
+          159.96
+        ],
+        "neck": [
+          64.5,
+          7.0
+        ],
+        "shoulder_f": [
+          9.397058823529411,
+          58.872549019607845
+        ],
+        "shoulder_b": [
+          117.46467391304347,
+          58.61684782608695
+        ],
+        "hip_f": [
+          82.55,
+          159.96
+        ],
+        "hip_b": [
+          44.449999999999996,
+          159.96
+        ],
+        "saya": [
+          85.09,
+          155.96
+        ]
+      }
+    },
+    "head_back": {
+      "image": "_art/sources/cutout/side_sanro/head_back.png",
+      "anchor": [
+        52.0,
+        136.8
+      ],
+      "scale": 0.18421052631578946,
+      "sockets": {
+        "crown": [
+          52.0,
+          33.44
+        ]
+      }
+    },
+    "waist_back": {
+      "image": "_art/sources/cutout/side_sanro/waist_back.png",
+      "anchor": [
+        63.5,
+        159.96
+      ],
+      "scale": 0.21505376344086022
+    },
+    "arm_front_left": {
+      "image": "_art/sources/cutout/side_sanro/arm_front_left.png",
+      "anchor": [
+        47.5,
+        16.0
+      ],
+      "scale": 0.23805495452493228,
+      "sockets": {
+        "elbow": [
+          29.5,
+          87.0
+        ],
+        "wrist": [
+          40.0,
+          143.0
+        ],
+        "grip": [
+          44.5,
+          163.0
+        ]
+      }
+    },
+    "arm_front_right": {
+      "image": "_art/sources/cutout/side_sanro/arm_front_right.png",
+      "anchor": [
+        18.0,
+        16.0
+      ],
+      "scale": 0.2366494619287942,
+      "sockets": {
+        "elbow": [
+          35.5,
+          87.0
+        ],
+        "wrist": [
+          25.5,
+          144.0
+        ],
+        "grip": [
+          20.0,
+          164.0
+        ]
+      }
+    },
+    "arm_back_left": {
+      "image": "_art/sources/cutout/side_sanro/arm_back_left.png",
+      "anchor": [
+        46.5,
+        16.0
+      ],
+      "scale": 0.2421714093028286,
+      "sockets": {
+        "elbow": [
+          33.0,
+          86.0
+        ],
+        "wrist": [
+          42.0,
+          142.0
+        ],
+        "grip": [
+          43.0,
+          161.0
+        ]
+      }
+    },
+    "arm_back_right": {
+      "image": "_art/sources/cutout/side_sanro/arm_back_right.png",
+      "anchor": [
+        25.5,
+        16.0
+      ],
+      "scale": 0.24251732941003473,
+      "sockets": {
+        "elbow": [
+          38.0,
+          86.0
+        ],
+        "wrist": [
+          29.0,
+          142.0
+        ],
+        "grip": [
+          27.5,
+          161.0
+        ]
+      }
+    },
+    "thigh_b": {
+      "image": "_art/sources/cutout/side_sanro/thigh_b.png",
+      "anchor": [
+        47.0,
+        11.0
+      ],
+      "scale": 0.3030180509590553,
+      "sockets": {
+        "knee": [
+          41.5,
+          85.0
+        ]
+      }
+    },
+    "shin_b": {
+      "image": "_art/sources/cutout/side_sanro/shin_b.png",
+      "anchor": [
+        41.5,
+        85.0
+      ],
+      "scale": 0.3030180509590553,
+      "sockets": {
+        "ankle": [
+          41.0,
+          156.0
+        ]
+      }
+    },
+    "foot_b": {
+      "image": "_art/sources/cutout/side_sanro/foot_b.png",
+      "anchor": [
+        41.0,
+        156.0
+      ],
+      "scale": 0.3030180509590553
+    },
+    "thigh_f": {
+      "image": "_art/sources/cutout/side_sanro/thigh_f.png",
+      "anchor": [
+        35.0,
+        11.0
+      ],
+      "scale": 0.3026416760728895,
+      "sockets": {
+        "knee": [
+          37.5,
+          85.0
+        ]
+      }
+    },
+    "shin_f": {
+      "image": "_art/sources/cutout/side_sanro/shin_f.png",
+      "anchor": [
+        37.5,
+        85.0
+      ],
+      "scale": 0.3026416760728895,
+      "sockets": {
+        "ankle": [
+          30.5,
+          156.0
+        ]
+      }
+    },
+    "foot_f": {
+      "image": "_art/sources/cutout/side_sanro/foot_f.png",
+      "anchor": [
+        30.5,
+        156.0
+      ],
+      "scale": 0.3026416760728895
+    },
+    "foot_b_outward": {
+      "source_part": "foot_b",
+      "mirror_x": true
+    },
+    "weapon": {
+      "image": "_art/sources/cutout/side_sanro/weapon.png",
+      "anchor": [
+        96,
+        96
+      ],
+      "scale": 1,
+      "sockets": {
+        "tip": [
+          116,
+          96
+        ],
+        "string": [
+          63,
+          96
+        ]
+      }
+    },
+    "foot_f_camera": {
+      "image": "_art/sources/cutout/side_sanro/foot_camera.png",
+      "anchor": [
+        73.5,
+        51.0
+      ],
+      "scale": 0.09415518811156562,
+      "mirror_x": true
+    },
+    "foot_b_camera": {
+      "image": "_art/sources/cutout/side_sanro/foot_camera.png",
+      "anchor": [
+        73.5,
+        51.0
+      ],
+      "scale": 0.09427228252059498,
+      "mirror_x": false
+    },
+    "foot_f_heel": {
+      "image": "_art/sources/cutout/side_sanro/foot_heel.png",
+      "anchor": [
+        53.5,
+        49.0
+      ],
+      "scale": 0.09740191873610236,
+      "mirror_x": true
+    },
+    "foot_b_heel": {
+      "image": "_art/sources/cutout/side_sanro/foot_heel.png",
+      "anchor": [
+        53.5,
+        49.0
+      ],
+      "scale": 0.09752305088337412,
+      "mirror_x": false
+    }
+  },
+  "nodes": {
+    "hips": {
+      "part": "body",
+      "visible": false
+    },
+    "body": {
+      "part": "body",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 30
+    },
+    "waist": {
+      "part": "waist",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 24
+    },
+    "head": {
+      "part": "head",
+      "parent": "body",
+      "socket": "neck",
+      "depth": 35
+    },
+    "thigh_b": {
+      "part": "thigh_b",
+      "parent": "hips",
+      "socket": "hip_b",
+      "depth": 10
+    },
+    "shin_b": {
+      "part": "shin_b",
+      "parent": "thigh_b",
+      "socket": "knee",
+      "depth": 11
+    },
+    "foot_b": {
+      "part": "foot_b",
+      "parent": "shin_b",
+      "socket": "ankle",
+      "depth": 9
+    },
+    "arm_b": {
+      "part": "arm_front_right",
+      "parent": "body",
+      "socket": "shoulder_b",
+      "depth": 25
+    },
+    "thigh_f": {
+      "part": "thigh_f",
+      "parent": "hips",
+      "socket": "hip_f",
+      "depth": 20
+    },
+    "shin_f": {
+      "part": "shin_f",
+      "parent": "thigh_f",
+      "socket": "knee",
+      "depth": 21
+    },
+    "foot_f": {
+      "part": "foot_f",
+      "parent": "shin_f",
+      "socket": "ankle",
+      "depth": 19
+    },
+    "arm_f": {
+      "part": "arm_front_left",
+      "parent": "body",
+      "socket": "shoulder_f",
+      "depth": 40
+    },
+    "weapon": {
+      "part": "weapon",
+      "parent": "arm_f",
+      "socket": "grip",
+      "depth": 39,
+      "visible": false
+    }
+  },
+  "views": {
+    "front": {
+      "hips": {
+        "part": "body_front"
+      },
+      "body": {
+        "part": "body_front"
+      },
+      "head": {
+        "part": "head_front"
+      },
+      "weapon": {
+        "visible": false
+      },
+      "arm_f": {
+        "part": "arm_front_left"
+      },
+      "arm_b": {
+        "part": "arm_front_right",
+        "depth": 40
+      }
+    },
+    "back": {
+      "hips": {
+        "part": "body_back"
+      },
+      "body": {
+        "part": "body_back"
+      },
+      "head": {
+        "part": "head_back"
+      },
+      "weapon": {
+        "visible": false
+      },
+      "arm_f": {
+        "part": "arm_back_left"
+      },
+      "arm_b": {
+        "part": "arm_back_right",
+        "depth": 40
+      }
+    }
+  },
+  "clips": {
+    "critical": {
+      "motion": "atk_slash",
+      "count": 6,
+      "speed": 12
+    },
+    "void_critical": {
+      "motion": "atk_draw",
+      "count": 8,
+      "speed": 8
+    }
+  }
+}
