@@ -19,6 +19,21 @@ FOOT_ORDER = ("natsuko", "rensei", *BATCH)
 # need their shoulder inside the torso outline, not on its back edge.
 BUILD = {"yosai": dict(head=27, torso=44, arm=36, leg=56, pin=.13, far=.88, drop=-.08, neck=.8)}
 SOLO = {"yosai": "side_yosai_parts.png"}     # one character redrawn for the frame: rows are cores, limbs, feet
+# Later batches: seven cast keys per pair of atlases (<name>_cores.png, <name>_limbs.png), in atlas row order.
+BATCHES = {
+    "cast1": ("goro", "michio", "kage_ch3", "gusai", "lionrider", "kafu_nosword", "hiruto"),
+    "cast2": ("ashimita", "ushimo", "sanro", "rui", "kasiko", "akodorin", "ryuko"),
+}
+PLACE = {}                                   # key -> atlas row, borrowed foot row and sheet basename
+
+
+def footwear(spec):
+    """Row of roster_feet.png whose camera-facing feet suit this character."""
+    if spec.get("build") == "monk":
+        return 8
+    if spec.get("clan") in ("peasant", "eta", "ronin", "mantis") or spec.get("build") == "peasant":
+        return 7
+    return 5 if spec.get("clan") == "scorpion" else 2
 
 
 def atlas_parts(path, column_count=6, row_count=len(BATCH)):
@@ -57,8 +72,8 @@ def draw_gear(spec, state):
 
 
 def add_feet(profile, key, feet):
-    row = FOOT_ORDER.index(key)
-    directory = SOURCE / (("side_" if key == "yosai" else "trav_") + key)
+    row = PLACE[key]["foot"] if key in PLACE else FOOT_ORDER.index(key)
+    directory = SOURCE / (PLACE[key]["basename"] if key in PLACE else ("side_" if key == "yosai" else "trav_") + key)
     directory.mkdir(parents=True, exist_ok=True)
     for column, view in enumerate(("camera", "heel")):
         image = feet[column][row]
@@ -79,22 +94,37 @@ def add_feet(profile, key, feet):
             }
 
 
+def stubs(body):
+    """Centres of the mannequin's bare arm sockets (drawn in the neck stub's colour) on each side of a torso."""
+    pixels = np.asarray(body).astype(int)
+    opaque = pixels[..., 3] >= 128
+    top = pixels[:max(2, body.height // 20)][opaque[:max(2, body.height // 20)]][:, :3]
+    like = opaque & (np.abs(pixels[..., :3] - np.median(top, axis=0)).sum(axis=-1) < 60)
+    like[:body.height // 10] = like[body.height * 6 // 10:] = False
+    found = []
+    for columns in (slice(0, body.width * 3 // 10), slice(body.width * 7 // 10, None)):
+        ys, xs = np.nonzero(like[:, columns])
+        found.append([float(xs.mean() + (columns.start or 0)), float(ys.mean())] if len(xs) >= 20 else None)
+    return found
+
+
 def prepare(key, cores, limbs, feet):
-    if key not in BATCH:
+    if key not in BATCH and key not in PLACE:
         basename = "trav_" + key
         path = cutout.PROFILES / f"{basename}.json"
         profile = json.loads(path.read_text(encoding="utf-8"))
         add_feet(profile, key, feet)
         path.write_text(json.dumps(profile, indent=2) + "\n", encoding="utf-8")
         return basename
-    row = BATCH.index(key)
+    row = PLACE[key]["row"] if key in PLACE else BATCH.index(key)
     roster = {spec["key"]: spec for spec in sprites.TRAVELERS}
     spec = roster.get(key)
     if spec is None:
-        from gen_sidecast import CAST
+        from gen_sidecast import CAST, CLAN
         spec = next(character for character in CAST if character["key"] == key)
+        spec = dict(zip(("top", "lower", "accent", "armor", "lace"), CLAN[spec["clan"]])) | spec
     weapon = "none" if key == "yosai" else spec["weapon"]
-    basename = ("side_" if key == "yosai" else "trav_") + key
+    basename = PLACE[key]["basename"] if key in PLACE else ("side_" if key == "yosai" else "trav_") + key
     directory = SOURCE / basename
     directory.mkdir(parents=True, exist_ok=True)
     parts, nodes, views = {}, {}, {}
@@ -108,27 +138,32 @@ def prepare(key, cores, limbs, feet):
 
     for column, view in enumerate(("", "_front", "_back")):
         body = cores[column + 3][row]
-        if not view and key not in SOLO:           # the shared atlas torsos face left; the sheets face right
-            body = body.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        left, right = stubs(body) if key in PLACE else (None, None)
+        if not view and ((right is not None and left is None) if key in PLACE else key not in SOLO):
+            body = body.transpose(Image.Transpose.FLIP_LEFT_RIGHT)   # the visible arm socket is the near shoulder
+            left, right = ([body.width - 1 - right[0], right[1]] if right else None), None
         height = BUILD.get(key, {}).get("torso", 40 if key not in ("haruki", "sayo") else 38)
         scale = height / body.height
         width, depth = body.size
         hip = [width * .5, depth * .86]
         sockets = {
             "root": hip, "neck": joint(body, .04),
-            "shoulder_f": [width * (BUILD.get(key, {}).get("pin", .13) if not view else .17),
-                           depth * (.3 + BUILD.get(key, {}).get("drop", 0))],
-            "shoulder_b": [width * (BUILD.get(key, {}).get("far", .84) if not view else .83),
-                           depth * (.27 + BUILD.get(key, {}).get("drop", 0))],
+            "shoulder_f": left or [width * (BUILD.get(key, {}).get("pin", .13) if not view else .17),
+                                   depth * (.3 + BUILD.get(key, {}).get("drop", 0))],
+            "shoulder_b": right or [width * (BUILD.get(key, {}).get("far", .84) if not view else .83),
+                                    depth * (.27 + BUILD.get(key, {}).get("drop", 0))],
             "hip_f": [width * .65, hip[1]], "hip_b": [width * .35, hip[1]],
             "saya": [width * .67, hip[1] - 4],
         }
         save("body" + view, body, hip, scale, sockets)
         head = cores[column][row]
-        neck_y = .81 if key in ("mitsue", "sayo") else .90
+        neck_y = .81 if key in ("mitsue", "sayo") or spec.get("hairstyle") == "long" else .90
         neck = joint(head, BUILD[key]["neck"]) if key in BUILD else [head.width * (.55 if not view else .5), head.height * neck_y]
+        tall = BUILD.get(key, {}).get("head", 31)
+        if key in PLACE:                            # less hair or hat above the skull means a smaller drawing
+            tall = 34 if spec.get("hat") or spec.get("head") else 30 if spec.get("hairstyle") in ("mane", "long") else 28
         save("head" + view, head, neck,
-             BUILD.get(key, {}).get("head", 31) / head.height, {"crown": [head.width * .5, head.height * .22]})
+             tall / head.height, {"crown": [head.width * .5, head.height * .22]})
         waist = np.array(body)
         waist[:round(depth * .69)] = 0
         save("waist" + view, Image.fromarray(waist), hip, scale)
@@ -140,7 +175,13 @@ def prepare(key, cores, limbs, feet):
              {"elbow": elbow, "wrist": wrist, "grip": grip})
     for column, side in ((4, "b"), (5, "f")):
         leg = limbs[column][row]
-        if side == "f":
+        if key in PLACE:                            # every leg must point its toes right, however it was drawn
+            alpha = np.asarray(leg)[..., 3] >= 128
+            toes = np.nonzero(alpha[leg.height * 9 // 10:])[1].mean()
+            shin = np.nonzero(alpha[leg.height * 6 // 10:leg.height * 8 // 10])[1].mean()
+            if toes < shin:
+                leg = leg.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        elif side == "f":
             leg = leg.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
         hip, knee, ankle = (joint(leg, fraction) for fraction in (.06, .46, .85))
         length = np.linalg.norm(np.array(knee) - hip) + np.linalg.norm(np.array(ankle) - knee)
@@ -214,10 +255,20 @@ def prepare(key, cores, limbs, feet):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("keys", nargs="*", choices=FOOT_ORDER)
+    parser.add_argument("--batch", choices=BATCHES)
     args = parser.parse_args()
     cores = atlas_parts(SOURCE / "roster_cores.png")
     limbs = atlas_parts(SOURCE / "roster_limbs.png")
     feet = atlas_parts(SOURCE / "roster_feet.png", 2, len(FOOT_ORDER))
+    if args.batch:
+        from gen_sidecast import CAST
+        cast = {character["key"]: character for character in CAST}
+        cores = atlas_parts(SOURCE / f"{args.batch}_cores.png")
+        limbs = atlas_parts(SOURCE / f"{args.batch}_limbs.png")
+        for row, key in enumerate(BATCHES[args.batch]):
+            PLACE[key] = dict(row=row, foot=footwear(cast[key]), basename="side_" + key)
+            print(f"{prepare(key, cores, limbs, feet)}: reusable parts and profile prepared")
+        return
     for key in args.keys or BATCH:
         if key in SOLO:
             grid = atlas_parts(SOURCE / SOLO[key], 6, 3)

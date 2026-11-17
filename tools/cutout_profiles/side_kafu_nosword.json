@@ -1,0 +1,547 @@
+{
+  "size": [
+    208,
+    208
+  ],
+  "origin": [
+    96,
+    128
+  ],
+  "weapon": "none",
+  "articulated_arms": true,
+  "parts": {
+    "body": {
+      "image": "_art/sources/cutout/side_kafu_nosword/body.png",
+      "anchor": [
+        61.5,
+        153.07999999999998
+      ],
+      "scale": 0.2247191011235955,
+      "sockets": {
+        "root": [
+          61.5,
+          153.07999999999998
+        ],
+        "neck": [
+          61.5,
+          7.0
+        ],
+        "shoulder_f": [
+          13.615658362989324,
+          60.188612099644125
+        ],
+        "shoulder_b": [
+          110.9047619047619,
+          56.76190476190476
+        ],
+        "hip_f": [
+          79.95,
+          153.07999999999998
+        ],
+        "hip_b": [
+          43.05,
+          153.07999999999998
+        ],
+        "saya": [
+          82.41000000000001,
+          149.07999999999998
+        ]
+      }
+    },
+    "head": {
+      "image": "_art/sources/cutout/side_kafu_nosword/head.png",
+      "anchor": [
+        56.1,
+        136.8
+      ],
+      "scale": 0.18421052631578946,
+      "sockets": {
+        "crown": [
+          51.0,
+          33.44
+        ]
+      }
+    },
+    "waist": {
+      "image": "_art/sources/cutout/side_kafu_nosword/waist.png",
+      "anchor": [
+        61.5,
+        153.07999999999998
+      ],
+      "scale": 0.2247191011235955
+    },
+    "body_front": {
+      "image": "_art/sources/cutout/side_kafu_nosword/body_front.png",
+      "anchor": [
+        66.0,
+        153.07999999999998
+      ],
+      "scale": 0.2247191011235955,
+      "sockets": {
+        "root": [
+          66.0,
+          153.07999999999998
+        ],
+        "neck": [
+          65.0,
+          7.0
+        ],
+        "shoulder_f": [
+          12.0,
+          53.04347826086956
+        ],
+        "shoulder_b": [
+          122.48717948717949,
+          50.97435897435897
+        ],
+        "hip_f": [
+          85.8,
+          153.07999999999998
+        ],
+        "hip_b": [
+          46.199999999999996,
+          153.07999999999998
+        ],
+        "saya": [
+          88.44000000000001,
+          149.07999999999998
+        ]
+      }
+    },
+    "head_front": {
+      "image": "_art/sources/cutout/side_kafu_nosword/head_front.png",
+      "anchor": [
+        44.0,
+        144.0
+      ],
+      "scale": 0.175,
+      "sockets": {
+        "crown": [
+          44.0,
+          35.2
+        ]
+      }
+    },
+    "waist_front": {
+      "image": "_art/sources/cutout/side_kafu_nosword/waist_front.png",
+      "anchor": [
+        66.0,
+        153.07999999999998
+      ],
+      "scale": 0.2247191011235955
+    },
+    "body_back": {
+      "image": "_art/sources/cutout/side_kafu_nosword/body_back.png",
+      "anchor": [
+        62.0,
+        151.35999999999999
+      ],
+      "scale": 0.22727272727272727,
+      "sockets": {
+        "root": [
+          62.0,
+          151.35999999999999
+        ],
+        "neck": [
+          60.5,
+          7.0
+        ],
+        "shoulder_f": [
+          8.510204081632653,
+          55.244897959183675
+        ],
+        "shoulder_b": [
+          115.85355648535565,
+          55.1673640167364
+        ],
+        "hip_f": [
+          80.60000000000001,
+          151.35999999999999
+        ],
+        "hip_b": [
+          43.4,
+          151.35999999999999
+        ],
+        "saya": [
+          83.08,
+          147.35999999999999
+        ]
+      }
+    },
+    "head_back": {
+      "image": "_art/sources/cutout/side_kafu_nosword/head_back.png",
+      "anchor": [
+        45.5,
+        133.20000000000002
+      ],
+      "scale": 0.1891891891891892,
+      "sockets": {
+        "crown": [
+          45.5,
+          32.56
+        ]
+      }
+    },
+    "waist_back": {
+      "image": "_art/sources/cutout/side_kafu_nosword/waist_back.png",
+      "anchor": [
+        62.0,
+        151.35999999999999
+      ],
+      "scale": 0.22727272727272727
+    },
+    "arm_front_left": {
+      "image": "_art/sources/cutout/side_kafu_nosword/arm_front_left.png",
+      "anchor": [
+        43.5,
+        17.0
+      ],
+      "scale": 0.23178827722021034,
+      "sockets": {
+        "elbow": [
+          34.0,
+          91.0
+        ],
+        "wrist": [
+          38.0,
+          150.0
+        ],
+        "grip": [
+          41.5,
+          170.0
+        ]
+      }
+    },
+    "arm_front_right": {
+      "image": "_art/sources/cutout/side_kafu_nosword/arm_front_right.png",
+      "anchor": [
+        22.5,
+        17.0
+      ],
+      "scale": 0.23165655473834112,
+      "sockets": {
+        "elbow": [
+          32.0,
+          91.0
+        ],
+        "wrist": [
+          27.0,
+          150.0
+        ],
+        "grip": [
+          23.5,
+          170.0
+        ]
+      }
+    },
+    "arm_back_left": {
+      "image": "_art/sources/cutout/side_kafu_nosword/arm_back_left.png",
+      "anchor": [
+        40.5,
+        17.0
+      ],
+      "scale": 0.23239687481254426,
+      "sockets": {
+        "elbow": [
+          36.0,
+          91.0
+        ],
+        "wrist": [
+          41.5,
+          150.0
+        ],
+        "grip": [
+          44.5,
+          170.0
+        ]
+      }
+    },
+    "arm_back_right": {
+      "image": "_art/sources/cutout/side_kafu_nosword/arm_back_right.png",
+      "anchor": [
+        30.0,
+        17.0
+      ],
+      "scale": 0.23265681006910865,
+      "sockets": {
+        "elbow": [
+          34.0,
+          91.0
+        ],
+        "wrist": [
+          30.0,
+          150.0
+        ],
+        "grip": [
+          26.5,
+          170.0
+        ]
+      }
+    },
+    "thigh_b": {
+      "image": "_art/sources/cutout/side_kafu_nosword/thigh_b.png",
+      "anchor": [
+        43.0,
+        12.0
+      ],
+      "scale": 0.297234113450147,
+      "sockets": {
+        "knee": [
+          40.5,
+          93.0
+        ]
+      }
+    },
+    "shin_b": {
+      "image": "_art/sources/cutout/side_kafu_nosword/shin_b.png",
+      "anchor": [
+        40.5,
+        93.0
+      ],
+      "scale": 0.297234113450147,
+      "sockets": {
+        "ankle": [
+          32.0,
+          173.0
+        ]
+      }
+    },
+    "foot_b": {
+      "image": "_art/sources/cutout/side_kafu_nosword/foot_b.png",
+      "anchor": [
+        32.0,
+        173.0
+      ],
+      "scale": 0.297234113450147
+    },
+    "thigh_f": {
+      "image": "_art/sources/cutout/side_kafu_nosword/thigh_f.png",
+      "anchor": [
+        38.0,
+        12.0
+      ],
+      "scale": 0.29738822955792044,
+      "sockets": {
+        "knee": [
+          39.0,
+          93.0
+        ]
+      }
+    },
+    "shin_f": {
+      "image": "_art/sources/cutout/side_kafu_nosword/shin_f.png",
+      "anchor": [
+        39.0,
+        93.0
+      ],
+      "scale": 0.29738822955792044,
+      "sockets": {
+        "ankle": [
+          31.0,
+          173.0
+        ]
+      }
+    },
+    "foot_f": {
+      "image": "_art/sources/cutout/side_kafu_nosword/foot_f.png",
+      "anchor": [
+        31.0,
+        173.0
+      ],
+      "scale": 0.29738822955792044
+    },
+    "foot_b_outward": {
+      "source_part": "foot_b",
+      "mirror_x": true
+    },
+    "weapon": {
+      "image": "_art/sources/cutout/side_kafu_nosword/weapon.png",
+      "anchor": [
+        96,
+        96
+      ],
+      "scale": 1,
+      "sockets": {
+        "tip": [
+          116,
+          96
+        ],
+        "string": [
+          63,
+          96
+        ]
+      }
+    },
+    "foot_f_camera": {
+      "image": "_art/sources/cutout/side_kafu_nosword/foot_camera.png",
+      "anchor": [
+        73.5,
+        51.0
+      ],
+      "scale": 0.09912940985264014,
+      "mirror_x": true
+    },
+    "foot_b_camera": {
+      "image": "_art/sources/cutout/side_kafu_nosword/foot_camera.png",
+      "anchor": [
+        73.5,
+        51.0
+      ],
+      "scale": 0.09907803781671568,
+      "mirror_x": false
+    },
+    "foot_f_heel": {
+      "image": "_art/sources/cutout/side_kafu_nosword/foot_heel.png",
+      "anchor": [
+        53.5,
+        49.0
+      ],
+      "scale": 0.10254766536480014,
+      "mirror_x": true
+    },
+    "foot_b_heel": {
+      "image": "_art/sources/cutout/side_kafu_nosword/foot_heel.png",
+      "anchor": [
+        53.5,
+        49.0
+      ],
+      "scale": 0.10249452187936105,
+      "mirror_x": false
+    }
+  },
+  "nodes": {
+    "hips": {
+      "part": "body",
+      "visible": false
+    },
+    "body": {
+      "part": "body",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 30
+    },
+    "waist": {
+      "part": "waist",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 24
+    },
+    "head": {
+      "part": "head",
+      "parent": "body",
+      "socket": "neck",
+      "depth": 35
+    },
+    "thigh_b": {
+      "part": "thigh_b",
+      "parent": "hips",
+      "socket": "hip_b",
+      "depth": 10
+    },
+    "shin_b": {
+      "part": "shin_b",
+      "parent": "thigh_b",
+      "socket": "knee",
+      "depth": 11
+    },
+    "foot_b": {
+      "part": "foot_b",
+      "parent": "shin_b",
+      "socket": "ankle",
+      "depth": 9
+    },
+    "arm_b": {
+      "part": "arm_front_right",
+      "parent": "body",
+      "socket": "shoulder_b",
+      "depth": 25
+    },
+    "thigh_f": {
+      "part": "thigh_f",
+      "parent": "hips",
+      "socket": "hip_f",
+      "depth": 20
+    },
+    "shin_f": {
+      "part": "shin_f",
+      "parent": "thigh_f",
+      "socket": "knee",
+      "depth": 21
+    },
+    "foot_f": {
+      "part": "foot_f",
+      "parent": "shin_f",
+      "socket": "ankle",
+      "depth": 19
+    },
+    "arm_f": {
+      "part": "arm_front_left",
+      "parent": "body",
+      "socket": "shoulder_f",
+      "depth": 40
+    },
+    "weapon": {
+      "part": "weapon",
+      "parent": "arm_f",
+      "socket": "grip",
+      "depth": 39,
+      "visible": false
+    }
+  },
+  "views": {
+    "front": {
+      "hips": {
+        "part": "body_front"
+      },
+      "body": {
+        "part": "body_front"
+      },
+      "head": {
+        "part": "head_front"
+      },
+      "weapon": {
+        "visible": false
+      },
+      "arm_f": {
+        "part": "arm_front_left"
+      },
+      "arm_b": {
+        "part": "arm_front_right",
+        "depth": 40
+      }
+    },
+    "back": {
+      "hips": {
+        "part": "body_back"
+      },
+      "body": {
+        "part": "body_back"
+      },
+      "head": {
+        "part": "head_back"
+      },
+      "weapon": {
+        "visible": false
+      },
+      "arm_f": {
+        "part": "arm_back_left"
+      },
+      "arm_b": {
+        "part": "arm_back_right",
+        "depth": 40
+      }
+    }
+  },
+  "clips": {
+    "critical": {
+      "motion": "atk_slash",
+      "count": 6,
+      "speed": 12
+    },
+    "void_critical": {
+      "motion": "atk_draw",
+      "count": 8,
+      "speed": 8
+    }
+  }
+}
