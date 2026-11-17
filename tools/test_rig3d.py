@@ -158,6 +158,24 @@ class Rig3dTests(unittest.TestCase):
             s, _, _ = self.solved("trav_tamotsu", "atk_slash", index, 6)
             self.assertLess(length(s.J["gripF"], s.gear["string"]), 2)
 
+    def test_equipment_looks_swap_gear_on_the_same_rig(self):
+        import gen_sprites2d as sprites
+        import rig3d_looks
+        found = rig3d_looks.looks()
+        self.assertEqual(len({look[1] for look in found}), len(found))
+        gendo = {look[1].split("__")[1]: look for look in found if sprites.TRAVELERS[look[0]]["key"] == "gendo"}
+        for name, family, armed in (("none_own", "fist", False), ("katana_own", "blade", True),
+                                    ("tetsubo_own", "club", True), ("bo_kabuto", "pole", True)):
+            m = rig3d_looks.mannequin(*gendo[name])
+            self.assertEqual(m.family, family)
+            for kind, count in (("idle8", 8), ("ready", 2), *((attack, 6) for attack in ATTACKS)):
+                for index in range(count):
+                    s = m.solve(poses.controls(kind, index, count, m.family))
+                    self.assertEqual(s.gear is not None, armed or False, f"{name} {kind}:{index}")
+                    self.assertEqual(any(part is m.parts.get("hat") for _, part, *_ in s.items),
+                                     name == "bo_kabuto")
+            self.assertEqual("saya" in m.parts, name == "katana_own")
+
     def test_arm_layers_reassemble_the_drawn_arm(self):
         m = self.rigs["trav_natsuko"]
         source = m.parts["arm_f_relaxed"]

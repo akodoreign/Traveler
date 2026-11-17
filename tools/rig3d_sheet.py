@@ -54,21 +54,29 @@ def build_sheet(m):
 
 def install_sheet(m, sheet, extra, grid):
     resource = rig3d.ROOT / "_tools" / "rpgcobo-tool" / "project" / "resource"
-    path = resource / "enemy_pic.json"
+    sheet.save(resource / "enemy_pic2x" / f"{m.key}.png", optimize=True)
+    register([m.key], extra, grid, m.size, m.ground_y)
+
+
+def register(names, extra, grid, size, ground_y):
+    """Point every registered picture with one of these basenames at its freshly baked sheet."""
+    path = rig3d.ROOT / "_tools" / "rpgcobo-tool" / "project" / "resource" / "enemy_pic.json"
     models = json.loads(path.read_text(encoding="utf-8"))
-    entries = [entry for entry in models.values()
-               if isinstance(entry, dict) and entry.get("pic3d", "").rsplit("/", 1)[-1] == m.key + ".png"]
-    if not entries:
-        raise ValueError(f"No registered game picture for {m.key}")
-    for entry in entries:
+    missing = set(names)
+    for entry in models.values():
+        name = entry.get("pic3d", "").rsplit("/", 1)[-1][:-4] if isinstance(entry, dict) else None
+        if name not in names:
+            continue
+        missing.discard(name)
         if "/enemy_pic2x/" not in entry["pic3d"]:
             entry["scale1x"] = entry["scale"]
             entry["scale"] /= 2
-        entry["pic3d"] = f"/resource/enemy_pic2x/{m.key}.png"
+        entry["pic3d"] = f"/resource/enemy_pic2x/{name}.png"
         entry["aniuv"] = list(grid)
-        entry["gndpos"] = [.5, (m.size[1] - m.ground_y - 1) / m.size[1]]
+        entry["gndpos"] = [.5, (size[1] - ground_y - 1) / size[1]]
         entry["animap"] = [clip for clip in entry["animap"] if clip["id"] not in extra] + list(extra.values())
-    sheet.save(resource / "enemy_pic2x" / f"{m.key}.png")
+    if missing:
+        raise ValueError(f"No registered game picture for {sorted(missing)}")
     path.write_text(json.dumps(models, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 

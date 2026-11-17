@@ -566910,11 +566910,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -566927,7 +566959,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -571194,11 +571226,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -571211,7 +571275,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -575478,11 +575542,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -575495,7 +575591,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -579762,11 +579858,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -579779,7 +579907,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -581190,11 +581318,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -581207,7 +581367,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -581904,11 +582064,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -581921,7 +582113,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -583332,11 +583524,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -583349,7 +583573,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -587616,11 +587840,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -587633,7 +587889,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -591900,11 +592156,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -591917,7 +592205,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -596184,11 +596472,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -596201,7 +596521,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -600468,11 +600788,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -600485,7 +600837,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -604752,11 +605104,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -604769,7 +605153,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -606180,11 +606564,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -606197,7 +606613,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -606894,11 +607310,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -606911,7 +607359,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -608322,11 +608770,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -608339,7 +608819,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -612606,11 +613086,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -612623,7 +613135,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -616890,11 +617402,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -616907,7 +617451,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -621174,11 +621718,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -621191,7 +621767,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -625458,11 +626034,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -625475,7 +626083,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -629742,11 +630350,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -629759,7 +630399,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -634026,11 +634666,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -634043,7 +634715,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -638310,11 +638982,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -638327,7 +639031,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -642594,11 +643298,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -642611,7 +643347,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -644022,11 +644758,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -644039,7 +644807,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -644736,11 +645504,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -644753,7 +645553,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -646164,11 +646964,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -646181,7 +647013,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -650448,11 +651280,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -650465,7 +651329,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -654732,11 +655596,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -654749,7 +655645,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -659016,11 +659912,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -659033,7 +659961,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -663300,11 +664228,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -663317,7 +664277,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -667584,11 +668544,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -667601,7 +668593,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -669012,11 +670004,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -669029,7 +670053,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -669726,11 +670750,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -669743,7 +670799,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -671154,11 +672210,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -671171,7 +672259,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -675438,11 +676526,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -675455,7 +676575,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -679722,11 +680842,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -679739,7 +680891,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -684006,11 +685158,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -684023,7 +685207,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -688290,11 +689474,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -688307,7 +689523,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -692574,11 +693790,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -692591,7 +693839,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -696858,11 +698106,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -696875,7 +698155,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -701142,11 +702422,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -701159,7 +702471,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -705426,11 +706738,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -705443,7 +706787,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -706854,11 +708198,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -706871,7 +708247,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -707568,11 +708944,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -707585,7 +708993,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -708996,11 +710404,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -709013,7 +710453,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -713280,11 +714720,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -713297,7 +714769,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -717564,11 +719036,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -717581,7 +719085,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -721848,11 +723352,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -721865,7 +723401,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -723276,11 +724812,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -723293,7 +724861,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -723990,11 +725558,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -724007,7 +725607,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -725418,11 +727018,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -725435,7 +727067,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -729702,11 +731334,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -729719,7 +731383,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -733986,11 +735650,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -734003,7 +735699,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -738270,11 +739966,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -738287,7 +740015,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -742554,11 +744282,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -742571,7 +744331,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -746838,11 +748598,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -746855,7 +748647,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -751122,11 +752914,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -751139,7 +752963,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -755406,11 +757230,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -755423,7 +757279,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -759690,11 +761546,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -759707,7 +761595,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -763974,11 +765862,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -763991,7 +765911,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -768258,11 +770178,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -768275,7 +770227,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -769686,11 +771638,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -769703,7 +771687,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -770400,11 +772384,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -770417,7 +772433,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -771828,11 +773844,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -771845,7 +773893,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -776112,11 +778160,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -776129,7 +778209,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -780396,11 +782476,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -780413,7 +782525,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -784680,11 +786792,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -784697,7 +786841,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -786108,11 +788252,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -786125,7 +788301,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -786822,11 +788998,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -786839,7 +789047,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -788250,11 +790458,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -788267,7 +790507,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -792534,11 +794774,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -792551,7 +794823,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -796818,11 +799090,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -796835,7 +799139,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -801102,11 +803406,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -801119,7 +803455,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,
@@ -805386,11 +807722,43 @@
     "spd": 1.0,
     "loop": true,
     "replay": false
+   },
+   {
+    "id": "squat",
+    "st": 182,
+    "en": 187,
+    "spd": 8,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "celebration",
+    "st": 187,
+    "en": 197,
+    "spd": 8,
+    "loop": true,
+    "replay": true
+   },
+   {
+    "id": "critical",
+    "st": 197,
+    "en": 203,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "void_critical",
+    "st": 203,
+    "en": 211,
+    "spd": 8,
+    "loop": false,
+    "replay": true
    }
   ],
   "aniuv": [
    14,
-   13
+   16
   ],
   "atkpos": [
    0.25,
@@ -805403,7 +807771,7 @@
   "flipx": true,
   "gndpos": [
    0.5,
-   0.029411764705882353
+   0.07065217391304347
   ],
   "hsv": [
    0,

@@ -21,8 +21,8 @@ PITCH = .25                                   # screen rows per unit of depth: t
 VIEW_YAW = {None: 32.0, "front": 90.0, "back": -90.0}
 SAYA_DIR = (-.75, -.65, .1)
 FAMILY = {"yari": "pole", "naginata": "pole", "bo": "pole", "shakujo": "pole", "katana": "blade",
-          "nodachi": "blade", "bokken": "blade", "tetsubo": "blade", "tanto": "short", "kama": "short",
-          "yumi": "bow"}
+          "nodachi": "blade", "bokken": "blade", "tetsubo": "club", "tanto": "short", "kama": "short",
+          "yumi": "bow", "musket": "gun"}
 
 
 def unit(v):
@@ -138,13 +138,26 @@ def spin(part, degrees, mirror=False):
 
 
 class Mannequin:
-    def __init__(self, key):
+    def __init__(self, key, weapon=None, hat=None, look=None):
+        """weapon / hat swap this character's gear for another look; look is their palette spec."""
         self.key = key
         spec = json.loads((PROFILES / f"{key}.json").read_text(encoding="utf-8"))
         self.parts = P = load_parts(spec)
         self.size, self.ground_y = SIZE, ORIGIN[1]
         self.weapon = spec.get("weapon", "katana")
         self.family = spec.get("family") or FAMILY.get(self.weapon, "fist")
+        if weapon or hat:
+            import rig3d_gear
+            if weapon:
+                P.pop("saya", None)
+                if weapon != "none":
+                    P.update(rig3d_gear.weapon_parts(look, weapon))
+                self.weapon, self.family = weapon, FAMILY.get(weapon, "fist")
+            if hat:
+                P["hat"] = rig3d_gear.hat_part(hat, tuple(look.get("armor", (84, 86, 98))))
+        for name in ("head", "head_front", "head_back"):
+            if name in P and "crown" not in P[name].sockets:
+                P[name].sockets["crown"] = P[name].anchor - (0, 22 / P[name].scale)
         views = spec.get("views", {})
         arms = {None: (spec["nodes"]["arm_f"]["part"], spec["nodes"]["arm_b"]["part"])}
         if "front" in views:

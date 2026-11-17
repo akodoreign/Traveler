@@ -52,19 +52,8 @@ def joint(image, fraction):
 
 
 def draw_gear(spec, state):
-    names = ("FW", "FH", "XX", "YY", "WEAPON_SCALE")
-    original = {name: getattr(sprites, name) for name in names}
-    try:
-        sprites.FW = sprites.FH = 208
-        sprites.YY, sprites.XX = np.mgrid[:208, :208]
-        sprites.WEAPON_SCALE = 2.2 * original["WEAPON_SCALE"]
-        canvas = sprites.Canvas()
-        sprites.draw_weapon(canvas, spec, {"ha_f": (96, 96), "ha_b": (63, 96), "wang": 0, "bow": state},
-                            sprites.palette(spec))
-        return Image.fromarray(canvas.col)
-    finally:
-        for name, value in original.items():
-            setattr(sprites, name, value)
+    import rig3d_gear
+    return rig3d_gear.draw_weapon(spec, state)
 
 
 def add_feet(profile, key, feet):

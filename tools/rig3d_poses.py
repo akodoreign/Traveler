@@ -91,10 +91,16 @@ FIST = dict(
         arm=[(.62, .12, -.2), (.5, .15, -.1), (.45, .1, 0), (.4, 0, .1), (.5, .1, -.1), (.62, .12, -.2)],
         kick=[PLANTED, (.3, -.5, -.02), (.45, -.3, 0), (.93, -.1, 0), (.5, -.4, 0), PLANTED],
         toes=[0, -30, -40, -50, -30, 0], lean=[0, -4, -8, -14, -8, 0], x=[0, -.02, -.03, -.03, -.02, 0]))
-TABLES = {"pole": POLE, "blade": BLADE, "iai": BLADE, "short": SHORT, "fist": FIST}
+GUN = dict(hand="N", shift=-6, ready=dict(arm=[(.1, -.5, .05)], dir=[(.9, .42, -.1)], sep=[13]))
+GUN["atk_slash"] = GUN["atk_thrust"] = GUN["atk_overhead"] = GUN["atk_draw"] = dict(      # shoulder, aim, fire, recoil
+    arm=[(.1, -.5, .05), (.2, -.2, .05), (.25, -.08, .03), (.2, -.06, .03), (.22, -.1, .03), (.1, -.5, .05)],
+    dir=[(.9, .42, -.1), (.98, .15, -.05), (1, .02, 0), (.99, .12, 0), (1, .04, 0), (.9, .42, -.1)],
+    sep=[13], lean=[0, 2, 4, -3, 0, 0], x=[0, 0, .01, -.03, -.01, 0])
+TABLES = {"pole": POLE, "blade": BLADE, "iai": BLADE, "club": BLADE, "short": SHORT, "fist": FIST, "gun": GUN}
 SPECIAL = {"pole": ("atk_thrust", "atk_overhead"), "blade": ("atk_slash", "atk_overhead"),
            "iai": ("atk_draw", "atk_draw"), "short": ("atk_thrust", "atk_slash"),
-           "bow": ("atk_slash", "atk_overhead"), "fist": ("atk_thrust", "atk_draw")}
+           "bow": ("atk_slash", "atk_overhead"), "fist": ("atk_thrust", "atk_draw"),
+           "club": ("atk_overhead", "atk_slash"), "gun": ("atk_slash", "atk_slash")}
 VIEWS = {"fidle": ("idle8", "front"), "fwalk8": ("walk8", "front"), "bidle": ("idle8", "back"),
          "bwalk8": ("walk8", "back"), "ftalk": ("talk", "front"), "fnod": ("nod", "front"),
          "frei": ("rei", "front"), "bnod": ("nod", "back"), "brei": ("rei", "back")}
@@ -149,7 +155,7 @@ def controls(kind, frame, count, family):
     c = dict(root=[0., 0., 0.], lean=0., twist=0., bend=0., head=0., tip=0., feet=STAND, poles={}, kick={},
              elbows={}, arms={"N": REST, "F": REST}, weapon=None, carry=True, iai=0., saya_pull=0.)
     arms = c["arms"]
-    free = "F" if family in ("pole", "bow") else "N"       # the hand that is not carrying anything
+    free = "F" if family in ("pole", "bow", "club", "gun") else "N"   # the hand that is not carrying anything
     if kind == "idle8":
         c["root"][1], c["lean"] = -.008 * (.5 + .5 * swing), .6 * swing
     elif kind in ("walk8", "run"):
@@ -218,7 +224,7 @@ def controls(kind, frame, count, family):
         c["poles"] = {"N": (1, 0, 0), "F": (1, 0, 0)}
         c["lean"] = key(t, [10, 30, 45]) if kind == "seiza_rei" else 4
         arms["N"] = arms["F"] = (.55, -.6, 0) if kind == "seiza_rei" else (.3, -.62, -.05)
-        c["carry"] = family not in ("pole", "bow")
+        c["carry"] = family not in ("pole", "bow", "club", "gun")
     elif kind == "think":
         arms[free], c["head"] = {"face": (5, -9, 0)}, 4
     elif kind == "surprise":
@@ -252,4 +258,6 @@ def controls(kind, frame, count, family):
             c["weapon"] = dict(hand="N", dir=(.02, 1, 0), shift=0)
         elif family == "bow":
             c["weapon"] = dict(hand="N", dir=(.25, .97, 0), shift=0)
+        elif family in ("club", "gun"):         # leaning on the shoulder
+            c["weapon"] = dict(hand="N", dir=(.3, .95, 0), shift=0)
     return c
