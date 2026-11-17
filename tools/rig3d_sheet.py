@@ -6,6 +6,7 @@ py -3.12 -E tools\\rig3d_sheet.py trav_natsuko --install
 import argparse
 import json
 import math
+import time
 
 from PIL import Image, ImageDraw
 
@@ -77,7 +78,15 @@ def register(names, extra, grid, size, ground_y):
         entry["animap"] = [clip for clip in entry["animap"] if clip["id"] not in extra] + list(extra.values())
     if missing:
         raise ValueError(f"No registered game picture for {sorted(missing)}")
-    path.write_text(json.dumps(models, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    text = json.dumps(models, ensure_ascii=False, indent=1) + "\n"
+    for attempt in range(8):                    # a scanner or the engine may briefly hold the file open
+        try:
+            path.write_text(text, encoding="utf-8")
+            return
+        except OSError:
+            if attempt == 7:
+                raise
+            time.sleep(1)
 
 
 def review(keys, selections, out, zoom=1):

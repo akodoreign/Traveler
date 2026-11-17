@@ -20,10 +20,8 @@ FOOT_ORDER = ("natsuko", "rensei", *BATCH)
 BUILD = {"yosai": dict(head=27, torso=44, arm=36, leg=56, pin=.13, far=.88, drop=-.08, neck=.8)}
 SOLO = {"yosai": "side_yosai_parts.png"}     # one character redrawn for the frame: rows are cores, limbs, feet
 # Later batches: seven cast keys per pair of atlases (<name>_cores.png, <name>_limbs.png), in atlas row order.
-BATCHES = {
-    "cast1": ("goro", "michio", "kage_ch3", "gusai", "lionrider", "kafu_nosword", "hiruto"),
-    "cast2": ("ashimita", "ushimo", "sanro", "rui", "kasiko", "akodorin", "ryuko"),
-}
+BATCH_FILE = ROOT / "tools" / "cutout_batches.json"
+BATCHES = json.loads(BATCH_FILE.read_text(encoding="utf-8"))
 PLACE = {}                                   # key -> atlas row, borrowed foot row and sheet basename
 
 
@@ -252,6 +250,19 @@ def prepare(key, cores, limbs, feet):
     return basename
 
 
+def prepare_batch(name, feet=None):
+    from gen_sidecast import CAST
+    cast = {character["key"]: character for character in CAST}
+    feet = feet or atlas_parts(SOURCE / "roster_feet.png", 2, len(FOOT_ORDER))
+    cores = atlas_parts(SOURCE / f"{name}_cores.png")
+    limbs = atlas_parts(SOURCE / f"{name}_limbs.png")
+    done = []
+    for row, key in enumerate(BATCHES[name]):
+        PLACE[key] = dict(row=row, foot=footwear(cast[key]), basename="side_" + key)
+        done.append(prepare(key, cores, limbs, feet))
+    return done
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("keys", nargs="*", choices=FOOT_ORDER)
@@ -261,13 +272,8 @@ def main():
     limbs = atlas_parts(SOURCE / "roster_limbs.png")
     feet = atlas_parts(SOURCE / "roster_feet.png", 2, len(FOOT_ORDER))
     if args.batch:
-        from gen_sidecast import CAST
-        cast = {character["key"]: character for character in CAST}
-        cores = atlas_parts(SOURCE / f"{args.batch}_cores.png")
-        limbs = atlas_parts(SOURCE / f"{args.batch}_limbs.png")
-        for row, key in enumerate(BATCHES[args.batch]):
-            PLACE[key] = dict(row=row, foot=footwear(cast[key]), basename="side_" + key)
-            print(f"{prepare(key, cores, limbs, feet)}: reusable parts and profile prepared")
+        for basename in prepare_batch(args.batch, feet):
+            print(f"{basename}: reusable parts and profile prepared")
         return
     for key in args.keys or BATCH:
         if key in SOLO:

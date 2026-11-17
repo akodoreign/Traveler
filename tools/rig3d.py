@@ -22,7 +22,7 @@ VIEW_YAW = {None: 32.0, "front": 90.0, "back": -90.0}
 SAYA_DIR = (-.75, -.65, .1)
 FAMILY = {"yari": "pole", "naginata": "pole", "bo": "pole", "shakujo": "pole", "katana": "blade",
           "nodachi": "blade", "bokken": "blade", "tetsubo": "club", "tanto": "short", "kama": "short",
-          "yumi": "bow", "musket": "gun"}
+          "yumi": "bow", "musket": "gun", "fan": "short", "nunchaku": "short"}
 
 
 def unit(v):
