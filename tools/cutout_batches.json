@@ -25,5 +25,14 @@
   "h_kuni",
   "h_engineer",
   "h_herbalist"
+ ],
+ "cast4": [
+  "h_fisherman",
+  "h_veteran",
+  "gonta",
+  "h_scout",
+  "h_witch",
+  "h_sapper",
+  "oldwoman"
  ]
 }

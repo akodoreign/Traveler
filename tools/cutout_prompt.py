@@ -63,7 +63,10 @@ def describe(key):
                                      (c.get("mask"), f"a {c.get('mask')} mask over the face")) if flag]
     wear = c.get("hat") or c.get("head")
     if wear:
-        face.append(f"wearing {HEADWEAR.get(wear, wear)} on all three heads")
+        item = HEADWEAR.get(wear, wear)
+        if wear == "jingasa" and (c.get("hat_col") or c["clan"] in ("peasant", "eta", "ronin")):
+            item = "a conical woven straw hat"
+        face.append(f"wearing {item} on all three heads")
     for name in ("eyes", "brow", "mouth"):
         if c.get(name):
             face.append(f"{c[name]} {'brows' if name == 'brow' else name}")
