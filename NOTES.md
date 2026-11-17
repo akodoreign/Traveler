@@ -5,6 +5,17 @@ RPG-Cobo. L5R © Fantasy Flight Games; Octopath Traveler © Square Enix (inspira
 
 **Read this file first every session.** Then read the memory index, then `docs/story/00-synthesis.md`.
 
+## Fable handoff: character model heads and proportions (2026-11-17)
+
+The player reported that heads are visibly separated from their bodies in the recent character-model
+batches. Check the head attachment and neck alignment on the shared rig/export pipeline, then verify the
+join in-game in idle and moving poses.
+
+The player also wants to try a roster-wide proportions pass on **all character models**: reduce Y by
+10% and increase X and Z by 10% each (X 110%, Y 90%, Z 110% of current size). Apply the trial to the
+assembled character so the head, body, and rig stay aligned. Preview a few characters in-game before
+rolling it out to the full roster.
+
 ---
 
 ## ▶ RESUME POINT (2026-10-29, latest; details in the dated log at the end)
