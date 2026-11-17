@@ -79,5 +79,14 @@
   "h_agasha",
   "h_yari",
   "h_hanabi"
+ ],
+ "cast10": [
+  "h_ferryarcher",
+  "h_sparrow",
+  "h_windpriest",
+  "h_goatherd",
+  "h_jadeseller",
+  "h_shrinearcher",
+  "h_windisawa"
  ]
 }
