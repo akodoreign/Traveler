@@ -5600,77 +5600,77 @@
 	},
 	"G1382": {
 		"defval": false,
-		"name": "odd job 0: taken",
+		"name": "fq_float: taken",
 		"type": 1
 	},
 	"G1383": {
 		"defval": false,
-		"name": "odd job 0: found",
+		"name": "fq_float: found",
 		"type": 1
 	},
 	"G1384": {
 		"defval": false,
-		"name": "odd job 0: done",
+		"name": "fq_float: done",
 		"type": 1
 	},
 	"G1385": {
 		"defval": false,
-		"name": "odd job 1: taken",
+		"name": "fq_oil: taken",
 		"type": 1
 	},
 	"G1386": {
 		"defval": false,
-		"name": "odd job 1: found",
+		"name": "fq_oil: found",
 		"type": 1
 	},
 	"G1387": {
 		"defval": false,
-		"name": "odd job 1: done",
+		"name": "fq_oil: done",
 		"type": 1
 	},
 	"G1388": {
 		"defval": false,
-		"name": "odd job 2: taken",
+		"name": "fq_kite: taken",
 		"type": 1
 	},
 	"G1389": {
 		"defval": false,
-		"name": "odd job 2: found",
+		"name": "fq_kite: found",
 		"type": 1
 	},
 	"G1390": {
 		"defval": false,
-		"name": "odd job 2: done",
+		"name": "fq_kite: done",
 		"type": 1
 	},
 	"G1391": {
 		"defval": false,
-		"name": "odd job 3: taken",
+		"name": "fq_plums: taken",
 		"type": 1
 	},
 	"G1392": {
 		"defval": false,
-		"name": "odd job 3: found",
+		"name": "fq_plums: found",
 		"type": 1
 	},
 	"G1393": {
 		"defval": false,
-		"name": "odd job 3: done",
+		"name": "fq_plums: done",
 		"type": 1
 	},
 	"G1394": {
 		"defval": false,
-		"name": "odd job 4: taken",
+		"name": "fq_flute: taken",
 		"type": 1
 	},
 	"G1395": {
 		"defval": false,
-		"name": "odd job 4: found",
+		"name": "fq_flute: found",
 		"type": 1
 	},
 	"G1396": {
 		"defval": false,
-		"name": "odd job 4: done",
+		"name": "fq_flute: done",
 		"type": 1
 	},
 	"G1399": {
@@ -7472,5 +7472,525 @@
 		"defval": 0,
 		"name": "weakness memory: 魔人 (revealed weakness bits)",
 		"type": 2
+	},
+	"G1400": {
+		"defval": false,
+		"name": "fq_castle_0_0: taken",
+		"type": 1
+	},
+	"G1401": {
+		"defval": false,
+		"name": "fq_castle_0_0: found",
+		"type": 1
+	},
+	"G1402": {
+		"defval": false,
+		"name": "fq_castle_0_0: done",
+		"type": 1
+	},
+	"G1403": {
+		"defval": false,
+		"name": "fq_castle_0_1: taken",
+		"type": 1
+	},
+	"G1404": {
+		"defval": false,
+		"name": "fq_castle_0_1: found",
+		"type": 1
+	},
+	"G1405": {
+		"defval": false,
+		"name": "fq_castle_0_1: done",
+		"type": 1
+	},
+	"G1406": {
+		"defval": false,
+		"name": "fq_castle_1_0: taken",
+		"type": 1
+	},
+	"G1407": {
+		"defval": false,
+		"name": "fq_castle_1_0: found",
+		"type": 1
+	},
+	"G1408": {
+		"defval": false,
+		"name": "fq_castle_1_0: done",
+		"type": 1
+	},
+	"G1409": {
+		"defval": false,
+		"name": "fq_castle_1_1: taken",
+		"type": 1
+	},
+	"G1410": {
+		"defval": false,
+		"name": "fq_castle_1_1: found",
+		"type": 1
+	},
+	"G1411": {
+		"defval": false,
+		"name": "fq_castle_1_1: done",
+		"type": 1
+	},
+	"G1412": {
+		"defval": false,
+		"name": "fq_castle_2_0: taken",
+		"type": 1
+	},
+	"G1413": {
+		"defval": false,
+		"name": "fq_castle_2_0: found",
+		"type": 1
+	},
+	"G1414": {
+		"defval": false,
+		"name": "fq_castle_2_0: done",
+		"type": 1
+	},
+	"G1415": {
+		"defval": false,
+		"name": "fq_castle_2_1: taken",
+		"type": 1
+	},
+	"G1416": {
+		"defval": false,
+		"name": "fq_castle_2_1: found",
+		"type": 1
+	},
+	"G1417": {
+		"defval": false,
+		"name": "fq_castle_2_1: done",
+		"type": 1
+	},
+	"G1418": {
+		"defval": false,
+		"name": "fq_castle_3_0: taken",
+		"type": 1
+	},
+	"G1419": {
+		"defval": false,
+		"name": "fq_castle_3_0: found",
+		"type": 1
+	},
+	"G1420": {
+		"defval": false,
+		"name": "fq_castle_3_0: done",
+		"type": 1
+	},
+	"G1421": {
+		"defval": false,
+		"name": "fq_castle_3_1: taken",
+		"type": 1
+	},
+	"G1422": {
+		"defval": false,
+		"name": "fq_castle_3_1: found",
+		"type": 1
+	},
+	"G1423": {
+		"defval": false,
+		"name": "fq_castle_3_1: done",
+		"type": 1
+	},
+	"G1424": {
+		"defval": false,
+		"name": "fq_castle_4_0: taken",
+		"type": 1
+	},
+	"G1425": {
+		"defval": false,
+		"name": "fq_castle_4_0: found",
+		"type": 1
+	},
+	"G1426": {
+		"defval": false,
+		"name": "fq_castle_4_0: done",
+		"type": 1
+	},
+	"G1427": {
+		"defval": false,
+		"name": "fq_castle_4_1: taken",
+		"type": 1
+	},
+	"G1428": {
+		"defval": false,
+		"name": "fq_castle_4_1: found",
+		"type": 1
+	},
+	"G1429": {
+		"defval": false,
+		"name": "fq_castle_4_1: done",
+		"type": 1
+	},
+	"G1430": {
+		"defval": false,
+		"name": "fq_castle_5_0: taken",
+		"type": 1
+	},
+	"G1431": {
+		"defval": false,
+		"name": "fq_castle_5_0: found",
+		"type": 1
+	},
+	"G1432": {
+		"defval": false,
+		"name": "fq_castle_5_0: done",
+		"type": 1
+	},
+	"G1433": {
+		"defval": false,
+		"name": "fq_castle_5_1: taken",
+		"type": 1
+	},
+	"G1434": {
+		"defval": false,
+		"name": "fq_castle_5_1: found",
+		"type": 1
+	},
+	"G1435": {
+		"defval": false,
+		"name": "fq_castle_5_1: done",
+		"type": 1
+	},
+	"G1436": {
+		"defval": false,
+		"name": "fq_castle_6_0: taken",
+		"type": 1
+	},
+	"G1437": {
+		"defval": false,
+		"name": "fq_castle_6_0: found",
+		"type": 1
+	},
+	"G1438": {
+		"defval": false,
+		"name": "fq_castle_6_0: done",
+		"type": 1
+	},
+	"G1439": {
+		"defval": false,
+		"name": "fq_castle_6_1: taken",
+		"type": 1
+	},
+	"G1440": {
+		"defval": false,
+		"name": "fq_castle_6_1: found",
+		"type": 1
+	},
+	"G1441": {
+		"defval": false,
+		"name": "fq_castle_6_1: done",
+		"type": 1
+	},
+	"G1442": {
+		"defval": false,
+		"name": "fq_castle_7_0: taken",
+		"type": 1
+	},
+	"G1443": {
+		"defval": false,
+		"name": "fq_castle_7_0: found",
+		"type": 1
+	},
+	"G1444": {
+		"defval": false,
+		"name": "fq_castle_7_0: done",
+		"type": 1
+	},
+	"G1445": {
+		"defval": false,
+		"name": "fq_castle_7_1: taken",
+		"type": 1
+	},
+	"G1446": {
+		"defval": false,
+		"name": "fq_castle_7_1: found",
+		"type": 1
+	},
+	"G1447": {
+		"defval": false,
+		"name": "fq_castle_7_1: done",
+		"type": 1
+	},
+	"G1450": {
+		"defval": false,
+		"name": "Kyuden Hida: grounds visited",
+		"type": 1
+	},
+	"G1451": {
+		"defval": false,
+		"name": "Kyuden Doji: grounds visited",
+		"type": 1
+	},
+	"G1452": {
+		"defval": false,
+		"name": "Shiro Akodo: grounds visited",
+		"type": 1
+	},
+	"G1453": {
+		"defval": false,
+		"name": "Kyuden Isawa: grounds visited",
+		"type": 1
+	},
+	"G1454": {
+		"defval": false,
+		"name": "Kyuden Bayushi: grounds visited",
+		"type": 1
+	},
+	"G1455": {
+		"defval": false,
+		"name": "Shiro Kitsuki: grounds visited",
+		"type": 1
+	},
+	"G1456": {
+		"defval": false,
+		"name": "Shiro Iuchi: grounds visited",
+		"type": 1
+	},
+	"G1457": {
+		"defval": false,
+		"name": "Kyuden Togashi: grounds visited",
+		"type": 1
+	},
+	"G1460": {
+		"defval": false,
+		"name": "fq_castle_0_2: taken",
+		"type": 1
+	},
+	"G1461": {
+		"defval": false,
+		"name": "fq_castle_0_2: found",
+		"type": 1
+	},
+	"G1462": {
+		"defval": false,
+		"name": "fq_castle_0_2: done",
+		"type": 1
+	},
+	"G1463": {
+		"defval": false,
+		"name": "fq_castle_0_3: taken",
+		"type": 1
+	},
+	"G1464": {
+		"defval": false,
+		"name": "fq_castle_0_3: found",
+		"type": 1
+	},
+	"G1465": {
+		"defval": false,
+		"name": "fq_castle_0_3: done",
+		"type": 1
+	},
+	"G1466": {
+		"defval": false,
+		"name": "fq_castle_1_2: taken",
+		"type": 1
+	},
+	"G1467": {
+		"defval": false,
+		"name": "fq_castle_1_2: found",
+		"type": 1
+	},
+	"G1468": {
+		"defval": false,
+		"name": "fq_castle_1_2: done",
+		"type": 1
+	},
+	"G1469": {
+		"defval": false,
+		"name": "fq_castle_1_3: taken",
+		"type": 1
+	},
+	"G1470": {
+		"defval": false,
+		"name": "fq_castle_1_3: found",
+		"type": 1
+	},
+	"G1471": {
+		"defval": false,
+		"name": "fq_castle_1_3: done",
+		"type": 1
+	},
+	"G1472": {
+		"defval": false,
+		"name": "fq_castle_2_2: taken",
+		"type": 1
+	},
+	"G1473": {
+		"defval": false,
+		"name": "fq_castle_2_2: found",
+		"type": 1
+	},
+	"G1474": {
+		"defval": false,
+		"name": "fq_castle_2_2: done",
+		"type": 1
+	},
+	"G1475": {
+		"defval": false,
+		"name": "fq_castle_2_3: taken",
+		"type": 1
+	},
+	"G1476": {
+		"defval": false,
+		"name": "fq_castle_2_3: found",
+		"type": 1
+	},
+	"G1477": {
+		"defval": false,
+		"name": "fq_castle_2_3: done",
+		"type": 1
+	},
+	"G1478": {
+		"defval": false,
+		"name": "fq_castle_3_2: taken",
+		"type": 1
+	},
+	"G1479": {
+		"defval": false,
+		"name": "fq_castle_3_2: found",
+		"type": 1
+	},
+	"G1480": {
+		"defval": false,
+		"name": "fq_castle_3_2: done",
+		"type": 1
+	},
+	"G1481": {
+		"defval": false,
+		"name": "fq_castle_3_3: taken",
+		"type": 1
+	},
+	"G1482": {
+		"defval": false,
+		"name": "fq_castle_3_3: found",
+		"type": 1
+	},
+	"G1483": {
+		"defval": false,
+		"name": "fq_castle_3_3: done",
+		"type": 1
+	},
+	"G1484": {
+		"defval": false,
+		"name": "fq_castle_4_2: taken",
+		"type": 1
+	},
+	"G1485": {
+		"defval": false,
+		"name": "fq_castle_4_2: found",
+		"type": 1
+	},
+	"G1486": {
+		"defval": false,
+		"name": "fq_castle_4_2: done",
+		"type": 1
+	},
+	"G1487": {
+		"defval": false,
+		"name": "fq_castle_4_3: taken",
+		"type": 1
+	},
+	"G1488": {
+		"defval": false,
+		"name": "fq_castle_4_3: found",
+		"type": 1
+	},
+	"G1489": {
+		"defval": false,
+		"name": "fq_castle_4_3: done",
+		"type": 1
+	},
+	"G1490": {
+		"defval": false,
+		"name": "fq_castle_5_2: taken",
+		"type": 1
+	},
+	"G1491": {
+		"defval": false,
+		"name": "fq_castle_5_2: found",
+		"type": 1
+	},
+	"G1492": {
+		"defval": false,
+		"name": "fq_castle_5_2: done",
+		"type": 1
+	},
+	"G1493": {
+		"defval": false,
+		"name": "fq_castle_5_3: taken",
+		"type": 1
+	},
+	"G1494": {
+		"defval": false,
+		"name": "fq_castle_5_3: found",
+		"type": 1
+	},
+	"G1495": {
+		"defval": false,
+		"name": "fq_castle_5_3: done",
+		"type": 1
+	},
+	"G1496": {
+		"defval": false,
+		"name": "fq_castle_6_2: taken",
+		"type": 1
+	},
+	"G1497": {
+		"defval": false,
+		"name": "fq_castle_6_2: found",
+		"type": 1
+	},
+	"G1498": {
+		"defval": false,
+		"name": "fq_castle_6_2: done",
+		"type": 1
+	},
+	"G1499": {
+		"defval": false,
+		"name": "fq_castle_6_3: taken",
+		"type": 1
+	},
+	"G1500": {
+		"defval": false,
+		"name": "fq_castle_6_3: found",
+		"type": 1
+	},
+	"G1501": {
+		"defval": false,
+		"name": "fq_castle_6_3: done",
+		"type": 1
+	},
+	"G1502": {
+		"defval": false,
+		"name": "fq_castle_7_2: taken",
+		"type": 1
+	},
+	"G1503": {
+		"defval": false,
+		"name": "fq_castle_7_2: found",
+		"type": 1
+	},
+	"G1504": {
+		"defval": false,
+		"name": "fq_castle_7_2: done",
+		"type": 1
+	},
+	"G1505": {
+		"defval": false,
+		"name": "fq_castle_7_3: taken",
+		"type": 1
+	},
+	"G1506": {
+		"defval": false,
+		"name": "fq_castle_7_3: found",
+		"type": 1
+	},
+	"G1507": {
+		"defval": false,
+		"name": "fq_castle_7_3: done",
+		"type": 1
 	}
 }

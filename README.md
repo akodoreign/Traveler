@@ -35,6 +35,12 @@ walked, the finale opens — and after it, a post-game in the deep Shadowlands.
   round; hirelings stand in the back row for a few charges.
 - **A world to wander** — connecting roads between the clans' lands, side caves of every difficulty, side quests,
   odd jobs, shops and shrines to rest and save.
+- **Clan castles** — twelve full-map grounds districts in a 3-by-4 grid, from reception through the courtyard garden
+  to a four-floor keep, with walkable stairs, open upper-floor stairwells with descending treads, visible indoor doorways,
+  clan-themed gardens and four residents' fetch errands per castle (32 total): seals, incense, court supplies and
+  council records. Stair arrivals land clear of the opening on the next floor.
+  Grounds entrances are marked in the castle towns; existing story halls keep their original routes. Kyuden Togashi's
+  grounds open after the garden audience, and ruined or besieged story locations retain their encounter layouts.
 - **Journal and quest marker** — track a story objective or side quest, and a floating star shows the way.
 - **Winter Court mini-games** — the archery contest, a horse race, and a game of Memory with the court's faces.
 - **Original soundtrack** in a medieval Japanese style, and portraits for every speaking character.

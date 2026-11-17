@@ -2018,9 +2018,12 @@ def main():
                                    "type": 1}                                           # set on every map launch)
     for _n in range(100, 142):                          # RokuganParty partyFlags: Pnnn is in the party (gen_maps
         gv["G%d" % (1220 + _n)] = {"defval": False, "name": "in the party: P%d" % _n, "type": 1}   # party_npc_pass)
-    for _k in range(5):                                 # Cakon odd jobs (gen_maps FETCH_QUESTS): taken / found / done
-        for _o, _what in enumerate(("taken", "found", "done")):
-            gv["G%d" % (1382 + 3 * _k + _o)] = {"defval": False, "name": "odd job %d: %s" % (_k, _what), "type": 1}
+    from gen_maps import CLAN_CASTLES, FQ_FLAGS
+    for _key, _flags in FQ_FLAGS.items():
+        for _f, _what in zip(_flags, ("taken", "found", "done")):
+            gv[_f] = {"defval": False, "name": "%s: %s" % (_key, _what), "type": 1}
+    for _castle in CLAN_CASTLES:
+        gv[_castle["visited"]] = {"defval": False, "name": _castle["name"] + ": grounds visited", "type": 1}
     gv["G1399"] = {"defval": 0, "name": "the sea: the place last boarded from (1 port, 2 Cove Fort, 3 Temples, 4 the "
                                         "Isle; RokuganField SEA_FROM)", "type": 2}
     gv["G1398"] = {"defval": 0, "name": "a save-then-move scene's owed map move (gen_maps resume_pass)", "type": 2}

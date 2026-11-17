@@ -66,7 +66,7 @@ local allOf = function( a){ foreach( f in a) if( !::rpgvar[f]) return false; ret
 //	(another road's, or its opening quest not done yet). done: true when finished.
 ::Rokugan.journalQuest <- function( q){
 	local lead = this.journalLead();
-	if( q.who != lead || !allOf( q.open)) return null;
+	if( (q.who && q.who != lead) || !allOf( q.open)) return null;
 	if( has( q.done)) return { id = -1, title = q.title, text = "Done." .. (q.job ? " (Job learned: "
 		.. ::conf.job[q.job].name .. ")" : ""), done = true };
 	local text = has( q.hunted) ? q.back : has( q.taken) ? q.hunt : q.offer .. " (Not taken yet.)";

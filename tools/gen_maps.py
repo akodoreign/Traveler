@@ -1852,6 +1852,14 @@ def kh_tea():
 
 
 # ---- the castle (vertical hub)
+def doorway(m, x, z, floor=1):
+    """A head-height opening, with posts outside the portal's walk-in lane."""
+    left, right = max(1, x - 3), min(m.w - 2, x + 3)
+    for px in (left, right):
+        fill(m, px, floor + 1, z, 1, 5, 1, DARKWOOD)
+    fill(m, left, floor + 6, z, right - left + 1, 1, 1, DARKWOOD)
+
+
 def castle_floor(mid, name, w, d, layout, up=None, down=None, wall=PLASTER, extra=None):
     """A cut-away castle floor like interior() (tatami, plaster, dark wood): event 1 = the way down (the front door
     on 1F), event 2 = the way up (a stair at the back right). up / down = (map, event id)."""
@@ -1905,10 +1913,16 @@ def castle_floor(mid, name, w, d, layout, up=None, down=None, wall=PLASTER, extr
         ev.portal(2 if mid != "M142" else W // 2, 2 if mid != "M142" else 1, down[0], down[1], d=2)
     if up:
         ev.portal(W - 4, D - 5, up[0], up[1], d=0)                      # at the foot of the stair: walk into it
+        ev.ev["#2#"]["memo"] = "stairs"
     else:
         ev.prop(W - 4, D - 5, "CE000")
     if extra:
         extra(m, ev)
+    for e in ev.ev.values():
+        if e.get("role") == "portal" and e.get("memo") not in ("stairs", "stairwell"):
+            x, y, z, _ = e["pos"]
+            if 2 <= x < m.w - 2:
+                doorway(m, x, z, y - 1)
     place_decor(ev, decor)
     ROOM_OFS[mid] = embed(m, ev)
     return m, ev
@@ -2603,6 +2617,8 @@ def floor_arrows(m, ev, walkon_only=False):
     for e in ev.ev.values():
         if "pos" not in e or not moves(e):
             continue
+        if e.get("memo") == "stairwell":
+            continue
         if walkon_only and e.get("role") == "portal":
             continue
         r = (e.get("mdl") or {}).get("r") or []
@@ -3113,6 +3129,7 @@ def interior(mid, name, w, d, layout, exit_to, npcs=(), chests=(), scenes=(), sc
             fb(m, x, z, 4, IN[kind], rot=rot, y=fy)
     ev = Events(m)
     ev.portal(W // 2, 1, exit_to[0], exit_to[1], d=2)                     # event 1 = exit (arrivals step inward)
+    doorway(m, W // 2, 1)
     for x, z, mdl, kind, arg in npcs:
         if kind == "clerk":
             ev.clerk(x, z, mdl, arg)
@@ -19947,9 +19964,11 @@ def journal_pass(mp):
         taken, got_, done = FQ_FLAGS[key]
         gplace = (mp.get(gmap) or {}).get("name") or gmap
         iplace = (mp.get(imap) or {}).get("name") or imap
-        quests.append('\t{ id = %d, who = "P107", title = %s, open = %s, taken = "%s", hunted = "%s", done = "%s", '
+        settings = FQ_SETTINGS.get(key, {})
+        quests.append('\t{ id = %d, who = %s, title = %s, open = %s, taken = "%s", hunted = "%s", done = "%s", '
                       'job = null, offer = %s, hunt = %s, back = %s }' % (
-                          200 + k, json.dumps("Odd job: " + title), json.dumps([FQ_OPEN]), taken, got_, done,
+                          200 + k, json.dumps(settings.get("who", "P107")), json.dumps("Odd job: " + title),
+                          json.dumps(settings.get("open", [FQ_OPEN])), taken, got_, done,
                           json.dumps("%s: %s has an odd job." % (gplace, _the(gname))),
                           json.dumps("Find it: %s." % iplace),
                           json.dumps("Back to %s in %s." % (_the(gname), gplace))))
@@ -20117,6 +20136,7 @@ FETCH_QUESTS = [
 ]
 FQ_FLAGS = {q[0]: tuple("G%d" % (1382 + 3 * k + o) for o in range(3)) for k, q in enumerate(FETCH_QUESTS)}
 FQ_OPEN = "G1040"                                                          # Ronin Ch1 S01 (Sayo arrives in Cakon)
+FQ_SETTINGS = {}                                                         # castle errands are shared by all roads
 
 
 def fetch_events(ev, mid):
@@ -20124,10 +20144,16 @@ def fetch_events(ev, mid):
     for k, q in enumerate(FETCH_QUESTS):
         key, title, gmap, gx, gz, spr, gname, imap, ix, iz, offer, found, thanks, zeni = q
         taken, got_, done = FQ_FLAGS[key]
+        settings = FQ_SETTINGS.get(key, {})
+        opens = [flag(f) for f in settings.get("open", [FQ_OPEN])]
+        ox, oz = ROOM_OFS.get(mid, (0, 0))
+        gx, gz, ix, iz = gx + ox, gz + oz, ix + ox, iz + oz
+        reward = (got("I001", "Healing Herb", 2) if settings.get("castle") else
+                  [script("::Rokugan.questExp( 5);"), narrate("${::Rokugan.lastExpText(0)}")])
         if mid == gmap:
             ev.talk(gx, gz, SC[spr], [
                 (None, [say(gname, "Busy, busy.")]),
-                ([flag(FQ_OPEN), flag(taken, False)],
+                (opens + [flag(taken, False)],
                  [narrate("Odd job: %s" % title)] + ([narrate(FQ_PRE[key])] if key in FQ_PRE else []) +
                  [say(gname, offer),
                   choices(("\"I'll do it.\"", [setf(taken), narrate("Odd job taken: %s. (The Journal tracks it.)" %
@@ -20136,10 +20162,13 @@ def fetch_events(ev, mid):
                 ([flag(taken), flag(got_, False)], [say(gname, "Any luck?")]),
                 ([flag(got_), flag(done, False)],
                  [say(gname, thanks), setf(done), {"cmd": "cmd_moneyop", "op": 0, "amount": zeni},
-                  narrate("Got %d zeni." % zeni), script("::Rokugan.questExp( 5);"),
-                  narrate("${::Rokugan.lastExpText(0)}"), narrate("Odd job done: %s." % title)]),
-                ([flag(done)], [say(gname, "Thanks again, ronin.")])], d=2)
+                  narrate("Got %d zeni." % zeni)] + reward + [narrate("Odd job done: %s." % title)]),
+                ([flag(done)], [say(gname, "Thanks again, traveler." if settings.get("castle")
+                                   else "Thanks again, ronin.")])], d=2)
         if mid == imap:
+            if settings.get("castle"):
+                ev.prop(ix, iz, DECOR_EP[settings["prop"]], d=0,
+                        reqs=[flag(taken), flag(got_, False)])
             ev.talk(ix, iz, "CE000", [(None, [narrate(found), setf(got_), narrate("Back to %s." % _the(gname))])],
                     reqs=[flag(taken), flag(got_, False)], trigger=1)
 
@@ -20562,17 +20591,42 @@ CLAN_CASTLES = (
      "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": False,
      "access_point": (40, 8)},
 )
+CASTLE_DISTRICTS = (
+    ("Guard barracks", "Entrance reception", "Stables and stores"),
+    ("Training court", "Courtyard garden", "Guest pavilion"),
+    ("Archive court", "Keep approach", "Shrine court"),
+    ("Kitchen garden", "North garden", "Watch terrace"),
+)
+CASTLE_THEMES = (
+    ("Crab", ("Hida", "Kaiu", "Yasuki"), "stone", "Iron, jade and stone: every garden wall can hold a siege.",
+     "Kaiu Survey Seal", "jade incense", "Kaiu whetstones", "the watch roster"),
+    ("Crane", ("Doji", "Kakita", "Daidoji"), "water", "White plaster, iris ponds and a place to compose a verse.",
+     "Doji Poetry Seal", "white sandalwood", "Kakita brush rolls", "the guest poetry folio"),
+    ("Lion", ("Akodo", "Ikoma", "Kitsu"), "drill", "Ordered drill courts and ancestral standards face the keep.",
+     "Akodo Muster Seal", "ancestor incense", "Akodo practice cords", "the drill roster"),
+    ("Phoenix", ("Isawa", "Shiba", "Asako"), "rings", "Five stone circles honor the elements beside quiet pools.",
+     "Isawa Library Seal", "five-ring incense", "Asako medicine cases", "the elemental observations"),
+    ("Scorpion", ("Bayushi", "Shosuro", "Soshi"), "masks", "Red lanterns and dark screens shelter the theater gardens.",
+     "Bayushi Theater Seal", "plum incense", "Shosuro mask ties", "the rehearsal ledger"),
+    ("Dragon", ("Kitsuki", "Mirumoto", "Agasha"), "rock", "Raked gravel, mountain pines and patient stones.",
+     "Kitsuki Archive Seal", "mountain incense", "Mirumoto grip wrappings", "the mountain patrol notes"),
+    ("Unicorn", ("Iuchi", "Ide", "Shinjo"), "horses", "Open riding courts, bright tents and wind-worn stone.",
+     "Iuchi Caravan Seal", "steppe incense", "Shinjo saddle straps", "the caravan route folio"),
+    ("Dragon", ("Togashi", "Tamori", "Mirumoto"), "rock", "High terraces and raked stone invite a walking meditation.",
+     "Togashi Pilgrim Seal", "cedar incense", "pilgrim bandages", "the pilgrim register"),
+)
+CLAN_CASTLES += (
+    {"town": "M383", "anchor": None, "ids": ("M623", "M624", "M625", "M626", "M627"),
+     "name": "Kyuden Togashi", "ground": SAND, "stone": STONE, "wall": WOOD, "roof": ROOF,
+     "indoor_wall": WOOD, "pond": False, "access_point": (36, 5), "opens": ["G947"]},
+)
 CLAN_CASTLE_BY_TOWN = {castle["town"]: castle for castle in CLAN_CASTLES}
-CLAN_CASTLE_FLOORS = {
-    "reception": [("dais", 14, 10, 12, 2), ("screen", 3, 12, 6), ("candle", 5, 4),
-                  ("candle", 34, 4), ("tatami", 7, 4), ("tatami", 27, 4)],
-    "inner court": [("tatami", 7, 4), ("tatami", 28, 4), ("screen", 5, 12, 6),
-                    ("screen", 29, 12, 6), ("candle", 18, 5), ("book", 18, 12)],
-    "upper keep": [("dais", 14, 9, 12, 2), ("tatami", 6, 4), ("tatami", 28, 4),
-                   ("sword", 5, 12), ("sword", 33, 12), ("candle", 19, 13)],
-    "tower": [("dais", 14, 9, 12, 2), ("screen", 5, 12, 6), ("screen", 29, 12, 6),
-              ("candle", 6, 4), ("candle", 33, 4), ("doc", 18, 12)],
-}
+for _k, (_castle, _theme) in enumerate(zip(CLAN_CASTLES, CASTLE_THEMES)):
+    _castle.update(zip(("clan", "families", "motif", "description", "seal", "incense", "supplies", "records"), _theme))
+    _extra_ids = iter("M%d" % (535 + 11 * _k + n) for n in range(11))
+    _castle["grounds"] = {(col, row): _castle["ids"][0] if (col, row) == (1, 0) else next(_extra_ids)
+                          for row in range(4) for col in range(3)}
+    _castle["visited"] = "G%d" % (1450 + _k)
 
 
 def _castle_anchor_event(ev, dest):
@@ -20615,60 +20669,187 @@ def _castle_town_access(mid, m, ev):
     castle = CLAN_CASTLE_BY_TOWN.get(mid)
     if castle is None:
         return
-    anchor_entry = _castle_anchor_event(ev, castle["anchor"])
-    if anchor_entry is None:
+    anchor_entry = _castle_anchor_event(ev, castle["anchor"]) if castle["anchor"] else None
+    if anchor_entry is None and castle["anchor"]:
         raise RuntimeError("Missing existing castle route from %s to %s" % (mid, castle["anchor"]))
-    x, z = _castle_access_tile(m, ev, anchor_entry[1], castle.get("access_point"))
-    ev.portal(x, z, castle["ids"][0], 1, d=0)
+    anchor = anchor_entry[1] if anchor_entry else {"pos": [36, 4, 5]}
+    x, z = _castle_access_tile(m, ev, anchor, castle.get("access_point"))
+    n = ev.portal(x, z, castle["ids"][0], 1, d=0)
+    ev.ev["#%d#" % n]["reqs0"] = [flag(f) for f in castle.get("opens", [])] or None
+    ev.talk(x + 2, z, "CE000", [(None, [narrate(
+        "%s grounds. Reception, then the courtyard garden, then the keep. Each district has its own map; "
+        "the keep has four full floors. The existing story halls remain open by their original routes."
+        % castle["name"])])], trigger=1)
 
 
-def clan_castle_yard(castle):
-    mid = castle["ids"][0]
-    m = MapSpec(mid, castle["name"] + " - outer grounds", 110, 84, base=castle["ground"], y=3)
-    m.rect(48, 4, 14, 76, castle["stone"], 4)
-    m.rect(4, 25, 102, 4, castle["stone"], 4)
-    if castle["pond"]:
-        m.rect(34, 34, 12, 10, castle["stone"], 3)
-        m.rect(35, 35, 10, 8, WATER, 2)
-        m.rect(64, 34, 12, 10, castle["stone"], 3)
-        m.rect(65, 35, 10, 8, WATER, 2)
-    for x, z in castle["garden"]:
-        m.tree(x, z, (TREE_M, TREE_L)[(x + z) % 2])
-
-    for x, z in ((5, 6), (81, 6), (5, 31), (81, 31), (5, 57), (81, 57)):
-        building(m, x, z, 24, 17, wall=castle["wall"], roof=castle["roof"], door=False)
-    building(m, 39, 5, 32, 19, wall_h=7, wall=castle["wall"], roof=castle["roof"], door=False,
-             two_storey=True)
-    building(m, 39, 56, 32, 20, wall_h=7, wall=castle["wall"], roof=castle["roof"], two_storey=True)
-
-    fill(m, 1, 4, 1, 108, 7, 2, castle["stone"])
-    fill(m, 1, 4, 3, 2, 7, 74, castle["stone"])
-    fill(m, 107, 4, 3, 2, 7, 74, castle["stone"])
-    fill(m, 1, 4, 80, 47, 7, 2, castle["stone"])
-    fill(m, 62, 4, 80, 47, 7, 2, castle["stone"])
-    fill(m, 46, 4, 78, 2, 7, 4, castle["stone"])
-    fill(m, 62, 4, 78, 2, 7, 4, castle["stone"])
-    for x in range(4, 107, 12):
-        fill(m, x, 11, 1, 2, 2, 2, castle["roof"])
-
-    yard_events = Events(m)
+def _castle_town_door(castle):
     _, town_events = make(castle["town"])
-    town_entry = _castle_anchor_event(town_events, mid)
+    town_entry = _castle_anchor_event(town_events, castle["ids"][0])
     if town_entry is None:
-        raise RuntimeError("Missing return route from %s to %s" % (castle["town"], mid))
-    yard_events.portal(55, 80, castle["town"], town_entry[0], d=2)
-    reception_x, reception_z = door_of(39, 56, 32)
-    yard_events.portal(reception_x, reception_z, castle["ids"][1], 1, d=0)
-    return m, yard_events
+        raise RuntimeError("Missing castle return route on %s" % castle["town"])
+    return town_entry[0]
+
+
+def _castle_garden(m, castle):
+    motif = castle["motif"]
+    for x, z in ((18, 18), (70, 18), (18, 44), (70, 44)):
+        m.rect(x - 6, z - 5, 14, 11, SAND if motif in ("rock", "rings") else GRASS2, 3)
+        if motif == "water" or (motif == "rings" and x > 48):
+            m.rect(x - 3, z - 2, 8, 5, WATER, 2)
+        elif motif in ("stone", "rock"):
+            m.tree(x, z, ROCK_M)
+            m.tree(x + 4, z + 2, ROCK_S)
+        elif motif == "horses":
+            tent(m, x - 3, z - 2)
+        elif motif == "drill":
+            for dx in (-3, 3):
+                fb(m, x + dx, z, 3, 14)
+        elif motif == "masks":
+            fill(m, x - 4, 4, z, 9, 3, 1, SHOJI)
+            fb(m, x + 5, z, 2, LAMP_STREET)
+        else:
+            for dx in (-4, -2, 0, 2, 4):
+                m.block(x + dx, z, FLOWER_R)
+    for x, z in ((8, 52), (30, 52), (64, 52), (86, 52)):
+        m.tree(x, z, TREE_M)
+    if motif == "rings":
+        for x in (32, 40, 48, 56, 64):
+            m.rect(x - 1, 42, 3, 3, castle["stone"], 4)
+
+
+def clan_castle_yard(castle, col=1, row=0):
+    mid = castle["grounds"][col, row]
+    label = CASTLE_DISTRICTS[row][col]
+    m = MapSpec(mid, castle["name"] + " - " + label, 96, 64, base=castle["ground"], y=3)
+    m.rect(43, 0, 10, 64, castle["stone"], 3)
+    m.rect(0, 27, 96, 10, castle["stone"], 3)
+    ev = Events(m)
+    # Event IDs 1-4 are stable landings: south, west, east, north.
+    for dx, dz, x, z, opposite, direction in (
+            (0, -1, 48, 1, 4, 2), (-1, 0, 1, 32, 3, 3),
+            (1, 0, 94, 32, 2, 1), (0, 1, 48, 62, 1, 0)):
+        neighbour = castle["grounds"].get((col + dx, row + dz))
+        if neighbour:
+            ev.portal(x, z, neighbour, opposite, d=direction)
+        elif (col, row, dx, dz) == (1, 0, 0, -1):
+            ev.portal(x, z, castle["town"], _castle_town_door(castle), d=2)
+        else:
+            ev.prop(x, z, "CE000")
+            if dx:
+                fill(m, 0 if dx < 0 else 94, 4, 0, 2, 7, 64, castle["stone"])
+            else:
+                fill(m, 0, 4, 0 if dz < 0 else 62, 96, 7, 2, castle["stone"])
+
+    if (col, row) == (1, 0):
+        for x in (10, 64):
+            building(m, x, 42, 22, 12, wall=castle["wall"], door=False)
+        torii(m, 43, 12, span=10)
+        ev.scene(48, 8, castle["visited"], [])
+        line = "Welcome to %s. North to the garden, then north again to the keep stairs." % castle["name"]
+    elif (col, row) == (1, 2):
+        m.rect(31, 39, 34, 17, castle["stone"], 8)
+        building(m, 31, 39, 34, 17, wall_h=9, wall=castle["wall"], two_storey=True)
+        # A six-block-wide flight reaches the keep's raised threshold without jumping.
+        for step in range(6):
+            m.rect(45, 28 + step, 6, 1, castle["stone"], 3 + step)
+        m.rect(43, 34, 10, 4, castle["stone"], 8)
+        ev.portal(48, 35, castle["ids"][1], 1, d=0)          # event 5: keep entrance
+        line = "The keep rises four floors. The broad stone stair ahead leads to the first-floor entrance."
+    elif row == 1 or (col, row) == (1, 3):
+        _castle_garden(m, castle)
+        line = castle["description"]
+    else:
+        for x in (10, 64):
+            building(m, x, 42, 22, 12, wall=castle["wall"], door=False)
+        if (col, row) == (2, 2):
+            shrine(m, 18, 12)
+        elif (col, row) == (0, 2):
+            for x in (16, 24, 68, 76):
+                fb(m, x, 17, 4, IN["book"])
+        elif (col, row) == (0, 3):
+            for x in (12, 20, 66, 74):
+                m.rect(x, 12, 4, 9, GRASS2, 3)
+                m.block(x + 1, 16, TUFT)
+        elif (col, row) == (2, 0):
+            for x in (12, 20, 68, 76):
+                fb(m, x, 17, 4, IN["ricebag"])
+        else:
+            for x in (16, 72):
+                fb(m, x, 17, 3, 14)
+        line = "%s. The main avenue runs through reception, the courtyard garden and the keep." % label
+    family = castle["families"][(col + row) % 3]
+    sprite = ("gatekeeper", "courtier", "servant", "priest")[(col + row) % 4]
+    ev.npc(38, 22, SC[sprite], "%s %s: %s" % (family, ("Naoki", "Chiyo", "Sadao", "Fuyumi")[row], line))
+    ev.npc(58, 24, SC["servant"], "%s attendant: %s" % (family, castle["description"]))
+    ev.talk(40, 26, "CE000", [(None, [narrate("%s - %s. %s" % (
+        castle["name"], label, "North: " + CASTLE_DISTRICTS[row + 1][col] if row < 3 else "South: inner grounds."))])],
+        trigger=1)
+    for x, z in ((39, 8), (57, 8), (39, 56), (57, 56)):
+        fb(m, x, z, 2, LAMP_STREET)
+    return m, ev
 
 
 def clan_castle_floor(castle, level):
     ids = castle["ids"]
-    labels = ("reception", "inner court", "upper keep", "tower")
-    down = (ids[0], 2) if level == 0 else (ids[level], 2)
-    up = (ids[level + 2], 1) if level < 3 else None
-    return castle_floor(ids[level + 1], "%s - %s" % (castle["name"], labels[level]), 38, 16,
-                        CLAN_CASTLE_FLOORS[labels[level]], up=up, down=down, wall=castle["indoor_wall"])
+    labels = ("1F - reception and service halls", "2F - guest and council chambers",
+              "3F - archives and strategy halls", "4F - audience and watch halls")
+    down = (castle["grounds"][1, 2], 5) if level == 0 else (ids[level], 4)
+    up = (ids[level + 2], 3) if level < 3 else None
+    layout = [("dais", 38, 49, 20, 4)]
+    for x in (16, 66):
+        for z in (16, 38):
+            layout += [("tatami", x, z), ("table", x + 5, z + 2), ("candle", x + 10, z + 6),
+                       ("screen", x - 4, z + 10, 20)]
+            kind = ("ricebag", "futon", "book", "sword")[level]
+            layout += [(kind, x, z + 6), (kind, x + 8, z + 6)]
+
+    def extra(m, ev):
+        # Leave space below the floor for a real descending flight, rather than a shallow tray.
+        m.hgt += 8
+        for obj in m.objs:
+            obj["y"] += 8
+        for event in ev.ev.values():
+            event["pos"][1] += 8
+        # Central and cross corridors stay at least six blocks wide between the four furnished wings.
+        for x in (34, 60):
+            for z, depth in ((12, 15), (35, 13)):
+                fill(m, x, 10, z, 1, 4, depth, castle["indoor_wall"])
+        if up:
+            m.objs = [o for o in m.objs if not (
+                o["t"] == "fill" and o["x"] == m.w - 5 and o["w"] == 3 and o["d"] == 1
+                and o["z"] >= m.d - 4)]
+            for step in range(7):
+                m.rect(84, 46 + step, 6, 1, PLANK, 9 + step)
+            m.rect(84, 53, 6, 3, PLANK, 15)
+            ev.ev["#2#"]["pos"] = [87, 16, 54, 0]
+        if level == 0:
+            ev.ev["#1#"]["pos"] = [48, 10, 3, 2]
+        else:
+            m.rect(6, 4, 6, 11, DARKWOOD, 9)
+            m.rect(7, 5, 4, 8, DARKWOOD, 3)
+            for step in range(7):
+                m.rect(7, 6 + step, 4, 1, PLANK, 3 + step)
+            ev.ev["#1#"]["pos"] = [9, 4, 6, 2]
+            ev.ev["#1#"]["memo"] = "stairwell"
+        # Separate, non-triggering landings put arrivals one full square beyond the stair footprint.
+        for x, z, direction in ((9, 14, 2), (87, 46, 0)):
+            n = ev.prop(x, z, "CE000", d=direction)
+            ev.ev["#%d#" % n]["page"][0]["memo"] = "landing"
+        for x, z, spr, name, line in (
+                (23, 12, "clerk", "Masanobu", "Reception below; guests on 2F, archives on 3F, audience on 4F."),
+                (72, 32, "courtier", "Ayame", castle["description"]),
+                (23, 34, "servant", "Toshi", "The stairs are kept clear. No one should have to climb a chest."),
+                (52, 50, "gatekeeper", "Nobumasa", "Every floor has a stair back down. Take your time.")):
+            family = castle["families"][(level + x) % 3]
+            ev.npc(x, z, SC[spr], "%s %s: %s" % (family, name, line))
+        ev.talk(79, 45, "CE000", [(None, [narrate(
+            "Stairs up to %dF." % (level + 2) if up else "Top floor. The down stair is at the front left.")])],
+            trigger=1)
+        ev.talk(16, 8, "CE000", [(None, [narrate(
+            "Exit to the keep approach." if level == 0 else "Stairs down to %dF." % level)])], trigger=1)
+
+    return castle_floor(ids[level + 1], "%s - %s" % (castle["name"], labels[level]), 94, 61,
+                        layout, up=up, down=down, wall=castle["indoor_wall"], extra=extra)
 
 
 def _clan_castle_floor_builder(castle, level):
@@ -20676,9 +20857,47 @@ def _clan_castle_floor_builder(castle, level):
 
 
 for _castle in CLAN_CASTLES:
-    MAPS[_castle["ids"][0]] = lambda castle=_castle: clan_castle_yard(castle)
+    for (_col, _row), _mid in _castle["grounds"].items():
+        if _mid in MAPS and _mid not in _castle["ids"]:
+            raise RuntimeError("Castle map ID collision: %s" % _mid)
+        MAPS[_mid] = lambda castle=_castle, col=_col, row=_row: clan_castle_yard(castle, col, row)
     for _level in range(4):
         MAPS[_castle["ids"][_level + 1]] = _clan_castle_floor_builder(_castle, _level)
+
+for _k, _castle in enumerate(CLAN_CASTLES):
+    for _n, (_title, _gmap, _gx, _gz, _spr, _giver, _imap, _ix, _iz, _offer, _found, _thanks, _prop) in enumerate((
+            ("The " + _castle["seal"], _castle["grounds"][1, 0], 32, 18, "clerk",
+             _castle["families"][0] + " Harunori", _castle["grounds"][0, 2], 30, 18,
+             "The archive clerks borrowed our reception seal. Please fetch it from the west archive court, "
+             "two districts north and one west of here. Look beside the book shelves.",
+             "A small lacquered case holds the %s. You wrap it carefully." % _castle["seal"],
+             "The seal! Now the guests can be admitted before the tea goes cold.", "doc"),
+            ("Incense for " + _castle["name"], _castle["ids"][3], 70, 18, "priest",
+             _castle["families"][2] + " Chihiro", _castle["grounds"][2, 2], 30, 18,
+             "Please bring %s from the shrine court, east of the keep approach. The bundle waits by the shrine."
+             % _castle["incense"],
+             "A paper bundle of %s waits on the shrine step. You pick it up." % _castle["incense"],
+             "Thank you. The evening rite will have its proper fragrance.", "bottle"),
+            ("Supplies for the " + _castle["clan"] + " court", _castle["grounds"][0, 1], 30, 18, "gatekeeper",
+             _castle["families"][1] + " Sumiko", _castle["grounds"][2, 0], 30, 18,
+             "We are short of %s. The delivery was left in stables and stores, east of reception. "
+             "Please collect the marked crate and bring it back to this training court." % _castle["supplies"],
+             "The marked crate contains %s. You gather the supplies." % _castle["supplies"],
+             "Just in time. A well-kept court begins with small duties done properly.", "crates"),
+            ("Records for " + _castle["name"], _castle["ids"][2], 70, 18, "courtier",
+             _castle["families"][0] + " Teruko", _castle["ids"][4], 40, 20,
+             "The council needs %s. Someone left them in the fourth-floor audience and watch hall, "
+             "beside the central passage. Could you fetch them and return here to the second floor?"
+             % _castle["records"],
+             "You find %s, neatly tied and ready for the council." % _castle["records"],
+             "Now we can begin without calling another messenger up all those stairs. My thanks.", "book"),
+    )):
+        _key = "fq_castle_%d_%d" % (_k, _n)
+        FETCH_QUESTS.append((_key, _title, _gmap, _gx, _gz, _spr, _giver, _imap, _ix, _iz,
+                             _offer, _found, _thanks, 150 + 50 * _n))
+        _base = 1400 + 6 * _k + 3 * _n if _n < 2 else 1460 + 6 * _k + 3 * (_n - 2)
+        FQ_FLAGS[_key] = tuple("G%d" % (_base + n) for n in range(3))
+        FQ_SETTINGS[_key] = {"who": None, "open": [_castle["visited"]], "castle": True, "prop": _prop}
 
 
 def make(i):
