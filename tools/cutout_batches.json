@@ -34,5 +34,14 @@
   "h_witch",
   "h_sapper",
   "oldwoman"
+ ],
+ "cast5": [
+  "h_yojimbo",
+  "twin",
+  "sailor",
+  "priest",
+  "h_tsuruchi",
+  "h_moshi",
+  "dojipoet"
  ]
 }
