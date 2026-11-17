@@ -7992,5 +7992,515 @@
 		"defval": false,
 		"name": "fq_castle_7_3: done",
 		"type": 1
+	},
+	"G1508": {
+		"defval": false,
+		"name": "fq_expansion_0: taken",
+		"type": 1
+	},
+	"G1509": {
+		"defval": false,
+		"name": "fq_expansion_0: found",
+		"type": 1
+	},
+	"G1510": {
+		"defval": false,
+		"name": "fq_expansion_0: done",
+		"type": 1
+	},
+	"G1511": {
+		"defval": false,
+		"name": "fq_expansion_1: taken",
+		"type": 1
+	},
+	"G1512": {
+		"defval": false,
+		"name": "fq_expansion_1: found",
+		"type": 1
+	},
+	"G1513": {
+		"defval": false,
+		"name": "fq_expansion_1: done",
+		"type": 1
+	},
+	"G1514": {
+		"defval": false,
+		"name": "fq_expansion_2: taken",
+		"type": 1
+	},
+	"G1515": {
+		"defval": false,
+		"name": "fq_expansion_2: found",
+		"type": 1
+	},
+	"G1516": {
+		"defval": false,
+		"name": "fq_expansion_2: done",
+		"type": 1
+	},
+	"G1517": {
+		"defval": false,
+		"name": "fq_expansion_3: taken",
+		"type": 1
+	},
+	"G1518": {
+		"defval": false,
+		"name": "fq_expansion_3: found",
+		"type": 1
+	},
+	"G1519": {
+		"defval": false,
+		"name": "fq_expansion_3: done",
+		"type": 1
+	},
+	"G1520": {
+		"defval": false,
+		"name": "fq_expansion_4: taken",
+		"type": 1
+	},
+	"G1521": {
+		"defval": false,
+		"name": "fq_expansion_4: found",
+		"type": 1
+	},
+	"G1522": {
+		"defval": false,
+		"name": "fq_expansion_4: done",
+		"type": 1
+	},
+	"G1523": {
+		"defval": false,
+		"name": "fq_expansion_5: taken",
+		"type": 1
+	},
+	"G1524": {
+		"defval": false,
+		"name": "fq_expansion_5: found",
+		"type": 1
+	},
+	"G1525": {
+		"defval": false,
+		"name": "fq_expansion_5: done",
+		"type": 1
+	},
+	"G1526": {
+		"defval": false,
+		"name": "fq_expansion_6: taken",
+		"type": 1
+	},
+	"G1527": {
+		"defval": false,
+		"name": "fq_expansion_6: found",
+		"type": 1
+	},
+	"G1528": {
+		"defval": false,
+		"name": "fq_expansion_6: done",
+		"type": 1
+	},
+	"G1529": {
+		"defval": false,
+		"name": "fq_expansion_7: taken",
+		"type": 1
+	},
+	"G1530": {
+		"defval": false,
+		"name": "fq_expansion_7: found",
+		"type": 1
+	},
+	"G1531": {
+		"defval": false,
+		"name": "fq_expansion_7: done",
+		"type": 1
+	},
+	"G1532": {
+		"defval": false,
+		"name": "fq_expansion_8: taken",
+		"type": 1
+	},
+	"G1533": {
+		"defval": false,
+		"name": "fq_expansion_8: found",
+		"type": 1
+	},
+	"G1534": {
+		"defval": false,
+		"name": "fq_expansion_8: done",
+		"type": 1
+	},
+	"G1535": {
+		"defval": false,
+		"name": "fq_expansion_9: taken",
+		"type": 1
+	},
+	"G1536": {
+		"defval": false,
+		"name": "fq_expansion_9: found",
+		"type": 1
+	},
+	"G1537": {
+		"defval": false,
+		"name": "fq_expansion_9: done",
+		"type": 1
+	},
+	"G1538": {
+		"defval": false,
+		"name": "fq_expansion_10: taken",
+		"type": 1
+	},
+	"G1539": {
+		"defval": false,
+		"name": "fq_expansion_10: found",
+		"type": 1
+	},
+	"G1540": {
+		"defval": false,
+		"name": "fq_expansion_10: done",
+		"type": 1
+	},
+	"G1541": {
+		"defval": false,
+		"name": "fq_expansion_11: taken",
+		"type": 1
+	},
+	"G1542": {
+		"defval": false,
+		"name": "fq_expansion_11: found",
+		"type": 1
+	},
+	"G1543": {
+		"defval": false,
+		"name": "fq_expansion_11: done",
+		"type": 1
+	},
+	"G1544": {
+		"defval": false,
+		"name": "fq_expansion_12: taken",
+		"type": 1
+	},
+	"G1545": {
+		"defval": false,
+		"name": "fq_expansion_12: found",
+		"type": 1
+	},
+	"G1546": {
+		"defval": false,
+		"name": "fq_expansion_12: done",
+		"type": 1
+	},
+	"G1547": {
+		"defval": false,
+		"name": "fq_expansion_13: taken",
+		"type": 1
+	},
+	"G1548": {
+		"defval": false,
+		"name": "fq_expansion_13: found",
+		"type": 1
+	},
+	"G1549": {
+		"defval": false,
+		"name": "fq_expansion_13: done",
+		"type": 1
+	},
+	"G1550": {
+		"defval": false,
+		"name": "fq_expansion_14: taken",
+		"type": 1
+	},
+	"G1551": {
+		"defval": false,
+		"name": "fq_expansion_14: found",
+		"type": 1
+	},
+	"G1552": {
+		"defval": false,
+		"name": "fq_expansion_14: done",
+		"type": 1
+	},
+	"G1553": {
+		"defval": false,
+		"name": "fq_expansion_15: taken",
+		"type": 1
+	},
+	"G1554": {
+		"defval": false,
+		"name": "fq_expansion_15: found",
+		"type": 1
+	},
+	"G1555": {
+		"defval": false,
+		"name": "fq_expansion_15: done",
+		"type": 1
+	},
+	"G1556": {
+		"defval": false,
+		"name": "fq_expansion_16: taken",
+		"type": 1
+	},
+	"G1557": {
+		"defval": false,
+		"name": "fq_expansion_16: found",
+		"type": 1
+	},
+	"G1558": {
+		"defval": false,
+		"name": "fq_expansion_16: done",
+		"type": 1
+	},
+	"G1559": {
+		"defval": false,
+		"name": "fq_expansion_17: taken",
+		"type": 1
+	},
+	"G1560": {
+		"defval": false,
+		"name": "fq_expansion_17: found",
+		"type": 1
+	},
+	"G1561": {
+		"defval": false,
+		"name": "fq_expansion_17: done",
+		"type": 1
+	},
+	"G1562": {
+		"defval": false,
+		"name": "fq_expansion_18: taken",
+		"type": 1
+	},
+	"G1563": {
+		"defval": false,
+		"name": "fq_expansion_18: found",
+		"type": 1
+	},
+	"G1564": {
+		"defval": false,
+		"name": "fq_expansion_18: done",
+		"type": 1
+	},
+	"G1565": {
+		"defval": false,
+		"name": "fq_expansion_19: taken",
+		"type": 1
+	},
+	"G1566": {
+		"defval": false,
+		"name": "fq_expansion_19: found",
+		"type": 1
+	},
+	"G1567": {
+		"defval": false,
+		"name": "fq_expansion_19: done",
+		"type": 1
+	},
+	"G1568": {
+		"defval": false,
+		"name": "fq_expansion_20: taken",
+		"type": 1
+	},
+	"G1569": {
+		"defval": false,
+		"name": "fq_expansion_20: found",
+		"type": 1
+	},
+	"G1570": {
+		"defval": false,
+		"name": "fq_expansion_20: done",
+		"type": 1
+	},
+	"G1571": {
+		"defval": false,
+		"name": "fq_expansion_21: taken",
+		"type": 1
+	},
+	"G1572": {
+		"defval": false,
+		"name": "fq_expansion_21: found",
+		"type": 1
+	},
+	"G1573": {
+		"defval": false,
+		"name": "fq_expansion_21: done",
+		"type": 1
+	},
+	"G1574": {
+		"defval": false,
+		"name": "fq_expansion_22: taken",
+		"type": 1
+	},
+	"G1575": {
+		"defval": false,
+		"name": "fq_expansion_22: found",
+		"type": 1
+	},
+	"G1576": {
+		"defval": false,
+		"name": "fq_expansion_22: done",
+		"type": 1
+	},
+	"G1577": {
+		"defval": false,
+		"name": "fq_expansion_23: taken",
+		"type": 1
+	},
+	"G1578": {
+		"defval": false,
+		"name": "fq_expansion_23: found",
+		"type": 1
+	},
+	"G1579": {
+		"defval": false,
+		"name": "fq_expansion_23: done",
+		"type": 1
+	},
+	"G1580": {
+		"defval": false,
+		"name": "fq_expansion_24: taken",
+		"type": 1
+	},
+	"G1581": {
+		"defval": false,
+		"name": "fq_expansion_24: found",
+		"type": 1
+	},
+	"G1582": {
+		"defval": false,
+		"name": "fq_expansion_24: done",
+		"type": 1
+	},
+	"G1583": {
+		"defval": false,
+		"name": "fq_expansion_25: taken",
+		"type": 1
+	},
+	"G1584": {
+		"defval": false,
+		"name": "fq_expansion_25: found",
+		"type": 1
+	},
+	"G1585": {
+		"defval": false,
+		"name": "fq_expansion_25: done",
+		"type": 1
+	},
+	"G1586": {
+		"defval": false,
+		"name": "fq_expansion_26: taken",
+		"type": 1
+	},
+	"G1587": {
+		"defval": false,
+		"name": "fq_expansion_26: found",
+		"type": 1
+	},
+	"G1588": {
+		"defval": false,
+		"name": "fq_expansion_26: done",
+		"type": 1
+	},
+	"G1589": {
+		"defval": false,
+		"name": "fq_expansion_27: taken",
+		"type": 1
+	},
+	"G1590": {
+		"defval": false,
+		"name": "fq_expansion_27: found",
+		"type": 1
+	},
+	"G1591": {
+		"defval": false,
+		"name": "fq_expansion_27: done",
+		"type": 1
+	},
+	"G1592": {
+		"defval": false,
+		"name": "fq_expansion_28: taken",
+		"type": 1
+	},
+	"G1593": {
+		"defval": false,
+		"name": "fq_expansion_28: found",
+		"type": 1
+	},
+	"G1594": {
+		"defval": false,
+		"name": "fq_expansion_28: done",
+		"type": 1
+	},
+	"G1595": {
+		"defval": false,
+		"name": "fq_expansion_29: taken",
+		"type": 1
+	},
+	"G1596": {
+		"defval": false,
+		"name": "fq_expansion_29: found",
+		"type": 1
+	},
+	"G1597": {
+		"defval": false,
+		"name": "fq_expansion_29: done",
+		"type": 1
+	},
+	"G1598": {
+		"defval": false,
+		"name": "fq_expansion_30: taken",
+		"type": 1
+	},
+	"G1599": {
+		"defval": false,
+		"name": "fq_expansion_30: found",
+		"type": 1
+	},
+	"G1600": {
+		"defval": false,
+		"name": "fq_expansion_30: done",
+		"type": 1
+	},
+	"G1601": {
+		"defval": false,
+		"name": "fq_expansion_31: taken",
+		"type": 1
+	},
+	"G1602": {
+		"defval": false,
+		"name": "fq_expansion_31: found",
+		"type": 1
+	},
+	"G1603": {
+		"defval": false,
+		"name": "fq_expansion_31: done",
+		"type": 1
+	},
+	"G1604": {
+		"defval": false,
+		"name": "fq_expansion_32: taken",
+		"type": 1
+	},
+	"G1605": {
+		"defval": false,
+		"name": "fq_expansion_32: found",
+		"type": 1
+	},
+	"G1606": {
+		"defval": false,
+		"name": "fq_expansion_32: done",
+		"type": 1
+	},
+	"G1607": {
+		"defval": false,
+		"name": "fq_expansion_33: taken",
+		"type": 1
+	},
+	"G1608": {
+		"defval": false,
+		"name": "fq_expansion_33: found",
+		"type": 1
+	},
+	"G1609": {
+		"defval": false,
+		"name": "fq_expansion_33: done",
+		"type": 1
 	}
 }

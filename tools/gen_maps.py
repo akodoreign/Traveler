@@ -2975,6 +2975,7 @@ def edge_triggers(m, ev):
     (the whole edge, or up to the midpoint with a neighbouring exit on the same edge). A portal's own event stays where
     it was, as the landing spot (other maps arrive at it by event id): it stops triggering, and a copy at the edge does
     the moving. A touch trigger is simply moved and stretched."""
+    expansion_wards = {region["mid"] for region in TOWN_WARDS + ISLAND_WARDS}
     by_side = {}
     for key, side in getattr(m, "exits", []):
         by_side.setdefault(side, []).append(key)
@@ -3016,7 +3017,7 @@ def edge_triggers(m, ev):
             r = list((trig.get("mdl") or {}).get("r") or [0, 1.0, 0, 1.0, 1.0, 1.0])
             r[3] = max(1.0, (hi - lo) / 4.0)                                 # half its stretch, in metres (0.5 m blocks)
             r[4] = 6.0                                                       # tall: any floor height along the edge
-            r[5] = 0.5                                                       # one square deep (user)
+            r[5] = 1.5 if m.mid in expansion_wards else 0.5                  # the ward paths meet the edge portal
             trig.setdefault("mdl", {})["r"] = r
             # Always there: spawndist 1 (the default) only spawns an event while its CENTRE is on screen (RPGEvent
             # spawnDistantCheck), so the far ends of a long edge strip had no trigger at all (engine-tested
@@ -6397,7 +6398,18 @@ def hiruto_courtyard():
     building(m, 4, 12, 10, 6, wall=WOOD)                                    # the bathhouse
     building(m, 56, 12, 12, 6, wall=WOOD)                                   # the barracks
     building(m, 56, 24, 12, 6)                                              # the guest wing (the Phoenix)
-    fill(m, 48, 3, 28, 4, 9, 4, STONE)                                      # the west tower
+    # Hiruto's west tower is a stepped, three-storey keep on the west side, with a visible ground-floor entrance.
+    fill(m, 15, 3, 27, 8, 1, 8, STONEW)
+    fill(m, 16, 4, 27, 6, 5, 8, STONE)
+    fill(m, 14, 9, 26, 10, 1, 10, ROOF)
+    fill(m, 17, 10, 28, 4, 5, 6, STONE)
+    fill(m, 15, 15, 27, 8, 1, 8, ROOF)
+    fill(m, 18, 16, 29, 2, 5, 4, STONE)
+    fill(m, 16, 21, 28, 6, 1, 6, ROOF)
+    fill(m, 17, 4, 27, 1, 5, 1, DARKWOOD)
+    fill(m, 20, 4, 27, 1, 5, 1, DARKWOOD)
+    fill(m, 17, 8, 27, 4, 1, 1, DARKWOOD)
+    fill(m, 18, 4, 27, 2, 4, 1, VOID)
     fb(m, 34, 14, 4, IN["bucket"], y=3)                                     # the water barrel (C2, at night)
     for x in (2, 22, 46, 66):
         fb(m, x, 8, 2, LAMP_STREET)
@@ -6441,7 +6453,7 @@ def hiruto_courtyard():
     ev.talk(34, 13, "CE000", [(None, [narrate("The water barrel. By day, only water.")]),
                               ([flag("G458"), flag("G448", False)], GHOST)], trigger=1)
     ev.npc(20, 14, SC["nagai"], "Bah. Ghosts. Train harder.", reqs=[flag("G444"), flag("G457", False)])
-    ev.talk(46, 26, "CE000", [(None, [narrate("The west tower, dark against the sky.")]),
+    ev.talk(15, 26, "CE000", [(None, [narrate("The west tower, dark against the sky.")]),
                               ([flag("G441"), flag("G470"), flag("G474", False)], [
                                   narrate("Shizue faces the west tower and holds up the Jade Chains."),
                                   narrate("Ice. The lock burns with cold. The spirit is here."),
@@ -8095,8 +8107,9 @@ ARRIVE_PHX1 = [narrate("Lord Hiruto's castle. Lord Akodo Hiruto receives the Pho
 def phoenix_courtyard(ev):
     ev.scene(30, 8, "G600", ARRIVE_PHX1, after=[PHX, flag("G598")])
     ev.prop(37, 9, "EP203", reqs=[PHX, flag("G602", False)], d=2)          # Shizue, silent (P-1)
-    tower = DOOR_EV[("M242", "tower")] = ev.portal(49, 27, "M278", 1, d=0)
+    tower = DOOR_EV[("M242", "tower")] = ev.portal(18, 26, "M278", 1, d=0)
     ev.ev["#%d#" % tower]["reqs0"] = [PHX, flag("G600")]
+    _dilate_event_trigger(ev, tower)
     hall = ev.portal(35, 24, "M248", 1, d=0)
     ev.ev["#%d#" % hall]["reqs0"] = [PHX, flag("G601")]
 
@@ -8112,8 +8125,14 @@ def tower_1f():
     def extra(m, ev):
         ev.chest(12, 8, "I101", 1)
         ev.talk(6, 6, "CE000", [(None, [narrate("Wind howls down the stair. It makes no sound at all.")])], trigger=1)
-    return castle_floor("M278", "Hiruto's castle - the west tower", 18, 10, [("candle", 3, 9), ("pillar", 9, 5)],
-                        up=("M279", 1), down=("M242", DOOR_EV.get(("M242", "tower"), 22)), wall=STONE, extra=extra)
+    m, ev = castle_floor("M278", "Hiruto's castle - the west tower", 18, 10,
+                         [("candle", 3, 9), ("pillar", 9, 5)],
+                         up=("M279", 1), down=("M242", DOOR_EV.get(("M242", "tower"), 22)),
+                         wall=STONE, extra=extra)
+    return_event = next(int(key[1:-1]) for key, event in ev.ev.items()
+                        if event.get("role") == "portal" and event.get("dest", {}).get("mapid") == "M242")
+    _dilate_event_trigger(ev, return_event)
+    return m, ev
 
 
 def tower_2f():
@@ -19684,7 +19703,8 @@ def sea_map(mid, name, w, d, islands, piers, deep_open, lanes=(), shore=7, seed=
                   choices(("Go ashore.", dest), ("Keep sailing.", []))]
         pages = [(None, [narrate(closed)])] if reqs else []
         pages.append((reqs, land_q) if reqs else (None, land_q))
-        ev.talk(tx, tz, "CE000", pages, trigger=5)
+        landfall = ev.talk(tx, tz, "CE000", pages, d={"n": 2, "s": 0, "e": 3, "w": 1}[dr], trigger=5)
+        ev.ev["#%d#" % landfall]["mdl"]["r"][3] = 2.5  # wider along the pier, not out over the sailing lane
         ax, az = tx + dx * 3, tz + dz * 3
         m.walls = [c for c in m.walls if abs(c[0] - ax) > 2 or abs(c[1] - az) > 2]
         sl = np.s_[max(az - 2, 0):az + 3, max(ax - 2, 0):ax + 3]
@@ -19745,11 +19765,17 @@ def crane_sea():
 
 
 def crane_sea_outer():
+    def land(mid, x, z):
+        return DARK + [go(mid, x, z)]
+
     m, ev = sea_map("M493", "The Crane sea - the outer coast", 150, 90, islands=[
         (75, 100, 110, 24, GRASS),                                         # the Crane mainland, north
         (49, 48, 13, 9, SAND), (98, 31, 12, 8, GRASS2),
         (119, 57, 8, 7, SAND)],
-        piers=[], deep_open=True, lanes=[(15, 36, 135, 36, 8)], shore=7, seed=17)
+        piers=[("M755", 49, 41, "s", "Kiku Shoal", land("M755", 8, 15), None, ""),
+               ("M756", 98, 24, "s", "Gulls' Shelf", land("M756", 8, 15), None, ""),
+               ("M757", 119, 50, "s", "White Gull Islet", land("M757", 8, 15), None, "")],
+        deep_open=True, lanes=[(15, 36, 135, 36, 8)], shore=7, seed=17)
     sea_channel(m, ev, 5, 36, "M491", 138, 36,
                 "The route west leads back to the Crane port.")
     sea_channel(m, ev, 144, 43, "M494", 12, 43,
@@ -19758,12 +19784,18 @@ def crane_sea_outer():
 
 
 def crane_sea_doji():
+    def land(mid, x, z):
+        return DARK + [go(mid, x, z)]
+
     m, ev = sea_map("M494", "The Crane sea - the Doji coast", 150, 90, islands=[
         (75, 101, 112, 24, GRASS2),                                        # the Crane mainland, north
         (43, 42, 12, 8, SAND), (100, 34, 11, 8, GRASS),
         (115, 57, 9, 7, SAND)],
         piers=[("M228", 74, 82, "s", "Kyuden Doji", DARK + [go("M228", 8, 10)], [flag("G403")],
-                "The harbor steps of Kyuden Doji lie beyond the northern shoals.")],
+                "The harbor steps of Kyuden Doji lie beyond the northern shoals."),
+               ("M758", 43, 34, "s", "Paper Lantern Islet", land("M758", 8, 15), None, ""),
+               ("M759", 100, 26, "s", "White Heron Key", land("M759", 8, 15), None, ""),
+               ("M760", 115, 50, "s", "Reed-Song Islet", land("M760", 8, 15), None, "")],
         deep_open=True, lanes=[(15, 43, 135, 43, 8)], shore=7, seed=23)
     sea_channel(m, ev, 5, 43, "M493", 138, 43,
                 "The route west follows the Crane coast.")
@@ -19930,6 +19962,7 @@ def register(specs, events):
     gesture_pass(mp)
     scene_pre_pass(mp)
     json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="	")
+    _register_expansion_gvars()
 
 
 # (user 2026-11-14: "add journal to the menu in game and add selectable objectives there") The Journal's Training
@@ -20166,11 +20199,13 @@ def fetch_events(ev, mid):
                 ([flag(done)], [say(gname, "Thanks again, traveler." if settings.get("castle")
                                    else "Thanks again, ronin.")])], d=2)
         if mid == imap:
-            if settings.get("castle"):
+            if settings.get("prop"):
                 ev.prop(ix, iz, DECOR_EP[settings["prop"]], d=0,
                         reqs=[flag(taken), flag(got_, False)])
-            ev.talk(ix, iz, "CE000", [(None, [narrate(found), setf(got_), narrate("Back to %s." % _the(gname))])],
-                    reqs=[flag(taken), flag(got_, False)], trigger=1)
+            pickup = ev.talk(ix, iz, "CE000", [(None, [narrate(found), setf(got_),
+                                                        narrate("Back to %s." % _the(gname))])],
+                             reqs=[flag(taken), flag(got_, False)], trigger=1)
+            _dilate_event_trigger(ev, pickup)
 
 
 def _the(g):
@@ -20665,6 +20700,15 @@ def _castle_access_tile(m, ev, anchor, preferred=None):
     raise RuntimeError("No accessible castle entrance tile on %s" % m.mid)
 
 
+def _dilate_event_trigger(ev, event_id, extent=1.5, depth=1.0):
+    event = ev.ev["#%d#" % event_id]
+    radius = list(event.get("mdl", {}).get("r") or [0, 1.0, 0, 1.0, 1.0, 0.5])
+    radius[3] = max(radius[3], extent)
+    radius[4] = max(radius[4], 3.0)
+    radius[5] = max(radius[5], depth)
+    event.setdefault("mdl", {})["r"] = radius
+
+
 def _castle_town_access(mid, m, ev):
     castle = CLAN_CASTLE_BY_TOWN.get(mid)
     if castle is None:
@@ -20900,6 +20944,335 @@ for _k, _castle in enumerate(CLAN_CASTLES):
         FQ_SETTINGS[_key] = {"who": None, "open": [_castle["visited"]], "castle": True, "prop": _prop}
 
 
+TOWN_WARDS = [
+    {"sources": ("M103",), "name": "Hoshi-no-Ichi", "district": "Harbor Ward", "clan": "Crab", "prop": "jewel",
+     "quest": ("The Salt Measure", "the harbor's brass salt measure", "Tomo", "merchant")},
+    {"sources": ("M202",), "name": "Pleasant Eaves", "district": "Lantern Lane", "clan": "Crane", "prop": "candle",
+     "quest": ("A Lantern for the Inn", "the inn's blue paper lantern", "Sanae", "servant")},
+    {"sources": ("M205",), "name": "The Green Ronin's Village", "district": "Bamboo Row", "clan": "Ronin",
+     "prop": "sword",
+     "quest": ("The Missing Sickle", "the shared rice sickle", "Matsu", "merchant")},
+    {"sources": ("M210",), "name": "Garden Under Shadow City", "district": "Daidoji Quay", "clan": "Crane",
+     "prop": "doc",
+     "quest": ("The Sealed Dispatch", "the harbor-master's sealed dispatch", "Nami", "servant")},
+    {"sources": ("M220",), "name": "The Crane Port", "district": "Sailmaker's Row", "clan": "Crane",
+     "prop": "book",
+     "quest": ("A Sailmaker's Pattern", "a sailmaker's missing paper pattern", "Kiyo", "merchant")},
+    {"sources": ("M241",), "name": "Hiruto's Castle Town", "district": "Banner Square", "clan": "Lion",
+     "prop": "book",
+     "quest": ("The Muster Roll", "the Lion guard's muster roll", "Tadashi", "servant")},
+    {"sources": ("M282",), "name": "Zumiki", "district": "Pilgrim's Quarter", "clan": "Dragon", "prop": "jewel",
+     "quest": ("The Pilgrim's Bell", "the little bronze pilgrim bell", "Shun", "priest")},
+    {"sources": ("M285",), "name": "Honored Treaty City", "district": "Treaty Market", "clan": "Lion", "prop": "doc",
+     "quest": ("The Treaty Copy", "the market's copy of the treaty", "Reiko", "merchant")},
+    {"sources": ("M297",), "name": "The Coast Temple Town", "district": "Tide Shrine Ward", "clan": "Phoenix",
+     "prop": "candle",
+     "quest": ("Candles for the Shrine", "the shrine's bundle of white candles", "Mie", "priest")},
+    {"sources": ("M349",), "name": "Shutai", "district": "River Gate", "clan": "Scorpion", "prop": "book",
+     "quest": ("The River Toll Ledger", "the ferryman's toll ledger", "Sada", "merchant")},
+    {"sources": ("M351",), "name": "Kudo", "district": "Caravan Market", "clan": "Scorpion", "prop": "bottle",
+     "quest": ("A Fox's Medicine", "the apothecary's foxglove packet", "Yori", "merchant")},
+    {"sources": ("M360",), "name": "Hisatu Kensu", "district": "Maskmakers' Lane", "clan": "Scorpion", "prop": "jewel",
+     "quest": ("The Unpainted Mask", "a plain mask for the festival", "Aya", "servant")},
+    {"sources": ("M369", "M387"), "name": "The Town of Buried Leaves", "district": "Autumn Market",
+     "clan": "Unicorn", "prop": "dish",
+     "quest": ("The Persimmon Basket", "the innkeeper's basket of persimmons", "Hana", "merchant")},
+    {"sources": ("M372",), "name": "Shioden", "district": "Bellmaker's Walk", "clan": "Dragon", "prop": "barrel",
+     "quest": ("A Bell for Shioden", "the temple bell's wooden clapper", "Toru", "priest")},
+    {"sources": ("M375",), "name": "Perfume Petal Blossom", "district": "Perfumer's Row", "clan": "Unicorn",
+     "prop": "bottle",
+     "quest": ("The Rosewater Flask", "a rosewater flask for the guest house", "Mina", "servant")},
+    {"sources": ("M379",), "name": "Dragon Mountain Town", "district": "Mountain Spring", "clan": "Dragon",
+     "prop": "book",
+     "quest": ("The Spring Survey", "the surveyor's mountain notebook", "Kenta", "merchant")},
+    {"sources": ("M396",), "name": "Yotomo", "district": "Horsefair", "clan": "Unicorn", "prop": "shield",
+     "quest": ("A Bridle for Yotomo", "the stable's braided bridle", "Taro", "merchant")},
+    {"sources": ("M416",), "name": "Cakon", "district": "River Market", "clan": "Ronin", "prop": "bottle",
+     "quest": ("The Market's Blue Dye", "the dyer's jar of blue pigment", "Rin", "merchant")},
+    {"sources": ("M418",), "name": "The Eta Village", "district": "Willow Row", "clan": "Ronin", "prop": "bucket",
+     "quest": ("A Clean Bandage", "the village healer's clean bandage roll", "Suzu", "servant")},
+    {"sources": ("M424",), "name": "The Village of Floating Flowers", "district": "Lotus Landing", "clan": "Ronin",
+     "prop": "bottle",
+     "quest": ("The Soapmaker's Lye", "the soapmaker's covered lye jar", "Tami", "merchant")},
+    {"sources": ("M430",), "name": "The Village of the Wounded Lion", "district": "Snowmelt Row", "clan": "Lion",
+     "prop": "dish",
+     "quest": ("Rice for the Elders", "the elders' sack of winter rice", "Mosuke", "servant")},
+    {"sources": ("M438",), "name": "The Oracle's Shrine Town", "district": "Pilgrim's Landing", "clan": "Ronin",
+     "prop": "crates",
+     "quest": ("The Oracle's Offering", "a small cedar offering box", "Akari", "priest")},
+    {"sources": ("M439",), "name": "The Eta Quarter", "district": "Hearth Lane", "clan": "Ronin", "prop": "dish",
+     "quest": ("A Bowl for the Potter", "the potter's wrapped lunch bowl", "Hiro", "merchant")},
+]
+
+ISLAND_WARDS = [
+    {"sources": ("M222",), "name": "Cove Fort", "district": "The Fisher's Cove", "clan": "Crab", "prop": "crates",
+     "quest": ("The Fort's Lost Net", "the watch's spare fishing net", "Kenta", "merchant")},
+    {"sources": ("M223",), "name": "The Temples of the Sun", "district": "Pilgrim's Landing", "clan": "Crane",
+     "prop": "candle",
+     "quest": ("The Sun Temple's Incense", "the temple's cedar incense bundle", "Aki", "priest")},
+    {"sources": ("M225",), "name": "The Isle of the Heavenly Sheen", "district": "Wreckers' Shore", "clan": "Crane",
+     "prop": "doc",
+     "quest": ("The Wrecked Chart", "the ship's water-stained chart", "Nori", "merchant")},
+    {"sources": ("M304",), "name": "The Isle of Silk", "district": "Mulberry Quay", "clan": "Mantis",
+     "prop": "jewel",
+     "quest": ("The Silk Merchant's Seal", "the silk merchant's lacquer seal", "Yori", "merchant")},
+    {"sources": ("M315",), "name": "Tortoise Island", "district": "South Beach", "clan": "Tortoise",
+     "prop": "candle",
+     "quest": ("The Tortoise Ferry Bell", "the ferryman's brass bell", "Goro", "merchant")},
+]
+
+SEA_ISLETS = [
+    {"mid": "M755", "sea": "M493", "name": "Kiku Shoal", "clan": "Crane", "prop": "book",
+     "quest": ("The Shoal's Tide Notes", "the fisher's tide notes", "Mori", "merchant")},
+    {"mid": "M756", "sea": "M493", "name": "Gulls' Shelf", "clan": "Crane", "prop": "doc",
+     "quest": ("A Gull's Message", "a message tube from the watch", "Sayo", "servant")},
+    {"mid": "M757", "sea": "M493", "name": "White Gull Islet", "clan": "Crane", "prop": "jewel",
+     "quest": ("The White Gull's Feather", "a feather for the shrine keeper", "Riku", "priest")},
+    {"mid": "M758", "sea": "M494", "name": "Paper Lantern Islet", "clan": "Crane", "prop": "candle",
+     "quest": ("The Lantern Keeper's Wick", "the keeper's box of lantern wicks", "Chiyo", "servant")},
+    {"mid": "M759", "sea": "M494", "name": "White Heron Key", "clan": "Crane", "prop": "sword",
+     "quest": ("A Heron's Fishing Hook", "the fisher's silver hook", "Tetsu", "merchant")},
+    {"mid": "M760", "sea": "M494", "name": "Reed-Song Islet", "clan": "Crane", "prop": "barrel",
+     "quest": ("The Reed Flute", "a reed flute for the boatman", "Haru", "servant")},
+]
+
+_WARD_THEMES = {
+    "Crab": (GRASS2, STONEW, PLASTER, ROOF, SAND),
+    "Crane": (GRASS, STONE, PLASTER, ROOF, SAND),
+    "Lion": (SNOW, STONEW, PLASTER, ROOF, ROAD),
+    "Phoenix": (SAND, STONE, WOOD, ROOF, GRASS2),
+    "Dragon": (GRASS2, STONEW, WOOD, DARKWOOD, SAND),
+    "Scorpion": (DIRT, STONEW, DARKWOOD, ROOF, SAND),
+    "Unicorn": (GRASS, STONE, WOOD, ROOF, SAND),
+    "Ronin": (SAND, STONEW, WOOD, DARKWOOD, GRASS2),
+    "Mantis": (GRASS2, STONE, WOOD, DARKWOOD, SAND),
+    "Tortoise": (SAND, STONEW, WOOD, DARKWOOD, GRASS2),
+}
+
+_REGION_BY_SOURCE = {}
+_REGION_BY_MAP = {}
+_EXPANSION_QUESTS = []
+for _k, _region in enumerate(TOWN_WARDS + ISLAND_WARDS):
+    _region["mid"] = "M%d" % (630 + _k) if _k < len(TOWN_WARDS) else "M%d" % (
+        750 + _k - len(TOWN_WARDS))
+    _region["room"] = "M%d" % (700 + _k) if _k < len(TOWN_WARDS) else None
+    _REGION_BY_MAP[_region["mid"]] = _region
+    for _source_index, _source in enumerate(_region["sources"]):
+        if _source in _REGION_BY_SOURCE:
+            raise RuntimeError("More than one settlement expansion for %s" % _source)
+        _REGION_BY_SOURCE[_source] = (_region, _source_index)
+    _EXPANSION_QUESTS.append((_region, _region["quest"]))
+
+for _islet in SEA_ISLETS:
+    if _islet["mid"] in MAPS:
+        raise RuntimeError("Sea-islet map ID collision: %s" % _islet["mid"])
+    MAPS[_islet["mid"]] = lambda islet=_islet: sea_islet(islet)
+
+
+def _append_expansion_quests():
+    base = 1508
+    entries = _EXPANSION_QUESTS + [(islet, islet["quest"]) for islet in SEA_ISLETS]
+    for i, (region, quest) in enumerate(entries):
+        title, item, giver, sprite = quest
+        key = "fq_expansion_%d" % i
+        mid = region["mid"]
+        FETCH_QUESTS.append((key, title, mid, 34, 24, sprite, giver, mid, 63, 43,
+                            "I left %s near the ward's roadside shrine. Would you bring it back here? I can pay."
+                            % item,
+                            "By the roadside shrine, you find %s and take it." % item,
+                            "You found %s. The whole ward is grateful." % item, 120 + 10 * (i % 6)))
+        FQ_FLAGS[key] = tuple("G%d" % (base + i * 3 + n) for n in range(3))
+        FQ_SETTINGS[key] = {"who": None, "open": [], "prop": region["prop"]}
+        FQ_PRE[key] = "%s's resident waits in the %s, with a small local errand." % (
+            giver, region.get("district", region["name"]))
+        if i < len(_EXPANSION_QUESTS):
+            _EXPANSION_QUESTS[i] = (region, (key, title, item, giver, sprite))
+
+
+_append_expansion_quests()
+
+
+def _register_expansion_gvars():
+    path = os.path.join(PROJ, "data", "gvar.json")
+    variables = json.load(open(path, encoding="utf-8"))
+    for key, *_ in FETCH_QUESTS[-len(_EXPANSION_QUESTS) - len(SEA_ISLETS):]:
+        for flag_name, state in zip(FQ_FLAGS[key], ("taken", "found", "done")):
+            variables.setdefault(flag_name, {"defval": False, "name": "%s: %s" % (key, state), "type": 1})
+    json.dump(variables, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent="\t")
+
+
+def _region_access(mid, m, ev):
+    if mid not in _REGION_BY_SOURCE:
+        return
+    region, source_index = _REGION_BY_SOURCE[mid]
+    x, z = _castle_access_tile(m, ev, {"pos": [m.w // 2, 1, m.d // 2, 0]})
+    _dilate_event_trigger(ev, ev.portal(x, z, region["mid"], source_index + 1, d=0))
+
+
+def _region_source_entry(region, source_index):
+    source = region["sources"][source_index]
+    _, ev = make(source)
+    return next((int(key[1:-1]) for key, event in ev.ev.items()
+                 if event.get("role") == "portal" and event.get("dest", {}).get("mapid") == region["mid"]), None)
+
+
+def _region_quest_npc(ev, region, x, z, sprite, text):
+    ev.npc(x, z, SC[sprite], text)
+
+
+def settlement_ward(region):
+    ground, road, wall, roof, plaza = _WARD_THEMES[region["clan"]]
+    mid = region["mid"]
+    m = MapSpec(mid, "%s - %s" % (region["name"], region["district"]), 96, 64, base=ground, y=3)
+    m.rect(0, 29, 96, 7, ROAD, 3)
+    m.rect(44, 0, 8, 64, ROAD, 3)
+    m.rect(36, 21, 24, 22, plaza, 3)
+    m.rect(18, 35, 4, 6, ROAD, 3)
+    m.rect(74, 35, 4, 6, ROAD, 3)
+    m.rect(18, 23, 4, 6, ROAD, 3)
+    m.rect(74, 23, 4, 6, ROAD, 3)
+    for x, z, w, d, two_storey in (
+            (8, 41, 22, 12, True), (67, 41, 21, 12, False),
+            (8, 7, 18, 11, False), (69, 7, 18, 11, False)):
+        building(m, x, z, w, d, wall=wall, roof=roof, two_storey=two_storey,
+                 door=(x, z) == (8, 41))
+    _expansion_shrine(m, wall, roof)
+    torii(m, 44, 17, span=8, h=7)
+    for x, z in ((6, 25), (29, 25), (66, 25), (89, 25), (6, 38), (89, 38),
+                 (33, 11), (60, 11), (35, 53), (62, 53)):
+        fb(m, x, z, 2, LAMP_STREET)
+    for x, z in ((4, 53), (31, 55), (64, 54), (92, 54), (3, 10), (94, 10)):
+        m.tree(x, z, (TREE_L, TREE_M, TREE_S)[(x + z) % 3])
+    ev = Events(m)
+    for i, source in enumerate(region["sources"]):
+        source_entry = _region_source_entry(region, i)
+        if source_entry is None:
+            raise RuntimeError("Missing new ward route on %s" % source)
+        z, direction = (1, 2) if i == 0 else (62, 0)
+        _dilate_event_trigger(ev, ev.portal(48, z, source, source_entry, d=direction),
+                              extent=2.0, depth=1.5)
+    door_x, door_z = door_of(8, 41, 22)
+    room_event = ev.portal(door_x, door_z, region["room"], 1, d=0)
+    _dilate_event_trigger(ev, room_event)
+    doorway(m, door_x, door_z)
+    region["room_event"] = room_event
+    ev.npc(30, 20, SC["servant"], "%s resident: the %s is where everyone meets." % (
+        region["clan"], region["district"].lower()))
+    ev.npc(64, 20, SC["merchant"], "The market stalls close at dusk; the roadside shrine stays open.")
+    ev.talk(56, 27, "CE000", [(None, [narrate(
+        "%s: a full outer ward of the %s, with homes, a market lane, and a public shrine." %
+        (region["name"], region["district"].lower()))])], trigger=1)
+    return m, ev
+
+
+def settlement_inn(region):
+    ward, ev = make(region["mid"])
+    door = next((int(key[1:-1]) for key, event in ev.ev.items()
+                 if event.get("role") == "portal" and event.get("dest", {}).get("mapid") == region["room"]), None)
+    if door is None:
+        raise RuntimeError("Missing inn entrance on %s" % region["mid"])
+    inn, inn_events = interior(region["room"], "%s - Ward Inn" % region["name"], 18, 9,
+                               [("hearth", 4, 3), ("tatami", 8, 3), ("table", 13, 3), ("futon", 8, 6)],
+                               (region["mid"], door),
+                               npcs=[(14, 6, SC["merchant"], "npc",
+                                      "Welcome to the %s. Rest a while before the road." % region["district"])],
+                               scale=1)
+    return_event = next(int(key[1:-1]) for key, event in inn_events.ev.items()
+                        if event.get("role") == "portal" and event.get("dest", {}).get("mapid") == region["mid"])
+    _dilate_event_trigger(inn_events, return_event)
+    return inn, inn_events
+
+
+def island_quarter(region):
+    ground, road, wall, roof, plaza = _WARD_THEMES[region["clan"]]
+    mid = region["mid"]
+    m = MapSpec(mid, "%s - %s" % (region["name"], region["district"]), 96, 64, base=ground, y=3)
+    m.rect(0, 0, 96, 9, WATER, 1)
+    m.rect(0, 9, 96, 5, SAND, 2)
+    m.rect(44, 9, 8, 55, ROAD, 3)
+    m.rect(0, 31, 96, 7, ROAD, 3)
+    m.rect(31, 24, 34, 22, plaza, 3)
+    fill(m, 46, 1, 7, 8, 2, 4, PLANK)
+    building(m, 11, 42, 18, 11, wall=wall, roof=roof, door=False)
+    building(m, 66, 42, 20, 11, wall=wall, roof=roof, door=False)
+    building(m, 12, 14, 18, 10, wall=wall, roof=roof, door=False)
+    _expansion_shrine(m, wall, roof)
+    for x, z in ((35, 19), (61, 19), (34, 50), (63, 51), (10, 28), (86, 28)):
+        fb(m, x, z, 2, LAMP_STREET)
+    ev = Events(m)
+    for i, source in enumerate(region["sources"]):
+        source_entry = _region_source_entry(region, i)
+        if source_entry is None:
+            raise RuntimeError("Missing islandward route on %s" % source)
+        z, direction = (62, 0) if i == 0 else (60, 0)
+        _dilate_event_trigger(ev, ev.portal(48, z, source, source_entry, d=direction),
+                              extent=2.0, depth=1.5)
+    source_entry = _region_source_entry(region, 0)
+    if source_entry is None:
+        raise RuntimeError("Missing islandward return route on %s" % region["sources"][0])
+    _dilate_event_trigger(ev, ev.portal(50, 12, region["sources"][0], source_entry, d=0),
+                          extent=2.0, depth=1.5)
+    ev.talk(55, 13, "CE000", [(None, [narrate("The harbor path leads back to the island's main landing.")])],
+            trigger=1)
+    ev.npc(31, 20, SC["servant"], "%s resident: the tide brings a different story every morning." % region["clan"])
+    ev.npc(65, 20, SC["merchant"], "The best goods on this shore are the ones nobody claims.")
+    ev.talk(56, 29, "CE000", [(None, [narrate(
+        "%s: a shore ward with a landing pier, a small market and homes above the beach." %
+        region["name"])])], trigger=1)
+    return m, ev
+
+
+def sea_islet(islet):
+    mid = islet["mid"]
+    m = MapSpec(mid, islet["name"], 80, 52, base=SAND, y=3)
+    m.rect(0, 0, 80, 9, WATER, 1)
+    m.rect(0, 9, 80, 5, SAND, 2)
+    m.rect(7, 8, 3, 8, PLANK, 3)
+    m.rect(7, 15, 3, 20, ROAD, 3)
+    m.rect(0, 30, 80, 6, ROAD, 3)
+    m.rect(20, 21, 42, 32, GRASS2, 3)
+    m.rect(54, 35, 5, 7, ROAD, 3)
+    building(m, 51, 24, 15, 10, wall=WOOD, roof=DARKWOOD, door=False)
+    _expansion_shrine(m, WOOD, DARKWOOD)
+    torii(m, 36, 23, span=5, h=7)
+    for x, z in ((18, 21), (23, 42), (70, 18), (5, 44), (74, 43)):
+        m.tree(x, z, (TREE_S, TREE_M, ROCK_S)[(x + z) % 3])
+    ev = Events(m)
+    if islet["sea"] not in SEA_MAPS:
+        MAPS[islet["sea"]]()
+    sea_x, sea_z = SEA_MAPS[islet["sea"]][mid]
+    ev.talk(8, 13, SC["ferryman"], [(None, [
+        say("Boatman", "The channel is clear. Shall I take you back to the Crane coast?"),
+        choices(("Sail back to the coast.", DARK + [go(islet["sea"], sea_x, sea_z)]),
+                ("Stay on the islet.", []))])])
+    ev.npc(31, 20, SC["servant"], "A keeper tends the little shrine above the tide line.")
+    ev.talk(55, 42, "CE000", [(None, [narrate("%s. A path climbs from the pier to a shrine above the water." %
+                                              islet["name"])])], trigger=1)
+    return m, ev
+
+
+def _expansion_shrine(m, wall, roof):
+    m.rect(52, 38, 4, 4, ROAD, 3)
+    torii(m, 55, 38, span=6, h=6)
+    building(m, 55, 42, 7, 5, wall_h=3, door=False, wall=wall, roof=roof)
+
+
+def _register_expansion_maps():
+    for ward in TOWN_WARDS:
+        MAPS[ward["mid"]] = lambda region=ward: settlement_ward(region)
+        MAPS[ward["room"]] = lambda region=ward: settlement_inn(region)
+        INTERIORS[ward["room"]] = MAPS[ward["room"]]
+        MUSIC_OVERRIDE[ward["mid"]] = "town"
+    for island in ISLAND_WARDS:
+        MAPS[island["mid"]] = lambda region=island: island_quarter(region)
+        MUSIC_OVERRIDE[island["mid"]] = "sea"
+    for islet in SEA_ISLETS:
+        MUSIC_OVERRIDE[islet["mid"]] = "sea"
+
+
+_register_expansion_maps()
+
+
 def make(i):
     if not DOOR_EV or ("M141", "castle") not in DOOR_EV:   # portals reference other maps' door ids
         wall_garrison()
@@ -20916,6 +21289,7 @@ def make(i):
     m, ev = r if isinstance(r, tuple) else (r, None)
     if ev is not None:
         _castle_town_access(i, m, ev)
+        _region_access(i, m, ev)
     if ev is not None and "M100" <= i < "M800" and i not in SEA_MAP_IDS:   # (at sea: nobody walks
         for h in _hire.HIRELINGS:                                                          # behind the junk - user)
             for mid, x, z in h["spots"]:

@@ -41,6 +41,10 @@ walked, the finale opens — and after it, a post-game in the deep Shadowlands.
   council records. Stair arrivals land clear of the opening on the next floor.
   Grounds entrances are marked in the castle towns; existing story halls keep their original routes. Kyuden Togashi's
   grounds open after the garden audience, and ruined or besieged story locations retain their encounter layouts.
+- **Town and island districts** — 23 additional town wards, each with a full-sized walkable map, local residents,
+  visible building entrances and an enterable inn; five established islands gain new shore wards and errands, and six
+  Crane-coast islets become explorable stops with docks, return sailing and resident errands. Existing island landings
+  remain story-gated.
 - **Journal and quest marker** — track a story objective or side quest, and a floating star shows the way.
 - **Winter Court mini-games** — the archery contest, a horse race, and a game of Memory with the court's faces.
 - **Original soundtrack** in a medieval Japanese style, and portraits for every speaking character.

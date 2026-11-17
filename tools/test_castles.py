@@ -143,7 +143,7 @@ class CastleTests(unittest.TestCase):
         self.assertEqual(len(flags), len(set(flags)))
         for q in gm.FETCH_QUESTS:
             key, _, giver, _, _, _, _, pickup, *_ = q
-            if key not in gm.FQ_SETTINGS:
+            if not gm.FQ_SETTINGS.get(key, {}).get("castle"):
                 continue
             with self.subTest(quest=key):
                 taken, found, done = gm.FQ_FLAGS[key]
