@@ -17,6 +17,8 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent.parent
 PROFILES = ROOT / "tools" / "cutout_profiles"
 SIZE, ORIGIN = (208, 184), (104, 170)
+CAST_SCALE = (1.21, .90, 1.10)
+CAST_SIZE = (248, SIZE[1])
 PITCH = .25                                   # screen rows per unit of depth: the camera looks slightly down
 VIEW_YAW = {None: 32.0, "front": 90.0, "back": -90.0}
 SAYA_DIR = (-.75, -.65, .1)
@@ -138,12 +140,13 @@ def spin(part, degrees, mirror=False):
 
 
 class Mannequin:
-    def __init__(self, key, weapon=None, hat=None, look=None):
+    def __init__(self, key, weapon=None, hat=None, look=None, *, cast_proportions=False):
         """weapon / hat swap this character's gear for another look; look is their palette spec."""
         self.key = key
         spec = json.loads((PROFILES / f"{key}.json").read_text(encoding="utf-8"))
         self.parts = P = load_parts(spec)
-        self.size, self.ground_y = SIZE, ORIGIN[1]
+        self.cast_proportions = cast_proportions
+        self.size, self.ground_y = CAST_SIZE if cast_proportions else SIZE, ORIGIN[1]
         self.weapon = spec.get("weapon", "katana")
         self.family = spec.get("family") or FAMILY.get(self.weapon, "fist")
         if weapon or hat:
@@ -348,7 +351,7 @@ class Mannequin:
         return SimpleNamespace(J=J, S=S, items=items, gear=gear)
 
     def render(self, c, view=None):
-        out = Image.new("RGBA", self.size)
+        out = Image.new("RGBA", SIZE)
         for _, part, matrix, at, reveal in sorted(self.solve(c, view).items, key=lambda item: item[0]):
             pixels = part.pixels
             if reveal is not None:              # the rest of the blade is still inside the scabbard
@@ -358,10 +361,21 @@ class Mannequin:
                 pixels[hidden * part.scale > reveal] = 0
             else:
                 bounds = (part.hull - part.anchor) @ matrix.T + at
-                if bounds.min() < 0 or np.any(bounds.max(axis=0) > np.array(self.size) - 1):
+                if bounds.min() < 0 or np.any(bounds.max(axis=0) > np.array(SIZE) - 1):
                     raise ValueError("Pose leaves its cell")
             affine = np.column_stack((matrix, at - matrix @ part.anchor)).astype(np.float32)
-            layer = cv2.warpAffine(pixels, affine, self.size, flags=cv2.INTER_NEAREST,
+            layer = cv2.warpAffine(pixels, affine, SIZE, flags=cv2.INTER_NEAREST,
                                    borderMode=cv2.BORDER_CONSTANT, borderValue=(0, 0, 0, 0))
             out.alpha_composite(Image.fromarray(layer))
-        return out
+        if not self.cast_proportions:
+            return out
+        # Match the approved cutout preview: keep the assembled layers together and
+        # project X/Z onto the view's horizontal axis.
+        f = self.frames[view]
+        x, y, z = CAST_SCALE
+        width = x * f.c**2 + z * f.s**2
+        ox, oy = ORIGIN
+        return out.transform(self.size, Image.Transform.AFFINE,
+                             (1 / width, 0, ox - self.size[0] / (2 * width),
+                              0, 1 / y, oy * (1 - 1 / y)),
+                             resample=Image.Resampling.NEAREST)

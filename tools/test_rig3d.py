@@ -34,6 +34,20 @@ class Rig3dTests(unittest.TestCase):
         self.assertEqual(sum(count for _, _, count, _ in self.plan), 211)
         self.assertEqual([name for name, *_ in self.plan[-4:]], ["squat", "celebration", "critical", "void_critical"])
 
+    def test_batch_preview_changes_the_figure_without_moving_its_floor_anchor(self):
+        original = rig3d.Mannequin("side_goro")
+        resized = sheet.mannequin("side_goro")
+        self.assertEqual(resized.ground_y, original.ground_y)
+        self.assertEqual(sheet.mannequin("trav_natsuko").size, original.size)
+        for clip, kind, count, view in self.plan:
+            if clip not in ("idle8", "fidle"):
+                continue
+            a = sheet.frame(original, kind, 0, count, view).getbbox()
+            b = sheet.frame(resized, kind, 0, count, view).getbbox()
+            self.assertGreater(b[2] - b[0], a[2] - a[0])
+            self.assertLess(b[3] - b[1], a[3] - a[1])
+            self.assertLessEqual(abs(b[3] - a[3]), 1)
+
     def test_no_pose_stretches_a_limb(self):
         for key in KEYS:
             for name, kind, count, view in self.plan:

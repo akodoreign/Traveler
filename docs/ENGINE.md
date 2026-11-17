@@ -64,7 +64,7 @@ py -3.12 -E tools\rig3d_sheet.py trav_rensei --install        # bake 211 frames,
 
 `--review` writes `_art\preview\rig3d\review.png` (one row per character) without touching game
 assets. Baking keeps the legacy 182 frame indices and appends squat, celebration, critical and
-void_critical; a pose that leaves its 208x184 cell is an error, not a clipped frame.
+void_critical; a pose that leaves its native 208x184 cell is an error, not a clipped frame.
 `tools\test_rig3d.py` checks the invariants.
 
 Equipment looks (`trav_<key>__<weapon>_<hat>`) are the same rig with swapped gear:
@@ -83,6 +83,9 @@ then cast order). The batch script cuts the atlases into parts (keying out a fla
 the dummy's arm sockets for the shoulders), bakes and installs the seven sheets, runs the invariants
 and a real battle, and releases with `tools\release_here.py`. `tools\cutout_batches.json` records
 which keys are done; everything not listed there still uses its previous sheet.
+The cast bake scales the assembled cutout around its foot anchor at X 121%, Y 90%, Z 110%, with
+a wider 248x184 output cell. To rebake installed batches without recutting the atlases, run
+`py -3.12 -E tools\cutout_batch_run.py --rebake` (append batch names to limit the scope).
 
 ## 3. The battle plugin (`plugin/rokugan/RokuganBattle.sk`)
 | System | Implementation |

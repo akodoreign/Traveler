@@ -11,10 +11,11 @@ The player reported that heads are visibly separated from their bodies in the re
 batches. Check the head attachment and neck alignment on the shared rig/export pipeline, then verify the
 join in-game in idle and moving poses.
 
-The player also wants to try a roster-wide proportions pass on **all character models**: reduce Y by
-10% and increase X and Z by 10% each (X 110%, Y 90%, Z 110% of current size). Apply the trial to the
-assembled character so the head, body, and rig stay aligned. Preview a few characters in-game before
-rolling it out to the full roster.
+The player approved **X 121%, Y 90%, Z 110%** of original size after comparing Natsuko's previews
+(not the wider 133.1% X trial). Completed cast batches 1-11 have been rebaked at those proportions.
+New cast batches use the same settings automatically. The bake scales the assembled cutout once,
+about the foot anchor. Don't scale the source atlas art or individual parts. The separate head-attachment
+issue above still needs attention; scaling preserves the alignment already present in the source rig.
 
 ---
 

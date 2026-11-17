@@ -19,6 +19,16 @@ EXTRA = (("squat", 5, 8, False), ("celebration", 10, 8, True), ("critical", 6, 1
 REVIEW = "idle8:0,fidle:0,bidle:0,walk8:2,fwalk8:2,ready:0,atk_slash:1,atk_slash:3,atk_thrust:3,atk_overhead:2,atk_draw:3"
 
 
+def cast_batches():
+    path = rig3d.ROOT / "tools" / "cutout_batches.json"
+    return {batch: ["side_" + key for key in keys]
+            for batch, keys in json.loads(path.read_text(encoding="utf-8")).items()}
+
+
+def mannequin(key):
+    return rig3d.Mannequin(key, cast_proportions=any(key in keys for keys in cast_batches().values()))
+
+
 def plan():
     import gen_sprites2d as sprites
     clips = [(kind, kind, count, None) for kind, count in sprites.BLOCKS]
@@ -99,11 +109,13 @@ def review(keys, selections, out, zoom=1):
     for column, selection in enumerate(selections):
         draw.text((column * width + 4, 0), selection, fill=(240, 225, 177))
     for row, key in enumerate(keys):
-        m = rig3d.Mannequin(key)
+        m = mannequin(key)
+        shift = (m.size[0] - rig3d.SIZE[0]) // 2
+        crop = (box[0] + shift, box[1], box[2] + shift, box[3])
         for column, selection in enumerate(selections):
             name, index = selection.rsplit(":", 1)
             kind, count, view = counts[name]
-            image = frame(m, kind, int(index), count, view).crop(box)
+            image = frame(m, kind, int(index), count, view).crop(crop)
             page.paste(image, (column * width, row * height + 12), image)
     out.parent.mkdir(parents=True, exist_ok=True)
     page.resize((page.width * zoom, page.height * zoom), Image.Resampling.NEAREST).save(out)
@@ -122,7 +134,7 @@ def main():
         print(f"review: {out / 'review.png'}")
         return
     for key in args.keys:
-        m = rig3d.Mannequin(key)
+        m = mannequin(key)
         sheet, extra, grid = build_sheet(m)
         out.mkdir(parents=True, exist_ok=True)
         sheet.save(out / f"{key}.png")
