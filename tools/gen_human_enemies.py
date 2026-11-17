@@ -332,7 +332,7 @@ def main():
             e.update({"name": {"en": c["name"], "ja": c["name"]}, "pic3d": "/resource/enemy_pic/%s.png" % fname,
                       "aniuv": [g.COLS, g.ROWS], "memo": "human enemy sprite (tools/gen_human_enemies.py)",
                       "gndpos": [0.5, (g.FH - g.GROUND - 1) / g.FH], "atkpos": [0.75, 0.55],
-                      "cntpos": [0.5, 0.6], "scale": 1.05 * g.CAST_SCALE * g.HUMAN_SCALE * c.get("scale", 1.0), "flipx": False})  # engine draws enemies larger than party
+                      "cntpos": [0.5, 0.6], "scale": g.battle_scale(1.05 * g.CAST_SCALE * g.HUMAN_SCALE * c.get("scale", 1.0)), "flipx": False})  # engine draws enemies larger than party
             e["animap"] = [{"id": k, "st": v[0], "en": v[1], "spd": v[2], "loop": v[3], "replay": not v[3]}
                            for k, v in g.animap_for(T).items()]          # v4 layout: per-weapon main attack
             j[c.get("ep") or epid(n)] = e

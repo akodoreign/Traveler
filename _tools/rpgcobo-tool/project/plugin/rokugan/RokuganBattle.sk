@@ -959,7 +959,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 	if( !sk || !sk["rt_hmdl"]) return;
 	try{
 		local m = stage.getLocation( "*memberloc");
-		local back = Vector3D( 0.0, 0, -3.4).rotate( m.dir, 0, 0);	//	the third row (RokuganParty: rows 0 and -1.7)
+		local back = Vector3D( 0.0, 0, -4.2).rotate( m.dir, 0, 0);	//	the third row (RokuganParty: rows 0 and -2.1)
 		local p = Vector3D( m.pos).add( back.x, back.y, back.z);
 		local rp3d = RPG3DObject.create3DObject( { mdlid = sk.rt_hmdl });
 		rp3d.manuaction = ManualMoveAction( rp3d);

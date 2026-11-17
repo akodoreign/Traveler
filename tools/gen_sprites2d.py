@@ -36,7 +36,13 @@ COLS, ROWS = 8, 8
 CAST_SCALE = 0.5          # whole-cast size multiplier (user: half size -> real human height vs. 2 m walls)
 HUMAN_SCALE = 0.92        # human sprites only: the 2026-11-07 adult proportions drew them ~8% taller in the frame;
                           # this keeps their in-engine height (gen_sprites2d / gen_sidecast / gen_human_enemies)
+BATTLE_SPRITE_SCALE = 1.2 # larger, more readable character art across the three battle rows
 GROUND = 65
+
+
+def battle_scale(scale):
+    return scale * BATTLE_SPRITE_SCALE
+
 
 # ------------------------------------------------------------------------------------------- colour ramps
 
@@ -102,7 +108,8 @@ TRAVELERS = [
          hat="jingasa", female=True),
 ]
 # v4 personality: victory poses and main attacks (animap_for / victory_pose)
-_V4 = {"rensei": dict(primary="atk_draw"), "gendo": dict(victory="glasses"), "shizue": dict(victory="gunbai"),
+_V4 = {"rensei": dict(primary="atk_draw", victory="dance"), "gendo": dict(victory="glasses"),
+       "shizue": dict(victory="gunbai"),
        "haruki": dict(victory="count"), "mitsue": dict(victory="curtain"), "tamotsu": dict(victory="laugh"),
        "sayo": dict(victory="hat_tip")}
 for _t in TRAVELERS:
@@ -906,6 +913,8 @@ ATK[("blade", "atk_slash_spear")] = ATK[("pole", "atk_slash")]
 _ST = dict(ff=3, fb=-2)
 _KNEEL = dict(kneel=True, b=(0, 5), hip=(28, 46), kn_b=(25, 54), ft_b=(19, 56), kn_f=(34, 47), ft_f=(34, 56),
               pitch_b=70.0)
+_DUELIST_CROUCH = dict(kneel=True, b=(3, 6), hip=(28, 49), kn_b=(21, 54), ft_b=(14, 56), kn_f=(35, 54),
+                       ft_f=(42, 56), pitch_b=0.0, pitch_f=0.0)
 ATK.update({
     ("bow", "atk_slash"): [
         dict(_ST, hf=(37, 33), hb=(35, 33), bow="nock"),
@@ -1003,6 +1012,14 @@ def pose_v4(T, kind, i):
         if fam == "short" and kind == "atk_draw":            # quick one-handed draw-and-stab
             seq = ATK[("short", "atk_thrust")]
         d = seq[i]
+        if T.get("idle") == "iai" and kind == "atk_draw":
+            d = dict(d)
+            if i < 5:
+                d.update(_DUELIST_CROUCH)
+            if i in (2, 3, 4):
+                d.update(hf=((44, 40), (49, 39), (46, 40))[i - 2],
+                         hb=((23, 41), (22, 40), (23, 41))[i - 2],
+                         w=(0.0, 0.0, 1.0)[i - 2], g2=False, sh=False)
         if fam in ("bow",):
             P["ft_f"] = (P["ft_f"][0], P["ft_f"][1])
         _key(P, d)
@@ -1237,6 +1254,17 @@ def victory_pose(T, i, fam, style, spear):
         else:
             _key(P, dict(hf=(35, 40), ex="smug", hd=(0, -br)))
             P["open_hand"] = True
+        return P
+    if v == "dance":                                        # Rensei celebrates with a short, controlled swordless dance
+        seq = [
+            dict(hf=(36, 40), hb=(25, 41), w=0.0, ex="grin"),
+            dict(b=(-1, -2), hf=(39, 27), hb=(23, 31), ff=-2, fb=-1, w=-80.0, hd=(0, -1), sway=1),
+            dict(b=(1, -1), hf=(43, 31), hb=(27, 24), ff=1, fb=-3, w=-135.0, hd=(1, 0), sway=2),
+            dict(b=(-1, -2), hf=(39, 25), hb=(23, 32), ff=-1, fb=-2, w=-90.0, hd=(0, -1), sway=1),
+        ]
+        _key(P, seq[i])
+        P["open_hand"] = True
+        P["grip2"] = False
         return P
     # by weapon
     if fam == "blade":                                      # chiburi (flick the blade clean), then noto
@@ -4621,7 +4649,7 @@ def sheet_entry(tmpl, T, name, fname, memo):
     e.update({"name": {"en": name, "ja": name}, "pic3d": "/resource/enemy_pic/%s.png" % fname,
               "aniuv": [COLS, ROWS], "memo": memo,
               "gndpos": [0.5, (FH - GROUND - 1) / FH], "atkpos": [0.25, 0.55], "cntpos": [0.5, 0.6],
-              "scale": 1.45 * CAST_SCALE * HUMAN_SCALE, "flipx": True})
+              "scale": battle_scale(1.45 * CAST_SCALE * HUMAN_SCALE), "flipx": True})
     e["animap"] = [{"id": k, "st": v[0], "en": v[1], "spd": v[2], "loop": v[3], "replay": not v[3]}
                    for k, v in animap_for(T).items()]   # loops must not restart on repeat requests
     return e

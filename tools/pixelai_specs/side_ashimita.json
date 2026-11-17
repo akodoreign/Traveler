@@ -4,7 +4,7 @@
  "kind": "side",
  "sheet": "side_ashimita.png",
  "prompt": "1boy, male focus, man, Shiba Ashimita, fair skin, black hair, ponytail hair, orange lacquered lamellar armor, a naginata polearm with a black shaft and a curved steel blade, feudal japan",
- "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes, katana, sword",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
  "seed": 11,
  "candidates": 2,
  "groups": {

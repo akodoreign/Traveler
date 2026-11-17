@@ -226,7 +226,7 @@ def main():
         e["aniuv"] = [cols, nrows]
         e["animap"] = animap
         e["memo"] = "procedural (tools/gen_enemy_art.py): idle / attack / hurt rows"
-        e["scale"] = (e.get("scale") or 1.0) * 0.5          # = gen_sprites2d.CAST_SCALE
+        e["scale"] = g.battle_scale(0.5)                    # = gen_sprites2d.CAST_SCALE
         j[epid] = e
         rows.append(sheet.resize((sheet.width * 3, sheet.height * 3), Image.NEAREST))
     json.dump(j, open(jpath, "w", encoding="utf-8"), ensure_ascii=False, indent="\t")

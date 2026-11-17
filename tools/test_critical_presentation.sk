@@ -1,0 +1,129 @@
+// Executed only by the test runner through the existing bot evalf command.
+import DamageResultType;
+local check = function( ok, text){
+	if( !ok) throw Exception( "CRIT TEST FAIL: " .. text);
+	printf( "[RT] CRIT TEST PASS: %S\n", text);
+};
+local b = ::rpgstage["battle"];
+check( !!b, "battle opened");
+local pc = b.members[0], dst = b.enemies[0], rp = b.getChara3D( pc);
+local sk = clone pc.getAttackSkill();
+sk["rt_anim_key"] <- "test";
+local clips = clone rp.animemap, source = rp.animemap[sk.atkact.atkani.id];
+check( !!source, "native attack clip available");
+rp.animemap = clone clips;
+if( "void_critical" in rp.animemap) delete rp.animemap["void_critical"];
+rp.animemap["critical"] <- { ...source, id = "critical", loop = false, replay = true };
+rp.animemap["void_critical_test"] <- { ...source, id = "void_critical_test", spd = 6.0, loop = false, replay = true };
+local plan = ::Rokugan.criticalPlan( pc, sk, false, rp);
+check( plan.clip == "critical", "generic critical clip fallback");
+plan = ::Rokugan.criticalPlan( pc, sk, true, rp);
+check( plan.clip == "void_critical_test", "attack-specific void clip selected");
+check( plan.duration <= 2000.0 && plan.ani.spd >= 0.35, "slow motion bounded");
+::Rokugan.registerCritical( "*", "test", "critical", { clip = "void_critical_test" });
+::Rokugan.registerCritical( pc.dataid, "test", "critical", { clip = "critical", speed = 1.0 });
+check( ::Rokugan.criticalPlan( pc, sk, false, rp).clip == "critical", "character registration wins over shared attack");
+::Rokugan.registerCritical( pc.dataid, "test", "void_critical", { title_ms = 9000, speed = 0.01 });
+plan = ::Rokugan.criticalPlan( pc, sk, true, rp);
+check( plan.title_ms == 2000.0 && plan.duration <= 2000.0, "oversized title and slow motion clamped");
+::Rokugan.registerCritical( pc.dataid, "test", "void_critical", { title_ms = 1, speed = 1.0 });
+check( ::Rokugan.criticalPlan( pc, sk, true, rp).title_ms == 1000.0, "short title clamped");
+check( ::Rokugan.criticalPlan( pc, sk, true, rp).ani.spd == 1.0, "slow motion can be disabled");
+::Rokugan.CRIT_PRESENTATION = {};
+local valid = rp.animemap["void_critical_test"];
+rp.animemap["void_critical_test"] = { ...valid, loop = true };
+check( ::Rokugan.criticalPlan( pc, sk, true, rp).clip == null, "looping special cannot stall combat");
+rp.animemap["void_critical_test"] = { ...valid, replay = false };
+check( ::Rokugan.criticalPlan( pc, sk, true, rp).clip == null, "non-replayable special rejected");
+rp.animemap["void_critical_test"] = valid;
+
+local t = { band = null, titles = 0, actions = 0, clips = 0, snapshots = false, start = 0 };
+::Rokugan._testCutIn <- ::Rokugan.cutIn;
+::Rokugan.cutIn <- function( actor, title, ms = 1500.0){
+	t.band = this._testCutIn( actor, title, ms);
+	t.titles++;
+	t.start = skGetTime();
+	if( t.snapshots) newthread().start( @(){
+		sleep( 600);
+		check( !t.band.closed, "banner visible at 600ms");
+		::Rokugan.rtshot( "tmp/rt_shot/bot_critical_title.raw");
+	});
+	return t.band;
+};
+::SkillCommand._testAttackAction <- ::SkillCommand._rt_attackAction_cp;
+::SkillCommand._rt_attackAction_cp <- function( dmg){
+	t.actions++;
+	if( t.band){
+		check( t.band.closed && !length( t.band.parts), "title removed before attack");
+		check( skGetTime() - t.start >= 1450, "default title held for 1.5 seconds");
+		t.band = null;
+	}
+	if( rt_critVisual && rt_critVisual.clip){
+		t.clips++;
+		if( t.snapshots) newthread().start( @(){
+			sleep( 250);
+			check( rp.animlayers.layers[0].id == "void_critical_test", "special clip playing after title");
+			::Rokugan.rtshot( "tmp/rt_shot/bot_critical_action.raw");
+		});
+	}
+	return this._testAttackAction( dmg);
+};
+local hit = function( cmd, critical, miss = false, heal = false, skip = false){
+	local d = Damage( cmd, dst);
+	d.critical = critical;
+	d.miss = miss;
+	d.heal = heal;
+	d.skip = skip;
+	local value = miss || skip ? 0 : heal ? -17 : 17;
+	d.val = value;
+	d.result = skip ? DMG_SKIP : miss ? DMG_MISS : heal ? DMG_HEAL : critical ? DMG_CRITICAL : DMG_HIT;
+	local hp = dst.HP, vp = ::Rokugan.state( pc).bp, skill = cmd.skill;
+	cmd.attackAction( d);
+	cmd.waitFor( pc, dst);
+	check( dst.HP == hp - d.val, "native damage applied exactly once");
+	check( ::Rokugan.state( pc).bp == vp && cmd.skill == skill && d.skill == skill,
+		"presentation preserves VP and skill identity");
+	check( d.val == value && d.critical == critical && d.miss == miss && d.skip == skip,
+		"resolved damage and rolls unchanged");
+};
+local cmd = SkillCommand( pc, sk, [dst]);
+hit( cmd, false);
+hit( cmd, true, true);
+hit( cmd, true, false, true);
+hit( cmd, true, false, false, true);
+check( t.clips == 0 && t.titles == 0, "noncritical, missed, healed and skipped attacks use native action");
+hit( cmd, true);
+hit( cmd, true);
+check( t.clips == 1 && t.titles == 0, "ordinary critical clip once per multi-hit action");
+
+local vsk = clone sk;
+vsk["rt_vcrit"] <- 15;
+cmd = SkillCommand( pc, vsk, [dst]);
+t.snapshots = true;
+hit( cmd, true);
+t.snapshots = false;
+hit( cmd, true);
+check( t.clips == 2 && t.titles == 1, "void title and clip once per multi-hit action");
+check( !rp.animlayers.layers[0].locked && !rp.animlayers.layers[0].animating, "special layer released");
+
+rp.animemap = clone clips;
+foreach( id in ["critical", "void_critical", "void_critical_test"]){
+	if( id in rp.animemap) delete rp.animemap[id];
+}
+check( ::Rokugan.criticalPlan( pc, vsk, true, rp).clip == null, "missing special clip falls back to native");
+cmd = SkillCommand( pc, vsk, [dst]);
+hit( cmd, true);
+check( t.titles == 2 && t.clips == 2, "new action gets its own title without requiring special art");
+cmd = SkillCommand( pc, vsk, [dst]);
+hit( cmd, true, true);
+check( t.titles == 2, "missed void critical has no title");
+
+local band = ::Rokugan.cutIn( pc, "Cleanup check", 1500);
+band.battle = null;
+band.tick( 16);
+check( band.closed && !length( band.parts), "battle transition removes title and all children");
+::Rokugan.cutIn = ::Rokugan._testCutIn;
+::SkillCommand._rt_attackAction_cp <- ::SkillCommand._testAttackAction;
+rp.animemap = clips;
+::Rokugan.rtshot( "tmp/rt_shot/bot_critical_cleared.raw");
+printf( "[RT] CRIT TEST COMPLETE\n");

@@ -1172,7 +1172,7 @@ def write(j, tmpl, epid, fname, label, idle, scale):
     e = json.loads(json.dumps(tmpl))
     e.update({"name": {"en": label, "ja": label}, "pic3d": "/resource/enemy_pic/%s.png" % fname,
               "aniuv": [cols, rows], "animap": animap, "memo": "monster (tools/gen_monsters.py)",
-              "gndpos": [0.5, (FH - GROUND - 1) / FH], "scale": scale, "flipx": False})
+              "gndpos": [0.5, (FH - GROUND - 1) / FH], "scale": g.battle_scale(scale), "flipx": False})
     j[epid] = e
     return idle[0]
 

@@ -18,7 +18,7 @@ Status: **M0 (engine up) done · M1 (battle prototype) done** — Suki, Void Poi
 | Script | Output |
 |---|---|
 | `tools/gen_data.py` | type.json (12 bits = Katana, Yari, Tanto, Tetsubo, Yumi, Bo, Fire, Water, Air, Earth, Void, Jade) · cond K030 **Suki** · skills S100–S105 weapon strikes, S110 Razor's Edge, S111 Jade Strike · weapons W100–W105 (T1) · enemies E100–E106 (Crab Ch1 set) + E190 training dummy · players P100–P107 (the eight travelers) · setting (title, start party Natsuko/Rensei/Gendo/Shizue, Boost in battlecmd4) · M001 encounter groups (1 goblin raid, 2 egg caves, 3 training) · plugin.json |
-| `tools/gen_sprites2d.py` | **The sprite pipeline + the eight travelers (EP200–EP207).** True 2D pixel-rule art (no 3D rendering): 80×68 frames, 8×4 sheet, 27 frames (idle·walk·ready·attack·cast·hurt·guard·KO·victory). Per-character spec dict: hairstyle (ponytail, long, long_topknot, bob, short, spiky, mane, bun, chonmage, bald), bangs, face shape, eyes (normal/narrow/old/closed/glow), brows, mouth, facial hair, scar, masks (cloth, mempo, porcelain, death paint, reed, noh, stitched), head (hachimaki, headcloth, kabuto, kabuto_full + crest), hat (jingasa, eboshi), build (normal, armored, armored_light, heavy o-yoroi, robe, monk, peasant, round), height/wide, age, haori + fur trim, cloak, patterns (waves, diamonds, stripes, dots, checks, flames), clan mon, laced armour, weapons (yari, naginata, katana, nodachi, tetsubo, bo, shakujo, tanto, kama, fan, yumi), props (mapcase, quiver, basket, daisho, saya, jitte, gunbai, ofuda, scroll, gourd, inro, lantern, swordsback). Attack/idle/victory animations per fighting style (thrust, slash, smash, shoot, iai). **Arm rig (side views):** fixed-length 2-bone IK with an anatomical elbow fold; weapons hang off the near fist and two-handed weapons pull the far fist onto the grip (`rig_arms`, `TWO_HAND`); grip fists, a lit near-arm layer with a contact outline, forged blades (`forge_blade`; metal kept out of the outline pass). Preview: `tools/preview_arms.py`. |
+| `tools/gen_sprites2d.py` | **The sprite pipeline + the eight travelers (EP200–EP207).** True 2D pixel-rule art (no 3D rendering): 80×68 frames, 14×11 sheet, 154 rigged poses (idle·walk·run·attacks·casts·hurt·guard·KO·victory·interactions·front/back views); high-resolution sheets add side and front gesture rows. Per-character spec dict: hairstyle (ponytail, long, long_topknot, bob, short, spiky, mane, bun, chonmage, bald), bangs, face shape, eyes (normal/narrow/old/closed/glow), brows, mouth, facial hair, scar, masks (cloth, mempo, porcelain, death paint, reed, noh, stitched), head (hachimaki, headcloth, kabuto, kabuto_full + crest), hat (jingasa, eboshi), build (normal, armored, armored_light, heavy o-yoroi, robe, monk, peasant, round), height/wide, age, haori + fur trim, cloak, patterns (waves, diamonds, stripes, dots, checks, flames), clan mon, laced armour, weapons (yari, naginata, katana, nodachi, tetsubo, bo, shakujo, tanto, kama, fan, yumi), props (mapcase, quiver, basket, daisho, saya, jitte, gunbai, ofuda, scroll, gourd, inro, lantern, swordsback). Attack/idle/victory animations per fighting style (thrust, slash, smash, shoot, iai). **Arm rig (side views):** fixed-length 2-bone IK with an anatomical elbow fold; weapons hang off the near fist and two-handed weapons pull the far fist onto the grip (`rig_arms`, `TWO_HAND`); grip fists, a lit near-arm layer with a contact outline, forged blades (`forge_blade`; metal kept out of the outline pass). All battle-character and foe models apply a shared 1.2 display multiplier without changing animation-cell boundaries. Preview: `tools/preview_arms.py`. |
 | `tools/gen_sidecast.py` | EP300–EP326: 27 supporting-cast sprites from `docs/art/cast-looks.md` (L5R wiki + adventure notes). |
 | `tools/gen_human_enemies.py` | EP400–EP427: bestiary A1–A7 human enemies (bandits, ronin, contentious samurai, ashigaru, pirates, cultists, ninja); gen_data turns them into E200–E227 (test groups M001 gid 4 / 5). |
 | `tools/gen_maps.py` + `plugin/rokugan/RokuganMapGen.sk` | **Procedural maps.** Python designs each map (column grid of block id + height, plus objects: free-block trees/rocks/lamps, block fills, prefab map assets) with a Rokugani kit (plaster/dark-wood buildings with gabled kawara roofs, torii, shrines, the Kaiu Wall, piers, fences); writes `tmp/rt_mapgen/job.json`, runs the engine once, the plugin builds every `.bw` and quits. Registers maps in map.json with events (NPCs, portals, chests, autorun cutscenes guarded by global flags), render preset, encounters. Maps are padded with scenery so the camera never shows the void. Crab Ch1: **M100** Wall watchtower (night, S01 opening + goblin raid), **M101** Wall garrison, **M102** Coast Road (random battles), **M103** Hoshi-no-Ichi, **M104** quarry camp (S04 Sumai); battle backdrops **M810** Wall at night, **M811** coast, **M812** quarry. New Game starts on M100. Block ids: page | index<<5 (see the module docstring); event pos = blocks, spawn/inimap pos = world units (2 blocks). |
@@ -29,6 +29,44 @@ Status: **M0 (engine up) done · M1 (battle prototype) done** — Suki, Void Poi
 | `tools/gen_enemy_art.py` | EP100 Goblin in a Hat (drawn straw jingasa) · EP101 Nezumi Warrior · EP102 Cave Beetle (drawn from scratch) · EP103 Mamushi · EP104 Tide Crab · EP105 Nezumi Shaman. Preview: `_art/preview/enemies_crab_ch1.png`. Restore `_tools/enemy_pic.orig.json` first when re-running |
 | `tools/voxlib.py` | MagicaVoxel reader (scene graph, palette), RPG-Cobo palette encoding (**0x1BBGGRR**, 1-based voxel index), preview renderer |
 | `tools/wincap.py` / `tools/winkeys.py` | Capture a window by PID / send keys to it (for automated playtests until MCP is connected) |
+
+### The 3-D mannequin under the sprite art
+
+`tools\rig3d.py` solves every pose on a light 3-D skeleton and lays each drawn part along its
+projected bone; nothing is drawn per pose. JSON profiles in `tools\cutout_profiles` name the
+transparent parts (head, torso, waist, thigh/shin/foot, one relaxed arm per side and view, weapon)
+with their anchor and socket pixels. Arms are cut into overlapping upper-arm, forearm and hand
+layers at their `elbow` and `wrist` sockets. Character space is x forward, y up, z toward the
+camera; `N` is the camera-side half of the body and `F` the far half.
+
+- The rest skeleton is calibrated per view from that view's torso sockets, so shoulders, hips and
+  neck land exactly on the artwork in the side (32 degrees toward the camera), front and back views.
+  Each sleeve is pinned to the drawn shoulder; bones keep their length, parts only foreshorten
+  along their own bone, and depth order comes from the solved depth.
+- Feet are planted targets. The pelvis sinks to keep both fixed-length legs in reach; knees point
+  where the toes point. Feet swap to camera-facing or heel art by their heading.
+- `tools\rig3d_poses.py` holds the clips as controls: feet in leg lengths from beneath each hip,
+  hands in arm reaches from their own shoulder, weapon direction, lean/twist, kicks. Standing is a
+  small stagger (camera-side foot a little back, toes to the camera); combat is a compact base with
+  that foot as the rear foot. Attack tables are six evenly spaced keys per weapon family
+  (`pole`, `blade`, `iai`, `short`, `bow`, `fist`); `critical` / `void_critical` reuse two of them.
+
+- Two-handed weapons put the second hand on the shaft a set distance from the first. A sheathed
+  katana is the real blade clipped at the scabbard mouth: the `iai` family grips hilt and scabbard,
+  pulls the scabbard back, draws from the hip and cuts outward over a dropped rear knee.
+  The `fist` family (Togashi Yosai) never shows a weapon: guard, jab, reverse punch, chop, front kick.
+
+```powershell
+py -3.12 -E tools\build_cutout_batch.py                       # cut atlas art into parts + profiles
+py -3.12 -E tools\rig3d_sheet.py trav_rensei --review "idle8:0,fidle:0,atk_draw:3" --zoom 3
+py -3.12 -E tools\rig3d_sheet.py trav_rensei --install        # bake 211 frames, install the sheet
+```
+
+`--review` writes `_art\preview\rig3d\review.png` (one row per character) without touching game
+assets. Baking keeps the legacy 182 frame indices and appends squat, celebration, critical and
+void_critical; a pose that leaves its 208x184 cell is an error, not a clipped frame.
+`tools\test_rig3d.py` checks the invariants. Equipment variants (`trav_<key>__<weapon>_<hat>`)
+still use their previous sheets.
 
 ## 3. The battle plugin (`plugin/rokugan/RokuganBattle.sk`)
 | System | Implementation |
@@ -61,6 +99,51 @@ while its window is not focused.
 **Verified (session 3):** weak hits chip shields 3→2→1→0 · SUKI! · the enemy's queued action and next action are
 skipped · shields refill after two turn-ends · VP 1→5 cap · no VP gain after a boost · Boost x3 = 4 hits (each hit
 chips a shield). No script errors.
+
+### Critical presentation and reusable animation clips
+
+`RokuganVoidCrit.sk` wraps `SkillCommand.attackAction` after damage/crit resolution. The first successful
+critical in a command can play a special striker clip; a Void critical first shows its school attack title
+and bust for **1,500 ms**, removes the entire banner, then plays the action. Multi-hit/multi-target actions
+show each kind once per command. School gifts remain in the existing `onAttack` hook; no crit rolls, damage,
+VP costs, conditions, or story logic are moved into presentation.
+
+The actor's **current** `animap` (including equipment variants) supplies the clips:
+
+| Kind | Attack-specific clip | Generic fallback |
+|---|---|---|
+| Critical | `critical_<key>` | `critical` |
+| Void critical | `void_critical_<key>` | `void_critical` |
+
+`<key>` is `skill.rt_anim_key`, falling back to `skill.atkact.atkani.id` (for example `slash1`).
+Authors can append independent ranges without changing existing atlas frame numbers. Entries use the normal
+`id`, `st`, `en`, `spd`, `loop:false`, `replay:true` fields; `en > st` and `spd > 0` are required.
+Missing clips retain the native attack. Invalid looping/non-replayable ranges are logged and skipped.
+
+For a character/attack override, register after the extension loads:
+
+```javascript
+::Rokugan.registerCritical("P101", "iai", "void_critical", {
+    clip = "void_critical_iai",
+    title = "Strike with No Thought!",
+    title_ms = 1500,
+    speed = 0.65
+});
+// Set rt_anim_key = "iai" on the authored skill; clones retain this key.
+```
+
+Character and attack selectors also accept `"*"`. Lookup priority is exact character/attack, character/*,
+*/attack, then */*. A configured clip is tried before the convention-based IDs. Ordinary critical speed
+defaults to 1; Void critical speed defaults to 0.65. Set `speed = 1` to disable slow motion. The title is
+clamped to 1-2 seconds and clip speed is bounded so an authored special finishes within 2 seconds (with a
+2.1-second playback watchdog). Only the selected animation layer is affected, never global game time.
+The native attack script still handles its sound, effects and projectiles; hit/damage application remains
+in the engine and runs once after the special animation.
+
+Run `py -3.12 -E tools\test_critical_presentation.py` for real-engine checks and title/action/cleanup screenshots
+under `_art\preview\critical_presentation`. It uses `engine_lock`, stops only its own process, and temporarily
+aliases existing frames in memory: it does not generate art or change production crit chances. Coordinate the
+single-instance engine with other running tests first.
 
 ## 5. Next steps (M1 polish → M2 vertical slice)
 1. Weakness icons instead of names; shield pips. (Suki sprite effect done: broken enemies are desaturated/darkened via setHSV and restored on recovery.)

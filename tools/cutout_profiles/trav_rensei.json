@@ -1,0 +1,747 @@
+{
+  "size": [
+    192,
+    176
+  ],
+  "origin": [
+    90,
+    112
+  ],
+  "articulated_arms": true,
+  "family": "iai",
+  "parts": {
+    "body": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        369,
+        129,
+        571,
+        435
+      ],
+      "anchor": [
+        110,
+        288
+      ],
+      "scale": 0.13,
+      "sockets": {
+        "neck": [
+          115,
+          28
+        ],
+        "shoulder_f": [
+          32,
+          68
+        ],
+        "shoulder_b": [
+          170,
+          73
+        ],
+        "hip_f": [
+          142,
+          288
+        ],
+        "hip_b": [
+          77,
+          288
+        ],
+        "root": [
+          110,
+          288
+        ],
+        "saya": [
+          145,
+          275
+        ]
+      }
+    },
+    "head": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        63,
+        129,
+        287,
+        403
+      ],
+      "anchor": [
+        152,
+        215
+      ],
+      "scale": 0.14
+    },
+    "body_front": {
+      "image": "_art/sources/cutout/trav_rensei_views.png",
+      "box": [
+        352,
+        187,
+        624,
+        582
+      ],
+      "anchor": [
+        136,
+        365
+      ],
+      "scale": 0.1,
+      "sockets": {
+        "neck": [
+          136,
+          25
+        ],
+        "shoulder_f": [
+          30,
+          82
+        ],
+        "shoulder_b": [
+          242,
+          82
+        ],
+        "hip_f": [
+          178,
+          365
+        ],
+        "hip_b": [
+          94,
+          365
+        ],
+        "root": [
+          136,
+          365
+        ],
+        "saya": [
+          215,
+          356
+        ]
+      }
+    },
+    "body_back": {
+      "image": "_art/sources/cutout/trav_rensei_views.png",
+      "box": [
+        974,
+        193,
+        1226,
+        582
+      ],
+      "anchor": [
+        126,
+        359
+      ],
+      "scale": 0.1,
+      "sockets": {
+        "neck": [
+          126,
+          22
+        ],
+        "shoulder_f": [
+          27,
+          80
+        ],
+        "shoulder_b": [
+          225,
+          80
+        ],
+        "hip_f": [
+          168,
+          359
+        ],
+        "hip_b": [
+          84,
+          359
+        ],
+        "root": [
+          126,
+          359
+        ],
+        "saya": [
+          205,
+          350
+        ]
+      }
+    },
+    "head_front": {
+      "image": "_art/sources/cutout/trav_rensei_views.png",
+      "box": [
+        51,
+        150,
+        271,
+        484
+      ],
+      "anchor": [
+        110,
+        305
+      ],
+      "scale": 0.1
+    },
+    "head_back": {
+      "image": "_art/sources/cutout/trav_rensei_views.png",
+      "box": [
+        684,
+        175,
+        864,
+        497
+      ],
+      "anchor": [
+        90,
+        300
+      ],
+      "scale": 0.105
+    },
+    "arm_front_left": {
+      "image": "_art/sources/cutout/trav_rensei_views.png",
+      "box": [
+        51,
+        692,
+        243,
+        1134
+      ],
+      "anchor": [
+        101,
+        35
+      ],
+      "scale": 0.084,
+      "sockets": {
+        "elbow": [
+          115,
+          230
+        ],
+        "wrist": [
+          150,
+          350
+        ],
+        "grip": [
+          155,
+          384
+        ]
+      }
+    },
+    "arm_front_right": {
+      "image": "_art/sources/cutout/trav_rensei_views.png",
+      "box": [
+        385,
+        691,
+        575,
+        1134
+      ],
+      "anchor": [
+        89,
+        35
+      ],
+      "scale": 0.084,
+      "sockets": {
+        "elbow": [
+          76,
+          230
+        ],
+        "wrist": [
+          35,
+          350
+        ],
+        "grip": [
+          31,
+          384
+        ]
+      }
+    },
+    "arm_back_left": {
+      "image": "_art/sources/cutout/trav_rensei_views.png",
+      "box": [
+        659,
+        695,
+        861,
+        1146
+      ],
+      "anchor": [
+        120,
+        35
+      ],
+      "scale": 0.084,
+      "sockets": {
+        "elbow": [
+          125,
+          230
+        ],
+        "wrist": [
+          139,
+          355
+        ],
+        "grip": [
+          141,
+          390
+        ]
+      }
+    },
+    "arm_back_right": {
+      "image": "_art/sources/cutout/trav_rensei_views.png",
+      "box": [
+        1020,
+        695,
+        1223,
+        1146
+      ],
+      "anchor": [
+        74,
+        35
+      ],
+      "scale": 0.084,
+      "sockets": {
+        "elbow": [
+          65,
+          230
+        ],
+        "wrist": [
+          56,
+          355
+        ],
+        "grip": [
+          54,
+          390
+        ]
+      }
+    },
+    "waist": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        42,
+        616,
+        346,
+        810
+      ],
+      "anchor": [
+        152,
+        20
+      ],
+      "scale": 0.105
+    },
+    "thigh_b": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        42,
+        616,
+        213,
+        920
+      ],
+      "anchor": [
+        115,
+        20
+      ],
+      "scale": 0.105,
+      "sockets": {
+        "knee": [
+          97,
+          269
+        ]
+      }
+    },
+    "thigh_f": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        174,
+        616,
+        346,
+        920
+      ],
+      "anchor": [
+        46,
+        20
+      ],
+      "scale": 0.105,
+      "sockets": {
+        "knee": [
+          69,
+          269
+        ]
+      }
+    },
+    "shin_b": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        42,
+        860,
+        213,
+        1134
+      ],
+      "anchor": [
+        97,
+        25
+      ],
+      "scale": 0.105,
+      "sockets": {
+        "ankle": [
+          100,
+          240
+        ]
+      }
+    },
+    "shin_f": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        174,
+        860,
+        346,
+        1134
+      ],
+      "anchor": [
+        69,
+        25
+      ],
+      "scale": 0.105,
+      "sockets": {
+        "ankle": [
+          75,
+          240
+        ]
+      }
+    },
+    "foot_b": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        467,
+        969,
+        597,
+        1091
+      ],
+      "anchor": [
+        39,
+        22
+      ],
+      "scale": 0.12
+    },
+    "foot_b_outward": {
+      "source_part": "foot_b",
+      "mirror_x": true
+    },
+    "foot_f": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        661,
+        991,
+        818,
+        1113
+      ],
+      "anchor": [
+        43,
+        22
+      ],
+      "scale": 0.12
+    },
+    "arm_b_relaxed": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        684,
+        181,
+        876,
+        572
+      ],
+      "anchor": [
+        60,
+        37
+      ],
+      "scale": 0.1,
+      "sockets": {
+        "elbow": [
+          110,
+          205
+        ],
+        "wrist": [
+          149,
+          317
+        ],
+        "grip": [
+          153,
+          342
+        ]
+      }
+    },
+    "arm_f_relaxed": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        975,
+        169,
+        1173,
+        572
+      ],
+      "anchor": [
+        59,
+        37
+      ],
+      "scale": 0.1,
+      "sockets": {
+        "elbow": [
+          110,
+          211
+        ],
+        "wrist": [
+          145,
+          327
+        ],
+        "grip": [
+          150,
+          353
+        ]
+      }
+    },
+    "weapon": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        902,
+        632,
+        1035,
+        1139
+      ],
+      "anchor": [
+        31,
+        82
+      ],
+      "scale": 0.105,
+      "sockets": {
+        "tip": [
+          129,
+          501
+        ]
+      }
+    },
+    "weapon_hilt": {
+      "source_part": "weapon",
+      "box": [
+        902,
+        632,
+        1035,
+        783
+      ]
+    },
+    "weapon_draw_short": {
+      "source_part": "weapon",
+      "box": [
+        902,
+        632,
+        1035,
+        930
+      ]
+    },
+    "weapon_draw_long": {
+      "source_part": "weapon",
+      "box": [
+        902,
+        632,
+        1035,
+        1070
+      ]
+    },
+    "saya": {
+      "image": "_art/sources/cutout/trav_rensei.png",
+      "box": [
+        1083,
+        682,
+        1215,
+        1131
+      ],
+      "anchor": [
+        28,
+        42
+      ],
+      "scale": 0.105,
+      "sockets": {
+        "mouth": [
+          28,
+          16
+        ]
+      }
+    },
+    "foot_f_camera": {
+      "image": "_art/sources/cutout/trav_rensei/foot_camera.png",
+      "anchor": [
+        71.0,
+        50.0
+      ],
+      "scale": 0.1334831460674157,
+      "mirror_x": true
+    },
+    "foot_b_camera": {
+      "image": "_art/sources/cutout/trav_rensei/foot_camera.png",
+      "anchor": [
+        71.0,
+        50.0
+      ],
+      "scale": 0.1334831460674157,
+      "mirror_x": false
+    },
+    "foot_f_heel": {
+      "image": "_art/sources/cutout/trav_rensei/foot_heel.png",
+      "anchor": [
+        51.0,
+        49.0
+      ],
+      "scale": 0.1381395348837209,
+      "mirror_x": true
+    },
+    "foot_b_heel": {
+      "image": "_art/sources/cutout/trav_rensei/foot_heel.png",
+      "anchor": [
+        51.0,
+        49.0
+      ],
+      "scale": 0.1381395348837209,
+      "mirror_x": false
+    }
+  },
+  "views": {
+    "front": {
+      "hips": {
+        "part": "body_front"
+      },
+      "body": {
+        "part": "body_front"
+      },
+      "head": {
+        "part": "head_front"
+      },
+      "arm_f": {
+        "part": "arm_front_left"
+      },
+      "arm_b": {
+        "part": "arm_front_right",
+        "depth": 40
+      },
+      "weapon": {
+        "visible": false
+      }
+    },
+    "back": {
+      "hips": {
+        "part": "body_back"
+      },
+      "body": {
+        "part": "body_back"
+      },
+      "head": {
+        "part": "head_back"
+      },
+      "arm_f": {
+        "part": "arm_back_left"
+      },
+      "arm_b": {
+        "part": "arm_back_right",
+        "depth": 40
+      },
+      "weapon": {
+        "visible": false
+      }
+    }
+  },
+  "clips": {
+    "ready": {
+      "motion": "iai_ready"
+    },
+    "atk_slash": {
+      "motion": "atk_iai"
+    },
+    "atk_draw": {
+      "motion": "atk_iai"
+    },
+    "critical": {
+      "motion": "atk_iai",
+      "count": 6,
+      "speed": 12
+    },
+    "void_critical": {
+      "motion": "atk_iai",
+      "count": 8,
+      "speed": 8
+    }
+  },
+  "nodes": {
+    "hips": {
+      "part": "body",
+      "visible": false
+    },
+    "body": {
+      "part": "body",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 30
+    },
+    "waist": {
+      "part": "waist",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 24
+    },
+    "thigh_b": {
+      "part": "thigh_b",
+      "parent": "hips",
+      "socket": "hip_b",
+      "depth": 10
+    },
+    "shin_b": {
+      "part": "shin_b",
+      "parent": "thigh_b",
+      "socket": "knee",
+      "depth": 9
+    },
+    "foot_b": {
+      "part": "foot_b",
+      "parent": "shin_b",
+      "socket": "ankle",
+      "depth": 8
+    },
+    "thigh_f": {
+      "part": "thigh_f",
+      "parent": "hips",
+      "socket": "hip_f",
+      "depth": 22
+    },
+    "shin_f": {
+      "part": "shin_f",
+      "parent": "thigh_f",
+      "socket": "knee",
+      "depth": 21
+    },
+    "foot_f": {
+      "part": "foot_f",
+      "parent": "shin_f",
+      "socket": "ankle",
+      "depth": 20
+    },
+    "arm_b": {
+      "part": "arm_b_relaxed",
+      "parent": "body",
+      "socket": "shoulder_b",
+      "depth": 25
+    },
+    "head": {
+      "part": "head",
+      "parent": "body",
+      "socket": "neck",
+      "depth": 35
+    },
+    "saya": {
+      "part": "saya",
+      "parent": "hips",
+      "socket": "saya",
+      "angle": 55,
+      "depth": 27
+    },
+    "hilt": {
+      "part": "weapon_hilt",
+      "parent": "saya",
+      "socket": "mouth",
+      "offset": [
+        0,
+        -5.775
+      ],
+      "depth": 38
+    },
+    "weapon": {
+      "part": "weapon",
+      "parent": "arm_f",
+      "socket": "grip",
+      "angle": -90,
+      "depth": 39,
+      "visible": false
+    },
+    "arm_f": {
+      "part": "arm_f_relaxed",
+      "parent": "body",
+      "socket": "shoulder_f",
+      "depth": 40
+    }
+  }
+}

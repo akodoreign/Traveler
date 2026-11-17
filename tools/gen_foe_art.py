@@ -89,7 +89,8 @@ HUMAN_BASES = ("hum_",)          # human-rig foes: drawn through gen_human_enemi
 def foe_def(key):
     """FOES entry, or one derived from tools/new_foes.py (name + description; size and scale from the base sheet)."""
     if key in FOES:
-        return FOES[key]
+        prompt, height, flying, scale = FOES[key]
+        return prompt, height, flying, g.battle_scale(scale)
     ent = next(f for f in new_foes.NEW_FOES if f[2] == key)
     j = json.load(open(os.path.join(RES, "enemy_pic.json"), encoding="utf-8"))
     base = j[ent[4]]

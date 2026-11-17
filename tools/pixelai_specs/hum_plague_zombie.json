@@ -4,7 +4,7 @@
  "kind": "enemy",
  "sheet": "hum_plague_zombie.png",
  "prompt": "1boy, male focus, man, Plague Zombie, grey skin, dark brown hair, mane hair, light brown kimono, brown hakama, feudal japan",
- "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes, facing left, from behind",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
  "seed": 11,
  "candidates": 2,
  "groups": {

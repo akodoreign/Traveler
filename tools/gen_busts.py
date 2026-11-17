@@ -209,9 +209,11 @@ if os.path.exists(_PICKS):
                          variants=[], npc=True)
 for _k, _s in NPC_PICK.items():
     CHARS[_k]["seed"] = _s
-CHARS["npc_matsu_hanae"]["cut_bg_islands"] = True   # white background kept between rope and staff (enclosed)
-for _n in ("Mieko (dark)", "Dark Mieko", "Gentle Mieko", "Mieko (???)"):    # the same Isawa Mieko (scene labels)
-    CHARS["npc_isawa_mieko"]["names"].append(_n)
+if "npc_matsu_hanae" in CHARS:
+    CHARS["npc_matsu_hanae"]["cut_bg_islands"] = True   # white background kept between rope and staff (enclosed)
+if "npc_isawa_mieko" in CHARS:
+    for _n in ("Mieko (dark)", "Dark Mieko", "Gentle Mieko", "Mieko (???)"):    # the same Isawa Mieko (scene labels)
+        CHARS["npc_isawa_mieko"]["names"].append(_n)
 
 # Maps whose whole floor plan is one scene look (the plugin uses it unless a line or a script says otherwise):
 # the Winter Court floors of Kyuden Hida (Crab Ch2) and the Kyuden Doji court. Bath / inn scenes are too few and too

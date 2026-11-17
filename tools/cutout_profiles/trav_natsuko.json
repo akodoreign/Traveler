@@ -1,0 +1,762 @@
+{
+  "size": [
+    192,
+    176
+  ],
+  "origin": [
+    90,
+    112
+  ],
+  "weapon": "yari",
+  "articulated_arms": true,
+  "parts": {
+    "body": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        366,
+        143,
+        560,
+        487
+      ],
+      "anchor": [
+        98,
+        278
+      ],
+      "scale": 0.1,
+      "sockets": {
+        "root": [
+          98,
+          278
+        ],
+        "neck": [
+          103,
+          29
+        ],
+        "shoulder_f": [
+          35,
+          76
+        ],
+        "shoulder_b": [
+          171,
+          81
+        ],
+        "hip_f": [
+          142,
+          278
+        ],
+        "hip_b": [
+          66,
+          278
+        ]
+      }
+    },
+    "waist": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        366,
+        370,
+        560,
+        487
+      ],
+      "anchor": [
+        98,
+        51
+      ],
+      "scale": 0.1
+    },
+    "head": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        12,
+        79,
+        319,
+        545
+      ],
+      "anchor": [
+        226,
+        244
+      ],
+      "scale": 0.105
+    },
+    "body_front": {
+      "image": "_art/sources/cutout/trav_natsuko_views.png",
+      "box": [
+        272,
+        256,
+        509,
+        681
+      ],
+      "anchor": [
+        118,
+        316
+      ],
+      "scale": 0.09,
+      "sockets": {
+        "root": [
+          118,
+          316
+        ],
+        "neck": [
+          118,
+          26
+        ],
+        "shoulder_f": [
+          29,
+          91
+        ],
+        "shoulder_b": [
+          208,
+          91
+        ],
+        "hip_f": [
+          162,
+          316
+        ],
+        "hip_b": [
+          74,
+          316
+        ]
+      }
+    },
+    "body_back": {
+      "image": "_art/sources/cutout/trav_natsuko_views.png",
+      "box": [
+        773,
+        256,
+        1000,
+        634
+      ],
+      "anchor": [
+        113,
+        309
+      ],
+      "scale": 0.09,
+      "sockets": {
+        "root": [
+          113,
+          309
+        ],
+        "neck": [
+          113,
+          26
+        ],
+        "shoulder_f": [
+          29,
+          91
+        ],
+        "shoulder_b": [
+          198,
+          91
+        ],
+        "hip_f": [
+          157,
+          309
+        ],
+        "hip_b": [
+          69,
+          309
+        ]
+      }
+    },
+    "head_front": {
+      "image": "_art/sources/cutout/trav_natsuko_views.png",
+      "box": [
+        23,
+        164,
+        234,
+        563
+      ],
+      "anchor": [
+        105,
+        342
+      ],
+      "scale": 0.092
+    },
+    "head_back": {
+      "image": "_art/sources/cutout/trav_natsuko_views.png",
+      "box": [
+        546,
+        169,
+        728,
+        589
+      ],
+      "anchor": [
+        91,
+        309
+      ],
+      "scale": 0.092
+    },
+    "arm_front_left": {
+      "image": "_art/sources/cutout/trav_natsuko_views.png",
+      "box": [
+        43,
+        825,
+        209,
+        1423
+      ],
+      "anchor": [
+        92,
+        52
+      ],
+      "scale": 0.065,
+      "sockets": {
+        "elbow": [
+          98,
+          310
+        ],
+        "wrist": [
+          103,
+          489
+        ],
+        "grip": [
+          103,
+          532
+        ]
+      }
+    },
+    "arm_front_right": {
+      "image": "_art/sources/cutout/trav_natsuko_views.png",
+      "box": [
+        312,
+        825,
+        476,
+        1423
+      ],
+      "anchor": [
+        69,
+        52
+      ],
+      "scale": 0.065,
+      "sockets": {
+        "elbow": [
+          63,
+          310
+        ],
+        "wrist": [
+          61,
+          489
+        ],
+        "grip": [
+          61,
+          532
+        ]
+      }
+    },
+    "arm_back_left": {
+      "image": "_art/sources/cutout/trav_natsuko_views.png",
+      "box": [
+        549,
+        825,
+        716,
+        1412
+      ],
+      "anchor": [
+        94,
+        52
+      ],
+      "scale": 0.065,
+      "sockets": {
+        "elbow": [
+          100,
+          307
+        ],
+        "wrist": [
+          101,
+          483
+        ],
+        "grip": [
+          101,
+          525
+        ]
+      }
+    },
+    "arm_back_right": {
+      "image": "_art/sources/cutout/trav_natsuko_views.png",
+      "box": [
+        814,
+        825,
+        977,
+        1412
+      ],
+      "anchor": [
+        73,
+        52
+      ],
+      "scale": 0.065,
+      "sockets": {
+        "elbow": [
+          65,
+          307
+        ],
+        "wrist": [
+          62,
+          483
+        ],
+        "grip": [
+          62,
+          525
+        ]
+      }
+    },
+    "thigh_b": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        26,
+        602,
+        235,
+        961
+      ],
+      "anchor": [
+        144,
+        26
+      ],
+      "scale": 0.078,
+      "sockets": {
+        "knee": [
+          134,
+          310
+        ]
+      }
+    },
+    "thigh_f": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        343,
+        601,
+        541,
+        961
+      ],
+      "anchor": [
+        78,
+        27
+      ],
+      "scale": 0.078,
+      "sockets": {
+        "knee": [
+          87,
+          310
+        ]
+      }
+    },
+    "shin_b": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        579,
+        659,
+        687,
+        1004
+      ],
+      "anchor": [
+        54,
+        46
+      ],
+      "scale": 0.082,
+      "sockets": {
+        "ankle": [
+          50,
+          305
+        ]
+      }
+    },
+    "shin_f": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        765,
+        658,
+        868,
+        1004
+      ],
+      "anchor": [
+        49,
+        46
+      ],
+      "scale": 0.082,
+      "sockets": {
+        "ankle": [
+          57,
+          305
+        ]
+      }
+    },
+    "foot_b": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        65,
+        1222,
+        242,
+        1402
+      ],
+      "anchor": [
+        57,
+        33
+      ],
+      "scale": 0.085
+    },
+    "foot_b_outward": {
+      "source_part": "foot_b",
+      "mirror_x": true
+    },
+    "foot_f": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        292,
+        1224,
+        463,
+        1398
+      ],
+      "anchor": [
+        50,
+        30
+      ],
+      "scale": 0.085
+    },
+    "arm_f_relaxed": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        614,
+        103,
+        752,
+        520
+      ],
+      "anchor": [
+        62,
+        48
+      ],
+      "scale": 0.09,
+      "sockets": {
+        "elbow": [
+          80,
+          225
+        ],
+        "wrist": [
+          97,
+          352
+        ],
+        "grip": [
+          98,
+          380
+        ]
+      }
+    },
+    "arm_b_relaxed": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        847,
+        102,
+        981,
+        525
+      ],
+      "anchor": [
+        63,
+        48
+      ],
+      "scale": 0.09,
+      "sockets": {
+        "elbow": [
+          62,
+          231
+        ],
+        "wrist": [
+          55,
+          356
+        ],
+        "grip": [
+          55,
+          385
+        ]
+      }
+    },
+    "weapon": {
+      "image": "_art/sources/cutout/trav_natsuko.png",
+      "box": [
+        929,
+        585,
+        967,
+        1461
+      ],
+      "anchor": [
+        18,
+        477
+      ],
+      "scale": 0.12,
+      "sockets": {
+        "tip": [
+          17,
+          2
+        ]
+      }
+    },
+    "foot_f_camera": {
+      "image": "_art/sources/cutout/trav_natsuko/foot_camera.png",
+      "anchor": [
+        65.5,
+        58.0
+      ],
+      "scale": 0.1180097087378641,
+      "mirror_x": true
+    },
+    "foot_b_camera": {
+      "image": "_art/sources/cutout/trav_natsuko/foot_camera.png",
+      "anchor": [
+        65.5,
+        58.0
+      ],
+      "scale": 0.12048543689320389,
+      "mirror_x": false
+    },
+    "foot_f_heel": {
+      "image": "_art/sources/cutout/trav_natsuko/foot_heel.png",
+      "anchor": [
+        48.0,
+        57.0
+      ],
+      "scale": 0.11916666666666668,
+      "mirror_x": true
+    },
+    "foot_b_heel": {
+      "image": "_art/sources/cutout/trav_natsuko/foot_heel.png",
+      "anchor": [
+        48.0,
+        57.0
+      ],
+      "scale": 0.12166666666666667,
+      "mirror_x": false
+    }
+  },
+  "views": {
+    "front": {
+      "hips": {
+        "part": "body_front"
+      },
+      "body": {
+        "part": "body_front"
+      },
+      "head": {
+        "part": "head_front"
+      },
+      "arm_f": {
+        "part": "arm_front_left"
+      },
+      "arm_b": {
+        "part": "arm_front_right",
+        "angle": 0,
+        "depth": 40
+      },
+      "weapon": {
+        "visible": false
+      }
+    },
+    "back": {
+      "hips": {
+        "part": "body_back"
+      },
+      "body": {
+        "part": "body_back"
+      },
+      "head": {
+        "part": "head_back"
+      },
+      "arm_f": {
+        "part": "arm_back_left"
+      },
+      "arm_b": {
+        "part": "arm_back_right",
+        "angle": 0,
+        "depth": 40
+      },
+      "weapon": {
+        "visible": false
+      }
+    }
+  },
+  "clips": {
+    "critical": {
+      "motion": "atk_thrust",
+      "count": 6,
+      "speed": 12
+    },
+    "void_critical": {
+      "motion": "atk_thrust",
+      "count": 8,
+      "speed": 8,
+      "frames": [
+        {
+          "offset": [
+            -4,
+            4
+          ],
+          "nodes": {
+            "weapon": {
+              "angle": -30
+            }
+          }
+        },
+        {
+          "offset": [
+            -6,
+            8
+          ],
+          "nodes": {
+            "weapon": {
+              "angle": -15
+            }
+          }
+        },
+        {
+          "offset": [
+            3,
+            10
+          ],
+          "nodes": {
+            "weapon": {
+              "angle": 0
+            }
+          }
+        },
+        {
+          "offset": [
+            8,
+            10
+          ],
+          "nodes": {
+            "weapon": {
+              "angle": 0
+            }
+          }
+        },
+        {
+          "offset": [
+            10,
+            8
+          ],
+          "nodes": {
+            "weapon": {
+              "angle": 2
+            }
+          }
+        },
+        {
+          "offset": [
+            6,
+            4
+          ],
+          "nodes": {
+            "weapon": {
+              "angle": 10
+            }
+          }
+        },
+        {
+          "offset": [
+            2,
+            2
+          ],
+          "nodes": {
+            "weapon": {
+              "angle": -40
+            }
+          }
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "two_handed": false,
+          "nodes": {
+            "weapon": {
+              "parent": "arm_b",
+              "angle": -90
+            },
+            "arm_f": {
+              "part": "arm_f_relaxed",
+              "angle": 0
+            },
+            "arm_b": {
+              "part": "arm_b_relaxed",
+              "angle": -35
+            }
+          }
+        }
+      ]
+    }
+  },
+  "nodes": {
+    "hips": {
+      "part": "body",
+      "visible": false
+    },
+    "body": {
+      "part": "body",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 30
+    },
+    "waist": {
+      "part": "waist",
+      "parent": "hips",
+      "socket": "root",
+      "depth": 24
+    },
+    "head": {
+      "part": "head",
+      "parent": "body",
+      "socket": "neck",
+      "depth": 35
+    },
+    "thigh_b": {
+      "part": "thigh_b",
+      "parent": "hips",
+      "socket": "hip_b",
+      "depth": 10
+    },
+    "shin_b": {
+      "part": "shin_b",
+      "parent": "thigh_b",
+      "socket": "knee",
+      "depth": 11
+    },
+    "foot_b": {
+      "part": "foot_b",
+      "parent": "shin_b",
+      "socket": "ankle",
+      "depth": 9
+    },
+    "thigh_f": {
+      "part": "thigh_f",
+      "parent": "hips",
+      "socket": "hip_f",
+      "depth": 20
+    },
+    "shin_f": {
+      "part": "shin_f",
+      "parent": "thigh_f",
+      "socket": "knee",
+      "depth": 21
+    },
+    "foot_f": {
+      "part": "foot_f",
+      "parent": "shin_f",
+      "socket": "ankle",
+      "depth": 19
+    },
+    "arm_b": {
+      "part": "arm_b_relaxed",
+      "parent": "body",
+      "socket": "shoulder_b",
+      "depth": 25
+    },
+    "weapon": {
+      "part": "weapon",
+      "parent": "arm_f",
+      "socket": "grip",
+      "depth": 39
+    },
+    "arm_f": {
+      "part": "arm_f_relaxed",
+      "parent": "body",
+      "socket": "shoulder_f",
+      "depth": 40
+    }
+  }
+}

@@ -1,0 +1,47 @@
+// Real exported artwork only: no in-memory frame aliases.
+import DamageResultType;
+local check = function( ok, text){
+	if( !ok) throw Exception( "CUTOUT TEST FAIL: " .. text);
+	printf( "[RT] CUTOUT TEST PASS: %S\n", text);
+};
+local b = ::rpgstage["battle"];
+check( !!b, "battle opened");
+local names = { P100 = "natsuko", P101 = "rensei" }, seen = {};
+foreach( pc in b.members){
+	if( !(pc.dataid in names)) continue;
+	local key = names[pc.dataid], rp = b.getChara3D( pc);
+	check( rp.pic.pic3d == "/resource/enemy_pic2x/trav_" .. key .. ".png", key .. " replacement loaded");
+	check( rp.udiv == 14 && rp.vdiv == 16, key .. " expanded atlas loaded");
+	foreach( id in ["critical", "void_critical"]){
+		local clip = rp.animemap[id];
+		check( clip && clip.st >= 182 && clip.en > clip.st && !clip.loop && clip.replay,
+			key .. " real " .. id .. " frames available");
+	}
+	local layer = rp.anime2( { id = "facepalm" });
+	layer.locked = @() true;
+	sleep( 300);
+	::Rokugan.rtshot( "tmp/rt_shot/bot_cutout_" .. key .. "_gesture.raw");
+	layer.locked = false;
+	foreach( isVoid in [false, true]){
+		local sk = clone pc.getAttackSkill();
+		if( isVoid) sk["rt_vcrit"] <- 15;
+		local plan = ::Rokugan.criticalPlan( pc, sk, isVoid, rp);
+		check( plan.clip == (isVoid ? "void_critical" : "critical"), key .. " exported clip selected");
+		local cmd = SkillCommand( pc, sk, [b.enemies[0]]), dmg = Damage( cmd, b.enemies[0]);
+		dmg.critical = true;
+		dmg.val = 17;
+		dmg.result = DMG_CRITICAL;
+		local hp = b.enemies[0].HP;
+		newthread().start( @(){
+			sleep( isVoid ? 1800 : 250);
+			::Rokugan.rtshot( "tmp/rt_shot/bot_cutout_" .. key .. (isVoid ? "_void.raw" : "_critical.raw"));
+		});
+		cmd.attackAction( dmg);
+		cmd.waitFor( pc, b.enemies[0]);
+		check( b.enemies[0].HP == hp - 17, key .. " damage applied once");
+		check( !rp.animlayers.layers[0].locked, key .. " animation released");
+	}
+	seen[pc.dataid] <- true;
+}
+check( length( seen) == 2, "both replacement travelers exercised");
+printf( "[RT] CUTOUT TEST COMPLETE\n");

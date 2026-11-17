@@ -66,7 +66,7 @@ local TRAVELER_IDS = { P100 = 1, P101 = 1, P102 = 1, P103 = 1, P104 = 1, P105 = 
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-//	The cut-in: a dark band across the screen, the bust on the left, the shout beside it; it fades in and out (~1.8 s).
+//	The title is owned by one view and removed before the attack action starts.
 local CUT = { tex = null };
 local cutSprite = function(){
 	if( !CUT.tex){
@@ -82,31 +82,40 @@ local cutSprite = function(){
 class RTCutIn extends SKImageView
 {
 	t = 0.0;
+	duration = 1500.0;
+	battle = null;
+	closed = false;
 	parts = null;
-	constructor(){
+	constructor( ms = 1500.0){
 		super( cutSprite());
 		enabled = false;
+		duration = Math.clamp( ms, 1000.0, 2000.0);
+		battle = ::rpgstage["battle"];
 		parts = [];
 		addUpdateFunc( this.tick.bindenv( this));
 	}
+	function close(){
+		if( closed) return;
+		closed = true;
+		foreach( p in parts) p[0].removeFromParent();
+		parts.clear();
+		removeFromParent();
+	}
 	function tick( dt){
+		if( closed) return false;
 		t += dt;
-		local a = t < 200.0 ? t / 200.0 : t > 1600.0 ? Math.max( 0.0, 1.0 - (t - 1600.0) / 250.0) : 1.0;
+		if( ::rpgstage["battle"] != battle || t >= duration){ close(); return false; }
+		local a = Math.min( 1.0, Math.min( t / 100.0, (duration - t) / 100.0));
 		setColor( 0x0b0a1200 | int( a * 0xd8));
 		foreach( p in parts){
 			if( p[1] == "img") p[0].setColor( 0xffffff00 | int( a * 255));
 			else p[0].setColor( (p[2] & 0xffffff00) | int( a * 255));
 		}
-		if( t >= 1850.0){
-			foreach( p in parts) p[0].removeFromParent();
-			removeFromParent();
-			return false;
-		}
 		return true;
 	}
 }
 ::RTCutIn <- RTCutIn;		//	(tester: the class lives in this file's scope; ::Rokugan.cutIn runs with this = ::Rokugan)
-::Rokugan.cutIn <- function( pc, text){
+::Rokugan.cutIn <- function( pc, text, ms = 1500.0){
 	if( !::rootview) return;
 	if( ::arguments.indexOf( "-rtshotcut") >= 0){					//	test: a screenshot of each cut-in (tester)
 		::Rokugan.cutn <- ("cutn" in ::Rokugan ? ::Rokugan.cutn : 0) + 1;
@@ -116,7 +125,7 @@ class RTCutIn extends SKImageView
 	local root = ::rootview.findChild( "stageui");
 	if( !root) return;
 	local W = root.bnd.w, H = root.bnd.h, y = H * 0.30, h = H * 0.26;
-	local band = ::RTCutIn();
+	local band = ::RTCutIn( ms);
 	band.setRect( 0, y, W, h);
 	root.addChild( band);
 	local key = ("bustKey" in this) ? this.bustKey( pc.name) : null;
@@ -129,30 +138,30 @@ class RTCutIn extends SKImageView
 			sp.blend = SK_PMAMIX;
 			local iv = ::SKImageView( sp), bh = h * 1.5, bw = bh * tex.width / tex.height;
 			iv.enabled = false;
-			iv.setRect( W * 0.06, y + h - bh, bw, bh);
-			root.addChild( iv);
+			iv.setRect( W * 0.06, h - bh, bw, bh);
+			band.addChild( iv);
 			band.parts.append( [iv, "img", 0xffffffff]);
 		}
 	}
 	local v = SKLabelView( "", FontAttribute( Fonts.get( "ui"), 40, 0xf4e2b0ff, SK_FONT_BOLD));
 	v.enabled = false;
-	v.bnd.set( W * 0.32, y + h * 0.30, W * 0.64, h * 0.5);
+	v.bnd.set( W * 0.32, h * 0.30, W * 0.64, h * 0.6);
 	v.setText( text);
-	root.addChild( v);
+	band.addChild( v);
 	band.parts.append( [v, "lbl", 0xf4e2b0ff]);
 	local n = SKLabelView( "", FontAttribute( Fonts.get( "ui"), 20, 0xc9a45cff, SK_FONT_BOLD));
 	n.enabled = false;
-	n.bnd.set( W * 0.32, y + h * 0.10, W * 0.64, 26);
+	n.bnd.set( W * 0.32, h * 0.10, W * 0.64, 26);
 	n.setText( pc.name .. "  -  Void critical");
-	root.addChild( n);
+	band.addChild( n);
 	band.parts.append( [n, "lbl", 0xc9a45cff]);
 	::playSound( "SE209");
+	return band;
 };
 
 ::Rokugan.voidShout <- function( pc){
 	local key = pc.data["rt_school_key"] || "", sh = this.VOID_SHOUT[key] || ["The Void strikes!", "K128"];
 	local b = ::rpgstage["battle"];
-	this.cutIn( pc, sh[0]);
 	log( "VOID CRIT %S: %S" % (pc.name, sh[0]));
 	foreach( m in (b ? b.members : [])){
 		if( !m || m.isDead()) continue;
@@ -163,6 +172,113 @@ class RTCutIn extends SKImageView
 	}
 	if( length( sh) > 2 && sh[2] == "read" && b)
 		foreach( e in b.enemies) if( e && !e.isDead()) this.state( e).known = this.state( e).known | this.weakbits( e);
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	Presentation only: attackAction sees the final result after every combat hook.
+//	Clip IDs belong to the actor's current animap, including equipment-specific pictures.
+::Rokugan.CRIT_PRESENTATION <- {};
+::Rokugan.registerCritical <- function( character, attack, kind, settings){
+	if( kind != "critical" && kind != "void_critical") throw Exception( "Unknown critical presentation kind: " .. kind);
+	this.CRIT_PRESENTATION[character .. ":" .. attack .. ":" .. kind] <- clone settings;
+};
+::Rokugan.criticalPlan <- function( pc, sk, isVoid, rp){
+	local kind = isVoid ? "void_critical" : "critical";
+	local key = sk["rt_anim_key"] || sk["atkact"]["atkani"]["id"] || "attack", cfg = {};
+	foreach( id in [pc.dataid .. ":" .. key, pc.dataid .. ":*", "*:" .. key, "*:*"]){
+		local entry = this.CRIT_PRESENTATION[id .. ":" .. kind];
+		if( entry){ cfg = entry; break; }
+	}
+	local shout = this.VOID_SHOUT[pc.data["rt_school_key"] || ""] || ["The Void strikes!"];
+	local plan = { kind = kind, key = key, clip = null, ani = null, duration = 0.0,
+		title = cfg["title"] || shout[0], title_ms = Math.clamp( cfg["title_ms"] ?? 1500.0, 1000.0, 2000.0) };
+	local speed = Math.clamp( cfg["speed"] ?? (isVoid ? 0.65 : 1.0), 0.35, 1.0);
+	foreach( id in [cfg["clip"], kind .. "_" .. key, kind]){
+		if( !id || !rp || !rp["animemap"] || !rp.animemap[id]) continue;
+		local clip = rp.animemap[id], frames = (clip["en"] ?? clip.st) - clip.st;
+		if( clip["loop"] || clip["replay"] == false || frames <= 0 || clip.spd <= 0){
+			log( "CRIT PRESENT invalid clip %S (requires a replayable non-looping forward range and positive speed)" % id);
+			continue;
+		}
+		//	Complete even a long authored clip within two seconds; never change global time or its shared definition.
+		speed = Math.max( speed, frames * 1000.0 / (clip.spd * 2000.0));
+		plan.clip = id;
+		plan.ani = { id = id, spd = speed };
+		plan.duration = frames * 1000.0 / (clip.spd * speed);
+		break;
+	}
+	return plan;
+};
+
+::SkillCommand.rt_critShown <- false;
+::SkillCommand.rt_voidShown <- false;
+::SkillCommand.rt_critVisual <- null;
+::SkillCommand._rt_attackAction_cp <- ::SkillCommand.attackAction;
+::SkillCommand.attackAction <- function( dmg){
+	local eligible = !dmg.skip && !dmg.miss && !dmg.heal && dmg.critical && dmg.skill["skilltype"] == "attack" &&
+		(dmg.src instanceof ::RPGPlayer) && (dmg.dst instanceof ::RPGEnemy);
+	if( !eligible) return this._rt_attackAction_cp( dmg);
+	local isVoid = !!dmg.skill["rt_vcrit"];
+	if( isVoid ? rt_voidShown : rt_critShown) return this._rt_attackAction_cp( dmg);
+	if( isVoid) rt_voidShown = true;
+	else rt_critShown = true;
+	local battle = ::rpgstage["battle"], rp = battle ? battle.getChara3D( dmg.src) : null;
+	local plan = ::Rokugan.criticalPlan( dmg.src, dmg.skill, isVoid, rp);
+	if( isVoid){
+		local band = ::Rokugan.cutIn( dmg.src, plan.title, plan.title_ms);
+		if( band){
+			log( "CRIT PRESENT title %S %.0fms" % (dmg.src.name, plan.title_ms));
+			sleep( plan.title_ms);
+			band.close();
+			log( "CRIT PRESENT title cleared");
+		}
+	}
+	if( ::rpgstage["battle"] != battle) return;
+	log( "CRIT PRESENT action %S %S clip=%S" % (dmg.src.name, plan.kind, plan.clip || "native"));
+	rt_critVisual = plan;
+	try{
+		this._rt_attackAction_cp( dmg);
+	}catch( ex){
+		rt_critVisual = null;
+		throw ex;
+	}
+	rt_critVisual = null;
+};
+
+::SkillCommand._rt_act_cp <- ::SkillCommand.act;
+::SkillCommand.act <- function( func, ctx = null){
+	local plan = rt_critVisual;
+	if( !func || !plan || !plan.clip || !ctx || ctx["chr"] != src || func != skill["atkact"])
+		return this._rt_act_cp( func, ctx);
+	//	Retain the native script's effects, projectiles and sound. Only its striker motion is replaced.
+	local native = func, context = ctx;
+	if( typeof( func) == SS_TABLE){
+		local scp = func["scp"] || ::skillscriptmap[func["id"]];
+		if( !length( scp)) return this._rt_act_cp( func, ctx);
+		native = compilestring_c( scp, scp);
+		context = { ...func, ...ctx };
+	}
+	return this._rt_act_cp( function(){
+		local layer = rp3d.anime2( plan.ani);
+		if( !layer){
+			log( "CRIT PRESENT clip %S unavailable; using native action" % plan.clip);
+			return native();
+		}
+		layer.locked = @() layer.animating;
+		anilyr = layer;
+		local start = skGetTime();
+		try{
+			native();
+			while( layer.animating && skGetTime() - start < 2100.0) sleep( 16);
+		}catch( ex){
+			layer.locked = 0;
+			layer.animating = false;
+			throw ex;
+		}
+		if( layer.animating) log( "CRIT PRESENT clip %S reached playback limit" % plan.clip);
+		layer.locked = 0;
+		layer.animating = false;
+	}, context);
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -191,6 +307,9 @@ class RTCutIn extends SKImageView
 };
 ::Rokugan._rt_pre_vc <- ::Rokugan.onPreCommand;
 ::Rokugan.onPreCommand <- function( cmd){
+	cmd.rt_critShown = false;
+	cmd.rt_voidShown = false;
+	cmd.rt_critVisual = null;
 	local pc = cmd.src, sk = cmd.skill;
 	if( sk && (pc instanceof ::RPGPlayer) && sk["skilltype"] == "attack" && sk["flags"] == 255){
 		local f = this.compFx( pc);

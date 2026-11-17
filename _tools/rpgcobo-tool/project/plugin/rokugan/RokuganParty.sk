@@ -70,14 +70,14 @@ foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]
 	};
 }
 
-//	Battle positions by slot: four columns, two rows (2 m apart, the second row 1.7 m behind).
+//	Battle positions by slot: four columns, two rows (2 m apart, each row 2.1 m behind).
 ::TurnBattleRunner._rt_basepos <- ::TurnBattleRunner.getBasePosition;
 ::TurnBattleRunner.getBasePosition <- function( pc){
 	local i = ::rpgstat.members.indexOf( pc);
 	if( i < 0) return this._rt_basepos( pc);
 	local m = stage.getLocation( "*memberloc");
 	local col = i % 4, row = i / 4;
-	local side = Vector3D( 1, 0, 0).rotate( m.dir, 0, 0), back = Vector3D( 0, 0, -1.7 * row).rotate( m.dir, 0, 0);
+	local side = Vector3D( 1, 0, 0).rotate( m.dir, 0, 0), back = Vector3D( 0, 0, -2.1 * row).rotate( m.dir, 0, 0);
 	local p = Vector3D( m.pos) + side * ((1.5 - col) * 2.0) + back;
 	return (p.x, p.y, p.z, m.dir);
 };

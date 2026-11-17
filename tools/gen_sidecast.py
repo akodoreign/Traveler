@@ -60,7 +60,7 @@ CAST = [
          eyes="narrow", brow="stern", weapon="fan", props=["jitte"]),
     dict(key="yosai", glow=(255, 160, 70), face="round", name="Togashi Yosai", clan="dragon", skin=TAN, hair=BLACK, hairstyle="bald",
          head_tattoo=True, tattoo=(40, 70, 130), build="monk", top=(214, 170, 70), lower=(170, 120, 50),
-         accent=(150, 60, 40), eyes="closed", mouth="grin", weapon="shakujo", ofuda_staff=False,
+         accent=(150, 60, 40), eyes="closed", mouth="grin", weapon="none",
          props=["gourd"]),
     dict(key="muika", name="Muika", clan="eta", skin=TAN, hair=BLACK, hairstyle="bob", build="peasant",
          head="headcloth", cloth=(58, 78, 118), weapon="none", props=["lantern"], female=True),
@@ -1348,7 +1348,7 @@ def main():
             e.update({"name": {"en": c["name"], "ja": c["name"]}, "pic3d": "/resource/enemy_pic/%s.png" % fname,
                       "aniuv": [g.COLS, g.ROWS], "memo": "side-cast sprite (tools/gen_sidecast.py)",
                       "gndpos": [0.5, (g.FH - g.GROUND - 1) / g.FH], "atkpos": [0.25, 0.55],
-                      "cntpos": [0.5, 0.6], "scale": 1.45 * g.CAST_SCALE * g.HUMAN_SCALE * c.get("scale", 1.0), "flipx": True})
+                      "cntpos": [0.5, 0.6], "scale": g.battle_scale(1.45 * g.CAST_SCALE * g.HUMAN_SCALE * c.get("scale", 1.0)), "flipx": True})
             e["animap"] = [{"id": k, "st": v[0], "en": v[1], "spd": v[2], "loop": v[3], "replay": not v[3]}
                            for k, v in g.animap_for(T).items()]          # v4 layout: per-weapon main attack
             j[epid(n)] = e

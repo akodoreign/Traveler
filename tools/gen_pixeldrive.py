@@ -615,6 +615,7 @@ def run(workers=3, only=None, looks=False, busts=False):
 
 def progress():
     os.makedirs(ps.PROG, exist_ok=True)
+    os.makedirs(SHEETS, exist_ok=True)
     stamp = time.strftime("%H%M")
     rows = []
     for k in sorted(os.listdir(SHEETS)):
@@ -645,8 +646,15 @@ def progress():
                    for f in os.listdir(os.path.join(SHEETS, k)) if len(f) == 8 and f.endswith(".png"))
     hour = sum(1 for t in times if t > time.time() - 3600)
     st_path = os.path.join(ps.PX, "drive_state.json")
-    total = json.load(open(st_path))["total"] if os.path.exists(st_path) else len(rows)
-    planned = json.load(open(st_path)).get("frames", total * 150) if os.path.exists(st_path) else total * 150
+    if os.path.exists(st_path):
+        state = json.load(open(st_path))
+        total = state["total"]
+        planned = state.get("frames", total * 150)
+    else:
+        items = worklist()
+        total = len(items)
+        planned = sum(len({i for a in it[3] for i in range(a["st"], max(a["en"], a["st"] + 1))})
+                      for it in items)
     left = max(0, planned - len(times))
     eta = "%.1f days" % (left / hour / 24) if hour else "unknown"
     md = ["# AI sprite sheets: progress (%s)" % time.strftime("%Y-%m-%d %H:%M"), "",

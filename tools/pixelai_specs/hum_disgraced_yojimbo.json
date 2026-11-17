@@ -4,7 +4,7 @@
  "kind": "enemy",
  "sheet": "hum_disgraced_yojimbo.png",
  "prompt": "1boy, male focus, man, Disgraced Yojimbo, light tan skin, black hair, chonmage hair, dark grey lacquered lamellar armor, dark grey kimono, dark grey hakama, a katana with a steel blade and a black hilt, feudal japan",
- "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes, facing left, from behind",
+ "negative": "red hair, orange hair, pink hair, blue hair, green hair, purple hair, white hair, blonde hair, red skin, orange skin, red outline, red clothes",
  "seed": 11,
  "candidates": 2,
  "groups": {

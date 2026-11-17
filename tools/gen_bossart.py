@@ -724,7 +724,7 @@ def write(j, tmpl, epid, key, label, img):
     e.update({"name": {"en": label, "ja": label}, "pic3d": "/resource/enemy_pic/%s.png" % fname,
               "aniuv": [cols, rows], "animap": animap, "memo": "boss art (tools/gen_bossart.py; wiki art, pixelated)",
               "gndpos": [0.5, 1.0 / h], "atkpos": [0.8, 0.5], "cntpos": [0.5, 0.55],
-              "scale": 1.05 * g.CAST_SCALE * PIX, "flipx": False})
+              "scale": g.battle_scale(1.05 * g.CAST_SCALE * PIX), "flipx": False})
     j[epid] = e
     return frames[0]
 

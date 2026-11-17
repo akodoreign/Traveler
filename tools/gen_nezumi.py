@@ -348,7 +348,7 @@ def main():
     j = json.load(open(jpath, encoding="utf-8"))
     tmpl = j["EP000"]
     gnd = [0.5, (FH - GROUND - 1) / FH]
-    scale = 1.45 * g.CAST_SCALE
+    scale = g.battle_scale(1.45 * g.CAST_SCALE)
     previews = []
     # Squeak: travelers' layout, so he can stand in the party (Pocket Sand) and walk the field 4 ways
     sq = party_sheet(SPECS["squeak"])
