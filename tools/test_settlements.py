@@ -15,6 +15,7 @@ class SettlementExpansionTests(unittest.TestCase):
     def setUpClass(cls):
         cls.regions = gm.TOWN_WARDS + gm.ISLAND_WARDS
         cls.islets = gm.SEA_ISLETS
+        cls.maps = json.loads((Path(gm.PROJ) / "data" / "map.json").read_text(encoding="utf-8"))
         cls.outdoor = {region["mid"]: gm.make(region["mid"]) for region in cls.regions}
         cls.outdoor.update({islet["mid"]: gm.make(islet["mid"]) for islet in cls.islets})
 
@@ -101,9 +102,14 @@ class SettlementExpansionTests(unittest.TestCase):
                 self.assertEqual(pickup["reqs0"], [gm.flag(taken), gm.flag(found, False)])
                 self.assertGreaterEqual(pickup["mdl"]["r"][3], 1.5)
                 self.assertGreaterEqual(pickup["mdl"]["r"][4], 3.0)
-                self.assertTrue(any(event.get("mdlid") in gm.DECOR_EP.values()
-                                    and event["pos"][:3] == pickup["pos"][:3]
-                                    for event in events.values()))
+                item_command = {"cmd": "cmd_itemop", "itemid": gm.FQ_ITEM_IDS[key],
+                                "op": 0, "num": 1, "LV": 1}
+                self.assertTrue(any(item_command in page.get("cmdblock", [])
+                                    for page in pickup.get("page", [])))
+                self.assertTrue(any(row[3:] == [taken, found]
+                                    and row[0] == pickup["pos"][0] / 2.0
+                                    and row[2] == pickup["pos"][2] / 2.0
+                                    for row in gm.quest_item_records(self.maps)[gmap]))
 
     def test_all_new_district_paths_are_walkable(self):
         directions = {0: (0, -2), 1: (-2, 0), 2: (0, 2), 3: (2, 0)}

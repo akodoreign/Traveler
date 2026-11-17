@@ -45,7 +45,9 @@ walked, the finale opens — and after it, a post-game in the deep Shadowlands.
   visible building entrances and an enterable inn; five established islands gain new shore wards and errands, and six
   Crane-coast islets become explorable stops with docks, return sailing and resident errands. Existing island landings
   remain story-gated.
-- **Journal and quest marker** — track a story objective or side quest, and a floating star shows the way.
+- **Journal, quest markers and key items** — track a story objective or side quest, and a floating star shows the way.
+  Small yellow stars mark available quest givers; blue stars mark accepted work. Fetch items flash on the ground, enter
+  the Key Items inventory when collected, and are handed back to their giver to finish the errand.
 - **Winter Court mini-games** — the archery contest, a horse race, and a game of Memory with the court's faces.
 - **Original soundtrack** in a medieval Japanese style, and portraits for every speaking character.
 - **Update / Verify** from the title screen keeps your copy current with this repository.

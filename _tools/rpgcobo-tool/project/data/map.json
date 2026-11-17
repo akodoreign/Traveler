@@ -712803,6 +712803,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I500\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Net Float.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1384",
 								"op": "=",
@@ -712901,6 +712913,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "Behind the warehouse, wedged under a crate: a painted net float, pecked but whole.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I500",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Net Float. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -713116,6 +713142,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I501\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Lamp Oil for the Musicians.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1387",
 								"op": "=",
@@ -713218,6 +713256,20 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_itemop",
+								"itemid": "I503",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Plums for O-Sode. Added to Key Items.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1392",
 								"op": "=",
@@ -713286,6 +713338,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A bamboo flute bobbing against the barge's side. Sayo fishes it out with a boathook.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I504",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Spare Flute. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -716836,6 +716902,20 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_itemop",
+								"itemid": "I501",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Lamp Oil for the Musicians. Added to Key Items.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1386",
 								"op": "=",
@@ -717047,6 +717127,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I502\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Kite on the Roof.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1390",
 								"op": "=",
@@ -717145,6 +717237,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A quick climb up the gutter of the House of Tranquillity. The kite comes free with only a small tear.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I502",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Kite on the Roof. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -717357,6 +717463,18 @@
 								"key": "message_talk",
 								"text": "Plums! Oh, she'll be pleased. Please - take this, and say nothing about the one that's missing.",
 								"name": "O-Sode's maid",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I503\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Plums for O-Sode.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -717598,6 +717716,18 @@
 								"key": "message_talk",
 								"text": "My flute! A little wet, but it plays. ...Mostly plays. Here.",
 								"name": "Young flautist",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I504\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Spare Flute.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -816624,6 +816754,12 @@
 									[
 										{
 											"cmd": "cmd_compute",
+											"lvar": "G1618",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_compute",
 											"lvar": "G507",
 											"op": "=",
 											"rvar": true
@@ -855045,6 +855181,12 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_compute",
+											"lvar": "G1616",
+											"op": "=",
+											"rvar": true
+										},
+										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
 											"code": "local p = ::rpgstat.playermap[\"P132\"]; W = !!::rpgstat.members.find( @( v) v && v == p) && length( ::rpgstat.members.filter( @( v) v)) > 4;"
@@ -855335,6 +855477,12 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1616",
+											"op": "=",
+											"rvar": true
+										},
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
@@ -855660,6 +855808,12 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1617",
+											"op": "=",
+											"rvar": true
+										},
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
@@ -927706,6 +927860,12 @@
 									[
 										{
 											"cmd": "cmd_compute",
+											"lvar": "G1614",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_compute",
 											"lvar": "G1231",
 											"op": "=",
 											"rvar": 0
@@ -928139,6 +928299,12 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_compute",
+											"lvar": "G1610",
+											"op": "=",
+											"rvar": true
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Three laps on the Champion's own horses. Takeo takes the louder Matsu; Natsuko gets the other.",
@@ -928444,6 +928610,12 @@
 									[
 										{
 											"cmd": "cmd_compute",
+											"lvar": "G1615",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_compute",
 											"lvar": "G1231",
 											"op": "=",
 											"rvar": 0
@@ -928562,6 +928734,12 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1615",
+											"op": "=",
+											"rvar": true
+										},
 										{
 											"cmd": "cmd_compute",
 											"lvar": "G1231",
@@ -928712,6 +928890,12 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1611",
+											"op": "=",
+											"rvar": true
+										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
@@ -932307,6 +932491,12 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_compute",
+											"lvar": "G1613",
+											"op": "=",
+											"rvar": true
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "The Daidoji agents don't bother with words.",
@@ -935132,6 +935322,12 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1612",
+											"op": "=",
+											"rvar": true
+										},
 										{
 											"cmd": "cmd_compute",
 											"lvar": "G1231",
@@ -1141427,6 +1141623,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I505\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Kaiu Survey Seal.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1402",
 								"op": "=",
@@ -1146960,6 +1147168,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I508\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Records for Kyuden Hida.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1465",
 								"op": "=",
@@ -1150021,6 +1150241,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I506\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Incense for Kyuden Hida.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1405",
 								"op": "=",
@@ -1152921,7 +1153153,7 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					44,
 					10,
@@ -1152986,6 +1153218,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "You find the watch roster, neatly tied and ready for the council.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I508",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Records for Kyuden Hida. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1155589,6 +1155835,18 @@
 								"key": "message_talk",
 								"text": "The seal! Now the guests can be admitted before the tea goes cold.",
 								"name": "Doji Harunori",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I509\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Doji Poetry Seal.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1161125,6 +1161383,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I512\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Records for Kyuden Doji.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1471",
 								"op": "=",
@@ -1164186,6 +1164456,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I510\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Incense for Kyuden Doji.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1411",
 								"op": "=",
@@ -1167086,7 +1167368,7 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					44,
 					10,
@@ -1167151,6 +1167433,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "You find the guest poetry folio, neatly tied and ready for the council.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I512",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Records for Kyuden Doji. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1169754,6 +1170050,18 @@
 								"key": "message_talk",
 								"text": "The seal! Now the guests can be admitted before the tea goes cold.",
 								"name": "Akodo Harunori",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I513\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Akodo Muster Seal.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1175290,6 +1175598,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I516\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Records for Shiro Akodo.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1477",
 								"op": "=",
@@ -1178351,6 +1178671,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I514\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Incense for Shiro Akodo.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1417",
 								"op": "=",
@@ -1181251,7 +1181583,7 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					44,
 					10,
@@ -1181316,6 +1181648,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "You find the drill roster, neatly tied and ready for the council.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I516",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Records for Shiro Akodo. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1183919,6 +1184265,18 @@
 								"key": "message_talk",
 								"text": "The seal! Now the guests can be admitted before the tea goes cold.",
 								"name": "Isawa Harunori",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I517\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Isawa Library Seal.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1189455,6 +1189813,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I520\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Records for Kyuden Isawa.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1483",
 								"op": "=",
@@ -1192516,6 +1192886,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I518\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Incense for Kyuden Isawa.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1423",
 								"op": "=",
@@ -1195416,7 +1195798,7 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					44,
 					10,
@@ -1195481,6 +1195863,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "You find the elemental observations, neatly tied and ready for the council.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I520",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Records for Kyuden Isawa. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1198084,6 +1198480,18 @@
 								"key": "message_talk",
 								"text": "The seal! Now the guests can be admitted before the tea goes cold.",
 								"name": "Bayushi Harunori",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I521\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Bayushi Theater Seal.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1203620,6 +1204028,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I524\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Records for Kyuden Bayushi.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1489",
 								"op": "=",
@@ -1206681,6 +1207101,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I522\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Incense for Kyuden Bayushi.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1429",
 								"op": "=",
@@ -1209581,7 +1210013,7 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					44,
 					10,
@@ -1209646,6 +1210078,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "You find the rehearsal ledger, neatly tied and ready for the council.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I524",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Records for Kyuden Bayushi. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1212249,6 +1212695,18 @@
 								"key": "message_talk",
 								"text": "The seal! Now the guests can be admitted before the tea goes cold.",
 								"name": "Kitsuki Harunori",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I525\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Kitsuki Archive Seal.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1217785,6 +1218243,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I528\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Records for Shiro Kitsuki.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1495",
 								"op": "=",
@@ -1220846,6 +1221316,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I526\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Incense for Shiro Kitsuki.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1435",
 								"op": "=",
@@ -1223746,7 +1224228,7 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					44,
 					10,
@@ -1223811,6 +1224293,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "You find the mountain patrol notes, neatly tied and ready for the council.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I528",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Records for Shiro Kitsuki. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1226414,6 +1226910,18 @@
 								"key": "message_talk",
 								"text": "The seal! Now the guests can be admitted before the tea goes cold.",
 								"name": "Iuchi Harunori",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I529\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Iuchi Caravan Seal.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1231950,6 +1232458,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I532\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Records for Shiro Iuchi.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1501",
 								"op": "=",
@@ -1235011,6 +1235531,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I530\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Incense for Shiro Iuchi.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1441",
 								"op": "=",
@@ -1237911,7 +1238443,7 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					44,
 					10,
@@ -1237976,6 +1238508,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "You find the caravan route folio, neatly tied and ready for the council.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I532",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Records for Shiro Iuchi. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1242682,7 +1243228,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1242747,6 +1243293,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "The marked crate contains Kaiu whetstones. You gather the supplies.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I507",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Supplies for the Crab court. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1245327,6 +1245887,18 @@
 								"key": "message_talk",
 								"text": "Just in time. A well-kept court begins with small duties done properly.",
 								"name": "Kaiu Sumiko",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I507\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Supplies for the Crab court.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1252663,7 +1253235,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1252728,6 +1253300,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A small lacquered case holds the Kaiu Survey Seal. You wrap it carefully.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I505",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Kaiu Survey Seal. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1257778,7 +1258364,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1257843,6 +1258429,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A paper bundle of jade incense waits on the shrine step. You pick it up.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I506",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Incense for Kyuden Hida. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1269778,7 +1270378,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1269843,6 +1270443,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "The marked crate contains Kakita brush rolls. You gather the supplies.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I511",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Supplies for the Crane court. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1272423,6 +1273037,18 @@
 								"key": "message_talk",
 								"text": "Just in time. A well-kept court begins with small duties done properly.",
 								"name": "Kakita Sumiko",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I511\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Supplies for the Crane court.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1279759,7 +1280385,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1279824,6 +1280450,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A small lacquered case holds the Doji Poetry Seal. You wrap it carefully.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I509",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Doji Poetry Seal. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1284874,7 +1285514,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1284939,6 +1285579,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A paper bundle of white sandalwood waits on the shrine step. You pick it up.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I510",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Incense for Kyuden Doji. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1296874,7 +1297528,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1296939,6 +1297593,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "The marked crate contains Akodo practice cords. You gather the supplies.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I515",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Supplies for the Lion court. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1299519,6 +1300187,18 @@
 								"key": "message_talk",
 								"text": "Just in time. A well-kept court begins with small duties done properly.",
 								"name": "Ikoma Sumiko",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I515\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Supplies for the Lion court.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1306855,7 +1307535,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1306920,6 +1307600,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A small lacquered case holds the Akodo Muster Seal. You wrap it carefully.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I513",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Akodo Muster Seal. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1311970,7 +1312664,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1312035,6 +1312729,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A paper bundle of ancestor incense waits on the shrine step. You pick it up.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I514",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Incense for Shiro Akodo. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1323970,7 +1324678,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1324035,6 +1324743,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "The marked crate contains Asako medicine cases. You gather the supplies.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I519",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Supplies for the Phoenix court. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1326615,6 +1327337,18 @@
 								"key": "message_talk",
 								"text": "Just in time. A well-kept court begins with small duties done properly.",
 								"name": "Shiba Sumiko",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I519\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Supplies for the Phoenix court.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1333951,7 +1334685,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1334016,6 +1334750,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A small lacquered case holds the Isawa Library Seal. You wrap it carefully.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I517",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Isawa Library Seal. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1339066,7 +1339814,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1339131,6 +1339879,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A paper bundle of five-ring incense waits on the shrine step. You pick it up.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I518",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Incense for Kyuden Isawa. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1351066,7 +1351828,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1351131,6 +1351893,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "The marked crate contains Shosuro mask ties. You gather the supplies.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I523",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Supplies for the Scorpion court. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1353711,6 +1354487,18 @@
 								"key": "message_talk",
 								"text": "Just in time. A well-kept court begins with small duties done properly.",
 								"name": "Shosuro Sumiko",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I523\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Supplies for the Scorpion court.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1361047,7 +1361835,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1361112,6 +1361900,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A small lacquered case holds the Bayushi Theater Seal. You wrap it carefully.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I521",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Bayushi Theater Seal. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1366162,7 +1366964,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1366227,6 +1367029,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A paper bundle of plum incense waits on the shrine step. You pick it up.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I522",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Incense for Kyuden Bayushi. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1378162,7 +1378978,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1378227,6 +1379043,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "The marked crate contains Mirumoto grip wrappings. You gather the supplies.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I527",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Supplies for the Dragon court. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1380807,6 +1381637,18 @@
 								"key": "message_talk",
 								"text": "Just in time. A well-kept court begins with small duties done properly.",
 								"name": "Mirumoto Sumiko",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I527\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Supplies for the Dragon court.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1388143,7 +1388985,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1388208,6 +1389050,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A small lacquered case holds the Kitsuki Archive Seal. You wrap it carefully.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I525",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Kitsuki Archive Seal. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1393258,7 +1394114,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1393323,6 +1394179,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A paper bundle of mountain incense waits on the shrine step. You pick it up.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I526",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Incense for Shiro Kitsuki. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1405258,7 +1406128,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1405323,6 +1406193,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "The marked crate contains Shinjo saddle straps. You gather the supplies.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I531",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Supplies for the Unicorn court. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1407903,6 +1408787,18 @@
 								"key": "message_talk",
 								"text": "Just in time. A well-kept court begins with small duties done properly.",
 								"name": "Ide Sumiko",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I531\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Supplies for the Unicorn court.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1415239,7 +1416135,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1415304,6 +1416200,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A small lacquered case holds the Iuchi Caravan Seal. You wrap it carefully.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I529",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Iuchi Caravan Seal. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1420354,7 +1421264,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1420419,6 +1421329,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A paper bundle of steppe incense waits on the shrine step. You pick it up.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I530",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Incense for Shiro Iuchi. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1432354,7 +1433278,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1432419,6 +1433343,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "The marked crate contains pilgrim bandages. You gather the supplies.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I535",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Supplies for the Dragon court. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1434999,6 +1435937,18 @@
 								"key": "message_talk",
 								"text": "Just in time. A well-kept court begins with small duties done properly.",
 								"name": "Tamori Sumiko",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I535\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Supplies for the Dragon court.",
+								"name": "",
 								"uiclose": 2
 							},
 							{
@@ -1442335,7 +1443285,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1442400,6 +1443350,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A small lacquered case holds the Togashi Pilgrim Seal. You wrap it carefully.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I533",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Togashi Pilgrim Seal. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1447450,7 +1448414,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					56,
 					4,
@@ -1447515,6 +1448479,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "A paper bundle of cedar incense waits on the shrine step. You pick it up.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I534",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Incense for Kyuden Togashi. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1457350,6 +1458328,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I533\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Togashi Pilgrim Seal.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1444",
 								"op": "=",
@@ -1462883,6 +1463873,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I536\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Records for Kyuden Togashi.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1507",
 								"op": "=",
@@ -1465944,6 +1466946,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I534\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Incense for Kyuden Togashi.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1447",
 								"op": "=",
@@ -1468844,7 +1469858,7 @@
 			},
 			"#99#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					44,
 					10,
@@ -1468909,6 +1469923,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "You find the pilgrim register, neatly tied and ready for the council.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I536",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Records for Kyuden Togashi. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1471390,6 +1472418,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I561\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Sun Temple's Incense.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1582",
 								"op": "=",
@@ -1471464,7 +1472504,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP220",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1471529,6 +1472569,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the temple's cedar incense bundle and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I561",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Sun Temple's Incense. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1480339,6 +1481393,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I540\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Sealed Dispatch.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1519",
 								"op": "=",
@@ -1480413,7 +1481479,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1480478,6 +1481544,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the harbor-master's sealed dispatch and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I540",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Sealed Dispatch. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1485110,6 +1486190,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I562\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Wrecked Chart.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1585",
 								"op": "=",
@@ -1485184,7 +1486276,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1485249,6 +1486341,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the ship's water-stained chart and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I562",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Wrecked Chart. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1496172,6 +1497278,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I541\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over A Sailmaker's Pattern.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1522",
 								"op": "=",
@@ -1496246,7 +1497364,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1496311,6 +1497429,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find a sailmaker's missing paper pattern and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I541",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up A Sailmaker's Pattern. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1498780,6 +1499912,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I566\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over A Gull's Message.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1597",
 								"op": "=",
@@ -1498854,7 +1499998,7 @@
 			},
 			"#77#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1498919,6 +1500063,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find a message tube from the watch and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I566",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up A Gull's Message. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1501360,6 +1502518,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I543\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Pilgrim's Bell.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1528",
 								"op": "=",
@@ -1501434,7 +1502604,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP219",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1501499,6 +1502669,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the little bronze pilgrim bell and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I543",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Pilgrim's Bell. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1503970,6 +1505154,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I548\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Unpainted Mask.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1543",
 								"op": "=",
@@ -1504044,7 +1505240,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP219",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1504109,6 +1505305,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find a plain mask for the festival and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I548",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Unpainted Mask. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1506580,6 +1507790,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I545\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Candles for the Shrine.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1534",
 								"op": "=",
@@ -1506654,7 +1507876,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP220",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1506719,6 +1507941,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the shrine's bundle of white candles and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I545",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Candles for the Shrine. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1509190,6 +1510426,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I544\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Treaty Copy.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1531",
 								"op": "=",
@@ -1509264,7 +1510512,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP215",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1509329,6 +1510577,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the market's copy of the treaty and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I544",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Treaty Copy. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1513911,6 +1515173,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I570\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Reed Flute.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1609",
 								"op": "=",
@@ -1513985,7 +1515259,7 @@
 			},
 			"#77#": {
 				"role": "custom",
-				"mdlid": "EP212",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1514050,6 +1515324,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find a reed flute for the boatman and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I570",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Reed Flute. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1516491,6 +1517779,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I551\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Rosewater Flask.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1552",
 								"op": "=",
@@ -1516565,7 +1517865,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1516630,6 +1517930,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find a rosewater flask for the guest house and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I551",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Rosewater Flask. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1519101,6 +1520415,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I559\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over A Bowl for the Potter.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1576",
 								"op": "=",
@@ -1519175,7 +1520501,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP217",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1519240,6 +1520566,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the potter's wrapped lunch bowl and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I559",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up A Bowl for the Potter. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1521711,6 +1523051,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I552\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Spring Survey.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1555",
 								"op": "=",
@@ -1521785,7 +1523137,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1521850,6 +1523202,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the surveyor's mountain notebook and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I552",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Spring Survey. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1528545,6 +1529911,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I568\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Lantern Keeper's Wick.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1603",
 								"op": "=",
@@ -1528619,7 +1529997,7 @@
 			},
 			"#77#": {
 				"role": "custom",
-				"mdlid": "EP220",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1528684,6 +1530062,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the keeper's box of lantern wicks and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I568",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Lantern Keeper's Wick. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1531125,6 +1532517,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I558\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Oracle's Offering.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1573",
 								"op": "=",
@@ -1531199,7 +1532603,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1531264,6 +1532668,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find a small cedar offering box and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I558",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Oracle's Offering. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1533735,6 +1535153,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I555\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over A Clean Bandage.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1564",
 								"op": "=",
@@ -1533809,7 +1535239,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP214",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1533874,6 +1535304,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the village healer's clean bandage roll and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I555",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up A Clean Bandage. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1536393,6 +1537837,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I560\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Fort's Lost Net.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1579",
 								"op": "=",
@@ -1536467,7 +1537923,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP221",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1536532,6 +1537988,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the watch's spare fishing net and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I560",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Fort's Lost Net. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1539003,6 +1540473,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I538\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over A Lantern for the Inn.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1513",
 								"op": "=",
@@ -1539077,7 +1540559,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP220",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1539142,6 +1540624,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the inn's blue paper lantern and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I538",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up A Lantern for the Inn. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1543724,6 +1545220,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I565\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Shoal's Tide Notes.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1594",
 								"op": "=",
@@ -1543798,7 +1545306,7 @@
 			},
 			"#77#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1543863,6 +1545371,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the fisher's tide notes and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I565",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Shoal's Tide Notes. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1550572,6 +1552094,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I549\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Persimmon Basket.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1546",
 								"op": "=",
@@ -1550646,7 +1552180,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP217",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1550711,6 +1552245,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the innkeeper's basket of persimmons and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I549",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Persimmon Basket. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1553212,6 +1554760,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I537\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Salt Measure.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1510",
 								"op": "=",
@@ -1553286,7 +1554846,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP219",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1553351,6 +1554911,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the harbor's brass salt measure and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I537",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Salt Measure. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1555822,6 +1557396,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I556\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Soapmaker's Lye.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1567",
 								"op": "=",
@@ -1555896,7 +1557482,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1555961,6 +1557547,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the soapmaker's covered lye jar and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I556",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Soapmaker's Lye. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1558432,6 +1560032,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I539\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Missing Sickle.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1516",
 								"op": "=",
@@ -1558506,7 +1560118,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP210",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1558571,6 +1560183,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the shared rice sickle and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I539",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Missing Sickle. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1561040,6 +1562666,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I567\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The White Gull's Feather.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1600",
 								"op": "=",
@@ -1561114,7 +1562752,7 @@
 			},
 			"#77#": {
 				"role": "custom",
-				"mdlid": "EP219",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1561179,6 +1562817,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find a feather for the shrine keeper and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I567",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The White Gull's Feather. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1567846,6 +1569498,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I557\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over Rice for the Elders.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1570",
 								"op": "=",
@@ -1567920,7 +1569584,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP217",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1567985,6 +1569649,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the elders' sack of winter rice and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I557",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up Rice for the Elders. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1570454,6 +1572132,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I569\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over A Heron's Fishing Hook.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1606",
 								"op": "=",
@@ -1570528,7 +1572218,7 @@
 			},
 			"#77#": {
 				"role": "custom",
-				"mdlid": "EP210",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1570593,6 +1572283,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the fisher's silver hook and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I569",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up A Heron's Fishing Hook. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1573034,6 +1574738,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I547\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over A Fox's Medicine.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1540",
 								"op": "=",
@@ -1573108,7 +1574824,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1573173,6 +1574889,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the apothecary's foxglove packet and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I547",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up A Fox's Medicine. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1579918,6 +1581648,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I564\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Tortoise Ferry Bell.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1591",
 								"op": "=",
@@ -1579992,7 +1581734,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP220",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1580057,6 +1581799,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the ferryman's brass bell and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I564",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Tortoise Ferry Bell. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1582528,6 +1584284,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I542\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Muster Roll.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1525",
 								"op": "=",
@@ -1582602,7 +1584370,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1582667,6 +1584435,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the Lion guard's muster roll and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I542",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Muster Roll. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1587251,6 +1589033,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I546\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The River Toll Ledger.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1537",
 								"op": "=",
@@ -1587325,7 +1589119,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP216",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1587390,6 +1589184,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the ferryman's toll ledger and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I546",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The River Toll Ledger. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1589909,6 +1591717,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I563\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Silk Merchant's Seal.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1588",
 								"op": "=",
@@ -1589983,7 +1591803,7 @@
 			},
 			"#80#": {
 				"role": "custom",
-				"mdlid": "EP219",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1590048,6 +1591868,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the silk merchant's lacquer seal and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I563",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Silk Merchant's Seal. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1592519,6 +1594353,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I553\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over A Bridle for Yotomo.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1558",
 								"op": "=",
@@ -1592593,7 +1594439,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP211",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1592658,6 +1594504,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the stable's braided bridle and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I553",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up A Bridle for Yotomo. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1601468,6 +1603328,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I550\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over A Bell for Shioden.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1549",
 								"op": "=",
@@ -1601542,7 +1603414,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP212",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1601607,6 +1603479,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the temple bell's wooden clapper and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I550",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up A Bell for Shioden. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},
@@ -1606191,6 +1608077,18 @@
 								"uiclose": 2
 							},
 							{
+								"cmd": "cmd_script",
+								"desc": "SCRIPT",
+								"code": "::Rokugan.returnQuestItem(\"I554\");"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Handed over The Market's Blue Dye.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
 								"cmd": "cmd_compute",
 								"lvar": "G1561",
 								"op": "=",
@@ -1606265,7 +1608163,7 @@
 			},
 			"#79#": {
 				"role": "custom",
-				"mdlid": "EP218",
+				"mdlid": "CE000",
 				"pos": [
 					89,
 					4,
@@ -1606330,6 +1608228,20 @@
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
 								"text": "By the roadside shrine, you find the dyer's jar of blue pigment and take it.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I554",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Picked up The Market's Blue Dye. Added to Key Items.",
 								"name": "",
 								"uiclose": 2
 							},

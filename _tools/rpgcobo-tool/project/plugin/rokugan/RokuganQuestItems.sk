@@ -1,0 +1,102 @@
+//	Fetch-quest items are key items until turned in. A missing item means an older save already recorded the pickup.
+::Rokugan.returnQuestItem <- function( itemid){
+	if( ::rpgstat.countItems( itemid, false) <= 0){
+		printf( "[RT] legacy quest pickup already recorded: %S\n", itemid);
+		return true;
+	}
+	return ::rpgstat.reduceItemID( itemid, 1);
+};
+
+::Rokugan.qm <- { stage = null, entries = [], items = [], t = 0.0, err = false };
+
+::Rokugan.qmHide <- function(){
+	foreach( e in this.qm.entries){
+		if( e.yellow) e.yellow.setVisible( false);
+		if( e.blue) e.blue.setVisible( false);
+	}
+	foreach( e in this.qm.items) if( e.obj) e.obj.setVisible( false);
+};
+
+::Rokugan.qmState <- function( quests){
+	local blue = false, yellow = false;
+	foreach( q in quests){
+		if( ::rpgvar[q[2]]) continue;
+		if( ::rpgvar[q[1]]){ blue = true; break; }
+		local open = true;
+		foreach( f in q[0]) if( !::rpgvar[f]){ open = false; break; }
+		if( open) yellow = true;
+	}
+	return blue ? 2 : yellow ? 1 : 0;
+};
+
+::Rokugan.qmTick <- function( st, dt){
+	local k = this.qm;
+	if( !("QM_NPC" in ::Rokugan) && !("QM_ITEM" in ::Rokugan)) return;
+	if( st["battle"] || !st["player3d"] || !st["scn"] || st.mainevent){
+		this.qmHide();
+		return;
+	}
+	if( k.stage != st){
+		this.qmHide();
+		k.stage = st;
+		k.entries = [];
+		k.items = [];
+		k.t = 0.0;
+		if( st.mapid in this.QM_NPC){
+			foreach( row in this.QM_NPC[st.mapid]){
+				local yellow = RPG3DObject.create3DObject( { mdlid = "EP2651" });
+				local blue = RPG3DObject.create3DObject( { mdlid = "EP2652" });
+				st.scn.addObject( yellow);
+				st.scn.addObject( blue);
+				yellow.setVisible( false);
+				blue.setVisible( false);
+				k.entries.append( { x = row[0], z = row[1], quests = row[2], yellow = yellow, blue = blue });
+			}
+		}
+		if( st.mapid in this.QM_ITEM){
+			foreach( row in this.QM_ITEM[st.mapid]){
+				local obj = RPG3DObject.create3DObject( { mdlid = "EP2653" });
+				st.scn.addObject( obj);
+				obj.setVisible( false);
+				k.items.append( { x = row[0], y = row[1], z = row[2], taken = row[3], found = row[4], obj = obj });
+			}
+		}
+	}
+	k.t -= dt;
+	if( k.t > 0.0) return;
+	k.t = 250.0;
+	local pl = st.player3d, ms = skGetTime() / 1000.0;
+	foreach( e in k.entries){
+		local state = this.qmState( e.quests);
+		e.yellow.setVisible( state == 1);
+		e.blue.setVisible( state == 2);
+		if( !state) continue;
+		local gy = null;
+		try{ gy = ::Rokugan.floorAt( pl, e.x, e.z, pl.pos.y + 4.0, -8.0); }
+		catch( ex){ if( !k.err){ k.err = true; printexception( ex); } }
+		local y = (gy != null ? gy : pl.pos.y) + 1.2 + Math.sin( ms * 2.4) * 0.12;
+		local pos = (e.x, y, e.z, 0.0);
+		e.yellow.setPosition( pos);
+		e.blue.setPosition( pos);
+	}
+	foreach( e in k.items){
+		local active = ::rpgvar[e.taken] && !::rpgvar[e.found];
+		if( !active){ e.obj.setVisible( false); continue; }
+		local gy = null;
+		try{ gy = ::Rokugan.floorAt( pl, e.x, e.z, pl.pos.y + 4.0, -8.0); }
+		catch( ex){ if( !k.err){ k.err = true; printexception( ex); } }
+		local y = (gy != null ? gy : e.y) + 0.18 + Math.sin( ms * 4.0) * 0.05;
+		e.obj.setPosition( (e.x, y, e.z, 0.0));
+		e.obj.setVisible( Math.sin( ms * 4.0) > 0.0);
+	}
+};
+
+::RPGStage._rt_body_qm <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	this._rt_body_qm( dt);
+	try{ ::Rokugan.qmTick( this, dt); }
+	catch( ex){
+		if( !::Rokugan.qm.err){ ::Rokugan.qm.err = true; printexception( ex); }
+	}
+};
+printf( "Rokugan quest items and NPC markers loaded\n");

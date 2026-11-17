@@ -154,6 +154,8 @@ class CastleTests(unittest.TestCase):
                               and gm.flag(done, False) in p["reqs"])
                 self.assertEqual(sum(c.get("cmd") == "cmd_moneyop" for c in reward["cmdblock"]), 1)
                 self.assertIn(gm.setf(done), reward["cmdblock"])
+                self.assertIn(gm.script("::Rokugan.returnQuestItem(%s);" %
+                                        json.dumps(gm.FQ_ITEM_IDS[key])), reward["cmdblock"])
                 offers = [p for p in event["page"] if gm.flag(taken, False) in (p.get("reqs") or [])]
                 self.assertEqual(len(offers), 1)
                 self.assertIsNone(gm.FQ_SETTINGS[key]["who"])
@@ -162,8 +164,9 @@ class CastleTests(unittest.TestCase):
                 item = next(e for e in pickup_events if gm.setf(found) in [
                     c for p in e.get("page", []) for c in p["cmdblock"]])
                 self.assertEqual(item["reqs0"], [gm.flag(taken), gm.flag(found, False)])
-                self.assertTrue(any(e.get("mdlid") in gm.DECOR_EP.values() and e["pos"][:3] == item["pos"][:3]
-                                    for e in self.maps[pickup][1].ev.values()))
+                item_command = {"cmd": "cmd_itemop", "itemid": gm.FQ_ITEM_IDS[key],
+                                "op": 0, "num": 1, "LV": 1}
+                self.assertTrue(any(item_command in p["cmdblock"] for p in item["page"]))
                 self.assertNotIn("questExp", json.dumps(reward))
 
 

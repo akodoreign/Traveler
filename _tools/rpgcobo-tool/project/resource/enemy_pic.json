@@ -819429,5 +819429,128 @@
 		},
 		"pic3d": "/resource/enemy_pic/sea_junk.png",
 		"scale": 0.667
+	},
+	"EP2651": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 1,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			1,
+			1
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.5
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "quest marker/pickup (tools/gen_quest_items.py)",
+		"name": {
+			"en": "Yellow quest marker",
+			"ja": "Yellow quest marker"
+		},
+		"pic3d": "/resource/enemy_pic/quest_marker_yellow.png",
+		"scale": 0.08
+	},
+	"EP2652": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 1,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			1,
+			1
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.5
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "quest marker/pickup (tools/gen_quest_items.py)",
+		"name": {
+			"en": "Blue quest marker",
+			"ja": "Blue quest marker"
+		},
+		"pic3d": "/resource/enemy_pic/quest_marker_blue.png",
+		"scale": 0.08
+	},
+	"EP2653": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 1,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			1,
+			1
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.5
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "quest marker/pickup (tools/gen_quest_items.py)",
+		"name": {
+			"en": "Quest item star",
+			"ja": "Quest item star"
+		},
+		"pic3d": "/resource/enemy_pic/quest_item_star.png",
+		"scale": 0.18
 	}
 }

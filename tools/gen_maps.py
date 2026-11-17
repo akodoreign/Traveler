@@ -25,6 +25,10 @@ TOOL = os.path.normpath(os.path.join(HERE, "..", "_tools", "rpgcobo-tool"))
 PROJ = os.path.join(TOOL, "project")
 JOBDIR = os.path.join(TOOL, "tmp", "rt_mapgen")
 PAD_X, PAD_TOP, PAD_BOTTOM = 26, 12, 4
+QUEST_MARKER_YELLOW_MODEL = "EP2651"
+QUEST_MARKER_BLUE_MODEL = "EP2652"
+QUEST_ITEM_MODEL = "EP2653"
+LEGACY_QUEST_ITEM_MODELS = ("EP364", "EP20002")
 
 
 def T(wall, floor=None):
@@ -19959,6 +19963,8 @@ def register(specs, events):
     route_pass()
     resume_pass(mp)
     marker_pass(mp)
+    migrate_journal_quest_acceptance(mp)
+    quest_marker_pass(mp)
     gesture_pass(mp)
     scene_pre_pass(mp)
     json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="	")
@@ -20177,6 +20183,8 @@ def fetch_events(ev, mid):
     for k, q in enumerate(FETCH_QUESTS):
         key, title, gmap, gx, gz, spr, gname, imap, ix, iz, offer, found, thanks, zeni = q
         taken, got_, done = FQ_FLAGS[key]
+        itemid = FQ_ITEM_IDS[key]
+        itemname = FQ_ITEM_NAMES[key]
         settings = FQ_SETTINGS.get(key, {})
         opens = [flag(f) for f in settings.get("open", [FQ_OPEN])]
         ox, oz = ROOM_OFS.get(mid, (0, 0))
@@ -20194,15 +20202,20 @@ def fetch_events(ev, mid):
                           ("\"Not now.\"", []))]),
                 ([flag(taken), flag(got_, False)], [say(gname, "Any luck?")]),
                 ([flag(got_), flag(done, False)],
-                 [say(gname, thanks), setf(done), {"cmd": "cmd_moneyop", "op": 0, "amount": zeni},
+                 [say(gname, thanks), script("::Rokugan.returnQuestItem(%s);" % json.dumps(itemid)),
+                  narrate("Handed over %s." % itemname), setf(done),
+                  {"cmd": "cmd_moneyop", "op": 0, "amount": zeni},
                   narrate("Got %d zeni." % zeni)] + reward + [narrate("Odd job done: %s." % title)]),
                 ([flag(done)], [say(gname, "Thanks again, traveler." if settings.get("castle")
                                    else "Thanks again, ronin.")])], d=2)
         if mid == imap:
             if settings.get("prop"):
-                ev.prop(ix, iz, DECOR_EP[settings["prop"]], d=0,
+                ev.prop(ix, iz, "CE000", d=0,
                         reqs=[flag(taken), flag(got_, False)])
-            pickup = ev.talk(ix, iz, "CE000", [(None, [narrate(found), setf(got_),
+            pickup = ev.talk(ix, iz, "CE000",
+                             [(None, [narrate(found),
+                                      {"cmd": "cmd_itemop", "itemid": itemid, "op": 0, "num": 1, "LV": 1},
+                                      narrate("Picked up %s. Added to Key Items." % itemname), setf(got_),
                                                         narrate("Back to %s." % _the(gname))])],
                              reqs=[flag(taken), flag(got_, False)], trigger=1)
             _dilate_event_trigger(ev, pickup)
@@ -21091,6 +21104,96 @@ def _append_expansion_quests():
 
 _append_expansion_quests()
 
+FQ_ITEM_IDS = {q[0]: "I%d" % (500 + i) for i, q in enumerate(FETCH_QUESTS)}
+FQ_ITEM_NAMES = {q[0]: q[1] for q in FETCH_QUESTS}
+
+JOURNAL_SIDE_MARKERS = {
+    1: {"map": "M142", "model": "EP1165", "taken": "G1610", "choice": "Ride with him."},
+    2: {"map": "M142", "model": "EP1166", "taken": "G1611", "choice": "Sit in."},
+    3: {"map": "M144", "model": "EP1167", "taken": "G1612", "choice": "Play his card game."},
+    4: {"map": "M143", "model": "EP1168", "taken": "G1613", "choice": "Stand with her."},
+    5: {"map": "M142", "model": "EP376", "taken": "G1614", "choice": "Shoot to win."},
+    6: {"map": "M142", "model": "EP382", "taken": "G1615", "choice": "Race the yard again."},
+    7: {"map": "M101", "model": "EP1169", "taken": "G1616", "choice": "Go up with Goro."},
+    8: {"map": "M101", "model": "EP1170", "taken": "G1617", "choice": "Go down with Michio and Goro."},
+    9: {"map": "M444", "model": "EP1171", "taken": "G1618", "choice": "Ride out with him."},
+    10: {"map": "M463", "model": "EP196", "taken": "G1217", "choice": None},
+}
+
+
+def journal_side_registry():
+    """Read the hand-written Journal side quests without duplicating their gates or completion flags."""
+    path = os.path.join(PROJ, "plugin", "rokugan", "RokuganJournal.sk")
+    text = open(path, encoding="utf-8").read()
+    entries = {}
+    for sid, body in re.findall(r"\{ id = (\d+),([^{}]*)\}", text, re.S):
+        title = re.search(r'title = "([^"]+)"', body)
+        opens = re.search(r"open = \[([^\]]*)\]", body)
+        done = re.search(r'done = "(G\d+)"', body)
+        if title and opens and done:
+            entries[int(sid)] = {
+                "title": title.group(1),
+                "open": re.findall(r'"(G\d+)"', opens.group(1)),
+                "done": done.group(1),
+            }
+    if set(entries) != set(JOURNAL_SIDE_MARKERS):
+        raise RuntimeError("Hand-written Journal side-quest marker registry is out of sync")
+    return entries
+
+
+def _choice_commands(event, choice_text):
+    """Yield the selected command blocks for matching choice labels in an event."""
+    def walk(value):
+        if isinstance(value, dict):
+            if value.get("cmd") == "cmd_choices":
+                labels = [value.get("text%d" % index) for index in range(len(value.get("cmdblocks", [])))]
+                for index, label in enumerate(labels):
+                    if label == choice_text:
+                        yield value["cmdblocks"][index]
+            for child in value.values():
+                yield from walk(child)
+        elif isinstance(value, list):
+            for child in value:
+                yield from walk(child)
+
+    yield from walk(event)
+
+
+def migrate_journal_quest_acceptance(mp):
+    """Store explicit acceptance for legacy Journal quests without adding or reassigning map events."""
+    for sid, spec in JOURNAL_SIDE_MARKERS.items():
+        if not spec["choice"]:
+            continue
+        events = (mp.get(spec["map"]) or {}).get("event") or {}
+        found = False
+        for event in events.values():
+            if not isinstance(event, dict) or event.get("mdlid") != spec["model"]:
+                continue
+            for commands in _choice_commands(event, spec["choice"]):
+                found = True
+                if not any(command.get("lvar") == spec["taken"] for command in commands
+                           if isinstance(command, dict)):
+                    commands.insert(0, {"cmd": "cmd_compute", "lvar": spec["taken"], "op": "=", "rvar": True})
+        if not found:
+            raise RuntimeError("Acceptance choice not found for Journal side quest %d" % sid)
+
+
+def register_quest_items():
+    """Register one persistent key item per fetch quest without rebuilding unrelated databases."""
+    path = os.path.join(PROJ, "data", "item.json")
+    items = json.load(open(path, encoding="utf-8"))
+    template = items["I443"]
+    for key, itemid in FQ_ITEM_IDS.items():
+        name = FQ_ITEM_NAMES[key]
+        if itemid in items and items[itemid].get("name") != name:
+            raise RuntimeError("Quest item ID %s is already assigned to %s" % (itemid, items[itemid].get("name")))
+        item = dict(template)
+        item.update({"name": name, "desc": "Key item for %s. Return it to the person who gave you the errand."
+                     % name, "icon": "\uf005", "itemtype": 1, "stacknum": 99, "price": 0,
+                     "skilltype": "unusable", "occasion": 0, "option": []})
+        items[itemid] = item
+    json.dump(items, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent="\t")
+
 
 def _register_expansion_gvars():
     path = os.path.join(PROJ, "data", "gvar.json")
@@ -21098,7 +21201,131 @@ def _register_expansion_gvars():
     for key, *_ in FETCH_QUESTS[-len(_EXPANSION_QUESTS) - len(SEA_ISLETS):]:
         for flag_name, state in zip(FQ_FLAGS[key], ("taken", "found", "done")):
             variables.setdefault(flag_name, {"defval": False, "name": "%s: %s" % (key, state), "type": 1})
+    for sid, spec in JOURNAL_SIDE_MARKERS.items():
+        if sid < 10:
+            variables.setdefault(spec["taken"], {
+                "defval": False, "name": "Journal side quest %d: accepted" % sid, "type": 1})
     json.dump(variables, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent="\t")
+
+
+def quest_marker_records(mp):
+    """Return one yellow/blue marker record per quest giver, grouped by map position."""
+    grouped = {}
+
+    def find(mid, needle):
+        for event in ((mp.get(mid) or {}).get("event") or {}).values():
+            if isinstance(event, dict) and "pos" in event and needle in json.dumps(event, ensure_ascii=False):
+                return event
+        return None
+
+    def add_event(mid, event, opens, taken, done):
+        if not event:
+            raise RuntimeError("Quest giver not found on %s" % mid)
+        x, z = round(event["pos"][0] / 2.0, 2), round(event["pos"][2] / 2.0, 2)
+        spot = grouped.setdefault((mid, x, z), [])
+        spot.append([list(opens), taken, done])
+
+    def add(mid, title, opens, taken, done, prefix):
+        event = find(mid, "%s: %s" % (prefix, title))
+        add_event(mid, event, opens, taken, done)
+
+    for q in FETCH_QUESTS:
+        key, title, gmap = q[:3]
+        settings = FQ_SETTINGS.get(key, {})
+        add(gmap, title, settings.get("open", [FQ_OPEN]), FQ_FLAGS[key][0], FQ_FLAGS[key][2], "Odd job")
+    for q in SIDE_QUESTS:
+        key, road, title, gmap = q[:4]
+        opens = [SQ_FLAGS[o][2] if o in SQ_FLAGS else o for o in q[8]]
+        add(gmap, title, opens, SQ_FLAGS[key][0], SQ_FLAGS[key][2], "Side quest")
+    for sid, quest in journal_side_registry().items():
+        spec = JOURNAL_SIDE_MARKERS[sid]
+        event = next((event for event in ((mp.get(spec["map"]) or {}).get("event") or {}).values()
+                      if isinstance(event, dict) and event.get("mdlid") == spec["model"]), None)
+        add_event(spec["map"], event, quest["open"], spec["taken"], quest["done"])
+
+    records = {}
+    for (mid, x, z), quests in sorted(grouped.items()):
+        records.setdefault(mid, []).append([x, z, quests])
+    return records
+
+
+def quest_item_records(mp):
+    """Return accepted-but-uncollected pickup locations grouped by map for pulsing ground stars."""
+    records = {}
+    for q in FETCH_QUESTS:
+        key, imap = q[0], q[7]
+        taken, found, _done = FQ_FLAGS[key]
+        pickup = next((event for event in ((mp.get(imap) or {}).get("event") or {}).values()
+                       if isinstance(event, dict) and any(
+                           setf(found) in page.get("cmdblock", []) for page in event.get("page", []))), None)
+        if not pickup:
+            raise RuntimeError("Quest item pickup not found on %s for %s" % (imap, key))
+        x, y, z = (round(pickup["pos"][axis] / 2.0, 2) for axis in (0, 1, 2))
+        records.setdefault(imap, []).append([x, y, z, taken, found])
+    return {mid: rows for mid, rows in sorted(records.items())}
+
+
+def quest_marker_pass(mp):
+    """Write the NPC and ground-item marker state tables consumed by RokuganQuestItems.sk."""
+    records = quest_marker_records(mp)
+    items = quest_item_records(mp)
+    path = os.path.join(PROJ, "plugin", "rokugan", "RokuganQuestData.sk")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("// Generated by tools/gen_maps.py quest_marker_pass.\n")
+        f.write("::Rokugan.QM_NPC <- {\n%s\n};\n" % ",\n".join(
+            "\t%s = %s" % (mid, json.dumps(quests)) for mid, quests in sorted(records.items())))
+        f.write("::Rokugan.QM_ITEM <- {\n%s\n};\n" % ",\n".join(
+            "\t%s = %s" % (mid, json.dumps(rows)) for mid, rows in items.items()))
+    print("quest markers: %d NPC spots across %d maps" % (
+        sum(len(quests) for quests in records.values()), len(records)))
+
+
+def migrate_fetch_quest_items(mp):
+    """Upgrade persisted fetch quests in place without reallocating any map event IDs."""
+    for q in FETCH_QUESTS:
+        key, title, gmap, _, _, _, _, imap = q[:8]
+        taken, found, done = FQ_FLAGS[key]
+        itemid, itemname = FQ_ITEM_IDS[key], FQ_ITEM_NAMES[key]
+        events = (mp.get(gmap) or {}).get("event") or {}
+        giver = next((event for event in events.values()
+                      if isinstance(event, dict) and "Odd job: %s" % title in json.dumps(event, ensure_ascii=False)),
+                     None)
+        if not giver:
+            raise RuntimeError("Persisted giver event not found for %s" % key)
+        reward = next((page.get("cmdblock", []) for page in giver.get("page", [])
+                       if setf(done) in page.get("cmdblock", [])), None)
+        if reward is None:
+            raise RuntimeError("Persisted reward page not found for %s" % key)
+        remove = script("::Rokugan.returnQuestItem(%s);" % json.dumps(itemid))
+        done_at = reward.index(setf(done))
+        if remove not in reward:
+            reward[done_at:done_at] = [remove, narrate("Handed over %s." % itemname)]
+
+        pickup_events = (mp.get(imap) or {}).get("event") or {}
+        pickup = next((event for event in pickup_events.values()
+                       if isinstance(event, dict) and setf(found) in [
+                           command for page in event.get("page", []) for command in page.get("cmdblock", [])]),
+                      None)
+        if not pickup:
+            raise RuntimeError("Persisted pickup event not found for %s" % key)
+        page = next(page for page in pickup.get("page", []) if setf(found) in page.get("cmdblock", []))
+        commands = page["cmdblock"]
+        found_at = commands.index(setf(found))
+        give = {"cmd": "cmd_itemop", "itemid": itemid, "op": 0, "num": 1, "LV": 1}
+        if give not in commands:
+            commands[found_at:found_at] = [give, narrate("Picked up %s. Added to Key Items." % itemname)]
+        if FQ_SETTINGS.get(key, {}).get("prop"):
+            prop = next((event for event in pickup_events.values()
+                         if isinstance(event, dict) and event.get("mdlid") in (
+                             *DECOR_EP.values(), *LEGACY_QUEST_ITEM_MODELS, QUEST_ITEM_MODEL, "CE000")
+                         and event.get("pos", [])[:3] == pickup.get("pos", [])[:3]
+                         and event.get("reqs0") == [flag(taken), flag(found, False)]), None)
+            if not prop:
+                raise RuntimeError("Persisted quest item prop not found for %s" % key)
+            prop["mdlid"] = "CE000"
+        else:
+            pickup["mdlid"] = "CE000"
+    migrate_journal_quest_acceptance(mp)
 
 
 def _region_access(mid, m, ev):
@@ -21400,6 +21627,15 @@ def add_auto_interiors(specs, events):
 
 
 def main():
+    if sys.argv[1:] == ["--migrate-fetch-items"]:
+        mpath = os.path.join(PROJ, "data", "map.json")
+        mp = json.load(open(mpath, encoding="utf-8"))
+        migrate_fetch_quest_items(mp)
+        json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="\t")
+        register_quest_items()
+        _register_expansion_gvars()
+        quest_marker_pass(mp)
+        return
     ids = sys.argv[1:] or [k for k in MAPS if k not in DEBUG_MAPS]
     specs, events = [], {}
     AUTO_INTERIOR_CACHE.clear()
@@ -21410,6 +21646,7 @@ def main():
             events[m.mid] = ev
     add_auto_interiors(specs, events)
     register(specs, events)
+    register_quest_items()
     build(specs)
 
 

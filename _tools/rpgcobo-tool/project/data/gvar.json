@@ -8502,5 +8502,50 @@
 		"defval": false,
 		"name": "fq_expansion_33: done",
 		"type": 1
+	},
+	"G1610": {
+		"defval": false,
+		"name": "Journal side quest 1: accepted",
+		"type": 1
+	},
+	"G1611": {
+		"defval": false,
+		"name": "Journal side quest 2: accepted",
+		"type": 1
+	},
+	"G1612": {
+		"defval": false,
+		"name": "Journal side quest 3: accepted",
+		"type": 1
+	},
+	"G1613": {
+		"defval": false,
+		"name": "Journal side quest 4: accepted",
+		"type": 1
+	},
+	"G1614": {
+		"defval": false,
+		"name": "Journal side quest 5: accepted",
+		"type": 1
+	},
+	"G1615": {
+		"defval": false,
+		"name": "Journal side quest 6: accepted",
+		"type": 1
+	},
+	"G1616": {
+		"defval": false,
+		"name": "Journal side quest 7: accepted",
+		"type": 1
+	},
+	"G1617": {
+		"defval": false,
+		"name": "Journal side quest 8: accepted",
+		"type": 1
+	},
+	"G1618": {
+		"defval": false,
+		"name": "Journal side quest 9: accepted",
+		"type": 1
 	}
 }
