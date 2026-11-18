@@ -4,6 +4,20 @@ if( !player["nativeKey"]) throw Exception( "The field leader did not use a nativ
 if( player.nativeKey != "trav_natsuko") throw Exception( "Unexpected field leader model");
 if( player.nativeWeapon.mesh.bones[0] != player.nativeBody.findBone( "weapon"))
 	throw Exception( "Equipment is not bound to the leader's skeleton");
+foreach( id in ["stand", "fight", "sick", "idle", "stand_f", "stand_b", "talk_b"]){
+	local idle = player.animemap[id];
+	local layer = AnimationLayer();
+	layer.partsmap = player.nativeBody.motion.partsmap;
+	layer.setAnime( idle.st, idle.en, idle.spd, idle.loop);
+	local maxFrame = idle.st;
+	for( local i = 0; i < 400; i++){
+		layer.update( 10);
+		maxFrame = Math.max( maxFrame, layer.frametime);
+	}
+	local firstWalk = idle.st + (idle.st == 0 ? 8 : 4);
+	if( maxFrame <= idle.st + 1 || maxFrame > firstWalk - 1)
+		throw Exception( "Idle is frozen or reaches a walk frame: " .. id .. " max=" .. maxFrame);
+}
 local count = 0;
 foreach( id in ["EP201", "EP202", "EP203", "EP204", "EP205", "EP206", "EP207",
                 "EP381", "EP387", "EP462"]){

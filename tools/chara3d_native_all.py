@@ -88,6 +88,14 @@ def build_registry(group=None):
             if any(not (0 <= anim[field] < len(frames[kin])) for field in ("st", "en", "m1", "m2")
                    if field in anim):
                 raise ValueError(f"{key}: {anim['id']} uses a frame outside the native motion")
+        # Sprite ranges end at the next block; native interpolation can blend into it.
+        motion = frames[kin]
+        animations = [
+            dict(anim, en=anim["en"] - 1)
+            if anim.get("loop") and motion[anim["st"]][0] == "idle8"
+            and motion[anim["en"]][0] == "walk8" else anim
+            for anim in animations
+        ]
         roster[key] = {"group": category, "weapon": weapon, "head": spec.get("head", ""),
                        "animap": animations, "motion": kin, "proportions": proportions(key)}
     return roster, frames, jobs

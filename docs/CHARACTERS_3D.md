@@ -61,6 +61,8 @@ collision and picking, and supplies skeletal transforms to the meshes instead of
 sprite. No sprite frames are generated for native actors. Bodies, outfits and weapons bind to the
 same skeleton.
 
+Native idle loops end before the walk cycle so characters keep their feet planted while breathing.
+
 Native visuals start at 75% of their original scale. Togashi Yosai, Hiruma Natsuko, and Ide Tamotsu
 are the tallest travelers, in that order. The roster uses authored height, width, build, age, and
 size where available, with small, stable height and frame differences for unspecified looks.
