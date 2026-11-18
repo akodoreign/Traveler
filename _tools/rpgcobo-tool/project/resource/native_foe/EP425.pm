@@ -11,12 +11,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x000000ff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -24,12 +24,25 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x000001ff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
+		texture2 = null
+	}
+	{
+		name = "c141318"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x000001ff
+		rough = 0.840000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -37,12 +50,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x010101ff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -50,12 +63,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x010102ff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -63,12 +76,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x010102ff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -76,12 +89,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x010103ff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -89,12 +102,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x020103ff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -102,12 +115,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x020103ff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -115,12 +128,25 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x030204ff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
+		texture2 = null
+	}
+	{
+		name = "c27252e"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x040305ff
+		rough = 0.880000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
 		texture2 = null
 	}
 	{
@@ -128,12 +154,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x040304ff
-		rough = 0.500000
+		rough = 0.880000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
 		texture2 = null
 	}
 	{
@@ -141,12 +167,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x050407ff
-		rough = 0.500000
+		rough = 0.880000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
 		texture2 = null
 	}
 	{
@@ -154,12 +180,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x050305ff
-		rough = 0.500000
+		rough = 0.880000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
 		texture2 = null
 	}
 	{
@@ -167,12 +193,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x070507ff
-		rough = 0.500000
+		rough = 0.880000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
 		texture2 = null
 	}
 	{
@@ -180,12 +206,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x0a090eff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -193,12 +219,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x0d0a0dff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -206,12 +232,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x1d0b05ff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -219,12 +245,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x4f3522ff
-		rough = 0.500000
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -232,12 +258,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x8e6526ff
-		rough = 0.500000
+		rough = 0.720000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/ep425_skin.png"
+		texture1 = "tex/foe_skin_normal.png"
 		texture2 = null
 	}
 	{
@@ -245,12 +271,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x9fadc3ff
-		rough = 0.500000
+		rough = 0.720000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/ep425_skin.png"
+		texture1 = "tex/foe_skin_normal.png"
 		texture2 = null
 	}
 	{
@@ -258,12 +284,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0xa8724aff
-		rough = 0.500000
+		rough = 0.720000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/ep425_skin.png"
+		texture1 = "tex/foe_skin_normal.png"
 		texture2 = null
 	}
 	{
@@ -271,12 +297,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0xad8218ff
-		rough = 0.500000
+		rough = 0.720000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/ep425_skin.png"
+		texture1 = "tex/foe_skin_normal.png"
 		texture2 = null
 	}
 	{
@@ -284,12 +310,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0xd7cfbbff
-		rough = 0.500000
+		rough = 0.720000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/ep425_skin.png"
+		texture1 = "tex/foe_skin_normal.png"
 		texture2 = null
 	}
 	{
@@ -297,12 +323,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0xeb9f68ff
-		rough = 0.500000
+		rough = 0.720000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/ep425_skin.png"
+		texture1 = "tex/foe_skin_normal.png"
 		texture2 = null
 	}
 	{
@@ -310,12 +336,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0xefcfabff
-		rough = 0.500000
+		rough = 0.720000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/ep425_skin.png"
+		texture1 = "tex/foe_skin_normal.png"
 		texture2 = null
 	}
 ]

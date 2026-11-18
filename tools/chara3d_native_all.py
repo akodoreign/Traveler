@@ -45,7 +45,12 @@ def verify_assets(directory, roster):
     expected = {"roster.json"}
     for key, spec in roster.items():
         expected.add(f"motion_{spec['motion']}.mot")
-        for part in ("body", "outfit", *(("weapon",) if spec["weapon"] != "none" else ())):
+        parts = ["body", "outfit"]
+        if spec["weapon"] != "none":
+            parts.append("weapon")
+        if spec.get("mask"):
+            parts.append("mask")
+        for part in parts:
             expected.update(f"{key}_{part}.{ext}" for ext in ("pm", "mdl"))
     missing = [name for name in sorted(expected - {"roster.json"})
                if not (directory / name).is_file() or not (directory / name).stat().st_size]
@@ -55,6 +60,15 @@ def verify_assets(directory, roster):
         body = (directory / f"{key}_body.pm").read_text(encoding="utf-8")
         if f'motiondata = "motion_{spec["motion"]}.mot"' not in body:
             raise RuntimeError(f"{key}: body does not reference its registered motion")
+    for part in list(expected):
+        if part.endswith(".pm"):
+            descriptor = (directory / part).read_text(encoding="utf-8")
+            for line in descriptor.splitlines():
+                if ' = "tex/head_' in line:
+                    texture = line.split('"')[1]
+                    if not (directory / texture).is_file():
+                        raise RuntimeError(f"{part}: missing head texture {texture}")
+                    expected.add(texture)
     return expected
 
 
@@ -100,6 +114,8 @@ def build_registry(group=None):
         ]
         roster[key] = {"group": category, "weapon": weapon, "head": spec.get("head", ""),
                        "animap": animations, "motion": kin, "proportions": proportions(key)}
+        if spec.get("mask"):
+            roster[key]["mask"] = spec["mask"]
     return roster, frames, jobs
 
 
@@ -111,6 +127,9 @@ def main():
     mode.add_argument("--index-only", action="store_true", help="refresh metadata without re-exporting meshes")
     mode.add_argument("--bust-skin", action="store_true", help="re-export only bodies with sampled bust colors")
     mode.add_argument("--outfit-clans", nargs="+", help="refresh default outfits for the named clans")
+    mode.add_argument("--accessories", action="store_true", help="refresh costume pieces, body ornaments and outfit fit")
+    mode.add_argument("--head-surfaces", action="store_true", help="refresh hair, headbands and authored helmet meshes")
+    mode.add_argument("--outfits-only", action="store_true", help="refresh outfit meshes without regenerating bodies or motion")
     args = parser.parse_args()
     outfits = batch.RESOURCE / "native_chara"
     outfits.mkdir(exist_ok=True)
@@ -123,7 +142,7 @@ def main():
         if recorded != roster:
             raise SystemExit("Native roster index is out of sync with game registrations")
         expected = verify_assets(outfits, roster)
-        unexpected = {p.name for p in outfits.iterdir()} - expected
+        unexpected = {p.relative_to(outfits).as_posix() for p in outfits.rglob("*") if p.is_file()} - expected
         if unexpected:
             raise SystemExit(f"Unindexed native assets: {', '.join(sorted(unexpected)[:8])}")
         print(f"Verified {len(roster)} native roster entries and {len(expected)} runtime files")
@@ -135,7 +154,8 @@ def main():
         index.write_text(json.dumps(roster, indent=1) + "\n", encoding="utf-8", newline="\n")
         print(f"Indexed {len(roster)} models without re-exporting geometry")
         return
-    stem = "native_outfit" if args.outfit_clans else "native_roster"
+    outfits_only = bool(args.outfit_clans or args.outfits_only)
+    stem = "native_outfit" if outfits_only else "native_roster"
     job = work / f"{stem}_job.json"
     if args.bust_skin:
         jobs = [job for job in jobs if native_skin(batch.RESOURCE, job[0], look(job[0])) is not None]
@@ -147,7 +167,8 @@ def main():
         jobs = [job for job in jobs if job[1].get("clan", job[1].get("mon")) in args.outfit_clans]
     def export(destination, job, log):
         job.write_text(json.dumps({"out": str(destination), "models": jobs, "motions": frames,
-                                   "body_only": args.bust_skin, "outfit_only": bool(args.outfit_clans)}),
+                                   "body_only": args.bust_skin, "accessories": args.accessories,
+                                   "head_surfaces": args.head_surfaces, "outfits_only": outfits_only}),
                        encoding="utf-8")
         command = [batch.c3.blender_exe(), "-b", "--factory-startup", "--threads", "4",
                    "--python-exit-code", "1", "--python",
@@ -164,7 +185,7 @@ def main():
             if proc.wait():
                 raise SystemExit(f"Blender export failed; see {log}")
 
-    if args.outfit_clans:
+    if outfits_only:
         with tempfile.TemporaryDirectory(prefix="outfit-", dir=work) as temporary:
             stage = Path(temporary)
             export(stage, stage / "job.json", work / f"{stage.name}.log")
@@ -173,11 +194,13 @@ def main():
                 raise SystemExit("Incomplete staged outfit export; runtime outfits were not changed")
             for path in files:
                 path.replace(outfits / path.name)
+            for path in (stage / "tex").iterdir():
+                path.replace(outfits / "tex" / path.name)
     else:
         export(outfits, job, work / f"{stem}.log")
     verify_assets(outfits, roster)
     index.write_text(json.dumps(roster, indent=1) + "\n", encoding="utf-8", newline="\n")
-    part = "outfits" if args.outfit_clans else "bodies" if args.bust_skin else "models"
+    part = "outfits" if outfits_only else "bodies" if args.bust_skin else "models"
     print(f"Exported {len(jobs)} {part}; {len(roster)} in {index}")
 
 

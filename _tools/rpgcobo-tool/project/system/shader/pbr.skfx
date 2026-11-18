@@ -67,7 +67,7 @@ fs pbr
 		}
 		//	normal map
 		mediump vec3 n = v_n;
-		$(UV5) {
+		$(UV5 && COLORTEX2) {
 			lowp vec3 texn = (texture( coltex2 , TEXUV2( v_uv)).xyz*2)-1;
 			mediump vec3 nv = (v_tan.xyz*texn.x - cross( n, v_tan.xyz)*v_tan.w*texn.y);
 			n = (n*(1.0/(1.0+length( nv)))) + nv;

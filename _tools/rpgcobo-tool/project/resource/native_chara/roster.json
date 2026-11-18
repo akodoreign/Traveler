@@ -4347,7 +4347,8 @@
    0.988,
    0.969,
    0.988
-  ]
+  ],
+  "mask": "cloth"
  },
  "trav_tamotsu": {
   "group": "traveler",
@@ -42772,7 +42773,8 @@
    0.991,
    0.982,
    0.991
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_h_suzume": {
   "group": "hireling",
@@ -45672,7 +45674,8 @@
    0.973,
    1.042,
    0.973
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_h_mirumoto": {
   "group": "hireling",
@@ -59447,7 +59450,8 @@
    1.233,
    1.27,
    1.243
-  ]
+  ],
+  "mask": "mempo"
  },
  "side_kage": {
   "group": "cast",
@@ -66697,7 +66701,8 @@
    1.015,
    0.963,
    1.015
-  ]
+  ],
+  "mask": "reed"
  },
  "side_toturi": {
   "group": "cast",
@@ -68147,7 +68152,8 @@
    1.027,
    1.044,
    1.027
-  ]
+  ],
+  "mask": "death"
  },
  "side_atsuko": {
   "group": "cast",
@@ -71047,7 +71053,8 @@
    0.943,
    0.999,
    0.943
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_depura": {
   "group": "cast",
@@ -73222,7 +73229,8 @@
    0.955,
    1.036,
    0.955
-  ]
+  ],
+  "mask": "porcelain"
  },
  "side_miyahana": {
   "group": "cast",
@@ -171097,7 +171105,8 @@
    1.027,
    0.958,
    1.027
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_palecourtier": {
   "group": "cast",
@@ -173272,7 +173281,8 @@
    1.0,
    1.006,
    1.0
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_maskmaker": {
   "group": "cast",
@@ -182697,7 +182707,8 @@
    0.964,
    0.97,
    0.964
-  ]
+  ],
+  "mask": "porcelain"
  },
  "side_sakeseller": {
   "group": "cast",
@@ -183422,7 +183433,8 @@
    1.009,
    1.024,
    1.009
-  ]
+  ],
+  "mask": "reed"
  },
  "side_osuko": {
   "group": "cast",
@@ -184147,7 +184159,8 @@
    0.997,
    0.957,
    0.997
-  ]
+  ],
+  "mask": "porcelain"
  },
  "side_zhang": {
   "group": "cast",
@@ -184872,7 +184885,8 @@
    1.035,
    1.042,
    1.045
-  ]
+  ],
+  "mask": "reed"
  },
  "side_meyako": {
   "group": "cast",
@@ -185597,7 +185611,8 @@
    0.97,
    0.933,
    0.97
-  ]
+  ],
+  "mask": "noh"
  },
  "side_kenshai": {
   "group": "cast",
@@ -186322,7 +186337,8 @@
    1.009,
    1.036,
    1.009
-  ]
+  ],
+  "mask": "death"
  },
  "side_gatekeeper": {
   "group": "cast",
@@ -187047,7 +187063,8 @@
    1.0,
    0.994,
    1.0
-  ]
+  ],
+  "mask": "death"
  },
  "side_naname": {
   "group": "cast",
@@ -187772,7 +187789,8 @@
    1.2,
    1.012,
    1.21
-  ]
+  ],
+  "mask": "death"
  },
  "side_itami": {
   "group": "cast",
@@ -188497,7 +188515,8 @@
    1.036,
    1.03,
    1.036
-  ]
+  ],
+  "mask": "death"
  },
  "side_sumi": {
   "group": "cast",
@@ -189947,7 +189966,8 @@
    0.988,
    0.945,
    0.988
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_kasamashi": {
   "group": "cast",
@@ -190672,7 +190692,8 @@
    0.991,
    1.024,
    0.991
-  ]
+  ],
+  "mask": "noh"
  },
  "side_hagane": {
   "group": "cast",
@@ -191397,7 +191418,8 @@
    1.036,
    1.024,
    1.036
-  ]
+  ],
+  "mask": "death"
  },
  "side_yuko": {
   "group": "cast",
@@ -192122,7 +192144,8 @@
    1.015,
    0.887,
    1.015
-  ]
+  ],
+  "mask": "noh"
  },
  "side_hatomu": {
   "group": "cast",
@@ -192847,7 +192870,8 @@
    1.0,
    0.94,
    1.0
-  ]
+  ],
+  "mask": "reed"
  },
  "side_onaka": {
   "group": "cast",
@@ -193572,7 +193596,8 @@
    1.0,
    0.988,
    1.0
-  ]
+  ],
+  "mask": "noh"
  },
  "side_dorin": {
   "group": "cast",
@@ -194297,7 +194322,8 @@
    1.2,
    0.97,
    1.21
-  ]
+  ],
+  "mask": "reed"
  },
  "side_kusuri": {
   "group": "cast",
@@ -195022,7 +195048,8 @@
    0.997,
    0.945,
    0.997
-  ]
+  ],
+  "mask": "noh"
  },
  "side_siko": {
   "group": "cast",
@@ -195747,7 +195774,8 @@
    0.979,
    0.933,
    0.979
-  ]
+  ],
+  "mask": "porcelain"
  },
  "side_munashii": {
   "group": "cast",
@@ -196472,7 +196500,8 @@
    1.036,
    0.976,
    1.036
-  ]
+  ],
+  "mask": "reed"
  },
  "side_tsune": {
   "group": "cast",
@@ -198647,7 +198676,8 @@
    0.97,
    0.993,
    0.97
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_soshiofficer": {
   "group": "cast",
@@ -199372,7 +199402,8 @@
    0.991,
    0.982,
    0.991
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_iuchisoldier": {
   "group": "cast",
@@ -204447,7 +204478,8 @@
    1.045,
    1.044,
    1.045
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_togashi": {
   "group": "cast",
@@ -215322,7 +215354,8 @@
    0.991,
    0.97,
    0.991
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_uyojimbo": {
   "group": "cast",
@@ -216047,7 +216080,8 @@
    1.009,
    0.994,
    1.009
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_sabu": {
   "group": "cast",
@@ -224022,7 +224056,8 @@
    1.027,
    1.024,
    1.027
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_kurosho": {
   "group": "cast",
@@ -242872,7 +242907,8 @@
    0.964,
    0.982,
    0.964
-  ]
+  ],
+  "mask": "cloth"
  },
  "side_mirumotosen": {
   "group": "cast",

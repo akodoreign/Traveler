@@ -8,10 +8,30 @@ local equip = @( player, item) player.setEquip( player.getEquipableSlot( item), 
 local verify = @( test, message){ if( !test) throw Exception( message); };
 
 if( phase == 0){
+	local norie = RPG3DObject.create3DObject( { mdlid="EP319" });
+	verify( norie.nativeKey == "side_norie" && norie.nativeMask && !norie.nativeGear,
+		"Scorpion NPC lost her signature mask");
+	foreach( bone in norie.nativeMask.mesh.bones) verify( bone, "Unbound signature mask bone");
+	local mitsue = ::rpgstat.playermap.P105;
+	local masked = RPG3DObject.create3DObject( mitsue.data);
+	verify( masked.nativeGear.mask == "A174" && masked.nativeMask.mesh.face[0].m.tex0,
+		"Mitsue did not start with her equipped clan-colored mask");
+	local maskSlot = mitsue.getEquipableSlot( "A174");
+	mitsue.setEquip( maskSlot, null);
+	local unmasked = RPG3DObject.create3DObject( mitsue.data);
+	verify( !unmasked.nativeMask, "Mitsue's starter mask stayed visible after removal");
+	equip( mitsue, "A174");
 	verify( stage.player3d.nativeKey == "trav_natsuko", "Leader did not use the native model");
 	local crab = stage.player3d;
 	verify( crab.nativeGear.body == "A173" && crab.nativeOutfit && crab.nativeGear.head == "A110" && crab.nativeHead,
 		"Starting Crab armor and helmet were not equipped and visible");
+	local hairMaps = false;
+	foreach( face in crab.nativeBody.mesh.face){
+		if( face.m.tex0 && face.m.tex1) hairMaps = true;
+	}
+	verify( hairMaps, "Starter character has no paired head color and bump textures");
+	verify( crab.nativeHead.mesh.face[0].m.tex0 && crab.nativeHead.mesh.face[0].m.tex1,
+		"Starter kabuto lost its clan palette or bump texture");
 	local bodySlot = leader.getEquipableSlot( "A173"), headSlot = leader.getEquipableSlot( "A110");
 	local render = @() RPG3DObject.create3DObject( { mdlid=leader.data.mdlid, rt_wearer=leader });
 	leader.setEquip( headSlot, null);
@@ -73,6 +93,7 @@ if( phase == 0){
 		local parts = { body=actor.nativeOutfit, head=actor.nativeHead, mask=actor.nativeMask, cape=actor.nativeCape };
 		local part = parts[slot];
 		verify( part && part.mesh.face[0].m.tex0, "Missing textured garment: " .. item);
+		if( slot == "head") verify( part.mesh.face[0].m.tex1, "Missing headwear bump texture: " .. item);
 		foreach( bone in part.mesh.bones) verify( bone, "Unbound gear bone: " .. item);
 		verify( length( actor.nativeDecals) == 1 && actor.nativeDecals[0].mesh.face[0].m.tex0,
 			"Missing decal for " .. item);

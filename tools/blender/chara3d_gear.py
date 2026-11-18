@@ -173,7 +173,7 @@ def yosai_hat(skin, decal, decal_uv, style):
 
 def mask(skin, style):
     intrinsic = {"oni": "accent", "iron": "armor", "cedar": "cedar", "ink": "ink",
-                 "silk": "top", "jade": "jade", "giseiki": "lower", "abbot": "cedar", "cloth": "ink"}
+                 "silk": "top", "jade": "jade", "giseiki": "lower", "abbot": "cedar", "cloth": "top"}
     colour = SPEC[intrinsic[style]]
     skin.zoom = c.HEAD
     points = [(-6, 105), (-3.5, 104.1), (0, 104.35), (3.5, 104.1), (6, 105),
@@ -197,7 +197,13 @@ def export(job):
     native.clearCaches()
     scene = bpy.context.scene
     rig = c.make_armature(c.rest_frames())
+    from head_surfaces import HAT_SURFACE, HeadSurface, make_textures
+
+    garments_only = job.get("garments_only")
+    detail = None if garments_only else make_textures(out / "tex", set(HAT_SURFACE.values()), color_maps=False)
     for item, slot in catalog.registry().items():
+        if (job.get("head_only") and slot != "head") or (garments_only and slot != "body"):
+            continue
         skin = c.Skin()
         if slot == "body":
             garment(skin, catalog.BODY[item])
@@ -210,14 +216,18 @@ def export(job):
         missing = set(skin.colour) - SWATCHES.keys()
         if missing:
             raise ValueError(f"{item} uses unmapped colours {missing}")
-        native.save_piece(scene, out, rig, item, skin, texture_uv=uv)
+        surface = HeadSurface(detail, catalog.HEAD[item]) if slot == "head" else None
+        native.save_piece(scene, out, rig, item, skin, texture_uv=uv, surface=surface)
         decal, decal_uv = project(item, slot, skin)
         native.save_piece(scene, out, rig, item + "_decal", decal, texture_uv=decal_uv, alpha_test=True)
         if slot == "head":
             fitted_uv = yosai_hat(skin, decal, decal_uv, catalog.HEAD[item])
-            native.save_piece(scene, out, rig, item + "_yosai", skin, texture_uv=uv)
+            native.save_piece(scene, out, rig, item + "_yosai", skin, texture_uv=uv, surface=surface)
             native.save_piece(scene, out, rig, item + "_yosai_decal", decal, texture_uv=fitted_uv, alpha_test=True)
-    for weapon in catalog.WEAPONS:
+    if job.get("head_only"):
+        return
+    weapons = () if garments_only else catalog.WEAPONS
+    for weapon in weapons:
         skin = c.Skin()
         if weapon == "musket":
             w = {"weapon": 1.}

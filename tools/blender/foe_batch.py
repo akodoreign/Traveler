@@ -8,6 +8,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import tempfile
 from zlib import crc32
 
 HERE = Path(__file__).resolve().parent
@@ -136,14 +137,6 @@ def costume(c, skin, spec):
                          ((0, 125, 0), 3, 3.2)], 36), straw, head)
         skin.add(c.tube([((0, 115, 0), 16.3, 17.3), ((0, 115.9, 0), 16, 17)], 36),
                  c.shade(straw, .63), head)
-    if spec.get("mask"):
-        colour = tuple(spec.get("mask_col", (158, 133, 111) if spec["mask"] in ("stitched", "death") else c.INK))
-        skin.zoom = c.HEAD
-        for side in (-1, 1):
-            profile = [(side * z, y) for z, y in ((0, 104.5), (3, 104.6), (6.6, 104.2), (6, 101),
-                                                  (3.4, 100.2), (0, 100.1))]
-            c.face_patch(skin, profile if side > 0 else profile[::-1], colour, .7, skin.parts + 1)
-        skin.zoom = None
     if spec.get("sashimono"):
         spine = {"spine": 1.}
         skin.add(c.box((-9, 108, 3), (.8, 33, .8)), c.WOOD, spine, smooth=False)
@@ -474,15 +467,55 @@ def install(packs, jobs):
     for ep, (folder, _) in sources.items():
         for name in asset_names(ep):
             shutil.copyfile(folder / name, out / name)
+    for folder in packs:
+        if (folder / "tex").is_dir():
+            shutil.copytree(folder / "tex", out / "tex", dirs_exist_ok=True)
+    if (out / "tex" / "foe_skin_color.png").is_file():
+        from foe_skin_maps import install_skin_maps
+
+        install_skin_maps(out, jobs)
     write(out / "index.json", models)
     print(f"Installed {len(models)} battle models in {out}")
 
 
-def export(job_path):
+def update_installed(pack, jobs):
+    out = PROJECT / "resource" / "native_foe"
+    models = read(out / "index.json")
+    entries = read(pack / "foes.json")
+    if not entries or models.keys() != jobs.keys():
+        raise ValueError("An existing complete roster and a nonempty update pack are required")
+    for ep, entry in entries.items():
+        spec = jobs.get(ep)
+        if (not spec or any(entry[k] != spec[k] for k in ("source", "picture", "recipe"))
+                or entry["animap"] != models[ep]["animap"] or not valid(pack, ep)):
+            raise ValueError(f"{pack}: stale or invalid foe asset {ep}")
+    from foe_skin_maps import install_skin_maps
+
+    with tempfile.TemporaryDirectory(prefix="foe-update-", dir=pack.parent) as temp:
+        stage = Path(temp)
+        shutil.copytree(pack / "tex", stage / "tex")
+        for texture in (stage / "tex").iterdir():
+            if not (out / "tex" / texture.name).is_file() or texture.read_bytes() != (out / "tex" / texture.name).read_bytes():
+                raise ValueError(f"{texture.name}: shared texture changed; use a complete pack")
+        for ep in entries:
+            shutil.copyfile(pack / f"{ep}.pm", stage / f"{ep}.pm")
+        install_skin_maps(stage, {ep: jobs[ep] for ep in entries})
+        for ep in entries:
+            (stage / f"{ep}.pm").replace(out / f"{ep}.pm")
+            for ext in ("mdl", "mot"):
+                name = f"{ep}.{ext}"
+                shutil.copyfile(pack / name, out / name)
+            name = f"{ep.lower()}_skin.png"
+            (stage / "tex" / name).replace(out / "tex" / name)
+    print(f"Updated {len(entries)} installed battle models")
+
+
+def export(job_path, material_only=False):
     sys.path.insert(0, str(HERE))
     import bpy
     import chara3d as c
     from chara3d_native import animate, clearCaches, save_piece
+    from foe_surfaces import FoeSurface, make_textures
 
     job = read(job_path)
     out = job_path.parent
@@ -490,6 +523,8 @@ def export(job_path):
     scratch.mkdir(exist_ok=True)
     bpy.ops.wm.read_factory_settings(use_empty=True)
     scene = bpy.context.scene
+    textures = make_textures(out / "tex")
+    installed = PROJECT / "resource" / "native_foe"
     journal = out / "completed.json"
     completed = set(read(journal)) if journal.exists() else set()
     for i, (ep, item) in enumerate(job.items(), 1):
@@ -499,18 +534,28 @@ def export(job_path):
         frames, _ = clips(item["family"])
         clearCaches()
         if item["recipe"] == "human":
-            rig = animate(scene, ep, frames, item["family"])
+            rig = c.make_armature(c.rest_frames()) if material_only else animate(scene, ep, frames, item["family"])
             mesh = human(c, item["spec"])
         else:
             mesh, joints = creature_model(c, item)
-            rig = creature_rig(c, scene, frames, joints, item["recipe"])
-        save_piece(scene, scratch, rig, ep, mesh, ep, write_motion=True)
+            if material_only:
+                rig = c.make_armature({name: c.frame(p, c.np.asarray(p) + c.EY, c.EX)
+                                       for name, (p, _, _) in joints.items()})
+            else:
+                rig = creature_rig(c, scene, frames, joints, item["recipe"])
+        if material_only:
+            if not valid(installed, ep):
+                raise RuntimeError(f"Missing installed model for {ep}")
+            shutil.copyfile(installed / f"{ep}.mot", scratch / f"{ep}.mot")
+        save_piece(scene, scratch, rig, ep, mesh, ep, write_motion=not material_only,
+                   surface=FoeSurface(item, textures))
         if not valid(scratch, ep):
             raise RuntimeError(f"Incomplete asset trio for {ep}")
-        animation, armature = rig.animation_data.action, rig.data
+        animation = rig.animation_data.action if rig.animation_data else None
+        armature = rig.data
         bpy.data.objects.remove(rig, do_unlink=True)
         bpy.data.armatures.remove(armature)
-        if animation.users == 0:
+        if animation and animation.users == 0:
             bpy.data.actions.remove(animation)
         for name in asset_names(ep):
             (scratch / name).replace(out / name)
@@ -533,8 +578,13 @@ def launch():
     mode.add_argument("--only", nargs="+", metavar="EP", help="build selected foe picture IDs in a separate pack")
     mode.add_argument("--humans", action="store_true", help="stage only the human foe costumes")
     mode.add_argument("--install", nargs="+", type=Path, metavar="PACK", help="install a complete staged pack and updates")
+    mode.add_argument("--update-installed", type=Path, metavar="PACK", help="apply a textured partial pack to the installed roster")
+    parser.add_argument("--materials", action="store_true", help="refresh installed models while reusing battle motions")
     args = parser.parse_args()
     jobs = plan()
+    if args.update_installed:
+        update_installed(args.update_installed, jobs)
+        return
     if args.install:
         install(args.install, jobs)
         return
@@ -551,7 +601,9 @@ def launch():
     if args.plan:
         return
     digest = sha256(json.dumps(jobs, sort_keys=True).encode())
-    for source in (Path(__file__), HERE / "chara3d.py", HERE / "chara3d_native.py", TOOLS / "rig3d_poses.py"):
+    digest.update(str(args.materials).encode())
+    for source in (Path(__file__), HERE / "chara3d.py", HERE / "chara3d_native.py",
+                   HERE / "foe_surfaces.py", TOOLS / "rig3d_poses.py"):
         digest.update(source.read_bytes())
     out = STAGE / digest.hexdigest()[:16]
     out.mkdir(parents=True, exist_ok=True)
@@ -561,6 +613,8 @@ def launch():
     print(f"Staging at {out}; progress below, full output in {log.name}.", flush=True)
     command = [blender_exe(), "-b", "--factory-startup", "--threads", "4", "--python-exit-code", "1",
                "--python", str(Path(__file__).resolve()), "--", str(path)]
+    if args.materials:
+        command.append("--materials")
     with log.open("a", encoding="utf-8") as output, subprocess.Popen(
             command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding="utf-8", errors="replace"
     ) as proc:
@@ -575,6 +629,7 @@ def launch():
 
 if __name__ == "__main__":
     if "--" in sys.argv:
-        export(Path(sys.argv[sys.argv.index("--") + 1]))
+        args = sys.argv[sys.argv.index("--") + 1:]
+        export(Path(args[0]), material_only="--materials" in args)
     else:
         launch()
