@@ -66,6 +66,10 @@ The idle head stays level; the body mesh has a shaped lower jaw and contoured fe
 sandal soles follow the foot shape instead of using a rectangular block.
 Togashi Yosai's dragon and arrowroot ink is part of his skinned body, not his gear.
 His short-sleeved starting haori exposes the arm tattoos; other armor still covers the skin normally.
+Yosai's equipped headwear uses fitted meshes and matching decals sized for his bald scalp.
+Native outfit and equipment dyes share the clan palettes in `tools/gear_palette.py`. These keep
+Dragon cloth forest green and gold, Phoenix cloth vermilion and orange, Crab gear deep blue and
+steel grey with bright red trim, and civilian cloth in earthier shades without changing skin or hair colours.
 
 Native visuals start at 75% of their original scale. Togashi Yosai, Hiruma Natsuko, and Ide Tamotsu
 are the tallest travelers, in that order. The roster uses authored height, width, build, age, and
@@ -90,6 +94,8 @@ follow their own slots. Squeak still uses his legacy model. Existing saves keep 
 The game resolves worn item IDs when creating a native field leader, follower or battle actor. Clothing
 meshes use the body’s existing rig. Robes, armor and hats reference the wearer’s UV atlas, based on
 their clan and original character palette. Materials such as jade, wood and straw retain their finish.
+**Options → Video → Show Headwear** can hide the party’s equipped hats and helmets to show
+hairstyles without changing equipped items or stats. Masks and NPC costumes are unaffected.
 The same item geometry is reused across wearers. With an empty body slot, the character wears their
 original everyday outfit.
 

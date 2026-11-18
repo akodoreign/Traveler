@@ -1220,11 +1220,31 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	local left = this.TRAVELERS.filter( @( pid) !::Rokugan.pathWalked( pid)).map( @( pid) ::Rokugan.PATH_NAME[pid]);
 	return "The finale opens when all eight roads are walked. Still on the road: " .. left.join( ", ") .. ".";
 };
-//	The chosen traveler walks alone: everyone else waits (Togashi Yosai goes back to the inns), arriving fresh.
+::Rokugan.resetRoadCompanions <- function(){
+	local stat = ::rpgstat;
+	foreach( id, old in stat.playermap){
+		if( this.TRAVELERS.indexOf( id) >= 0) continue;
+		local fresh = RPGPlayer();
+		fresh.setDataID( id);
+		if( id == "P132" && fresh.LV != 1) fresh.setLV( 1);
+		// Return custom gear to the shared bag, not a second copy of the starter kit.
+		local defaults = clone fresh.equips;
+		foreach( item in old.equips){
+			if( !item) continue;
+			local i = defaults.findi( @( v) v && v.dataid == item.dataid && v.LV == item.LV);
+			if( i >= 0) defaults[i] = null;
+			else stat.addItem( item);
+		}
+		stat.playermap[id] = fresh;
+	}
+};
+
+//	The chosen traveler walks alone. Completed travelers keep their own saved progression.
 ::Rokugan.pathBegin <- function( pid){
 	local p = ::rpgstat.playermap[pid];
 	if( !p) return;
 	for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = i == 0 ? p : null;
+	this.resetRoadCompanions();
 	::rpgstat.discoverPlayer( pid);
 	p.removeCondition( "K000");
 	p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;
@@ -1324,6 +1344,7 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 ::Rokugan.pathFinale <- function(){
 	local p = ::rpgstat.members.find( @( v) v && ::Rokugan.TRAVELERS.indexOf( v.dataid) >= 0);
 	if( p) for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = i == 0 ? p : null;
+	this.resetRoadCompanions();
 	::rpgvar["G608"] = false;
 	printf( "[RT] the finale: 8 roads walked, %S leads\n", p ? p.dataid : "-");
 };
@@ -1340,6 +1361,7 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	return lv;
 };
 ::Rokugan.fCatchUp <- function( p){
+	if( this.pathWalked( p.dataid)) return;
 	local lv = this.fTopLV();
 	if( p.LV < lv){ p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP; }
 	local w = p.equips[0], kit = this.FKIT[p.dataid];		//	a traveler whose own road wasn't walked in this save

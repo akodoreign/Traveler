@@ -6,10 +6,10 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c282a3c"
+		name = "c1a2e27"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x04040aff
+		basecol = 0x010504ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -19,10 +19,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c2e3145"
+		name = "c1e352d"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x05060eff
+		basecol = 0x020805ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -32,10 +32,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c333549"
+		name = "c233932"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x070810ff
+		basecol = 0x030907ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -45,10 +45,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c464a68"
+		name = "c2e5044"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x0e1023ff
+		basecol = 0x05130dff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -58,10 +58,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c6c562b"
+		name = "c497255"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x261705ff
+		basecol = 0x102b16ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -71,10 +71,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c96783c"
+		name = "c4f7a5b"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x4f300aff
+		basecol = 0x13321aff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -84,10 +84,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cada89c"
+		name = "c538160"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x6c6556ff
+		basecol = 0x15381dff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -97,10 +97,36 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cbab6a8"
+		name = "c619670"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x7f7965ff
+		basecol = 0x1e4f29ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c816f2f"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x382806ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "cb49b42"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x76550dff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -123,10 +149,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cc4beb1"
+		name = "cce9d33"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x8e8572ff
+		basecol = 0x9f5707ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -136,23 +162,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cd6bc58"
+		name = "cdfb43a"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xad8218ff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "ce4dece"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0xc7bb9fff
+		basecol = 0xbd7609ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000

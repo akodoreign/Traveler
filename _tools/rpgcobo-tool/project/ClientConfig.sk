@@ -25,6 +25,7 @@ class ClientConfig
 			savecurs = 0,				//	コマンドを記憶
 			battlespeed = 4,			//	バトルスピード
 			btnhelp = 1,				//	ボタンのヘルプ表示
+			showheadwear = 1,
 		},
 		screen = {
 			reso_window = "1920x1080",	//	Windows用。1920x1080のウィンドウで表示する。
@@ -151,6 +152,10 @@ class ClientConfig
 	}
 
 	//	::clientconfをセーブする。暗号化するような内容は無いのでそのままjsonに。
+	static function showHeadwear(){
+		return ::clientconf.game["showheadwear"] ?? 1;
+	}
+
 	static function save(){
 		local f = FileRef( ::savedir, "client.json");
 		local bb = encodeJSON( ::clientconf, 5, ByteBuffer()); bb.pos = 0;

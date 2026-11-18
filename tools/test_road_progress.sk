@@ -1,0 +1,34 @@
+local rt = ::Rokugan, st = ::rpgstat;
+local verify = @( ok, why){ if( !ok) throw Exception( why); };
+local first = st.playermap.P100, next = st.playermap.P101, yosai = st.playermap.P132;
+local companion = st.playermap.P123;
+local kit = @( p) p.equips.map( @( v) v ? v.dataid : "").join( "|");
+local starterKit = kit( yosai), companionKit = kit( companion);
+first.setLV( 28);
+first.addExp( 11);
+local exp = first.exp, firstKit = kit( first);
+::rpgvar[rt.PATH_WALKED.P100] = true;
+yosai.setLV( 33);
+companion.setLV( 30);
+local helmet = RPGObject.create( "A110");
+yosai.setEquip( yosai.getEquipableSlot( "A110"), helmet);
+st.members[1] = yosai;
+rt.pathBegin( "P101");
+local fresh = st.playermap.P132, freshCompanion = st.playermap.P123;
+verify( fresh != yosai && fresh.LV == 1 && fresh.exp == 0 && kit( fresh) == starterKit,
+	"Yosai carried over progression instead of restarting at level 1 with starter gear");
+verify( freshCompanion != companion && freshCompanion.LV < 30 && kit( freshCompanion) == companionKit,
+	"A story companion carried over progression or lost their starter kit");
+verify( st.itemlistOf( "A110").indexOf( helmet) >= 0, "Companion gear was not returned to inventory");
+verify( st.members[0] == next && length( st.members.filter( @( p) p)) == 1,
+	"The new road did not begin with its traveler alone");
+
+next.setLV( 40);
+fresh.setLV( 21);
+::rpgvar[rt.PATH_WALKED.P101] = true;
+rt.pathFinale();
+rt.fJoinAll();
+verify( st.playermap.P132.LV == 1, "The last road's Yosai carried into the finale");
+verify( st.playermap.P100 == first && first.LV == 28 && first.exp == exp && kit( first) == firstKit,
+	"Finale catch-up changed a completed traveler's saved level, XP, or gear");
+printf( "[ROAD PROGRESS] companion resets and completed traveler progression verified\n");

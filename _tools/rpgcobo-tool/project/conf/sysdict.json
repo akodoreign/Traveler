@@ -7,6 +7,8 @@
 	"game_battlespeed_desc": {"ja":"アクティブバトルの戦闘速度を調整します。数値が大きいほど速くなります。", "en":"Adjusts the battle speed of active battles. Higher is faster."},
 	"game_btnhelp": {"ja":"ボタンのヘルプ表示", "en":"Show Button Help"},
 	"game_btnhelp_desc": {"ja":"画面右下のボタンのヘルプの表示／非表示を切り替えます。", "en":"Show/hide the help button on the bottom right of the screen."},
+	"game_showheadwear": {"ja":"帽子・兜の表示", "en":"Show Headwear"},
+	"game_showheadwear_desc": {"ja":"味方の帽子や兜の表示を切り替えます。装備や能力値は変わりません。", "en":"Show or hide the party's hats and helmets without changing equipment or stats."},
 	"sound_bgmvol": {"ja":"BGMの音量", "en":"BGM Volume"},
 	"sound_bgmvol_desc": {"ja":"BGMの音量を指定します。", "en":"Specify the BGM volume."},
 	"sound_sevol": {"ja":"効果音の音量", "en":"SE Volume"},

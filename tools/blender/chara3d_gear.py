@@ -147,6 +147,30 @@ def hat(skin, style):
     skin.zoom = None
 
 
+def yosai_hat(skin, decal, decal_uv, style):
+    """Seat the helmet on the bald scalp without changing the shared, hair-sized mesh."""
+    is_band = style in ("band", "champion_band")
+    depth, width, centre = c.head_section(112.6)
+    sx, sz = ((depth + .63) / 11.3, (width + .63) / 10.9) if is_band else (.88, .86)
+    drop = 0 if is_band else 1.6 if style in ("kabuto", "legion") else 2.9
+    dy = drop * c.HEAD[1]
+    dx = (centre + .3 * sx) * c.HEAD[1] if is_band else 0
+    for mesh in (skin, decal):
+        mesh.verts = [(x * sx + dx, y - dy, z * sz) for x, y, z in mesh.verts]
+    if not is_band:
+        # A visible inner band closes the gap between the broad brim and the head.
+        collar_top = (113.6 if style in ("kabuto", "legion") else 116.6 if style == "eboshi" else 118) - drop + .5
+        rings = []
+        collar_base = min(112.6, collar_top - 1.25)
+        for y in (collar_base, (collar_base + collar_top) / 2, collar_top):
+            depth, width, centre = c.head_section(y)
+            rings.append(((centre, y, 0), depth + .35, width + .35))
+        skin.zoom = c.HEAD
+        skin.add(c.tube(rings, 32, caps=False), SPEC["lining"], {"head": 1.})
+        skin.zoom = None
+    return lambda rgb, pos: decal_uv(rgb, ((pos[0] - dx) / sx, pos[1] / sz, pos[2] + dy))
+
+
 def mask(skin, style):
     intrinsic = {"oni": "accent", "iron": "armor", "cedar": "cedar", "ink": "ink",
                  "silk": "top", "jade": "jade", "giseiki": "lower", "abbot": "cedar", "cloth": "ink"}
@@ -189,6 +213,10 @@ def export(job):
         native.save_piece(scene, out, rig, item, skin, texture_uv=uv)
         decal, decal_uv = project(item, slot, skin)
         native.save_piece(scene, out, rig, item + "_decal", decal, texture_uv=decal_uv, alpha_test=True)
+        if slot == "head":
+            fitted_uv = yosai_hat(skin, decal, decal_uv, catalog.HEAD[item])
+            native.save_piece(scene, out, rig, item + "_yosai", skin, texture_uv=uv)
+            native.save_piece(scene, out, rig, item + "_yosai_decal", decal, texture_uv=fitted_uv, alpha_test=True)
     for weapon in catalog.WEAPONS:
         skin = c.Skin()
         if weapon == "musket":

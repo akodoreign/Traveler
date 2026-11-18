@@ -7,10 +7,10 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c173025"
+		name = "c13312b"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x010603ff
+		basecol = 0x000605ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -20,10 +20,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c1a382a"
+		name = "c15533e"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x010904ff
+		basecol = 0x01150bff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -33,10 +33,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c1f3c2f"
+		name = "c163832"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x020a06ff
+		basecol = 0x010907ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -46,10 +46,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c204333"
+		name = "c194235"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x020d07ff
+		basecol = 0x010d08ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -59,10 +59,49 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c244836"
+		name = "c1a443c"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x030f08ff
+		basecol = 0x010d0aff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c1b3d36"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x010a08ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c21554b"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x021611ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c238665"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x033d21ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -85,23 +124,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c285440"
+		name = "c2a6f59"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x04160cff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "c2b563b"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x05170aff
+		basecol = 0x042819ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -137,10 +163,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c3c785a"
+		name = "c37866d"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x0a3019ff
+		basecol = 0x083d27ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -154,32 +180,6 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x0d0a0dff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "c468c60"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x0e441dff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "c4c906e"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x114828ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -228,6 +228,19 @@ material = [
 		texture2 = null
 	}
 	{
+		name = "caea747"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x6d640fff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
 		name = "cc29774"
 		tec = "pbr.basic"
 		mtype = 0
@@ -267,10 +280,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cd6ba50"
+		name = "cdab13d"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xad7f13ff
+		basecol = 0xb4720aff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -280,10 +293,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cd6bc58"
+		name = "cdfb53d"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xad8218ff
+		basecol = 0xbd770aff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000

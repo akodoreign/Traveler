@@ -105,17 +105,20 @@ class RokuganNativePicture extends RPG3DPicture
 			if( yosaishaori) nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
 			else if( wear.body) nativeOutfit = addNativePart( GEAR .. wear.body, palette);
 			else if( !wear.starterBody) nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
-			if( wear.head) nativeHead = addNativePart( GEAR .. wear.head, palette);
+			local head = ClientConfig.showHeadwear() ? wear.head : null;
+			local fittedHat = key == "side_yosai" && head;
+			if( head) nativeHead = addNativePart( GEAR .. head .. (fittedHat ? "_yosai" : ""), palette);
 			if( wear.mask) nativeMask = addNativePart( GEAR .. wear.mask, palette);
 			if( wear.cape) nativeCape = addNativePart( GEAR .. wear.cape, palette);
 			if( gear["decals"]){
 				local clan = wear.clan || gear.palettes[key];
 				if( !gear.clans.contains( clan)) clan = "ronin";
-				foreach( item in [wear.body, wear.head, wear.mask, wear.cape]){
+				foreach( item in [wear.body, head, wear.mask, wear.cape]){
 					if( !item) continue;
 					if( yosaishaori && item == "A111") continue;
 					local sheet = GEAR .. "decal/" .. clan .. "/" .. item .. ".png";
-					nativeDecals .. addNativePart( GEAR .. item .. "_decal", sheet);
+					local fit = fittedHat && item == head ? "_yosai" : "";
+					nativeDecals .. addNativePart( GEAR .. item .. fit .. "_decal", sheet);
 				}
 			}
 		}else{

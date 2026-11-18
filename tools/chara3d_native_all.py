@@ -2,6 +2,8 @@
 import argparse
 import json
 import subprocess
+import tempfile
+from pathlib import Path
 from zlib import crc32
 
 import chara3d_all as batch
@@ -108,6 +110,7 @@ def main():
     mode.add_argument("--check", action="store_true", help="verify the complete deployed index and assets")
     mode.add_argument("--index-only", action="store_true", help="refresh metadata without re-exporting meshes")
     mode.add_argument("--bust-skin", action="store_true", help="re-export only bodies with sampled bust colors")
+    mode.add_argument("--outfit-clans", nargs="+", help="refresh default outfits for the named clans")
     args = parser.parse_args()
     outfits = batch.RESOURCE / "native_chara"
     outfits.mkdir(exist_ok=True)
@@ -132,22 +135,50 @@ def main():
         index.write_text(json.dumps(roster, indent=1) + "\n", encoding="utf-8", newline="\n")
         print(f"Indexed {len(roster)} models without re-exporting geometry")
         return
-    job = work / "native_roster_job.json"
+    stem = "native_outfit" if args.outfit_clans else "native_roster"
+    job = work / f"{stem}_job.json"
     if args.bust_skin:
         jobs = [job for job in jobs if native_skin(batch.RESOURCE, job[0], look(job[0])) is not None]
-    job.write_text(json.dumps({"out": str(outfits), "models": jobs, "motions": frames,
-                               "body_only": args.bust_skin}), encoding="utf-8")
-    log = work / "native_roster.log"
-    with log.open("w", encoding="utf-8") as output:
-        proc = subprocess.run([batch.c3.blender_exe(), "-b", "--factory-startup", "--threads", "4",
-                               "--python-exit-code", "1", "--python",
-                               str(batch.TOOLS / "blender" / "chara3d_native.py"), "--", str(job)],
-                              stdout=output, stderr=subprocess.STDOUT)
-    if proc.returncode:
-        raise SystemExit(f"Blender export failed; see {log}")
+    if args.outfit_clans:
+        clans = {spec.get("clan", spec.get("mon")) for _, spec, _, _ in jobs}
+        unknown = set(args.outfit_clans) - clans
+        if unknown:
+            parser.error(f"No actors in clans: {', '.join(sorted(unknown))}")
+        jobs = [job for job in jobs if job[1].get("clan", job[1].get("mon")) in args.outfit_clans]
+    def export(destination, job, log):
+        job.write_text(json.dumps({"out": str(destination), "models": jobs, "motions": frames,
+                                   "body_only": args.bust_skin, "outfit_only": bool(args.outfit_clans)}),
+                       encoding="utf-8")
+        command = [batch.c3.blender_exe(), "-b", "--factory-startup", "--threads", "4",
+                   "--python-exit-code", "1", "--python",
+                   str(batch.TOOLS / "blender" / "chara3d_native.py"), "--", str(job)]
+        print(f"Exporting {len(jobs)} entries; full log: {log}", flush=True)
+        with log.open("w", encoding="utf-8") as output, subprocess.Popen(
+                command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                text=True, encoding="utf-8", errors="replace") as proc:
+            for line in proc.stdout:
+                output.write(line)
+                if line.startswith("OUTFIT "):
+                    output.flush()
+                    print(line.rstrip(), flush=True)
+            if proc.wait():
+                raise SystemExit(f"Blender export failed; see {log}")
+
+    if args.outfit_clans:
+        with tempfile.TemporaryDirectory(prefix="outfit-", dir=work) as temporary:
+            stage = Path(temporary)
+            export(stage, stage / "job.json", work / f"{stage.name}.log")
+            files = [stage / f"{key}_outfit.{ext}" for key, *_ in jobs for ext in ("pm", "mdl")]
+            if not all(path.is_file() and path.stat().st_size for path in files):
+                raise SystemExit("Incomplete staged outfit export; runtime outfits were not changed")
+            for path in files:
+                path.replace(outfits / path.name)
+    else:
+        export(outfits, job, work / f"{stem}.log")
     verify_assets(outfits, roster)
     index.write_text(json.dumps(roster, indent=1) + "\n", encoding="utf-8", newline="\n")
-    print(f"Exported {len(jobs)} {'bodies' if args.bust_skin else 'models'}; {len(roster)} in {index}")
+    part = "outfits" if args.outfit_clans else "bodies" if args.bust_skin else "models"
+    print(f"Exported {len(jobs)} {part}; {len(roster)} in {index}")
 
 
 if __name__ == "__main__":

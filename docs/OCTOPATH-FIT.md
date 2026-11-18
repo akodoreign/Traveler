@@ -20,6 +20,10 @@ custom mechanics only where L5R needs them, and at most one gimmick per chapter.
 | Unique **Talent** command per traveler | Razor's Edge, Iaijutsu, Deduce, Command, Attune, Many Faces, Barter Coin, Remedy. |
 | **Path actions** in 4 pairs (honourable / chance-based), with town reputation for failed chance actions | Same 4 pairs. Reputation = **town Honor**; Low Skills cost Honor (`rules/skills.md`). |
 | **OT2 Crossed Paths** (two-traveler chapters) | The 4 **crossroads** chapters (`story/03`). |
+
+When a new road or the finale starts, companions return to their starting builds (Yosai returns
+to level 1 with zero XP and his starter gear). Non-default equipped gear returns to the shared
+inventory. Only the eight travelers retain their own road progress for the finale.
 | **OT2 guests / OT1 Hire-and-Allure** | Guests ("Call Guest", limited uses per battle) and hired help (`story/04`). |
 | Side stories (NPC quests with an icon on the map) | Same; every guest has 2 side stories (`story/04` B3). |
 | **Travel Banter** (OT1) / inn conversations (OT2) | Same; triggered at inns. |

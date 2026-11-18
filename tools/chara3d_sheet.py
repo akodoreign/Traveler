@@ -21,6 +21,7 @@ from PIL import Image, ImageDraw
 import rig3d
 import rig3d_poses as poses
 import rig3d_sheet as sheet
+from gear_palette import costume_tones
 
 SCALE = 1.4                                     # sprite pixels per model unit
 SIZE, ORIGIN = (292, 256), (146, 240)
@@ -60,6 +61,8 @@ def look(key):
         spec = next(c for c in cast.CAST if c["key"] == name)
         spec = dict(zip(("top", "lower", "accent", "armor", "lace"), cast.CLAN[spec["clan"]])) | spec
     spec = dict(spec) | LOOK3D.get(key, {})
+    clan = spec.get("clan", spec.get("mon"))
+    spec.update(costume_tones(clan, spec))
     return {k: list(v) if isinstance(v, tuple) else v for k, v in spec.items()}
 
 

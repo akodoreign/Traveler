@@ -10,7 +10,7 @@ from PIL import Image
 from chara3d_sheet import blender_exe, look
 from gen_sidecast import CLAN
 import gear_catalog as catalog
-from gear_palette import SIZE, atlas
+from gear_palette import NATIVE_CLANS, SIZE, atlas
 from gear_decals import SIZE as DECAL_SIZE, sheet
 from rig3d import ROOT
 
@@ -53,6 +53,8 @@ def verify(index):
         raise ValueError("The native gear catalog is out of date")
     decal_meshes = [item + "_decal" for item in index["items"]]
     meshes = [*index["items"], *decal_meshes, *("weapon_" + k for k in index["weapons"]), "natsuko_uncovered"]
+    meshes += [f"{item}_yosai{suffix}" for item in catalog.HEAD for suffix in ("", "_decal")]
+    decal_meshes += [f"{item}_yosai_decal" for item in catalog.HEAD]
     decals = [f"decal/{clan}/{item}.png" for clan in index["clans"] for item in index["items"]]
     expected = {"gear.json", *(name + ext for name in meshes for ext in (".pm", ".mdl"))}
     textures = [*index["palettes"], *("clan_" + name for name in index["clans"])]
@@ -90,15 +92,15 @@ def main():
         textures = OUT / "palette"
         textures.mkdir(parents=True, exist_ok=True)
         for name, colours in CLAN.items():
-            atlas(textures / f"clan_{name}.png", colours, {})
+            atlas(textures / f"clan_{name}.png", colours, {}, name)
             decal_dir = OUT / "decal" / name
             decal_dir.mkdir(parents=True, exist_ok=True)
             for item, slot in index["items"].items():
                 style = catalog.BODY[item][0] if slot == "body" else (
                     catalog.HEAD.get(item) or catalog.ACCESSORY.get(item) or "cape")
-                sheet(decal_dir / f"{item}.png", name, colours, item, slot, style)
+                sheet(decal_dir / f"{item}.png", name, NATIVE_CLANS.get(name, colours), item, slot, style)
         for key, clan in index["palettes"].items():
-            atlas(textures / f"{key}.png", CLAN[clan], looks[key])
+            atlas(textures / f"{key}.png", CLAN[clan], looks[key], clan)
         with tempfile.TemporaryDirectory() as temp:
             config = Path(temp) / "job.json"
             config.write_text(json.dumps({"out": str(OUT), "natsuko": looks["trav_natsuko"]}), encoding="utf-8")

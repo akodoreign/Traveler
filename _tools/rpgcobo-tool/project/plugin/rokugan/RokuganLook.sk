@@ -24,6 +24,7 @@ runsk( srcdir .. "/RokuganLookData.sk");
 	return (et != null && (et in this.LOOK_EQTYPE)) ? this.LOOK_EQTYPE[et] : "none";
 };
 ::Rokugan.lookHead <- function( pc){
+	if( !ClientConfig.showHeadwear()) return "";
 	foreach( e in pc.equips){
 		local d = e ? e["data"] : null;
 		if( d && (d["eqtype"] == 10 || d["eqtype"] == 11)) return d["rt_look"] ?? "";
@@ -67,7 +68,8 @@ runsk( srcdir .. "/RokuganLookData.sk");
 	local gear = this.clothingFor( pc);
 	local signature = pc.dataid .. "=" .. (id ?? "");
 	if( !gear) return signature;
-	return signature .. "|" .. [gear.body || "", gear.head || "", gear.mask || "", gear.cape || "",
+	return signature .. "|" .. [gear.body || "", gear.head || "", gear.head && !ClientConfig.showHeadwear() ? "hidden" : "",
+		gear.mask || "", gear.cape || "",
 		gear.clan || "", gear.weaponId, gear.own ? "own" : gear.weapon].join( "|");
 };
 //	A player definition or explicit follower context -> the live RPGPlayer.

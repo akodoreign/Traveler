@@ -306,10 +306,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cd6c878"
+		name = "cd6c252"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xad9530ff
+		basecol = 0xad8b15ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000

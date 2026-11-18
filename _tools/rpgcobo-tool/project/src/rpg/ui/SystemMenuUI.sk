@@ -349,6 +349,18 @@ local langconf = {
 
 /////////////////////////// ビデオ設定
 
+local headwearconf = {
+	lbl = "$T.game_showheadwear"
+	desc = "$T.game_showheadwear_desc"
+	pid = "game.showheadwear"
+	get = @() ClientConfig.showHeadwear()
+	set = @( val){
+		::clientconf.game.showheadwear <- val;
+		return true;
+	}
+	...onoffconf,
+};
+
 local fullconf = {		//	PCのみ
 	lbl = "$T.screen_mode"
 	desc = "$T.screen_mode_desc"
@@ -562,7 +574,7 @@ RPGSystem.ui ..
 
 	configtabs = [
 		{ lbl="$T.config_game", list=[ cmdconf, battlespdconf, btnhelpconf, bgmvolconf, sevolconf, langconf], }
-		{ lbl="$T.config_video", list=[ fullconf, winresoconf, scresoconf, quaconf, ], }
+		{ lbl="$T.config_video", list=[ fullconf, winresoconf, scresoconf, quaconf, headwearconf, ], }
 	];
 
 	props = [

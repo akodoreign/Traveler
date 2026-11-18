@@ -113,6 +113,15 @@ def export(job):
             save_piece(scene, out, rig, key + "_body", c.build_character(spec, "bare", "none"), f"motion_{family}")
         return
 
+    if job.get("outfit_only"):
+        rig = c.make_armature(c.rest_frames())
+        for i, (key, spec, _, _) in enumerate(job["models"], 1):
+            print(f"OUTFIT [{i}/{len(job['models'])}] {key}", flush=True)
+            build = spec.get("build", "normal")
+            dressed = "armored" if build.startswith("armored") or build == "heavy" else "robe"
+            save_piece(scene, out, rig, key + "_outfit", outfit(spec, dressed))
+        return
+
     rigs = {}
     for key, spec, family, weapon in job["models"]:
         print(f"NATIVE {key}", flush=True)

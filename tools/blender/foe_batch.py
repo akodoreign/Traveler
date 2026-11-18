@@ -90,6 +90,7 @@ def plan():
     from gen_human_enemies import ENEMIES, config
     from gen_sidecast import CAST
     from gen_sprites2d import TRAVELERS
+    from gear_palette import costume_tones
 
     authored = {item["key"]: config(item) for item in ENEMIES}
     existing = {"side_" + item["key"] for item in CAST} | {"trav_" + item["key"] for item in TRAVELERS}
@@ -110,6 +111,10 @@ def plan():
             template, person = BOSS_HUMANS[source[5:]]
             key = "side_" + person if person else None
             spec = authored[template] | (look(key) if key in existing else {})
+            if key not in existing:
+                spec.update(costume_tones(spec.get("clan", spec.get("mon")), spec))
+        elif spec:
+            spec = spec | costume_tones(spec.get("clan", spec.get("mon")), spec)
         kind = "human" if spec else creature.get(source)
         if not kind:
             unclassified.append(f"{ep} ({source})")
@@ -526,6 +531,7 @@ def launch():
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--plan", action="store_true", help="inventory and validate without starting Blender")
     mode.add_argument("--only", nargs="+", metavar="EP", help="build selected foe picture IDs in a separate pack")
+    mode.add_argument("--humans", action="store_true", help="stage only the human foe costumes")
     mode.add_argument("--install", nargs="+", type=Path, metavar="PACK", help="install a complete staged pack and updates")
     args = parser.parse_args()
     jobs = plan()
@@ -537,6 +543,8 @@ def launch():
         if missing:
             parser.error("Unknown picture IDs: " + ", ".join(sorted(missing)))
         jobs = {ep: item for ep, item in jobs.items() if ep in args.only}
+    if args.humans:
+        jobs = {ep: item for ep, item in jobs.items() if item["recipe"] == "human"}
     print(f"{len(jobs)} foe pictures / {sum(len(job['enemies']) for job in jobs.values())} enemy records: "
           + ", ".join(f"{kind}={count}" for kind, count in sorted(Counter(j["recipe"] for j in jobs.values()).items())),
           flush=True)
