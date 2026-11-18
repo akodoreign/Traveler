@@ -2,7 +2,6 @@ import os
 import io
 import time
 import struct
-import chunk
 import operator
 import codecs
 from math import radians

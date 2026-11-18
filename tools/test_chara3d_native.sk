@@ -1,0 +1,34 @@
+// Opt-in playbot fixture. Repeated calls load, change pose, then swap clothes.
+local st = ::rpgstage;
+local probe = Rokugan["nativeMeshProbe"];
+if( !probe){
+	local path = "/resource/rt_native_probe/";
+	local body = SK3DObject( path .. "body.pm");
+	local armor = SK3DObject( path .. "armor.pm");
+	local robe = SK3DObject( path .. "robe.pm");
+	local spear = SK3DObject( path .. "spear.pm");
+	foreach( child in [armor, robe, spear]){
+		child.shadowBonesTo( body);
+		body.addChild( child);
+	}
+	if( length( armor.mesh.bones) <= 1 || armor.mesh.bones[0] != body.findBone( armor.mesh.wmapname[0]))
+		throw Exception( "Armor did not bind to the body rig");
+	if( spear.mesh.bones[0] != body.findBone( "weapon"))
+		throw Exception( "Spear did not bind to the animated grip");
+	body.scale << Vector3D( 0.021);
+	body.pos << st.player3d.pos + Vector3D( 1.65, 0, 0);
+	robe.visiblemask = 0;
+	st.scn.addObject( body);
+	probe = #{ body=body, armor=armor, robe=robe, spear=spear, phase=1 };
+	Rokugan.nativeMeshProbe <- probe;
+	println( "[NATIVE] loaded");
+}else if( probe.phase == 1){
+	probe.body.tanime( #{ st=4.0 });
+	probe.phase = 2;
+	println( "[NATIVE] thrust");
+}else{
+	probe.armor.visiblemask = 0;
+	probe.robe.visiblemask = SK_VISIBLE_OPAQUE;
+	probe.spear.visiblemask = 0;
+	println( "[NATIVE] robe and empty hands");
+}

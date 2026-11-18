@@ -12,6 +12,7 @@
 //
 local srcdir = dirname( callee().getSourceName());
 runsk( srcdir .. "/RokuganLookData.sk");
+runsk( srcdir .. "/RokuganNativeChara.sk");
 
 ::Rokugan.lookWeapon <- function( pc){
 	local w = pc.getWeapon();
@@ -84,7 +85,12 @@ runsk( srcdir .. "/RokuganLookData.sk");
 			if( id && (id == v.mdlid || !::rpgres[id])) id = null;
 		}
 	}catch( ex){ printexception( ex); id = null; }
-	return ::RPG3DObject._rt_create_look( id ? { mdlid = id } : v);
+	local model = id ? { mdlid = id } : v;
+	if( model && (model["mdl"] || model["mdlid"])){
+		local native = ::Rokugan.createNativeChara( model);
+		if( native) return native;
+	}
+	return ::RPG3DObject._rt_create_look( model);
 };
 
 //	Field leader: rebuild the sprite when its look changes (the equipment menu), never during a scene.

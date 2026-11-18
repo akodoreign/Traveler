@@ -4,8 +4,9 @@ Every human character is one skinned vertex mesh on an armature, built and posed
 at sprite resolution into pixel art. No frame is drawn: a new outfit, weapon or animation is a change to the
 model or the pose numbers. This replaces the voxel skin (`docs/VOXEL_CHARACTERS.md`) and the 2-D cutout rig.
 
-Status: the pipeline runs end to end for the whole roster, but the art is not yet at the target quality
-(see "Known gaps"). Nothing from it is installed in the game until `chara3d_all.py --install` is run.
+The offline sheets are art previews. The game uses native weighted meshes for the human base looks
+listed in `project/resource/native_chara/roster.json`. Unsupported equipment variants and actors
+outside the index retain their existing visuals.
 
 ## Pieces
 
@@ -34,20 +35,31 @@ py -3.12 -E tools\chara3d_sheet.py trav_natsuko --review "idle8:0,fidle:0,atk_th
 py -3.12 -E tools\chara3d_sheet.py trav_natsuko --review --outfit bare --weapon katana
 py -3.12 -E tools\chara3d_all.py --list                       # done / to do at the current builder version
 py -3.12 -E tools\chara3d_all.py                              # bake all 349 sheets into _art\preview\chara3d\sheets
-py -3.12 -E tools\chara3d_all.py --install --release 20       # install into the game, test, push every 20
+py -3.12 -E tools\chara3d_native_all.py                       # export native bodies, outfits, weapons and shared motion
+py -3.12 -E tools\chara3d_native_all.py --check               # check asset inventory and registry against game data
+py -3.12 -E tools\test_chara3d_native.py                      # export and play the native Natsuko test in Pleasant Eaves
 ```
 
 A sheet takes about 50 seconds per worker (211 frames). Progress is in `tools\chara3d_done.json`, keyed by a hash of
 the builder, pixel pass and pose library, so changing any of them re-bakes everyone on the next run.
 `--install` rescales each registration so the finer sheets (1.4 sprite pixels per model unit, 292x256 cells) keep
-their world size. `--release` runs a real battle before each push.
+their world size. The legacy `--release` battle check does not verify each installed character or equipment
+variant; do not use it as acceptance for a roster rollout.
 
 Blender: portable 5.3.0 under `%LOCALAPPDATA%\Programs\Blender\` (or set `BLENDER` to the exe).
+
+## Native engine
+
+`tools\blender\chara3d_native.py` exports weighted `.pm`/`.mdl` pieces and shared `.mot` files by
+animation family. `RokuganNativeChara.sk` keeps ordinary actor timing, equipment look selection,
+collision and picking, and supplies skeletal transforms to the meshes instead of displaying the
+sprite. No sprite frames are generated for native actors. Bodies, outfits and weapons bind to the
+same skeleton. The Natsuko fixture also swaps armor for a robe and removes her spear; this is a
+test fixture, not an inventory feature for every outfit. Screenshots are under `_art\preview\bot\native`.
 
 ## Known gaps
 
 - Faces, hair and cloth are simpler than the reference art; armour and robes need more shape and trim.
 - Kneeling poses crumple skirts and coats; some raised weapons leave the cell.
-- Hats, helmets, masks, beards, haori coats and most props are not built yet; only spear-like, sword, bow and
-  club weapons have models. Non-human foes have no model.
-- Installed sheets have not been checked in the field, only that a battle runs.
+- Native lighting does not yet match the offline pixel-art treatment.
+- Hats, helmets, masks, beards, haori coats and nonhuman models are outside this native export.

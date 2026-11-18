@@ -1,0 +1,19 @@
+local stage = ::rpgstage;
+local player = stage.player3d;
+if( !player["nativeKey"]) throw Exception( "The field leader did not use a native mesh");
+if( player.nativeKey != "trav_natsuko") throw Exception( "Unexpected field leader model");
+if( player.nativeWeapon.mesh.bones[0] != player.nativeBody.findBone( "weapon"))
+	throw Exception( "Equipment is not bound to the leader's skeleton");
+local count = 0;
+foreach( id in ["EP201", "EP202", "EP203", "EP204", "EP205", "EP206", "EP207",
+                "EP381", "EP387", "EP462"]){
+	local actor = RPG3DObject.create3DObject( #{ mdlid=id });
+	if( !actor["nativeKey"] || !actor.animemap["walk"] || !actor.animemap["critical"])
+		throw Exception( "Missing native actor or animation: " .. id);
+	count++;
+}
+local motion = player.anime2( #{ id="atk_thrust" });
+if( !motion) throw Exception( "Native attack did not start");
+local legacy = RPG3DObject.create3DObject( #{ mdlid="EP2001" });
+if( !legacy || legacy["nativeKey"]) throw Exception( "Unmodeled equipment must keep its original look");
+printf( "[NATIVE ROSTER] leader and %d sampled actors use skinned meshes\n", count);

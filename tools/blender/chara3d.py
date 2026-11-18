@@ -498,8 +498,29 @@ def weapon(S, spec, kind):
     elif kind == "tetsubo":
         S.add(tube([((0, -9, 0), 1., 1.), ((0, 6, 0), 1.2, 1.2), ((0, 34, 0), 2.7, 2.7)], 8), (112, 116, 126), w,
               paint=lambda c: STEEL if c[1] > 8 and int(c[1]) % 5 == 0 else None)
-    elif kind in ("katana", "tanto"):
-        length, gold = 37 if kind == "katana" else 15, trim(spec)
+    elif kind in ("fan", "kama", "nunchaku", "bokken"):
+        def segment(a, b, radius, colour):
+            S.add(tube([(a, radius, radius), (b, radius, radius)], 6), colour, w)
+
+        if kind == "fan":
+            tips = [(14 * math.sin(t), 14 * math.cos(t), 0.) for t in np.linspace(-1., 1., 9)]
+            rim = [(0., 0., 0.), *tips]
+            n = len(rim)
+            face = [(x, y, z + dz) for dz in (-.36, .36) for x, y, z in rim]
+            edges = [(i, (i + 1) % n, (i + 1) % n + n, i + n) for i in range(n)]
+            S.add((face, [tuple(reversed(range(n))), tuple(range(n, 2 * n)), *edges]), tuple(spec["accent"]), w)
+            for tip in tips:
+                segment((0, -2, 0), (tip[0], tip[1], .45), .2, WOOD)
+        else:
+            segment((0, -6, 0), (0, 28 if kind == "bokken" else 12, 0), 1.05, WOOD)
+            if kind == "kama":
+                segment((0, 12, 0), (8, 15, 0), .85, STEEL)
+                segment((8, 15, 0), (12, 11, 0), .48, STEEL)
+            if kind == "nunchaku":
+                segment((0, 12, 0), (4, 17, 0), .35, STEEL)
+                segment((4, 17, 0), (13, 9, 0), 1.05, WOOD)
+    elif kind in ("katana", "tanto", "nodachi"):
+        length, gold = {"katana": 37, "tanto": 15, "nodachi": 51}[kind], trim(spec)
 
         def sword(bone, at, d, blade):
             at, d = np.asarray(at, float), unit(np.asarray(d, float))
@@ -729,4 +750,5 @@ def main():
     json.dump({"palette": sorted(set(skin.colour))}, open(os.path.join(job["out"], "meta.json"), "w"))
 
 
-main()
+if __name__ == "__main__":
+    main()

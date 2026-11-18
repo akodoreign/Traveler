@@ -1,0 +1,73 @@
+// Native skinned visuals retain the base actor's animation timing, collision and picking.
+local ROOT = "/resource/native_chara/";
+local index = ::getResource( ROOT .. "roster.json");
+local roster = index ? decodeJSON( index.loadData()) : {};
+
+class RokuganNativePicture extends RPG3DPicture
+{
+	nativeBody = null;
+	nativeOutfit = null;
+	nativeWeapon = null;
+	nativeKey = null;
+
+	function setNative( pc, key, spec, armed){
+		local view = clone pc;
+		view.animap = spec.animap;
+		setPicture( view);
+		nativeBody = SK3DObject( ROOT .. key .. "_body.pm");
+		nativeBody.animlayers = null;
+		nativeBody.scale << Vector3D( 0.015);
+		nativeBody.rot.setHPB( Math.HPI, 0.0, 0.0);
+		nativeOutfit = addNativePart( key .. "_outfit");
+		if( armed) nativeWeapon = addNativePart( key .. "_weapon");
+		addChild( nativeBody);
+		nativeKey = key;
+		setPivot( null);
+		mesh.face[0].m.visiblemask = 0;
+		anime2( #{ id="stand" });
+	}
+
+	function addNativePart( name){
+		local part = SK3DObject( ROOT .. name .. ".pm");
+		nativeBody.assignBonesToPolygonMesh( part.mesh);
+		nativeBody.addChild( part);
+		return part;
+	}
+
+	function updateSRT(){
+		srttf.setSRT( pos, scale, rot);
+	}
+
+	function updateMotion( dt, matchanged=false){
+		super.updateMotion( dt, matchanged);
+		if( !nativeBody) return;
+		foreach( layer in animlayers.layers){
+			if( layer) layer.partsmap = nativeBody.motion.partsmap;
+		}
+		animlayers.integrateBonePoses( nativeBody.bones, nativeBody.gmat, true);
+	}
+
+	function setVisible( b){
+		super.setVisible( b);
+		if( nativeBody) nativeBody.setVisible( b);
+		if( nativeOutfit) nativeOutfit.setVisible( b);
+		if( nativeWeapon) nativeWeapon.setVisible( b);
+	}
+}
+local nativePicture = RokuganNativePicture;
+
+::Rokugan.createNativeChara <- function( v){
+	local pc = v["mdl"];
+	if( !pc && v["mdlid"]) pc = ::rpgres[v.mdlid];
+	local path = pc["pic3d"];
+	if( !path) return null;
+	local parts = path.split( "/"), file = parts[length( parts) - 1];
+	local names = file.slice( 0, file.len() - 4).split( "__"), key = names[0];
+	local spec = roster[key];
+	if( !spec) return null;
+	// Keep the existing art for equipment combinations without an equivalent native model.
+	if( length( names) > 1 && names[1] != spec.weapon .. "_own") return null;
+	local actor = nativePicture();
+	actor.setNative( pc, key, spec, spec.weapon != "none");
+	return actor;
+};
