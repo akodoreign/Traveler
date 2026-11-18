@@ -1,0 +1,30 @@
+{
+ "side_h_archer": {
+  "installed": false,
+  "version": "1b1ca01bc1e7"
+ },
+ "side_kisada": {
+  "installed": false,
+  "version": "1b1ca01bc1e7"
+ },
+ "side_muika": {
+  "installed": false,
+  "version": "1b1ca01bc1e7"
+ },
+ "side_oldwoman": {
+  "installed": false,
+  "version": "cdbfad6ce607"
+ },
+ "side_yosai": {
+  "installed": false,
+  "version": "cdbfad6ce607"
+ },
+ "trav_natsuko": {
+  "installed": false,
+  "version": "cdbfad6ce607"
+ },
+ "trav_tamotsu": {
+  "installed": false,
+  "version": "1b1ca01bc1e7"
+ }
+}

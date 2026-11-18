@@ -14,6 +14,8 @@ import cv2
 import numpy as np
 from PIL import Image
 
+from rig3d_poses import SAYA_DIR, unit
+
 ROOT = Path(__file__).resolve().parent.parent
 PROFILES = ROOT / "tools" / "cutout_profiles"
 SIZE, ORIGIN = (208, 184), (104, 170)
@@ -21,16 +23,9 @@ CAST_SCALE = (1.21, .90, 1.10)
 CAST_SIZE = (248, SIZE[1])
 PITCH = .25                                   # screen rows per unit of depth: the camera looks slightly down
 VIEW_YAW = {None: 32.0, "front": 90.0, "back": -90.0}
-SAYA_DIR = (-.75, -.65, .1)
 FAMILY = {"yari": "pole", "naginata": "pole", "bo": "pole", "shakujo": "pole", "katana": "blade",
           "nodachi": "blade", "bokken": "blade", "tetsubo": "club", "tanto": "short", "kama": "short",
           "yumi": "bow", "musket": "gun", "fan": "short", "nunchaku": "short"}
-
-
-def unit(v):
-    v = np.asarray(v, float)
-    n = np.linalg.norm(v)
-    return v / n if n > 1e-9 else v
 
 
 def rz(deg):

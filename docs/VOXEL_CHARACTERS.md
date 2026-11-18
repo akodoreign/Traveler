@@ -1,5 +1,8 @@
 # Voxel characters: skinning a cast member onto the engine's 3-D rig
 
+> Superseded: voxels were rejected. Characters are skinned vertex meshes rendered to pixel art; see
+> `docs/CHARACTERS_3D.md`. This page is kept for the engine notes in section 1.
+
 The lofted, art-projected 3-D Natsuko (`tools/model3d.py`, `tools/blender/build_chara.py`) is
 **scrapped**. Its face could not be made clean. Characters are now skinned the way RPG-Cobo itself
 builds 3-D people: as a MagicaVoxel `.vox` file of rigid parts that ride the bones of a stock

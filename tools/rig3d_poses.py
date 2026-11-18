@@ -8,7 +8,13 @@ import math
 
 import numpy as np
 
-from rig3d import SAYA_DIR, unit
+SAYA_DIR = (-.75, -.65, .1)
+
+
+def unit(v):
+    v = np.asarray(v, float)
+    n = np.linalg.norm(v)
+    return v / n if n > 1e-9 else v
 
 REST, GUARD = (.06, -.97, .05), (.4, -.15, -.2)
 STAND = {"N": (-.10, 0, .04, 45, 0), "F": (.05, 0, 0, 0, 0)}
