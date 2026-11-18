@@ -62,6 +62,8 @@ sprite. No sprite frames are generated for native actors. Bodies, outfits and we
 same skeleton.
 
 Native idle loops end before the walk cycle so characters keep their feet planted while breathing.
+The idle head stays level; the body mesh has a shaped lower jaw and contoured feet. Tabi and
+sandal soles follow the foot shape instead of using a rectangular block.
 
 Native visuals start at 75% of their original scale. Togashi Yosai, Hiruma Natsuko, and Ide Tamotsu
 are the tallest travelers, in that order. The roster uses authored height, width, build, age, and

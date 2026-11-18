@@ -164,6 +164,7 @@ def controls(kind, frame, count, family):
     free = "F" if family in ("pole", "bow", "club", "gun") else "N"   # the hand that is not carrying anything
     if kind == "idle8":
         c["root"][1], c["lean"] = -.008 * (.5 + .5 * swing), .6 * swing
+        c["head"] = -c["lean"]
     elif kind in ("walk8", "run"):
         stride, lift = (.36, .16) if kind == "run" else (.22, .07)
         angle = 2 * math.pi * loop

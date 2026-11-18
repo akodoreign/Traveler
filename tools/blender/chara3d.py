@@ -242,15 +242,24 @@ def cover(name, y0, y1, grow, sign=1., flare=0.):
 
 
 HEAD_C, HEAD_R = (.8, 108.5, 0.), (8.2, 10.2, 7.6)
+JAW = [(98.3, 0, 0, 4.7), (98.65, 1.6, 1.75, 4.6),
+       (99.25, 3.2, 2.85, 3.9), (100.15, 4.5, 3.8, 3.0),
+       (101.4, 5.7, 4.95, 2.1), (102.8, 6.8, 5.85, 1.5),
+       (104.0, 7.37, 6.45, 1.24)]
 SAYA_AT = (6., 4., 11.5)                        # scabbard mouth, from the pelvis
 
 
-def face_x(y, z):
-    """Forward surface of the egg-shaped head at a height and a sideways offset."""
+def head_section(y):
+    if y <= JAW[-1][0]:
+        return profile(JAW, y)
     t = max(0., (HEAD_C[1] - y) / HEAD_R[1])
     r = math.sqrt(max(0., 1 - ((y - HEAD_C[1]) / HEAD_R[1]) ** 2))
-    wide = max(HEAD_R[2] * (1 - .5 * t ** 1.5) * r, .1)
-    return HEAD_C[0] + HEAD_R[0] * (1 - .3 * t ** 1.5) * r * math.sqrt(max(0., 1 - (z / wide) ** 2)) + 1.2 * t
+    return HEAD_R[0] * (1 - .3 * t ** 1.5) * r, HEAD_R[2] * (1 - .5 * t ** 1.5) * r, HEAD_C[0] + 1.2 * t
+
+
+def face_x(y, z):
+    depth, width, x = head_section(y)
+    return x + depth * math.sqrt(max(0., 1 - (z / max(width, .1)) ** 2))
 
 
 def strand(S, colour, points, radius, bone="head"):
@@ -316,11 +325,11 @@ def body(S, spec):
         S.loft(cover("torso", 79, 90, .5), WHITE, torso_w(), n=12)
     S.loft([(94, 2.8, 2.8), (101, 2.6, 2.6)], skin, blend((94, "spine"), (101, "head")), n=8)
     S.zoom = HEAD
-    head = ellipsoid(HEAD_C, HEAD_R, 32, 24)
-    for v in head[0]:                           # an egg: full cranium, narrow jaw, the chin a little forward
-        t = max(0., (HEAD_C[1] - v[1]) / HEAD_R[1])
-        v[0] = HEAD_C[0] + (v[0] - HEAD_C[0]) * (1 - .3 * t ** 1.5) + 1.2 * t
-        v[2] *= 1 - .5 * t ** 1.5
+    head = ellipsoid((0, HEAD_C[1], 0), (1, HEAD_R[1], 1), 40, 36)
+    for v in head[0]:
+        depth, width, x = head_section(v[1])
+        r = math.hypot(v[0], v[2])
+        v[0], v[2] = (x + depth * v[0] / r, width * v[2] / r) if r else (x, 0)
     S.add(head, skin, h)
     face(S, spec, skin)
 
@@ -328,7 +337,7 @@ def body(S, spec):
     for s, sg in SIDES:
         S.loft(cover("leg", 5, 61, 0, sg), skin, leg_w(s))
         S.loft(cover("leg", 6, 13, .35, sg), WHITE, leg_w(s))
-        S.add(ellipsoid((3., 2.9, 5.5 * sg), (6.8, 3., 3.4), 10, 6), skin, {"foot" + s: 1.})
+        S.add(foot_mesh(sg), skin, {"foot" + s: 1.})
         S.loft(cover("arm", 61, 95, 0, sg), skin, arm_w(s), n=8)
         S.loft(cover("arm", 61.5, 66, .3, sg), WHITE, arm_w(s), n=8)
         S.add(ellipsoid((.3, 58.4, 13.4 * sg), (2.7, 3.6, 2.1), 8, 6), skin, {"hand" + s: 1.})
@@ -605,14 +614,43 @@ def helmet(S, spec):
     S.zoom = None
 
 
+FOOT = [(-3.9, .8, 3.1, .32, 0), (-3.35, .35, 4.8, 1.65, 0),
+        (-2.5, .25, 5.75, 2.45, 0), (-.8, .25, 6.15, 2.65, 0),
+        (1.3, .65, 5.4, 2.55, .25), (3.4, .45, 4.55, 2.8, .1),
+        (5.8, .23, 3.65, 3.3, -.14), (7.5, .23, 3.25, 3.18, -.4),
+        (8.7, .36, 2.85, 2.55, -.65), (9.55, .62, 2.36, 1.35, -1.02),
+        (9.9, 1.13, 1.8, .36, -1.28)]
+
+
+def foot_mesh(sign, layer="bare"):
+    """Rounded heel, raised instep and tapered toes; +X is forward."""
+    n = 20
+    verts, faces = [], []
+    for x, low, high, width, centre in FOOT:
+        if layer == "tabi":
+            x, low, high, width = x * 1.04, max(.18, low - .2), high + .23, width + .24
+        elif layer == "sole":
+            x, low, high, width = x * 1.12, 0., 1.14, width + .52
+        for i in range(n):
+            angle = 2 * math.pi * i / n
+            y, z = math.cos(angle), math.sin(angle)
+            if layer == "sole":  # Flatten the tread without squaring off the outline.
+                y, z = math.copysign(abs(y) ** .34, y), math.copysign(abs(z) ** .52, z)
+            verts.append((x, (low + high + (high - low) * y) / 2, sign * (5.5 + centre) + width * z))
+    for row in range(len(FOOT) - 1):
+        a, b = row * n, (row + 1) * n
+        faces.extend((a + i, a + (i + 1) % n, b + (i + 1) % n, b + i) for i in range(n))
+    return verts, [tuple(reversed(range(n))), *faces, tuple(range(len(verts) - n, len(verts)))]
+
+
 def footwear(S, spec, tabi=WHITE):
     for s, sg in SIDES:
-        S.add(ellipsoid((3.1, 3.2, 5.5 * sg), (7.3, 3.4, 3.9), 10, 6), tabi, {"foot" + s: 1.})
-        S.add(box((3.1, .7, 5.5 * sg), (7.9, .8, 4.3)), STRAW, {"foot" + s: 1.}, smooth=False)
+        S.add(foot_mesh(sg, "tabi"), tabi, {"foot" + s: 1.})
+        S.add(foot_mesh(sg, "sole"), STRAW, {"foot" + s: 1.})
         z = 5.5 * sg
         for side in (-1., 1.):
-            S.add(tube([((1.5, 2.6, z + side * 3.34), .62, .58), ((4., 5.1, z + side * 2.45), .61, .65),
-                        ((6.3, 5.12, z - .82 * sg), .56, .57)], 8),
+            S.add(tube([((2.3, 1.05, z + side * 3.12), .49, .47), ((4., 3.25, z + side * 2.22), .45, .49),
+                        ((7.45, 3.37, z - 1.15 * sg), .39, .41)], 10),
                   tuple(spec["accent"]), {"foot" + s: 1.})
 
 
