@@ -1,0 +1,62 @@
+///  PolygonMesh converted by Blender.
+/// 
+return {
+modeldata = "EP2605.mdl"
+motiondata = "EP2605.mot"
+bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
+
+material = [
+	{
+		name = "c72431a"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x2b0d01ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "cd07a31"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0xa23206ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "cf9a742"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0xf1640dff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "cfc9e4d"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0xf85812ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+]
+}

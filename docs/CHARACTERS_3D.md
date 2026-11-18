@@ -64,6 +64,8 @@ same skeleton.
 Native idle loops end before the walk cycle so characters keep their feet planted while breathing.
 The idle head stays level; the body mesh has a shaped lower jaw and contoured feet. Tabi and
 sandal soles follow the foot shape instead of using a rectangular block.
+Togashi Yosai's dragon and arrowroot ink is part of his skinned body, not his gear.
+His short-sleeved starting haori exposes the arm tattoos; other armor still covers the skin normally.
 
 Native visuals start at 75% of their original scale. Togashi Yosai, Hiruma Natsuko, and Ide Tamotsu
 are the tallest travelers, in that order. The roster uses authored height, width, build, age, and
@@ -117,4 +119,12 @@ The victory sequence uses the currently equipped weapon and the same body rig as
 - Cloth follows the skeleton through authored weights. It has no cloth simulation.
 - Kneeling poses crumple skirts and coats; some raised weapons leave the cell.
 - Native lighting does not yet match the offline pixel-art treatment.
-- Nonhuman characters and legacy sprite looks outside the native roster use their existing art.
+- Field characters outside the native roster still use their existing art.
+
+## Battle foes
+
+`py -3.12 -E tools\blender\foe_batch.py` stages the native battle roster and prints its output directory.
+Use `--only EP104` to rebuild just the Tide Crab, or `--install PACK [UPDATE_PACK ...]` to install a
+complete roster with later packs overriding earlier ones. The battle engine uses the installed index
+without changing encounter IDs or field art, and falls back to the original picture for unregistered
+foes or missing assets.

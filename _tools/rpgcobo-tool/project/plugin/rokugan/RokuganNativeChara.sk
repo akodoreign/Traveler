@@ -101,7 +101,9 @@ class RokuganNativePicture extends RPG3DPicture
 		nativeDecals = [];
 		if( wear){
 			local palette = gearPalette( key, wear.clan);
-			if( wear.body) nativeOutfit = addNativePart( GEAR .. wear.body, palette);
+			local yosaishaori = key == "side_yosai" && wear.body == "A111";
+			if( yosaishaori) nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
+			else if( wear.body) nativeOutfit = addNativePart( GEAR .. wear.body, palette);
 			else if( !wear.starterBody) nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
 			if( wear.head) nativeHead = addNativePart( GEAR .. wear.head, palette);
 			if( wear.mask) nativeMask = addNativePart( GEAR .. wear.mask, palette);
@@ -111,6 +113,7 @@ class RokuganNativePicture extends RPG3DPicture
 				if( !gear.clans.contains( clan)) clan = "ronin";
 				foreach( item in [wear.body, wear.head, wear.mask, wear.cape]){
 					if( !item) continue;
+					if( yosaishaori && item == "A111") continue;
 					local sheet = GEAR .. "decal/" .. clan .. "/" .. item .. ".png";
 					nativeDecals .. addNativePart( GEAR .. item .. "_decal", sheet);
 				}
@@ -180,6 +183,73 @@ class RokuganNativePicture extends RPG3DPicture
 	}
 }
 local nativePicture = RokuganNativePicture;
+
+class RokuganNativeFoe extends RokuganNativePicture
+{
+	function setFoe( pc, key, spec, path){
+		local view = clone pc;
+		view.animap = spec.animap;
+		setPicture( view);
+		nativeBody = SK3DObject( path);
+		nativeBody.animlayers = null;
+		local size = spec.scale;
+		nativeBody.scale << Vector3D( size, size, size);
+		nativeBody.rot.setHPB( Math.HPI, 0.0, 0.0);
+		addChild( nativeBody);
+		nativeKey = key;
+		setPivot( null);
+		bnd.set( 0, spec.height * 0.5, 0, spec.radius, spec.height * 0.5, spec.radius);
+		b3body = b3Body( 0.0, b3Shape.createSphere( spec.radius), mat, G_CHARA, G_EVENT);
+		b3body.ref = this;
+		b3body.setOffsetTransform( Matrix.fromTranslate( 0, spec.height * 0.5, 0));
+		mesh.face[0].m.visiblemask = 0;
+		anime2( #{ id="stand" });
+	}
+
+	function anime2( t){
+		local request = clone t;
+		switch( t.id){
+		case "die": request.id = "dead"; break;
+		case "stand":
+		case "fight":
+			if( fxtype == 1) return null;
+			break;
+		}
+		return super.anime2( request);
+	}
+
+	function picfx( id){
+		if( id == "die" && animlayers.layers[0]["id"] != "dead") anime2( #{ id="dead" });
+		super.picfx( id);
+	}
+
+	function update( dt, pmatdirty=true){
+		local result = super.update( dt, pmatdirty);
+		if( fxtype == 1 && fxw >= 1.0 && nativeBody) nativeBody.setVisible( false);
+		return result;
+	}
+
+	function getMaterials(){
+		return nativeBody ? nativeBody.getMaterials() : super.getMaterials();
+	}
+}
+
+local foeRoot = "/resource/native_foe/";
+local foeResource = ::getResource( foeRoot .. "index.json");
+local foes = foeResource ? decodeJSON( foeResource.loadData()) : {};
+local nativeFoe = RokuganNativeFoe;
+::Rokugan.createNativeFoe <- function( data){
+	local key = data["mdlid"], spec = foes[key];
+	if( !spec) return null;
+	local pic = ::rpgres[key], path = foeRoot .. key;
+	if( !pic || !::getResource( path .. ".pm") || !::getResource( path .. ".mdl") || !::getResource( path .. ".mot")){
+		printf( "[RT] Native foe %S is incomplete; using the original picture\n", key);
+		return null;
+	}
+	local model = nativeFoe();
+	model.setFoe( pic, key, spec, path .. ".pm");
+	return model;
+};
 
 ::Rokugan.createNativeChara <- function( v, player=null){
 	local pc = v["mdl"];

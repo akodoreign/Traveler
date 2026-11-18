@@ -168,7 +168,9 @@ class BattleRunnerBase
 
 	//	バトル用のエネミーの3Dオブジェクトを追加。メンバーとやることは変わらない
 	function addBattleEnemy( ec){	//	ec:RPGEnemy
-		local rp3d = RPG3DObject.create3DObject( ec.data);
+		local makeFoe = ::["Rokugan"] && ::Rokugan["createNativeFoe"];
+		local rp3d = makeFoe ? ::Rokugan.createNativeFoe( ec.data) : null;
+		if( !rp3d) rp3d = RPG3DObject.create3DObject( ec.data);
 		rp3d.rpgobj = ec;
 		rp3d.manuaction = ManualMoveAction( rp3d);		//	バトル用のマニュアルアクション
 		stage.scn.addObject( rp3d);

@@ -316,6 +316,68 @@ def face(S, spec, skin):
                    (.87, 101.22), (-.42, 101.1)], shade(skin, .61), .2, part)
 
 
+def ink_stroke(S, path, width, colour, surface, weight, mirrored=False):
+    pairs = []
+    for i, point in enumerate(path):
+        x, y = point
+        dx, dy = np.subtract(path[min(i + 1, len(path) - 1)], path[max(i - 1, 0)])
+        nx, ny = -dy / math.hypot(dx, dy), dx / math.hypot(dx, dy)
+        half = width * (.55 if i in (0, len(path) - 1) else 1.)
+        pairs.extend(surface(x + f * half * nx, y + f * half * ny) for f in (-1, 1))
+    faces = [(i, i + 1, i + 3, i + 2) for i in range(0, len(pairs) - 2, 2)]
+    if mirrored:
+        faces = [f[::-1] for f in faces]
+    S.add((pairs, faces), colour, [weight(p[1]) for p in pairs])
+
+
+def yosai_ink(S, spec):
+    ink = tuple(spec["tattoo"])
+    pale = shade(ink, 1.25, 16)
+
+    def cylinder(part, sign, centre_angle, width):
+        def surface(u, y):
+            depth, radius, *centre = profile(BODY[part], y)
+            x, z = centre if centre else (0., 0.)
+            a = centre_angle + width * u
+            return (x + (depth * GIRTH[part] + .24) * math.cos(a), y,
+                    sign * (z + (radius * GIRTH[part] + .24) * math.sin(a)))
+        return surface
+
+    # Dragon on the right, arrowroot stems and leaves on the left.
+    for side, sign in SIDES:
+        arm = cylinder("arm", sign, 1.04, .37)
+        draw = lambda path, width, colour=ink: ink_stroke(S, path, width, colour, arm, arm_w(side), sign < 0)
+        if sign > 0:
+            draw([(1.2 * math.sin(i * .49), 67.1 + .68 * i) for i in range(38)], .58)
+            draw([(-.9, 88), (-1.6, 90), (-1.25, 92), (.22, 92.4), (.9, 91.3),
+                  (1.83, 91.05), (1.2, 89.7), (.1, 89.6), (-.5, 88.4)], .44)
+            draw([(-1.3, 91.5), (-2.05, 93)], .32)
+            draw([(-.45, 92), (-.7, 94)], .3)
+            for u, y in ((1.15, 70), (-1, 74), (1.15, 79), (-1, 83)):
+                draw([(u, y), (u * 1.65, y - .8), (u * 2.1, y + .3)], .27, pale)
+        else:
+            draw([(.56 * math.sin(i * .25), 67 + i * .8) for i in range(32)], .42)
+            for sign2, y in ((-1, 70), (1, 74), (-1, 78), (1, 82), (-1, 86), (1, 90)):
+                draw([(0, y), (sign2 * 1.38, y + 1.1), (sign2 * 2.05, y + 3.2),
+                      (sign2 * .64, y + 2.5), (0, y)], .38)
+
+    chest = cylinder("torso", 1, 0., .18)
+    for sign in (-1, 1):
+        ink_stroke(S, [(sign * (1.8 + 1.5 * math.sin(i * .38)), 73 + i * .9) for i in range(22)],
+                   .56, ink, chest, torso_w())
+
+    def scalp(u, y):
+        depth, width, x = head_section(y)
+        a = u * .36
+        return x + (depth + .23) * math.cos(a), y, (width + .23) * math.sin(a)
+
+    S.zoom = HEAD
+    for sign in (-1, 1):
+        ink_stroke(S, [(sign * (2.12 - 1.3 * math.sin(i * .13)), 109.9 + i * .43) for i in range(18)],
+                   .49, ink, scalp, lambda _: {"head": 1.})
+    S.zoom = None
+
+
 def body(S, spec):
     """The bare figure: skin, a loincloth, a chest wrap and wrist and ankle wraps."""
     skin, h = tuple(spec["skin"]), {"head": 1.}
@@ -341,6 +403,8 @@ def body(S, spec):
         S.loft(cover("arm", 61, 95, 0, sg), skin, arm_w(s), n=8)
         S.loft(cover("arm", 61.5, 66, .3, sg), WHITE, arm_w(s), n=8)
         S.add(ellipsoid((.3, 58.4, 13.4 * sg), (2.7, 3.6, 2.1), 8, 6), skin, {"hand" + s: 1.})
+    if spec.get("body_ink") == "ise_zumi":
+        yosai_ink(S, spec)
 
 
 def hair(S, spec):
@@ -503,7 +567,10 @@ def kimono(S, spec, wide=False):
                  for i in range(0, len(verts) - 3, 3) for j in range(2)]
         S.add((verts, faces), collar, [torso_w()(y) for _, y, _ in verts],
               colours=[c for _ in stations[1:] for c in (collar, lining)])
-        if wide:
+        if spec.get("short_sleeves"):
+            S.loft(cover("arm", 85, 95.4, 1.25, sg, flare=.7), top, arm_w(s), n=20, pleats=(4, .065))
+            S.loft(cover("arm", 84.9, 86, 2.05, sg), lining, arm_w(s), n=20)
+        elif wide:
             def sleeve_paint(row, k):
                 if row == 0:
                     return lining
