@@ -1,16 +1,51 @@
-// Native skinned visuals retain the base actor's animation timing, collision and picking.
+// Native weighted gear uses one mesh per item and an atlas selected by its wearer.
 local ROOT = "/resource/native_chara/";
+local GEAR = "/resource/native_gear/";
 local index = ::getResource( ROOT .. "roster.json");
 local roster = index ? decodeJSON( index.loadData()) : {};
+local assets = ::getResource( GEAR .. "gear.json");
+local gear = assets ? decodeJSON( assets.loadData()) : null;
+
+::Rokugan.clothingFor <- function( pc){
+	if( !pc || !gear) return null;
+	local w = pc.getWeapon(), weaponId = w ? w.dataid : "";
+	local defaults = pc.data["equips"] || [];
+	local own = false;
+	if( w) foreach( id in defaults){ if( id == weaponId){ own = true; break; } }
+	local wear = { body=null, head=null, mask=null, cape=null, headAccessory=null,
+		clan=pc.data["rt_clan"], weapon=this.lookWeapon( pc), own=own };
+	foreach( item in pc.equips){
+		if( !item) continue;
+		local slot = gear.items[item.dataid];
+		if( !slot) continue;
+		if( slot == "head" && item.data.eqtype == 16){
+			if( !wear.headAccessory) wear.headAccessory = item.dataid;
+		}else{
+			if( !wear[slot]) wear[slot] = item.dataid;
+		}
+	}
+	if( !wear.head) wear.head = wear.headAccessory;
+	return wear;
+};
+
+local gearPalette = function( key, clan){
+	if( !clan || clan == gear.palettes[key]) return GEAR .. "palette/" .. key .. ".png";
+	local cl = gear.clans.contains( clan) ? clan : "ronin";
+	return GEAR .. "palette/clan_" .. cl .. ".png";
+};
 
 class RokuganNativePicture extends RPG3DPicture
 {
 	nativeBody = null;
 	nativeOutfit = null;
 	nativeWeapon = null;
+	nativeHead = null;
+	nativeMask = null;
+	nativeCape = null;
 	nativeKey = null;
+	nativeGear = null;
 
-	function setNative( pc, key, spec, armed){
+	function setNative( pc, key, spec, wear){
 		local view = clone pc;
 		view.animap = spec.animap;
 		setPicture( view);
@@ -18,8 +53,32 @@ class RokuganNativePicture extends RPG3DPicture
 		nativeBody.animlayers = null;
 		nativeBody.scale << Vector3D( 0.015);
 		nativeBody.rot.setHPB( Math.HPI, 0.0, 0.0);
-		nativeOutfit = addNativePart( key .. "_outfit");
-		if( armed) nativeWeapon = addNativePart( key .. "_weapon");
+		local kind = spec.weapon, family = spec.motion, own = true;
+		if( wear && !wear.own){
+			kind = wear.weapon;
+			own = kind == spec.weapon;
+			family = own ? spec.motion : kind == "none" ? "fist" : gear.weapons[kind];
+			if( kind == "kakita" && spec.motion == "iai") family = "iai";
+			if( !family){ kind = spec.weapon; family = spec.motion; own = true; }
+		}
+		if( family != spec.motion){
+			nativeBody.setMotion( ::getMotionData( ::getResource( ROOT .. "motion_" .. family .. ".mot")));
+		}
+		if( kind != "none"){
+			local weapon = own ? ROOT .. key .. "_weapon" : GEAR .. "weapon_" .. kind;
+			nativeWeapon = addNativePart( weapon);
+		}
+		nativeGear = wear;
+		if( wear){
+			local palette = gearPalette( key, wear.clan);
+			nativeOutfit = wear.body ? addNativePart( GEAR .. wear.body, palette)
+				: addNativePart( wear.head && key == "trav_natsuko" ? GEAR .. "natsuko_uncovered" : ROOT .. key .. "_outfit");
+			if( wear.head) nativeHead = addNativePart( GEAR .. wear.head, palette);
+			if( wear.mask) nativeMask = addNativePart( GEAR .. wear.mask, palette);
+			if( wear.cape) nativeCape = addNativePart( GEAR .. wear.cape, palette);
+		}else{
+			nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
+		}
 		addChild( nativeBody);
 		nativeKey = key;
 		setPivot( null);
@@ -27,8 +86,9 @@ class RokuganNativePicture extends RPG3DPicture
 		anime2( #{ id="stand" });
 	}
 
-	function addNativePart( name){
-		local part = SK3DObject( ROOT .. name .. ".pm");
+	function addNativePart( path, palette=null){
+		local part = SK3DObject( path .. ".pm");
+		if( palette) part.mesh.face[0].m.tex0 = ::getTexture( ::getResource( palette));
 		nativeBody.assignBonesToPolygonMesh( part.mesh);
 		nativeBody.addChild( part);
 		return part;
@@ -49,14 +109,14 @@ class RokuganNativePicture extends RPG3DPicture
 
 	function setVisible( b){
 		super.setVisible( b);
-		if( nativeBody) nativeBody.setVisible( b);
-		if( nativeOutfit) nativeOutfit.setVisible( b);
-		if( nativeWeapon) nativeWeapon.setVisible( b);
+		foreach( part in [nativeBody, nativeOutfit, nativeWeapon, nativeHead, nativeMask, nativeCape]){
+			if( part) part.setVisible( b);
+		}
 	}
 }
 local nativePicture = RokuganNativePicture;
 
-::Rokugan.createNativeChara <- function( v){
+::Rokugan.createNativeChara <- function( v, player=null){
 	local pc = v["mdl"];
 	if( !pc && v["mdlid"]) pc = ::rpgres[v.mdlid];
 	local path = pc["pic3d"];
@@ -65,9 +125,8 @@ local nativePicture = RokuganNativePicture;
 	local names = file.slice( 0, file.len() - 4).split( "__"), key = names[0];
 	local spec = roster[key];
 	if( !spec) return null;
-	// Keep the existing art for equipment combinations without an equivalent native model.
 	if( length( names) > 1 && names[1] != spec.weapon .. "_own") return null;
 	local actor = nativePicture();
-	actor.setNative( pc, key, spec, spec.weapon != "none");
+	actor.setNative( pc, key, spec, this.clothingFor( player));
 	return actor;
 };

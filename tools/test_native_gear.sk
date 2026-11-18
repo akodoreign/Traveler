@@ -1,0 +1,68 @@
+// Applied in successive bot steps so the real field refresh has time to run.
+local stage = ::rpgstage;
+local leader = stage.player3d.rpgobj;
+local follower = ::rpgstat.playermap.P104;
+local phase = ::Rokugan["gearTestPhase"] ?? 0;
+::Rokugan.gearTestPhase <- phase + 1;
+local equip = @( player, item) player.setEquip( player.getEquipableSlot( item), RPGObject.create( item));
+local verify = @( test, message){ if( !test) throw Exception( message); };
+
+if( phase == 0){
+	verify( stage.player3d.nativeKey == "trav_natsuko", "Leader did not use the native model");
+	verify( stage.player3d.nativeGear && !stage.player3d.nativeGear.body, "Leader did not resolve default clothes");
+	equip( leader, "A111");
+	equip( leader, "A102");
+	equip( leader, "A149");
+	equip( leader, "W100");
+	equip( follower, "A111");
+	equip( follower, "A102");
+	printf( "[NATIVE GEAR] equipped shared robes and hats\n");
+}else if( phase == 1){
+	local crab = stage.player3d;
+	verify( crab.nativeGear.body == "A111" && crab.nativeHead && crab.nativeMask, "Field leader did not refresh gear");
+	verify( crab.nativeWeapon && crab.nativeGear.weapon == "katana", "Alternate weapon lost native outfit");
+	verify( crab.nativeOutfit.mesh.bones[0] == crab.nativeBody.findBone( crab.nativeOutfit.mesh.wmapname[0]),
+		"Outfit is not bound to the wearer rig");
+	local phoenix = RPG3DObject.create3DObject( follower.data);
+	local other = RPG3DObject.create3DObject( { mdlid=follower.data.mdlid, rt_wearer=follower });
+	verify( phoenix.nativeGear.body == "A111" && other.nativeGear.body == "A111",
+		"Party and battle actor factories skipped live equipment");
+	verify( phoenix.nativeOutfit.mesh.vtx == crab.nativeOutfit.mesh.vtx, "Clan colour duplicated garment geometry");
+	local crabTex = crab.nativeOutfit.mesh.face[0].m.tex0, phoenixTex = phoenix.nativeOutfit.mesh.face[0].m.tex0;
+	verify( crabTex && phoenixTex && crabTex != phoenixTex, "Wearers did not get separate textures");
+	verify( crab.nativeHead.mesh.face[0].m.tex0 == crabTex && phoenix.nativeHead.mesh.face[0].m.tex0 == phoenixTex,
+		"Hat ignored wearer palette");
+	verify( crab.anime2( #{ id="atk_slash" }), "Alternate weapon animation failed");
+	stage.scn.addObject( phoenix);
+	phoenix.pos( crab.pos.x + 1.25, crab.pos.y, crab.pos.z);
+	phoenix.setDir( crab.dir);
+	::Rokugan.gearTestModel <- phoenix;
+	printf( "[NATIVE GEAR] shared mesh, distinct clans, bound skeleton and katana action\n");
+}else if( phase == 2){
+	::Rokugan.gearTestModel.kill();
+	leader.setEquip( leader.getEquipableSlot( "A111"), null);
+	leader.setEquip( leader.getEquipableSlot( "A102"), null);
+	leader.setEquip( leader.getEquipableSlot( "A149"), null);
+	leader.setEquip( leader.getEquipableSlot( "W100"), null);
+	local data = decodeJSON( ::getResource( "/resource/native_gear/gear.json").loadData());
+	local n = 0;
+	foreach( item, slot in data.items){
+		local idx = leader.getEquipableSlot( item);
+		verify( idx >= 0, "Equipment cannot be tested: " .. item);
+		equip( leader, item);
+		local actor = RPG3DObject.create3DObject( leader.data);
+		verify( actor.nativeGear[slot] == item, "Wrong equipped item or slot: " .. item);
+		local parts = { body=actor.nativeOutfit, head=actor.nativeHead, mask=actor.nativeMask, cape=actor.nativeCape };
+		local part = parts[slot];
+		verify( part && part.mesh.face[0].m.tex0, "Missing textured garment: " .. item);
+		foreach( bone in part.mesh.bones) verify( bone, "Unbound gear bone: " .. item);
+		leader.setEquip( idx, null);
+		n++;
+	}
+	printf( "[NATIVE GEAR] equipped and removed all %d garments\n", n);
+}else{
+	local actor = stage.player3d;
+	verify( actor.nativeKey == "trav_natsuko" && !actor.nativeGear.body && actor.nativeOutfit &&
+		!actor.nativeWeapon && !actor.nativeHead && !actor.nativeMask, "Default clothes did not return after unequipping");
+	printf( "[NATIVE GEAR] restored default clothes and unarmed rig\n");
+}

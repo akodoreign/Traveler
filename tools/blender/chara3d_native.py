@@ -37,12 +37,26 @@ def animate(scene, name, frames, family):
     return rig
 
 
-def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False):
+def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, texture_uv=None):
     obj = skin.build(rig)
     mesh = obj.data
     materials = list(mesh.materials)
     mesh.color_attributes.remove(mesh.color_attributes["part"])
-    mesh.uv_layers.new(name="UVMap")
+    uvs = mesh.uv_layers.new(name="UVMap")
+    if texture_uv:
+        palette = sorted(set(skin.colour))
+        for face in mesh.polygons:
+            rgb = palette[face.material_index]
+            for i in face.loop_indices:
+                uvs.data[i].uv = texture_uv(rgb, mesh.vertices[mesh.loops[i].vertex_index].co)
+        white = bpy.data.materials.new("gear")
+        white.diffuse_color = (1, 1, 1, 1)
+        mesh.materials.clear()
+        mesh.materials.append(white)
+        mesh.polygons.foreach_set("material_index", [0] * len(mesh.polygons))
+        for mat in materials:
+            bpy.data.materials.remove(mat)
+        materials = [white]
     for mat in materials:
         if mat.node_tree is None:
             mat.use_nodes = True

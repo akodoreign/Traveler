@@ -9,6 +9,7 @@
 //	- RPG3DObject.create3DObject: a traveler's model (battle members, the field leader) is built from the look.
 //	- partyFollow (RokuganField.sk) asks ::Rokugan.lookFor / lookSig for the followers.
 //	- the field leader is rebuilt when the look changes (after the equipment menu), outside cutscenes.
+//	Native actors resolve the actual equipped item IDs and keep their native bodies with alternate weapons.
 //
 local srcdir = dirname( callee().getSourceName());
 runsk( srcdir .. "/RokuganLookData.sk");
@@ -64,33 +65,35 @@ runsk( srcdir .. "/RokuganNativeChara.sk");
 ::Rokugan.lookSig <- function( pc){
 	local id = null;
 	try{ id = this.lookFor( pc); }catch( ex){}
-	return pc.dataid .. "=" .. (id ?? "");
+	local gear = this.clothingFor( pc);
+	local signature = pc.dataid .. "=" .. (id ?? "");
+	if( !gear) return signature;
+	return signature .. "|" .. [gear.body || "", gear.head || "", gear.mask || "", gear.cape || "",
+		gear.clan || "", gear.own ? "own" : gear.weapon].join( "|");
 };
-//	A conf.player table -> its RPGPlayer (only the travelers have looks).
+//	A player definition or explicit follower context -> the live RPGPlayer.
 ::Rokugan.lookPlayerOf <- function( v){
-	if( !v || !::rpgstat) return null;
-	foreach( pid, t in this.LOOKS){
-		if( ::conf.player[pid] == v) return ::rpgstat.playermap[pid];
+	if( !v) return null;
+	if( v["rt_wearer"]) return v.rt_wearer;
+	if( !::rpgstat || !::rpgstat["playermap"]) return null;
+	foreach( pid, player in ::rpgstat.playermap){
+		if( player && player.data == v) return player;
 	}
 	return null;
 };
 
 ::RPG3DObject._rt_create_look <- ::RPG3DObject.create3DObject;
 ::RPG3DObject.create3DObject <- function( v){
-	local id = null;
-	try{
-		if( v && !v["mdl"] && v["mdlid"]){
-			local pc = ::Rokugan.lookPlayerOf( v);
-			if( pc) id = ::Rokugan.lookFor( pc);
-			if( id && (id == v.mdlid || !::rpgres[id])) id = null;
-		}
-	}catch( ex){ printexception( ex); id = null; }
-	local model = id ? { mdlid = id } : v;
-	if( model && (model["mdl"] || model["mdlid"])){
-		local native = ::Rokugan.createNativeChara( model);
+	if( v && (v["mdl"] || v["mdlid"])){
+		local wearer = v["mdl"] ? null : ::Rokugan.lookPlayerOf( v);
+		local native = ::Rokugan.createNativeChara( v, wearer);
 		if( native) return native;
+		local fallback = ::Rokugan.lookFor( wearer);
+		if( fallback && fallback != v.mdlid && ::rpgres[fallback]){
+			return ::RPG3DObject._rt_create_look( { mdlid = fallback });
+		}
 	}
-	return ::RPG3DObject._rt_create_look( model);
+	return ::RPG3DObject._rt_create_look( v);
 };
 
 //	Field leader: rebuild the sprite when its look changes (the equipment menu), never during a scene.
@@ -99,7 +102,7 @@ runsk( srcdir .. "/RokuganNativeChara.sk");
 	local pl = st["player3d"];
 	if( st["battle"] || !pl || st.mainevent) return;
 	local pc = pl["rpgobj"];
-	if( !pc || !(pc.dataid in this.LOOKS)) return;
+	if( !pc) return;
 	local sig = this.lookSig( pc), c = this.lookcur;
 	if( c.stage != st){ c.stage = st; c.sig = sig; return; }
 	if( sig == c.sig) return;

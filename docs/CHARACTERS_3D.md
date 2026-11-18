@@ -5,8 +5,7 @@ at sprite resolution into pixel art. No frame is drawn: a new outfit, weapon or 
 model or the pose numbers. This replaces the voxel skin (`docs/VOXEL_CHARACTERS.md`) and the 2-D cutout rig.
 
 The offline sheets are art previews. The game uses native weighted meshes for the human base looks
-listed in `project/resource/native_chara/roster.json`. Unsupported equipment variants and actors
-outside the index retain their existing visuals.
+listed in `project/resource/native_chara/roster.json`. Actors outside the index retain their existing visuals.
 
 ## Pieces
 
@@ -37,6 +36,9 @@ py -3.12 -E tools\chara3d_all.py --list                       # done / to do at 
 py -3.12 -E tools\chara3d_all.py                              # bake all 349 sheets into _art\preview\chara3d\sheets
 py -3.12 -E tools\chara3d_native_all.py                       # export native bodies, outfits, weapons and shared motion
 py -3.12 -E tools\chara3d_native_all.py --check               # check asset inventory and registry against game data
+py -3.12 -E tools\chara3d_gear_all.py                         # export shared gear and wearer texture atlases
+py -3.12 -E tools\chara3d_gear_all.py --check                 # verify the wearable catalog, meshes and textures
+py -3.12 -E tools\test_native_gear.py                        # test live equips, clan colour and unequipping
 py -3.12 -E tools\test_chara3d_native.py                      # export and play the native Natsuko test in Pleasant Eaves
 ```
 
@@ -54,12 +56,23 @@ Blender: portable 5.3.0 under `%LOCALAPPDATA%\Programs\Blender\` (or set `BLENDE
 animation family. `RokuganNativeChara.sk` keeps ordinary actor timing, equipment look selection,
 collision and picking, and supplies skeletal transforms to the meshes instead of displaying the
 sprite. No sprite frames are generated for native actors. Bodies, outfits and weapons bind to the
-same skeleton. The Natsuko fixture also swaps armor for a robe and removes her spear; this is a
-test fixture, not an inventory feature for every outfit. Screenshots are under `_art\preview\bot\native`.
+same skeleton.
+
+## Equipped clothing
+
+`tools/gear_catalog.py` maps armor IDs to shared body garments, headwear, masks, and the oilskin cape.
+The game resolves worn item IDs when creating a native field leader, follower or battle actor. Clothing
+meshes use the body’s existing rig. Robes, armor and hats reference the wearer’s UV atlas, based on
+their clan and original character palette. Materials such as jade, wood and straw retain their finish.
+The same item geometry is reused across wearers. With an empty body slot, the character wears their
+original everyday outfit.
+
+New wearable armor IDs need a design in the catalog. Run the gear exporter after adding a design or
+changing a character palette. Assets are stored in `project/resource/native_gear`.
 
 ## Known gaps
 
 - Cloth follows the skeleton through authored weights. It has no cloth simulation.
 - Kneeling poses crumple skirts and coats; some raised weapons leave the cell.
 - Native lighting does not yet match the offline pixel-art treatment.
-- Natsuko's iron cap is part of her armored outfit. Other hats, masks, beards, haori coats and nonhuman models need dedicated layers.
+- Nonhuman characters and legacy sprite looks outside the native roster use their existing art.

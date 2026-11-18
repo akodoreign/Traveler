@@ -1447,10 +1447,9 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 		f.trail .. Vector3D( pl.pos);
 		for( local i = 1; i < length( mem) && i < 8; i ++){
 			local cp = ::conf.player[mem[i].dataid], mdl = cp ? cp["mdlid"] : null;
-			if( "lookFor" in ::Rokugan){ local lk = null; try{ lk = ::Rokugan.lookFor( mem[i]); }catch( ex){} if( lk) mdl = lk; }
 			if( !mdl) continue;
 			try{
-				local o = RPG3DObject.create3DObject( { mdlid = mdl });
+				local o = RPG3DObject.create3DObject( { mdlid = mdl, rt_wearer = mem[i] });
 				st.scn.addObject( o);
 				o.pos( pl.pos.x, pl.pos.y, pl.pos.z);
 				f.objs .. o;

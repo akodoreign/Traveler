@@ -135,7 +135,7 @@ class Skin:
         if paint:
             colours = [paint(np.mean([verts[i] for i in face], axis=0)) or colour for face in faces]
         if self.zoom:
-            verts = [np.asarray(self.zoom[0], float) + (v - self.zoom[0]) * self.zoom[1] for v in verts]
+            verts = [np.asarray(self.zoom[0], float) + (np.asarray(v) - self.zoom[0]) * self.zoom[1] for v in verts]
         base = len(self.verts)
         if part is None:
             self.parts += 1
@@ -411,6 +411,10 @@ def brocade(u, y, pattern):
     v = y % 12 - 6
     if pattern == "stripes":
         return abs(x) < .85
+    if pattern == "clouds":
+        return abs(v - 2.2 * math.cos(x * .63)) < 1.05 and abs(x) < 4.15
+    if pattern == "rings":
+        return 2.05 < math.hypot(x, v) < 3.65
     if pattern == "diamonds":
         d = abs(x) + abs(v)
         return 2.35 < d < 4.05 or d < 1.18
@@ -424,7 +428,7 @@ def coat(S, spec):
     colour = tuple(spec["top"])
     lining = tuple(spec.get("lining", spec["accent"]))
     motif = tuple(spec["pcol"]) if spec.get("pattern") and spec.get("pcol") else None
-    bottom, top = (15., 68.) if spec.get("long_robe") else (20., 68.)
+    bottom, top = spec.get("coat_bottom", 15. if spec.get("long_robe") else 20.), 68.
     n = 56
     ys = list(np.arange(bottom, top, 1.45)) + [top]
     verts, faces, colours = [], [], []
@@ -516,7 +520,7 @@ def hakama(S, spec, short=False):
     lining = tuple(spec.get("lining", spec["accent"]))
     fold = shade(lower, .67)
     for s, sg in SIDES:
-        bottom = 27. if short else 7.9
+        bottom = spec.get("hakama_hem", 27.) if short else 7.9
         if short:
             S.loft(cover("leg", 8, 43, .68, sg), shade(lower, .8), leg_w(s), n=16)
         S.loft(cover("leg", bottom, 62, 1.4, sg, flare=3.1 if short else 3.7), lower, leg_w(s), n=24,
@@ -612,10 +616,11 @@ def footwear(S, spec, tabi=WHITE):
                   tuple(spec["accent"]), {"foot" + s: 1.})
 
 
-def headband(S, spec):
+def headband(S, spec, growth=0.):
     band = tuple(spec.get("band", spec["accent"]))
     S.zoom = HEAD
-    S.add(tube([((-.3, 111.2, 0), 10.75, 10.4), ((-.3, 114., 0), 10.6, 10.25)], 20, caps=False), band, {"head": 1.})
+    S.add(tube([((-.3, 111.2, 0), 10.75 + growth, 10.4 + growth),
+                ((-.3, 114., 0), 10.6 + growth, 10.25 + growth)], 20, caps=False), band, {"head": 1.})
     S.add(ellipsoid((-11.3, 112.6, 0), (1.4, 1.6, 1.9), 6, 4), band, {"head": 1.})               # the knot
     for z, low in ((-1.4, 99.), (1.4, 101.5)):                              # ribbon tails
         strand(S, band, [(-11.5, 112, z), (-14.5, 108, z * 1.6), (-16., low, z * 2.2)], 1.7, "tail")
