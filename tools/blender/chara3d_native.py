@@ -37,9 +37,19 @@ def animate(scene, name, frames, family):
     return rig
 
 
-def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, texture_uv=None, alpha_test=False):
+def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, texture_uv=None,
+               alpha_test=False, surface=None):
     obj = skin.build(rig)
     mesh = obj.data
+    if surface:
+        import bmesh
+
+        edit = bmesh.new()
+        edit.from_mesh(mesh)
+        bmesh.ops.triangulate(edit, faces=[face for face in edit.faces if len(face.verts) > 4])
+        edit.to_mesh(mesh)
+        edit.free()
+        mesh.update()
     materials = list(mesh.materials)
     mesh.color_attributes.remove(mesh.color_attributes["part"])
     uvs = mesh.uv_layers.new(name="UVMap")
@@ -61,6 +71,8 @@ def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, tex
         if mat.node_tree is None:
             mat.use_nodes = True
         mat.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = mat.diffuse_color
+    if surface:
+        surface.apply(mesh, uvs, materials)
     # Subsequent geometry uses the same bind pose, not a resampling of every animation.
     if write_motion:
         data = convertToPM(scene, obj, {"export_mesh": True, "export_anime": True})
@@ -71,6 +83,8 @@ def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, tex
         buildPolygonMesh(obj, mesh, data, [g.name for g in obj.vertex_groups])
     if not data.wmapname:
         raise RuntimeError(f"No weights exported for {name}")
+    if surface:
+        surface.restore_tints(data, materials)
     if alpha_test:
         for face in data.face:
             face.mate.alphatest = 1
@@ -113,6 +127,23 @@ def export(job):
             save_piece(scene, out, rig, key + "_body", c.build_character(spec, "bare", "none"), f"motion_{family}")
         return
 
+    def save_mask(key, spec, rig):
+        if spec.get("mask"):
+            mask = c.Skin()
+            c.signature_mask(mask, spec)
+            save_piece(scene, out, rig, f"{key}_mask", mask)
+
+    if job.get("accessories"):
+        rig = c.make_armature(c.rest_frames())
+        for key, spec, family, _ in job["models"]:
+            if spec.get("ear_ornament") or spec.get("head_tattoo") or spec.get("glasses"):
+                save_piece(scene, out, rig, key + "_body", c.build_character(spec, "bare", "none"), f"motion_{family}")
+            save_mask(key, spec, rig)
+            default = spec.get("build", "normal")
+            dressed = "armored" if default.startswith("armored") or default == "heavy" else "robe"
+            save_piece(scene, out, rig, key + "_outfit", outfit(spec, dressed))
+        return
+
     rigs = {}
     for key, spec, family, weapon in job["models"]:
         print(f"NATIVE {key}", flush=True)
@@ -125,6 +156,7 @@ def export(job):
         rig = rigs[family]
         save_piece(scene, out, rig, key + "_body", c.build_character(spec, "bare", "none"), motion, fresh)
         save_piece(scene, out, rig, key + "_outfit", outfit(spec, dressed))
+        save_mask(key, spec, rig)
         if weapon != "none":
             gear = c.Skin()
             c.weapon(gear, spec, weapon)

@@ -20,6 +20,19 @@ material = [
 		texture2 = null
 	}
 	{
+		name = "c285a3c"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x04190aff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
 		name = "c2c242c"
 		tec = "pbr.basic"
 		mtype = 0

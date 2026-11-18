@@ -332,49 +332,153 @@ def ink_stroke(S, path, width, colour, surface, weight, mirrored=False):
 
 def yosai_ink(S, spec):
     ink = tuple(spec["tattoo"])
-    pale = shade(ink, 1.25, 16)
+    deep, blue = shade(ink, .72), (27, 112, 151)
 
     def cylinder(part, sign, centre_angle, width):
         def surface(u, y):
             depth, radius, *centre = profile(BODY[part], y)
             x, z = centre if centre else (0., 0.)
             a = centre_angle + width * u
-            return (x + (depth * GIRTH[part] + .24) * math.cos(a), y,
-                    sign * (z + (radius * GIRTH[part] + .24) * math.sin(a)))
+            return (x + (depth * GIRTH[part] + .22) * math.cos(a), y,
+                    sign * (z + (radius * GIRTH[part] + .22) * math.sin(a)))
         return surface
 
-    # Dragon on the right, arrowroot stems and leaves on the left.
+    def spiral(x, y, rx, ry, turn=1.):
+        angles = (turn * i * .32 for i in range(23))
+        return [(x + rx * math.cos(t) * (1. - i / 25.),
+                 y + ry * math.sin(t) * (1. - i / 25.)) for i, t in enumerate(angles)]
+
+    def stroke(path, width, colour, surface, weight, mirrored=False):
+        # Short segments keep the ink on the curved skin through both bend and twist.
+        samples = [np.asarray(path[0], dtype=float)]
+        for a, b in zip(path, path[1:]):
+            start, end = np.asarray(a), np.asarray(b)
+            count = max(1, math.ceil(float(np.linalg.norm(end - start)) * 3))
+            samples.extend(start + (end - start) * (i / count) for i in range(1, count + 1))
+        ink_stroke(S, samples, width, colour, surface, weight, mirrored)
+
+    # Keep the dragon's head below the cuff so the motif reads in the short haori.
     for side, sign in SIDES:
-        arm = cylinder("arm", sign, 1.04, .37)
-        draw = lambda path, width, colour=ink: ink_stroke(S, path, width, colour, arm, arm_w(side), sign < 0)
+        arm = cylinder("arm", sign, .97, .4)
+
+        def draw(path, width, colour=ink):
+            stroke(path, width, colour, arm, arm_w(side), sign < 0)
+
         if sign > 0:
-            draw([(1.2 * math.sin(i * .49), 67.1 + .68 * i) for i in range(38)], .58)
-            draw([(-.9, 88), (-1.6, 90), (-1.25, 92), (.22, 92.4), (.9, 91.3),
-                  (1.83, 91.05), (1.2, 89.7), (.1, 89.6), (-.5, 88.4)], .44)
-            draw([(-1.3, 91.5), (-2.05, 93)], .32)
-            draw([(-.45, 92), (-.7, 94)], .3)
-            for u, y in ((1.15, 70), (-1, 74), (1.15, 79), (-1, 83)):
-                draw([(u, y), (u * 1.65, y - .8), (u * 2.1, y + .3)], .27, pale)
+            spine = [(1.18 * math.sin(i * .32), 67.2 + .48 * i) for i in range(34)]
+            draw(spine, .74, deep)
+            draw([(u + .24, y) for u, y in spine], .25, blue)
+            draw([(-1.42, 82.1), (-1.55, 83.25), (-.87, 84.12), (.03, 83.86), (.49, 83.04),
+                  (1.75, 83.25), (2.26, 82.52), (1.63, 81.86), (.44, 81.72), (-.26, 80.84),
+                  (-1.23, 81.14), (-1.42, 82.1)], .38, blue)
+            draw([(-1.01, 83.68), (-1.4, 84.76), (-2.28, 85.12)], .28, deep)
+            draw([(-.23, 83.51), (-.25, 84.7), (-.83, 85.58)], .27, deep)
+            draw([(.28, 82.92), (.09, 82.75), (-.23, 82.93)], .22, deep)
+            draw([(1.48, 82.36), (2.29, 81.74), (2.22, 80.64), (1.71, 80.26)], .19, blue)
+            for i, direction in ((5, -1), (11, 1), (18, -1), (25, 1)):
+                u, y = spine[i]
+                draw([(u, y), (u + direction*.95, y - .45), (u + direction*1.35, y - 1.45),
+                      (u + direction*1.58, y - 1.17)], .27, deep)
+            for i in (7, 14, 21, 28):
+                u, y = spine[i]
+                draw([(u-.8, y+.55), (u-.27, y+.9), (u+.55, y+.65)], .18, blue)
         else:
-            draw([(.56 * math.sin(i * .25), 67 + i * .8) for i in range(32)], .42)
-            for sign2, y in ((-1, 70), (1, 74), (-1, 78), (1, 82), (-1, 86), (1, 90)):
-                draw([(0, y), (sign2 * 1.38, y + 1.1), (sign2 * 2.05, y + 3.2),
-                      (sign2 * .64, y + 2.5), (0, y)], .38)
+            stem = [(.68 * math.sin(i * .24), 67.3 + i * .58) for i in range(38)]
+            draw(stem, .38, deep)
+            for index, direction in ((4,-1), (9,1), (15,-1), (21,1), (28,-1), (33,1)):
+                u, y = stem[index]
+                draw([(u,y), (u+direction*.85,y+.8), (u+direction*1.48,y+.28),
+                      (u+direction*1.86,y+1.22), (u+direction*1.84,y+3.05),
+                      (u+direction*.76,y+2.73), (u+direction*.34,y+1.91),
+                      (u+direction*.85,y+.8)], .31, blue)
+                draw([(u+direction*.8,y+.79), (u+direction*1.18,y+1.6),
+                      (u+direction*1.71,y+2.54)], .18, deep)
 
-    chest = cylinder("torso", 1, 0., .18)
+    chest = cylinder("torso", 1, 0., .26)
     for sign in (-1, 1):
-        ink_stroke(S, [(sign * (1.8 + 1.5 * math.sin(i * .38)), 73 + i * .9) for i in range(22)],
-                   .56, ink, chest, torso_w())
+        stroke(spiral(sign*1.48, 88, 1.02, 4.31, sign), .36, blue, chest, torso_w())
+        stroke([(sign * (.82 + .55 * math.sin(i * .19)), 78.5 + i * .6) for i in range(24)],
+               .43, ink, chest, torso_w())
 
-    def scalp(u, y):
+    def scalp(angle, y):
         depth, width, x = head_section(y)
-        a = u * .36
-        return x + (depth + .23) * math.cos(a), y, (width + .23) * math.sin(a)
+        return x + (depth + .19) * math.cos(angle), y, (width + .19) * math.sin(angle)
 
     S.zoom = HEAD
+    head = lambda _: {"head": 1.}
     for sign in (-1, 1):
-        ink_stroke(S, [(sign * (2.12 - 1.3 * math.sin(i * .13)), 109.9 + i * .43) for i in range(18)],
-                   .49, ink, scalp, lambda _: {"head": 1.})
+        def scroll(path, width, colour=blue):
+            stroke([(sign*u, y) for u, y in path], width, colour, scalp, head, sign < 0)
+
+        scroll([(.11, 108.4), (.17, 109.08), (.17, 110.45), (.1, 112.16),
+                (.16, 114.0), (.3, 115.6)], .102)
+        scroll([(.13, 110.2), (.32, 111.19), (.56, 111.25), (.85, 110.83), (1.08, 109.93)], .091)
+        scroll(spiral(.59, 113.15, .46, 2.25), .072)
+        scroll([(.51, 116.54), (.77, 116.12), (1.04, 115.11), (1.23, 113.92)], .061, deep)
+        scroll(spiral(1.19, 104.65, .32, 1.55, -1), .078)
+        scroll([(.99, 104.32), (1.03, 103.57), (1.1, 102.68), (1.13, 101.38),
+                (.97, 100.25), (.78, 99.64)], .091)
+        scroll([(.16, 100.82), (.17, 100.03), (.27, 99.43), (.49, 99.2), (.7, 99.41)], .088, ink)
+    S.zoom = None
+
+def head_ornaments(S, spec):
+    head = {"head": 1.}
+    if spec.get("head_tattoo") and spec.get("body_ink") != "ise_zumi":
+        ink = tuple(spec["tattoo"])
+
+        def scalp(u, y):
+            depth, width, centre = head_section(y)
+            return centre + (depth + .16) * math.cos(u), y, (width + .16) * math.sin(u)
+
+        for side in (-1, 1):
+            ink_stroke(S, [(side * (.26 + .28 * math.sin(i * .23)), 110.2 + i * .48)
+                           for i in range(15)], .034, ink, scalp, lambda _: head, side < 0)
+    if spec.get("ear_ornament"):
+        style, rgb = spec["ear_ornament"]
+        metal = tuple(rgb)
+        sides = (-1, 1) if style == "drop" else (1,)
+        for side in sides:
+            S.add(ellipsoid((1.18, 104.4, 8.02 * side), (.36, .43, .33), 8, 5), metal, head)
+            if style == "drop":
+                strand(S, shade(metal, .67), [(1.16, 104.42, 8.03 * side),
+                                              (1.16, 103.4, 8.14 * side),
+                                              (1.22, 102.8, 8.16 * side)], .2)
+                S.add(ellipsoid((1.22, 102.7, 8.16 * side), (.43, .65, .35), 8, 6), metal, head)
+    if spec.get("glasses"):
+        for _, side in SIDES:
+            points = [(face_x(105.8 + 1.34 * math.sin(t), side * (3.57 + 2.66 * math.cos(t))) + .63,
+                       105.8 + 1.34 * math.sin(t), side * (3.57 + 2.66 * math.cos(t)))
+                      for t in (i * math.tau / 18 for i in range(19))]
+            S.add(tube([(point, .17, .17) for point in points], 6), (87, 69, 53), head)
+        S.add(ellipsoid((face_x(106, 0) + .68, 106, 0), (.19, .18, 1.14), 8, 5), (87, 69, 53), head)
+
+
+def signature_mask(S, spec):
+    """Head-bound costume piece so equipped masks can take its place."""
+    style = spec["mask"]
+    default = {"porcelain": (227, 221, 199), "noh": (210, 183, 146), "death": (169, 154, 145),
+               "reed": (154, 112, 69), "mempo": (69, 65, 71), "cloth": (138, 27, 43)}
+    colour = tuple(spec.get("mask_col", spec.get("mask_tone", default.get(style, INK))))
+    head = {"head": 1.}
+    S.zoom = HEAD
+    for _, side in SIDES:
+        # Rows follow the actual face. Avoid a fan whose flat triangles slice through the cheek.
+        rows = [(104.55, 104.17, 104.26, 104.81), (103.35, 103.24, 103.36, 104.26),
+                (101.88, 101.82, 102.06, 103.62), (100.38, 100.39, 100.78, 102.12),
+                (99.32, 99.49, 100.05, 101.25)]
+        widths = [(0, 2.15, 4.35, 6.65), (0, 2.1, 4.15, 6.42), (0, 1.95, 3.9, 6.08),
+                  (0, 1.72, 3.35, 5.38), (0, 1.05, 2.45, 4.43)]
+        verts = [(face_x(y, side*z) + .92 + (.32 if z < 2.2 and r in (0, 1) else 0), y, side*z)
+                 for r, (row, width) in enumerate(zip(rows, widths)) for y, z in zip(row, width)]
+        faces = [(i, i+1, i+5, i+4) for i in range(15) if i % 4 != 3]
+        if side < 0:
+            faces = [face[::-1] for face in faces]
+        dark, light = shade(colour, .69), shade(colour, 1.16, 5)
+        tones = [light if r == 0 or (style in ("reed", "mempo") and r == 2) else dark if c == 2
+                 else colour for r in range(4) for c in range(3)]
+        S.add((verts, faces), colour, head, colours=tones)
+        S.add(tube([((4.3, 104.88, 6.56*side), .22, .22), ((1.7, 104.54, 8.14*side), .22, .22),
+                    ((-.7, 104.15, 8.38*side), .21, .22)], 6), dark, head)
     S.zoom = None
 
 
@@ -394,6 +498,7 @@ def body(S, spec):
         v[0], v[2] = (x + depth * v[0] / r, width * v[2] / r) if r else (x, 0)
     S.add(head, skin, h)
     face(S, spec, skin)
+    head_ornaments(S, spec)
 
     S.zoom = None
     for s, sg in SIDES:
@@ -470,11 +575,15 @@ def hair(S, spec):
 
 # ------------------------------------------------------------------------------------------------ outfit
 def skirt_w(v):
-    near, lower = min(1., max(0., v[2] / 6 + .5)), min(1., max(0., (40 - v[1]) / 12))
-    hip = min(1., max(0., (v[1] - 46) / 10))
-    w = {"pelvis": hip, "thighN": near * (1 - lower) * (1 - hip), "shinN": near * lower * (1 - hip),
-         "thighF": (1 - near) * (1 - lower) * (1 - hip), "shinF": (1 - near) * lower * (1 - hip)}
-    return {k: x for k, x in w.items() if x > .01}
+    near = min(1., max(0., v[2] / 6 + .5))
+    if v[1] >= 61:
+        return torso_w()(v[1])
+    weights = {}
+    for suffix, share in (("N", near), ("F", 1 - near)):
+        for bone, amount in leg_w(suffix)(v[1]).items():
+            if share:
+                weights[bone] = weights.get(bone, 0.) + share * amount
+    return weights
 
 
 def brocade(u, y, pattern):
@@ -508,11 +617,16 @@ def coat(S, spec):
     for y in ys:
         t = (top - y) / (top - bottom)
         depth, width = profile(BODY["torso"], max(y, 55))
-        rx, rz = depth * GIRTH["torso"] + 2.9 + 7.2 * t, width * GIRTH["torso"] + 2.1 + 5.7 * t
-        gap = .065 + .32 * t
+        # Tuck the top of the panels underneath the obi. Below the waist the
+        # knees and pleats need more room even while each side tracks its leg.
+        drape = min(1., max(0., (63.7 - y) / 18.))
+        rx = depth * GIRTH["torso"] + 2.1 + 8.7 * drape
+        side_drape = min(1., max(0., (57.5 - y) / 12.))
+        rz = width * GIRTH["torso"] + .85 + 7.55 * side_drape
+        gap = .16 + .28 * t
         for k in range(n + 1):
             a = gap + (math.tau - 2 * gap) * k / n
-            fold = (1 + .07 * t * math.cos(9 * a) + .035 * t * math.sin(5 * a))
+            fold = (1 + .052 * drape * math.cos(9 * a) + .028 * drape * math.sin(5 * a))
             verts.append((rx * math.cos(a) * fold, y + 1.35 * t * math.sin(a * 2), -rz * math.sin(a) * fold))
 
     for i, (a, b) in enumerate(zip(ys, ys[1:])):
@@ -550,7 +664,7 @@ def kimono(S, spec, wide=False):
     top, collar = tuple(spec["top"]), tuple(spec.get("collar", WHITE))
     lining = tuple(spec.get("lining", spec["accent"]))
     motif = tuple(spec["pcol"]) if wide and spec.get("pattern") and spec.get("pcol") else None
-    S.loft(cover("torso", 62, 96, 1.25), top, torso_w(), n=16)
+    S.loft(cover("torso", 60, 96, 1.25), top, torso_w(), n=16)
     for s, sg in SIDES:
         # Each lapel is a flat ribbon that runs along the actual torso profile.
         stations = [(95.8, 3.5, .7), (93, 3.2, 1.05), (88, 2., 1.1),
@@ -617,9 +731,11 @@ def obi(S, spec):
                     ((10.3, 66.85, 3.45 * side), .88, .8), ((10.5, 66.2, .65 * side), .64, .62)], 8), accent, w)
     S.add(ellipsoid((10.55, 67.1, 0), (1.12, 1.45, 1.65), 8, 6), cord, w)
     for z, end in ((-1.4, 54.4), (1.3, 51.2)):
-        rings = [((10.4, 67.2, z * .34), .68, .88), ((11., 61., z), .58, .72),
-                 ((12.2, end + 1.5, z * 1.35), .5, .55), ((12.45, end, z * 1.48), .66, .67)]
-        S.add(tube(rings, 8), accent, w, paint=lambda c: gold if c[1] < end + 1.6 else None)
+        rings = [((11.0, 67.2, z * .34), .58, .73), ((12.8, 62.8, z), .51, .59),
+                 ((16.8, end + 1.5, z * 1.35), .46, .53), ((17.3, end, z * 1.48), .58, .61)]
+        vertices, faces = tube(rings, 8)
+        S.add((vertices, faces), accent, [skirt_w(v) for v in vertices],
+              paint=lambda c: gold if c[1] < end + 1.6 else None)
 
 def armour(S, spec):
     """Lamellar: rows of small plates laced together, over the kimono."""
@@ -807,6 +923,8 @@ def build_character(spec, outfit=None, arms=None):
     hair(S, spec)
     if spec.get("head") == "hachimaki":
         headband(S, spec)
+    if outfit != "bare" and spec.get("mask"):
+        signature_mask(S, spec)
     weapon(S, spec, arms or spec.get("weapon", "none"))
     return S
 

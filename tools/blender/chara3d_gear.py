@@ -149,7 +149,7 @@ def hat(skin, style):
 
 def mask(skin, style):
     intrinsic = {"oni": "accent", "iron": "armor", "cedar": "cedar", "ink": "ink",
-                 "silk": "top", "jade": "jade", "giseiki": "lower", "abbot": "cedar", "cloth": "ink"}
+                 "silk": "top", "jade": "jade", "giseiki": "lower", "abbot": "cedar", "cloth": "top"}
     colour = SPEC[intrinsic[style]]
     skin.zoom = c.HEAD
     points = [(-6, 105), (-3.5, 104.1), (0, 104.35), (3.5, 104.1), (6, 105),

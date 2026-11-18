@@ -48,6 +48,13 @@ LOOK3D = {
                         pcol=(222, 145, 111), lining=(124, 35, 48), long_robe=True),
 }
 
+# Small pieces that remain on the body when clothing is swapped.
+EAR_ORNAMENTS = {
+    "trav_natsuko": ["stud", [184, 177, 155]], "trav_shizue": ["drop", [218, 174, 80]],
+    "trav_mitsue": ["stud", [204, 155, 77]], "trav_haruki": ["stud", [193, 141, 68]],
+    "side_norie": ["stud", [230, 167, 92]], "side_sanae": ["drop", [165, 208, 227]],
+    "side_yachiko": ["drop", [113, 185, 145]], "side_sachiko": ["stud", [171, 123, 74]],
+}
 
 def look(key):
     """The character's look spec, shared with the 2-D generators."""
@@ -60,6 +67,8 @@ def look(key):
         spec = next(c for c in cast.CAST if c["key"] == name)
         spec = dict(zip(("top", "lower", "accent", "armor", "lace"), cast.CLAN[spec["clan"]])) | spec
     spec = dict(spec) | LOOK3D.get(key, {})
+    if key in EAR_ORNAMENTS:
+        spec["ear_ornament"] = EAR_ORNAMENTS[key]
     return {k: list(v) if isinstance(v, tuple) else v for k, v in spec.items()}
 
 

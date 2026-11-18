@@ -2,7 +2,8 @@
 local battle = ::rpgstage["battle"];
 if( !battle){
 	::RPGMain.enterBattle( { mapid="M810", escape=true, enemies=[
-		{ id="E105", x=-0.5, z=0.5 }, { id="E200", x=1.5, z=-0.4 }, { id="E001", x=-2.2, z=-0.9 }
+		{ id="E105", x=-0.5, z=0.5 }, { id="E200", x=1.5, z=-0.4 },
+		{ id="E101", x=-1.1, z=1.1 }, { id="E001", x=-2.2, z=-0.9 }
 	] });
 	return;
 }
@@ -10,16 +11,19 @@ local seen = {};
 foreach( e in battle.enemies){
 	local model = battle.getChara3D( e);
 	local id = e.data.mdlid;
-	if( id == "EP104" || id == "EP400"){
+	if( id == "EP100" || id == "EP104" || id == "EP400"){
 		if( model.nativeKey != id || !model.nativeBody.motion || !model.tgtview || !model.b3body)
 			throw Exception( "Native foe did not load, animate, or remain targetable: " .. id);
 		if( !model.anime2( #{id="slash1"}) || !length( model.getMaterials()))
 			throw Exception( "Native foe cannot attack or expose its materials: " .. id);
+		foreach( face in model.nativeBody.mesh.face){
+			if( !face.m.tex0 || !face.m.tex1) throw Exception( "Missing foe color or normal texture: " .. id);
+		}
 		model.anime2( #{id="fight"});
 	}else if( id == "EP000" && model["nativeKey"]){
 		throw Exception( "An unregistered foe did not fall back to its sprite");
 	}
 	seen[id] <- true;
 }
-if( !seen["EP104"] || !seen["EP400"] || !seen["EP000"]) throw Exception( "Unexpected battle fixture");
-printf( "[NATIVE FOES] crab and bandit animated and targetable; original sprite fallback intact\n");
+if( !seen["EP100"] || !seen["EP104"] || !seen["EP400"] || !seen["EP000"]) throw Exception( "Unexpected battle fixture");
+printf( "[NATIVE FOES] goblin, crab and bandit loaded color and normal maps, animated, and remained targetable; sprite fallback intact\n");

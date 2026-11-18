@@ -43,7 +43,12 @@ def verify_assets(directory, roster):
     expected = {"roster.json"}
     for key, spec in roster.items():
         expected.add(f"motion_{spec['motion']}.mot")
-        for part in ("body", "outfit", *(("weapon",) if spec["weapon"] != "none" else ())):
+        parts = ["body", "outfit"]
+        if spec["weapon"] != "none":
+            parts.append("weapon")
+        if spec.get("mask"):
+            parts.append("mask")
+        for part in parts:
             expected.update(f"{key}_{part}.{ext}" for ext in ("pm", "mdl"))
     missing = [name for name in sorted(expected - {"roster.json"})
                if not (directory / name).is_file() or not (directory / name).stat().st_size]
@@ -98,6 +103,8 @@ def build_registry(group=None):
         ]
         roster[key] = {"group": category, "weapon": weapon, "head": spec.get("head", ""),
                        "animap": animations, "motion": kin, "proportions": proportions(key)}
+        if spec.get("mask"):
+            roster[key]["mask"] = spec["mask"]
     return roster, frames, jobs
 
 
@@ -108,6 +115,7 @@ def main():
     mode.add_argument("--check", action="store_true", help="verify the complete deployed index and assets")
     mode.add_argument("--index-only", action="store_true", help="refresh metadata without re-exporting meshes")
     mode.add_argument("--bust-skin", action="store_true", help="re-export only bodies with sampled bust colors")
+    mode.add_argument("--accessories", action="store_true", help="refresh costume pieces, body ornaments and outfit fit")
     args = parser.parse_args()
     outfits = batch.RESOURCE / "native_chara"
     outfits.mkdir(exist_ok=True)
@@ -136,7 +144,7 @@ def main():
     if args.bust_skin:
         jobs = [job for job in jobs if native_skin(batch.RESOURCE, job[0], look(job[0])) is not None]
     job.write_text(json.dumps({"out": str(outfits), "models": jobs, "motions": frames,
-                               "body_only": args.bust_skin}), encoding="utf-8")
+                               "body_only": args.bust_skin, "accessories": args.accessories}), encoding="utf-8")
     log = work / "native_roster.log"
     with log.open("w", encoding="utf-8") as output:
         proc = subprocess.run([batch.c3.blender_exe(), "-b", "--factory-startup", "--threads", "4",
