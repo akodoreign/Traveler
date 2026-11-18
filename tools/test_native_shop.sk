@@ -1,0 +1,7 @@
+local stage = ::rpgstage;
+stage.player3d.setDir( 0.0);
+stage.updateSearchTarget();
+local target = stage.searchdst;
+if( !target || !target["nativeKey"] || target.event.data["storeid"] != "R102")
+	throw Exception( "The native Hoshi arms clerk is not selectable");
+println( "[NATIVE SHOP] Arms clerk selected");
