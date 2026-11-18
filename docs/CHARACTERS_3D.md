@@ -61,6 +61,11 @@ collision and picking, and supplies skeletal transforms to the meshes instead of
 sprite. No sprite frames are generated for native actors. Bodies, outfits and weapons bind to the
 same skeleton.
 
+Native visuals start at 75% of their original scale. The roster index layers each look's authored
+height, width, build, age, and size on top of that baseline. Equipment follows the same transform;
+interaction bounds are unchanged. Run `tools\chara3d_native_all.py --index-only` to refresh
+proportions without rebuilding the meshes.
+
 ## Equipped clothing
 
 `tools/gear_catalog.py` maps armor IDs to shared body garments, headwear, masks, and the oilskin cape.

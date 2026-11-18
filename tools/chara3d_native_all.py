@@ -8,6 +8,19 @@ from chara3d_sheet import extra_clips, family, look
 from rig3d_poses import SPECIAL, VIEWS
 
 
+def proportions(spec):
+    """Relative depth, height and width in Blender's character-facing coordinates."""
+    reach = spec.get("scale", 1.0)
+    stature = 1.0 + 0.016 * spec.get("height", 0) - (0.055 if spec.get("age") == "old" else 0)
+    breadth = {"heavy": 0.09, "round": 0.09, "strongman": 0.12}.get(spec.get("build"), 0)
+    width = 1.0 + breadth + 0.035 * spec.get("wide", 0)
+    if spec.get("female"):
+        stature -= 0.025
+        width -= 0.035
+    return [round(max(0.78, min(1.40, x)), 4)
+            for x in (width * reach ** 0.5, stature * reach, width * reach ** 0.5)]
+
+
 def verify_assets(directory, roster):
     expected = {"roster.json"}
     for key, spec in roster.items():
@@ -55,14 +68,16 @@ def build_registry(group=None):
                    if field in anim):
                 raise ValueError(f"{key}: {anim['id']} uses a frame outside the native motion")
         roster[key] = {"group": category, "weapon": weapon, "head": spec.get("head", ""),
-                       "animap": animations, "motion": kin}
+                       "animap": animations, "motion": kin, "proportions": proportions(spec)}
     return roster, frames, jobs
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--group", choices=("traveler", "companion", "hireling", "cast"))
-    parser.add_argument("--check", action="store_true", help="verify the complete deployed index and assets")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--check", action="store_true", help="verify the complete deployed index and assets")
+    mode.add_argument("--index-only", action="store_true", help="refresh metadata without re-exporting meshes")
     args = parser.parse_args()
     outfits = batch.RESOURCE / "native_chara"
     outfits.mkdir(exist_ok=True)
@@ -82,6 +97,11 @@ def main():
         return
     if args.group and index.exists():
         roster = json.loads(index.read_text(encoding="utf-8")) | roster
+    if args.index_only:
+        verify_assets(outfits, roster)
+        index.write_text(json.dumps(roster, indent=1) + "\n", encoding="utf-8", newline="\n")
+        print(f"Indexed {len(roster)} models without re-exporting geometry")
+        return
     job = work / "native_roster_job.json"
     job.write_text(json.dumps({"out": str(outfits), "models": jobs, "motions": frames}), encoding="utf-8")
     log = work / "native_roster.log"

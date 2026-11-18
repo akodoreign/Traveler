@@ -717,7 +717,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "trav_rensei": {
   "group": "traveler",
@@ -1437,7 +1442,12 @@
     "replay": true
    }
   ],
-  "motion": "iai"
+  "motion": "iai",
+  "proportions": [
+   1.0,
+   1.016,
+   1.0
+  ]
  },
  "trav_gendo": {
   "group": "traveler",
@@ -2157,7 +2167,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   0.965,
+   1.032,
+   0.965
+  ]
  },
  "trav_shizue": {
   "group": "traveler",
@@ -2877,7 +2892,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "trav_haruki": {
   "group": "traveler",
@@ -3597,7 +3617,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   0.984,
+   1.0
+  ]
  },
  "trav_mitsue": {
   "group": "traveler",
@@ -4317,7 +4342,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "trav_tamotsu": {
   "group": "traveler",
@@ -5037,7 +5067,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   1.09,
+   1.0,
+   1.09
+  ]
  },
  "trav_sayo": {
   "group": "traveler",
@@ -5757,7 +5792,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   0.959,
+   0.965
+  ]
  },
  "side_goro": {
   "group": "companion",
@@ -6477,7 +6517,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.032,
+   1.0
+  ]
  },
  "side_michio": {
   "group": "companion",
@@ -7197,7 +7242,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_kage_ch3": {
   "group": "companion",
@@ -7917,7 +7967,12 @@
     "replay": true
    }
   ],
-  "motion": "club"
+  "motion": "club",
+  "proportions": [
+   1.0,
+   1.016,
+   1.0
+  ]
  },
  "side_gusai": {
   "group": "companion",
@@ -8637,7 +8692,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_lionrider": {
   "group": "companion",
@@ -9357,7 +9417,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_kafu_nosword": {
   "group": "companion",
@@ -10077,7 +10142,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_hiruto": {
   "group": "companion",
@@ -10797,7 +10867,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   0.961,
+   1.0
+  ]
  },
  "side_ashimita": {
   "group": "companion",
@@ -11517,7 +11592,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_ushimo": {
   "group": "companion",
@@ -12237,7 +12317,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_sanro": {
   "group": "companion",
@@ -12957,7 +13042,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.936,
+   1.0
+  ]
  },
  "side_rui": {
   "group": "companion",
@@ -13677,7 +13767,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_kasiko": {
   "group": "companion",
@@ -14397,7 +14492,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.943,
+   0.965
+  ]
  },
  "side_akodorin": {
   "group": "companion",
@@ -15117,7 +15217,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_ryuko": {
   "group": "companion",
@@ -15837,7 +15942,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_hanae": {
   "group": "companion",
@@ -16557,7 +16667,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_haku": {
   "group": "companion",
@@ -17277,7 +17392,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.984,
+   1.0
+  ]
  },
  "side_hayato": {
   "group": "companion",
@@ -17997,7 +18117,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_yosai": {
   "group": "companion",
@@ -18717,7 +18842,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_archer": {
   "group": "hireling",
@@ -19437,7 +19567,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_kuni": {
   "group": "hireling",
@@ -20157,7 +20292,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_h_engineer": {
   "group": "hireling",
@@ -20877,7 +21017,12 @@
     "replay": true
    }
   ],
-  "motion": "club"
+  "motion": "club",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_herbalist": {
   "group": "hireling",
@@ -21597,7 +21742,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_h_fisherman": {
   "group": "hireling",
@@ -22317,7 +22467,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_veteran": {
   "group": "hireling",
@@ -23037,7 +23192,12 @@
     "replay": true
    }
   ],
-  "motion": "club"
+  "motion": "club",
+  "proportions": [
+   1.0,
+   0.977,
+   1.0
+  ]
  },
  "side_gonta": {
   "group": "hireling",
@@ -23757,7 +23917,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.4,
+   1.4,
+   1.4
+  ]
  },
  "side_h_scout": {
   "group": "hireling",
@@ -24477,7 +24642,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_h_witch": {
   "group": "hireling",
@@ -25197,7 +25367,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_sapper": {
   "group": "hireling",
@@ -25917,7 +26092,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_oldwoman": {
   "group": "hireling",
@@ -26637,7 +26817,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_h_yojimbo": {
   "group": "hireling",
@@ -27357,7 +27542,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_twin": {
   "group": "hireling",
@@ -28077,7 +28267,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.911,
+   0.965
+  ]
  },
  "side_sailor": {
   "group": "hireling",
@@ -28797,7 +28992,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_priest": {
   "group": "hireling",
@@ -29517,7 +29717,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_tsuruchi": {
   "group": "hireling",
@@ -30237,7 +30442,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_moshi": {
   "group": "hireling",
@@ -30957,7 +31167,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_dojipoet": {
   "group": "hireling",
@@ -31677,7 +31892,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_h_lamplighter": {
   "group": "hireling",
@@ -32397,7 +32617,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_togawa": {
   "group": "hireling",
@@ -33117,7 +33342,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_ikomabard": {
   "group": "hireling",
@@ -33837,7 +34067,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_matsuduel": {
   "group": "hireling",
@@ -34557,7 +34792,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_acolyte": {
   "group": "hireling",
@@ -35277,7 +35517,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.984,
+   1.0
+  ]
  },
  "side_noboru": {
   "group": "hireling",
@@ -35997,7 +36242,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_porter": {
   "group": "hireling",
@@ -36717,7 +36967,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.035,
+   1.0,
+   1.035
+  ]
  },
  "side_akiko": {
   "group": "hireling",
@@ -37437,7 +37692,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.863,
+   0.965
+  ]
  },
  "side_widow": {
   "group": "hireling",
@@ -38157,7 +38417,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_youth": {
   "group": "hireling",
@@ -38877,7 +39142,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_diver": {
   "group": "hireling",
@@ -39597,7 +39867,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_shrinekeeper": {
   "group": "hireling",
@@ -40317,7 +40592,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_craneguard": {
   "group": "hireling",
@@ -41037,7 +41317,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_healer": {
   "group": "hireling",
@@ -41757,7 +42042,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_h_stagehand": {
   "group": "hireling",
@@ -42477,7 +42767,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_suzume": {
   "group": "hireling",
@@ -43197,7 +43492,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_kitsune": {
   "group": "hireling",
@@ -43917,7 +44217,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_h_shinjo": {
   "group": "hireling",
@@ -44637,7 +44942,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_hunter": {
   "group": "hireling",
@@ -45357,7 +45667,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_mirumoto": {
   "group": "hireling",
@@ -46077,7 +46392,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_tamori": {
   "group": "hireling",
@@ -46797,7 +47117,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_h_guide": {
   "group": "hireling",
@@ -47517,7 +47842,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_iuchi": {
   "group": "hireling",
@@ -48237,7 +48567,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_moto": {
   "group": "hireling",
@@ -48957,7 +49292,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_bomonk": {
   "group": "hireling",
@@ -49677,7 +50017,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_agasha": {
   "group": "hireling",
@@ -50397,7 +50742,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_h_yari": {
   "group": "hireling",
@@ -51117,7 +51467,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_hanabi": {
   "group": "hireling",
@@ -51837,7 +52192,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_ferryarcher": {
   "group": "hireling",
@@ -52557,7 +52917,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_sparrow": {
   "group": "hireling",
@@ -53277,7 +53642,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_windpriest": {
   "group": "hireling",
@@ -53997,7 +54367,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_h_goatherd": {
   "group": "hireling",
@@ -54717,7 +55092,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_jadeseller": {
   "group": "hireling",
@@ -55437,7 +55817,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_h_shrinearcher": {
   "group": "hireling",
@@ -56157,7 +56542,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_windisawa": {
   "group": "hireling",
@@ -56877,7 +57267,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_thundermonk": {
   "group": "hireling",
@@ -57597,7 +57992,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_h_jadearcher": {
   "group": "hireling",
@@ -58317,7 +58717,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_kisada": {
   "group": "cast",
@@ -59037,7 +59442,12 @@
     "replay": true
    }
   ],
-  "motion": "club"
+  "motion": "club",
+  "proportions": [
+   1.2815,
+   1.2604,
+   1.2815
+  ]
  },
  "side_kage": {
   "group": "cast",
@@ -59757,7 +60167,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.016,
+   1.0
+  ]
  },
  "side_takakana": {
   "group": "cast",
@@ -60477,7 +60892,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.035,
+   1.016,
+   1.035
+  ]
  },
  "side_sachiko": {
   "group": "cast",
@@ -61197,7 +61617,12 @@
     "replay": true
    }
   ],
-  "motion": "club"
+  "motion": "club",
+  "proportions": [
+   1.1691,
+   1.1048,
+   1.1691
+  ]
  },
  "side_ryoichi": {
   "group": "cast",
@@ -61917,7 +62342,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_sanae": {
   "group": "cast",
@@ -62637,7 +63067,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_masanori": {
   "group": "cast",
@@ -63357,7 +63792,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_yasurugi": {
   "group": "cast",
@@ -64077,7 +64517,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_yasu": {
   "group": "cast",
@@ -64797,7 +65242,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   1.064,
+   0.965
+  ]
  },
  "side_muika": {
   "group": "cast",
@@ -65517,7 +65967,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_ijako": {
   "group": "cast",
@@ -66237,7 +66692,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_toturi": {
   "group": "cast",
@@ -66957,7 +67417,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.048,
+   1.0
+  ]
  },
  "side_benjiro": {
   "group": "cast",
@@ -67677,7 +68142,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.032,
+   1.0
+  ]
  },
  "side_atsuko": {
   "group": "cast",
@@ -68397,7 +68867,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_hoju": {
   "group": "cast",
@@ -69117,7 +69592,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_mieko": {
   "group": "cast",
@@ -69837,7 +70317,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_norie": {
   "group": "cast",
@@ -70557,7 +71042,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_depura": {
   "group": "cast",
@@ -71277,7 +71767,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_yachiko": {
   "group": "cast",
@@ -71997,7 +72492,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_karasu": {
   "group": "cast",
@@ -72717,7 +73217,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_miyahana": {
   "group": "cast",
@@ -73437,7 +73942,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_umebaa": {
   "group": "cast",
@@ -74157,7 +74667,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_hiro": {
   "group": "cast",
@@ -74877,7 +75392,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.185,
+   1.2604,
+   1.185
+  ]
  },
  "side_jinnai": {
   "group": "cast",
@@ -75597,7 +76117,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_tomoe": {
   "group": "cast",
@@ -76317,7 +76842,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_kiyo": {
   "group": "cast",
@@ -77037,7 +77567,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.943,
+   0.965
+  ]
  },
  "side_gonbei": {
   "group": "cast",
@@ -77757,7 +78292,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.09,
+   1.0,
+   1.09
+  ]
  },
  "side_kanbe": {
   "group": "cast",
@@ -78477,7 +79017,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.09,
+   1.0,
+   1.09
+  ]
  },
  "side_satomi": {
   "group": "cast",
@@ -79197,7 +79742,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_fishwife": {
   "group": "cast",
@@ -79917,7 +80467,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_kitechild": {
   "group": "cast",
@@ -80637,7 +81192,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.872,
+   1.0
+  ]
  },
  "side_veteran": {
   "group": "cast",
@@ -81357,7 +81917,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_ferryman": {
   "group": "cast",
@@ -82077,7 +82642,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_taneo": {
   "group": "cast",
@@ -82797,7 +83367,12 @@
     "replay": true
    }
   ],
-  "motion": "club"
+  "motion": "club",
+  "proportions": [
+   1.035,
+   1.032,
+   1.035
+  ]
  },
  "side_quartermaster": {
   "group": "cast",
@@ -83517,7 +84092,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.035,
+   1.016,
+   1.035
+  ]
  },
  "side_jadeclerk": {
   "group": "cast",
@@ -84237,7 +84817,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_innkeeper": {
   "group": "cast",
@@ -84957,7 +85542,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_merchant": {
   "group": "cast",
@@ -85677,7 +86267,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.09,
+   1.0,
+   1.09
+  ]
  },
  "side_cartdriver": {
   "group": "cast",
@@ -86397,7 +86992,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_hidden1": {
   "group": "cast",
@@ -87117,7 +87717,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_hidden2": {
   "group": "cast",
@@ -87837,7 +88442,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_gontaboy": {
   "group": "cast",
@@ -88557,7 +89167,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.856,
+   1.0
+  ]
  },
  "side_sergeant": {
   "group": "cast",
@@ -89277,7 +89892,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_townguard": {
   "group": "cast",
@@ -89997,7 +90617,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_ryozo": {
   "group": "cast",
@@ -90717,7 +91342,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_mutsuye": {
   "group": "cast",
@@ -91437,7 +92067,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_kuhime": {
   "group": "cast",
@@ -92157,7 +92792,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.991,
+   0.965
+  ]
  },
  "side_keiyomi": {
   "group": "cast",
@@ -92877,7 +93517,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.927,
+   0.965
+  ]
  },
  "side_shiko": {
   "group": "cast",
@@ -93597,7 +94242,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_shigeru": {
   "group": "cast",
@@ -94317,7 +94967,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   1.0,
+   0.965
+  ]
  },
  "side_taira": {
   "group": "cast",
@@ -95037,7 +95692,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_kurako": {
   "group": "cast",
@@ -95757,7 +96417,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.055,
+   0.975,
+   1.055
+  ]
  },
  "side_oshito": {
   "group": "cast",
@@ -96477,7 +97142,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   0.92,
+   1.0
+  ]
  },
  "side_servant": {
   "group": "cast",
@@ -97197,7 +97867,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_takeo": {
   "group": "cast",
@@ -97917,7 +98592,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.016,
+   1.0
+  ]
  },
  "side_mai": {
   "group": "cast",
@@ -98637,7 +99317,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_fujio": {
   "group": "cast",
@@ -99357,7 +100042,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_sakura": {
   "group": "cast",
@@ -100077,7 +100767,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   0.965,
+   0.991,
+   0.965
+  ]
  },
  "side_kakita_sensei": {
   "group": "cast",
@@ -100797,7 +101492,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_senior_student": {
   "group": "cast",
@@ -101517,7 +102217,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.016,
+   1.0
+  ]
  },
  "side_seigen": {
   "group": "cast",
@@ -102237,7 +102942,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_kiku": {
   "group": "cast",
@@ -102957,7 +103667,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_ebisu": {
   "group": "cast",
@@ -103677,7 +104392,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   1.0,
+   0.965
+  ]
  },
  "side_torishigawa": {
   "group": "cast",
@@ -104397,7 +105117,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_taxman": {
   "group": "cast",
@@ -105117,7 +105842,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_imuro": {
   "group": "cast",
@@ -105837,7 +106567,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.185,
+   1.2604,
+   1.185
+  ]
  },
  "side_sariko": {
   "group": "cast",
@@ -106557,7 +107292,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.055,
+   0.975,
+   1.055
+  ]
  },
  "side_goroso": {
   "group": "cast",
@@ -107277,7 +108017,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.035,
+   1.032,
+   1.035
+  ]
  },
  "side_tama": {
   "group": "cast",
@@ -107997,7 +108742,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_seoko": {
   "group": "cast",
@@ -108717,7 +109467,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_tatanko": {
   "group": "cast",
@@ -109437,7 +110192,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_adoru": {
   "group": "cast",
@@ -110157,7 +110917,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_morishu": {
   "group": "cast",
@@ -110877,7 +111642,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   1.0,
+   0.965
+  ]
  },
  "side_miyako": {
   "group": "cast",
@@ -111597,7 +112367,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.991,
+   0.965
+  ]
  },
  "side_kyumi": {
   "group": "cast",
@@ -112317,7 +113092,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_eriko": {
   "group": "cast",
@@ -113037,7 +113817,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_tadaka": {
   "group": "cast",
@@ -113757,7 +114542,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_daidoji_general": {
   "group": "cast",
@@ -114477,7 +115267,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.016,
+   1.0
+  ]
  },
  "side_miyubi": {
   "group": "cast",
@@ -115197,7 +115992,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_masakazu": {
   "group": "cast",
@@ -115917,7 +116717,12 @@
     "replay": true
    }
   ],
-  "motion": "club"
+  "motion": "club",
+  "proportions": [
+   1.035,
+   1.032,
+   1.035
+  ]
  },
  "side_akuja": {
   "group": "cast",
@@ -116637,7 +117442,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_uji": {
   "group": "cast",
@@ -117357,7 +118167,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   1.0,
+   0.965
+  ]
  },
  "side_yakamo": {
   "group": "cast",
@@ -118077,7 +118892,12 @@
     "replay": true
    }
   ],
-  "motion": "club"
+  "motion": "club",
+  "proportions": [
+   1.1324,
+   1.2096,
+   1.1324
+  ]
  },
  "side_chuto": {
   "group": "cast",
@@ -118797,7 +119617,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.195,
+   0.993,
+   1.195
+  ]
  },
  "side_tessai": {
   "group": "cast",
@@ -119517,7 +120342,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.09,
+   1.0,
+   1.09
+  ]
  },
  "side_shipmaster": {
   "group": "cast",
@@ -120237,7 +121067,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.961,
+   1.0
+  ]
  },
  "side_shinken": {
   "group": "cast",
@@ -120957,7 +121792,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_clerk": {
   "group": "cast",
@@ -121677,7 +122517,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.984,
+   1.0
+  ]
  },
  "side_asahina": {
   "group": "cast",
@@ -122397,7 +123242,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_netmender": {
   "group": "cast",
@@ -123117,7 +123967,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_charmseller": {
   "group": "cast",
@@ -123837,7 +124692,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_courtier": {
   "group": "cast",
@@ -124557,7 +125417,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_drunksailor": {
   "group": "cast",
@@ -125277,7 +126142,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_chihaya": {
   "group": "cast",
@@ -125997,7 +126867,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_yosuke": {
   "group": "cast",
@@ -126717,7 +127592,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.035,
+   1.032,
+   1.035
+  ]
  },
  "side_katsuo": {
   "group": "cast",
@@ -127437,7 +128317,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_ryohei": {
   "group": "cast",
@@ -128157,7 +129042,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.016,
+   1.0
+  ]
  },
  "side_actor_a": {
   "group": "cast",
@@ -128877,7 +129767,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_actor_b": {
   "group": "cast",
@@ -129597,7 +130492,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_actor_c": {
   "group": "cast",
@@ -130317,7 +131217,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_censormonk": {
   "group": "cast",
@@ -131037,7 +131942,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_censorclerk": {
   "group": "cast",
@@ -131757,7 +132667,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.984,
+   1.0
+  ]
  },
  "side_smithboy": {
   "group": "cast",
@@ -132477,7 +133392,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.968,
+   1.0
+  ]
  },
  "side_drunkactor": {
   "group": "cast",
@@ -133197,7 +134117,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_hojiki": {
   "group": "cast",
@@ -133917,7 +134842,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_kamasari": {
   "group": "cast",
@@ -134637,7 +135567,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_hojato": {
   "group": "cast",
@@ -135357,7 +136292,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_ozaki": {
   "group": "cast",
@@ -136077,7 +137017,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_ryuzoji": {
   "group": "cast",
@@ -136797,7 +137742,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_nagai": {
   "group": "cast",
@@ -137517,7 +138467,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_ukita": {
   "group": "cast",
@@ -138237,7 +139192,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_mizochi": {
   "group": "cast",
@@ -138957,7 +139917,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_nishi": {
   "group": "cast",
@@ -139677,7 +140642,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_kafu": {
   "group": "cast",
@@ -140397,7 +141367,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_gesshin": {
   "group": "cast",
@@ -141117,7 +142092,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_yutaka": {
   "group": "cast",
@@ -141837,7 +142817,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.125,
+   1.0,
+   1.125
+  ]
  },
  "side_mami": {
   "group": "cast",
@@ -142557,7 +143542,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_hostess": {
   "group": "cast",
@@ -143277,7 +144267,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_kitchengirl": {
   "group": "cast",
@@ -143997,7 +144992,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.943,
+   0.965
+  ]
  },
  "side_swordsmith": {
   "group": "cast",
@@ -144717,7 +145717,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.035,
+   0.945,
+   1.035
+  ]
  },
  "side_karo": {
   "group": "cast",
@@ -145437,7 +146442,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_shogen": {
   "group": "cast",
@@ -146157,7 +147167,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   0.945,
+   0.965
+  ]
  },
  "side_keiki": {
   "group": "cast",
@@ -146877,7 +147892,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_hisae": {
   "group": "cast",
@@ -147597,7 +148617,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_magistrate": {
   "group": "cast",
@@ -148317,7 +149342,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_mobleader": {
   "group": "cast",
@@ -149037,7 +150067,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_rujo": {
   "group": "cast",
@@ -149757,7 +150792,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_uona": {
   "group": "cast",
@@ -150477,7 +151517,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_oharu": {
   "group": "cast",
@@ -151197,7 +152242,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_yoritomo": {
   "group": "cast",
@@ -151917,7 +152967,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.125,
+   1.0,
+   1.125
+  ]
  },
  "side_tadayasu": {
   "group": "cast",
@@ -152637,7 +153692,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_kosai": {
   "group": "cast",
@@ -153357,7 +154417,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_riichi": {
   "group": "cast",
@@ -154077,7 +155142,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.952,
+   1.0
+  ]
  },
  "side_momo": {
   "group": "cast",
@@ -154797,7 +155867,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_kumpei": {
   "group": "cast",
@@ -155517,7 +156592,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_rteacher": {
   "group": "cast",
@@ -156237,7 +157317,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_mcaptain": {
   "group": "cast",
@@ -156957,7 +158042,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_makeup": {
   "group": "cast",
@@ -157677,7 +158767,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_miyoshi": {
   "group": "cast",
@@ -158397,7 +159492,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_tsuhime": {
   "group": "cast",
@@ -159117,7 +160217,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_atsuki": {
   "group": "cast",
@@ -159837,7 +160942,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.16,
+   1.0,
+   1.16
+  ]
  },
  "side_tomeko": {
   "group": "cast",
@@ -160557,7 +161667,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_seikidera": {
   "group": "cast",
@@ -161277,7 +162392,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_katsutoshi": {
   "group": "cast",
@@ -161997,7 +163117,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_gaijintrader": {
   "group": "cast",
@@ -162717,7 +163842,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_iami": {
   "group": "cast",
@@ -163437,7 +164567,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.09,
+   1.0,
+   1.09
+  ]
  },
  "side_koshi": {
   "group": "cast",
@@ -164157,7 +165292,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_kusada": {
   "group": "cast",
@@ -164877,7 +166017,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.952,
+   1.0
+  ]
  },
  "side_seppunguard": {
   "group": "cast",
@@ -165597,7 +166742,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_akuro": {
   "group": "cast",
@@ -166317,7 +167467,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_crabboy": {
   "group": "cast",
@@ -167037,7 +168192,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.936,
+   1.0
+  ]
  },
  "side_mbushi": {
   "group": "cast",
@@ -167757,7 +168917,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_rokuro": {
   "group": "cast",
@@ -168477,7 +169642,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.035,
+   1.0,
+   1.035
+  ]
  },
  "side_mitsue_maid": {
   "group": "cast",
@@ -169197,7 +170367,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_soshi": {
   "group": "cast",
@@ -169917,7 +171092,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_palecourtier": {
   "group": "cast",
@@ -170637,7 +171817,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_mantisenvoy": {
   "group": "cast",
@@ -171357,7 +172542,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_bayushiguard": {
   "group": "cast",
@@ -172077,7 +173267,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_maskmaker": {
   "group": "cast",
@@ -172797,7 +173992,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_beggar": {
   "group": "cast",
@@ -173517,7 +174717,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_pilgrim": {
   "group": "cast",
@@ -174237,7 +175442,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_noburo": {
   "group": "cast",
@@ -174957,7 +176167,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_megu": {
   "group": "cast",
@@ -175677,7 +176892,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_hyobe": {
   "group": "cast",
@@ -176397,7 +177617,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.16,
+   1.0,
+   1.16
+  ]
  },
  "side_hana": {
   "group": "cast",
@@ -177117,7 +178342,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_yodo": {
   "group": "cast",
@@ -177837,7 +179067,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_rika": {
   "group": "cast",
@@ -178557,7 +179792,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_kitsuneboy": {
   "group": "cast",
@@ -179277,7 +180517,12 @@
     "replay": true
    }
   ],
-  "motion": "bow"
+  "motion": "bow",
+  "proportions": [
+   1.0,
+   0.936,
+   1.0
+  ]
  },
  "side_xue": {
   "group": "cast",
@@ -179997,7 +181242,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.125,
+   0.975,
+   1.125
+  ]
  },
  "side_yoshi": {
   "group": "cast",
@@ -180717,7 +181967,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_citizen": {
   "group": "cast",
@@ -181437,7 +182692,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_sakeseller": {
   "group": "cast",
@@ -182157,7 +183417,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_osuko": {
   "group": "cast",
@@ -182877,7 +184142,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_zhang": {
   "group": "cast",
@@ -183597,7 +184867,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.09,
+   1.0,
+   1.09
+  ]
  },
  "side_meyako": {
   "group": "cast",
@@ -184317,7 +185592,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_kenshai": {
   "group": "cast",
@@ -185037,7 +186317,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_gatekeeper": {
   "group": "cast",
@@ -185757,7 +187042,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_naname": {
   "group": "cast",
@@ -186477,7 +187767,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.195,
+   1.0,
+   1.195
+  ]
  },
  "side_itami": {
   "group": "cast",
@@ -187197,7 +188492,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_sumi": {
   "group": "cast",
@@ -187917,7 +189217,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_shiruko": {
   "group": "cast",
@@ -188637,7 +189942,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_kasamashi": {
   "group": "cast",
@@ -189357,7 +190667,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_hagane": {
   "group": "cast",
@@ -190077,7 +191392,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_yuko": {
   "group": "cast",
@@ -190797,7 +192117,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.911,
+   0.965
+  ]
  },
  "side_hatomu": {
   "group": "cast",
@@ -191517,7 +192842,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_onaka": {
   "group": "cast",
@@ -192237,7 +193567,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_dorin": {
   "group": "cast",
@@ -192957,7 +194292,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.195,
+   1.0,
+   1.195
+  ]
  },
  "side_kusuri": {
   "group": "cast",
@@ -193677,7 +195017,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_siko": {
   "group": "cast",
@@ -194397,7 +195742,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_munashii": {
   "group": "cast",
@@ -195117,7 +196467,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_tsune": {
   "group": "cast",
@@ -195837,7 +197192,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_himeko": {
   "group": "cast",
@@ -196557,7 +197917,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_shinobu": {
   "group": "cast",
@@ -197277,7 +198642,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_soshiofficer": {
   "group": "cast",
@@ -197997,7 +199367,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_iuchisoldier": {
   "group": "cast",
@@ -198717,7 +200092,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_ichihito": {
   "group": "cast",
@@ -199437,7 +200817,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   0.952,
+   1.0
+  ]
  },
  "side_mayumi": {
   "group": "cast",
@@ -200157,7 +201542,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_gochu": {
   "group": "cast",
@@ -200877,7 +202267,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_nihime": {
   "group": "cast",
@@ -201597,7 +202992,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_courier": {
   "group": "cast",
@@ -202317,7 +203717,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_shoju": {
   "group": "cast",
@@ -203037,7 +204442,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.032,
+   1.0
+  ]
  },
  "side_togashi": {
   "group": "cast",
@@ -203757,7 +205167,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.1572,
+   1.33,
+   1.1572
+  ]
  },
  "side_tamorimonk": {
   "group": "cast",
@@ -204477,7 +205892,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_kitsukiclerk": {
   "group": "cast",
@@ -205197,7 +206617,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_muledriver": {
   "group": "cast",
@@ -205917,7 +207342,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_tbeggar": {
   "group": "cast",
@@ -206637,7 +208067,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_incense": {
   "group": "cast",
@@ -207357,7 +208792,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_outfitter": {
   "group": "cast",
@@ -208077,7 +209517,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_pilgrimgirl": {
   "group": "cast",
@@ -208797,7 +210242,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.911,
+   0.965
+  ]
  },
  "side_oldpilgrim": {
   "group": "cast",
@@ -209517,7 +210967,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_mirumotosentry": {
   "group": "cast",
@@ -210237,7 +211692,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_hiroichi": {
   "group": "cast",
@@ -210957,7 +212417,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_daiyu": {
   "group": "cast",
@@ -211677,7 +213142,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_takanobu": {
   "group": "cast",
@@ -212397,7 +213867,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.07,
+   1.0,
+   1.07
+  ]
  },
  "side_hitoro": {
   "group": "cast",
@@ -213117,7 +214592,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_bantaro": {
   "group": "cast",
@@ -213837,7 +215317,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_uyojimbo": {
   "group": "cast",
@@ -214557,7 +216042,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_sabu": {
   "group": "cast",
@@ -215277,7 +216767,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.92,
+   1.0
+  ]
  },
  "side_roninchef": {
   "group": "cast",
@@ -215997,7 +217492,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.09,
+   1.0,
+   1.09
+  ]
  },
  "side_iuchifarmer": {
   "group": "cast",
@@ -216717,7 +218217,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_naohida": {
   "group": "cast",
@@ -217437,7 +218942,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_shahai": {
   "group": "cast",
@@ -218157,7 +219667,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.847,
+   0.965
+  ]
  },
  "side_tsukaru": {
   "group": "cast",
@@ -218877,7 +220392,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.035,
+   1.0,
+   1.035
+  ]
  },
  "side_tabezu": {
   "group": "cast",
@@ -219597,7 +221117,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_campfollower": {
   "group": "cast",
@@ -220317,7 +221842,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_drummer": {
   "group": "cast",
@@ -221037,7 +222567,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.035,
+   1.0,
+   1.035
+  ]
  },
  "side_pigeonkeeper": {
   "group": "cast",
@@ -221757,7 +223292,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_soshienvoy": {
   "group": "cast",
@@ -222477,7 +224017,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_kurosho": {
   "group": "cast",
@@ -223197,7 +224742,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_youngsayo": {
   "group": "cast",
@@ -223917,7 +225467,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.847,
+   0.965
+  ]
  },
  "side_fishseller": {
   "group": "cast",
@@ -224637,7 +226192,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_bargeman": {
   "group": "cast",
@@ -225357,7 +226917,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.035,
+   1.0,
+   1.035
+  ]
  },
  "side_kagemaro": {
   "group": "cast",
@@ -226077,7 +227642,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_musician": {
   "group": "cast",
@@ -226797,7 +228367,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_doorman": {
   "group": "cast",
@@ -227517,7 +229092,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_sonoservant": {
   "group": "cast",
@@ -228237,7 +229817,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_herbseller": {
   "group": "cast",
@@ -228957,7 +230542,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_craneduellist": {
   "group": "cast",
@@ -229677,7 +231267,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_beggarmonk": {
   "group": "cast",
@@ -230397,7 +231992,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_fumi": {
   "group": "cast",
@@ -231117,7 +232717,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.92,
+   0.965
+  ]
  },
  "side_akari": {
   "group": "cast",
@@ -231837,7 +233442,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_sadanobu": {
   "group": "cast",
@@ -232557,7 +234167,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   0.984,
+   1.0
+  ]
  },
  "side_grandmother": {
   "group": "cast",
@@ -233277,7 +234892,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.872,
+   0.965
+  ]
  },
  "side_kanemori": {
   "group": "cast",
@@ -233997,7 +235617,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.125,
+   1.0,
+   1.125
+  ]
  },
  "side_oyuki": {
   "group": "cast",
@@ -234717,7 +236342,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_hagi": {
   "group": "cast",
@@ -235437,7 +237067,12 @@
     "replay": true
    }
   ],
-  "motion": "short"
+  "motion": "short",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_tokubei": {
   "group": "cast",
@@ -236157,7 +237792,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.125,
+   1.0,
+   1.125
+  ]
  },
  "side_ff_fisherman": {
   "group": "cast",
@@ -236877,7 +238517,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_ff_boatman": {
   "group": "cast",
@@ -237597,7 +239242,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_miko": {
   "group": "cast",
@@ -238317,7 +239967,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_pedlar": {
   "group": "cast",
@@ -239037,7 +240692,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_hidaren": {
   "group": "cast",
@@ -239757,7 +241417,12 @@
     "replay": true
    }
   ],
-  "motion": "club"
+  "motion": "club",
+  "proportions": [
+   1.16,
+   1.048,
+   1.16
+  ]
  },
  "side_dojiaoi": {
   "group": "cast",
@@ -240477,7 +242142,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_bayushikei": {
   "group": "cast",
@@ -241197,7 +242867,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_mirumotosen": {
   "group": "cast",
@@ -241917,7 +243592,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   0.968,
+   1.0
+  ]
  },
  "side_mosuke": {
   "group": "cast",
@@ -242637,7 +244317,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.897,
+   1.0
+  ]
  },
  "side_hikaru": {
   "group": "cast",
@@ -243357,7 +245042,12 @@
     "replay": true
    }
   ],
-  "motion": "blade"
+  "motion": "blade",
+  "proportions": [
+   1.0,
+   1.064,
+   1.0
+  ]
  },
  "side_lionsergeant": {
   "group": "cast",
@@ -244077,7 +245767,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_oracle": {
   "group": "cast",
@@ -244797,7 +246492,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.977,
+   1.0
+  ]
  },
  "side_snakeelder": {
   "group": "cast",
@@ -245517,7 +247217,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_pilgrimagent": {
   "group": "cast",
@@ -246237,7 +247942,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_nashiko": {
   "group": "cast",
@@ -246957,7 +248667,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_abbot": {
   "group": "cast",
@@ -247677,7 +249392,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_herald": {
   "group": "cast",
@@ -248397,7 +250117,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  },
  "side_thundermonk": {
   "group": "cast",
@@ -249117,7 +250842,12 @@
     "replay": true
    }
   ],
-  "motion": "pole"
+  "motion": "pole",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_shrinepeasant": {
   "group": "cast",
@@ -249837,7 +251567,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   1.0,
+   1.0
+  ]
  },
  "side_mamoru": {
   "group": "cast",
@@ -250557,7 +252292,12 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   1.0,
+   0.945,
+   1.0
+  ]
  },
  "side_empress": {
   "group": "cast",
@@ -251277,6 +253017,11 @@
     "replay": true
    }
   ],
-  "motion": "fist"
+  "motion": "fist",
+  "proportions": [
+   0.965,
+   0.975,
+   0.965
+  ]
  }
 }
