@@ -67,6 +67,12 @@ their clan and original character palette. Materials such as jade, wood and stra
 The same item geometry is reused across wearers. With an empty body slot, the character wears their
 original everyday outfit.
 
+Each wearable also has a transparent 128 × 64 decal sheet for every clan palette. Each sheet
+contains a primary emblem and a secondary mark. The exporter projects the marks onto two
+surfaces per item, such as the chest and back of a robe or the crown and front of a jingasa.
+The decals use the garment’s bone weights. Unaffiliated wearers use stitch marks. Sheets are
+in `project/resource/native_gear/decal/<clan>/<item>.png`.
+
 New wearable armor IDs need a design in the catalog. Run the gear exporter after adding a design or
 changing a character palette. Assets are stored in `project/resource/native_gear`.
 

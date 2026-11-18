@@ -13,6 +13,7 @@
   "scorpion",
   "unicorn"
  ],
+ "decals": true,
  "items": {
   "A100": "body",
   "A101": "body",

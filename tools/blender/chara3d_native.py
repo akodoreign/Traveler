@@ -37,7 +37,7 @@ def animate(scene, name, frames, family):
     return rig
 
 
-def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, texture_uv=None):
+def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, texture_uv=None, alpha_test=False):
     obj = skin.build(rig)
     mesh = obj.data
     materials = list(mesh.materials)
@@ -71,6 +71,10 @@ def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, tex
         buildPolygonMesh(obj, mesh, data, [g.name for g in obj.vertex_groups])
     if not data.wmapname:
         raise RuntimeError(f"No weights exported for {name}")
+    if alpha_test:
+        for face in data.face:
+            face.mate.alphatest = 1
+            face.mate.alpharef = 1.0
     data.aabb = [-125, -60, -125, 125, 165, 125]
     saveModelData(data, str(out / f"{name}.mdl"))
     savePolygonMesh(data, str(out / f"{name}.pm"), name, motion, None)

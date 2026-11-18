@@ -11,6 +11,7 @@ import chara3d_native as native
 
 import gear_catalog as catalog
 from gear_palette import SPEC, SWATCHES, uv
+from chara3d_decals import project
 
 c = native.c
 
@@ -186,6 +187,8 @@ def export(job):
         if missing:
             raise ValueError(f"{item} uses unmapped colours {missing}")
         native.save_piece(scene, out, rig, item, skin, texture_uv=uv)
+        decal, decal_uv = project(item, slot, skin)
+        native.save_piece(scene, out, rig, item + "_decal", decal, texture_uv=decal_uv, alpha_test=True)
     for weapon in catalog.WEAPONS:
         skin = c.Skin()
         if weapon == "musket":

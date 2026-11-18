@@ -32,6 +32,11 @@ if( phase == 0){
 	verify( crabTex && phoenixTex && crabTex != phoenixTex, "Wearers did not get separate textures");
 	verify( crab.nativeHead.mesh.face[0].m.tex0 == crabTex && phoenix.nativeHead.mesh.face[0].m.tex0 == phoenixTex,
 		"Hat ignored wearer palette");
+	verify( length( crab.nativeDecals) == 3 && length( phoenix.nativeDecals) == 2,
+		"Missing equipped clan decals");
+	local crabDecal = crab.nativeDecals[0].mesh.face[0].m, phoenixDecal = phoenix.nativeDecals[0].mesh.face[0].m;
+	verify( crabDecal.tex0 && phoenixDecal.tex0 && crabDecal.tex0 != phoenixDecal.tex0 &&
+		crabDecal.alphatest && phoenixDecal.alphatest, "Decals did not select the wearer clan or enable cutouts");
 	verify( crab.anime2( #{ id="atk_slash" }), "Alternate weapon animation failed");
 	stage.scn.addObject( phoenix);
 	phoenix.pos( crab.pos.x + 1.25, crab.pos.y, crab.pos.z);
@@ -56,6 +61,9 @@ if( phase == 0){
 		local part = parts[slot];
 		verify( part && part.mesh.face[0].m.tex0, "Missing textured garment: " .. item);
 		foreach( bone in part.mesh.bones) verify( bone, "Unbound gear bone: " .. item);
+		verify( length( actor.nativeDecals) == 1 && actor.nativeDecals[0].mesh.face[0].m.tex0,
+			"Missing decal for " .. item);
+		foreach( bone in actor.nativeDecals[0].mesh.bones) verify( bone, "Unbound decal bone: " .. item);
 		leader.setEquip( idx, null);
 		n++;
 	}
@@ -63,6 +71,6 @@ if( phase == 0){
 }else{
 	local actor = stage.player3d;
 	verify( actor.nativeKey == "trav_natsuko" && !actor.nativeGear.body && actor.nativeOutfit &&
-		!actor.nativeWeapon && !actor.nativeHead && !actor.nativeMask, "Default clothes did not return after unequipping");
+		!actor.nativeWeapon && !actor.nativeHead && !actor.nativeMask && !length( actor.nativeDecals), "Default clothes did not return after unequipping");
 	printf( "[NATIVE GEAR] restored default clothes and unarmed rig\n");
 }

@@ -44,6 +44,7 @@ class RokuganNativePicture extends RPG3DPicture
 	nativeCape = null;
 	nativeKey = null;
 	nativeGear = null;
+	nativeDecals = null;
 
 	function setNative( pc, key, spec, wear){
 		local view = clone pc;
@@ -69,6 +70,7 @@ class RokuganNativePicture extends RPG3DPicture
 			nativeWeapon = addNativePart( weapon);
 		}
 		nativeGear = wear;
+		nativeDecals = [];
 		if( wear){
 			local palette = gearPalette( key, wear.clan);
 			nativeOutfit = wear.body ? addNativePart( GEAR .. wear.body, palette)
@@ -76,6 +78,15 @@ class RokuganNativePicture extends RPG3DPicture
 			if( wear.head) nativeHead = addNativePart( GEAR .. wear.head, palette);
 			if( wear.mask) nativeMask = addNativePart( GEAR .. wear.mask, palette);
 			if( wear.cape) nativeCape = addNativePart( GEAR .. wear.cape, palette);
+			if( gear["decals"]){
+				local clan = wear.clan || gear.palettes[key];
+				if( !gear.clans.contains( clan)) clan = "ronin";
+				foreach( item in [wear.body, wear.head, wear.mask, wear.cape]){
+					if( !item) continue;
+					local sheet = GEAR .. "decal/" .. clan .. "/" .. item .. ".png";
+					nativeDecals .. addNativePart( GEAR .. item .. "_decal", sheet);
+				}
+			}
 		}else{
 			nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
 		}
@@ -112,6 +123,7 @@ class RokuganNativePicture extends RPG3DPicture
 		foreach( part in [nativeBody, nativeOutfit, nativeWeapon, nativeHead, nativeMask, nativeCape]){
 			if( part) part.setVisible( b);
 		}
+		if( nativeDecals) foreach( decal in nativeDecals) decal.setVisible( b);
 	}
 }
 local nativePicture = RokuganNativePicture;
