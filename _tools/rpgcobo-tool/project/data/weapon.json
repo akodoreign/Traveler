@@ -1714,5 +1714,21 @@
 		"opttype": "opt_equip",
 		"price": 1400,
 		"skillid": "S690"
+	},
+	"W161": {
+		"MATK": 0,
+		"PATK": 62,
+		"PMTK": 0,
+		"desc": "A curved polearm carried by Phoenix yojimbo. Counts as Yari for damage and enables Shiba naginata kata.",
+		"eqflag": -1,
+		"eqtype": 3,
+		"icon": "",
+		"mdlid": "EV007",
+		"name": "Shiba Naginata",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 620,
+		"skillid": "S101",
+		"rt_look": "naginata"
 	}
 }

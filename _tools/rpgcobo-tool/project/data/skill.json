@@ -38361,7 +38361,7 @@
 			1,
 			5
 		],
-		"desc": "Shiba kata (naginata). The blade circles like the sun: x1.2, Speed +30% and ATK +15% for 3 turns. (Kata) Needs: yari / naginata.",
+		"desc": "Shiba kata (naginata). The blade circles like the sun: x1.2, Speed +30% and ATK +15% for 3 turns. (Kata) Needs: naginata.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -38406,7 +38406,7 @@
 		"rt_kmul": 1.2,
 		"rt_kkind": "kata",
 		"rt_kreq": [
-			"Yari"
+			"Naginata"
 		],
 		"rt_knostrike": false
 	},
@@ -38442,7 +38442,7 @@
 			1,
 			10
 		],
-		"desc": "Shiba kata (naginata). Stillness before the storm: +2 VP, MDEF +20% for the whole battle. (Kata) Needs: yari / naginata.",
+		"desc": "Shiba kata (naginata). Stillness before the storm: +2 VP, MDEF +20% for the whole battle. (Kata) Needs: naginata.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -38487,7 +38487,7 @@
 		"rt_kmul": 1.0,
 		"rt_kkind": "kata",
 		"rt_kreq": [
-			"Yari"
+			"Naginata"
 		],
 		"rt_knostrike": false
 	},
@@ -38523,7 +38523,7 @@
 			1,
 			15
 		],
-		"desc": "Shiba kata (naginata). Evasion +25%, criticals +15% for 3 turns. (Kata) Needs: yari / naginata.",
+		"desc": "Shiba kata (naginata). Evasion +25%, criticals +15% for 3 turns. (Kata) Needs: naginata.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -38568,7 +38568,7 @@
 		"rt_kmul": 1.0,
 		"rt_kkind": "kata",
 		"rt_kreq": [
-			"Yari"
+			"Naginata"
 		],
 		"rt_knostrike": false
 	},
@@ -38604,7 +38604,7 @@
 			1,
 			20
 		],
-		"desc": "Shiba kata (naginata). Spend every VP held: one extra cut for each, now; then the guard is open (DEF -20%). (Kata) Needs: yari / naginata.",
+		"desc": "Shiba kata (naginata). Spend every VP held: one extra cut for each, now; then the guard is open (DEF -20%). (Kata) Needs: naginata.",
 		"dmgform": 0,
 		"dmgrate": [
 			0.9,
@@ -38649,7 +38649,7 @@
 		"rt_kmul": 1.0,
 		"rt_kkind": "kata",
 		"rt_kreq": [
-			"Yari"
+			"Naginata"
 		],
 		"rt_knostrike": false
 	},

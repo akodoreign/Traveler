@@ -1412,6 +1412,12 @@
 				"reqs": null
 			},
 			{
+				"dataid": "W161",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
 				"dataid": "I101",
 				"price": null,
 				"reqfail": 0,
@@ -1469,6 +1475,12 @@
 		"items": [
 			{
 				"dataid": "W111",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W161",
 				"price": null,
 				"reqfail": 0,
 				"reqs": null
@@ -1549,6 +1561,12 @@
 			},
 			{
 				"dataid": "W115",
+				"price": null,
+				"reqfail": 0,
+				"reqs": null
+			},
+			{
+				"dataid": "W161",
 				"price": null,
 				"reqfail": 0,
 				"reqs": null

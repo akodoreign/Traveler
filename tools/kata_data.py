@@ -147,7 +147,7 @@ KATA = [
      "The phoenix rises: ATK and spells +20%, and he comes back once from the brink. The whole battle."),
 ]
 
-# Shiba Ashimita (Phoenix yojimbo; kata.md "Shiba guests (Yari = naginata)"). User 2026-11-12: "Phoenix yojimbo + the
+# Shiba Ashimita (Phoenix yojimbo). User 2026-11-12: "Phoenix yojimbo + the
 # naginata kata + water spell Stand Against the Waves should be almost god like in number of attacks and damage".
 KATA += [
     ("S795", "K132", "P131", 5, "kata", "Tail of the Sun", 1.2, 3, [("AGI", 30), ("PATK", 15)], None,
@@ -162,14 +162,14 @@ KATA += [
 
 # Weapon requirements (user 2026-11-12: "kiho that say fist, or unarmed only use bare fists (unarmed) ... include claws
 # with martial kiho ... same with kata that require things like katana or yari, or naginata"): kata.md's (req.)
-# column. "Unarmed" = no weapon, bare fists or claws. Naginata counts as Yari.
+# column. "Unarmed" = no weapon, bare fists or claws. Naginata shares the Yari damage type.
 REQ = {
     "S746": ("Katana",), "S747": ("Katana",), "S749": ("Katana",), "S750": ("Katana", "Yari"), "S753": ("Katana",),
     "S754": ("Katana",), "S755": ("Katana",), "S756": ("Katana",), "S757": ("Katana",), "S758": ("Katana", "Unarmed"),
     "S759": ("Katana",), "S764": ("Katana",), "S768": ("Tanto",),
     "S783": ("Unarmed",), "S784": ("Unarmed",), "S785": ("Unarmed",), "S786": ("Unarmed",), "S787": ("Unarmed",),
     "S788": ("Unarmed",), "S789": ("Unarmed",), "S790": ("Unarmed",),
-    "S795": ("Yari",), "S796": ("Yari",), "S797": ("Yari",), "S798": ("Yari",),
+    "S795": ("Naginata",), "S796": ("Naginata",), "S797": ("Naginata",), "S798": ("Naginata",),
 }
 # (user: "give the shugenja only non martial kihos. monks can have any") a shugenja's kiho is a stance taken in place:
 # no strike.

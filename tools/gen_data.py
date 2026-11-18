@@ -1261,9 +1261,9 @@ def crab_stores(st):
     store("R131", "Refugee Market", ["I100", "I101", "I131", "I127"])
     store("R132", "Lion Camp Quartermaster (Lion T4)", ["W138", "W134", "W126", "A135", "A110"])
     store("R133", "Camp Sutler", ["I127", "I104", "I131", "I130", "I125"])
-    store("R134", "Zumiki Village Store (Phoenix T2)", ["A111", "W115", "I101", "I168", "I127"])
-    store("R135", "Treaty City Market (Lion + Phoenix T2)", ["W111", "A111", "A110", "I126", "I168", "I101"])
-    store("R136", "Kyuden Isawa Temple-smith (Phoenix T3)", ["A137", "W115", "A111", "I131", "I018", "I168"])
+    store("R134", "Zumiki Village Store (Phoenix T2)", ["A111", "W115", "W161", "I101", "I168", "I127"])
+    store("R135", "Treaty City Market (Lion + Phoenix T2)", ["W111", "W161", "A111", "A110", "I126", "I168", "I101"])
+    store("R136", "Kyuden Isawa Temple-smith (Phoenix T3)", ["A137", "W115", "W161", "A111", "I131", "I018", "I168"])
     store("R137", "Coast Outfitter (Phoenix T4)", ["A128", "W115", "W123", "A137", "I131", "I168"])
     store("R138", "Silk Chandler (Mantis isles T1)", ["W104", "W105", "A100", "A102", "I100", "I101", "I018"])
     store("R139", "Tortoise Net Shop (Mantis T2)", ["W111", "W114", "W115", "A109", "I101", "I126", "I168"])
@@ -3328,6 +3328,7 @@ def main():
         "W158": "The Crab's sacred sword, born in the Great Forge. Steel a shade darker than any other, and it has never once needed a whetstone.",
         "W159": "Iron claws strapped across the knuckles. A monk's answer to a sword, until the fists catch up. (Unarmed)",
         "W160": "Claws forged at the shrine of the Thunder, still warm. Better than most swords. (Unarmed)",
+        "W161": "A curved polearm carried by Phoenix yojimbo. Counts as Yari for damage and enables Shiba naginata kata.",
         "W155": "A blade too thin to see edge-on. The smith won't say who ordered it, or why they never collected. (T5)",
         "W156": "The smith's master katana with a seam of Wall jade along the back of the blade. (T5, Katana + Jade)",
         "W157": "A katana with a running hare on the tsuba, found on the throne of Shiro Hiruma. How a Usagi blade came "
@@ -3372,7 +3373,8 @@ def main():
              ("W156", "Jade-seamed Master Katana", 2, "S562", "EV000", 146),
              ("W157", "The Hare Sword", 2, "S100", "EV000", 176),
              ("W158", "Kaiu Blade", 2, "S100", "EV000", 126),
-             ("W159", "Iron Nekode", 0, "S690", "EV001", 64), ("W160", "Thunder Claws", 0, "S690", "EV001", 140)]
+             ("W159", "Iron Nekode", 0, "S690", "EV001", 64), ("W160", "Thunder Claws", 0, "S690", "EV001", 140),
+             ("W161", "Shiba Naginata", 3, "S101", "EV007", 62)]
     for wid, name, et, sid, mdl, atk in wlist:
         x = copy.deepcopy(wbase)
         x.update({"name": name, "eqtype": et, "skillid": sid, "mdlid": mdl, "PATK": atk, "price": atk * 10,
@@ -3385,6 +3387,8 @@ def main():
             x["price"] = 0
         if wid == "W142":
             x["rt_look"] = "musket"                          # drawn as a matchlock (gen_sprites2d look_variant)
+        if wid == "W161":
+            x["rt_look"] = "naginata"
         if wid in ("W130", "W157"):                          # Rensei's Rank 2 blade (Crane Ch2 end), the Hare: +crit
             x.setdefault("option", []).append({"LV": 1, "opttype": "opt_status", "propid": "CRI", "val": 15,
                                                "valtype": "supply"})
@@ -4923,7 +4927,7 @@ def main():
         ("P130", "Akodo Hiruto", SC_EP["hiruto"], "W110", "Shizue's uncle. Calm as a go board, and as hard to read."),
         # Phoenix Ch1: Kamasari's yojimbo, told to "keep the boy from falling off his horse" (user: a shugenja never
         # travels alone; at least a yojimbo in the front row)
-        ("P131", "Shiba Ashimita", SC_EP["ashimita"], "W110", "Kamasari's yojimbo. Lean, controlled; his grandfather "
+        ("P131", "Shiba Ashimita", SC_EP["ashimita"], "W161", "Kamasari's yojimbo. Lean, controlled; his grandfather "
                                                                "screams in his ear."),
         # every path until the travelers join up (user): a tattooed Togashi who is never serious (cast #27)
         # Phoenix Ch4: the Emerald Magistrates' tired Crane yoriki walks Haruki to the cliffs (user: a yojimbo)

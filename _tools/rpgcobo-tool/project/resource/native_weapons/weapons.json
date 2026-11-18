@@ -235,6 +235,10 @@
   "W160": {
    "family": "fist",
    "kind": "claws"
+  },
+  "W161": {
+   "family": "pole",
+   "kind": "naginata"
   }
  },
  "speed": 14,
@@ -547,8 +551,35 @@
    "trav_tamotsu": 812
   },
   "naginata": {
-   "side_ashimita": 0,
-   "side_takakana": 29
+   "side_akodorin": 0,
+   "side_ashimita": 29,
+   "side_gonta": 58,
+   "side_goro": 87,
+   "side_gusai": 116,
+   "side_haku": 145,
+   "side_hanae": 174,
+   "side_hayato": 203,
+   "side_hiruto": 232,
+   "side_kafu_nosword": 261,
+   "side_kage_ch3": 290,
+   "side_kasiko": 319,
+   "side_lionrider": 348,
+   "side_michio": 377,
+   "side_rui": 406,
+   "side_ryoichi": 435,
+   "side_ryuko": 464,
+   "side_sachiko": 493,
+   "side_sanro": 522,
+   "side_takakana": 551,
+   "side_ushimo": 580,
+   "trav_gendo": 609,
+   "trav_haruki": 638,
+   "trav_mitsue": 667,
+   "trav_natsuko": 696,
+   "trav_rensei": 725,
+   "trav_sayo": 754,
+   "trav_shizue": 783,
+   "trav_tamotsu": 812
   },
   "nodachi": {
    "side_hiro": 0

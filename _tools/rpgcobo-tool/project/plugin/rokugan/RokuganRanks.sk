@@ -151,6 +151,7 @@ local WEAPON_BIT = { Katana = 0, Yari = 1, Tanto = 2, Tetsubo = 3, Yumi = 4, Bo 
 	local claws = wd && wd["name"] && wd.name.toLowerCase().indexOf( "claw") >= 0;
 	foreach( r in req){
 		if( r == "Unarmed" && (!wd || claws || (bits & (1 << 12)))) return true;
+		if( r == "Naginata" && wd && wd["rt_look"] == "naginata") return true;
 		if( r != "Unarmed" && wd && (r in WEAPON_BIT) && (bits & (1 << WEAPON_BIT[r]))) return true;
 	}
 	return false;

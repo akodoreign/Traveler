@@ -1,0 +1,14 @@
+local ash = ::rpgstat.playermap.P131;
+local verify = @(test, message){ if( !test) throw Exception( message); };
+verify( ash.getWeapon().dataid == "W161", "Ashimita did not start with the naginata");
+local model = RPG3DObject.create3DObject( { mdlid=ash.data.mdlid, rt_wearer=ash });
+verify( model.nativeWeapon && model.nativeWeaponKind == "naginata", "Missing native naginata model");
+verify( model.anime2( #{ id="atk_slash" }), "Missing naginata actor slash animation");
+foreach( sid in ["S795", "S796", "S797", "S798"])
+	verify( ::Rokugan.kataWeaponOk( ash, ::conf.skill[sid]), "Naginata did not unlock " .. sid);
+foreach( wid in ["W101", "W110"]){
+	ash.setEquip( 0, RPGObject.create( wid));
+	foreach( sid in ["S795", "S796", "S797", "S798"])
+		verify( !::Rokugan.kataWeaponOk( ash, ::conf.skill[sid]), "Wrong weapon unlocked " .. sid);
+}
+printf( "[NAGINATA] starter model and all four kata verified\n");
