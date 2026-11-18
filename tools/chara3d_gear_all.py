@@ -97,12 +97,15 @@ def main():
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--check", action="store_true")
     mode.add_argument("--head-only", action="store_true", help="refresh equipped headwear detail without rebuilding palettes or decals")
+    mode.add_argument("--garments-only", action="store_true", help="refresh body garments and their decal geometry")
     args = parser.parse_args()
     index, looks = build_index()
-    if args.head_only:
+    if args.head_only or args.garments_only:
         with tempfile.TemporaryDirectory() as temp:
             job = Path(temp) / "headwear.json"
-            job.write_text(json.dumps({"out": str(OUT), "head_only": True}), encoding="utf-8")
+            job.write_text(json.dumps({"out": str(OUT), "head_only": args.head_only,
+                                       "garments_only": args.garments_only,
+                                       "natsuko": looks["trav_natsuko"]}), encoding="utf-8")
             export(job)
     elif not args.check:
         textures = OUT / "palette"

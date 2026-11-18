@@ -146,12 +146,13 @@ def export(job):
             c.signature_mask(mask, spec)
             save_piece(scene, out, rig, f"{key}_mask", mask)
 
-    if job.get("accessories"):
+    if job.get("accessories") or job.get("outfits_only"):
         rig = c.make_armature(c.rest_frames())
         for key, spec, family, _ in job["models"]:
-            if spec.get("ear_ornament") or spec.get("head_tattoo") or spec.get("glasses"):
+            if job.get("accessories") and (spec.get("ear_ornament") or spec.get("head_tattoo") or spec.get("glasses")):
                 save_cast(key + "_body", c.build_character(spec, "bare", "none"), rig, f"motion_{family}")
-            save_mask(key, spec, rig)
+            if job.get("accessories"):
+                save_mask(key, spec, rig)
             default = spec.get("build", "normal")
             dressed = "armored" if default.startswith("armored") or default == "heavy" else "robe"
             save_cast(key + "_outfit", outfit(spec, dressed), rig)

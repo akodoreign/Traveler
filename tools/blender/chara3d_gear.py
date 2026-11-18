@@ -175,9 +175,10 @@ def export(job):
     rig = c.make_armature(c.rest_frames())
     from head_surfaces import HAT_SURFACE, HeadSurface, make_textures
 
-    detail = make_textures(out / "tex", set(HAT_SURFACE.values()), color_maps=False)
+    garments_only = job.get("garments_only")
+    detail = None if garments_only else make_textures(out / "tex", set(HAT_SURFACE.values()), color_maps=False)
     for item, slot in catalog.registry().items():
-        if job.get("head_only") and slot != "head":
+        if (job.get("head_only") and slot != "head") or (garments_only and slot != "body"):
             continue
         skin = c.Skin()
         if slot == "body":
@@ -199,7 +200,8 @@ def export(job):
         native.save_piece(scene, out, rig, item + "_decal", decal, texture_uv=decal_uv, alpha_test=True)
     if job.get("head_only"):
         return
-    for weapon in catalog.WEAPONS:
+    weapons = () if garments_only else catalog.WEAPONS
+    for weapon in weapons:
         skin = c.Skin()
         if weapon == "musket":
             w = {"weapon": 1.}

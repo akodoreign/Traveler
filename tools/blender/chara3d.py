@@ -667,13 +667,34 @@ def coat(S, spec):
     turn_edge([i * (n + 1) + n for i in range(len(ys))])
     S.add((verts, faces), colour, [skirt_w(v) for v in verts], colours=colours)
 
+def shoulder_yoke(S, colour, side, sign, part):
+    """Join the shirt to the sleeve through the shoulder and underarm."""
+    rings = [((0., 93.3, 4.8 * sign), 3.45, 1.75),
+             ((0., 93.15, 7.2 * sign), 3.95, 2.15),
+             ((0., 92.85, 9.4 * sign), 4.15, 2.35),
+             ((0., 92.4, 11.7 * sign), 4.05, 2.5)]
+    vertices, faces = tube(rings, 16)
+    sleeve_weights = arm_w(side)
+    weights = []
+    for _, y, z in vertices:
+        # The inner cloth follows the chest; the outer cloth follows the sleeve.
+        t = min(1., max(0., (abs(z) - 5.1) / 6.4))
+        t = t * t * (3. - 2. * t)
+        weight = {bone: influence * t for bone, influence in sleeve_weights(y).items()}
+        weight["spine"] = weight.get("spine", 0.) + 1. - t
+        weights.append({bone: influence for bone, influence in weight.items() if influence > 0.})
+    S.add((vertices, faces), colour, weights, part=part)
+
+
 def kimono(S, spec, wide=False):
     """Overlapping collar, fitted shoulders and wide sleeves with a returned cuff."""
     top, collar = tuple(spec["top"]), tuple(spec.get("collar", WHITE))
     lining = tuple(spec.get("lining", spec["accent"]))
     motif = tuple(spec["pcol"]) if wide and spec.get("pattern") and spec.get("pcol") else None
     S.loft(cover("torso", 60, 96, 1.25), top, torso_w(), n=16)
+    torso_part = S.parts
     for s, sg in SIDES:
+        shoulder_yoke(S, top, s, sg, torso_part)
         # Each lapel is a flat ribbon that runs along the actual torso profile.
         stations = [(95.8, 3.5, .7), (93, 3.2, 1.05), (88, 2., 1.1),
                     (83, .55, 1.1), (78, -1.15, 1.), (73, -2.8, .72)]

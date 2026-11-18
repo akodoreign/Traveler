@@ -126,6 +126,7 @@ def main():
     mode.add_argument("--bust-skin", action="store_true", help="re-export only bodies with sampled bust colors")
     mode.add_argument("--accessories", action="store_true", help="refresh costume pieces, body ornaments and outfit fit")
     mode.add_argument("--head-surfaces", action="store_true", help="refresh hair, headbands and authored helmet meshes")
+    mode.add_argument("--outfits-only", action="store_true", help="refresh outfit meshes without regenerating bodies or motion")
     args = parser.parse_args()
     outfits = batch.RESOURCE / "native_chara"
     outfits.mkdir(exist_ok=True)
@@ -155,7 +156,8 @@ def main():
         jobs = [job for job in jobs if native_skin(batch.RESOURCE, job[0], look(job[0])) is not None]
     job.write_text(json.dumps({"out": str(outfits), "models": jobs, "motions": frames,
                                "body_only": args.bust_skin, "accessories": args.accessories,
-                               "head_surfaces": args.head_surfaces}), encoding="utf-8")
+                               "head_surfaces": args.head_surfaces,
+                               "outfits_only": args.outfits_only}), encoding="utf-8")
     log = work / "native_roster.log"
     with log.open("w", encoding="utf-8") as output:
         proc = subprocess.run([batch.c3.blender_exe(), "-b", "--factory-startup", "--threads", "4",
