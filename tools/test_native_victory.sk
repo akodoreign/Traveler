@@ -1,0 +1,59 @@
+// Play the real victory animation ID and verify the selected weapon, motion and rig.
+local stage = ::rpgstage;
+local lead = stage.player3d.rpgobj;
+local haruki = ::rpgstat.playermap.P104, gendo = ::rpgstat.playermap.P102;
+local phase = ::Rokugan["victoryTestPhase"] ?? 0;
+::Rokugan.victoryTestPhase <- phase + 1;
+local verify = @( test, message){ if( !test) throw Exception( message); };
+local equip = @( player, id) player.setEquip( player.getEquipableSlot( id), RPGObject.create( id));
+
+if( phase == 0){
+	verify( stage.player3d.nativeWeaponKind == "yari", "Starting spear did not resolve");
+	equip( haruki, "W101");
+	local crab = RPG3DObject.create3DObject( lead.data);
+	local phoenix = RPG3DObject.create3DObject( haruki.data);
+	verify( phoenix.nativeWeaponKind == "yari", "Haruki did not pick up the equipped spear");
+	local a = crab.anime2( #{id="victory"}), b = phoenix.anime2( #{id="victory"});
+	verify( a && b && a.id == "_native_victory" && b.id == a.id, "Battle victory ID did not start both native dances");
+	verify( crab.nativeBody.motion != crab.nativeCombatMotion && phoenix.nativeBody.motion != phoenix.nativeCombatMotion,
+		"Victory did not switch to the dance motion");
+	verify( crab.animemap["_native_victory"].st != phoenix.animemap["_native_victory"].st,
+		"Two spearmen did not use distinct clips in the same weapon bank");
+	::Rokugan.victoryInitialFrame <- a.frametime;
+	foreach( i, actor in [crab, phoenix]){
+		stage.scn.addObject( actor);
+		actor.pos( stage.player3d.pos.x + 1.5 + 1.5 * i, stage.player3d.pos.y, stage.player3d.pos.z);
+		actor.setDir( stage.player3d.dir + Math.PI);
+	}
+	::Rokugan.victoryActors <- [crab, phoenix];
+	printf( "[NATIVE VICTORY] two characters, distinct spear dances\n");
+}else if( phase == 1){
+	local crab = ::Rokugan.victoryActors[0];
+	verify( crab.animlayers.layers[0].frametime != ::Rokugan.victoryInitialFrame,
+		"Victory playback did not advance");
+	verify( crab.anime2( #{id="stand"}) && crab.nativeBody.motion == crab.nativeCombatMotion,
+		"Normal movement did not restore the combat motion");
+	equip( lead, "W100");
+	printf( "[NATIVE VICTORY] looping dance advances and restores idle\n");
+}else if( phase == 2){
+	local actor = stage.player3d;
+	verify( actor.nativeWeaponKind == "katana" && actor.nativeWeapon.mesh.res.name == "W100.pm",
+		"Spear to katana did not refresh the field weapon");
+	verify( actor.anime2( #{id="victory"}) && actor.nativeVictoryKind == "katana" &&
+		actor.nativeBody.motion != ::Rokugan.victoryActors[1].nativeBody.motion, "Katana selected a spear dance");
+	equip( lead, "W151");
+	printf( "[NATIVE VICTORY] changing weapon family changes dance\n");
+}else{
+	verify( stage.player3d.nativeWeapon.mesh.res.name == "W151.pm", "Same-family item swap left the old weapon mesh");
+	equip( gendo, "W142");
+	local musketeer = RPG3DObject.create3DObject( gendo.data);
+	verify( musketeer.nativeWeaponKind == "musket" && musketeer.anime2( #{id="atk_slash"}),
+		"Musket did not play its own combat animation");
+	verify( musketeer.anime2( #{id="victory"}) && musketeer.nativeVictoryKind == "musket",
+		"Musket did not select its victory clip");
+	equip( lead, "W159");
+	local claws = RPG3DObject.create3DObject( lead.data);
+	verify( claws.nativeWeaponKind == "claws" && claws.nativeWeapon.mesh.bones[0],
+		"Hand weapons did not bind to the rig");
+	printf( "[NATIVE VICTORY] item meshes, musket action and hand weapons verified\n");
+}

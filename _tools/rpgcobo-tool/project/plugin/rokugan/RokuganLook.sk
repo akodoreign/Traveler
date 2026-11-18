@@ -13,7 +13,6 @@
 //
 local srcdir = dirname( callee().getSourceName());
 runsk( srcdir .. "/RokuganLookData.sk");
-runsk( srcdir .. "/RokuganNativeChara.sk");
 
 ::Rokugan.lookWeapon <- function( pc){
 	local w = pc.getWeapon();
@@ -69,7 +68,7 @@ runsk( srcdir .. "/RokuganNativeChara.sk");
 	local signature = pc.dataid .. "=" .. (id ?? "");
 	if( !gear) return signature;
 	return signature .. "|" .. [gear.body || "", gear.head || "", gear.mask || "", gear.cape || "",
-		gear.clan || "", gear.own ? "own" : gear.weapon].join( "|");
+		gear.clan || "", gear.weaponId, gear.own ? "own" : gear.weapon].join( "|");
 };
 //	A player definition or explicit follower context -> the live RPGPlayer.
 ::Rokugan.lookPlayerOf <- function( v){
@@ -143,5 +142,8 @@ foreach( g in ["facepalm", "shrug", "crossarms", "scratch", "point"]){
 	}
 	return _rt_anime2_fb( t);
 };
+
+// Load the subclass after installing the sprite animation fallback it inherits.
+runsk( srcdir .. "/RokuganNativeChara.sk");
 
 printf( "Rokugan look plugin loaded\n");

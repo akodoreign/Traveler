@@ -39,6 +39,9 @@ py -3.12 -E tools\chara3d_native_all.py --check               # check asset inve
 py -3.12 -E tools\chara3d_gear_all.py                         # export shared gear and wearer texture atlases
 py -3.12 -E tools\chara3d_gear_all.py --check                 # verify the wearable catalog, meshes and textures
 py -3.12 -E tools\test_native_gear.py                        # test live equips, clan colour and unequipping
+py -3.12 -E tools\chara3d_victory_all.py                     # build inventory meshes and victory motion banks
+py -3.12 -E tools\chara3d_victory_all.py --check             # verify the weapon and dance catalog
+py -3.12 -E tools\test_native_victory.py                     # exercise weapon changes and victory playback
 py -3.12 -E tools\test_chara3d_native.py                      # export and play the native Natsuko test in Pleasant Eaves
 ```
 
@@ -75,6 +78,18 @@ in `project/resource/native_gear/decal/<clan>/<item>.png`.
 
 New wearable armor IDs need a design in the catalog. Run the gear exporter after adding a design or
 changing a character palette. Assets are stored in `project/resource/native_gear`.
+
+## Weapons and victory
+
+The inventory weapon ID selects the mesh, so weapons of the same type can have different grips,
+fittings, and materials. Unarmed attacks and hand weapons have their own visible states. Existing
+combat motion families are shared where appropriate, with dedicated carry and combat tracks for
+the musket and weapons that cannot be sheathed.
+
+Each native actor has a victory clip for their authored weapon, and playable native actors have
+clips for the weapon types they can equip. Weapon-specific grips and flourishes are combined with
+character footwork and finishes in `tools/victory_poses.py`. The eight travelers have authored styles.
+The victory sequence uses the currently equipped weapon and the same body rig as combat.
 
 ## Known gaps
 

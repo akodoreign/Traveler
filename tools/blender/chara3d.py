@@ -830,6 +830,11 @@ def pose_frames(c):
     crown = J["neck"] + up * (REST["tail"][1] - 97) + look * REST["tail"][0]                                  # hair hangs from the back of the head
     F["tail"] = frame(crown, crown - EY - look * .15, look)
     F["weapon"] = frame(gear["at"], gear["at"] + gear["dir"], EY + EX * .01) if gear else None
+    if gear and c["weapon"].get("roll"):
+        at, x, y, z = F["weapon"]
+        roll = math.radians(c["weapon"]["roll"])
+        cos, sin = math.cos(roll), math.sin(roll)
+        F["weapon"] = (at, cos * x + sin * z, y, cos * z - sin * x)
     F["sheathed"] = None if gear else F["pelvis"]
     for s, sg in SIDES:
         yaw, pitch = (math.radians(v) for v in c["feet"][s][3:5])

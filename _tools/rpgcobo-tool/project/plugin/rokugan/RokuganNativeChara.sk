@@ -1,10 +1,13 @@
 // Native weighted gear uses one mesh per item and an atlas selected by its wearer.
 local ROOT = "/resource/native_chara/";
 local GEAR = "/resource/native_gear/";
+local ARMS = "/resource/native_weapons/";
 local index = ::getResource( ROOT .. "roster.json");
 local roster = index ? decodeJSON( index.loadData()) : {};
 local assets = ::getResource( GEAR .. "gear.json");
 local gear = assets ? decodeJSON( assets.loadData()) : null;
+local armIndex = ::getResource( ARMS .. "weapons.json");
+local arms = armIndex ? decodeJSON( armIndex.loadData()) : null;
 
 ::Rokugan.clothingFor <- function( pc){
 	if( !pc || !gear) return null;
@@ -13,7 +16,7 @@ local gear = assets ? decodeJSON( assets.loadData()) : null;
 	local own = false;
 	if( w) foreach( id in defaults){ if( id == weaponId){ own = true; break; } }
 	local wear = { body=null, head=null, mask=null, cape=null, headAccessory=null,
-		clan=pc.data["rt_clan"], weapon=this.lookWeapon( pc), own=own };
+		clan=pc.data["rt_clan"], weapon=this.lookWeapon( pc), weaponId=weaponId, own=own };
 	foreach( item in pc.equips){
 		if( !item) continue;
 		local slot = gear.items[item.dataid];
@@ -45,6 +48,9 @@ class RokuganNativePicture extends RPG3DPicture
 	nativeKey = null;
 	nativeGear = null;
 	nativeDecals = null;
+	nativeWeaponKind = null;
+	nativeCombatMotion = null;
+	nativeVictoryKind = null;
 
 	function setNative( pc, key, spec, wear){
 		local view = clone pc;
@@ -55,19 +61,33 @@ class RokuganNativePicture extends RPG3DPicture
 		nativeBody.scale << Vector3D( 0.015);
 		nativeBody.rot.setHPB( Math.HPI, 0.0, 0.0);
 		local kind = spec.weapon, family = spec.motion, own = true;
-		if( wear && !wear.own){
+		local item = wear && arms ? arms.items[wear.weaponId] : null;
+		if( item){
+			kind = item.kind;
+			family = spec.motion == "iai" && (kind == "katana" || kind == "kakita") ? "iai" : item.family;
+		}else if( wear && !wear.own){
 			kind = wear.weapon;
 			own = kind == spec.weapon;
 			family = own ? spec.motion : kind == "none" ? "fist" : gear.weapons[kind];
 			if( kind == "kakita" && spec.motion == "iai") family = "iai";
 			if( !family){ kind = spec.weapon; family = spec.motion; own = true; }
 		}
-		if( family != spec.motion){
-			nativeBody.setMotion( ::getMotionData( ::getResource( ROOT .. "motion_" .. family .. ".mot")));
+		local customCombat = arms && arms.combat.contains( kind);
+		if( customCombat || family != spec.motion){
+			local motionPath = customCombat ? ARMS .. "combat_" .. kind .. ".mot" : ROOT .. "motion_" .. family .. ".mot";
+			nativeBody.setMotion( ::getMotionData( ::getResource( motionPath)));
 		}
+		nativeCombatMotion = nativeBody.motion;
+		nativeWeaponKind = kind;
 		if( kind != "none"){
-			local weapon = own ? ROOT .. key .. "_weapon" : GEAR .. "weapon_" .. kind;
+			local weapon = item ? ARMS .. wear.weaponId : own ? ROOT .. key .. "_weapon" : GEAR .. "weapon_" .. kind;
 			nativeWeapon = addNativePart( weapon);
+		}
+		local dances = arms ? arms.victory[kind] : null;
+		if( dances && key in dances){
+			nativeVictoryKind = kind;
+			local start = dances[key];
+			animemap["_native_victory"] <- { st=start, en=start + arms.frames, spd=arms.speed, loop=true, replay=false };
 		}
 		nativeGear = wear;
 		nativeDecals = [];
@@ -103,6 +123,22 @@ class RokuganNativePicture extends RPG3DPicture
 		nativeBody.assignBonesToPolygonMesh( part.mesh);
 		nativeBody.addChild( part);
 		return part;
+	}
+
+	function anime2( t){
+		if( nativeVictoryKind && (t.id == "victory" || t.id == "victory2" || t.id == "celebration" || t.id == "victory_in")){
+			local request = clone t;
+			request.id = "_native_victory";
+			local layer = super.anime2( request);
+			if( layer){
+				local motion = ::getMotionData( ::getResource( ARMS .. "victory_" .. nativeVictoryKind .. ".mot"));
+				if( nativeBody.motion != motion) nativeBody.setMotion( motion);
+			}
+			return layer;
+		}
+		local layer = super.anime2( t);
+		if( layer && nativeCombatMotion && nativeBody.motion != nativeCombatMotion) nativeBody.setMotion( nativeCombatMotion);
+		return layer;
 	}
 
 	function updateSRT(){
