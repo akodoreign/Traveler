@@ -68,6 +68,11 @@ Costume variants of the same person share proportions. Equipment follows the sam
 interaction bounds are unchanged. Run `tools\chara3d_native_all.py --index-only` to refresh
 proportions without rebuilding the meshes.
 
+Native skin colors use cheek midtones from each character's dedicated neutral dialogue bust,
+tempered by the authored body palette so painted highlights and shadows do not carry over in
+full. Characters without a usable dedicated reference keep their authored color. Run
+`tools\chara3d_native_all.py --bust-skin` to refresh matched bodies without re-exporting animations or gear.
+
 Travelers and story companions get their starting equipment from `STARTER_WEAR` in
 `tools\gen_data.py`. Weapons stay tied to each character's story loadout. Native characters
 with starter armor use the wrapped base body when their body slot is empty; helmets and masks

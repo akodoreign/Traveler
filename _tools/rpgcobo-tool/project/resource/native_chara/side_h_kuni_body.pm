@@ -72,10 +72,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c98897c"
+		name = "c998b7d"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x514134ff
+		basecol = 0x524335ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -85,10 +85,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cd7c2af"
+		name = "cd8c4b0"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xaf8b6fff
+		basecol = 0xb08e70ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -124,10 +124,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cfae2cc"
+		name = "cfce5cd"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xf4c39cff
+		basecol = 0xf8c99dff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000

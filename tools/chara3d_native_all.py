@@ -5,6 +5,7 @@ import subprocess
 from zlib import crc32
 
 import chara3d_all as batch
+from bust_skin import native_skin
 from chara3d_sheet import extra_clips, family, look
 from rig3d_poses import SPECIAL, VIEWS
 
@@ -68,6 +69,9 @@ def build_registry(group=None):
         if group and category != group:
             continue
         spec = look(key)
+        tone = native_skin(batch.RESOURCE, key, spec)
+        if tone is not None:
+            spec["skin"] = tone
         weapon, kin = spec.get("weapon", "none"), family(spec)
         jobs.append((key, spec, kin, weapon))
         if kin not in frames:
@@ -95,6 +99,7 @@ def main():
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--check", action="store_true", help="verify the complete deployed index and assets")
     mode.add_argument("--index-only", action="store_true", help="refresh metadata without re-exporting meshes")
+    mode.add_argument("--bust-skin", action="store_true", help="re-export only bodies with sampled bust colors")
     args = parser.parse_args()
     outfits = batch.RESOURCE / "native_chara"
     outfits.mkdir(exist_ok=True)
@@ -120,7 +125,10 @@ def main():
         print(f"Indexed {len(roster)} models without re-exporting geometry")
         return
     job = work / "native_roster_job.json"
-    job.write_text(json.dumps({"out": str(outfits), "models": jobs, "motions": frames}), encoding="utf-8")
+    if args.bust_skin:
+        jobs = [job for job in jobs if native_skin(batch.RESOURCE, job[0], look(job[0])) is not None]
+    job.write_text(json.dumps({"out": str(outfits), "models": jobs, "motions": frames,
+                               "body_only": args.bust_skin}), encoding="utf-8")
     log = work / "native_roster.log"
     with log.open("w", encoding="utf-8") as output:
         proc = subprocess.run([batch.c3.blender_exe(), "-b", "--factory-startup", "--threads", "4",
@@ -131,7 +139,7 @@ def main():
         raise SystemExit(f"Blender export failed; see {log}")
     verify_assets(outfits, roster)
     index.write_text(json.dumps(roster, indent=1) + "\n", encoding="utf-8", newline="\n")
-    print(f"Exported {len(jobs)} models; {len(roster)} in {index}")
+    print(f"Exported {len(jobs)} {'bodies' if args.bust_skin else 'models'}; {len(roster)} in {index}")
 
 
 if __name__ == "__main__":

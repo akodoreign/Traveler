@@ -107,6 +107,12 @@ def export(job):
             save_piece(scene, out, rig, name, skin, "rig", write_motion=name == "body")
         return
 
+    if job.get("body_only"):
+        rig = c.make_armature(c.rest_frames())
+        for key, spec, family, _ in job["models"]:
+            save_piece(scene, out, rig, key + "_body", c.build_character(spec, "bare", "none"), f"motion_{family}")
+        return
+
     rigs = {}
     for key, spec, family, weapon in job["models"]:
         print(f"NATIVE {key}", flush=True)
