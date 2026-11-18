@@ -53,7 +53,8 @@
   "A170": "head",
   "A171": "head",
   "A172": "head",
-  "A173": "body"
+  "A173": "body",
+  "A174": "mask"
  },
  "palettes": {
   "side_abbot": "peasant",

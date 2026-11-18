@@ -16,9 +16,13 @@ local arms = armIndex ? decodeJSON( armIndex.loadData()) : null;
 	local w = pc.getWeapon(), weaponId = w ? w.dataid : "";
 	local defaults = pc.data["equips"] || [];
 	local own = false;
-	if( w) foreach( id in defaults){ if( id == weaponId){ own = true; break; } }
+	local starterBody = false;
+	foreach( id in defaults){
+		if( w && id == weaponId) own = true;
+		if( id && gear.items[id] == "body") starterBody = true;
+	}
 	local wear = { body=null, head=null, mask=null, cape=null, headAccessory=null,
-		clan=pc.data["rt_clan"], weapon=this.lookWeapon( pc), weaponId=weaponId, own=own };
+		clan=pc.data["rt_clan"], weapon=this.lookWeapon( pc), weaponId=weaponId, own=own, starterBody=starterBody };
 	foreach( item in pc.equips){
 		if( !item) continue;
 		local slot = gear.items[item.dataid];
@@ -98,7 +102,7 @@ class RokuganNativePicture extends RPG3DPicture
 		if( wear){
 			local palette = gearPalette( key, wear.clan);
 			if( wear.body) nativeOutfit = addNativePart( GEAR .. wear.body, palette);
-			else if( key != "trav_natsuko") nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
+			else if( !wear.starterBody) nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
 			if( wear.head) nativeHead = addNativePart( GEAR .. wear.head, palette);
 			if( wear.mask) nativeMask = addNativePart( GEAR .. wear.mask, palette);
 			if( wear.cape) nativeCape = addNativePart( GEAR .. wear.cape, palette);

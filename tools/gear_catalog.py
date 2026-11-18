@@ -33,7 +33,7 @@ HEAD = {
 }
 ACCESSORY = {
     "A114": "oni", "A145": "iron", "A146": "cedar", "A147": "ink", "A148": "silk",
-    "A149": "jade", "A150": "giseiki", "A151": "abbot",
+    "A149": "jade", "A150": "giseiki", "A151": "abbot", "A174": "cloth",
 }
 CAPE = "A125"
 

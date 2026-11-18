@@ -942,6 +942,47 @@ def bestiary_drops(e, it):
     return done
 
 
+STARTER_WEAR = {
+    # Head, body, accessory (weapon is authored alongside each character).
+    "P100": ("A110", "A173", None),  # Natsuko
+    "P101": (None, "A100", None),    # Rensei
+    "P102": (None, "A100", None),    # Gendo
+    "P103": (None, "A101", None),    # Shizue
+    "P104": (None, "A111", None),    # Haruki
+    "P105": (None, "A100", "A174"),  # Mitsue
+    "P106": (None, "A155", None),    # Tamotsu
+    "P107": ("A102", "A100", None),  # Sayo
+    "P120": (None, "A108", None),    # Sachiko
+    "P121": (None, "A100", None),    # Ryoichi
+    "P122": (None, "A100", None),    # Squeak (legacy model)
+    "P123": (None, "A101", None),    # Goro
+    "P124": (None, "A111", None),    # Michio
+    "P125": (None, "A100", None),    # Gonta
+    "P126": (None, "A100", None),    # Kage after losing his armor
+    "P127": (None, "A101", None),    # Gusai
+    "P128": ("A102", "A101", None),  # Lion rider
+    "P129": (None, "A100", None),    # Kafu without his sword
+    "P130": (None, "A101", None),    # Hiruto
+    "P131": (None, "A101", None),    # Ashimita
+    "P132": (None, "A111", None),    # Yosai
+    "P133": (None, "A100", None),    # Hayato
+    "P134": ("A103", "A101", None),  # Ushimo
+    "P135": (None, "A111", None),    # Sanro
+    "P136": (None, "A101", None),    # Rui
+    "P137": (None, "A111", None),    # Kasiko
+    "P138": (None, "A101", None),    # Rin
+    "P139": (None, "A111", None),    # Haku
+    "P140": (None, "A155", None),    # Ryuko
+    "P141": (None, "A101", None),    # Hanae
+}
+
+
+def starter_equips(pid, weapon):
+    head, body, accessory = STARTER_WEAR[pid]
+    equips = [weapon, None, head, body, accessory]
+    return equips if accessory else equips[:-1]
+
+
 def crab_armor(ar):
     def body(aid, src, name, pdef, price, eqtype=None):
         x = copy.deepcopy(ar[src])
@@ -954,6 +995,8 @@ def crab_armor(ar):
     body("A102", "A040", "Jingasa", 3, 60)
     body("A173", "A020", "Crab Scout Light Armor", 12, 160)
     ar["A173"]["desc"] = "Light lamellar issued to Hiruma scouts for patrols along the Wall."
+    body("A174", "A055", "Scorpion Cloth Mask", 0, 40)
+    ar["A174"]["desc"] = "A plain cloth half-mask worn by a young Scorpion agent."
     ar["A100"]["desc"] = "Sturdy hemp and a good cloak. Light; no penalty to speed."
     ar["A101"]["desc"] = "Laced iron scales of the Wall's foot soldiers. Heavy but honest."
     ar["A102"]["desc"] = "A lacquered conical hat. Keeps off rain, sun and the occasional arrow."
@@ -4915,7 +4958,7 @@ def main():
     ]
     for pid, name, mdl, wid, desc in travelers:
         x = copy.deepcopy(pb)
-        equips = [wid, None, "A110", "A173"] if pid == "P100" else [wid, "A000"]
+        equips = starter_equips(pid, wid)
         x.update({"name": name, "mdlid": mdl, "desc": desc, "equips": equips, "defskillid": "S003",
                   "voiceid": "", "lvoption": [{"LV": 1, "opttype": "opt_getskill", "skillid": "S110"}] if pid == "P100"
                   else haruki_spells() if pid == "P104"

@@ -1,0 +1,21 @@
+local ids = ["P100", "P101", "P102", "P103", "P104", "P105", "P106", "P107"];
+for( local i = 120; i <= 141; i++) ids .. ("P%d" % [i]);
+foreach( id in ids){
+	local p = ::rpgstat.playermap[id];
+	if( !p.equips[0] || !p.equips[3]) throw Exception( "Incomplete starter gear: " .. id);
+	if( id == "P122") continue; // Squeak uses his legacy model.
+	local render = @() RPG3DObject.create3DObject( { mdlid=p.data.mdlid, rt_wearer=p });
+	local model = render();
+	if( !model.nativeOutfit || model.nativeGear.body != p.equips[3].dataid)
+		throw Exception( "Starter outfit missing on " .. id);
+	if( p.equips[2] && (!model.nativeHead || model.nativeGear.head != p.equips[2].dataid))
+		throw Exception( "Starter headgear missing on " .. id);
+	if( id == "P105"){
+		if( !model.nativeMask || model.nativeGear.mask != "A174") throw Exception( "Mitsue's starter mask missing");
+		p.setEquip( 4, null);
+		if( render().nativeMask) throw Exception( "Mitsue's unequipped mask is still visible");
+	}
+	p.setEquip( 3, null);
+	if( render().nativeOutfit) throw Exception( "Unequipped outfit is still visible on " .. id);
+}
+printf( "[STARTER WEAR] All 30 starter kits verified\n");

@@ -68,9 +68,10 @@ Costume variants of the same person share proportions. Equipment follows the sam
 interaction bounds are unchanged. Run `tools\chara3d_native_all.py --index-only` to refresh
 proportions without rebuilding the meshes.
 
-Natsuko starts with Crab Scout Light Armor and a Kabuto. Each equipped slot controls its own
-visible piece; with both slots empty, she uses the wrapped base body. Existing saves keep their
-loadouts.
+Travelers and story companions get their starting equipment from `STARTER_WEAR` in
+`tools\gen_data.py`. Weapons stay tied to each character's story loadout. Native characters
+with starter armor use the wrapped base body when their body slot is empty; helmets and masks
+follow their own slots. Squeak still uses his legacy model. Existing saves keep their loadouts.
 
 ## Equipped clothing
 

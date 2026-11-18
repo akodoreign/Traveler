@@ -13584,7 +13584,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W100",
-			null
+			null,
+			null,
+			"A100"
 		],
 		"expcurv": [
 			50,
@@ -15021,7 +15023,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W105",
-			null
+			null,
+			null,
+			"A100"
 		],
 		"expcurv": [
 			50,
@@ -16460,7 +16464,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W100",
-			null
+			null,
+			null,
+			"A101"
 		],
 		"expcurv": [
 			50,
@@ -17887,7 +17893,9 @@
 		"eqtypebits": 67075583,
 		"equips": [
 			"W105",
-			null
+			null,
+			null,
+			"A111"
 		],
 		"expcurv": [
 			50,
@@ -19429,7 +19437,10 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W102",
-			null
+			null,
+			null,
+			"A100",
+			"A174"
 		],
 		"expcurv": [
 			50,
@@ -20871,7 +20882,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W104",
-			null
+			null,
+			null,
+			"A155"
 		],
 		"expcurv": [
 			50,
@@ -22288,7 +22301,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W100",
-			null
+			null,
+			"A102",
+			"A100"
 		],
 		"expcurv": [
 			50,
@@ -23730,7 +23745,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W103",
-			null
+			null,
+			null,
+			"A108"
 		],
 		"expcurv": [
 			50,
@@ -25117,7 +25134,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W102",
-			null
+			null,
+			null,
+			"A100"
 		],
 		"expcurv": [
 			50,
@@ -26499,7 +26518,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W102",
-			null
+			null,
+			null,
+			"A100"
 		],
 		"expcurv": [
 			50,
@@ -27895,7 +27916,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W110",
-			null
+			null,
+			null,
+			"A101"
 		],
 		"expcurv": [
 			50,
@@ -29282,7 +29305,9 @@
 		"eqtypebits": 67075583,
 		"equips": [
 			"W115",
-			null
+			null,
+			null,
+			"A111"
 		],
 		"expcurv": [
 			50,
@@ -30724,7 +30749,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W113",
-			null
+			null,
+			null,
+			"A100"
 		],
 		"expcurv": [
 			50,
@@ -32090,7 +32117,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W113",
-			null
+			null,
+			null,
+			"A100"
 		],
 		"expcurv": [
 			50,
@@ -33491,7 +33520,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W100",
-			null
+			null,
+			null,
+			"A101"
 		],
 		"expcurv": [
 			50,
@@ -34873,7 +34904,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W101",
-			null
+			null,
+			"A102",
+			"A101"
 		],
 		"expcurv": [
 			50,
@@ -36255,7 +36288,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W102",
-			null
+			null,
+			null,
+			"A100"
 		],
 		"expcurv": [
 			50,
@@ -37637,7 +37672,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W110",
-			null
+			null,
+			null,
+			"A101"
 		],
 		"expcurv": [
 			50,
@@ -39019,7 +39056,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W110",
-			null
+			null,
+			null,
+			"A101"
 		],
 		"expcurv": [
 			50,
@@ -40426,7 +40465,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W121",
-			null
+			null,
+			"A103",
+			"A101"
 		],
 		"expcurv": [
 			50,
@@ -41813,7 +41854,9 @@
 		"eqtypebits": 67075583,
 		"equips": [
 			"W105",
-			null
+			null,
+			null,
+			"A111"
 		],
 		"expcurv": [
 			50,
@@ -43240,7 +43283,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W146",
-			null
+			null,
+			null,
+			"A101"
 		],
 		"expcurv": [
 			50,
@@ -44632,7 +44677,9 @@
 		"eqtypebits": 67075583,
 		"equips": [
 			"W105",
-			null
+			null,
+			null,
+			"A111"
 		],
 		"expcurv": [
 			50,
@@ -46069,7 +46116,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W121",
-			null
+			null,
+			null,
+			"A101"
 		],
 		"expcurv": [
 			50,
@@ -47461,7 +47510,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W100",
-			null
+			null,
+			null,
+			"A155"
 		],
 		"expcurv": [
 			50,
@@ -48853,7 +48904,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W134",
-			null
+			null,
+			null,
+			"A101"
 		],
 		"expcurv": [
 			50,
@@ -50245,7 +50298,9 @@
 		"eqtypebits": 67075583,
 		"equips": [
 			"W106",
-			null
+			null,
+			null,
+			"A111"
 		],
 		"expcurv": [
 			50,
@@ -51677,7 +51732,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W110",
-			null
+			null,
+			null,
+			"A100"
 		],
 		"expcurv": [
 			50,
@@ -53059,7 +53116,9 @@
 		"eqtypebits": 67108833,
 		"equips": [
 			"W106",
-			null
+			null,
+			null,
+			"A111"
 		],
 		"expcurv": [
 			50,

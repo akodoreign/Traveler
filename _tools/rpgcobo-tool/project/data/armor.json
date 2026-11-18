@@ -2109,5 +2109,18 @@
 		"option": [],
 		"opttype": "opt_equip",
 		"price": 160
+	},
+	"A174": {
+		"MDEF": 5,
+		"PDEF": 0,
+		"desc": "A plain cloth half-mask worn by a young Scorpion agent.",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Scorpion Cloth Mask",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 40
 	}
 }
