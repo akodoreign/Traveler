@@ -33,6 +33,19 @@ material = [
 		texture2 = null
 	}
 	{
+		name = "c3c261e_hair"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x0a0302ff
+		rough = 0.680000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/head_hair_color.png"
+		texture1 = "tex/head_hair_normal.png"
+		texture2 = null
+	}
+	{
 		name = "c3c2c28"
 		tec = "pbr.basic"
 		mtype = 0
@@ -46,29 +59,29 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c472f27"
+		name = "c472f27_hair"
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x0f0604ff
-		rough = 0.500000
+		rough = 0.680000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_hair_color.png"
+		texture1 = "tex/head_hair_normal.png"
 		texture2 = null
 	}
 	{
-		name = "c5c4036"
+		name = "c5c4036_hair"
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x1b0c08ff
-		rough = 0.500000
+		rough = 0.680000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_hair_color.png"
+		texture1 = "tex/head_hair_normal.png"
 		texture2 = null
 	}
 	{

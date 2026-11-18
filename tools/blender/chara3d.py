@@ -128,6 +128,7 @@ class Skin:
     def __init__(self):
         self.verts, self.faces, self.colour, self.part, self.weights, self.smooth, self.parts = [], [], [], [], [], [], 0
         self.zoom = None                        # (pivot, factor) applied to pieces while set
+        self.surface, self.surfaces = "", []
 
     def add(self, shape, colour, weights, smooth=True, colours=None, paint=None, part=None):
         """paint(face centre) may return another colour for that face: detail is painted, not modelled."""
@@ -145,6 +146,7 @@ class Skin:
         for i, face in enumerate(faces):
             self.faces.append(tuple(base + k for k in face))
             self.colour.append(colours[i] if colours else colour)
+            self.surfaces.append(self.surface)
             self.part.append(part)
             self.smooth.append(smooth)
 
@@ -166,15 +168,19 @@ class Skin:
                        for a, b in zip(ys, ys[1:]) for k in range(n)] + [colour, colour]
         self.add((verts, faces), colour, [weight(y) for y in ys for _ in range(n)], colours=colours)
 
-    def build(self, armature):
+    def build(self, armature, surface_materials=False):
         mesh = bpy.data.meshes.new("skin")
         mesh.from_pydata([blender(v) for v in self.verts], [], self.faces)
-        palette = sorted(set(self.colour))
-        for rgb in palette:
-            material = bpy.data.materials.new("c%02x%02x%02x" % rgb)
+        roles = self.surfaces if surface_materials else [""] * len(self.faces)
+        labels = list(zip(self.colour, roles))
+        palette = sorted(set(labels))
+        for rgb, surface in palette:
+            name = "c%02x%02x%02x" % rgb
+            material = bpy.data.materials.new(f"{name}_{surface}" if surface else name)
             material.diffuse_color = [(c / 255) ** 2.2 for c in rgb] + [1]
             mesh.materials.append(material)
-        mesh.polygons.foreach_set("material_index", [palette.index(c) for c in self.colour])
+        slots = {label: i for i, label in enumerate(palette)}
+        mesh.polygons.foreach_set("material_index", [slots[label] for label in labels])
         ids = mesh.color_attributes.new("part", "BYTE_COLOR", "CORNER")
         loops = [((p * 53) % 16 / 16 + .03, (p * 29) % 16 / 16 + .03, (p * 11) % 16 / 16 + .03, 1.)
                  for p, face in zip(self.part, self.faces) for _ in face]
@@ -518,6 +524,7 @@ def hair(S, spec):
     if style == "bald":
         return
     sheen = shade(colour, 1.25, 17)
+    S.surface = "hair"
     S.zoom = HEAD
     cap = ellipsoid((-.3, 109.6, 0), (10.2, 11.7, 9.9), 20, 14)
     keep = [f for f in cap[1] if not (np.mean([cap[0][i][0] for i in f]) > 2.8 and np.mean([cap[0][i][1] for i in f]) < 112.5
@@ -571,6 +578,7 @@ def hair(S, spec):
                 S.add(tube(rings, 8), sheen if i in (1, 4) else colour,
                       [blend((72, "tail"), (104, "head"))(p[1]) for p, _, _ in rings for _ in range(8)])
     S.zoom = None
+    S.surface = ""
 
 
 # ------------------------------------------------------------------------------------------------ outfit
@@ -783,6 +791,7 @@ def helmet(S, spec):
     if not spec.get("iron_cap"):
         return
     plate, band = tuple(spec["armor"]), tuple(spec.get("band", spec["accent"]))
+    S.surface = "iron"
     S.zoom = HEAD
     rings = [((-.65, 113.05, 0), 10.98, 10.74), ((-.7, 116.1, 0), 10.67, 10.26),
              ((-1., 119.5, 0), 9.52, 9.18), ((-1.1, 122.7, 0), 6.78, 6.31),
@@ -792,9 +801,11 @@ def helmet(S, spec):
     colours = [shade(plate, 1.08, 13) if k % 8 == 0 else shade(plate, .59) if row == 0
                else plate for row in range(len(rings) - 1) for k in range(n)] + [plate, plate]
     S.add((verts, faces), plate, {"head": 1.}, colours=colours)
+    S.surface = "linen"
     S.add(tube([((-.33, 112.65, 0), 11.32, 10.95), ((-.36, 113.52, 0), 11.25, 10.88)], n),
           band, {"head": 1.})
     S.zoom = None
+    S.surface = ""
 
 
 FOOT = [(-3.9, .8, 3.1, .32, 0), (-3.35, .35, 4.8, 1.65, 0),
@@ -839,6 +850,7 @@ def footwear(S, spec, tabi=WHITE):
 
 def headband(S, spec, growth=0.):
     band = tuple(spec.get("band", spec["accent"]))
+    S.surface = "linen"
     S.zoom = HEAD
     S.add(tube([((-.3, 111.2, 0), 10.75 + growth, 10.4 + growth),
                 ((-.3, 114., 0), 10.6 + growth, 10.25 + growth)], 20, caps=False), band, {"head": 1.})
@@ -846,6 +858,7 @@ def headband(S, spec, growth=0.):
     for z, low in ((-1.4, 99.), (1.4, 101.5)):                              # ribbon tails
         strand(S, band, [(-11.5, 112, z), (-14.5, 108, z * 1.6), (-16., low, z * 2.2)], 1.7, "tail")
     S.zoom = None
+    S.surface = ""
 
 
 def weapon(S, spec, kind):

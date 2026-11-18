@@ -58,6 +58,11 @@ def verify(index):
     textures = [*index["palettes"], *("clan_" + name for name in index["clans"])]
     expected.update(f"palette/{name}.png" for name in textures)
     expected.update(decals)
+    for item in catalog.HEAD:
+        descriptor = (OUT / f"{item}.pm").read_text(encoding="utf-8")
+        for line in descriptor.splitlines():
+            if 'texture1 = "tex/head_' in line:
+                expected.add(line.split('"')[1])
     actual = {p.relative_to(OUT).as_posix() for p in OUT.rglob("*") if p.is_file()}
     if expected != actual:
         raise ValueError(f"Missing gear assets {sorted(expected - actual)}; unexpected {sorted(actual - expected)}")
@@ -81,12 +86,25 @@ def verify(index):
           f"{len(index['palettes'])} wearer textures, {len(index['clans'])} clan palettes, and {len(decals)} decal sheets")
 
 
+def export(job):
+    subprocess.run([blender_exe(), "-b", "--factory-startup", "--threads", "4",
+                    "--python-exit-code", "1", "--python", str(ROOT / "tools/blender/chara3d_gear.py"),
+                    "--", str(job)], check=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--check", action="store_true")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--check", action="store_true")
+    mode.add_argument("--head-only", action="store_true", help="refresh equipped headwear detail without rebuilding palettes or decals")
     args = parser.parse_args()
     index, looks = build_index()
-    if not args.check:
+    if args.head_only:
+        with tempfile.TemporaryDirectory() as temp:
+            job = Path(temp) / "headwear.json"
+            job.write_text(json.dumps({"out": str(OUT), "head_only": True}), encoding="utf-8")
+            export(job)
+    elif not args.check:
         textures = OUT / "palette"
         textures.mkdir(parents=True, exist_ok=True)
         for name, colours in CLAN.items():
@@ -102,9 +120,7 @@ def main():
         with tempfile.TemporaryDirectory() as temp:
             config = Path(temp) / "job.json"
             config.write_text(json.dumps({"out": str(OUT), "natsuko": looks["trav_natsuko"]}), encoding="utf-8")
-            subprocess.run([blender_exe(), "-b", "--factory-startup", "--threads", "4",
-                            "--python-exit-code", "1", "--python", str(ROOT / "tools/blender/chara3d_gear.py"),
-                            "--", str(config)], check=True)
+            export(config)
         (OUT / "gear.json").write_text(json.dumps(index, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     verify(index)
 

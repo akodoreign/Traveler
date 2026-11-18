@@ -39,7 +39,7 @@ def animate(scene, name, frames, family):
 
 def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, texture_uv=None,
                alpha_test=False, surface=None):
-    obj = skin.build(rig)
+    obj = skin.build(rig, surface_materials=getattr(surface, "material_roles", False))
     mesh = obj.data
     if surface:
         import bmesh
@@ -121,10 +121,23 @@ def export(job):
             save_piece(scene, out, rig, name, skin, "rig", write_motion=name == "body")
         return
 
-    if job.get("body_only"):
+    from head_surfaces import HeadSurface, make_textures
+
+    detail = HeadSurface(make_textures(out / "tex", ("hair", "iron", "linen")))
+
+    def save_cast(name, skin, rig, motion=None, write_motion=False):
+        surface = detail if any(skin.surfaces) else None
+        save_piece(scene, out, rig, name, skin, motion, write_motion, surface=surface)
+
+    if job.get("body_only") or job.get("head_surfaces"):
         rig = c.make_armature(c.rest_frames())
         for key, spec, family, _ in job["models"]:
-            save_piece(scene, out, rig, key + "_body", c.build_character(spec, "bare", "none"), f"motion_{family}")
+            if job.get("body_only") or spec.get("hairstyle") != "bald" or spec.get("head") == "hachimaki":
+                save_cast(key + "_body", c.build_character(spec, "bare", "none"), rig, f"motion_{family}")
+            if job.get("head_surfaces") and spec.get("iron_cap"):
+                build = spec.get("build", "normal")
+                if build.startswith("armored") or build == "heavy":
+                    save_cast(key + "_outfit", outfit(spec, "armored"), rig)
         return
 
     def save_mask(key, spec, rig):
@@ -137,11 +150,11 @@ def export(job):
         rig = c.make_armature(c.rest_frames())
         for key, spec, family, _ in job["models"]:
             if spec.get("ear_ornament") or spec.get("head_tattoo") or spec.get("glasses"):
-                save_piece(scene, out, rig, key + "_body", c.build_character(spec, "bare", "none"), f"motion_{family}")
+                save_cast(key + "_body", c.build_character(spec, "bare", "none"), rig, f"motion_{family}")
             save_mask(key, spec, rig)
             default = spec.get("build", "normal")
             dressed = "armored" if default.startswith("armored") or default == "heavy" else "robe"
-            save_piece(scene, out, rig, key + "_outfit", outfit(spec, dressed))
+            save_cast(key + "_outfit", outfit(spec, dressed), rig)
         return
 
     rigs = {}
@@ -154,8 +167,8 @@ def export(job):
         if fresh:
             rigs[family] = animate(scene, motion, job["motions"][family], family)
         rig = rigs[family]
-        save_piece(scene, out, rig, key + "_body", c.build_character(spec, "bare", "none"), motion, fresh)
-        save_piece(scene, out, rig, key + "_outfit", outfit(spec, dressed))
+        save_cast(key + "_body", c.build_character(spec, "bare", "none"), rig, motion, fresh)
+        save_cast(key + "_outfit", outfit(spec, dressed), rig)
         save_mask(key, spec, rig)
         if weapon != "none":
             gear = c.Skin()

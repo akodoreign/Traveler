@@ -58,6 +58,15 @@ def verify_assets(directory, roster):
         body = (directory / f"{key}_body.pm").read_text(encoding="utf-8")
         if f'motiondata = "motion_{spec["motion"]}.mot"' not in body:
             raise RuntimeError(f"{key}: body does not reference its registered motion")
+    for part in list(expected):
+        if part.endswith(".pm"):
+            descriptor = (directory / part).read_text(encoding="utf-8")
+            for line in descriptor.splitlines():
+                if ' = "tex/head_' in line:
+                    texture = line.split('"')[1]
+                    if not (directory / texture).is_file():
+                        raise RuntimeError(f"{part}: missing head texture {texture}")
+                    expected.add(texture)
     return expected
 
 
@@ -116,6 +125,7 @@ def main():
     mode.add_argument("--index-only", action="store_true", help="refresh metadata without re-exporting meshes")
     mode.add_argument("--bust-skin", action="store_true", help="re-export only bodies with sampled bust colors")
     mode.add_argument("--accessories", action="store_true", help="refresh costume pieces, body ornaments and outfit fit")
+    mode.add_argument("--head-surfaces", action="store_true", help="refresh hair, headbands and authored helmet meshes")
     args = parser.parse_args()
     outfits = batch.RESOURCE / "native_chara"
     outfits.mkdir(exist_ok=True)
@@ -128,7 +138,7 @@ def main():
         if recorded != roster:
             raise SystemExit("Native roster index is out of sync with game registrations")
         expected = verify_assets(outfits, roster)
-        unexpected = {p.name for p in outfits.iterdir()} - expected
+        unexpected = {p.relative_to(outfits).as_posix() for p in outfits.rglob("*") if p.is_file()} - expected
         if unexpected:
             raise SystemExit(f"Unindexed native assets: {', '.join(sorted(unexpected)[:8])}")
         print(f"Verified {len(roster)} native roster entries and {len(expected)} runtime files")
@@ -144,7 +154,8 @@ def main():
     if args.bust_skin:
         jobs = [job for job in jobs if native_skin(batch.RESOURCE, job[0], look(job[0])) is not None]
     job.write_text(json.dumps({"out": str(outfits), "models": jobs, "motions": frames,
-                               "body_only": args.bust_skin, "accessories": args.accessories}), encoding="utf-8")
+                               "body_only": args.bust_skin, "accessories": args.accessories,
+                               "head_surfaces": args.head_surfaces}), encoding="utf-8")
     log = work / "native_roster.log"
     with log.open("w", encoding="utf-8") as output:
         proc = subprocess.run([batch.c3.blender_exe(), "-b", "--factory-startup", "--threads", "4",

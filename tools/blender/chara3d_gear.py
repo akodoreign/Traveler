@@ -173,7 +173,12 @@ def export(job):
     native.clearCaches()
     scene = bpy.context.scene
     rig = c.make_armature(c.rest_frames())
+    from head_surfaces import HAT_SURFACE, HeadSurface, make_textures
+
+    detail = make_textures(out / "tex", set(HAT_SURFACE.values()), color_maps=False)
     for item, slot in catalog.registry().items():
+        if job.get("head_only") and slot != "head":
+            continue
         skin = c.Skin()
         if slot == "body":
             garment(skin, catalog.BODY[item])
@@ -186,9 +191,14 @@ def export(job):
         missing = set(skin.colour) - SWATCHES.keys()
         if missing:
             raise ValueError(f"{item} uses unmapped colours {missing}")
-        native.save_piece(scene, out, rig, item, skin, texture_uv=uv)
+        surface = HeadSurface(detail, catalog.HEAD[item]) if slot == "head" else None
+        native.save_piece(scene, out, rig, item, skin, texture_uv=uv, surface=surface)
+        if job.get("head_only"):
+            continue
         decal, decal_uv = project(item, slot, skin)
         native.save_piece(scene, out, rig, item + "_decal", decal, texture_uv=decal_uv, alpha_test=True)
+    if job.get("head_only"):
+        return
     for weapon in catalog.WEAPONS:
         skin = c.Skin()
         if weapon == "musket":

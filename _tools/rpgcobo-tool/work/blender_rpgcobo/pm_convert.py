@@ -727,7 +727,8 @@ def buildPolygonMesh( mobj, mesh, pm, bonekeys) :
 	for f in pm.face :
 		if f.mate.normaltex :
 			bump = 1
-			mesh.calc_tangents()
+			normal_uv = pm.uvname1 if f.mate.uvbits & 2 else pm.uvname0
+			mesh.calc_tangents(uvmap=normal_uv)
 			break
 	uv0loops = getattr( mesh.uv_layers.get( pm.uvname0), "data", None) if pm.uvname0 else None
 	uv1loops = getattr( mesh.uv_layers.get( pm.uvname1), "data", None) if pm.uvname1 else None
