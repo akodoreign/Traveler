@@ -38,7 +38,14 @@ def blender_exe():
 
 
 # Colours that read better on a lit 3-D figure than the flat 2-D values did.
-LOOK3D = {"trav_natsuko": dict(top=(46, 58, 98), lower=(34, 38, 60), armor=(126, 130, 142))}
+LOOK3D = {
+    "trav_natsuko": dict(top=(43, 54, 85), lower=(33, 36, 50), armor=(111, 118, 131),
+                         lace=(177, 39, 54), accent=(175, 38, 52), iron_cap=True),
+    "trav_haruki": dict(top=(196, 69, 29), lower=(73, 54, 47), accent=(175, 41, 36),
+                        pcol=(250, 187, 108), lining=(233, 158, 81), long_robe=True),
+    "trav_mitsue": dict(top=(153, 29, 54), lower=(43, 33, 50), accent=(178, 32, 56),
+                        pcol=(222, 145, 111), lining=(124, 35, 48), long_robe=True),
+}
 
 
 def look(key):

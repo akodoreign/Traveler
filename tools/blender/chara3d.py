@@ -29,7 +29,7 @@ SIDES = (("N", 1.), ("F", -1.))
 REST = dict(pelvis=(0, 60, 0), neck=(0, 97, 0), hip=(0, 58, 5.5), knee=(0, 31.5, 5.5), ankle=(0, 6, 5.5),
             sh=(0, 93, 11.5), elbow=(0, 76.5, 12.5), wrist=(0, 61.5, 13.2), grip=(0, 57.5, 13.4),
             tail=(-14.3, 119, 0))
-HEAD = ((0, 97.5, 0), 1.3)                    # the head and everything on it, enlarged about the neck
+HEAD = ((0, 97.5, 0), 1.19)                    # the head and everything on it, enlarged about the neck
 GIRTH = dict(torso=1.15, leg=1.32, arm=1.38)
 POLE_LEN = dict(tail=56., tip=62.)
 
@@ -129,7 +129,7 @@ class Skin:
         self.verts, self.faces, self.colour, self.part, self.weights, self.smooth, self.parts = [], [], [], [], [], [], 0
         self.zoom = None                        # (pivot, factor) applied to pieces while set
 
-    def add(self, shape, colour, weights, smooth=True, colours=None, paint=None):
+    def add(self, shape, colour, weights, smooth=True, colours=None, paint=None, part=None):
         """paint(face centre) may return another colour for that face: detail is painted, not modelled."""
         verts, faces = shape
         if paint:
@@ -137,13 +137,15 @@ class Skin:
         if self.zoom:
             verts = [np.asarray(self.zoom[0], float) + (v - self.zoom[0]) * self.zoom[1] for v in verts]
         base = len(self.verts)
-        self.parts += 1
+        if part is None:
+            self.parts += 1
+            part = self.parts
         self.verts += verts
         self.weights += weights if isinstance(weights, list) else [weights] * len(verts)
         for i, face in enumerate(faces):
             self.faces.append(tuple(base + k for k in face))
             self.colour.append(colours[i] if colours else colour)
-            self.part.append(self.parts)
+            self.part.append(part)
             self.smooth.append(smooth)
 
     def loft(self, points, colour, weight, z=0., n=10, band=None, x=0., pleats=None):
@@ -151,7 +153,7 @@ class Skin:
         weight(y) gives the bone weights at a height; band = (step, [colours]) stripes it horizontally."""
         ys = sorted(p[0] for p in points)
         if band:
-            ys = list(np.arange(ys[0], ys[-1], band[0])) + [ys[-1]]
+            ys = sorted({*ys, *np.arange(ys[0], ys[-1], band[0])})
         rings = []
         for y in ys:
             v = profile(points, y)
@@ -160,7 +162,8 @@ class Skin:
         colours = None
         if band:
             pick = band[1] if callable(band[1]) else (lambda row, k: band[1][row % len(band[1])])
-            colours = [pick(i, k) for i in range(len(ys) - 1) for k in range(n)] + [colour, colour]
+            colours = [pick(math.floor(((a + b) / 2 - ys[0]) / band[0]), k)
+                       for a, b in zip(ys, ys[1:]) for k in range(n)] + [colour, colour]
         self.add((verts, faces), colour, [weight(y) for y in ys for _ in range(n)], colours=colours)
 
     def build(self, armature):
@@ -228,7 +231,9 @@ def arm_w(s):
 def cover(name, y0, y1, grow, sign=1., flare=0.):
     """The body section between two heights, grown outward (flare widens the lower end)."""
     out = []
-    for y in list(np.arange(y0, y1, 3.)) + [y1]:
+    # Keep the skin and its sleeves/wraps on the same cross-sections at joints.
+    ys = sorted({y0, y1, *(y for y in np.arange(6., 97., 1.5) if y0 < y < y1)})
+    for y in ys:
         v, t = profile(BODY[name], y), (y1 - y) / (y1 - y0)
         g = GIRTH[name]
         out.append((y, v[0] * g + grow + flare * t, v[1] * g + grow + flare * t)
@@ -265,6 +270,43 @@ def shade(colour, f, lift=0):
     return tuple(max(0, min(255, int(c * f + lift))) for c in colour)
 
 
+def face_patch(S, points, colour, offset, part):
+    """Lay a painted feature on the curved skin, in front-to-back layer order."""
+    points = np.asarray(points)
+    centre = np.mean(points, axis=0)
+    verts = [np.array((face_x(y, z) + offset, y, z)) for z, y in [centre, *points]]
+    S.add((verts, [(0, i + 1, (i + 1) % len(points) + 1) for i in range(len(points))]),
+          colour, {"head": 1.}, smooth=False, part=part)
+
+
+def face(S, spec, skin):
+    part = S.parts
+    iris = tuple(spec.get("eye", (60, 44, 40)))
+    brow = tuple(spec["hair"])
+    eye = spec.get("kit", {}).get("eye")
+    opening = .72 if eye in ("half", "smile") else 1.16 if eye in ("wide", "round") else .95
+    for _, side in SIDES:
+        def patch(profile, colour, offset):
+            points = [(side * z, y) for z, y in profile]
+            face_patch(S, points if side > 0 else points[::-1], colour, offset, part)
+
+        lower = 105.7 - opening
+        patch([(1.28, 105.8), (2.35, 106.33), (4.25, 106.45),
+               (5.65, 106.0), (4.5, lower + .16), (2.55, lower)], (248, 232, 213), .19)
+        patch([(2.46, 106.3), (4.08, 106.39), (4.28, 105.63),
+               (3.83, lower + .05), (2.77, lower + .04), (2.4, 105.42)], iris, .33)
+        patch([(2.89, 106.3), (3.67, 106.32), (3.83, 105.27), (2.9, 105.1)], INK, .47)
+        patch([(2.56, 106.22), (3.08, 106.23), (3.08, 105.66), (2.56, 105.66)], WHITE, .56)
+        patch([(1.18, 105.68), (2.48, 106.69), (4.25, 107.03), (5.92, 106.34),
+               (5.57, 105.72), (4.1, 106.41), (2.52, 106.21)], INK, .45)
+        patch([(1.85, 108.38), (3.54, 109.0), (5.29, 108.75),
+               (5.27, 108.38), (3.58, 108.51), (1.91, 107.98)], brow, .27)
+        S.add(ellipsoid((.6, 105.5, 7.2 * side), (1.4, 2., 1.15), 8, 6), skin, {"head": 1.})
+    face_patch(S, [(-.68, 103.1), (0, 103.46), (.64, 102.8), (.11, 102.68)], shade(skin, .86), .17, part)
+    face_patch(S, [(-1.02, 101.44), (.12, 101.52), (1.22, 101.6),
+                   (.87, 101.22), (-.42, 101.1)], shade(skin, .61), .2, part)
+
+
 def body(S, spec):
     """The bare figure: skin, a loincloth, a chest wrap and wrist and ankle wraps."""
     skin, h = tuple(spec["skin"]), {"head": 1.}
@@ -274,24 +316,14 @@ def body(S, spec):
         S.loft(cover("torso", 79, 90, .5), WHITE, torso_w(), n=12)
     S.loft([(94, 2.8, 2.8), (101, 2.6, 2.6)], skin, blend((94, "spine"), (101, "head")), n=8)
     S.zoom = HEAD
-    head = ellipsoid(HEAD_C, HEAD_R, 16, 12)
+    head = ellipsoid(HEAD_C, HEAD_R, 32, 24)
     for v in head[0]:                           # an egg: full cranium, narrow jaw, the chin a little forward
         t = max(0., (HEAD_C[1] - v[1]) / HEAD_R[1])
         v[0] = HEAD_C[0] + (v[0] - HEAD_C[0]) * (1 - .3 * t ** 1.5) + 1.2 * t
         v[2] *= 1 - .5 * t ** 1.5
     S.add(head, skin, h)
-    eye, hair = tuple(spec.get("eye", (60, 44, 40))), tuple(spec["hair"])
-    for _, sg in SIDES:
-        z = 3.9 * sg
-        x = face_x(105.2, z)
-        S.add(ellipsoid((x - .1, 105.1, z), (.7, 2.2, 1.7), 8, 6), eye, h)                       # iris
-        S.add(ellipsoid((x + .15, 107.0, z), (.8, .85, 2.05), 8, 4), INK, h)                     # lid and lashes
-        S.add(ellipsoid((x + .45, 105.3, z), (.4, 1.05, .8), 6, 4), INK, h)                      # pupil
-        S.add(box((x + .95, 106.0, z + .75), (.25, .5, .45)), WHITE, h, smooth=False)            # catch-light
-        S.add(box((face_x(109.8, z) + .1, 109.8, z), (.5, .3, 2.1)), hair, h, smooth=False)      # brow
-        S.add(ellipsoid((.5, 105.5, 7.4 * sg), (1.4, 2.3, 1.1), 6, 4), skin, h)                  # ear
-    S.add(ellipsoid((face_x(103.1, 0) + .1, 103.1, 0), (.9, .8, .8), 6, 4), skin, h)             # nose
-    S.add(box((face_x(100.8, 0) + .15, 100.8, 0), (.35, .25, 1.1)), shade(skin, .68), h, smooth=False)
+    face(S, spec, skin)
+
     S.zoom = None
     for s, sg in SIDES:
         S.loft(cover("leg", 5, 61, 0, sg), skin, leg_w(s))
@@ -307,25 +339,36 @@ def hair(S, spec):
     style, colour, h = spec.get("hairstyle", "short"), tuple(spec["hair"]), {"head": 1.}
     if style == "bald":
         return
-    sheen = shade(colour, 1.4, 22)
+    sheen = shade(colour, 1.25, 17)
     S.zoom = HEAD
     cap = ellipsoid((-.3, 109.6, 0), (10.2, 11.7, 9.9), 20, 14)
     keep = [f for f in cap[1] if not (np.mean([cap[0][i][0] for i in f]) > 2.8 and np.mean([cap[0][i][1] for i in f]) < 112.5
                                       and abs(np.mean([cap[0][i][2] for i in f])) < 7.6)]
     S.add((cap[0], keep), colour, h, paint=lambda c: sheen if 115.6 < c[1] < 117.7 and c[0] > -7.5 else None)
-    S.add(ellipsoid((-5., 106., 0), (7.2, 9.6, 10.2), 14, 10), colour, h)                       # mass behind the head
-    for i, z in enumerate((-7., -4.2, -1.4, 1.4, 4.2, 7.)):                  # a jagged fringe
-        low = 109.6 + (i % 2) * 1.7 - (abs(z) > 5) * 2.2
-        strand(S, colour, [(6.5, 118., z * .8), (face_x(113.5, z * .9) + 2.2, 113.5, z),
-                           (face_x(low, z * .9) + 1.6, low, z * 1.05)], 2.8)
-    for _, sg in SIDES:                                                     # locks in front of the ears
-        strand(S, colour, [(3.5, 113, 9. * sg), (5., 105, 9.3 * sg), (5.4, 96.5, 8.2 * sg)], 2.5)
+    lower_mass = (5.6, 7.4, 8.8) if style in ("short", "spiky") else (7.2, 9.6, 10.2)
+    S.add(ellipsoid((-5., 106., 0), lower_mass, 14, 10), colour, h)                       # mass behind the head
+    sweep = .85 if spec.get("bangs") == "side" else 1.45
+    for i, z in enumerate((-7.8, -5.3, -2.6, .15, 3., 5.8, 8.)):
+        low = 109.25 + (i % 3) * .8 - 2.65 * (abs(z) > 5)
+        tip = z + sweep
+        lock = shade(colour, 1.05, 8) if i % 3 == 1 else colour
+        strand(S, lock, [(3.6, 119.6 - abs(z) * .18, z * .58),
+                         (face_x(114, z * .76) + 2.1, 114., z * .85),
+                         (face_x(low + 1.8, z) + 1.75, low + 1.8, z),
+                         (face_x(low, tip) + 1.55, low, tip)], 2.65)
+    for _, sg in SIDES:
+        strand(S, colour, [(2.2, 114, 8.6 * sg), (5., 105, 8.65 * sg),
+                           (4.1, 99 if style == "spiky" else 95, 7.4 * sg)], 2.55)
     if style in ("spiky", "short", "mane"):
-        for i in range(14):                                                 # tufts break up the outline
-            a, tilt = 2 * math.pi * (i * .618 % 1), .3 + .75 * ((i * 7) % 5) / 4
+        for i in range(11):
+            a = 2 * math.pi * (i * .618 % 1)
+            tilt = .48 + .67 * ((i * 7) % 5) / 4
             out = np.array((math.cos(a) * math.sin(tilt), math.cos(tilt), math.sin(a) * math.sin(tilt)))
             base = np.array((-.3, 109.6, 0)) + out * (9.2, 10.6, 8.9)
-            strand(S, colour, [base - out * 1.5, base + out * 3 - (1, 0, 0), base + out * 7 - (2.5, .5, 0)], 3.2)
+            length = (4.6 + i % 3 * .58) if style == "spiky" else 3.45
+            strand(S, sheen if i % 4 == 1 else colour,
+                   [base - out * 2.8, base + out * 1.6, base + out * length - (3., .4, -.6)], 3.4)
+
     if style in ("ponytail", "long_topknot", "chonmage", "bun"):
         rings = {"ponytail": [((-8, 114, 0), 2.6, 2.6), ((-12.5, 117, 0), 3.6, 3.4), ((-15.5, 112, 0), 4., 3.8),
                               ((-16.5, 102, 0), 3.6, 3.4), ((-15.5, 93, 0), 2.6, 2.4), ((-14.6, 86, 0), .8, .7)],
@@ -338,10 +381,17 @@ def hair(S, spec):
                                         for i in range(len(rings)) for _ in range(10)],
               paint=lambda c: sheen if hang and 104 < c[1] < 108 else None)
     if style in ("long", "mane", "bob"):
-        bottom = {"long": 78, "mane": 88, "bob": 99}[style]
+        bottom = {"long": 73, "mane": 88, "bob": 99}[style]
         S.loft([(bottom, 3.4, 9., -7.5, 0), (100, 4.6, 10.2, -7., 0), (112, 3.6, 9.4, -6., 0)], colour,
                blend((bottom, "tail" if style == "long" else "head"), (104, "head"), (112, "head")), n=14,
                pleats=(5, .08))
+        if style == "long":
+            for i, z in enumerate((-8.7, -5.4, -1.8, 1.8, 5.4, 8.7)):
+                rings = [((-5.5, 112., z * .82), 2.5, 2.4), ((-11.9, 99, z), 2.3, 2.1),
+                         ((-12.1, 85, z * 1.12), 1.9, 1.6),
+                         ((-10.9, 68 + i % 3 * 3., z * 1.06), .45, .34)]
+                S.add(tube(rings, 8), sheen if i in (1, 4) else colour,
+                      [blend((72, "tail"), (104, "head"))(p[1]) for p, _, _ in rings for _ in range(8)])
     S.zoom = None
 
 
@@ -354,80 +404,142 @@ def skirt_w(v):
     return {k: x for k, x in w.items() if x > .01}
 
 
-def skirt(S, colour, top, bottom, grow, flare, pleats=None, hem=None, motif=None):
-    """A garment around both legs: it hangs from the hips and each half follows its own leg.
-    Folds, the hem and a woven crest pattern are painted on its faces."""
-    def radii(y):
-        v, t = profile(BODY["torso"], max(y, 55.)), (top - y) / (top - bottom)
-        return v[0] * GIRTH["torso"] + grow + flare * t, v[1] * GIRTH["torso"] + grow + flare * t
-
-    n, ys = 36, list(np.arange(bottom, top, 1.6)) + [top]
-    verts, faces = tube([((0, y, 0), *radii(y)) for y in ys], n, pleats=pleats)
-    spots = [(2 * math.pi * (i * .618 % 1), bottom + 6 + (top - bottom - 16) * ((i * 5) % 7) / 6)
-             for i in range(10 if motif else 0)]
-    fold = shade(colour, .72)
-
-    def paint(row, k):
-        a, y = 2 * math.pi * (k + .5) / n, (ys[row] + ys[row + 1]) / 2
-        if hem and y < bottom + 2.8:
-            return hem
-        for at, height in spots:                # a crest: a dot inside a ring
-            d = math.hypot(((a - at + math.pi) % (2 * math.pi) - math.pi) * radii(y)[1], y - height)
-            if d < 1.1 or 2.3 < d < 3.7:
-                return motif
-        return fold if pleats and math.cos(pleats[0] * a) < -.72 else colour
-
-    S.add((verts, faces), colour, [skirt_w(v) for v in verts],
-          colours=[paint(i, k) for i in range(len(ys) - 1) for k in range(n)] + [colour, colour])
-
-
-def kimono(S, spec, wide=False):
-    """Upper garment: body, crossed collar and sleeves (wide hanging ones, or elbow-length ones under armour)."""
-    top, collar = tuple(spec["top"]), tuple(spec.get("collar", WHITE))
-    motif = tuple(spec["pcol"]) if wide and spec.get("pattern") and spec.get("pcol") else None
-    S.loft(cover("torso", 62, 96, .9), top, torso_w(), n=12)
-    for s, sg in SIDES:
-        S.add(tube([((3.6, 95.5, 3.6 * sg), 1.1, 1.4), ((7.9, 87, 1.3 * sg), 1.1, 1.6), ((8.1, 78, -1.3 * sg), 1.1, 1.6)], 6),
-              collar, {"spine": 1.})
-        if wide:
-            def crest(row, k, sg=sg):           # crests scattered down the sleeve
-                return motif if motif and (row * 3 + k * 5) % 11 == 0 and row > 1 else top
-            S.loft(cover("arm", 63, 93.5, .5, sg, flare=5.), top, arm_w(s), n=12, pleats=(3, .07), band=(2.2, crest))
-            S.add(box((-1.5, 63., 13.2 * sg), (7., 8., 1.7)), top, {"fore" + s: 1.}, smooth=False)   # the hanging pocket
-            S.loft(cover("arm", 62.5, 65, 5., sg), collar, arm_w(s), n=12)
-        else:
-            S.loft(cover("arm", 73, 93.5, 1.6, sg, flare=3.), top, arm_w(s), n=12, pleats=(4, .08))
-            S.loft(cover("arm", 72.4, 74.4, 4.7, sg), tuple(spec["accent"]), arm_w(s), n=12)          # cuff trim
-
-
-def hakama(S, spec, short=False):
-    """Pleated trousers: a knee-length divided skirt over leggings, or full length to the ankle."""
-    lower = tuple(spec["lower"])
-    if short:
-        skirt(S, lower, 66, 27, 1.5, 8., pleats=(9, .1), hem=tuple(spec["accent"]))
-        for s, sg in SIDES:
-            S.loft(cover("leg", 8, 40, .5, sg), shade(lower, .8), leg_w(s))
-    else:
-        fold = shade(lower, .72)
-        for s, sg in SIDES:
-            S.loft(cover("leg", 9, 50, 1.8, sg, flare=4.), lower, leg_w(s), n=16, pleats=(4, .1),
-                   band=(2., lambda row, k: fold if k % 4 == 2 else lower))
+def brocade(u, y, pattern):
+    """A staggered repeat in garment space. The fabric pattern moves with the mesh."""
+    row = math.floor(y / 12)
+    x = (u + 5.5 * (row % 2)) % 11 - 5.5
+    v = y % 12 - 6
+    if pattern == "stripes":
+        return abs(x) < .85
+    if pattern == "diamonds":
+        d = abs(x) + abs(v)
+        return 2.35 < d < 4.05 or d < 1.18
+    # Five petals around a small open centre, with room between repeats.
+    return any(math.hypot(x - 2.5 * math.cos(a), v - 2.5 * math.sin(a)) < 1.6
+               for a in (math.tau * i / 5 for i in range(5)))
 
 
 def coat(S, spec):
-    """The long skirt of a kimono, worn over the hakama."""
-    skirt(S, tuple(spec["top"]), 66, 21, 2.7, 6.5, pleats=(7, .09), hem=tuple(spec["accent"]),
-          motif=tuple(spec["pcol"]) if spec.get("pattern") and spec.get("pcol") else None)
+    """Open-front robe panels over the hakama, continuous around the back."""
+    colour = tuple(spec["top"])
+    lining = tuple(spec.get("lining", spec["accent"]))
+    motif = tuple(spec["pcol"]) if spec.get("pattern") and spec.get("pcol") else None
+    bottom, top = (15., 68.) if spec.get("long_robe") else (20., 68.)
+    n = 56
+    ys = list(np.arange(bottom, top, 1.45)) + [top]
+    verts, faces, colours = [], [], []
+    for y in ys:
+        t = (top - y) / (top - bottom)
+        depth, width = profile(BODY["torso"], max(y, 55))
+        rx, rz = depth * GIRTH["torso"] + 2.9 + 7.2 * t, width * GIRTH["torso"] + 2.1 + 5.7 * t
+        gap = .065 + .32 * t
+        for k in range(n + 1):
+            a = gap + (math.tau - 2 * gap) * k / n
+            fold = (1 + .07 * t * math.cos(9 * a) + .035 * t * math.sin(5 * a))
+            verts.append((rx * math.cos(a) * fold, y + 1.35 * t * math.sin(a * 2), -rz * math.sin(a) * fold))
 
+    for i, (a, b) in enumerate(zip(ys, ys[1:])):
+        y = (a + b) / 2
+        for k in range(n):
+            index = i * (n + 1) + k
+            faces.append((index, index + 1, index + n + 2, index + n + 1))
+            if k in (0, n - 1) or y < bottom + 1.5:
+                colour_at = lining
+            elif motif and y < top - 5 and brocade((k + .5) * 1.52, y - bottom, spec["pattern"]):
+                colour_at = motif
+            elif math.cos(9 * (k + .5) * math.tau / n) < -.72:
+                colour_at = shade(colour, .86)
+            else:
+                colour_at = colour
+            colours.append(colour_at)
+
+    # Turn the open front and the hem inwards so their back faces have a fabric edge.
+    def turn_edge(indices):
+        offset = len(verts)
+        for idx in indices:
+            x, y, z = verts[idx]
+            verts.append((x * .945, y, z * .945))
+        for j, (a, b) in enumerate(zip(indices, indices[1:])):
+            faces.append((b, a, offset + j, offset + j + 1))
+            colours.append(shade(lining, .72))
+
+    turn_edge(list(range(n + 1)))
+    turn_edge([i * (n + 1) for i in range(len(ys) - 1, -1, -1)])
+    turn_edge([i * (n + 1) + n for i in range(len(ys))])
+    S.add((verts, faces), colour, [skirt_w(v) for v in verts], colours=colours)
+
+def kimono(S, spec, wide=False):
+    """Overlapping collar, fitted shoulders and wide sleeves with a returned cuff."""
+    top, collar = tuple(spec["top"]), tuple(spec.get("collar", WHITE))
+    lining = tuple(spec.get("lining", spec["accent"]))
+    motif = tuple(spec["pcol"]) if wide and spec.get("pattern") and spec.get("pcol") else None
+    S.loft(cover("torso", 62, 96, 1.25), top, torso_w(), n=16)
+    for s, sg in SIDES:
+        # Each lapel is a flat ribbon that runs along the actual torso profile.
+        stations = [(95.8, 3.5, .7), (93, 3.2, 1.05), (88, 2., 1.1),
+                    (83, .55, 1.1), (78, -1.15, 1.), (73, -2.8, .72)]
+        stations = stations if sg == 1 else stations[:4]
+        verts = []
+        for y, z, width in stations:
+            rx, rz = profile(BODY["torso"], y)
+            rx, rz = rx * GIRTH["torso"] + 1.25, rz * GIRTH["torso"] + 1.25
+            for lateral in (-width, .38 * width, width):
+                v = z * sg + lateral * sg
+                verts.append((rx * math.sqrt(1 - (v / rz) ** 2) + .48, y, v))
+        faces = [(i + j, i + j + 1, i + j + 4, i + j + 3)
+                 for i in range(0, len(verts) - 3, 3) for j in range(2)]
+        S.add((verts, faces), collar, [torso_w()(y) for _, y, _ in verts],
+              colours=[c for _ in stations[1:] for c in (collar, lining)])
+        if wide:
+            def sleeve_paint(row, k):
+                if row == 0:
+                    return lining
+                if motif and row > 1 and brocade(k * 1.5, row * 1.45 + 3, spec["pattern"]):
+                    return motif
+                return shade(top, .76) if k in (8, 9, 19) else top
+
+            S.loft(cover("arm", 62.3, 95.4, 1.12, sg, flare=4.5), top, arm_w(s), n=28,
+                   pleats=(4, .075), band=(1.45, sleeve_paint))
+            # Draped fabric behind the cuff follows the forearm instead of floating below it.
+            rings = [((-1.3, 79, 12.6 * sg), 3.5, 3.4), ((-3.2, 69, 13.0 * sg), 5.8, 4.3),
+                     ((-4.9, 59.2, 13.25 * sg), 6.7, 4.4), ((-5.3, 54.8, 13.3 * sg), 4.2, 3.4)]
+            S.add(tube(rings, 12, pleats=(3, .08)), shade(top, .82), {"fore" + s: 1.},
+                  paint=lambda c: lining if c[1] < 56 else None)
+        else:
+            S.loft(cover("arm", 73, 95.4, 1.65, sg, flare=2.65), top, arm_w(s), n=16, pleats=(4, .065))
+            S.loft(cover("arm", 72.7, 74.4, 4.82, sg), lining, arm_w(s), n=16)
+
+
+def hakama(S, spec, short=False):
+    """Divided pleats, with each trouser leg following its original leg weights."""
+    lower = tuple(spec["lower"])
+    lining = tuple(spec.get("lining", spec["accent"]))
+    fold = shade(lower, .67)
+    for s, sg in SIDES:
+        bottom = 27. if short else 7.9
+        if short:
+            S.loft(cover("leg", 8, 43, .68, sg), shade(lower, .8), leg_w(s), n=16)
+        S.loft(cover("leg", bottom, 62, 1.4, sg, flare=3.1 if short else 3.7), lower, leg_w(s), n=24,
+               pleats=(6, .12), band=(1.65, lambda row, k: lining if short and row == 0
+                                      else fold if k % 4 == 2 else lower))
 
 def obi(S, spec):
     accent, gold = tuple(spec["accent"]), trim(spec)
-    S.loft(cover("torso", 64, 70.5, 2.6), accent, torso_w(), n=12)
-    S.add(ellipsoid((9.6, 67.2, 0), (1.3, 2.2, 3.), 8, 5), accent, {"pelvis": .5, "spine": .5})       # the knot
-    for z in (-1.5, 1.5):                                                   # cords and tassels
-        S.add(box((10., 60, z), (.6, 5.5, .7)), accent, {"pelvis": 1.}, smooth=False)
-        S.add(box((10., 53.4, z), (.8, 1.3, 1.)), gold, {"pelvis": 1.}, smooth=False)
-
+    cord = tuple(spec.get("cord", spec["accent"]))
+    wrap = shade(tuple(spec["lower"]), .58)
+    S.loft(cover("torso", 63.7, 71.4, 3.24), wrap, torso_w(), n=24,
+           band=(1.2, (wrap, shade(wrap, 1.13, 6), wrap, wrap)))
+    for y in (65.8, 68.6):
+        S.loft(cover("torso", y, y + 1.1, 3.6), accent, torso_w(), n=24)
+    w = torso_w()(67.)
+    for side in (-1., 1.):
+        S.add(tube([((10.1, 67.1, .6 * side), .75, .72), ((10.3, 69.1, 2.75 * side), .85, .8),
+                    ((10.3, 66.85, 3.45 * side), .88, .8), ((10.5, 66.2, .65 * side), .64, .62)], 8), accent, w)
+    S.add(ellipsoid((10.55, 67.1, 0), (1.12, 1.45, 1.65), 8, 6), cord, w)
+    for z, end in ((-1.4, 54.4), (1.3, 51.2)):
+        rings = [((10.4, 67.2, z * .34), .68, .88), ((11., 61., z), .58, .72),
+                 ((12.2, end + 1.5, z * 1.35), .5, .55), ((12.45, end, z * 1.48), .66, .67)]
+        S.add(tube(rings, 8), accent, w, paint=lambda c: gold if c[1] < end + 1.6 else None)
 
 def armour(S, spec):
     """Lamellar: rows of small plates laced together, over the kimono."""
@@ -437,7 +549,10 @@ def armour(S, spec):
     def lamellar(row, k):
         return (lace if k % 2 else gap) if row % 4 == 3 else plate
 
-    S.loft(cover("torso", 70, 92, 2.3), plate, torso_w(), n=24, band=(1.1, lamellar))
+    S.loft(cover("torso", 70, 91.4, 2.38), plate, torso_w(), n=32, band=(.95, lamellar))
+    for y in (72.7, 76.5, 80.3, 84.1, 87.9):
+        S.loft(cover("torso", y, y + .62, 2.58), gap, torso_w(), n=32,
+               band=(.7, lambda row, k: lace if k % 4 == 0 else gap))
     S.loft(cover("torso", 91.2, 92.8, 2.6), gold, torso_w(), n=24)
     S.add(ellipsoid((9.6, 85, 0), (.9, 1.5, 1.7), 6, 4), lace, {"spine": 1.})                    # chest cord and tassel
     for z in (-.9, .9):
@@ -451,21 +566,50 @@ def armour(S, spec):
             S.add(box((centre[0], y - 2.6, centre[1]), (1.2, .5, 4.9), yaw=90 - angle), gold if i == 2 else lace, w, smooth=False)
     for s, sg in SIDES:
         for i in range(4):                                                  # sode: layered shoulder plates
-            S.add(box((0, 94.5 - i * 3., (19.5 + i * .7) * sg), (6.8, 1.4, 1.4)), plate, {"upper" + s: 1.}, smooth=False)
-            S.add(box((0, 92.9 - i * 3., (19.6 + i * .7) * sg), (6.9, .4, 1.5)), gold if i == 3 else lace,
-                  {"upper" + s: 1.}, smooth=False)
+            y, z = 94.5 - i * 2.75, (16.4 + i * .62) * sg
+            bone = {"upper" + s: 1.}
+            rings = [((x, y - .7 * abs(x / 6), z - sg * .9 * (x / 6) ** 2), ry, rz)
+                     for x, ry, rz in ((-6.9, .68, .65), (-5.2, 1.6, 1.18),
+                                       (5.05, 1.6, 1.18), (6.9, .68, .65))]
+            S.add(tube(rings, 8), plate, bone, smooth=False,
+                  paint=lambda c: gap if c[1] < y - .8 else shade(plate, 1.14, 8) if c[1] > y + .75 else None)
+            for x in (-3.35, 2.55):
+                S.add(box((x, y - 1.26, z + 1.05 * sg), (.62, .57, .38)),
+                      gold if i == 3 else lace, bone, smooth=False)
         S.loft(cover("arm", 62, 73, 1., sg), cloth, arm_w(s), n=8,           # kote: splints on a cloth sleeve
                band=(1.4, lambda row, k: lace if row % 4 == 3 else plate if k % 2 else cloth))
         S.loft(cover("leg", 8, 30, 1.2, sg), cloth, leg_w(s),               # suneate: a shin plate on dark leggings
                band=(1.6, lambda row, k: (lace if row % 5 == 4 else plate) if k in (8, 9, 0, 1) else cloth))
 
 
+def helmet(S, spec):
+    """Natsuko's shallow iron cap, worn over the base headband."""
+    if not spec.get("iron_cap"):
+        return
+    plate, band = tuple(spec["armor"]), tuple(spec.get("band", spec["accent"]))
+    S.zoom = HEAD
+    rings = [((-.65, 113.05, 0), 10.98, 10.74), ((-.7, 116.1, 0), 10.67, 10.26),
+             ((-1., 119.5, 0), 9.52, 9.18), ((-1.1, 122.7, 0), 6.78, 6.31),
+             ((-1.5, 124.35, 0), 2.4, 2.55)]
+    n = 32
+    verts, faces = tube(rings, n)
+    colours = [shade(plate, 1.08, 13) if k % 8 == 0 else shade(plate, .59) if row == 0
+               else plate for row in range(len(rings) - 1) for k in range(n)] + [plate, plate]
+    S.add((verts, faces), plate, {"head": 1.}, colours=colours)
+    S.add(tube([((-.33, 112.65, 0), 11.32, 10.95), ((-.36, 113.52, 0), 11.25, 10.88)], n),
+          band, {"head": 1.})
+    S.zoom = None
+
+
 def footwear(S, spec, tabi=WHITE):
     for s, sg in SIDES:
         S.add(ellipsoid((3.1, 3.2, 5.5 * sg), (7.3, 3.4, 3.9), 10, 6), tabi, {"foot" + s: 1.})
         S.add(box((3.1, .7, 5.5 * sg), (7.9, .8, 4.3)), STRAW, {"foot" + s: 1.}, smooth=False)
-        for x in (2.6, 5.4):
-            S.add(box((x, 4.9, 5.5 * sg), (.7, 2., 4.)), tuple(spec["accent"]), {"foot" + s: 1.}, smooth=False)
+        z = 5.5 * sg
+        for side in (-1., 1.):
+            S.add(tube([((1.5, 2.6, z + side * 3.34), .62, .58), ((4., 5.1, z + side * 2.45), .61, .65),
+                        ((6.3, 5.12, z - .82 * sg), .56, .57)], 8),
+                  tuple(spec["accent"]), {"foot" + s: 1.})
 
 
 def headband(S, spec):
@@ -539,7 +683,7 @@ def weapon(S, spec, kind):
 
 OUTFITS = {
     "bare": [],
-    "armored": [kimono, lambda S, spec: hakama(S, spec, True), obi, armour, lambda S, spec: footwear(S, spec, INK)],
+    "armored": [kimono, lambda S, spec: hakama(S, spec, True), obi, armour, helmet, lambda S, spec: footwear(S, spec, INK)],
     "robe": [lambda S, spec: kimono(S, spec, True), hakama, coat, obi, footwear],
 }
 

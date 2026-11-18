@@ -20,11 +20,11 @@ outside the index retain their existing visuals.
 How a character is put together (`build_character`):
 - **Body**: a bare figure in a loincloth, chest wrap and wrist and ankle wraps. Head and hair are scaled about the neck (`HEAD`).
 - **Outfit**: a list of layers over the body (`OUTFITS`): `kimono`, `hakama`, `coat`, `obi`, `armour`, `footwear`.
-  Each layer is the body's own cross-sections grown outward, so it follows the limbs. `--outfit bare` shows the body alone.
+  Fitted sections share the body's cross-sections and bone weights. Robes have open fronts over divided hakama, and the shoulder plates ride the upper-arm bones. `--outfit bare --weapon none` shows the underwear and wraps.
 - **Weapon**: its own piece on the `weapon` bone, grip at the bone's origin. A sword also has a scabbard on the hip
   and a hilt on the `sheathed` bone that shows while the blade is put away.
 - **Detail is painted, not modelled**: lacing, pleat folds, hems, crests and hair sheen are per-face colours
-  (`paint=` or a `band` function), which is what reads at this resolution.
+  (`paint=` or a `band` function). Brocade repeats in garment space and deforms with the fabric.
 - Colours come from the look specs in `gen_sprites2d.TRAVELERS` and `gen_sidecast.CAST`; `LOOK3D` in
   `chara3d_sheet.py` overrides them per character.
 
@@ -59,7 +59,7 @@ test fixture, not an inventory feature for every outfit. Screenshots are under `
 
 ## Known gaps
 
-- Faces, hair and cloth are simpler than the reference art; armour and robes need more shape and trim.
+- Cloth follows the skeleton through authored weights. It has no cloth simulation.
 - Kneeling poses crumple skirts and coats; some raised weapons leave the cell.
 - Native lighting does not yet match the offline pixel-art treatment.
-- Hats, helmets, masks, beards, haori coats and nonhuman models are outside this native export.
+- Natsuko's iron cap is part of her armored outfit. Other hats, masks, beards, haori coats and nonhuman models need dedicated layers.

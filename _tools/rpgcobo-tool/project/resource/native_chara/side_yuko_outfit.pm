@@ -6,6 +6,19 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
+		name = "c2b457a"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x050e32ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
 		name = "c3c60aa"
 		tec = "pbr.basic"
 		mtype = 0
@@ -19,10 +32,75 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c6c88a5"
+		name = "c7290ae"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x263f61ff
+		basecol = 0x2b486dff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c7a9bbc"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x325582ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c7c7f88"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x34373fff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c81a3c5"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x385f90ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c8f939e"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x474b58ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c92959f"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x4a4e5aff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -36,19 +114,6 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x4f85cbff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "c9a9ea9"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x545867ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000

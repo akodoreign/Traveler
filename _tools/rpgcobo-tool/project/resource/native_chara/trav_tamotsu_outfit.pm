@@ -6,10 +6,10 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c928e9a"
+		name = "c76727c"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x4a4654ff
+		basecol = 0x2e2b34ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -19,10 +19,75 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "ca9a49a"
+		name = "c88848f"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x676054ff
+		basecol = 0x3f3b47ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c8b8692"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x433d4aff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "ca18433"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x5c3b07ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "caa2832"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x680407ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "cb3ada2"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x756c5dff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "cc1baaf"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x8a7f6fff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -36,6 +101,19 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x8e6526ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "ccac4b8"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x988e7cff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000

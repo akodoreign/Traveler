@@ -71,6 +71,58 @@ material = [
 		texture2 = null
 	}
 	{
+		name = "c4c999c"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x115256ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c7f7f79"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x373731ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c93938c"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x4b4b44ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "c95958e"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x4e4e46ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
 		name = "cb0b0a8"
 		tec = "pbr.basic"
 		mtype = 0
