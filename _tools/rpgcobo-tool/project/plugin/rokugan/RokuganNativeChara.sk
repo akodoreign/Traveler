@@ -97,8 +97,8 @@ class RokuganNativePicture extends RPG3DPicture
 		nativeDecals = [];
 		if( wear){
 			local palette = gearPalette( key, wear.clan);
-			nativeOutfit = wear.body ? addNativePart( GEAR .. wear.body, palette)
-				: addNativePart( wear.head && key == "trav_natsuko" ? GEAR .. "natsuko_uncovered" : ROOT .. key .. "_outfit");
+			if( wear.body) nativeOutfit = addNativePart( GEAR .. wear.body, palette);
+			else if( key != "trav_natsuko") nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
 			if( wear.head) nativeHead = addNativePart( GEAR .. wear.head, palette);
 			if( wear.mask) nativeMask = addNativePart( GEAR .. wear.mask, palette);
 			if( wear.cape) nativeCape = addNativePart( GEAR .. wear.cape, palette);

@@ -952,6 +952,8 @@ def crab_armor(ar):
     body("A100", "A020", "Travelling Clothes", 8, 80)
     body("A101", "A022", "Ashigaru Lamellar", 14, 220)
     body("A102", "A040", "Jingasa", 3, 60)
+    body("A173", "A020", "Crab Scout Light Armor", 12, 160)
+    ar["A173"]["desc"] = "Light lamellar issued to Hiruma scouts for patrols along the Wall."
     ar["A100"]["desc"] = "Sturdy hemp and a good cloak. Light; no penalty to speed."
     ar["A101"]["desc"] = "Laced iron scales of the Wall's foot soldiers. Heavy but honest."
     ar["A102"]["desc"] = "A lacquered conical hat. Keeps off rain, sun and the occasional arrow."
@@ -4913,7 +4915,8 @@ def main():
     ]
     for pid, name, mdl, wid, desc in travelers:
         x = copy.deepcopy(pb)
-        x.update({"name": name, "mdlid": mdl, "desc": desc, "equips": [wid, "A000"], "defskillid": "S003",
+        equips = [wid, None, "A110", "A173"] if pid == "P100" else [wid, "A000"]
+        x.update({"name": name, "mdlid": mdl, "desc": desc, "equips": equips, "defskillid": "S003",
                   "voiceid": "", "lvoption": [{"LV": 1, "opttype": "opt_getskill", "skillid": "S110"}] if pid == "P100"
                   else haruki_spells() if pid == "P104"
                   else [{"LV": lv, "opttype": "opt_getskill", "skillid": k} for lv, k in (

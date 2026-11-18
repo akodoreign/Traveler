@@ -2096,5 +2096,18 @@
 		],
 		"opttype": "opt_equip",
 		"price": 50
+	},
+	"A173": {
+		"MDEF": 0,
+		"PDEF": 12,
+		"desc": "Light lamellar issued to Hiruma scouts for patrols along the Wall.",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "Crab Scout Light Armor",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 160
 	}
 }

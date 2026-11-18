@@ -9,7 +9,20 @@ local verify = @( test, message){ if( !test) throw Exception( message); };
 
 if( phase == 0){
 	verify( stage.player3d.nativeKey == "trav_natsuko", "Leader did not use the native model");
-	verify( stage.player3d.nativeGear && !stage.player3d.nativeGear.body, "Leader did not resolve default clothes");
+	local crab = stage.player3d;
+	verify( crab.nativeGear.body == "A173" && crab.nativeOutfit && crab.nativeGear.head == "A110" && crab.nativeHead,
+		"Starting Crab armor and helmet were not equipped and visible");
+	local bodySlot = leader.getEquipableSlot( "A173"), headSlot = leader.getEquipableSlot( "A110");
+	local render = @() RPG3DObject.create3DObject( { mdlid=leader.data.mdlid, rt_wearer=leader });
+	leader.setEquip( headSlot, null);
+	local bareHead = render();
+	verify( bareHead.nativeOutfit && !bareHead.nativeHead, "Removing the helmet affected body armor");
+	leader.setEquip( bodySlot, null);
+	local bare = render();
+	verify( bare.nativeBody && !bare.nativeOutfit && !bare.nativeHead, "Unequipped Natsuko did not use her wrapped body");
+	equip( leader, "A110");
+	local helmetOnly = render();
+	verify( !helmetOnly.nativeOutfit && helmetOnly.nativeHead, "Helmet alone restored unequipped armor");
 	equip( leader, "A111");
 	equip( leader, "A102");
 	equip( leader, "A149");
@@ -70,7 +83,7 @@ if( phase == 0){
 	printf( "[NATIVE GEAR] equipped and removed all %d garments\n", n);
 }else{
 	local actor = stage.player3d;
-	verify( actor.nativeKey == "trav_natsuko" && !actor.nativeGear.body && actor.nativeOutfit &&
-		!actor.nativeWeapon && !actor.nativeHead && !actor.nativeMask && !length( actor.nativeDecals), "Default clothes did not return after unequipping");
-	printf( "[NATIVE GEAR] restored default clothes and unarmed rig\n");
+	verify( actor.nativeKey == "trav_natsuko" && !actor.nativeGear.body && actor.nativeBody && !actor.nativeOutfit &&
+		!actor.nativeWeapon && !actor.nativeHead && !actor.nativeMask && !length( actor.nativeDecals), "Unequipping left visible gear");
+	printf( "[NATIVE GEAR] restored wrapped body and unarmed rig\n");
 }

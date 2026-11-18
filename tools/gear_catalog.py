@@ -23,6 +23,7 @@ BODY = {
     "A166": ("plate", 22, "", "champion"),
     "A167": ("robe", 14, "rings", "ward"),
     "A168": ("lamellar", 27, "", "storm"),
+    "A173": ("lamellar", 28, "", ""),
 }
 
 HEAD = {

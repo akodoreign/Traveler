@@ -12155,7 +12155,9 @@
 		"eqtypebits": 67108863,
 		"equips": [
 			"W101",
-			null
+			null,
+			"A110",
+			"A173"
 		],
 		"expcurv": [
 			50,

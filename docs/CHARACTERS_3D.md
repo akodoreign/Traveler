@@ -61,10 +61,16 @@ collision and picking, and supplies skeletal transforms to the meshes instead of
 sprite. No sprite frames are generated for native actors. Bodies, outfits and weapons bind to the
 same skeleton.
 
-Native visuals start at 75% of their original scale. The roster index layers each look's authored
-height, width, build, age, and size on top of that baseline. Equipment follows the same transform;
+Native visuals start at 75% of their original scale. Togashi Yosai, Hiruma Natsuko, and Ide Tamotsu
+are the tallest travelers, in that order. The roster uses authored height, width, build, age, and
+size where available, with small, stable height and frame differences for unspecified looks.
+Costume variants of the same person share proportions. Equipment follows the same transform;
 interaction bounds are unchanged. Run `tools\chara3d_native_all.py --index-only` to refresh
 proportions without rebuilding the meshes.
+
+Natsuko starts with Crab Scout Light Armor and a Kabuto. Each equipped slot controls its own
+visible piece; with both slots empty, she uses the wrapped base body. Existing saves keep their
+loadouts.
 
 ## Equipped clothing
 
