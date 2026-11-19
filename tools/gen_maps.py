@@ -10878,8 +10878,9 @@ S02_SCP1 = [narrate("A teahouse among weeping willows, on a peninsula in a still
             say("Guard", "Evening, girl."),
             say("Mitsue", "(servant's voice) Evening, sir. Mind the step."),
             narrate("She is gone."), setf("G839")] + DARK + [
-    go("M347", 10, 18), narrate("Objective: south to Kudo, by Traitor's Grove and the border town of Shutai. The castle "
-                               "town has an outfitter, an apothecary and an inn.")]
+    go("M347", 10, 18), narrate("Objective: follow the main street east out of the castle town to Traitor's Grove, "
+                               "then pass through Shutai on the way to Kudo. The castle town has an outfitter, "
+                               "an apothecary and an inn.")]
 
 
 def willow_teahouse():

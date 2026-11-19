@@ -483854,7 +483854,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "Objective: south to Kudo, by Traitor's Grove and the border town of Shutai. The castle town has an outfitter, an apothecary and an inn.",
+											"text": "Objective: follow the main street east out of the castle town to Traitor's Grove, then pass through Shutai on the way to Kudo. The castle town has an outfitter, an apothecary and an inn.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -490987,15 +490987,15 @@
 				"remap": true,
 				"wipe": 2,
 				"dest": {
-					"mapid": "M477",
-					"evid": 2
+					"mapid": "M348",
+					"evid": 1
 				},
 				"mdl": {
 					"r": [
 						0,
 						1.0,
 						0,
-						39.0,
+						14.0,
 						6.0,
 						0.5
 					]

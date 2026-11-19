@@ -28,6 +28,26 @@ class InteriorDoorwayTests(unittest.TestCase):
                     self.assertGreater(width - 0.38, 0.75)
 
 
+class ScorpionRouteTests(unittest.TestCase):
+    def test_story_road_from_bayushi_leads_to_traitors_grove(self):
+        project = Path(gm.PROJ)
+        maps = json.loads((project / "data" / "map.json").read_text(encoding="utf-8"))
+        town, events = gm.make("M347")
+        shipped = maps["M347"]["event"]
+        east = next(key for key, side in town.edge_out if side == "e")
+        portal = shipped[east]
+        self.assertEqual(portal["dest"], {"mapid": "M348", "evid": 1})
+        self.assertEqual(portal["mdl"], events.ev[east]["mdl"])
+        self.assertTrue(any(event.get("dest") == {"mapid": "M347", "evid": 1}
+                            for event in maps["M348"]["event"].values()))
+        self.assertTrue(any(event.get("dest", {}).get("mapid") == "M477"
+                            for key, event in shipped.items() if key != east))
+        markers = (project / "plugin" / "rokugan" / "RokuganMarkerData.sk").read_text(encoding="utf-8")
+        self.assertIn('["M348", 77.0, 14.0, 0.5, 14.0]', markers)
+        self.assertNotIn('["M477", 77.0, 14.0,', markers)
+        self.assertIn('M348 = "P105"', markers)
+
+
 class SettlementExpansionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
