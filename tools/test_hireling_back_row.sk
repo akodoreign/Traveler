@@ -1,0 +1,42 @@
+// Playbot evalf on the field, then again at the battle command menu.
+local stage = ::rpgstage, battle = stage["battle"];
+if( !battle){
+	::rpgvar["G293"] = 1;
+	::rpgvar["G294"] = 3;
+	local party = clone ::rpgstat.members;
+	foreach( i in [0, 1, 2, 3, 4, 5, 6, 7]) ::rpgstat.members[i] = null;
+	foreach( i, slot in [0, 3, 4, 7]) ::rpgstat.members[slot] = party[i];
+	::Rokugan.fitParty();
+	::RPGMain.enterBattle( { mapid="M810", escape=true, enemies=[
+		{ id="E200", x=1.5, z=-0.4 }, { id="E105", x=-0.5, z=0.5 }
+	] });
+	return;
+}
+local hire = ::Rokugan.hire3d;
+if( !hire) throw "Hired support was not spawned";
+if( hire.scn != stage.scn || battle.chara3ds.contains( hire))
+	throw "Hired support must be visible but not a targetable party member";
+local location = stage.getLocation( "*memberloc");
+local expected = Vector3D( 0, 0, -4.2).rotate( location.dir, 0, 0).add( location.pos);
+if( Vector3D( hire.pos).sub( expected).length() > 0.01)
+	throw "Hireling no longer stands in the third row";
+local camera = RPGCameraworkFixed( stage.camwork.data);
+local marker = stage.getMarker( camera.data.mkid);
+::Rokugan.hire3d = null;
+camera.updateBody( stage, 0);
+if( Math.abs( camera.zoom - marker.viewport) > 0.001)
+	throw "Ordinary battle framing changed without hired support";
+::Rokugan.hire3d = hire;
+local aspect = stage.cam.aspect;
+foreach( ratio in [16.0 / 9.0, 4.0 / 3.0]){
+	stage.cam.aspect = ratio;
+	camera.updateBody( stage, 0);
+	local minimum = 12.0 * 1.16 * Math.max( 1.0, (16.0 / 9.0) / ratio);
+	if( camera.zoom < minimum - 0.001) throw "Third-row view is still using the tight two-row camera";
+}
+stage.cam.aspect = aspect;
+printf( "[HIRE ROW] %S remains in the third row; wide framing includes support\n", hire.nativeKey);
+foreach( member in battle.members){
+	if( member) printf( "[HIRE ROW] %S at %S\n", member.name, battle.getChara3D( member).pos);
+}
+::Rokugan.rtshot( "tmp/rt_shot/hire_row.raw");
