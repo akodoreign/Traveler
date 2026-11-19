@@ -1294,7 +1294,13 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 //	RokuganResumeData.sk). Back on the field with no scene running, that move happens now.
 ::Rokugan.resumeTick <- function( st){
 	local k = int( ::rpgvar["G1398"] || 0);
-	if( k <= 0 || st["battle"] || !st["player3d"] || st.mainevent) return;
+	if( k <= 0 || st["battle"] || !st["player3d"]) return;
+	// The memorial's recovery event may already be running. Consume the pending move before it leaves.
+	if( st.mapid == "M345" && ::rpgvar["G837"]){
+		::rpgvar["G1398"] = 0;
+		return;
+	}
+	if( st.mainevent) return;
 	::rpgvar["G1398"] = 0;
 	local r = ("RESUME" in ::Rokugan) && k < length( this.RESUME) ? this.RESUME[k] : null;
 	if( !r) return;
