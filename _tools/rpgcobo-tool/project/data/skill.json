@@ -7812,6 +7812,7 @@
 		"name": "Breath of the Fire Dragon",
 		"occasion": 1,
 		"option": [],
+		"rt_dragonbreath": true,
 		"skilltype": "attack",
 		"spdrate": 1.0,
 		"useact": {
@@ -15804,6 +15805,7 @@
 			}
 		},
 		"rt_selfburn": 0.1,
+		"rt_dragonbreath": true,
 		"rt_aoe": true
 	},
 	"S461": {

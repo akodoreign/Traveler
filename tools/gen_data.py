@@ -362,6 +362,8 @@ def spell_skills(s):
         ua["usesnd"] = "SE229"                       # use_charge needs useani/usesnd/useefx
         ha = k.setdefault("hitact", {"id": "hit_normal", "scp": None, "hitdelay": 100, "hitsnd": "SE220"})
         ha["hitefx"] = sp["fx"]
+        if sp["skill"] == "S335":
+            k["rt_dragonbreath"] = True
         k["aimani"] = {"id": "cast_" + sp["cat"], "mdlid": "CV000", "part": 0, "spd": 1.0}
         s[sp["skill"]] = k
 
@@ -2603,7 +2605,7 @@ def main():
     # the wounds). rt_selfburn = the share of his max HP it costs him (plugin); his regeneration pays it back.
     blow("S460", "Dragon's Breath", "The dragon tattoo breathes fire across the enemy line. It burns Yosai too. "
          "(Fire, all enemies; costs 10% of his HP)", dmgrate=[0.9, 0.9], hitrate=1.0, elembits=B["Fire"], cmdtgt=7,
-         consume=[0, 8], addlist=True, enemyuse=False, eqtypebits=2047, rt_selfburn=0.10)
+         consume=[0, 8], addlist=True, enemyuse=False, eqtypebits=2047, rt_selfburn=0.10, rt_dragonbreath=True)
     ar_k = copy.deepcopy(s["S300"])
     ar_k.update({"name": "Arrowroot", "desc": "The arrowroot tattoo draws an ally's wounds into Yosai's own skin. (Heal one "
                  "ally, more as he levels, but never more than half their HP; costs 15% of his HP)", "cmdtgt": 8, "consume": [0, 6], "addlist": True,

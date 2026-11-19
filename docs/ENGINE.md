@@ -101,6 +101,12 @@ a wider 248x184 output cell. To rebake installed batches without recutting the a
 | **Animation fixes** | `atk_normal` overridden so picture models play `atkani`; sprites use `replay:false` on loops. |
 
 ## 4. How to test
+
+Dragon's Breath (`S460`) and Breath of the Fire Dragon (`S335`) share
+`RokuganDragonBreath.sk` and `resource/efx/rt/dragon_breath.ptd`. The stream
+plays once after charging and sweeps the opposing formation; normal targeting
+still applies (all enemies for the tattoo, one target for the spell).
+
 ```
 cd _tools/rpgcobo-tool
 rpgcobo.exe -testplay -battle M001 3 -debuglv 5     # training dummy (30000 HP): Suki + Boost cycles

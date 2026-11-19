@@ -1,0 +1,48 @@
+// One sweeping stream per cast; impacts and damage still use the normal skill pipeline.
+::Rokugan.dragonBreath <- function( stage, src, dsts){
+	local battle = stage.battle;
+	local caster = battle.getChara3D( src);
+	if( !caster || !length( dsts)) return;
+	local targets = [];
+	// Use the full opposing formation for the sweep, not for damage.
+	local side = battle.members.contains( src) ? battle.enemies : battle.members;
+	foreach( dst in side){
+		if( !dst || dst.isDead()) continue;
+		local actor = battle.getChara3D( dst);
+		if( !actor || actor == caster) continue;
+		local point = Vector3D( actor.pos).add( 0, actor.bnd.y, 0);
+		local screen = Vector3D( point).transform( stage.cam.viewmat);
+		targets .. { point=point, height=screen.y };
+	}
+	if( !length( targets)) return;
+	targets.sort( @( t) t.height);
+	local origin = Vector3D( caster.pos).add( 0, caster.bnd.y + caster.bnd.s * 0.60, 0);
+	local path = [];
+	path .. Vector3D( targets[0].point).add( 0, -0.40, 0);
+	foreach( t in targets) path .. t.point;
+	path .. Vector3D( targets[length( targets)-1].point).add( 0, 0.55, 0);
+
+	local effect = #{ efx="/resource/efx/rt/dragon_breath.ptd" };
+	local pulses = 18;
+	for( local i = 0; i < pulses; i++){
+		if( ::rpgstage != stage || stage.battle != battle) return;
+		local progress = i / (pulses-1.0);
+		local sweep = progress < 0.62 ? progress / 0.62 : 1.0 - (progress - 0.62) / 0.38;
+		local step = (length( path)-1) * sweep;
+		local segment = Math.min( int( step), length( path)-2);
+		local ray = Vector3D( path[segment+1]).sub( path[segment]).scale( step-segment)
+			.add( path[segment]).sub( origin);
+		local reach = Math.min( 1.0, (i+1) * 0.25);
+		local count = Math.max( 2, Math.min( 18, int( ray.length() * reach / 0.48) + 1));
+		for( local j = 0; j < count; j++){
+			local t = reach * (j+0.4) / (count-0.6);
+			local fire = SK3DEffect( effect.efx);
+			fire.efx = effect;
+			fire.pos( Vector3D( ray).scale( t).add( origin));
+			fire.scale( (0.32 + t * 0.90) * Math.min( 1.0, (pulses-i) / 3.0));
+			stage.scn.addObject( fire);
+			fire.startParticle();
+		}
+		sleep( 52);
+	}
+};

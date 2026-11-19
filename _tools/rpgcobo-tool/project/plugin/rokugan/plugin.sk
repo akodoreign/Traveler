@@ -43,6 +43,7 @@ function loadPlugin( args, opt){
 	runsk( srcdir .. "/RokuganUtil.sk");		//	array / string helpers the engine lacks (first, rest, front, concat)
 	runsk( srcdir .. "/RokuganMapGen.sk");
 	runsk( srcdir .. "/RokuganBattle.sk");
+	runsk( srcdir .. "/RokuganDragonBreath.sk");
 	runsk( srcdir .. "/RokuganBattleUI.sk");
 	runsk( srcdir .. "/RokuganRumble.sk");
 	runsk( srcdir .. "/RokuganHazard.sk");

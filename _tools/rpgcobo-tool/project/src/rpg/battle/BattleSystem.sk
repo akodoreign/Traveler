@@ -194,6 +194,8 @@ class SkillCommand
 	function commonSkillFunc(){
 		waitFor( src);
 		act( skill["useact"])?.wait();			//	発動モーション実行。指定されてなければ無視。
+		if( skill["rt_dragonbreath"] && ::["Rokugan"] && ::Rokugan["dragonBreath"])
+			::Rokugan.dragonBreath( ::rpgstage, src, dsts);
 		local na = skill["atknum"];
 		for( local l = (na?rnd( na[0], na[1]+1):1); l > 0;l --){		//	
 			local refs = [];

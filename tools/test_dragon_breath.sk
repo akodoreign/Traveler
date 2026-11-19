@@ -1,0 +1,40 @@
+// Playbot evalf: once on the field, then again at the battle command menu.
+local stage = ::rpgstage, battle = stage["battle"];
+if( !battle){
+	::RPGMain.enterBattle( { mapid="M810", escape=true, enemies=[
+		{ id="E200", x=1.5, z=-0.4 }, { id="E105", x=-0.5, z=0.5 }
+	] });
+	return;
+}
+
+local caster = battle.members[0];
+local preview = ::Rokugan.dragonBreath, casts = { count=0 };
+::Rokugan.dragonBreath = function( stage, src, dsts){
+	casts.count++;
+	local cast = casts.count;
+	stage.subthread( function(){
+		for( local frame = 0; frame < 24; frame++){
+			::Rokugan.rtshot( "tmp/rt_shot/dragon_%d_%02d.raw" % [cast, frame]);
+			sleep( 50);
+		}
+	});
+	preview( stage, src, dsts);
+};
+foreach( id in ["S335", "S460"]){
+	local skill = ::conf.skill[id], foes = battle.enemies;
+	local dsts = id == "S335" ? [foes[0]] : foes;
+	local hp = caster.HP, mp = caster.MP, secondHP = foes[1].HP;
+	printf( "[DRAGON BREATH] %s before HP=%d MP=%d secondHP=%d\n", id, hp, mp, secondHP);
+	local cmd = SkillCommand( caster, skill, dsts);
+	cmd.exec();
+	printf( "[DRAGON BREATH] %s after HP=%d MP=%d secondHP=%d\n", id, caster.HP, caster.MP, foes[1].HP);
+	if( id == "S335" && (caster.MP != mp-16 || foes[1].HP != secondHP))
+		throw "Fire Dragon changed its MP cost or hit the unselected foe";
+	if( id == "S460" && (caster.HP >= hp || foes[1].HP >= secondHP))
+		throw "Dragon tattoo did not self-burn and damage the second foe";
+	sleep( 1200);
+	if( stage.scn.findObject( @( obj) obj instanceof SK3DEffect && obj.efx["efx"] == "/resource/efx/rt/dragon_breath.ptd"))
+		throw "Dragon breath particles stayed in the scene after the cast";
+}
+::Rokugan.dragonBreath = preview;
+if( casts.count != 2) throw "Expected one sweep per cast";
