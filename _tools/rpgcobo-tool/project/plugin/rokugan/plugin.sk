@@ -6,6 +6,7 @@
 //	- Void Points (VP) : +1 per turn (not the turn after boosting), start at 1, max 5.
 //	- Boost : "Boost" battle command cycles 0..min(3,VP); the next command gets extra hits (attacks) or power (skills).
 //	Design docs: docs/OCTOPATH-FIT.md §5, docs/DESIGN.md §5.
+//	Native characters load through RokuganLook.sk. Do not load the retired cutout rig alongside it.
 //
 import PropertyType;
 

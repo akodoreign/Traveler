@@ -3,8 +3,8 @@
 //	files (against Git) update being faster").
 //	tools/release.py writes two files into the repo root on every push: version.json {version, date} and rt_manifest.json
 //	{version, files: {path: [crc32, size]}} (every committed file but .exe/.dll, which are locked while the game runs).
-//	- Update (fast): only the files whose manifest entry changed since the installed version, plus any missing or
-//	  wrong-sized file. No file is read.
+//	- Update (fast): files whose manifest entry changed, missing or wrong-sized files, and a checksum check of the
+//	  Rokugan plugin entry point, where a stale local rig hook can prevent startup.
 //	- Verify: every file's CRC32 against GitHub's manifest; anything that differs is downloaded again.
 //	Each download is checked (CRC32 + size) before it replaces the old file. Afterwards the game asks to restart, since
 //	scripts and data already loaded stay as they were.
@@ -124,8 +124,7 @@ local GAME = "_tools/rpgcobo-tool/";
 	f.refresh();
 };
 
-//	The files to fetch. fast: manifest entries changed since the installed manifest, plus missing / wrong-sized files.
-//	Otherwise every file's CRC32 is checked.
+//	Fast checks manifest changes, file sizes and the plugin entry point's CRC32. Verify checks all managed CRCs.
 ::Rokugan.updScan <- function( remote, local_, fast){
 	local need = [], n = 0, tot = length( remote.files);
 	local lf = (local_ && local_["files"]) || {};
@@ -140,10 +139,9 @@ local GAME = "_tools/rpgcobo-tool/";
 		local fn = p.substring( p.lastIndexOf( "/") + 1);
 		if( (fn.indexOf( "boss_") == 0 || fn.indexOf( "banner_") == 0)
 			&& (p.indexOf( "resource/enemy_pic/") >= 0 || p.indexOf( "resource/efx/portrait/") >= 0)) continue;
-		if( fast){
-			//	only what changed on GitHub since the installed version (a local edit that GitHub hasn't changed stays)
+		if( fast && p != (GAME .. "project/plugin/rokugan/plugin.sk")){
 			local o = (p in lf) ? lf[p] : null;
-			if( !o ? f.size != e[1] : (o[0] != e[0] || o[1] != e[1])) need .. p;
+			if( f.size != e[1] || (o && (o[0] != e[0] || o[1] != e[1]))) need .. p;
 			if( n % 400 == 0) this.updShow( "Comparing files... %d / %d" % (n, tot));
 			continue;
 		}

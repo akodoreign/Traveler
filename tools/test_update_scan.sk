@@ -1,0 +1,17 @@
+// Run in RPG-Cobo playtest via the bot's evalf command.
+local entry = "_tools/rpgcobo-tool/project/plugin/rokugan/plugin.sk";
+local data = "_tools/rpgcobo-tool/project/plugin/rokugan/RokuganUpdate.sk";
+local f = FileRef( ::Rokugan.updPath( entry));
+local bytes = f.load();
+local files = {};
+files[entry] <- ["" .. bytes.crc32( 0), f.size];
+local manifest = { files = files };
+if( length( ::Rokugan.updScan( manifest, manifest, true))) throw "Clean plugin should not be fetched.";
+
+files[entry][0] = files[entry][0] == "0" ? "1" : "0";
+local dataFile = FileRef( ::Rokugan.updPath( data));
+files[data] <- ["0", dataFile.size + 1];
+local repair = ::Rokugan.updScan( manifest, manifest, true);
+if( length( repair) != 2 || repair.indexOf( entry) < 0 || repair.indexOf( data) < 0)
+	throw "Wrong fast-update repair list: " .. encodeJSON( repair);
+printf( "[UPDATE SCAN] Fast update repairs stale loader and wrong-sized files.\n");
