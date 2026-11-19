@@ -948,6 +948,18 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 
 //	The back row: the hireling stands behind the party (visual only: not a member, never targeted).
 ::Rokugan.hire3d <- null;
+// The arena camera markers frame two rows. Include the support actor in the ordinary battle shot.
+::RPGCameraworkFixed._rt_update_hire <- ::RPGCameraworkFixed.updateBody;
+::RPGCameraworkFixed.updateBody <- function( stage, dt){
+	this._rt_update_hire( stage, dt);
+	local hire = ::Rokugan.hire3d;
+	if( !stage["battle"] || !hire || hire.scn != stage.scn) return;
+	local marker = stage.getMarker( data.mkid);
+	if( !marker || marker["name"] != "*maincam") return;
+	to.x += (hire.basepos[0] - to.x) * 0.14;
+	to.z += (hire.basepos[2] - to.z) * 0.14;
+	zoom *= 1.16 * Math.max( 1.0, (16.0 / 9.0) / stage.cam.aspect);
+};
 ::TurnBattleRunner._rt_setup_h <- ::TurnBattleRunner.setupCharas;
 ::TurnBattleRunner.setupCharas <- function(){
 	this._rt_setup_h();
