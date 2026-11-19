@@ -10875,7 +10875,9 @@ S02_SCP1 = [narrate("A teahouse among weeping willows, on a peninsula in a still
             narrate("Many Faces: Mitsue's School technique. In towns she takes a stranger's appearance to pass where Mitsue "
                     "can't. In battle: Steal an item, or Copy the last skill an enemy used and turn it back on it."),
             choices(("Many Faces: become a teahouse servant.", [])),
+            script('::Rokugan.takeDisguise("A181", "A185");'),
             narrate("Mitsue becomes a teahouse servant and walks out past the guards, carrying a tray."),
+            narrate("The maid uniform and cap are yours. While dressed for service, prepare healing herbs. Change back into the shinobi costume to Steal or Copy."),
             say("Guard", "Evening, girl."),
             say("Mitsue", "(servant's voice) Evening, sir. Mind the step."),
             narrate("She is gone."), setf("G839")] + DARK + [
@@ -11197,8 +11199,10 @@ def kudo():
 
 
 # ---- M352 the Kitsune Hall (S04b Many Faces: the governor's rooms)
-S04B = [narrate("A Fox household servant is scolded at the kitchen door and sent up with a covered plate. Halfway "
+S04B = [script('::Rokugan.takeDisguise("A182", "A186");'),
+        narrate("A Fox household servant is scolded at the kitchen door and sent up with a covered plate. Halfway "
                 "up the stair, she is Mitsue in her third face."),
+        narrate("The Fox household kimono comes with a russet tail and an ear band. In School, Trickster borrows a random battle art for one action."),
         narrate("The governor's rooms. Kitsune Hyobe eats alone, hood up, his back to the door."),
         say("Mitsue", "(bowing) Your fish, my lord."),
         say("\"Governor\"", "...Leave it."),
@@ -11564,12 +11568,26 @@ def mask_vendor(aid, name, f):
                                      ("Keep it for later.", []))]
 
 
+def tailor_menu():
+    from mitsue_costumes import COSTUMES
+    offers = []
+    for base, improved, _, name, _, defense, material, count, clue in COSTUMES:
+        offers.append((name, [say("Scorpion tailor", f"I can reinforce your {name} to {defense} defence. {clue} Bring the original garment too."),
+                              choices(("Hand over the garment and materials.", [
+                                  script(f'W = ::Rokugan.tailorCostume("{base}", "{improved}", "{material}", {count});'),
+                                  if_([flag("W")], [say("Scorpion tailor", "Try the seams. Same cut, stronger lining.")],
+                                      [say("Scorpion tailor", "I need Mitsue here with the original garment and all the materials.")])]),
+                                      ("Keep them.", []))]))
+    return choices(*offers, ("Leave.", []))
+
+
 def mask_shrine(ev, x, z, mid):
     """A district shrine (production S03 [SAVE]): take the masks off (SP restored), rest and save."""
     fb(ev.m, x, z + 1, 3, 14)
     ev.talk(x, z - 1, "CE000", [(None, [
         narrate("A district shrine. Masked citizens bow to it on the way past, and never stop."),
-        choices(("Remove masks, rest and save.", [script("W = ::Rokugan.removeMasks();")] + REST + [
+        choices(("Speak to the Scorpion tailor.", [tailor_menu()]),
+                ("Remove masks, rest and save.", [script("W = ::Rokugan.removeMasks();")] + REST + [
             narrate("(Masks off. Mitsue's own face, cold in the air. HP and SP restored.)"),
             {"cmd": "cmd_showui", "key": "menu_save", "op": None, "uiclose": 2}]),
                 ("Rest and save, masks on.", REST + [narrate("(Rested.)"),
@@ -12204,8 +12222,10 @@ S01A_SCP3 = [narrate("CHAPTER 3 - Fortunes Lost."),
              narrate("Now the Emerald Champion has sent three magistrate teams to judge it. Shosuro Norie leads the "
                      "Scorpion's. She has sent for a servant who is nobody in particular."),
              narrate("Objective: the Town of Buried Leaves, east, where the tribunal sits.")]
-TROUPE = [narrate("Mitsue takes an Iuchi soldier's spare helmet from a cart and his accent from his own mouth, and sits "
+TROUPE = [script('::Rokugan.takeDisguise("A183", "A187");'),
+          narrate("Mitsue takes an Iuchi soldier's spare helmet from a cart and his accent from his own mouth, and sits "
                   "down at the fire as a latecomer from the night watch."),
+          narrate("The Iuchi camp uniform and helmet are yours. Use Cover to protect an ally or Heavy Slash to attack."),
           say("Iuchi soldier", "...the actors? We were ordered to. They were spies, Shosuro spies with paint on."),
           say("Mitsue", "(in his accent) Who gave the order?"),
           say("Iuchi soldier", "Came down from the old master. Same as everything this year. Don't ask."),
@@ -12554,6 +12574,7 @@ def soshi_camp():
                     ("Many Faces: pour their sake. (Bribe the real servant: 300 zeni.)",
                      [if_([{"lvar": "MONEY", "op": ">=", "rvar": 300}],
                           [{"cmd": "cmd_moneyop", "op": 1, "amount": 300},
+                           script('::Rokugan.takeDisguise("A181", "A185");'),
                            narrate("A servant's apron, a servant's bow. Sake makes officers careless."),
                            narrate("\"...the well at Jiochi. Oleander, from the castle gardens. It silenced our own "
                                    "men too. Better that than what the Iuchi were getting out of them.\"")] +
@@ -12568,7 +12589,8 @@ def soshi_camp():
                               "under Soshi banners. Neither family was named in the petition for war.", "G941",
                               grievance("G923")),
                     ("Many Faces: be a clerk from the castle come to check the rolls.",
-                     [narrate("A clerk's ink-stained fingers and a clerk's sigh. He hands her the rolls without "
+                     [script('::Rokugan.takeDisguise("A189", "A191");'),
+                      narrate("A clerk's ink-stained fingers and a clerk's sigh. He hands her the rolls without "
                               "looking up."),
                       narrate("Bayushi and Shosuro troops, two hundred, under Soshi banners.")] + grievance("G923")),
                     ("Leave him.", []))])]),
@@ -12941,6 +12963,7 @@ S01_SCP4 = [narrate("CHAPTER 4 - The Eve."),
             say("Norie", "(the letter) And Mitsue - whatever you hear on the road, keep walking."),
             say("Mitsue", "(folding it) ...That's an odd thing to write, sensei."),
             SAVE_CHOICE,
+            script('::Rokugan.takeDisguise("A190", "A192");'),
             narrate("Morning. Mitsue walks out into the town at the head of a 'pilgrim troupe': Many Faces, a grey "
                     "pilgrim's face, a staff, a straw hat."),
             narrate("Objective: the pilgrims gather at the mountain shrine, at the east end of town.")]
@@ -13101,6 +13124,7 @@ PROCESSION = [narrate("On the road ahead: the Scorpion Champion's procession. Re
               if_([flag("G925")], [think("The Ojatara war was his distraction. Every court looking west."),
                                    think("Now I know what he was distracting them from.")]),
               think("...Keep walking, she said."),
+              script('::Rokugan.takeDisguise("A181", "A185");'),
               narrate("Many Faces: Mitsue steps into the procession's servant train in a new face, carrying a tray, "
                       "eyes down.")] + DARK + [go("M383", 6, 14)]
 DUTY_REASONS = [("Tell the party.", "They'd be killed for knowing."),
@@ -21627,6 +21651,11 @@ def make(i):
             r = (e.get("mdl") or {}).get("r") or []                        # would not exist there (spawndist 1)
             if len(r) == 6 and max(r[3], r[5]) >= 2.0 and e.get("spawndist", 1) == 1 and e.get("role") != "villager":
                 e["spawndist"] = 5
+    if i in ("M130", "M216"):
+        x, z, item = (34, 18, "I571") if i == "M130" else (60, 10, "I572")
+        if i not in INTERIORS and i not in ROOM_OFS:
+            x, z = x + PAD_X, z + PAD_BOTTOM
+        ev.chest(x, z, item)
     return m, ev
 
 

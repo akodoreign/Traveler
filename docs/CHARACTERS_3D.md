@@ -76,6 +76,10 @@ sandal soles follow the foot shape instead of using a rectangular block.
 Togashi Yosai's dragon and arrowroot ink is part of his skinned body, not his gear.
 His short-sleeved starting haori exposes the arm tattoos; other armor still covers the skin normally.
 Yosai's equipped headwear uses fitted meshes and matching decals sized for his bald scalp.
+Brimmed hats and their decals sit lower against the scalp instead of floating above it.
+Mitsue's fox ears lean outward about 45 degrees, with their bases embedded in her hair.
+Hats and helmets have independently authored silhouettes fitted to the skull, not the hairstyle.
+Hair should tuck underneath rather than determine the crown's height or width.
 Native outfit and equipment dyes share the clan palettes in `tools/gear_palette.py`. These keep
 Dragon cloth forest green and gold, Phoenix cloth vermilion and orange, Crab gear deep blue and
 steel grey with bright red trim, and civilian cloth in earthier shades without changing skin or hair colours.

@@ -269,7 +269,7 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 				cmd.skill = ::conf.skill["S000"];
 			}else{
 				local nsk = clone sk;
-				nsk["consume"] <- [0, 0];
+				nsk["consume"] <- cmd.skill["consume"];
 				local mine = sk["skilltype"] != "attack";				//	a heal or a buff: on her own side
 				local tg = b ? b.getCommandTargets( pc, mine ? pc : d, nsk.cmdtgt, false) : null;
 				if( tg && length( tg)) cmd.dsts = tg;
@@ -327,7 +327,7 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 		case "Gendo": return "S122";
 		case "Shizue": return "S123";
 		case "Haruki": return "S124";
-		case "Mitsue": return "faces";						//	Many Faces: Steal or Copy (a pick, like Rensei's)
+		case "Mitsue": return this.disguise( pc) ? "faces" : null;						//	Many Faces: Steal or Copy (a pick, like Rensei's)
 		case "Tamotsu": return "coin";						//	Barter Coin: hire a strike, or bribe (a pick)
 		case "Sayo": return "remedy";						//	Remedy: Ume-baa's Poultice or a recipe (a pick)
 		}
@@ -365,16 +365,18 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 			local st0 = state( pc), vp = cmd.skill["rt_vp"];
 			if( cmd.skill["name"] == "Drawing the Void"){
 				local most = (::rpgvar["G696"] && given( pc.name) == "Haruki") ? 2 : 1;	//	once per battle (Ch1);
-				st0.drawn <- (("drawn" in st0) ? st0.drawn : 0) + 1;						//	twice when Whole (Ch4)
-				if( st0.drawn > most){
-					pop( pc, "THE VOID IS DRAWN ALREADY", 0xff8080ff);
-					cmd.skill = ::conf.skill["S000"];
-					return;
+				if( !cmd.skill["rt_borrowed"]){
+					st0.drawn <- (("drawn" in st0) ? st0.drawn : 0) + 1;					//	twice when Whole (Ch4)
+					if( st0.drawn > most){
+						pop( pc, "THE VOID IS DRAWN ALREADY", 0xff8080ff);
+						cmd.skill = ::conf.skill["S000"];
+						return;
+					}
 				}
 				st0.bp += 1;
 				pop( pc, "+1 VP", 0xc0a0ffff);
 				log( "%S draws the Void: VP %d" % (pc.name, st0.bp));
-			}else if( vp){
+			}else if( vp && !cmd.skill["rt_borrowed"]){
 				if( st0.bp < vp){
 					pop( pc, "NOT ENOUGH VP", 0xff8080ff);
 					cmd.skill = ::conf.skill["S000"];
@@ -693,6 +695,8 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 //	Battle command: School (battlecmd5) -> the traveler's own talent, then school techniques and kata, paid with TP.
 ::Rokugan.ownedSkills <- function( pc, school){
 	return Table.map( ::conf.skill, @( v, i){
+		if( !::Rokugan.wardrobeSkillAllowed( pc, i)) return undefined;
+		if( pc.dataid == "P105" && ::Rokugan.disguiseArts(::Rokugan.disguise(pc)).contains(i)) return undefined;
 		if( !v["addlist"] || !pc.hasSkill( i) || !((v["occasion"] || 0) & 1) || (!!v["rt_school"] != school)) return undefined;
 		local disable = @() !pc.isSkillUseable( i);
 		return { idx = i, val = v, disable = disable, lbl = v.icon .. v.name, rlbl = ::rtf( ::RPGSystem.getSkillListInfo( pc, v)),
@@ -759,9 +763,11 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 		}
 		if( id == "faces"){										//	Mitsue: Steal, or Copy the target's last skill
 			playSound( "SE013");
-			local items = [ ::conf.skill["S125"], ::conf.skill["S505"] ].map( @( sk, i)({ idx = i, val = sk,
-				disable = false, _name = "f" .. i, lbl = sk.name, grayout = "off", rlbl = "" }));
-			return ::Rokugan.schoolList( pc, items);
+			local items = ::Rokugan.disguiseArts( ::Rokugan.disguise( pc)).map( @( sid) ::Rokugan.costumeArt(sid)).map( @( sk, i)({ idx = i, val = sk,
+				disable = @() !pc.canConsumeForSkill(sk), _name = "f" .. i, lbl = sk.name,
+				grayout = @() pc.canConsumeForSkill(sk) ? "off" : "on", rlbl = ::rtf(::RPGSystem.getSkillListInfo(pc,sk)) }));
+			local chosen = ::Rokugan.schoolList( pc, items);
+			return chosen && chosen.name == "Trickster" ? ::Rokugan.tricksterArt() : chosen;
 		}
 		local extra = ::Rokugan.ownedSkills( pc, true).filter( @( v) v.idx != id);
 		playSound( "SE013");

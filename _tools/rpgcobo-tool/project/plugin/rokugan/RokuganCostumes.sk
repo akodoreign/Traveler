@@ -1,0 +1,162 @@
+// Many Faces costumes occupy the body slot. Their arts and matching headwear travel with the garment.
+::Rokugan.disguise <- function( p){
+    local body = p.equips[3];
+    return body ? body.data["rt_costume"] : null;
+};
+::Rokugan.canWearCostume <- function( p, d){
+    if( d["rt_costume_head"]) return p.dataid == "P105" && (!p.equips || !p.equips[3] || this.disguise(p) == d.rt_costume_head);
+    if( d["rt_costume"]) return p.dataid == "P105";
+    return p.dataid != "P105" || !(::conf.type.eqslot[3].eqtypebits & (1 << d.eqtype));
+};
+::Rokugan.refreshDisguise <- function( p){
+    local stage = ::rpgstage;
+    if( stage && !stage["battle"] && stage["player3d"] && stage.player3d.rpgobj == p){
+        stage.player3d.rpgobj = null;
+        stage.changePlayer3D(stage.stat.statmap.playermodel);
+        this.lookcur.stage = stage;
+        this.lookcur.sig = this.lookSig(p);
+    }
+};
+::Rokugan.fitDisguiseHead <- function( p, role){
+    local old = p.equips[2], stat = ::rpgstat;
+    if( role != "shinobi"){
+        if( old){ stat.addItem(old); p.setEquip(2,null); }
+        return;
+    }
+    if( old && old.dataid == "A188") return;
+    local mask = stat.armors.find(@( a) a && a.dataid == "A188");
+    if( mask){ stat.swapItem(mask,old); p.setEquip(2,mask); }
+    else{
+        if( old) stat.addItem(old);
+        p.setEquip(2,RPGObject.create("A188"));
+    }
+};
+::Rokugan.takeDisguise <- function( base, improved){
+    local stat = ::rpgstat, p = stat.playermap["P105"];
+    if( !stat.members.contains( p)) return false;
+    local old = p.equips[3];
+    if( old && (old.dataid == improved || old.dataid == base)){ this.fitDisguiseHead(p,old.data.rt_costume); this.refreshDisguise(p); return true; }
+    local next = stat.armors.find( @( a) a && a.dataid == improved) ||
+                 stat.armors.find( @( a) a && a.dataid == base);
+    if( next) stat.swapItem( next, old);
+    else{
+        next = RPGObject.create( base);
+        if( old) stat.addItem( old);
+    }
+    p.setEquip( 3, next);
+    this.fitDisguiseHead(p,next.data.rt_costume);
+    this.refreshDisguise(p);
+    return true;
+};
+::Rokugan.tailorCostume <- function( base, improved, material, count){
+    local stat = ::rpgstat, p = stat.playermap["P105"];
+    if( !stat.members.contains( p)) return false;
+    local equipped = p.equips[3] && p.equips[3].dataid == base;
+    local original = equipped ? p.equips[3] : stat.armors.find( @( a) a && a.dataid == base);
+    if( !original || stat.countItems( material, false) < count) return false;
+    local next = RPGObject.create( improved);
+    if( !stat.reduceItemID( material, count)) return false;
+    if( equipped) p.setEquip( 3, next);
+    else stat.swapItem( original, next);
+    return true;
+};
+::Rokugan.restoreOldWardrobe <- function(){
+    local stat = ::rpgstat, p = stat.playermap["P105"];
+    if( !p || !stat.members.contains( p) || p.etc["wardrobeReady"]) return;
+    p.etc.wardrobeReady <- true;
+    if( this.disguise( p)){ if( this.disguise(p) == "shinobi" && !p.equips[2]) this.fitDisguiseHead(p,"shinobi"); return; }
+    local old = p.equips[4];
+    if( old && old.dataid == "A174") p.setEquip( 4, null);
+    this.takeDisguise( "A180", "A184");
+    if( ::rpgvar["G839"]) this.takeDisguise( "A181", "A185");
+    if( ::rpgvar["G849"]) this.takeDisguise( "A182", "A186");
+    if( ::rpgvar["G921"]) this.takeDisguise( "A183", "A187");
+};
+::Rokugan.COSTUME_ARTS <- {
+    shinobi = ["S125","S505"], maid = ["S950","S951"], fox = ["S952"],
+    clerk = ["S122"], pilgrim = ["S365"], soldier = ["S011","S526"]
+};
+::Rokugan.disguiseArts <- function( role){
+    return this.COSTUME_ARTS[role] || [];
+};
+::Rokugan.costumeArt <- function( sid){
+    local sk = clone ::conf.skill[sid], cost = sk["consume"];
+    sk["consume"] <- [1, typeof(cost) == SS_ARRAY && cost[0] == 1 && cost[1] > 0 ? cost[1] : 8];
+    return sk;
+};
+::Rokugan.tricksterArt <- function(){
+    local pool = {}, ids = [];
+    foreach( pid, person in ::conf.player){
+        if( !pid.startsWith("P") || !person || pid == "P105") continue;
+        foreach( op in (person["lvoption"] || [])){
+            local sid = op["skillid"];
+            if( sid && op.opttype == "opt_getskill") pool[sid] <- true;
+        }
+    }
+    foreach( id in ["S110","S120","S121","S122","S123","S124","S126","S127"]) pool[id] <- true;
+    foreach( sid in this.RECIPES) pool[sid] <- true;
+    foreach( sid, _ in pool){
+        local sk = ::conf.skill[sid];
+        if( sk && (sk.occasion & 1) && !sk["rt_passive"]) ids .. sid;
+    }
+    local sk = clone ::conf.skill[ids[::rnd.nexti() % length(ids)]];
+    sk["consume"] <- clone ::conf.skill["S952"].consume;
+    sk["eqtypebits"] <- -1;
+    sk["rt_borrowed"] <- true;
+    return sk;
+};
+
+// Each road keeps the actual item instances, including equipment levels and random rolls.
+local bagSlots = ["items","weapons","armors","keyitems","storage"];
+::Rokugan.switchRoadBag <- function( previous, next){
+    local stat = ::rpgstat, meta = stat.etc;
+    if( !meta["roadBags"]) meta.roadBags <- {};
+    local bags = meta.roadBags, owner = meta["bagOwner"] || previous;
+    if( owner == next){ meta.bagOwner <- next; return; }
+    if( owner){
+        local saved = {};
+        foreach( slot in bagSlots) saved[slot] <- stat[slot];
+        bags[owner] <- saved;
+    }
+    foreach( slot in bagSlots) stat[slot] = bags[next] ? bags[next][slot] : array(3);
+    if( bags[next]) delete bags[next];
+    meta.bagOwner <- next;
+};
+::Rokugan.combineRoadBags <- function(){
+    local stat = ::rpgstat, bags = stat.etc["roadBags"];
+    if( !bags) return;
+    foreach( owner, bag in bags){
+        foreach( slot in bagSlots){
+            foreach( item in bag[slot]){
+                if( !item) continue;
+                if( slot == "storage"){ stat.storage .. item; continue; }
+                local cap = item.data["stacknum"];
+                if( cap){
+                    local n = item.num, free = Math.max(0,cap-stat.countItems(item.dataid,false));
+                    if( n > free){
+                        local overflow = clone item;
+                        overflow.num = n-free;
+                        stat.storage .. overflow;
+                    }
+                    if( free) stat.addItem(item,Math.min(n,free));
+                }else stat.addItem(item);
+            }
+        }
+    }
+    stat.etc.roadBags <- {};
+    stat.etc.bagOwner <- "finale";
+};
+::Rokugan.wardrobeSkillAllowed <- function( p, sid){
+    if( p.dataid != "P105") return true;
+    local worn = this.disguise(p);
+    foreach( role, arts in this.COSTUME_ARTS) if( arts.contains(sid)) return worn == role;
+    if( worn == "shinobi") return true;
+    foreach( op in p.data.lvoption) if( op["skillid"] == sid) return false;
+    return true;
+};
+::RPGPlayer._rt_costume_hasSkill <- ::RPGPlayer.hasSkill;
+::RPGPlayer.hasSkill <- function( sid){
+    if( !::Rokugan.wardrobeSkillAllowed(this,sid)) return false;
+    if( dataid == "P105" && ::Rokugan.disguiseArts(::Rokugan.disguise(this)).contains(sid)) return true;
+    return _rt_costume_hasSkill(sid);
+};

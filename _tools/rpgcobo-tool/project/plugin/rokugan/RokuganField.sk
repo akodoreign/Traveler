@@ -1184,7 +1184,7 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 //	Whoever steps in is brought up to the best traveler's level (OT2: the bench shares the road's experience).
 ::Rokugan.TRAVELERS <- ["P100", "P101", "P102", "P103", "P104", "P105", "P106", "P107"];
 ::Rokugan.FKIT <- { P100 = ["W127", "A116"], P101 = ["W131", "A141"], P102 = ["W144", "A141"], P103 = ["W134", "A135"],
-	P104 = ["W144", "A140"], P105 = ["W147", "A127"], P106 = ["W135", "A159"], P107 = ["W134", "A141"] };
+	P104 = ["W144", "A140"], P105 = ["W147", "A180"], P106 = ["W135", "A159"], P107 = ["W134", "A141"] };
 //	One save walks the eight roads in turn (user 2026-11-12; tools/gen_maps.py path_menu / finale_gate): a road's end
 //	marker sets its PATH_WALKED flag, the traveler waits as they are, the next one walks alone. The finale opens when
 //	all eight are walked.
@@ -1243,8 +1243,10 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 ::Rokugan.pathBegin <- function( pid){
 	local p = ::rpgstat.playermap[pid];
 	if( !p) return;
-	for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = i == 0 ? p : null;
+	local previous = ::rpgstat.members.find( @( v) v && this.TRAVELERS.contains( v.dataid));
 	this.resetRoadCompanions();
+	this.switchRoadBag( previous ? previous.dataid : null, pid);
+	for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = i == 0 ? p : null;
 	::rpgstat.discoverPlayer( pid);
 	p.removeCondition( "K000");
 	p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP;
@@ -1348,6 +1350,7 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 };
 //	The finale: the traveler who walked last leads (fJoinAll brings the other seven on the plain).
 ::Rokugan.pathFinale <- function(){
+	this.combineRoadBags();
 	local p = ::rpgstat.members.find( @( v) v && ::Rokugan.TRAVELERS.indexOf( v.dataid) >= 0);
 	if( p) for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = i == 0 ? p : null;
 	this.resetRoadCompanions();
@@ -1386,6 +1389,7 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 //	F01: everyone arrives. Story companions go home (Yosai to the Guest call); Party A = the traveler who walked here
 //	plus the next three; the rest wait in Party B.
 ::Rokugan.fJoinAll <- function(){
+	this.combineRoadBags();
 	local T = this.TRAVELERS, lead = ::rpgstat.members.find( @( v) v && T.indexOf( v.dataid) >= 0) || ::rpgstat.playermap["P100"];
 	for( local i = 0; i < length( ::rpgstat.members); i++) ::rpgstat.members[i] = null;
 	local order = [lead];

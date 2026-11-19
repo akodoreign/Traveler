@@ -844,6 +844,7 @@ class RPGPlayer extends RPGCharaBase
 	//	指定したスロットの装備を設定する。
 	//	excludesチェックをして、外れる装備を配列にして返す。
 	function setEquip( slotidx, item){	//	int, RPGItem
+		if( item && (::Rokugan != null) && ("canWearCostume" in ::Rokugan) && !::Rokugan.canWearCostume(this,item.data)) return null;
 		equips[slotidx] = item;
 		local a = null;
 		if( item){	//	排他装備チェック
@@ -1460,6 +1461,7 @@ class RPGState extends Serializable
 	//	指定したアイテムIDを消費する。成功したらtrue、失敗したらfalseを返す。
 	//	@ret : bool 
 	function reduceItemID( itemid, n=1){
+		if( ::rpgdata[itemid]["rt_costume"] || ::rpgdata[itemid]["rt_costume_head"]) return false;
 		if( n <= 0) return false;
 		if( countItems( itemid, false) < n) return false;		//	数持ってるかチェック
 		local list = itemlistOf( itemid);
@@ -1482,6 +1484,7 @@ class RPGState extends Serializable
 
 	//	指定したアイテムを消費する。所持アイテムリスト内にない場合は無視する？
 	function reduceItem( item, n=10000){
+		if( item.data["rt_costume"] || item.data["rt_costume_head"]) return false;
 		local list = itemlistOf( item.dataid);
 		local i = list.indexOf( item);
 		if( i >= 0){

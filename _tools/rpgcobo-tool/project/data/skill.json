@@ -38713,5 +38713,150 @@
 			"usesnd": "SE229"
 		},
 		"elembits": 128
+	},
+	"S950": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "spell",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"id": "noop",
+			"scp": null
+		},
+		"atkform": "30",
+		"cmdtgt": 8,
+		"consume": [
+			1,
+			8
+		],
+		"desc": "Maid outfit art. Spend TP to heal one ally and cure poison.",
+		"dmgform": 2,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 126,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX016",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"name": "Willow Poultice",
+		"occasion": 3,
+		"option": [],
+		"remconds": 2,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"useact": {
+			"id": "use_charge",
+			"scp": null,
+			"useani": {
+				"id": "magic1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"useefx": "FX063",
+			"usesnd": "SE229"
+		},
+		"rt_school": true
+	},
+	"S951": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "cast_heal",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"id": "noop",
+			"scp": null
+		},
+		"atkform": "dst.MAXHP*0.3+6*2.0",
+		"cmdtgt": 11,
+		"consume": [
+			1,
+			8
+		],
+		"desc": "Maid outfit art. Spend TP to heal all allies and cure poison.",
+		"dmgform": 7,
+		"dmgtype": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"flags": 126,
+		"hitact": {
+			"hitani": null,
+			"hitdelay": 100,
+			"hitefx": "FX400",
+			"hitsnd": "SE220",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"icon": "",
+		"name": "Restorative Herb Tea",
+		"occasion": 3,
+		"option": [],
+		"remconds": 2,
+		"skilltype": "heal",
+		"spdrate": 1.0,
+		"useact": {
+			"id": "use_charge",
+			"scp": null,
+			"useani": {
+				"id": "cast_heal",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"useefx": null,
+			"usesnd": "SE229"
+		},
+		"elembits": 128,
+		"rt_school": true
+	},
+	"S952": {
+		"H1": null,
+		"addlist": true,
+		"aimani": {
+			"id": "aim",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"cmdtgt": 1,
+		"consume": [
+			1,
+			8
+		],
+		"desc": "Spend 8 TP to borrow a random battle art from another character for this action. Other requirements are waived.",
+		"enemyuse": false,
+		"eqtypebits": 2047,
+		"icon": "",
+		"name": "Trickster",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "noop",
+		"useact": {
+			"id": "noop",
+			"scp": null
+		},
+		"rt_school": true
 	}
 }

@@ -49,19 +49,6 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c3c3c5a"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x0a0a19ff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
 		name = "c583725"
 		cullface = SK_OFF
 		tec = "pbr.basic"

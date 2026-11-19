@@ -2111,7 +2111,7 @@ local WARDS = { ["Oni no Tsukakoro"] = 11 };			//	boss name -> ELEMS bit (11 = J
 ::Rokugan._rt_pre_ears <- ::Rokugan.onPreCommand;
 ::Rokugan.onPreCommand <- function( cmd){
 	local pc = cmd.src, sk = cmd.skill, b = ::rpgstage["battle"];
-	if( b && sk && (pc instanceof ::RPGPlayer) && sk["rt_voice"] && this.covered( pc)){
+	if( b && sk && (pc instanceof ::RPGPlayer) && sk["rt_voice"] && !sk["rt_borrowed"] && this.covered( pc)){
 		this.state( pc).unplugged <- true;							//	production Ch4: "Uncover to use them -
 		this.pop( pc, "(pulls the wax out to speak)", 0xffe0c0ff);	//	but the Wail can reach you."
 		log( "%S pulls the wax out for %S" % (pc.name, sk.name));
@@ -2332,7 +2332,7 @@ local WARDS = { ["Oni no Tsukakoro"] = 11 };			//	boss name -> ELEMS bit (11 = J
 ::Rokugan._rt_pre_remedy <- ::Rokugan.onPreCommand;
 ::Rokugan.onPreCommand <- function( cmd){
 	local pc = cmd.src, sk = cmd.skill, b = ::rpgstage["battle"];
-	if( b && sk && (pc instanceof ::RPGPlayer) && sk["rt_recipe"]){
+	if( b && sk && (pc instanceof ::RPGPlayer) && sk["rt_recipe"] && !sk["rt_borrowed"]){
 		local r = sk["rt_recipe"];
 		if( this.recipeCount( sk) <= 0){
 			cmd.skill = ::conf.skill["S000"];

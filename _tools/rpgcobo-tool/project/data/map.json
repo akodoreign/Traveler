@@ -48336,6 +48336,22 @@
 				"flags": 1,
 				"spawndist": 5,
 				"name": "*portal-84"
+			},
+			"#85#": {
+				"role": "itemchest",
+				"itemid": "I572",
+				"num": 1,
+				"mdlid": "CV036",
+				"pos": [
+					86,
+					4,
+					14,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-85"
 			}
 		},
 		"exitmap": {
@@ -483808,9 +483824,21 @@
 											"text0": "Many Faces: become a teahouse servant."
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.takeDisguise(\"A181\", \"A185\");"
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Mitsue becomes a teahouse servant and walks out past the guards, carrying a tray.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "The maid uniform and cap are yours. While dressed for service, prepare healing herbs. Change back into the shinobi costume to Steal or Copy.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -503664,9 +503692,21 @@
 														"cmdblocks": [
 															[
 																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "::Rokugan.takeDisguise(\"A182\", \"A186\");"
+																},
+																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
 																	"text": "A Fox household servant is scolded at the kitchen door and sent up with a covered plate. Halfway up the stair, she is Mitsue in her third face.",
+																	"name": "",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The Fox household kimono comes with a russet tail and an ear band. In School, Trickster borrows a random battle art for one action.",
 																	"name": "",
 																	"uiclose": 2
 																},
@@ -503896,9 +503936,21 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.takeDisguise(\"A182\", \"A186\");"
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "A Fox household servant is scolded at the kitchen door and sent up with a covered plate. Halfway up the stair, she is Mitsue in her third face.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "The Fox household kimono comes with a russet tail and an ear band. In School, Trickster borrows a random battle art for one action.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -504246,9 +504298,21 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.takeDisguise(\"A182\", \"A186\");"
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "A Fox household servant is scolded at the kitchen door and sent up with a covered plate. Halfway up the stair, she is Mitsue in her third face.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "The Fox household kimono comes with a russet tail and an ear band. In School, Trickster borrows a random battle art for one action.",
 											"name": "",
 											"uiclose": 2
 										},
@@ -536953,6 +537017,387 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_choices",
+											"backenable": false,
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Shosuro Shinobi Costume to 21 defence. Steal two Shells from Tide Crabs on the Crab coast. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A180\", \"A184\", \"I244\", 2);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Willow Teahouse Maid Uniform to 26 defence. Find the Cave Spider Silk in the Egg Caves, near the first nests. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A181\", \"A185\", \"I571\", 1);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Fox Household Kimono to 31 defence. Find the Sea-glass Clasp on the Crane coast road, beside the dock. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A182\", \"A186\", \"I572\", 1);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Castle Records Clerk Robe to 30 defence. Steal three Shells from Tide Crabs on the Crab coast. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A189\", \"A191\", \"I244\", 3);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Mountain Pilgrim Habit to 41 defence. Steal four Shells from Tide Crabs on the Crab coast. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A190\", \"A192\", \"I244\", 4);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Iuchi Camp Uniform to 38 defence. Steal four Shells from Tide Crabs on the Crab coast. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A183\", \"A187\", \"I244\", 4);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[]
+											],
+											"pos": {
+												"left": 430,
+												"right": 430,
+												"y": 380
+											},
+											"text0": "Shosuro Shinobi Costume",
+											"text1": "Willow Teahouse Maid Uniform",
+											"text2": "Fox Household Kimono",
+											"text3": "Castle Records Clerk Robe",
+											"text4": "Mountain Pilgrim Habit",
+											"text5": "Iuchi Camp Uniform",
+											"text6": "Leave."
+										}
+									],
+									[
+										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.removeMasks();"
@@ -536987,7 +537432,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "(Masks off. Mitsue's own face, cold in the air. HP and MP restored.)",
+											"text": "(Masks off. Mitsue's own face, cold in the air. HP and SP restored.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -537047,9 +537492,10 @@
 									"right": 430,
 									"y": 380
 								},
-								"text0": "Remove masks, rest and save.",
-								"text1": "Rest and save, masks on.",
-								"text2": "Leave."
+								"text0": "Speak to the Scorpion tailor.",
+								"text1": "Remove masks, rest and save.",
+								"text2": "Rest and save, masks on.",
+								"text3": "Leave."
 							}
 						]
 					}
@@ -544510,6 +544956,387 @@
 								"cmdblocks": [
 									[
 										{
+											"cmd": "cmd_choices",
+											"backenable": false,
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Shosuro Shinobi Costume to 21 defence. Steal two Shells from Tide Crabs on the Crab coast. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A180\", \"A184\", \"I244\", 2);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Willow Teahouse Maid Uniform to 26 defence. Find the Cave Spider Silk in the Egg Caves, near the first nests. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A181\", \"A185\", \"I571\", 1);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Fox Household Kimono to 31 defence. Find the Sea-glass Clasp on the Crane coast road, beside the dock. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A182\", \"A186\", \"I572\", 1);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Castle Records Clerk Robe to 30 defence. Steal three Shells from Tide Crabs on the Crab coast. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A189\", \"A191\", \"I244\", 3);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Mountain Pilgrim Habit to 41 defence. Steal four Shells from Tide Crabs on the Crab coast. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A190\", \"A192\", \"I244\", 4);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "I can reinforce your Iuchi Camp Uniform to 38 defence. Steal four Shells from Tide Crabs on the Crab coast. Bring the original garment too.",
+														"name": "Scorpion tailor",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "W = ::Rokugan.tailorCostume(\"A183\", \"A187\", \"I244\", 4);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "Try the seams. Same cut, stronger lining.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		],
+																		[
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "I need Mitsue here with the original garment and all the materials.",
+																				"name": "Scorpion tailor",
+																				"uiclose": 2
+																			}
+																		]
+																	]
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 407,
+															"right": 407,
+															"y": 380
+														},
+														"text0": "Hand over the garment and materials.",
+														"text1": "Keep them."
+													}
+												],
+												[]
+											],
+											"pos": {
+												"left": 430,
+												"right": 430,
+												"y": 380
+											},
+											"text0": "Shosuro Shinobi Costume",
+											"text1": "Willow Teahouse Maid Uniform",
+											"text2": "Fox Household Kimono",
+											"text3": "Castle Records Clerk Robe",
+											"text4": "Mountain Pilgrim Habit",
+											"text5": "Iuchi Camp Uniform",
+											"text6": "Leave."
+										}
+									],
+									[
+										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
 											"code": "W = ::Rokugan.removeMasks();"
@@ -544544,7 +545371,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "(Masks off. Mitsue's own face, cold in the air. HP and MP restored.)",
+											"text": "(Masks off. Mitsue's own face, cold in the air. HP and SP restored.)",
 											"name": "",
 											"uiclose": 2
 										},
@@ -544604,9 +545431,10 @@
 									"right": 430,
 									"y": 380
 								},
-								"text0": "Remove masks, rest and save.",
-								"text1": "Rest and save, masks on.",
-								"text2": "Leave."
+								"text0": "Speak to the Scorpion tailor.",
+								"text1": "Remove masks, rest and save.",
+								"text2": "Rest and save, masks on.",
+								"text3": "Leave."
 							}
 						]
 					}
@@ -556367,9 +557195,21 @@
 														"cmdblocks": [
 															[
 																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "::Rokugan.takeDisguise(\"A183\", \"A187\");"
+																},
+																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
 																	"text": "Mitsue takes an Iuchi soldier's spare helmet from a cart and his accent from his own mouth, and sits down at the fire as a latecomer from the night watch.",
+																	"name": "",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The Iuchi camp uniform and helmet are yours. Use Cover to protect an ally or Heavy Slash to attack.",
 																	"name": "",
 																	"uiclose": 2
 																},
@@ -568774,6 +569614,11 @@
 																	"amount": 300
 																},
 																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "::Rokugan.takeDisguise(\"A181\", \"A185\");"
+																},
+																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
 																	"text": "A servant's apron, a servant's bow. Sake makes officers careless.",
@@ -569098,6 +569943,11 @@
 													}
 												],
 												[
+													{
+														"cmd": "cmd_script",
+														"desc": "SCRIPT",
+														"code": "::Rokugan.takeDisguise(\"A189\", \"A191\");"
+													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
@@ -591751,6 +592601,11 @@
 											"text1": "Not yet."
 										},
 										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.takeDisguise(\"A190\", \"A192\");"
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Morning. Mitsue walks out into the town at the head of a 'pilgrim troupe': Many Faces, a grey pilgrim's face, a staff, a straw hat.",
@@ -604848,6 +605703,11 @@
 											"name": "Shosuro Mitsue (thinking)",
 											"uiclose": 2,
 											"emo": "worried"
+										},
+										{
+											"cmd": "cmd_script",
+											"desc": "SCRIPT",
+											"code": "::Rokugan.takeDisguise(\"A181\", \"A185\");"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -880851,6 +881711,22 @@
 				"flags": 1,
 				"spawndist": 5,
 				"name": "*portal-89"
+			},
+			"#90#": {
+				"role": "itemchest",
+				"itemid": "I571",
+				"num": 1,
+				"mdlid": "CV036",
+				"pos": [
+					60,
+					3,
+					22,
+					2
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*itemchest-90"
 			}
 		},
 		"exitmap": {

@@ -700,6 +700,7 @@ RPGSystem.ui ..
 			if( selitem != curitem){
 				swapequip( curitem, selitem);
 				local rems = p0.setEquip( slotidx, selitem);
+				if( slotidx == 3 && p0.dataid == "P105") ::Rokugan.fitDisguiseHead(p0,::Rokugan.disguise(p0));
 				foreach( eq in rems) swapequip( eq, null);
 			}
 		}

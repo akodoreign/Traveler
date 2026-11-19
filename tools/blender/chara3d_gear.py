@@ -142,17 +142,35 @@ def hat(skin, style):
                    (137, 3.2, 2.7, -4.8, 0)], SPEC["ink"], lambda y: w, n=24, x=-2)
         skin.loft([(116.6, 12.9, 12), (117.8, 12.9, 12)], SPEC["lace"], lambda y: w, n=24, x=-2)
     else:
-        skin.loft([(113.6, 13.2, 12.1), (120, 12.55, 11.55), (125.7, 10.1, 9.95),
-                   (129.4, 6.1, 5.8), (131.2, 1.6, 1.45)], SPEC["armor"], lambda y: w, n=32,
+        profile = ([(113.6, 11.8, 11.4), (116.5, 11.6, 11.2), (120, 10.2, 10.),
+                    (122.5, 7.3, 7.), (124, 3.5, 3.3), (124.3, .7, .7)]
+                   if style == "kabuto" else
+                   [(113.6, 13.2, 12.1), (120, 12.55, 11.55), (125.7, 10.1, 9.95),
+                    (129.4, 6.1, 5.8), (131.2, 1.6, 1.45)])
+        skin.loft(profile, SPEC["armor"], lambda y: w, n=32,
                   band=(1.8, lambda i, k: SPEC["lace"] if i == 0
                         else c.shade(SPEC["armor"], 1.14, 8) if k % 6 == 0 else SPEC["armor"]))
-        for side, sg in c.SIDES:
-            for i in range(3):
-                skin.add(c.box((-3.6, 112 - i * 2.5, (10.95 + .67 * i) * sg),
-                               (7.9, 1.28, 1.37)), SPEC["armor"], w, smooth=False)
-                skin.add(c.box((.6, 111.32 - i * 2.5, (12.38 + .67 * i) * sg),
-                               (1.45, .55, .4)), SPEC["lace"], w, smooth=False)
-            if style == "legion":
+        if style == "kabuto":
+            arc = [1.35 * (2 * i / 24 - 1) for i in range(25)]
+            brim = [(depth * math.cos(a), y, width * math.sin(a))
+                    for depth, width, y in ((11.6, 11.3, 113.8), (15.2, 12.8, 113.1))
+                    for a in arc]
+            skin.add((brim, [(i, i+1, i+26, i+25) for i in range(24)]), SPEC["armor"], w)
+            for row in range(3):
+                arc = [.95 + (math.tau - 1.9) * i / 36 for i in range(37)]
+                guard = [((11.8 + row*.55 + edge*.25)*math.cos(a),
+                          112.9 - row*2.15 - edge*1.35,
+                          (11.8 + row*.6 + edge*.35)*math.sin(a))
+                         for edge in (0, 1) for a in arc]
+                skin.add((guard, [(i, i+1, i+38, i+37) for i in range(36)]),
+                         SPEC["armor"], w)
+        else:
+            for side, sg in c.SIDES:
+                for i in range(3):
+                    skin.add(c.box((-3.6, 112 - i * 2.5, (10.95 + .67 * i) * sg),
+                                   (7.9, 1.28, 1.37)), SPEC["armor"], w, smooth=False)
+                    skin.add(c.box((.6, 111.32 - i * 2.5, (12.38 + .67 * i) * sg),
+                                   (1.45, .55, .4)), SPEC["lace"], w, smooth=False)
                 c.strand(skin, SPEC["trim"], [(11, 118, 1.2 * sg), (11, 123, 3.4 * sg),
                                                (10.3, 128, 6.35 * sg)], 1.35)
     skin.zoom = None
@@ -163,7 +181,8 @@ def yosai_hat(skin, decal, decal_uv, style):
     is_band = style in ("band", "champion_band")
     depth, width, centre = c.head_section(112.6)
     sx, sz = ((depth + .63) / 11.3, (width + .63) / 10.9) if is_band else (.88, .86)
-    drop = 0 if is_band else 1.6 if style in ("kabuto", "legion") else 2.9
+    drop = (0 if is_band else 1.6 if style in ("kabuto", "legion")
+            else 7.8 if style in ("jingasa", "guard", "scout", "straw") else 2.9)
     dy = drop * c.HEAD[1]
     dx = (centre + .3 * sx) * c.HEAD[1] if is_band else 0
     for mesh in (skin, decal):

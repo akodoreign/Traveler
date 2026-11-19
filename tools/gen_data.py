@@ -27,6 +27,7 @@ B = {n: 1 << i for i, n in enumerate(ELEMS)}
 import sys  # noqa: E402
 sys.path.insert(0, HERE)
 import hirelings as _hire  # noqa: E402  the hireables roster (shared with gen_maps / gen_sidecast)
+import mitsue_costumes as _costumes
 import kata_data as _kata  # noqa: E402  kata / kiho / tattoos learned on level-up (progression-v2.md)
 import jobs_data as _jobs  # noqa: E402  jobs and traits (progression-v2.md)
 
@@ -951,7 +952,7 @@ STARTER_WEAR = {
     "P102": (None, "A100", None),    # Gendo
     "P103": (None, "A101", None),    # Shizue
     "P104": (None, "A111", None),    # Haruki
-    "P105": (None, "A100", "A174"),  # Mitsue
+    "P105": ("A188", "A180", None),  # Mitsue
     "P106": (None, "A155", None),    # Tamotsu
     "P107": ("A102", "A100", None),  # Sayo
     "P120": (None, "A108", None),    # Sachiko
@@ -2155,6 +2156,7 @@ def main():
         save(kind, dd)
     ar = load("armor")
     crab_armor(ar)
+    _costumes.armor(ar)
     save("armor", ar)
     st = load("store")
     crab_stores(st)
@@ -3262,6 +3264,7 @@ def main():
                "option": [o for o in (sw.get("option") or []) if o.get("opttype") != "opt_putcond"] +
                [dict(PUT_BY_ID("K136"))]})
     s["S799"] = sw
+    _costumes.skills(s)
     save("skill", s)
 
     # ---- weapon.json  (eqtype: 1 dagger, 2 sword, 3 spear, 5 staff, 6 bow, 7 hammer)
@@ -4816,6 +4819,7 @@ def main():
         ani = ((v.get("atkact") or {}).get("atkani") or {}) if isinstance(v, dict) else {}   # RokuganLook.sk falls
         if ani.get("id") == "magic1":                    # back to magic1 on sheets without it
             ani["id"] = "item"
+    _costumes.materials(itm)
     save("item", itm)
     import gen_sidecast as _sc                         # side-cast characters fought as enemies face the party
     _foe = {_sc.epid(i): _sc.foe_epid(i) for i in range(len(_sc.CAST))}

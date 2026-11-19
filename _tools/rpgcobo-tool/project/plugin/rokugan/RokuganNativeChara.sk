@@ -2,6 +2,9 @@
 import CollisionGroupID;
 
 local ROOT = "/resource/native_chara/";
+local ornamentRoot = "/resource/native_ornament/";
+local ornamentFile = ::getResource( ornamentRoot .. "index.json");
+local ornaments = ornamentFile ? decodeJSON( ornamentFile.loadData()) : {};
 local GEAR = "/resource/native_gear/";
 local ARMS = "/resource/native_weapons/";
 local index = ::getResource( ROOT .. "roster.json");
@@ -22,11 +25,13 @@ local arms = armIndex ? decodeJSON( armIndex.loadData()) : null;
 		if( id && gear.items[id] == "body") starterBody = true;
 		if( id && gear.items[id] == "mask") starterMask = true;
 	}
-	local wear = { body=null, head=null, mask=null, cape=null, headAccessory=null,
+	local wear = { costume=null, shinobiHead=false, body=null, head=null, mask=null, cape=null, headAccessory=null,
 		clan=pc.data["rt_clan"], weapon=this.lookWeapon( pc), weaponId=weaponId, own=own,
 		starterBody=starterBody, starterMask=starterMask };
 	foreach( item in pc.equips){
 		if( !item) continue;
+		if( item.data["rt_costume_head"]){ wear.shinobiHead = true; continue; }
+		if( item.data["rt_costume"]){ wear.costume = item.data.rt_costume; wear.body = wear.costume == "clerk" ? "A127" : wear.costume == "pilgrim" ? "A111" : "A100"; wear.starterBody = true; continue; }
 		local slot = gear.items[item.dataid];
 		if( !slot) continue;
 		if( slot == "head" && item.data.eqtype == 16){
@@ -35,7 +40,9 @@ local arms = armIndex ? decodeJSON( armIndex.loadData()) : null;
 			if( !wear[slot]) wear[slot] = item.dataid;
 		}
 	}
-	if( !wear.head) wear.head = wear.headAccessory;
+	if( wear.costume == "clerk") wear.head = "A171";
+	else if( wear.costume == "pilgrim") wear.head = "A170";
+	else if( !wear.head) wear.head = wear.headAccessory;
 	return wear;
 };
 
@@ -63,6 +70,7 @@ class RokuganNativePicture extends RPG3DPicture
 	nativeKey = null;
 	nativeGear = null;
 	nativeDecals = null;
+	nativeOrnaments = null;
 	nativeWeaponKind = null;
 	nativeCombatMotion = null;
 	nativeVictoryKind = null;
@@ -122,23 +130,30 @@ class RokuganNativePicture extends RPG3DPicture
 		}
 		nativeGear = wear;
 		nativeDecals = [];
+		nativeOrnaments = [];
+		local personal = ornaments[key] || [];
+		local shinobi = personal.contains( "mask");
 		if( wear){
 			local palette = gearPalette( key, wear.clan);
 			local yosaishaori = key == "side_yosai" && wear.body == "A111";
-			if( yosaishaori) nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
+			if( wear.costume && personal.contains( wear.costume)) nativeOutfit = addNativePart( ornamentRoot .. key .. "_" .. wear.costume);
+			else if( yosaishaori) nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
 			else if( wear.body) nativeOutfit = addNativePart( GEAR .. wear.body, palette);
 			else if( !wear.starterBody) nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
 			local head = ClientConfig.showHeadwear() ? wear.head : null;
 			local fittedHat = key == "side_yosai" && head;
 			if( head) nativeHead = addNativePart( GEAR .. head .. (fittedHat ? "_yosai" : ""), palette);
-			if( wear.mask) nativeMask = addNativePart( GEAR .. wear.mask, palette);
+			if( wear.mask) nativeMask = shinobi && wear.mask == "A174"
+				? addNativePart( ornamentRoot .. key .. "_mask") : addNativePart( GEAR .. wear.mask, palette);
 			if( wear.cape) nativeCape = addNativePart( GEAR .. wear.cape, palette);
 			if( gear["decals"]){
 				local clan = wear.clan || gear.palettes[key];
 				if( !gear.clans.contains( clan)) clan = "ronin";
 				foreach( item in [wear.body, head, wear.mask, wear.cape]){
 					if( !item) continue;
+					if( wear.costume && personal.contains(wear.costume) && item == wear.body) continue;
 					if( yosaishaori && item == "A111") continue;
+					if( shinobi && item == "A174") continue;
 					local sheet = GEAR .. "decal/" .. clan .. "/" .. item .. ".png";
 					local fit = fittedHat && item == head ? "_yosai" : "";
 					nativeDecals .. addNativePart( GEAR .. item .. fit .. "_decal", sheet);
@@ -147,8 +162,12 @@ class RokuganNativePicture extends RPG3DPicture
 		}else{
 			nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
 		}
-		if( !nativeMask && spec["mask"] && !(wear && wear.starterMask))
-			nativeMask = addNativePart( ROOT .. key .. "_mask");
+		if( !nativeMask && spec["mask"] && (!wear || (wear.costume == "shinobi" && wear.shinobiHead && ClientConfig.showHeadwear()) || (!wear.costume && !wear.starterMask && key != "trav_mitsue")))
+			nativeMask = addNativePart( (shinobi ? ornamentRoot : ROOT) .. key .. "_mask");
+		foreach( role in personal){
+			if( role == "ink" || (role == "sash" && nativeOutfit))
+				nativeOrnaments .. addNativePart( ornamentRoot .. key .. "_" .. role);
+		}
 		addChild( nativeBody);
 		nativeKey = key;
 		setPivot( null);
@@ -208,6 +227,7 @@ class RokuganNativePicture extends RPG3DPicture
 			if( part) part.setVisible( b);
 		}
 		if( nativeDecals) foreach( decal in nativeDecals) decal.setVisible( b);
+		if( nativeOrnaments) foreach( piece in nativeOrnaments) piece.setVisible( b);
 	}
 }
 local nativePicture = RokuganNativePicture;
@@ -221,6 +241,11 @@ class RokuganNativeFoe extends RokuganNativePicture
 		setPicture( view);
 		nativeBody = celNative( SK3DObject( path));
 		nativeBody.animlayers = null;
+		foreach( role in (ornaments[key] || [])){
+			local part = celNative( SK3DObject( ornamentRoot .. key .. "_" .. role .. ".pm"));
+			nativeBody.assignBonesToPolygonMesh( part.mesh);
+			nativeBody.addChild( part);
+		}
 		local size = spec.scale;
 		nativeBody.scale << Vector3D( size, size, size);
 		nativeBody.rot.setHPB( Math.HPI, 0.0, 0.0);

@@ -177,6 +177,31 @@ single-instance engine with other running tests first.
 The willow-teahouse escape pauses at a single, non-cancellable Many Faces choice immediately before
 Mitsue becomes a teahouse servant. Confirming it continues the original narration and exit sequence.
 
+### Mitsue's wardrobe
+
+`RokuganCostumes.sk` and `tools\mitsue_costumes.py` define Mitsue-only body disguises. Mitsue cannot wear
+ordinary body armor. Costumes are earned through Many Faces scenes, automatically equipped, never sold
+in shops, and protected against selling or discarding. The shinobi costume starts with a removable,
+Mitsue-only head-slot mask. Disguises replace its headwear with their matching cap, fox ears, or helmet.
+
+The equipped costume grants its arts in battle and the field skill menu; changing it removes those
+arts without teaching them permanently. Shinobi grants Steal/Copy, maid grants herbal healing, fox
+grants Trickster, clerk grants Deduce, pilgrim grants Elemental Ward, and soldier grants Cover/Heavy Slash.
+Costume arts use TP (8 by default, retaining a higher existing TP cost). Trickster always costs 8 TP;
+its random borrowed art bypasses weapon, ingredient, learning, Void, and limited-use requirements,
+not the TP cost. Neither manual selection nor Auto can use an art without enough TP.
+
+Scorpion district-shrine tailors exchange an owned original (equipped or carried) plus the requested
+materials for its reinforced version, preserving the disguise's arts and appearance. Silk is found
+in the Egg Caves, a clasp on the Crane coast, and Shells can be stolen from Tide Crabs. Each road keeps
+its own bag and equipment; switching travelers starts an unvisited road with a fresh bag. The finale
+merges the saved bags once, retaining costumes without duplicating them.
+
+`tools\test_mitsue_costumes.sk` checks restrictions, headwear, outfit-only arts, TP payment, tailoring
+from equipment and the bag, protected items, saved wardrobe snapshots, and the final inventory merge.
+`tools\test_mitsue_trickster.sk` runs once before and once during a battle to check the actual School
+menu's TP gate and borrowed kata, recipes, Void spells, and already-used Drawing the Void.
+
 ### Kudo investigation guidance
 
 The Scorpion Chapter 1 marker includes the governor's investigation conversation in Kitsune Hall,

@@ -1,0 +1,54 @@
+// Evalf on the field, then again at the real battle command menu.
+local k = ::Rokugan, p = ::rpgstat.playermap.P105, b = ::rpgstage["battle"];
+local check = @( ok,msg){ if(!ok) throw Exception(msg); };
+if( !b){
+	k.takeDisguise("A182","A186");
+	::RPGMain.enterBattle({mapid="M810",escape=true,enemies=[{id="E105",x=0,z=0}]});
+	return;
+}
+local talent = ::RPGSystem.battlecmd["talent"];
+local originalList = k.schoolList, testedMenu = {seen=false};
+k.schoolList = function(pc,items){
+	check(length(items)==1 && items[0].val.name=="Trickster","wrong fox School menu");
+	check(items[0].disable()==(pc.TP<8),"Trickster menu ignored TP");
+	testedMenu.seen = true;
+	return pc.TP < 8 ? null : items[0].val;
+};
+p.TP = 7;
+check(!talent.selectSkill(null,p),"unaffordable School art selected");
+p.TP = 8;
+local rolled = talent.selectSkill(null,p);
+k.schoolList = originalList;
+check(testedMenu.seen && rolled.rt_borrowed && rolled.consume[0]==1 && rolled.consume[1]==8,"selected Trickster cost");
+
+local runBorrowed = function(source,label){
+	local sk = clone source;
+	sk.rt_borrowed <- true;
+	sk.consume <- clone ::conf.skill.S952.consume;
+	sk.eqtypebits <- -1;
+	p.TP = 8;
+	local state = k.state(p);
+	state.bp = 0;
+	state.boostsel = 0;
+	local targets = b.getCommandTargets(p,b.enemies[0],sk.cmdtgt,false);
+	local cmd = SkillCommand(p,sk,targets);
+	k.onPreCommand(cmd);
+	check(cmd.skill.name==source.name,label+" was blocked");
+	check(cmd.skill.consume[0]==1 && cmd.skill.consume[1]==8,label+" lost its TP cost");
+	check(p.consumeForSkill(cmd.skill) && p.TP==0,label+" did not pay 8 TP");
+	printf("[TRICKSTER TEST] %S bypassed; 8 TP paid\n",label);
+};
+local drawing = Table.find(::conf.skill,@( sk,_) sk && sk.name=="Drawing the Void");
+k.state(p).drawn <- 1;
+runBorrowed(drawing,"already-used Drawing the Void");
+check(k.state(p).drawn==1,"borrowed art consumed a normal limited use");
+local kata = Table.find(::conf.skill,@( sk,_) sk && sk["rt_kata"] && !k.kataWeaponOk(p,sk));
+check(kata,"no mismatched-weapon kata for the regression");
+runBorrowed(kata,"wrong-weapon kata");
+local recipe = Table.find(::conf.skill,@( sk,_) sk && sk["rt_recipe"] && k.recipeCount(sk)==0);
+check(recipe,"no missing-ingredient recipe for the regression");
+runBorrowed(recipe,"missing recipe ingredients");
+local spell = Table.find(::conf.skill,@( sk,_) sk && sk["rt_vp"] && (sk["occasion"]&1));
+check(spell,"no Void spell for the regression");
+runBorrowed(spell,"insufficient Void");
+printf("[TRICKSTER TEST] real School selection, TP gating, and requirement bypasses passed\n");

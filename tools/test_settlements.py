@@ -32,6 +32,24 @@ class InteriorDoorwayTests(unittest.TestCase):
 
 
 class ScorpionRouteTests(unittest.TestCase):
+    def test_costume_arts_regenerate_with_tp_costs_and_are_not_sold(self):
+        import mitsue_costumes
+        project = Path(gm.PROJ) / "data"
+        skills = json.loads((project / "skill.json").read_text(encoding="utf-8"))
+        generated = json.loads(json.dumps(skills))
+        mitsue_costumes.skills(generated)
+        for sid in ("S950", "S951", "S952"):
+            with self.subTest(skill=sid):
+                self.assertEqual(skills[sid], generated[sid])
+                self.assertEqual(skills[sid]["consume"], [1, 8])
+                self.assertTrue(skills[sid]["addlist"])
+        stores = (project / "store.json").read_text(encoding="utf-8")
+        armor = json.loads((project / "armor.json").read_text(encoding="utf-8"))
+        for aid, item in armor.items():
+            if item.get("rt_costume") or item.get("rt_costume_head"):
+                with self.subTest(garment=aid):
+                    self.assertNotIn(json.dumps(aid), stores)
+
     def test_teahouse_disguise_has_a_single_mandatory_many_faces_choice(self):
         maps = json.loads((Path(gm.PROJ) / "data" / "map.json").read_text(encoding="utf-8"))
         shipped = maps["M346"]["event"]["#4#"]["page"][1]["cmdblock"][0]["cmdblocks"][0]
@@ -39,7 +57,8 @@ class ScorpionRouteTests(unittest.TestCase):
             with self.subTest(scene="generator" if commands is gm.S02_SCP1 else "shipped"):
                 disguise = next(index for index, command in enumerate(commands)
                                 if command.get("text", "").startswith("Mitsue becomes a teahouse servant"))
-                self.assertEqual(commands[disguise - 1],
+                self.assertEqual(commands[disguise - 1], gm.script('::Rokugan.takeDisguise("A181", "A185");'))
+                self.assertEqual(commands[disguise - 2],
                                  gm.choices(("Many Faces: become a teahouse servant.", [])))
 
     def test_governor_retry_is_guaranteed_and_disguise_stays_available_until_the_reveal(self):

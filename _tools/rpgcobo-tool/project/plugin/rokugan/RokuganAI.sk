@@ -13,23 +13,29 @@ local log( s){ printf( "[RT] %S\n", s); }
 ::Rokugan.crystalround <- -1;
 
 ::Rokugan.usable <- function( pc, sid){
-	local sk = ::conf.skill[sid];
+	local sk = pc.dataid == "P105" && this.disguiseArts(this.disguise(pc)).contains(sid)
+		? this.costumeArt(sid) : ::conf.skill[sid];
 	if( sk && sk["rt_voice"] && ("covered" in ::Rokugan) && ::Rokugan.covered( pc)) return null;	//	wax in (Unicorn Ch3)
-	return sk && pc.hasSkill( sid) && pc.canConsumeForSkill( sk) ? sk : null;
+	return this.wardrobeSkillAllowed( pc, sid) && sk && pc.hasSkill( sid) && pc.canConsumeForSkill( sk) ? sk : null;
 };
 
 ::Rokugan.knownSkills <- function( pc){
 	local out = [];
 	foreach( sid, sk in ::conf.skill){
 		if( typeof( sid) != SS_STRING || sid[0] != 'S' || !sk || !sk["addlist"] || sk["rt_noauto"]) continue;
+		if( pc.dataid == "P105" && this.disguiseArts(this.disguise(pc)).contains(sid)) continue;
 		if( sk["rt_voice"] && ("covered" in ::Rokugan) && ::Rokugan.covered( pc)) continue;		//	wax in: no voice
-		if( pc.hasSkill( sid) && pc.canConsumeForSkill( sk)) out.append( sk);
+		if( this.wardrobeSkillAllowed( pc, sid) && pc.hasSkill( sid) && pc.canConsumeForSkill( sk)) out.append( sk);
 	}
 	if( this.given( pc.name) == "Sayo" && ("RECIPES" in ::Rokugan))			//	auto: her healing Remedies, while
 		foreach( sid in ::Rokugan.RECIPES){									//	the bag holds the ingredients
 			local sk = ::conf.skill[sid];
 			if( sk && sk["rt_recipe"] && sk["rt_heal"] && ::Rokugan.recipeCount( sk) > 0) out.append( sk);
 		}
+	if( pc.dataid == "P105") foreach( sid in this.disguiseArts(this.disguise(pc))){
+		local sk = sid == "S952" ? this.tricksterArt() : this.costumeArt(sid);
+		if( pc.canConsumeForSkill(sk)) out .. sk;
+	}
 	return out;
 };
 
@@ -79,11 +85,12 @@ local log( s){ printf( "[RT] %S\n", s); }
 	if( ::arguments.indexOf( "-rtdiag") >= 0 && this.given( pc.name) == "Sayo" && (b.turn == 2 || b.turn == 3))
 		return SkillCommand( pc, ::conf.skill[b.turn == 2 ? "S609" : "S573"], [pc]);
 	//	test hook (-rtcopy): Mitsue's Many Faces: Copy on the first foe that has used a skill (Scorpion Ch1)
-	if( ::arguments.indexOf( "-rtcopy") >= 0 && this.given( pc.name) == "Mitsue"){
+	if( ::arguments.indexOf( "-rtcopy") >= 0 && this.given( pc.name) == "Mitsue" && this.disguise(pc) == "shinobi"){
 		local box = foes.find( @( e) e.data["rt_ritual"]);
-		if( box && ::rpgvar["G866"] && !::rpgvar["G867"]) return SkillCommand( pc, ::conf.skill["S125"], [box]);
+		if( box && ::rpgvar["G866"] && !::rpgvar["G867"] && this.usable(pc,"S125"))
+			return SkillCommand( pc, this.costumeArt("S125"), [box]);
 		local src = foes.find( @( e) "lastsk" in ::Rokugan.state( e));
-		if( src) return SkillCommand( pc, ::conf.skill["S505"], [src]);
+		if( src && this.usable(pc,"S505")) return SkillCommand( pc, this.costumeArt("S505"), [src]);
 	}
 	//	test hook (-rtbribe): Tamotsu's Barter Coin: Bribe on the first foe for hire (Unicorn Ch1)
 	if( ::arguments.indexOf( "-rtbribe") >= 0 && this.given( pc.name) == "Tamotsu"){
@@ -267,7 +274,7 @@ local log( s){ printf( "[RT] %S\n", s); }
 ::Rokugan._rt_pre_uses <- ::Rokugan.onPreCommand;
 ::Rokugan.onPreCommand <- function( cmd){
 	local pc = cmd.src, sk = cmd.skill;
-	if( (pc instanceof ::RPGPlayer) && sk && sk["rt_uses"]){
+	if( (pc instanceof ::RPGPlayer) && sk && sk["rt_uses"] && !sk["rt_borrowed"]){
 		if( this.usesLeft( pc, sk) <= 0){
 			this.pop( pc, "NO USES LEFT", 0xff8080ff);
 			cmd.skill = pc.getAttackSkill();
@@ -286,7 +293,7 @@ local log( s){ printf( "[RT] %S\n", s); }
 };
 ::Rokugan._rt_known <- ::Rokugan.knownSkills;
 ::Rokugan.knownSkills <- function( pc){
-	return this._rt_known( pc).filter( @( sk) ::Rokugan.usesLeft( pc, sk) > 0);
+	return this._rt_known( pc).filter( @( sk) sk["rt_borrowed"] || ::Rokugan.usesLeft( pc, sk) > 0);
 };
 
 //	Mirumoto (user: "Dragon should hit the most times"): from Lv 22, when Kitsuki Gendo's Mirumoto training starts

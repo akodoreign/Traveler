@@ -476,6 +476,7 @@ class RPGEventRunner
 		local p = cmd.playerid["player"] || ::rpgstat.playermap[cmd.playerid];	//	RPGObjectRefの場合は.playerでRPGCharaBaseが取れる
 		local eqid = cmd["itemid"], i = cmd["slot"]|0;
 		if( eqid){
+			if( !::Rokugan.canWearCostume(p,::rpgdata[eqid])) return;
 			local eqtype = ::rpgdata[eqid]["data"]["eqtype"]|0;
 			if( i < 0) i = ::conf.type.eqslot.findi( @( v) (v.eqtypebits & (1<<eqtype)));
 			if( i in p.equips){

@@ -1,0 +1,58 @@
+local stat = ::rpgstat, p = stat.playermap.P105, k = ::Rokugan;
+local check = @( ok,msg){ if(!ok) throw Exception(msg); };
+check(p.getEquipableSlot("A181")==3 && p.getEquipableSlot("A100")==-1 && stat.playermap.P100.getEquipableSlot("A181")==-1,"eligibility");
+check(stat.playermap.P100.getEquipableSlot("A188")==-1,"exclusive headwear");
+local originalBody = p.equips[3];
+p.setEquip(3,RPGObject.create("A100"));
+check(p.equips[3] == originalBody,"normal armor bypassed the equip restriction");
+local verifyModel = @( role, masked){
+    local actor = RPG3DObject.create3DObject(p.data);
+    check(actor.nativeGear.costume == role && actor.nativeOutfit, "outfit "..role);
+    check((!!actor.nativeMask) == masked, "mask "..role);
+    foreach( bone in actor.nativeOutfit.mesh.bones) check(bone, "unbound outfit bone");
+};
+check(p.equips[2].dataid == "A188" && p.getEquipableSlot("A188")==2,"shinobi mask slot");
+verifyModel("shinobi",true);
+p.setEquip(2,null);
+verifyModel("shinobi",false);
+p.setEquip(2,RPGObject.create("A188"));
+check(k.takeDisguise("A181","A185") && k.disguise(p)=="maid","maid");
+verifyModel("maid",false);
+check(p.hasSkill("S950") && p.hasSkill("S951") && !p.hasSkill("S125") && !p.hasSkill("S505") && !p.hasSkill("S952"),
+      "maid arts did not replace shinobi arts");
+check(!p.equips[2] && stat.countItems("A188",false)==1,"mask returned to wardrobe");
+stat.addItemID("I572",1);
+check(!k.tailorCostume("A182","A186","I572",1) && stat.countItems("I572",false)==1,"missing original consumed material");
+stat.addItemID("I571",1);
+check(k.tailorCostume("A181","A185","I571",1) && p.equips[3].dataid=="A185","tailoring");
+check(k.takeDisguise("A182","A186") && k.disguise(p)=="fox","fox");
+verifyModel("fox",false);
+check(p.hasSkill("S952") && !p.hasSkill("S950") && !p.hasSkill("S951") && !p.hasSkill("S125"),"fox arts leaked");
+check(k.takeDisguise("A183","A187"),"soldier unlock");
+verifyModel("soldier",false);
+check(k.tailorCostume("A182","A186","I572",1) && stat.countItems("A182",false)==0 &&
+      stat.countItems("A186",false)==1 && stat.countItems("I572",false)==0,"tailoring a carried original");
+check(k.takeDisguise("A180","A184") && p.equips[2].dataid=="A188","mask auto-equip");
+check(k.takeDisguise("A182","A186"),"fox re-equip");
+check(p.equips[3].dataid=="A186","Many Faces did not prefer the reinforced outfit");
+check(!stat.reduceItemID("A185",1) && stat.countItems("A185",false)==1,"trash");
+check(!stat.reduceItemID("A188",1) && stat.countItems("A188",false)==1,"mask protection");
+local borrowed=k.tricksterArt();
+check(borrowed && borrowed.consume[0]==1 && borrowed.consume[1]==8 && borrowed.rt_borrowed && borrowed.eqtypebits == -1,
+      "trickster must bypass other requirements but still cost 8 TP");
+local tp = p.TP;
+p.TP = 7;
+check(!p.canConsumeForSkill(borrowed) && !length(k.knownSkills(p)),"outfit art usable without enough TP");
+p.TP = 8;
+check(p.canConsumeForSkill(borrowed) && p.consumeForSkill(borrowed) && p.TP == 0,"Trickster TP payment");
+p.TP = tp;
+k.pathBegin("P100");
+check(stat.countItems("A185",false)==0,"bag isolation");
+local saved = ObjectInput.decode(ObjectOutput.encode(stat));
+check(saved.etc.roadBags.P105.armors.find(@( a) a && a.dataid=="A185") &&
+      saved.playermap.P105.equips[3].dataid=="A186","saved wardrobe snapshot");
+k.pathFinale();
+check(stat.countItems("A185",false)==1 && p.equips[3].dataid=="A186","finale wardrobe");
+k.pathFinale();
+check(stat.countItems("A185",false)==1,"duplicate after merge");
+printf("[RT] COSTUME PASS %S\n",borrowed.name);

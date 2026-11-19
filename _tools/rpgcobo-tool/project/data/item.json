@@ -6720,5 +6720,29 @@
 		"skilltype": "unusable",
 		"stacknum": 99,
 		"occasion": 0
+	},
+	"I571": {
+		"consume": 1,
+		"desc": "Bring this material to a Scorpion shrine tailor.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Cave Spider Silk",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
+	},
+	"I572": {
+		"consume": 1,
+		"desc": "Bring this material to a Scorpion shrine tailor.",
+		"icon": "",
+		"itemtype": 0,
+		"name": "Sea-glass Clasp",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
 	}
 }

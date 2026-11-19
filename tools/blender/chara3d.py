@@ -425,7 +425,7 @@ def yosai_ink(S, spec):
 
 def head_ornaments(S, spec, project=face_x):
     head = {"head": 1.}
-    if spec.get("head_tattoo") and spec.get("body_ink") != "ise_zumi":
+    if spec.get("head_tattoo") and spec.get("name", "").split(" ")[0] == "Togashi" and spec.get("body_ink") != "ise_zumi":
         ink = tuple(spec["tattoo"])
 
         def scalp(u, y):

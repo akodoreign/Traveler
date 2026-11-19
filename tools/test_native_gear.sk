@@ -14,13 +14,11 @@ if( phase == 0){
 	foreach( bone in norie.nativeMask.mesh.bones) verify( bone, "Unbound signature mask bone");
 	local mitsue = ::rpgstat.playermap.P105;
 	local masked = RPG3DObject.create3DObject( mitsue.data);
-	verify( masked.nativeGear.mask == "A174" && masked.nativeMask.mesh.face[0].m.tex0,
-		"Mitsue did not start with her equipped clan-colored mask");
-	local maskSlot = mitsue.getEquipableSlot( "A174");
-	mitsue.setEquip( maskSlot, null);
-	local unmasked = RPG3DObject.create3DObject( mitsue.data);
-	verify( !unmasked.nativeMask, "Mitsue's starter mask stayed visible after removal");
-	equip( mitsue, "A174");
+    verify( masked.nativeGear.costume == "shinobi" && masked.nativeMask, "Missing starter shinobi costume");
+    mitsue.setEquip( 3, RPGObject.create("A181"));
+    local unmasked = RPG3DObject.create3DObject( mitsue.data);
+    verify( unmasked.nativeGear.costume == "maid" && !unmasked.nativeMask, "Maid retained the shinobi mask");
+    mitsue.setEquip( 3, RPGObject.create("A180"));
 	verify( stage.player3d.nativeKey == "trav_natsuko", "Leader did not use the native model");
 	local crab = stage.player3d;
 	verify( crab.nativeGear.body == "A173" && crab.nativeOutfit && crab.nativeGear.head == "A110" && crab.nativeHead,

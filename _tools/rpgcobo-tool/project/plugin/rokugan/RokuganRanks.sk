@@ -165,7 +165,7 @@ local WEAPON_BIT = { Katana = 0, Yari = 1, Tanto = 2, Tetsubo = 3, Yumi = 4, Bo 
 };
 
 ::Rokugan.useKata <- function( pc, sk){
-	if( !this.kataWeaponOk( pc, sk)){											//	(picked anyway: the auto battler)
+	if( !sk["rt_borrowed"] && !this.kataWeaponOk( pc, sk)){											//	(picked anyway: the auto battler)
 		this.pop( pc, "NEEDS THE RIGHT WEAPON", 0xc0c0c0ff);
 		return ::conf.skill["S000"];
 	}

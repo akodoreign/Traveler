@@ -202,19 +202,6 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c6e141e"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x280002ff
-		rough = 0.840000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/foe_cloth_color.png"
-		texture1 = "tex/foe_cloth_normal.png"
-		texture2 = null
-	}
-	{
 		name = "c763aa2"
 		tec = "pbr.basic"
 		mtype = 0

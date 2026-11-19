@@ -13,6 +13,7 @@
 //
 local srcdir = dirname( callee().getSourceName());
 runsk( srcdir .. "/RokuganLookData.sk");
+runsk( srcdir .. "/RokuganCostumes.sk");
 
 ::Rokugan.lookWeapon <- function( pc){
 	local w = pc.getWeapon();
@@ -47,10 +48,11 @@ runsk( srcdir .. "/RokuganLookData.sk");
 ::RPGPlayer._rt_equipable <- ::RPGPlayer.getEquipableItems;
 ::RPGPlayer.getEquipableItems <- function( slotidx, items=null){
 	local clan = data["rt_clan"];
-	return _rt_equipable( slotidx, items).filter( @( v) !v.data["rt_only_clan"] || v.data["rt_only_clan"] == clan);
+	return _rt_equipable( slotidx, items).filter( @( v) ::Rokugan.canWearCostume( this, v.data) && (!v.data["rt_only_clan"] || v.data["rt_only_clan"] == clan));
 };
 ::RPGPlayer._rt_eqslot <- ::RPGPlayer.getEquipableSlot;
 ::RPGPlayer.getEquipableSlot <- function( itemid){
+	if( !::Rokugan.canWearCostume( this, ::rpgdata[itemid])) return -1;
 	local only = ::rpgdata[itemid]["rt_only_clan"];
 	if( only && only != data["rt_clan"]) return -1;
 	return _rt_eqslot( itemid);
@@ -68,7 +70,7 @@ runsk( srcdir .. "/RokuganLookData.sk");
 	local gear = this.clothingFor( pc);
 	local signature = pc.dataid .. "=" .. (id ?? "");
 	if( !gear) return signature;
-	return signature .. "|" .. [gear.body || "", gear.head || "", gear.head && !ClientConfig.showHeadwear() ? "hidden" : "",
+	return signature .. "|" .. (gear.costume || "") .. "|" .. (gear.shinobiHead && ClientConfig.showHeadwear() ? "mask" : "") .. "|" .. [gear.body || "", gear.head || "", gear.head && !ClientConfig.showHeadwear() ? "hidden" : "",
 		gear.mask || "", gear.cape || "",
 		gear.clan || "", gear.weaponId, gear.own ? "own" : gear.weapon].join( "|");
 };
@@ -115,6 +117,7 @@ runsk( srcdir .. "/RokuganLookData.sk");
 ::RPGStage._rt_body_look <- ::RPGStage.updateStageBody;
 ::RPGStage.updateStageBody <- function( dt){
 	this._rt_body_look( dt);
+	if( ::rpgstat) ::Rokugan.restoreOldWardrobe();
 	try{ ::Rokugan.lookCheck( this); }catch( ex){ printexception( ex); }
 };
 
