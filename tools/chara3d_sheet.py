@@ -68,6 +68,7 @@ def look(key):
         spec = next(c for c in cast.CAST if c["key"] == name)
         spec = dict(zip(("top", "lower", "accent", "armor", "lace"), cast.CLAN[spec["clan"]])) | spec
     spec = dict(spec) | LOOK3D.get(key, {})
+    spec["model_key"] = key
     clan = spec.get("clan", spec.get("mon"))
     spec.update(costume_tones(clan, spec))
     if key in EAR_ORNAMENTS:

@@ -5,6 +5,7 @@ import math
 import numpy as np
 
 from foe_surfaces import image_from_pixels
+from anime_head import write_lock_uv
 
 
 # Repeat size in model units, roughness, metallic, height amplitude.
@@ -42,10 +43,11 @@ def height_field(role, u, v):
 
 def make_textures(folder, roles, color_maps=True):
     folder.mkdir(parents=True, exist_ok=True)
-    samples = (np.arange(128) + .5) / 128
-    u, v = np.meshgrid(samples, samples)
     textures = {}
     for role in sorted(roles):
+        size = 64 if role == "hair" else 128
+        samples = (np.arange(size) + .5) / size
+        u, v = np.meshgrid(samples, samples)
         height = height_field(role, u, v)
         strength = SURFACES[role][3]
         dx = (np.roll(height, -1, axis=1) - np.roll(height, 1, axis=1)) * 25 * strength
@@ -54,7 +56,12 @@ def make_textures(folder, roles, color_maps=True):
         normal /= np.linalg.norm(normal, axis=-1, keepdims=True)
         color = None
         if color_maps:
-            tint = .87 + (.25 if role == "hair" else .16) * height
+            # Use clustered values on the 64px hair map. The runtime light
+            # ramp supplies the larger shadow shapes as the actor turns.
+            if role == "hair":
+                tint = np.select((height < -.27, height > .25), (.72, 1.), default=.87)
+            else:
+                tint = .87 + .16 * height
             color = image_from_pixels(folder / f"head_{role}_color.png", np.clip(tint[:, :, None], .58, 1))
         textures[role] = (color, image_from_pixels(folder / f"head_{role}_normal.png", normal * .5 + .5))
     return textures
@@ -84,9 +91,13 @@ class HeadSurface:
             if color and not self.hat:
                 image = nodes.new("ShaderNodeTexImage")
                 image.image = color
+                if role == "hair":
+                    image.interpolation = "Closest"
                 links.new(image.outputs["Color"], bsdf.inputs["Base Color"])
             image = nodes.new("ShaderNodeTexImage")
             image.image = normal
+            if role == "hair":
+                image.interpolation = "Closest"
             if self.hat:
                 uv = nodes.new("ShaderNodeUVMap")
                 uv.uv_map = detail_uv.name
@@ -94,6 +105,7 @@ class HeadSurface:
             bump = nodes.new("ShaderNodeNormalMap")
             links.new(image.outputs["Color"], bump.inputs["Color"])
             links.new(bump.outputs["Normal"], bsdf.inputs["Normal"])
+        lock_uv = mesh.attributes.get("rt_lock_uv")
         for face in mesh.polygons:
             role = roles[face.material_index]
             tile = SURFACES.get(role, SURFACES["iron"])[0]
@@ -104,8 +116,11 @@ class HeadSurface:
             else:
                 u, v = (axis + 1) % 3, (axis + 2) % 3
                 sign = 1 if face.normal[axis] >= 0 else -1
+            if role == "hair" and write_lock_uv(mesh, face, detail_uv, lock_uv):
+                continue
             for i in face.loop_indices:
-                point = mesh.vertices[mesh.loops[i].vertex_index].co
+                vid = mesh.loops[i].vertex_index
+                point = mesh.vertices[vid].co
                 detail_uv.data[i].uv = sign * point[u] / tile, point[v] / tile
 
     def restore_tints(self, data, materials):

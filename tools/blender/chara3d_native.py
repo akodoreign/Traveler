@@ -99,7 +99,7 @@ def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, tex
 
 
 def outfit(spec, name):
-    skin = c.Skin()
+    skin = c.Skin(spec)
     for layer in c.OUTFITS[name]:
         layer(skin, spec)
     return skin

@@ -588,7 +588,7 @@ def writePolygonFace( f, out):
 	# write IndexBuffer
 	out.putb( 0) # version = 0
 	ilen = len( f.idx)
-	if ilen > 65535 :
+	if ilen > 65535 or max(f.idx, default=0) > 65535 :
 		out.putb( 7) # SK_UINT
 		out.puti( 4 * len( f.idx))
 		out.puti( len( f.idx))

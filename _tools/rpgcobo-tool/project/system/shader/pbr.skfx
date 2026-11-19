@@ -231,6 +231,7 @@ fs deferlighting
 		case 0u: unpackg_standard( g, v_wvpp, f0, u1, u2); setup_standard( g); pix = lighting_standard( g); break;
 		case 1u: unpackg_decal( g, v_wvpp, f0, u1, u2); pix = lighting_decal( g); break;
 		case 2u: unpackg_subsurf( g, v_wvpp, f0, u1, u2); setup_subsurf( g); pix = lighting_subsurf( g); break;
+		case 3u: unpackg_standard( g, v_wvpp, f0, u1, u2); setup_standard( g); pix = lighting_cel( g); break;
 		default: pix = lighting_error( g); break;
 		}
 		fragcolor = pix;

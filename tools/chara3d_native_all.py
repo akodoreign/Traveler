@@ -116,6 +116,9 @@ def build_registry(group=None):
                        "animap": animations, "motion": kin, "proportions": proportions(key)}
         if spec.get("mask"):
             roster[key]["mask"] = spec["mask"]
+    from human_anatomy import anatomy_group
+
+    jobs.sort(key=lambda job: (*anatomy_group(job[1]), job[0]))
     return roster, frames, jobs
 
 

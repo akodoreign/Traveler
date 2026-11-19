@@ -45,6 +45,13 @@ local gearPalette = function( key, clan){
 	return GEAR .. "palette/clan_" .. cl .. ".png";
 };
 
+local celNative = function( model){
+	foreach( material in model.getMaterials()){
+		if( material.mtype == 0) material.mtype = 3;
+	}
+	return model;
+};
+
 class RokuganNativePicture extends RPG3DPicture
 {
 	nativeBody = null;
@@ -64,7 +71,7 @@ class RokuganNativePicture extends RPG3DPicture
 		local view = clone pc;
 		view.animap = spec.animap;
 		setPicture( view);
-		nativeBody = SK3DObject( ROOT .. key .. "_body.pm");
+		nativeBody = celNative( SK3DObject( ROOT .. key .. "_body.pm"));
 		nativeBody.animlayers = null;
 		local baseScale = 0.015 * 0.75;
 		local proportions = spec["proportions"] || [1.0, 1.0, 1.0];
@@ -145,7 +152,7 @@ class RokuganNativePicture extends RPG3DPicture
 	}
 
 	function addNativePart( path, palette=null){
-		local part = SK3DObject( path .. ".pm");
+		local part = celNative( SK3DObject( path .. ".pm"));
 		if( palette) part.mesh.face[0].m.tex0 = ::getTexture( ::getResource( palette));
 		nativeBody.assignBonesToPolygonMesh( part.mesh);
 		nativeBody.addChild( part);
@@ -197,7 +204,7 @@ class RokuganNativeFoe extends RokuganNativePicture
 		local view = clone pc;
 		view.animap = spec.animap;
 		setPicture( view);
-		nativeBody = SK3DObject( path);
+		nativeBody = celNative( SK3DObject( path));
 		nativeBody.animlayers = null;
 		local size = spec.scale;
 		nativeBody.scale << Vector3D( size, size, size);

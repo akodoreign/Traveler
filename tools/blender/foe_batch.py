@@ -491,7 +491,9 @@ def update_installed(pack, jobs):
             raise ValueError(f"{pack}: stale or invalid foe asset {ep}")
     from foe_skin_maps import install_skin_maps
 
-    with tempfile.TemporaryDirectory(prefix="foe-update-", dir=pack.parent) as temp:
+    # Put the staging files on the installed volume so Path.replace also works
+    # when the artist exported the pack to a separate drive.
+    with tempfile.TemporaryDirectory(prefix="foe-update-", dir=out.parent) as temp:
         stage = Path(temp)
         shutil.copytree(pack / "tex", stage / "tex")
         for texture in (stage / "tex").iterdir():
@@ -603,7 +605,7 @@ def launch():
     digest = sha256(json.dumps(jobs, sort_keys=True).encode())
     digest.update(str(args.materials).encode())
     for source in (Path(__file__), HERE / "chara3d.py", HERE / "chara3d_native.py",
-                   HERE / "foe_surfaces.py", TOOLS / "rig3d_poses.py"):
+                   HERE / "foe_surfaces.py", HERE / "anime_head.py", TOOLS / "rig3d_poses.py", TOOLS / "human_anatomy.py"):
         digest.update(source.read_bytes())
     out = STAGE / digest.hexdigest()[:16]
     out.mkdir(parents=True, exist_ok=True)

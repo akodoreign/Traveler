@@ -4,6 +4,18 @@ if( !player["nativeKey"]) throw Exception( "The field leader did not use a nativ
 if( player.nativeKey != "trav_natsuko") throw Exception( "Unexpected field leader model");
 if( player.nativeWeapon.mesh.bones[0] != player.nativeBody.findBone( "weapon"))
 	throw Exception( "Equipment is not bound to the leader's skeleton");
+local checkCel = function( model) {
+	if( !model) return;
+	local found = false;
+	foreach( material in model.getMaterials()) {
+		if( material.mtype == 0) throw Exception( "Native actor still uses standard material");
+		if( material.mtype == 3) found = true;
+	}
+	if( !found) throw Exception( "Native actor has no cel-shaded material");
+};
+checkCel( player.nativeBody);
+checkCel( player.nativeOutfit);
+checkCel( player.nativeWeapon);
 foreach( id in ["stand", "fight", "sick", "idle", "stand_f", "stand_b", "talk_b"]){
 	local idle = player.animemap[id];
 	local layer = AnimationLayer();
@@ -24,6 +36,7 @@ foreach( id in ["EP201", "EP202", "EP203", "EP204", "EP205", "EP206", "EP207",
 	local actor = RPG3DObject.create3DObject( #{ mdlid=id });
 	if( !actor["nativeKey"] || !actor.animemap["walk"] || !actor.animemap["critical"])
 		throw Exception( "Missing native actor or animation: " .. id);
+	checkCel( actor.nativeBody);
 	count++;
 }
 local motion = player.anime2( #{ id="atk_thrust" });

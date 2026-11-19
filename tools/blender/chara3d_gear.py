@@ -19,38 +19,48 @@ c = native.c
 def mantle(skin, bottom, wide):
     """A shoulder cape with an open front and longer back."""
     verts, faces = [], []
-    count = 24
+    count = 48
+    relief = skin.fit("torso")
+    shoulder = skin.fit("arm")
     for y, depth, width in ((bottom, 15, wide), ((bottom + 87) / 2, 13, wide - 1),
                             (87, 12.5, wide - .5), (94, 9, 15.4), (97, 5.8, 6.5)):
         for k in range(count + 1):
             a = .83 + (math.tau - 1.66) * k / count
             pleat = 1 + .07 * math.cos(8 * a)
             lift = max(0, 85 - y) * .37 * max(0, math.cos(a))
-            verts.append((depth * math.cos(a) * pleat, y + lift, width * math.sin(a) * pleat))
+            lateral = abs(math.sin(a))
+            fit = relief(y, a) + shoulder(y, math.pi / 2) * lateral ** 3
+            verts.append(((depth * pleat + fit) * math.cos(a), y + lift,
+                          (width * pleat + fit) * math.sin(a)))
     for i in range(4):
         for k in range(count):
             t = i * (count + 1) + k
             faces.append((t, t + count + 1, t + count + 2, t + 1))
-    colours = [SPEC["lining"] if k in (0, count - 1) or i == 0 and k % 3 == 0
+    colours = [SPEC["lining"] if k in (0, count - 1) or i == 0 and (k // 2) % 3 == 0
                else SPEC["top"] for i in range(4) for k in range(count)]
-    skin.add((verts, faces), SPEC["top"], [c.torso_w()(p[1]) for p in verts], colours=colours)
+    weights = []
+    torso = c.torso_w()
+    for _, y, z in verts:
+        share = .22 * max(0., 1. - abs(y - 91.) / 6.) * min(1., max(0., (abs(z) - 8.) / 6.))
+        weight = {bone: value * (1. - share) for bone, value in torso(y).items()}
+        if share:
+            weight["upperN" if z > 0 else "upperF"] = share
+        weights.append(weight)
+    skin.add((verts, faces), SPEC["top"], weights, colours=colours)
 
 
 def plates(skin, detail):
     """Solid lacquered plates, worn over the normal lacing and cloth."""
     w = c.torso_w()
     low = 73 if detail == "heavy" else 75
-    skin.loft(c.cover("torso", low, 90.5, 3.1), SPEC["armor"], w, n=32,
+    skin.covered_loft(("torso", low, 90.5, 3.1), SPEC["armor"], w, n=32,
               band=(2.9, (SPEC["armor"], SPEC["armor"], c.shade(SPEC["armor"], .6))))
-    skin.loft(c.cover("torso", 88.9, 91., 3.31), SPEC["trim"], w, n=32)
+    skin.covered_loft(("torso", 88.9, 91., 3.31), SPEC["trim"], w, n=32)
     if detail in ("heavy", "champion"):
         for side, sign in c.SIDES:
-            w_arm = {"upper" + side: 1.}
-            for j in range(3):
-                skin.add(c.box((0, 92 - 3 * j, (18.7 + .8 * j) * sign), (7.4, 1.35, 1.35)),
-                         SPEC["armor"], w_arm, smooth=False)
-                skin.add(c.box((3, 91 - 3 * j, (20.1 + .8 * j) * sign), (.72, .64, .33)),
-                         SPEC["lace"], w_arm, smooth=False)
+            for j, y in enumerate((97.9, 95.1, 92.3)):
+                c.shoulder_plate(skin, side, sign, y, 1.19, 1.12 + j * .18,
+                                 SPEC["armor"], c.shade(SPEC["armor"], .6), SPEC["lace"])
 
 
 def garment(skin, design):
@@ -74,7 +84,7 @@ def garment(skin, design):
         for side, sign in c.SIDES:
             w = c.arm_w(side)
             for y in (67.5, 71.8) if detail else (69.4,):
-                skin.loft(c.cover("arm", y, y + 1.45, 4.45, sign), SPEC["armor"], w, n=16,
+                skin.covered_loft(("arm", y, y + 1.45, 4.45, sign), SPEC["armor"], w, n=16,
                           band=(.8, (SPEC["armor"], SPEC["lace"])))
     if detail in ("scales", "riding"):
         for side, sign in c.SIDES:
@@ -87,7 +97,7 @@ def garment(skin, design):
                                (4.25 - .4 * i, .34, .4), yaw=-sign * 11),
                          SPEC["lace"], bone, smooth=False)
     if style == "riding":
-        skin.loft(c.cover("torso", 72, 90, 2.2), SPEC["leather"], c.torso_w(), n=16,
+        skin.covered_loft(("torso", 72, 90, 2.2), SPEC["leather"], c.torso_w(), n=16,
                   band=(2., (SPEC["leather"], SPEC["leather"], c.shade(SPEC["leather"], .72))))
     c.obi(skin, spec)
     c.footwear(skin, spec, c.INK if hard or style == "riding" else c.WHITE)
@@ -100,6 +110,7 @@ def motif(skin, detail):
     if detail in ("ofuda", "ward"):
         for y, z in ((83, 4.2), (79, -4.1), (75, 4.2)):
             x = c.profile(c.BODY["torso"], y)[0] * c.GIRTH["torso"] + 1.07
+            x += skin.fit("torso")(y, math.atan2(z, x))
             skin.add(c.box((x, y, z), (.43, 2.55, .95), yaw=21 if z > 0 else -21),
                      SPEC["collar"], c.torso_w()(y), smooth=False)
     else:
@@ -202,9 +213,9 @@ def export(job):
     garments_only = job.get("garments_only")
     detail = None if garments_only else make_textures(out / "tex", set(HAT_SURFACE.values()), color_maps=False)
     for item, slot in catalog.registry().items():
-        if (job.get("head_only") and slot != "head") or (garments_only and slot != "body"):
+        if (job.get("head_only") and slot != "head") or (garments_only and slot not in ("body", "cape")):
             continue
-        skin = c.Skin()
+        skin = c.Skin(shared_fit=slot in ("body", "cape"))
         if slot == "body":
             garment(skin, catalog.BODY[item])
         elif slot == "head":

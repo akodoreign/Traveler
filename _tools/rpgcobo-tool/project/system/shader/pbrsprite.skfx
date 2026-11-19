@@ -813,7 +813,8 @@ fs ssshadow
 			// 遮蔽判定（少しバイアスを入れて誤判定を減らす）
 			if( scz > samplePos.z+0.04 && scz < samplePos.z+2.0){
 				highp uint u1 = texture( gtex1, suv).x, u2 = texture( gtex2, suv).x;	//	自己発光チェック 2sample...
-				float shadow = float( (u1>>29u)==0u && ((u2&0xff00u)>(4u<<8u)) ) * 1.0;	//	u1->mtype, u2->emit
+				uint mtltype = u1>>29u;
+				float shadow = float( (mtltype==0u || mtltype==3u) && ((u2&0xff00u)>(4u<<8u)) ) * 1.0;	//	u1->mtype, u2->emit
 				float sldist = length( samplePos - lwvp);
 				shadow = clamp( shadow + (2.0-sldist*3.0), 0.0, 1.0);
 				//

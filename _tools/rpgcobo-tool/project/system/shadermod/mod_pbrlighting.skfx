@@ -328,6 +328,41 @@ fs pbrlighting
 		ioFd += lcol * g.difcol * (1.0/PI);    //  lambert
 	}
 
+	// Native figures use discrete light bands over their original color maps.
+	void shading_cel( const G g, const Light li, inout vec3 ioFd, inout vec3 ioFr) {
+		highp float NoL = clamp( li.NoL, 0.0, 1.0);
+		const highp float width = 0.018;
+		highp float shadeLow = smoothstep( 0.18 - width, 0.18 + width, NoL);
+		highp float shadeMid = smoothstep( 0.46 - width, 0.46 + width, NoL);
+		highp float shadeHigh = smoothstep( 0.74 - width, 0.74 + width, NoL);
+		highp float band = 0.19 * shadeLow + 0.42 * shadeMid + 0.70 * shadeHigh;
+		highp vec3 light = li.col * li.atten;
+		ioFd += light * g.difcol * mix( vec3( 0.92, 0.97, 1.07), vec3( 1.07, 1.00, 0.90), shadeHigh) * (band / PI);
+		highp vec3 h = normalize( g.vn + li.l);
+		highp float glint = step( mix( 0.9, 0.985, 1.0 - g.rough), max( 0.0, dot( g.n, h)));
+		ioFr += light * g.f0 * glint * shadeMid * mix( 0.14, 0.44, max( g.metal, 1.0 - g.rough));
+	}
+
+	vec4 lighting_cel( const G g) {
+		highp float shadow = calcshadow( g.wvp, 0.0, g.n);
+		highp float ao = g.mparam.x $(AOTEX){ * calcao( g.uv, g.wvp.z) };
+		highp vec3 Fd, Fr;
+		evaluateStandardIBL( g, standardSpecularDFG( g), getStandardReflectedVector( g),
+			Irradiance_SphericalHarmonics( g.n) * dirlit[2].z, Fd, Fr);
+		Fd *= ao * vec3( 0.81, 0.92, 1.10) * mix( 0.46, 0.56, shadow);
+		Fd += g.col.xyz * (g.mparam.y * g.mparam.y * (8192.0 * dirlit[2].x));
+		Fr *= ao * shadow * 0.19;
+		shading_cel( g, dirLight( g, shadow * ao), Fd, Fr);
+		PNTLIT( shading_cel, ao);
+		vec3 col = Fd + Fr;
+		fog( col, g.wvp);
+		#ifdef OUTGI
+			return vec4( col, packDiffuse( Fd, col));
+		#else
+			return vec4( col, g.col.w);
+		#endif
+	}
+
 	vec4 lighting_standard( const G g) {
 		highp float sdw = calcshadow( g.wvp, 0.0, g.n);   //  シャドウは1つ。IBL,Dirのみ効かせる。。。
 		highp float ao = g.mparam.x $(AOTEX){ * calcao( g.uv, g.wvp.z) };
@@ -463,6 +498,7 @@ fs pbrout_forward
 		case 0u: setup_standard( g); return lighting_standard( g);
 		case 1u: return lighting_decal( g);
 		case 2u: setup_subsurf( g); return lighting_subsurf( g);
+		case 3u: setup_standard( g); return lighting_cel( g);
 		default: return lighting_error( g);
 		}
 	}

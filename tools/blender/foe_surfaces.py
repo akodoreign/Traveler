@@ -5,6 +5,8 @@ import math
 import bpy
 import numpy as np
 
+from anime_head import write_lock_uv
+
 
 # Tile size in model units, roughness, metallic, and relief strength.
 SURFACES = {
@@ -83,6 +85,7 @@ def make_textures(folder):
 class FoeSurface:
     def __init__(self, item, textures):
         self.item, self.textures = item, textures
+        self.material_roles = item['recipe'] == 'human'
 
     def kind(self, rgb):
         source, recipe = self.item["source"], self.item["recipe"]
@@ -110,7 +113,8 @@ class FoeSurface:
         tiles = []
         for mat in materials:
             rgb = tuple(bytes.fromhex(mat.name[1:7]))
-            kind = self.kind(rgb)
+            hair = self.material_roles and "_hair" in mat.name
+            kind = "fur" if hair else self.kind(rgb)
             tile, roughness, metal, _ = SURFACES[kind]
             tiles.append(tile)
             nodes, links = mat.node_tree.nodes, mat.node_tree.links
@@ -119,11 +123,16 @@ class FoeSurface:
             bsdf.inputs["Metallic"].default_value = metal
             color, normal = (nodes.new("ShaderNodeTexImage") for _ in range(2))
             color.image, normal.image = self.textures[kind]
+            if hair:
+                color.interpolation = normal.interpolation = "Closest"
             bump = nodes.new("ShaderNodeNormalMap")
             links.new(color.outputs["Color"], bsdf.inputs["Base Color"])
             links.new(normal.outputs["Color"], bump.inputs["Color"])
             links.new(bump.outputs["Normal"], bsdf.inputs["Normal"])
+        lock_uv = mesh.attributes.get("rt_lock_uv")
         for face in mesh.polygons:
+            if write_lock_uv(mesh, face, uv_layer, lock_uv):
+                continue
             axis = max(range(3), key=lambda i: abs(face.normal[i]))
             u, v = (axis + 1) % 3, (axis + 2) % 3
             sign = 1 if face.normal[axis] >= 0 else -1

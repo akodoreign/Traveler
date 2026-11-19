@@ -7,7 +7,20 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c283c64"
+		name = "c1f171a"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x020101ff
+		rough = 0.880000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
+		texture2 = null
+	}
+	{
+		name = "c283c64_linen"
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x040a20ff
@@ -30,6 +43,19 @@ material = [
 		texmap = 0x00000000
 		texture0 = "tex/foe_cloth_color.png"
 		texture1 = "tex/foe_cloth_normal.png"
+		texture2 = null
+	}
+	{
+		name = "c2d1e21"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x050202ff
+		rough = 0.880000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
 		texture2 = null
 	}
 	{
@@ -85,6 +111,19 @@ material = [
 		texture2 = null
 	}
 	{
+		name = "c342218"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x070301ff
+		rough = 0.880000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
+		texture2 = null
+	}
+	{
 		name = "c352e28"
 		tec = "pbr.basic"
 		mtype = 0
@@ -124,6 +163,32 @@ material = [
 		texture2 = null
 	}
 	{
+		name = "c432b1b"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x0d0501ff
+		rough = 0.880000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
+		texture2 = null
+	}
+	{
+		name = "c503421_hair"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x130702ff
+		rough = 0.880000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
+		texture2 = null
+	}
+	{
 		name = "c50463c"
 		tec = "pbr.basic"
 		mtype = 0
@@ -137,7 +202,33 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c5c3c26"
+		name = "c563727"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x170804ff
+		rough = 0.880000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
+		texture2 = null
+	}
+	{
+		name = "c563823_hair"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x170903ff
+		rough = 0.880000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/foe_fur_color.png"
+		texture1 = "tex/foe_fur_normal.png"
+		texture2 = null
+	}
+	{
+		name = "c5c3c26_hair"
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x1b0a03ff
@@ -150,10 +241,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c603e2c"
+		name = "c68462e_hair"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x1d0b05ff
+		basecol = 0x230e05ff
 		rough = 0.880000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -163,16 +254,16 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c68472f"
+		name = "c7f5641"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x230f06ff
-		rough = 0.880000
+		basecol = 0x37170cff
+		rough = 0.840000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = "tex/foe_fur_color.png"
-		texture1 = "tex/foe_fur_normal.png"
+		texture0 = "tex/foe_cloth_color.png"
+		texture1 = "tex/foe_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -189,29 +280,16 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c845c40"
+		name = "ca38165"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x3b1b0cff
-		rough = 0.840000
+		basecol = 0x5f3821ff
+		rough = 0.720000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = "tex/foe_cloth_color.png"
-		texture1 = "tex/foe_cloth_normal.png"
-		texture2 = null
-	}
-	{
-		name = "c896b52"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x412515ff
-		rough = 0.840000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/foe_cloth_color.png"
-		texture1 = "tex/foe_cloth_normal.png"
+		texture0 = "tex/ep417_skin.png"
+		texture1 = "tex/foe_skin_normal.png"
 		texture2 = null
 	}
 	{
@@ -228,10 +306,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cc29774"
+		name = "cc09775"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x8b502dff
+		basecol = 0x88502dff
 		rough = 0.720000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -306,6 +384,19 @@ material = [
 		texture2 = null
 	}
 	{
+		name = "ce7cdb9"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0xcd9d7dff
+		rough = 0.720000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/ep417_skin.png"
+		texture1 = "tex/foe_skin_normal.png"
+		texture2 = null
+	}
+	{
 		name = "cece8de"
 		tec = "pbr.basic"
 		mtype = 0
@@ -319,10 +410,23 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cf8e8d5"
+		name = "cf2e1d8"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xefcfabff
+		basecol = 0xe3c1b0ff
+		rough = 0.720000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/ep417_skin.png"
+		texture1 = "tex/foe_skin_normal.png"
+		texture2 = null
+	}
+	{
+		name = "cfff4e5"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0xffe7c9ff
 		rough = 0.720000
 		metal = 0.000000
 		mparam = 0xff000000
