@@ -130,6 +130,9 @@ The victory sequence uses the currently equipped weapon and the same body rig as
 
 ## Battle foes
 
+Native human combatants on both sides enter battle in their authored ready stance and return
+to it between actions. Field idles and nonhuman foe poses are unchanged.
+
 `py -3.12 -E tools\blender\foe_batch.py` stages the native battle roster and prints its output directory.
 Use `--only EP104` to rebuild just the Tide Crab, or `--install PACK [UPDATE_PACK ...]` to install a
 complete roster with later packs overriding earlier ones. The battle engine uses the installed index

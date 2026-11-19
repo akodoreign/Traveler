@@ -152,6 +152,7 @@ class BattleRunnerBase
 		//
 		rp3d.rpgobj = pc;
 		rp3d.manuaction = ManualMoveAction( rp3d);		//	バトル用のマニュアルアクション
+		if( rp3d["startBattleStance"]) rp3d.startBattleStance();
 		stage.scn.addObject( rp3d);
 		members .. pc;
 		charas .. pc;
@@ -173,6 +174,7 @@ class BattleRunnerBase
 		if( !rp3d) rp3d = RPG3DObject.create3DObject( ec.data);
 		rp3d.rpgobj = ec;
 		rp3d.manuaction = ManualMoveAction( rp3d);		//	バトル用のマニュアルアクション
+		if( rp3d["startBattleStance"]) rp3d.startBattleStance();
 		stage.scn.addObject( rp3d);
 		enemies .. ec;
 		charas .. ec;

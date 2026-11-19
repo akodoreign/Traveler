@@ -459,6 +459,8 @@ def install(packs, jobs):
                 raise ValueError(f"{folder}: stale or invalid foe asset {ep}")
             scale, height, radius = sizes.get(entry["recipe"], (.016, 1.40, .52))
             models[ep] = dict(animap=entry["animap"], scale=scale, height=height, radius=radius)
+            if entry["recipe"] == "human":
+                models[ep]["human"] = True
             sources[ep] = (folder, entry["recipe"])
     if jobs.keys() != models.keys() or any(jobs[ep]["recipe"] != recipe for ep, (_, recipe) in sources.items()):
         raise ValueError("Provide a complete pack and any updated model packs, in that order")

@@ -1,0 +1,23 @@
+// Playbot: evaluate on the field, then again once the battle command menu opens.
+local battle = ::rpgstage["battle"];
+if( !battle){
+	local lead = ::rpgstage.player3d;
+	if( lead.inBattleStance || lead.battleIdleRequest( #{id="stand"}).id != "stand") throw "Field idle changed";
+	::RPGMain.enterBattle( { mapid="M810", escape=true, enemies=[
+		{ id="E200", x=1.5, z=-0.4 }, { id="E105", x=-0.5, z=0.5 }
+	] });
+	return;
+}
+
+foreach( member in battle.members){
+	local actor = battle.getChara3D( member);
+	if( actor.animlayers.layers[0].id != "aimw") throw "Human ally is not in its ready pose";
+	if( actor.animemap.aimw.st == actor.animemap.stand.st) throw "Ready pose uses standing frames";
+}
+local bandit = battle.getChara3D( battle.enemies.find( @( e) e.dataid == "E200"));
+local crab = battle.getChara3D( battle.enemies.find( @( e) e.dataid == "E105"));
+if( bandit.animlayers.layers[0].id != "fight") throw "Human enemy is not in its ready pose";
+if( crab.animlayers.layers[0].id != "stand") throw "Nonhuman enemy idle changed";
+if( bandit.anime2( #{id="slash1"}).id != "slash1") throw "Ready pose overrode an attack";
+if( bandit.anime2( #{id="stand"}).id != "fight") throw "Human enemy did not return to its ready pose";
+printf( "[NATIVE BATTLE STANCE] Both human sides ready; field and nonhuman idles unchanged\n");

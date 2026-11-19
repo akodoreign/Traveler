@@ -975,6 +975,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 		local p = Vector3D( m.pos).add( back.x, back.y, back.z);
 		local rp3d = RPG3DObject.create3DObject( { mdlid = sk.rt_hmdl });
 		rp3d.manuaction = ManualMoveAction( rp3d);
+		if( rp3d["startBattleStance"]) rp3d.startBattleStance();
 		stage.scn.addObject( rp3d);
 		rp3d.setPosition( (p.x, p.y, p.z, m.dir));
 		::Rokugan.hire3d = rp3d;

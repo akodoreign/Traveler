@@ -66,6 +66,20 @@ class RokuganNativePicture extends RPG3DPicture
 	nativeWeaponKind = null;
 	nativeCombatMotion = null;
 	nativeVictoryKind = null;
+	battleIdleClip = "aimw";
+	inBattleStance = false;
+
+	function startBattleStance(){
+		inBattleStance = !!battleIdleClip;
+		if( inBattleStance) anime2( #{id="stand"});
+	}
+
+	function battleIdleRequest( t){
+		if( !inBattleStance || (t.id != "stand" && t.id != "fight") || rpgobj?.isDead()) return t;
+		local request = clone t;
+		request.id = battleIdleClip;
+		return request;
+	}
 
 	function setNative( pc, key, spec, wear){
 		local view = clone pc;
@@ -170,7 +184,7 @@ class RokuganNativePicture extends RPG3DPicture
 			}
 			return layer;
 		}
-		local layer = super.anime2( t);
+		local layer = super.anime2( battleIdleRequest( t));
 		if( layer && nativeCombatMotion && nativeBody.motion != nativeCombatMotion) nativeBody.setMotion( nativeCombatMotion);
 		return layer;
 	}
@@ -201,6 +215,7 @@ local nativePicture = RokuganNativePicture;
 class RokuganNativeFoe extends RokuganNativePicture
 {
 	function setFoe( pc, key, spec, path){
+		battleIdleClip = spec["human"] ? "fight" : null;
 		local view = clone pc;
 		view.animap = spec.animap;
 		setPicture( view);
