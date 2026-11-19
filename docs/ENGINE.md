@@ -172,6 +172,11 @@ under `_art\preview\critical_presentation`. It uses `engine_lock`, stops only it
 aliases existing frames in memory: it does not generate art or change production crit chances. Coordinate the
 single-instance engine with other running tests first.
 
+### Many Faces introduction
+
+The willow-teahouse escape pauses at a single, non-cancellable Many Faces choice immediately before
+Mitsue becomes a teahouse servant. Confirming it continues the original narration and exit sequence.
+
 ### Kudo investigation guidance
 
 The Scorpion Chapter 1 marker includes the governor's investigation conversation in Kitsune Hall,

@@ -32,6 +32,16 @@ class InteriorDoorwayTests(unittest.TestCase):
 
 
 class ScorpionRouteTests(unittest.TestCase):
+    def test_teahouse_disguise_has_a_single_mandatory_many_faces_choice(self):
+        maps = json.loads((Path(gm.PROJ) / "data" / "map.json").read_text(encoding="utf-8"))
+        shipped = maps["M346"]["event"]["#4#"]["page"][1]["cmdblock"][0]["cmdblocks"][0]
+        for commands in (gm.S02_SCP1, shipped):
+            with self.subTest(scene="generator" if commands is gm.S02_SCP1 else "shipped"):
+                disguise = next(index for index, command in enumerate(commands)
+                                if command.get("text", "").startswith("Mitsue becomes a teahouse servant"))
+                self.assertEqual(commands[disguise - 1],
+                                 gm.choices(("Many Faces: become a teahouse servant.", [])))
+
     def test_governor_retry_is_guaranteed_and_disguise_stays_available_until_the_reveal(self):
         project = Path(gm.PROJ)
         maps = json.loads((project / "data" / "map.json").read_text(encoding="utf-8"))

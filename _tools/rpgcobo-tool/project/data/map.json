@@ -483795,6 +483795,19 @@
 											"uiclose": 2
 										},
 										{
+											"cmd": "cmd_choices",
+											"backenable": false,
+											"cmdblocks": [
+												[]
+											],
+											"pos": {
+												"left": 396,
+												"right": 396,
+												"y": 380
+											},
+											"text0": "Many Faces: become a teahouse servant."
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Mitsue becomes a teahouse servant and walks out past the guards, carrying a tray.",

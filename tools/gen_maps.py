@@ -10874,6 +10874,7 @@ S02_SCP1 = [narrate("A teahouse among weeping willows, on a peninsula in a still
             setf("G838"),
             narrate("Many Faces: Mitsue's School technique. In towns she takes a stranger's appearance to pass where Mitsue "
                     "can't. In battle: Steal an item, or Copy the last skill an enemy used and turn it back on it."),
+            choices(("Many Faces: become a teahouse servant.", [])),
             narrate("Mitsue becomes a teahouse servant and walks out past the guards, carrying a tray."),
             say("Guard", "Evening, girl."),
             say("Mitsue", "(servant's voice) Evening, sir. Mind the step."),
