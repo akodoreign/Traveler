@@ -503610,9 +503610,10 @@
 											"rvar": true
 										},
 										{
-											"cmd": "cmd_script",
-											"desc": "SCRIPT",
-											"code": "W = ::Rokugan.roll( 60);"
+											"cmd": "cmd_compute",
+											"lvar": "W",
+											"op": "=",
+											"rvar": true
 										},
 										{
 											"cmd": "cmd_if",
@@ -503634,7 +503635,7 @@
 													},
 													{
 														"cmd": "cmd_compute",
-														"lvar": "G848",
+														"lvar": "G858",
 														"op": "=",
 														"rvar": true
 													},
@@ -503643,13 +503644,175 @@
 														"lvar": "G851",
 														"op": "+=",
 														"rvar": 1
+													},
+													{
+														"cmd": "cmd_choices",
+														"backenable": false,
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "A Fox household servant is scolded at the kitchen door and sent up with a covered plate. Halfway up the stair, she is Mitsue in her third face.",
+																	"name": "",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The governor's rooms. Kitsune Hyobe eats alone, hood up, his back to the door.",
+																	"name": "",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_anime",
+																	"who": 1,
+																	"ani": {
+																		"id": "rei"
+																	}
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Your fish, my lord.",
+																	"name": "Shosuro Mitsue",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_anime",
+																	"who": 1,
+																	"ani": {
+																		"id": "stand"
+																	}
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "...Leave it.",
+																	"name": "\"Governor\"",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "My lord, it's raw-",
+																	"name": "Shosuro Mitsue",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Leave the plate. Leave.",
+																	"name": "\"Governor\"",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "He turns. For one moment, too many teeth. Under the hood, on the back of his head, another face is looking at the wall.",
+																	"name": "",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Of course, my lord.",
+																	"name": "Shosuro Mitsue",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The corridor. Her hands shake once, then stop.",
+																	"name": "",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "...That isn't a governor. That isn't a person.",
+																	"name": "Shosuro Mitsue",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G849",
+																	"op": "=",
+																	"rvar": true
+																},
+																{
+																	"cmd": "cmd_choices",
+																	"backenable": false,
+																	"cmdblocks": [
+																		[
+																			{
+																				"charaid": "P000",
+																				"cmd": "cmd_condop",
+																				"cmdtgt": 11,
+																				"condbits": 1,
+																				"ignoredead": true,
+																				"op": 2,
+																				"showpop": false
+																			},
+																			{
+																				"charaid": "P000",
+																				"cmd": "cmd_hpmp",
+																				"cmdtgt": 11,
+																				"hp1": true,
+																				"op": 1,
+																				"pid": "HP",
+																				"val": 100
+																			},
+																			{
+																				"charaid": "P000",
+																				"cmd": "cmd_hpmp",
+																				"cmdtgt": 11,
+																				"hp1": true,
+																				"op": 1,
+																				"pid": "MP",
+																				"val": 100
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "(Rested. HP and MP restored.)",
+																				"name": "",
+																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_showui",
+																				"key": "menu_save",
+																				"op": null,
+																				"uiclose": 2
+																			}
+																		],
+																		[]
+																	],
+																	"pos": {
+																		"left": 430,
+																		"right": 430,
+																		"y": 380
+																	},
+																	"text0": "Rest and save.",
+																	"text1": "Not yet."
+																}
+															],
+															[]
+														],
+														"pos": {
+															"left": 357,
+															"right": 357,
+															"y": 380
+														},
+														"text0": "Many Faces: take the kitchen servant's place.",
+														"text1": "Not yet."
 													}
 												],
 												[
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
-														"text": "The talk stops. Eyes turn to the stranger who is standing much too close.",
+														"text": "The talk stops. Eyes turn to the servant who is standing much too close.",
 														"name": "",
 														"uiclose": 2
 													},
@@ -503684,7 +503847,7 @@
 									"right": 430,
 									"y": 380
 								},
-								"text0": "Eavesdrop (60%)",
+								"text0": "Eavesdrop (100%)",
 								"text1": "Leave him."
 							}
 						]
@@ -503700,7 +503863,196 @@
 						"pararun": false,
 						"reqs": [
 							{
-								"lvar": "G848",
+								"lvar": "G858",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Kudo is very calm.",
+								"name": "Kitsune Hyobe",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "A Fox household servant is scolded at the kitchen door and sent up with a covered plate. Halfway up the stair, she is Mitsue in her third face.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "The governor's rooms. Kitsune Hyobe eats alone, hood up, his back to the door.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "rei"
+											}
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Your fish, my lord.",
+											"name": "Shosuro Mitsue",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_anime",
+											"who": 1,
+											"ani": {
+												"id": "stand"
+											}
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "...Leave it.",
+											"name": "\"Governor\"",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "My lord, it's raw-",
+											"name": "Shosuro Mitsue",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Leave the plate. Leave.",
+											"name": "\"Governor\"",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "He turns. For one moment, too many teeth. Under the hood, on the back of his head, another face is looking at the wall.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Of course, my lord.",
+											"name": "Shosuro Mitsue",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "The corridor. Her hands shake once, then stop.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "...That isn't a governor. That isn't a person.",
+											"name": "Shosuro Mitsue",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G849",
+											"op": "=",
+											"rvar": true
+										},
+										{
+											"cmd": "cmd_choices",
+											"backenable": false,
+											"cmdblocks": [
+												[
+													{
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
+														"cmd": "cmd_hpmp",
+														"cmdtgt": 11,
+														"hp1": true,
+														"op": 1,
+														"pid": "HP",
+														"val": 100
+													},
+													{
+														"charaid": "P000",
+														"cmd": "cmd_hpmp",
+														"cmdtgt": 11,
+														"hp1": true,
+														"op": 1,
+														"pid": "MP",
+														"val": 100
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "(Rested. HP and MP restored.)",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_showui",
+														"key": "menu_save",
+														"op": null,
+														"uiclose": 2
+													}
+												],
+												[]
+											],
+											"pos": {
+												"left": 430,
+												"right": 430,
+												"y": 380
+											},
+											"text0": "Rest and save.",
+											"text1": "Not yet."
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 357,
+									"right": 357,
+									"y": 380
+								},
+								"text0": "Many Faces: take the kitchen servant's place.",
+								"text1": "Not yet."
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G849",
 								"op": "==",
 								"rvar": true
 							}

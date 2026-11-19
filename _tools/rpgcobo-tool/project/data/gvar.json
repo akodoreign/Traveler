@@ -3213,6 +3213,11 @@
 		"name": "the Miya relics (crystal)",
 		"type": 1
 	},
+	"G858": {
+		"defval": false,
+		"name": "governor eavesdrop succeeded (retry-safe)",
+		"type": 1
+	},
 	"G859": {
 		"defval": false,
 		"name": "hana_saved",

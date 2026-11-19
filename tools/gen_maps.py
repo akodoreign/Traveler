@@ -10753,9 +10753,9 @@ MITSUE_MSG = "Mitsue"
 def eavesdrop(name, chance, info, tried, after=(), fail="...Do you mind? Go and pour tea somewhere else.",
               lose_honor=True):
     """Mitsue's path action (rules/skills.md: chance, her Stealth; production S01 tutorial): listen in. One try per
-    target (`tried`); a failure is seen, and in town costs Honor."""
+    target (`tried`); a failure is seen, and in town costs Honor. Guaranteed listens do not roll."""
     return ("Eavesdrop (%d%%)" % chance, [
-        setf(tried), script("W = ::Rokugan.roll( %d);" % chance),
+        setf(tried), setf("W") if chance == 100 else script("W = ::Rokugan.roll( %d);" % chance),
         if_([flag("W")], [narrate("Eavesdrop: " + info)] + list(after),
             [narrate("The talk stops. Eyes turn to the servant who is standing much too close."), say(name, fail)] +
             (honor(-1) if lose_honor else []))])
@@ -11213,6 +11213,7 @@ S04B = [narrate("A Fox household servant is scolded at the kitchen door and sent
 
 def kitsune_hall():
     def extra(m, ev):
+        disguise = choices(("Many Faces: take the kitchen servant's place.", S04B), ("Not yet.", []))
         for x in (4, 9, 14, 19):
             m.tree(x, 6, TREE_S)                                             # the columns that sprout leaves
         ev.prop(12, 8, SC["hyobe"], reqs=[flag("G853", False)], d=0)
@@ -11220,11 +11221,13 @@ def kitsune_hall():
         ev.talk(12, 7, "CE000", [
             (None, [say("Hyobe", "Yoriki! Sake? Good Kudo sake. Kudo is calm. Kudo is very calm. The Suzume will be "
                                  "compensated when they leave, very fairly."),
-                    choices(eavesdrop("Hyobe", 60, "After dark, from the shadow of a column: he eats raw river fish "
+                    choices(eavesdrop("Hyobe", 100, "After dark, from the shadow of a column: he eats raw river fish "
                                       "alone, and whispers to it. \"Soon. The box is near. The blood is near.\"",
-                                      "G848", suspect("G848"), fail="(booming) Who's there? A servant. Out."),
+                                      "G848", suspect("G858") + [disguise],
+                                      fail="(booming) Who's there? A servant. Out."),
                             ("Leave him.", []))]),
-            ([flag("G848")], [say("Hyobe", "Kudo is very calm.")])], reqs=[flag("G853", False)])
+            ([flag("G858")], [say("Hyobe", "Kudo is very calm."), disguise]),
+            ([flag("G849")], [say("Hyobe", "Kudo is very calm.")])], reqs=[flag("G853", False)])
         ev.talk(16, 6, "CE000", [
             (None, [say("Hana", "The governor hasn't been himself since spring."),
                     narrate("Kitsune Hana: older, in dark green with gold leaves. She bows and makes to leave, the "
@@ -19595,6 +19598,20 @@ def marker_pass(mp):
             if isinstance(e, dict) and "pos" in e and needle in json.dumps(e):
                 return [mid, round(e["pos"][0] / 2.0, 2), round(e["pos"][2] / 2.0, 2)]
         return None
+
+    # Kudo's investigation talks do not announce a new objective, but must be finished before the next scene.
+    investigating = [["G845", "==", True], ["G876", "==", True], ["G853", "==", False]]
+    for mid, done, extra in (
+            ("M352", "G849", []),
+            ("M351", "G850", [["G849", "==", True], ["G851", "<", 2]]),
+            ("M352", "G852", [["G849", "==", True], ["G851", "<", 2]])):
+        if mid not in mp:
+            continue
+        spot = find(mid, '"lvar": "%s", "op": "=", "rvar": true' % done)
+        if spot is None:
+            raise RuntimeError("Missing Kudo investigation conversation: %s" % done)
+        beats.append(spot + [[[done, "==", False]] + investigating + extra])
+
     for k, q_ in enumerate(SIDE_QUESTS):
         key, road, title, gmap, x, z, spr, gname, opens, hmap, gids, *_ = q_
         g = find(gmap, json.dumps("Side quest: %s" % title)[1:-1])

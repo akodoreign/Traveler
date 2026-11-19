@@ -1,0 +1,26 @@
+// Evalf in Kitsune Hall before the first talk, after declining the disguise, and after the second talk.
+local phase = ::Rokugan["governorTestPhase"] ?? 0;
+::Rokugan.governorTestPhase <- phase + 1;
+if( phase == 0){
+	if( ::rpgstage.mapid != "M352" || !::rpgvar["G848"] || ::rpgvar["G858"] || ::rpgvar["G849"])
+		throw "Expected Kitsune Hall with an old failed governor attempt";
+	::Rokugan.governorCluesBefore <- ::rpgvar["G851"];
+	::Rokugan.rtq = [0, 1];
+	::Rokugan.rtqi = 0;
+	printf( "[GOVERNOR TEST] retrying the old failed attempt through the actual dialogue\n");
+	return;
+}
+if( !::rpgvar["G858"]) throw "Guaranteed eavesdrop did not complete";
+if( ::rpgvar["G851"] != ::Rokugan.governorCluesBefore + 1)
+	throw "The governor clue was not awarded exactly once";
+if( phase == 1){
+	if( ::rpgvar["G849"]) throw "Declining the disguise should not complete the reveal";
+	::Rokugan.rtq = [0, 1];
+	::Rokugan.rtqi = 0;
+	printf( "[GOVERNOR TEST] guaranteed retry passed; reopening the postponed disguise\n");
+	return;
+}
+if( !::rpgvar["G849"]) throw "The postponed Many Faces reveal did not complete";
+local st = ::rpgstage, goal = ::Rokugan.mkGoal( st.mapid, ::Rokugan.mkRoad( st.mapid));
+if( !goal || goal[0] != "M351") throw "The investigation did not advance to Rui's runner";
+printf( "[GOVERNOR TEST] 100%% eavesdrop, disguise, one clue, and the next story target passed\n");

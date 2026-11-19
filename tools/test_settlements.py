@@ -3,8 +3,11 @@
 Run: py -3.12 -E -W ignore::ResourceWarning -m unittest discover -s tools -p test_settlements.py
 """
 import json
+import shutil
+import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import gen_maps as gm
 from test_castles import flood, walkable
@@ -29,6 +32,39 @@ class InteriorDoorwayTests(unittest.TestCase):
 
 
 class ScorpionRouteTests(unittest.TestCase):
+    def test_governor_retry_is_guaranteed_and_disguise_stays_available_until_the_reveal(self):
+        project = Path(gm.PROJ)
+        maps = json.loads((project / "data" / "map.json").read_text(encoding="utf-8"))
+        pages = maps["M352"]["event"]["#5#"]["page"]
+
+        def page_for(flags):
+            return next(page for page in reversed(pages)
+                        if all(flags.get(req["lvar"], False) == req["rvar"] for req in page.get("reqs") or []))
+
+        old_failed = {"G848": True}
+        retry = page_for(old_failed)
+        self.assertEqual(page_for({}), retry)
+        choice = next(command for command in retry["cmdblock"] if command["cmd"] == "cmd_choices")
+        self.assertEqual(choice["text0"], "Eavesdrop (100%)")
+        self.assertIn(gm.setf("W"), choice["cmdblocks"][0])
+        self.assertNotIn("Rokugan.roll", json.dumps(choice["cmdblocks"][0]))
+        success = next(command for command in choice["cmdblocks"][0] if command["cmd"] == "cmd_if")["cmdblocks"][0]
+        self.assertIn(gm.setf("G858"), success)
+        self.assertIn(gm.setf("G851", 1, "+="), success)
+        self.assertIn('"lvar": "G849", "op": "=", "rvar": true', json.dumps(success))
+        repeat = page_for(old_failed | {"G858": True})
+        self.assertIn("Many Faces: take the kitchen servant's place.", json.dumps(repeat))
+        self.assertNotIn('"lvar": "G851"', json.dumps(repeat))
+        revealed = page_for(old_failed | {"G858": True, "G849": True})
+        self.assertNotIn("cmd_choices", json.dumps(revealed))
+        gvars = json.loads((project / "data" / "gvar.json").read_text(encoding="utf-8"))
+        self.assertEqual(gvars["G858"]["defval"], False)
+        _, events = gm.make("M352")
+        generated = {"M352": {"event": {"#5#": events.ev["#5#"]}}}
+        with patch.dict(gm.MAP_PATH, {"M352": "P105"}):
+            gm.gesture_pass(generated)
+        self.assertEqual(generated["M352"]["event"]["#5#"]["page"], pages)
+
     def test_story_road_from_bayushi_leads_to_traitors_grove(self):
         project = Path(gm.PROJ)
         maps = json.loads((project / "data" / "map.json").read_text(encoding="utf-8"))
@@ -46,6 +82,32 @@ class ScorpionRouteTests(unittest.TestCase):
         self.assertIn('["M348", 77.0, 14.0, 0.5, 14.0]', markers)
         self.assertNotIn('["M477", 77.0, 14.0,', markers)
         self.assertIn('M348 = "P105"', markers)
+
+    def test_investigation_marker_targets_match_the_conversations_and_survive_regeneration(self):
+        project = Path(gm.PROJ)
+        maps = json.loads((project / "data" / "map.json").read_text(encoding="utf-8"))
+        with tempfile.TemporaryDirectory() as temp:
+            plugin = Path(temp) / "plugin" / "rokugan"
+            plugin.mkdir(parents=True)
+            shutil.copyfile(project / "plugin" / "rokugan" / "RokuganJournal.sk", plugin / "RokuganJournal.sk")
+            with patch.object(gm, "PROJ", temp), patch.dict(gm.MAP_PATH):
+                gm.marker_pass(maps)
+            generated = (plugin / "RokuganMarkerData.sk").read_text(encoding="utf-8")
+        beats = json.loads(generated.split("::Rokugan.MK_BEATS <- ", 1)[1].split(";", 1)[0])
+        shipped = (project / "plugin" / "rokugan" / "RokuganMarkerData.sk").read_text(encoding="utf-8")
+        shipped_beats = json.loads(shipped.split("::Rokugan.MK_BEATS <- ", 1)[1].split(";", 1)[0])
+        for mid, done in (("M352", "G849"), ("M351", "G850"), ("M352", "G852")):
+            with self.subTest(conversation=done):
+                event = next(event for event in maps[mid]["event"].values()
+                             if json.dumps(gm.setf(done)) in json.dumps(event))
+                beat = next(beat for beat in beats if beat[3][0] == [done, "==", False])
+                self.assertIn(beat, shipped_beats)
+                self.assertEqual(beat[:3], [mid, event["pos"][0] / 2.0, event["pos"][2] / 2.0])
+                for prerequisite in (["G845", "==", True], ["G876", "==", True], ["G853", "==", False]):
+                    self.assertIn(prerequisite, beat[3])
+                if done != "G849":
+                    self.assertIn(["G849", "==", True], beat[3])
+                    self.assertIn(["G851", "<", 2], beat[3])
 
 
 class SettlementExpansionTests(unittest.TestCase):

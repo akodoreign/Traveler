@@ -1,0 +1,34 @@
+// Isolated playtest only: reconstruct the reported Chapter 1 save flags; do not save this test state.
+foreach( key in ["G849","G850","G853","G854","G855","G856","G858","G859","G861","G877","G879","G880"])
+	::rpgvar[key] = false;
+foreach( key in ["G831","G832","G834","G835","G836","G837","G838","G839","G840","G845","G848","G852","G869","G876","G878"])
+	::rpgvar[key] = true;
+::rpgvar["G1244"] = 0;
+::rpgvar["G851"] = 2;
+local verify = function( from, expected, label){
+	local goal = ::Rokugan.mkGoal( from, ::Rokugan.mkRoad( from));
+	if( encodeJSON( goal) != encodeJSON( expected))
+		throw label .. ": expected " .. encodeJSON( expected) .. ", got " .. encodeJSON( goal);
+	printf( "[SCORPION MARKER] %S: %S -> %S\n", label, from, encodeJSON( goal));
+};
+foreach( mid in ["M347","M351","M352"])
+	verify( mid, ["M352",8.0,8.5], "reported save returns to the governor, not the locked Chapter 2 road");
+::rpgvar["G849"] = true;
+verify( "M352", ["M351",55.0,10.5], "governor revealed and clues gathered: Rui's runner");
+::rpgvar["G851"] = 1;
+verify( "M351", ["M351",16.0,6.0], "missing clue: dock-hand");
+::rpgvar["G850"] = true;
+::rpgvar["G852"] = false;
+verify( "M352", ["M352",10.0,8.0], "missing clue: Hana");
+foreach( key in ["G846","G847","G848"]) ::rpgvar[key] = true;
+::rpgvar["G850"] = false;
+verify( "M351", ["M351",16.0,6.0], "failed eavesdrops still have a guaranteed clue");
+::rpgvar["G849"] = false;
+::rpgvar["G876"] = false;
+verify( "M352", ["M353",6.5,7.0], "meet Rui before investigating");
+::rpgvar["G876"] = true;
+::rpgvar["G853"] = true;
+verify( "M351", ["M355",36.0,9.0], "night departure hides old investigation targets");
+foreach( key in ["G854","G855","G856","G859","G877","G861"]) ::rpgvar[key] = true;
+verify( "M347", ["M359",16.0,9.5], "Chapter 2 becomes the target after Chapter 1 is complete");
+printf( "[SCORPION MARKER] all cases passed\n");

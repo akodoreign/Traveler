@@ -172,6 +172,25 @@ under `_art\preview\critical_presentation`. It uses `engine_lock`, stops only it
 aliases existing frames in memory: it does not generate art or change production crit chances. Coordinate the
 single-instance engine with other running tests first.
 
+### Kudo investigation guidance
+
+The Scorpion Chapter 1 marker includes the governor's investigation conversation in Kitsune Hall,
+followed by the dock-hand or Hana if another suspect clue is needed. These targets require Rui's introduction
+and disappear when the night departure begins; failed Eavesdrops still leave guaranteed clue sources.
+This keeps an unfinished investigation from falling through to Chapter 2's still-locked road.
+`tools\gen_maps.py` derives the target coordinates from the conversations rather than duplicating them.
+`tools\test_scorpion_marker.sk` reproduces the reported save's flags and checks the investigation,
+night departure, and eventual Chapter 2 handoff without saving or changing a player's save file.
+
+The governor's Eavesdrop is guaranteed (100%). `G848` remains the old attempt flag; `G858` records a
+successful listen, so a save with a failed old attempt can retry without farming additional clues.
+Old saves did not distinguish success from failure, so an already-successful old attempt can also
+earn one additional clue on its first retry; subsequent talks cannot award another.
+The existing Many Faces disguise scene is offered immediately after success and again on later talks
+until `G849` records the reveal. The original kitchen-servant interaction remains available too.
+`tools/test_scorpion_governor.sk` exercises the real dialogue: retry an old failed attempt, decline
+the disguise, then reopen it on a second talk and verify that the clue is counted only once.
+
 ## 5. Next steps (M1 polish → M2 vertical slice)
 1. Weakness icons instead of names; shield pips. (Suki sprite effect done: broken enemies are desaturated/darkened via setHSV and restored on recovery.)
 2. Turn order: done (labels + THIS TURN / NEXT portrait bar).
