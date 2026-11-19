@@ -100,6 +100,7 @@ a wider 248x184 output cell. To rebake installed batches without recutting the a
 | **Talents** | Battle command `talent` (battlecmd5) → each traveler's talent skill (gen_data S110, S120–S127); plugin `onTalent` adds the special parts. Natsuko **Razor's Edge** (guard + enemy single-target attacks drawn to her 2 turns) · Rensei **Iaijutsu** (Focus, then Strike: certain crit ×2.5) · Gendo **Deduce** (reveals all weaknesses) · Shizue **Command** (party ATK up + party acts first next turn via the pre-rolled order) · Haruki **Attune** (next spell ×1.5) · Mitsue **Many Faces** (steal) · Tamotsu **Barter Coin** (spends 5% of zeni, min 50: damage grows with the spend) · Sayo **Remedy** (heal + cure poison). All verified in-engine. |
 | **Animation fixes** | `atk_normal` overridden so picture models play `atkani`; sprites use `replay:false` on loops. |
 | **Hired support framing** | With a hireling in the third row, the normal battle camera uses at least the wider 12-unit arena viewport, plus support and narrow-screen padding. Battles without a hireling and victory shots keep their existing framing. |
+| **Turn-order portraits** | THIS TURN and NEXT prefer face-and-shoulder crops of the character's dialog bust (travel look where available), retaining gold ally/red enemy frames. Characters without a bust keep their sprite portrait. Rebuild only bust thumbnails with `python -E tools\gen_portraits.py --busts-only`. |
 
 ## 4. How to test
 

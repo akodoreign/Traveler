@@ -1,10 +1,13 @@
-"""Turn-order portraits: head-and-shoulders crops of every battle sprite sheet (frame 0), framed for the
-plugin's turn-order bar. Party / guest sprites (trav_*, side_*) get a gold frame, everything else a red one.
+"""Turn-order portraits: face crops from dialog busts, with sprite-sheet portraits as the fallback.
+Party / guest portraits get a gold frame, enemies a red one.
 Writes resource/efx/portrait/<sheet basename>.png (88x88: 44-px design, nearest-neighbour x2).
 Run: python -E tools/gen_portraits.py
+     python -E tools/gen_portraits.py --busts-only
 """
+import argparse
 import json
 import os
+import re
 
 import numpy as np
 from PIL import Image, ImageDraw
@@ -94,22 +97,87 @@ def head_crop(sheet, cols, rows, ours=False, T=None):
     return crop
 
 
-def frame(crop, ally):
+def frame(crop, ally, scale=1):
     hi, lo = ALLY if ally else FOE
-    im = Image.new("RGBA", (SIZE, SIZE), (0, 0, 0, 0))
+    size = SIZE * scale
+    im = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    d.rounded_rectangle([0, 0, SIZE - 1, SIZE - 1], radius=6, fill=(28, 24, 32, 235), outline=lo, width=3)
-    d.rounded_rectangle([1, 1, SIZE - 2, SIZE - 2], radius=5, outline=hi, width=1)
-    ox, oy = (SIZE - crop.width) // 2, SIZE - 3 - crop.height
-    im.alpha_composite(crop, (ox, max(3, oy)))
+    d.rounded_rectangle([0, 0, size - 1, size - 1], radius=6 * scale,
+                        fill=(28, 24, 32, 235), outline=lo, width=3 * scale)
+    border = [scale, scale, size - 2 * scale, size - 2 * scale]
+    d.rounded_rectangle(border, radius=5 * scale, outline=hi, width=scale)
+    ox, oy = (size - crop.width) // 2, size - 3 * scale - crop.height
+    im.alpha_composite(crop, (ox, max(3 * scale, oy)))
     # re-draw the inner border on top so the head sits inside the frame
     d = ImageDraw.Draw(im)
-    d.rounded_rectangle([1, 1, SIZE - 2, SIZE - 2], radius=5, outline=hi, width=1)
+    d.rounded_rectangle(border, radius=5 * scale, outline=hi, width=scale)
     return im.resize((SIZE * 2, SIZE * 2), Image.NEAREST)
 
 
+def bust_crop(image, face=None):
+    """Keep the face, hair and upper shoulders using the dialog bust's face anchor."""
+    image = image.convert("RGBA")
+    if face is None:
+        bounds = image.getchannel("A").getbbox()
+        if bounds is None:
+            raise ValueError("Bust image is fully transparent")
+        x0, upper, x1, bottom = bounds
+        size = min(x1 - x0, bottom - upper)
+        left = (x0 + x1 - size) // 2
+    else:
+        cx, top, chin = face
+        if not (0 <= cx <= 1 and 0 <= top < chin <= 1):
+            raise ValueError("Invalid bust face anchor: %r" % (face,))
+        height = (chin - top) * image.height
+        size = max(1, round(min(image.width, image.height, height * 2.1)))
+        left = round(max(0, min(image.width - size, cx * image.width - size / 2)))
+        upper = round(max(0, min(image.height - size, top * image.height - height * 0.55)))
+    return image.crop((left, upper, left + size, upper + size)).resize(
+        (INNER * 2, INNER * 2), Image.Resampling.LANCZOS)
+
+
+def generate_bust_portraits():
+    project = os.path.dirname(RES)
+    with open(os.path.join(project, "plugin", "rokugan", "RokuganBustData.sk"), encoding="utf-8") as stream:
+        table = stream.read().split("};", 1)[0]
+    names = {json.loads(name): json.loads(key) for name, key in re.findall(
+        r'\[("(?:\\.|[^"\\])*")\]\s*=\s*("(?:\\.|[^"\\])*")', table)}
+    done = set()
+    for kind in ("player", "enemy"):
+        with open(os.path.join(project, "data", kind + ".json"), encoding="utf-8") as stream:
+            characters = json.load(stream)
+        for character in characters.values():
+            if not isinstance(character, dict):
+                continue
+            name = character.get("name", "").split(" (", 1)[0]
+            key = names.get(name)
+            if key is None or (key, kind) in done:
+                continue
+            folder = os.path.join(RES, "bust", key)
+            with open(os.path.join(folder, "faces.json"), encoding="utf-8") as stream:
+                faces = json.load(stream)
+            variant = "travel" if "travel" in faces and os.path.exists(
+                os.path.join(folder, "travel_neutral.png")) else "base"
+            source = "neutral.png" if variant == "base" else "travel_neutral.png"
+            anchor = faces.get(variant)
+            if anchor is None:
+                print("bust portrait %s: no face anchor; cropping the upper bust" % key)
+            with Image.open(os.path.join(folder, source)) as image:
+                crop = bust_crop(image, anchor)
+            save_png(frame(crop, kind == "player", scale=2),
+                     os.path.join(OUT, "_bust_%s_%s.png" % (key, kind)))
+            done.add((key, kind))
+    print("bust portraits:", len(done))
+
+
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--busts-only", action="store_true", help="Leave legacy sprite portraits unchanged")
+    args = parser.parse_args()
     os.makedirs(OUT, exist_ok=True)
+    generate_bust_portraits()
+    if args.busts_only:
+        return
     j = json.load(open(os.path.join(RES, "enemy_pic.json"), encoding="utf-8"))
     done = set()
     for k, e in j.items():

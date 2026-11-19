@@ -461,7 +461,7 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	//	Turn-order bar: portraits (resource/efx/portrait/<sheet>.png, tools/gen_portraits.py) along the top of the
+	//	Turn-order bar: bust crops with sprite fallbacks (tools/gen_portraits.py) along the top of the
 	//	battle screen in this turn's real order. Current actor drops down and brightens; acted / fallen dim.
 	bar = []
 	barviews = []
@@ -472,6 +472,16 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 	BAR_SIZE = 46
 
 	function portraitSprite( chr){
+		local key = ::Rokugan.bustKey( chr.name);
+		if( key){
+			local kind = chr instanceof ::RPGPlayer ? "player" : "enemy";
+			local bust = "_bust_" .. key .. "_" .. kind;
+			if( ::getResource( "/resource/efx/portrait/" .. bust .. ".png")){
+				local sp = tagSprite( bust);
+				if( sp) return sp;
+				printf( "[RT] turn-order bust could not be loaded: %S\n", bust);
+			}
+		}
 		local b = ::rpgstage["battle"];
 		local p3 = b ? b.getChara3D( chr) : null;
 		if( !p3 || !(p3 instanceof ::RPG3DPicture) || !p3.pic) return null;

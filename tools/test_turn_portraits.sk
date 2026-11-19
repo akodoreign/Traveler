@@ -1,0 +1,31 @@
+// Playbot evalf on the field, then again at the battle command menu.
+local battle = ::rpgstage["battle"];
+if( !battle){
+	::rpgvar["G293"] = 1;
+	::rpgvar["G294"] = 3;
+	::RPGMain.enterBattle( { mapid="M810", escape=true, enemies=[
+		{ id="E120", x=1.5, z=-0.4 }, { id="E105", x=-0.5, z=0.5 }
+	] });
+	return;
+}
+local busts = 0, sprites = 0;
+foreach( entry in ::Rokugan.bar){
+	local chr = entry.chr;
+	local key = ::Rokugan.bustKey( chr.name);
+	local kind = chr instanceof ::RPGPlayer ? "player" : "enemy";
+	local path = "/resource/efx/portrait/_bust_" .. key .. "_" .. kind .. ".png";
+	if( key && ::getResource( path)){
+		if( entry.iv.sp.tex0 != ::Rokugan.texcache[path])
+			throw "Turn-order bar did not use the character's bust: " .. chr.name;
+		busts++;
+	}else{
+		local actor = battle.getChara3D( chr);
+		local pic = actor.pic.pic3d;
+		local fallback = "/resource/efx/portrait/" .. pic.substring( pic.lastIndexOf( "/") + 1);
+		if( entry.iv.sp.tex0 != ::Rokugan.texcache[fallback])
+			throw "Turn-order bar lost a sprite fallback: " .. chr.name;
+		sprites++;
+	}
+}
+if( busts < 2 || sprites < 1) throw "Expected bust portraits alongside an enemy sprite fallback";
+printf( "[TURN BUSTS] %d busts and %d sprite fallbacks; real turn-order views use the expected textures\n", busts, sprites);
