@@ -8,6 +8,7 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 material = [
 	{
 		name = "c1f171a"
+		cullface = SK_OFF
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x020101ff
@@ -21,6 +22,7 @@ material = [
 	}
 	{
 		name = "c2d1e21"
+		cullface = SK_OFF
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x050202ff
@@ -34,6 +36,7 @@ material = [
 	}
 	{
 		name = "c843c4d"
+		cullface = SK_OFF
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x3b0a12ff
@@ -112,6 +115,7 @@ material = [
 	}
 	{
 		name = "cd8637e"
+		cullface = SK_OFF
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0xb01f36ff
@@ -164,6 +168,7 @@ material = [
 	}
 	{
 		name = "cf2e1d8"
+		cullface = SK_OFF
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0xe3c1b0ff
@@ -190,6 +195,7 @@ material = [
 	}
 	{
 		name = "cff8fb3"
+		cullface = SK_OFF
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0xff4775ff
@@ -203,6 +209,7 @@ material = [
 	}
 	{
 		name = "cfff4e5"
+		cullface = SK_OFF
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0xffe7c9ff

@@ -11,6 +11,8 @@ import chara3d as c
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "_tools" / "rpgcobo-tool" / "work"))
 from blender_rpgcobo import clearCaches, convertToPM, saveModelData, saveMotionData, savePolygonMesh
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from native_eye_materials import two_sided_eyes
 
 
 def animate(scene, name, frames, family):
@@ -38,7 +40,7 @@ def animate(scene, name, frames, family):
 
 
 def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, texture_uv=None,
-               alpha_test=False, surface=None):
+               alpha_test=False, surface=None, eye_spec=None):
     obj = skin.build(rig, surface_materials=getattr(surface, "material_roles", False))
     mesh = obj.data
     if surface:
@@ -92,6 +94,10 @@ def save_piece(scene, out, rig, name, skin, motion=None, write_motion=False, tex
     data.aabb = [-125, -60, -125, 125, 165, 125]
     saveModelData(data, str(out / f"{name}.mdl"))
     savePolygonMesh(data, str(out / f"{name}.pm"), name, motion, None)
+    if eye_spec is not None:
+        descriptor = out / f"{name}.pm"
+        descriptor.write_text(two_sided_eyes(descriptor.read_text(encoding="utf-8"), eye_spec),
+                              encoding="utf-8", newline="\n")
     bpy.data.objects.remove(obj, do_unlink=True)
     bpy.data.meshes.remove(mesh)
     for mat in materials:
@@ -127,7 +133,8 @@ def export(job):
 
     def save_cast(name, skin, rig, motion=None, write_motion=False):
         surface = detail if any(skin.surfaces) else None
-        save_piece(scene, out, rig, name, skin, motion, write_motion, surface=surface)
+        save_piece(scene, out, rig, name, skin, motion, write_motion, surface=surface,
+                   eye_spec=skin.spec if name.endswith("_body") else None)
 
     if job.get("body_only") or job.get("head_surfaces"):
         rig = c.make_armature(c.rest_frames())

@@ -9,6 +9,7 @@ from zlib import crc32
 import chara3d_all as batch
 from bust_skin import native_skin
 from chara3d_sheet import extra_clips, family, look
+from native_eye_materials import two_sided_eyes
 from rig3d_poses import SPECIAL, VIEWS
 
 
@@ -128,6 +129,7 @@ def main():
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--check", action="store_true", help="verify the complete deployed index and assets")
     mode.add_argument("--index-only", action="store_true", help="refresh metadata without re-exporting meshes")
+    mode.add_argument("--eye-materials", action="store_true", help="repair eye culling without re-exporting meshes")
     mode.add_argument("--bust-skin", action="store_true", help="re-export only bodies with sampled bust colors")
     mode.add_argument("--outfit-clans", nargs="+", help="refresh default outfits for the named clans")
     mode.add_argument("--accessories", action="store_true", help="refresh costume pieces, body ornaments and outfit fit")
@@ -140,6 +142,18 @@ def main():
     work.mkdir(parents=True, exist_ok=True)
     index = outfits / "roster.json"
     roster, frames, jobs = build_registry(args.group)
+    if args.eye_materials:
+        repairs = {}
+        for key, spec, _, _ in jobs:
+            path = outfits / f"{key}_body.pm"
+            original = path.read_bytes()
+            updated = two_sided_eyes(original.decode("utf-8"), spec).encode("utf-8")
+            if updated != original:
+                repairs[path] = updated
+        for path, updated in repairs.items():
+            path.write_bytes(updated)
+        print(f"Checked eye materials for {len(jobs)} bodies; updated {len(repairs)} descriptors")
+        return
     if args.check:
         recorded = json.loads(index.read_text(encoding="utf-8"))
         if recorded != roster:

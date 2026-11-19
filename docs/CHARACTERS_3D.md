@@ -36,6 +36,7 @@ py -3.12 -E tools\chara3d_all.py --list                       # done / to do at 
 py -3.12 -E tools\chara3d_all.py                              # bake all 349 sheets into _art\preview\chara3d\sheets
 py -3.12 -E tools\chara3d_native_all.py                       # export native bodies, outfits, weapons and shared motion
 py -3.12 -E tools\chara3d_native_all.py --check               # check asset inventory and registry against game data
+py -3.12 -E tools\chara3d_native_all.py --eye-materials       # repair eye culling in existing bodies without changing meshes
 py -3.12 -E tools\chara3d_gear_all.py                         # export shared gear and wearer texture atlases
 py -3.12 -E tools\chara3d_gear_all.py --check                 # verify the wearable catalog, meshes and textures
 py -3.12 -E tools\test_native_gear.py                        # test live equips, clan colour and unequipping
