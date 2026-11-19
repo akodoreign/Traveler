@@ -906,8 +906,22 @@ def weapon(S, spec, kind):
         S.add(tube([((6 * (22 / 30) ** 2, -22, 0), .25, .25), ((6., 30, 0), .25, .25)], 4), WHITE, w)
         S.add(tube([((0, -2.5, 0), 1.2, 1.), ((0, 2.5, 0), 1.2, 1.)], 6), tuple(spec["accent"]), w)
     elif kind == "tetsubo":
-        S.add(tube([((0, -9, 0), 1., 1.), ((0, 6, 0), 1.2, 1.2), ((0, 34, 0), 2.7, 2.7)], 8), (112, 116, 126), w,
-              paint=lambda c: STEEL if c[1] > 8 and int(c[1]) % 5 == 0 else None)
+        iron = tuple(spec.get("stud", (56, 61, 66)))
+        S.add(tube([((0, -16, 0), 1.45, 1.45), ((0, 10, 0), 1.45, 1.45)], 10), INK, w)
+        for y in range(-15, 10, 2):
+            S.add(tube([((0, y, 0), 1.57, 1.57), ((0, y + .8, 0), 1.57, 1.57)], 10),
+                  tuple(spec["accent"]), w)
+        S.add(ellipsoid((0, -17, 0), (2., 1.5, 2.), 10, 5), iron, w)
+        S.add(tube([((0, 10, 0), 3.3, 3.3), ((0, 99, 0), 3.7, 3.7)], 8), WOOD, w, smooth=False)
+        for y, radius in ((10, 3.4), (97.5, 3.8)):
+            S.add(tube([((0, y, 0), radius, radius), ((0, y + 1.5, 0), radius, radius)], 8),
+                  iron, w, smooth=False)
+        for y in range(18, 96, 9):
+            radius = (3.3 + .4 * (y - 10) / 89) * math.cos(math.pi / 8) + .2
+            for side in range(8):
+                angle = math.tau * (side + .5) / 8
+                S.add(ellipsoid((radius * math.cos(angle), y, radius * math.sin(angle)),
+                                (.85, 1.05, .85), 8, 4), iron, w)
     elif kind in ("fan", "kama", "nunchaku", "bokken"):
         def segment(a, b, radius, colour):
             S.add(tube([(a, radius, radius), (b, radius, radius)], 6), colour, w)

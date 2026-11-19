@@ -1,0 +1,24 @@
+// Playbot evalf twice on the field, then three times at the battle command menu.
+local stage = ::rpgstage, battle = stage["battle"];
+local phase = ::Rokugan["tetsuboTestPhase"] ?? 0;
+::Rokugan.tetsuboTestPhase <- phase + 1;
+if( phase == 0){
+	local lead = stage.player3d.rpgobj;
+	lead.setEquip( lead.getEquipableSlot( "W103"), RPGObject.create( "W103"));
+	return;
+}
+if( phase == 1){
+	if( stage.player3d.nativeWeaponKind != "tetsubo")
+		throw "Changing equipment did not refresh the field tetsubo";
+	::RPGMain.enterBattle( { mapid="M800", escape=true, enemies=[
+		{ id="E200", x=1.5, z=-0.4 }, { id="E105", x=-0.5, z=0.5 }
+	] });
+	return;
+}
+local actor = battle.getChara3D( battle.members[0]);
+if( actor.nativeWeaponKind != "tetsubo" || actor.nativeWeapon.mesh.res.name != "W103.pm")
+	throw "Equipped tetsubo did not select its inventory mesh";
+if( !actor.nativeWeapon.mesh.bones[0]) throw "Tetsubo did not bind to the character rig";
+if( phase == 3 && !actor.anime2( #{id="atk_overhead"})) throw "Tetsubo overhead attack did not play";
+if( phase == 4 && !actor.anime2( #{id="victory"})) throw "Tetsubo victory dance did not play";
+printf( "[TETSUBO] phase %d: W103 remains bound to the character rig\n", phase);

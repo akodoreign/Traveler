@@ -7,7 +7,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 
-from chara3d_sheet import blender_exe
+from chara3d_sheet import blender_exe, look
 from rig3d import ROOT
 from rig3d_poses import SPECIAL, VIEWS
 from rig3d_sheet import plan
@@ -98,8 +98,21 @@ def verify(index):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--tetsubo-only", action="store_true",
+                        help="refresh tetsubo inventory, authored and shared meshes; preserve bodies and motions")
     args = parser.parse_args()
+    if args.check and args.tetsubo_only:
+        parser.error("--tetsubo-only cannot be combined with --check")
     index, job = build()
+    if args.tetsubo_only:
+        kind = "tetsubo"
+        job["weapons"] = {item: info for item, info in job["weapons"].items() if info["kind"] == kind}
+        job["banks"], job["combat"] = {}, {}
+        roster = read(PROJECT / "resource/native_chara/roster.json")
+        job["authored_weapons"] = {key: look(key) for key, spec in roster.items() if spec["weapon"] == kind}
+        job["authored_out"] = str(PROJECT / "resource/native_chara")
+        job["shared_weapons"] = [kind]
+        job["shared_out"] = str(PROJECT / "resource/native_gear")
     if not args.check:
         OUT.mkdir(parents=True, exist_ok=True)
         with tempfile.TemporaryDirectory() as temp:
@@ -108,7 +121,8 @@ def main():
             subprocess.run([blender_exe(), "-b", "--factory-startup", "--threads", "4",
                             "--python-exit-code", "1", "--python",
                             str(ROOT / "tools/blender/chara3d_victory.py"), "--", str(data)], check=True)
-        (OUT / "weapons.json").write_text(json.dumps(index, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+        if not args.tetsubo_only:
+            (OUT / "weapons.json").write_text(json.dumps(index, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     verify(index)
 
 

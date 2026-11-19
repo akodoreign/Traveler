@@ -42,9 +42,17 @@ py -3.12 -E tools\chara3d_gear_all.py --check                 # verify the weara
 py -3.12 -E tools\test_native_gear.py                        # test live equips, clan colour and unequipping
 py -3.12 -E tools\chara3d_victory_all.py                     # build inventory meshes and victory motion banks
 py -3.12 -E tools\chara3d_victory_all.py --check             # verify the weapon and dance catalog
+py -3.12 -E tools\chara3d_victory_all.py --tetsubo-only       # rebuild only clubs, not bodies or animations
 py -3.12 -E tools\test_native_victory.py                     # exercise weapon changes and victory playback
 py -3.12 -E tools\test_chara3d_native.py                      # export and play the native Natsuko test in Pleasant Eaves
 ```
+
+The tetsubo has a nearly character-height, straight octagonal wooden striking section, raised iron
+studs, and a short wrapped grip. Its original weapon-bone attachment is unchanged. `--tetsubo-only`
+refreshes all seven inventory models, nine authored default weapons, and the shared gear fallback,
+without regenerating character bodies or motion banks. Geometry regressions can be checked with
+Blender's `--background --python-exit-code 1 --python tools\blender\test_tetsubo.py`; the in-game
+`tools\test_native_tetsubo.sk` checks equipment refresh, rig binding, attack, and victory playback.
 
 A sheet takes about 50 seconds per worker (211 frames). Progress is in `tools\chara3d_done.json`, keyed by a hash of
 the builder, pixel pass and pose library, so changing any of them re-bakes everyone on the next run.

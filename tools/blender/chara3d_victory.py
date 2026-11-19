@@ -43,6 +43,8 @@ def weapon_mesh(item, kind, label):
                          c.STEEL, hand)
     else:
         spec = {"accent": accent, "trim": trim}
+        if kind == "tetsubo" and jade:
+            spec["stud"] = (68, 141, 104)
         c.weapon(skin, spec, "katana" if kind == "kakita" else kind)
         if kind in ("katana", "kakita", "tanto", "bokken", "bo", "yari", "shakujo"):
             grips = 2 + number % 4
@@ -117,6 +119,14 @@ def main(job):
     for item, details in job["weapons"].items():
         if details["kind"] != "none":
             native.save_piece(scene, out, rig, item, weapon_mesh(item, details["kind"], details["name"]))
+    for key, spec in job.get("authored_weapons", {}).items():
+        skin = c.Skin()
+        c.weapon(skin, spec, spec["weapon"])
+        native.save_piece(scene, Path(job["authored_out"]), rig, key + "_weapon", skin)
+    for kind in job.get("shared_weapons", []):
+        skin = c.Skin()
+        c.weapon(skin, {"accent": (91, 64, 53), "trim": (162, 135, 88)}, kind)
+        native.save_piece(scene, Path(job["shared_out"]), rig, "weapon_" + kind, skin)
     for kind, info in job["banks"].items():
         print(f"VICTORY {kind}: {len(info['actors'])}", flush=True)
         bank(rig, victory_frames(kind, info["family"], info["actors"]), out / f"victory_{kind}.mot")
