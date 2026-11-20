@@ -26,6 +26,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import rig3d_poses as poses
 from human_anatomy import human_relief, shared_garment_relief
 import anime_head
+from functools import cache
 
 EX, EY, EZ = np.eye(3)
 SIDES = (("N", 1.), ("F", -1.))
@@ -164,7 +165,7 @@ class Skin:
             self.part.append(part)
             self.smooth.append(smooth)
 
-    def loft(self, points, colour, weight, z=0., n=10, band=None, x=0., pleats=None, relief=None, side=1.):
+    def loft(self, points, colour, weight, z=0., n=10, band=None, x=0., pleats=None, relief=None, side=1., caps=True):
         """A vertical tube through (y, half depth, half width) control points.
         weight(y) gives the bone weights at a height; band = (step, [colours]) stripes it horizontally."""
         ys = sorted(p[0] for p in points)
@@ -174,7 +175,7 @@ class Skin:
         for y in ys:
             v = profile(points, y)
             rings.append(((v[2], y, v[3]) if len(v) > 2 else (x, y, z), v[0], v[1]))
-        verts, faces = tube(rings, n, pleats=pleats, relief=relief, side=side)
+        verts, faces = tube(rings, n, caps=caps, pleats=pleats, relief=relief, side=side)
         colours = None
         if band:
             pick = band[1] if callable(band[1]) else (lambda row, k: band[1][row % len(band[1])])
@@ -499,8 +500,15 @@ def signature_mask(S, spec):
     S.zoom = None
 
 
-def body(S, spec):
-    """The bare figure: skin, a loincloth, a chest wrap and wrist and ankle wraps."""
+def face(S, spec):
+    S.zoom = HEAD
+    project = anime_head.add_head(S, spec, ellipsoid)
+    head_ornaments(S, spec, project)
+    S.zoom = None
+
+
+def body(S, spec, include_face=True, include_ink=True):
+    """The base figure: skin, a loincloth, a chest wrap and wrist and ankle wraps."""
     skin = tuple(spec["skin"])
     relief = {part: human_relief(spec, part) for part in BODY}
 
@@ -515,10 +523,8 @@ def body(S, spec):
     if spec.get("female") or spec.get("wrap"):
         section("torso", 79, 90, .5, WHITE, torso_w(), 12)
     S.loft([(94, 2.8, 2.8), (101, 2.6, 2.6)], skin, blend((94, "spine"), (101, "head")), n=8)
-    S.zoom = HEAD
-    project = anime_head.add_head(S, spec, ellipsoid)
-    head_ornaments(S, spec, project)
-    S.zoom = None
+    if include_face:
+        face(S, spec)
     for s, sg in SIDES:
         section("leg", 5, 61, 0, skin, leg_w(s), 10, sg)
         section("leg", 6, 13, .35, WHITE, leg_w(s), 10, sg)
@@ -526,7 +532,7 @@ def body(S, spec):
         section("arm", 61, 95, 0, skin, arm_w(s), 8, sg)
         section("arm", 61.5, 66, .3, WHITE, arm_w(s), 8, sg)
         S.add(ellipsoid((.3, 58.4, 13.4 * sg), (2.7, 3.6, 2.1), 8, 6), skin, {"hand" + s: 1.})
-    if spec.get("body_ink") == "ise_zumi":
+    if include_ink and spec.get("body_ink") == "ise_zumi":
         yosai_ink(S, spec)
 
 
@@ -549,33 +555,15 @@ def skirt_w(v):
     return weights
 
 
-def brocade(u, y, pattern):
-    """A staggered repeat in garment space. The fabric pattern moves with the mesh."""
-    row = math.floor(y / 12)
-    x = (u + 5.5 * (row % 2)) % 11 - 5.5
-    v = y % 12 - 6
-    if pattern == "stripes":
-        return abs(x) < .85
-    if pattern == "clouds":
-        return abs(v - 2.2 * math.cos(x * .63)) < 1.05 and abs(x) < 4.15
-    if pattern == "rings":
-        return 2.05 < math.hypot(x, v) < 3.65
-    if pattern == "diamonds":
-        d = abs(x) + abs(v)
-        return 2.35 < d < 4.05 or d < 1.18
-    # Five petals around a small open centre, with room between repeats.
-    return any(math.hypot(x - 2.5 * math.cos(a), v - 2.5 * math.sin(a)) < 1.6
-               for a in (math.tau * i / 5 for i in range(5)))
-
-
 def coat(S, spec):
     """Open-front robe panels over the hakama, continuous around the back."""
     colour = tuple(spec["top"])
     lining = tuple(spec.get("lining", spec["accent"]))
-    motif = tuple(spec["pcol"]) if spec.get("pattern") and spec.get("pcol") else None
+    surface = S.surface
+    S.surface = spec.get("pattern") or "cloth"
     bottom, top = spec.get("coat_bottom", 15. if spec.get("long_robe") else 20.), 68.
-    n = 56
-    ys = list(np.arange(bottom, top, .85)) + [top]
+    n = 72
+    ys = list(np.arange(bottom, top, .70)) + [top]
     torso_relief = S.fit("torso")
     verts, faces, colours = [], [], []
     for y in ys:
@@ -584,13 +572,15 @@ def coat(S, spec):
         # Tuck the top of the panels underneath the obi. Below the waist the
         # knees and pleats need more room even while each side tracks its leg.
         drape = min(1., max(0., (63.7 - y) / 18.))
-        rx = depth * GIRTH["torso"] + 2.1 + 8.7 * drape
-        side_drape = min(1., max(0., (57.5 - y) / 12.))
-        rz = width * GIRTH["torso"] + .85 + 7.55 * side_drape
-        gap = .16 + .28 * t
+        drape = drape * drape * (3 - 2 * drape)
+        rx = depth * GIRTH["torso"] + 2.1 + 6.7 * drape
+        side_drape = min(1., max(0., (57.5 - y) / 14.))
+        side_drape = side_drape * side_drape * (3 - 2 * side_drape)
+        rz = width * GIRTH["torso"] + .85 + 6.15 * side_drape
+        gap = .17 + .25 * t
         for k in range(n + 1):
             a = gap + (math.tau - 2 * gap) * k / n
-            fold = (1 + .052 * drape * math.cos(9 * a) + .028 * drape * math.sin(5 * a))
+            fold = 1 + drape * (.065 * math.cos(7 * a + .9 * t) + .021 * math.sin(4 * a + 2 * t))
             fit = torso_relief(y, -a) * (1 - drape)
             verts.append(((rx * fold + fit) * math.cos(a), y + 1.35 * t * math.sin(a * 2),
                           -(rz * fold + fit) * math.sin(a)))
@@ -602,10 +592,6 @@ def coat(S, spec):
             faces.append((index, index + 1, index + n + 2, index + n + 1))
             if k in (0, n - 1) or y < bottom + 1.5:
                 colour_at = lining
-            elif motif and y < top - 5 and brocade((k + .5) * 1.52, y - bottom, spec["pattern"]):
-                colour_at = motif
-            elif math.cos(9 * (k + .5) * math.tau / n) < -.72:
-                colour_at = shade(colour, .86)
             else:
                 colour_at = colour
             colours.append(colour_at)
@@ -624,6 +610,8 @@ def coat(S, spec):
     turn_edge([i * (n + 1) for i in range(len(ys) - 1, -1, -1)])
     turn_edge([i * (n + 1) + n for i in range(len(ys))])
     S.add((verts, faces), colour, [skirt_w(v) for v in verts], colours=colours)
+    S.surface = surface
+
 
 def shoulder_yoke(S, colour, side, sign, part):
     """Join the shirt to the sleeve through the shoulder and underarm."""
@@ -651,8 +639,9 @@ def kimono(S, spec, wide=False):
     """Overlapping collar, fitted shoulders and wide sleeves with a returned cuff."""
     top, collar = tuple(spec["top"]), tuple(spec.get("collar", WHITE))
     lining = tuple(spec.get("lining", spec["accent"]))
-    motif = tuple(spec["pcol"]) if wide and spec.get("pattern") and spec.get("pcol") else None
-    S.covered_loft(("torso", 60, 96, 1.25), top, torso_w(), n=16)
+    surface = S.surface
+    S.surface = "cloth"
+    S.covered_loft(("torso", 60, 96, 1.25), top, torso_w(), n=24)
     torso_part = S.parts
     torso_relief = S.fit("torso")
     for s, sg in SIDES:
@@ -677,37 +666,34 @@ def kimono(S, spec, wide=False):
             S.covered_loft(("arm", 85, 95.4, 1.25, sg, .7), top, arm_w(s), n=20, pleats=(4, .065))
             S.covered_loft(("arm", 84.9, 86, 2.05, sg), lining, arm_w(s), n=20)
         elif wide:
-            def sleeve_paint(row, k):
-                if row == 0:
-                    return lining
-                if motif and row > 1 and brocade(k * 1.5, row * 1.45 + 3, spec["pattern"]):
-                    return motif
-                return shade(top, .76) if k in (8, 9, 19) else top
-
-            S.covered_loft(("arm", 62.3, 95.4, 1.12, sg, 4.5), top, arm_w(s), n=28,
-                   pleats=(4, .075), band=(1.45, sleeve_paint))
+            S.surface = spec.get("pattern") or "cloth"
+            S.covered_loft(("arm", 62.3, 95.4, 1.12, sg, 4.0), top, arm_w(s), n=32,
+                           pleats=(5, .061), caps=False, band=(1.45, lambda row, k: lining if row == 0 else top))
+            S.surface = "cloth"
             # Draped fabric behind the cuff follows the forearm instead of floating below it.
             rings = [((-1.3, 79, 12.6 * sg), 3.5, 3.4), ((-3.2, 69, 13.0 * sg), 5.8, 4.3),
                      ((-4.9, 59.2, 13.25 * sg), 6.7, 4.4), ((-5.3, 54.8, 13.3 * sg), 4.2, 3.4)]
-            S.add(tube(rings, 12, pleats=(3, .08)), shade(top, .82), {"fore" + s: 1.},
+            S.add(tube(rings, 30, pleats=(4, .065)), shade(top, .82), {"fore" + s: 1.},
                   paint=lambda c: lining if c[1] < 56 else None)
         else:
-            S.covered_loft(("arm", 73, 95.4, 1.65, sg, 2.65), top, arm_w(s), n=16, pleats=(4, .065))
-            S.covered_loft(("arm", 72.7, 74.4, 4.82, sg), lining, arm_w(s), n=16)
+            S.covered_loft(("arm", 73, 95.4, 1.65, sg, 2.5), top, arm_w(s), n=24, pleats=(4, .055), caps=False)
+            S.covered_loft(("arm", 72.7, 74.4, 4.65, sg), lining, arm_w(s), n=24, caps=False)
+    S.surface = surface
 
 
 def hakama(S, spec, short=False):
     """Divided pleats, with each trouser leg following its original leg weights."""
     lower = tuple(spec["lower"])
     lining = tuple(spec.get("lining", spec["accent"]))
-    fold = shade(lower, .67)
+    surface = S.surface
+    S.surface = "cloth"
     for s, sg in SIDES:
         bottom = spec.get("hakama_hem", 27.) if short else 7.9
         if short:
             S.covered_loft(("leg", 8, 43, .68, sg), shade(lower, .8), leg_w(s), n=16)
-        S.covered_loft(("leg", bottom, 62, 1.4, sg, 3.1 if short else 3.7), lower, leg_w(s), n=24,
-               pleats=(6, .12), band=(1.65, lambda row, k: lining if short and row == 0
-                                      else fold if k % 4 == 2 else lower))
+        S.covered_loft(("leg", bottom, 62, 1.4, sg, 2.8 if short else 3.15), lower, leg_w(s), n=32,
+                       pleats=(7, .108), caps=False, band=(1.1, lambda row, k: lining if row == 0 else lower))
+    S.surface = surface
 
 def obi(S, spec):
     accent, gold = tuple(spec["accent"]), trim(spec)
@@ -1016,6 +1002,45 @@ def ik(a, target, l1, l2, pole):
     return a + u * along + unit(side) * math.sqrt(max(0., l1 * l1 - along * along)), a + u * reach
 
 
+# Fingers run from the palm to the tips. The two hands mirror around the body center.
+DIGIT_GUIDES = {
+    "thumb": ((1.05, 59.5, 12.0), (1.78, 57.9, 11.75), (2.04, 56.4, 11.83)),
+    "index": ((1.55, 57.6, 13.45), (1.61, 55.7, 13.55), (1.54, 54.08, 13.5), (1.38, 52.7, 13.4)),
+    "middle": ((.51, 57.4, 13.6), (.52, 55.31, 13.69), (.49, 53.58, 13.67), (.33, 52.25, 13.51)),
+    "ring": ((-.53, 57.36, 13.59), (-.6, 55.54, 13.69), (-.62, 54.03, 13.63), (-.71, 52.76, 13.50)),
+    "little": ((-1.52, 57.63, 13.44), (-1.73, 56.09, 13.53), (-1.75, 54.88, 13.54), (-1.81, 53.88, 13.44)),
+}
+
+
+def digit_bones(side, sign):
+    for digit, points in DIGIT_GUIDES.items():
+        parent = "hand" + side
+        for index, (a, b) in enumerate(zip(points, points[1:]), 1):
+            name = f"{digit}{side}{index}"
+            yield name, parent, np.array(a) * (1, 1, sign), np.array(b) * (1, 1, sign)
+            parent = name
+
+
+@cache
+def humanoid_parents():
+    parents = {"spine": "pelvis", "chest": "spine", "neck": "chest", "head": "neck", "tail": "head"}
+    for side, sign in SIDES:
+        parents.update({"collar" + side: "chest", "upper" + side: "collar" + side,
+                        "fore" + side: "upper" + side, "hand" + side: "fore" + side,
+                        "thigh" + side: "pelvis", "shin" + side: "thigh" + side, "foot" + side: "shin" + side})
+        parents.update((name, parent) for name, parent, _, _ in digit_bones(side, sign))
+    return parents
+
+
+def driven_frame(bind, driver_bind, driver_pose):
+    origin, *axes = bind
+    rest, *rest_axes = driver_bind
+    posed, *posed_axes = driver_pose
+    transform = np.asarray(posed_axes).T @ np.asarray(rest_axes)
+    return (posed + transform @ (origin - rest), *(transform @ axis for axis in axes))
+
+
+@cache
 def rest_frames():
     frames = {"pelvis": frame(P("pelvis"), P("pelvis") + EY, EX), "spine": frame(P("pelvis"), P("neck"), EX),
               "head": frame(P("neck"), P("neck") + EY, EX), "tail": frame(P("tail"), P("tail") - EY, EX),
@@ -1027,6 +1052,15 @@ def rest_frames():
                        "upper" + s: frame(P("sh", sg), P("elbow", sg), EX),
                        "fore" + s: frame(P("elbow", sg), P("wrist", sg), EX),
                        "hand" + s: frame(P("wrist", sg), P("grip", sg), EX)})
+    chest = np.array((0., 82., 0.))
+    base_neck = np.array((0., 93.5, 0.))
+    frames["chest"] = frame(chest, base_neck, EX)
+    frames["neck"] = frame(base_neck, P("neck"), EX)
+    for side, sign in SIDES:
+        clavicle = np.array((0., 93.5, 1.8 * sign))
+        frames["collar" + side] = frame(clavicle, P("sh", sign), EX)
+        for name, _, a, b in digit_bones(side, sign):
+            frames[name] = frame(a, b, EZ * sign)
     return frames
 
 
@@ -1036,12 +1070,45 @@ def make_armature(frames):
     bpy.context.scene.collection.objects.link(rig)
     bpy.context.view_layer.objects.active = rig
     bpy.ops.object.mode_set(mode="EDIT")
-    for name, f in frames.items():              # unparented bones: each is placed directly from the solved joints
+    human = "chest" in frames and "neck" in frames
+    lengths = {}
+    if human:
+        for side, sign in SIDES:
+            lengths.update((name, float(np.linalg.norm(b-a))) for name, _, a, b in digit_bones(side, sign))
+            lengths.update({"collar"+side: float(np.linalg.norm(P("sh", sign)-frames["collar"+side][0])),
+                            "upper"+side: UPPER, "fore"+side: FORE, "hand"+side: HAND,
+                            "thigh"+side: THIGH, "shin"+side: SHIN})
+        lengths.update(spine=22, chest=11.5, neck=3.5)
+    for name, f in frames.items():
         bone = data.edit_bones.new(name)
-        bone.head, bone.tail = blender(f[0]), blender(f[0] + f[2] * 8)
+        bone.head, bone.tail = blender(f[0]), blender(f[0] + f[2] * lengths.get(name, 8))
         bone.matrix = matrix(f)
+    if human:
+        for name, parent in humanoid_parents().items():
+            data.edit_bones[name].parent = data.edit_bones[parent]
     bpy.ops.object.mode_set(mode="OBJECT")
     return rig
+
+
+def pose_basis(bone, targets):
+    """Convert an absolute solved joint frame to Blender’s local pose basis."""
+    target = targets[bone.name]
+    if target is None:
+        return Matrix.Scale(0., 4)
+    rest = bone.bone.matrix_local
+    solved = matrix(target)
+    if bone.parent:
+        parent = bone.parent
+        rest = parent.bone.matrix_local.inverted() @ rest
+        solved = matrix(targets[parent.name]).inverted() @ solved
+    return rest.inverted() @ solved
+
+
+def combat_controls(kind, index, count, family):
+    from combat_choreography import controls
+
+    foot = (L, FOOT[0][0] * 1.12, FOOT[-1][0] * 1.12, REST["ankle"][1])
+    return controls(kind, index, count, family, foot)
 
 
 def solve(c):
@@ -1061,7 +1128,8 @@ def solve(c):
             raise ValueError(f"{s} foot is beyond the leg's reach")
         pelvis[1] = min(pelvis[1], feet[s][1] + math.sqrt(reach * reach - flat * flat) - base[1])
     J["pelvis"], J["neck"] = pelvis, pelvis + R @ (P("neck") - P("pelvis"))
-    up, look = R @ rz(-c["head"]) @ EY, R @ rz(-c["head"]) @ EX
+    H = R @ ry(c.get("head_yaw", 0.)) @ rz(-c["head"]) @ rx(c.get("head_bank", 0.))
+    up, look = H @ EY, H @ EX
     for s, sg in SIDES:
         hip = J["hip" + s] = pelvis + P("hip", sg) - P("pelvis")
         yaw = math.radians(c["feet"][s][3])
@@ -1071,7 +1139,9 @@ def solve(c):
         J["knee" + s], J["ankle" + s] = ik(hip, feet[s], THIGH, SHIN, pole)
     sheath = unit(np.asarray(c.get("saya", poses.SAYA_DIR), float))
     mouth = pelvis + SAYA_AT + sheath * c["saya_pull"]
-    shoulder = {s: pelvis + R @ (P("sh", sg) - P("pelvis")) for s, sg in SIDES}
+    collar = c.get("collar", {})
+    shoulder = {s: pelvis + R @ (P("sh", sg) - P("pelvis")
+                                  + np.asarray(collar.get(s, (0., 0., 0.)))) for s, sg in SIDES}
     face, w, gear = J["neck"] + up * 11, c["weapon"], None
 
     def goal(s, sg, spec):
@@ -1105,7 +1175,8 @@ def pose_frames(c):
     F = {"pelvis": frame(J["pelvis"], J["pelvis"] + EY, EX + forward), "spine": frame(J["pelvis"], J["neck"], forward),
          "head": frame(J["neck"], J["neck"] + up, look)}
     crown = J["neck"] + up * (REST["tail"][1] - 97) + look * REST["tail"][0]                                  # hair hangs from the back of the head
-    F["tail"] = frame(crown, crown - EY - look * .15, look)
+    lag, side = c.get("hair_follow", (0., 0.))
+    F["tail"] = frame(crown, crown - EY - look * (.15 - lag) + EZ * side, look)
     F["weapon"] = frame(gear["at"], gear["at"] + gear["dir"], EY + EX * .01) if gear else None
     if gear and c["weapon"].get("roll"):
         at, x, y, z = F["weapon"]
@@ -1128,10 +1199,25 @@ def pose_frames(c):
         F["upper" + s] = frame(sh, elbow, fold_a + forward * .25)
         F["fore" + s] = frame(elbow, wrist, fold_b + forward * .25)
         F["hand" + s] = frame(wrist, grip, fold_b + forward * .25)
+    ground_guides = tuple(F)
+    rest = rest_frames()
+    for name in ("chest", "neck", "collarN", "collarF"):
+        F[name] = driven_frame(rest[name], rest["spine"], F["spine"])
+    for side in c.get("collar", {}):
+        name = "collar" + side
+        anchor = F[name][0]
+        F[name] = frame(anchor, J["sh" + side], forward)
+    base = F["neck"][0]
+    F["neck"] = frame(base, J["neck"], unit(forward + look))
+    for side, sign in SIDES:
+        hand = "hand" + side
+        for name, _, _, _ in digit_bones(side, sign):
+            F[name] = driven_frame(rest[name], rest[hand], F[hand])
     if c["tip"]:                                # a fall: the posed figure tips over and lies on the ground
         T = rz(c["tip"])
         F = {n: (T @ f[0], T @ f[1], T @ f[2], T @ f[3]) if f else None for n, f in F.items()}
-        ys, xs = [f[0][1] for f in F.values() if f], [f[0][0] for f in F.values() if f]
+        anchors = [F[name][0] for name in ground_guides if F[name]]
+        ys, xs = [p[1] for p in anchors], [p[0] for p in anchors]
         shift = np.array((-(min(xs) + max(xs)) / 2, 6 - min(ys), 0.))
         F = {n: (f[0] + shift, *f[1:]) if f else None for n, f in F.items()}
     return F
@@ -1160,11 +1246,11 @@ def main():
     shading = scene.display.shading
     shading.show_specular_highlight = shading.show_shadows = shading.show_object_outline = False
     scene.display.matcap_ssao_distance, scene.display.matcap_ssao_samples = 5., 64
-    rest = {bone.name: bone.matrix_local.inverted() for bone in rig.data.bones}
     elevation = math.radians(14)
     for number, (kind, index, count, view) in enumerate(job["frames"]):
-        for name, f in pose_frames(poses.controls(kind, index, count, job["family"])).items():
-            rig.pose.bones[name].matrix_basis = rest[name] @ matrix(f) if f else Matrix.Scale(0., 4)
+        targets = pose_frames(poses.controls(kind, index, count, job["family"]))
+        for bone in rig.pose.bones:
+            bone.matrix_basis = pose_basis(bone, targets)
         yaw = math.radians({None: 50., "front": 90., "back": -90.}[view])
         toward = np.array((math.sin(yaw) * math.cos(elevation), math.sin(elevation), math.cos(yaw) * math.cos(elevation)))
         right = unit(np.cross(EY, toward))

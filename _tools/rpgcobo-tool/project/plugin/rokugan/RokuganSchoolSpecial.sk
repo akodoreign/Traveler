@@ -1,0 +1,132 @@
+// Presentation for a landed, single-target Void critical. Gameplay still owns damage.
+local spearClip = "void_critical_yari";
+local spearBank = "/resource/native_chara/spear_void.mot";
+
+::Rokugan.schoolSpecialClip <- function( pc, sk, isVoid, rp){
+	if( !isVoid || !rp || !rp["nativeBody"] || rp["nativeWeaponKind"] != "yari") return null;
+	local school = pc.data["rt_school_key"], atk = sk["atkact"];
+	if( school != "hiruma" && school != "akodo") return null;
+	if( sk["cmdtgt"] != 1 || !(sk["elembits"] & 2) || sk["rt_guest"] || sk["rt_hire"] ||
+		sk["name"] == "Spear Throw" || typeof( atk) != SS_TABLE || atk["id"] != "atk_normal" || atk["scp"]) return null;
+	if( !rp["animemap"] || !rp.animemap[spearClip]) return null;
+	return spearClip;
+};
+
+::Rokugan.addSchoolSpecialClips <- function( actor){
+	if( actor.nativeWeaponKind == "yari" && ::getResource( spearBank)){
+		actor.animemap[spearClip] <- { st=0, en=60, spd=30.0, loop=false, replay=true };
+	}
+};
+
+::Rokugan.schoolSpecialMotion <- function( clip){
+	if( clip == spearClip && ::getResource( spearBank)) return ::getMotionData( ::getResource( spearBank));
+	return null;
+};
+
+local beat = function( t, start, end){
+	local x = Math.clamp( (t - start) / (end - start), 0.0, 1.0);
+	return x * x * (3.0 - 2.0 * x);
+};
+
+class RokuganSpearCameraMotion extends RPGCameraMotion
+{
+	focus = null;
+	push = 0.0;
+
+	function update( dt){
+		// The strike owns the clock so the camera and the impact share one frame.
+	}
+
+	function modifyCamera( cw){
+		if( !focus || push <= 0.0) return;
+		local correction = Vector3D( focus).sub( cw.to);
+		local span = correction.length();
+		if( span > 3.0) correction.scale( 3.0 / span);
+		cw.to.add( correction.scale( push * 0.77));
+		cw.zoom *= 1.0 - push * 0.24;
+	}
+}
+
+local spearCameraMotion = RokuganSpearCameraMotion;
+
+local trail = function( stage, point){
+	local path = "/resource/efx/rt/FX447.ptd";
+	if( !::getResource( path)) return;
+	local fx = SK3DEffect( path);
+	fx.efx = #{ efx="/resource/efx/rt/FX447.ptd" };
+	fx.pos( point);
+	fx.scale( 0.58);
+	fx.timescale = 2.5;
+	stage.scn.addObject( fx);
+	fx.startParticle();
+};
+
+::SkillCommand._rt_schoolSpearVoid <- function( dmg, battle, rp, plan){
+	local stage = ::rpgstage, dst = battle.getChara3D( dmg.dst), body = rp.nativeBody;
+	if( !dst || !body || !stage) return false;
+	local inverse = Matrix();
+	rp.gmat.invert34u( inverse);
+	local world = dst.pos - rp.pos;
+	local path = Vector3D( world).transform0( inverse);
+	local distance = Math.sqrt( path.x * path.x + path.z * path.z);
+	if( distance < 0.1) return false;
+
+	local heading = Math.atan2( -path.x, -path.z);
+	local reach = Math.max( 0.0, (distance - (0.80 + dst.bnd.s * 0.6)) / distance);
+	local home = Vector3D( body.pos), homeRot = Quaternion();
+	homeRot << body.rot;
+	local layer = rp.anime2( plan.ani);
+	if( !layer) return false;
+
+	local cw = stage.camwork, shot = null;
+	local start = skGetTime(), hit = false, liftFX = 0, error = null;
+	local release = 0.19, land = 0.56, withdraw = 0.70;
+	local atk = skill["atkact"];
+	try{
+		layer.locked = 1;
+		if( cw instanceof RPGCameraworkFixed){
+			shot = spearCameraMotion( {});
+			cw.addMotion( shot);
+		}
+		while( ::rpgstage == stage && stage.battle == battle && rp.nativeBody == body){
+			local t = Math.clamp( (skGetTime() - start) / plan.duration, 0.0, 1.0);
+			local stride = beat( t, .08, release) * 0.12 + beat( t, release, land) * 0.88;
+			local back = beat( t, withdraw, 0.98);
+			local progress = stride * (1.0 - back) * reach;
+			local swing = Math.clamp( (t - release) / (land - release), 0.0, 1.0);
+			local up = 1.05 * Math.sin( swing * Math.PI);
+			body.pos( home.x + path.x * progress, home.y + path.y * progress + up, home.z + path.z * progress);
+			local turn = Math.PI * beat( t, .64, .73) - Math.PI * beat( t, .89, 1.0);
+			body.rot.setHPB( Math.HPI + heading * beat( t, .01, .13) * (1.0 - beat( t, .90, 1.0)) + turn, 0.0, 0.0);
+			body.matdirty = true;
+			if( shot){
+				shot.push = beat( t, .13, .29) * (1.0 - beat( t, .63, .95));
+				shot.focus = Vector3D( rp.pos).add( Vector3D( world).scale( Math.max( 0.22, progress * 0.82))).add( 0, 0.55 + up * 0.46, 0);
+			}
+			if( (liftFX == 0 && t >= .257) || (liftFX == 1 && t >= .389)){
+				liftFX++;
+				trail( stage, Vector3D( rp.pos).add( Vector3D( world).scale( progress)).add( 0, 1.05 + up, 0));
+			}
+			if( !hit && t >= land){
+				if( atk["atkefx"]) rp.effect( atk.atkefx);
+				if( atk["atksnd"]) rp.playSound( atk.atksnd);
+				hit = true;
+				this.hitAction( dmg);
+			}
+			if( t >= 1.0) break;
+			sleep( 16);
+		}
+	}catch( ex){ error = ex; }
+	if( shot && cw.cammots) cw.cammots.removeValue( shot);
+	body.pos( home);
+	body.rot << homeRot;
+	body.matdirty = true;
+	layer.locked = 0;
+	layer.animating = false;
+	if( ::rpgstage != stage || stage.battle != battle) return true;
+	if( rp.nativeBody == body) rp.anime2( #{ id="stand" });
+	if( error){
+		if( hit) throw error;
+	}
+	return hit;
+};

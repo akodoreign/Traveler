@@ -346,6 +346,7 @@ local WEAPON_BIT = { Katana = 0, Yari = 1, Tanto = 2, Tetsubo = 3, Yumi = 4, Bo 
 			this.state( d).known = this.state( d).known | this.weakbits( d);
 		}
 		this.pop( chr, "THE HEART LISTENS", 0xffe080ff);
+		this.heartListens( chr );
 	}
 	if( this.ranked( chr, "Sayo", 5)){ chr.putCondition( "K059"); this.pop( chr, "THE WIND TECHNIQUE", 0x9fd8ffff); }
 	if( this.ranked( chr, "Rensei", 3) && length( b.enemies) == 1){

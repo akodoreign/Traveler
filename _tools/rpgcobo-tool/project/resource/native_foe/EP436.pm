@@ -3,98 +3,20 @@
 return {
 modeldata = "EP436.mdl"
 motiondata = "EP436.mot"
-bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
+bnd = [0.000002,41.952000,0.000001,67.999998,49.952000,32.027778]
 
 material = [
 	{
-		name = "c42372a"
+		name = "Material_0"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x0d0804ff
-		rough = 0.880000
+		basecol = 0xffffffff
+		rough = 0.750000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = "tex/ep436_skin.png"
-		texture1 = "tex/foe_fur_normal.png"
-		texture2 = null
-	}
-	{
-		name = "c698141"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x24380cff
-		rough = 0.880000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/ep436_skin.png"
-		texture1 = "tex/foe_fur_normal.png"
-		texture2 = null
-	}
-	{
-		name = "c725e41"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x2b1c0cff
-		rough = 0.880000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/ep436_skin.png"
-		texture1 = "tex/foe_fur_normal.png"
-		texture2 = null
-	}
-	{
-		name = "c78654e"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x302112ff
-		rough = 0.880000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/ep436_skin.png"
-		texture1 = "tex/foe_fur_normal.png"
-		texture2 = null
-	}
-	{
-		name = "c8c5e36"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x441c08ff
-		rough = 0.880000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/ep436_skin.png"
-		texture1 = "tex/foe_fur_normal.png"
-		texture2 = null
-	}
-	{
-		name = "c9c876d"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x563e27ff
-		rough = 0.880000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/ep436_skin.png"
-		texture1 = "tex/foe_fur_normal.png"
-		texture2 = null
-	}
-	{
-		name = "cf9a742"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0xf1640dff
-		rough = 0.610000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/foe_detail_color.png"
-		texture1 = "tex/foe_detail_normal.png"
+		texture0 = "tex/ep436_hunyuan_color_srgb.png"
+		texture1 = "tex/hunyuan_flat_normal.png"
 		texture2 = null
 	}
 ]

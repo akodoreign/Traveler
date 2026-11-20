@@ -1,0 +1,50 @@
+{
+  "key": "side_yuko_portrait_face",
+  "source": "side_yuko_lower_neck.glb",
+  "scale": 15.75,
+  "anchor": [
+    0.0,
+    -0.033,
+    -0.882
+  ],
+  "target": [
+    0.235,
+    -0.009,
+    99.7
+  ],
+  "trim": 98.95,
+  "skin_match": [
+    211,
+    184,
+    171
+  ],
+  "features": {
+    "eyes": [
+      [
+        198,
+        267,
+        0.045
+      ],
+      [
+        298,
+        268,
+        -0.075
+      ]
+    ],
+    "brows": [
+      [
+        198,
+        244
+      ],
+      [
+        296,
+        242
+      ]
+    ],
+    "mouth": [
+      239,
+      335
+    ]
+  },
+  "raw_source": "C:/AI/comfy-3d/app/output/nonhumans/traveler_head_side_yuko_upright_head_00001_.glb"
+}

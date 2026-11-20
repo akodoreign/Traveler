@@ -30,13 +30,13 @@ FAMILIES = {
     "naga": "naga_scout boss_naga_champion",
     "swimmer": "foe_aoizame foe_ningyo",
     "crab": "tide_crab",
-    "crawler": "cave_beetle kumo_brood tsuchigumo boss_horror foe_hyakuhei foe_heart_grubs",
+    "crawler": "cave_beetle kumo_brood tsuchigumo boss_horror foe_hyakuhei foe_heart_grubs foe_oni_no_akuma",
     "flier": "cave_bats giant_hornet carrion_crow foe_hanemuri",
     "beast": "onikage snow_bear grey_wolf foe_badger foe_crocodile foe_bakeneko foe_mujina foe_monkeys "
              "foe_tiger foe_ape wild_boar wolfrider boss_tomie_tiger kappa",
     "plant": "lava_dryad toothed_poppy boss_kansen_hana foe_tanglevines foe_stinger_plant",
     "spirit": "yurei boss_shelf_kami boss_stolen_face mieko_shadow fire_elemental umibozu paper_spirit "
-              "fear_shade fever_spirit will_o_wisp foe_muck_monster foe_shadowspawn boss_nashiko_time",
+              "fear_shade fever_spirit will_o_wisp foe_muck_monster foe_shadowspawn boss_nashiko_time foe_skull_tide",
     "relic": "powder_keg bloodstone_basin inkpot lantern burning_bridge guardian_stone boss_mine_guardian",
 }
 BOSS_HUMANS = {

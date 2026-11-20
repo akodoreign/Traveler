@@ -2,11 +2,41 @@
 import CollisionGroupID;
 
 local ROOT = "/resource/native_chara/";
+local defeatRoot = ROOT .. "defeat/";
+local defeatIndex = ::getResource( defeatRoot .. "index.json");
+local defeatData = defeatIndex ? decodeJSON( defeatIndex.loadData()) : null;
+local fidgetRoot = ROOT .. "fidget/";
+local fidgetIndex = ::getResource( fidgetRoot .. "index.json");
+local fidgetData = fidgetIndex ? decodeJSON( fidgetIndex.loadData()) : null;
+local fidgetRandom = Random( skGetTime() ^ 5330899);
+local foeFidgetRoot = "/resource/native_foe/fidget/";
+local foeFidgetIndex = ::getResource( foeFidgetRoot .. "index.json");
+local foeFidgetFamilies = foeFidgetIndex ? decodeJSON( foeFidgetIndex.loadData()) : {};
+local fidgetTurn = { battle=null, actor=null };
+local kakitaVoidPath = ROOT .. "kakita_void.mot";
 local ornamentRoot = "/resource/native_ornament/";
 local ornamentFile = ::getResource( ornamentRoot .. "index.json");
 local ornaments = ornamentFile ? decodeJSON( ornamentFile.loadData()) : {};
+local HUMAN = "/resource/native_human/";
+local humanFile = ::getResource( HUMAN .. "index.json");
+local humans = humanFile ? decodeJSON( humanFile.loadData()) : {};
+local modularPerson = function( key){
+	local person = humans[key];
+	if( !person || !::getResource( HUMAN .. key .. ".pm") ||
+		!::getResource( HUMAN .. person.base .. ".mdl") || !::getResource( HUMAN .. person.face .. ".pm") ||
+		!::getResource( HUMAN .. person.face .. ".mdl")) return null;
+	return person;
+};
 local GEAR = "/resource/native_gear/";
 local ARMS = "/resource/native_weapons/";
+local TAILOR = "/resource/native_tailoring/";
+local tailorFile = ::getResource( TAILOR .. "index.json");
+local tailor = tailorFile ? decodeJSON( tailorFile.loadData()) : {};
+local tailored = function( category, id){
+	local record = id && tailor[category] ? tailor[category][id] : null;
+	if( !record || !::getResource( TAILOR .. record.mesh .. ".pm") || !::getResource( TAILOR .. record.mesh .. ".mdl")) return null;
+	return record;
+};
 local index = ::getResource( ROOT .. "roster.json");
 local roster = index ? decodeJSON( index.loadData()) : {};
 local assets = ::getResource( GEAR .. "gear.json");
@@ -25,13 +55,13 @@ local arms = armIndex ? decodeJSON( armIndex.loadData()) : null;
 		if( id && gear.items[id] == "body") starterBody = true;
 		if( id && gear.items[id] == "mask") starterMask = true;
 	}
-	local wear = { costume=null, shinobiHead=false, body=null, head=null, mask=null, cape=null, headAccessory=null,
+	local wear = { costume=null, costumeItem=null, shinobiHead=false, body=null, head=null, mask=null, cape=null, headAccessory=null,
 		clan=pc.data["rt_clan"], weapon=this.lookWeapon( pc), weaponId=weaponId, own=own,
 		starterBody=starterBody, starterMask=starterMask };
 	foreach( item in pc.equips){
 		if( !item) continue;
 		if( item.data["rt_costume_head"]){ wear.shinobiHead = true; continue; }
-		if( item.data["rt_costume"]){ wear.costume = item.data.rt_costume; wear.body = wear.costume == "clerk" ? "A127" : wear.costume == "pilgrim" ? "A111" : "A100"; wear.starterBody = true; continue; }
+		if( item.data["rt_costume"]){ wear.costume = item.data.rt_costume; wear.costumeItem = item.dataid; wear.body = wear.costume == "clerk" ? "A127" : wear.costume == "pilgrim" ? "A111" : "A100"; wear.starterBody = true; continue; }
 		local slot = gear.items[item.dataid];
 		if( !slot) continue;
 		if( slot == "head" && item.data.eqtype == 16){
@@ -62,6 +92,10 @@ local celNative = function( model){
 class RokuganNativePicture extends RPG3DPicture
 {
 	nativeBody = null;
+	nativeFace = null;
+	nativeBodyTemplate = null;
+	nativeTailoring = null;
+	nativeHeadband = null;
 	nativeOutfit = null;
 	nativeWeapon = null;
 	nativeHead = null;
@@ -74,16 +108,86 @@ class RokuganNativePicture extends RPG3DPicture
 	nativeWeaponKind = null;
 	nativeCombatMotion = null;
 	nativeVictoryKind = null;
+	nativeDefeatFamily = null;
+	nativeDefeatMotion = null;
+	nativeRiseLayer = null;
+	fidgetSource = null;
+	fidgetChoices = null;
+	fidgetMotion = null;
+	fidgetProps = null;
+	fidgetLayer = null;
+	fidgetSpec = null;
+	fidgetDelay = 0.0;
+	fidgetLast = -1;
+	creatureReady = false;
+	battleReadySpeed = 1.0;
+	battleReadyMotion = null;
 	battleIdleClip = "aimw";
 	inBattleStance = false;
 
 	function startBattleStance(){
-		inBattleStance = !!battleIdleClip;
-		if( inBattleStance) anime2( #{id="stand"});
+		inBattleStance = true;
+		setupDefeatMotion();
+		fidgetDelay = 10000.0 + fidgetRandom( 0.0, 6500.0);
+		local ready = creatureReady ? {st=155, en=251, spd=24} : fidgetData["ready"];
+		if( battleIdleClip && fidgetSource && ready && prepareBattleFidgets()){
+			battleReadyMotion = fidgetMotion;
+			battleReadySpeed = fidgetRandom( 0.82, 1.17);
+			animemap[battleIdleClip] <- { st=ready.st, en=ready.en, spd=ready.spd, loop=true, replay=false };
+		}
+		if( nativeKey == "trav_natsuko" && ::getResource( fidgetRoot .. "satchel.pm")){
+			if( !fidgetProps) fidgetProps = {};
+			if( !fidgetProps["satchel"]) fidgetProps.satchel <- addNativePart( fidgetRoot .. "satchel");
+		}
+		local alreadyDown = nativeDefeatFamily && nativeDefeatMotion && rpgobj && rpgobj.isDead();
+		anime2( #{id=alreadyDown ? "die" : "stand"});
+	}
+
+	function setupDefeatMotion(){
+		if( nativeDefeatFamily){
+			local spec = defeatData && (nativeKey in defeatData.actors) ? defeatData.actors[nativeKey] : null;
+			if( !spec || !(rpgobj instanceof ::RPGPlayer)) return;
+			local res = ::getResource( defeatRoot .. nativeDefeatFamily .. ".mot");
+			if( !res) return;
+			nativeDefeatMotion = ::getMotionData( res);
+			if( !nativeDefeatMotion) return;
+			local spd = defeatData.fps;
+			animemap["collapse"] <- { st=spec.collapse, en=spec.down, spd=spd, loop=false, replay=false };
+			animemap["die"] <- { st=spec.down, en=spec.down, spd=spd, loop=false, replay=false };
+			animemap["_defeat_rise"] <- { st=spec.rise, en=spec.end, spd=spd, loop=false, replay=false };
+		}else if( rpgobj instanceof ::RPGEnemy){
+			local res = ::getResource( "/resource/native_foe/defeat/" .. nativeKey .. ".mot");
+			if( !res) return;
+			nativeDefeatMotion = ::getMotionData( res);
+			if( nativeDefeatMotion)
+				animemap["dead"] <- { st=0, en=32, spd=30, loop=false, replay=false };
+		}
+	}
+
+	function usesNativeDefeatFall(){
+		return inBattleStance && nativeDefeatFamily && nativeDefeatMotion && (rpgobj instanceof ::RPGPlayer) && rpgobj.HP <= 0;
+	}
+
+	function advanceNativeDefeatFall(){
+		local current = animlayers.layers[0];
+		local id = current["id"];
+		if( id == "die") return;
+		if( id == "collapse"){
+			if( !current.animating) anime2( #{id="die"});
+		}else{
+			anime2( #{id="collapse"});
+		}
+	}
+
+	function startDefeatRecovery(){
+		if( !nativeDefeatMotion || !animemap["_defeat_rise"] || !rpgobj || rpgobj.isDead()) return false;
+		local current = animlayers.layers[0];
+		if( current && current["id"] == "collapse" && current.animating) return false;
+		return !!anime2( #{id="_defeat_rise"});
 	}
 
 	function battleIdleRequest( t){
-		if( !inBattleStance || (t.id != "stand" && t.id != "fight") || rpgobj?.isDead()) return t;
+		if( !inBattleStance || !battleIdleClip || (t.id != "stand" && t.id != "fight") || rpgobj?.isDead()) return t;
 		local request = clone t;
 		request.id = battleIdleClip;
 		return request;
@@ -93,8 +197,13 @@ class RokuganNativePicture extends RPG3DPicture
 		local view = clone pc;
 		view.animap = spec.animap;
 		setPicture( view);
-		nativeBody = celNative( SK3DObject( ROOT .. key .. "_body.pm"));
+		local person = modularPerson( key);
+		nativeBody = celNative( SK3DObject( person ? HUMAN .. key .. ".pm" : ROOT .. key .. "_body.pm"));
 		nativeBody.animlayers = null;
+		if( person){
+			nativeBody.setMotion( ::getMotionData( ::getResource( ROOT .. "motion_" .. spec.motion .. ".mot")));
+			nativeBodyTemplate = person.base;
+		}
 		local baseScale = 0.015 * 0.75;
 		local proportions = spec["proportions"] || [1.0, 1.0, 1.0];
 		nativeBody.scale << Vector3D( proportions[0], proportions[1], proportions[2]).scale( baseScale);
@@ -116,10 +225,21 @@ class RokuganNativePicture extends RPG3DPicture
 			local motionPath = customCombat ? ARMS .. "combat_" .. kind .. ".mot" : ROOT .. "motion_" .. family .. ".mot";
 			nativeBody.setMotion( ::getMotionData( ::getResource( motionPath)));
 		}
+		local hatFace = null;
 		nativeCombatMotion = nativeBody.motion;
 		nativeWeaponKind = kind;
+		nativeDefeatFamily = family;
+		if( fidgetData){
+			fidgetSource = fidgetRoot .. family .. ".mot";
+			local fidgets = fidgetData.profiles[key];
+			if( fidgets) fidgetChoices = fidgets.map( @( id) fidgetData.clips[id]);
+		}
 		if( kind != "none"){
 			local weapon = item ? ARMS .. wear.weaponId : own ? ROOT .. key .. "_weapon" : GEAR .. "weapon_" .. kind;
+			if( item){
+				local fitted = ARMS .. "fitted/" .. key .. "/" .. wear.weaponId;
+				if( ::getResource( fitted .. ".pm") && ::getResource( fitted .. ".mdl")) weapon = fitted;
+			}
 			nativeWeapon = addNativePart( weapon);
 		}
 		local dances = arms ? arms.victory[kind] : null;
@@ -133,24 +253,49 @@ class RokuganNativePicture extends RPG3DPicture
 		nativeOrnaments = [];
 		local personal = ornaments[key] || [];
 		local shinobi = personal.contains( "mask");
+		local clan = (wear && wear.clan) || (gear && gear.palettes[key]) || "ronin";
+		if( gear && !gear.clans.contains( clan)) clan = "ronin";
+		local defaultOutfit = tailored( "defaults", key);
 		if( wear){
 			local palette = gearPalette( key, wear.clan);
-			local yosaishaori = key == "side_yosai" && wear.body == "A111";
-			if( wear.costume && personal.contains( wear.costume)) nativeOutfit = addNativePart( ornamentRoot .. key .. "_" .. wear.costume);
+			local costume = key == "trav_mitsue" ? tailored( "costumes", wear.costumeItem) : null;
+			local ownTailoring = defaultOutfit && defaultOutfit["starterItem"] == wear.body && wear.body;
+			local yosaishaori = key == "side_yosai" && wear.body == "A111" && !ownTailoring;
+			local fitted = !wear.costume && !yosaishaori ? (ownTailoring ? defaultOutfit : tailored( "items", wear.body)) : null;
+			if( costume || fitted) setTailoredOutfit( costume || fitted, clan);
+			else if( wear.costume && personal.contains( wear.costume)) nativeOutfit = addNativePart( ornamentRoot .. key .. "_" .. wear.costume);
 			else if( yosaishaori) nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
 			else if( wear.body) nativeOutfit = addNativePart( GEAR .. wear.body, palette);
-			else if( !wear.starterBody) nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
+			else if( !wear.starterBody){
+				if( defaultOutfit) setTailoredOutfit( defaultOutfit, clan);
+				else nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
+			}
 			local head = ClientConfig.showHeadwear() ? wear.head : null;
 			local fittedHat = key == "side_yosai" && head;
-			if( head) nativeHead = addNativePart( GEAR .. head .. (fittedHat ? "_yosai" : ""), palette);
-			if( wear.mask) nativeMask = shinobi && wear.mask == "A174"
+			local generatedHat = head ? (tailored( "headFits", key .. ":" .. head) || tailored( "items", head)) : null;
+			local generatedFacewear = wear.mask ? tailored( "items", wear.mask) : null;
+			local generatedCape = wear.cape ? tailored( "items", wear.cape) : null;
+			local costumeHat = key == "trav_mitsue" && ClientConfig.showHeadwear() ? tailored( "costumeHeads", wear.costume) : null;
+			if( costumeHat){
+				nativeHead = addNativePart( TAILOR .. costumeHat.mesh);
+				hatFace = costumeHat["face"];
+			}else if( generatedHat){
+				nativeHead = addTailoredPart( generatedHat, clan);
+				hatFace = generatedHat["face"];
+			}
+			else if( head) nativeHead = addNativePart( GEAR .. head .. (fittedHat ? "_yosai" : ""), palette);
+			else if( wear.costume && ClientConfig.showHeadwear() && personal.contains( wear.costume .. "_head"))
+				nativeHead = addNativePart( ornamentRoot .. key .. "_" .. wear.costume .. "_head");
+			if( generatedFacewear) nativeMask = addTailoredPart( generatedFacewear, clan);
+			else if( wear.mask) nativeMask = shinobi && wear.mask == "A174"
 				? addNativePart( ornamentRoot .. key .. "_mask") : addNativePart( GEAR .. wear.mask, palette);
-			if( wear.cape) nativeCape = addNativePart( GEAR .. wear.cape, palette);
+			if( generatedCape) nativeCape = addTailoredPart( generatedCape, clan);
+			else if( wear.cape) nativeCape = addNativePart( GEAR .. wear.cape, palette);
 			if( gear["decals"]){
-				local clan = wear.clan || gear.palettes[key];
-				if( !gear.clans.contains( clan)) clan = "ronin";
 				foreach( item in [wear.body, head, wear.mask, wear.cape]){
-					if( !item) continue;
+					if( !item || ((costume || fitted) && item == wear.body) ||
+						((costumeHat || generatedHat) && item == head) || (generatedFacewear && item == wear.mask) ||
+						(generatedCape && item == wear.cape)) continue;
 					if( wear.costume && personal.contains(wear.costume) && item == wear.body) continue;
 					if( yosaishaori && item == "A111") continue;
 					if( shinobi && item == "A174") continue;
@@ -160,14 +305,44 @@ class RokuganNativePicture extends RPG3DPicture
 				}
 			}
 		}else{
-			nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
+			if( defaultOutfit) setTailoredOutfit( defaultOutfit, clan);
+			else nativeOutfit = addNativePart( ROOT .. key .. "_outfit");
 		}
-		if( !nativeMask && spec["mask"] && (!wear || (wear.costume == "shinobi" && wear.shinobiHead && ClientConfig.showHeadwear()) || (!wear.costume && !wear.starterMask && key != "trav_mitsue")))
+		if( person){
+			local face = HUMAN .. person.face;
+			if( nativeHead && hatFace){
+				local variant = HUMAN .. hatFace;
+				if( ::getResource( variant .. ".pm") && ::getResource( variant .. ".mdl")) face = variant;
+			}
+			nativeFace = addNativePart( face);
+		}
+		if( person && !wear && person["headband"] && ClientConfig.showHeadwear())
+			nativeHeadband = addNativePart( HUMAN .. person.headband);
+		local generatedMask = key == "trav_mitsue" && wear && wear.costume == "shinobi" && tailored( "costumeAccessories", "shinobi_mask");
+		if( !generatedMask && !nativeMask && spec["mask"] && (!wear || (wear.costume == "shinobi" && wear.shinobiHead && ClientConfig.showHeadwear()) || (!wear.costume && !wear.starterMask && key != "trav_mitsue")))
 			nativeMask = addNativePart( (shinobi ? ornamentRoot : ROOT) .. key .. "_mask");
+		if( key == "trav_mitsue" && wear && wear.costume){
+			local costumeExtra = tailored( "costumeAccessories", wear.costume);
+			if( costumeExtra) nativeOrnaments .. addNativePart( TAILOR .. costumeExtra.mesh);
+			if( wear.costume == "shinobi" && wear.shinobiHead && ClientConfig.showHeadwear()){
+				local customMask = tailored( "costumeAccessories", "shinobi_mask");
+				if( customMask) nativeMask = addNativePart( TAILOR .. customMask.mesh);
+			}
+		}
 		foreach( role in personal){
-			if( role == "ink" || (role == "sash" && nativeOutfit))
+			if( role == "ink" || (role == "sash" && nativeOutfit && !nativeTailoring))
 				nativeOrnaments .. addNativePart( ornamentRoot .. key .. "_" .. role);
 		}
+		if( key == "trav_rensei" && (kind == "katana" || kind == "kakita") && ::getResource( kakitaVoidPath)){
+			local st = nativeHead ? 61 : 0;
+			animemap["void_critical_kakita"] <- { st=st, en=st+60, spd=30, loop=false, replay=true };
+		}
+		::Rokugan.addSchoolSpecialClips( this);
+		::Rokugan.addIdePerformanceClips( this, key );
+		::Rokugan.addIdeSongClip( this, key );
+		::Rokugan.addTattooMorphClips( this, key );
+		::Rokugan.addSpellFlightClips( this, key );
+		::Rokugan.addHeroSignatureClips( this, key );
 		addChild( nativeBody);
 		nativeKey = key;
 		setPivot( null);
@@ -178,6 +353,29 @@ class RokuganNativePicture extends RPG3DPicture
 		b3body.setOffsetTransform( Matrix.fromTranslate( 0, 0.85, 0));
 		mesh.face[0].m.visiblemask = 0;
 		anime2( #{ id="stand" });
+	}
+
+	function addTailoredPart( record, clan){
+		local texture = record["dyed"] ? TAILOR .. "tex/" .. clan .. "/" .. (record["palette"] || record.mesh) .. ".png" : null;
+		local part = addNativePart( TAILOR .. record.mesh, texture && ::getResource(texture) ? texture : null);
+		local decalItem = record["decal"];
+		local sheet = record["sheet"] ? TAILOR .. record.sheet :
+			decalItem ? GEAR .. "decal/" .. clan .. "/" .. decalItem .. ".png" : null;
+		if( sheet && ::getResource(sheet) && ::getResource(TAILOR .. record.mesh .. "_decal.pm"))
+			nativeDecals .. addNativePart( TAILOR .. record.mesh .. "_decal", sheet);
+		return part;
+	}
+
+	function setTailoredOutfit( record, clan){
+		nativeOutfit = addTailoredPart( record, clan);
+		nativeTailoring = record.mesh;
+		if( record["coverCore"]){
+			foreach( surface in nativeBody.mesh.face){
+				local material = surface.m.name;
+				if( material == "c807060_core" || material == "cece8de_wrap" ||
+					(material == "c807060_throat" && !record["showThroat"])) surface.m.visiblemask = 0;
+			}
+		}
 	}
 
 	function getPickingImage(){
@@ -193,19 +391,133 @@ class RokuganNativePicture extends RPG3DPicture
 	}
 
 	function anime2( t){
-		if( nativeVictoryKind && (t.id == "victory" || t.id == "victory2" || t.id == "celebration" || t.id == "victory_in")){
-			local request = clone t;
-			request.id = "_native_victory";
-			local layer = super.anime2( request);
-			if( layer){
-				local motion = ::getMotionData( ::getResource( ARMS .. "victory_" .. nativeVictoryKind .. ".mot"));
-				if( nativeBody.motion != motion) nativeBody.setMotion( motion);
-			}
-			return layer;
+		if( t.id == "die" && usesNativeDefeatFall() && rpgobj.isDead()){
+			local current = animlayers.layers[0];
+			if( current && current["id"] == "collapse" && current.animating) return null;
 		}
-		local layer = super.anime2( battleIdleRequest( t));
-		if( layer && nativeCombatMotion && nativeBody.motion != nativeCombatMotion) nativeBody.setMotion( nativeCombatMotion);
+		if( nativeRiseLayer && nativeRiseLayer.animating && (t.id == "stand" || t.id == "fight" || t.id == "aimw"))
+			return null;
+		local request = battleIdleRequest( t), motion = nativeCombatMotion;
+		local defeatClip = nativeDefeatFamily ? (request.id == "collapse" || request.id == "die" ||
+			request.id == "_defeat_rise") : request.id == "dead";
+		if( nativeDefeatMotion && defeatClip){
+			motion = nativeDefeatMotion;
+		}else if( nativeVictoryKind && (t.id == "victory" || t.id == "victory2" || t.id == "celebration" || t.id == "victory_in")){
+			request = clone t;
+			request.id = "_native_victory";
+			motion = ::getMotionData( ::getResource( ARMS .. "victory_" .. nativeVictoryKind .. ".mot"));
+		}else if( request.id in ::Rokugan.HERO_SIGNATURE_BANKS ){
+			motion = ::Rokugan.heroSignatureMotion( request.id );
+		}else if( request.id == "void_bolt_release"){
+			motion = ::Rokugan.spellFlightMotion( request.id );
+		}else if( request.id == "tattoo_morph_out" || request.id == "tattoo_morph_in"){
+			motion = ::Rokugan.tattooMorphMotion();
+		}else if( request.id == "ide_song_kirin"){
+			motion = ::Rokugan.ideSongMotion( request.id );
+		}else if( request.id == "heart_listens"){
+			motion = ::Rokugan.idePerformanceMotion( request.id );
+		}else if( request.id == "void_critical_yari"){
+			motion = ::Rokugan.schoolSpecialMotion( request.id);
+		}else if( request.id == "void_critical_kakita"){
+			motion = ::getMotionData( ::getResource( kakitaVoidPath));
+		}else if( request.id == "_battle_fidget"){
+			motion = fidgetMotion;
+		}else if( battleReadyMotion && request.id == battleIdleClip){
+			motion = battleReadyMotion;
+			request = clone request;
+			request["spd"] <- (request["spd"] || 1.0) * battleReadySpeed;
+		}
+		local layers = animlayers.layers, previous = layers[0], fading = layers[1];
+		local layer = super.anime2( request);
+		if( !layer || layer == previous) return layer;
+		nativeRiseLayer = request.id == "_defeat_rise" ? layer : null;
+		if( fidgetLayer && layer != fidgetLayer) finishBattleFidget();
+		if( motion) layer.partsmap = motion.partsmap;
+		if( inBattleStance && previous && previous.weight > 0.0 &&
+			((request.id != "dead" && request.id != "die") || (request.id == "dead" && nativeDefeatMotion))){
+			local source = fading && fading.weight > 0.8 ? fading : previous;
+			source.wfunc = SK3DObject._fadeoutfunc( 0.12);
+			layers[1] = source;
+		}
 		return layer;
+	}
+
+	function prepareBattleFidgets(){
+		local res = ::getResource( fidgetSource);
+		if( !res){
+			fidgetSource = null;
+			return false;
+		}
+		fidgetMotion = ::getMotionData( res);
+		return !!fidgetMotion;
+	}
+
+	function setBattleFidgetProps( phase){
+		local show = fidgetSpec["show"], stow = fidgetSpec["stow"];
+		if( fidgetProps) foreach( id, part in fidgetProps){
+			local on = id == "satchel" || (id == fidgetSpec["prop"] && show && phase >= show[0] && phase < show[1]);
+			part.setVisible( visible && on);
+		}
+		if( nativeWeapon && stow) nativeWeapon.setVisible( visible && !(phase >= stow[0] && phase < stow[1]));
+	}
+
+	function finishBattleFidget(){
+		setBattleFidgetProps( -1.0);
+		fidgetLayer = fidgetSpec = null;
+		fidgetDelay = 10000.0 + fidgetRandom( 0.0, 7500.0);
+	}
+
+	function updateBattleFidget( dt){
+		if( !inBattleStance || !fidgetSource || !fidgetChoices || !rpgobj || !manuaction) return;
+		local battle = ::rpgstage["battle"];
+		local active = !battle || battle.result != null || battle.forceend || rpgobj.isDead() ||
+			fxtype == 1 || !visible || battle.cmdchr == rpgobj ||
+			(fidgetTurn.battle == battle && fidgetTurn.actor == rpgobj) ||
+			manuaction.isActionRunning();
+		if( fidgetLayer){
+			if( rpgobj.isDead() && usesNativeDefeatFall()){
+				finishBattleFidget();
+				return;
+			}
+			if( active || !fidgetLayer.animating){
+				if( rpgobj.isDead() || fxtype == 1) anime2( #{id="die"});
+				else anime2( #{id="stand"});
+			}else{
+				setBattleFidgetProps( (fidgetLayer.frametime - fidgetSpec.st) / (fidgetSpec.en - fidgetSpec.st));
+			}
+			return;
+		}
+		fidgetDelay -= dt;
+		local id = animlayers.layers[0]["id"];
+		if( active || fidgetDelay > 0.0 || (id != "stand" && id != "aimw" && id != "fight")) return;
+		if( !fidgetMotion && !prepareBattleFidgets()) return;
+		local n = length( fidgetChoices), i = fidgetRandom( 0, n - (fidgetLast >= 0 ? 1 : 0));
+		if( fidgetLast >= 0 && i >= fidgetLast) i++;
+		local spec = fidgetChoices[i];
+		animemap["_battle_fidget"] <- { st=spec.st, en=spec.en, spd=spec.spd, loop=false, replay=true };
+		local layer = anime2( #{id="_battle_fidget"});
+		if( !layer) return;
+		fidgetLast = i;
+		fidgetSpec = spec;
+		fidgetLayer = layer;
+		if( spec["prop"] || spec["satchel"]){
+			if( !fidgetProps) fidgetProps = {};
+			foreach( name in [spec["prop"], spec["satchel"] ? "satchel" : null]){
+				if( !name || fidgetProps[name]) continue;
+				local path = fidgetRoot .. name;
+				if( ::getResource( path .. ".pm")) fidgetProps[name] <- addNativePart( path);
+			}
+		}
+		setBattleFidgetProps( 0.0);
+	}
+
+	function update( dt, pmatdirty=true){
+		if( nativeRiseLayer && !nativeRiseLayer.animating){
+			nativeRiseLayer = null;
+			if( rpgobj && !rpgobj.isDead()) anime2( #{id="stand"});
+		}
+		updateBattleFidget( dt);
+		return super.update( dt, pmatdirty);
 	}
 
 	function updateSRT(){
@@ -216,36 +528,87 @@ class RokuganNativePicture extends RPG3DPicture
 		super.updateMotion( dt, matchanged);
 		if( !nativeBody) return;
 		foreach( layer in animlayers.layers){
-			if( layer) layer.partsmap = nativeBody.motion.partsmap;
+			if( layer && !layer.partsmap && nativeBody.motion) layer.partsmap = nativeBody.motion.partsmap;
 		}
 		animlayers.integrateBonePoses( nativeBody.bones, nativeBody.gmat, true);
 	}
 
 	function setVisible( b){
 		super.setVisible( b);
-		foreach( part in [nativeBody, nativeOutfit, nativeWeapon, nativeHead, nativeMask, nativeCape]){
+		foreach( part in [nativeBody, nativeFace, nativeHeadband, nativeOutfit, nativeWeapon, nativeHead, nativeMask, nativeCape]){
 			if( part) part.setVisible( b);
 		}
 		if( nativeDecals) foreach( decal in nativeDecals) decal.setVisible( b);
 		if( nativeOrnaments) foreach( piece in nativeOrnaments) piece.setVisible( b);
+		if( fidgetSpec || fidgetProps) setBattleFidgetProps( fidgetLayer ? (fidgetLayer.frametime - fidgetSpec.st) / (fidgetSpec.en - fidgetSpec.st) : -1.0);
 	}
 }
+
+// atkchr is also used by skill scripts and can retain the prior turn's actor.
+::SkillCommand._rt_fidget_exec <- ::SkillCommand.exec;
+::SkillCommand.exec <- function(){
+	local previousBattle = fidgetTurn.battle, previousActor = fidgetTurn.actor;
+	fidgetTurn.battle = ::rpgstage["battle"];
+	fidgetTurn.actor = src;
+	try{
+		local result = this._rt_fidget_exec();
+		fidgetTurn.battle = previousBattle;
+		fidgetTurn.actor = previousActor;
+		return result;
+	}catch( ex){
+		fidgetTurn.battle = previousBattle;
+		fidgetTurn.actor = previousActor;
+		throw ex;
+	}
+};
+
 local nativePicture = RokuganNativePicture;
 
 class RokuganNativeFoe extends RokuganNativePicture
 {
 	function setFoe( pc, key, spec, path){
-		battleIdleClip = spec["human"] ? "fight" : null;
+		battleIdleClip = spec["human"] ? "fight" : "stand";
+		creatureReady = !spec["human"];
 		local view = clone pc;
 		view.animap = spec.animap;
 		setPicture( view);
-		nativeBody = celNative( SK3DObject( path));
+		local person = spec["human"] ? modularPerson( key) : null;
+		nativeBody = celNative( SK3DObject( person ? HUMAN .. key .. ".pm" : path));
 		nativeBody.animlayers = null;
+		local family = foeFidgetFamilies[key];
+		if( spec["human"]){
+			if( family && fidgetData){
+				fidgetSource = fidgetRoot .. family .. ".mot";
+				fidgetChoices = fidgetData.profiles.human_foe.map( @( id) fidgetData.clips[id]);
+			}
+		}else{
+			fidgetSource = foeFidgetRoot .. key .. ".mot";
+			fidgetChoices = [];
+			for( local i=0; i<5; i++) fidgetChoices .. { st=i*31, en=i*31+30, spd=20 };
+		}
+		if( person){
+			nativeBody.setMotion( ::getMotionData( ::getResource( path.slice( 0, path.len() - 3) .. ".mot")));
+			nativeBodyTemplate = person.base;
+			nativeDecals = [];
+			local costume = tailored( "defaults", key);
+			if( costume) setTailoredOutfit( costume, costume["clan"] || "ronin");
+			else if( person["outfit"]) nativeOutfit = addNativePart( HUMAN .. person.outfit);
+			if( person["hat"] && ClientConfig.showHeadwear()) nativeHead = addNativePart( HUMAN .. person.hat);
+			local face = HUMAN .. person.face;
+			if( nativeHead && person["hatFace"]){
+				local fitted = HUMAN .. person.hatFace;
+				if( ::getResource( fitted .. ".pm") && ::getResource( fitted .. ".mdl")) face = fitted;
+			}
+			nativeFace = addNativePart( face);
+			if( person["mask"]) nativeMask = addNativePart( HUMAN .. person.mask);
+			if( person["weapon"]) nativeWeapon = addNativePart( HUMAN .. person.weapon);
+		}
 		foreach( role in (ornaments[key] || [])){
 			local part = celNative( SK3DObject( ornamentRoot .. key .. "_" .. role .. ".pm"));
 			nativeBody.assignBonesToPolygonMesh( part.mesh);
 			nativeBody.addChild( part);
 		}
+		nativeCombatMotion = nativeBody.motion;
 		local size = spec.scale;
 		nativeBody.scale << Vector3D( size, size, size);
 		nativeBody.rot.setHPB( Math.HPI, 0.0, 0.0);

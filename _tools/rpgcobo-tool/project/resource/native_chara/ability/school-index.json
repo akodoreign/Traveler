@@ -1,0 +1,2606 @@
+{
+  "S011": {
+    "phase": "attack",
+    "style": "cleave",
+    "shape": "crescent",
+    "element": "steel",
+    "effort": 1.27,
+    "mark": 0.95,
+    "beats": [
+      0.19679999999999997,
+      0.41,
+      0.58,
+      0.86
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 0,
+    "finish": 30,
+    "void": [
+      31,
+      61
+    ]
+  },
+  "S100": {
+    "phase": "attack",
+    "style": "quickdraw",
+    "shape": "blade",
+    "element": "steel",
+    "effort": 0.9,
+    "mark": 0.69,
+    "beats": [
+      0.1872,
+      0.39,
+      0.54,
+      0.82
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 62,
+    "finish": 92,
+    "void": [
+      93,
+      123
+    ]
+  },
+  "S101": {
+    "phase": "attack",
+    "style": "lunge",
+    "shape": "spearline",
+    "element": "steel",
+    "effort": 1.05,
+    "mark": 0.71,
+    "beats": [
+      0.1584,
+      0.33,
+      0.47,
+      0.77
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 124,
+    "finish": 154,
+    "void": [
+      155,
+      185
+    ]
+  },
+  "S102": {
+    "phase": "attack",
+    "style": "feint",
+    "shape": "knives",
+    "element": "steel",
+    "effort": 0.76,
+    "mark": 0.62,
+    "beats": [
+      0.17279999999999998,
+      0.36,
+      0.6,
+      0.8
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 186,
+    "finish": 216,
+    "void": [
+      217,
+      247
+    ]
+  },
+  "S105": {
+    "phase": "attack",
+    "style": "wheel",
+    "shape": "bands",
+    "element": "wood",
+    "effort": 0.94,
+    "mark": 0.78,
+    "beats": [
+      0.20159999999999997,
+      0.42,
+      0.55,
+      0.84
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 248,
+    "finish": 278,
+    "void": [
+      279,
+      309
+    ]
+  },
+  "S106": {
+    "phase": "attack",
+    "style": "volley",
+    "shape": "tracks",
+    "element": "steel",
+    "effort": 0.67,
+    "mark": 0.66,
+    "beats": [
+      0.16799999999999998,
+      0.35,
+      0.59,
+      0.84
+    ],
+    "movement": "strike",
+    "lead": "pinch",
+    "bank": "school",
+    "travel": 200,
+    "start": 310,
+    "finish": 340,
+    "void": [
+      341,
+      371
+    ]
+  },
+  "S107": {
+    "phase": "attack",
+    "style": "drill",
+    "shape": "shards",
+    "element": "jade",
+    "effort": 1.03,
+    "mark": 0.83,
+    "beats": [
+      0.216,
+      0.45,
+      0.63,
+      0.88
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 372,
+    "finish": 402,
+    "void": [
+      403,
+      433
+    ]
+  },
+  "S110": {
+    "phase": "use",
+    "style": "taunt",
+    "shape": "thorns",
+    "element": "steel",
+    "effort": 0.85,
+    "mark": 0.8,
+    "beats": [
+      0.216,
+      0.45,
+      0.65,
+      0.88
+    ],
+    "movement": "gesture",
+    "lead": "fan",
+    "bank": "school",
+    "start": 434,
+    "finish": 464,
+    "void": [
+      465,
+      495
+    ]
+  },
+  "S120": {
+    "phase": "use",
+    "style": "focus",
+    "shape": "stillpoint",
+    "element": "air",
+    "effort": 0.67,
+    "mark": 0.75,
+    "beats": [
+      0.2352,
+      0.49,
+      0.68,
+      0.9
+    ],
+    "movement": "gesture",
+    "lead": "still",
+    "bank": "school",
+    "start": 496,
+    "finish": 526,
+    "void": [
+      527,
+      557
+    ]
+  },
+  "S121": {
+    "phase": "attack",
+    "style": "quickdraw",
+    "shape": "linebreak",
+    "element": "air",
+    "effort": 1.28,
+    "mark": 1.05,
+    "beats": [
+      0.2592,
+      0.54,
+      0.61,
+      0.87
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 558,
+    "finish": 588,
+    "void": [
+      589,
+      619
+    ]
+  },
+  "S123": {
+    "phase": "use",
+    "style": "command",
+    "shape": "pennant",
+    "element": "lightning",
+    "effort": 1.09,
+    "mark": 0.87,
+    "beats": [
+      0.17759999999999998,
+      0.37,
+      0.59,
+      0.88
+    ],
+    "movement": "gesture",
+    "lead": "brandish",
+    "bank": "school",
+    "start": 620,
+    "finish": 650,
+    "void": [
+      651,
+      681
+    ]
+  },
+  "S124": {
+    "phase": "use",
+    "style": "attune",
+    "shape": "orbit",
+    "element": "void",
+    "effort": 0.89,
+    "mark": 0.84,
+    "beats": [
+      0.2352,
+      0.49,
+      0.71,
+      0.89
+    ],
+    "movement": "gesture",
+    "lead": "draw",
+    "bank": "school",
+    "start": 682,
+    "finish": 712,
+    "void": [
+      713,
+      743
+    ]
+  },
+  "S125": {
+    "phase": "attack",
+    "style": "snatch",
+    "shape": "coins",
+    "element": "steel",
+    "effort": 0.84,
+    "mark": 0.79,
+    "beats": [
+      0.2112,
+      0.44,
+      0.57,
+      0.87
+    ],
+    "movement": "gesture",
+    "lead": "claw",
+    "bank": "school",
+    "start": 744,
+    "finish": 774,
+    "void": [
+      775,
+      805
+    ]
+  },
+  "S126": {
+    "phase": "attack",
+    "style": "hail",
+    "shape": "coins",
+    "element": "lightning",
+    "effort": 0.75,
+    "mark": 0.92,
+    "beats": [
+      0.1824,
+      0.38,
+      0.53,
+      0.82
+    ],
+    "movement": "gesture",
+    "lead": "tap",
+    "bank": "school",
+    "travel": 200,
+    "start": 806,
+    "finish": 836,
+    "void": [
+      837,
+      867
+    ]
+  },
+  "S132": {
+    "phase": "attack",
+    "style": "volley",
+    "shape": "grit",
+    "element": "wood",
+    "effort": 0.71,
+    "mark": 0.65,
+    "beats": [
+      0.1872,
+      0.39,
+      0.57,
+      0.82
+    ],
+    "movement": "gesture",
+    "lead": "pinch",
+    "bank": "school",
+    "travel": 200,
+    "start": 868,
+    "finish": 898,
+    "void": [
+      899,
+      929
+    ]
+  },
+  "S139": {
+    "phase": "attack",
+    "style": "cleave",
+    "shape": "boulder",
+    "element": "earth",
+    "effort": 1.32,
+    "mark": 1.02,
+    "beats": [
+      0.24,
+      0.5,
+      0.68,
+      0.9
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 930,
+    "finish": 960,
+    "void": [
+      961,
+      991
+    ]
+  },
+  "S140": {
+    "phase": "attack",
+    "style": "feint",
+    "shape": "venom",
+    "element": "shade",
+    "effort": 0.77,
+    "mark": 0.81,
+    "beats": [
+      0.1872,
+      0.39,
+      0.57,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 992,
+    "finish": 1022,
+    "void": [
+      1023,
+      1053
+    ]
+  },
+  "S141": {
+    "phase": "attack",
+    "style": "deflect",
+    "shape": "dust",
+    "element": "shade",
+    "effort": 0.81,
+    "mark": 0.71,
+    "beats": [
+      0.16799999999999998,
+      0.35,
+      0.56,
+      0.84
+    ],
+    "movement": "gesture",
+    "lead": null,
+    "bank": "school",
+    "start": 1054,
+    "finish": 1084,
+    "void": [
+      1085,
+      1115
+    ]
+  },
+  "S147": {
+    "phase": "attack",
+    "style": "crush",
+    "shape": "rubble",
+    "element": "earth",
+    "effort": 1.23,
+    "mark": 1.07,
+    "beats": [
+      0.20159999999999997,
+      0.42,
+      0.58,
+      0.88
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 1116,
+    "finish": 1146,
+    "void": [
+      1147,
+      1177
+    ]
+  },
+  "S148": {
+    "phase": "attack",
+    "style": "hammer",
+    "shape": "rings",
+    "element": "fire",
+    "effort": 1.39,
+    "mark": 1.11,
+    "beats": [
+      0.2304,
+      0.48,
+      0.67,
+      0.92
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 1178,
+    "finish": 1208,
+    "void": [
+      1209,
+      1239
+    ]
+  },
+  "S169": {
+    "phase": "use",
+    "style": "mountain",
+    "shape": "wall",
+    "element": "earth",
+    "effort": 1.05,
+    "mark": 0.96,
+    "beats": [
+      0.216,
+      0.45,
+      0.71,
+      0.91
+    ],
+    "movement": "gesture",
+    "lead": "plant",
+    "bank": "school",
+    "start": 1240,
+    "finish": 1270,
+    "void": [
+      1271,
+      1301
+    ]
+  },
+  "S426": {
+    "phase": "use",
+    "style": "watch",
+    "shape": "feathers",
+    "element": "air",
+    "effort": 0.71,
+    "mark": 0.69,
+    "beats": [
+      0.2448,
+      0.51,
+      0.68,
+      0.89
+    ],
+    "movement": "gesture",
+    "lead": "inspect",
+    "bank": "school",
+    "start": 1302,
+    "finish": 1332,
+    "void": [
+      1333,
+      1363
+    ]
+  },
+  "S476": {
+    "phase": "attack",
+    "style": "accuse",
+    "shape": "iris",
+    "element": "lightning",
+    "effort": 0.63,
+    "mark": 0.75,
+    "beats": [
+      0.2112,
+      0.44,
+      0.61,
+      0.87
+    ],
+    "movement": "gesture",
+    "lead": "push",
+    "bank": "school",
+    "start": 1364,
+    "finish": 1394,
+    "void": [
+      1395,
+      1425
+    ]
+  },
+  "S481": {
+    "phase": "attack",
+    "style": "crosscut",
+    "shape": "crossing",
+    "element": "jade",
+    "effort": 1.1,
+    "mark": 0.88,
+    "beats": [
+      0.1872,
+      0.39,
+      0.61,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 1426,
+    "finish": 1456,
+    "void": [
+      1457,
+      1487
+    ]
+  },
+  "S482": {
+    "phase": "attack",
+    "style": "bind",
+    "shape": "links",
+    "element": "steel",
+    "effort": 0.74,
+    "mark": 0.8,
+    "beats": [
+      0.19679999999999997,
+      0.41,
+      0.62,
+      0.88
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 1488,
+    "finish": 1518,
+    "void": [
+      1519,
+      1549
+    ]
+  },
+  "S483": {
+    "phase": "attack",
+    "style": "bow",
+    "shape": "crescent",
+    "element": "air",
+    "effort": 0.86,
+    "mark": 0.76,
+    "beats": [
+      0.2496,
+      0.52,
+      0.7,
+      0.9
+    ],
+    "movement": "gesture",
+    "lead": "offer",
+    "bank": "school",
+    "start": 1550,
+    "finish": 1580,
+    "void": [
+      1581,
+      1611
+    ]
+  },
+  "S489": {
+    "phase": "attack",
+    "style": "quickdraw",
+    "shape": "needle",
+    "element": "steel",
+    "effort": 0.94,
+    "mark": 0.81,
+    "beats": [
+      0.20159999999999997,
+      0.42,
+      0.53,
+      0.88
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 1612,
+    "finish": 1642,
+    "void": [
+      1643,
+      1673
+    ]
+  },
+  "S505": {
+    "phase": "use",
+    "style": "copy",
+    "shape": "reflection",
+    "element": "shade",
+    "effort": 1.02,
+    "mark": 0.94,
+    "beats": [
+      0.16799999999999998,
+      0.35,
+      0.63,
+      0.84
+    ],
+    "movement": "gesture",
+    "lead": "tracer",
+    "bank": "school",
+    "start": 1674,
+    "finish": 1704,
+    "void": [
+      1705,
+      1735
+    ]
+  },
+  "S506": {
+    "phase": "attack",
+    "style": "wheel",
+    "shape": "burst",
+    "element": "lightning",
+    "effort": 1.16,
+    "mark": 1.02,
+    "beats": [
+      0.17759999999999998,
+      0.37,
+      0.56,
+      0.91
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 1736,
+    "finish": 1766,
+    "void": [
+      1767,
+      1797
+    ]
+  },
+  "S507": {
+    "phase": "attack",
+    "style": "feint",
+    "shape": "doubleCut",
+    "element": "steel",
+    "effort": 0.82,
+    "mark": 0.84,
+    "beats": [
+      0.16799999999999998,
+      0.35,
+      0.62,
+      0.86
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 1798,
+    "finish": 1828,
+    "void": [
+      1829,
+      1859
+    ]
+  },
+  "S526": {
+    "phase": "use",
+    "style": "cover",
+    "shape": "shield",
+    "element": "wood",
+    "effort": 0.68,
+    "mark": 0.81,
+    "beats": [
+      0.1872,
+      0.39,
+      0.64,
+      0.92
+    ],
+    "movement": "gesture",
+    "lead": "brace",
+    "bank": "school",
+    "start": 1860,
+    "finish": 1890,
+    "void": [
+      1891,
+      1921
+    ]
+  },
+  "S527": {
+    "phase": "use",
+    "style": "watch",
+    "shape": "clouds",
+    "element": "air",
+    "effort": 0.82,
+    "mark": 0.9,
+    "beats": [
+      0.2208,
+      0.46,
+      0.68,
+      0.9
+    ],
+    "movement": "gesture",
+    "lead": "inspect",
+    "bank": "school",
+    "start": 1922,
+    "finish": 1952,
+    "void": [
+      1953,
+      1983
+    ]
+  },
+  "S541": {
+    "phase": "use",
+    "style": "hail",
+    "shape": "coins",
+    "element": "wood",
+    "effort": 0.49,
+    "mark": 0.65,
+    "beats": [
+      0.17759999999999998,
+      0.37,
+      0.61,
+      0.9
+    ],
+    "movement": "gesture",
+    "lead": "tap",
+    "bank": "school",
+    "start": 1984,
+    "finish": 2014,
+    "void": [
+      2015,
+      2045
+    ]
+  },
+  "S542": {
+    "phase": "attack",
+    "style": "bow",
+    "shape": "dove",
+    "element": "air",
+    "effort": 0.74,
+    "mark": 0.83,
+    "beats": [
+      0.2304,
+      0.48,
+      0.66,
+      0.88
+    ],
+    "movement": "gesture",
+    "lead": "offer",
+    "bank": "school",
+    "start": 2046,
+    "finish": 2076,
+    "void": [
+      2077,
+      2107
+    ]
+  },
+  "S544": {
+    "phase": "use",
+    "style": "serve",
+    "shape": "supplies",
+    "element": "wood",
+    "effort": 0.73,
+    "mark": 0.77,
+    "beats": [
+      0.1872,
+      0.39,
+      0.6,
+      0.86
+    ],
+    "movement": "gesture",
+    "lead": "cup",
+    "bank": "school",
+    "start": 2108,
+    "finish": 2138,
+    "void": [
+      2139,
+      2169
+    ]
+  },
+  "S545": {
+    "phase": "attack",
+    "style": "watch",
+    "shape": "telescope",
+    "element": "lightning",
+    "effort": 0.95,
+    "mark": 0.82,
+    "beats": [
+      0.2448,
+      0.51,
+      0.72,
+      0.89
+    ],
+    "movement": "gesture",
+    "lead": "inspect",
+    "bank": "school",
+    "start": 2170,
+    "finish": 2200,
+    "void": [
+      2201,
+      2231
+    ]
+  },
+  "S546": {
+    "phase": "use",
+    "style": "cover",
+    "shape": "vow",
+    "element": "lightning",
+    "effort": 0.93,
+    "mark": 0.88,
+    "beats": [
+      0.2208,
+      0.46,
+      0.66,
+      0.91
+    ],
+    "movement": "gesture",
+    "lead": "brace",
+    "bank": "school",
+    "start": 2232,
+    "finish": 2262,
+    "void": [
+      2263,
+      2293
+    ]
+  },
+  "S547": {
+    "phase": "attack",
+    "style": "sweep",
+    "shape": "crescent",
+    "element": "air",
+    "effort": 1.09,
+    "mark": 0.89,
+    "beats": [
+      0.19679999999999997,
+      0.41,
+      0.59,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 2294,
+    "finish": 2324,
+    "void": [
+      2325,
+      2355
+    ]
+  },
+  "S566": {
+    "phase": "use",
+    "style": "veil",
+    "shape": "veil",
+    "element": "void",
+    "effort": 0.76,
+    "mark": 0.82,
+    "beats": [
+      0.19679999999999997,
+      0.41,
+      0.68,
+      0.91
+    ],
+    "movement": "gesture",
+    "lead": "hush",
+    "bank": "school",
+    "start": 2356,
+    "finish": 2386,
+    "void": [
+      2387,
+      2417
+    ]
+  },
+  "S580": {
+    "phase": "attack",
+    "style": "snatch",
+    "shape": "hook",
+    "element": "shade",
+    "effort": 0.85,
+    "mark": 0.75,
+    "beats": [
+      0.192,
+      0.4,
+      0.57,
+      0.82
+    ],
+    "movement": "strike",
+    "lead": "claw",
+    "bank": "school",
+    "start": 2418,
+    "finish": 2448,
+    "void": [
+      2449,
+      2479
+    ]
+  },
+  "S581": {
+    "phase": "use",
+    "style": "bow",
+    "shape": "blossom",
+    "element": "lightning",
+    "effort": 0.49,
+    "mark": 0.69,
+    "beats": [
+      0.19679999999999997,
+      0.41,
+      0.67,
+      0.9
+    ],
+    "movement": "gesture",
+    "lead": "offer",
+    "bank": "school",
+    "start": 2480,
+    "finish": 2510,
+    "void": [
+      2511,
+      2541
+    ]
+  },
+  "S583": {
+    "phase": "use",
+    "style": "dress",
+    "shape": "bands",
+    "element": "jade",
+    "effort": 0.69,
+    "mark": 0.81,
+    "beats": [
+      0.20159999999999997,
+      0.42,
+      0.71,
+      0.92
+    ],
+    "movement": "gesture",
+    "lead": "press",
+    "bank": "school",
+    "start": 2542,
+    "finish": 2572,
+    "void": [
+      2573,
+      2603
+    ]
+  },
+  "S584": {
+    "phase": "attack",
+    "style": "volley",
+    "shape": "root",
+    "element": "jade",
+    "effort": 0.81,
+    "mark": 0.75,
+    "beats": [
+      0.1584,
+      0.33,
+      0.56,
+      0.82
+    ],
+    "movement": "gesture",
+    "lead": "pinch",
+    "bank": "school",
+    "travel": 200,
+    "start": 2604,
+    "finish": 2634,
+    "void": [
+      2635,
+      2665
+    ]
+  },
+  "S607": {
+    "phase": "attack",
+    "style": "pounce",
+    "shape": "clawmarks",
+    "element": "fire",
+    "effort": 1.2,
+    "mark": 1.03,
+    "beats": [
+      0.192,
+      0.4,
+      0.53,
+      0.84
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 2666,
+    "finish": 2696,
+    "void": [
+      2697,
+      2727
+    ]
+  },
+  "S608": {
+    "phase": "use",
+    "style": "rush",
+    "shape": "lion",
+    "element": "lightning",
+    "effort": 1.25,
+    "mark": 1.06,
+    "beats": [
+      0.17759999999999998,
+      0.37,
+      0.5,
+      0.93
+    ],
+    "movement": "gesture",
+    "lead": null,
+    "bank": "school",
+    "start": 2728,
+    "finish": 2758,
+    "void": [
+      2759,
+      2789
+    ]
+  },
+  "S609": {
+    "phase": "use",
+    "style": "examine",
+    "shape": "pulse",
+    "element": "jade",
+    "effort": 0.66,
+    "mark": 0.75,
+    "beats": [
+      0.2112,
+      0.44,
+      0.68,
+      0.88
+    ],
+    "movement": "gesture",
+    "lead": "inspect",
+    "bank": "school",
+    "start": 2790,
+    "finish": 2820,
+    "void": [
+      2821,
+      2851
+    ]
+  },
+  "S635": {
+    "phase": "attack",
+    "style": "taunt",
+    "shape": "crown",
+    "element": "lightning",
+    "effort": 0.89,
+    "mark": 0.92,
+    "beats": [
+      0.2208,
+      0.46,
+      0.69,
+      0.87
+    ],
+    "movement": "gesture",
+    "lead": "fan",
+    "bank": "school",
+    "start": 2852,
+    "finish": 2882,
+    "void": [
+      2883,
+      2913
+    ]
+  },
+  "S636": {
+    "phase": "attack",
+    "style": "command",
+    "shape": "twins",
+    "element": "void",
+    "effort": 0.82,
+    "mark": 0.78,
+    "beats": [
+      0.1536,
+      0.32,
+      0.55,
+      0.86
+    ],
+    "movement": "gesture",
+    "lead": "brandish",
+    "bank": "school",
+    "start": 2914,
+    "finish": 2944,
+    "void": [
+      2945,
+      2975
+    ]
+  },
+  "S637": {
+    "phase": "attack",
+    "style": "underhand",
+    "shape": "boulder",
+    "element": "earth",
+    "effort": 0.74,
+    "mark": 0.9,
+    "beats": [
+      0.1872,
+      0.39,
+      0.57,
+      0.84
+    ],
+    "movement": "gesture",
+    "lead": "reachBelow",
+    "bank": "school",
+    "start": 2976,
+    "finish": 3006,
+    "void": [
+      3007,
+      3037
+    ]
+  },
+  "S638": {
+    "phase": "attack",
+    "style": "stop",
+    "shape": "palm",
+    "element": "air",
+    "effort": 0.91,
+    "mark": 0.95,
+    "beats": [
+      0.22559999999999997,
+      0.47,
+      0.66,
+      0.91
+    ],
+    "movement": "gesture",
+    "lead": "push",
+    "bank": "school",
+    "start": 3038,
+    "finish": 3068,
+    "void": [
+      3069,
+      3099
+    ]
+  },
+  "S740": {
+    "phase": "attack",
+    "style": "mountain",
+    "shape": "boulder",
+    "element": "earth",
+    "effort": 0.96,
+    "mark": 0.93,
+    "beats": [
+      0.1584,
+      0.33,
+      0.55,
+      0.84
+    ],
+    "movement": "strike",
+    "lead": "plant",
+    "bank": "school",
+    "start": 3100,
+    "finish": 3130,
+    "void": [
+      3131,
+      3161
+    ]
+  },
+  "S741": {
+    "phase": "attack",
+    "style": "sweep",
+    "shape": "windcut",
+    "element": "air",
+    "effort": 0.86,
+    "mark": 0.86,
+    "beats": [
+      0.144,
+      0.3,
+      0.49,
+      0.78
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 3162,
+    "finish": 3192,
+    "void": [
+      3193,
+      3223
+    ]
+  },
+  "S742": {
+    "phase": "attack",
+    "style": "brace",
+    "shape": "tiles",
+    "element": "earth",
+    "effort": 0.81,
+    "mark": 0.93,
+    "beats": [
+      0.216,
+      0.45,
+      0.66,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": "brace",
+    "bank": "school",
+    "start": 3224,
+    "finish": 3254,
+    "void": [
+      3255,
+      3285
+    ]
+  },
+  "S743": {
+    "phase": "attack",
+    "style": "cover",
+    "shape": "wall",
+    "element": "earth",
+    "effort": 1.04,
+    "mark": 1.07,
+    "beats": [
+      0.2304,
+      0.48,
+      0.67,
+      0.91
+    ],
+    "movement": "strike",
+    "lead": "brace",
+    "bank": "school",
+    "start": 3286,
+    "finish": 3316,
+    "void": [
+      3317,
+      3347
+    ]
+  },
+  "S744": {
+    "phase": "attack",
+    "style": "crush",
+    "shape": "scree",
+    "element": "earth",
+    "effort": 1.03,
+    "mark": 1.14,
+    "beats": [
+      0.216,
+      0.45,
+      0.55,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 3348,
+    "finish": 3378,
+    "void": [
+      3379,
+      3409
+    ]
+  },
+  "S745": {
+    "phase": "attack",
+    "style": "hammer",
+    "shape": "fault",
+    "element": "earth",
+    "effort": 1.26,
+    "mark": 1.01,
+    "beats": [
+      0.2496,
+      0.52,
+      0.66,
+      0.91
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 3410,
+    "finish": 3440,
+    "void": [
+      3441,
+      3471
+    ]
+  },
+  "S746": {
+    "phase": "attack",
+    "style": "quickdraw",
+    "shape": "firstLine",
+    "element": "air",
+    "effort": 0.78,
+    "mark": 0.83,
+    "beats": [
+      0.2304,
+      0.48,
+      0.61,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 3472,
+    "finish": 3502,
+    "void": [
+      3503,
+      3533
+    ]
+  },
+  "S747": {
+    "phase": "attack",
+    "style": "cleave",
+    "shape": "sunrise",
+    "element": "lightning",
+    "effort": 0.96,
+    "mark": 0.89,
+    "beats": [
+      0.17759999999999998,
+      0.37,
+      0.51,
+      0.85
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 3534,
+    "finish": 3564,
+    "void": [
+      3565,
+      3595
+    ]
+  },
+  "S748": {
+    "phase": "attack",
+    "style": "watch",
+    "shape": "wings",
+    "element": "air",
+    "effort": 0.85,
+    "mark": 0.93,
+    "beats": [
+      0.1584,
+      0.33,
+      0.65,
+      0.91
+    ],
+    "movement": "strike",
+    "lead": "inspect",
+    "bank": "school",
+    "start": 3596,
+    "finish": 3626,
+    "void": [
+      3627,
+      3657
+    ]
+  },
+  "S749": {
+    "phase": "attack",
+    "style": "wheel",
+    "shape": "windcut",
+    "element": "air",
+    "effort": 1.0,
+    "mark": 0.83,
+    "beats": [
+      0.13440000000000002,
+      0.28,
+      0.47,
+      0.82
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 3658,
+    "finish": 3688,
+    "void": [
+      3689,
+      3719
+    ]
+  },
+  "S750": {
+    "phase": "attack",
+    "style": "balance",
+    "shape": "perch",
+    "element": "air",
+    "effort": 0.87,
+    "mark": 0.81,
+    "beats": [
+      0.20159999999999997,
+      0.42,
+      0.64,
+      0.91
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 3720,
+    "finish": 3750,
+    "void": [
+      3751,
+      3781
+    ]
+  },
+  "S751": {
+    "phase": "attack",
+    "style": "lunge",
+    "shape": "linebreak",
+    "element": "steel",
+    "effort": 1.19,
+    "mark": 1.08,
+    "beats": [
+      0.1536,
+      0.32,
+      0.52,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 3782,
+    "finish": 3812,
+    "void": [
+      3813,
+      3843
+    ]
+  },
+  "S752": {
+    "phase": "attack",
+    "style": "close",
+    "shape": "needle",
+    "element": "steel",
+    "effort": 0.78,
+    "mark": 0.71,
+    "beats": [
+      0.24,
+      0.5,
+      0.65,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 3844,
+    "finish": 3874,
+    "void": [
+      3875,
+      3905
+    ]
+  },
+  "S753": {
+    "phase": "attack",
+    "style": "raise",
+    "shape": "sky",
+    "element": "air",
+    "effort": 1.04,
+    "mark": 0.94,
+    "beats": [
+      0.2112,
+      0.44,
+      0.58,
+      0.88
+    ],
+    "movement": "strike",
+    "lead": "raise",
+    "bank": "school",
+    "start": 3906,
+    "finish": 3936,
+    "void": [
+      3937,
+      3967
+    ]
+  },
+  "S754": {
+    "phase": "attack",
+    "style": "hammer",
+    "shape": "fork",
+    "element": "lightning",
+    "effort": 1.17,
+    "mark": 1.0,
+    "beats": [
+      0.2208,
+      0.46,
+      0.64,
+      0.9
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 3968,
+    "finish": 3998,
+    "void": [
+      3999,
+      4029
+    ]
+  },
+  "S755": {
+    "phase": "attack",
+    "style": "crosscut",
+    "shape": "crossing",
+    "element": "lightning",
+    "effort": 0.95,
+    "mark": 0.91,
+    "beats": [
+      0.17759999999999998,
+      0.37,
+      0.6,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4030,
+    "finish": 4060,
+    "void": [
+      4061,
+      4091
+    ]
+  },
+  "S756": {
+    "phase": "attack",
+    "style": "bind",
+    "shape": "twins",
+    "element": "jade",
+    "effort": 0.84,
+    "mark": 0.87,
+    "beats": [
+      0.2352,
+      0.49,
+      0.66,
+      0.91
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4092,
+    "finish": 4122,
+    "void": [
+      4123,
+      4153
+    ]
+  },
+  "S757": {
+    "phase": "attack",
+    "style": "focus",
+    "shape": "stillpoint",
+    "element": "steel",
+    "effort": 0.63,
+    "mark": 0.8,
+    "beats": [
+      0.2592,
+      0.54,
+      0.66,
+      0.91
+    ],
+    "movement": "strike",
+    "lead": "still",
+    "bank": "school",
+    "start": 4154,
+    "finish": 4184,
+    "void": [
+      4185,
+      4215
+    ]
+  },
+  "S758": {
+    "phase": "attack",
+    "style": "crosscut",
+    "shape": "ribbon",
+    "element": "water",
+    "effort": 1.13,
+    "mark": 0.95,
+    "beats": [
+      0.19679999999999997,
+      0.41,
+      0.61,
+      0.88
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4216,
+    "finish": 4246,
+    "void": [
+      4247,
+      4277
+    ]
+  },
+  "S759": {
+    "phase": "attack",
+    "style": "rush",
+    "shape": "ripple",
+    "element": "water",
+    "effort": 1.07,
+    "mark": 1.01,
+    "beats": [
+      0.16799999999999998,
+      0.35,
+      0.52,
+      0.9
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4278,
+    "finish": 4308,
+    "void": [
+      4309,
+      4339
+    ]
+  },
+  "S760": {
+    "phase": "attack",
+    "style": "lunge",
+    "shape": "ribbon",
+    "element": "water",
+    "effort": 1.05,
+    "mark": 0.9,
+    "beats": [
+      0.19679999999999997,
+      0.41,
+      0.54,
+      0.84
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4340,
+    "finish": 4370,
+    "void": [
+      4371,
+      4401
+    ]
+  },
+  "S761": {
+    "phase": "attack",
+    "style": "cleave",
+    "shape": "ember",
+    "element": "fire",
+    "effort": 1.22,
+    "mark": 0.97,
+    "beats": [
+      0.1824,
+      0.38,
+      0.57,
+      0.91
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4402,
+    "finish": 4432,
+    "void": [
+      4433,
+      4463
+    ]
+  },
+  "S762": {
+    "phase": "attack",
+    "style": "wheel",
+    "shape": "rings",
+    "element": "fire",
+    "effort": 1.18,
+    "mark": 1.02,
+    "beats": [
+      0.1824,
+      0.38,
+      0.54,
+      0.9
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4464,
+    "finish": 4494,
+    "void": [
+      4495,
+      4525
+    ]
+  },
+  "S763": {
+    "phase": "attack",
+    "style": "taunt",
+    "shape": "lion",
+    "element": "fire",
+    "effort": 1.22,
+    "mark": 1.0,
+    "beats": [
+      0.2304,
+      0.48,
+      0.66,
+      0.86
+    ],
+    "movement": "strike",
+    "lead": "fan",
+    "bank": "school",
+    "start": 4526,
+    "finish": 4556,
+    "void": [
+      4557,
+      4587
+    ]
+  },
+  "S764": {
+    "phase": "attack",
+    "style": "feint",
+    "shape": "frost",
+    "element": "ice",
+    "effort": 0.83,
+    "mark": 0.88,
+    "beats": [
+      0.19679999999999997,
+      0.41,
+      0.62,
+      0.9
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4588,
+    "finish": 4618,
+    "void": [
+      4619,
+      4649
+    ]
+  },
+  "S765": {
+    "phase": "attack",
+    "style": "pounce",
+    "shape": "doubleCut",
+    "element": "fire",
+    "effort": 1.25,
+    "mark": 1.01,
+    "beats": [
+      0.22559999999999997,
+      0.47,
+      0.61,
+      0.88
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4650,
+    "finish": 4680,
+    "void": [
+      4681,
+      4711
+    ]
+  },
+  "S766": {
+    "phase": "attack",
+    "style": "feint",
+    "shape": "windcut",
+    "element": "air",
+    "effort": 0.79,
+    "mark": 0.78,
+    "beats": [
+      0.16799999999999998,
+      0.35,
+      0.51,
+      0.79
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4712,
+    "finish": 4742,
+    "void": [
+      4743,
+      4773
+    ]
+  },
+  "S767": {
+    "phase": "attack",
+    "style": "drill",
+    "shape": "hook",
+    "element": "shade",
+    "effort": 0.83,
+    "mark": 0.86,
+    "beats": [
+      0.20159999999999997,
+      0.42,
+      0.57,
+      0.84
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4774,
+    "finish": 4804,
+    "void": [
+      4805,
+      4835
+    ]
+  },
+  "S768": {
+    "phase": "attack",
+    "style": "crouch",
+    "shape": "scree",
+    "element": "earth",
+    "effort": 1.06,
+    "mark": 0.9,
+    "beats": [
+      0.1872,
+      0.39,
+      0.64,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4836,
+    "finish": 4866,
+    "void": [
+      4867,
+      4897
+    ]
+  },
+  "S769": {
+    "phase": "attack",
+    "style": "crosscut",
+    "shape": "blade",
+    "element": "steel",
+    "effort": 0.8,
+    "mark": 0.87,
+    "beats": [
+      0.216,
+      0.45,
+      0.59,
+      0.86
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 4898,
+    "finish": 4928,
+    "void": [
+      4929,
+      4959
+    ]
+  },
+  "S770": {
+    "phase": "attack",
+    "style": "veil",
+    "shape": "shutter",
+    "element": "shade",
+    "effort": 0.77,
+    "mark": 0.88,
+    "beats": [
+      0.2064,
+      0.43,
+      0.66,
+      0.88
+    ],
+    "movement": "strike",
+    "lead": "hush",
+    "bank": "school",
+    "start": 4960,
+    "finish": 4990,
+    "void": [
+      4991,
+      5021
+    ]
+  },
+  "S771": {
+    "phase": "attack",
+    "style": "snare",
+    "shape": "links",
+    "element": "air",
+    "effort": 0.83,
+    "mark": 0.86,
+    "beats": [
+      0.1824,
+      0.38,
+      0.63,
+      0.86
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 5022,
+    "finish": 5052,
+    "void": [
+      5053,
+      5083
+    ]
+  },
+  "S772": {
+    "phase": "attack",
+    "style": "sweep",
+    "shape": "ripple",
+    "element": "water",
+    "effort": 0.83,
+    "mark": 0.86,
+    "beats": [
+      0.1872,
+      0.39,
+      0.56,
+      0.86
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 5084,
+    "finish": 5114,
+    "void": [
+      5115,
+      5145
+    ]
+  },
+  "S773": {
+    "phase": "attack",
+    "style": "brace",
+    "shape": "basalt",
+    "element": "earth",
+    "effort": 0.9,
+    "mark": 0.9,
+    "beats": [
+      0.20159999999999997,
+      0.42,
+      0.61,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": "brace",
+    "bank": "school",
+    "start": 5146,
+    "finish": 5176,
+    "void": [
+      5177,
+      5207
+    ]
+  },
+  "S774": {
+    "phase": "attack",
+    "style": "hammer",
+    "shape": "plume",
+    "element": "fire",
+    "effort": 0.99,
+    "mark": 0.9,
+    "beats": [
+      0.19679999999999997,
+      0.41,
+      0.56,
+      0.87
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 5208,
+    "finish": 5238,
+    "void": [
+      5239,
+      5269
+    ]
+  },
+  "S775": {
+    "phase": "attack",
+    "style": "lunge",
+    "shape": "feathers",
+    "element": "air",
+    "effort": 0.82,
+    "mark": 0.81,
+    "beats": [
+      0.144,
+      0.3,
+      0.53,
+      0.84
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 5270,
+    "finish": 5300,
+    "void": [
+      5301,
+      5331
+    ]
+  },
+  "S776": {
+    "phase": "attack",
+    "style": "close",
+    "shape": "eclipse",
+    "element": "void",
+    "effort": 0.74,
+    "mark": 0.83,
+    "beats": [
+      0.2448,
+      0.51,
+      0.7,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 5332,
+    "finish": 5362,
+    "void": [
+      5363,
+      5393
+    ]
+  },
+  "S777": {
+    "phase": "use",
+    "style": "attune",
+    "shape": "stillpoint",
+    "element": "void",
+    "effort": 0.7,
+    "mark": 0.79,
+    "beats": [
+      0.22559999999999997,
+      0.47,
+      0.73,
+      0.92
+    ],
+    "movement": "gesture",
+    "lead": "draw",
+    "bank": "school",
+    "start": 5394,
+    "finish": 5424,
+    "void": [
+      5425,
+      5455
+    ]
+  },
+  "S778": {
+    "phase": "use",
+    "style": "mountain",
+    "shape": "basalt",
+    "element": "earth",
+    "effort": 0.94,
+    "mark": 0.89,
+    "beats": [
+      0.2112,
+      0.44,
+      0.67,
+      0.92
+    ],
+    "movement": "gesture",
+    "lead": "plant",
+    "bank": "school",
+    "start": 5456,
+    "finish": 5486,
+    "void": [
+      5487,
+      5517
+    ]
+  },
+  "S779": {
+    "phase": "use",
+    "style": "draw",
+    "shape": "ripple",
+    "element": "water",
+    "effort": 0.8,
+    "mark": 0.83,
+    "beats": [
+      0.1872,
+      0.39,
+      0.59,
+      0.89
+    ],
+    "movement": "gesture",
+    "lead": "draw",
+    "bank": "school",
+    "start": 5518,
+    "finish": 5548,
+    "void": [
+      5549,
+      5579
+    ]
+  },
+  "S780": {
+    "phase": "use",
+    "style": "bridge",
+    "shape": "bands",
+    "element": "water",
+    "effort": 0.82,
+    "mark": 0.87,
+    "beats": [
+      0.2112,
+      0.44,
+      0.62,
+      0.9
+    ],
+    "movement": "gesture",
+    "lead": "bridge",
+    "bank": "school",
+    "start": 5580,
+    "finish": 5610,
+    "void": [
+      5611,
+      5641
+    ]
+  },
+  "S781": {
+    "phase": "use",
+    "style": "raise",
+    "shape": "eclipse",
+    "element": "void",
+    "effort": 0.91,
+    "mark": 0.97,
+    "beats": [
+      0.2304,
+      0.48,
+      0.7,
+      0.9
+    ],
+    "movement": "gesture",
+    "lead": "raise",
+    "bank": "school",
+    "start": 5642,
+    "finish": 5672,
+    "void": [
+      5673,
+      5703
+    ]
+  },
+  "S782": {
+    "phase": "use",
+    "style": "brace",
+    "shape": "root",
+    "element": "earth",
+    "effort": 0.88,
+    "mark": 0.89,
+    "beats": [
+      0.20159999999999997,
+      0.42,
+      0.66,
+      0.9
+    ],
+    "movement": "gesture",
+    "lead": "brace",
+    "bank": "school",
+    "start": 5704,
+    "finish": 5734,
+    "void": [
+      5735,
+      5765
+    ]
+  },
+  "S783": {
+    "phase": "attack",
+    "style": "jab",
+    "shape": "palm",
+    "element": "fire",
+    "effort": 1.1,
+    "mark": 0.88,
+    "beats": [
+      0.1488,
+      0.31,
+      0.48,
+      0.81
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 5766,
+    "finish": 5796,
+    "void": [
+      5797,
+      5827
+    ]
+  },
+  "S784": {
+    "phase": "attack",
+    "style": "hook",
+    "shape": "ribbon",
+    "element": "water",
+    "effort": 0.86,
+    "mark": 0.87,
+    "beats": [
+      0.17759999999999998,
+      0.37,
+      0.54,
+      0.83
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 5828,
+    "finish": 5858,
+    "void": [
+      5859,
+      5889
+    ]
+  },
+  "S785": {
+    "phase": "attack",
+    "style": "crush",
+    "shape": "fault",
+    "element": "earth",
+    "effort": 1.14,
+    "mark": 0.96,
+    "beats": [
+      0.20159999999999997,
+      0.42,
+      0.59,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 5890,
+    "finish": 5920,
+    "void": [
+      5921,
+      5951
+    ]
+  },
+  "S786": {
+    "phase": "attack",
+    "style": "jab",
+    "shape": "feathers",
+    "element": "air",
+    "effort": 0.77,
+    "mark": 0.83,
+    "beats": [
+      0.16799999999999998,
+      0.35,
+      0.48,
+      0.82
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 5952,
+    "finish": 5982,
+    "void": [
+      5983,
+      6013
+    ]
+  },
+  "S787": {
+    "phase": "attack",
+    "style": "hammer",
+    "shape": "comet",
+    "element": "lightning",
+    "effort": 1.18,
+    "mark": 1.03,
+    "beats": [
+      0.2304,
+      0.48,
+      0.64,
+      0.88
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 6014,
+    "finish": 6044,
+    "void": [
+      6045,
+      6075
+    ]
+  },
+  "S788": {
+    "phase": "attack",
+    "style": "stop",
+    "shape": "scales",
+    "element": "void",
+    "effort": 1.1,
+    "mark": 0.93,
+    "beats": [
+      0.192,
+      0.4,
+      0.61,
+      0.85
+    ],
+    "movement": "strike",
+    "lead": "push",
+    "bank": "school",
+    "start": 6076,
+    "finish": 6106,
+    "void": [
+      6107,
+      6137
+    ]
+  },
+  "S789": {
+    "phase": "attack",
+    "style": "bind",
+    "shape": "frost",
+    "element": "ice",
+    "effort": 0.76,
+    "mark": 0.88,
+    "beats": [
+      0.2112,
+      0.44,
+      0.64,
+      0.9
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 6138,
+    "finish": 6168,
+    "void": [
+      6169,
+      6199
+    ]
+  },
+  "S790": {
+    "phase": "attack",
+    "style": "jab",
+    "shape": "vortex",
+    "element": "void",
+    "effort": 1.08,
+    "mark": 1.0,
+    "beats": [
+      0.1824,
+      0.38,
+      0.57,
+      0.86
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 6200,
+    "finish": 6230,
+    "void": [
+      6231,
+      6261
+    ]
+  },
+  "S791": {
+    "phase": "attack",
+    "style": "pounce",
+    "shape": "clawmarks",
+    "element": "fire",
+    "effort": 1.2,
+    "mark": 1.08,
+    "beats": [
+      0.192,
+      0.4,
+      0.57,
+      0.91
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 6262,
+    "finish": 6292,
+    "void": [
+      6293,
+      6323
+    ]
+  },
+  "S792": {
+    "phase": "attack",
+    "style": "wing",
+    "shape": "wings",
+    "element": "shade",
+    "effort": 1.17,
+    "mark": 1.02,
+    "beats": [
+      0.17279999999999998,
+      0.36,
+      0.63,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 6324,
+    "finish": 6354,
+    "void": [
+      6355,
+      6385
+    ]
+  },
+  "S793": {
+    "phase": "attack",
+    "style": "crouch",
+    "shape": "scales",
+    "element": "earth",
+    "effort": 0.94,
+    "mark": 0.9,
+    "beats": [
+      0.2208,
+      0.46,
+      0.65,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 6386,
+    "finish": 6416,
+    "void": [
+      6417,
+      6447
+    ]
+  },
+  "S794": {
+    "phase": "attack",
+    "style": "raise",
+    "shape": "plume",
+    "element": "fire",
+    "effort": 1.1,
+    "mark": 1.1,
+    "beats": [
+      0.19679999999999997,
+      0.41,
+      0.64,
+      0.9
+    ],
+    "movement": "strike",
+    "lead": "raise",
+    "bank": "school",
+    "start": 6448,
+    "finish": 6478,
+    "void": [
+      6479,
+      6509
+    ]
+  },
+  "S795": {
+    "phase": "attack",
+    "style": "wheel",
+    "shape": "sunwheel",
+    "element": "fire",
+    "effort": 1.15,
+    "mark": 0.98,
+    "beats": [
+      0.216,
+      0.45,
+      0.65,
+      0.91
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 6510,
+    "finish": 6540,
+    "void": [
+      6541,
+      6571
+    ]
+  },
+  "S796": {
+    "phase": "attack",
+    "style": "focus",
+    "shape": "reflection",
+    "element": "water",
+    "effort": 0.83,
+    "mark": 0.9,
+    "beats": [
+      0.2544,
+      0.53,
+      0.68,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": "still",
+    "bank": "school",
+    "start": 6572,
+    "finish": 6602,
+    "void": [
+      6603,
+      6633
+    ]
+  },
+  "S797": {
+    "phase": "attack",
+    "style": "drill",
+    "shape": "orbit",
+    "element": "void",
+    "effort": 0.92,
+    "mark": 1.0,
+    "beats": [
+      0.2208,
+      0.46,
+      0.61,
+      0.9
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 6634,
+    "finish": 6664,
+    "void": [
+      6665,
+      6695
+    ]
+  },
+  "S798": {
+    "phase": "attack",
+    "style": "wing",
+    "shape": "sky",
+    "element": "air",
+    "effort": 1.08,
+    "mark": 1.06,
+    "beats": [
+      0.1824,
+      0.38,
+      0.61,
+      0.89
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 6696,
+    "finish": 6726,
+    "void": [
+      6727,
+      6757
+    ]
+  },
+  "S799": {
+    "phase": "use",
+    "style": "mountain",
+    "shape": "waves",
+    "element": "water",
+    "effort": 1.03,
+    "mark": 0.88,
+    "beats": [
+      0.216,
+      0.45,
+      0.68,
+      0.91
+    ],
+    "movement": "gesture",
+    "lead": "plant",
+    "bank": "school",
+    "start": 6758,
+    "finish": 6788,
+    "void": [
+      6789,
+      6819
+    ]
+  },
+  "S950": {
+    "phase": "use",
+    "style": "dress",
+    "shape": "band",
+    "element": "jade",
+    "effort": 0.66,
+    "mark": 0.77,
+    "beats": [
+      0.192,
+      0.4,
+      0.65,
+      0.87
+    ],
+    "movement": "gesture",
+    "lead": "press",
+    "bank": "school",
+    "start": 6820,
+    "finish": 6850,
+    "void": [
+      6851,
+      6881
+    ]
+  },
+  "S951": {
+    "phase": "use",
+    "style": "serve",
+    "shape": "steam",
+    "element": "jade",
+    "effort": 0.73,
+    "mark": 0.84,
+    "beats": [
+      0.2112,
+      0.44,
+      0.71,
+      0.92
+    ],
+    "movement": "gesture",
+    "lead": "cup",
+    "bank": "school",
+    "start": 6882,
+    "finish": 6912,
+    "void": [
+      6913,
+      6943
+    ]
+  },
+  "S172": {
+    "phase": "attack",
+    "style": "cleave",
+    "shape": "boulder",
+    "element": "earth",
+    "effort": 1.32,
+    "mark": 1.02,
+    "beats": [
+      0.24,
+      0.5,
+      0.68,
+      0.9
+    ],
+    "movement": "strike",
+    "lead": null,
+    "bank": "school",
+    "start": 930,
+    "finish": 960,
+    "void": [
+      961,
+      991
+    ],
+    "asset": "S139"
+  }
+}

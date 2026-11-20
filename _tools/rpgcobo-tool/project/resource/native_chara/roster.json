@@ -719,9 +719,9 @@
   ],
   "motion": "pole",
   "proportions": [
-   0.961,
-   1.12,
-   0.961
+   0.99,
+   1.145,
+   1.025
   ]
  },
  "trav_rensei": {
@@ -1444,9 +1444,9 @@
   ],
   "motion": "iai",
   "proportions": [
-   0.955,
+   0.97,
    1.022,
-   0.955
+   0.99
   ]
  },
  "trav_gendo": {
@@ -2169,9 +2169,9 @@
   ],
   "motion": "pole",
   "proportions": [
-   0.96,
+   0.945,
    1.044,
-   0.96
+   0.95
   ]
  },
  "trav_shizue": {
@@ -2894,9 +2894,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   0.952,
+   1.005,
    0.933,
-   0.952
+   1.035
   ]
  },
  "trav_haruki": {
@@ -3619,9 +3619,9 @@
   ],
   "motion": "pole",
   "proportions": [
-   1.0,
+   0.955,
    0.978,
-   1.0
+   0.955
   ]
  },
  "trav_mitsue": {
@@ -4344,9 +4344,9 @@
   ],
   "motion": "short",
   "proportions": [
-   0.988,
+   0.965,
    0.969,
-   0.988
+   0.965
   ],
   "mask": "cloth"
  },
@@ -5070,9 +5070,9 @@
   ],
   "motion": "bow",
   "proportions": [
-   1.114,
+   1.14,
    1.08,
-   1.044
+   1.075
   ]
  },
  "trav_sayo": {
@@ -5795,9 +5795,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   0.97,
+   1.0,
    0.953,
-   0.97
+   1.015
   ]
  },
  "side_goro": {
@@ -6520,9 +6520,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   1.027,
+   1.04,
    1.044,
-   1.027
+   1.06
   ]
  },
  "side_michio": {
@@ -7245,9 +7245,9 @@
   ],
   "motion": "pole",
   "proportions": [
+   0.965,
    0.982,
-   0.982,
-   0.982
+   0.98
   ]
  },
  "side_kage_ch3": {
@@ -7970,9 +7970,9 @@
   ],
   "motion": "club",
   "proportions": [
-   0.973,
+   0.975,
    1.022,
-   0.973
+   0.99
   ]
  },
  "side_gusai": {
@@ -8695,9 +8695,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   1.027,
+   1.045,
    1.036,
-   1.027
+   1.065
   ]
  },
  "side_lionrider": {
@@ -9420,9 +9420,9 @@
   ],
   "motion": "pole",
   "proportions": [
-   0.964,
+   0.975,
    0.988,
-   0.964
+   1.005
   ]
  },
  "side_kafu_nosword": {
@@ -10145,9 +10145,9 @@
   ],
   "motion": "fist",
   "proportions": [
-   1.045,
+   1.065,
    1.0,
-   1.045
+   1.085
   ]
  },
  "side_hiruto": {
@@ -10870,9 +10870,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   0.964,
+   0.965,
    0.962,
-   0.964
+   0.975
   ]
  },
  "side_ashimita": {
@@ -11595,9 +11595,9 @@
   ],
   "motion": "pole",
   "proportions": [
-   1.018,
+   1.035,
    1.036,
-   1.018
+   1.055
   ]
  },
  "side_ushimo": {
@@ -12320,9 +12320,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   1.045,
+   1.06,
    0.97,
-   1.045
+   1.08
   ]
  },
  "side_sanro": {
@@ -13045,9 +13045,9 @@
   ],
   "motion": "fist",
   "proportions": [
-   1.027,
+   1.025,
    0.912,
-   1.027
+   1.01
   ]
  },
  "side_rui": {
@@ -13770,9 +13770,9 @@
   ],
   "motion": "short",
   "proportions": [
-   0.988,
+   1.005,
    0.957,
-   0.988
+   1.025
   ]
  },
  "side_kasiko": {
@@ -14495,9 +14495,9 @@
   ],
   "motion": "fist",
   "proportions": [
-   0.988,
+   0.985,
    0.931,
-   0.988
+   0.985
   ]
  },
  "side_akodorin": {
@@ -15220,9 +15220,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   0.934,
+   0.94,
    0.981,
-   0.934
+   0.955
   ]
  },
  "side_ryuko": {
@@ -15945,9 +15945,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   0.997,
+   1.01,
    0.969,
-   0.997
+   1.035
   ]
  },
  "side_hanae": {
@@ -16670,9 +16670,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   1.015,
+   1.045,
    0.999,
-   1.015
+   1.07
   ]
  },
  "side_haku": {
@@ -17395,9 +17395,9 @@
   ],
   "motion": "fist",
   "proportions": [
-   1.027,
+   1.045,
    0.978,
-   1.027
+   1.055
   ]
  },
  "side_hayato": {
@@ -18120,9 +18120,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   1.018,
+   1.01,
    0.964,
-   1.018
+   1.02
   ]
  },
  "side_yosai": {
@@ -18845,9 +18845,9 @@
   ],
   "motion": "fist",
   "proportions": [
-   0.973,
-   1.16,
-   0.973
+   1.08,
+   1.205,
+   1.11
   ]
  },
  "side_h_archer": {
@@ -23920,9 +23920,9 @@
   ],
   "motion": "fist",
   "proportions": [
-   1.3968,
-   1.244,
-   1.4
+   1.355,
+   1.09,
+   1.37
   ]
  },
  "side_h_scout": {
@@ -60173,9 +60173,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   0.973,
+   0.975,
    1.022,
-   0.973
+   0.99
   ]
  },
  "side_takakana": {
@@ -61623,9 +61623,9 @@
   ],
   "motion": "club",
   "proportions": [
-   1.1476,
+   1.15,
    1.0618,
-   1.1576
+   1.16
   ]
  },
  "side_ryoichi": {
@@ -62348,9 +62348,9 @@
   ],
   "motion": "short",
   "proportions": [
-   0.964,
+   0.985,
    1.0,
-   0.964
+   1.0
   ]
  },
  "side_sanae": {
@@ -141377,9 +141377,9 @@
   ],
   "motion": "blade",
   "proportions": [
-   1.045,
+   1.065,
    1.0,
-   1.045
+   1.085
   ]
  },
  "side_gesshin": {

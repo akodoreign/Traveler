@@ -1,0 +1,249 @@
+// Yosai's Dragon's Breath on the first landed Void critical of the cast.
+local dragonPath = "/resource/native_effects/tattoo_dragon/tattoo_dragon.pm";
+local morphBank = "/resource/native_chara/tattoo_morph.mot";
+local inkPath = "/resource/efx/rt/tattoo_morph_ink.ptd";
+local jetPath = "/resource/efx/rt/tattoo_stream.ptd";
+
+::Rokugan.addTattooMorphClips <- function( actor, key ){
+	if( key != "side_yosai" || !::getResource( morphBank ) ) return;
+	actor.animemap["tattoo_morph_out"] <- { st=0, en=30, spd=30.0, loop=false, replay=true };
+	actor.animemap["tattoo_morph_in"] <- { st=31, en=61, spd=30.0, loop=false, replay=true };
+};
+
+::Rokugan.tattooMorphMotion <- function(){
+	return ::getMotionData( ::getResource( morphBank ) );
+};
+
+::Rokugan.useTattooDragon <- function( chr, skill, actor ){
+	return chr && chr.dataid == "P132" && skill["rt_dragonbreath"] && skill["rt_selfburn"] &&
+		skill["rt_vcrit"] && skill["cmdtgt"] == 7 && actor && actor["nativeBody"] &&
+		actor["nativeKey"] == "side_yosai" && actor.animemap["tattoo_morph_out"] &&
+		::getResource( dragonPath ) && ::getResource( inkPath ) && ::getResource( jetPath );
+};
+
+::Rokugan.deferTattooDragon <- function( stage, command ){
+	local battle = stage["battle"];
+	return battle && this.useTattooDragon( command.src, command.skill, battle.getChara3D( command.src ) );
+};
+
+local ease = function( t, a, b ){
+	local p = Math.clamp( (t-a)/(b-a), 0.0, 1.0 );
+	return p*p*(3.0-2.0*p);
+};
+
+local blend = function( start, end, w ){
+	return Vector3D( start ).add( Vector3D( end ).sub( start ).scale( w ) );
+};
+
+local worldBone = function( obj, bone, fallback ){
+	return bone ? bone.mat.getTranslation( Vector3D() ).transform( obj.gmat ) : Vector3D( fallback );
+};
+
+local dragonYaw = function( from, to ){
+	return Math.atan2( to.x-from.x, to.z-from.z ) - Math.HPI;
+};
+
+class RokuganTattooCameraMotion extends RPGCameraMotion
+{
+	focus = null;
+	push = 0.0;
+
+	function update( dt ){}
+
+	function modifyCamera( cw ){
+		if( !focus || push <= 0.0 ) return;
+		local correction = Vector3D( focus ).sub( cw.to );
+		local distance = correction.length();
+		if( distance > 3.4 ) correction.scale( 3.4/distance );
+		cw.to.add( correction.scale( push * 0.72 ) );
+		cw.zoom *= 1.0 + 0.27 * push;
+	}
+}
+local tattooCameraMotion = RokuganTattooCameraMotion;
+
+local particle = function( stage, live, path, p, size ){
+	local fx = SK3DEffect( path );
+	fx.efx = { efx=path };
+	fx.pos( p );
+	fx.scale( size );
+	stage.scn.addObject( fx );
+	live .. fx;
+	fx.startParticle();
+};
+
+local emitCoil = function( stage, live, tattoo, phase, returning ){
+	// The same ribbon threads through the chest in both directions.
+	local time = returning ? 1.0-phase : phase;
+	local angle = (time * 1.62 - .12) * Math.PI2;
+	for( local i = 0; i < 9; i++ ){
+		local k = i / 8.0;
+		local a = angle + k * Math.PI2 * 0.68;
+		local r = (0.13 + 0.65 * Math.sin( k * Math.PI )) * (0.46 + 0.54 * time);
+		local y = (-0.68 + 1.43*k) * (0.44 + 0.56*time);
+		local p = Vector3D( tattoo ).add( r * Math.cos( a ), y, r * Math.sin( a ) );
+		particle( stage, live, inkPath, p, 0.48 + .42 * Math.sin( k * Math.PI ) );
+	}
+	particle( stage, live, inkPath, tattoo, 0.70 + 0.94 * Math.sin( phase * Math.PI ) );
+};
+
+local formationPath = function( stage, battle, victim ){
+	local list = [], result = [];
+	foreach( e in battle.enemies ){
+		if( !e || (e != victim && e.isDead()) ) continue;
+		local rp = battle.getChara3D( e );
+		if( !rp ) continue;
+		local point = Vector3D( rp.pos ).add( 0, rp.bnd.y * 0.80, 0 );
+		list .. { point=point, screen=Vector3D( point ).transform( stage.cam.viewmat ), victim=(e == victim) };
+	}
+	if( !length( list ) ) return null;
+	list.sort( @( e ) e.screen.x + 0.24 * e.screen.y );
+	local inv = Matrix();
+	stage.cam.viewmat.invert34u( inv );
+	local across = Vector3D( 1, 0, 0 ).transform0( inv ).scale( 1, 0, 1 ).normalize();
+	// Lead past the edges of the enemy formation. The extended rays are purely visual.
+	result .. Vector3D( list[0].point ).add( Vector3D( across ).scale( -1.28 ) ).add( 0, .25, 0 );
+	local hit = null;
+	foreach( e in list ){
+		if( e.victim ) hit = (length( result )+0.0) / (length( list )+1.0);
+		result .. e.point;
+	}
+	result .. Vector3D( list.last().point ).add( Vector3D( across ).scale( 1.42 ) ).add( 0, .15, 0 );
+	return { points=result, hit=hit ?? .50 };
+};
+
+local aimPoint = function( points, t ){
+	local p = (length( points )-1)*t;
+	local i = Math.min( int( p ), length( points )-2 );
+	return blend( points[i], points[i+1], p-i );
+};
+
+local emitJet = function( stage, live, dragon, mouth, aim, target, ramp, intensity ){
+	local start = worldBone( dragon, mouth, dragon.pos );
+	local aimWorld = worldBone( dragon, aim, start );
+	local tangent = Vector3D( aimWorld ).sub( start ).normalize();
+	local ray = Vector3D( target ).sub( start );
+	local distance = ray.length();
+	if( distance < .13 ) return;
+	// The plume starts along the live jaw axis, then curves onto the current sweep line.
+	local outlet = Vector3D( start ).add( Vector3D( tangent ).scale( .12 ) );
+	local count = Math.max( 2, Math.min( 21, int( distance * ramp / .30 )+1 ) );
+	for( local j = 0; j < count; j++ ){
+		local f = (j + .18) * ramp / (count - .72);
+		local curve = 3.0 * f * (1.0-f) * (1.0-f);
+		local point = Vector3D( outlet ).add( Vector3D( ray ).scale( f ) )
+			.add( Vector3D( tangent ).scale( curve * Math.min( 1.06, distance * .20 ) ) );
+		particle( stage, live, jetPath, point, intensity * (.62 + .81*f) );
+	}
+};
+
+::SkillCommand.rt_tattooShown <- false;
+::SkillCommand._rt_tattooDragonVoid <- function( dmg, stage, battle, actor ){
+	local body = actor.nativeBody, path = formationPath( stage, battle, dmg.dst );
+	if( !path ) return false;
+	local tattoo = worldBone( body, body.findBone( "chest" ), Vector3D( actor.pos ).add( 0, actor.bnd.y + .35, 0 ) );
+	local base = Vector3D( actor.pos ), inverse = Matrix();
+	actor.gmat.invert34u( inverse );
+	local localTattoo = Vector3D( tattoo ).transform( inverse );
+	local home = Vector3D( body.pos ), homeScale = Vector3D( body.scale );
+	local prime = aimPoint( path.points, .50 );
+	local cameraWork = stage.camwork, shot = null, dragon = null, layer = null;
+	local live = [], error = null, hit = false;
+	local modelScale = .019, start = skGetTime();
+	local launchAt = 1100.0, breathAt = 1315.0, fireAt = 1630.0, returnAt = 2615.0, endAt = 3600.0;
+	local mainPhase = 0, nextCoil = 0.0, nextFire = fireAt;
+	try{
+		dragon = SK3DObject( dragonPath );
+		local mouth = dragon.findBone( "mouth" ), aim = dragon.findBone( "mouth_aim" );
+		if( !mouth || !aim ) return false;
+		layer = actor.anime2( #{ id="tattoo_morph_out" } );
+		if( !layer ) return false;
+		layer.locked = 1;
+		dragon.pos( tattoo );
+		dragon.scale( .0002 );
+		dragon.rot.setHPB( dragonYaw( base, prime ), 0.0, 0.0 );
+		stage.scn.addObject( dragon );
+		dragon.anime( 0, 35, 32.0, false );
+		if( cameraWork instanceof RPGCameraworkFixed ){
+			shot = tattooCameraMotion( {} );
+			cameraWork.addMotion( shot );
+		}
+		start = skGetTime();
+		while( ::rpgstage == stage && stage.battle == battle && actor.nativeBody == body && !dmg.src.isDead() ){
+			local t = skGetTime()-start;
+			if( t >= endAt ) break;
+			if( mainPhase == 0 && t >= launchAt ){
+				mainPhase = 1;
+				dragon.anime( 36, 60, 24.0, true, .11 );
+			}
+			if( mainPhase == 1 && t >= breathAt ){
+				mainPhase = 2;
+				dragon.anime( 61, 96, 26.5, false, .10 );
+			}
+			if( mainPhase == 2 && t >= returnAt ){
+				mainPhase = 3;
+				dragon.anime( 97, 128, 32.0, false, .12 );
+				layer.locked = 0;
+				layer = actor.anime2( #{ id="tattoo_morph_in" } );
+				if( layer ) layer.locked = 1;
+				nextCoil = t;
+			}
+
+			local open = ease( t, 155.0, launchAt ), close = ease( t, returnAt, endAt-30.0 );
+			local dissolve = ease( t, 215.0, 890.0 ) * (1.0-ease( t, returnAt+205.0, endAt-42.0 ));
+			local morph = open * (1.0-close);
+			local bodyWidth = 1.0 - .993*dissolve;
+			local bodyLength = 1.0 - .992*dissolve + .07 * Math.sin( Math.PI * dissolve );
+			body.scale( homeScale.x*bodyWidth, homeScale.y*bodyLength, homeScale.z*bodyWidth );
+			body.pos( blend( home, localTattoo, dissolve * .92 ) );
+			body.matdirty = true;
+
+			dragon.pos( blend( tattoo, base, morph ) );
+			dragon.scale( .0002 + (modelScale-.0002) * morph );
+			local s = Math.clamp( (t-fireAt)/(returnAt-fireAt), 0.0, 1.0 );
+			local sweep = s < .68 ? ease( s, 0.0, .68 ) : 1.0 - .78*ease( s, .68, 1.0 );
+			local pan = aimPoint( path.points, sweep );
+			local gaze = blend( prime, pan, ease( t, breathAt, fireAt ) * (1.0-close) );
+			dragon.rot.setHPB( dragonYaw( base, gaze ), 0.0, 0.0 );
+			dragon.matdirty = true;
+
+			if( shot ){
+				shot.focus = blend( base, prime, .51 ).add( 0, .95 + 1.05*morph, 0 );
+				shot.push = ease( t, 90.0, 690.0 ) * (1.0-ease( t, returnAt+115.0, endAt-30.0 ));
+			}
+			if( t >= nextCoil && (t < 985.0 || (t >= returnAt && t < endAt-86.0)) ){
+				local returning = t >= returnAt;
+				local coilPhase = returning ? (t-returnAt)/(endAt-returnAt) : t/985.0;
+				emitCoil( stage, live, tattoo, coilPhase, returning );
+				nextCoil = t + 78.0;
+			}
+			if( t >= nextFire && t < returnAt-62.0 ){
+				local coverage = ease( t, fireAt-25.0, fireAt+145.0 );
+				local power = .79 + .23 * (1.0-ease( t, returnAt-180.0, returnAt ));
+				emitJet( stage, live, dragon, mouth, aim, pan, coverage, power );
+				this.rt_tattooShown = true;
+				nextFire = t + 46.0;
+			}
+			if( !hit && t >= fireAt && (sweep >= path.hit || s >= .68) ){
+				hit = true;
+				this._rt_attackAction_cp( dmg );
+			}
+			sleep( 16 );
+		}
+	}catch( ex ){ error = ex; }
+
+	if( shot && cameraWork.cammots ) cameraWork.cammots.removeValue( shot );
+	foreach( fx in live ) if( fx.alive ) fx.kill();
+	if( dragon ) dragon.kill();
+	body.scale( homeScale );
+	body.pos( home );
+	body.matdirty = true;
+	if( layer ){
+		layer.locked = 0;
+		layer.animating = false;
+	}
+	if( ::rpgstage != stage || stage.battle != battle ) return true;
+	if( actor.nativeBody == body && !dmg.src.isDead() && actor.animlayers.layers[0] == layer )
+		actor.anime2( #{ id="stand" } );
+	if( error && hit ) throw error;
+	return hit;
+};

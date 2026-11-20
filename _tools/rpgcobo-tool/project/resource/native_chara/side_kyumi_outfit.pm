@@ -6,10 +6,10 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c1f3555"
+		name = "c192c49"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x020816ff
+		basecol = 0x010510ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -19,10 +19,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c243e63"
+		name = "c223758"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x030b1fff
+		basecol = 0x030818ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -32,114 +32,75 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c294166"
+		name = "c2c4d7f_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x040c21ff
-		rough = 0.500000
+		basecol = 0x051237ff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
-		name = "c365d94"
+		name = "c487298_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x081b4dff
-		rough = 0.500000
+		basecol = 0x0f2b51ff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
-		name = "c4b7599"
+		name = "c588cba_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x112d52ff
-		rough = 0.500000
+		basecol = 0x18447fff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
-		name = "c517fa5"
+		name = "c757a7b_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x143761ff
-		rough = 0.500000
+		basecol = 0x2d3233ff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
-		name = "c5585ad"
+		name = "ca3aaac_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x163c6cff
-		rough = 0.500000
+		basecol = 0x5f686bff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
-		name = "c639bca"
+		name = "cbbb4a7"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x1f5598ff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "c768088"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x2e373fff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "ca5b3bd"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x617583ff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "cbabbb9"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x7f807dff
+		basecol = 0x807664ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -162,6 +123,19 @@ material = [
 		texture2 = null
 	}
 	{
+		name = "cebe7dc"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0xd5cdb8ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
 		name = "cece8de"
 		tec = "pbr.basic"
 		mtype = 0
@@ -175,16 +149,16 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cecf1f1"
+		name = "cece8de_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xd7e1e1ff
-		rough = 0.500000
+		basecol = 0xd7cfbbff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 ]

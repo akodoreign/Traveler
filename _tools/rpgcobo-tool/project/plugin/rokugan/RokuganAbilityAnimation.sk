@@ -1,0 +1,332 @@
+// Active ability animation, keyed to the real command phase and equipped weapon rig.
+local root = "/resource/native_chara/ability/";
+local markRoot = "/resource/efx/rt/ability/";
+local index = ::getResource( root .. "spell-index.json" );
+local profiles = index ? decodeJSON( index.loadData() ) : {};
+foreach( filename in ["school-index.json","support-index.json"] ){
+	local file = ::getResource( root .. filename );
+	if( file ) foreach( id, row in decodeJSON( file.loadData() ) ) profiles[id] <- row;
+}
+local profileByName = {};
+local loadedMotions = {};
+local protectedClips = { void_bolt_release=true, void_critical_kakita=true, void_critical_yari=true };
+local farHand = { pole=true, bow=true, gun=true };
+local groundShapes = { steps=true, coals=true, basalt=true, root=true, fault=true, rubble=true, plates=true, scree=true, boulder=true };
+local risingShapes = { sunrise=true, thread=true, seven=true, lotus=true, rekindle=true, well=true, petals=true };
+local wardShapes = { shingles=true, tiles=true, bars=true, enclosure=true, crescent=true, crown=true, screen=true, shield=true };
+
+::Rokugan.activeAbilityProfile <- function( skill ){
+	if( !skill ) return null;
+	local name = skill["name"], candidates = profileByName[name];
+	if( !candidates ){
+		candidates = [];
+		foreach( id, row in profiles ){
+			local canonical = ::conf.skill[id];
+			if( canonical && canonical.name == name ) candidates.append( [ id, row, canonical ] );
+		}
+		profileByName[name] <- candidates;
+	}
+	foreach( pair in candidates ){
+		local original = pair[2];
+		// Boost and Trickster use shallow copies, retaining the canonical callbacks.
+		if( skill == original || (skill["useact"] == original["useact"] &&
+			skill["atkact"] == original["atkact"] && skill["rt_kata"] == original["rt_kata"]) )
+			return pair;
+	}
+	return null;
+};
+
+::SkillCommand.rtAbilitySelection <- null;
+::Rokugan._rt_activeAbilityPre <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( command ){
+	local original = command.src instanceof ::RPGPlayer && command.skill ?
+		this.activeAbilityProfile( command.skill ) : null;
+	this._rt_activeAbilityPre( command );
+	// Kata become clones of the weapon strike or a no-strike Wait carrying the same name.
+	// Copy becomes the foe's last skill with its own callbacks and target selection.
+	command.rtAbilitySelection = null;
+	if( original && command.skill && command.skill != ::conf.skill["S000"] &&
+		((original[2]["rt_kata"] && original[2].name == command.skill.name) ||
+		 original[0] == "S505" || (original[2]["rt_jade_raise"] && command.skill["rt_jade_raise"])) )
+		command.rtAbilitySelection = original;
+};
+
+local onStage = @( stage, battle ) ::rpgstage == stage && stage["battle"] == battle;
+local pointOn = @( actor ) Vector3D( 0, Math.clamp( actor.bnd.y, .35, 2.3 ), 0 ).transform( actor.gmat );
+
+local gesturePoint = function( actor ){
+	local body = actor["nativeBody"];
+	local bone = body ? body.findBone( farHand[actor.nativeDefeatFamily] ? "handF" : "handN" ) : null;
+	return bone ? bone.mat.getTranslation( Vector3D() ).transform( body.gmat ) : pointOn( actor );
+};
+
+local makeMark = function( stage, path, at, size ){
+	local fx = SK3DEffect( path );
+	fx.efx = { efx=path };
+	fx.pos( at );
+	fx.scale( size );
+	stage.scn.addObject( fx );
+	fx.startParticle();
+	return fx;
+};
+
+local curvePoint = function( origin, target, side, shape, t ){
+	local p = Vector3D( origin ).add( Vector3D( target ).sub( origin ).scale( t ) );
+	local middle = 4.0*t*(1.0-t), sway = .0, lift = .0;
+	switch( shape ){
+		case "ribbon":
+			sway = .30 * middle * Math.sin( t*4.0*Math.PI );
+			lift = .20 * middle;
+			break;
+		case "fork":
+			sway = .21 * middle * Math.sin( t*6.0*Math.PI );
+			lift = .81 * middle;
+			break;
+		case "crescents":
+			sway = .47 * middle;
+			lift = .23 * middle;
+			break;
+		case "spiral":
+			sway = .37 * middle * Math.cos( t*4.0*Math.PI );
+			lift = middle * (.41 + .29 * Math.sin( t*4.0*Math.PI ));
+			break;
+		case "shards":
+			sway = .25 * middle * Math.sin( t*2.0*Math.PI );
+			lift = .50 * middle;
+			break;
+		case "comet":
+			lift = 1.06 * middle + .22*Math.sin( t*Math.PI );
+			break;
+		case "pillars":
+			lift = .13*middle*(1+Math.cos(12*t*Math.PI));
+			break;
+		case "fogCurl":
+			sway = .56 * middle * Math.sin( 3*t*Math.PI );
+			lift = .21 * middle;
+			break;
+		case "web":
+			sway = .44 * middle * Math.sin( t*Math.PI );
+			lift = (.91 - .68*t) * middle;
+			break;
+		case "sunwheel":
+			lift = 1.43 * middle;
+			sway = -.32 * middle;
+			break;
+		case "knives":
+			sway = .30*middle;
+			lift = .17 + .12 * Math.cos( 3*t*Math.PI );
+			break;
+		case "breath":
+			sway = .13 * middle * Math.cos( 5*t*Math.PI );
+			lift = .15 * middle;
+			break;
+		default:
+			sway = .13 * middle;
+			lift = .23 * middle;
+			break;
+	}
+	return p.add( Vector3D( side ).scale( sway ) ).add( 0, lift, 0 );
+};
+
+local launch = function( stage, battle, caster, target, dmg, id, row, boost ){
+	local source = gesturePoint( caster );
+	local dest = pointOn( target );
+	local inverse = Matrix();
+	stage.cam.viewmat.invert34u( inverse );
+	local side = Vector3D( 1, 0, 0 ).transform0( inverse ).scale( 1, 0, 1 ).normalize();
+	if( dmg.miss ) dest.add( Vector3D( side ).scale( .46 ) ).add( 0, .46, 0 );
+	local path = markRoot .. id .. ".ptd";
+	local radius = row.mark * boost;
+	local moving = makeMark( stage, path, source, radius );
+	local start = skGetTime(), next = 0.0;
+	local duration = row.travel;
+	try{
+		while( onStage( stage, battle ) ){
+			local elapsed = skGetTime()-start;
+			local t = Math.clamp( elapsed/duration, 0.0, 1.0 );
+			local point = curvePoint( source, dest, side, row.shape, t );
+			moving.pos( point );
+			moving.matdirty = true;
+			if( t >= 1.0 ) break;
+			if( elapsed >= next ){
+				makeMark( stage, path, point, radius*(.59-.25*t) );
+				next = elapsed + 64.0;
+			}
+			sleep( 16 );
+		}
+	}catch( ex ){
+		if( moving.alive ) moving.kill();
+		throw ex;
+	}
+	if( moving.alive ) moving.kill();
+	if( onStage( stage, battle ) && !dmg.miss ){
+		makeMark( stage, path, dest, radius*1.22 );
+		if( boost > 1.0 && ::getResource( markRoot .. "void_echo.ptd" ) )
+			makeMark( stage, markRoot .. "void_echo.ptd", dest, radius*1.65 );
+	}
+};
+
+local placeOnTarget = function( stage, id, row, target, strength ){
+	local at = pointOn( target );
+	local radius = row.mark * strength;
+	local path = markRoot .. id .. ".ptd";
+	if( groundShapes[row.shape] ){
+		local floor = Vector3D( target.pos ).add( 0,.27,0 );
+		makeMark( stage, path, floor, radius*1.08 );
+		makeMark( stage, path, Vector3D( floor ).add( .34,.12,.19 ), radius*.64 );
+	}else if( risingShapes[row.shape] ){
+		makeMark( stage, path, Vector3D( at ).add( 0,.52,0 ), radius );
+		makeMark( stage, path, Vector3D( at ).add( 0,-.29,0 ), radius*.62 );
+	}else if( wardShapes[row.shape] ){
+		makeMark( stage, path, Vector3D( at ).add( .24,0,.29 ), radius*1.19 );
+		makeMark( stage, path, Vector3D( at ).add( -.31,-.06,-.2 ), radius*.62 );
+	}else{
+		makeMark( stage, path, at, radius );
+	}
+	if( strength > 1.0 && ::getResource( markRoot .. "void_echo.ptd" ) )
+		makeMark( stage, markRoot .. "void_echo.ptd", at, radius*1.37 );
+};
+
+local playMotion = function( actor, id, row, isVoid ){
+	local family = actor["nativeDefeatFamily"];
+	if( !family || !actor["animemap"] || !actor["nativeBody"] ) return null;
+	local key = (row["bank"] || "spells") .. "_" .. family;
+	local data = loadedMotions[key];
+	if( !data ){
+		local file = ::getResource( root .. key .. ".mot" );
+		if( !file ) return null;
+		data = ::getMotionData( file );
+		loadedMotions[key] <- data;
+	}
+	if( !data ) return null;
+	local span = isVoid ? row["void"] : null;
+	local clip = "_active_ability_" .. id .. (span ? "_void" : "");
+	actor.animemap[clip] <- {
+		st=span ? span[0] : row.start, en=span ? span[1] : row.finish,
+		spd=30.0, loop=false, replay=true
+	};
+	local layer = actor.anime2( { id=clip } );
+	if( layer ) layer.partsmap = data.partsmap;
+	return layer;
+};
+
+local strikeMark = function( stage, id, row, actor, target, dmg, strength ){
+	local radius = row.mark * strength;
+	local where = pointOn( target );
+	local origin = pointOn( actor );
+	local across = Vector3D( where ).sub( origin ).scale( 1,0,1 );
+	if( across.length() > .05 ) across.normalize();
+	local path = markRoot .. id .. ".ptd";
+	if( dmg.miss ) where.add( 0, .48, 0 );
+	local accent = Vector3D( where ).sub( Vector3D( across ).scale( .27 ) );
+	makeMark( stage, path, accent, radius );
+	switch( row["style"] ){
+		case "pounce":
+		case "raise":
+		case "wing":
+			makeMark( stage, path, Vector3D( accent ).add( 0,.51,0 ), radius*.67 );
+			break;
+		case "crosscut":
+		case "wheel":
+		case "feint":
+			makeMark( stage, path, Vector3D( accent ).add( Vector3D( across ).scale( .61 ) ), radius*.71 );
+			break;
+		case "hammer":
+		case "sweep":
+		case "crush":
+			makeMark( stage, path, Vector3D( target.pos ).add( 0,.26,0 ), radius*.93 );
+			break;
+	}
+	if( !dmg.miss && strength > 1.0 && ::getResource( markRoot .. "void_echo.ptd" ) )
+		makeMark( stage, markRoot .. "void_echo.ptd", where, radius*1.42 );
+};
+
+::SkillCommand.rtAbilityOrdinary <- null;
+::SkillCommand.rtAbilityVoid <- null;
+::SkillCommand._rt_activeAbilityAct <- ::SkillCommand.act;
+::SkillCommand.act <- function( func, ctx=null ){
+	if( !(src instanceof ::RPGPlayer) || !skill || (ctx && ctx["chr"] != src) )
+		return this._rt_activeAbilityAct( func, ctx );
+	local profile = rtAbilitySelection || ::Rokugan.activeAbilityProfile( skill );
+	if( !profile ) return this._rt_activeAbilityAct( func, ctx );
+	local normal = src.getAttackSkill();
+	if( !rtAbilitySelection && !skill["rt_borrowed"] && normal == profile[2] &&
+		skill["consume"] == normal["consume"] )
+		return this._rt_activeAbilityAct( func, ctx );
+	if( ::Rokugan["hasHeroSignatureAction"] && ::Rokugan.hasHeroSignatureAction( this, func ) )
+		return this._rt_activeAbilityAct( func, ctx );
+	local id = profile[0], row = profile[1], dmg = ctx ? ctx["dmg"] : null;
+	local isAttack = row.phase == "attack";
+	if( isAttack ? (!dmg || dmg.skip || func != skill["atkact"]) :
+		(ctx || !func || func != skill["useact"]) )
+		return this._rt_activeAbilityAct( func, ctx );
+	if( isAttack && rt_critVisual && protectedClips[rt_critVisual["clip"]] )
+		return this._rt_activeAbilityAct( func, ctx );
+
+	local stage = ::rpgstage, battle = stage["battle"];
+	local caster = battle ? battle.getChara3D( src ) : null;
+	local target = ctx ? ctx["dst3d"] : null;
+	local asset = skill["rt_jade_raise"] && skill.name == "Earth Becomes Jade" ? "S363" : (row["asset"] || id);
+	local path = markRoot .. asset .. ".ptd";
+	if( !caster || !caster["nativeBody"] || !caster["manuaction"] || !::getResource( path ) )
+		return this._rt_activeAbilityAct( func, ctx );
+
+	local boostRank = skill["rt_vcrit"];
+	local isVoid = (isAttack ? (!dmg.miss && dmg.critical) : true) &&
+		(boostRank == 15 || boostRank == 30 || boostRank == 50);
+	local once = isVoid ? rtAbilityVoid != id : rtAbilityOrdinary != id;
+	if( !isAttack && !once ) return this._rt_activeAbilityAct( func, ctx );
+	local strength = isVoid ? (boostRank == 50 ? 1.64 : (boostRank == 30 ? 1.43 : 1.24)) : 1.0;
+	local native = func, context = ctx, selected = dsts;
+	if( typeof( func ) == SS_TABLE ){
+		local script = func["scp"] || ::skillscriptmap[func["id"]];
+		native = length( script ) ? compilestring_c( script, script ) : null;
+		context = { ...func, ...ctx };
+	}
+	if( isVoid ) rtAbilityVoid = id;
+	else rtAbilityOrdinary = id;
+	return this._rt_activeAbilityAct( function(){
+		local layer = null;
+		try{
+			layer = once ? playMotion( rp3d, id, row, isVoid ) : null;
+			if( layer ){
+				layer.locked = @() layer.animating;
+				anilyr = layer;
+			}
+			local release = skGetTime() + (layer ? (row.beats[2]+(isVoid && row["void"] ? .07 : .0))*1000 : 0);
+			if( layer && onStage( stage, battle ) ) makeMark( stage, path, gesturePoint( rp3d ), row.mark*.48*strength );
+			while( skGetTime() < release && onStage( stage, battle ) ) sleep( 16 );
+			if( onStage( stage, battle ) ){
+				if( isAttack && target ){
+					if( row["travel"] ) launch( stage, battle, rp3d, target, dmg, asset, row, strength );
+					else strikeMark( stage, asset, row, rp3d, target, dmg, strength );
+				}else if( !isAttack ){
+					local placed = false;
+					foreach( member in (selected || []) ){
+						local recipient = battle.getChara3D( member );
+						if( !recipient ) continue;
+						placeOnTarget( stage, asset, row, recipient, strength );
+						placed = true;
+					}
+					if( !placed ) makeMark( stage, path, gesturePoint( rp3d ), row.mark*strength );
+				}
+			}
+			printf( "ABILITY PRESENT %S %S %S\n" % (id, row.phase, isVoid ? "void" : "ordinary") );
+		}catch( ex ){
+			printf( "ABILITY PRESENT fallback %S %S\n" % (id, ex) );
+			if( layer ) layer.locked = 0;
+		}
+		// The original callback is performed once, even if presentation failed.
+		try{
+			if( native ) native();
+			local deadline = skGetTime() + 1200.0;
+			while( layer && layer.animating && skGetTime() < deadline && onStage( stage, battle ) )
+				sleep( 16 );
+		}catch( ex ){
+			if( layer ) layer.locked = 0;
+			throw ex;
+		}
+		if( layer ) layer.locked = 0;
+	}, context );
+};
+

@@ -1,0 +1,285 @@
+﻿Skill,Name,Status,Category,Phase,Use callback,Attack callback,Type,Elements,Player route,Trickster,Note
+S011,Heavy Slash,New staged animation,Other active,attack,use_normal,atk_normal,attack,1,P105 soldier School art,,
+S035,Heal,New staged animation,Other active,use,use_charge,noop,heal,,,Trickster includes unused player row P000 at Lv1 | Trickster includes unused player row P005 at Lv1,
+S040,Cure,New staged animation,Other active,use,use_charge,noop,heal,,,Trickster includes unused player row P001 at Lv1,
+S043,Raise,New staged animation,Other active,use,use_darkcharge,noop,heal,,,Trickster includes unused player row P001 at Lv2,
+S073,Fire,New staged animation,Other active,attack,use_charge,noop,attack,8,,Trickster includes unused player row P005 at Lv1,
+S074,Greater Fire,New staged animation,Other active,attack,use_darkcharge,noop,attack,8,,Trickster includes unused player row P005 at Lv2,
+S076,Ice,New staged animation,Other active,attack,use_charge,noop,attack,16,,Trickster includes unused player row P005 at Lv1,
+S100,Katana Strike,New staged animation,Other active,attack,use_normal,atk_normal,attack,1,,Trickster includes unused player row P001 at Lv1,
+S101,Yari Strike,New staged animation,Other active,attack,use_normal,atk_normal,attack,2,,Trickster includes unused player row P001 at Lv1,
+S102,Tanto Strike,New staged animation,Other active,attack,use_normal,atk_normal,attack,4,,Trickster includes unused player row P008 at Lv1,
+S105,Bo Strike,New staged animation,Other active,attack,use_normal,atk_normal,attack,32,,Trickster includes unused player row P000 at Lv1,
+S106,Throw,New staged animation,Other active,attack,use_normal,atk_normal,attack,4096,,Trickster includes unused player row P000 at Lv1,
+S107,Jade Yari Strike,New staged animation,Other active,attack,use_normal,atk_normal,attack,2050,,Trickster includes unused player row P005 at Lv1,
+S110,Razor's Edge,New staged animation,School,use,noop,,noop,,P100 Hiruma Natsuko Lv1 | P100 Hiruma school,Trickster can borrow P100 Lv1 | Trickster's direct talent pool,
+S120,Iaijutsu: Focus,New staged animation,School,use,noop,,noop,,"P101 Kakita school, Focus below maximum",Trickster's direct talent pool,
+S121,Iaijutsu: Strike,New staged animation,School,attack,use_normal,atk_normal,attack,1,"P101 Kakita school, Focus above zero",Trickster's direct talent pool,
+S122,Deduce,Signature route with staged fallback,School,use,use_charge,noop,attack,1,P102 Kitsuki school | P105 clerk School art,Trickster's direct talent pool,
+S123,Command,New staged animation,School,use,use_charge,,buff,,P103 Akodo school,Trickster's direct talent pool,
+S124,Attune,New staged animation,School,use,noop,,noop,,P104 Isawa school,Trickster's direct talent pool,
+S125,Many Faces: Steal,New staged animation,Other active,attack,use_charge,noop,attack,1,P105 shinobi School art,,
+S126,Barter Coin,New staged animation,School,attack,use_normal,atk_normal,attack,0,"P106 Ide school, Barter Coin choice",Trickster's direct talent pool,
+S127,Ume-baa's Poultice,Signature route with staged fallback,School,use,use_charge,noop,heal,,"P107 Recipe, ingredients",Trickster's recipe pool,
+S132,Pocket Sand,New staged animation,School,attack,use_normal,atk_normal,attack,0,P122 Squeak Lv1,Trickster can borrow P122 Lv1,
+S138,Amaterasu's Fire,New staged animation,Spell,attack,use_charge,noop,attack,2112,P124 Isawa Michio Lv1,Trickster can borrow P124 Lv1,
+S139,Troll-Breaker,New staged animation,School,attack,use_normal,atk_normal,attack,4096,P123 Hiruma Goro Lv1,Trickster can borrow P123 Lv1,
+S140,Poisoned Edge,New staged animation,School,attack,use_normal,atk_normal,attack,4,"P105 Shosuro Mitsue Lv3, Shinobi outfit",,
+S141,Metsubishi,New staged animation,School,attack,use_charge,noop,attack,0,"P105 Shosuro Mitsue Lv22, Shinobi outfit",,
+S142,Shuriken Fan,Signature route with staged fallback,School,attack,use_normal,atk_normal,attack,4,"P105 Shosuro Mitsue Lv6, Shinobi outfit",,
+S143,Kitsu Takeo: Charge,New staged animation,Support,attack,use_charge,noop,attack,2,,,Support caller; visiting guest supplies the named action
+S144,Yogo Mai: Ward,New staged animation,Support,use,use_charge,,buff,,,,Support caller; visiting guest supplies the named action
+S145,Ide Fujio: Scandalous Letter,New staged animation,Support,attack,use_normal,atk_normal,attack,0,,,Support caller; visiting guest supplies the named action
+S146,Daidoji Sakura: Blank Scroll,New staged animation,Support,use,use_charge,,buff,,,,Support caller; visiting guest supplies the named action
+S147,Landslide,New staged animation,School,attack,use_charge,noop,attack,512,P125 Gonta Lv1,Trickster can borrow P125 Lv1,
+S148,Berserk Smash,New staged animation,School,attack,use_normal,atk_normal,attack,8,P126 Hiruma Kage Lv1,Trickster can borrow P126 Lv1,
+S154,Mend-Name Stick,New staged animation,Spell,use,use_charge,noop,heal,128,P122 Squeak Lv1,Trickster can borrow P122 Lv1,
+S155,Armor Stick,New staged animation,Spell,use,use_charge,,buff,512,P122 Squeak Lv8,Trickster can borrow P122 Lv8,
+S156,Warrior's Stick,New staged animation,Spell,use,use_charge,,buff,512,P122 Squeak Lv12,Trickster can borrow P122 Lv12,
+S157,Sunlit Stick,New staged animation,Spell,use,use_charge,noop,heal,128,P122 Squeak Lv16,Trickster can borrow P122 Lv16,
+S158,Life Stick,New staged animation,Spell,use,use_charge,noop,heal,128,P122 Squeak Lv22,Trickster can borrow P122 Lv22,
+S159,Evil Stick,New staged animation,Other active,use,use_charge,,buff,,P122 Squeak Lv26,Trickster can borrow P122 Lv26,
+S169,The Mountain Does Not Move,New staged animation,School,use,use_charge,,buff,,P120 Hida Sachiko Lv1,Trickster can borrow P120 Lv1,
+S172,Troll-Breaker,New staged animation,School,attack,use_normal,atk_normal,attack,1,P123 story flag G292,,
+S173,Ashigaru Archer: Arrow Volley,New staged animation,Support,attack,use_charge,noop,attack,16,,,Support caller; hireling supplies the named action
+S174,Kuni Shugenja: Earth Becomes Sky,New staged animation,Support,attack,use_normal,atk_normal,attack,512,,,Support caller; hireling supplies the named action
+S175,Kaiu Engineer: Barricade,New staged animation,Support,use,use_charge,,buff,,,,Support caller; hireling supplies the named action
+S176,Village Herbalist: Ginseng Tea,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S177,Hoshi Fisherman: Throw Net,New staged animation,Support,attack,use_normal,atk_normal,attack,0,,,Support caller; hireling supplies the named action
+S178,Hida Veteran: Tetsubo Smash,New staged animation,Support,attack,use_normal,atk_normal,attack,8,,,Support caller; hireling supplies the named action
+S183,Gonta: Landslide,New staged animation,Support,attack,use_charge,noop,attack,512,,,Support caller; hireling supplies the named action
+S184,Hiruma Scout: Jade Arrows,New staged animation,Support,attack,use_charge,noop,attack,2064,,,Support caller; hireling supplies the named action
+S185,Kuni Witch-hunter: Purify,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S186,Kaiu Sapper: Trap Roller,New staged animation,Support,attack,use_normal,atk_normal,attack,8,,,Support caller; hireling supplies the named action
+S187,Old woman: Green Ronin's Blessing,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S188,Ronin Yojimbo: Desperate Cut,New staged animation,Support,attack,use_normal,atk_normal,attack,1,,,Support caller; hireling supplies the named action
+S189,Lantern Twins: Lantern Lure,New staged animation,Support,attack,use_charge,noop,attack,0,,,Support caller; hireling supplies the named action
+S191,Daidoji Marine: Boarding Pike,New staged animation,Support,attack,use_normal,atk_normal,attack,2,,,Support caller; hireling supplies the named action
+S192,Suitengu Priest: Tide Blessing,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S193,Tsuruchi Archer: Daikyu Shot,New staged animation,Support,attack,use_normal,atk_normal,attack,16,,,Support caller; hireling supplies the named action
+S194,Moshi Wind-caller: Storm Gust,New staged animation,Support,attack,use_charge,noop,attack,256,,,Support caller; hireling supplies the named action
+S300,Path to Inner Peace,New staged animation,Spell,use,use_charge,noop,heal,128,P104 Isawa Haruki Lv1 | P124 Isawa Michio Lv1 | P137 Isawa Kasiko Lv1,Trickster can borrow P104 Lv1 | Trickster can borrow P124 Lv1 | Trickster can borrow P137 Lv1,
+S301,Bo of Water,New staged animation,Spell,attack,use_charge,noop,attack,128,P104 Isawa Haruki Lv1,Trickster can borrow P104 Lv1,
+S302,Drawing the Void,New staged animation,Spell,use,use_charge,,buff,1024,P104 Isawa Haruki Lv1,Trickster can borrow P104 Lv1,
+S303,The Fury of Osano-wo,New staged animation,Spell,attack,use_charge,noop,attack,64,P104 Isawa Haruki Lv1 | P137 Isawa Kasiko Lv1,Trickster can borrow P104 Lv1 | Trickster can borrow P137 Lv1,
+S304,Tempest of Air,New staged animation,Spell,attack,use_charge,noop,attack,256,P104 Isawa Haruki Lv1 | P137 Isawa Kasiko Lv1,Trickster can borrow P104 Lv1 | Trickster can borrow P137 Lv1,
+S305,Earth's Touch,New staged animation,Spell,use,use_charge,,buff,512,P104 Isawa Haruki Lv1 | P124 Isawa Michio Lv1,Trickster can borrow P104 Lv1 | Trickster can borrow P124 Lv1,
+S306,Counterspell,New staged animation,Spell,use,use_charge,,buff,1024,P104 Isawa Haruki Lv1,Trickster can borrow P104 Lv1,
+S307,Sympathetic Energies,New staged animation,Spell,use,use_charge,,buff,128,P104 Isawa Haruki Lv10,Trickster can borrow P104 Lv10,
+S311,Heart of Mortality,New staged animation,Spell,use,use_charge,,buff,128,P104 Isawa Haruki Lv15,Trickster can borrow P104 Lv15,
+S312,Regrow the Wound,New staged animation,Spell,use,use_charge,noop,heal,128,P104 Isawa Haruki Lv45,Trickster can borrow P104 Lv45,
+S313,Near to Ice,New staged animation,Spell,use,use_charge,,buff,128,P104 Isawa Haruki Lv30,Trickster can borrow P104 Lv30,
+S314,Bane of the Scorpion,New staged animation,Spell,use,use_charge,noop,heal,128,P104 Isawa Haruki Lv30,Trickster can borrow P104 Lv30,
+S316,Hand of Jurojin,New staged animation,Spell,use,use_charge,noop,heal,128,P104 Isawa Haruki Lv45 | P104 story flag G656,Trickster can borrow P104 Lv45,
+S319,Whirlpool,New staged animation,Spell,attack,use_charge,noop,attack,128,P104 Isawa Haruki Lv60,Trickster can borrow P104 Lv60,
+S328,Hurried Steps,New staged animation,Spell,use,use_charge,,buff,64,P124 Isawa Michio Lv15 | P139 Tamori Haku Lv15,Trickster can borrow P124 Lv15 | Trickster can borrow P139 Lv15,
+S329,Aura of Flame,New staged animation,Spell,use,use_charge,,buff,64,P124 Isawa Michio Lv15 | P139 Tamori Haku Lv15,Trickster can borrow P124 Lv15 | Trickster can borrow P139 Lv15,
+S333,Burn the Mind,New staged animation,Spell,use,use_charge,,debuff,64,P124 Isawa Michio Lv30 | P139 Tamori Haku Lv30,Trickster can borrow P124 Lv30 | Trickster can borrow P139 Lv30,
+S335,Breath of the Fire Dragon,New staged animation,Spell,attack,use_charge,noop,attack,64,P124 Isawa Michio Lv30 | P139 Tamori Haku Lv30,Trickster can borrow P124 Lv30 | Trickster can borrow P139 Lv30,
+S337,Death of Flame,New staged animation,Spell,use,use_charge,,debuff,64,P124 Isawa Michio Lv45 | P139 Tamori Haku Lv45,Trickster can borrow P124 Lv45 | Trickster can borrow P139 Lv45,
+S338,Fire Walking,New staged animation,Spell,use,use_charge,,buff,64,P124 Isawa Michio Lv45 | P139 Tamori Haku Lv45,Trickster can borrow P124 Lv45 | Trickster can borrow P139 Lv45,
+S341,Everburning Rage,New staged animation,Spell,attack,use_charge,noop,attack,64,P124 Isawa Michio Lv60 | P139 Tamori Haku Lv60,Trickster can borrow P124 Lv60 | Trickster can borrow P139 Lv60,
+S343,Burn the Soul,New staged animation,Spell,use,use_charge,,debuff,64,P124 Isawa Michio Lv60 | P139 Tamori Haku Lv60,Trickster can borrow P124 Lv60 | Trickster can borrow P139 Lv60,
+S348,Wind-Borne Slumbers,New staged animation,Spell,use,use_charge,,debuff,256,P104 Isawa Haruki Lv10,Trickster can borrow P104 Lv10,
+S349,Way of Deception,New staged animation,Spell,use,use_charge,,buff,256,P137 Isawa Kasiko Lv15,Trickster can borrow P137 Lv15,
+S350,Mists of Illusion,New staged animation,Spell,use,use_charge,,buff,256,P137 Isawa Kasiko Lv15,Trickster can borrow P137 Lv15,
+S351,The Eye Shall Not See,New staged animation,Spell,use,use_charge,,buff,256,P137 Isawa Kasiko Lv30,Trickster can borrow P137 Lv30,
+S352,Summon Fog,New staged animation,Spell,attack,use_charge,noop,attack,256,P137 Isawa Kasiko Lv30,Trickster can borrow P137 Lv30,
+S353,Know the Mind,New staged animation,Spell,use,use_charge,,debuff,256,P137 Isawa Kasiko Lv45,Trickster can borrow P137 Lv45,
+S354,Symbol of Air,New staged animation,Spell,use,use_charge,,debuff,256,P137 Isawa Kasiko Lv45,Trickster can borrow P137 Lv45,
+S356,Poison of the Wind Spider,New staged animation,Spell,attack,use_charge,noop,attack,256,P137 Isawa Kasiko Lv60,Trickster can borrow P137 Lv60,
+S358,Slayer's Knives,New staged animation,Spell,attack,use_charge,noop,attack,256,P137 Isawa Kasiko Lv60,Trickster can borrow P137 Lv60,
+S363,Jade Strike,New staged animation,Spell,attack,use_charge,noop,attack,2048,P104 Isawa Haruki Lv5 | P124 Isawa Michio Lv1,Trickster can borrow P104 Lv5 | Trickster can borrow P124 Lv1,
+S365,Elemental Ward,New staged animation,Spell,use,use_charge,,buff,512,P105 pilgrim School art,,
+S367,Armor of Earth,New staged animation,Spell,use,use_charge,,buff,512,P135 Isawa Sanro Lv15,Trickster can borrow P135 Lv15,
+S368,Courage of the Seven Thunders,New staged animation,Spell,use,use_charge,,buff,512,P104 story flag G638 | P135 Isawa Sanro Lv15,Trickster can borrow P135 Lv15,
+S372,Curse of Stone,New staged animation,Spell,use,use_charge,,debuff,512,P135 Isawa Sanro Lv30,Trickster can borrow P135 Lv30,
+S373,Benevolent Protection of Shinsei,New staged animation,Spell,use,use_charge,,debuff,512,P135 Isawa Sanro Lv30,Trickster can borrow P135 Lv30,
+S376,Armor of the Emperor,New staged animation,Spell,use,use_charge,,buff,512,P135 Isawa Sanro Lv45,Trickster can borrow P135 Lv45,
+S377,Death of Stone,New staged animation,Spell,use,use_charge,,debuff,512,P135 Isawa Sanro Lv45,Trickster can borrow P135 Lv45,
+S380,Earthquake,New staged animation,Spell,use,use_charge,,debuff,512,P135 Isawa Sanro Lv60,Trickster can borrow P135 Lv60,
+S381,Prison of Earth,New staged animation,Spell,use,use_charge,,debuff,512,P135 Isawa Sanro Lv60,Trickster can borrow P135 Lv60,
+S386,Altering the Course,New staged animation,Spell,use,use_charge,,buff,1024,P104 Isawa Haruki Lv15,Trickster can borrow P104 Lv15,
+S387,Kharmic Intent,New staged animation,Spell,use,use_charge,,buff,1024,P104 Isawa Haruki Lv30,Trickster can borrow P104 Lv30,
+S390,Void Suppression,New staged animation,Spell,use,use_charge,,debuff,1024,P104 Isawa Haruki Lv60,Trickster can borrow P104 Lv60,
+S391,Void Bolt,Existing authored route,Spell,attack,use_charge,noop,attack,1024,P104 Isawa Haruki Lv5,Trickster can borrow P104 Lv5,Void Bolt authored release and curved world flight in RokuganSpellFlight
+S392,Mass Path to Inner Peace,New staged animation,Spell,use,use_charge,noop,heal,128,P104 Isawa Haruki Lv60,Trickster can borrow P104 Lv60,
+S395,Stillness of the Void,New staged animation,Spell,use,use_charge,,buff,1024,P104 Isawa Haruki Lv45,Trickster can borrow P104 Lv45,
+S400,Kitsuki Seigen: Evidence,New staged animation,Support,attack,use_charge,noop,attack,1,,,Support caller; visiting guest supplies the named action
+S401,Matsu Kiku: Battle-Joy,New staged animation,Support,attack,use_normal,atk_normal,attack,32,,,Support caller; visiting guest supplies the named action
+S406,Hiruma Goro: Troll-Breaker,New staged animation,Support,attack,use_normal,atk_normal,attack,4096,,,Support caller; visiting guest supplies the named action
+S426,Watchful Falcon,New staged animation,School,use,use_charge,,buff,512,P101 Kakita Rensei Lv25,Trickster can borrow P101 Lv25,
+S427,Doji Poet: Verse of Reproach,New staged animation,Support,attack,use_charge,noop,attack,0,,,Support caller; hireling supplies the named action
+S428,Lamplighter: Lamp Oil,New staged animation,Support,attack,use_charge,noop,attack,64,,,Support caller; hireling supplies the named action
+S429,Akodo Ijako: Call the Dead,New staged animation,Support,attack,use_normal,atk_normal,attack,1024,,,Support caller; visiting guest supplies the named action
+S430,Shiba Ashimita: Yojimbo's Cut,New staged animation,Support,attack,use_normal,atk_normal,attack,1,,,Support caller; visiting guest supplies the named action
+S433,Lion Ashigaru: Spear Thrust,New staged animation,Support,attack,use_normal,atk_normal,attack,2,,,Support caller; hireling supplies the named action
+S434,Kitsu Acolyte: Ancestor's Prayer,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S439,Moto Benjiro: Death Trance,New staged animation,Support,use,use_charge,,buff,512,,,Support caller; visiting guest supplies the named action
+S441,Kitsu Jade-priest: Jade Prayer,New staged animation,Support,attack,use_charge,noop,attack,2048,,,Support caller; hireling supplies the named action
+S442,Ikoma Herald: War-Song,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S443,Refugee Archer: Hunter's Arrow,New staged animation,Support,attack,use_normal,atk_normal,attack,16,,,Support caller; hireling supplies the named action
+S444,Lion Deserter: Deserter's Thrust,New staged animation,Support,attack,use_normal,atk_normal,attack,2,,,Support caller; hireling supplies the named action
+S448,Refugee Herbalist: Field Poultice,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S452,Kitsu Field-priest: River Prayer,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S453,Ikoma War-herald: War-Song,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S454,Matsu Spearman: Matsu Thrust,New staged animation,Support,attack,use_normal,atk_normal,attack,2,,,Support caller; hireling supplies the named action
+S458,Isawa Fire-acolyte: Acolyte's Flame,New staged animation,Support,attack,use_normal,atk_normal,attack,64,,,Support caller; hireling supplies the named action
+S459,Shiba Staff-guard: Staff Sweep,New staged animation,Support,attack,use_normal,atk_normal,attack,32,,,Support caller; hireling supplies the named action
+S460,Dragon's Breath,Existing authored route,Spell,attack,use_charge,noop,attack,64,P132 Togashi Yosai Lv1,Trickster can borrow P132 Lv1,Tattoo: Dragon normal breath and Yosai's separate Void transformation
+S461,Arrowroot,New staged animation,Spell,use,use_charge,noop,heal,128,P132 Togashi Yosai Lv1,Trickster can borrow P132 Lv1,
+S464,Zumiki Porter: Pole Sweep,New staged animation,Support,attack,use_normal,atk_normal,attack,32,,,Support caller; hireling supplies the named action
+S465,Asako Lorekeeper: Memorial Prayer,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S466,Temple Bo-monk: Temple Staff,New staged animation,Support,attack,use_normal,atk_normal,attack,32,,,Support caller; hireling supplies the named action
+S467,Village Survivor: Survivor's Prayer,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S474,Sea-shrine Priestess: Storm Prayer,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S475,Shiba Staff-sentry: Gate Staff,New staged animation,Support,attack,use_normal,atk_normal,attack,32,,,Support caller; hireling supplies the named action
+S476,Interrogate,New staged animation,School,attack,use_normal,atk_normal,attack,0,P102 Kitsuki Gendo Lv5,Trickster can borrow P102 Lv5,
+S478,Kitsuki Momo: Perfect Recall,New staged animation,Support,attack,use_normal,atk_normal,attack,0,,,Support caller; visiting guest supplies the named action
+S479,Rakusho Novice: Novice's Staff,New staged animation,Support,attack,use_normal,atk_normal,attack,32,,,Support caller; hireling supplies the named action
+S480,Silk-isle Herbalist: Salt Poultice,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S481,Daisho Technique,New staged animation,School,attack,use_normal,atk_normal,attack,1,P102 story flag G742,,
+S482,Subdue,New staged animation,School,attack,use_normal,atk_normal,attack,32,P102 story flag G740,,
+S483,Bow,New staged animation,Other active,attack,use_normal,atk_normal,attack,0,P102 story flag G757,,
+S487,Old Diver: Diver's Harpoon,New staged animation,Support,attack,use_normal,atk_normal,attack,2,,,Support caller; hireling supplies the named action
+S488,Shrine-keeper: Shrine Tea,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S489,Seppun Draw,New staged animation,School,attack,use_normal,atk_normal,attack,1,P134 Seppun Ushimo Lv1,Trickster can borrow P134 Lv1,
+S494,Crane Ashigaru: Ashigaru Thrust,New staged animation,Support,attack,use_normal,atk_normal,attack,2,,,Support caller; hireling supplies the named action
+S495,Isawa Novice: Novice's Blessing,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S499,Feed the Ward-fire,New staged animation,Other active,use,use_charge,,buff,,P135 Isawa Sanro Lv1,Trickster can borrow P135 Lv1,
+S500,Centipede Scout: Centipede Volley,New staged animation,Support,attack,use_charge,noop,attack,16,,,Support caller; hireling supplies the named action
+S501,Crane Field Medic: Field Dressing,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S502,Shosuro Stagehand: Smoke and Mirrors,New staged animation,Support,attack,use_charge,noop,attack,0,,,Support caller; hireling supplies the named action
+S503,Suzume Sweeper: Swept Clean,New staged animation,Support,attack,use_normal,atk_normal,attack,32,,,Support caller; hireling supplies the named action
+S504,Kitsune Herb-woman: Fox Herbs,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S505,Many Faces: Copy,New staged animation,Other active,use,noop,,noop,,P105 shinobi School art,,
+S506,Storm Heart,New staged animation,School,attack,use_normal,atk_normal,attack,256,P136 Yoritomo Rui Lv1,Trickster can borrow P136 Lv1,
+S507,Kama Flurry,New staged animation,School,attack,use_normal,atk_normal,attack,4,P136 Yoritomo Rui Lv1,Trickster can borrow P136 Lv1,
+S521,Shinjo Yoriki: Horse-bow Volley,New staged animation,Support,attack,use_charge,noop,attack,16,,,Support caller; hireling supplies the named action
+S522,Shadow Hunter: Hunter's Cut,New staged animation,Support,attack,use_normal,atk_normal,attack,4,,,Support caller; hireling supplies the named action
+S526,Cover,New staged animation,School,use,use_charge,,buff,,P105 soldier School art | P138 Akodo Rin Lv1,Trickster can borrow P138 Lv1,
+S527,The Clouds Part,New staged animation,School,use,use_charge,,buff,,P138 Akodo Rin Lv1,Trickster can borrow P138 Lv1,
+S528,Mirumoto Ashigaru: Picket Thrust,New staged animation,Support,attack,use_normal,atk_normal,attack,2,,,Support caller; hireling supplies the named action
+S529,Refugee Herbalist: Midwife's Roots,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S537,Ember Palm,New staged animation,Other active,attack,use_normal,atk_normal,attack,64,P139 Tamori Haku Lv1,Trickster can borrow P139 Lv1,
+S538,Heat-Ward,New staged animation,Other active,use,use_charge,,buff,,P139 Tamori Haku Lv1,Trickster can borrow P139 Lv1,
+S539,Tamori Rain-caller: Cooling Rain,New staged animation,Support,attack,use_charge,noop,attack,128,,,Support caller; hireling supplies the named action
+S540,Mirumoto Mountain Guide: Two Swords,New staged animation,Support,attack,use_normal,atk_normal,attack,1,,,Support caller; hireling supplies the named action
+S541,Barter Coin: Bribe,New staged animation,School,use,noop,,noop,,"P106 Ide school, Barter Coin choice",,
+S542,Words of Peace,New staged animation,School,attack,use_charge,noop,attack,0,P106 Ide Tamotsu Lv1,Trickster can borrow P106 Lv1,
+S543,Song of the Ki-Rin,Existing authored route,School,use,use_charge,,buff,,P106 Ide Tamotsu Lv5,Trickster can borrow P106 Lv5,Ide's Song of the Kirin authored pose and effect
+S544,Share the Stores,New staged animation,School,use,use_charge,noop,heal,128,P106 Ide Tamotsu Lv3,Trickster can borrow P106 Lv3,
+S545,Gaijin Spyglass,New staged animation,School,attack,use_charge,noop,attack,1,P106 story flag G985,,
+S546,Guardian's Vow,New staged animation,School,use,use_charge,,buff,,P140 Shinjo Ryuko Lv1,Trickster can borrow P140 Lv1,
+S547,Shinjo Sweep,New staged animation,School,attack,use_charge,noop,attack,1,P140 Shinjo Ryuko Lv1,Trickster can borrow P140 Lv1,
+S551,Iuchi Water-Shugenja: Rolling River,New staged animation,Support,attack,use_charge,noop,attack,128,,,Support caller; hireling supplies the named action
+S552,Moto Outrider: Saddle Volley,New staged animation,Support,attack,use_charge,noop,attack,16,,,Support caller; hireling supplies the named action
+S553,Mirumoto Ashigaru: Picket Thrust,New staged animation,Support,attack,use_normal,atk_normal,attack,2,,,Support caller; hireling supplies the named action
+S554,Refugee Herbalist: Midwife's Roots,New staged animation,Support,use,use_charge,noop,heal,128,,,Support caller; hireling supplies the named action
+S559,Iuchi Karasu: Jade Strike,New staged animation,Support,attack,use_normal,atk_normal,attack,2048,,,Support caller; visiting guest supplies the named action
+S560,Togashi Bo-Monk: Waking Blow,New staged animation,Support,attack,use_normal,atk_normal,attack,32,,,Support caller; hireling supplies the named action
+S561,Agasha Fire-Shugenja: Agasha Flame,New staged animation,Support,attack,use_charge,noop,attack,64,,,Support caller; hireling supplies the named action
+S565,Naohida: Powder Charge,New staged animation,Support,attack,use_charge,noop,attack,64,,,Support caller; visiting guest supplies the named action
+S566,When the Veil Moves,New staged animation,School,use,use_charge,,buff,,P106 Ide Tamotsu Lv41,Trickster can borrow P106 Lv41,
+S567,Iuchi Water-Shugenja: Iuchi Tide,New staged animation,Support,attack,use_charge,noop,attack,128,,,Support caller; hireling supplies the named action
+S568,Mirumoto Yari Sergeant: Sergeant's Thrust,New staged animation,Support,attack,use_normal,atk_normal,attack,2,,,Support caller; hireling supplies the named action
+S573,Ginseng + Rice Wine,Signature route with staged fallback,School,use,use_charge,noop,heal,128,"P107 Recipe, ingredients",Trickster's recipe pool,
+S574,Ginseng + Moxa,Signature route with staged fallback,School,use,use_charge,noop,heal,128,"P107 Recipe, ingredients",Trickster's recipe pool,
+S575,Rhubarb + Rice Wine,Signature route with staged fallback,School,use,use_charge,noop,heal,,"P107 Recipe, ingredients",Trickster's recipe pool,
+S576,Rhubarb + Moxa,Signature route with staged fallback,School,use,use_charge,noop,heal,,"P107 Recipe, ingredients",Trickster's recipe pool,
+S577,Hanabi + Rice Wine,Signature route with staged fallback,School,use,use_normal,atk_normal,attack,64,"P107 Recipe, ingredients",Trickster's recipe pool,
+S578,Hanabi + Moxa,Signature route with staged fallback,School,use,use_charge,noop,attack,64,"P107 Recipe, ingredients",Trickster's recipe pool,
+S579,Ginseng + Willow Bark,Signature route with staged fallback,School,use,use_charge,noop,heal,128,"P107 Recipe, ingredients",Trickster's recipe pool,
+S580,Pilfer,New staged animation,School,attack,use_charge,noop,attack,1,P107 Sayo Lv1,Trickster can borrow P107 Lv1,
+S581,Compliment,New staged animation,School,use,noop,,noop,,P107 Sayo Lv1,Trickster can borrow P107 Lv1,
+S583,Field Dressing,New staged animation,School,use,use_charge,noop,heal,128,P107 Sayo Lv3,Trickster can borrow P107 Lv3,
+S584,Bitter Root,New staged animation,School,attack,use_normal,atk_normal,attack,0,P107 Sayo Lv6,Trickster can borrow P107 Lv6,
+S586,Hanabi Seller: Hanabi Volley,New staged animation,Support,attack,use_charge,noop,attack,64,,,Support caller; hireling supplies the named action
+S587,Mantis Ferry Archer: Ferry Shot,New staged animation,Support,attack,use_normal,atk_normal,attack,16,,,Support caller; hireling supplies the named action
+S588,Hiro: No-dachi Sweep,New staged animation,Support,attack,use_charge,noop,attack,0,,,Support caller; visiting guest supplies the named action
+S594,Ginseng + Willow + Snow-Lotus,Signature route with staged fallback,School,use,use_charge,noop,heal,128,"P107 Recipe, ingredients and G1066",Trickster's recipe pool,
+S595,Ginseng + Snow-Lotus,Signature route with staged fallback,School,use,use_charge,noop,heal,128,"P107 Recipe, ingredients and G1066",Trickster's recipe pool,
+S596,Jinnai: Freezing the Lifeblood,New staged animation,Support,attack,use_normal,atk_normal,attack,4096,,,Support caller; visiting guest supplies the named action
+S600,Sparrow Ronin: Between the Laces,New staged animation,Support,attack,use_normal,atk_normal,attack,1,,,Support caller; hireling supplies the named action
+S601,Wandering Air-Shugenja: Remembered Wind,New staged animation,Support,attack,use_charge,noop,attack,256,,,Support caller; hireling supplies the named action
+S602,Mirumoto Hikaru: Endless Strike,New staged animation,Support,attack,use_normal,atk_normal,attack,1,,,Support caller; visiting guest supplies the named action
+S603,Goat-herd Archer: Bear Arrow,New staged animation,Support,attack,use_normal,atk_normal,attack,16,,,Support caller; hireling supplies the named action
+S604,Jade-dust Pedlar: Jade Dust,New staged animation,Support,attack,use_charge,noop,attack,2048,,,Support caller; hireling supplies the named action
+S607,Matsu Fury,New staged animation,School,attack,use_normal,atk_normal,attack,1,P141 Matsu Hanae Lv1,Trickster can borrow P141 Lv1,
+S608,Lion's Charge,New staged animation,School,use,use_charge,noop,attack,1,P141 Matsu Hanae Lv1,Trickster can borrow P141 Lv1,
+S609,Diagnosis,New staged animation,Spell,use,use_charge,noop,heal,128,"P107 Recipe, ingredients and G1138",Trickster's recipe pool,
+S613,Crater-shrine Archer: Crater-wall Arrow,New staged animation,Support,attack,use_normal,atk_normal,attack,16,,,Support caller; hireling supplies the named action
+S614,Isawa Wind-Priest: Wind Off the Crater,New staged animation,Support,attack,use_charge,noop,attack,256,,,Support caller; hireling supplies the named action
+S615,Ember: Spark,New staged animation,Other active,attack,use_normal,atk_normal,attack,64,Equipment A164 Ember Charm,,
+S616,Ember: Rekindle,New staged animation,Spell,use,use_charge,noop,heal,128,Equipment A164 Ember Charm,,
+S617,Osano-Wo Thunder Monk: Thunderclap,New staged animation,Support,attack,use_charge,noop,attack,256,,,Support caller; hireling supplies the named action
+S618,Hida Jade Archer: Jade Arrow,New staged animation,Support,attack,use_normal,atk_normal,attack,2064,,,Support caller; hireling supplies the named action
+S633,Hiruma Kage: Father's Tanto,New staged animation,Support,attack,use_normal,atk_normal,attack,2052,,,Support caller; visiting guest supplies the named action
+S634,Moto Benjiro: Death Trance,New staged animation,Support,use,use_charge,,buff,512,,,Support caller; visiting guest supplies the named action
+S635,"""Empress"" Bait",New staged animation,Support,attack,use_charge,noop,attack,1,"Finale Support, Rensei G427",,
+S636,Two Voices,New staged animation,Support,attack,use_charge,noop,attack,1,"Finale Support, G1185 and two live party members",,
+S637,Smooth Stone Decoy,New staged animation,Support,attack,use_charge,noop,attack,1,"Finale Support, Sayo",,
+S638,The Immovable Hand of Peace,New staged animation,Support,attack,use_charge,noop,attack,1,"Finale Support, Tamotsu rank 5",,
+S740,Striking as Earth,New staged animation,School,attack,use_normal,atk_normal,attack,0,P100 story flag G1224,,
+S741,Striking as Wind,New staged animation,School,attack,use_normal,atk_normal,attack,0,P100 Hiruma Natsuko Lv10,Trickster can borrow P100 Lv10,
+S742,Shell of Stone,New staged animation,School,attack,use_normal,atk_normal,attack,0,P100 Hiruma Natsuko Lv25,Trickster can borrow P100 Lv25,
+S743,Stance of the Wall,New staged animation,School,attack,use_normal,atk_normal,attack,0,P100 Hiruma Natsuko Lv41,Trickster can borrow P100 Lv41,
+S744,Shards of Earth,New staged animation,School,attack,use_normal,atk_normal,attack,0,P100 Hiruma Natsuko Lv51,Trickster can borrow P100 Lv51,
+S745,Unyielding Fury,New staged animation,School,attack,use_normal,atk_normal,attack,0,P100 Hiruma Natsuko Lv61,Trickster can borrow P100 Lv61,
+S746,Kakita's First Stance,New staged animation,School,attack,use_normal,atk_normal,attack,0,P101 story flag G1225,,
+S747,The Empire Rests on Its Edge,New staged animation,School,attack,use_normal,atk_normal,attack,0,P101 Kakita Rensei Lv10,Trickster can borrow P101 Lv10,
+S748,Watchful Falcon,New staged animation,School,attack,use_normal,atk_normal,attack,0,P101 Kakita Rensei Lv25,Trickster can borrow P101 Lv25,
+S749,Victory of the Wind,New staged animation,School,attack,use_normal,atk_normal,attack,0,P101 Kakita Rensei Lv30,Trickster can borrow P101 Lv30,
+S750,One Leg Stance,New staged animation,School,attack,use_normal,atk_normal,attack,0,P101 Kakita Rensei Lv41,Trickster can borrow P101 Lv41,
+S751,One Strike Blade,New staged animation,School,attack,use_normal,atk_normal,attack,0,P101 Kakita Rensei Lv51,Trickster can borrow P101 Lv51,
+S752,One Truth,New staged animation,School,attack,use_normal,atk_normal,attack,0,P101 Kakita Rensei Lv61,Trickster can borrow P101 Lv61,
+S753,Standing on the Heavens,New staged animation,School,attack,use_normal,atk_normal,attack,0,P101 Kakita Rensei Lv70,Trickster can borrow P101 Lv70,
+S754,Thunder and Steel,New staged animation,School,attack,use_normal,atk_normal,attack,0,P102 Kitsuki Gendo Lv25,Trickster can borrow P102 Lv25,
+S755,The Empire Rests on Its Edge,New staged animation,School,attack,use_normal,atk_normal,attack,0,P102 Kitsuki Gendo Lv30,Trickster can borrow P102 Lv30,
+S756,My Brother's Soul,New staged animation,School,attack,use_normal,atk_normal,attack,0,P102 Kitsuki Gendo Lv41,Trickster can borrow P102 Lv41,
+S757,Time Between Breaths,New staged animation,School,attack,use_normal,atk_normal,attack,0,P102 Kitsuki Gendo Lv51,Trickster can borrow P102 Lv51,
+S758,Breaking Waves,New staged animation,School,attack,use_normal,atk_normal,attack,0,P102 Kitsuki Gendo Lv61,Trickster can borrow P102 Lv61,
+S759,Victory of the River,New staged animation,School,attack,use_normal,atk_normal,attack,0,P102 Kitsuki Gendo Lv70,Trickster can borrow P102 Lv70,
+S760,Striking as Water,New staged animation,School,attack,use_normal,atk_normal,attack,0,P103 Akodo Shizue Lv5,Trickster can borrow P103 Lv5,
+S761,Striking as Fire,New staged animation,School,attack,use_normal,atk_normal,attack,0,P103 Akodo Shizue Lv15,Trickster can borrow P103 Lv15,
+S762,Fury Without End,New staged animation,School,attack,use_normal,atk_normal,attack,0,P103 Akodo Shizue Lv41,Trickster can borrow P103 Lv41,
+S763,The Soul's Roar,New staged animation,School,attack,use_normal,atk_normal,attack,0,P103 Akodo Shizue Lv45,Trickster can borrow P103 Lv45,
+S764,Gentle Blade of Winter,New staged animation,School,attack,use_normal,atk_normal,attack,0,P103 Akodo Shizue Lv51,Trickster can borrow P103 Lv51,
+S765,Matsu's Vengeance,New staged animation,School,attack,use_normal,atk_normal,attack,0,P103 Akodo Shizue Lv61,Trickster can borrow P103 Lv61,
+S766,Striking as Wind,New staged animation,School,attack,use_normal,atk_normal,attack,0,"P105 Shosuro Mitsue Lv5, Shinobi outfit",,
+S767,The Tail's Reach,New staged animation,School,attack,use_normal,atk_normal,attack,0,"P105 Shosuro Mitsue Lv25, Shinobi outfit",,
+S768,Cut Under the Mountain,New staged animation,School,attack,use_normal,atk_normal,attack,0,"P105 Shosuro Mitsue Lv41, Shinobi outfit",,
+S769,Sundering Grace,New staged animation,School,attack,use_normal,atk_normal,attack,0,"P105 Shosuro Mitsue Lv45, Shinobi outfit",,
+S770,Blackened Sight,New staged animation,School,attack,use_normal,atk_normal,attack,0,"P105 Shosuro Mitsue Lv51, Shinobi outfit",,
+S771,Choking Air,New staged animation,School,attack,use_normal,atk_normal,attack,0,"P105 Shosuro Mitsue Lv61, Shinobi outfit",,
+S772,Striking as Water,New staged animation,School,attack,use_normal,atk_normal,attack,0,P107 Sayo Lv5,Trickster can borrow P107 Lv5,
+S773,Striking as Earth,New staged animation,School,attack,use_normal,atk_normal,attack,0,P107 Sayo Lv10,Trickster can borrow P107 Lv10,
+S774,Striking as Fire,New staged animation,School,attack,use_normal,atk_normal,attack,0,P107 Sayo Lv15,Trickster can borrow P107 Lv15,
+S775,Striking as Wind,New staged animation,School,attack,use_normal,atk_normal,attack,0,P107 Sayo Lv20,Trickster can borrow P107 Lv20,
+S776,Striking as Void,New staged animation,School,attack,use_normal,atk_normal,attack,0,P107 Sayo Lv25,Trickster can borrow P107 Lv25,
+S777,Self No Self,New staged animation,School,use,use_normal,atk_normal,attack,0,P104 Isawa Haruki Lv8,Trickster can borrow P104 Lv8,
+S778,Heart of Stone,New staged animation,School,use,use_normal,atk_normal,attack,0,P104 Isawa Haruki Lv14,Trickster can borrow P104 Lv14,
+S779,Ebb and Flow,New staged animation,School,use,use_normal,atk_normal,attack,0,P104 Isawa Haruki Lv20,Trickster can borrow P104 Lv20,
+S780,Parting the Waves,New staged animation,School,use,use_normal,atk_normal,attack,0,P104 Isawa Haruki Lv30,Trickster can borrow P104 Lv30,
+S781,Touch the Void Dragon,New staged animation,School,use,use_normal,atk_normal,attack,0,P104 Isawa Haruki Lv42,Trickster can borrow P104 Lv42,
+S782,Grasp the Earth Dragon,New staged animation,School,use,use_normal,atk_normal,attack,0,P104 Isawa Haruki Lv54,Trickster can borrow P104 Lv54,
+S783,Fire Fist,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv1,Trickster can borrow P132 Lv1,
+S784,Water Fist,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv5,Trickster can borrow P132 Lv5,
+S785,Earth Fist,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv10,Trickster can borrow P132 Lv10,
+S786,Air Fist,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv15,Trickster can borrow P132 Lv15,
+S787,Falling Star Strike,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv20,Trickster can borrow P132 Lv20,
+S788,Kharmic Strike,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv28,Trickster can borrow P132 Lv28,
+S789,Freezing the Lifeblood,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv35,Trickster can borrow P132 Lv35,
+S790,Void Fist,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv45,Trickster can borrow P132 Lv45,
+S791,Tiger Tattoo,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv15,Trickster can borrow P132 Lv15,
+S792,Raven Tattoo,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv30,Trickster can borrow P132 Lv30,
+S793,Centipede Tattoo,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv45,Trickster can borrow P132 Lv45,
+S794,Phoenix Tattoo,New staged animation,School,attack,use_normal,atk_normal,attack,0,P132 Togashi Yosai Lv60,Trickster can borrow P132 Lv60,
+S795,Tail of the Sun,New staged animation,School,attack,use_normal,atk_normal,attack,0,P131 Shiba Ashimita Lv5,Trickster can borrow P131 Lv5,
+S796,Deeper Reflection,New staged animation,School,attack,use_normal,atk_normal,attack,0,P131 Shiba Ashimita Lv20,Trickster can borrow P131 Lv20,
+S797,Touching the Infinite,New staged animation,School,attack,use_normal,atk_normal,attack,0,P131 Shiba Ashimita Lv35,Trickster can borrow P131 Lv35,
+S798,Heaven's Wing,New staged animation,School,attack,use_normal,atk_normal,attack,0,P131 Shiba Ashimita Lv50,Trickster can borrow P131 Lv50,
+S799,Stand Against the Waves,New staged animation,Other active,use,use_charge,,buff,128,P104 Isawa Haruki Lv15,Trickster can borrow P104 Lv15,
+S950,Willow Poultice,New staged animation,School,use,use_charge,noop,heal,,P105 maid School art,,
+S951,Restorative Herb Tea,New staged animation,School,use,use_charge,noop,heal,128,P105 maid School art,,
+S952,Trickster,Substitutes a different active ability; covered at chosen action,School,use,noop,,noop,,P105 fox School art,,

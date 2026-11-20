@@ -1,0 +1,166 @@
+{
+  "out": "generated-wardrobe",
+  "parts": [
+    {
+      "key": "mitsue_shinobi_mask",
+      "source": "mitsue_shinobi_mask_source.glb",
+      "dimensions": [
+        17,
+        11,
+        18.8
+      ],
+      "position": [
+        6.25,
+        102.5,
+        0
+      ],
+      "anchor": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "bone": "head",
+      "wrap_front": 0,
+      "yaw": 90,
+      "armor": false
+    },
+    {
+      "key": "mitsue_maid_hat",
+      "source": "mitsue_maid_hat_source.glb",
+      "dimensions": [
+        19,
+        13,
+        22
+      ],
+      "position": [
+        0.2,
+        116.7,
+        0
+      ],
+      "anchor": [
+        0.5,
+        0.24,
+        0.5
+      ],
+      "bone": "head",
+      "wrap_front": 0,
+      "yaw": 90,
+      "armor": false
+    },
+    {
+      "key": "mitsue_fox_hat",
+      "source": "mitsue_fox_hat_source.glb",
+      "dimensions": [
+        4,
+        14,
+        25
+      ],
+      "position": [
+        2.8,
+        120,
+        0
+      ],
+      "anchor": [
+        0.5,
+        0.24,
+        0.5
+      ],
+      "bone": "head",
+      "wrap_front": 4.0,
+      "yaw": 90,
+      "armor": false
+    },
+    {
+      "key": "mitsue_soldier_hat",
+      "source": "mitsue_soldier_hat_source.glb",
+      "dimensions": [
+        25.2,
+        21,
+        25.7
+      ],
+      "position": [
+        0.5,
+        115.1,
+        0
+      ],
+      "anchor": [
+        0.5,
+        0.37,
+        0.5
+      ],
+      "bone": "head",
+      "wrap_front": 0,
+      "yaw": 90,
+      "armor": true
+    },
+    {
+      "key": "mitsue_clerk_hat",
+      "source": "mitsue_clerk_hat_source.glb",
+      "dimensions": [
+        19.5,
+        22.5,
+        18.2
+      ],
+      "position": [
+        -0.6,
+        117,
+        0
+      ],
+      "anchor": [
+        0.5,
+        0,
+        0.5
+      ],
+      "bone": "head",
+      "wrap_front": 0,
+      "yaw": 90,
+      "armor": false
+    },
+    {
+      "key": "mitsue_pilgrim_hat",
+      "source": "mitsue_pilgrim_hat_source.glb",
+      "dimensions": [
+        34,
+        17.5,
+        35
+      ],
+      "position": [
+        0.2,
+        115.8,
+        0
+      ],
+      "anchor": [
+        0.5,
+        0.38,
+        0.5
+      ],
+      "bone": "head",
+      "wrap_front": 0,
+      "yaw": 90,
+      "armor": false
+    },
+    {
+      "key": "mitsue_fox_tail",
+      "source": "mitsue_fox_tail_source.glb",
+      "dimensions": [
+        17,
+        25,
+        10.4
+      ],
+      "position": [
+        -13.1,
+        57.9,
+        0
+      ],
+      "anchor": [
+        0.5,
+        0.6,
+        0.5
+      ],
+      "bone": "pelvis",
+      "wrap_front": 0,
+      "yaw": 180,
+      "armor": false
+    }
+  ]
+}

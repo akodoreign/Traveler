@@ -1,0 +1,2069 @@
+{
+ "trav_shizue": {
+  "base": "shared_female",
+  "face": "trav_shizue_portrait_face",
+  "headband": "trav_shizue_headband"
+ },
+ "side_takeo": {
+  "base": "shared_male",
+  "face": "side_takeo_face"
+ },
+ "side_h_agasha": {
+  "base": "shared_female",
+  "face": "side_h_agasha_face"
+ },
+ "side_kusuri": {
+  "base": "shared_female",
+  "face": "side_kusuri_face"
+ },
+ "side_ijako": {
+  "base": "shared_female",
+  "face": "side_ijako_face"
+ },
+ "side_nishi": {
+  "base": "shared_female",
+  "face": "side_nishi_face"
+ },
+ "side_seoko": {
+  "base": "shared_female",
+  "face": "side_seoko_face"
+ },
+ "side_tatanko": {
+  "base": "shared_female",
+  "face": "side_tatanko_portrait_face"
+ },
+ "side_hojato": {
+  "base": "shared_male",
+  "face": "side_hojato_face"
+ },
+ "side_hojiki": {
+  "base": "shared_male",
+  "face": "side_hojiki_face"
+ },
+ "side_kafu": {
+  "base": "shared_male",
+  "face": "side_kafu_face"
+ },
+ "side_kafu_nosword": {
+  "base": "shared_male",
+  "face": "side_kafu_nosword_face"
+ },
+ "side_ryuzoji": {
+  "base": "shared_male",
+  "face": "side_ryuzoji_portrait_face"
+ },
+ "side_shogen": {
+  "base": "shared_male",
+  "face": "side_shogen_face"
+ },
+ "side_toturi": {
+  "base": "shared_male",
+  "face": "side_toturi_face"
+ },
+ "side_asahina": {
+  "base": "shared_male",
+  "face": "side_asahina_face"
+ },
+ "side_kuhime": {
+  "base": "shared_female",
+  "face": "side_kuhime_face"
+ },
+ "side_keiki": {
+  "base": "shared_male",
+  "face": "side_keiki_face"
+ },
+ "side_palecourtier": {
+  "base": "shared_female",
+  "face": "side_palecourtier_face"
+ },
+ "side_shiruko": {
+  "base": "shared_female",
+  "face": "side_shiruko_face"
+ },
+ "side_atsuki": {
+  "base": "shared_male",
+  "face": "side_atsuki_face"
+ },
+ "side_bayushikei": {
+  "base": "shared_male",
+  "face": "side_bayushikei_face"
+ },
+ "side_courier": {
+  "base": "shared_male",
+  "face": "side_courier_face"
+ },
+ "side_depura": {
+  "base": "shared_male",
+  "face": "side_depura_face"
+ },
+ "side_eriko": {
+  "base": "shared_female",
+  "face": "side_eriko_portrait_face"
+ },
+ "side_hagane": {
+  "base": "shared_male",
+  "face": "side_hagane_face"
+ },
+ "side_sailor": {
+  "base": "shared_male",
+  "face": "side_sailor_face",
+  "headband": "side_sailor_headband"
+ },
+ "side_uji": {
+  "base": "shared_male",
+  "face": "side_uji_portrait_face"
+ },
+ "side_courtier": {
+  "base": "shared_female",
+  "face": "side_courtier_face"
+ },
+ "side_dojiaoi": {
+  "base": "shared_female",
+  "face": "side_dojiaoi_face"
+ },
+ "side_dojipoet": {
+  "base": "shared_female",
+  "face": "side_dojipoet_face"
+ },
+ "side_empress": {
+  "base": "shared_female",
+  "face": "side_empress_face"
+ },
+ "side_himeko": {
+  "base": "shared_female",
+  "face": "side_himeko_face"
+ },
+ "side_miyako": {
+  "base": "shared_female",
+  "face": "side_miyako_face"
+ },
+ "side_sanae": {
+  "base": "shared_female",
+  "face": "side_sanae_face"
+ },
+ "side_tomeko": {
+  "base": "shared_female",
+  "face": "side_tomeko_face"
+ },
+ "side_hayato": {
+  "base": "shared_male",
+  "face": "side_hayato_face"
+ },
+ "side_kage_ch3": {
+  "base": "shared_male",
+  "face": "side_kage_ch3_face"
+ },
+ "side_keiyomi": {
+  "base": "shared_female",
+  "face": "side_keiyomi_face"
+ },
+ "side_ikomabard": {
+  "base": "shared_male",
+  "face": "side_ikomabard_face"
+ },
+ "side_tadaka": {
+  "base": "shared_male",
+  "face": "side_tadaka_face"
+ },
+ "side_akiko": {
+  "base": "shared_female",
+  "face": "side_akiko_face"
+ },
+ "side_kasiko": {
+  "base": "shared_female",
+  "face": "side_kasiko_face"
+ },
+ "side_mieko": {
+  "base": "shared_female",
+  "face": "side_mieko_face"
+ },
+ "side_mutsuye": {
+  "base": "shared_female",
+  "face": "side_mutsuye_face"
+ },
+ "side_uona": {
+  "base": "shared_female",
+  "face": "side_uona_face"
+ },
+ "side_acolyte": {
+  "base": "shared_male",
+  "face": "side_acolyte_face"
+ },
+ "side_h_windisawa": {
+  "base": "shared_male",
+  "face": "side_h_windisawa_face"
+ },
+ "side_hoju": {
+  "base": "shared_male",
+  "face": "side_hoju_face"
+ },
+ "side_kamasari": {
+  "base": "shared_male",
+  "face": "side_kamasari_face"
+ },
+ "side_rujo": {
+  "base": "shared_male",
+  "face": "side_rujo_face"
+ },
+ "side_sanro": {
+  "base": "shared_male",
+  "face": "side_sanro_face"
+ },
+ "side_shahai": {
+  "base": "shared_female",
+  "face": "side_shahai_face"
+ },
+ "side_daiyu": {
+  "base": "shared_male",
+  "face": "side_daiyu_face"
+ },
+ "side_h_iuchi": {
+  "base": "shared_male",
+  "face": "side_h_iuchi_face"
+ },
+ "side_iuchifarmer": {
+  "base": "shared_male",
+  "face": "side_iuchifarmer_face"
+ },
+ "side_karasu": {
+  "base": "shared_male",
+  "face": "side_karasu_face"
+ },
+ "side_kurosho": {
+  "base": "shared_male",
+  "face": "side_kurosho_face"
+ },
+ "side_mami": {
+  "base": "shared_female",
+  "face": "side_mami_face"
+ },
+ "side_gesshin": {
+  "base": "shared_male",
+  "face": "side_gesshin_face"
+ },
+ "side_h_engineer": {
+  "base": "shared_male",
+  "face": "side_h_engineer_face",
+  "headband": "side_h_engineer_headband"
+ },
+ "side_h_sapper": {
+  "base": "shared_male",
+  "face": "side_h_sapper_face"
+ },
+ "side_kyumi": {
+  "base": "shared_female",
+  "face": "side_kyumi_face"
+ },
+ "side_miyoshi": {
+  "base": "shared_female",
+  "face": "side_miyoshi_face"
+ },
+ "side_yuko": {
+  "base": "shared_female",
+  "face": "side_yuko_portrait_face"
+ },
+ "side_adoru": {
+  "base": "shared_male",
+  "face": "side_adoru_face"
+ },
+ "side_kakita_sensei": {
+  "base": "shared_male",
+  "face": "side_kakita_sensei_face"
+ },
+ "side_kumpei": {
+  "base": "shared_male",
+  "face": "side_kumpei_face"
+ },
+ "side_masanori": {
+  "base": "shared_male",
+  "face": "side_masanori_face"
+ },
+ "side_mizochi": {
+  "base": "shared_male",
+  "face": "side_mizochi_face"
+ },
+ "side_morishu": {
+  "base": "shared_male",
+  "face": "side_morishu_face"
+ },
+ "side_yasurugi": {
+  "base": "shared_male",
+  "face": "side_yasurugi_face"
+ },
+ "side_kenshai": {
+  "base": "shared_male",
+  "face": "side_kenshai_face"
+ },
+ "side_togawa": {
+  "base": "shared_male",
+  "face": "side_togawa_face"
+ },
+ "side_oharu": {
+  "base": "shared_female",
+  "face": "side_oharu_face"
+ },
+ "side_kitsukiclerk": {
+  "base": "shared_male",
+  "face": "side_kitsukiclerk_face"
+ },
+ "side_seigen": {
+  "base": "shared_male",
+  "face": "side_seigen_face"
+ },
+ "side_yasu": {
+  "base": "shared_male",
+  "face": "side_yasu_face"
+ },
+ "side_h_kuni": {
+  "base": "shared_female",
+  "face": "side_h_kuni_face"
+ },
+ "side_miyubi": {
+  "base": "shared_female",
+  "face": "side_miyubi_face"
+ },
+ "side_akuja": {
+  "base": "shared_male",
+  "face": "side_akuja_face"
+ },
+ "side_h_witch": {
+  "base": "shared_male",
+  "face": "side_h_witch_face"
+ },
+ "side_taira": {
+  "base": "shared_male",
+  "face": "side_taira_face"
+ },
+ "side_kiku": {
+  "base": "shared_female",
+  "face": "side_kiku_face"
+ },
+ "side_drummer": {
+  "base": "shared_male",
+  "face": "side_drummer_face"
+ },
+ "side_h_guide": {
+  "base": "shared_male",
+  "face": "side_h_guide_face"
+ },
+ "side_hikaru": {
+  "base": "shared_male",
+  "face": "side_hikaru_face"
+ },
+ "side_yachiko": {
+  "base": "shared_female",
+  "face": "side_yachiko_face"
+ },
+ "side_hatomu": {
+  "base": "shared_male",
+  "face": "side_hatomu_face"
+ },
+ "side_h_moshi": {
+  "base": "shared_female",
+  "face": "side_h_moshi_face"
+ },
+ "side_shinken": {
+  "base": "shared_female",
+  "face": "side_shinken_face"
+ },
+ "side_satomi": {
+  "base": "shared_female",
+  "face": "side_satomi_face"
+ },
+ "side_ryozo": {
+  "base": "shared_male",
+  "face": "side_ryozo_face"
+ },
+ "side_katsutoshi": {
+  "base": "shared_male",
+  "face": "side_katsutoshi_face"
+ },
+ "side_miyahana": {
+  "base": "shared_female",
+  "face": "side_miyahana_face"
+ },
+ "side_oshito": {
+  "base": "shared_female",
+  "face": "side_oshito_face"
+ },
+ "side_tsune": {
+  "base": "shared_male",
+  "face": "side_tsune_face"
+ },
+ "side_mayumi": {
+  "base": "shared_female",
+  "face": "side_mayumi_face"
+ },
+ "side_norie": {
+  "base": "shared_female",
+  "face": "side_norie_face"
+ },
+ "side_osuko": {
+  "base": "shared_female",
+  "face": "side_osuko_face"
+ },
+ "side_shiko": {
+  "base": "shared_female",
+  "face": "side_shiko_face"
+ },
+ "side_h_stagehand": {
+  "base": "shared_male",
+  "face": "side_h_stagehand_face"
+ },
+ "side_noburo": {
+  "base": "shared_male",
+  "face": "side_noburo_face"
+ },
+ "side_nihime": {
+  "base": "shared_female",
+  "face": "side_nihime_face"
+ },
+ "side_shinobu": {
+  "base": "shared_female",
+  "face": "side_shinobu_face"
+ },
+ "side_bantaro": {
+  "base": "shared_male",
+  "face": "side_bantaro_face"
+ },
+ "side_onaka": {
+  "base": "shared_male",
+  "face": "side_onaka_face"
+ },
+ "side_soshi": {
+  "base": "shared_male",
+  "face": "side_soshi_face"
+ },
+ "side_soshienvoy": {
+  "base": "shared_male",
+  "face": "side_soshienvoy_face"
+ },
+ "side_h_tamori": {
+  "base": "shared_female",
+  "face": "side_h_tamori_face"
+ },
+ "side_haku": {
+  "base": "shared_male",
+  "face": "side_haku_face"
+ },
+ "side_tamorimonk": {
+  "base": "shared_male",
+  "face": "side_tamorimonk_face"
+ },
+ "side_h_bomonk": {
+  "base": "shared_male",
+  "face": "side_h_bomonk_face"
+ },
+ "side_outfitter": {
+  "base": "shared_male",
+  "face": "side_outfitter_face"
+ },
+ "side_sumi": {
+  "base": "shared_male",
+  "face": "side_sumi_face"
+ },
+ "side_togashi": {
+  "base": "shared_male",
+  "face": "side_togashi_face"
+ },
+ "side_yosai": {
+  "base": "shared_male",
+  "face": "side_yosai_portrait_face"
+ },
+ "side_h_tsuruchi": {
+  "base": "shared_male",
+  "face": "side_h_tsuruchi_face",
+  "headband": "side_h_tsuruchi_headband"
+ },
+ "side_actor_b": {
+  "base": "shared_female",
+  "face": "side_actor_b_face"
+ },
+ "side_akari": {
+  "base": "shared_female",
+  "face": "side_akari_face"
+ },
+ "side_campfollower": {
+  "base": "shared_female",
+  "face": "side_campfollower_face"
+ },
+ "side_fishseller": {
+  "base": "shared_female",
+  "face": "side_fishseller_face"
+ },
+ "side_fishwife": {
+  "base": "shared_female",
+  "face": "side_fishwife_face"
+ },
+ "side_fumi": {
+  "base": "shared_female",
+  "face": "side_fumi_face"
+ },
+ "side_grandmother": {
+  "base": "shared_female",
+  "face": "side_grandmother_face"
+ },
+ "side_h_herbalist": {
+  "base": "shared_female",
+  "face": "side_h_herbalist_face"
+ },
+ "side_h_jadeseller": {
+  "base": "shared_female",
+  "face": "side_h_jadeseller_face"
+ },
+ "side_h_kitsune": {
+  "base": "shared_female",
+  "face": "side_h_kitsune_face"
+ },
+ "side_hagi": {
+  "base": "shared_female",
+  "face": "side_hagi_face"
+ },
+ "side_hana": {
+  "base": "shared_female",
+  "face": "side_hana_face"
+ },
+ "side_herald": {
+  "base": "shared_female",
+  "face": "side_herald_face"
+ },
+ "side_herbseller": {
+  "base": "shared_female",
+  "face": "side_herbseller_face"
+ },
+ "side_hostess": {
+  "base": "shared_female",
+  "face": "side_hostess_face"
+ },
+ "side_incense": {
+  "base": "shared_female",
+  "face": "side_incense_face"
+ },
+ "side_innkeeper": {
+  "base": "shared_female",
+  "face": "side_innkeeper_face"
+ },
+ "side_jadeclerk": {
+  "base": "shared_female",
+  "face": "side_jadeclerk_face"
+ },
+ "side_kitchengirl": {
+  "base": "shared_female",
+  "face": "side_kitchengirl_face"
+ },
+ "side_kiyo": {
+  "base": "shared_female",
+  "face": "side_kiyo_face"
+ },
+ "side_makeup": {
+  "base": "shared_female",
+  "face": "side_makeup_face"
+ },
+ "side_megu": {
+  "base": "shared_female",
+  "face": "side_megu_face"
+ },
+ "side_miko": {
+  "base": "shared_female",
+  "face": "side_miko_face"
+ },
+ "side_mitsue_maid": {
+  "base": "shared_female",
+  "face": "side_mitsue_maid_face"
+ },
+ "side_muika": {
+  "base": "shared_female",
+  "face": "side_muika_face"
+ },
+ "side_nashiko": {
+  "base": "shared_female",
+  "face": "side_nashiko_face"
+ },
+ "side_netmender": {
+  "base": "shared_female",
+  "face": "side_netmender_face"
+ },
+ "side_oldwoman": {
+  "base": "shared_female",
+  "face": "side_oldwoman_face"
+ },
+ "side_oyuki": {
+  "base": "shared_female",
+  "face": "side_oyuki_face"
+ },
+ "side_pilgrimgirl": {
+  "base": "shared_female",
+  "face": "side_pilgrimgirl_face"
+ },
+ "side_rika": {
+  "base": "shared_female",
+  "face": "side_rika_face"
+ },
+ "side_sariko": {
+  "base": "shared_female",
+  "face": "side_sariko_face"
+ },
+ "side_shrinekeeper": {
+  "base": "shared_female",
+  "face": "side_shrinekeeper_face"
+ },
+ "side_tsuhime": {
+  "base": "shared_female",
+  "face": "side_tsuhime_face"
+ },
+ "side_twin": {
+  "base": "shared_female",
+  "face": "side_twin_face"
+ },
+ "side_umebaa": {
+  "base": "shared_female",
+  "face": "side_umebaa_face"
+ },
+ "side_widow": {
+  "base": "shared_female",
+  "face": "side_widow_face"
+ },
+ "side_youngsayo": {
+  "base": "shared_female",
+  "face": "side_youngsayo_face"
+ },
+ "side_abbot": {
+  "base": "shared_male",
+  "face": "side_abbot_face"
+ },
+ "side_actor_a": {
+  "base": "shared_male",
+  "face": "side_actor_a_face"
+ },
+ "side_actor_c": {
+  "base": "shared_male",
+  "face": "side_actor_c_face"
+ },
+ "side_akuro": {
+  "base": "shared_male",
+  "face": "side_akuro_face"
+ },
+ "side_bargeman": {
+  "base": "shared_male",
+  "face": "side_bargeman_face"
+ },
+ "side_beggar": {
+  "base": "shared_male",
+  "face": "side_beggar_face"
+ },
+ "side_beggarmonk": {
+  "base": "shared_male",
+  "face": "side_beggarmonk_face"
+ },
+ "side_cartdriver": {
+  "base": "shared_male",
+  "face": "side_cartdriver_face"
+ },
+ "side_censorclerk": {
+  "base": "shared_male",
+  "face": "side_censorclerk_face"
+ },
+ "side_censormonk": {
+  "base": "shared_male",
+  "face": "side_censormonk_face"
+ },
+ "side_charmseller": {
+  "base": "shared_male",
+  "face": "side_charmseller_face"
+ },
+ "side_citizen": {
+  "base": "shared_male",
+  "face": "side_citizen_face"
+ },
+ "side_clerk": {
+  "base": "shared_male",
+  "face": "side_clerk_face"
+ },
+ "side_crabboy": {
+  "base": "shared_male",
+  "face": "side_crabboy_face"
+ },
+ "side_diver": {
+  "base": "shared_male",
+  "face": "side_diver_face"
+ },
+ "side_doorman": {
+  "base": "shared_male",
+  "face": "side_doorman_face"
+ },
+ "side_drunkactor": {
+  "base": "shared_male",
+  "face": "side_drunkactor_face"
+ },
+ "side_drunksailor": {
+  "base": "shared_male",
+  "face": "side_drunksailor_face"
+ },
+ "side_ebisu": {
+  "base": "shared_male",
+  "face": "side_ebisu_face"
+ },
+ "side_ferryman": {
+  "base": "shared_male",
+  "face": "side_ferryman_face"
+ },
+ "side_ff_boatman": {
+  "base": "shared_male",
+  "face": "side_ff_boatman_face"
+ },
+ "side_ff_fisherman": {
+  "base": "shared_male",
+  "face": "side_ff_fisherman_face"
+ },
+ "side_gaijintrader": {
+  "base": "shared_male",
+  "face": "side_gaijintrader_face"
+ },
+ "side_gatekeeper": {
+  "base": "shared_male",
+  "face": "side_gatekeeper_face"
+ },
+ "side_gochu": {
+  "base": "shared_male",
+  "face": "side_gochu_face"
+ },
+ "side_gonbei": {
+  "base": "shared_male",
+  "face": "side_gonbei_face"
+ },
+ "side_gonta": {
+  "base": "shared_male",
+  "face": "side_gonta_face"
+ },
+ "side_gontaboy": {
+  "base": "shared_male",
+  "face": "side_gontaboy_face"
+ },
+ "side_h_fisherman": {
+  "base": "shared_male",
+  "face": "side_h_fisherman_face"
+ },
+ "side_h_goatherd": {
+  "base": "shared_male",
+  "face": "side_h_goatherd_face"
+ },
+ "side_h_hanabi": {
+  "base": "shared_male",
+  "face": "side_h_hanabi_face"
+ },
+ "side_h_hunter": {
+  "base": "shared_male",
+  "face": "side_h_hunter_face"
+ },
+ "side_h_lamplighter": {
+  "base": "shared_male",
+  "face": "side_h_lamplighter_face"
+ },
+ "side_h_suzume": {
+  "base": "shared_male",
+  "face": "side_h_suzume_face"
+ },
+ "side_h_thundermonk": {
+  "base": "shared_male",
+  "face": "side_h_thundermonk_face"
+ },
+ "side_h_windpriest": {
+  "base": "shared_male",
+  "face": "side_h_windpriest_face"
+ },
+ "side_h_yojimbo": {
+  "base": "shared_male",
+  "face": "side_h_yojimbo_face"
+ },
+ "side_healer": {
+  "base": "shared_male",
+  "face": "side_healer_face"
+ },
+ "side_hidden1": {
+  "base": "shared_male",
+  "face": "side_hidden1_face"
+ },
+ "side_hidden2": {
+  "base": "shared_male",
+  "face": "side_hidden2_face"
+ },
+ "side_hiro": {
+  "base": "shared_male",
+  "face": "side_hiro_face"
+ },
+ "side_hitoro": {
+  "base": "shared_male",
+  "face": "side_hitoro_face"
+ },
+ "side_imuro": {
+  "base": "shared_male",
+  "face": "side_imuro_face"
+ },
+ "side_itami": {
+  "base": "shared_male",
+  "face": "side_itami_face"
+ },
+ "side_jinnai": {
+  "base": "shared_male",
+  "face": "side_jinnai_face"
+ },
+ "side_kagemaro": {
+  "base": "shared_male",
+  "face": "side_kagemaro_face"
+ },
+ "side_karo": {
+  "base": "shared_male",
+  "face": "side_karo_face"
+ },
+ "side_katsuo": {
+  "base": "shared_male",
+  "face": "side_katsuo_face"
+ },
+ "side_kitechild": {
+  "base": "shared_male",
+  "face": "side_kitechild_face"
+ },
+ "side_kitsuneboy": {
+  "base": "shared_male",
+  "face": "side_kitsuneboy_face"
+ },
+ "side_kosai": {
+  "base": "shared_male",
+  "face": "side_kosai_face"
+ },
+ "side_koshi": {
+  "base": "shared_male",
+  "face": "side_koshi_face"
+ },
+ "side_kusada": {
+  "base": "shared_male",
+  "face": "side_kusada_face"
+ },
+ "side_magistrate": {
+  "base": "shared_male",
+  "face": "side_magistrate_face"
+ },
+ "side_mamoru": {
+  "base": "shared_male",
+  "face": "side_mamoru_face"
+ },
+ "side_mantisenvoy": {
+  "base": "shared_male",
+  "face": "side_mantisenvoy_face"
+ },
+ "side_maskmaker": {
+  "base": "shared_male",
+  "face": "side_maskmaker_face"
+ },
+ "side_mcaptain": {
+  "base": "shared_male",
+  "face": "side_mcaptain_face"
+ },
+ "side_merchant": {
+  "base": "shared_male",
+  "face": "side_merchant_face"
+ },
+ "side_mobleader": {
+  "base": "shared_male",
+  "face": "side_mobleader_face"
+ },
+ "side_mosuke": {
+  "base": "shared_male",
+  "face": "side_mosuke_face"
+ },
+ "side_muledriver": {
+  "base": "shared_male",
+  "face": "side_muledriver_face"
+ },
+ "side_munashii": {
+  "base": "shared_male",
+  "face": "side_munashii_face"
+ },
+ "side_musician": {
+  "base": "shared_male",
+  "face": "side_musician_face"
+ },
+ "side_naohida": {
+  "base": "shared_male",
+  "face": "side_naohida_face"
+ },
+ "side_oldpilgrim": {
+  "base": "shared_male",
+  "face": "side_oldpilgrim_face"
+ },
+ "side_oracle": {
+  "base": "shared_male",
+  "face": "side_oracle_face"
+ },
+ "side_pedlar": {
+  "base": "shared_male",
+  "face": "side_pedlar_face"
+ },
+ "side_pigeonkeeper": {
+  "base": "shared_male",
+  "face": "side_pigeonkeeper_face"
+ },
+ "side_pilgrim": {
+  "base": "shared_male",
+  "face": "side_pilgrim_face"
+ },
+ "side_pilgrimagent": {
+  "base": "shared_male",
+  "face": "side_pilgrimagent_face"
+ },
+ "side_porter": {
+  "base": "shared_male",
+  "face": "side_porter_face",
+  "headband": "side_porter_headband"
+ },
+ "side_priest": {
+  "base": "shared_male",
+  "face": "side_priest_face"
+ },
+ "side_riichi": {
+  "base": "shared_male",
+  "face": "side_riichi_face"
+ },
+ "side_roninchef": {
+  "base": "shared_male",
+  "face": "side_roninchef_face"
+ },
+ "side_rteacher": {
+  "base": "shared_male",
+  "face": "side_rteacher_face"
+ },
+ "side_sabu": {
+  "base": "shared_male",
+  "face": "side_sabu_face"
+ },
+ "side_sakeseller": {
+  "base": "shared_male",
+  "face": "side_sakeseller_face"
+ },
+ "side_senior_student": {
+  "base": "shared_male",
+  "face": "side_senior_student_face"
+ },
+ "side_servant": {
+  "base": "shared_male",
+  "face": "side_servant_face"
+ },
+ "side_shipmaster": {
+  "base": "shared_male",
+  "face": "side_shipmaster_face"
+ },
+ "side_shrinepeasant": {
+  "base": "shared_male",
+  "face": "side_shrinepeasant_face"
+ },
+ "side_smithboy": {
+  "base": "shared_male",
+  "face": "side_smithboy_face",
+  "headband": "side_smithboy_headband"
+ },
+ "side_snakeelder": {
+  "base": "shared_male",
+  "face": "side_snakeelder_face"
+ },
+ "side_sonoservant": {
+  "base": "shared_male",
+  "face": "side_sonoservant_face"
+ },
+ "side_swordsmith": {
+  "base": "shared_male",
+  "face": "side_swordsmith_face"
+ },
+ "side_tbeggar": {
+  "base": "shared_male",
+  "face": "side_tbeggar_face"
+ },
+ "side_thundermonk": {
+  "base": "shared_male",
+  "face": "side_thundermonk_face"
+ },
+ "side_tokubei": {
+  "base": "shared_male",
+  "face": "side_tokubei_face"
+ },
+ "side_torishigawa": {
+  "base": "shared_male",
+  "face": "side_torishigawa_face"
+ },
+ "side_veteran": {
+  "base": "shared_male",
+  "face": "side_veteran_face"
+ },
+ "side_yodo": {
+  "base": "shared_male",
+  "face": "side_yodo_face"
+ },
+ "side_youth": {
+  "base": "shared_male",
+  "face": "side_youth_face"
+ },
+ "side_kurako": {
+  "base": "shared_female",
+  "face": "side_kurako_face"
+ },
+ "side_kanbe": {
+  "base": "shared_male",
+  "face": "side_kanbe_face"
+ },
+ "side_kanemori": {
+  "base": "shared_male",
+  "face": "side_kanemori_face"
+ },
+ "side_kasamashi": {
+  "base": "shared_male",
+  "face": "side_kasamashi_face"
+ },
+ "side_tessai": {
+  "base": "shared_male",
+  "face": "side_tessai_face"
+ },
+ "side_meyako": {
+  "base": "shared_female",
+  "face": "side_meyako_face"
+ },
+ "side_shigeru": {
+  "base": "shared_male",
+  "face": "side_shigeru_face"
+ },
+ "side_sakura": {
+  "base": "shared_female",
+  "face": "side_sakura_face"
+ },
+ "side_goro": {
+  "base": "shared_male",
+  "face": "side_goro_face"
+ },
+ "side_h_scout": {
+  "base": "shared_female",
+  "face": "side_h_scout_face"
+ },
+ "trav_natsuko": {
+  "base": "shared_female",
+  "face": "trav_natsuko_portrait_face",
+  "headband": "trav_natsuko_headband"
+ },
+ "side_ryoichi": {
+  "base": "shared_male",
+  "face": "side_ryoichi_face"
+ },
+ "side_fujio": {
+  "base": "shared_male",
+  "face": "side_fujio_face"
+ },
+ "trav_tamotsu": {
+  "base": "shared_male",
+  "face": "trav_tamotsu_portrait_face"
+ },
+ "side_michio": {
+  "base": "shared_male",
+  "face": "side_michio_face"
+ },
+ "trav_haruki": {
+  "base": "shared_male",
+  "face": "trav_haruki_portrait_face"
+ },
+ "trav_rensei": {
+  "base": "shared_male",
+  "face": "trav_rensei_portrait_face"
+ },
+ "side_momo": {
+  "base": "shared_female",
+  "face": "side_momo_face"
+ },
+ "trav_gendo": {
+  "base": "shared_male",
+  "face": "trav_gendo_portrait_face"
+ },
+ "side_akodorin": {
+  "base": "shared_female",
+  "face": "side_akodorin_face"
+ },
+ "side_goroso": {
+  "base": "shared_male",
+  "face": "side_goroso_face"
+ },
+ "side_gusai": {
+  "base": "shared_male",
+  "face": "side_gusai_face"
+ },
+ "side_hiruto": {
+  "base": "shared_male",
+  "face": "side_hiruto_face"
+ },
+ "side_ozaki": {
+  "base": "shared_male",
+  "face": "side_ozaki_face"
+ },
+ "side_tama": {
+  "base": "shared_male",
+  "face": "side_tama_face"
+ },
+ "side_ukita": {
+  "base": "shared_male",
+  "face": "side_ukita_face"
+ },
+ "side_bayushiguard": {
+  "base": "shared_male",
+  "face": "side_bayushiguard_face"
+ },
+ "side_shoju": {
+  "base": "shared_male",
+  "face": "side_shoju_face"
+ },
+ "side_atsuko": {
+  "base": "shared_female",
+  "face": "side_atsuko_face"
+ },
+ "side_craneguard": {
+  "base": "shared_male",
+  "face": "side_craneguard_face"
+ },
+ "side_daidoji_general": {
+  "base": "shared_male",
+  "face": "side_daidoji_general_face"
+ },
+ "side_siko": {
+  "base": "shared_female",
+  "face": "side_siko_face"
+ },
+ "side_seikidera": {
+  "base": "shared_male",
+  "face": "side_seikidera_face"
+ },
+ "side_sachiko": {
+  "base": "shared_female",
+  "face": "side_sachiko_face",
+  "headband": "side_sachiko_headband"
+ },
+ "side_chuto": {
+  "base": "shared_male",
+  "face": "side_chuto_face"
+ },
+ "side_dorin": {
+  "base": "shared_male",
+  "face": "side_dorin_face"
+ },
+ "side_h_jadearcher": {
+  "base": "shared_male",
+  "face": "side_h_jadearcher_face"
+ },
+ "side_h_veteran": {
+  "base": "shared_male",
+  "face": "side_h_veteran_face"
+ },
+ "side_hidaren": {
+  "base": "shared_male",
+  "face": "side_hidaren_face"
+ },
+ "side_kisada": {
+  "base": "shared_male",
+  "face": "side_kisada_face"
+ },
+ "side_masakazu": {
+  "base": "shared_male",
+  "face": "side_masakazu_face"
+ },
+ "side_taneo": {
+  "base": "shared_male",
+  "face": "side_taneo_face"
+ },
+ "side_tomoe": {
+  "base": "shared_male",
+  "face": "side_tomoe_face"
+ },
+ "side_yakamo": {
+  "base": "shared_male",
+  "face": "side_yakamo_face"
+ },
+ "side_kage": {
+  "base": "shared_male",
+  "face": "side_kage_face"
+ },
+ "side_xue": {
+  "base": "shared_female",
+  "face": "side_xue_face"
+ },
+ "side_sadanobu": {
+  "base": "shared_male",
+  "face": "side_sadanobu_face"
+ },
+ "side_yoshi": {
+  "base": "shared_male",
+  "face": "side_yoshi_face"
+ },
+ "side_hiroichi": {
+  "base": "shared_male",
+  "face": "side_hiroichi_face"
+ },
+ "side_iuchisoldier": {
+  "base": "shared_male",
+  "face": "side_iuchisoldier_face"
+ },
+ "side_takanobu": {
+  "base": "shared_male",
+  "face": "side_takanobu_face"
+ },
+ "side_naname": {
+  "base": "shared_male",
+  "face": "side_naname_face"
+ },
+ "side_takakana": {
+  "base": "shared_male",
+  "face": "side_takakana_face"
+ },
+ "side_yutaka": {
+  "base": "shared_male",
+  "face": "side_yutaka_face"
+ },
+ "side_hanae": {
+  "base": "shared_female",
+  "face": "side_hanae_face"
+ },
+ "side_hisae": {
+  "base": "shared_female",
+  "face": "side_hisae_face"
+ },
+ "side_matsuduel": {
+  "base": "shared_male",
+  "face": "side_matsuduel_face"
+ },
+ "side_nagai": {
+  "base": "shared_male",
+  "face": "side_nagai_face"
+ },
+ "side_rokuro": {
+  "base": "shared_male",
+  "face": "side_rokuro_face"
+ },
+ "side_h_mirumoto": {
+  "base": "shared_male",
+  "face": "side_h_mirumoto_face"
+ },
+ "side_h_yari": {
+  "base": "shared_male",
+  "face": "side_h_yari_face"
+ },
+ "side_mirumotosen": {
+  "base": "shared_male",
+  "face": "side_mirumotosen_face"
+ },
+ "side_mirumotosentry": {
+  "base": "shared_male",
+  "face": "side_mirumotosentry_face"
+ },
+ "side_tabezu": {
+  "base": "shared_male",
+  "face": "side_tabezu_face"
+ },
+ "side_tsukaru": {
+  "base": "shared_male",
+  "face": "side_tsukaru_face"
+ },
+ "side_benjiro": {
+  "base": "shared_male",
+  "face": "side_benjiro_face"
+ },
+ "side_h_moto": {
+  "base": "shared_male",
+  "face": "side_h_moto_face"
+ },
+ "side_zhang": {
+  "base": "shared_male",
+  "face": "side_zhang_face"
+ },
+ "side_seppunguard": {
+  "base": "shared_male",
+  "face": "side_seppunguard_face"
+ },
+ "side_ushimo": {
+  "base": "shared_male",
+  "face": "side_ushimo_face"
+ },
+ "side_noboru": {
+  "base": "shared_male",
+  "face": "side_noboru_face"
+ },
+ "side_ryuko": {
+  "base": "shared_female",
+  "face": "side_ryuko_face"
+ },
+ "side_h_shinjo": {
+  "base": "shared_male",
+  "face": "side_h_shinjo_face"
+ },
+ "side_ichihito": {
+  "base": "shared_male",
+  "face": "side_ichihito_face"
+ },
+ "side_soshiofficer": {
+  "base": "shared_male",
+  "face": "side_soshiofficer_face"
+ },
+ "side_chihaya": {
+  "base": "shared_female",
+  "face": "side_chihaya_portrait_face"
+ },
+ "side_craneduellist": {
+  "base": "shared_male",
+  "face": "side_craneduellist_face"
+ },
+ "side_h_archer": {
+  "base": "shared_male",
+  "face": "side_h_archer_face"
+ },
+ "side_h_ferryarcher": {
+  "base": "shared_male",
+  "face": "side_h_ferryarcher_face"
+ },
+ "side_h_shrinearcher": {
+  "base": "shared_male",
+  "face": "side_h_shrinearcher_face"
+ },
+ "side_h_sparrow": {
+  "base": "shared_male",
+  "face": "side_h_sparrow_face"
+ },
+ "side_hyobe": {
+  "base": "shared_male",
+  "face": "side_hyobe_face"
+ },
+ "side_iami": {
+  "base": "shared_male",
+  "face": "side_iami_face"
+ },
+ "side_lionrider": {
+  "base": "shared_male",
+  "face": "side_lionrider_face"
+ },
+ "side_lionsergeant": {
+  "base": "shared_male",
+  "face": "side_lionsergeant_face"
+ },
+ "side_mbushi": {
+  "base": "shared_male",
+  "face": "side_mbushi_face"
+ },
+ "side_quartermaster": {
+  "base": "shared_male",
+  "face": "side_quartermaster_face"
+ },
+ "side_ryohei": {
+  "base": "shared_male",
+  "face": "side_ryohei_face"
+ },
+ "side_sergeant": {
+  "base": "shared_male",
+  "face": "side_sergeant_face"
+ },
+ "side_tadayasu": {
+  "base": "shared_male",
+  "face": "side_tadayasu_face"
+ },
+ "side_taxman": {
+  "base": "shared_male",
+  "face": "side_taxman_face"
+ },
+ "side_townguard": {
+  "base": "shared_male",
+  "face": "side_townguard_face"
+ },
+ "side_uyojimbo": {
+  "base": "shared_male",
+  "face": "side_uyojimbo_face"
+ },
+ "side_yosuke": {
+  "base": "shared_male",
+  "face": "side_yosuke_face"
+ },
+ "side_rui": {
+  "base": "shared_female",
+  "face": "side_rui_face"
+ },
+ "side_yoritomo": {
+  "base": "shared_male",
+  "face": "side_yoritomo_face"
+ },
+ "trav_sayo": {
+  "base": "shared_female",
+  "face": "trav_sayo_portrait_face"
+ },
+ "side_ashimita": {
+  "base": "shared_male",
+  "face": "side_ashimita_face"
+ },
+ "trav_mitsue": {
+  "base": "shared_female",
+  "face": "trav_mitsue_portrait_face"
+ },
+ "side_mai": {
+  "base": "shared_female",
+  "face": "side_mai_face"
+ },
+ "EP115": {
+  "base": "shared_male",
+  "face": "EP115_face",
+  "outfit": "EP115_outfit",
+  "weapon": "EP115_weapon"
+ },
+ "EP127": {
+  "base": "shared_female",
+  "face": "EP127_face",
+  "outfit": "EP127_outfit",
+  "weapon": "EP127_weapon"
+ },
+ "EP130": {
+  "base": "shared_male",
+  "face": "EP130_face",
+  "outfit": "EP130_outfit"
+ },
+ "EP135": {
+  "base": "shared_male",
+  "face": "EP135_face",
+  "outfit": "EP135_outfit",
+  "weapon": "EP135_weapon"
+ },
+ "EP142": {
+  "base": "shared_female",
+  "face": "EP142_face",
+  "outfit": "EP142_outfit",
+  "weapon": "EP142_weapon"
+ },
+ "EP145": {
+  "base": "shared_male",
+  "face": "EP145_face",
+  "outfit": "EP145_outfit",
+  "weapon": "EP145_weapon"
+ },
+ "EP156": {
+  "base": "shared_male",
+  "face": "EP156_face",
+  "outfit": "EP156_outfit",
+  "hat": "EP156_hat",
+  "mask": "EP156_mask"
+ },
+ "EP190": {
+  "base": "shared_female",
+  "face": "EP190_face",
+  "outfit": "EP190_outfit"
+ },
+ "EP402": {
+  "base": "shared_male",
+  "face": "EP402_face",
+  "outfit": "EP402_outfit",
+  "weapon": "EP402_weapon"
+ },
+ "EP405": {
+  "base": "shared_male",
+  "face": "EP405_face",
+  "outfit": "EP405_outfit",
+  "weapon": "EP405_weapon"
+ },
+ "EP408": {
+  "base": "shared_male",
+  "face": "EP408_face",
+  "outfit": "EP408_outfit",
+  "weapon": "EP408_weapon"
+ },
+ "EP411": {
+  "base": "shared_male",
+  "face": "EP411_face",
+  "outfit": "EP411_outfit",
+  "hat": "EP411_hunyuan_kabuto_cords",
+  "weapon": "EP411_weapon",
+  "hatFace": "EP411_face_under_kabuto"
+ },
+ "EP414": {
+  "base": "shared_male",
+  "face": "EP414_face",
+  "outfit": "EP414_outfit",
+  "hat": "EP414_hunyuan_kabuto_cords",
+  "weapon": "EP414_weapon",
+  "hatFace": "EP414_face_under_kabuto"
+ },
+ "EP417": {
+  "base": "shared_male",
+  "face": "EP417_face",
+  "outfit": "EP417_outfit",
+  "hat": "EP417_hat",
+  "weapon": "EP417_weapon"
+ },
+ "EP420": {
+  "base": "shared_male",
+  "face": "EP420_face",
+  "outfit": "EP420_outfit",
+  "weapon": "EP420_weapon"
+ },
+ "EP423": {
+  "base": "shared_male",
+  "face": "EP423_face",
+  "outfit": "EP423_outfit"
+ },
+ "EP426": {
+  "base": "shared_male",
+  "face": "EP426_face",
+  "outfit": "EP426_outfit",
+  "mask": "EP426_mask",
+  "weapon": "EP426_weapon"
+ },
+ "EP429": {
+  "base": "shared_male",
+  "face": "EP429_face",
+  "outfit": "EP429_outfit",
+  "hat": "EP429_hat"
+ },
+ "EP432": {
+  "base": "shared_male",
+  "face": "EP432_face",
+  "outfit": "EP432_outfit",
+  "hat": "EP432_hat"
+ },
+ "EP500": {
+  "base": "shared_male",
+  "face": "EP500_face",
+  "outfit": "EP500_outfit",
+  "weapon": "EP500_weapon"
+ },
+ "EP503": {
+  "base": "shared_male",
+  "face": "EP503_face",
+  "outfit": "EP503_outfit",
+  "weapon": "EP503_weapon"
+ },
+ "EP506": {
+  "base": "shared_male",
+  "face": "EP506_face",
+  "outfit": "EP506_outfit",
+  "weapon": "EP506_weapon"
+ },
+ "EP509": {
+  "base": "shared_male",
+  "face": "EP509_face",
+  "outfit": "EP509_outfit",
+  "hat": "EP509_hat",
+  "weapon": "EP509_weapon"
+ },
+ "EP512": {
+  "base": "shared_male",
+  "face": "EP512_face",
+  "outfit": "EP512_outfit",
+  "weapon": "EP512_weapon"
+ },
+ "EP515": {
+  "base": "shared_male",
+  "face": "EP515_face",
+  "outfit": "EP515_outfit",
+  "hat": "EP515_hat",
+  "weapon": "EP515_weapon"
+ },
+ "EP518": {
+  "base": "shared_female",
+  "face": "EP518_face",
+  "outfit": "EP518_outfit"
+ },
+ "EP742": {
+  "base": "shared_male",
+  "face": "EP742_face",
+  "outfit": "EP742_outfit"
+ },
+ "EP850": {
+  "base": "shared_male",
+  "face": "EP850_face",
+  "outfit": "EP850_outfit",
+  "weapon": "EP850_weapon"
+ },
+ "EP859": {
+  "base": "shared_male",
+  "face": "EP859_face",
+  "outfit": "EP859_outfit",
+  "weapon": "EP859_weapon"
+ },
+ "EP1033": {
+  "base": "shared_male",
+  "face": "EP1033_face",
+  "outfit": "EP1033_outfit",
+  "hat": "EP1033_hat"
+ },
+ "EP1302": {
+  "base": "shared_male",
+  "face": "EP1302_face",
+  "outfit": "EP1302_outfit",
+  "mask": "EP1302_mask",
+  "weapon": "EP1302_weapon"
+ },
+ "EP2603": {
+  "base": "shared_male",
+  "face": "EP2603_face",
+  "outfit": "EP2603_outfit",
+  "hat": "EP2603_hat",
+  "weapon": "EP2603_weapon"
+ },
+ "EP2609": {
+  "base": "shared_male",
+  "face": "EP2609_face",
+  "outfit": "EP2609_outfit",
+  "weapon": "EP2609_weapon"
+ },
+ "EP2622": {
+  "base": "shared_male",
+  "face": "EP2622_face",
+  "outfit": "EP2622_outfit",
+  "weapon": "EP2622_weapon"
+ },
+ "EP122": {
+  "base": "shared_male",
+  "face": "EP122_face",
+  "outfit": "EP122_outfit",
+  "mask": "EP122_mask",
+  "weapon": "EP122_weapon"
+ },
+ "EP128": {
+  "base": "shared_female",
+  "face": "side_chihaya_portrait_face",
+  "outfit": "EP128_outfit",
+  "weapon": "EP128_weapon"
+ },
+ "EP131": {
+  "base": "shared_male",
+  "face": "EP131_face",
+  "outfit": "EP131_outfit",
+  "weapon": "EP131_weapon"
+ },
+ "EP137": {
+  "base": "shared_male",
+  "face": "EP137_face",
+  "outfit": "EP137_outfit",
+  "hat": "EP137_hunyuan_kabuto_cords",
+  "weapon": "EP137_weapon",
+  "hatFace": "EP137_face_under_kabuto"
+ },
+ "EP143": {
+  "base": "shared_male",
+  "face": "EP143_face",
+  "outfit": "EP143_outfit",
+  "hat": "EP143_hunyuan_kabuto_cords",
+  "weapon": "EP143_weapon",
+  "hatFace": "EP143_face_under_kabuto"
+ },
+ "EP147": {
+  "base": "shared_male",
+  "face": "EP147_face",
+  "outfit": "EP147_outfit",
+  "mask": "EP147_mask"
+ },
+ "EP176": {
+  "base": "shared_male",
+  "face": "EP176_face",
+  "outfit": "EP176_outfit",
+  "mask": "EP176_mask",
+  "weapon": "EP176_weapon"
+ },
+ "EP400": {
+  "base": "shared_male",
+  "face": "EP400_face",
+  "outfit": "EP400_outfit",
+  "hat": "EP400_hat",
+  "weapon": "EP400_weapon"
+ },
+ "EP403": {
+  "base": "shared_male",
+  "face": "EP403_face",
+  "outfit": "EP403_outfit",
+  "mask": "EP403_mask",
+  "weapon": "EP403_weapon"
+ },
+ "EP406": {
+  "base": "shared_male",
+  "face": "EP406_face",
+  "outfit": "EP406_outfit",
+  "weapon": "EP406_weapon"
+ },
+ "EP409": {
+  "base": "shared_male",
+  "face": "EP409_face",
+  "outfit": "EP409_outfit",
+  "hat": "EP409_hat",
+  "weapon": "EP409_weapon"
+ },
+ "EP412": {
+  "base": "shared_male",
+  "face": "EP412_face",
+  "outfit": "EP412_outfit",
+  "hat": "EP412_hat",
+  "weapon": "EP412_weapon"
+ },
+ "EP415": {
+  "base": "shared_male",
+  "face": "EP415_face",
+  "outfit": "EP415_outfit",
+  "hat": "EP415_hunyuan_kabuto_cords",
+  "mask": "EP415_mask",
+  "weapon": "EP415_weapon",
+  "hatFace": "EP415_face_under_kabuto"
+ },
+ "EP418": {
+  "base": "shared_male",
+  "face": "EP418_face",
+  "outfit": "EP418_outfit",
+  "weapon": "EP418_weapon"
+ },
+ "EP421": {
+  "base": "shared_male",
+  "face": "EP421_face",
+  "outfit": "EP421_outfit"
+ },
+ "EP424": {
+  "base": "shared_male",
+  "face": "EP424_face",
+  "outfit": "EP424_outfit",
+  "mask": "EP424_mask",
+  "weapon": "EP424_weapon"
+ },
+ "EP427": {
+  "base": "shared_female",
+  "face": "EP427_face",
+  "outfit": "EP427_outfit",
+  "mask": "EP427_mask",
+  "weapon": "EP427_weapon"
+ },
+ "EP430": {
+  "base": "shared_male",
+  "face": "EP430_face",
+  "outfit": "EP430_outfit",
+  "weapon": "EP430_weapon"
+ },
+ "EP433": {
+  "base": "shared_male",
+  "face": "EP433_face",
+  "outfit": "EP433_outfit",
+  "mask": "EP433_mask",
+  "weapon": "EP433_weapon"
+ },
+ "EP501": {
+  "base": "shared_male",
+  "face": "EP501_face",
+  "outfit": "EP501_outfit",
+  "hat": "EP501_hat",
+  "weapon": "EP501_weapon"
+ },
+ "EP504": {
+  "base": "shared_male",
+  "face": "EP504_face",
+  "outfit": "EP504_outfit",
+  "hat": "EP504_hat",
+  "weapon": "EP504_weapon"
+ },
+ "EP507": {
+  "base": "shared_male",
+  "face": "EP507_face",
+  "outfit": "EP507_outfit",
+  "hat": "EP507_hat",
+  "weapon": "EP507_weapon"
+ },
+ "EP510": {
+  "base": "shared_male",
+  "face": "EP510_face",
+  "outfit": "EP510_outfit",
+  "hat": "EP510_hat"
+ },
+ "EP513": {
+  "base": "shared_male",
+  "face": "EP513_face",
+  "outfit": "EP513_outfit",
+  "hat": "EP513_hat",
+  "mask": "EP513_mask",
+  "weapon": "EP513_weapon"
+ },
+ "EP516": {
+  "base": "shared_male",
+  "face": "EP516_face",
+  "outfit": "EP516_outfit",
+  "hat": "EP516_hat"
+ },
+ "EP519": {
+  "base": "shared_male",
+  "face": "EP519_face",
+  "outfit": "EP519_outfit",
+  "weapon": "EP519_weapon"
+ },
+ "EP834": {
+  "base": "shared_male",
+  "face": "EP834_face",
+  "outfit": "EP834_outfit",
+  "weapon": "EP834_weapon"
+ },
+ "EP853": {
+  "base": "shared_male",
+  "face": "EP853_face",
+  "outfit": "EP853_outfit",
+  "weapon": "EP853_weapon"
+ },
+ "EP897": {
+  "base": "shared_male",
+  "face": "EP897_face",
+  "outfit": "EP897_outfit",
+  "weapon": "EP897_weapon"
+ },
+ "EP1300": {
+  "base": "shared_male",
+  "face": "EP1300_face",
+  "outfit": "EP1300_outfit",
+  "hat": "EP1300_hat",
+  "weapon": "EP1300_weapon"
+ },
+ "EP1303": {
+  "base": "shared_male",
+  "face": "EP1303_face",
+  "outfit": "EP1303_outfit",
+  "hat": "EP1303_hat",
+  "weapon": "EP1303_weapon"
+ },
+ "EP2604": {
+  "base": "shared_male",
+  "face": "EP2604_face",
+  "outfit": "EP2604_outfit",
+  "hat": "EP2604_hat"
+ },
+ "EP2611": {
+  "base": "shared_male",
+  "face": "EP2611_face",
+  "outfit": "EP2611_outfit",
+  "weapon": "EP2611_weapon"
+ },
+ "EP2623": {
+  "base": "shared_male",
+  "face": "EP2623_face",
+  "outfit": "EP2623_outfit",
+  "hat": "EP2623_hat",
+  "mask": "EP2623_mask",
+  "weapon": "EP2623_weapon"
+ },
+ "EP126": {
+  "base": "shared_male",
+  "face": "EP126_face",
+  "outfit": "EP126_outfit",
+  "weapon": "EP126_weapon"
+ },
+ "EP129": {
+  "base": "shared_male",
+  "face": "EP129_face",
+  "outfit": "EP129_outfit",
+  "hat": "EP129_hunyuan_kabuto_cords",
+  "weapon": "EP129_weapon",
+  "hatFace": "EP129_face_under_kabuto"
+ },
+ "EP133": {
+  "base": "shared_male",
+  "face": "EP133_face",
+  "outfit": "EP133_outfit"
+ },
+ "EP138": {
+  "base": "shared_male",
+  "face": "EP138_face",
+  "outfit": "EP138_outfit",
+  "weapon": "EP138_weapon"
+ },
+ "EP144": {
+  "base": "shared_male",
+  "face": "EP144_face",
+  "outfit": "EP144_outfit",
+  "hat": "EP144_hat",
+  "mask": "EP144_mask"
+ },
+ "EP150": {
+  "base": "shared_male",
+  "face": "EP150_face",
+  "outfit": "EP150_outfit",
+  "weapon": "EP150_weapon"
+ },
+ "EP178": {
+  "base": "shared_male",
+  "face": "EP178_face",
+  "outfit": "EP178_outfit",
+  "hat": "EP178_hunyuan_kabuto_cords",
+  "mask": "EP178_mask",
+  "weapon": "EP178_weapon",
+  "hatFace": "EP178_face_under_kabuto"
+ },
+ "EP401": {
+  "base": "shared_male",
+  "face": "EP401_face",
+  "outfit": "EP401_outfit",
+  "hat": "EP401_hat",
+  "weapon": "EP401_weapon"
+ },
+ "EP404": {
+  "base": "shared_male",
+  "face": "EP404_face",
+  "outfit": "EP404_outfit",
+  "hat": "EP404_hat",
+  "weapon": "EP404_weapon"
+ },
+ "EP407": {
+  "base": "shared_male",
+  "face": "EP407_face",
+  "outfit": "EP407_outfit",
+  "weapon": "EP407_weapon"
+ },
+ "EP410": {
+  "base": "shared_male",
+  "face": "EP410_face",
+  "outfit": "EP410_outfit",
+  "weapon": "EP410_weapon"
+ },
+ "EP413": {
+  "base": "shared_male",
+  "face": "EP413_face",
+  "outfit": "EP413_outfit",
+  "hat": "EP413_hat",
+  "weapon": "EP413_weapon"
+ },
+ "EP416": {
+  "base": "shared_male",
+  "face": "EP416_face",
+  "outfit": "EP416_outfit",
+  "hat": "EP416_hat",
+  "weapon": "EP416_weapon"
+ },
+ "EP419": {
+  "base": "shared_male",
+  "face": "EP419_face",
+  "outfit": "EP419_outfit",
+  "hat": "EP419_hunyuan_kabuto_cords",
+  "weapon": "EP419_weapon",
+  "hatFace": "EP419_face_under_kabuto"
+ },
+ "EP422": {
+  "base": "shared_male",
+  "face": "EP422_face",
+  "outfit": "EP422_outfit",
+  "mask": "EP422_mask",
+  "weapon": "EP422_weapon"
+ },
+ "EP425": {
+  "base": "shared_male",
+  "face": "EP425_face",
+  "outfit": "EP425_outfit",
+  "hat": "EP425_hat",
+  "mask": "EP425_mask",
+  "weapon": "EP425_weapon"
+ },
+ "EP428": {
+  "base": "shared_male",
+  "face": "EP428_face",
+  "outfit": "EP428_outfit",
+  "weapon": "EP428_weapon"
+ },
+ "EP431": {
+  "base": "shared_male",
+  "face": "EP431_face",
+  "outfit": "EP431_outfit",
+  "weapon": "EP431_weapon"
+ },
+ "EP434": {
+  "base": "shared_male",
+  "face": "EP434_face",
+  "outfit": "EP434_outfit",
+  "mask": "EP434_mask",
+  "weapon": "EP434_weapon"
+ },
+ "EP502": {
+  "base": "shared_male",
+  "face": "EP502_face",
+  "outfit": "EP502_outfit",
+  "hat": "EP502_hat",
+  "weapon": "EP502_weapon"
+ },
+ "EP505": {
+  "base": "shared_male",
+  "face": "EP505_face",
+  "outfit": "EP505_outfit",
+  "hat": "EP505_hat",
+  "weapon": "EP505_weapon"
+ },
+ "EP508": {
+  "base": "shared_male",
+  "face": "EP508_face",
+  "outfit": "EP508_outfit",
+  "hat": "EP508_hat",
+  "weapon": "EP508_weapon"
+ },
+ "EP511": {
+  "base": "shared_male",
+  "face": "EP511_face",
+  "outfit": "EP511_outfit",
+  "hat": "EP511_hat",
+  "weapon": "EP511_weapon"
+ },
+ "EP514": {
+  "base": "shared_male",
+  "face": "EP514_face",
+  "outfit": "EP514_outfit",
+  "hat": "EP514_hat",
+  "mask": "EP514_mask"
+ },
+ "EP517": {
+  "base": "shared_male",
+  "face": "EP517_face",
+  "outfit": "EP517_outfit",
+  "hat": "EP517_hat",
+  "weapon": "EP517_weapon"
+ },
+ "EP718": {
+  "base": "shared_male",
+  "face": "EP718_face",
+  "outfit": "EP718_outfit",
+  "weapon": "EP718_weapon"
+ },
+ "EP839": {
+  "base": "shared_male",
+  "face": "EP839_face",
+  "outfit": "EP839_outfit",
+  "weapon": "EP839_weapon"
+ },
+ "EP854": {
+  "base": "shared_male",
+  "face": "EP854_face",
+  "outfit": "EP854_outfit",
+  "weapon": "EP854_weapon"
+ },
+ "EP939": {
+  "base": "shared_female",
+  "face": "EP939_face",
+  "outfit": "EP939_outfit",
+  "mask": "EP939_mask",
+  "weapon": "EP939_weapon"
+ },
+ "EP1301": {
+  "base": "shared_male",
+  "face": "EP1301_face",
+  "outfit": "EP1301_outfit",
+  "weapon": "EP1301_weapon"
+ },
+ "EP1304": {
+  "base": "shared_male",
+  "face": "EP1304_face",
+  "outfit": "EP1304_outfit",
+  "hat": "EP1304_hat",
+  "weapon": "EP1304_weapon"
+ },
+ "EP2607": {
+  "base": "shared_male",
+  "face": "EP2607_face",
+  "outfit": "EP2607_outfit"
+ },
+ "EP2613": {
+  "base": "shared_male",
+  "face": "EP2613_face",
+  "outfit": "EP2613_outfit",
+  "weapon": "EP2613_weapon"
+ },
+ "EP2637": {
+  "base": "shared_male",
+  "face": "EP2637_face",
+  "outfit": "EP2637_outfit"
+ }
+}

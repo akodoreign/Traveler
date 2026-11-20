@@ -60,8 +60,11 @@ def main():
             continue
         src = os.path.join(RES, b["pic3d"].lstrip("/").replace("resource/", "", 1))
         out = os.path.join(RES, "enemy_pic", "ph_%s.png" % key)
-        if os.path.exists(out) and "PLACEHOLDER" not in str((j.get(ep) or {}).get("memo", "PLACEHOLDER")):
-            continue                                          # drawn art already installed: leave it
+        current = j.get(ep, {})
+        registered = (current.get("pic3d") or "").removeprefix("/resource/")
+        if registered and "PLACEHOLDER" not in str(current.get("memo", "PLACEHOLDER")):
+            if os.path.isfile(os.path.join(RES, registered)):
+                continue
         shift(Image.open(src), hue, sat, val).save(out)
         x = json.loads(json.dumps(b))
         x.update({"name": {"en": name, "ja": name}, "pic3d": "/resource/enemy_pic/ph_%s.png" % key,

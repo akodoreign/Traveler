@@ -70,7 +70,7 @@ runsk( srcdir .. "/RokuganCostumes.sk");
 	local gear = this.clothingFor( pc);
 	local signature = pc.dataid .. "=" .. (id ?? "");
 	if( !gear) return signature;
-	return signature .. "|" .. (gear.costume || "") .. "|" .. (gear.shinobiHead && ClientConfig.showHeadwear() ? "mask" : "") .. "|" .. [gear.body || "", gear.head || "", gear.head && !ClientConfig.showHeadwear() ? "hidden" : "",
+	return signature .. "|" .. (gear.costume || "") .. "|" .. (gear.shinobiHead && ClientConfig.showHeadwear() ? "mask" : "") .. "|" .. [gear.body || "", gear.head || "", (gear.head || gear.costume) && !ClientConfig.showHeadwear() ? "hidden" : "",
 		gear.mask || "", gear.cape || "",
 		gear.clan || "", gear.weaponId, gear.own ? "own" : gear.weapon].join( "|");
 };

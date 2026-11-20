@@ -10,12 +10,12 @@ material = [
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0xffffffff
-		rough = 0.500000
+		rough = 0.710000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
 		texture0 = null
-		texture1 = null
+		texture1 = "tex/wardrobe_normal.png"
 		texture2 = null
 	}
 ]

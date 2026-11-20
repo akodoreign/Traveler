@@ -1,0 +1,741 @@
+{
+  "rensei_robe": {
+    "prompt_id": "441c16c4-172a-4176-8a4f-598565c2c3f8",
+    "history": "http://127.0.0.1:8189/history/441c16c4-172a-4176-8a4f-598565c2c3f8"
+  },
+  "A173": {
+    "prompt_id": "ba32b4a9-8310-4f09-b90d-213fdbc8dd77",
+    "history": "http://127.0.0.1:8189/history/ba32b4a9-8310-4f09-b90d-213fdbc8dd77"
+  },
+  "mitsue_clerk": {
+    "prompt_id": "bbb31607-6e85-4c14-a59d-29f2fc9d4fdf",
+    "history": "http://127.0.0.1:8189/history/bbb31607-6e85-4c14-a59d-29f2fc9d4fdf"
+  },
+  "mitsue_fox": {
+    "prompt_id": "b6c8b124-aafb-44ef-a73e-a2cac527bd91",
+    "history": "http://127.0.0.1:8189/history/b6c8b124-aafb-44ef-a73e-a2cac527bd91"
+  },
+  "mitsue_maid": {
+    "prompt_id": "97060de6-3a77-4d7f-849c-b6fc7f846e09",
+    "history": "http://127.0.0.1:8189/history/97060de6-3a77-4d7f-849c-b6fc7f846e09"
+  },
+  "mitsue_pilgrim": {
+    "prompt_id": "6b395d1e-76b8-4a4d-8a60-954c9a7e6b7d",
+    "history": "http://127.0.0.1:8189/history/6b395d1e-76b8-4a4d-8a60-954c9a7e6b7d"
+  },
+  "mitsue_soldier": {
+    "prompt_id": "7b174bb4-dd1d-44a3-b456-97829b239825",
+    "history": "http://127.0.0.1:8189/history/7b174bb4-dd1d-44a3-b456-97829b239825"
+  },
+  "mitsue_shinobi": {
+    "prompt_id": "9efd053c-215c-42f0-bce0-b209985f8b0e",
+    "history": "http://127.0.0.1:8189/history/9efd053c-215c-42f0-bce0-b209985f8b0e"
+  },
+  "A100": {
+    "prompt_id": "d7507287-50c2-4b1a-b191-38a672164482",
+    "history": "http://127.0.0.1:8189/history/d7507287-50c2-4b1a-b191-38a672164482"
+  },
+  "A155": {
+    "prompt_id": "5813e1c0-bc08-48e8-88d0-040ef238bb35",
+    "history": "http://127.0.0.1:8189/history/5813e1c0-bc08-48e8-88d0-040ef238bb35"
+  },
+  "A108": {
+    "prompt_id": "93bd04a5-1f84-451f-b9b0-020be01bab5c",
+    "history": "http://127.0.0.1:8189/history/93bd04a5-1f84-451f-b9b0-020be01bab5c"
+  },
+  "A120": {
+    "prompt_id": "7a9e1eef-bfa9-479f-883a-cbf667fcf676",
+    "history": "http://127.0.0.1:8189/history/7a9e1eef-bfa9-479f-883a-cbf667fcf676"
+  },
+  "A101": {
+    "prompt_id": "3d250320-2fd6-4006-926d-739b9d6fa273",
+    "history": "http://127.0.0.1:8189/history/3d250320-2fd6-4006-926d-739b9d6fa273"
+  },
+  "A127": {
+    "prompt_id": "73e2c32a-ffbc-4a7a-9f58-9b61b0f890d3",
+    "history": "http://127.0.0.1:8189/history/73e2c32a-ffbc-4a7a-9f58-9b61b0f890d3"
+  },
+  "A116": {
+    "prompt_id": "64a00995-d8ee-43b6-b1b2-a2ba0fcbca56",
+    "history": "http://127.0.0.1:8189/history/64a00995-d8ee-43b6-b1b2-a2ba0fcbca56"
+  },
+  "A124": {
+    "prompt_id": "29248e5c-4a45-42a6-93cf-17c934ad2038",
+    "history": "http://127.0.0.1:8189/history/29248e5c-4a45-42a6-93cf-17c934ad2038"
+  },
+  "A112": {
+    "prompt_id": "35b4b5c1-2bd9-4c7e-995d-6ac3460f6223",
+    "history": "http://127.0.0.1:8189/history/35b4b5c1-2bd9-4c7e-995d-6ac3460f6223"
+  },
+  "A109": {
+    "prompt_id": "d02d763e-4ddd-4949-93ff-3f4eff295352",
+    "history": "http://127.0.0.1:8189/history/d02d763e-4ddd-4949-93ff-3f4eff295352"
+  },
+  "A135": {
+    "prompt_id": "bf31d1f5-3627-4baa-880b-8f12a057517d",
+    "history": "http://127.0.0.1:8189/history/bf31d1f5-3627-4baa-880b-8f12a057517d"
+  },
+  "A128": {
+    "prompt_id": "e6ff1d1b-d3d3-4a6c-8c45-a1a70dee3419",
+    "history": "http://127.0.0.1:8189/history/e6ff1d1b-d3d3-4a6c-8c45-a1a70dee3419"
+  },
+  "A153": {
+    "prompt_id": "588b399e-3621-49e0-a060-ff6f80a76811",
+    "history": "http://127.0.0.1:8189/history/588b399e-3621-49e0-a060-ff6f80a76811"
+  },
+  "A111": {
+    "prompt_id": "0fe93f1f-79ae-43fc-8064-18a8a49781d9",
+    "history": "http://127.0.0.1:8189/history/0fe93f1f-79ae-43fc-8064-18a8a49781d9"
+  },
+  "A140": {
+    "prompt_id": "543225b6-f084-4922-a657-7f3353c3471b",
+    "history": "http://127.0.0.1:8189/history/543225b6-f084-4922-a657-7f3353c3471b"
+  },
+  "A141": {
+    "prompt_id": "2ba475c2-46e1-4719-b257-82398790cc35",
+    "history": "http://127.0.0.1:8189/history/2ba475c2-46e1-4719-b257-82398790cc35"
+  },
+  "A159": {
+    "prompt_id": "3af93358-bfbf-4835-9915-ce317311aa25",
+    "history": "http://127.0.0.1:8189/history/3af93358-bfbf-4835-9915-ce317311aa25"
+  },
+  "A168": {
+    "prompt_id": "dbbc0dc5-e09a-4aea-9feb-2b9ba92f7e07",
+    "history": "http://127.0.0.1:8189/history/dbbc0dc5-e09a-4aea-9feb-2b9ba92f7e07"
+  },
+  "A167": {
+    "prompt_id": "bb56f7e0-e432-46db-9b29-0ebda86b38ef",
+    "history": "http://127.0.0.1:8189/history/bb56f7e0-e432-46db-9b29-0ebda86b38ef"
+  },
+  "A166": {
+    "prompt_id": "3d381ad2-bae1-4339-b980-954f58233b61",
+    "history": "http://127.0.0.1:8189/history/3d381ad2-bae1-4339-b980-954f58233b61"
+  },
+  "mitsue_fox_tail": {
+    "prompt_id": "c74989b7-c856-412f-b26e-c5112691733e",
+    "history": "http://127.0.0.1:8189/history/c74989b7-c856-412f-b26e-c5112691733e",
+    "category": "accessory"
+  },
+  "mitsue_pilgrim_hat": {
+    "prompt_id": "7092d947-e0f4-4bcf-8f9c-db9581b2fae4",
+    "history": "http://127.0.0.1:8189/history/7092d947-e0f4-4bcf-8f9c-db9581b2fae4",
+    "category": "accessory"
+  },
+  "mitsue_clerk_hat": {
+    "prompt_id": "ef163eda-0ec5-427e-be06-c4d794322209",
+    "history": "http://127.0.0.1:8189/history/ef163eda-0ec5-427e-be06-c4d794322209",
+    "category": "accessory"
+  },
+  "mitsue_soldier_hat": {
+    "prompt_id": "f385980b-49b0-46b1-ad89-de18bdcf50e7",
+    "history": "http://127.0.0.1:8189/history/f385980b-49b0-46b1-ad89-de18bdcf50e7",
+    "category": "accessory"
+  },
+  "mitsue_fox_hat": {
+    "prompt_id": "c13fb663-a2aa-4b4f-ba2a-a24abe988dcd",
+    "history": "http://127.0.0.1:8189/history/c13fb663-a2aa-4b4f-ba2a-a24abe988dcd",
+    "category": "accessory"
+  },
+  "mitsue_maid_hat": {
+    "prompt_id": "db8e2155-5a00-4d65-8b4f-acd71596633f",
+    "history": "http://127.0.0.1:8189/history/db8e2155-5a00-4d65-8b4f-acd71596633f",
+    "category": "accessory"
+  },
+  "mitsue_shinobi_mask": {
+    "prompt_id": "2ad95006-c65d-4126-b134-b7f457c46512",
+    "history": "http://127.0.0.1:8189/history/2ad95006-c65d-4126-b134-b7f457c46512",
+    "category": "accessory"
+  },
+  "A102": {
+    "prompt_id": "2e22bdc3-1651-4afd-b643-d057734e5986",
+    "history": "http://127.0.0.1:8189/history/2e22bdc3-1651-4afd-b643-d057734e5986",
+    "category": "accessory"
+  },
+  "A103": {
+    "prompt_id": "29024398-3e36-4c38-89c7-00d4db31d622",
+    "history": "http://127.0.0.1:8189/history/29024398-3e36-4c38-89c7-00d4db31d622",
+    "category": "accessory"
+  },
+  "A110": {
+    "prompt_id": "f549d409-f9eb-480f-9ba4-88efe130bd93",
+    "history": "http://127.0.0.1:8189/history/f549d409-f9eb-480f-9ba4-88efe130bd93",
+    "category": "accessory"
+  },
+  "A113": {
+    "prompt_id": "b8d5153a-d1ed-4332-86bd-cc2218ed97c5",
+    "history": "http://127.0.0.1:8189/history/b8d5153a-d1ed-4332-86bd-cc2218ed97c5",
+    "category": "accessory"
+  },
+  "A143": {
+    "prompt_id": "e5d0864a-753a-4017-8846-2c32ad22516b",
+    "history": "http://127.0.0.1:8189/history/e5d0864a-753a-4017-8846-2c32ad22516b",
+    "category": "accessory"
+  },
+  "A160": {
+    "prompt_id": "2ebb1526-52e9-46cf-abdb-673b1749dd59",
+    "history": "http://127.0.0.1:8189/history/2ebb1526-52e9-46cf-abdb-673b1749dd59",
+    "category": "accessory"
+  },
+  "A170": {
+    "prompt_id": "e0adc728-ecf5-416b-8e3b-dec685c60bff",
+    "history": "http://127.0.0.1:8189/history/e0adc728-ecf5-416b-8e3b-dec685c60bff",
+    "category": "accessory"
+  },
+  "A171": {
+    "prompt_id": "c970e46d-49ae-4b93-b33d-a98ea3529ccc",
+    "history": "http://127.0.0.1:8189/history/c970e46d-49ae-4b93-b33d-a98ea3529ccc",
+    "category": "accessory"
+  },
+  "A172": {
+    "prompt_id": "0563e902-f770-408e-b88e-65d7d4bab760",
+    "history": "http://127.0.0.1:8189/history/0563e902-f770-408e-b88e-65d7d4bab760",
+    "category": "accessory"
+  },
+  "A125": {
+    "prompt_id": "d6be7cb4-9fa4-4a43-98f6-f2521c075383",
+    "history": "http://127.0.0.1:8189/history/d6be7cb4-9fa4-4a43-98f6-f2521c075383",
+    "category": "accessory"
+  },
+  "A114": {
+    "prompt_id": "1ccc3049-8f31-48f2-9197-d25fa81a26ae",
+    "history": "http://127.0.0.1:8189/history/1ccc3049-8f31-48f2-9197-d25fa81a26ae",
+    "category": "accessory"
+  },
+  "A145": {
+    "prompt_id": "d52a8033-1475-4ac3-9b89-859d34918f2a",
+    "history": "http://127.0.0.1:8189/history/d52a8033-1475-4ac3-9b89-859d34918f2a",
+    "category": "accessory"
+  },
+  "A146": {
+    "prompt_id": "ce248015-6a1f-4e67-a442-0618f7a1e858",
+    "history": "http://127.0.0.1:8189/history/ce248015-6a1f-4e67-a442-0618f7a1e858",
+    "category": "accessory"
+  },
+  "A147": {
+    "prompt_id": "d263eb6a-64d2-4008-9cd5-1c7d68054f6b",
+    "history": "http://127.0.0.1:8189/history/d263eb6a-64d2-4008-9cd5-1c7d68054f6b",
+    "category": "accessory"
+  },
+  "A148": {
+    "prompt_id": "a43ab8d3-1cc5-4275-8a6a-482673699934",
+    "history": "http://127.0.0.1:8189/history/a43ab8d3-1cc5-4275-8a6a-482673699934",
+    "category": "accessory"
+  },
+  "A149": {
+    "prompt_id": "efe7c667-d0d7-4d33-b3c2-72d457c09246",
+    "history": "http://127.0.0.1:8189/history/efe7c667-d0d7-4d33-b3c2-72d457c09246",
+    "category": "accessory"
+  },
+  "A150": {
+    "prompt_id": "034665ea-8811-4f96-b3a6-c3e338c29a18",
+    "history": "http://127.0.0.1:8189/history/034665ea-8811-4f96-b3a6-c3e338c29a18",
+    "category": "accessory"
+  },
+  "A151": {
+    "prompt_id": "736a8238-6590-4e10-a1e9-ec10a9eadfbc",
+    "history": "http://127.0.0.1:8189/history/736a8238-6590-4e10-a1e9-ec10a9eadfbc",
+    "category": "accessory"
+  },
+  "A174": {
+    "prompt_id": "761fd7c2-9af0-47c5-99bb-04945e483a5d",
+    "history": "http://127.0.0.1:8189/history/761fd7c2-9af0-47c5-99bb-04945e483a5d",
+    "category": "accessory"
+  },
+  "mitsue_pilgrim_r": {
+    "prompt_id": "9b6f7f2c-ceda-41b6-8d5b-a370cfed3b4e",
+    "history": "http://127.0.0.1:8189/history/9b6f7f2c-ceda-41b6-8d5b-a370cfed3b4e",
+    "category": "outfit"
+  },
+  "mitsue_clerk_r": {
+    "prompt_id": "73e5c5c2-92bd-4f02-bebc-3c98a7ae2e29",
+    "history": "http://127.0.0.1:8189/history/73e5c5c2-92bd-4f02-bebc-3c98a7ae2e29",
+    "category": "outfit"
+  },
+  "mitsue_soldier_r": {
+    "prompt_id": "1e1c3629-78f8-4820-bd2f-895ed6a87fad",
+    "history": "http://127.0.0.1:8189/history/1e1c3629-78f8-4820-bd2f-895ed6a87fad",
+    "category": "outfit"
+  },
+  "mitsue_fox_r": {
+    "prompt_id": "8bf5372b-c672-4255-a3ae-b25edd8cf5bf",
+    "history": "http://127.0.0.1:8189/history/8bf5372b-c672-4255-a3ae-b25edd8cf5bf",
+    "category": "outfit"
+  },
+  "mitsue_maid_r": {
+    "prompt_id": "d0dbe090-b5fc-483e-b363-427b962f4635",
+    "history": "http://127.0.0.1:8189/history/d0dbe090-b5fc-483e-b363-427b962f4635",
+    "category": "outfit"
+  },
+  "mitsue_shinobi_r": {
+    "prompt_id": "7ef49327-3f23-42b6-9e82-f3d4140de6ab",
+    "history": "http://127.0.0.1:8189/history/7ef49327-3f23-42b6-9e82-f3d4140de6ab",
+    "category": "outfit"
+  },
+  "katana": {
+    "prompt_id": "9e4dddb3-6c6e-4d12-8e23-f83fc581f64f",
+    "history": "http://127.0.0.1:8189/history/9e4dddb3-6c6e-4d12-8e23-f83fc581f64f",
+    "category": "weapon"
+  },
+  "kakita": {
+    "prompt_id": "bf48dc5a-6870-4ce6-a967-f9bec858a1b0",
+    "history": "http://127.0.0.1:8189/history/bf48dc5a-6870-4ce6-a967-f9bec858a1b0",
+    "category": "weapon"
+  },
+  "bokken": {
+    "prompt_id": "993e11fa-6656-45a3-ba7e-a9c6ec809f7b",
+    "history": "http://127.0.0.1:8189/history/993e11fa-6656-45a3-ba7e-a9c6ec809f7b",
+    "category": "weapon"
+  },
+  "tanto": {
+    "prompt_id": "d775675e-fc03-4695-aa7a-bb90f3658596",
+    "history": "http://127.0.0.1:8189/history/d775675e-fc03-4695-aa7a-bb90f3658596",
+    "category": "weapon"
+  },
+  "shakujo": {
+    "prompt_id": "3aa00542-15d1-4185-962a-1f7ab8983cf4",
+    "history": "http://127.0.0.1:8189/history/3aa00542-15d1-4185-962a-1f7ab8983cf4",
+    "category": "weapon"
+  },
+  "yari": {
+    "prompt_id": "afdc2d80-eb51-4f50-be68-0d442a0e83f6",
+    "history": "http://127.0.0.1:8189/history/afdc2d80-eb51-4f50-be68-0d442a0e83f6",
+    "category": "weapon"
+  },
+  "naginata": {
+    "prompt_id": "f71f7bb9-cbf4-4d41-b298-2816f1675d79",
+    "history": "http://127.0.0.1:8189/history/f71f7bb9-cbf4-4d41-b298-2816f1675d79",
+    "category": "weapon"
+  },
+  "claws": {
+    "prompt_id": "d32d86ae-a0dc-4095-aef4-2e0c61fa5877",
+    "history": "http://127.0.0.1:8189/history/d32d86ae-a0dc-4095-aef4-2e0c61fa5877",
+    "category": "weapon"
+  },
+  "bo": {
+    "prompt_id": "9754b2b7-9ea0-4ce5-897b-00be73b47439",
+    "history": "http://127.0.0.1:8189/history/9754b2b7-9ea0-4ce5-897b-00be73b47439",
+    "category": "weapon"
+  },
+  "kama": {
+    "prompt_id": "62255c5c-ba17-40cb-9b8a-5bf9095cd445",
+    "history": "http://127.0.0.1:8189/history/62255c5c-ba17-40cb-9b8a-5bf9095cd445",
+    "category": "weapon"
+  },
+  "yumi": {
+    "prompt_id": "0e098347-bf28-4d9e-9bc4-4541b1c541fd",
+    "history": "http://127.0.0.1:8189/history/0e098347-bf28-4d9e-9bc4-4541b1c541fd",
+    "category": "weapon"
+  },
+  "side_kurosho": {
+    "prompt_id": "69393bd0-e125-4662-bd5b-496dcafe93e1",
+    "history": "http://127.0.0.1:8189/history/69393bd0-e125-4662-bd5b-496dcafe93e1",
+    "category": "head"
+  },
+  "side_kumpei": {
+    "prompt_id": "e5745ed3-f321-4045-b089-ac45fd692e65",
+    "history": "http://127.0.0.1:8189/history/e5745ed3-f321-4045-b089-ac45fd692e65",
+    "category": "head"
+  },
+  "side_masanori": {
+    "prompt_id": "a1eb45a4-6e45-426f-8463-ca4fa8b278e1",
+    "history": "http://127.0.0.1:8189/history/a1eb45a4-6e45-426f-8463-ca4fa8b278e1",
+    "category": "head"
+  },
+  "side_yosai": {
+    "prompt_id": "00846f06-27dc-48e5-a46f-1fd7825f7ea9",
+    "history": "http://127.0.0.1:8189/history/00846f06-27dc-48e5-a46f-1fd7825f7ea9",
+    "category": "head"
+  },
+  "side_gonta": {
+    "prompt_id": "da835eec-4de9-408c-a41b-b9ddc3e2a208",
+    "history": "http://127.0.0.1:8189/history/da835eec-4de9-408c-a41b-b9ddc3e2a208",
+    "category": "head"
+  },
+  "side_ushimo": {
+    "prompt_id": "a9c144b5-f99d-47aa-9219-a1326d104129",
+    "history": "http://127.0.0.1:8189/history/a9c144b5-f99d-47aa-9219-a1326d104129",
+    "category": "head"
+  },
+  "side_chihaya": {
+    "prompt_id": "afaee2e4-cfa7-46b5-9b58-5af7e5f1833f",
+    "history": "http://127.0.0.1:8189/history/afaee2e4-cfa7-46b5-9b58-5af7e5f1833f",
+    "category": "head"
+  },
+  "side_yosai_signature": {
+    "prompt_id": "7ff4585f-1d2c-4fd4-9023-bcfbc1bffd31",
+    "history": "http://127.0.0.1:8189/history/7ff4585f-1d2c-4fd4-9023-bcfbc1bffd31",
+    "category": "outfit"
+  },
+  "trav_sayo_signature": {
+    "prompt_id": "63caf15d-7481-4b60-98e1-845b28874bf1",
+    "history": "http://127.0.0.1:8189/history/63caf15d-7481-4b60-98e1-845b28874bf1",
+    "category": "outfit"
+  },
+  "trav_tamotsu_signature": {
+    "prompt_id": "140dc5c2-ad07-4c4e-8714-5734da89fc10",
+    "history": "http://127.0.0.1:8189/history/140dc5c2-ad07-4c4e-8714-5734da89fc10",
+    "category": "outfit"
+  },
+  "trav_haruki_signature": {
+    "prompt_id": "14dfd66e-ada6-448e-a8f5-80640db11817",
+    "history": "http://127.0.0.1:8189/history/14dfd66e-ada6-448e-a8f5-80640db11817",
+    "category": "outfit"
+  },
+  "trav_shizue_signature": {
+    "prompt_id": "4d87af54-b0af-4884-8356-36347cf4079e",
+    "history": "http://127.0.0.1:8189/history/4d87af54-b0af-4884-8356-36347cf4079e",
+    "category": "outfit"
+  },
+  "trav_gendo_signature": {
+    "prompt_id": "91d4af8d-ff07-45c5-9adc-9bacd31f2a2c",
+    "history": "http://127.0.0.1:8189/history/91d4af8d-ff07-45c5-9adc-9bacd31f2a2c",
+    "category": "outfit"
+  },
+  "saya": {
+    "prompt_id": "408cb4dc-e7a9-47a3-85f4-bcff92174c58",
+    "history": "http://127.0.0.1:8189/history/408cb4dc-e7a9-47a3-85f4-bcff92174c58",
+    "category": "weapon"
+  },
+  "fan": {
+    "prompt_id": "f5624901-693d-48ed-83ca-be35b96f6f8c",
+    "history": "http://127.0.0.1:8189/history/f5624901-693d-48ed-83ca-be35b96f6f8c",
+    "category": "weapon"
+  },
+  "nodachi": {
+    "prompt_id": "df7605a0-9e9f-45cd-9bd6-4bda09f97dfe",
+    "history": "http://127.0.0.1:8189/history/df7605a0-9e9f-45cd-9bd6-4bda09f97dfe",
+    "category": "weapon"
+  },
+  "nunchaku": {
+    "prompt_id": "4d1ed6a4-1029-406c-991b-3dcd40741318",
+    "history": "http://127.0.0.1:8189/history/4d1ed6a4-1029-406c-991b-3dcd40741318",
+    "category": "weapon"
+  },
+  "gendo_sleeves_refit": {
+    "prompt_id": "cb87a142-bd3e-480f-b992-28e0c9a21b32",
+    "history": "http://127.0.0.1:8189/history/cb87a142-bd3e-480f-b992-28e0c9a21b32",
+    "category": "outfit"
+  },
+  "side_h_agasha": {
+    "prompt_id": "083cef22-342a-4033-aa7d-629283494aaf",
+    "history": "http://127.0.0.1:8189/history/083cef22-342a-4033-aa7d-629283494aaf",
+    "category": "head"
+  },
+  "side_ijako": {
+    "prompt_id": "33af053e-f420-4f70-b2b4-1bc1c3bd3e9d",
+    "history": "http://127.0.0.1:8189/history/33af053e-f420-4f70-b2b4-1bc1c3bd3e9d",
+    "category": "head"
+  },
+  "side_nishi": {
+    "prompt_id": "a4293ed9-a01f-4a3a-8bf3-6b8dfe25ad69",
+    "history": "http://127.0.0.1:8189/history/a4293ed9-a01f-4a3a-8bf3-6b8dfe25ad69",
+    "category": "head"
+  },
+  "side_tatanko": {
+    "prompt_id": "98f63d61-a2a8-4074-9663-114b3563cbed",
+    "history": "http://127.0.0.1:8189/history/98f63d61-a2a8-4074-9663-114b3563cbed",
+    "category": "head"
+  },
+  "side_hayato": {
+    "prompt_id": "38b2efa6-b0a2-45f9-ac4c-8288df712b62",
+    "history": "http://127.0.0.1:8189/history/38b2efa6-b0a2-45f9-ac4c-8288df712b62",
+    "category": "head"
+  },
+  "side_michio": {
+    "prompt_id": "4159957d-c7db-4582-ad62-ce0d497be579",
+    "history": "http://127.0.0.1:8189/history/4159957d-c7db-4582-ad62-ce0d497be579",
+    "category": "head"
+  },
+  "side_ryuzoji": {
+    "prompt_id": "4c0c4389-f248-4dd0-905f-be4a0ebc6267",
+    "history": "http://127.0.0.1:8189/history/4c0c4389-f248-4dd0-905f-be4a0ebc6267",
+    "category": "head"
+  },
+  "side_asahina": {
+    "prompt_id": "369d9f61-365e-4ce9-9e7c-017cbff46866",
+    "history": "http://127.0.0.1:8189/history/369d9f61-365e-4ce9-9e7c-017cbff46866",
+    "category": "head"
+  },
+  "side_atsuki": {
+    "prompt_id": "7d922c03-123f-4ead-8e95-b92a182bfda6",
+    "history": "http://127.0.0.1:8189/history/7d922c03-123f-4ead-8e95-b92a182bfda6",
+    "category": "head"
+  },
+  "side_courier": {
+    "prompt_id": "47c33b14-cfb3-4342-ba8c-252f8bed0498",
+    "history": "http://127.0.0.1:8189/history/47c33b14-cfb3-4342-ba8c-252f8bed0498",
+    "category": "head"
+  },
+  "side_dojiaoi": {
+    "prompt_id": "0b9c484e-0fa2-4b13-a54b-3fab13639701",
+    "history": "http://127.0.0.1:8189/history/0b9c484e-0fa2-4b13-a54b-3fab13639701",
+    "category": "head"
+  },
+  "side_ikomabard": {
+    "prompt_id": "d4a5888e-950c-4005-8399-1e82d45ebca9",
+    "history": "http://127.0.0.1:8189/history/d4a5888e-950c-4005-8399-1e82d45ebca9",
+    "category": "head"
+  },
+  "side_mieko": {
+    "prompt_id": "64feb828-fd66-43ee-87e4-7a52e1501fad",
+    "history": "http://127.0.0.1:8189/history/64feb828-fd66-43ee-87e4-7a52e1501fad",
+    "category": "head"
+  },
+  "side_h_windisawa": {
+    "prompt_id": "84725a18-3396-4ca3-8c45-6d6288fc5587",
+    "history": "http://127.0.0.1:8189/history/84725a18-3396-4ca3-8c45-6d6288fc5587",
+    "category": "head"
+  },
+  "side_kafu": {
+    "prompt_id": "ed335643-77fa-47e4-9bf4-26b28ed15332",
+    "history": "http://127.0.0.1:8189/history/ed335643-77fa-47e4-9bf4-26b28ed15332",
+    "category": "head"
+  },
+  "side_hojato": {
+    "prompt_id": "fc660d66-828f-4628-8e3a-64a088ab9c78",
+    "history": "http://127.0.0.1:8189/history/fc660d66-828f-4628-8e3a-64a088ab9c78",
+    "category": "head"
+  },
+  "side_hojiki": {
+    "prompt_id": "d198121f-34c1-474c-a56b-ebf9ba28d7d7",
+    "history": "http://127.0.0.1:8189/history/d198121f-34c1-474c-a56b-ebf9ba28d7d7",
+    "category": "head"
+  },
+  "side_keiki": {
+    "prompt_id": "b6836826-eb4d-4ab9-8bf4-9540b3cbf340",
+    "history": "http://127.0.0.1:8189/history/b6836826-eb4d-4ab9-8bf4-9540b3cbf340",
+    "category": "head"
+  },
+  "side_depura": {
+    "prompt_id": "713280d8-3cf0-4171-9006-f2a19c1f60db",
+    "history": "http://127.0.0.1:8189/history/713280d8-3cf0-4171-9006-f2a19c1f60db",
+    "category": "head"
+  },
+  "side_sanae": {
+    "prompt_id": "adaab2fa-fdd1-4203-af48-47b63b5ab78e",
+    "history": "http://127.0.0.1:8189/history/adaab2fa-fdd1-4203-af48-47b63b5ab78e",
+    "category": "head"
+  },
+  "side_hoju": {
+    "prompt_id": "a12ad570-90a8-4e40-8311-069d181d1193",
+    "history": "http://127.0.0.1:8189/history/a12ad570-90a8-4e40-8311-069d181d1193",
+    "category": "head"
+  },
+  "side_kamasari": {
+    "prompt_id": "8c386ec9-0c6e-451b-8b1a-4cfa32e98ab1",
+    "history": "http://127.0.0.1:8189/history/8c386ec9-0c6e-451b-8b1a-4cfa32e98ab1",
+    "category": "head"
+  },
+  "musket": {
+    "prompt_id": "afcfb1f9-2e2f-47b5-8bc7-cedb6cd672b0",
+    "history": "http://127.0.0.1:8189/history/afcfb1f9-2e2f-47b5-8bc7-cedb6cd672b0",
+    "category": "weapon"
+  },
+  "side_eriko": {
+    "prompt_id": "c3420919-194e-4d4e-931b-db1063b5c9a7",
+    "history": "http://127.0.0.1:8189/history/c3420919-194e-4d4e-931b-db1063b5c9a7",
+    "category": "head"
+  },
+  "side_keiyomi": {
+    "prompt_id": "a824860c-866c-4b70-b96a-2bf4da729161",
+    "history": "http://127.0.0.1:8189/history/a824860c-866c-4b70-b96a-2bf4da729161",
+    "category": "head"
+  },
+  "side_akiko": {
+    "prompt_id": "ff2ef627-37d6-4577-b7d9-7964d6cc501a",
+    "history": "http://127.0.0.1:8189/history/ff2ef627-37d6-4577-b7d9-7964d6cc501a",
+    "category": "head"
+  },
+  "side_kasiko": {
+    "prompt_id": "d69b6607-5dc3-4bc6-a99b-d3adc37bfd5c",
+    "history": "http://127.0.0.1:8189/history/d69b6607-5dc3-4bc6-a99b-d3adc37bfd5c",
+    "category": "head"
+  },
+  "side_mutsuye": {
+    "prompt_id": "d0424824-9d36-4fd1-a3c7-71f90c8c464d",
+    "history": "http://127.0.0.1:8189/history/d0424824-9d36-4fd1-a3c7-71f90c8c464d",
+    "category": "head"
+  },
+  "side_shahai": {
+    "prompt_id": "e9584bea-d12e-4219-b515-d1b79df9b095",
+    "history": "http://127.0.0.1:8189/history/e9584bea-d12e-4219-b515-d1b79df9b095",
+    "category": "head"
+  },
+  "void_tattoo_dragon": {
+    "prompt_id": "89da11ab-8ccd-4293-a7c5-8c32f581f66a",
+    "history": "http://127.0.0.1:8189/history/89da11ab-8ccd-4293-a7c5-8c32f581f66a",
+    "category": "void"
+  },
+  "side_empress": {
+    "prompt_id": "db7f8bd0-601e-403f-aa47-ea3528773f62",
+    "history": "http://127.0.0.1:8189/history/db7f8bd0-601e-403f-aa47-ea3528773f62",
+    "category": "head"
+  },
+  "side_uji": {
+    "prompt_id": "1c432cc9-cd8c-4a95-9a89-e69219385c8e",
+    "history": "http://127.0.0.1:8189/history/1c432cc9-cd8c-4a95-9a89-e69219385c8e",
+    "category": "head"
+  },
+  "side_rujo": {
+    "prompt_id": "9bfdb0a3-89ac-45cc-aa21-51e449521a6b",
+    "history": "http://127.0.0.1:8189/history/9bfdb0a3-89ac-45cc-aa21-51e449521a6b",
+    "category": "head"
+  },
+  "side_sanro": {
+    "prompt_id": "dfeb910d-4e7f-488e-831d-6b95a18b3254",
+    "history": "http://127.0.0.1:8189/history/dfeb910d-4e7f-488e-831d-6b95a18b3254",
+    "category": "head"
+  },
+  "side_kage_ch3": {
+    "prompt_id": "07445939-5aab-4971-8925-07d031e60ef0",
+    "history": "http://127.0.0.1:8189/history/07445939-5aab-4971-8925-07d031e60ef0",
+    "category": "head"
+  },
+  "side_tadaka": {
+    "prompt_id": "2d390ca8-f1d8-4f27-947c-097aa7e4234c",
+    "history": "http://127.0.0.1:8189/history/2d390ca8-f1d8-4f27-947c-097aa7e4234c",
+    "category": "head"
+  },
+  "side_tomeko": {
+    "prompt_id": "26cbb9bb-c9e8-48ff-9705-88f36f942f0c",
+    "history": "http://127.0.0.1:8189/history/26cbb9bb-c9e8-48ff-9705-88f36f942f0c",
+    "category": "head"
+  },
+  "side_shiruko": {
+    "prompt_id": "0bd338a0-1843-4ae1-8ab1-dc063ea43d27",
+    "history": "http://127.0.0.1:8189/history/0bd338a0-1843-4ae1-8ab1-dc063ea43d27",
+    "category": "head"
+  },
+  "side_palecourtier": {
+    "prompt_id": "4a0b47da-0c28-4de8-9a97-30d86b7a9e1d",
+    "history": "http://127.0.0.1:8189/history/4a0b47da-0c28-4de8-9a97-30d86b7a9e1d",
+    "category": "head"
+  },
+  "side_himeko": {
+    "prompt_id": "a4ed40a2-da1a-4c05-9dcc-79fa62ab3222",
+    "history": "http://127.0.0.1:8189/history/a4ed40a2-da1a-4c05-9dcc-79fa62ab3222",
+    "category": "head"
+  },
+  "side_miyako": {
+    "prompt_id": "725c95f5-e783-4fd6-87f8-7a36ff59833b",
+    "history": "http://127.0.0.1:8189/history/725c95f5-e783-4fd6-87f8-7a36ff59833b",
+    "category": "head"
+  },
+  "side_daiyu": {
+    "prompt_id": "87ca75f0-b981-4140-85e5-0ad265a10064",
+    "history": "http://127.0.0.1:8189/history/87ca75f0-b981-4140-85e5-0ad265a10064",
+    "category": "head"
+  },
+  "side_seoko": {
+    "prompt_id": "d0a80d75-4c51-44ac-a560-c07b71596510",
+    "history": "http://127.0.0.1:8189/history/d0a80d75-4c51-44ac-a560-c07b71596510",
+    "category": "head"
+  },
+  "side_kusuri": {
+    "prompt_id": "c2443437-45fc-4d21-91db-0a430a6d51b5",
+    "history": "http://127.0.0.1:8189/history/c2443437-45fc-4d21-91db-0a430a6d51b5",
+    "category": "head"
+  },
+  "side_shogen": {
+    "prompt_id": "4eff3607-609f-4daf-88b8-8e40b5b7baa5",
+    "history": "http://127.0.0.1:8189/history/4eff3607-609f-4daf-88b8-8e40b5b7baa5",
+    "category": "head"
+  },
+  "side_takeo": {
+    "prompt_id": "2379c38e-2fb8-47ed-b8e1-cb8d6bb9c366",
+    "history": "http://127.0.0.1:8189/history/2379c38e-2fb8-47ed-b8e1-cb8d6bb9c366",
+    "category": "head"
+  },
+  "side_toturi": {
+    "prompt_id": "95618ae0-02a2-4166-8dfc-f2fea5bf09bb",
+    "history": "http://127.0.0.1:8189/history/95618ae0-02a2-4166-8dfc-f2fea5bf09bb",
+    "category": "head"
+  },
+  "side_uona": {
+    "prompt_id": "887a0c72-692c-4738-809f-7848b402895e",
+    "history": "http://127.0.0.1:8189/history/887a0c72-692c-4738-809f-7848b402895e",
+    "category": "head"
+  },
+  "side_bayushikei": {
+    "prompt_id": "2a8e5a4d-3aa8-430e-a2b4-220ae971d001",
+    "history": "http://127.0.0.1:8189/history/2a8e5a4d-3aa8-430e-a2b4-220ae971d001",
+    "category": "head"
+  },
+  "side_kuhime": {
+    "prompt_id": "82833a08-756a-48a9-bb36-d81fa4986ac1",
+    "history": "http://127.0.0.1:8189/history/82833a08-756a-48a9-bb36-d81fa4986ac1",
+    "category": "head"
+  },
+  "side_kage_ch3_reframe": {
+    "prompt_id": "8b22b057-b416-4256-ae88-03c7c4328342",
+    "history": "http://127.0.0.1:8189/history/8b22b057-b416-4256-ae88-03c7c4328342",
+    "category": "head",
+    "replaces": "side_kage_ch3"
+  },
+  "side_tadaka_reframe": {
+    "prompt_id": "9677a294-cbce-4b0c-9374-399f034ba7f2",
+    "history": "http://127.0.0.1:8189/history/9677a294-cbce-4b0c-9374-399f034ba7f2",
+    "category": "head",
+    "replaces": "side_tadaka"
+  },
+  "side_tomeko_reframe": {
+    "prompt_id": "8baf90d9-42b9-4d2a-8470-375e9b1779d1",
+    "history": "http://127.0.0.1:8189/history/8baf90d9-42b9-4d2a-8470-375e9b1779d1",
+    "category": "head",
+    "replaces": "side_tomeko"
+  },
+  "side_shiruko_reframe": {
+    "prompt_id": "07997e6f-53f0-4f56-a991-5531c0bae1e9",
+    "history": "http://127.0.0.1:8189/history/07997e6f-53f0-4f56-a991-5531c0bae1e9",
+    "category": "head",
+    "replaces": "side_shiruko"
+  },
+  "side_palecourtier_reframe": {
+    "prompt_id": "5d6763af-a4ff-4d55-8c10-b7054f2945af",
+    "history": "http://127.0.0.1:8189/history/5d6763af-a4ff-4d55-8c10-b7054f2945af",
+    "category": "head",
+    "replaces": "side_palecourtier"
+  },
+  "side_himeko_reframe": {
+    "prompt_id": "c1a84833-6956-4cca-adbf-06318534176b",
+    "history": "http://127.0.0.1:8189/history/c1a84833-6956-4cca-adbf-06318534176b",
+    "category": "head",
+    "replaces": "side_himeko"
+  },
+  "side_miyako_reframe": {
+    "prompt_id": "8f263a02-2814-4284-bcc2-b18bf40f6280",
+    "history": "http://127.0.0.1:8189/history/8f263a02-2814-4284-bcc2-b18bf40f6280",
+    "category": "head",
+    "replaces": "side_miyako"
+  },
+  "side_rujo_reframe": {
+    "prompt_id": "cf7f79b0-3bab-41ea-aec5-6dd442e01e9c",
+    "history": "http://127.0.0.1:8189/history/cf7f79b0-3bab-41ea-aec5-6dd442e01e9c",
+    "category": "head",
+    "replaces": "side_rujo"
+  },
+  "side_shogen_reframe": {
+    "prompt_id": "18d09a16-195d-49f1-b3b1-0bc45c0d9718",
+    "history": "http://127.0.0.1:8189/history/18d09a16-195d-49f1-b3b1-0bc45c0d9718",
+    "category": "head",
+    "replaces": "side_shogen"
+  },
+  "side_toturi_reframe": {
+    "prompt_id": "ca3f41fc-d73c-4670-b15e-b7b481ee308d",
+    "history": "http://127.0.0.1:8189/history/ca3f41fc-d73c-4670-b15e-b7b481ee308d",
+    "category": "head",
+    "replaces": "side_toturi"
+  },
+  "side_kusuri_reframe": {
+    "prompt_id": "6c29113c-b773-4026-8763-b3c47b6e2404",
+    "history": "http://127.0.0.1:8189/history/6c29113c-b773-4026-8763-b3c47b6e2404",
+    "category": "head",
+    "replaces": "side_kusuri"
+  },
+  "side_uona_reframe": {
+    "prompt_id": "cc086447-96e3-4a1e-851a-9cecd154c8db",
+    "history": "http://127.0.0.1:8189/history/cc086447-96e3-4a1e-851a-9cecd154c8db",
+    "category": "head",
+    "replaces": "side_uona"
+  }
+}

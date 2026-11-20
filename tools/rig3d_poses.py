@@ -18,6 +18,7 @@ def unit(v):
 
 REST, GUARD = (.06, -.97, .05), (.4, -.15, -.2)
 STAND = {"N": (-.10, 0, .04, 45, 0), "F": (.05, 0, 0, 0, 0)}
+IDLE_STANCE = {"N": (-.022, 0, .012, 8, 0), "F": (.022, 0, -.012, -8, 0)}
 COMBAT = {"N": (-.30, 0, .12, 70, 0), "F": (.27, 0, -.05, 5, 0)}
 KNEEL = {"N": (-.52, .03, .10, 0, 75), "F": (.45, 0, -.05, 0, 0)}
 SEIZA = {"N": (0, 0, .02, 0, 80), "F": (0, 0, -.02, 0, 80)}
@@ -163,7 +164,9 @@ def controls(kind, frame, count, family):
     arms = c["arms"]
     free = "F" if family in ("pole", "bow", "club", "gun") else "N"   # the hand that is not carrying anything
     if kind == "idle8":
-        c["root"][1], c["lean"] = -.008 * (.5 + .5 * swing), .6 * swing
+        c["feet"] = IDLE_STANCE
+        c["poles"] = {"N": (1, .1, .09), "F": (1, .1, -.09)}
+        c["root"][1], c["lean"] = -.004 * (.5 + .5 * swing), .22 * swing
         c["head"] = -c["lean"]
     elif kind in ("walk8", "run"):
         stride, lift = (.36, .16) if kind == "run" else (.22, .07)

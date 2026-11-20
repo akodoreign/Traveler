@@ -1,0 +1,2362 @@
+{
+  "goblin_hat": {
+    "enemies": {
+      "EP100": {
+        "E101": "Goblin in a Hat",
+        "E190": "Straw-Hat Brute (training)"
+      }
+    },
+    "recipe": "goblin",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "goblin_hat",
+        "prompt_id": "02377e60-304f-4f45-8e6d-b3062a5e773e",
+        "state": "success",
+        "input": "traveler_goblin_hat-df75d11e80cc49dfbd30dc74c401da44.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_goblin_hat_00001_.glb"
+        ]
+      },
+      {
+        "variant": "goblin_hat_refined",
+        "prompt_id": "0788e61d-c128-4449-96a7-1239e1c5dbee",
+        "state": "success",
+        "input": "traveler_goblin_hat_refined-a597a4e7a58644e1a86f83cd5bbcbb59.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_goblin_hat_refined_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "nezumi_warrior": {
+    "enemies": {
+      "EP101": {
+        "E102": "Nezumi Warrior"
+      }
+    },
+    "recipe": "ratfolk",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "nezumi_warrior",
+        "prompt_id": "4c0b1685-725d-41ce-b07a-ad85e4051160",
+        "state": "success",
+        "input": "traveler_nezumi_warrior-d61a6b90a95f40d68b67565321e3037d.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_nezumi_warrior_00001_.glb"
+        ]
+      },
+      {
+        "variant": "nezumi_warrior_clean",
+        "prompt_id": "53cf1065-7334-4a11-82cb-41141a570834",
+        "state": "success",
+        "input": "traveler_nezumi_warrior_clean-0ccb622de6cb4a2c82ff54f1497397b2.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_nezumi_warrior_clean_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "cave_beetle": {
+    "enemies": {
+      "EP102": {
+        "E103": "Cave Beetle",
+        "E608": "Old Cave Beetle",
+        "E611": "Giant Cave Beetle",
+        "E615": "Armoured Beetle",
+        "E497": "Cave Beetle",
+        "E886": "Cave Beetle"
+      }
+    },
+    "recipe": "crawler",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "cave_beetle",
+        "prompt_id": "f5b275b3-602d-43a0-a806-da3de9f504fc",
+        "state": "success",
+        "input": "traveler_cave_beetle-24c96adf08b54245a3c109dd9ace8c26.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_cave_beetle_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "mamushi": {
+    "enemies": {
+      "EP103": {
+        "E104": "Mamushi Viper",
+        "E609": "Pit Viper",
+        "E612": "Mamushi Brood",
+        "E616": "Mamushi Matriarch",
+        "E451": "Mamushi Viper",
+        "E459": "Mamushi Viper",
+        "E825": "Mamushi Viper",
+        "E826": "Mamushi Viper",
+        "E835": "Mamushi Viper",
+        "E836": "Mamushi Viper"
+      }
+    },
+    "recipe": "serpent",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "mamushi",
+        "prompt_id": "85c190eb-e5f6-4ea9-9d9c-8f2832659285",
+        "state": "success",
+        "input": "traveler_mamushi-7a1c6e1b39a24f96a41f48dc6c7ce031.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_mamushi_00001_.glb"
+        ]
+      },
+      {
+        "variant": "mamushi_refined",
+        "prompt_id": "94b90957-adc5-4961-8f95-8dd2024aeefc",
+        "state": "success",
+        "input": "traveler_mamushi_refined-cd6ff4d495a245e18329519656a54ed5.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_mamushi_refined_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "tide_crab": {
+    "enemies": {
+      "EP104": {
+        "E105": "Tide Crab",
+        "E317": "Tide Crab",
+        "E322": "Tide Crab",
+        "E433": "Tide Crab",
+        "E427": "Tide Crab",
+        "E335": "Tide Crab",
+        "E620": "Tide Crab",
+        "E674": "Tide Crab",
+        "E681": "Tide Crab",
+        "E688": "Tide Crab",
+        "E779": "Tide Crab",
+        "E796": "Tide Crab",
+        "E797": "Tide Crab"
+      }
+    },
+    "recipe": "crab",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "tide_crab",
+        "prompt_id": "fa5fd381-2134-4b56-a5f3-bda393537b73",
+        "state": "success",
+        "input": "traveler_tide_crab-470608f48f674e96a99a7e4349c1ea44.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_tide_crab_00001_.glb"
+        ]
+      },
+      {
+        "variant": "tide_crab_refined",
+        "prompt_id": "388c93a7-e52a-4bab-a359-ef27868faa01",
+        "state": "success",
+        "input": "traveler_tide_crab_refined-c304d8b5a1d04d1c807a7a7faf5b7024.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_tide_crab_refined_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "goblin_anim": {
+    "enemies": {
+      "EP106": {
+        "E100": "Goblin",
+        "E610": "Goblin Scavenger",
+        "E458": "Goblin",
+        "E525": "Goblin",
+        "E532": "Goblin",
+        "E619": "Goblin",
+        "E833": "Goblin",
+        "E834": "Goblin",
+        "E918": "Goblin"
+      }
+    },
+    "recipe": "goblin",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "goblin_anim",
+        "prompt_id": "200dc9bd-1690-42d1-95a7-59a34b0529b4",
+        "state": "success",
+        "input": "traveler_goblin_anim-64e9ebe89b0d4d6f83bf40a641ab19a4.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_goblin_anim_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "naga_scout": {
+    "enemies": {
+      "EP107": {
+        "E577": "Naga Scout"
+      }
+    },
+    "recipe": "naga",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "naga_scout",
+        "prompt_id": "f056266f-bc2d-4fff-8f55-445e9826fc43",
+        "state": "success",
+        "input": "traveler_naga_scout-92312e55fc4e489299fc38bb445d3500.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_naga_scout_00001_.glb"
+        ]
+      },
+      {
+        "variant": "naga_scout_clean",
+        "prompt_id": "71a4d106-a6d2-4933-9fcc-b237e145190f",
+        "state": "success",
+        "input": "traveler_naga_scout_clean-fc394edd596449a8b3f47e3ef513a8f8.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_naga_scout_clean_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "lava_dryad": {
+    "enemies": {
+      "EP108": {
+        "E578": "Lava Tree Dryad"
+      }
+    },
+    "recipe": "plant",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "lava_dryad",
+        "prompt_id": "8573c13a-8d4a-47ca-9bbe-1c507abda849",
+        "state": "success",
+        "input": "traveler_lava_dryad-f9f6b9ea91fd4ab69e58bef01c426fcf.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_lava_dryad_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "kumo_brood": {
+    "enemies": {
+      "EP109": {
+        "E576": "Kumo Brood",
+        "E581": "Kumo"
+      }
+    },
+    "recipe": "crawler",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "kumo_brood",
+        "prompt_id": "69401d79-7368-4268-b5fa-1273fd78546a",
+        "state": "success",
+        "input": "traveler_kumo_brood-611113674964495a8f4cb1d7e9053b51.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_kumo_brood_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "goblin_warmonger": {
+    "enemies": {
+      "EP110": {
+        "E230": "Goblin Warmonger",
+        "E613": "Goblin Raider",
+        "E617": "Goblin Sergeant",
+        "E240": "Goblin Warmonger",
+        "E251": "Goblin Warmonger",
+        "E562": "Goblin Raider",
+        "E567": "Goblin Raider",
+        "E587": "Nest Goblin",
+        "E591": "Fallen Goblin",
+        "E624": "Goblin Warmonger",
+        "E625": "Goblin Warmonger",
+        "E626": "Goblin Warmonger",
+        "E627": "Goblin Warmonger",
+        "E628": "Goblin Warmonger",
+        "E629": "Goblin Warmonger"
+      },
+      "EP114": {
+        "E231": "Goblin Experiment",
+        "E568": "Goblin Fanatic"
+      }
+    },
+    "recipe": "goblin",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "goblin_warmonger",
+        "prompt_id": "38f8ab3a-729b-474e-97e8-cb0b19188346",
+        "state": "success",
+        "input": "traveler_goblin_warmonger-fdc550f24f044b5fbf748b9d40299eaa.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_goblin_warmonger_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "cave_bats": {
+    "enemies": {
+      "EP111": {
+        "E232": "Cave Bat Swarm",
+        "E614": "Cave Bat Swarm",
+        "E618": "Great Bat Swarm",
+        "E370": "Cave Bat Swarm",
+        "E432": "Cave Bat Swarm",
+        "E511": "Cave Bat Swarm",
+        "E630": "Cave Bat Swarm",
+        "E631": "Cave Bat Swarm",
+        "E632": "Cave Bat Swarm",
+        "E633": "Cave Bat Swarm",
+        "E634": "Cave Bat Swarm",
+        "E635": "Cave Bat Swarm",
+        "E636": "Cave Bat Swarm",
+        "E637": "Cave Bat Swarm",
+        "E723": "Cave Bat Swarm",
+        "E794": "Cave Bat Swarm",
+        "E795": "Cave Bat Swarm",
+        "E904": "Cave Bat Swarm",
+        "E905": "Cave Bat Swarm"
+      }
+    },
+    "recipe": "flier",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "cave_bats",
+        "prompt_id": "d723c1c5-aa32-4f08-9fb9-b57e19b25e2c",
+        "state": "success",
+        "input": "traveler_cave_bats-3b2b30e1262846a9b631c8f979eebc99.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_cave_bats_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "yurei": {
+    "enemies": {
+      "EP112": {
+        "E233": "Yurei",
+        "E259": "Yurei",
+        "E320": "Yurei",
+        "E325": "Yurei",
+        "E369": "Yurei",
+        "E404": "Yurei",
+        "E465": "Yurei",
+        "E418": "Frost Spirit",
+        "E548": "Frost Spirit",
+        "E638": "Yurei",
+        "E639": "Yurei",
+        "E640": "Yurei",
+        "E641": "Yurei",
+        "E654": "Yurei",
+        "E655": "Yurei",
+        "E656": "Yurei",
+        "E679": "Yurei",
+        "E684": "Yurei",
+        "E722": "Yurei",
+        "E752": "Yurei",
+        "E753": "Yurei",
+        "E769": "Frost Spirit",
+        "E770": "Frost Spirit",
+        "E844": "Yurei",
+        "E933": "Frost Spirit",
+        "E934": "Frost Spirit",
+        "E935": "Frost Spirit"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "yurei",
+        "prompt_id": "53b6aeb0-c878-44f5-93f6-b367f4bca745",
+        "state": "success",
+        "input": "traveler_yurei-bc7e6a09c5f14cd1b80cfbe15d5c5c70.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_yurei_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "troll": {
+    "enemies": {
+      "EP113": {
+        "E598": "Troll Elder",
+        "E605": "Troll Elder"
+      },
+      "EP118": {
+        "E243": "Ogre",
+        "E254": "Ogre",
+        "E563": "Ogre",
+        "E569": "Ogre",
+        "E570": "Ogre Captain",
+        "E592": "Fallen Ogre",
+        "E601": "Fallen Ogre",
+        "E998": "Sparring Oni"
+      }
+    },
+    "recipe": "ogre",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "troll",
+        "prompt_id": "b56d94d2-510c-4f3b-af4b-b9637588d2f9",
+        "state": "success",
+        "input": "traveler_troll-e9cee790eb7a414491fe008eddb1860c.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_troll_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "onikage": {
+    "enemies": {
+      "EP116": {
+        "E242": "Onikage",
+        "E564": "Onikage",
+        "E572": "Onikage",
+        "E588": "Nest Onikage",
+        "E593": "Fallen Onikage"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "onikage",
+        "prompt_id": "94de5cbd-c16c-4b48-a405-f233e769d779",
+        "state": "success",
+        "input": "traveler_onikage-61722623177b40c3bf5b89c1718dd15b.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_onikage_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "toothed_poppy": {
+    "enemies": {
+      "EP117": {
+        "E244": "Toothed Poppy",
+        "E580": "Toothed Poppy"
+      }
+    },
+    "recipe": "plant",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "toothed_poppy",
+        "prompt_id": "b7b29e54-a9ea-439f-9f5f-4f6d06c00c05",
+        "state": "success",
+        "input": "traveler_toothed_poppy-c2f31c0cfd7249cb82f9070cca0dded5.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_toothed_poppy_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "other_face": {
+    "enemies": {
+      "EP119": {
+        "E248": "The Other Face"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "other_face",
+        "prompt_id": "544f9e84-7687-4024-9366-f96de90a9ee9",
+        "state": "success",
+        "input": "traveler_other_face-4f97c5e145d44fa5a36bf66eea72b79f.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_other_face_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_nezumi_shaman": {
+    "enemies": {
+      "EP120": {
+        "E106": "Nezumi Shaman"
+      }
+    },
+    "recipe": "ratfolk",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_nezumi_shaman",
+        "prompt_id": "f5caade7-bc22-4e2a-817d-9c5a52ae4f8a",
+        "state": "success",
+        "input": "traveler_boss_nezumi_shaman-48f4ba53f0f84b12ac7dd39deb704b0e.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_nezumi_shaman_00001_.glb"
+        ]
+      },
+      {
+        "variant": "boss_nezumi_shaman_clean",
+        "prompt_id": "edfb203f-3af0-4efb-89ab-87917ee15182",
+        "state": "success",
+        "input": "traveler_boss_nezumi_shaman_clean-ad5eeca9960648e79ad39b258b10c240.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_nezumi_shaman_clean_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_troll": {
+    "enemies": {
+      "EP121": {
+        "E234": "Troll",
+        "E256": "Wall Troll"
+      }
+    },
+    "recipe": "ogre",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_troll",
+        "prompt_id": "ee0296ca-08a4-4f71-bc30-2e5acb677524",
+        "state": "success",
+        "input": "traveler_boss_troll-da624a93fe7e42fdacbddd8a360ae435.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_troll_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_kommei": {
+    "enemies": {
+      "EP123": {
+        "E247": "Oni no Kommei",
+        "E455": "Kommei-brood Oni"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_kommei",
+        "prompt_id": "508a569c-05eb-40f9-aa61-7141dfda4a0f",
+        "state": "success",
+        "input": "traveler_boss_kommei-b7e60b846c954028ab827c4f26266fa0.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_kommei_00001_.glb"
+        ]
+      },
+      {
+        "variant": "boss_kommei_clean",
+        "prompt_id": "89c5aa9b-cb9c-4cb0-9377-8ea95c473f9b",
+        "state": "success",
+        "input": "traveler_boss_kommei_clean-c204c2dcca6e4fc5aaaa111965f2e47e.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_kommei_clean_00001_.glb"
+        ]
+      },
+      {
+        "variant": "boss_kommei_refined",
+        "prompt_id": "94c6fe33-4715-42b3-a631-0c98f34557ae",
+        "state": "success",
+        "input": "traveler_boss_kommei_refined-479c1f9511804c948df2abb41edc1562.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_kommei_refined_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_cellar_ogre": {
+    "enemies": {
+      "EP124": {
+        "E253": "Cellar Ogre"
+      }
+    },
+    "recipe": "ogre",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_cellar_ogre",
+        "prompt_id": "d8090c09-f8ab-41a7-a671-7020e2eadd8e",
+        "state": "success",
+        "input": "traveler_boss_cellar_ogre-573ca3334f504217812a7b2f786ecaa7.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_cellar_ogre_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_tsukakoro": {
+    "enemies": {
+      "EP125": {
+        "E255": "Oni no Tsukakoro"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_tsukakoro",
+        "prompt_id": "800b459d-c9fc-4fb0-bc1f-131844aed283",
+        "state": "success",
+        "input": "traveler_boss_tsukakoro-aec70ad5781944f79bf1f6b3b67b1b4a.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_tsukakoro_00001_.glb"
+        ]
+      },
+      {
+        "variant": "boss_tsukakoro_clean",
+        "prompt_id": "69260bc1-5126-45dc-8ec1-323a341e6af3",
+        "state": "success",
+        "input": "traveler_boss_tsukakoro_clean-fe6472734a03451096434db44088f0fa.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_tsukakoro_clean_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_shelf_kami": {
+    "enemies": {
+      "EP132": {
+        "E346": "Shelf Kami"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_shelf_kami",
+        "prompt_id": "2270ea91-3458-479f-8079-29d184ef04b7",
+        "state": "success",
+        "input": "traveler_boss_shelf_kami-ec65a0ed0226457684b1cb8f90135472.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_shelf_kami_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_red_oni": {
+    "enemies": {
+      "EP134": {
+        "E359": "Red-shadow Oni"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_red_oni",
+        "prompt_id": "dd63cf44-d047-433d-a385-3469c4aee7c0",
+        "state": "success",
+        "input": "traveler_boss_red_oni-907e761fa9a447aeb3e022d132e322a1.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_red_oni_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_ianwa": {
+    "enemies": {
+      "EP136": {
+        "E365": "Oni no Ianwa"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_ianwa",
+        "prompt_id": "73179d7f-8e84-43f8-a1f5-77b69748dfcb",
+        "state": "success",
+        "input": "traveler_boss_ianwa-e9ae2b39618f4fe49eab1fd04e312d69.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_ianwa_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_ashimoshi": {
+    "enemies": {
+      "EP139": {
+        "E395": "Ashimoshi"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_ashimoshi",
+        "prompt_id": "ba83b1a3-2c68-4760-aec0-2e1d0ef8c088",
+        "state": "success",
+        "input": "traveler_boss_ashimoshi-a20074d96b31413ab2a6a56c418e662d.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_ashimoshi_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_hioninmaru": {
+    "enemies": {
+      "EP140": {
+        "E402": "Hioninmaru"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_hioninmaru",
+        "prompt_id": "d75cf65c-cae1-40af-aff9-ad906fba1408",
+        "state": "success",
+        "input": "traveler_boss_hioninmaru-dbfc85c15ecb4fccbde55d1673c82f11.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_hioninmaru_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_kuzushi": {
+    "enemies": {
+      "EP141": {
+        "E409": "Oni no Kuzushi",
+        "E410": "Oni no Kuzushi"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_kuzushi",
+        "prompt_id": "5de8cf9e-d2b6-4442-9eef-cf4c2e68d0e7",
+        "state": "success",
+        "input": "traveler_boss_kuzushi-27e8b8dadb4246a8b77b250ea033511c.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_kuzushi_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_kansen_hana": {
+    "enemies": {
+      "EP146": {
+        "E460": "Kansen-Hana"
+      }
+    },
+    "recipe": "plant",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_kansen_hana",
+        "prompt_id": "67346e8a-23f7-41b7-b572-ec16d4237e69",
+        "state": "success",
+        "input": "traveler_boss_kansen_hana-c316a5f9c6524107ae442807d097651c.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_kansen_hana_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_stolen_face": {
+    "enemies": {
+      "EP148": {
+        "E486": "Bloodspeaker Remnant"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_stolen_face",
+        "prompt_id": "8eac6b55-3e17-4b01-850b-4ac2203f8215",
+        "state": "success",
+        "input": "traveler_boss_stolen_face-0c44e609084a4ebdae5f61fdc9f3d10c.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_stolen_face_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_mine_guardian": {
+    "enemies": {
+      "EP152": {
+        "E513": "Mine Guardian"
+      }
+    },
+    "recipe": "relic",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_mine_guardian",
+        "prompt_id": "6b90adc1-22de-40ba-a6f7-a649decb6adf",
+        "state": "success",
+        "input": "traveler_boss_mine_guardian-c14ba6d3f4214282bce2c0f26fc84e1d.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_mine_guardian_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_regret": {
+    "enemies": {
+      "EP154": {
+        "E518": "Shuten Doji of Regret"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_regret",
+        "prompt_id": "6fa57ca0-7dfd-4491-a065-73e436edcbc5",
+        "state": "success",
+        "input": "traveler_boss_regret-579ce162ed0449e082186b7a850eaf4c.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_regret_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_tengu_red": {
+    "enemies": {
+      "EP158": {
+        "E523": "Crow-Tengu"
+      }
+    },
+    "recipe": "tengu",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_tengu_red",
+        "prompt_id": "aadb2e15-8d84-4201-ab7b-443b3de3417f",
+        "state": "success",
+        "input": "traveler_boss_tengu_red-820ab73d003c4afaba6d65e7ae0acb73.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_tengu_red_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "gaki": {
+    "enemies": {
+      "EP160": {
+        "E406": "Gaki",
+        "E475": "Gaki",
+        "E503": "Gaki",
+        "E510": "Gaki",
+        "E760": "Gaki",
+        "E761": "Gaki",
+        "E762": "Gaki",
+        "E763": "Gaki",
+        "E861": "Gaki",
+        "E862": "Gaki",
+        "E896": "Gaki",
+        "E897": "Gaki",
+        "E902": "Gaki",
+        "E903": "Gaki"
+      }
+    },
+    "recipe": "ghoul",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "gaki",
+        "prompt_id": "59b13fbc-6d3b-405a-b98f-957a0b4a57e7",
+        "state": "success",
+        "input": "traveler_gaki-42b14e114b474811806331ecad8e28fd.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_gaki_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "tsuchigumo": {
+    "enemies": {
+      "EP161": {
+        "E407": "Tsuchigumo",
+        "E764": "Tsuchigumo",
+        "E765": "Tsuchigumo"
+      }
+    },
+    "recipe": "crawler",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "tsuchigumo",
+        "prompt_id": "06325182-adb7-4120-9343-e50660323b14",
+        "state": "success",
+        "input": "traveler_tsuchigumo-2330ffdc1cb645179fc520753da80b76.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_tsuchigumo_00001_.glb"
+        ]
+      },
+      {
+        "variant": "tsuchigumo_refined",
+        "prompt_id": "4797519f-1f5e-4e17-9c04-8ee21ce25d69",
+        "state": "success",
+        "input": "traveler_tsuchigumo_refined-9bcf7024432742c985881632fb31dfae.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_tsuchigumo_refined_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "mieko_shadow": {
+    "enemies": {
+      "EP162": {
+        "E412": "Mieko's Shadow",
+        "E413": "Mieko's Shadow"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "mieko_shadow",
+        "prompt_id": "c620fed0-ad13-48ff-b475-375dbcd9344c",
+        "state": "success",
+        "input": "traveler_mieko_shadow-47a6ae11957241c0befb45a6072461d2.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_mieko_shadow_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "blood_leech": {
+    "enemies": {
+      "EP163": {
+        "E456": "Blood Leech",
+        "E457": "Blood Leech",
+        "E831": "Blood Leech",
+        "E832": "Blood Leech"
+      }
+    },
+    "recipe": "serpent",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "blood_leech",
+        "prompt_id": "02e82e21-2881-48ca-80fd-69d78487f27f",
+        "state": "success",
+        "input": "traveler_blood_leech-b76ab8b5f3a34f3cbbd43958cd218da9.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_blood_leech_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "paddy_python": {
+    "enemies": {
+      "EP164": {
+        "E462": "Paddy Python",
+        "E540": "Paddy Python",
+        "E839": "Paddy Python",
+        "E840": "Paddy Python",
+        "E923": "Paddy Python",
+        "E924": "Paddy Python",
+        "E925": "Paddy Python"
+      },
+      "EP175": {
+        "E537": "Shadow-Snake",
+        "E538": "Shadow-Snake",
+        "E919": "Shadow-Snake",
+        "E920": "Shadow-Snake",
+        "E921": "Shadow-Snake"
+      }
+    },
+    "recipe": "serpent",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "paddy_python",
+        "prompt_id": "f8ec1458-cc6b-4002-b276-12ca3bcf8081",
+        "state": "success",
+        "input": "traveler_paddy_python-21e9686cf5b04292827203b20663922e.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_paddy_python_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "giant_hornet": {
+    "enemies": {
+      "EP165": {
+        "E463": "Giant Hornet",
+        "E841": "Giant Hornet",
+        "E842": "Giant Hornet"
+      }
+    },
+    "recipe": "flier",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "giant_hornet",
+        "prompt_id": "3b7376e2-416d-49c6-89ad-68529c6e7474",
+        "state": "success",
+        "input": "traveler_giant_hornet-3a365b58b71b4472a2384e97a14a0008.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_giant_hornet_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "snow_bear": {
+    "enemies": {
+      "EP166": {
+        "E481": "Snow Bear",
+        "E546": "Snow Bear",
+        "E547": "Snow Beast",
+        "E869": "Snow Bear",
+        "E870": "Snow Bear",
+        "E930": "Snow Bear",
+        "E931": "Snow Bear",
+        "E932": "Snow Bear"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "snow_bear",
+        "prompt_id": "f761a91c-b619-4f7c-83eb-405d888f5724",
+        "state": "success",
+        "input": "traveler_snow_bear-26084c70a10647138e2f0d19cf6ec719.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_snow_bear_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "tengu": {
+    "enemies": {
+      "EP167": {
+        "E482": "Tengu Crow-Warrior",
+        "E871": "Tengu Crow-Warrior",
+        "E872": "Tengu Crow-Warrior"
+      }
+    },
+    "recipe": "tengu",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "tengu",
+        "prompt_id": "721e84ba-0e61-467c-853f-a9e0aa191374",
+        "state": "success",
+        "input": "traveler_tengu-ece8708db48a415581d36edcdeba82dd.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_tengu_00001_.glb"
+        ]
+      },
+      {
+        "variant": "tengu_clean",
+        "prompt_id": "0adb1ef2-e2e8-427b-bac8-f1341007f264",
+        "state": "success",
+        "input": "traveler_tengu_clean-cfcf9d32618e423ab7ff3340866840a9.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_tengu_clean_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "fire_elemental": {
+    "enemies": {
+      "EP168": {
+        "E484": "Fire Elemental",
+        "E487": "Fire Elemental",
+        "E558": "Fire Elemental",
+        "E875": "Fire Elemental",
+        "E876": "Fire Elemental",
+        "E877": "Fire Elemental",
+        "E878": "Fire Elemental",
+        "E947": "Fire Elemental",
+        "E948": "Fire Elemental"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "fire_elemental",
+        "prompt_id": "fc964649-75ab-47e3-a0fc-536596dcd7f6",
+        "state": "success",
+        "input": "traveler_fire_elemental-0755c68b17ab438985a101b3cf9e62cd.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_fire_elemental_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "ash_ghoul": {
+    "enemies": {
+      "EP169": {
+        "E485": "Ash Ghoul",
+        "E488": "Ash Ghoul",
+        "E879": "Ash Ghoul",
+        "E880": "Ash Ghoul",
+        "E881": "Ash Ghoul"
+      }
+    },
+    "recipe": "ghoul",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "ash_ghoul",
+        "prompt_id": "4b5c27c4-6600-417a-bb8d-16bc3474a1e1",
+        "state": "success",
+        "input": "traveler_ash_ghoul-5b3e1c0585af4f2daf384065be591e3f.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_ash_ghoul_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "grey_wolf": {
+    "enemies": {
+      "EP170": {
+        "E483": "Wolf-Spirit",
+        "E550": "Wolf-Spirit",
+        "E582": "Wolf-Spirit",
+        "E873": "Wolf-Spirit",
+        "E874": "Wolf-Spirit",
+        "E940": "Wolf-Spirit",
+        "E941": "Wolf-Spirit",
+        "E942": "Wolf-Spirit"
+      },
+      "EP440": {
+        "E302": "Grey Wolf",
+        "E303": "Grey Wolf",
+        "E312": "Grey Wolf",
+        "E379": "Winter Wolf",
+        "E366": "Mountain Wolf",
+        "E354": "Grey Wolf",
+        "E396": "Grey Wolf",
+        "E403": "Mountain Wolf",
+        "E474": "Mountain Wolf",
+        "E494": "Grey Wolf",
+        "E479": "Winter Wolf",
+        "E502": "Mountain Wolf",
+        "E549": "Winter Wolf",
+        "E657": "Grey Wolf",
+        "E670": "Grey Wolf",
+        "E671": "Grey Wolf",
+        "E710": "Grey Wolf",
+        "E711": "Grey Wolf",
+        "E719": "Mountain Wolf",
+        "E733": "Winter Wolf",
+        "E734": "Winter Wolf",
+        "E735": "Winter Wolf",
+        "E742": "Grey Wolf",
+        "E743": "Grey Wolf",
+        "E750": "Mountain Wolf",
+        "E751": "Mountain Wolf",
+        "E858": "Mountain Wolf",
+        "E859": "Mountain Wolf",
+        "E860": "Mountain Wolf",
+        "E864": "Winter Wolf",
+        "E865": "Winter Wolf",
+        "E866": "Winter Wolf",
+        "E883": "Grey Wolf",
+        "E893": "Mountain Wolf",
+        "E894": "Mountain Wolf",
+        "E895": "Mountain Wolf",
+        "E936": "Winter Wolf",
+        "E937": "Winter Wolf",
+        "E938": "Winter Wolf",
+        "E939": "Winter Wolf"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "grey_wolf",
+        "prompt_id": "532b4d29-7f2f-4514-b625-b2342cf60880",
+        "state": "success",
+        "input": "traveler_grey_wolf-7b813de18e0c492588c88dd95778569b.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_grey_wolf_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "carrion_crow": {
+    "enemies": {
+      "EP171": {
+        "E498": "Pigeon Swarm",
+        "E887": "Pigeon Swarm"
+      },
+      "EP437": {
+        "E107": "Carrion Crow",
+        "E452": "Carrion Crow",
+        "E428": "Carrion Crow",
+        "E529": "Carrion Crow",
+        "E621": "Carrion Crow",
+        "E780": "Carrion Crow",
+        "E781": "Carrion Crow",
+        "E782": "Carrion Crow",
+        "E827": "Carrion Crow",
+        "E828": "Carrion Crow",
+        "E913": "Carrion Crow",
+        "E914": "Carrion Crow"
+      }
+    },
+    "recipe": "flier",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "carrion_crow",
+        "prompt_id": "09d0c065-8cd2-4c83-a221-e7759c2fd545",
+        "state": "success",
+        "input": "traveler_carrion_crow-5ff236ed54c54d8fb4c8fc7a41767fd9.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_carrion_crow_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_tomie_tiger": {
+    "enemies": {
+      "EP182": {
+        "E527": "Tomie Cho"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_tomie_tiger",
+        "prompt_id": "5342c127-a02a-49aa-a279-33a93fbc82df",
+        "state": "success",
+        "input": "traveler_boss_tomie_tiger-147eadbfc59b44ae94fff9cf1bae50a2.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_tomie_tiger_00001_.glb"
+        ]
+      },
+      {
+        "variant": "boss_tomie_tiger_clean",
+        "prompt_id": "b14ae785-70d6-4826-b341-8bf0c7065635",
+        "state": "success",
+        "input": "traveler_boss_tomie_tiger_clean-7571eaef285740cbb05ed64e6ffc9126.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_tomie_tiger_clean_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_naga_champion": {
+    "enemies": {
+      "EP184": {
+        "E559": "The Naga's Champion"
+      }
+    },
+    "recipe": "naga",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_naga_champion",
+        "prompt_id": "d6b1be73-0b9e-4d5d-8ca5-2e781a15a6c3",
+        "state": "success",
+        "input": "traveler_boss_naga_champion-ac4bdbedb1ae424392eba12c260c0b0a.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_naga_champion_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_ryozo_oni": {
+    "enemies": {
+      "EP186": {
+        "E571": "\"Ryozo\""
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_ryozo_oni",
+        "prompt_id": "412d7b2e-4bb3-4d6d-8014-48642ebf3e50",
+        "state": "success",
+        "input": "traveler_boss_ryozo_oni-67cff4f546ff4829af2c08723aae5f6d.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_ryozo_oni_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_horror": {
+    "enemies": {
+      "EP188": {
+        "E575": "Many-Legged Horror"
+      }
+    },
+    "recipe": "crawler",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_horror",
+        "prompt_id": "2329a97a-3e22-40de-ad8d-071b73ccc5ff",
+        "state": "success",
+        "input": "traveler_boss_horror-fd626873358b48699157b68892a30372.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_horror_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_nashiko_time": {
+    "enemies": {
+      "EP192": {
+        "E585": "Body of Damned Time"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_nashiko_time",
+        "prompt_id": "b14a2174-7542-40e6-b0a1-b02242ad340c",
+        "state": "success",
+        "input": "traveler_boss_nashiko_time-4a3e1603d09648989b39b3343997015e.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_nashiko_time_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_nashiko_true": {
+    "enemies": {
+      "EP194": {
+        "E586": "The Empress of Nothing"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_nashiko_true",
+        "prompt_id": "a1518c48-4df7-4e82-b711-b7b1a6b896d1",
+        "state": "success",
+        "input": "traveler_boss_nashiko_true-3a4014715e884b428f827f0aa09fdfc6.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_nashiko_true_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_okura": {
+    "enemies": {
+      "EP196": {
+        "E606": "Oni no Okura"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_okura",
+        "prompt_id": "597d6fbc-c8c1-428d-b26d-0c3c5f22cc6e",
+        "state": "success",
+        "input": "traveler_boss_okura-53fa70a0d98e4c6a853a05678a596bed.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_okura_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "boss_orochi": {
+    "enemies": {
+      "EP198": {
+        "E607": "The Orochi"
+      }
+    },
+    "recipe": "serpent",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "boss_orochi",
+        "prompt_id": "dae6e840-2010-4171-9f7b-e29d6b8a0462",
+        "state": "success",
+        "input": "traveler_boss_orochi-e922b87d826e4227aa58a589a5556ebf.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_orochi_00001_.glb"
+        ]
+      },
+      {
+        "variant": "boss_orochi_refined",
+        "prompt_id": "80326bec-521d-4c92-96b1-3046c6d589a5",
+        "state": "success",
+        "input": "traveler_boss_orochi_refined-f97935240a53462d94913a5b0c37064c.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_boss_orochi_refined_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "oni_spawn": {
+    "enemies": {
+      "EP208": {
+        "E566": "Oni Spawn",
+        "E579": "Oni Spawn",
+        "E589": "Nest Oni Spawn",
+        "E596": "Fallen Oni Spawn",
+        "E604": "Fallen Oni Spawn"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "oni_spawn",
+        "prompt_id": "2be7ecda-f887-48c2-805d-525839cee133",
+        "state": "success",
+        "input": "traveler_oni_spawn-d151f83b3f1c421f882f9652945af1e4.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_oni_spawn_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "wolfrider": {
+    "enemies": {
+      "EP436": {
+        "E250": "Bakemono Wolf-rider"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "wolfrider",
+        "prompt_id": "8a8e1dbd-850e-43de-9ff7-b8c9a6bc851c",
+        "state": "success",
+        "input": "traveler_wolfrider-0b9eac0f69524418b693876ab6998225.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_wolfrider_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "will_o_wisp": {
+    "enemies": {
+      "EP438": {
+        "E108": "Will-o'-wisp",
+        "E307": "Will-o'-wisp",
+        "E311": "Will-o'-wisp",
+        "E356": "Will-o'-wisp",
+        "E398": "Will-o'-wisp",
+        "E454": "Will-o'-wisp",
+        "E468": "Kansen Wisp",
+        "E420": "Kansen Wisp",
+        "E595": "Fallen Kansen",
+        "E622": "Will-o'-wisp",
+        "E661": "Will-o'-wisp",
+        "E668": "Will-o'-wisp",
+        "E669": "Will-o'-wisp",
+        "E714": "Will-o'-wisp",
+        "E715": "Will-o'-wisp",
+        "E716": "Will-o'-wisp",
+        "E717": "Will-o'-wisp",
+        "E746": "Will-o'-wisp",
+        "E747": "Will-o'-wisp",
+        "E773": "Kansen Wisp",
+        "E774": "Kansen Wisp",
+        "E830": "Will-o'-wisp",
+        "E848": "Kansen Wisp",
+        "E849": "Kansen Wisp"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "will_o_wisp",
+        "prompt_id": "b9091a00-c3d9-444d-8495-89f82be965a9",
+        "state": "success",
+        "input": "traveler_will_o_wisp-94a132e13d394c0ca54a0fcc4601fbfe.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_will_o_wisp_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "wild_boar": {
+    "enemies": {
+      "EP439": {
+        "E109": "Wild Boar",
+        "E305": "Wild Boar",
+        "E309": "Wild Boar",
+        "E530": "Wild Boar",
+        "E659": "Wild Boar",
+        "E664": "Wild Boar",
+        "E665": "Wild Boar",
+        "E915": "Wild Boar",
+        "E916": "Wild Boar"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "wild_boar",
+        "prompt_id": "9c65abb8-62f5-4803-b913-5ff817339edc",
+        "state": "success",
+        "input": "traveler_wild_boar-4a49abf5ec8e4623a8fa0a171a71027b.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_wild_boar_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "sea_eel": {
+    "enemies": {
+      "EP441": {
+        "E334": "Sea Serpent Eel",
+        "E340": "Sea Serpent Eel",
+        "E599": "Orochi-spawn",
+        "E687": "Sea Serpent Eel",
+        "E695": "Sea Serpent Eel",
+        "E696": "Sea Serpent Eel"
+      }
+    },
+    "recipe": "serpent",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "sea_eel",
+        "prompt_id": "759e8234-3361-4f58-8cff-3774eed32461",
+        "state": "success",
+        "input": "traveler_sea_eel-7231acb24f1948388bbbf8fa2bc2125b.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_sea_eel_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "umibozu": {
+    "enemies": {
+      "EP442": {
+        "E337": "Umibozu Shade",
+        "E341": "Umibozu Shade",
+        "E697": "Umibozu Shade"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "umibozu",
+        "prompt_id": "69deaf0a-cc13-45de-b781-31db9a539737",
+        "state": "success",
+        "input": "traveler_umibozu-7262dc2e3088443e8ac590d368c770a3.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_umibozu_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "paper_spirit": {
+    "enemies": {
+      "EP443": {
+        "E342": "Paper-spirit",
+        "E469": "Paper-spirit",
+        "E698": "Paper-spirit",
+        "E699": "Paper-spirit",
+        "E700": "Paper-spirit",
+        "E701": "Paper-spirit",
+        "E702": "Paper-spirit",
+        "E850": "Paper-spirit",
+        "E851": "Paper-spirit"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "paper_spirit",
+        "prompt_id": "ef8f094b-5735-4938-9922-513a368b37d7",
+        "state": "success",
+        "input": "traveler_paper_spirit-900b81b3e1cb4c42a13c83aa1eab3830.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_paper_spirit_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "fear_shade": {
+    "enemies": {
+      "EP446": {
+        "E364": "Fear Shade",
+        "E387": "Fear Shade",
+        "E371": "Fear Shade",
+        "E718": "Fear Shade"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "fear_shade",
+        "prompt_id": "56971a83-6710-4625-ad84-4263b0b12fe6",
+        "state": "success",
+        "input": "traveler_fear_shade-5fe31f8dccec49678f3656fd9e95cf0e.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_fear_shade_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "guardian_stone": {
+    "enemies": {
+      "EP448": {
+        "E394": "Guardian-stone"
+      }
+    },
+    "recipe": "relic",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "guardian_stone",
+        "prompt_id": "8b1fcc74-58ce-4a44-8fb9-7c197f9a855d",
+        "state": "success",
+        "input": "traveler_guardian_stone-18e4696b862c49dbb73a7c4e231539a5.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_guardian_stone_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "fever_spirit": {
+    "enemies": {
+      "EP449": {
+        "E405": "Fever Spirit",
+        "E754": "Fever Spirit",
+        "E755": "Fever Spirit",
+        "E756": "Fever Spirit",
+        "E757": "Fever Spirit",
+        "E758": "Fever Spirit",
+        "E759": "Fever Spirit"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "fever_spirit",
+        "prompt_id": "3a6fe4a1-b1d2-48d8-91aa-7f9d0feb2dc8",
+        "state": "success",
+        "input": "traveler_fever_spirit-b1ddcda4f71648afa6aed14473cdb026.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_fever_spirit_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "kappa": {
+    "enemies": {
+      "EP459": {
+        "E430": "Kappa",
+        "E541": "Kappa",
+        "E788": "Kappa",
+        "E789": "Kappa",
+        "E790": "Kappa",
+        "E926": "Kappa"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "kappa",
+        "prompt_id": "0a078f45-bd56-4ee8-8a6e-7f71e283ffe9",
+        "state": "success",
+        "input": "traveler_kappa-115a87b3b851425995fbfae02f36000c.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_kappa_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_badger": {
+    "enemies": {
+      "EP2600": {
+        "E020": "Anaguma Badger"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_badger",
+        "prompt_id": "b5266a15-f3ee-4c03-a633-cef056f4d2c7",
+        "state": "success",
+        "input": "traveler_foe_badger-1d9bc284655e40fe832d526d0b049b57.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_badger_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_crocodile": {
+    "enemies": {
+      "EP2601": {
+        "E021": "River Wani"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_crocodile",
+        "prompt_id": "f7ca6008-fdcd-4f84-8fe9-efce14159474",
+        "state": "success",
+        "input": "traveler_foe_crocodile-77f40fb91a594541a0a9f12d23cf0a37.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_crocodile_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_aoizame": {
+    "enemies": {
+      "EP2602": {
+        "E022": "Aoizame Shark"
+      }
+    },
+    "recipe": "swimmer",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_aoizame",
+        "prompt_id": "cfa89787-fff8-459c-b570-d7759e1f2db8",
+        "state": "success",
+        "input": "traveler_foe_aoizame-88d8b239c5044bd59e86d907d5fe6302.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_aoizame_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_bakeneko": {
+    "enemies": {
+      "EP2605": {
+        "E025": "Bakeneko"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_bakeneko_concept",
+        "prompt_id": "387cc4e2-cc17-4453-bf57-2b282412208a",
+        "state": "success",
+        "input": "traveler_foe_bakeneko_concept-c18fe2887c0d495cb4d247c7c19c03fc.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_bakeneko_concept_00001_.glb"
+        ]
+      },
+      {
+        "variant": "foe_bakeneko_refined",
+        "prompt_id": "eb7ed259-a7c5-4565-9e84-11bb3500d0b6",
+        "state": "success",
+        "input": "traveler_foe_bakeneko_refined-fbb0af1b203a4372a504bf1ae94c40c5.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_bakeneko_refined_00001_.glb"
+        ]
+      },
+      {
+        "variant": "foe_bakeneko_clean",
+        "prompt_id": "efc4d6ca-828c-4be5-b5d6-c2a07a0eca7a",
+        "state": "success",
+        "input": "traveler_foe_bakeneko_clean-f41b3746e21a4e4c9a6fb4183a240542.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_bakeneko_clean_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_mujina": {
+    "enemies": {
+      "EP2606": {
+        "E026": "Mujina"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_mujina",
+        "prompt_id": "5af5e271-8c6d-461c-af00-ca807b40a527",
+        "state": "success",
+        "input": "traveler_foe_mujina-d6735c08e2b2414b89c23abc884a9a1d.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_mujina_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_monkeys": {
+    "enemies": {
+      "EP2608": {
+        "E028": "Monkey Troop"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_monkeys",
+        "prompt_id": "14474a54-e552-4370-bee9-27e49706fc39",
+        "state": "success",
+        "input": "traveler_foe_monkeys-3ebe79478c0e43c189bcb83f9b49a471.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_monkeys_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_tiger": {
+    "enemies": {
+      "EP2610": {
+        "E030": "Tora Tiger"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_tiger",
+        "prompt_id": "72e54bf7-decc-4f38-915a-459ea87e478a",
+        "state": "success",
+        "input": "traveler_foe_tiger-6beb5e232316419eb8b54b6bed0b2a01.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_tiger_00001_.glb"
+        ]
+      },
+      {
+        "variant": "foe_tiger_refined",
+        "prompt_id": "9c74c7a7-0b46-4697-9722-97737ebc3e61",
+        "state": "success",
+        "input": "traveler_foe_tiger_refined-b07b3dd7034a48f4aad89f81a90bce5f.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_tiger_refined_00001_.glb"
+        ]
+      },
+      {
+        "variant": "foe_tiger_clean",
+        "prompt_id": "17dd96b4-62b8-4527-a160-b8b64dea3118",
+        "state": "success",
+        "input": "traveler_foe_tiger_clean-1cbb56d7922b4859a88692d863de7bf2.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_tiger_clean_00001_.glb"
+        ]
+      },
+      {
+        "variant": "foe_tiger_second",
+        "prompt_id": "e9c36be4-5420-4bce-bd64-ca5dab6ac906",
+        "state": "success",
+        "input": "traveler_foe_tiger_second-a0574b506fbe4d60b8a2f910958554e5.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_tiger_second_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_ape": {
+    "enemies": {
+      "EP2612": {
+        "E032": "Ozaru"
+      }
+    },
+    "recipe": "beast",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_ape",
+        "prompt_id": "c692c655-bc9b-45d4-aed3-593b0276373c",
+        "state": "success",
+        "input": "traveler_foe_ape-cc0f6b313b3648cbbf3559acbe7266e4.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_ape_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_blood_eel": {
+    "enemies": {
+      "EP2614": {
+        "E034": "Tsumunagi"
+      }
+    },
+    "recipe": "serpent",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_blood_eel",
+        "prompt_id": "17d86e5e-5ab7-4fef-9537-1c6c09be3755",
+        "state": "success",
+        "input": "traveler_foe_blood_eel-0ac18b3e662e4a0b83b14b152cf0dabc.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_blood_eel_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_aka_name": {
+    "enemies": {
+      "EP2615": {
+        "E035": "Aka-name"
+      }
+    },
+    "recipe": "ghoul",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_aka_name",
+        "prompt_id": "0fd31444-4534-4cb8-a695-60f8403ac85b",
+        "state": "success",
+        "input": "traveler_foe_aka_name-4b4aa8ae164544f0a799fad7b01c63f5.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_aka_name_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_muck_monster": {
+    "enemies": {
+      "EP2616": {
+        "E036": "Sanshu Denki"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_muck_monster",
+        "prompt_id": "8fbe902a-ea41-4d30-b495-9b7e06e25bcf",
+        "state": "success",
+        "input": "traveler_foe_muck_monster-0ae725d2b1104eaea358dad48d160c9f.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_muck_monster_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_nukekubi": {
+    "enemies": {
+      "EP2617": {
+        "E037": "Nukekubi"
+      }
+    },
+    "recipe": "serpent",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_nukekubi",
+        "prompt_id": "64214c08-7f73-4d65-a631-18959c38ecbd",
+        "state": "success",
+        "input": "traveler_foe_nukekubi-2431f6acec104781ae39abccb808161b.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_nukekubi_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_ningyo": {
+    "enemies": {
+      "EP2618": {
+        "E038": "Feral Ningyo"
+      }
+    },
+    "recipe": "swimmer",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_ningyo",
+        "prompt_id": "2869df6a-5ae3-4dd8-9b73-5c021209ea8d",
+        "state": "success",
+        "input": "traveler_foe_ningyo-e23930e0a1754a8eb4ea17b996b81f05.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_ningyo_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_tanglevines": {
+    "enemies": {
+      "EP2619": {
+        "E039": "Fudoshi"
+      }
+    },
+    "recipe": "plant",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_tanglevines",
+        "prompt_id": "6514621c-b153-4410-8977-88f44d0b1123",
+        "state": "success",
+        "input": "traveler_foe_tanglevines-db3b372f3e4945a6a983a7df6da8a062.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_tanglevines_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_goblin_sneak": {
+    "enemies": {
+      "EP2620": {
+        "E040": "Goblin Sneak"
+      }
+    },
+    "recipe": "goblin",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_goblin_sneak",
+        "prompt_id": "8ace872e-214d-4f26-9d80-7d78ded01f46",
+        "state": "success",
+        "input": "traveler_foe_goblin_sneak-6d9ed044d6b745ac8617a8da57cb4015.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_goblin_sneak_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_goblin_chucker": {
+    "enemies": {
+      "EP2621": {
+        "E041": "Goblin Chucker"
+      }
+    },
+    "recipe": "goblin",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_goblin_chucker",
+        "prompt_id": "013830a6-569e-44b2-81ff-f3069115369e",
+        "state": "success",
+        "input": "traveler_foe_goblin_chucker-5021323f54d44ec1907b514c827a0b3d.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_goblin_chucker_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_heart_grubs": {
+    "enemies": {
+      "EP2624": {
+        "E044": "Nikumizu"
+      }
+    },
+    "recipe": "crawler",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_heart_grubs",
+        "prompt_id": "dead8a63-7c17-446c-949e-fa14349584d8",
+        "state": "success",
+        "input": "traveler_foe_heart_grubs-4d56f9b2242d4043ab90565c91ed06a5.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_heart_grubs_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_ghul": {
+    "enemies": {
+      "EP2625": {
+        "E045": "Ghul"
+      }
+    },
+    "recipe": "ghoul",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_ghul",
+        "prompt_id": "18b57772-0794-470c-8023-2d4c1bf0ff8e",
+        "state": "success",
+        "input": "traveler_foe_ghul-3fcac5afc7dc4cc4830bbd3518ea8867.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_ghul_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_goblin_berserker": {
+    "enemies": {
+      "EP2626": {
+        "E046": "Goblin Berserker"
+      }
+    },
+    "recipe": "goblin",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_goblin_berserker",
+        "prompt_id": "092bf1d3-861f-4023-9f25-0045235f9ea0",
+        "state": "success",
+        "input": "traveler_foe_goblin_berserker-be435ac2c44f40a890cd478cf8a0c161.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_goblin_berserker_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_hanemuri": {
+    "enemies": {
+      "EP2627": {
+        "E047": "Hanemuri"
+      }
+    },
+    "recipe": "flier",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_hanemuri",
+        "prompt_id": "8d759797-35bf-4eb4-8d9c-daad6656ab94",
+        "state": "success",
+        "input": "traveler_foe_hanemuri-ee3f12da7103441f9b33638f9a9a28e9.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_hanemuri_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_ogre_hag": {
+    "enemies": {
+      "EP2628": {
+        "E048": "Ogre Hag"
+      }
+    },
+    "recipe": "ogre",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_ogre_hag",
+        "prompt_id": "066adcdf-8328-41fa-a033-27aea102f665",
+        "state": "success",
+        "input": "traveler_foe_ogre_hag-50564b0fea714f9c9447ede637848090.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_ogre_hag_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_free_ogre": {
+    "enemies": {
+      "EP2629": {
+        "E049": "Free Ogre"
+      }
+    },
+    "recipe": "ogre",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_free_ogre",
+        "prompt_id": "ecd86fd7-17a9-441a-9006-e5ac75284312",
+        "state": "success",
+        "input": "traveler_foe_free_ogre-56a09e15638a4006a033973751789f03.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_free_ogre_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_stinger_plant": {
+    "enemies": {
+      "EP2630": {
+        "E050": "Takesasu"
+      }
+    },
+    "recipe": "plant",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_stinger_plant",
+        "prompt_id": "3bf11882-3daf-4e24-acd4-0a49237261c6",
+        "state": "success",
+        "input": "traveler_foe_stinger_plant-fe0738ecc3e5461f9a0c43e5ca362091.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_stinger_plant_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_zokujin_miner": {
+    "enemies": {
+      "EP2631": {
+        "E051": "Zokujin Miner"
+      }
+    },
+    "recipe": "ghoul",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_zokujin_miner",
+        "prompt_id": "1eecc076-9460-40c2-888d-11a12e689a9e",
+        "state": "success",
+        "input": "traveler_foe_zokujin_miner-2783164e66f346c4922a56d7592ed579.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_zokujin_miner_00001_.glb"
+        ]
+      },
+      {
+        "variant": "foe_zokujin_miner_clean",
+        "prompt_id": "3ec9bc62-57ae-4773-b38f-0f09e9565d1b",
+        "state": "success",
+        "input": "traveler_foe_zokujin_miner_clean-733398361cf54cba9320336209d120fc.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_zokujin_miner_clean_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_zokujin_hunter": {
+    "enemies": {
+      "EP2632": {
+        "E052": "Zokujin Stonehunter"
+      }
+    },
+    "recipe": "ghoul",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_zokujin_hunter",
+        "prompt_id": "cca4f73c-3fdf-469f-9bbb-ba662f819836",
+        "state": "success",
+        "input": "traveler_foe_zokujin_hunter-da1ed954042b41f5b8db413576274e01.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_zokujin_hunter_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_onibaba": {
+    "enemies": {
+      "EP2633": {
+        "E053": "Onibaba"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_onibaba",
+        "prompt_id": "784c580f-fe20-4ffc-bf6f-abd281b7debe",
+        "state": "success",
+        "input": "traveler_foe_onibaba-5736eb2a3be84feabd077a5de09bb83c.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_onibaba_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_tsuno": {
+    "enemies": {
+      "EP2634": {
+        "E054": "Tsuno Ravager"
+      }
+    },
+    "recipe": "demon",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_tsuno",
+        "prompt_id": "e3f8bfb4-23f0-4cb1-80a5-f6cfad0c0e75",
+        "state": "success",
+        "input": "traveler_foe_tsuno-af96ae210e114d19aa1621f99d216f75.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_tsuno_00001_.glb"
+        ]
+      },
+      {
+        "variant": "foe_tsuno_clean",
+        "prompt_id": "be6c0914-72ca-4291-8e95-b4d3fafa03a9",
+        "state": "success",
+        "input": "traveler_foe_tsuno_clean-4cdb7bab3e4f40eb833175c7288c5589.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_tsuno_clean_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_shadowspawn": {
+    "enemies": {
+      "EP2635": {
+        "E055": "Lesser Shadowspawn"
+      }
+    },
+    "recipe": "spirit",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_shadowspawn",
+        "prompt_id": "5c542e4f-76dc-4adb-b357-fb40bd6d3dc2",
+        "state": "success",
+        "input": "traveler_foe_shadowspawn-12daefca7c4c425885ed1d735297f6d6.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_shadowspawn_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_hyakuhei": {
+    "enemies": {
+      "EP2636": {
+        "E056": "Hyakuhei"
+      }
+    },
+    "recipe": "crawler",
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_hyakuhei",
+        "prompt_id": "d42060b7-d670-4f04-bfe5-ef4c4b96825e",
+        "state": "success",
+        "input": "traveler_foe_hyakuhei-9c8ea40b1de54bcc9b3dda85f2c71ea3.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_hyakuhei_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_skull_tide": {
+    "recipe": "spirit",
+    "enemies": {
+      "EP2638": {
+        "E058": "Skull Tide"
+      }
+    },
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_skull_tide",
+        "prompt_id": "82380be7-3b68-42cd-9bca-3a89d546b3b6",
+        "state": "success",
+        "input": "traveler_foe_skull_tide-e89c81926c44445b966fde93c464123c.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_skull_tide_00001_.glb"
+        ]
+      }
+    ]
+  },
+  "foe_oni_no_akuma": {
+    "recipe": "crawler",
+    "enemies": {
+      "EP2639": {
+        "E059": "Oni no Akuma"
+      }
+    },
+    "installed": true,
+    "jobs": [
+      {
+        "variant": "foe_oni_no_akuma",
+        "prompt_id": "4e8147df-abc7-4237-8098-3e09080d67e8",
+        "state": "success",
+        "input": "traveler_foe_oni_no_akuma-adf76e6f46ba4131afe3b2a39167a7fa.png",
+        "output": [
+          "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_foe_oni_no_akuma_00001_.glb"
+        ]
+      }
+    ]
+  }
+}

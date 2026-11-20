@@ -366,6 +366,9 @@ def spell_skills(s):
         if sp["skill"] == "S335":
             k["rt_dragonbreath"] = True
         k["aimani"] = {"id": "cast_" + sp["cat"], "mdlid": "CV000", "part": 0, "spd": 1.0}
+        if sp["skill"] == "S391":
+            k["atkact"]["scp"] = '::Rokugan.playVoidBolt( rp3d, dst3d, dmg );'
+            k["rt_anim_key"] = "void_bolt"
         s[sp["skill"]] = k
 
 
@@ -2293,6 +2296,8 @@ def main():
     sf.update({"name": "Shuriken Fan", "desc": "Three throwing stars, low damage each.", "elembits": B["Tanto"],
                "atknum": [3, 3], "dmgrate": [0.45, 0.5], "consume": [0, 8], "option": [], "addlist": True,
                "enemyuse": False})
+    sf["atkact"]["scp"] = 'if( !::Rokugan.playHeroShuriken( rp3d, dst3d, dmg ) ){\n    if( ispic ) return wait( 100 );\n    anime( atkani );\n    wait( atkdelay );\n    efx( atkefx );\n    snd( atksnd );\n}\n'
+    sf["rt_anim_key"] = "shuriken_fan"
     s["S142"] = sf
     tb = copy.deepcopy(TPL_PUTCOND)                # Hiruma Goro (story/04 B3 #7)
     tb.update({"name": "Troll-Breaker", "desc": "Goro drops his bent katana and hits with both fists. (Unarmed)",
@@ -2730,6 +2735,7 @@ def main():
                "heals a little each turn. (Regen, all allies)", "cmdtgt": 11, "putconds": 0,
                "option": [PUT_BY_ID("K040")], "addlist": True, "enemyuse": False, "consume": [0, 10],
                "eqtypebits": 2047})
+    ki["useact"]["scp"] = 'snd( usesnd );\nif( !::Rokugan.ideSong( rp3d ) ){\n    anime( useani );\n    efx( useefx );\n    wait( EFX );\n}\n'
     s["S543"] = ki
     st_ = copy.deepcopy(s["S300"])
     st_.update({"name": "Share the Stores", "desc": "Tamotsu's rice cakes, handed round the whole party whether "
@@ -3022,6 +3028,7 @@ def main():
     blow("S608", "Lion's Charge", "The Matsu charge: straight through the enemy line. (Katana, all enemies)",
          dmgrate=[0.9, 1.0], hitrate=0.95, elembits=B["Katana"], cmdtgt=7, enemyuse=False, addlist=True,
          consume=[0, 12])
+    s["S608"]["useact"]["scp"] = 'snd( usesnd );\nif( !::Rokugan.playLionCharge( rp3d ) ){\n    anime( useani );\n    efx( useefx );\n    wait( EFX );\n}\n'
     hire_skill(H[67], TPL_PUTCOND, "A goat-herd's hunting arrow, aimed for the soft place under the fur. (Yumi, one "
                "enemy)", act="Bear Arrow", option=[], elembits=B["Yumi"], dmgrate=[1.0, 1.0],
                atkform="dst.PDEF*0.3+40+src.LV*10")
@@ -4799,6 +4806,7 @@ def main():
     # tools/new_foes.py: Enemies of the Empire's beasts, ancient races, spirits, undead and ronin, at their places'
     # levels; sprites are placeholders (EP2600+, gen_placeholder_foes.py) until the art agent draws them
     import new_foes as _nf
+    reserved_species = {row[3]: e.get(row[0], {}).get("name") for row in _nf.RESERVED_FOES}
     for (eid, ep, key, name, base_ep, _h, _s, _v, lv, hpx, atkx, res, weak, desc, _d, _st) in _nf.NEW_FOES:
         st_ = foe_stats(lv, hpx, atkx)
         x = copy.deepcopy(e["E001"])
@@ -4865,7 +4873,11 @@ def main():
     # Weakness memory (user 2026-11-12: "once a weakness for a species is revealed it should always stay revealed even
     # in the next time you see them"): one saved int var per species (same name = same species, so the ladder clones
     # share it) holding the revealed weakness bits; plugin RokuganJobs.sk loads / stores it.
-    names = sorted({x["name"] for x in e.values() if isinstance(x, dict) and x.get("name")})
+    names = {x["name"] for x in e.values() if isinstance(x, dict) and x.get("name")}
+    # Keep existing weakness-memory IDs when a reserved slot becomes a playable foe.
+    names.difference_update(reserved_species)
+    names.update(name for name in reserved_species.values() if name)
+    names = [*sorted(names), *reserved_species]
     assert len(names) < 1000, "species vars past G2999"
     species_var = {nm: "G%d" % (2000 + i) for i, nm in enumerate(names)}
     for x in e.values():

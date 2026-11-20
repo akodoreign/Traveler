@@ -8552,5 +8552,15 @@
 		"defval": false,
 		"name": "Journal side quest 9: accepted",
 		"type": 1
+	},
+	"G2280": {
+		"defval": 0,
+		"name": "weakness memory: Skull Tide (revealed weakness bits)",
+		"type": 2
+	},
+	"G2281": {
+		"defval": 0,
+		"name": "weakness memory: Oni no Akuma (revealed weakness bits)",
+		"type": 2
 	}
 }

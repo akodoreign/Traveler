@@ -4357,13 +4357,21 @@
 		"rt_species": "G2182"
 	},
 	"E058": {
-		"AGI": 100,
-		"LV": 1,
-		"MATK": 100,
-		"MAXHP": 100,
-		"MDEF": 100,
-		"PATK": 100,
-		"PDEF": 100,
+		"AGI": 190,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 64,
+		"MATK": 10,
+		"MAXHP": 3342,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 232,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 220,
+		"PDEF": 253,
 		"ai": [
 			{
 				"actnum": [
@@ -4391,17 +4399,17 @@
 			}
 		],
 		"defskillid": "S003",
-		"desc": "",
-		"exp": 10,
+		"desc": "A living tide of skulls from the Seas of Shadow. Its dark water carries the drowned.",
+		"exp": 198,
 		"item0": {
 			"issteal": false,
-			"itemid": null,
+			"itemid": "I104",
 			"rate": 50.0
 		},
 		"item1": {
-			"issteal": false,
-			"itemid": null,
-			"rate": 50.0
+			"issteal": true,
+			"itemid": "I018",
+			"rate": 100.0
 		},
 		"item2": {
 			"issteal": false,
@@ -4414,20 +4422,36 @@
 			"rate": 50.0
 		},
 		"jxp": 2,
-		"mdlid": "EP041",
-		"money": 10,
-		"name": "(unused enemy E058)",
-		"option": [],
-		"rt_species": "G2279"
+		"mdlid": "EP2638",
+		"money": 266,
+		"name": "Skull Tide",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.11": -50,
+				"EDR.6": -50
+			}
+		],
+		"tribebits": 0,
+		"rt_species": "G2280",
+		"RES": 5
 	},
 	"E059": {
-		"AGI": 100,
-		"LV": 1,
-		"MATK": 100,
-		"MAXHP": 100,
-		"MDEF": 100,
-		"PATK": 100,
-		"PDEF": 100,
+		"AGI": 201,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 68,
+		"MATK": 10,
+		"MAXHP": 7359,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 245,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 250,
+		"PDEF": 268,
 		"ai": [
 			{
 				"actnum": [
@@ -4455,17 +4479,17 @@
 			}
 		],
 		"defskillid": "S003",
-		"desc": "",
-		"exp": 10,
+		"desc": "A general of the Shadowlands with three burning eyes and claws of dark stone.",
+		"exp": 210,
 		"item0": {
 			"issteal": false,
-			"itemid": null,
+			"itemid": "I131",
 			"rate": 50.0
 		},
 		"item1": {
-			"issteal": false,
-			"itemid": null,
-			"rate": 50.0
+			"issteal": true,
+			"itemid": "I125",
+			"rate": 100.0
 		},
 		"item2": {
 			"issteal": false,
@@ -4478,11 +4502,19 @@
 			"rate": 50.0
 		},
 		"jxp": 2,
-		"mdlid": "EP053",
-		"money": 10,
-		"name": "(unused enemy E059)",
-		"option": [],
-		"rt_species": "G2261"
+		"mdlid": "EP2639",
+		"money": 282,
+		"name": "Oni no Akuma",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.11": -50,
+				"EDR.9": -50
+			}
+		],
+		"tribebits": 0,
+		"rt_species": "G2281",
+		"RES": 8
 	},
 	"E060": {
 		"AGI": 100,

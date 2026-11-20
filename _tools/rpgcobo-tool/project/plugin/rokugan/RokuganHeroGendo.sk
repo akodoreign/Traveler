@@ -1,0 +1,57 @@
+// Gendo observes, notes the proof, and releases the real Deduce reveal.
+local clipId = "hero_gendo_deduce";
+local bookPath = "/resource/native_chara/fidget/book";
+local brushPath = "/resource/native_chara/deduce_brush";
+::Rokugan.registerHeroSignatureClip( "trav_gendo", clipId, "gendo_deduce", 43, @( actor ) 0 );
+
+::Rokugan.HERO_SIGNATURE_ROUTES .. @( cmd, func ) cmd.src.dataid == "P102" &&
+	cmd.skill["name"] == "Deduce" && func == cmd.skill["useact"];
+
+::Rokugan.heroDeduce <- function( cmd, battle ){
+	if( !battle || cmd.src.dataid != "P102" || !::getResource( bookPath + ".pm" ) ) return false;
+	local stage = ::rpgstage, actor = battle.getChara3D( cmd.src );
+	if( !actor || !actor["animemap"] || !actor.animemap[clipId] ) return false;
+	local layer = null, book = null, brush = null, body = actor.nativeBody;
+	local weapon = actor.nativeWeapon, weaponVisible = weapon ? weapon.visible : false;
+	local complete = false;
+	try{
+		layer = actor.anime2( #{ id="hero_gendo_deduce" } );
+		if( !layer ) return false;
+		book = actor.addNativePart( bookPath );
+		book.setVisible( false );
+		if( ::getResource( brushPath + ".pm" ) ){
+			brush = actor.addNativePart( brushPath );
+			brush.setVisible( false );
+		}
+		if( weapon ) weapon.setVisible( false );
+		local start = skGetTime();
+		while( ::rpgstage == stage && stage.battle == battle && !cmd.src.isDead() && actor.nativeBody == body ){
+			local t = skGetTime()-start;
+			if( t >= 1390.0 ){
+				complete = true;
+				break;
+			}
+			book.setVisible( t >= 417.0 && t < 1250.0 );
+			if( brush ) brush.setVisible( t >= 565.0 && t < 1148.0 );
+			sleep( 16 );
+		}
+	}catch( ex ){}
+	if( body ){
+		if( brush ) body.removeChild( brush );
+		if( book ) body.removeChild( book );
+	}
+	if( weapon ) weapon.setVisible( weaponVisible );
+	if( ::rpgstage != stage || stage.battle != battle ) return false;
+	if( layer && actor.nativeBody == body && !cmd.src.isDead() && actor.animlayers.layers[0] == layer )
+		actor.anime2( #{ id="stand" } );
+	if( complete ){
+		try{
+			foreach( enemy in (cmd.dsts || []) ){
+				local target = enemy && battle.getChara3D( enemy );
+				if( target && enemy instanceof ::RPGEnemy )
+					this.heroMark( stage, "hero_gendo_evidence", Vector3D( target.pos ).add( 0, target.bnd.y+.52, 0 ), .98 );
+			}
+		}catch( ex ){}
+	}
+	return complete;
+};

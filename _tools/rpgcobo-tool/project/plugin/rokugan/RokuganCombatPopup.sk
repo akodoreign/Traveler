@@ -1,0 +1,76 @@
+// Boss entrances own their title and its fade. Backdrops contain no text.
+local TITLE_ROOT = "/resource/efx/battleui/boss_titles/";
+local titleResource = ::getResource( TITLE_ROOT .. "index.json");
+local titleData = titleResource ? decodeJSON( titleResource.loadData()) : null;
+
+::Rokugan.bossTitleFor <- function( enemy){
+	if( !titleData || !enemy) return null;
+	local id = titleData.byEnemy[enemy.dataid] || titleData.byName[enemy.name];
+	return id ? titleData.titles[id] : null;
+};
+
+local addBackdrop = function( card, parts, path, x, y, w, h, color){
+	if( !::getResource( path)) return false;
+	local sprite = Sprite( ::getTexture( path, 16));
+	sprite.blend = SK_PMAMIX;
+	local image = SKImageView( sprite);
+	image.setRect( x, y, w, h);
+	image.setColor( 0);
+	card.addChild( image);
+	parts.append( [image, color]);
+	return true;
+};
+
+local addTitle = function( card, parts, value, y, height, size, color){
+	local label = SKLabelView( "", FontAttribute( Fonts.get( "ui"), size, color, SK_FONT_BOLD));
+	label.enabled = false;
+	label.usetemplate = false;
+	label.setRect( 172, y, 616, height);
+	label.textbox.align = 4;
+	label.setText( value);
+	label.setColor( 0);
+	card.addChild( label);
+	parts.append( [label, color]);
+};
+
+::Rokugan.showBossTitle <- function( battle, enemy, spec){
+	local picture = ::rootview.findChild( "picture");
+	local name = ::lang( enemy.name);
+	if( !picture || !name || !length( name)) return null;
+
+	local card = SKView(), parts = [];
+	card.enabled = false;
+	card.setRect( 160, 115, 960, 190);
+
+	local painted = spec["theme"] &&
+		addBackdrop( card, parts, TITLE_ROOT .. spec.theme .. ".png", 0, 0, 960, 190, 0xffffffff);
+	if( !painted)
+		painted = addBackdrop( card, parts, TITLE_ROOT .. "ink.png", 0, 0, 960, 190, 0xffffffff);
+	if( !painted)
+		addBackdrop( card, parts, "/resource/efx/battleui/white.png", 48, 47, 864, 91, 0x161318e9);
+
+	local epithet = spec["epithet"];
+	addTitle( card, parts, name, epithet ? 55 : 63, 50, length( name) > 30 ? 36 : 41, 0xf9f0ddff);
+	if( epithet) addTitle( card, parts, ::lang( epithet), 106, 24, 18, 0xe1be7eff);
+
+	local fade = { elapsed = 0.0, hideAt = null, alpha = -1 };
+	card.addUpdateFunc( function( dt){
+		fade.elapsed += dt;
+		local out = fade.hideAt != null ? (fade.elapsed - fade.hideAt) / 400.0 : 0.0;
+		if( ::rpgstage["battle"] != battle || out >= 1.0){
+			card.removeFromParent();
+			return false;
+		}
+		local alpha = int( 255 * Math.min( 1.0, fade.elapsed / 300.0) * (1.0 - out));
+		if( alpha != fade.alpha){
+			fade.alpha = alpha;
+			foreach( part in parts){
+				local c = part[1];
+				part[0].setColor( (c & 0xffffff00) | int( (c & 255) * alpha / 255.0));
+			}
+		}
+		return true;
+	});
+	picture.addChild( card );
+	return function(){ fade.hideAt = fade.elapsed; };
+};

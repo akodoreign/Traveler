@@ -278,6 +278,11 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 				log( "%S copies %S from %S" % (pc.name, sk.name, d.name));
 			}
 		}else if( nm == "Deduce"){
+			if( b && ::Rokugan["heroDeduce"] && this.heroDeduce( cmd, b ) ){
+				local nsk = clone cmd.skill;
+				nsk["useact"] <- { id="noop", scp=null };
+				cmd.skill = nsk;
+			}
 			foreach( d in (cmd.dsts || [])){
 				if( d instanceof ::RPGEnemy){
 					state( d).known = state( d).known | weakbits( d);
@@ -759,7 +764,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 				.map( @( sid, i)( { sk = ::conf.skill[sid], n = ::Rokugan.recipeCount( ::conf.skill[sid]) }))
 				.map( @( v, i)({ idx = i, val = v.sk, disable = v.n <= 0, _name = "r" .. i, lbl = v.sk.name,
 					grayout = v.n <= 0 ? "on" : "off", rlbl = v.sk["rt_recipe"] ? "x%d" % v.n : "" }));
-			return ::Rokugan.schoolList( pc, items);
+			return ::Rokugan.showSayoRecipes( pc, items );
 		}
 		if( id == "faces"){										//	Mitsue: Steal, or Copy the target's last skill
 			playSound( "SE013");
@@ -913,7 +918,18 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 //	Knocked out (user 2026-11-14: "for when a party member falls, can use the pixel art already created for them"): a
 //	party member doesn't dissolve like a slain foe. They fall with their own sheet's collapse frames (79-83) and lie in
 //	the "die" pose (77-78) until woken (Smelling Salts, Revival Draught, Breath of Jurojin, Raise...), then stand.
-::Rokugan.downed <- {};										//	rp3d -> true while lying down
+::Rokugan.downed <- {};
+// X005 plays "die" immediately. Native Traveler knockouts need their own fall.
+::ManualMoveAction._rt_native_defeat_death <- ::ManualMoveAction.deathAnime;
+::ManualMoveAction.deathAnime <- function(){
+	if( rp3d && rp3d["usesNativeDefeatFall"] && rp3d.usesNativeDefeatFall()){
+		::Rokugan.downed[rp3d] <- skGetTime();
+		rp3d.advanceNativeDefeatFall();
+		rp3d.playSound( "SE111");
+		return;
+	}
+	this._rt_native_defeat_death();
+};										//	rp3d -> true while lying down
 ::RPG3DPicture._rt_death <- ::RPG3DPicture.deathAnime;
 ::RPG3DPicture.deathAnime <- function(){
 	if( this["rpgobj"] && (this.rpgobj instanceof ::RPGPlayer)){
@@ -943,13 +959,17 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 		if( !rp) continue;
 		if( pc.isDead()){
 			if( !(rp in this.downed)) this.downed[rp] <- skGetTime();
-			local t = this.downed[rp];
-			if( t >= 0 && skGetTime() - t > 700){ rp.anime2( #{ id = "die"}); this.downed[rp] = -1; }	//	the fall over: lie
+			if( rp["usesNativeDefeatFall"] && rp.usesNativeDefeatFall()){
+				rp.advanceNativeDefeatFall();
+			}else{
+				local t = this.downed[rp];
+				if( t >= 0 && skGetTime() - t > 700){ rp.anime2( #{ id = "die"}); this.downed[rp] = -1; }
+			}
 			if( rp.fxtype != 0){ rp.fxtype = 0; rp.fxw = 0.0; rp.fxspd = 0.0; }	//	(never the foes' dissolve)
 		}else if( rp in this.downed){								//	woken: back on their feet
 			delete this.downed[rp];
 			rp.fxtype = 0; rp.fxw = 0.0; rp.fxspd = 0.0;
-			rp.anime2( #{ id = "stand"});
+			if( !rp["startDefeatRecovery"] || !rp.startDefeatRecovery()) rp.anime2( #{ id = "stand"});
 			log( "%S is back on their feet" % pc.name);
 		}
 	}
@@ -1147,41 +1167,24 @@ efx( atkefx);
 snd( atksnd);
 `;
 
-//	Octopath boss intro: as a boss fight opens, a white flash, a heavy shake and the boss's brush-ink name banner
-//	(tools/gen_bossart.py, EP450-455) over the party's battle stance; it fades as the first turn begins.
-local BOSS_BANNER = { ["Oni no Okura"] = "EP197", ["The Orochi"] = "EP199", ["Nezumi Shaman"] = "EP450", Troll = "EP451", ["Moto Akutsukai"] = "EP452",
-	["Oni no Kommei"] = "EP453", ["Cellar Ogre"] = "EP454", ["Oni no Tsukakoro"] = "EP455",
-	["Wall Troll"] = "EP456", ["Kakita Yasurugi"] = "EP457", ["Doji Miyako"] = "EP458",
-	["Chihaya the Quick"] = "EP520", ["Yosuke the Bold"] = "EP521", ["Katsuo the White Brother"] = "EP522",
-	["Kakita Masanori"] = "EP523", ["Shelf Kami"] = "EP524", ["O-Tamai"] = "EP525", ["Red-shadow Oni"] = "EP526",
-	["Possessed Matsu Nagai"] = "EP527", ["Oni no Ianwa"] = "EP528", ["Seppun-trained Duelist"] = "EP529",
-	["Matsu Rokuro"] = "EP530", Ashimoshi = "EP531", Hioninmaru = "EP532", ["Oni no Kuzushi"] = "EP533",
-	["Mieko (dark half)"] = "EP534", ["Seppun Ushimo"] = "EP535", ["Togashi Akuro"] = "EP536",
-	["Kakita Kumpei"] = "EP537", ["Kansen-Hana"] = "EP538",
-	["Abbot Munashii"] = "EP539", ["Bloodspeaker Remnant"] = "EP149", Naohida = "EP151",
-	["Mine Guardian"] = "EP153", ["Shuten Doji of Regret"] = "EP155",
-	["Crow-Tengu"] = "EP159", ["Tomie Cho"] = "EP183", ["Enforcer of the Order"] = "EP177",
-	["Shade of the Crab Lord"] = "EP179", ["The Naga's Champion"] = "EP185", ["\"Ryozo\""] = "EP187",
-	["Many-Legged Horror"] = "EP189", ["Doji Nashiko"] = "EP191", ["Body of Damned Time"] = "EP193",
-	["The Empress of Nothing"] = "EP195" };		//	(EP525+ were drawn but missing here until
-																	//	Scorpion Ch1; gen_bossart BANNER_EP)
+// Boss introduction over the stock battle stance. The popup owns its labels and fades.
 ::TurnBattleRunner._rt_bstart <- ::TurnBattleRunner.battleStart;
 ::TurnBattleRunner.battleStart <- function(){
-	local boss = enemies.find( @( e) e && (e.name in BOSS_BANNER));
+	local intro = null;
+	local boss = enemies.find( @( e) e && ::Rokugan.bossTitleFor( e));
 	if( boss){
 		try{
 			::rpgstage.screenfx.screenEffectOn( { sfxid = "flash0", time = 400, color = 0xffffffff, num = 1 });
 			::rpgstage.screenfx.screenEffectOn( { sfxid = "quake0", time = 700, pow = 8, freq = 40, vert = true });
 			::playSound( "SE111");
-			::RPGMain.showPicture( { idx = 5, op = 0, picid = BOSS_BANNER[boss.name], pos = [640, 210], scale = 100,
-				rot = 0, fade = 300, flipx = false, col = 0xffffffff, easing = 0, aniid = null });
+			intro = ::Rokugan.showBossTitle( this, boss, ::Rokugan.bossTitleFor( boss));
 			log( "boss intro: %S" % boss.name);
-		}catch( ex){ printexception( ex); boss = null; }
+		}catch( ex){ printexception( ex); }
 	}
 	this._rt_bstart();
-	if( boss){
+	if( intro){
 		sleep( 700);
-		::RPGMain.showPicture( { idx = 5, op = 1, fade = 400 });
+		intro();
 	}
 };
 

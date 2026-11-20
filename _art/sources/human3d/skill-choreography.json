@@ -1,0 +1,6237 @@
+{
+  "schools": {
+    "hiruma": {
+      "actors": [
+        "P100",
+        "P121",
+        "P123",
+        "P126"
+      ],
+      "signature": "yari_leap",
+      "staging": "cold wind and a low scout's crouch",
+      "traveler": {
+        "actor": "P100",
+        "performance": "Low and alert. Gaze scans first, hips compress, and feet land fast and quiet.",
+        "skill_cluster": "Razor's Edge, scout reads, yari leaps, and Earth stances. Map and satchel are useful props."
+      }
+    },
+    "kakita": {
+      "actors": [
+        "P101"
+      ],
+      "signature": "kakita_pass",
+      "staging": "one clean cut, turn, optional brim touch",
+      "traveler": {
+        "actor": "P101",
+        "performance": "Reserved and upright at rest. Small hand motions prepare an abrupt decisive release.",
+        "skill_cluster": "Focus, draw, hat-brim finish, and one narrow Void line. Hold the clean cut for a beat."
+      }
+    },
+    "kitsuki": {
+      "actors": [
+        "P102"
+      ],
+      "signature": "study",
+      "staging": "glasses catch the light, evidence markers resolve one by one",
+      "traveler": {
+        "actor": "P102",
+        "performance": "Curiosity arrives as a small head turn. Confirm with glasses, a page or one pointed finger.",
+        "skill_cluster": "Deduce and Interrogate share a read. Use disciplined wrists and stance changes in Mirumoto actions."
+      }
+    },
+    "akodo": {
+      "actors": [
+        "P103",
+        "P127",
+        "P129",
+        "P130",
+        "P138"
+      ],
+      "signature": "formation",
+      "staging": "planted command gesture, staggered Lion standards",
+      "traveler": {
+        "actor": "P103",
+        "performance": "Level gaze and proud chest. Command from the feet up, with firm shoulders and a short signal.",
+        "skill_cluster": "Stagger the formation standards from her hand, and resolve a charge with a grounded forward finish."
+      }
+    },
+    "isawa": {
+      "actors": [
+        "P104",
+        "P124",
+        "P135",
+        "P137"
+      ],
+      "signature": "spell",
+      "staging": "small finger counters converge into a five-element seal",
+      "traveler": {
+        "actor": "P104",
+        "performance": "Pause to count fingers and check the count. Attention sharpens on release.",
+        "skill_cluster": "Use both hands for counted spell beats. Keep Water smooth, Earth weighty, Fire abrupt and Void quiet."
+      }
+    },
+    "shosuro": {
+      "actors": [
+        "P105"
+      ],
+      "signature": "shadow",
+      "staging": "a layered shadow conceals the first step, not the impact",
+      "traveler": {
+        "actor": "P105",
+        "performance": "Make the first gesture a feint. Reveal the real hand and gaze only when the effect lands.",
+        "skill_cluster": "Misdirection, powder, outfit-specific sleeve use, and the knife return read like stagecraft."
+      }
+    },
+    "ide": {
+      "actors": [
+        "P106"
+      ],
+      "signature": "accord",
+      "staging": "open hands, a measured breath, gold ripples",
+      "traveler": {
+        "actor": "P106",
+        "performance": "Warm eye line and generous open hands. Take time to breathe and include the party.",
+        "skill_cluster": "The Heart Listens opens both arms into a rising drawn heart. S543 is a separate showy vocal performance."
+      }
+    },
+    "ronin": {
+      "actors": [
+        "P107"
+      ],
+      "signature": "remedy",
+      "staging": "low center of gravity, a hand-ground medicine pouch",
+      "traveler": {
+        "actor": "P107",
+        "performance": "Grounded and pragmatic. Work with compact hands and follow through like someone used to weather.",
+        "skill_cluster": "A pouch ties herbs and dressing together. Pilfer is swift and modest. Return notice to the fight."
+      }
+    },
+    "hida": {
+      "actors": [
+        "P120"
+      ],
+      "signature": "club_swing",
+      "staging": "delayed, full-body tetsubo turn, dust and shock ring"
+    },
+    "matsu": {
+      "actors": [
+        "P128",
+        "P141"
+      ],
+      "signature": "line_charge",
+      "staging": "shoulders drive a committed charge, rust-gold afterimage"
+    },
+    "shiba_yojimbo": {
+      "actors": [
+        "P131"
+      ],
+      "signature": "ward",
+      "staging": "catch into a planted cross-guard, ember ward"
+    },
+    "seppun": {
+      "actors": [
+        "P134"
+      ],
+      "signature": "ward",
+      "staging": "tall guard with ivory edge light, little recoil"
+    },
+    "yoritomo": {
+      "actors": [
+        "P136"
+      ],
+      "signature": "storm",
+      "staging": "low shoulder-led sweep with a close spray"
+    },
+    "shinjo": {
+      "actors": [
+        "P140"
+      ],
+      "signature": "mounted_pass",
+      "staging": "passing draw or shot, trail of dust"
+    },
+    "doji": {
+      "actors": [
+        "P133"
+      ],
+      "signature": "kanji_cut",
+      "staging": "brief blade-written Justice, then a diagonal closure cut"
+    },
+    "tamori": {
+      "actors": [
+        "P139"
+      ],
+      "signature": "spell",
+      "staging": "grounded invocation with coarse earth fragments"
+    },
+    "togashi": {
+      "actors": [
+        "P132"
+      ],
+      "signature": "tattoo_dragon",
+      "staging": "inking wake, a rising Eastern dragon, a full-screen fire sweep"
+    }
+  },
+  "skills": {
+    "S000": {
+      "name": "Wait",
+      "type": "noop",
+      "route": "system",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S001": {
+      "name": "Defend",
+      "type": "noop",
+      "route": "system",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S002": {
+      "name": "Flee",
+      "type": "macro",
+      "route": "scripted",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S003": {
+      "name": "Strike",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S004": {
+      "name": "Steal",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S010": {
+      "name": "Slash",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S011": {
+      "name": "Heavy Slash",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S012": {
+      "name": "Thrust",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S013": {
+      "name": "Strike",
+      "type": "attack",
+      "route": "short_lunge",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S014": {
+      "name": "Shot",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S020": {
+      "name": "Claw",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S027": {
+      "name": "Drain Blood",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S035": {
+      "name": "Heal",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S036": {
+      "name": "Greater Heal",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S038": {
+      "name": "Heal All",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S040": {
+      "name": "Cure",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S043": {
+      "name": "Raise",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S045": {
+      "name": "Guard Up",
+      "type": "buff",
+      "route": "ward",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S046": {
+      "name": "Guard Up All",
+      "type": "buff",
+      "route": "ward",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S047": {
+      "name": "War Cry",
+      "type": "buff",
+      "route": "ward",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S073": {
+      "name": "Fire",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S074": {
+      "name": "Greater Fire",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S076": {
+      "name": "Ice",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S077": {
+      "name": "Greater Ice",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S100": {
+      "name": "Katana Strike",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S101": {
+      "name": "Yari Strike",
+      "type": "attack",
+      "route": "yari_thrust",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S102": {
+      "name": "Tanto Strike",
+      "type": "attack",
+      "route": "short_lunge",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S103": {
+      "name": "Tetsubo Strike",
+      "type": "attack",
+      "route": "club_swing",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S104": {
+      "name": "Yumi Strike",
+      "type": "attack",
+      "route": "draw_shot",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S105": {
+      "name": "Bo Strike",
+      "type": "attack",
+      "route": "staff_sweep",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S106": {
+      "name": "Throw",
+      "type": "attack",
+      "route": "unarmed",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S107": {
+      "name": "Jade Yari Strike",
+      "type": "attack",
+      "route": "yari_thrust",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S108": {
+      "name": "Jade Tetsubo Strike",
+      "type": "attack",
+      "route": "club_swing",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S110": {
+      "name": "Razor's Edge",
+      "type": "noop",
+      "route": "evade_guard",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S111": {
+      "name": "Jade Strike",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S120": {
+      "name": "Iaijutsu: Focus",
+      "type": "noop",
+      "route": "sheathed_focus",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S121": {
+      "name": "Iaijutsu: Strike",
+      "type": "attack",
+      "route": "kakita_pass",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S122": {
+      "name": "Deduce",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S123": {
+      "name": "Command",
+      "type": "buff",
+      "route": "ward",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S124": {
+      "name": "Attune",
+      "type": "noop",
+      "route": "system",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S125": {
+      "name": "Many Faces: Steal",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S126": {
+      "name": "Barter Coin",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S127": {
+      "name": "Ume-baa's Poultice",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S130": {
+      "name": "Name-Magic",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S131": {
+      "name": "Egg Rite",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S132": {
+      "name": "Pocket Sand",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S133": {
+      "name": "No Pure Breaths",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S134": {
+      "name": "Veil Lash",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S135": {
+      "name": "Screech",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S136": {
+      "name": "Grief Wail",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S137": {
+      "name": "Troll Smash",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S138": {
+      "name": "Amaterasu's Fire",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire",
+        "jade"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S139": {
+      "name": "Troll-Breaker",
+      "type": "attack",
+      "route": "unarmed",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S140": {
+      "name": "Poisoned Edge",
+      "type": "attack",
+      "route": "short_lunge",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S141": {
+      "name": "Metsubishi",
+      "type": "attack",
+      "route": "powder",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S142": {
+      "name": "Shuriken Fan",
+      "type": "attack",
+      "route": "thrown",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S143": {
+      "name": "Kitsu Takeo: Charge",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S144": {
+      "name": "Yogo Mai: Ward",
+      "type": "buff",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S145": {
+      "name": "Ide Fujio: Scandalous Letter",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S146": {
+      "name": "Daidoji Sakura: Blank Scroll",
+      "type": "buff",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S147": {
+      "name": "Landslide",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S148": {
+      "name": "Berserk Smash",
+      "type": "attack",
+      "route": "club_swing",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S149": {
+      "name": "Two-Faced Strike",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S150": {
+      "name": "Command the Taint",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S151": {
+      "name": "Poppy Dust",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S152": {
+      "name": "Grave Grip",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S153": {
+      "name": "Shadow Charge",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S154": {
+      "name": "Mend-Name Stick",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S155": {
+      "name": "Armor Stick",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S156": {
+      "name": "Warrior's Stick",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S157": {
+      "name": "Sunlit Stick",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S158": {
+      "name": "Life Stick",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S159": {
+      "name": "Evil Stick",
+      "type": "buff",
+      "route": "ward",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S160": {
+      "name": "Bounce Chain",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S161": {
+      "name": "Rattle",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S162": {
+      "name": "Wolf Lunge",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S163": {
+      "name": "Jade Tanto Strike",
+      "type": "attack",
+      "route": "short_lunge",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S164": {
+      "name": "Blood Ward",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S165": {
+      "name": "Shield the Master",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S166": {
+      "name": "War Chant",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S167": {
+      "name": "Grave Feast",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S168": {
+      "name": "Rally",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S169": {
+      "name": "The Mountain Does Not Move",
+      "type": "buff",
+      "route": "ward",
+      "elements": [],
+      "school_unlocks": [
+        "hida"
+      ],
+      "equip_or_list": true
+    },
+    "S172": {
+      "name": "Troll-Breaker",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S173": {
+      "name": "Ashigaru Archer: Arrow Volley",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S174": {
+      "name": "Kuni Shugenja: Earth Becomes Sky",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S175": {
+      "name": "Kaiu Engineer: Barricade",
+      "type": "buff",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S176": {
+      "name": "Village Herbalist: Ginseng Tea",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S177": {
+      "name": "Hoshi Fisherman: Throw Net",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S178": {
+      "name": "Hida Veteran: Tetsubo Smash",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S179": {
+      "name": "Peck Eyes",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S180": {
+      "name": "Lure",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S181": {
+      "name": "Charge",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S182": {
+      "name": "Venom Fang",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S183": {
+      "name": "Gonta: Landslide",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S184": {
+      "name": "Hiruma Scout: Jade Arrows",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S185": {
+      "name": "Kuni Witch-hunter: Purify",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S186": {
+      "name": "Kaiu Sapper: Trap Roller",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S187": {
+      "name": "Old woman: Green Ronin's Blessing",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S188": {
+      "name": "Ronin Yojimbo: Desperate Cut",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S189": {
+      "name": "Lantern Twins: Lantern Lure",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S190": {
+      "name": "Auto-Revive",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S191": {
+      "name": "Daidoji Marine: Boarding Pike",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S192": {
+      "name": "Suitengu Priest: Tide Blessing",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S193": {
+      "name": "Tsuruchi Archer: Daikyu Shot",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S194": {
+      "name": "Moshi Wind-caller: Storm Gust",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S300": {
+      "name": "Path to Inner Peace",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S301": {
+      "name": "Bo of Water",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S302": {
+      "name": "Drawing the Void",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S303": {
+      "name": "The Fury of Osano-wo",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S304": {
+      "name": "Tempest of Air",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S305": {
+      "name": "Earth's Touch",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S306": {
+      "name": "Counterspell",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S307": {
+      "name": "Sympathetic Energies",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S308": {
+      "name": "Reversal of Fortunes",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S309": {
+      "name": "Castle of Water",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S310": {
+      "name": "Rejuvenating Vapors",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S311": {
+      "name": "Heart of Mortality",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S312": {
+      "name": "Regrow the Wound",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S313": {
+      "name": "Near to Ice",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S314": {
+      "name": "Bane of the Scorpion",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S315": {
+      "name": "Silent Waters",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S316": {
+      "name": "Hand of Jurojin",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S317": {
+      "name": "Peace of the Kami",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S318": {
+      "name": "Words of the Kami",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S319": {
+      "name": "Whirlpool",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S320": {
+      "name": "Rise, Water",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S321": {
+      "name": "Katana of Fire",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S322": {
+      "name": "The Fires that Cleanse",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S323": {
+      "name": "Burst",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S324": {
+      "name": "Biting Steel",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S325": {
+      "name": "Fires of Purity",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S326": {
+      "name": "The Fires from Within",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S327": {
+      "name": "Speed of Flame",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S328": {
+      "name": "Hurried Steps",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [
+        "isawa",
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S329": {
+      "name": "Aura of Flame",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [
+        "isawa",
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S330": {
+      "name": "Inferno's Tooth",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S331": {
+      "name": "Tail of the Fire Dragon",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S332": {
+      "name": "Hungry Blade",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S333": {
+      "name": "Burn the Mind",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [
+        "isawa",
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S334": {
+      "name": "Heart of the Inferno",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S335": {
+      "name": "Breath of the Fire Dragon",
+      "type": "attack",
+      "route": "tattoo_breath",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [
+        "isawa",
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S336": {
+      "name": "Light of Yakamo",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S337": {
+      "name": "Death of Flame",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [
+        "isawa",
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S338": {
+      "name": "Fire Walking",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [
+        "isawa",
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S339": {
+      "name": "Wall of Fire",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S340": {
+      "name": "Follow the Flame",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S341": {
+      "name": "Everburning Rage",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [
+        "isawa",
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S342": {
+      "name": "Strike of Osano-wo",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S343": {
+      "name": "Burn the Soul",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [
+        "isawa",
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S344": {
+      "name": "Hochiu's Call of Heaven",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S345": {
+      "name": "Rise, Flame",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S346": {
+      "name": "Tempest of Fire",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S347": {
+      "name": "Yari of Air",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S348": {
+      "name": "Wind-Borne Slumbers",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S349": {
+      "name": "Way of Deception",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S350": {
+      "name": "Mists of Illusion",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S351": {
+      "name": "The Eye Shall Not See",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S352": {
+      "name": "Summon Fog",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S353": {
+      "name": "Know the Mind",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S354": {
+      "name": "Symbol of Air",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S355": {
+      "name": "Wall of Air",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S356": {
+      "name": "Poison of the Wind Spider",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S357": {
+      "name": "Whirlwind",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S358": {
+      "name": "Slayer's Knives",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S359": {
+      "name": "Blessings of Jizo",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S360": {
+      "name": "Rise, Air",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S361": {
+      "name": "The Wrath of Kaze-no-Kami",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S362": {
+      "name": "Tetsubo of Earth",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S363": {
+      "name": "Jade Strike",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S364": {
+      "name": "Earth's Stagnation",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S365": {
+      "name": "Elemental Ward",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S366": {
+      "name": "Force of Will",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S367": {
+      "name": "Armor of Earth",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S368": {
+      "name": "Courage of the Seven Thunders",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S369": {
+      "name": "Grasp of Earth",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S370": {
+      "name": "The Mountain's Feet",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S371": {
+      "name": "Tremor",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S372": {
+      "name": "Curse of Stone",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S373": {
+      "name": "Benevolent Protection of Shinsei",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S374": {
+      "name": "Earth's Protection",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S375": {
+      "name": "Strength of the Crow",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S376": {
+      "name": "Armor of the Emperor",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S377": {
+      "name": "Death of Stone",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S378": {
+      "name": "Tomb of Jade",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S379": {
+      "name": "Spikes of Earth",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S380": {
+      "name": "Earthquake",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S381": {
+      "name": "Prison of Earth",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S382": {
+      "name": "Kami's Strength",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S383": {
+      "name": "Fraying of Ningen-do",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S384": {
+      "name": "Rise, Earth",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S385": {
+      "name": "Essence of Void",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S386": {
+      "name": "Altering the Course",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S387": {
+      "name": "Kharmic Intent",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S388": {
+      "name": "Void Release",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S389": {
+      "name": "Void Strike",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S390": {
+      "name": "Void Suppression",
+      "type": "debuff",
+      "route": "control_cast",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S391": {
+      "name": "Void Bolt",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S392": {
+      "name": "Mass Path to Inner Peace",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S393": {
+      "name": "Rain of Regrowth",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S394": {
+      "name": "Return the Soul",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S395": {
+      "name": "Stillness of the Void",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S400": {
+      "name": "Kitsuki Seigen: Evidence",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S401": {
+      "name": "Matsu Kiku: Battle-Joy",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S402": {
+      "name": "Pack Bite",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S403": {
+      "name": "Kakita Iaijutsu",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S404": {
+      "name": "Kakita's First Stance",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S405": {
+      "name": "Way of the Crane",
+      "type": "noop",
+      "route": "system",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S406": {
+      "name": "Hiruma Goro: Troll-Breaker",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S407": {
+      "name": "Boarding Hook",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S408": {
+      "name": "Strike of the Cliff's Edge",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S409": {
+      "name": "Electric Coil",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S410": {
+      "name": "Wave Wall",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S411": {
+      "name": "Oar Dance",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S412": {
+      "name": "Rally the Crew",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S413": {
+      "name": "Captain's Cut",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S414": {
+      "name": "Blood Ink",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S415": {
+      "name": "Nunchaku Flurry",
+      "type": "attack",
+      "route": "staff_sweep",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S416": {
+      "name": "Cover the Brother",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S417": {
+      "name": "Paper Cut",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S418": {
+      "name": "Ink Splash",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S419": {
+      "name": "Lick",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S420": {
+      "name": "Flare",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S421": {
+      "name": "Ancestor's Rebuke",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S422": {
+      "name": "Seal the Shelf",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S423": {
+      "name": "Kakita Iaijutsu",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S424": {
+      "name": "Kakita's First Stance",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S425": {
+      "name": "Watchful Falcon",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S426": {
+      "name": "Watchful Falcon",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S427": {
+      "name": "Doji Poet: Verse of Reproach",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S428": {
+      "name": "Lamplighter: Lamp Oil",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S429": {
+      "name": "Akodo Ijako: Call the Dead",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S430": {
+      "name": "Shiba Ashimita: Yojimbo's Cut",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S431": {
+      "name": "Ancestral Rage",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S433": {
+      "name": "Lion Ashigaru: Spear Thrust",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S434": {
+      "name": "Kitsu Acolyte: Ancestor's Prayer",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S435": {
+      "name": "Blood Bolt",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S436": {
+      "name": "Breath-eater",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S437": {
+      "name": "Jade Tanto Strike",
+      "type": "attack",
+      "route": "short_lunge",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S438": {
+      "name": "Dread Touch",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S439": {
+      "name": "Moto Benjiro: Death Trance",
+      "type": "buff",
+      "route": "guest",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S440": {
+      "name": "Coward's Whisper",
+      "type": "noop",
+      "route": "system",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S441": {
+      "name": "Kitsu Jade-priest: Jade Prayer",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S442": {
+      "name": "Ikoma Herald: War-Song",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S443": {
+      "name": "Refugee Archer: Hunter's Arrow",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S444": {
+      "name": "Lion Deserter: Deserter's Thrust",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S445": {
+      "name": "Fury Without End",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S446": {
+      "name": "Seppun Iaijutsu",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S447": {
+      "name": "Volley from the Rocks",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S448": {
+      "name": "Refugee Herbalist: Field Poultice",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S449": {
+      "name": "Terror Aura",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S450": {
+      "name": "Matsu's Fury",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S452": {
+      "name": "Kitsu Field-priest: River Prayer",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S453": {
+      "name": "Ikoma War-herald: War-Song",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S454": {
+      "name": "Matsu Spearman: Matsu Thrust",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S455": {
+      "name": "Arrows Across the River",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S456": {
+      "name": "Flames on the Ford",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S457": {
+      "name": "Howling Silence",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S458": {
+      "name": "Isawa Fire-acolyte: Acolyte's Flame",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S459": {
+      "name": "Shiba Staff-guard: Staff Sweep",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S460": {
+      "name": "Dragon's Breath",
+      "type": "attack",
+      "route": "tattoo_breath",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S461": {
+      "name": "Arrowroot",
+      "type": "heal",
+      "route": "tattoo_heal",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S462": {
+      "name": "Blood Bolt (maho)",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S463": {
+      "name": "Painted Frenzy",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S464": {
+      "name": "Zumiki Porter: Pole Sweep",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S465": {
+      "name": "Asako Lorekeeper: Memorial Prayer",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S466": {
+      "name": "Temple Bo-monk: Temple Staff",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S467": {
+      "name": "Village Survivor: Survivor's Prayer",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S468": {
+      "name": "Fever Touch",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S469": {
+      "name": "Black-glass Void",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S470": {
+      "name": "Endless Tumble",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S471": {
+      "name": "Stolen Bo of Water",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S472": {
+      "name": "Stolen Peace",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S473": {
+      "name": "Void Drain",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S474": {
+      "name": "Sea-shrine Priestess: Storm Prayer",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S475": {
+      "name": "Shiba Staff-sentry: Gate Staff",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S476": {
+      "name": "Interrogate",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S478": {
+      "name": "Kitsuki Momo: Perfect Recall",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S479": {
+      "name": "Rakusho Novice: Novice's Staff",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S480": {
+      "name": "Silk-isle Herbalist: Salt Poultice",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S481": {
+      "name": "Daisho Technique",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S482": {
+      "name": "Subdue",
+      "type": "attack",
+      "route": "staff_sweep",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S483": {
+      "name": "Bow",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S484": {
+      "name": "Ushimo's Draw",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S485": {
+      "name": "Seppun Guard's Cut",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S486": {
+      "name": "Drag Under",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S487": {
+      "name": "Old Diver: Diver's Harpoon",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S488": {
+      "name": "Shrine-keeper: Shrine Tea",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S489": {
+      "name": "Seppun Draw",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [
+        "seppun"
+      ],
+      "equip_or_list": true
+    },
+    "S490": {
+      "name": "Wasp Sting",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S491": {
+      "name": "Volley",
+      "type": "attack",
+      "route": "draw_shot",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S492": {
+      "name": "Pike Wall",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S493": {
+      "name": "Broadsword Cleave",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S494": {
+      "name": "Crane Ashigaru: Ashigaru Thrust",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S495": {
+      "name": "Isawa Novice: Novice's Blessing",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S496": {
+      "name": "Living Ink",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S498": {
+      "name": "Boarding Rush",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S499": {
+      "name": "Feed the Ward-fire",
+      "type": "buff",
+      "route": "ward",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S500": {
+      "name": "Centipede Scout: Centipede Volley",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S501": {
+      "name": "Crane Field Medic: Field Dressing",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S502": {
+      "name": "Shosuro Stagehand: Smoke and Mirrors",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S503": {
+      "name": "Suzume Sweeper: Swept Clean",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S504": {
+      "name": "Kitsune Herb-woman: Fox Herbs",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S505": {
+      "name": "Many Faces: Copy",
+      "type": "noop",
+      "route": "system",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S506": {
+      "name": "Storm Heart",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [
+        "yoritomo"
+      ],
+      "equip_or_list": true
+    },
+    "S507": {
+      "name": "Kama Flurry",
+      "type": "attack",
+      "route": "short_lunge",
+      "elements": [],
+      "school_unlocks": [
+        "yoritomo"
+      ],
+      "equip_or_list": true
+    },
+    "S508": {
+      "name": "Drain",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S509": {
+      "name": "Spirit Leeching",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S510": {
+      "name": "Choking Death",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S511": {
+      "name": "Drain Soul",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S512": {
+      "name": "Harvest of Death",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S513": {
+      "name": "Give Us Your Face",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S514": {
+      "name": "Constrict",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S515": {
+      "name": "Sting",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S516": {
+      "name": "Doji Iaijutsu",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S517": {
+      "name": "Empty Hand",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S518": {
+      "name": "A Mask Is a Mercy",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S521": {
+      "name": "Shinjo Yoriki: Horse-bow Volley",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S522": {
+      "name": "Shadow Hunter: Hunter's Cut",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S523": {
+      "name": "Katana of Fire",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S524": {
+      "name": "Suitengu's Embrace",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S525": {
+      "name": "Sharing the Strength of Many",
+      "type": "buff",
+      "route": "ward",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S526": {
+      "name": "Cover",
+      "type": "buff",
+      "route": "ward",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S527": {
+      "name": "The Clouds Part",
+      "type": "buff",
+      "route": "accord",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S528": {
+      "name": "Mirumoto Ashigaru: Picket Thrust",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S529": {
+      "name": "Refugee Herbalist: Midwife's Roots",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S530": {
+      "name": "Flare",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S531": {
+      "name": "Crushing Hug",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S532": {
+      "name": "Feather Blade",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S533": {
+      "name": "Moon Howl",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S534": {
+      "name": "Choking Ash",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S535": {
+      "name": "Blood Lash",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S536": {
+      "name": "My Blood Is a Key",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S537": {
+      "name": "Ember Palm",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S538": {
+      "name": "Heat-Ward",
+      "type": "buff",
+      "route": "ward",
+      "elements": [],
+      "school_unlocks": [
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S539": {
+      "name": "Tamori Rain-caller: Cooling Rain",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S540": {
+      "name": "Mirumoto Mountain Guide: Two Swords",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S541": {
+      "name": "Barter Coin: Bribe",
+      "type": "noop",
+      "route": "system",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S542": {
+      "name": "Words of Peace",
+      "type": "attack",
+      "route": "accord",
+      "elements": [],
+      "school_unlocks": [
+        "ide"
+      ],
+      "equip_or_list": true
+    },
+    "S543": {
+      "name": "Song of the Ki-Rin",
+      "type": "buff",
+      "route": "virtuoso_song",
+      "elements": [],
+      "school_unlocks": [
+        "ide"
+      ],
+      "equip_or_list": true
+    },
+    "S544": {
+      "name": "Share the Stores",
+      "type": "heal",
+      "route": "remedy",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "ide"
+      ],
+      "equip_or_list": true
+    },
+    "S545": {
+      "name": "Gaijin Spyglass",
+      "type": "attack",
+      "route": "study",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S546": {
+      "name": "Guardian's Vow",
+      "type": "buff",
+      "route": "ward",
+      "elements": [],
+      "school_unlocks": [
+        "shinjo"
+      ],
+      "equip_or_list": true
+    },
+    "S547": {
+      "name": "Shinjo Sweep",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [
+        "shinjo"
+      ],
+      "equip_or_list": true
+    },
+    "S548": {
+      "name": "Powder Bomb",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S549": {
+      "name": "Dai Dao Cleave",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S551": {
+      "name": "Iuchi Water-Shugenja: Rolling River",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S552": {
+      "name": "Moto Outrider: Saddle Volley",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S553": {
+      "name": "Mirumoto Ashigaru: Picket Thrust",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S554": {
+      "name": "Refugee Herbalist: Midwife's Roots",
+      "type": "heal",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S555": {
+      "name": "Hum",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S556": {
+      "name": "Pull the Wax",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S557": {
+      "name": "Stay With Us",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S558": {
+      "name": "The Quiet Dark",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S559": {
+      "name": "Iuchi Karasu: Jade Strike",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S560": {
+      "name": "Togashi Bo-Monk: Waking Blow",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S561": {
+      "name": "Agasha Fire-Shugenja: Agasha Flame",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S562": {
+      "name": "Jade Katana Strike",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S563": {
+      "name": "Jade Yumi Shot",
+      "type": "attack",
+      "route": "draw_shot",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S564": {
+      "name": "Chant",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S565": {
+      "name": "Naohida: Powder Charge",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S566": {
+      "name": "When the Veil Moves",
+      "type": "buff",
+      "route": "accord",
+      "elements": [],
+      "school_unlocks": [
+        "ide"
+      ],
+      "equip_or_list": true
+    },
+    "S567": {
+      "name": "Iuchi Water-Shugenja: Iuchi Tide",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S568": {
+      "name": "Mirumoto Yari Sergeant: Sergeant's Thrust",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S569": {
+      "name": "Every Apology",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S570": {
+      "name": "Tears of Regret",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S571": {
+      "name": "Bo of Water",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S572": {
+      "name": "Fury of Osano-Wo",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S573": {
+      "name": "Ginseng + Rice Wine",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S574": {
+      "name": "Ginseng + Moxa",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S575": {
+      "name": "Rhubarb + Rice Wine",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S576": {
+      "name": "Rhubarb + Moxa",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S577": {
+      "name": "Hanabi + Rice Wine",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S578": {
+      "name": "Hanabi + Moxa",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S579": {
+      "name": "Ginseng + Willow Bark",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S580": {
+      "name": "Pilfer",
+      "type": "attack",
+      "route": "steal",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S581": {
+      "name": "Compliment",
+      "type": "noop",
+      "route": "accord",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S583": {
+      "name": "Field Dressing",
+      "type": "heal",
+      "route": "remedy",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S584": {
+      "name": "Bitter Root",
+      "type": "attack",
+      "route": "powder",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S585": {
+      "name": "Roar",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S586": {
+      "name": "Hanabi Seller: Hanabi Volley",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S587": {
+      "name": "Mantis Ferry Archer: Ferry Shot",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S588": {
+      "name": "Hiro: No-dachi Sweep",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S589": {
+      "name": "Claw Combo",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S590": {
+      "name": "Feather Blade",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S591": {
+      "name": "Wing Baffle",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S592": {
+      "name": "Spear Throw",
+      "type": "attack",
+      "route": "thrown",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S593": {
+      "name": "\"Be Gone!\"",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S594": {
+      "name": "Ginseng + Willow + Snow-Lotus",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S595": {
+      "name": "Ginseng + Snow-Lotus",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S596": {
+      "name": "Jinnai: Freezing the Lifeblood",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S597": {
+      "name": "Shadow Bite",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S598": {
+      "name": "Yari Line",
+      "type": "attack",
+      "route": "yari_thrust",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S599": {
+      "name": "Serpent's Cut",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S600": {
+      "name": "Sparrow Ronin: Between the Laces",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S601": {
+      "name": "Wandering Air-Shugenja: Remembered Wind",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S602": {
+      "name": "Mirumoto Hikaru: Endless Strike",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S603": {
+      "name": "Goat-herd Archer: Bear Arrow",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S604": {
+      "name": "Jade-dust Pedlar: Jade Dust",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S605": {
+      "name": "Red Pulse",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "void"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S606": {
+      "name": "Frozen Cut",
+      "type": "attack",
+      "route": "yari_thrust",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S607": {
+      "name": "Matsu Fury",
+      "type": "attack",
+      "route": "blade_cut",
+      "elements": [],
+      "school_unlocks": [
+        "matsu"
+      ],
+      "equip_or_list": true
+    },
+    "S608": {
+      "name": "Lion's Charge",
+      "type": "attack",
+      "route": "line_charge",
+      "elements": [],
+      "school_unlocks": [
+        "matsu"
+      ],
+      "equip_or_list": true
+    },
+    "S609": {
+      "name": "Diagnosis",
+      "type": "heal",
+      "route": "remedy",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S610": {
+      "name": "Pearl Spear",
+      "type": "attack",
+      "route": "yari_thrust",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S611": {
+      "name": "Coil",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S612": {
+      "name": "Poison Needle",
+      "type": "attack",
+      "route": "short_lunge",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S613": {
+      "name": "Crater-shrine Archer: Crater-wall Arrow",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S614": {
+      "name": "Isawa Wind-Priest: Wind Off the Crater",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S615": {
+      "name": "Ember: Spark",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S616": {
+      "name": "Ember: Rekindle",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S617": {
+      "name": "Osano-Wo Thunder Monk: Thunderclap",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S618": {
+      "name": "Hida Jade Archer: Jade Arrow",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S619": {
+      "name": "Burning Leap",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S620": {
+      "name": "Battering Ram",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S621": {
+      "name": "A Good Man's Name",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S622": {
+      "name": "Web of the Mori",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S623": {
+      "name": "Black Fang",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S624": {
+      "name": "Cocoon",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S625": {
+      "name": "Ember Rain",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "fire"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S626": {
+      "name": "Look at Me",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S627": {
+      "name": "Wings of Smoke",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "air"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S628": {
+      "name": "How You End",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S629": {
+      "name": "The Long Night",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S630": {
+      "name": "Fu Leng's Blood",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S631": {
+      "name": "The Empress's Claw",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S632": {
+      "name": "A Court of the Dead",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S633": {
+      "name": "Hiruma Kage: Father's Tanto",
+      "type": "attack",
+      "route": "guest",
+      "elements": [
+        "jade"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S634": {
+      "name": "Moto Benjiro: Death Trance",
+      "type": "buff",
+      "route": "guest",
+      "elements": [
+        "earth"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S635": {
+      "name": "\"Empress\" Bait",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S636": {
+      "name": "Two Voices",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S637": {
+      "name": "Smooth Stone Decoy",
+      "type": "attack",
+      "route": "guest",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S638": {
+      "name": "The Immovable Hand of Peace",
+      "type": "attack",
+      "route": "accord",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S639": {
+      "name": "Akuma's Rage",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S640": {
+      "name": "The Stolen Name",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S641": {
+      "name": "The Castle Remembers",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S642": {
+      "name": "Tidal Lash",
+      "type": "attack",
+      "route": "spell",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S643": {
+      "name": "Coil",
+      "type": "attack",
+      "route": "weapon_family",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S644": {
+      "name": "The Drowned Crews",
+      "type": "attack",
+      "route": "control_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S690": {
+      "name": "Claw Strike",
+      "type": "attack",
+      "route": "unarmed",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": false
+    },
+    "S700": {
+      "name": "Insight Rank 2: Strike Like the Wind",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S701": {
+      "name": "Insight Rank 3: Fire and Shadow",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S702": {
+      "name": "Insight Rank 4: Harness the Wind",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S703": {
+      "name": "Insight Rank 5: Veil of Spirits",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S704": {
+      "name": "Insight Rank 2: The Sudden Strike",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S705": {
+      "name": "Insight Rank 3: Strike from the Void",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S706": {
+      "name": "Insight Rank 4: One Strike, Two Cuts",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S707": {
+      "name": "Insight Rank 5: Strike with No Thought",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S708": {
+      "name": "Insight Rank 2: Wisdom the Wind Brings",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S709": {
+      "name": "Insight Rank 3: Finding the Path",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S710": {
+      "name": "Insight Rank 4: Know the Rhythm of the Heart",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S711": {
+      "name": "Insight Rank 5: Kitsuki's Eyes",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S712": {
+      "name": "Insight Rank 2: Strength of Purity",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S713": {
+      "name": "Insight Rank 3: Strength of My Ancestors",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S714": {
+      "name": "Insight Rank 4: Triumph Before Battle",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S715": {
+      "name": "Insight Rank 5: Akodo's Final Lesson",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S716": {
+      "name": "Insight Rank 2: Mastery 2 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S717": {
+      "name": "Insight Rank 3: Mastery 3 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S718": {
+      "name": "Insight Rank 4: Mastery 4 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S719": {
+      "name": "Insight Rank 5: Mastery 5 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S720": {
+      "name": "Insight Rank 2: The Shadow Has No Mercy",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S721": {
+      "name": "Insight Rank 3: The Shadow Has No Form",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S722": {
+      "name": "Insight Rank 4: The Shadow Has No Substance",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S723": {
+      "name": "Insight Rank 5: The Shadow Has No Soul",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S724": {
+      "name": "Insight Rank 2: The Heart Listens",
+      "type": "noop",
+      "route": "heart_listens",
+      "elements": [],
+      "school_unlocks": [
+        "ide"
+      ],
+      "equip_or_list": true
+    },
+    "S725": {
+      "name": "Insight Rank 3: When the Veil Moves",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ide"
+      ],
+      "equip_or_list": true
+    },
+    "S726": {
+      "name": "Insight Rank 4: Piercing the Veils",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ide"
+      ],
+      "equip_or_list": true
+    },
+    "S727": {
+      "name": "Insight Rank 5: The Immovable Hand of Peace",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ide"
+      ],
+      "equip_or_list": true
+    },
+    "S728": {
+      "name": "Insight Rank 2: Forest Killer: Fool's Harvest",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S729": {
+      "name": "Insight Rank 3: Forest Killer: Canopy of Knives",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S730": {
+      "name": "Insight Rank 4: Forest Killer: Ghost of the Shinomen",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S731": {
+      "name": "Insight Rank 5: Ronin Duelist: The Wind Technique",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S740": {
+      "name": "Striking as Earth",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S741": {
+      "name": "Striking as Wind",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S742": {
+      "name": "Shell of Stone",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S743": {
+      "name": "Stance of the Wall",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S744": {
+      "name": "Shards of Earth",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S745": {
+      "name": "Unyielding Fury",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S746": {
+      "name": "Kakita's First Stance",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S747": {
+      "name": "The Empire Rests on Its Edge",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S748": {
+      "name": "Watchful Falcon",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S749": {
+      "name": "Victory of the Wind",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S750": {
+      "name": "One Leg Stance",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S751": {
+      "name": "One Strike Blade",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S752": {
+      "name": "One Truth",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S753": {
+      "name": "Standing on the Heavens",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S754": {
+      "name": "Thunder and Steel",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S755": {
+      "name": "The Empire Rests on Its Edge",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S756": {
+      "name": "My Brother's Soul",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S757": {
+      "name": "Time Between Breaths",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S758": {
+      "name": "Breaking Waves",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S759": {
+      "name": "Victory of the River",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S760": {
+      "name": "Striking as Water",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S761": {
+      "name": "Striking as Fire",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S762": {
+      "name": "Fury Without End",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S763": {
+      "name": "The Soul's Roar",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S764": {
+      "name": "Gentle Blade of Winter",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S765": {
+      "name": "Matsu's Vengeance",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S766": {
+      "name": "Striking as Wind",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S767": {
+      "name": "The Tail's Reach",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S768": {
+      "name": "Cut Under the Mountain",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S769": {
+      "name": "Sundering Grace",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S770": {
+      "name": "Blackened Sight",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S771": {
+      "name": "Choking Air",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S772": {
+      "name": "Striking as Water",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S773": {
+      "name": "Striking as Earth",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S774": {
+      "name": "Striking as Fire",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S775": {
+      "name": "Striking as Wind",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S776": {
+      "name": "Striking as Void",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S777": {
+      "name": "Self No Self",
+      "type": "attack",
+      "route": "kata_stance",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S778": {
+      "name": "Heart of Stone",
+      "type": "attack",
+      "route": "kata_stance",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S779": {
+      "name": "Ebb and Flow",
+      "type": "attack",
+      "route": "kata_stance",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S780": {
+      "name": "Parting the Waves",
+      "type": "attack",
+      "route": "kata_stance",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S781": {
+      "name": "Touch the Void Dragon",
+      "type": "attack",
+      "route": "kata_stance",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S782": {
+      "name": "Grasp the Earth Dragon",
+      "type": "attack",
+      "route": "kata_stance",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S783": {
+      "name": "Fire Fist",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S784": {
+      "name": "Water Fist",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S785": {
+      "name": "Earth Fist",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S786": {
+      "name": "Air Fist",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S787": {
+      "name": "Falling Star Strike",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S788": {
+      "name": "Kharmic Strike",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S789": {
+      "name": "Freezing the Lifeblood",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S790": {
+      "name": "Void Fist",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S791": {
+      "name": "Tiger Tattoo",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S792": {
+      "name": "Raven Tattoo",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S793": {
+      "name": "Centipede Tattoo",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S794": {
+      "name": "Phoenix Tattoo",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "togashi"
+      ],
+      "equip_or_list": true
+    },
+    "S795": {
+      "name": "Tail of the Sun",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "shiba_yojimbo"
+      ],
+      "equip_or_list": true
+    },
+    "S796": {
+      "name": "Deeper Reflection",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "shiba_yojimbo"
+      ],
+      "equip_or_list": true
+    },
+    "S797": {
+      "name": "Touching the Infinite",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "shiba_yojimbo"
+      ],
+      "equip_or_list": true
+    },
+    "S798": {
+      "name": "Heaven's Wing",
+      "type": "attack",
+      "route": "kiho_or_kata",
+      "elements": [],
+      "school_unlocks": [
+        "shiba_yojimbo"
+      ],
+      "equip_or_list": true
+    },
+    "S799": {
+      "name": "Stand Against the Waves",
+      "type": "buff",
+      "route": "ward",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S800": {
+      "name": "Hida Avenger I: Wrath of the Crab",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S801": {
+      "name": "Hida Avenger II: Be the Wall",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S802": {
+      "name": "Hida Avenger III: Hida's Technique",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S803": {
+      "name": "Kenshinzen I: Drawing the Void",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S804": {
+      "name": "Kenshinzen II: A Single Moment",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S805": {
+      "name": "Kenshinzen III: Kakita's Technique",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kakita"
+      ],
+      "equip_or_list": true
+    },
+    "S806": {
+      "name": "Student of the Tao I: Path of Wisdom",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S807": {
+      "name": "Student of the Tao II: Seek the Path",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S808": {
+      "name": "Student of the Tao III: Defining the Essence",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "kitsuki"
+      ],
+      "equip_or_list": true
+    },
+    "S809": {
+      "name": "Master General I: Eyes of the Army",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S810": {
+      "name": "Master General II: Arms of the Army",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S811": {
+      "name": "Master General III: Heart of the Army",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S812": {
+      "name": "Master of the Elements I: Stone Among the Flames",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S813": {
+      "name": "Master of the Elements II: Wind Among the Waves",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S814": {
+      "name": "Master of the Elements III: The Secrets Between All Things",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S815": {
+      "name": "Shadow-Hunters I: Strike of the Righteous",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S816": {
+      "name": "Shadow-Hunters II: Scent of the Prey",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S817": {
+      "name": "Shadow-Hunters III: Strike from the Darkness",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shosuro"
+      ],
+      "equip_or_list": true
+    },
+    "S818": {
+      "name": "Master of the Courts I: The Emperor's Grace",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ide"
+      ],
+      "equip_or_list": true
+    },
+    "S819": {
+      "name": "Master of the Courts II: Favored Among the Heavens",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ide"
+      ],
+      "equip_or_list": true
+    },
+    "S820": {
+      "name": "Master of the Courts III: Voice of the Sun and Moon",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ide"
+      ],
+      "equip_or_list": true
+    },
+    "S821": {
+      "name": "The Machi-Kanshisha I: Smoke and Mirrors",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S822": {
+      "name": "The Machi-Kanshisha II: Clouded Mind",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S823": {
+      "name": "The Machi-Kanshisha III: Wear Them Down",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "ronin"
+      ],
+      "equip_or_list": true
+    },
+    "S830": {
+      "name": "Insight Rank 2: The Mountain Does Not Move",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hida"
+      ],
+      "equip_or_list": true
+    },
+    "S831": {
+      "name": "Insight Rank 3: Two Pincers, One Mind",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hida"
+      ],
+      "equip_or_list": true
+    },
+    "S832": {
+      "name": "Insight Rank 4: Fury of Hida",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hida"
+      ],
+      "equip_or_list": true
+    },
+    "S833": {
+      "name": "Insight Rank 5: The Mountain Does Not Fall",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hida"
+      ],
+      "equip_or_list": true
+    },
+    "S834": {
+      "name": "Insight Rank 2: Strike Like the Wind",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S835": {
+      "name": "Insight Rank 3: Fire and Shadow",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S836": {
+      "name": "Insight Rank 4: Harness the Wind",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S837": {
+      "name": "Insight Rank 5: Veil of Spirits",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S838": {
+      "name": "Insight Rank 2: Strike Like the Wind",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S839": {
+      "name": "Insight Rank 3: Fire and Shadow",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S840": {
+      "name": "Insight Rank 4: Harness the Wind",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S841": {
+      "name": "Insight Rank 5: Veil of Spirits",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S842": {
+      "name": "Insight Rank 2: Mastery 2 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S843": {
+      "name": "Insight Rank 3: Mastery 3 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S844": {
+      "name": "Insight Rank 4: Mastery 4 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S845": {
+      "name": "Insight Rank 5: Mastery 5 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S846": {
+      "name": "Insight Rank 2: Strike Like the Wind",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S847": {
+      "name": "Insight Rank 3: Fire and Shadow",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S848": {
+      "name": "Insight Rank 4: Harness the Wind",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S849": {
+      "name": "Insight Rank 5: Veil of Spirits",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "hiruma"
+      ],
+      "equip_or_list": true
+    },
+    "S850": {
+      "name": "Insight Rank 2: Strength of Purity",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S851": {
+      "name": "Insight Rank 3: Strength of My Ancestors",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S852": {
+      "name": "Insight Rank 4: Triumph Before Battle",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S853": {
+      "name": "Insight Rank 5: Akodo's Final Lesson",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S854": {
+      "name": "Insight Rank 2: Matsu's Fury",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "matsu"
+      ],
+      "equip_or_list": true
+    },
+    "S855": {
+      "name": "Insight Rank 3: The Lion's Charge",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "matsu"
+      ],
+      "equip_or_list": true
+    },
+    "S856": {
+      "name": "Insight Rank 4: Matsu's Courage",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "matsu"
+      ],
+      "equip_or_list": true
+    },
+    "S857": {
+      "name": "Insight Rank 5: The Lion's Victory",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "matsu"
+      ],
+      "equip_or_list": true
+    },
+    "S858": {
+      "name": "Insight Rank 2: Strength of Purity",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S859": {
+      "name": "Insight Rank 3: Strength of My Ancestors",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S860": {
+      "name": "Insight Rank 4: Triumph Before Battle",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S861": {
+      "name": "Insight Rank 5: Akodo's Final Lesson",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S862": {
+      "name": "Insight Rank 2: Strength of Purity",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S863": {
+      "name": "Insight Rank 3: Strength of My Ancestors",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S864": {
+      "name": "Insight Rank 4: Triumph Before Battle",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S865": {
+      "name": "Insight Rank 5: Akodo's Final Lesson",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S866": {
+      "name": "Insight Rank 2: Shield of Honor",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shiba_yojimbo"
+      ],
+      "equip_or_list": true
+    },
+    "S867": {
+      "name": "Insight Rank 3: No Illusions",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shiba_yojimbo"
+      ],
+      "equip_or_list": true
+    },
+    "S868": {
+      "name": "Insight Rank 4: Sword of the Phoenix",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shiba_yojimbo"
+      ],
+      "equip_or_list": true
+    },
+    "S869": {
+      "name": "Insight Rank 5: Purity of Fire",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shiba_yojimbo"
+      ],
+      "equip_or_list": true
+    },
+    "S870": {
+      "name": "Insight Rank 2: The Eyes of Doji",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "doji"
+      ],
+      "equip_or_list": true
+    },
+    "S871": {
+      "name": "Insight Rank 3: Strike of the Just",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "doji"
+      ],
+      "equip_or_list": true
+    },
+    "S872": {
+      "name": "Insight Rank 4: Judgment's Swift Blade",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "doji"
+      ],
+      "equip_or_list": true
+    },
+    "S873": {
+      "name": "Insight Rank 5: Eternal Justice",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "doji"
+      ],
+      "equip_or_list": true
+    },
+    "S874": {
+      "name": "Insight Rank 2: The Clouds Part",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "seppun"
+      ],
+      "equip_or_list": true
+    },
+    "S875": {
+      "name": "Insight Rank 3: With Heaven's Speed",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "seppun"
+      ],
+      "equip_or_list": true
+    },
+    "S876": {
+      "name": "Insight Rank 4: The Sun's Light Reveals",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "seppun"
+      ],
+      "equip_or_list": true
+    },
+    "S877": {
+      "name": "Insight Rank 5: Heaven Never Falls",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "seppun"
+      ],
+      "equip_or_list": true
+    },
+    "S878": {
+      "name": "Insight Rank 2: Mastery 2 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S879": {
+      "name": "Insight Rank 3: Mastery 3 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S880": {
+      "name": "Insight Rank 4: Mastery 4 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S881": {
+      "name": "Insight Rank 5: Mastery 5 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S882": {
+      "name": "Insight Rank 2: Voice of the Storm",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "yoritomo"
+      ],
+      "equip_or_list": true
+    },
+    "S883": {
+      "name": "Insight Rank 3: Strike of the Mantis",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "yoritomo"
+      ],
+      "equip_or_list": true
+    },
+    "S884": {
+      "name": "Insight Rank 4: The Rolling Wave",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "yoritomo"
+      ],
+      "equip_or_list": true
+    },
+    "S885": {
+      "name": "Insight Rank 5: Hand of Osano-Wo",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "yoritomo"
+      ],
+      "equip_or_list": true
+    },
+    "S886": {
+      "name": "Insight Rank 2: Mastery 2 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S887": {
+      "name": "Insight Rank 3: Mastery 3 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S888": {
+      "name": "Insight Rank 4: Mastery 4 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S889": {
+      "name": "Insight Rank 5: Mastery 5 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "isawa"
+      ],
+      "equip_or_list": true
+    },
+    "S890": {
+      "name": "Insight Rank 2: Strength of Purity",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S891": {
+      "name": "Insight Rank 3: Strength of My Ancestors",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S892": {
+      "name": "Insight Rank 4: Triumph Before Battle",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S893": {
+      "name": "Insight Rank 5: Akodo's Final Lesson",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "akodo"
+      ],
+      "equip_or_list": true
+    },
+    "S894": {
+      "name": "Insight Rank 2: Mastery 2 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S895": {
+      "name": "Insight Rank 3: Mastery 3 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S896": {
+      "name": "Insight Rank 4: Mastery 4 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S897": {
+      "name": "Insight Rank 5: Mastery 5 Spells",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "tamori"
+      ],
+      "equip_or_list": true
+    },
+    "S898": {
+      "name": "Insight Rank 2: Dance of the Blade",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shinjo"
+      ],
+      "equip_or_list": true
+    },
+    "S899": {
+      "name": "Insight Rank 3: The Four Winds Strike",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shinjo"
+      ],
+      "equip_or_list": true
+    },
+    "S900": {
+      "name": "Insight Rank 4: Spirit of Our Lady",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shinjo"
+      ],
+      "equip_or_list": true
+    },
+    "S901": {
+      "name": "Insight Rank 5: Dancing with the Fortunes",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shinjo"
+      ],
+      "equip_or_list": true
+    },
+    "S902": {
+      "name": "Insight Rank 2: Matsu's Fury",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "matsu"
+      ],
+      "equip_or_list": true
+    },
+    "S903": {
+      "name": "Insight Rank 3: The Lion's Charge",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "matsu"
+      ],
+      "equip_or_list": true
+    },
+    "S904": {
+      "name": "Insight Rank 4: Matsu's Courage",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "matsu"
+      ],
+      "equip_or_list": true
+    },
+    "S905": {
+      "name": "Insight Rank 5: The Lion's Victory",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "matsu"
+      ],
+      "equip_or_list": true
+    },
+    "S906": {
+      "name": "A Single Life",
+      "type": "noop",
+      "route": "passive",
+      "elements": [],
+      "school_unlocks": [
+        "shiba_yojimbo"
+      ],
+      "equip_or_list": true
+    },
+    "S950": {
+      "name": "Willow Poultice",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S951": {
+      "name": "Restorative Herb Tea",
+      "type": "heal",
+      "route": "healing_cast",
+      "elements": [
+        "water"
+      ],
+      "school_unlocks": [],
+      "equip_or_list": true
+    },
+    "S952": {
+      "name": "Trickster",
+      "type": "noop",
+      "route": "system",
+      "elements": [],
+      "school_unlocks": [],
+      "equip_or_list": true
+    }
+  }
+}

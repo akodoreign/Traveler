@@ -3,59 +3,20 @@
 return {
 modeldata = "EP166.mdl"
 motiondata = "EP166.mot"
-bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
+bnd = [-0.000002,37.533409,0.000000,67.999998,45.533409,49.087978]
 
 material = [
 	{
-		name = "c6c7274"
+		name = "Material_0"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x262b2dff
-		rough = 0.880000
+		basecol = 0xffffffff
+		rough = 0.750000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = "tex/ep166_skin.png"
-		texture1 = "tex/foe_fur_normal.png"
-		texture2 = null
-	}
-	{
-		name = "cc6d0d3"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x92a2a8ff
-		rough = 0.880000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/ep166_skin.png"
-		texture1 = "tex/foe_fur_normal.png"
-		texture2 = null
-	}
-	{
-		name = "cf1fcff"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0xe1f8ffff
-		rough = 0.880000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/ep166_skin.png"
-		texture1 = "tex/foe_fur_normal.png"
-		texture2 = null
-	}
-	{
-		name = "cf9a742"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0xf1640dff
-		rough = 0.610000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/foe_detail_color.png"
-		texture1 = "tex/foe_detail_normal.png"
+		texture0 = "tex/ep166_hunyuan_color_srgb.png"
+		texture1 = "tex/hunyuan_flat_normal.png"
 		texture2 = null
 	}
 ]

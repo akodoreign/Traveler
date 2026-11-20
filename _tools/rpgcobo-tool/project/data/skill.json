@@ -4085,7 +4085,7 @@
 			"atkefx": null,
 			"atksnd": null,
 			"id": "atk_normal",
-			"scp": null
+			"scp": "if( !::Rokugan.playHeroShuriken( rp3d, dst3d, dmg ) ){\n    if( ispic ) return wait( 100 );\n    anime( atkani );\n    wait( atkdelay );\n    efx( atkefx );\n    snd( atksnd );\n}\n"
 		},
 		"atkform": "",
 		"atknum": [
@@ -4137,6 +4137,7 @@
 			"id": "use_normal",
 			"scp": null
 		},
+		"rt_anim_key": "shuriken_fan",
 		"rt_school": true
 	},
 	"S139": {
@@ -10923,7 +10924,7 @@
 		},
 		"atkact": {
 			"id": "noop",
-			"scp": null
+			"scp": "::Rokugan.playVoidBolt( rp3d, dst3d, dmg );"
 		},
 		"atkform": "src.MATK*2.0+22",
 		"atknum": [
@@ -10982,6 +10983,7 @@
 			"useefx": null,
 			"usesnd": "SE229"
 		},
+		"rt_anim_key": "void_bolt",
 		"rt_vp": 1
 	},
 	"S392": {
@@ -18761,7 +18763,7 @@
 		"spdrate": 1.0,
 		"useact": {
 			"id": "use_charge",
-			"scp": null,
+			"scp": "snd( usesnd );\nif( !::Rokugan.ideSong( rp3d ) ){\n    anime( useani );\n    efx( useefx );\n    wait( EFX );\n}\n",
 			"useani": {
 				"id": "magic1",
 				"mdlid": "CV000",
@@ -25804,7 +25806,7 @@
 		"spdrate": 1.0,
 		"useact": {
 			"id": "use_charge",
-			"scp": null,
+			"scp": "snd( usesnd );\nif( !::Rokugan.playLionCharge( rp3d ) ){\n    anime( useani );\n    efx( useefx );\n    wait( EFX );\n}\n",
 			"eefx": "FX099",
 			"useefx": null,
 			"usesnd": "SE229",

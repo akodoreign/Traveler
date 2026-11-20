@@ -1,0 +1,52 @@
+// Song of the Ki-Rin. The stock skill applies Regeneration after this use action returns.
+local songBank = "/resource/native_chara/ide_song.mot";
+local songNotes = "/resource/efx/rt/ide_song_kirin.ptd";
+
+::Rokugan.addIdeSongClip <- function( actor, key ){
+	if( key != "trav_tamotsu" || !::getResource( songBank ) ) return;
+	local st = actor.nativeWeaponKind == "yumi" ? 0 : 52;
+	actor.animemap["ide_song_kirin"] <- { st=st, en=st+51, spd=30.0, loop=false, replay=true };
+};
+
+::Rokugan.ideSongMotion <- function( clip ){
+	if( clip == "ide_song_kirin" && ::getResource( songBank ) )
+		return ::getMotionData( ::getResource( songBank ) );
+	return null;
+};
+
+::Rokugan.ideSong <- function( actor ){
+	local stage = ::rpgstage, battle = stage["battle"];
+	if( !battle || !actor || actor["nativeKey"] != "trav_tamotsu" || !actor.animemap["ide_song_kirin"] ) return false;
+	local layer = null, effect = null, start = skGetTime();
+	try{
+		layer = actor.anime2( #{ id="ide_song_kirin" } );
+		if( !layer ) return false;
+		while( ::rpgstage == stage && stage.battle == battle && !actor.rpgobj.isDead() &&
+			actor.animlayers.layers[0] == layer ){
+			local elapsed = skGetTime() - start;
+			if( elapsed >= 1700.0 ) break;
+			if( elapsed >= 455.0 && !effect && ::getResource( songNotes ) ){
+				effect = SK3DEffect( songNotes );
+				effect.efx = #{ efx="/resource/efx/rt/ide_song_kirin.ptd" };
+				effect.pos( Vector3D( actor.pos ).add( 0, actor.bnd.y + 0.7, 0 ) );
+				effect.scale( 0.84 );
+				stage.scn.addObject( effect );
+				effect.startParticle();
+			}
+			if( effect ){
+				local t = Math.clamp( (elapsed - 455.0) / 1100.0, 0.0, 1.0 );
+				local pace = t * t * (3.0 - 2.0 * t);
+				effect.pos( Vector3D( .10 + .24 * pace, actor.bnd.y + 0.68 + 0.69 * pace, -.27 * pace ).transform( actor.gmat ) );
+				effect.scale( .84 + .13 * pace );
+				effect.matdirty = true;
+			}
+			sleep( 16 );
+		}
+	}catch( ex ){
+		// Preserve the voice skill and its buff if the presentation is unavailable.
+	}
+	if( effect ) effect.kill();
+	if( layer && ::rpgstage == stage && stage.battle == battle && !actor.rpgobj.isDead() &&
+		actor.animlayers.layers[0] == layer ) actor.anime2( #{ id="stand" } );
+	return !!layer;
+};

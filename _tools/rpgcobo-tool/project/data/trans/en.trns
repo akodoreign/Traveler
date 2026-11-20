@@ -312,12 +312,12 @@
 				"name":"Dragon"
 			},
 			"E058":{
-				"desc":"A spirit sealed within an ancient magical artifact. It appears when the lamp is rubbed and wields immense magical power. Its personality is capricious, and it sometimes acts in a way that tests humans.",
-				"name":"Demon"
+				"desc":"A living tide of skulls from the Seas of Shadow. Its dark water carries the drowned.",
+				"name":"Skull Tide"
 			},
 			"E059":{
-				"desc":"An ancient species far surpassing ordinary dragons. It possesses power capable of shaking continents, and can cause storms simply by flying. Its personality is arrogant, almost godlike.",
-				"name":"Great Dragon"
+				"desc":"A general of the Shadowlands with three burning eyes and claws of dark stone.",
+				"name":"Oni no Akuma"
 			},
 			"E060":{
 				"desc":"A monster close to a deity of the deep sea. It takes the form of a giant fish-man and rules over underwater cities. Its personality is cruel, and it sees humans only as prey.",

@@ -1,0 +1,102 @@
+// One airborne lead throw and two follow-ups using S142's original three hit actions.
+local clipId = "hero_shosuro_throw";
+local starPath = "/resource/native_chara/shosuro_star.pm";
+::Rokugan.registerHeroSignatureClip( "trav_mitsue", clipId, "shosuro_throw", 25, @( actor ) 0 );
+::Rokugan.registerCritical( "P105", "shuriken_fan", "critical", {clip=clipId, speed=1.0} );
+::Rokugan.registerCritical( "P105", "shuriken_fan", "void_critical", {clip=clipId, speed=1.0} );
+::SkillCommand.rt_heroShurikenThrows <- 0;
+::Rokugan.HERO_SIGNATURE_ROUTES .. @( cmd, func ) cmd.src.dataid == "P105" &&
+	cmd.skill["name"] == "Shuriken Fan" && func == cmd.skill["atkact"];
+
+local handPoint = function( actor ){
+	local body = actor.nativeBody, finger = body.findBone( "indexF2" ) || body.findBone( "handF" );
+	return finger ? finger.mat.getTranslation( Vector3D() ).transform( body.gmat ) : Vector3D( actor.pos ).add( 0, actor.bnd.y+.48, 0 );
+};
+
+::Rokugan.playHeroShuriken <- function( actor, target, dmg ){
+	local stage = ::rpgstage, battle = stage["battle"];
+	if( !battle || !actor || !target || !dmg || dmg.skip || actor["nativeKey"] != "trav_mitsue" ||
+		!actor.animemap[clipId] || !::getResource( starPath ) ) return false;
+	local body = actor.nativeBody, weapon = actor.nativeWeapon, cmd = dmg.cmd;
+	local n = cmd.rt_heroShurikenThrows, first = n == 0;
+	cmd.rt_heroShurikenThrows = n+1;
+	local weaponVisibility = weapon ? weapon.visible : false;
+	local home = Vector3D( body.pos ), release = first ? 331.0 : 95.0, travel = first ? 448.0 : 307.0;
+	local star = null, wakes = [], layer = null, owns = false, arrived = false;
+	local aimHeight = Math.clamp( target.bnd.y, .37, 2.18 );
+	local goal = Vector3D( target.pos ).add( 0, aimHeight, 0 );
+	local cameraYaw = stage.camwork.hpb[0];
+	try{
+		if( first ){
+			local current = actor.animlayers.layers[0];
+			if( current && current["id"] == clipId ) layer = current;
+			else{
+				layer = actor.anime2( #{ id="hero_shosuro_throw" } );
+				owns = !!layer;
+				if( layer ) layer.locked = 1;
+			}
+			if( weapon ) weapon.setVisible( false );
+		}else{
+			local atkani = dmg.skill["atkact"]["atkani"];
+			if( atkani ) actor.anime2( atkani );
+		}
+		local start = skGetTime(), origin = null, nextWake = 0.0;
+		local inverse = Matrix();
+		actor.gmat.invert34u( inverse );
+		local localRay = Vector3D( target.pos ).sub( actor.pos ).transform0( inverse );
+		local reach = Math.min( .12, .63/Math.max( localRay.length(), .2 ) );
+		local viewInv = Matrix();
+		stage.cam.viewmat.invert34u( viewInv );
+		local right = Vector3D( 1, 0, 0 ).transform0( viewInv ).scale( 1, 0, 1 ).normalize();
+		if( dmg.miss ) goal.add( Vector3D( right ).scale( .48 ) ).add( 0, .31, 0 );
+		while( ::rpgstage == stage && stage.battle == battle && actor.nativeBody == body && !actor.rpgobj.isDead() ){
+			local time = skGetTime()-start;
+			if( first ){
+				local flight = Math.clamp( (time-169.0) / (release+travel-169.0), 0.0, 1.0 );
+				local hop = Math.sin( Math.PI*flight );
+				body.pos( home.x+localRay.x*reach*hop, home.y+.95*hop, home.z+localRay.z*reach*hop );
+				body.matdirty = true;
+			}
+			if( time >= release ){
+				if( !star ){
+					origin = handPoint( actor );
+					star = SK3DObject( starPath );
+					star.pos( origin );
+					star.scale( first ? .026 : .015 );
+					stage.scn.addObject( star );
+					nextWake = time;
+				}
+				local t = Math.clamp( (time-release)/travel, 0.0, 1.0 );
+				local snap = t*(.84+.16*t);
+				local curve = Math.sin( Math.PI*t );
+				local point = Vector3D( origin ).add( Vector3D( goal ).sub( origin ).scale( snap ) )
+					.add( Vector3D( right ).scale( (first ? -.12 : .16*n)*curve ) ).add( 0, .27*curve, 0 );
+				local spin = Math.PI2*(first ? 2.75 : 2.0)*t;
+				star.pos( point );
+				star.rot.setHPB( cameraYaw+.27*Math.sin( spin ), .12+.39*Math.cos( spin ), spin );
+				star.matdirty = true;
+				if( time >= nextWake ){
+					wakes .. this.heroMark( stage, "hero_shosuro_trace", point, first ? .81 : .50 );
+					nextWake = time + 59.0;
+				}
+				if( t >= 1.0 ){
+					arrived = true;
+					break;
+				}
+			}
+			sleep( 16 );
+		}
+	}catch( ex ){}
+	if( star && star.alive ) star.kill();
+	if( first ){
+		body.pos( home );
+		body.matdirty = true;
+		if( weapon ) weapon.setVisible( weaponVisibility );
+		if( owns && layer ) layer.locked = 0;
+	}
+	local active = ::rpgstage == stage && stage.battle == battle;
+	if( !active ) foreach( fx in wakes ) if( fx && fx.alive ) fx.kill();
+	if( active && owns && layer && actor.animlayers.layers[0] == layer && !actor.rpgobj.isDead() )
+		actor.anime2( #{ id="stand" } );
+	return arrived;
+};

@@ -21,10 +21,10 @@ def animate(scene, name, frames, family):
     scene.frame_start, scene.frame_end = 0, len(frames) - 1
     previous = {}
     for i, (kind, index, count) in enumerate(frames):
-        pose = c.pose_frames(c.poses.controls(kind, index, count, family))
+        pose = c.pose_frames(c.combat_controls(kind, index, count, family))
         for bone in rig.pose.bones:
             target = pose[bone.name]
-            transform = bone.bone.matrix_local.inverted() @ c.matrix(target) if target else Matrix.Identity(4)
+            transform = c.pose_basis(bone, pose)
             bone.matrix_basis = transform
             if target is None:
                 bone.scale = (0., 0., 0.)
@@ -127,9 +127,11 @@ def export(job):
             save_piece(scene, out, rig, name, skin, "rig", write_motion=name == "body")
         return
 
-    from head_surfaces import HeadSurface, make_textures
+    from head_surfaces import CLOTH_PATTERNS, HeadSurface, make_textures
 
-    detail = HeadSurface(make_textures(out / "tex", ("hair", "iron", "linen")))
+    roles = {"hair", "iron", "linen", "cloth"}
+    roles.update(spec.get("pattern") for _, spec, _, _ in job["models"] if spec.get("pattern") in CLOTH_PATTERNS)
+    detail = HeadSurface(make_textures(out / "tex", roles))
 
     def save_cast(name, skin, rig, motion=None, write_motion=False):
         surface = detail if any(skin.surfaces) else None

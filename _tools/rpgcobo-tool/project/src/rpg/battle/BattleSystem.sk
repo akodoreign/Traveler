@@ -194,8 +194,10 @@ class SkillCommand
 	function commonSkillFunc(){
 		waitFor( src);
 		act( skill["useact"])?.wait();			//	発動モーション実行。指定されてなければ無視。
-		if( skill["rt_dragonbreath"] && ::["Rokugan"] && ::Rokugan["dragonBreath"])
-			::Rokugan.dragonBreath( ::rpgstage, src, dsts);
+		local rtStage = ::rpgstage, rtBattle = rtStage["battle"];
+		local rtBreath = skill["rt_dragonbreath"] && ::["Rokugan"] && ::Rokugan["dragonBreath"];
+		local rtDefer = rtBreath && ::Rokugan["deferTattooDragon"] && ::Rokugan.deferTattooDragon( rtStage, this );
+		if( rtBreath && !rtDefer ) ::Rokugan.dragonBreath( rtStage, src, dsts );
 		local na = skill["atknum"];
 		for( local l = (na?rnd( na[0], na[1]+1):1); l > 0;l --){		//	
 			local refs = [];
@@ -205,6 +207,10 @@ class SkillCommand
 				calcDamage( dmg);								//	ダメージを計算。カウンター、反射、吸収などもここで決まる。
 				attackAction( dmg);								//	攻撃モーション＋ヒットモーション。ウェイトする。
 			}
+			// A boosted S460 without a landed Void critical retains the normal breath presentation.
+			if( rtDefer && !this["rt_tattooShown"] && ::rpgstage == rtStage && rtStage["battle"] == rtBattle )
+				::Rokugan.dragonBreath( rtStage, src, dsts );
+			rtDefer = false;
 			::rpgstage.battle.dieCheck( this);	//	HP=0のキャラを死亡させる。ここでバラバラに動作してたキャラ達が同期する。
 			applyEvents();
 			::rpgstage.battle.dieCheck( this);	//	applyEventsで死んでる場合がある。。。

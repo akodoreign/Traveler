@@ -1,0 +1,166 @@
+{
+  "artifacts_edited_vertices": 1047,
+  "maximum_posterior_lip_removal": 4.179834233467445,
+  "body_posterior_at_99_and_100_75": [
+    -2.45269,
+    -1.9215
+  ],
+  "strict_profile": [
+    {
+      "height": 99.0,
+      "rear_before": -2.57765,
+      "rear_after": -2.23994,
+      "center_after": [
+        0.2599950000000002,
+        -0.11725999999999992,
+        99.0
+      ],
+      "diameter_after": [
+        4.99987,
+        6.90768
+      ]
+    },
+    {
+      "height": 99.5,
+      "rear_before": -2.91907,
+      "rear_after": -2.10552,
+      "center_after": [
+        0.4976550000000002,
+        0.0070149999999999935,
+        99.5
+      ],
+      "diameter_after": [
+        5.2063500000000005,
+        7.75459
+      ]
+    },
+    {
+      "height": 100.0,
+      "rear_before": -3.28028,
+      "rear_after": -1.97685,
+      "center_after": [
+        0.81852,
+        0.016249999999999876,
+        100.0
+      ],
+      "diameter_after": [
+        5.59074,
+        8.31614
+      ]
+    },
+    {
+      "height": 100.5,
+      "rear_before": -3.72689,
+      "rear_after": -1.87298,
+      "center_after": [
+        1.179405,
+        -0.18283499999999986,
+        100.5
+      ],
+      "diameter_after": [
+        6.10477,
+        8.44327
+      ]
+    },
+    {
+      "height": 101.0,
+      "rear_before": -4.16462,
+      "rear_after": -1.76912,
+      "center_after": [
+        1.57476,
+        -0.46343999999999985,
+        101.0
+      ],
+      "diameter_after": [
+        6.68776,
+        8.36864
+      ]
+    },
+    {
+      "height": 101.5,
+      "rear_before": -4.638,
+      "rear_after": -1.85723,
+      "center_after": [
+        2.0106200000000003,
+        -0.502685,
+        101.5
+      ],
+      "diameter_after": [
+        7.7357,
+        8.790849999999999
+      ]
+    },
+    {
+      "height": 102.0,
+      "rear_before": -5.0365,
+      "rear_after": -2.60816,
+      "center_after": [
+        2.279755,
+        -0.49365000000000014,
+        102.0
+      ],
+      "diameter_after": [
+        9.77583,
+        9.14554
+      ]
+    },
+    {
+      "height": 102.5,
+      "rear_before": -5.43333,
+      "rear_after": -2.26212,
+      "center_after": [
+        5.217225,
+        0.18612499999999987,
+        102.5
+      ],
+      "diameter_after": [
+        14.958689999999999,
+        8.24747
+      ]
+    },
+    {
+      "height": 103.0,
+      "rear_before": -5.87518,
+      "rear_after": -4.92342,
+      "center_after": [
+        3.839905,
+        0.8755249999999997,
+        103.0
+      ],
+      "diameter_after": [
+        17.52665,
+        17.15365
+      ]
+    },
+    {
+      "height": 103.5,
+      "rear_before": -6.80776,
+      "rear_after": -5.68748,
+      "center_after": [
+        3.4112050000000003,
+        0.8373999999999997,
+        103.5
+      ],
+      "diameter_after": [
+        18.19737,
+        19.40712
+      ]
+    },
+    {
+      "height": 104.0,
+      "rear_before": -7.31532,
+      "rear_after": -7.02671,
+      "center_after": [
+        2.874175,
+        0.8887400000000003,
+        104.0
+      ],
+      "diameter_after": [
+        19.801769999999998,
+        21.0732
+      ]
+    }
+  ],
+  "body_hash": "230f7f42de8f065f3ed0b958845cecadf9277187403a25d90dfc560ef8fb9f4d",
+  "head_baseline_sha256": "b02324946b8d6784e81ea1dbd6d260ca7b5dc953290a1c366cfc017938c8c16a"
+}

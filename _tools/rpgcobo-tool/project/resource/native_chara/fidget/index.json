@@ -1,0 +1,216 @@
+{
+  "profiles": {
+    "trav_natsuko": [
+      "map",
+      "satchel",
+      "scout",
+      "reset_feet",
+      "shoulders"
+    ],
+    "trav_rensei": [
+      "check_hilt",
+      "straighten_cuff",
+      "chin",
+      "reset_feet",
+      "breath"
+    ],
+    "trav_gendo": [
+      "book",
+      "glasses",
+      "disbelief",
+      "reset_feet",
+      "shoulders"
+    ],
+    "trav_shizue": [
+      "brace",
+      "stretch",
+      "straighten_cuff",
+      "reset_feet",
+      "chin"
+    ],
+    "trav_haruki": [
+      "count",
+      "focus",
+      "breath",
+      "reset_feet",
+      "stretch"
+    ],
+    "trav_mitsue": [
+      "listen",
+      "check_belt",
+      "straighten_cuff",
+      "reset_feet",
+      "scout"
+    ],
+    "trav_tamotsu": [
+      "watch",
+      "stretch",
+      "brush_sleeve",
+      "reset_feet",
+      "breath"
+    ],
+    "trav_sayo": [
+      "hair",
+      "check_belt",
+      "listen",
+      "reset_feet",
+      "shoulders"
+    ],
+    "human_foe": [
+      "scout",
+      "shoulders",
+      "reset_feet",
+      "brace",
+      "breath"
+    ]
+  },
+  "ready": {
+    "st": 861,
+    "en": 957,
+    "spd": 24
+  },
+  "clips": {
+    "map": {
+      "st": 0,
+      "en": 40,
+      "spd": 17,
+      "prop": "map",
+      "show": [
+        0.26,
+        0.77
+      ],
+      "satchel": true,
+      "stow": [
+        0.13,
+        0.91
+      ]
+    },
+    "satchel": {
+      "st": 41,
+      "en": 81,
+      "spd": 17,
+      "satchel": true,
+      "stow": [
+        0.21,
+        0.76
+      ]
+    },
+    "scout": {
+      "st": 82,
+      "en": 122,
+      "spd": 22
+    },
+    "reset_feet": {
+      "st": 123,
+      "en": 163,
+      "spd": 22
+    },
+    "shoulders": {
+      "st": 164,
+      "en": 204,
+      "spd": 22
+    },
+    "check_hilt": {
+      "st": 205,
+      "en": 245,
+      "spd": 22
+    },
+    "straighten_cuff": {
+      "st": 246,
+      "en": 286,
+      "spd": 22
+    },
+    "chin": {
+      "st": 287,
+      "en": 327,
+      "spd": 22
+    },
+    "breath": {
+      "st": 328,
+      "en": 368,
+      "spd": 22
+    },
+    "book": {
+      "st": 369,
+      "en": 409,
+      "spd": 12,
+      "prop": "book",
+      "show": [
+        0.26,
+        0.77
+      ],
+      "stow": [
+        0.16,
+        0.86
+      ]
+    },
+    "glasses": {
+      "st": 410,
+      "en": 450,
+      "spd": 22
+    },
+    "disbelief": {
+      "st": 451,
+      "en": 491,
+      "spd": 22
+    },
+    "brace": {
+      "st": 492,
+      "en": 532,
+      "spd": 22
+    },
+    "stretch": {
+      "st": 533,
+      "en": 573,
+      "spd": 17,
+      "stow": [
+        0.15,
+        0.87
+      ]
+    },
+    "count": {
+      "st": 574,
+      "en": 614,
+      "spd": 22
+    },
+    "focus": {
+      "st": 615,
+      "en": 655,
+      "spd": 22
+    },
+    "listen": {
+      "st": 656,
+      "en": 696,
+      "spd": 22
+    },
+    "check_belt": {
+      "st": 697,
+      "en": 737,
+      "spd": 22
+    },
+    "watch": {
+      "st": 738,
+      "en": 778,
+      "spd": 17,
+      "prop": "watch",
+      "show": [
+        0.26,
+        0.76
+      ],
+      "stow": [
+        0.18,
+        0.87
+      ]
+    },
+    "brush_sleeve": {
+      "st": 779,
+      "en": 819,
+      "spd": 22
+    },
+    "hair": {
+      "st": 820,
+      "en": 860,
+      "spd": 22
+    }
+  }
+}

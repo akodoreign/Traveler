@@ -1,0 +1,53 @@
+{
+  "fps": 30,
+  "actors": {
+    "trav_natsuko": {
+      "collapse": 0,
+      "down": 31,
+      "rise": 32,
+      "end": 77
+    },
+    "trav_rensei": {
+      "collapse": 78,
+      "down": 109,
+      "rise": 110,
+      "end": 155
+    },
+    "trav_gendo": {
+      "collapse": 156,
+      "down": 187,
+      "rise": 188,
+      "end": 233
+    },
+    "trav_shizue": {
+      "collapse": 234,
+      "down": 265,
+      "rise": 266,
+      "end": 311
+    },
+    "trav_haruki": {
+      "collapse": 312,
+      "down": 343,
+      "rise": 344,
+      "end": 389
+    },
+    "trav_mitsue": {
+      "collapse": 390,
+      "down": 421,
+      "rise": 422,
+      "end": 467
+    },
+    "trav_tamotsu": {
+      "collapse": 468,
+      "down": 499,
+      "rise": 500,
+      "end": 545
+    },
+    "trav_sayo": {
+      "collapse": 546,
+      "down": 577,
+      "rise": 578,
+      "end": 623
+    }
+  }
+}

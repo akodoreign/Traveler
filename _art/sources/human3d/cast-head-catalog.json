@@ -1,0 +1,1687 @@
+{
+ "trav_shizue": {
+  "name": "Akodo Shizue",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\shizue\\neutral.png",
+  "review": "headwear"
+ },
+ "side_takeo": {
+  "name": "Kitsu Takeo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\takeo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_agasha": {
+  "name": "Agasha Fire-Shugenja",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_agasha_fire_shugenja\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kusuri": {
+  "name": "Agasha Kusuri",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_agasha_kusuri\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ijako": {
+  "name": "Akodo Ijako",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_ijako\\neutral.png",
+  "review": "portrait"
+ },
+ "side_nishi": {
+  "name": "Akodo Nishi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_nishi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_seoko": {
+  "name": "Akodo Seoko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_seoko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_tatanko": {
+  "name": "Akodo Tatanko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_tatanko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hojato": {
+  "name": "Akodo Hojato",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_hojato\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hojiki": {
+  "name": "Akodo Hojiki",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_hojiki\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kafu": {
+  "name": "Akodo Kafu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_kafu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kafu_nosword": {
+  "name": "Akodo Kafu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_kafu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ryuzoji": {
+  "name": "Akodo Ryuzoji",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_ryuzoji\\neutral.png",
+  "review": "portrait"
+ },
+ "side_shogen": {
+  "name": "Akodo Shogen",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_shogen\\neutral.png",
+  "review": "portrait"
+ },
+ "side_toturi": {
+  "name": "Akodo Toturi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_toturi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_asahina": {
+  "name": "Asahina priest",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_asahina_priest\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kuhime": {
+  "name": "Asako Kuhime",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_asako_kuhime\\neutral.png",
+  "review": "portrait"
+ },
+ "side_keiki": {
+  "name": "Asako Keiki",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_asako_keiki\\neutral.png",
+  "review": "portrait"
+ },
+ "side_palecourtier": {
+  "name": "Bayushi courtier",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_bayushi_courtier\\neutral.png",
+  "review": "portrait"
+ },
+ "side_shiruko": {
+  "name": "Bayushi Shiruko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_bayushi_shiruko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_atsuki": {
+  "name": "Bayushi Atsuki",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_bayushi_atsuki\\neutral.png",
+  "review": "portrait"
+ },
+ "side_bayushikei": {
+  "name": "Bayushi Kei",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_bayushi_kei\\neutral.png",
+  "review": "portrait"
+ },
+ "side_courier": {
+  "name": "Bayushi courier",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_bayushi_courier\\neutral.png",
+  "review": "portrait"
+ },
+ "side_depura": {
+  "name": "Bayushi Depura",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_bayushi_depura\\neutral.png",
+  "review": "portrait"
+ },
+ "side_eriko": {
+  "name": "Daidoji Eriko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_daidoji_eriko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hagane": {
+  "name": "Daidoji Hagane",
+  "review": "find_portrait"
+ },
+ "side_sailor": {
+  "name": "Daidoji sailor",
+  "review": "find_portrait"
+ },
+ "side_uji": {
+  "name": "Daidoji Uji",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_daidoji_uji\\neutral.png",
+  "review": "portrait"
+ },
+ "side_courtier": {
+  "name": "Doji courtier",
+  "review": "find_portrait"
+ },
+ "side_dojiaoi": {
+  "name": "Doji Aoi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_aoi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_dojipoet": {
+  "name": "Doji poet",
+  "review": "find_portrait"
+ },
+ "side_empress": {
+  "name": "Doji Nashiko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_nashiko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_himeko": {
+  "name": "Doji Himeko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_himeko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_miyako": {
+  "name": "Doji Miyako",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_miyako\\neutral.png",
+  "review": "portrait"
+ },
+ "side_sanae": {
+  "name": "Doji Sanae",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_sanae\\neutral.png",
+  "review": "portrait"
+ },
+ "side_tomeko": {
+  "name": "Doji Tomeko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_tomeko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hayato": {
+  "name": "Doji Hayato",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_hayato\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kage_ch3": {
+  "name": "Hiruma Kage",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\kage\\neutral.png",
+  "review": "portrait"
+ },
+ "side_keiyomi": {
+  "name": "Ide Keiyomi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ide_keiyomi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ikomabard": {
+  "name": "Ikoma bard",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ikoma_bard\\neutral.png",
+  "review": "portrait"
+ },
+ "side_tadaka": {
+  "name": "Ikoma Tadaka",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ikoma_tadaka\\neutral.png",
+  "review": "portrait"
+ },
+ "side_akiko": {
+  "name": "Isawa Akiko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_isawa_akiko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kasiko": {
+  "name": "Isawa Kasiko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_isawa_kasiko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mieko": {
+  "name": "Isawa Mieko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_isawa_mieko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mutsuye": {
+  "name": "Isawa Mutsuye",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_isawa_mutsuye\\neutral.png",
+  "review": "portrait"
+ },
+ "side_uona": {
+  "name": "Isawa Uona",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_isawa_uona\\neutral.png",
+  "review": "portrait"
+ },
+ "side_acolyte": {
+  "name": "Isawa acolyte",
+  "review": "find_portrait"
+ },
+ "side_h_windisawa": {
+  "name": "Isawa Wind-Priest",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_isawa_wind_priest\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hoju": {
+  "name": "Isawa Hoju",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_isawa_hoju\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kamasari": {
+  "name": "Isawa Kamasari",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_isawa_kamasari\\neutral.png",
+  "review": "portrait"
+ },
+ "side_rujo": {
+  "name": "Isawa Rujo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_isawa_rujo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_sanro": {
+  "name": "Isawa Sanro",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_isawa_sanro\\neutral.png",
+  "review": "portrait"
+ },
+ "side_shahai": {
+  "name": "Iuchi Shahai",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_iuchi_shahai\\neutral.png",
+  "review": "portrait"
+ },
+ "side_daiyu": {
+  "name": "Iuchi Daiyu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_iuchi_daiyu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_iuchi": {
+  "name": "Iuchi Water-Shugenja",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_iuchi_water_shugenja\\neutral.png",
+  "review": "portrait"
+ },
+ "side_iuchifarmer": {
+  "name": "Iuchi farmer",
+  "review": "find_portrait"
+ },
+ "side_karasu": {
+  "name": "Iuchi Karasu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_iuchi_karasu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kurosho": {
+  "name": "Iuchi Kurosho",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_iuchi_kurosho\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mami": {
+  "name": "Kaiu Mami",
+  "review": "find_portrait"
+ },
+ "side_gesshin": {
+  "name": "Kaiu Gesshin",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kaiu_gesshin\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_engineer": {
+  "name": "Kaiu Engineer",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kaiu_engineer\\neutral.png",
+  "review": "headwear"
+ },
+ "side_h_sapper": {
+  "name": "Kaiu Sapper",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kaiu_sapper\\neutral.png",
+  "review": "headwear"
+ },
+ "side_kyumi": {
+  "name": "Kakita Yumi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kakita_yumi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_miyoshi": {
+  "name": "Kakita Miyoshi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kakita_miyoshi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_yuko": {
+  "name": "Kakita Yuko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kakita_yuko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_adoru": {
+  "name": "Kakita Adoru",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kakita_adoru\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kakita_sensei": {
+  "name": "Kakita sensei",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kakita_sensei\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kumpei": {
+  "name": "Kakita Kumpei",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kakita_kumpei\\neutral.png",
+  "review": "portrait"
+ },
+ "side_masanori": {
+  "name": "Kakita Masanori",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kakita_masanori\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mizochi": {
+  "name": "Kakita Mizochi",
+  "review": "find_portrait"
+ },
+ "side_morishu": {
+  "name": "Kakita Morishu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kakita_morishu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_yasurugi": {
+  "name": "Kakita Yasurugi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kakita_yasurugi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kenshai": {
+  "name": "Kitsu Kenshai",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsu_kenshai\\neutral.png",
+  "review": "portrait"
+ },
+ "side_togawa": {
+  "name": "Kitsu Togawa",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsu_togawa\\neutral.png",
+  "review": "portrait"
+ },
+ "side_oharu": {
+  "name": "Kitsuki Oharu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsuki_oharu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kitsukiclerk": {
+  "name": "Kitsuki clerk",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsuki_clerk\\neutral.png",
+  "review": "portrait"
+ },
+ "side_seigen": {
+  "name": "Kitsuki Seigen",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsuki_seigen\\neutral.png",
+  "review": "portrait"
+ },
+ "side_yasu": {
+  "name": "Kitsuki Yasu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsuki_yasu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_kuni": {
+  "name": "Kuni Shugenja",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kuni_shugenja\\neutral.png",
+  "review": "portrait"
+ },
+ "side_miyubi": {
+  "name": "Kuni Miyubi",
+  "review": "find_portrait"
+ },
+ "side_akuja": {
+  "name": "Kuni Akuja",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kuni_akuja\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_witch": {
+  "name": "Kuni Witch-hunter",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kuni_witch_hunter\\neutral.png",
+  "review": "portrait"
+ },
+ "side_taira": {
+  "name": "Kuni Taira",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kuni_taira\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kiku": {
+  "name": "Matsu Kiku",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_matsu_kiku\\neutral.png",
+  "review": "portrait"
+ },
+ "side_drummer": {
+  "name": "Mirumoto drummer",
+  "review": "find_portrait"
+ },
+ "side_h_guide": {
+  "name": "Mirumoto Mountain Guide",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mirumoto_mountain_guide\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hikaru": {
+  "name": "Mirumoto Hikaru",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mirumoto_hikaru\\neutral.png",
+  "review": "portrait"
+ },
+ "side_yachiko": {
+  "name": "Miya Yachiko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_miya_yachiko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hatomu": {
+  "name": "Miya Hatomu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_miya_hatomu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_moshi": {
+  "name": "Moshi Wind-caller",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_moshi_wind_caller\\neutral.png",
+  "review": "portrait"
+ },
+ "side_shinken": {
+  "name": "Otomo Shinken",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_otomo_shinken\\neutral.png",
+  "review": "portrait"
+ },
+ "side_satomi": {
+  "name": "Seppun Satomi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\satomi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ryozo": {
+  "name": "Seppun Ryozo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\ryozo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_katsutoshi": {
+  "name": "Shiba Katsutoshi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shiba_katsutoshi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_miyahana": {
+  "name": "Shinjo Miyahana",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shinjo_miyahana\\neutral.png",
+  "review": "portrait"
+ },
+ "side_oshito": {
+  "name": "Shinjo O-Shito",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shinjo_o_shito\\neutral.png",
+  "review": "portrait"
+ },
+ "side_tsune": {
+  "name": "Shinjo Tsune",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shinjo_tsune\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mayumi": {
+  "name": "Shosuro Mayumi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shosuro_mayumi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_norie": {
+  "name": "Shosuro Norie",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shosuro_norie\\neutral.png",
+  "review": "portrait"
+ },
+ "side_osuko": {
+  "name": "Shosuro Osuko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shosuro_osuko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_shiko": {
+  "name": "Shosuro Shiko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shosuro_shiko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_stagehand": {
+  "name": "Shosuro Stagehand",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shosuro_stagehand\\neutral.png",
+  "review": "portrait"
+ },
+ "side_noburo": {
+  "name": "Shosuro Noburo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shosuro_noburo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_nihime": {
+  "name": "Soshi Nihime",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_soshi_nihime\\neutral.png",
+  "review": "portrait"
+ },
+ "side_shinobu": {
+  "name": "Soshi Shinobu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_soshi_shinobu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_bantaro": {
+  "name": "Soshi Bantaro",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_soshi_bantaro\\neutral.png",
+  "review": "portrait"
+ },
+ "side_onaka": {
+  "name": "Soshi Onaka",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_soshi_onaka\\neutral.png",
+  "review": "portrait"
+ },
+ "side_soshi": {
+  "name": "Soshi courtier",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_soshi_courtier\\neutral.png",
+  "review": "portrait"
+ },
+ "side_soshienvoy": {
+  "name": "Soshi envoy",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_soshi_envoy\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_tamori": {
+  "name": "Tamori Rain-caller",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_tamori_rain_caller\\neutral.png",
+  "review": "portrait"
+ },
+ "side_haku": {
+  "name": "Tamori Haku",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_tamori_haku\\neutral.png",
+  "review": "portrait"
+ },
+ "side_tamorimonk": {
+  "name": "Tamori monk",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_tamori_monk\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_bomonk": {
+  "name": "Togashi Bo-Monk",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_togashi_bo_monk\\neutral.png",
+  "review": "portrait"
+ },
+ "side_outfitter": {
+  "name": "Togashi outfitter",
+  "review": "find_portrait"
+ },
+ "side_sumi": {
+  "name": "Togashi Sumi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_togashi_sumi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_togashi": {
+  "name": "Togashi",
+  "review": "find_portrait"
+ },
+ "side_yosai": {
+  "name": "Togashi Yosai",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\yosai\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_tsuruchi": {
+  "name": "Tsuruchi Archer",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_tsuruchi_archer\\neutral.png",
+  "review": "headwear"
+ },
+ "side_actor_b": {
+  "name": "Court actress",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_court_actress\\neutral.png",
+  "review": "portrait"
+ },
+ "side_akari": {
+  "name": "Akari",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akari\\neutral.png",
+  "review": "portrait"
+ },
+ "side_campfollower": {
+  "name": "Camp follower",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_camp_follower\\neutral.png",
+  "review": "portrait"
+ },
+ "side_fishseller": {
+  "name": "Fish-seller",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_fish_seller\\neutral.png",
+  "review": "headwear"
+ },
+ "side_fishwife": {
+  "name": "Fishwife",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_fishwife\\neutral.png",
+  "review": "headwear"
+ },
+ "side_fumi": {
+  "name": "Auntie Fumi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_auntie_fumi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_grandmother": {
+  "name": "Village grandmother",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_village_grandmother\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_herbalist": {
+  "name": "Village Herbalist",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_village_herbalist\\neutral.png",
+  "review": "headwear"
+ },
+ "side_h_jadeseller": {
+  "name": "Jade-dust Pedlar",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_jade_dust_pedlar\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_kitsune": {
+  "name": "Kitsune Herb-woman",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsune_herb_woman\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hagi": {
+  "name": "Madame Hagi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_madame_hagi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hana": {
+  "name": "Kitsune Hana",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsune_hana\\neutral.png",
+  "review": "portrait"
+ },
+ "side_herald": {
+  "name": "Herald",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_herald\\neutral.png",
+  "review": "portrait"
+ },
+ "side_herbseller": {
+  "name": "Herb seller",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_herb_seller\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hostess": {
+  "name": "The hostess",
+  "review": "find_portrait"
+ },
+ "side_incense": {
+  "name": "Incense-seller",
+  "review": "find_portrait"
+ },
+ "side_innkeeper": {
+  "name": "Innkeeper",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_innkeeper\\neutral.png",
+  "review": "headwear"
+ },
+ "side_jadeclerk": {
+  "name": "Jade clerk",
+  "review": "find_portrait"
+ },
+ "side_kitchengirl": {
+  "name": "Kitchen girl",
+  "review": "find_portrait"
+ },
+ "side_kiyo": {
+  "name": "Kiyo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\kiyo\\neutral.png",
+  "review": "headwear"
+ },
+ "side_makeup": {
+  "name": "Crane make-up artist",
+  "review": "find_portrait"
+ },
+ "side_megu": {
+  "name": "Megu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_megu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_miko": {
+  "name": "Shrine maiden",
+  "review": "find_portrait"
+ },
+ "side_mitsue_maid": {
+  "name": "Lady's maid",
+  "review": "find_portrait"
+ },
+ "side_muika": {
+  "name": "Muika",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_muika\\neutral.png",
+  "review": "headwear"
+ },
+ "side_nashiko": {
+  "name": "Blue-eyed woman",
+  "review": "find_portrait"
+ },
+ "side_netmender": {
+  "name": "Net-mender",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_net_mender\\neutral.png",
+  "review": "portrait"
+ },
+ "side_oldwoman": {
+  "name": "Old woman",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_old_woman\\neutral.png",
+  "review": "headwear"
+ },
+ "side_oyuki": {
+  "name": "Oyuki",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_oyuki\\neutral.png",
+  "review": "portrait"
+ },
+ "side_pilgrimgirl": {
+  "name": "Pilgrim girl",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_pilgrim_girl\\neutral.png",
+  "review": "portrait"
+ },
+ "side_rika": {
+  "name": "Suzume Rika",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_suzume_rika\\neutral.png",
+  "review": "portrait"
+ },
+ "side_sariko": {
+  "name": "Sariko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_sariko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_shrinekeeper": {
+  "name": "Shrine-keeper",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shrine_keeper\\neutral.png",
+  "review": "portrait"
+ },
+ "side_tsuhime": {
+  "name": "Tsuhime",
+  "review": "find_portrait"
+ },
+ "side_twin": {
+  "name": "Village girl",
+  "review": "find_portrait"
+ },
+ "side_umebaa": {
+  "name": "Ume-baa",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ume_baa\\neutral.png",
+  "review": "headwear"
+ },
+ "side_widow": {
+  "name": "Widow",
+  "review": "find_portrait"
+ },
+ "side_youngsayo": {
+  "name": "Young Sayo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\sayo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_abbot": {
+  "name": "Abbot of Osano-Wo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_abbot_of_osano_wo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_actor_a": {
+  "name": "Court actor",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_court_actor\\neutral.png",
+  "review": "portrait"
+ },
+ "side_actor_c": {
+  "name": "Old actor",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_old_actor\\neutral.png",
+  "review": "portrait"
+ },
+ "side_akuro": {
+  "name": "Old fisherman",
+  "review": "find_portrait"
+ },
+ "side_bargeman": {
+  "name": "Bargeman",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_bargeman\\neutral.png",
+  "review": "headwear"
+ },
+ "side_beggar": {
+  "name": "Beggar",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_beggar\\neutral.png",
+  "review": "portrait"
+ },
+ "side_beggarmonk": {
+  "name": "Beggar-monk",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_beggar_monk\\neutral.png",
+  "review": "portrait"
+ },
+ "side_cartdriver": {
+  "name": "Cart driver",
+  "review": "find_portrait"
+ },
+ "side_censorclerk": {
+  "name": "Censor's clerk",
+  "review": "find_portrait"
+ },
+ "side_censormonk": {
+  "name": "Censor-monk",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_censor_monk\\neutral.png",
+  "review": "portrait"
+ },
+ "side_charmseller": {
+  "name": "Charm-seller",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_charm_seller\\neutral.png",
+  "review": "portrait"
+ },
+ "side_citizen": {
+  "name": "Masked citizen",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_masked_citizen\\neutral.png",
+  "review": "portrait"
+ },
+ "side_clerk": {
+  "name": "Magistrate's clerk",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_magistrate_s_clerk\\neutral.png",
+  "review": "portrait"
+ },
+ "side_crabboy": {
+  "name": "Boy with a crab",
+  "review": "find_portrait"
+ },
+ "side_diver": {
+  "name": "Old diver",
+  "review": "find_portrait"
+ },
+ "side_doorman": {
+  "name": "House of Tranquillity doorman",
+  "review": "find_portrait"
+ },
+ "side_drunkactor": {
+  "name": "Drunk actor",
+  "review": "find_portrait"
+ },
+ "side_drunksailor": {
+  "name": "Drunk sailor",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_drunk_sailor\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ebisu": {
+  "name": "Ebisu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ebisu\\neutral.png",
+  "review": "headwear"
+ },
+ "side_ferryman": {
+  "name": "Ferryman",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ferryman\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ff_boatman": {
+  "name": "Boatman",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_boatman\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ff_fisherman": {
+  "name": "Fisherman",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_fisherman\\neutral.png",
+  "review": "headwear"
+ },
+ "side_gaijintrader": {
+  "name": "Gaijin trader",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_gaijin_trader\\neutral.png",
+  "review": "portrait"
+ },
+ "side_gatekeeper": {
+  "name": "Temple gatekeeper",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_temple_gatekeeper\\neutral.png",
+  "review": "portrait"
+ },
+ "side_gochu": {
+  "name": "Gochu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_gochu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_gonbei": {
+  "name": "Gonbei",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_gonbei\\neutral.png",
+  "review": "portrait"
+ },
+ "side_gonta": {
+  "name": "Gonta",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\gonta\\neutral.png",
+  "review": "portrait"
+ },
+ "side_gontaboy": {
+  "name": "Gonta's boy",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_gonta_s_boy\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_fisherman": {
+  "name": "Hoshi Fisherman",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hoshi_fisherman\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_goatherd": {
+  "name": "Goat-herd Archer",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_goat_herd_archer\\neutral.png",
+  "review": "headwear"
+ },
+ "side_h_hanabi": {
+  "name": "Hanabi Seller",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hanabi_seller\\neutral.png",
+  "review": "headwear"
+ },
+ "side_h_hunter": {
+  "name": "Shadow Hunter",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shadow_hunter\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_lamplighter": {
+  "name": "Lamplighter",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_lamplighter\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_suzume": {
+  "name": "Suzume Sweeper",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_suzume_sweeper\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_thundermonk": {
+  "name": "Osano-Wo Thunder Monk",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_osano_wo_thunder_monk\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_windpriest": {
+  "name": "Wandering Air-Shugenja",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_wandering_air_shugenja\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_yojimbo": {
+  "name": "Ronin Yojimbo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ronin_yojimbo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_healer": {
+  "name": "Dying healer",
+  "review": "find_portrait"
+ },
+ "side_hidden1": {
+  "name": "Hidden One",
+  "review": "find_portrait"
+ },
+ "side_hidden2": {
+  "name": "Hidden One",
+  "review": "find_portrait"
+ },
+ "side_hiro": {
+  "name": "Hiro",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hiro\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hitoro": {
+  "name": "Hitoro",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hitoro\\neutral.png",
+  "review": "portrait"
+ },
+ "side_imuro": {
+  "name": "Imuro",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_imuro\\neutral.png",
+  "review": "portrait"
+ },
+ "side_itami": {
+  "name": "Ichiro Itami",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ichiro_itami\\neutral.png",
+  "review": "portrait"
+ },
+ "side_jinnai": {
+  "name": "Jinnai",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_jinnai\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kagemaro": {
+  "name": "Mibu Kagemaro",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mibu_kagemaro\\neutral.png",
+  "review": "portrait"
+ },
+ "side_karo": {
+  "name": "The karo",
+  "review": "find_portrait"
+ },
+ "side_katsuo": {
+  "name": "Katsuo the White Brother",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_katsuo_the_white_brother\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kitechild": {
+  "name": "Child with a kite",
+  "review": "find_portrait"
+ },
+ "side_kitsuneboy": {
+  "name": "Kitsune boy",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsune_boy\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kosai": {
+  "name": "Kosai",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kosai\\neutral.png",
+  "review": "portrait"
+ },
+ "side_koshi": {
+  "name": "Old Mirumoto Koshi",
+  "review": "find_portrait"
+ },
+ "side_kusada": {
+  "name": "Hantei Kusada",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hantei_kusada\\neutral.png",
+  "review": "portrait"
+ },
+ "side_magistrate": {
+  "name": "Imperial magistrate",
+  "review": "find_portrait"
+ },
+ "side_mamoru": {
+  "name": "Mamoru",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mamoru\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mantisenvoy": {
+  "name": "Mantis envoy",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mantis_envoy\\neutral.png",
+  "review": "portrait"
+ },
+ "side_maskmaker": {
+  "name": "Mask-maker",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mask_maker\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mcaptain": {
+  "name": "Mantis captain",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mantis_captain\\neutral.png",
+  "review": "portrait"
+ },
+ "side_merchant": {
+  "name": "Merchant",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_merchant\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mobleader": {
+  "name": "Mob leader",
+  "review": "find_portrait"
+ },
+ "side_mosuke": {
+  "name": "Old Mosuke",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_old_mosuke\\neutral.png",
+  "review": "portrait"
+ },
+ "side_muledriver": {
+  "name": "Mule-driver",
+  "review": "find_portrait"
+ },
+ "side_munashii": {
+  "name": "Abbot Munashii",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_abbot_munashii\\neutral.png",
+  "review": "portrait"
+ },
+ "side_musician": {
+  "name": "Street musician",
+  "review": "find_portrait"
+ },
+ "side_naohida": {
+  "name": "Naohida",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_naohida\\neutral.png",
+  "review": "portrait"
+ },
+ "side_oldpilgrim": {
+  "name": "Old pilgrim",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_old_pilgrim\\neutral.png",
+  "review": "portrait"
+ },
+ "side_oracle": {
+  "name": "Oracle of Fire",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_oracle_of_fire\\neutral.png",
+  "review": "portrait"
+ },
+ "side_pedlar": {
+  "name": "\"Pedlar\"",
+  "review": "find_portrait"
+ },
+ "side_pigeonkeeper": {
+  "name": "Pigeon-keeper",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_pigeon_keeper\\neutral.png",
+  "review": "headwear"
+ },
+ "side_pilgrim": {
+  "name": "Pilgrim",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_pilgrim\\neutral.png",
+  "review": "portrait"
+ },
+ "side_pilgrimagent": {
+  "name": "Pilgrim",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_pilgrim\\neutral.png",
+  "review": "portrait"
+ },
+ "side_porter": {
+  "name": "Dock porter",
+  "review": "find_portrait"
+ },
+ "side_priest": {
+  "name": "Suitengu priest",
+  "review": "find_portrait"
+ },
+ "side_riichi": {
+  "name": "Riichi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_riichi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_roninchef": {
+  "name": "Ronin cook",
+  "review": "find_portrait"
+ },
+ "side_rteacher": {
+  "name": "Rakusho teacher",
+  "review": "find_portrait"
+ },
+ "side_sabu": {
+  "name": "Sabu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_sabu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_sakeseller": {
+  "name": "Masked sake-seller",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_masked_sake_seller\\neutral.png",
+  "review": "portrait"
+ },
+ "side_senior_student": {
+  "name": "Senior student",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_senior_student\\neutral.png",
+  "review": "portrait"
+ },
+ "side_servant": {
+  "name": "Kitchen servant",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitchen_servant\\neutral.png",
+  "review": "headwear"
+ },
+ "side_shipmaster": {
+  "name": "Ship's master",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ship_s_master\\neutral.png",
+  "review": "headwear"
+ },
+ "side_shrinepeasant": {
+  "name": "Shrine peasant",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shrine_peasant\\neutral.png",
+  "review": "headwear"
+ },
+ "side_smithboy": {
+  "name": "Smith's apprentice",
+  "review": "find_portrait"
+ },
+ "side_snakeelder": {
+  "name": "Snake elder",
+  "review": "find_portrait"
+ },
+ "side_sonoservant": {
+  "name": "Sono servant",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_sono_servant\\neutral.png",
+  "review": "portrait"
+ },
+ "side_swordsmith": {
+  "name": "Swordsmith",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_swordsmith\\neutral.png",
+  "review": "portrait"
+ },
+ "side_tbeggar": {
+  "name": "Tattooed beggar",
+  "review": "find_portrait"
+ },
+ "side_thundermonk": {
+  "name": "Thunder monk",
+  "review": "find_portrait"
+ },
+ "side_tokubei": {
+  "name": "Harbourmaster Tokubei",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_harbourmaster_tokubei\\neutral.png",
+  "review": "portrait"
+ },
+ "side_torishigawa": {
+  "name": "Torishigawa",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_torishigawa\\neutral.png",
+  "review": "portrait"
+ },
+ "side_veteran": {
+  "name": "Wall veteran",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_wall_veteran\\neutral.png",
+  "review": "portrait"
+ },
+ "side_yodo": {
+  "name": "Kasuga Yodo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kasuga_yodo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_youth": {
+  "name": "Village youth",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_village_youth\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kurako": {
+  "name": "Yasuki Kurako",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_yasuki_kurako\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kanbe": {
+  "name": "Yasuki Kanbe",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_yasuki_kanbe\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kanemori": {
+  "name": "Yasuki Kanemori",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_yasuki_kanemori\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kasamashi": {
+  "name": "Yasuki Kasamashi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_yasuki_kasamashi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_tessai": {
+  "name": "Yasuki Tessai",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_yasuki_tessai\\neutral.png",
+  "review": "portrait"
+ },
+ "side_meyako": {
+  "name": "Yogo Meyako",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_yogo_meyako\\neutral.png",
+  "review": "portrait"
+ },
+ "side_shigeru": {
+  "name": "Yogo Shigeru",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_yogo_shigeru\\neutral.png",
+  "review": "portrait"
+ },
+ "side_sakura": {
+  "name": "Daidoji Sakura",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\sakura\\neutral.png",
+  "review": "portrait"
+ },
+ "side_goro": {
+  "name": "Hiruma Goro",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\goro\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_scout": {
+  "name": "Hiruma Scout",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hiruma_scout\\neutral.png",
+  "review": "portrait"
+ },
+ "trav_natsuko": {
+  "name": "Hiruma Natsuko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\natsuko\\neutral.png",
+  "review": "headwear"
+ },
+ "side_ryoichi": {
+  "name": "Hiruma Ryoichi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\ryoichi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_fujio": {
+  "name": "Ide Fujio",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\fujio\\neutral.png",
+  "review": "portrait"
+ },
+ "trav_tamotsu": {
+  "name": "Ide Tamotsu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\tamotsu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_michio": {
+  "name": "Isawa Michio",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\michio\\neutral.png",
+  "review": "portrait"
+ },
+ "trav_haruki": {
+  "name": "Isawa Haruki",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\haruki\\neutral.png",
+  "review": "portrait"
+ },
+ "trav_rensei": {
+  "name": "Kakita Rensei",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\rensei\\neutral.png",
+  "review": "portrait"
+ },
+ "side_momo": {
+  "name": "Kitsuki Momo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsuki_momo\\neutral.png",
+  "review": "portrait"
+ },
+ "trav_gendo": {
+  "name": "Kitsuki Gendo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\gendo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_akodorin": {
+  "name": "Akodo Rin",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_rin\\neutral.png",
+  "review": "portrait"
+ },
+ "side_goroso": {
+  "name": "Akodo Goroso",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_goroso\\neutral.png",
+  "review": "portrait"
+ },
+ "side_gusai": {
+  "name": "Akodo Gusai",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_gusai\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hiruto": {
+  "name": "Akodo Hiruto",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_hiruto\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ozaki": {
+  "name": "Akodo Ozaki",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_ozaki\\neutral.png",
+  "review": "portrait"
+ },
+ "side_tama": {
+  "name": "Akodo Tama",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_tama\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ukita": {
+  "name": "Akodo Ukita",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_ukita\\neutral.png",
+  "review": "portrait"
+ },
+ "side_bayushiguard": {
+  "name": "Bayushi guard",
+  "review": "find_portrait"
+ },
+ "side_shoju": {
+  "name": "Bayushi Shoju",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_bayushi_shoju\\neutral.png",
+  "review": "portrait"
+ },
+ "side_atsuko": {
+  "name": "Daidoji Atsuko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_daidoji_atsuko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_craneguard": {
+  "name": "Daidoji guard",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_daidoji_guard\\neutral.png",
+  "review": "portrait"
+ },
+ "side_daidoji_general": {
+  "name": "Daidoji general",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_daidoji_general\\neutral.png",
+  "review": "portrait"
+ },
+ "side_siko": {
+  "name": "Doji Siko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_siko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_seikidera": {
+  "name": "Doji Seikidera",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_seikidera\\neutral.png",
+  "review": "portrait"
+ },
+ "side_sachiko": {
+  "name": "Hida Sachiko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\sachiko\\neutral.png",
+  "review": "headwear"
+ },
+ "side_chuto": {
+  "name": "Hida Chuto",
+  "review": "find_portrait"
+ },
+ "side_dorin": {
+  "name": "Hida Dorin",
+  "review": "find_portrait"
+ },
+ "side_h_jadearcher": {
+  "name": "Hida Jade Archer",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hida_jade_archer\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_veteran": {
+  "name": "Hida Veteran",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hida_veteran\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hidaren": {
+  "name": "Hida Ren",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hida_ren\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kisada": {
+  "name": "Hida Kisada",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hida_kisada\\neutral.png",
+  "review": "headwear"
+ },
+ "side_masakazu": {
+  "name": "Hida Masakazu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hida_masakazu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_taneo": {
+  "name": "Hida Taneo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hida_taneo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_tomoe": {
+  "name": "Hida Tomoe",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\tomoe\\neutral.png",
+  "review": "portrait"
+ },
+ "side_yakamo": {
+  "name": "Hida Yakamo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hida_yakamo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_kage": {
+  "name": "Hiruma Kage",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\kage\\neutral.png",
+  "review": "portrait"
+ },
+ "side_xue": {
+  "name": "Ide Xue",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ide_xue\\neutral.png",
+  "review": "portrait"
+ },
+ "side_sadanobu": {
+  "name": "Ikoma Sadanobu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ikoma_sadanobu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_yoshi": {
+  "name": "Ikoma Yoshi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ikoma_yoshi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hiroichi": {
+  "name": "Iuchi Hiroichi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_iuchi_hiroichi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_iuchisoldier": {
+  "name": "Iuchi soldier",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_iuchi_soldier\\neutral.png",
+  "review": "portrait"
+ },
+ "side_takanobu": {
+  "name": "Iuchi Takanobu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_iuchi_takanobu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_naname": {
+  "name": "Kaiu Naname",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kaiu_naname\\neutral.png",
+  "review": "portrait"
+ },
+ "side_takakana": {
+  "name": "Kaiu Takakana",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\takakana\\neutral.png",
+  "review": "portrait"
+ },
+ "side_yutaka": {
+  "name": "Kaiu Yutaka",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kaiu_yutaka\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hanae": {
+  "name": "Matsu Hanae",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_matsu_hanae\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hisae": {
+  "name": "Matsu Hisae",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_matsu_hisae\\neutral.png",
+  "review": "portrait"
+ },
+ "side_matsuduel": {
+  "name": "Matsu bushi",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_matsu_bushi\\neutral.png",
+  "review": "portrait"
+ },
+ "side_nagai": {
+  "name": "Matsu Nagai",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_matsu_nagai\\neutral.png",
+  "review": "portrait"
+ },
+ "side_rokuro": {
+  "name": "Matsu Rokuro",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_matsu_rokuro\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_mirumoto": {
+  "name": "Mirumoto Ashigaru",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mirumoto_ashigaru\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_yari": {
+  "name": "Mirumoto Yari Sergeant",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mirumoto_yari_sergeant\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mirumotosen": {
+  "name": "Mirumoto Sen",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mirumoto_sen\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mirumotosentry": {
+  "name": "Mirumoto sentry",
+  "review": "find_portrait"
+ },
+ "side_tabezu": {
+  "name": "Mirumoto Tabezu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mirumoto_tabezu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_tsukaru": {
+  "name": "Mirumoto Tsukaru",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mirumoto_tsukaru\\neutral.png",
+  "review": "portrait"
+ },
+ "side_benjiro": {
+  "name": "Moto Benjiro",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_moto_benjiro\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_moto": {
+  "name": "Moto Outrider",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_moto_outrider\\neutral.png",
+  "review": "portrait"
+ },
+ "side_zhang": {
+  "name": "Moto Zhang",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_moto_zhang\\neutral.png",
+  "review": "portrait"
+ },
+ "side_seppunguard": {
+  "name": "Seppun guard",
+  "review": "find_portrait"
+ },
+ "side_ushimo": {
+  "name": "Seppun Ushimo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_seppun_ushimo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_noboru": {
+  "name": "Shiba Noboru",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shiba_noboru\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ryuko": {
+  "name": "Shinjo Ryuko",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shinjo_ryuko\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_shinjo": {
+  "name": "Shinjo Yoriki",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shinjo_yoriki\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ichihito": {
+  "name": "Soshi Ichihito",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_soshi_ichihito\\neutral.png",
+  "review": "portrait"
+ },
+ "side_soshiofficer": {
+  "name": "Soshi officer",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_soshi_officer\\neutral.png",
+  "review": "portrait"
+ },
+ "side_chihaya": {
+  "name": "Chihaya the Quick",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_chihaya_the_quick\\neutral.png",
+  "review": "portrait"
+ },
+ "side_craneduellist": {
+  "name": "Crane duellist",
+  "review": "find_portrait"
+ },
+ "side_h_archer": {
+  "name": "Ashigaru Archer",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ashigaru_archer\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_ferryarcher": {
+  "name": "Mantis Ferry Archer",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mantis_ferry_archer\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_shrinearcher": {
+  "name": "Crater-shrine Archer",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_crater_shrine_archer\\neutral.png",
+  "review": "portrait"
+ },
+ "side_h_sparrow": {
+  "name": "Sparrow Ronin",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_sparrow_ronin\\neutral.png",
+  "review": "portrait"
+ },
+ "side_hyobe": {
+  "name": "Kitsune Hyobe",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsune_hyobe\\neutral.png",
+  "review": "headwear"
+ },
+ "side_iami": {
+  "name": "Gusai Iami",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_gusai_iami\\neutral.png",
+  "review": "portrait"
+ },
+ "side_lionrider": {
+  "name": "Lion rider",
+  "review": "find_portrait"
+ },
+ "side_lionsergeant": {
+  "name": "Lion sergeant",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_lion_sergeant\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mbushi": {
+  "name": "Mantis bushi",
+  "review": "find_portrait"
+ },
+ "side_quartermaster": {
+  "name": "Quartermaster",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_quartermaster\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ryohei": {
+  "name": "Ryohei the Eldest",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_ryohei_the_eldest\\neutral.png",
+  "review": "portrait"
+ },
+ "side_sergeant": {
+  "name": "Guard sergeant",
+  "review": "find_portrait"
+ },
+ "side_tadayasu": {
+  "name": "Tadayasu",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_tadayasu\\neutral.png",
+  "review": "portrait"
+ },
+ "side_taxman": {
+  "name": "Lion tax-collector",
+  "review": "find_portrait"
+ },
+ "side_townguard": {
+  "name": "Town guard",
+  "review": "find_portrait"
+ },
+ "side_uyojimbo": {
+  "name": "Scorpion yojimbo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_scorpion_yojimbo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_yosuke": {
+  "name": "Yosuke the Bold",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_yosuke_the_bold\\neutral.png",
+  "review": "portrait"
+ },
+ "side_rui": {
+  "name": "Yoritomo Rui",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_yoritomo_rui\\neutral.png",
+  "review": "portrait"
+ },
+ "side_yoritomo": {
+  "name": "Yoritomo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_yoritomo\\neutral.png",
+  "review": "portrait"
+ },
+ "trav_sayo": {
+  "name": "Sayo",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\sayo\\neutral.png",
+  "review": "portrait"
+ },
+ "side_ashimita": {
+  "name": "Shiba Ashimita",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_shiba_ashimita\\neutral.png",
+  "review": "portrait"
+ },
+ "trav_mitsue": {
+  "name": "Shosuro Mitsue",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\mitsue\\neutral.png",
+  "review": "portrait"
+ },
+ "side_mai": {
+  "name": "Yogo Mai",
+  "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\mai\\neutral.png",
+  "review": "portrait"
+ }
+}

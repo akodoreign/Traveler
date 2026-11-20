@@ -1,0 +1,188 @@
+{
+  "costumes": {
+    "soldier": {
+      "items": [
+        "A183",
+        "A187"
+      ]
+    }
+  },
+  "portable_inventory_helmets": {
+    "A110": {
+      "label": "Kabuto",
+      "eqtype": 11,
+      "wearers": [
+        "P000",
+        "P001",
+        "P002",
+        "P003",
+        "P004",
+        "P005",
+        "P006",
+        "P007",
+        "P008",
+        "P009",
+        "P010",
+        "P011",
+        "P012",
+        "P100",
+        "P101",
+        "P102",
+        "P103",
+        "P104",
+        "P105",
+        "P106",
+        "P107",
+        "P120",
+        "P121",
+        "P122",
+        "P123",
+        "P124",
+        "P125",
+        "P126",
+        "P127",
+        "P128",
+        "P129",
+        "P130",
+        "P131",
+        "P134",
+        "P135",
+        "P136",
+        "P137",
+        "P138",
+        "P140",
+        "P141",
+        "P139",
+        "P133",
+        "P132"
+      ],
+      "actor_fits": [
+        "trav_natsuko:A110",
+        "trav_gendo:A110"
+      ]
+    },
+    "A160": {
+      "label": "Legion Kabuto",
+      "eqtype": 16,
+      "wearers": [
+        "P000",
+        "P001",
+        "P002",
+        "P003",
+        "P004",
+        "P005",
+        "P006",
+        "P007",
+        "P008",
+        "P009",
+        "P010",
+        "P011",
+        "P012",
+        "P100",
+        "P101",
+        "P102",
+        "P103",
+        "P104",
+        "P105",
+        "P106",
+        "P107",
+        "P120",
+        "P121",
+        "P122",
+        "P123",
+        "P124",
+        "P125",
+        "P126",
+        "P127",
+        "P128",
+        "P129",
+        "P130",
+        "P131",
+        "P134",
+        "P135",
+        "P136",
+        "P137",
+        "P138",
+        "P140",
+        "P141",
+        "P139",
+        "P133",
+        "P132"
+      ],
+      "actor_fits": []
+    }
+  },
+  "rigid_human_foe_helmets": {
+    "EP411": {
+      "mesh": "EP411_hat",
+      "name": "hum_hatamoto_champion",
+      "face": "EP411_face",
+      "head": "kabuto",
+      "clan": null
+    },
+    "EP414": {
+      "mesh": "EP414_hat",
+      "name": "hum_sergeant_spears",
+      "face": "EP414_face",
+      "head": "kabuto",
+      "clan": null
+    },
+    "EP137": {
+      "mesh": "EP137_hat",
+      "name": "boss_seppun_duelist",
+      "face": "EP137_face",
+      "head": "kabuto",
+      "clan": null
+    },
+    "EP143": {
+      "mesh": "EP143_hat",
+      "name": "boss_ushimo",
+      "face": "EP143_face",
+      "head": "kabuto",
+      "clan": "imperial"
+    },
+    "EP415": {
+      "mesh": "EP415_hat",
+      "name": "hum_heavy_infantry",
+      "face": "EP415_face",
+      "head": "kabuto_full",
+      "clan": null
+    },
+    "EP129": {
+      "mesh": "EP129_hat",
+      "name": "boss_yosuke",
+      "face": "EP129_face",
+      "head": "kabuto",
+      "clan": "ronin"
+    },
+    "EP178": {
+      "mesh": "EP178_hat",
+      "name": "boss_crab_shade",
+      "face": "EP178_face",
+      "head": "kabuto_full",
+      "clan": "crab"
+    },
+    "EP419": {
+      "mesh": "EP419_hat",
+      "name": "hum_storm_renegade",
+      "face": "EP419_face",
+      "head": "kabuto",
+      "clan": null
+    }
+  },
+  "excluded_hat_routes": {
+    "A102": "Jingasa",
+    "A103": "Seppun Guard's Jingasa",
+    "A113": "Hiruma Scout's Jingasa",
+    "A170": "Straw Kasa",
+    "A171": "Eboshi",
+    "A172": "Hachimaki",
+    "A143": "Champion headband",
+    "costumes": [
+      "maid",
+      "fox",
+      "clerk",
+      "pilgrim"
+    ]
+  }
+}

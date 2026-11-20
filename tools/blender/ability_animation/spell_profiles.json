@@ -1,0 +1,14 @@
+{
+  "S300": {"phase":"use","element":"water","gesture":"offer","shape":"petals","body":[0.72, 0.10, 7, 5],"beats":[0.17,0.45,0.62,0.86],"mark":0.62},
+  "S301": {"phase":"attack","element":"water","gesture":"draw","shape":"ribbon","body":[1.02,0.13,11,-9],"beats":[0.18,0.42,0.55,0.84],"mark":0.76,"travel":380},
+  "S303": {"phase":"attack","element":"lightning","gesture":"chop","shape":"fork","body":[0.94,0.20,18,-13],"beats":[0.31,0.48,0.56,0.79],"mark":0.93,"travel":235},
+  "S304": {"phase":"attack","element":"air","gesture":"fan","shape":"crescents","body":[0.91,0.16,10,19],"beats":[0.12,0.43,0.58,0.85],"mark":0.92,"travel":330},
+  "S305": {"phase":"use","element":"earth","gesture":"plant","shape":"plates","body":[0.78,0.24,13,8],"beats":[0.17,0.49,0.67,0.88],"mark":0.89},
+  "S306": {"phase":"use","element":"void","gesture":"ward","shape":"eclipse","body":[0.83,0.13,8,-14],"beats":[0.20,0.39,0.61,0.83],"mark":0.71},
+  "S314": {"phase":"use","element":"water","gesture":"brush","shape":"drops","body":[0.63,0.11,13,16],"beats":[0.18,0.38,0.53,0.87],"mark":0.61},
+  "S319": {"phase":"attack","element":"water","gesture":"swirl","shape":"spiral","body":[1.17,0.17,16,26],"beats":[0.22,0.47,0.64,0.9],"mark":1.06,"travel":480},
+  "S348": {"phase":"use","element":"air","gesture":"hush","shape":"feathers","body":[0.68,0.08,9,-8],"beats":[0.23,0.51,0.63,0.89],"mark":0.65},
+  "S363": {"phase":"attack","element":"jade","gesture":"pinch","shape":"shards","body":[0.98,0.20,14,10],"beats":[0.19,0.40,0.60,0.84],"mark":0.92,"travel":355},
+  "S390": {"phase":"use","element":"void","gesture":"seal","shape":"stitch","body":[0.70,0.15,11,-14],"beats":[0.32,0.47,0.69,0.87],"mark":0.76},
+  "S395": {"phase":"use","element":"void","gesture":"still","shape":"halo","body":[0.59,0.08,5,7],"beats":[0.26,0.48,0.64,0.89],"mark":0.68}
+}

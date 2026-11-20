@@ -1,0 +1,320 @@
+{
+  "out": "weapon-stage",
+  "sources": {
+    "bo": "bo_source.glb",
+    "bokken": "bokken_source.glb",
+    "claws": "claws_source.glb",
+    "kakita": "kakita_source.glb",
+    "kama": "kama_source.glb",
+    "katana": "katana_source.glb",
+    "musket": "musket_source.glb",
+    "naginata": "naginata_source.glb",
+    "saya": "saya_source.glb",
+    "shakujo": "shakujo_source.glb",
+    "tanto": "tanto_source.glb",
+    "yari": "yari_source.glb",
+    "yumi": "yumi_source.glb"
+  },
+  "items": {
+    "W100": {
+      "family": "blade",
+      "kind": "katana",
+      "name": "Ronin's Katana",
+      "preview": true
+    },
+    "W101": {
+      "family": "pole",
+      "kind": "yari",
+      "name": "Ashigaru Yari",
+      "preview": true
+    },
+    "W102": {
+      "family": "short",
+      "kind": "tanto",
+      "name": "Kozuka",
+      "preview": true
+    },
+    "W104": {
+      "family": "bow",
+      "kind": "yumi",
+      "name": "Bamboo Yumi",
+      "preview": true
+    },
+    "W105": {
+      "family": "pole",
+      "kind": "bo",
+      "name": "Oak Bo",
+      "preview": true
+    },
+    "W107": {
+      "family": "short",
+      "kind": "tanto",
+      "name": "Seppun Tanto",
+      "preview": false
+    },
+    "W110": {
+      "family": "blade",
+      "kind": "katana",
+      "name": "Clan Katana",
+      "preview": false
+    },
+    "W111": {
+      "family": "pole",
+      "kind": "yari",
+      "name": "Lacquered Yari",
+      "preview": false
+    },
+    "W112": {
+      "family": "short",
+      "kind": "tanto",
+      "name": "Aiguchi",
+      "preview": false
+    },
+    "W114": {
+      "family": "bow",
+      "kind": "yumi",
+      "name": "Rattan Yumi",
+      "preview": false
+    },
+    "W115": {
+      "family": "pole",
+      "kind": "bo",
+      "name": "Ironwood Bo",
+      "preview": false
+    },
+    "W116": {
+      "family": "pole",
+      "kind": "yari",
+      "name": "Jade Lacquered Yari",
+      "preview": false
+    },
+    "W121": {
+      "family": "blade",
+      "kind": "katana",
+      "name": "Fine Katana",
+      "preview": false
+    },
+    "W122": {
+      "family": "pole",
+      "kind": "yari",
+      "name": "Hida War Yari",
+      "preview": false
+    },
+    "W123": {
+      "family": "pole",
+      "kind": "yari",
+      "name": "Jade War Yari",
+      "preview": false
+    },
+    "W124": {
+      "family": "short",
+      "kind": "tanto",
+      "name": "Kage's Father's Tanto",
+      "preview": false
+    },
+    "W127": {
+      "family": "pole",
+      "kind": "yari",
+      "name": "Kaiu War Spear",
+      "preview": false
+    },
+    "W128": {
+      "family": "pole",
+      "kind": "yari",
+      "name": "Jade Kaiu Spear",
+      "preview": false
+    },
+    "W130": {
+      "family": "blade",
+      "kind": "kakita",
+      "name": "Heaven's Glory",
+      "preview": true
+    },
+    "W131": {
+      "family": "blade",
+      "kind": "kakita",
+      "name": "Kakita Blade",
+      "preview": false
+    },
+    "W132": {
+      "family": "bow",
+      "kind": "yumi",
+      "name": "Daikyu-pattern Yumi",
+      "preview": false
+    },
+    "W133": {
+      "family": "short",
+      "kind": "tanto",
+      "name": "Kakita Wakizashi",
+      "preview": false
+    },
+    "W134": {
+      "family": "blade",
+      "kind": "katana",
+      "name": "Excellent Katana",
+      "preview": false
+    },
+    "W135": {
+      "family": "bow",
+      "kind": "yumi",
+      "name": "Tsuruchi Longbow",
+      "preview": false
+    },
+    "W136": {
+      "family": "blade",
+      "kind": "bokken",
+      "name": "Matsu Sensei's Bokken",
+      "preview": true
+    },
+    "W137": {
+      "family": "short",
+      "kind": "tanto",
+      "name": "Jade Tanto",
+      "preview": false
+    },
+    "W138": {
+      "family": "pole",
+      "kind": "yari",
+      "name": "Matsu War Yari",
+      "preview": false
+    },
+    "W139": {
+      "family": "blade",
+      "kind": "katana",
+      "name": "Tachi-pattern Katana",
+      "preview": false
+    },
+    "W140": {
+      "family": "short",
+      "kind": "tanto",
+      "name": "Shosuro Tanto",
+      "preview": false
+    },
+    "W141": {
+      "family": "pole",
+      "kind": "shakujo",
+      "name": "Shukujo",
+      "preview": true
+    },
+    "W142": {
+      "family": "gun",
+      "kind": "musket",
+      "name": "Gaijin Musket",
+      "preview": true
+    },
+    "W143": {
+      "family": "blade",
+      "kind": "katana",
+      "name": "Tachi-pattern Fine Katana",
+      "preview": false
+    },
+    "W144": {
+      "family": "pole",
+      "kind": "bo",
+      "name": "Togashi Bo",
+      "preview": false
+    },
+    "W145": {
+      "family": "short",
+      "kind": "tanto",
+      "name": "Norie's Kozuka",
+      "preview": false
+    },
+    "W146": {
+      "family": "short",
+      "kind": "kama",
+      "name": "Mantis Kama",
+      "preview": true
+    },
+    "W147": {
+      "family": "short",
+      "kind": "tanto",
+      "name": "Mountain Tanto",
+      "preview": false
+    },
+    "W148": {
+      "family": "blade",
+      "kind": "katana",
+      "name": "Jade-backed Katana",
+      "preview": false
+    },
+    "W149": {
+      "family": "bow",
+      "kind": "yumi",
+      "name": "Jade-tipped Yumi",
+      "preview": false
+    },
+    "W150": {
+      "family": "short",
+      "kind": "tanto",
+      "name": "Jade-handled Knife",
+      "preview": false
+    },
+    "W151": {
+      "family": "blade",
+      "kind": "katana",
+      "name": "Master-forged Katana",
+      "preview": false
+    },
+    "W152": {
+      "family": "pole",
+      "kind": "yari",
+      "name": "Utaku Yari",
+      "preview": false
+    },
+    "W153": {
+      "family": "bow",
+      "kind": "yumi",
+      "name": "Moonlit Yumi",
+      "preview": false
+    },
+    "W154": {
+      "family": "pole",
+      "kind": "bo",
+      "name": "Thunder Monk's Bo",
+      "preview": false
+    },
+    "W155": {
+      "family": "short",
+      "kind": "tanto",
+      "name": "Whisper Blade",
+      "preview": false
+    },
+    "W156": {
+      "family": "blade",
+      "kind": "katana",
+      "name": "Jade-seamed Master Katana",
+      "preview": false
+    },
+    "W157": {
+      "family": "blade",
+      "kind": "katana",
+      "name": "The Hare Sword",
+      "preview": false
+    },
+    "W158": {
+      "family": "blade",
+      "kind": "katana",
+      "name": "Kaiu Blade",
+      "preview": false
+    },
+    "W159": {
+      "family": "fist",
+      "kind": "claws",
+      "name": "Iron Nekode",
+      "preview": true
+    },
+    "W160": {
+      "family": "fist",
+      "kind": "claws",
+      "name": "Thunder Claws",
+      "preview": false
+    },
+    "W161": {
+      "family": "pole",
+      "kind": "naginata",
+      "name": "Shiba Naginata",
+      "preview": true
+    }
+  }
+}

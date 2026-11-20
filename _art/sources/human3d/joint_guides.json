@@ -1,0 +1,303 @@
+{
+  "joints": {
+    "pelvis": [
+      0.0,
+      60.0,
+      0.0
+    ],
+    "spine": [
+      0.0,
+      60.0,
+      0.0
+    ],
+    "head": [
+      0.0,
+      97.0,
+      0.0
+    ],
+    "tail": [
+      -14.3,
+      119.0,
+      0.0
+    ],
+    "weapon": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "sheathed": [
+      0.0,
+      60.0,
+      0.0
+    ],
+    "thighN": [
+      0.0,
+      58.0,
+      5.5
+    ],
+    "shinN": [
+      0.0,
+      31.5,
+      5.5
+    ],
+    "footN": [
+      0.0,
+      6.0,
+      5.5
+    ],
+    "upperN": [
+      0.0,
+      93.0,
+      11.5
+    ],
+    "foreN": [
+      0.0,
+      76.5,
+      12.5
+    ],
+    "handN": [
+      0.0,
+      61.5,
+      13.2
+    ],
+    "thighF": [
+      0.0,
+      58.0,
+      -5.5
+    ],
+    "shinF": [
+      0.0,
+      31.5,
+      -5.5
+    ],
+    "footF": [
+      0.0,
+      6.0,
+      -5.5
+    ],
+    "upperF": [
+      0.0,
+      93.0,
+      -11.5
+    ],
+    "foreF": [
+      0.0,
+      76.5,
+      -12.5
+    ],
+    "handF": [
+      0.0,
+      61.5,
+      -13.2
+    ],
+    "chest": [
+      0.0,
+      82.0,
+      0.0
+    ],
+    "neck": [
+      0.0,
+      93.5,
+      0.0
+    ],
+    "collarN": [
+      0.0,
+      93.5,
+      1.8
+    ],
+    "thumbN1": [
+      1.05,
+      59.5,
+      12.0
+    ],
+    "thumbN2": [
+      1.78,
+      57.9,
+      11.75
+    ],
+    "indexN1": [
+      1.55,
+      57.6,
+      13.45
+    ],
+    "indexN2": [
+      1.61,
+      55.7,
+      13.55
+    ],
+    "indexN3": [
+      1.54,
+      54.08,
+      13.5
+    ],
+    "middleN1": [
+      0.51,
+      57.4,
+      13.6
+    ],
+    "middleN2": [
+      0.52,
+      55.31,
+      13.69
+    ],
+    "middleN3": [
+      0.49,
+      53.58,
+      13.67
+    ],
+    "ringN1": [
+      -0.53,
+      57.36,
+      13.59
+    ],
+    "ringN2": [
+      -0.6,
+      55.54,
+      13.69
+    ],
+    "ringN3": [
+      -0.62,
+      54.03,
+      13.63
+    ],
+    "littleN1": [
+      -1.52,
+      57.63,
+      13.44
+    ],
+    "littleN2": [
+      -1.73,
+      56.09,
+      13.53
+    ],
+    "littleN3": [
+      -1.75,
+      54.88,
+      13.54
+    ],
+    "collarF": [
+      0.0,
+      93.5,
+      -1.8
+    ],
+    "thumbF1": [
+      1.05,
+      59.5,
+      -12.0
+    ],
+    "thumbF2": [
+      1.78,
+      57.9,
+      -11.75
+    ],
+    "indexF1": [
+      1.55,
+      57.6,
+      -13.45
+    ],
+    "indexF2": [
+      1.61,
+      55.7,
+      -13.55
+    ],
+    "indexF3": [
+      1.54,
+      54.08,
+      -13.5
+    ],
+    "middleF1": [
+      0.51,
+      57.4,
+      -13.6
+    ],
+    "middleF2": [
+      0.52,
+      55.31,
+      -13.69
+    ],
+    "middleF3": [
+      0.49,
+      53.58,
+      -13.67
+    ],
+    "ringF1": [
+      -0.53,
+      57.36,
+      -13.59
+    ],
+    "ringF2": [
+      -0.6,
+      55.54,
+      -13.69
+    ],
+    "ringF3": [
+      -0.62,
+      54.03,
+      -13.63
+    ],
+    "littleF1": [
+      -1.52,
+      57.63,
+      -13.44
+    ],
+    "littleF2": [
+      -1.73,
+      56.09,
+      -13.53
+    ],
+    "littleF3": [
+      -1.75,
+      54.88,
+      -13.54
+    ]
+  },
+  "parents": {
+    "spine": "pelvis",
+    "chest": "spine",
+    "neck": "chest",
+    "head": "neck",
+    "tail": "head",
+    "collarN": "chest",
+    "upperN": "collarN",
+    "foreN": "upperN",
+    "handN": "foreN",
+    "thighN": "pelvis",
+    "shinN": "thighN",
+    "footN": "shinN",
+    "thumbN1": "handN",
+    "thumbN2": "thumbN1",
+    "indexN1": "handN",
+    "indexN2": "indexN1",
+    "indexN3": "indexN2",
+    "middleN1": "handN",
+    "middleN2": "middleN1",
+    "middleN3": "middleN2",
+    "ringN1": "handN",
+    "ringN2": "ringN1",
+    "ringN3": "ringN2",
+    "littleN1": "handN",
+    "littleN2": "littleN1",
+    "littleN3": "littleN2",
+    "collarF": "chest",
+    "upperF": "collarF",
+    "foreF": "upperF",
+    "handF": "foreF",
+    "thighF": "pelvis",
+    "shinF": "thighF",
+    "footF": "shinF",
+    "thumbF1": "handF",
+    "thumbF2": "thumbF1",
+    "indexF1": "handF",
+    "indexF2": "indexF1",
+    "indexF3": "indexF2",
+    "middleF1": "handF",
+    "middleF2": "middleF1",
+    "middleF3": "middleF2",
+    "ringF1": "handF",
+    "ringF2": "ringF1",
+    "ringF3": "ringF2",
+    "littleF1": "handF",
+    "littleF2": "littleF1",
+    "littleF3": "littleF2"
+  }
+}

@@ -1,7 +1,8 @@
 """Transparent two-mark decal sheets for Traveler's native wearable items."""
 import math
 
-SIZE = (128, 64)
+LAYOUT = (128, 64)
+SIZE = (256, 128)
 SCALE = 4
 
 
@@ -102,7 +103,7 @@ def draw_mark(draw, clan, cx, cy, radius, ink, highlight):
 def sheet(destination, clan, palette, item, slot, style):
     from PIL import Image, ImageDraw
 
-    image = Image.new("RGBA", tuple(n * SCALE for n in SIZE))
+    image = Image.new("RGBA", tuple(n * SCALE for n in LAYOUT))
     draw = ImageDraw.Draw(image)
     top, _, accent, armor, lace = palette
     bright = sum((armor if slot == "head" or style in ("lamellar", "plate") else top)) / 3 > 145
@@ -117,9 +118,15 @@ def sheet(destination, clan, palette, item, slot, style):
         box = tuple(round(v * SCALE) for v in (cx-r, cy-r, cx+r, cy+r))
         if hard:
             draw.ellipse(box, outline=ink, width=round((1.8 if tile == 0 else 1.3) * SCALE))
+            lip = tuple(round(v * SCALE) for v in (cx-r+2.2, cy-r+2.2, cx+r-2.2, cy+r-2.2))
+            draw.arc(lip, 203, 340, fill=contrast, width=round(.75 * SCALE))
+            draw.arc(lip, 28, 155, fill=edge_ink, width=round(.7 * SCALE))
         elif clan not in ("eta", "peasant", "ronin") and tile == 0:
             draw.arc(box, 32, 148, fill=ink, width=SCALE)
             draw.arc(box, 212, 328, fill=ink, width=SCALE)
+            sewn = tuple(round(v * SCALE) for v in (cx-r+2, cy-r+2, cx+r-2, cy+r-2))
+            for angle in range(0, 360, 15):
+                draw.arc(sewn, angle, angle + 5, fill=contrast, width=round(.7 * SCALE))
         if tile == 0:
             # The ring of rivets or stitches distinguishes equipment with the same badge.
             for bit in range(8):

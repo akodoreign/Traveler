@@ -1,0 +1,53 @@
+// Close-overlapping flame segments for the tattoo dragon's continuous jet.
+parentcoord <- false
+currentgroup <- 0
+prof <- {}
+groups <- [
+	with ParticleGroupData(){
+		name = "Jet core"
+		enabled = true
+		aimtype = 1
+		localcoord = true
+		emitter = with ParticleEmitter(){
+			num = 2
+			start = 0, start_spr = 21
+			life = 185, life_spr = 40
+			pos_sprx = 0.12, pos_spry = 0.13, pos_sprz = 0.10
+		},
+		shapetype = 0
+		shapedata = {"axis":0,"r":0.0,"w":0.83,"h":0.83}
+		texture = "/resource/efx/tex/fire1.webp"
+		color = 0xffffffff
+		blendmode = 5
+		blend = 5
+		mod = [
+			{"classid":"ptcmod_texanime","frame":[0,10.0]},
+			{"classid":"ptcmod_color","color":[-607239,-5554194,-95347026,-1758505472]},
+			{"classid":"ptcmod_scale","xyz":7,"scale":[0.84,1.20,1.38]},
+			{"classid":"ptcmod_acc","axisid":1,"coord":0,"acc":2.3,"acc_spr":0.7},
+		]
+	},
+	with ParticleGroupData(){
+		name = "Jet sparks"
+		enabled = true
+		aimtype = 1
+		localcoord = true
+		emitter = with ParticleEmitter(){
+			num = 1
+			start = 0, start_spr = 28
+			life = 254, life_spr = 58
+			pos_sprx = 0.12, pos_spry = 0.17, pos_sprz = 0.13
+		},
+		shapetype = 0
+		shapedata = {"axis":0,"r":0.0,"w":0.13,"h":0.13}
+		texture = "/resource/efx/tex/glow1.webp"
+		color = 0xffffffff
+		blendmode = 5
+		blend = 5
+		mod = [
+			{"classid":"ptcmod_color","color":[-2193449,-109171561,-1774890752]},
+			{"classid":"ptcmod_acc","axisid":1,"coord":0,"acc":5.0,"acc_spr":1.8},
+		]
+	},
+]
+actions <- [{"acttype":"emitall","time":0}]

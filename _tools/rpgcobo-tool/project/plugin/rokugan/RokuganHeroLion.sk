@@ -1,0 +1,121 @@
+// Akodo Shizue's first landed Void critical with an eligible melee weapon.
+local lionId = "hero_lion_courage";
+local melee = {
+	katana=0, kakita=0, bokken=0,
+	yari=61, naginata=61, bo=61, shakujo=61,
+	tetsubo=122,
+	tanto=183, kama=183, claws=183
+};
+foreach( key in ["trav_shizue", "side_hanae"] ){
+	::Rokugan.registerHeroSignatureClip( key, lionId, "lion_courage", 60,
+		@( actor ) melee[actor.nativeWeaponKind] );
+};
+
+::Rokugan.canHeroLion <- function( dmg, actor ){
+	local atk = dmg.skill["atkact"];
+	return dmg.src.dataid == "P103" && actor && actor["nativeBody"] && actor["animemap"] &&
+		actor.animemap[lionId] && typeof( atk ) == SS_TABLE && atk["id"] == "atk_normal" && !atk["scp"];
+};
+
+::Rokugan.HERO_SIGNATURE_ROUTES .. function( cmd, func ){
+	local actor = ::rpgstage["battle"]?.getChara3D( cmd.src );
+	if( cmd.skill["name"] == "Lion's Charge" && func == cmd.skill["useact"] ) return !!(actor && actor["animemap"] && actor.animemap[lionId]);
+	return cmd.src.dataid == "P103" && cmd.skill["rt_vcrit"] && func == cmd.skill["atkact"] &&
+		func["id"] == "atk_normal" && !func["scp"] && actor && actor["animemap"] && actor.animemap[lionId];
+};
+
+local ease = function( t, a, b ){
+	local p = Math.clamp( (t-a)/(b-a), 0.0, 1.0 );
+	return p*p*(3.0-2.0*p);
+};
+
+local performLionCourage = function( stage, battle, actor, dst, onImpact, group ){
+	local body = actor.nativeBody;
+	if( !dst || !body ) return false;
+	local inverse = Matrix();
+	actor.gmat.invert34u( inverse );
+	local ray = Vector3D( dst.pos ).sub( actor.pos ).transform0( inverse );
+	local distance = Math.sqrt( ray.x*ray.x + ray.z*ray.z );
+	if( distance < .09 ) return false;
+	local stop = Math.max( .10, (distance-(.60+dst.bnd.s*.51))/distance );
+	local yaw = Math.atan2( -ray.x, -ray.z );
+	local home = Vector3D( body.pos ), homeRot = Quaternion();
+	homeRot << body.rot;
+	local layer = null, hit = false, err = null, arc = null, glyph = null, accents = [];
+	try{
+		layer = actor.anime2( #{ id="hero_lion_courage" } );
+		if( !layer ) return false;
+		layer.locked = 1;
+		local start = skGetTime(), contact = .50;
+		while( ::rpgstage == stage && stage.battle == battle && actor.nativeBody == body ){
+			local t = Math.clamp( (skGetTime()-start) / 2000.0, 0.0, 1.0 );
+			local run = ease( t, .05, .435 ) * (1.0-ease( t, .728, .987 ));
+			local amount = stop * run;
+			body.pos( home.x+ray.x*amount, home.y+ray.y*amount, home.z+ray.z*amount );
+			local pivot = Math.PI * (ease( t, .645, .747 ) - ease( t, .918, 1.0 ));
+			body.rot.setHPB( Math.HPI + yaw*ease( t, .0, .12 )*(1.0-ease( t, .92, 1.0 )) + pivot, 0, 0 );
+			body.matdirty = true;
+			local point = Vector3D( dst.pos ).add( 0, Math.clamp( dst.bnd.y, .37, 2.42 ), 0 );
+			if( !arc && t >= .433 ){
+				local between = Vector3D( point ).add( Vector3D( actor.pos ).sub( dst.pos ).scale( .068 ) );
+				arc = ::Rokugan.heroMark( stage, "hero_lion_upswing", between, 1.12 );
+			}
+			if( !hit && t >= contact ){
+				hit = true;
+				onImpact();
+				glyph = ::Rokugan.heroMark( stage, "hero_lion_courage", Vector3D( point ).add( 0, 1.39, 0 ), group ? 1.32 : 1.04 );
+			}
+			if( hit && length( accents ) < 3 && t >= .530 + .045*length( accents ) ){
+				local i = length( accents );
+				local drift = [.12,.33,-.10][i];
+				local cut = Vector3D( point ).add( drift, .29 + i*.11, 0 );
+				accents .. ::Rokugan.heroMark( stage, "hero_lion_upswing", cut, .74-i*.09 );
+			}
+			if( t >= 1.0 ) break;
+			sleep( 16 );
+		}
+	}catch( ex ){ err = ex; }
+	body.pos( home );
+	body.rot << homeRot;
+	body.matdirty = true;
+	if( layer ){
+		layer.locked = 0;
+		layer.animating = false;
+	}
+	if( ::rpgstage != stage || stage.battle != battle ){
+		if( arc && arc.alive ) arc.kill();
+		if( glyph && glyph.alive ) glyph.kill();
+		foreach( fx in accents ) if( fx && fx.alive ) fx.kill();
+		return true;
+	}
+	if( actor.nativeBody == body && !actor.rpgobj.isDead() ) actor.anime2( #{ id="stand" } );
+	if( err && hit ) throw err;
+	return hit;
+};
+
+::SkillCommand._rt_lionCourage <- function( dmg, battle, actor ){
+	local cmd = this, dst = battle.getChara3D( dmg.dst ), atk = skill["atkact"];
+	return performLionCourage( ::rpgstage, battle, actor, dst, function(){
+		if( atk["atkefx"] ) actor.effect( atk.atkefx );
+		if( atk["atksnd"] ) actor.playSound( atk.atksnd );
+		cmd.hitAction( dmg );
+	}, false );
+};
+
+::Rokugan.playLionCharge <- function( actor ){
+	local stage = ::rpgstage, battle = stage["battle"];
+	if( !battle || !actor || !actor["animemap"] || !actor.animemap[lionId] ) return false;
+	local foes = battle.enemies.filter( @( e ) e && !e.isDead() );
+	if( !length( foes ) ) return false;
+	local target = battle.getChara3D( foes[int((length( foes )-1)/2)] );
+	if( !target ) return false;
+	local action = { impact=false, done=false };
+	stage.subthread( function(){
+		try{
+			performLionCourage( stage, battle, actor, target, @() action.impact = true, true );
+		}catch( ex ){}
+		action.done = true;
+	} );
+	while( ::rpgstage == stage && stage.battle == battle && !action.impact && !action.done ) sleep( 16 );
+	return action.impact;
+};

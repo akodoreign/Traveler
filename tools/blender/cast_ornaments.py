@@ -5,9 +5,9 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import bpy
 import chara3d as c
 from chara3d_native import save_piece
-import bpy
 
 BRASS = (195, 147, 70)
 DARK = (74, 55, 43)
@@ -123,35 +123,46 @@ def mask(s,spec):
     s.zoom=None
 
 
-def costume(s, spec, role):
+def costume(s, spec, role, head_only=False):
     colors = {
-        "shinobi": ((48,44,54),(44,41,53),(119,55,74)),
-        "maid": ((89,97,112),(62,70,81),(234,220,193)),
-        "fox": ((60,100,78),(46,63,56),(211,156,74)),
-        "soldier": ((89,70,110),(61,58,81),(161,122,73)),
+        "shinobi": ((54,36,61),(36,25,47),(148,52,76)),
+        "maid": ((68,88,112),(43,60,83),(241,224,192)),
+        "fox": ((36,103,70),(23,63,45),(221,159,72)),
+        "soldier": ((93,59,131),(56,36,89),(197,133,69)),
     }
     top, lower, accent = colors[role]
     spec = dict(spec, top=top, lower=lower, accent=accent, cord=accent, collar=accent)
-    c.kimono(s,spec,wide=role in ("fox","maid"))
-    c.hakama(s,spec,short=role=="shinobi")
-    c.obi(s,spec)
-    c.footwear(s,spec)
-    if role == "soldier":
+    if not head_only:
+        c.kimono(s,spec,wide=role in ("fox","maid"))
+        c.hakama(s,spec,short=role=="shinobi")
+        c.obi(s,spec)
+        c.footwear(s,spec)
+    if role == "soldier" and head_only:
         c.helmet(s,dict(spec, iron_cap=True, armor=(91,80,99),band=accent))
-    if role == "maid":
+    if role == "maid" and not head_only:
         # The apron falls forward from the obi and flares over the hakama.
-        rings = [(68.,11.8,6.4),(62.,13.4,7.5),(55.,13.8,9.5),(46.,13.2,11.)]
-        verts = [(x-2*t*t,y,t*z) for y,x,z in rings for t in (-1,-.5,0,.5,1)]
-        faces = [(i,i+1,i+6,i+5) for i in range(15) if i%5!=4]
+        stations = [(46.,13.2,11.),(55.,13.8,9.5),(62.,13.4,7.5),(68.,11.8,6.4)]
+        rings = [(y, *c.profile(stations, y)) for y in c.np.linspace(46,68,18)]
+        width = 21
+        verts = [(x-2*t*t+.37*c.math.cos(15*t)*(68-y)/22,y-.8*t*t,t*z)
+                 for y,x,z in rings for t in c.np.linspace(-1,1,width)]
+        faces = [(i,i+1,i+width+1,i+width) for i in range((len(rings)-1)*width) if i%width!=width-1]
+        s.surface = "linen"
         s.add((verts,faces),accent,[c.torso_w()(y) for x,y,z in verts])
+        s.surface = ""
+    if role == "maid" and head_only:
         s.zoom=c.HEAD
+        s.surface = "linen"
         s.add(c.ellipsoid((-2,118.4,0),(9.6,5.5,9.3),24,12),accent,{"head":1.})
         s.zoom=None
-    if role == "fox":
+        s.surface = ""
+    if role == "fox" and not head_only:
         tail = [((-6,65,0),1.6,1.7),((-10,60,2),2.6,2.7),((-14,54,4),3.8,3.5),
                 ((-19,54,7),3.2,2.9),((-23,58,8),1.9,1.6),((-24,62,8),.15,.16)]
         fur=(161,81,42)
         s.add(c.tube(tail,16),fur,{"pelvis":1.},colours=[fur]*64+[(232,209,173)]*16+[fur,(232,209,173)])
+    if role == "fox" and head_only:
+        fur=(161,81,42)
         c.headband(s,dict(spec,band=(95,58,48)))
         s.zoom=c.HEAD
         for side in (-1,1):
@@ -170,14 +181,19 @@ def main():
     jobs=json.loads((folder/"job.json").read_text())
     bpy.ops.wm.read_factory_settings(use_empty=True)
     rig=c.make_armature(c.rest_frames())
+    from head_surfaces import CLOTH_PATTERNS, HeadSurface, make_textures
+
+    roles = {"cloth", "linen", "iron"}
+    roles.update(entry["spec"].get("pattern") for entry in jobs.values() if entry["spec"].get("pattern") in CLOTH_PATTERNS)
+    detail = HeadSurface(make_textures(folder / "tex", roles))
     for key,job in jobs.items():
         for role,style in job["parts"].items():
             s=c.Skin(job["spec"])
             if role=="ink": tattoo(s,job["spec"],style)
             elif role=="mask": mask(s,job["spec"])
             elif role=="sash": sash(s,job["spec"],style)
-            else: costume(s,job["spec"],role)
-            save_piece(bpy.context.scene,folder,rig,key+"_"+role,s)
+            else: costume(s,job["spec"],style,role.endswith("_head"))
+            save_piece(bpy.context.scene,folder,rig,key+"_"+role,s,surface=detail if any(s.surfaces) else None)
 
 
 if __name__=="__main__":

@@ -1,0 +1,3513 @@
+{
+ "items": {
+  "A173": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true
+  },
+  "A100": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true
+  },
+  "A101": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true
+  },
+  "A108": {
+   "mesh": "A108",
+   "dyed": true,
+   "decal": "A108",
+   "coverCore": true
+  },
+  "A109": {
+   "mesh": "A109",
+   "dyed": true,
+   "decal": "A109",
+   "coverCore": true
+  },
+  "A112": {
+   "mesh": "A112",
+   "dyed": true,
+   "decal": "A112",
+   "coverCore": true
+  },
+  "A116": {
+   "mesh": "A116",
+   "dyed": true,
+   "decal": "A116",
+   "coverCore": true
+  },
+  "A120": {
+   "mesh": "A120",
+   "dyed": true,
+   "decal": "A120",
+   "coverCore": true
+  },
+  "A124": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true
+  },
+  "A127": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true
+  },
+  "A128": {
+   "mesh": "A128",
+   "dyed": true,
+   "decal": "A128",
+   "coverCore": true
+  },
+  "A135": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true
+  },
+  "A153": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true
+  },
+  "A155": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true
+  },
+  "A111": {
+   "mesh": "A111",
+   "dyed": true,
+   "decal": "A111",
+   "coverCore": true
+  },
+  "A140": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true
+  },
+  "A141": {
+   "mesh": "A141",
+   "dyed": true,
+   "decal": "A141",
+   "coverCore": true
+  },
+  "A159": {
+   "mesh": "A159",
+   "dyed": true,
+   "decal": "A159",
+   "coverCore": true
+  },
+  "A167": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true
+  },
+  "A168": {
+   "mesh": "A168",
+   "dyed": true,
+   "decal": "A168",
+   "coverCore": true
+  },
+  "A166": {
+   "mesh": "A166",
+   "dyed": true,
+   "decal": "A166",
+   "coverCore": true
+  },
+  "A102": {
+   "mesh": "A102",
+   "dyed": true,
+   "decal": "A102"
+  },
+  "A103": {
+   "mesh": "A103",
+   "dyed": true,
+   "decal": "A103"
+  },
+  "A110": {
+   "mesh": "A110_cords",
+   "dyed": true,
+   "decal": "A110",
+   "palette": "A110"
+  },
+  "A113": {
+   "mesh": "A113",
+   "dyed": true,
+   "decal": "A113"
+  },
+  "A143": {
+   "mesh": "A143",
+   "dyed": true,
+   "decal": "A143"
+  },
+  "A160": {
+   "mesh": "A160_cords",
+   "dyed": true,
+   "decal": "A160",
+   "palette": "A160"
+  },
+  "A170": {
+   "mesh": "A170",
+   "dyed": true,
+   "decal": "A170"
+  },
+  "A171": {
+   "mesh": "A171",
+   "dyed": true,
+   "decal": "A171"
+  },
+  "A172": {
+   "mesh": "A172",
+   "dyed": true,
+   "decal": "A172"
+  },
+  "A114": {
+   "mesh": "A114",
+   "dyed": true,
+   "decal": "A114"
+  },
+  "A145": {
+   "mesh": "A145",
+   "dyed": true,
+   "decal": "A145"
+  },
+  "A146": {
+   "mesh": "A146",
+   "dyed": true,
+   "decal": "A146"
+  },
+  "A147": {
+   "mesh": "A147",
+   "dyed": true,
+   "decal": "A147"
+  },
+  "A148": {
+   "mesh": "A148",
+   "dyed": true,
+   "decal": "A148"
+  },
+  "A149": {
+   "mesh": "A149",
+   "dyed": true,
+   "decal": "A149"
+  },
+  "A150": {
+   "mesh": "A150",
+   "dyed": true,
+   "decal": "A150"
+  },
+  "A151": {
+   "mesh": "A151",
+   "dyed": true,
+   "decal": "A151"
+  },
+  "A174": {
+   "mesh": "A174",
+   "dyed": true,
+   "decal": "A174"
+  },
+  "A125": {
+   "mesh": "A125",
+   "dyed": true,
+   "decal": "A125"
+  }
+ },
+ "defaults": {
+  "trav_rensei": {
+   "mesh": "rensei_robe",
+   "decal": "A111",
+   "coverCore": true,
+   "starterItem": "A100",
+   "clan": "crane",
+   "showThroat": true
+  },
+  "side_takeo": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_h_agasha": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_kusuri": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_ijako": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_nishi": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_seoko": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_tatanko": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_hojato": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_hojiki": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_kafu": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_kafu_nosword": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_ryuzoji": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_shogen": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_toturi": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_asahina": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_palecourtier": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_shiruko": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_atsuki": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_bayushikei": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_courier": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_depura": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_eriko": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_hagane": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_sailor": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_uji": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_courtier": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_dojiaoi": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_dojipoet": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_empress": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_himeko": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_miyako": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_sanae": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_tomeko": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_hayato": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_kage_ch3": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_keiyomi": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_ikomabard": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_tadaka": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_shahai": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_daiyu": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_h_iuchi": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_iuchifarmer": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_karasu": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_kurosho": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_mami": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_gesshin": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_h_engineer": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_h_sapper": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_kyumi": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_miyoshi": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_yuko": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_adoru": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_kakita_sensei": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_kumpei": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_masanori": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_mizochi": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_morishu": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_yasurugi": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_kenshai": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_togawa": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_oharu": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_kitsukiclerk": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_seigen": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_yasu": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_h_kuni": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_miyubi": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_akuja": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_h_witch": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_taira": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_kiku": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_drummer": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_h_guide": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_hikaru": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_h_moshi": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_miyahana": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_oshito": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_tsune": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_mayumi": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_norie": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_osuko": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_shiko": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_h_stagehand": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_noburo": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_nihime": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_shinobu": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_bantaro": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_onaka": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_soshi": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_soshienvoy": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_h_tamori": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_haku": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_tamorimonk": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_h_bomonk": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_outfitter": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_sumi": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_togashi": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_h_tsuruchi": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_actor_b": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_akari": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_campfollower": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_fishseller": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_fishwife": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_fumi": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_grandmother": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_h_herbalist": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_h_jadeseller": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_h_kitsune": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_hagi": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_hana": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_herald": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_herbseller": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_hostess": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_incense": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_innkeeper": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_jadeclerk": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_kitchengirl": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_kiyo": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_makeup": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_megu": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_miko": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_mitsue_maid": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_muika": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "eta"
+  },
+  "side_nashiko": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_netmender": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_oldwoman": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_oyuki": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "eta"
+  },
+  "side_pilgrimgirl": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_rika": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_sariko": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_shrinekeeper": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_twin": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_umebaa": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "eta"
+  },
+  "side_widow": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_youngsayo": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_abbot": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_actor_a": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_actor_c": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_akuro": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_bargeman": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_beggar": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "eta"
+  },
+  "side_beggarmonk": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_cartdriver": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_censorclerk": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_charmseller": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_citizen": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_crabboy": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_diver": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_doorman": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_drunkactor": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_drunksailor": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_ebisu": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "eta"
+  },
+  "side_ferryman": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_ff_boatman": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_ff_fisherman": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_gaijintrader": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_gatekeeper": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_gochu": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_gonbei": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_gonta": {
+   "mesh": "A108",
+   "dyed": true,
+   "decal": "A108",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_gontaboy": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_h_fisherman": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_h_goatherd": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_h_hanabi": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_h_hunter": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_h_lamplighter": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_h_suzume": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_h_thundermonk": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_h_windpriest": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_h_yojimbo": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_hidden1": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_hidden2": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_hiro": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "eta"
+  },
+  "side_hitoro": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_imuro": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_itami": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_jinnai": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_kagemaro": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_karo": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_katsuo": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_kitechild": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_kitsuneboy": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_kosai": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "side_koshi": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_mamoru": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_mantisenvoy": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "side_maskmaker": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_mcaptain": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "side_merchant": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_mobleader": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_mosuke": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_muledriver": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_munashii": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_musician": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_naohida": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_oldpilgrim": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_pedlar": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_pigeonkeeper": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_pilgrim": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_pilgrimagent": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_porter": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_riichi": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_roninchef": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_rteacher": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_sabu": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_sakeseller": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_senior_student": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_servant": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_shipmaster": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_shrinepeasant": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_smithboy": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_snakeelder": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_sonoservant": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_swordsmith": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_tbeggar": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "eta"
+  },
+  "side_thundermonk": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_tokubei": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_torishigawa": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_veteran": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_yodo": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_youth": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_kurako": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_kanbe": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_kanemori": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_kasamashi": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_tessai": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_meyako": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_shigeru": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_sakura": {
+   "mesh": "A116",
+   "dyed": true,
+   "decal": "A116",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_goro": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_h_scout": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "trav_natsuko": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab",
+   "starterItem": "A173",
+   "palette": "trav_natsuko_A173",
+   "sheet": "tex/marks/trav_natsuko_A173.png"
+  },
+  "side_ryoichi": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_fujio": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_momo": {
+   "mesh": "A153",
+   "dyed": true,
+   "decal": "A153",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_akodorin": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_goroso": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_gusai": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_hiruto": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_ozaki": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_tama": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_ukita": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_bayushiguard": {
+   "mesh": "A120",
+   "dyed": true,
+   "decal": "A120",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_shoju": {
+   "mesh": "A120",
+   "dyed": true,
+   "decal": "A120",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_atsuko": {
+   "mesh": "A109",
+   "dyed": true,
+   "decal": "A109",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_craneguard": {
+   "mesh": "A109",
+   "dyed": true,
+   "decal": "A109",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_daidoji_general": {
+   "mesh": "A109",
+   "dyed": true,
+   "decal": "A109",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_siko": {
+   "mesh": "A109",
+   "dyed": true,
+   "decal": "A109",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_seikidera": {
+   "mesh": "A109",
+   "dyed": true,
+   "decal": "A109",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_sachiko": {
+   "mesh": "A112",
+   "dyed": true,
+   "decal": "A112",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_chuto": {
+   "mesh": "A112",
+   "dyed": true,
+   "decal": "A112",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_dorin": {
+   "mesh": "A112",
+   "dyed": true,
+   "decal": "A112",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_h_jadearcher": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_h_veteran": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_hidaren": {
+   "mesh": "A112",
+   "dyed": true,
+   "decal": "A112",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_kisada": {
+   "mesh": "A112",
+   "dyed": true,
+   "decal": "A112",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_masakazu": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_taneo": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_tomoe": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_yakamo": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_kage": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_sadanobu": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_yoshi": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_naname": {
+   "mesh": "A112",
+   "dyed": true,
+   "decal": "A112",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_takakana": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_yutaka": {
+   "mesh": "A112",
+   "dyed": true,
+   "decal": "A112",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_hanae": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_hisae": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_matsuduel": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_nagai": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_rokuro": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_noboru": {
+   "mesh": "A116",
+   "dyed": true,
+   "decal": "A116",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_ichihito": {
+   "mesh": "A120",
+   "dyed": true,
+   "decal": "A120",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_soshiofficer": {
+   "mesh": "A120",
+   "dyed": true,
+   "decal": "A120",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_chihaya": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_craneduellist": {
+   "mesh": "A109",
+   "dyed": true,
+   "decal": "A109",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "side_h_archer": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_h_shrinearcher": {
+   "mesh": "A116",
+   "dyed": true,
+   "decal": "A116",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_h_sparrow": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_hyobe": {
+   "mesh": "A108",
+   "dyed": true,
+   "decal": "A108",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "side_lionrider": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_lionsergeant": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_quartermaster": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_ryohei": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_sergeant": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_taxman": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "side_townguard": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "side_uyojimbo": {
+   "mesh": "A120",
+   "dyed": true,
+   "decal": "A120",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_yosuke": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_ashimita": {
+   "mesh": "A116",
+   "dyed": true,
+   "decal": "A116",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "trav_mitsue": {
+   "mesh": "mitsue_shinobi",
+   "sheet": "decal/mitsue_shinobi.png",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "side_mai": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "EP115": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP122": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP126": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "EP127": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "EP128": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP129": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP130": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP131": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "EP133": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP135": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "EP137": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP138": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "EP144": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "EP145": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "EP147": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "EP150": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP156": {
+   "mesh": "A155",
+   "dyed": true,
+   "decal": "A155",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "EP176": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP178": {
+   "mesh": "A112",
+   "dyed": true,
+   "decal": "A112",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "EP190": {
+   "mesh": "A127",
+   "dyed": true,
+   "decal": "A127",
+   "coverCore": true,
+   "clan": "scorpion"
+  },
+  "EP400": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP401": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP402": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP403": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP404": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP405": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP406": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP407": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP408": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP409": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP410": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP411": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP412": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP413": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP414": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP415": {
+   "mesh": "A112",
+   "dyed": true,
+   "decal": "A112",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "EP416": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP417": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP420": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP421": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP422": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP423": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP424": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP425": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP426": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP427": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP428": {
+   "mesh": "A116",
+   "dyed": true,
+   "decal": "A116",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "EP429": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP430": {
+   "mesh": "A109",
+   "dyed": true,
+   "decal": "A109",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "EP431": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "EP432": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP433": {
+   "mesh": "A173",
+   "dyed": true,
+   "decal": "A173",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "EP434": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP500": {
+   "mesh": "A124",
+   "dyed": true,
+   "decal": "A124",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "EP501": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP502": {
+   "mesh": "A109",
+   "dyed": true,
+   "decal": "A109",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "EP503": {
+   "mesh": "A109",
+   "dyed": true,
+   "decal": "A109",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "EP504": {
+   "mesh": "A116",
+   "dyed": true,
+   "decal": "A116",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "EP505": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP506": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP507": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP508": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP509": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP510": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP511": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP512": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP513": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP514": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP515": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP516": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP517": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP518": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP519": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP718": {
+   "mesh": "A116",
+   "dyed": true,
+   "decal": "A116",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "EP742": {
+   "mesh": "A108",
+   "dyed": true,
+   "decal": "A108",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP834": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "EP839": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "EP850": {
+   "mesh": "A112",
+   "dyed": true,
+   "decal": "A112",
+   "coverCore": true,
+   "clan": "crab"
+  },
+  "EP853": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "EP854": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "EP859": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "EP939": {
+   "mesh": "A109",
+   "dyed": true,
+   "decal": "A109",
+   "coverCore": true,
+   "clan": "crane"
+  },
+  "EP1033": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "peasant"
+  },
+  "EP1300": {
+   "mesh": "A135",
+   "dyed": true,
+   "decal": "A135",
+   "coverCore": true,
+   "clan": "lion"
+  },
+  "EP1301": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP1302": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP1303": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP1304": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP2603": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP2604": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP2607": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP2609": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP2611": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP2613": {
+   "mesh": "A101",
+   "dyed": true,
+   "decal": "A101",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP2622": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP2623": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "EP2637": {
+   "mesh": "A100",
+   "dyed": true,
+   "decal": "A100",
+   "coverCore": true,
+   "clan": "ronin"
+  },
+  "side_kuhime": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_keiki": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_akiko": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_kasiko": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_mieko": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_mutsuye": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_uona": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_acolyte": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_h_windisawa": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_hoju": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_kamasari": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_rujo": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_sanro": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_yachiko": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_hatomu": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_shinken": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_satomi": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_ryozo": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_katsutoshi": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_tsuhime": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_censormonk": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_clerk": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_healer": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_kusada": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_magistrate": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_oracle": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_priest": {
+   "mesh": "A167",
+   "dyed": true,
+   "decal": "A167",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_michio": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "side_xue": {
+   "mesh": "A159",
+   "dyed": true,
+   "decal": "A159",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_hiroichi": {
+   "mesh": "A159",
+   "dyed": true,
+   "decal": "A159",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_iuchisoldier": {
+   "mesh": "A159",
+   "dyed": true,
+   "decal": "A159",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_takanobu": {
+   "mesh": "A159",
+   "dyed": true,
+   "decal": "A159",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_h_mirumoto": {
+   "mesh": "A141",
+   "dyed": true,
+   "decal": "A141",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_h_yari": {
+   "mesh": "A141",
+   "dyed": true,
+   "decal": "A141",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_mirumotosen": {
+   "mesh": "A141",
+   "dyed": true,
+   "decal": "A141",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_mirumotosentry": {
+   "mesh": "A141",
+   "dyed": true,
+   "decal": "A141",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_tabezu": {
+   "mesh": "A141",
+   "dyed": true,
+   "decal": "A141",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_tsukaru": {
+   "mesh": "A141",
+   "dyed": true,
+   "decal": "A141",
+   "coverCore": true,
+   "clan": "dragon"
+  },
+  "side_benjiro": {
+   "mesh": "A159",
+   "dyed": true,
+   "decal": "A159",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_h_moto": {
+   "mesh": "A159",
+   "dyed": true,
+   "decal": "A159",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_zhang": {
+   "mesh": "A159",
+   "dyed": true,
+   "decal": "A159",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_seppunguard": {
+   "mesh": "A166",
+   "dyed": true,
+   "decal": "A166",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_ushimo": {
+   "mesh": "A166",
+   "dyed": true,
+   "decal": "A166",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "side_ryuko": {
+   "mesh": "A159",
+   "dyed": true,
+   "decal": "A159",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_h_shinjo": {
+   "mesh": "A159",
+   "dyed": true,
+   "decal": "A159",
+   "coverCore": true,
+   "clan": "unicorn"
+  },
+  "side_h_ferryarcher": {
+   "mesh": "A168",
+   "dyed": true,
+   "decal": "A168",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "side_iami": {
+   "mesh": "A168",
+   "dyed": true,
+   "decal": "A168",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "side_mbushi": {
+   "mesh": "A168",
+   "dyed": true,
+   "decal": "A168",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "side_tadayasu": {
+   "mesh": "A168",
+   "dyed": true,
+   "decal": "A168",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "side_rui": {
+   "mesh": "A168",
+   "dyed": true,
+   "decal": "A168",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "side_yoritomo": {
+   "mesh": "A168",
+   "dyed": true,
+   "decal": "A168",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "EP142": {
+   "mesh": "A140",
+   "dyed": true,
+   "decal": "A140",
+   "coverCore": true,
+   "clan": "phoenix"
+  },
+  "EP143": {
+   "mesh": "A166",
+   "dyed": true,
+   "decal": "A166",
+   "coverCore": true,
+   "clan": "imperial"
+  },
+  "EP418": {
+   "mesh": "A168",
+   "dyed": true,
+   "decal": "A168",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "EP419": {
+   "mesh": "A168",
+   "dyed": true,
+   "decal": "A168",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "EP897": {
+   "mesh": "A168",
+   "dyed": true,
+   "decal": "A168",
+   "coverCore": true,
+   "clan": "mantis"
+  },
+  "trav_gendo": {
+   "mesh": "trav_gendo_signature",
+   "decal": "A100",
+   "starterItem": "A100",
+   "coverCore": true
+  },
+  "trav_shizue": {
+   "mesh": "trav_shizue_signature",
+   "decal": "A101",
+   "starterItem": "A101",
+   "coverCore": true
+  },
+  "trav_haruki": {
+   "mesh": "trav_haruki_signature",
+   "decal": "A111",
+   "starterItem": "A111",
+   "coverCore": true
+  },
+  "trav_tamotsu": {
+   "mesh": "trav_tamotsu_signature",
+   "decal": "A155",
+   "starterItem": "A155",
+   "coverCore": true
+  },
+  "trav_sayo": {
+   "mesh": "trav_sayo_signature",
+   "decal": "A100",
+   "starterItem": "A100",
+   "coverCore": true
+  },
+  "side_yosai": {
+   "mesh": "side_yosai_signature",
+   "decal": "A111",
+   "starterItem": "A111",
+   "coverCore": false
+  }
+ },
+ "costumes": {
+  "A180": {
+   "mesh": "mitsue_shinobi",
+   "sheet": "decal/mitsue_shinobi.png",
+   "coverCore": true
+  },
+  "A181": {
+   "mesh": "mitsue_maid",
+   "sheet": "decal/mitsue_maid.png",
+   "coverCore": true
+  },
+  "A182": {
+   "mesh": "mitsue_fox",
+   "sheet": "decal/mitsue_fox.png",
+   "coverCore": true
+  },
+  "A183": {
+   "mesh": "mitsue_soldier",
+   "sheet": "decal/mitsue_soldier.png",
+   "coverCore": true
+  },
+  "A189": {
+   "mesh": "mitsue_clerk",
+   "sheet": "decal/mitsue_clerk.png",
+   "coverCore": true
+  },
+  "A190": {
+   "mesh": "mitsue_pilgrim",
+   "sheet": "decal/mitsue_pilgrim.png",
+   "coverCore": true
+  },
+  "A184": {
+   "mesh": "mitsue_shinobi_r",
+   "sheet": "decal/mitsue_shinobi_r.png",
+   "coverCore": true
+  },
+  "A185": {
+   "mesh": "mitsue_maid_r",
+   "sheet": "decal/mitsue_maid_r.png",
+   "coverCore": true
+  },
+  "A186": {
+   "mesh": "mitsue_fox_r",
+   "sheet": "decal/mitsue_fox_r.png",
+   "coverCore": true
+  },
+  "A187": {
+   "mesh": "mitsue_soldier_r",
+   "sheet": "decal/mitsue_soldier_r.png",
+   "coverCore": true
+  },
+  "A191": {
+   "mesh": "mitsue_clerk_r",
+   "sheet": "decal/mitsue_clerk_r.png",
+   "coverCore": true
+  },
+  "A192": {
+   "mesh": "mitsue_pilgrim_r",
+   "sheet": "decal/mitsue_pilgrim_r.png",
+   "coverCore": true
+  }
+ },
+ "costumeHeads": {
+  "maid": {
+   "mesh": "mitsue_maid_hat"
+  },
+  "fox": {
+   "mesh": "mitsue_fox_hat"
+  },
+  "soldier": {
+   "mesh": "trav_mitsue_soldier_hat_jaw_ties",
+   "face": "trav_mitsue_portrait_face_soldier_jaw_ties"
+  },
+  "clerk": {
+   "mesh": "mitsue_clerk_hat"
+  },
+  "pilgrim": {
+   "mesh": "mitsue_pilgrim_hat"
+  }
+ },
+ "costumeAccessories": {
+  "shinobi_mask": {
+   "mesh": "mitsue_shinobi_mask"
+  },
+  "fox": {
+   "mesh": "mitsue_fox_tail"
+  }
+ },
+ "headFits": {
+  "trav_rensei:A170": {
+   "mesh": "trav_rensei_A170",
+   "dyed": true,
+   "palette": "A170",
+   "decal": "A170"
+  },
+  "trav_sayo:A102": {
+   "mesh": "trav_sayo_A102",
+   "dyed": true,
+   "palette": "A102",
+   "decal": "A102"
+  },
+  "trav_natsuko:A110": {
+   "mesh": "trav_natsuko_A110_cords",
+   "dyed": true,
+   "decal": "A110",
+   "palette": "trav_natsuko_A110",
+   "sheet": "tex/marks/trav_natsuko_A110.png",
+   "face": "trav_natsuko_portrait_face_A110"
+  },
+  "trav_gendo:A110": {
+   "mesh": "trav_gendo_A110_cords",
+   "dyed": true,
+   "decal": "A110",
+   "palette": "A110"
+  },
+  "trav_rensei:A160": {
+   "mesh": "A160_cords",
+   "dyed": true,
+   "decal": "A160",
+   "palette": "A160",
+   "face": "trav_rensei_portrait_face_A160_trim"
+  },
+  "trav_shizue:A110": {
+   "mesh": "A110_cords",
+   "dyed": true,
+   "decal": "A110",
+   "palette": "A110",
+   "face": "trav_shizue_portrait_face_A110"
+  }
+ }
+}

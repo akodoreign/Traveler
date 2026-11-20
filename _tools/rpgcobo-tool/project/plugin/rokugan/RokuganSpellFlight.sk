@@ -1,0 +1,140 @@
+// World-space spell flights. Stock attackAction still owns the hit and damage.
+import DamageResultType;
+
+local voidBank = "/resource/native_chara/void_bolt_release.mot";
+local releaseId = "void_bolt_release";
+local pole = { bo=true, shakujo=true, yari=true, naginata=true };
+local style = {
+	core="/resource/efx/rt/void_bolt_core.ptd",
+	wake="/resource/efx/rt/void_bolt_wake.ptd",
+	impact="/resource/efx/rt/void_bolt_impact.ptd",
+	charge=185.0, travel=480.0, impactWait=650
+};
+
+::Rokugan.addSpellFlightClips <- function( actor, key ){
+	if( key == "trav_haruki" && pole[actor.nativeWeaponKind] && ::getResource( voidBank ) )
+		actor.animemap[releaseId] <- { st=0, en=24, spd=30.0, loop=false, replay=true };
+};
+
+::Rokugan.spellFlightMotion <- function( clip ){
+	if( clip == releaseId && ::getResource( voidBank ) ) return ::getMotionData( ::getResource( voidBank ) );
+	return null;
+};
+
+::Rokugan.registerCritical( "P104", "void_bolt", "critical", {clip=releaseId, speed=1.0} );
+::Rokugan.registerCritical( "P104", "void_bolt", "void_critical", {clip=releaseId, speed=1.0} );
+
+local smooth = function( t ){
+	t = Math.clamp( t, 0.0, 1.0 );
+	return t*t*(3.0-2.0*t);
+};
+
+local makeMark = function( stage, path, point, size ){
+	local fx = SK3DEffect( path );
+	fx.efx = { efx=path };
+	fx.pos( point );
+	fx.scale( size );
+	stage.scn.addObject( fx );
+	fx.startParticle();
+	return fx;
+};
+
+local handPoint = function( actor ){
+	local body = actor["nativeBody"];
+	if( body ){
+		local weapon = actor["nativeWeaponKind"];
+		local far = pole[weapon] || weapon == "yumi" || weapon == "musket" || weapon == "tetsubo";
+		local finger = body.findBone( far ? "indexF2" : "indexN2" );
+		local hand = finger || body.findBone( far ? "handF" : "handN" );
+		if( hand ) return hand.mat.getTranslation( Vector3D() ).transform( body.gmat );
+	}
+	return Vector3D( actor.pos ).add( 0, actor.bnd.y + .30, 0 );
+};
+
+local flightPoint = function( origin, target, cross, lift, p ){
+	local w = p*(1.0-p)*4.0;
+	return Vector3D( origin ).add( Vector3D( target ).sub( origin ).scale( p ) )
+		.add( Vector3D( cross ).scale( .31*w ) ).add( 0, lift*w, 0 );
+};
+
+local onStage = function( stage, battle ){
+	return ::rpgstage == stage && stage.battle == battle;
+};
+
+::Rokugan.playVoidBolt <- function( actor, target, dmg ){
+	local stage = ::rpgstage, battle = stage["battle"];
+	if( !battle || !actor || !target || !dmg || dmg.skip ||
+		!::getResource( style.core ) || !::getResource( style.wake ) || !::getResource( style.impact ) ) return;
+	local core = null, wakes = [], layer = null, startedLayer = false, arrived = false;
+	local aimHeight = Math.clamp( target.bnd.y, .34, 2.45 );
+	local goal = Vector3D( 0, aimHeight, 0 ).transform( target.gmat );
+	try{
+		local inverse = Matrix();
+		stage.cam.viewmat.invert34u( inverse );
+		local cross = Vector3D( 1, 0, 0 ).transform0( inverse ).scale( 1, 0, 1 ).normalize();
+		if( dmg.miss ) goal.add( Vector3D( cross ).scale( .36 ) ).add( 0, .64, 0 );
+
+		local current = actor.animlayers["layers"][0];
+		if( current && current["id"] == releaseId ){
+			layer = current;
+		}else if( actor["animemap"] && actor.animemap[releaseId] ){
+			layer = actor.anime2( #{ id="void_bolt_release" } );
+			startedLayer = !!layer;
+		}
+		local initial = skGetTime(), nextWake = 0.0, origin = null, lift = 0.0;
+		while( onStage( stage, battle ) ){
+			local elapsed = skGetTime()-initial;
+			if( elapsed < style.charge ){
+				local w = smooth( elapsed / style.charge );
+				if( !core ) core = makeMark( stage, style.core, handPoint( actor ), .29 );
+				core.pos( handPoint( actor ) );
+				core.scale( .23 + .46*w );
+				core.matdirty = true;
+				if( elapsed >= 62.0 && elapsed >= nextWake ){
+					local a = elapsed * .047;
+					local wisp = Vector3D( core.pos ).add( Vector3D( cross ).scale( .22*Math.cos( a ) ) )
+						.add( 0, .17*Math.sin( a ), 0 );
+					wakes .. makeMark( stage, style.wake, wisp, .39 );
+					nextWake = elapsed + 51.0;
+				}
+				sleep( 16 );
+				continue;
+			}
+			if( !origin ){
+				origin = handPoint( actor );
+				lift = Math.min( 1.05, .31 + .11 * Vector3D( goal ).sub( origin ).length() );
+				nextWake = elapsed;
+			}
+			local t = Math.clamp( (elapsed-style.charge)/style.travel, 0.0, 1.0 );
+			local progress = t * (.78 + .22*t);
+			local mark = flightPoint( origin, goal, cross, lift, progress );
+			if( !core ) core = makeMark( stage, style.core, mark, .86 );
+			core.pos( mark );
+			core.scale( .88 + .18*Math.sin( t*Math.PI ) );
+			core.matdirty = true;
+			if( t >= 1.0 ){
+				arrived = true;
+				break;
+			}
+			if( elapsed >= nextWake ){
+				local tail = flightPoint( origin, goal, cross, lift, Math.max( .0, progress-.035 ) );
+				wakes .. makeMark( stage, style.wake, tail, 1.00 );
+				// An alternating offset catches the curve in close and distant views.
+				tail = Vector3D( tail ).add( 0, .125*Math.cos( t * 3.0*Math.PI ), 0 );
+				wakes .. makeMark( stage, style.wake, tail, .69 );
+				nextWake = elapsed + 30.0;
+			}
+			sleep( 16 );
+		}
+	}catch( ex ){
+		// The engine still applies the original attack if presentation cannot finish.
+	}
+	if( core && core.alive ) core.kill();
+	local active = onStage( stage, battle );
+	if( !active ) foreach( wake in wakes ) if( wake.alive ) wake.kill();
+	if( active && startedLayer && layer && actor.animlayers["layers"][0] == layer )
+		actor.anime2( #{ id="stand" } );
+	// Retain history and rules. Only a landed bolt gets our matching 650 ms impact.
+	if( active && arrived && !("hitefx" in dmg.ovctx) && (dmg.result == DMG_HIT || dmg.result == DMG_CRITICAL) )
+		dmg.ovctx.hitefx <- { efx=style.impact, place=0, pos=[0, aimHeight, 0], scale=1.0, waittime=style.impactWait };
+};

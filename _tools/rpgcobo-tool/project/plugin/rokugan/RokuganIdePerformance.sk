@@ -1,0 +1,55 @@
+// Native performances for Ide. The rank and skill handlers own all gameplay.
+local heartBank = "/resource/native_chara/heart_listens.mot";
+local heartPath = "/resource/efx/rt/ide_heart_listens.ptd";
+
+::Rokugan.addIdePerformanceClips <- function( actor, key){
+	if( key != "trav_tamotsu" || !::getResource( heartBank)) return;
+	local st = actor.nativeWeaponKind == "yumi" ? 0 : 43;
+	actor.animemap["heart_listens"] <- { st=st, en=st+42, spd=30.0, loop=false, replay=true };
+};
+
+::Rokugan.idePerformanceMotion <- function( clip){
+	if( clip == "heart_listens" && ::getResource( heartBank))
+		return ::getMotionData( ::getResource( heartBank));
+	return null;
+};
+
+local heartFloat = function( stage, battle, actor){
+	local effect = null, layer = null, start = skGetTime();
+	try{
+		layer = actor.anime2( #{ id="heart_listens" });
+		while( ::rpgstage == stage && stage.battle == battle && !actor.rpgobj.isDead()){
+			local elapsed = skGetTime() - start;
+			if( elapsed >= 1400.0) break;
+			if( elapsed >= 280.0 && !effect && ::getResource( heartPath)){
+				effect = SK3DEffect( heartPath );
+				effect.efx = #{ efx="/resource/efx/rt/ide_heart_listens.ptd" };
+				effect.pos( Vector3D( actor.pos ).add( 0, actor.bnd.y + actor.bnd.s * 0.51, 0 ) );
+				effect.scale( 0.78 );
+				stage.scn.addObject( effect );
+				effect.startParticle();
+			}
+			if( effect ){
+				local t = Math.clamp( (elapsed - 280.0) / 1050.0, 0.0, 1.0 );
+				local rise = 1.0 - (1.0 - t) * (1.0 - t);
+				effect.pos( Vector3D( actor.pos ).add( 0, actor.bnd.y + actor.bnd.s * 0.51 + 0.96 * rise, 0 ) );
+				effect.scale( 0.78 + 0.21 * rise );
+				effect.matdirty = true;
+			}
+			sleep( 16 );
+		}
+	}catch( ex ){
+		// A presentation fault cannot interrupt the battle or the reveal.
+	}
+	if( effect ) effect.kill();
+	if( layer && ::rpgstage == stage && stage.battle == battle && !actor.rpgobj.isDead() &&
+		actor.animlayers.layers[0] == layer ) actor.anime2( #{ id="stand" } );
+};
+
+::Rokugan.heartListens <- function( chr ){
+	local stage = ::rpgstage, battle = stage["battle"];
+	if( !battle || chr.dataid != "P106" ) return;
+	local actor = battle.getChara3D( chr );
+	if( !actor || actor["nativeKey"] != "trav_tamotsu" ) return;
+	stage.subthread( @() heartFloat( stage, battle, actor ) );
+};

@@ -1,0 +1,44 @@
+{
+  "key": "side_eriko_portrait_face",
+  "source": "traveler_head_side_eriko_00001_.glb",
+  "scale": 15.2,
+  "anchor": [
+    0.165,
+    0.044,
+    -0.94
+  ],
+  "target": [
+    0.17,
+    0.005,
+    99.2
+  ],
+  "trim": 98.4,
+  "features": {
+    "eyes": [
+      [
+        192,
+        243,
+        0.11
+      ],
+      [
+        302,
+        242,
+        -0.13
+      ]
+    ],
+    "brows": [
+      [
+        191,
+        214
+      ],
+      [
+        298,
+        215
+      ]
+    ],
+    "mouth": [
+      245,
+      320
+    ]
+  }
+}

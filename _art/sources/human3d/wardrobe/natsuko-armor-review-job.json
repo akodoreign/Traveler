@@ -1,0 +1,103 @@
+{
+  "out": "generated-wardrobe",
+  "body_fit": "../body_fits.json",
+  "outfits": [
+    {
+      "key": "A173",
+      "fit": "female",
+      "decal": "A173",
+      "armor": true,
+      "source": "A173_source.glb",
+      "fit_overrides": {
+        "torso_width": 88,
+        "depth_scale": 83,
+        "limb_width": 94,
+        "leg_width": 85,
+        "arm": [
+          [
+            0.45,
+            0.277,
+            0.017
+          ],
+          [
+            0.548,
+            0.268,
+            0.021
+          ],
+          [
+            0.579,
+            0.251,
+            0.031
+          ],
+          [
+            0.762,
+            0.174,
+            0.036
+          ],
+          [
+            0.889,
+            0.12,
+            0.046
+          ]
+        ],
+        "arm_floor": 0.548,
+        "arm_gaps": [
+          [
+            0.48,
+            0.201
+          ],
+          [
+            0.56,
+            0.168
+          ],
+          [
+            0.64,
+            0.146
+          ],
+          [
+            0.73,
+            0.116
+          ],
+          [
+            0.83,
+            0.096
+          ],
+          [
+            0.91,
+            0.105
+          ]
+        ]
+      },
+      "source_roles": {
+        "top": [
+          40,
+          93,
+          123
+        ],
+        "lower": [
+          24,
+          33,
+          54
+        ],
+        "accent": [
+          185,
+          40,
+          21
+        ],
+        "armor": [
+          62,
+          68,
+          78
+        ],
+        "lace": [
+          248,
+          66,
+          28
+        ]
+      },
+      "follow_arm_surface": true,
+      "rigid_plates": true
+    }
+  ],
+  "body_pack": "../body-stage"
+}

@@ -23842,9 +23842,9 @@
     "replay": true
    }
   ],
-  "scale": 0.019,
-  "height": 1.1,
-  "radius": 0.63
+  "scale": 0.0095,
+  "height": 0.55,
+  "radius": 0.315
  },
  "EP500": {
   "animap": [
@@ -37432,5 +37432,371 @@
   "height": 1.54,
   "radius": 0.47,
   "human": true
+ },
+ "EP2638": {
+  "animap": [
+   {
+    "id": "stand",
+    "st": 0,
+    "en": 8,
+    "spd": 8,
+    "loop": true,
+    "replay": false
+   },
+   {
+    "id": "fight",
+    "st": 10,
+    "en": 11,
+    "spd": 8,
+    "loop": true,
+    "replay": false
+   },
+   {
+    "id": "walk",
+    "st": 13,
+    "en": 21,
+    "spd": 12,
+    "loop": true,
+    "replay": false
+   },
+   {
+    "id": "attack",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "atk",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "atk_normal",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "slash1",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "punch1",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "stick1",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "bow1",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "blast1",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "magic",
+    "st": 31,
+    "en": 36,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "cast",
+    "st": 31,
+    "en": 36,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "magic1",
+    "st": 31,
+    "en": 36,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "spell",
+    "st": 31,
+    "en": 36,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "damage",
+    "st": 38,
+    "en": 41,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "hurt",
+    "st": 38,
+    "en": 41,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "pain",
+    "st": 38,
+    "en": 41,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "guard",
+    "st": 43,
+    "en": 45,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "dead",
+    "st": 47,
+    "en": 52,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "ko",
+    "st": 47,
+    "en": 52,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "down",
+    "st": 47,
+    "en": 52,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   }
+  ],
+  "scale": 0.017,
+  "height": 1.15,
+  "radius": 0.74
+ },
+ "EP2639": {
+  "animap": [
+   {
+    "id": "stand",
+    "st": 0,
+    "en": 8,
+    "spd": 8,
+    "loop": true,
+    "replay": false
+   },
+   {
+    "id": "fight",
+    "st": 10,
+    "en": 11,
+    "spd": 8,
+    "loop": true,
+    "replay": false
+   },
+   {
+    "id": "walk",
+    "st": 13,
+    "en": 21,
+    "spd": 12,
+    "loop": true,
+    "replay": false
+   },
+   {
+    "id": "attack",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "atk",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "atk_normal",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "slash1",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "punch1",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "stick1",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "bow1",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "blast1",
+    "st": 23,
+    "en": 29,
+    "spd": 14,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "magic",
+    "st": 31,
+    "en": 36,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "cast",
+    "st": 31,
+    "en": 36,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "magic1",
+    "st": 31,
+    "en": 36,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "spell",
+    "st": 31,
+    "en": 36,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "damage",
+    "st": 38,
+    "en": 41,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "hurt",
+    "st": 38,
+    "en": 41,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "pain",
+    "st": 38,
+    "en": 41,
+    "spd": 12,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "guard",
+    "st": 43,
+    "en": 45,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "dead",
+    "st": 47,
+    "en": 52,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "ko",
+    "st": 47,
+    "en": 52,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   },
+   {
+    "id": "down",
+    "st": 47,
+    "en": 52,
+    "spd": 10,
+    "loop": false,
+    "replay": true
+   }
+  ],
+  "scale": 0.018,
+  "height": 1.5,
+  "radius": 0.8
  }
 }

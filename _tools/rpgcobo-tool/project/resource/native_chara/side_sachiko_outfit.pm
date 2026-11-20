@@ -6,7 +6,7 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c101726"
+		name = "c0d1624"
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x000103ff
@@ -19,10 +19,23 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c121b2c"
+		name = "c121e32_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x000105ff
+		basecol = 0x000207ff
+		rough = 0.770000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
+		texture2 = null
+	}
+	{
+		name = "c141e2e"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x000205ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -32,10 +45,23 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c142035"
+		name = "c17263f_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x000208ff
+		basecol = 0x01030bff
+		rough = 0.770000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
+		texture2 = null
+	}
+	{
+		name = "c192a47"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x01040fff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -45,49 +71,23 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c162034"
+		name = "c294574_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x010207ff
-		rough = 0.500000
+		basecol = 0x040e2dff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
-		name = "c181f30"
+		name = "c2b3845"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x010206ff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "c1c2942"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x01040dff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "c213556"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x020817ff
+		basecol = 0x05090eff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -110,10 +110,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c404850"
+		name = "c495e74"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x0c0f13ff
+		basecol = 0x101c2dff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -123,23 +123,23 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c6c7886"
+		name = "c94333b_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x26303dff
-		rough = 0.500000
+		basecol = 0x4d070aff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
-		name = "ca83234"
+		name = "cb62d29"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x650707ff
+		basecol = 0x790504ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -162,10 +162,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cd23129"
+		name = "cd34430"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xa60604ff
+		basecol = 0xa80d06ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -175,29 +175,16 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cdf422f"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0xbd0d06ff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "cece8de"
+		name = "cece8de_cloth"
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0xd7cfbbff
-		rough = 0.500000
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 ]

@@ -130,6 +130,16 @@ NEW_FOES = [
      "A plague-dead of the Shadowlands, still carrying what killed it.", "Plague Cloth", "Antidote"),
 ]
 
+RESERVED_FOES = [
+    ("E058", "EP2638", "skull_tide", "Skull Tide", "EP442", 0, 1.0, 1.0, 64, 2.4, 1.25, 5,
+     ["Jade", "Fire"], "A living tide of skulls from the Seas of Shadow. Its dark water carries the drowned.",
+     "Jade Dust", "Antidote"),
+    ("E059", "EP2639", "oni_no_akuma", "Oni no Akuma", "EP134", 0, 1.0, 1.0, 68, 5.0, 1.45, 8,
+     ["Jade", "Earth"], "A general of the Shadowlands with three burning eyes and claws of dark stone.",
+     "Ginseng Tonic", "Fine Sake"),
+]
+NEW_FOES += RESERVED_FOES
+
 # where they live: map -> encounter rows (name, [enemy ids], rate)
 PLACE = {
     "M470": [("Coast road: desperate fishermen", ["E023", "E023"], 20), ("Coast road: a badger", ["E020"], 15)],

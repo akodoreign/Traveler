@@ -1,0 +1,1643 @@
+{
+  "S300": {
+    "phase": "use",
+    "element": "water",
+    "gesture": "offer",
+    "shape": "petals",
+    "body": [
+      0.72,
+      0.1,
+      7,
+      5
+    ],
+    "beats": [
+      0.17,
+      0.45,
+      0.62,
+      0.86
+    ],
+    "mark": 0.62,
+    "start": 0,
+    "finish": 30,
+    "void": [
+      31,
+      61
+    ]
+  },
+  "S301": {
+    "phase": "attack",
+    "element": "water",
+    "gesture": "draw",
+    "shape": "ribbon",
+    "body": [
+      1.02,
+      0.13,
+      11,
+      -9
+    ],
+    "beats": [
+      0.18,
+      0.42,
+      0.55,
+      0.84
+    ],
+    "mark": 0.76,
+    "travel": 380,
+    "start": 62,
+    "finish": 92,
+    "void": [
+      93,
+      123
+    ]
+  },
+  "S303": {
+    "phase": "attack",
+    "element": "lightning",
+    "gesture": "chop",
+    "shape": "fork",
+    "body": [
+      0.94,
+      0.2,
+      18,
+      -13
+    ],
+    "beats": [
+      0.31,
+      0.48,
+      0.56,
+      0.79
+    ],
+    "mark": 0.93,
+    "travel": 235,
+    "start": 124,
+    "finish": 154,
+    "void": [
+      155,
+      185
+    ]
+  },
+  "S304": {
+    "phase": "attack",
+    "element": "air",
+    "gesture": "fan",
+    "shape": "crescents",
+    "body": [
+      0.91,
+      0.16,
+      10,
+      19
+    ],
+    "beats": [
+      0.12,
+      0.43,
+      0.58,
+      0.85
+    ],
+    "mark": 0.92,
+    "travel": 330,
+    "start": 186,
+    "finish": 216,
+    "void": [
+      217,
+      247
+    ]
+  },
+  "S305": {
+    "phase": "use",
+    "element": "earth",
+    "gesture": "plant",
+    "shape": "plates",
+    "body": [
+      0.78,
+      0.24,
+      13,
+      8
+    ],
+    "beats": [
+      0.17,
+      0.49,
+      0.67,
+      0.88
+    ],
+    "mark": 0.89,
+    "start": 248,
+    "finish": 278,
+    "void": [
+      279,
+      309
+    ]
+  },
+  "S306": {
+    "phase": "use",
+    "element": "void",
+    "gesture": "ward",
+    "shape": "eclipse",
+    "body": [
+      0.83,
+      0.13,
+      8,
+      -14
+    ],
+    "beats": [
+      0.2,
+      0.39,
+      0.61,
+      0.83
+    ],
+    "mark": 0.71,
+    "start": 310,
+    "finish": 340,
+    "void": [
+      341,
+      371
+    ]
+  },
+  "S314": {
+    "phase": "use",
+    "element": "water",
+    "gesture": "brush",
+    "shape": "drops",
+    "body": [
+      0.63,
+      0.11,
+      13,
+      16
+    ],
+    "beats": [
+      0.18,
+      0.38,
+      0.53,
+      0.87
+    ],
+    "mark": 0.61,
+    "start": 372,
+    "finish": 402,
+    "void": [
+      403,
+      433
+    ]
+  },
+  "S319": {
+    "phase": "attack",
+    "element": "water",
+    "gesture": "swirl",
+    "shape": "spiral",
+    "body": [
+      1.17,
+      0.17,
+      16,
+      26
+    ],
+    "beats": [
+      0.22,
+      0.47,
+      0.64,
+      0.9
+    ],
+    "mark": 1.06,
+    "travel": 480,
+    "start": 434,
+    "finish": 464,
+    "void": [
+      465,
+      495
+    ]
+  },
+  "S348": {
+    "phase": "use",
+    "element": "air",
+    "gesture": "hush",
+    "shape": "feathers",
+    "body": [
+      0.68,
+      0.08,
+      9,
+      -8
+    ],
+    "beats": [
+      0.23,
+      0.51,
+      0.63,
+      0.89
+    ],
+    "mark": 0.65,
+    "start": 496,
+    "finish": 526,
+    "void": [
+      527,
+      557
+    ]
+  },
+  "S363": {
+    "phase": "attack",
+    "element": "jade",
+    "gesture": "pinch",
+    "shape": "shards",
+    "body": [
+      0.98,
+      0.2,
+      14,
+      10
+    ],
+    "beats": [
+      0.19,
+      0.4,
+      0.6,
+      0.84
+    ],
+    "mark": 0.92,
+    "travel": 355,
+    "start": 558,
+    "finish": 588,
+    "void": [
+      589,
+      619
+    ]
+  },
+  "S390": {
+    "phase": "use",
+    "element": "void",
+    "gesture": "seal",
+    "shape": "stitch",
+    "body": [
+      0.7,
+      0.15,
+      11,
+      -14
+    ],
+    "beats": [
+      0.32,
+      0.47,
+      0.69,
+      0.87
+    ],
+    "mark": 0.76,
+    "start": 620,
+    "finish": 650,
+    "void": [
+      651,
+      681
+    ]
+  },
+  "S395": {
+    "phase": "use",
+    "element": "void",
+    "gesture": "still",
+    "shape": "halo",
+    "body": [
+      0.59,
+      0.08,
+      5,
+      7
+    ],
+    "beats": [
+      0.26,
+      0.48,
+      0.64,
+      0.89
+    ],
+    "mark": 0.68,
+    "start": 682,
+    "finish": 712,
+    "void": [
+      713,
+      743
+    ]
+  },
+  "S035": {
+    "phase": "use",
+    "element": "water",
+    "gesture": "offer",
+    "shape": "well",
+    "body": [
+      0.64,
+      0.11,
+      9,
+      6
+    ],
+    "beats": [
+      0.17,
+      0.37,
+      0.6,
+      0.84
+    ],
+    "mark": 0.64,
+    "start": 744,
+    "finish": 774,
+    "void": [
+      775,
+      805
+    ]
+  },
+  "S040": {
+    "phase": "use",
+    "element": "jade",
+    "gesture": "brush",
+    "shape": "spring",
+    "body": [
+      0.58,
+      0.08,
+      8,
+      17
+    ],
+    "beats": [
+      0.15,
+      0.33,
+      0.57,
+      0.84
+    ],
+    "mark": 0.69,
+    "start": 806,
+    "finish": 836,
+    "void": [
+      837,
+      867
+    ]
+  },
+  "S043": {
+    "phase": "use",
+    "element": "air",
+    "gesture": "raise",
+    "shape": "sunrise",
+    "body": [
+      0.83,
+      0.18,
+      14,
+      4
+    ],
+    "beats": [
+      0.24,
+      0.46,
+      0.69,
+      0.87
+    ],
+    "mark": 0.92,
+    "start": 868,
+    "finish": 898,
+    "void": [
+      899,
+      929
+    ]
+  },
+  "S073": {
+    "phase": "attack",
+    "element": "fire",
+    "gesture": "tap",
+    "shape": "ember",
+    "body": [
+      0.58,
+      0.08,
+      12,
+      -7
+    ],
+    "beats": [
+      0.14,
+      0.32,
+      0.47,
+      0.75
+    ],
+    "mark": 0.65,
+    "travel": 260,
+    "start": 930,
+    "finish": 960,
+    "void": [
+      961,
+      991
+    ]
+  },
+  "S074": {
+    "phase": "attack",
+    "element": "fire",
+    "gesture": "heave",
+    "shape": "comet",
+    "body": [
+      1.21,
+      0.22,
+      19,
+      -20
+    ],
+    "beats": [
+      0.22,
+      0.52,
+      0.66,
+      0.89
+    ],
+    "mark": 1.11,
+    "travel": 400,
+    "start": 992,
+    "finish": 1022,
+    "void": [
+      1023,
+      1053
+    ]
+  },
+  "S076": {
+    "phase": "attack",
+    "element": "ice",
+    "gesture": "pinch",
+    "shape": "icicles",
+    "body": [
+      0.78,
+      0.14,
+      12,
+      -13
+    ],
+    "beats": [
+      0.18,
+      0.39,
+      0.56,
+      0.79
+    ],
+    "mark": 0.76,
+    "travel": 310,
+    "start": 1054,
+    "finish": 1084,
+    "void": [
+      1085,
+      1115
+    ]
+  },
+  "S138": {
+    "phase": "attack",
+    "element": "fire",
+    "gesture": "raise",
+    "shape": "sunwheel",
+    "body": [
+      1.12,
+      0.19,
+      17,
+      -19
+    ],
+    "beats": [
+      0.18,
+      0.5,
+      0.66,
+      0.88
+    ],
+    "mark": 1.22,
+    "travel": 405,
+    "start": 1116,
+    "finish": 1146,
+    "void": [
+      1147,
+      1177
+    ]
+  },
+  "S154": {
+    "phase": "use",
+    "element": "water",
+    "gesture": "press",
+    "shape": "band",
+    "body": [
+      0.45,
+      0.1,
+      8,
+      6
+    ],
+    "beats": [
+      0.15,
+      0.39,
+      0.62,
+      0.84
+    ],
+    "mark": 0.61,
+    "start": 1178,
+    "finish": 1208,
+    "void": [
+      1209,
+      1239
+    ]
+  },
+  "S155": {
+    "phase": "use",
+    "element": "earth",
+    "gesture": "ward",
+    "shape": "shingles",
+    "body": [
+      0.93,
+      0.18,
+      12,
+      -17
+    ],
+    "beats": [
+      0.15,
+      0.51,
+      0.67,
+      0.83
+    ],
+    "mark": 0.81,
+    "start": 1240,
+    "finish": 1270,
+    "void": [
+      1271,
+      1301
+    ]
+  },
+  "S156": {
+    "phase": "use",
+    "element": "fire",
+    "gesture": "brandish",
+    "shape": "pennant",
+    "body": [
+      0.82,
+      0.16,
+      15,
+      16
+    ],
+    "beats": [
+      0.22,
+      0.39,
+      0.55,
+      0.85
+    ],
+    "mark": 0.86,
+    "start": 1302,
+    "finish": 1332,
+    "void": [
+      1333,
+      1363
+    ]
+  },
+  "S157": {
+    "phase": "use",
+    "element": "lightning",
+    "gesture": "cup",
+    "shape": "motes",
+    "body": [
+      0.49,
+      0.1,
+      7,
+      -6
+    ],
+    "beats": [
+      0.22,
+      0.4,
+      0.68,
+      0.9
+    ],
+    "mark": 0.73,
+    "start": 1364,
+    "finish": 1394,
+    "void": [
+      1395,
+      1425
+    ]
+  },
+  "S158": {
+    "phase": "use",
+    "element": "jade",
+    "gesture": "heave",
+    "shape": "wings",
+    "body": [
+      0.96,
+      0.15,
+      14,
+      8
+    ],
+    "beats": [
+      0.17,
+      0.45,
+      0.64,
+      0.83
+    ],
+    "mark": 0.82,
+    "start": 1426,
+    "finish": 1456,
+    "void": [
+      1457,
+      1487
+    ]
+  },
+  "S159": {
+    "phase": "use",
+    "element": "shadow",
+    "gesture": "coil",
+    "shape": "thorn",
+    "body": [
+      0.61,
+      0.15,
+      12,
+      -21
+    ],
+    "beats": [
+      0.2,
+      0.49,
+      0.66,
+      0.82
+    ],
+    "mark": 0.76,
+    "start": 1488,
+    "finish": 1518,
+    "void": [
+      1519,
+      1549
+    ]
+  },
+  "S302": {
+    "phase": "use",
+    "element": "void",
+    "gesture": "draw",
+    "shape": "vortex",
+    "body": [
+      0.7,
+      0.15,
+      9,
+      15
+    ],
+    "beats": [
+      0.16,
+      0.39,
+      0.72,
+      0.89
+    ],
+    "mark": 0.81,
+    "start": 1550,
+    "finish": 1580,
+    "void": [
+      1581,
+      1611
+    ]
+  },
+  "S307": {
+    "phase": "use",
+    "element": "jade",
+    "gesture": "bridge",
+    "shape": "twins",
+    "body": [
+      0.84,
+      0.12,
+      11,
+      17
+    ],
+    "beats": [
+      0.19,
+      0.4,
+      0.64,
+      0.91
+    ],
+    "mark": 0.81,
+    "start": 1612,
+    "finish": 1642,
+    "void": [
+      1643,
+      1673
+    ]
+  },
+  "S311": {
+    "phase": "use",
+    "element": "water",
+    "gesture": "press",
+    "shape": "pulse",
+    "body": [
+      0.52,
+      0.11,
+      13,
+      -11
+    ],
+    "beats": [
+      0.21,
+      0.46,
+      0.62,
+      0.8
+    ],
+    "mark": 0.72,
+    "start": 1674,
+    "finish": 1704,
+    "void": [
+      1705,
+      1735
+    ]
+  },
+  "S312": {
+    "phase": "use",
+    "element": "jade",
+    "gesture": "cup",
+    "shape": "leaf",
+    "body": [
+      0.72,
+      0.16,
+      8,
+      9
+    ],
+    "beats": [
+      0.24,
+      0.44,
+      0.63,
+      0.87
+    ],
+    "mark": 0.8,
+    "start": 1736,
+    "finish": 1766,
+    "void": [
+      1767,
+      1797
+    ]
+  },
+  "S313": {
+    "phase": "use",
+    "element": "ice",
+    "gesture": "armsAcross",
+    "shape": "frost",
+    "body": [
+      0.61,
+      0.15,
+      12,
+      -17
+    ],
+    "beats": [
+      0.18,
+      0.37,
+      0.6,
+      0.9
+    ],
+    "mark": 0.78,
+    "start": 1798,
+    "finish": 1828,
+    "void": [
+      1829,
+      1859
+    ]
+  },
+  "S316": {
+    "phase": "use",
+    "element": "lightning",
+    "gesture": "reachBelow",
+    "shape": "thread",
+    "body": [
+      0.89,
+      0.19,
+      17,
+      15
+    ],
+    "beats": [
+      0.17,
+      0.39,
+      0.64,
+      0.87
+    ],
+    "mark": 1.02,
+    "start": 1860,
+    "finish": 1890,
+    "void": [
+      1891,
+      1921
+    ]
+  },
+  "S328": {
+    "phase": "use",
+    "element": "fire",
+    "gesture": "pat",
+    "shape": "steps",
+    "body": [
+      1.02,
+      0.18,
+      15,
+      14
+    ],
+    "beats": [
+      0.13,
+      0.32,
+      0.47,
+      0.79
+    ],
+    "mark": 0.85,
+    "start": 1922,
+    "finish": 1952,
+    "void": [
+      1953,
+      1983
+    ]
+  },
+  "S329": {
+    "phase": "use",
+    "element": "fire",
+    "gesture": "unfurl",
+    "shape": "crown",
+    "body": [
+      1.07,
+      0.15,
+      12,
+      -21
+    ],
+    "beats": [
+      0.16,
+      0.39,
+      0.62,
+      0.83
+    ],
+    "mark": 0.88,
+    "start": 1984,
+    "finish": 2014,
+    "void": [
+      2015,
+      2045
+    ]
+  },
+  "S333": {
+    "phase": "use",
+    "element": "fire",
+    "gesture": "tap",
+    "shape": "sear",
+    "body": [
+      0.53,
+      0.08,
+      17,
+      8
+    ],
+    "beats": [
+      0.25,
+      0.45,
+      0.6,
+      0.89
+    ],
+    "mark": 0.72,
+    "start": 2046,
+    "finish": 2076,
+    "void": [
+      2077,
+      2107
+    ]
+  },
+  "S335": {
+    "phase": "attack",
+    "element": "fire",
+    "gesture": "fan",
+    "shape": "breath",
+    "body": [
+      1.18,
+      0.18,
+      18,
+      -26
+    ],
+    "beats": [
+      0.25,
+      0.48,
+      0.57,
+      0.85
+    ],
+    "mark": 1.19,
+    "travel": 405,
+    "start": 2108,
+    "finish": 2138,
+    "void": [
+      2139,
+      2169
+    ]
+  },
+  "S337": {
+    "phase": "use",
+    "element": "shadow",
+    "gesture": "plant",
+    "shape": "cinders",
+    "body": [
+      0.77,
+      0.21,
+      19,
+      -13
+    ],
+    "beats": [
+      0.2,
+      0.43,
+      0.72,
+      0.88
+    ],
+    "mark": 0.87,
+    "start": 2170,
+    "finish": 2200,
+    "void": [
+      2201,
+      2231
+    ]
+  },
+  "S338": {
+    "phase": "use",
+    "element": "fire",
+    "gesture": "step",
+    "shape": "coals",
+    "body": [
+      0.86,
+      0.22,
+      12,
+      20
+    ],
+    "beats": [
+      0.13,
+      0.44,
+      0.61,
+      0.85
+    ],
+    "mark": 0.82,
+    "start": 2232,
+    "finish": 2262,
+    "void": [
+      2263,
+      2293
+    ]
+  },
+  "S341": {
+    "phase": "attack",
+    "element": "fire",
+    "gesture": "brandish",
+    "shape": "pillars",
+    "body": [
+      1.22,
+      0.23,
+      22,
+      25
+    ],
+    "beats": [
+      0.17,
+      0.43,
+      0.58,
+      0.81
+    ],
+    "mark": 1.25,
+    "travel": 390,
+    "start": 2294,
+    "finish": 2324,
+    "void": [
+      2325,
+      2355
+    ]
+  },
+  "S343": {
+    "phase": "use",
+    "element": "shadow",
+    "gesture": "claw",
+    "shape": "cloven",
+    "body": [
+      0.77,
+      0.15,
+      14,
+      -25
+    ],
+    "beats": [
+      0.21,
+      0.38,
+      0.67,
+      0.88
+    ],
+    "mark": 0.94,
+    "start": 2356,
+    "finish": 2386,
+    "void": [
+      2387,
+      2417
+    ]
+  },
+  "S349": {
+    "phase": "use",
+    "element": "shadow",
+    "gesture": "hush",
+    "shape": "veil",
+    "body": [
+      0.6,
+      0.11,
+      6,
+      20
+    ],
+    "beats": [
+      0.25,
+      0.41,
+      0.66,
+      0.9
+    ],
+    "mark": 0.79,
+    "start": 2418,
+    "finish": 2448,
+    "void": [
+      2449,
+      2479
+    ]
+  },
+  "S350": {
+    "phase": "use",
+    "element": "air",
+    "gesture": "unfurl",
+    "shape": "fogBank",
+    "body": [
+      0.97,
+      0.18,
+      15,
+      16
+    ],
+    "beats": [
+      0.17,
+      0.44,
+      0.69,
+      0.86
+    ],
+    "mark": 0.98,
+    "start": 2480,
+    "finish": 2510,
+    "void": [
+      2511,
+      2541
+    ]
+  },
+  "S351": {
+    "phase": "use",
+    "element": "air",
+    "gesture": "armsAcross",
+    "shape": "shutter",
+    "body": [
+      0.47,
+      0.1,
+      11,
+      -11
+    ],
+    "beats": [
+      0.19,
+      0.36,
+      0.56,
+      0.81
+    ],
+    "mark": 0.73,
+    "start": 2542,
+    "finish": 2572,
+    "void": [
+      2573,
+      2603
+    ]
+  },
+  "S352": {
+    "phase": "attack",
+    "element": "air",
+    "gesture": "heave",
+    "shape": "fogCurl",
+    "body": [
+      0.92,
+      0.22,
+      17,
+      -16
+    ],
+    "beats": [
+      0.19,
+      0.49,
+      0.65,
+      0.89
+    ],
+    "mark": 1.13,
+    "travel": 400,
+    "start": 2604,
+    "finish": 2634,
+    "void": [
+      2635,
+      2665
+    ]
+  },
+  "S353": {
+    "phase": "use",
+    "element": "void",
+    "gesture": "inspect",
+    "shape": "iris",
+    "body": [
+      0.59,
+      0.13,
+      12,
+      9
+    ],
+    "beats": [
+      0.25,
+      0.43,
+      0.67,
+      0.88
+    ],
+    "mark": 0.77,
+    "start": 2666,
+    "finish": 2696,
+    "void": [
+      2697,
+      2727
+    ]
+  },
+  "S354": {
+    "phase": "use",
+    "element": "air",
+    "gesture": "tracer",
+    "shape": "rune",
+    "body": [
+      0.92,
+      0.13,
+      9,
+      -19
+    ],
+    "beats": [
+      0.18,
+      0.43,
+      0.62,
+      0.9
+    ],
+    "mark": 0.87,
+    "start": 2728,
+    "finish": 2758,
+    "void": [
+      2759,
+      2789
+    ]
+  },
+  "S356": {
+    "phase": "attack",
+    "element": "shadow",
+    "gesture": "claw",
+    "shape": "web",
+    "body": [
+      0.81,
+      0.18,
+      18,
+      17
+    ],
+    "beats": [
+      0.2,
+      0.46,
+      0.59,
+      0.84
+    ],
+    "mark": 0.86,
+    "travel": 365,
+    "start": 2790,
+    "finish": 2820,
+    "void": [
+      2821,
+      2851
+    ]
+  },
+  "S358": {
+    "phase": "attack",
+    "element": "air",
+    "gesture": "chop",
+    "shape": "knives",
+    "body": [
+      0.85,
+      0.17,
+      17,
+      -29
+    ],
+    "beats": [
+      0.15,
+      0.4,
+      0.52,
+      0.79
+    ],
+    "mark": 0.96,
+    "travel": 286,
+    "start": 2852,
+    "finish": 2882,
+    "void": [
+      2883,
+      2913
+    ]
+  },
+  "S365": {
+    "phase": "use",
+    "element": "lightning",
+    "gesture": "bridge",
+    "shape": "enclosure",
+    "body": [
+      0.89,
+      0.17,
+      13,
+      13
+    ],
+    "beats": [
+      0.2,
+      0.46,
+      0.63,
+      0.83
+    ],
+    "mark": 0.86,
+    "start": 2914,
+    "finish": 2944,
+    "void": [
+      2945,
+      2975
+    ]
+  },
+  "S367": {
+    "phase": "use",
+    "element": "earth",
+    "gesture": "brace",
+    "shape": "tiles",
+    "body": [
+      0.64,
+      0.22,
+      22,
+      -8
+    ],
+    "beats": [
+      0.21,
+      0.46,
+      0.72,
+      0.89
+    ],
+    "mark": 0.9,
+    "start": 2976,
+    "finish": 3006,
+    "void": [
+      3007,
+      3037
+    ]
+  },
+  "S368": {
+    "phase": "use",
+    "element": "lightning",
+    "gesture": "brandish",
+    "shape": "seven",
+    "body": [
+      0.98,
+      0.12,
+      15,
+      21
+    ],
+    "beats": [
+      0.18,
+      0.4,
+      0.63,
+      0.84
+    ],
+    "mark": 1.04,
+    "start": 3038,
+    "finish": 3068,
+    "void": [
+      3069,
+      3099
+    ]
+  },
+  "S372": {
+    "phase": "use",
+    "element": "earth",
+    "gesture": "claw",
+    "shape": "basalt",
+    "body": [
+      0.73,
+      0.22,
+      19,
+      12
+    ],
+    "beats": [
+      0.22,
+      0.44,
+      0.62,
+      0.82
+    ],
+    "mark": 0.86,
+    "start": 3100,
+    "finish": 3130,
+    "void": [
+      3131,
+      3161
+    ]
+  },
+  "S373": {
+    "phase": "use",
+    "element": "jade",
+    "gesture": "ward",
+    "shape": "fanLotus",
+    "body": [
+      0.8,
+      0.11,
+      8,
+      -9
+    ],
+    "beats": [
+      0.2,
+      0.5,
+      0.67,
+      0.91
+    ],
+    "mark": 0.84,
+    "start": 3162,
+    "finish": 3192,
+    "void": [
+      3193,
+      3223
+    ]
+  },
+  "S376": {
+    "phase": "use",
+    "element": "lightning",
+    "gesture": "raise",
+    "shape": "crest",
+    "body": [
+      1.0,
+      0.2,
+      18,
+      -12
+    ],
+    "beats": [
+      0.27,
+      0.49,
+      0.68,
+      0.85
+    ],
+    "mark": 1.04,
+    "start": 3224,
+    "finish": 3254,
+    "void": [
+      3255,
+      3285
+    ]
+  },
+  "S377": {
+    "phase": "use",
+    "element": "earth",
+    "gesture": "chop",
+    "shape": "rubble",
+    "body": [
+      0.92,
+      0.25,
+      20,
+      14
+    ],
+    "beats": [
+      0.19,
+      0.43,
+      0.58,
+      0.83
+    ],
+    "mark": 0.92,
+    "start": 3286,
+    "finish": 3316,
+    "void": [
+      3317,
+      3347
+    ]
+  },
+  "S380": {
+    "phase": "use",
+    "element": "earth",
+    "gesture": "step",
+    "shape": "fault",
+    "body": [
+      1.04,
+      0.29,
+      23,
+      -17
+    ],
+    "beats": [
+      0.16,
+      0.53,
+      0.67,
+      0.87
+    ],
+    "mark": 1.18,
+    "start": 3348,
+    "finish": 3378,
+    "void": [
+      3379,
+      3409
+    ]
+  },
+  "S381": {
+    "phase": "use",
+    "element": "earth",
+    "gesture": "seal",
+    "shape": "bars",
+    "body": [
+      0.72,
+      0.21,
+      18,
+      20
+    ],
+    "beats": [
+      0.25,
+      0.46,
+      0.66,
+      0.86
+    ],
+    "mark": 0.98,
+    "start": 3410,
+    "finish": 3440,
+    "void": [
+      3441,
+      3471
+    ]
+  },
+  "S386": {
+    "phase": "use",
+    "element": "void",
+    "gesture": "tracer",
+    "shape": "switchback",
+    "body": [
+      0.9,
+      0.12,
+      13,
+      -23
+    ],
+    "beats": [
+      0.16,
+      0.37,
+      0.58,
+      0.9
+    ],
+    "mark": 0.82,
+    "start": 3472,
+    "finish": 3502,
+    "void": [
+      3503,
+      3533
+    ]
+  },
+  "S387": {
+    "phase": "use",
+    "element": "void",
+    "gesture": "still",
+    "shape": "scales",
+    "body": [
+      0.59,
+      0.12,
+      8,
+      10
+    ],
+    "beats": [
+      0.28,
+      0.52,
+      0.66,
+      0.9
+    ],
+    "mark": 0.81,
+    "start": 3534,
+    "finish": 3564,
+    "void": [
+      3565,
+      3595
+    ]
+  },
+  "S392": {
+    "phase": "use",
+    "element": "water",
+    "gesture": "unfurl",
+    "shape": "lotus",
+    "body": [
+      0.99,
+      0.14,
+      14,
+      21
+    ],
+    "beats": [
+      0.18,
+      0.5,
+      0.67,
+      0.9
+    ],
+    "mark": 1.04,
+    "start": 3596,
+    "finish": 3626,
+    "void": [
+      3627,
+      3657
+    ]
+  },
+  "S461": {
+    "phase": "use",
+    "element": "jade",
+    "gesture": "reachBelow",
+    "shape": "root",
+    "body": [
+      0.73,
+      0.21,
+      18,
+      13
+    ],
+    "beats": [
+      0.24,
+      0.43,
+      0.65,
+      0.86
+    ],
+    "mark": 0.73,
+    "start": 3658,
+    "finish": 3688,
+    "void": [
+      3689,
+      3719
+    ]
+  },
+  "S499": {
+    "phase": "use",
+    "element": "fire",
+    "gesture": "offer",
+    "shape": "hearth",
+    "body": [
+      0.67,
+      0.13,
+      10,
+      -12
+    ],
+    "beats": [
+      0.18,
+      0.45,
+      0.68,
+      0.89
+    ],
+    "mark": 0.81,
+    "start": 3720,
+    "finish": 3750,
+    "void": [
+      3751,
+      3781
+    ]
+  },
+  "S537": {
+    "phase": "attack",
+    "element": "fire",
+    "gesture": "push",
+    "shape": "palm",
+    "body": [
+      1.12,
+      0.14,
+      19,
+      -22
+    ],
+    "beats": [
+      0.15,
+      0.42,
+      0.51,
+      0.82
+    ],
+    "mark": 0.9,
+    "travel": 280,
+    "start": 3782,
+    "finish": 3812,
+    "void": [
+      3813,
+      3843
+    ]
+  },
+  "S538": {
+    "phase": "use",
+    "element": "fire",
+    "gesture": "ward",
+    "shape": "screen",
+    "body": [
+      0.77,
+      0.19,
+      14,
+      20
+    ],
+    "beats": [
+      0.19,
+      0.34,
+      0.6,
+      0.81
+    ],
+    "mark": 0.87,
+    "start": 3844,
+    "finish": 3874,
+    "void": [
+      3875,
+      3905
+    ]
+  },
+  "S615": {
+    "phase": "attack",
+    "element": "fire",
+    "gesture": "pinch",
+    "shape": "spark",
+    "body": [
+      0.63,
+      0.08,
+      7,
+      10
+    ],
+    "beats": [
+      0.16,
+      0.34,
+      0.48,
+      0.79
+    ],
+    "mark": 0.67,
+    "travel": 240,
+    "start": 3906,
+    "finish": 3936,
+    "void": [
+      3937,
+      3967
+    ]
+  },
+  "S616": {
+    "phase": "use",
+    "element": "fire",
+    "gesture": "cup",
+    "shape": "rekindle",
+    "body": [
+      0.58,
+      0.11,
+      12,
+      -15
+    ],
+    "beats": [
+      0.25,
+      0.48,
+      0.65,
+      0.86
+    ],
+    "mark": 0.72,
+    "start": 3968,
+    "finish": 3998,
+    "void": [
+      3999,
+      4029
+    ]
+  }
+}

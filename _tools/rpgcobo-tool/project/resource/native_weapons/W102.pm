@@ -6,54 +6,28 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c2c242c"
+		name = "hunyuan_weapon_tanto"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x050305ff
-		rough = 0.500000
-		metal = 0.000000
+		basecol = 0xffffffff
+		rough = 0.660000
+		metal = 0.110000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
+		texture0 = "tex/hunyuan_weapon_tanto_srgb.png"
 		texture1 = null
 		texture2 = null
 	}
 	{
-		name = "c823d2d"
+		name = "hunyuan_weapon_saya"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x390a05ff
-		rough = 0.500000
-		metal = 0.000000
+		basecol = 0xffffffff
+		rough = 0.660000
+		metal = 0.110000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "c9b8f78"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x554730ff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "cdde2ec"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0xbac3d7ff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
+		texture0 = "tex/hunyuan_weapon_saya_srgb.png"
 		texture1 = null
 		texture2 = null
 	}

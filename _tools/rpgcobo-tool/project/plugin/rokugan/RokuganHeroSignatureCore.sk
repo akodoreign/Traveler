@@ -1,0 +1,42 @@
+// Shared asset registration for authored traveler signatures.
+::Rokugan.HERO_SIGNATURE_CLIPS <- [];
+::Rokugan.HERO_SIGNATURE_BANKS <- {};
+::Rokugan.HERO_SIGNATURE_ROUTES <- [];
+
+::Rokugan.addHeroSignatureClips <- function( actor, key ){
+	foreach( entry in this.HERO_SIGNATURE_CLIPS ){
+		if( entry.key != key || !::getResource( entry.bank ) ) continue;
+		local start = entry.start( actor );
+		if( start == null ) continue;
+		actor.animemap[entry.id] <- { st=start, en=start+entry.frames, spd=30.0, loop=false, replay=true };
+	}
+};
+
+::Rokugan.registerHeroSignatureClip <- function( key, id, file, frames, start ){
+	local bank = "/resource/native_chara/" + file + ".mot";
+	this.HERO_SIGNATURE_CLIPS .. { key=key, id=id, bank=bank, frames=frames, start=start };
+	this.HERO_SIGNATURE_BANKS[id] <- bank;
+};
+
+::Rokugan.heroSignatureMotion <- function( clip ){
+	local bank = this.HERO_SIGNATURE_BANKS[clip];
+	return bank && ::getResource( bank ) ? ::getMotionData( ::getResource( bank ) ) : null;
+};
+
+::Rokugan.hasHeroSignatureAction <- function( cmd, func ){
+	if( !cmd || !func ) return false;
+	foreach( route in this.HERO_SIGNATURE_ROUTES ) if( route( cmd, func ) ) return true;
+	return false;
+};
+
+::Rokugan.heroMark <- function( stage, name, position, size ){
+	local path = "/resource/efx/rt/" + name + ".ptd";
+	if( !::getResource( path ) ) return null;
+	local fx = SK3DEffect( path );
+	fx.efx = { efx=path };
+	fx.pos( position );
+	fx.scale( size );
+	stage.scn.addObject( fx );
+	fx.startParticle();
+	return fx;
+};

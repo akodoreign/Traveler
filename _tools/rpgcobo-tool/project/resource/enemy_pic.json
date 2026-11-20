@@ -827168,5 +827168,263 @@
   },
   "pic3d": "/resource/enemy_pic/quest_item_star.png",
   "scale": 0.18
- }
+ },
+	"EP2638": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.5
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.04411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "Hunyuan3D cutout fallback",
+		"name": {
+			"en": "Skull Tide",
+			"ja": "Skull Tide"
+		},
+		"pic3d": "/resource/enemy_pic/foe_skull_tide.png",
+		"scale": 1.134
+	},
+	"EP2639": {
+		"animap": [
+			{
+				"id": "stand",
+				"st": 0,
+				"en": 4,
+				"spd": 5.0,
+				"loop": true,
+				"replay": false
+			},
+			{
+				"id": "punch1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "slash1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "stick1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "bow1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "atk",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "magic1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "spell",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "blast1",
+				"st": 5,
+				"en": 9,
+				"spd": 12.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "damage",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "avoid",
+				"st": 10,
+				"en": 12,
+				"spd": 8.0,
+				"loop": false,
+				"replay": true
+			},
+			{
+				"id": "die",
+				"st": 10,
+				"en": 11,
+				"spd": 1.0,
+				"loop": true,
+				"replay": false
+			}
+		],
+		"aniuv": [
+			5,
+			3
+		],
+		"atkpos": [
+			0.8,
+			0.5
+		],
+		"cntpos": [
+			0.5,
+			0.55
+		],
+		"flipx": false,
+		"gndpos": [
+			0.5,
+			0.04411764705882353
+		],
+		"hsv": [
+			0,
+			0,
+			0
+		],
+		"memo": "Hunyuan3D cutout fallback",
+		"name": {
+			"en": "Oni no Akuma",
+			"ja": "Oni no Akuma"
+		},
+		"pic3d": "/resource/enemy_pic/foe_oni_no_akuma.png",
+		"scale": 0.882
+	}
 }

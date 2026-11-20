@@ -1,0 +1,44 @@
+{
+  "key": "side_tatanko_portrait_face",
+  "source": "side_tatanko_portrait_face_source.glb",
+  "scale": 14.8,
+  "anchor": [
+    0.052,
+    -0.01,
+    -0.807
+  ],
+  "target": [
+    0.19,
+    0.02,
+    98.25
+  ],
+  "trim": 98.1,
+  "features": {
+    "eyes": [
+      [
+        182,
+        255,
+        0.1
+      ],
+      [
+        286,
+        267,
+        0.11
+      ]
+    ],
+    "brows": [
+      [
+        176,
+        235
+      ],
+      [
+        284,
+        240
+      ]
+    ],
+    "mouth": [
+      240,
+      332
+    ]
+  }
+}

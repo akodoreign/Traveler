@@ -1,0 +1,22 @@
+{
+  "portable_joints": 50,
+  "face_weights": [
+    "head",
+    "neck"
+  ],
+  "upper_face_rigid_vertices": 11292,
+  "facial_morphs": [
+    "blink_right",
+    "blink_left",
+    "brows_up",
+    "brows_knit",
+    "smile",
+    "frown",
+    "mouth_open"
+  ],
+  "native_binding_bones": [
+    "head",
+    "neck"
+  ],
+  "native_upper_face_rigid": 11292
+}

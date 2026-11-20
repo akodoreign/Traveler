@@ -1,0 +1,28 @@
+// One brief luminous segment. The stage lays these along the same coil during both transformations.
+parentcoord <- false
+currentgroup <- 0
+prof <- {}
+groups <- [
+	with ParticleGroupData(){
+		name = "Jade ink"
+		enabled = true
+		aimtype = 1
+		localcoord = true
+		emitter = with ParticleEmitter(){
+			num = 1
+			start = 0, start_spr = 0
+			life = 226, life_spr = 0
+		},
+		shapetype = 0
+		shapedata = {"axis":0,"r":0.0,"w":0.58,"h":0.58}
+		texture = "/resource/efx/tex/glow1.webp"
+		color = 0xffffffff
+		blendmode = 5
+		blend = 5
+		mod = [
+			{"classid":"ptcmod_color","color":[-83889216,1895092704,-2105742440,1244299008]},
+			{"classid":"ptcmod_scale","xyz":7,"scale":[0.64,1.10,0.66]},
+		]
+	},
+]
+actions <- [{"acttype":"emitall","time":0}]

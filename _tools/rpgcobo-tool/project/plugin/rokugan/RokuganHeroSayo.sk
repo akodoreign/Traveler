@@ -1,0 +1,101 @@
+// Sayo's preparation is shared by each manual recipe and Random Mix.
+local clipId = "hero_sayo_remedy";
+local root = "/resource/native_chara/";
+::Rokugan.registerHeroSignatureClip( "trav_sayo", clipId, "sayo_remedy", 42, @( actor ) 0 );
+
+local canMix = function( pc, row ){
+	return row.val["rt_recipe"] && ::Rokugan.recipeCount( row.val ) > 0 && pc.canConsumeForSkill( row.val );
+};
+
+::Rokugan.showSayoRecipes <- function( pc, items ){
+	local known = items.filter( @( item ) !!item.val["rt_recipe"] );
+	local available = known.filter( @( row ) canMix( pc, row ) );
+	local mix = {
+		name="Random Mix",
+		desc="Let Sayo choose one craftable recipe. Its own target and ingredients apply.",
+		consume=[0,0]
+	};
+	local choices = [{ idx=-1, val=mix, disable=!length( available ), _name="mix", lbl=mix.name,
+		grayout=length( available ) ? "off" : "on", rlbl=length( available ) ? "%d recipes" % length( available ) : "No ingredients" }];
+	foreach( row in items ) choices.append( row );
+	local choice = this.schoolList( pc, choices );
+	if( choice != mix ) return choice;
+	// Pick once before the runner opens target selection for the real recipe.
+	available = known.filter( @( row ) canMix( pc, row ) );
+	if( !length( available ) ){
+		this.pop( pc, "NO CRAFTABLE RECIPES", 0xc0ffc0ff );
+		return false;
+	}
+	local selected = available[::rnd.nexti() % length( available )].val;
+	this.pop( pc, "MIXING: " + selected.name, 0xc0ffc0ff );
+	return selected;
+};
+
+local remedyUse = function( cmd, func ){
+	local sk = cmd.skill;
+	return cmd.src.dataid == "P107" && func == sk["useact"] && typeof( func ) == SS_TABLE &&
+		(sk["rt_recipe"] || sk["name"] == "Ume-baa's Poultice");
+};
+::Rokugan.HERO_SIGNATURE_ROUTES .. remedyUse;
+
+local herbOrb = function( actor ){
+	local body = actor.nativeBody, hand = body.findBone( "handN" );
+	local centre = hand ? hand.mat.getTranslation( Vector3D() ).transform( body.gmat ) : Vector3D( actor.pos ).add( 0,1.0,0 );
+	return centre.add( 0, .28, 0 );
+};
+
+::Rokugan.playSayoMix <- function( actor, fiery ){
+	local stage = ::rpgstage, battle = stage["battle"];
+	if( !battle || !actor || !actor["animemap"] || !actor.animemap[clipId] ||
+		!::getResource( root + "sayo_mortar.pm" ) || !::getResource( root + "sayo_pestle.pm" ) ) return;
+	local body = actor.nativeBody, weapon = actor.nativeWeapon;
+	local weaponVisible = weapon ? weapon.visible : false;
+	local mortar = null, pestle = null, cloud = null, layer = null;
+	try{
+		layer = actor.anime2( #{ id="hero_sayo_remedy" } );
+		if( !layer ) return;
+		mortar = actor.addNativePart( root + "sayo_mortar" );
+		pestle = actor.addNativePart( root + "sayo_pestle" );
+		mortar.setVisible( false );
+		pestle.setVisible( false );
+		if( weapon ) weapon.setVisible( false );
+		local start = skGetTime();
+		while( ::rpgstage == stage && stage.battle == battle && actor.nativeBody == body && !actor.rpgobj.isDead() ){
+			local t = skGetTime()-start;
+			if( t >= 1390.0 ) break;
+			mortar.setVisible( t >= 238.0 && t < 1265.0 );
+			pestle.setVisible( t >= 339.0 && t < 1170.0 );
+			if( t >= 578.0 && !cloud ){
+				cloud = this.heroMark( stage, "hero_sayo_steam", herbOrb( actor ), .68 );
+				if( cloud && fiery ) cloud.setHSV( [-103, 16, 7] );
+			}
+			if( cloud ){
+				local lift = Math.clamp( (t-578.0)/700.0, 0.0, 1.0 );
+				cloud.pos( herbOrb( actor ).add( 0, .40*lift, 0 ) );
+				cloud.scale( .68+.18*lift );
+				cloud.matdirty = true;
+			}
+			sleep( 16 );
+		}
+	}catch( ex ){}
+	if( mortar ) body.removeChild( mortar );
+	if( pestle ) body.removeChild( pestle );
+	if( weapon ) weapon.setVisible( weaponVisible );
+	local current = ::rpgstage == stage && stage.battle == battle;
+	if( !current && cloud && cloud.alive ) cloud.kill();
+	if( current && layer && actor.nativeBody == body && actor.animlayers.layers[0] == layer && !actor.rpgobj.isDead() )
+		actor.anime2( #{ id="stand" } );
+};
+
+::SkillCommand._rt_heroSayoAct <- ::SkillCommand.act;
+::SkillCommand.act <- function( func, ctx=null ){
+	if( !remedyUse( this, func ) ) return this._rt_heroSayoAct( func, ctx );
+	local source = func["scp"] || ::skillscriptmap[func["id"]];
+	if( !length( source ) ) return this._rt_heroSayoAct( func, ctx );
+	local native = compilestring_c( source, source ), fiery = skill["skilltype"] == "attack";
+	local context = { ...func, ...ctx };
+	return this._rt_heroSayoAct( function(){
+		::Rokugan.playSayoMix( rp3d, fiery );
+		return native();
+	}, context );
+};

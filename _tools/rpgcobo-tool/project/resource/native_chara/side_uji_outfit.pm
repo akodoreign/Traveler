@@ -6,10 +6,10 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c182a43"
+		name = "c132136"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x01040dff
+		basecol = 0x000208ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -19,10 +19,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c1c304d"
+		name = "c1b2b43"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x010612ff
+		basecol = 0x01050dff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -32,107 +32,68 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c213551"
+		name = "c204e7c_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x020814ff
-		rough = 0.500000
+		basecol = 0x021234ff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
-		name = "c27547f"
+		name = "c21395e_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x041637ff
-		rough = 0.500000
+		basecol = 0x02091cff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
-		name = "c2a5b89"
+		name = "c286098_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x041a41ff
-		rough = 0.500000
+		basecol = 0x041d51ff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
-		name = "c2b4974"
+		name = "c828a90_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x05102dff
-		rough = 0.500000
+		basecol = 0x394248ff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
-		name = "c2c5f90"
+		name = "cb5c1c9_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x051d48ff
-		rough = 0.500000
+		basecol = 0x778a97ff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "c346fa8"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x072865ff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "c83909e"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x3a4858ff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
-		texture2 = null
-	}
-	{
-		name = "cb7c9dc"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x7a97b8ff
-		rough = 0.500000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 	{
@@ -149,10 +110,23 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "ce1e6ec"
+		name = "ce2dfd9"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xc1cbd7ff
+		basecol = 0xc3bdb2ff
+		rough = 0.500000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = null
+		texture1 = null
+		texture2 = null
+	}
+	{
+		name = "cebe7dc"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0xd5cdb8ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -175,16 +149,16 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cecf1f1"
+		name = "cece8de_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xd7e1e1ff
-		rough = 0.500000
+		basecol = 0xd7cfbbff
+		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
 		texmap = 0x00000000
-		texture0 = null
-		texture1 = null
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
 		texture2 = null
 	}
 ]

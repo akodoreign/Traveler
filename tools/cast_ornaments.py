@@ -2,6 +2,7 @@
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -29,6 +30,8 @@ def design(key, spec):
         parts["mask"] = "shinobi"
         for costume in ("shinobi", "maid", "fox", "soldier"):
             parts[costume] = costume
+        for costume in ("maid", "fox", "soldier"):
+            parts[f"{costume}_head"] = costume
     return {"parts": parts, "spec": spec}
 
 
@@ -46,12 +49,20 @@ def install(stage, jobs):
     out.mkdir(exist_ok=True)
     index = {key:list(job["parts"]) for key,job in jobs.items()}
     names = [f"{key}_{role}.{ext}" for key,roles in index.items() for role in roles for ext in ("mdl","pm")]
+    textures = set()
     for name in names:
         file = stage/name
         if not file.is_file() or file.stat().st_size < 32:
             raise ValueError(f"Missing ornament {name}")
         if file.suffix == ".mdl" and file.read_bytes()[:4] != b"SMDL":
             raise ValueError(f"Invalid model {name}")
+        if file.suffix == ".pm":
+            textures.update(re.findall(r'texture[0-9]+ = "(tex/[^"]+)"', file.read_text("utf8")))
+    if any(not (stage / path).stat().st_size for path in textures):
+        raise ValueError("Missing costume material texture")
+    for name in sorted(textures):
+        (out / name).parent.mkdir(exist_ok=True, parents=True)
+        os.replace(stage / name, out / name)
     for name in names:
         os.replace(stage/name,out/name)
     path=stage/"index.json"

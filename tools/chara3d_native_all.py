@@ -11,15 +11,49 @@ from bust_skin import native_skin
 from chara3d_sheet import extra_clips, family, look
 from native_eye_materials import two_sided_eyes
 from rig3d_poses import SPECIAL, VIEWS
+from weapon_catalog import FAMILIES
 
 
-TRAVELER_STATURE = {"side_yosai": 1.16, "trav_natsuko": 1.12, "trav_tamotsu": 1.08}
+# Depth, stature and breadth of the shared skinned body and its fitted parts.
+PLAYABLE_PROPORTIONS = {
+    "trav_natsuko": (0.99, 1.145, 1.025),
+    "trav_rensei": (0.97, 1.022, 0.99),
+    "trav_gendo": (0.945, 1.044, 0.95),
+    "trav_shizue": (1.005, 0.933, 1.035),
+    "trav_haruki": (0.955, 0.978, 0.955),
+    "trav_mitsue": (0.965, 0.969, 0.965),
+    "trav_tamotsu": (1.14, 1.08, 1.075),
+    "trav_sayo": (1.0, 0.953, 1.015),
+    "side_sachiko": (1.15, 1.0618, 1.16),
+    "side_ryoichi": (0.985, 1.0, 1.0),
+    "side_goro": (1.04, 1.044, 1.06),
+    "side_michio": (0.965, 0.982, 0.98),
+    "side_gonta": (1.355, 1.09, 1.37),
+    "side_kage": (0.975, 1.022, 0.99),
+    "side_gusai": (1.045, 1.036, 1.065),
+    "side_lionrider": (0.975, 0.988, 1.005),
+    "side_kafu": (1.065, 1.0, 1.085),
+    "side_hiruto": (0.965, 0.962, 0.975),
+    "side_ashimita": (1.035, 1.036, 1.055),
+    "side_yosai": (1.08, 1.205, 1.11),
+    "side_hayato": (1.01, 0.964, 1.02),
+    "side_ushimo": (1.06, 0.97, 1.08),
+    "side_sanro": (1.025, 0.912, 1.01),
+    "side_rui": (1.005, 0.957, 1.025),
+    "side_kasiko": (0.985, 0.931, 0.985),
+    "side_akodorin": (0.94, 0.981, 0.955),
+    "side_haku": (1.045, 0.978, 1.055),
+    "side_ryuko": (1.01, 0.969, 1.035),
+    "side_hanae": (1.045, 0.999, 1.07),
+}
 SAME_PERSON = {"side_kage_ch3": "side_kage", "side_kafu_nosword": "side_kafu"}
 
 
 def proportions(key):
     """Relative depth, height and width, with neutral variation where looks omit size."""
     key = SAME_PERSON.get(key, key)
+    if key in PLAYABLE_PROPORTIONS:
+        return list(PLAYABLE_PROPORTIONS[key])
     spec = look(key)
     seed = crc32(key.encode("ascii"))
     height = 0.022 * spec["height"] if "height" in spec else (seed % 15 - 7) * 0.006
@@ -30,7 +64,6 @@ def proportions(key):
         stature -= 0.06
     if spec.get("female"):
         stature -= 0.025
-    stature = TRAVELER_STATURE.get(key, stature)
     if key == "side_kisada":
         stature = 1.27  # The Great Bear's authored look is the tallest.
     breadth, thickness = {"heavy": (0.09, 0.08), "round": (0.08, 0.15),
@@ -44,6 +77,50 @@ def proportions(key):
 
 def verify_assets(directory, roster):
     expected = {"roster.json"}
+    if (directory / "defeat/index.json").is_file():
+        expected.add("defeat/index.json")
+        expected.update(f"defeat/{family}.mot" for family in set(FAMILIES.values()) | {"iai"})
+    fidget_index = directory / "fidget/index.json"
+    if fidget_index.is_file():
+        fidgets = json.loads(fidget_index.read_text(encoding="utf-8"))
+        expected.add("fidget/index.json")
+        expected.update(f"fidget/{family}.mot" for family in set(FAMILIES.values()) | {"iai"})
+        props = {clip["prop"] for clip in fidgets["clips"].values() if "prop" in clip}
+        if any(clip.get("satchel") for clip in fidgets["clips"].values()):
+            props.add("satchel")
+        expected.update(f"fidget/{prop}.{ext}" for prop in props for ext in ("pm", "mdl"))
+    if (directory / "kakita_void.mot").is_file():
+        expected.add("kakita_void.mot")
+    if (directory / "spear_void.mot").is_file():
+        expected.add("spear_void.mot")
+    if (directory / "heart_listens.mot").is_file():
+        expected.add("heart_listens.mot")
+    if (directory / "ide_song.mot").is_file():
+        expected.add("ide_song.mot")
+    if (directory / "tattoo_morph.mot").is_file():
+        expected.add("tattoo_morph.mot")
+    if (directory / "void_bolt_release.mot").is_file():
+        expected.add("void_bolt_release.mot")
+    if (directory / "lion_courage.mot").is_file():
+        expected.add("lion_courage.mot")
+    if (directory / "shosuro_throw.mot").is_file():
+        expected.add("shosuro_throw.mot")
+    if (directory / "sayo_remedy.mot").is_file():
+        expected.add("sayo_remedy.mot")
+        expected.update({"sayo_mortar.pm", "sayo_mortar.mdl", "sayo_pestle.pm", "sayo_pestle.mdl"})
+    if (directory / "gendo_deduce.mot").is_file():
+        expected.add("gendo_deduce.mot")
+        expected.update({"deduce_brush.pm", "deduce_brush.mdl"})
+    if (directory / "isawa_rising.mot").is_file():
+        expected.add("isawa_rising.mot")
+    ability = directory / "ability"
+    for index_name, bank in (("spell-index.json", "spells"), ("school-index.json", "school"),
+                             ("support-index.json", "support")):
+        if (ability / index_name).is_file():
+            expected.add(f"ability/{index_name}")
+            expected.update(f"ability/{bank}_{family}.mot" for family in set(FAMILIES.values()) | {"iai"})
+    if (directory / "shosuro_star.pm").is_file():
+        expected.update({"shosuro_star.pm", "shosuro_star.mdl"})
     for key, spec in roster.items():
         expected.add(f"motion_{spec['motion']}.mot")
         parts = ["body", "outfit"]

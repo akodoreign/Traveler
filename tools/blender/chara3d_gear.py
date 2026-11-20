@@ -12,8 +12,30 @@ import chara3d_native as native
 import gear_catalog as catalog
 from gear_palette import SPEC, SWATCHES, uv
 from chara3d_decals import project
+from human_body_fit import fit_skin
 
 c = native.c
+
+
+class WardrobeNormal:
+    """Use the same swatch UV for color and its fabric or metal relief."""
+
+    def __init__(self, image):
+        self.image = image
+
+    def apply(self, mesh, uv_layer, materials):
+        for mat in materials:
+            nodes, links = mat.node_tree.nodes, mat.node_tree.links
+            shader = nodes["Principled BSDF"]
+            shader.inputs["Roughness"].default_value = .71
+            layer = nodes.new("ShaderNodeTexImage")
+            layer.image = self.image
+            bump = nodes.new("ShaderNodeNormalMap")
+            links.new(layer.outputs["Color"], bump.inputs["Color"])
+            links.new(bump.outputs["Normal"], shader.inputs["Normal"])
+
+    def restore_tints(self, data, materials):
+        pass
 
 
 def mantle(skin, bottom, wide):
@@ -22,22 +44,26 @@ def mantle(skin, bottom, wide):
     count = 48
     relief = skin.fit("torso")
     shoulder = skin.fit("arm")
-    for y, depth, width in ((bottom, 15, wide), ((bottom + 87) / 2, 13, wide - 1),
-                            (87, 12.5, wide - .5), (94, 9, 15.4), (97, 5.8, 6.5)):
+    shape = ((bottom, 15, wide), ((bottom + 87) / 2, 13, wide - 1),
+             (87, 12.5, wide - .5), (94, 9, 15.4), (97, 5.8, 6.5))
+    stations = sorted({*([row[0] for row in shape]), *c.np.arange(bottom, 97, 1.4)})
+    for y in stations:
+        depth, width = c.profile(shape, y)
         for k in range(count + 1):
             a = .83 + (math.tau - 1.66) * k / count
-            pleat = 1 + .07 * math.cos(8 * a)
+            fall = (97 - y) / (97 - bottom)
+            pleat = 1 + fall * (.08 * math.cos(8 * a + fall) + .023 * math.sin(5 * a))
             lift = max(0, 85 - y) * .37 * max(0, math.cos(a))
             lateral = abs(math.sin(a))
             fit = relief(y, a) + shoulder(y, math.pi / 2) * lateral ** 3
             verts.append(((depth * pleat + fit) * math.cos(a), y + lift,
                           (width * pleat + fit) * math.sin(a)))
-    for i in range(4):
+    for i in range(len(stations) - 1):
         for k in range(count):
             t = i * (count + 1) + k
             faces.append((t, t + count + 1, t + count + 2, t + 1))
     colours = [SPEC["lining"] if k in (0, count - 1) or i == 0 and (k // 2) % 3 == 0
-               else SPEC["top"] for i in range(4) for k in range(count)]
+               else SPEC["top"] for i in range(len(stations) - 1) for k in range(count)]
     weights = []
     torso = c.torso_w()
     for _, y, z in verts:
@@ -231,6 +257,12 @@ def export(job):
 
     garments_only = job.get("garments_only")
     detail = None if garments_only else make_textures(out / "tex", set(HAT_SURFACE.values()), color_maps=False)
+    normal_path = out / "tex" / "wardrobe_normal.png"
+    wardrobe = None
+    if normal_path.is_file():
+        normal = bpy.data.images.load(str(normal_path), check_existing=True)
+        normal.colorspace_settings.name = "Non-Color"
+        wardrobe = WardrobeNormal(normal)
     for item, slot in catalog.registry().items():
         if (job.get("head_only") and slot != "head") or (garments_only and slot not in ("body", "cape")):
             continue
@@ -243,10 +275,12 @@ def export(job):
             mask(skin, catalog.ACCESSORY[item])
         else:
             mantle(skin, 57, 20.5)
+        if slot in ("body", "cape") and job.get("fit"):
+            fit_skin(skin, job["fit"])
         missing = set(skin.colour) - SWATCHES.keys()
         if missing:
             raise ValueError(f"{item} uses unmapped colours {missing}")
-        surface = HeadSurface(detail, catalog.HEAD[item]) if slot == "head" else None
+        surface = HeadSurface(detail, catalog.HEAD[item]) if slot == "head" else wardrobe
         native.save_piece(scene, out, rig, item, skin, texture_uv=uv, surface=surface)
         decal, decal_uv = project(item, slot, skin)
         native.save_piece(scene, out, rig, item + "_decal", decal, texture_uv=decal_uv, alpha_test=True)
@@ -254,6 +288,7 @@ def export(job):
             fitted_uv = yosai_hat(skin, decal, decal_uv, catalog.HEAD[item])
             native.save_piece(scene, out, rig, item + "_yosai", skin, texture_uv=uv, surface=surface)
             native.save_piece(scene, out, rig, item + "_yosai_decal", decal, texture_uv=fitted_uv, alpha_test=True)
+        print(f"WARDROBE {item} {slot}", flush=True)
     if job.get("head_only"):
         return
     weapons = () if garments_only else catalog.WEAPONS

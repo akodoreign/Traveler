@@ -1,0 +1,446 @@
+{
+  "out": "portrait-stage",
+  "heads": [
+    {
+      "key": "trav_rensei_portrait_face",
+      "source": "trav_rensei_retouched_face.glb",
+      "anchor": [
+        0.03,
+        -0.04,
+        -0.69
+      ],
+      "scale": 18.75,
+      "target": [
+        0,
+        0,
+        100.5
+      ],
+      "trim": 99.6,
+      "features": {
+        "eyes": [
+          [
+            193,
+            298,
+            0.12
+          ],
+          [
+            266,
+            305,
+            0.13
+          ]
+        ],
+        "brows": [
+          [
+            204,
+            269
+          ],
+          [
+            259,
+            275
+          ]
+        ],
+        "mouth": [
+          224,
+          343
+        ]
+      },
+      "head_offset": [
+        0.55,
+        0.72,
+        -0.8
+      ],
+      "yaw": -3.1
+    },
+    {
+      "key": "trav_haruki_portrait_face",
+      "source": "trav_haruki_portrait_face.glb",
+      "anchor": [
+        0.07,
+        0.01,
+        -0.64
+      ],
+      "scale": 15.7,
+      "target": [
+        0,
+        0,
+        100.5
+      ],
+      "trim": 100.0,
+      "features": {
+        "eyes": [
+          [
+            214,
+            299,
+            -0.31
+          ],
+          [
+            296,
+            282,
+            -0.19
+          ]
+        ],
+        "brows": [
+          [
+            212,
+            272
+          ],
+          [
+            286,
+            262
+          ]
+        ],
+        "mouth": [
+          254,
+          354
+        ]
+      },
+      "neck_clearance": [
+        102,
+        6
+      ],
+      "head_offset": [
+        1.0,
+        -0.52,
+        -0.43
+      ],
+      "yaw": -2.0
+    },
+    {
+      "key": "trav_gendo_portrait_face",
+      "source": "trav_gendo_retouched_neck.glb",
+      "anchor": [
+        0.02,
+        -0.105,
+        -0.457
+      ],
+      "scale": 17.2,
+      "target": [
+        0,
+        0,
+        100.5
+      ],
+      "trim": 98.4,
+      "features": {
+        "eyes": [
+          [
+            219,
+            224,
+            0.32
+          ],
+          [
+            285,
+            243,
+            0.31
+          ]
+        ],
+        "brows": [
+          [
+            214,
+            205
+          ],
+          [
+            277,
+            219
+          ]
+        ],
+        "mouth": [
+          234,
+          299
+        ]
+      },
+      "neck_clearance": [
+        101.9,
+        5.3,
+        1.15
+      ],
+      "yaw": -8.8,
+      "neck_pins": [
+        [
+          [
+            1.08,
+            -1.76,
+            98.8
+          ],
+          [
+            0.97,
+            -1.73,
+            99.9
+          ]
+        ],
+        [
+          [
+            0.79,
+            0.02,
+            98.65
+          ],
+          [
+            0.6,
+            0.02,
+            99.75
+          ]
+        ]
+      ]
+    },
+    {
+      "key": "trav_natsuko_portrait_face",
+      "source": "trav_natsuko_portrait_face.glb",
+      "anchor": [
+        0.09,
+        0.153,
+        -0.54
+      ],
+      "scale": 19.4,
+      "trim": 98.7,
+      "target": [
+        0,
+        0,
+        100.6
+      ],
+      "features": {
+        "eyes": [
+          [
+            241,
+            263,
+            0.02
+          ],
+          [
+            307,
+            262,
+            0.02
+          ]
+        ],
+        "brows": [
+          [
+            241,
+            242
+          ],
+          [
+            301,
+            246
+          ]
+        ],
+        "mouth": [
+          273,
+          310
+        ]
+      },
+      "long_hair": [
+        89,
+        5,
+        -3.2
+      ],
+      "head_offset": [
+        -1.35,
+        0.28,
+        -0.16
+      ],
+      "yaw": -3.2
+    },
+    {
+      "key": "trav_shizue_portrait_face",
+      "source": "trav_shizue_portrait_face.glb",
+      "anchor": [
+        0.035,
+        0.0,
+        -0.736
+      ],
+      "scale": 14.8,
+      "trim": 98.9,
+      "target": [
+        0,
+        0,
+        100.6
+      ],
+      "features": {
+        "eyes": [
+          [
+            195,
+            273,
+            0
+          ],
+          [
+            291,
+            272,
+            0
+          ]
+        ],
+        "brows": [
+          [
+            195,
+            247
+          ],
+          [
+            292,
+            246
+          ]
+        ],
+        "mouth": [
+          241,
+          331
+        ]
+      },
+      "head_offset": [
+        -0.55,
+        0.23,
+        -0.2
+      ]
+    },
+    {
+      "key": "trav_sayo_portrait_face",
+      "source": "trav_sayo_portrait_face.glb",
+      "anchor": [
+        0.02,
+        0,
+        -0.198
+      ],
+      "scale": 18.9,
+      "trim": 98.4,
+      "target": [
+        0,
+        0,
+        100.6
+      ],
+      "features": {
+        "eyes": [
+          [
+            201,
+            201,
+            0
+          ],
+          [
+            282,
+            201,
+            0
+          ]
+        ],
+        "brows": [
+          [
+            208,
+            184
+          ],
+          [
+            278,
+            184
+          ]
+        ],
+        "mouth": [
+          240,
+          248
+        ]
+      },
+      "long_hair": [
+        85,
+        5.4,
+        -3.8
+      ],
+      "head_offset": [
+        -2.35,
+        0.63,
+        -0.08
+      ]
+    },
+    {
+      "key": "trav_tamotsu_portrait_face",
+      "source": "trav_tamotsu_portrait_face.glb",
+      "anchor": [
+        0.015,
+        -0.01,
+        -0.86
+      ],
+      "scale": 16.5,
+      "trim": 99.0,
+      "target": [
+        0,
+        0,
+        100.6
+      ],
+      "features": {
+        "eyes": [
+          [
+            204,
+            281,
+            0.02
+          ],
+          [
+            279,
+            281,
+            0
+          ]
+        ],
+        "brows": [
+          [
+            207,
+            263
+          ],
+          [
+            276,
+            261
+          ]
+        ],
+        "mouth": [
+          240,
+          343
+        ]
+      },
+      "head_offset": [
+        2.05,
+        0.05,
+        -0.3
+      ]
+    },
+    {
+      "key": "trav_mitsue_portrait_face",
+      "source": "trav_mitsue_portrait_face.glb",
+      "anchor": [
+        0.015,
+        0,
+        -0.108
+      ],
+      "scale": 20.3,
+      "trim": 98.7,
+      "target": [
+        0,
+        0,
+        100.6
+      ],
+      "features": {
+        "eyes": [
+          [
+            210,
+            195,
+            0
+          ],
+          [
+            273,
+            196,
+            0
+          ]
+        ],
+        "brows": [
+          [
+            212,
+            174
+          ],
+          [
+            271,
+            175
+          ]
+        ],
+        "mouth": [
+          241,
+          234
+        ]
+      },
+      "long_hair": [
+        84,
+        5.4,
+        -3.7
+      ],
+      "head_offset": [
+        -2.25,
+        0.6,
+        -0.9
+      ]
+    }
+  ]
+}

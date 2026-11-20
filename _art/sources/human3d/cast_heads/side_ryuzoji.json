@@ -1,0 +1,44 @@
+{
+  "key": "side_ryuzoji_portrait_face",
+  "source": "side_ryuzoji_portrait_face_source.glb",
+  "scale": 16.8,
+  "anchor": [
+    -0.124,
+    0.059,
+    -0.68
+  ],
+  "target": [
+    0.6,
+    0.02,
+    98.55
+  ],
+  "trim": 98.3,
+  "features": {
+    "eyes": [
+      [
+        209,
+        263,
+        -0.07
+      ],
+      [
+        298,
+        247,
+        -0.14
+      ]
+    ],
+    "brows": [
+      [
+        211,
+        248
+      ],
+      [
+        293,
+        225
+      ]
+    ],
+    "mouth": [
+      254,
+      326
+    ]
+  }
+}

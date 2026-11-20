@@ -1,0 +1,29 @@
+// Camera-facing mark, positioned by the active ability choreography.
+parentcoord <- false
+currentgroup <- 0
+prof <- {}
+groups <- [
+    with ParticleGroupData(){
+        name = "S596"
+        enabled = true
+        aimtype = 1
+        localcoord = true
+        emitter = with ParticleEmitter(){
+            num = 1
+            start = 0, start_spr = 0
+            life = 1100, life_spr = 0
+        },
+        shapetype = 0
+        shapedata = {"axis":0,"r":0.0,"w":0.92,"h":0.92}
+        texture = "/resource/efx/rt/ability/S596.png"
+        color = 0xffffffff
+        blendmode = 5
+        blend = 1
+        Ka = 0xffffffff
+        Ks = 0
+        mod = [
+            {"classid":"ptcmod_color","color":[-1,-1,-41,-243]},
+        ]
+    },
+]
+actions <- [{"acttype":"emitall","time":0}]

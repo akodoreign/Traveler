@@ -1,0 +1,356 @@
+{
+  "byEnemy": {
+    "E106": "EP450",
+    "E234": "EP451",
+    "E245": "EP452",
+    "E247": "EP453",
+    "E253": "EP454",
+    "E255": "EP455",
+    "E256": "EP456",
+    "E313": "EP457",
+    "E326": "EP458",
+    "E327": "EP520",
+    "E328": "EP521",
+    "E330": "EP522",
+    "E346": "EP524",
+    "E349": "EP527",
+    "E358": "EP525",
+    "E360": "EP525",
+    "E359": "EP526",
+    "E365": "EP528",
+    "E375": "EP529",
+    "E388": "EP530",
+    "E395": "EP531",
+    "E399": "EP525",
+    "E401": "EP532",
+    "E402": "EP532",
+    "E408": "EP534",
+    "E409": "EP533",
+    "E410": "EP533",
+    "E435": "EP535",
+    "E441": "EP536",
+    "E448": "EP537",
+    "E460": "EP538",
+    "E471": "EP539",
+    "E414": "EP534",
+    "E415": "EP534",
+    "E416": "EP534",
+    "E417": "EP534",
+    "E347": "EP523",
+    "E491": "EP151",
+    "E486": "EP149",
+    "E513": "EP153",
+    "E515": "EP452",
+    "E518": "EP155",
+    "E523": "EP159",
+    "E526": "EP183",
+    "E527": "EP183",
+    "E544": "EP177",
+    "E553": "EP179",
+    "E559": "EP185",
+    "E565": "EP452",
+    "E574": "EP452",
+    "E571": "EP187",
+    "E575": "EP189",
+    "E583": "EP191",
+    "E585": "EP193",
+    "E586": "EP195",
+    "E590": "EP452",
+    "E606": "EP197",
+    "E607": "EP199",
+    "E908": "EP452",
+    "E909": "EP452"
+  },
+  "byName": {
+    "Oni no Okura": "EP197",
+    "The Orochi": "EP199",
+    "Nezumi Shaman": "EP450",
+    "Troll": "EP451",
+    "Moto Akutsukai": "EP452",
+    "Oni no Kommei": "EP453",
+    "Cellar Ogre": "EP454",
+    "Oni no Tsukakoro": "EP455",
+    "Wall Troll": "EP456",
+    "Kakita Yasurugi": "EP457",
+    "Doji Miyako": "EP458",
+    "Chihaya the Quick": "EP520",
+    "Yosuke the Bold": "EP521",
+    "Katsuo the White Brother": "EP522",
+    "Kakita Masanori": "EP523",
+    "Shelf Kami": "EP524",
+    "O-Tamai": "EP525",
+    "Red-shadow Oni": "EP526",
+    "Possessed Matsu Nagai": "EP527",
+    "Oni no Ianwa": "EP528",
+    "Seppun-trained Duelist": "EP529",
+    "Matsu Rokuro": "EP530",
+    "Ashimoshi": "EP531",
+    "Hioninmaru": "EP532",
+    "Oni no Kuzushi": "EP533",
+    "Mieko (dark half)": "EP534",
+    "Seppun Ushimo": "EP535",
+    "Togashi Akuro": "EP536",
+    "Kakita Kumpei": "EP537",
+    "Kansen-Hana": "EP538",
+    "Abbot Munashii": "EP539",
+    "Bloodspeaker Remnant": "EP149",
+    "Naohida": "EP151",
+    "Mine Guardian": "EP153",
+    "Shuten Doji of Regret": "EP155",
+    "Crow-Tengu": "EP159",
+    "Tomie Cho": "EP183",
+    "Enforcer of the Order": "EP177",
+    "Shade of the Crab Lord": "EP179",
+    "The Naga's Champion": "EP185",
+    "\"Ryozo\"": "EP187",
+    "Many-Legged Horror": "EP189",
+    "Doji Nashiko": "EP191",
+    "Body of Damned Time": "EP193",
+    "The Empress of Nothing": "EP195"
+  },
+  "titles": {
+    "EP197": {
+      "epithet": {
+        "en": "Akuma's Daughter",
+        "ja": "アクマの娘"
+      },
+      "theme": "okura"
+    },
+    "EP199": {
+      "epithet": {
+        "en": "Keeper of the Drowned Ships",
+        "ja": "沈没船の番人"
+      },
+      "theme": "orochi"
+    },
+    "EP450": {
+      "epithet": {
+        "en": "Name-keeper of the Egg Caves",
+        "ja": "卵の洞窟の名を守る者"
+      },
+      "theme": "nezumi"
+    },
+    "EP451": {
+      "epithet": {
+        "en": "The Wall's Oldest Enemy"
+      }
+    },
+    "EP452": {
+      "epithet": {
+        "en": "Rider of the Restless Dead"
+      }
+    },
+    "EP453": {
+      "epithet": {
+        "en": "The Oni of Two Faces",
+        "ja": "二つの顔を持つ鬼"
+      },
+      "theme": "kommei"
+    },
+    "EP454": {
+      "epithet": {
+        "en": "Beneath Kyuden Hida"
+      }
+    },
+    "EP455": {
+      "epithet": {
+        "en": "The Bone-cage",
+        "ja": "骨の檻"
+      },
+      "theme": "tsukakoro"
+    },
+    "EP456": {
+      "epithet": {
+        "en": "Up the Wall in the Night"
+      }
+    },
+    "EP457": {
+      "epithet": {
+        "en": "The Silent Blade",
+        "ja": "静寂の刃"
+      },
+      "theme": "yasurugi"
+    },
+    "EP458": {
+      "epithet": {
+        "en": "The Woman in White"
+      }
+    },
+    "EP520": {
+      "epithet": {
+        "en": "Who Walks on Oars"
+      }
+    },
+    "EP521": {
+      "epithet": {
+        "en": "Captain in the Storm"
+      }
+    },
+    "EP522": {
+      "epithet": {
+        "en": "Maker of True Lies"
+      }
+    },
+    "EP523": {
+      "epithet": {
+        "en": "First Blood at Dawn"
+      }
+    },
+    "EP524": {
+      "epithet": {
+        "en": "Keeper of Shelf Nine"
+      }
+    },
+    "EP525": {
+      "epithet": {
+        "en": "Beloved of Iuchiban"
+      }
+    },
+    "EP526": {
+      "epithet": {
+        "en": "It Eats the Breath"
+      }
+    },
+    "EP527": {
+      "epithet": {
+        "en": "Many Voices, One Sword"
+      }
+    },
+    "EP528": {
+      "epithet": {
+        "en": "The Coward's Feast"
+      }
+    },
+    "EP529": {
+      "epithet": {
+        "en": "The Message Never Arrives"
+      }
+    },
+    "EP530": {
+      "epithet": {
+        "en": "Only Fools and Matsu"
+      }
+    },
+    "EP531": {
+      "epithet": {
+        "en": "The Silent Hurricane"
+      }
+    },
+    "EP532": {
+      "epithet": {
+        "en": "My Blood, Gladly, Less Gladly"
+      }
+    },
+    "EP533": {
+      "epithet": {
+        "en": "The Door You Opened"
+      }
+    },
+    "EP534": {
+      "epithet": {
+        "en": "Hello, Little Void"
+      }
+    },
+    "EP535": {
+      "epithet": {
+        "en": "At the End of His Rope"
+      }
+    },
+    "EP536": {
+      "epithet": {
+        "en": "Who Wears Every Face"
+      }
+    },
+    "EP537": {
+      "epithet": {
+        "en": "The Light Exactly Right"
+      }
+    },
+    "EP538": {
+      "epithet": {
+        "en": "Take It Away From Me"
+      }
+    },
+    "EP539": {
+      "epithet": {
+        "en": "A Mask Is a Mercy"
+      }
+    },
+    "EP149": {
+      "epithet": {
+        "en": "We Wear What We Need"
+      }
+    },
+    "EP151": {
+      "epithet": {
+        "en": "Judge the Living"
+      }
+    },
+    "EP153": {
+      "epithet": {
+        "en": "All Who Dig Here Stay"
+      }
+    },
+    "EP155": {
+      "epithet": {
+        "en": "Say It Again"
+      }
+    },
+    "EP159": {
+      "epithet": {
+        "en": "Cross With Dignity"
+      }
+    },
+    "EP183": {
+      "epithet": {
+        "en": "Such a Long Time to Be Hungry"
+      }
+    },
+    "EP177": {
+      "epithet": {
+        "en": "The Line Must Stay True"
+      }
+    },
+    "EP179": {
+      "epithet": {
+        "en": "The Prince Must Not Come Down"
+      }
+    },
+    "EP185": {
+      "epithet": {
+        "en": "The True Lines"
+      }
+    },
+    "EP187": {
+      "epithet": {
+        "en": "A Good Man's Name"
+      }
+    },
+    "EP189": {
+      "epithet": {
+        "en": "Out of the Shinomen"
+      }
+    },
+    "EP191": {
+      "epithet": {
+        "en": "The Bride",
+        "ja": "花嫁"
+      },
+      "theme": "nashiko"
+    },
+    "EP193": {
+      "epithet": {
+        "en": "Look How You End",
+        "ja": "お前の最期を見よ"
+      },
+      "theme": "nashiko"
+    },
+    "EP195": {
+      "epithet": {
+        "en": "I Was Going to Be Empress",
+        "ja": "私は帝になるはずだった"
+      },
+      "theme": "empress"
+    }
+  }
+}

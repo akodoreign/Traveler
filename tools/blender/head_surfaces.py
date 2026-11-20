@@ -1,4 +1,4 @@
-"""Painted strand, weave, and metal detail for native head meshes."""
+"""Painted strand, weave, embroidery, and metal detail for native character meshes."""
 
 import math
 
@@ -15,7 +15,10 @@ SURFACES = {
     "lacquer": (19., .44, .08, .045),
     "straw": (14., .86, 0., .100),
     "linen": (13., .84, 0., .084),
+    "cloth": (13., .77, 0., .059),
 }
+CLOTH_PATTERNS = frozenset(("blossoms", "checks", "clouds", "diamonds", "dots", "flames", "rings", "stripes", "waves"))
+SURFACES.update({name: (19., .72, 0., .047) for name in CLOTH_PATTERNS})
 HAT_SURFACE = {"band": "linen", "champion_band": "linen", "eboshi": "linen", "straw": "straw",
                "jingasa": "lacquer", "guard": "iron", "scout": "lacquer", "kabuto": "iron", "legion": "iron"}
 
@@ -34,6 +37,27 @@ def height_field(role, u, v):
     if role == "linen":
         warp, weft = np.cos(tau * 9*u), np.cos(tau * 9*v)
         return .38 * (warp + weft) + .32 * warp * weft + .16 * grain
+    if role == "cloth" or role in CLOTH_PATTERNS:
+        warp = np.sin(tau * 9 * u)
+        weft = np.sin(tau * (10 * v + .11 * warp))
+        cloth = .29 * warp * weft + .13 * grain
+        if role == "cloth":
+            return cloth + .16 * np.cos(tau * (u - 2 * v))
+        x, y = 2 * u - 1, 2 * v - 1
+        radius = np.sqrt(x * x + y * y)
+        angle = np.arctan2(y, x)
+        ridge = {
+            "blossoms": radius - (.40 + .12 * np.cos(5 * angle)),
+            "checks": np.sin(tau * 2 * u) * np.sin(tau * 2 * v),
+            "clouds": y - .23 * np.cos(tau * u) - .09 * np.cos(2 * tau * u),
+            "diamonds": np.abs(x) + np.abs(y) - .62,
+            "dots": radius - .28,
+            "flames": np.sin(tau * (2 * u - .37 * np.sin(tau * v))),
+            "rings": radius - .53,
+            "stripes": np.sin(tau * (2 * u + v)),
+            "waves": np.sin(tau * (2 * v + .36 * np.cos(tau * u))),
+        }[role]
+        return cloth + .69 * np.exp(-((ridge / .105) ** 2))
     pits = np.cos(tau * (5*u + v)) * np.cos(tau * (u - 7*v))
     scratches = np.sin(tau * (16*u + 3*v + .13*np.sin(tau * 5*v)))
     if role == "iron":

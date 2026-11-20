@@ -1,0 +1,75 @@
+# Hunyuan cast head continuation
+
+This batch pairs dialogue-bust references with new textured Hunyuan meshes. The upright references isolate the head and short neck and level the pupils before generation. Use the portable shared body rigs after each head clears front and profile review.
+
+Prompt IDs and local export paths are in head-generation-continuation.json. The reference PNGs for the upright prompts are in reframed_heads. Existing game model geometry is outside the generation input.
+
+| Actor | Generation snapshot | Review |
+| --- | --- | --- |
+| side_oshito | success | The silver bun, red hairpin and purple irises survived. Hold the strong baked half-face lighting split and torn collar fragments at the neck base for texture and geometry repair. |
+| side_netmender | success | Hold. Clean eye and chin shape, but the one-sided low bun was mirrored, and a fused white collar and broad shoulder shelf extend from the neck. |
+| side_grandmother | success | User rejected the first generated Grandma head and its trimmed fitting. Both prior versions are held out of live use. Regenerate the complete head from the original painted bust and validate the new narrow centered neck. |
+| side_campfollower | success | Hold. The head and long side locks are intact but the generator mirrored the one low bun into two and added red texture debris behind both ears. |
+| side_yasurugi_single_ponytail | success | Fit source. The revised export has one ponytail and a clean neck without a collar. Recolor the bright red and peach artifacts in the ash-brown scalp and restore the blue tie before game use. The built-in imagegen prompt is in yasurugi-single-ponytail-imagegen-prompt.txt. |
+| side_hikaru | success | Fit review. Both glowing eyes and markings survived. Clean the white flecks and rough fragments on the rear hair and trim the asymmetrical neck. |
+| side_taira | success | Fit candidate. The top ornament is clean and the side hair silhouette is retained. Check contrast of the broad jaw shadow and expected scar lines. |
+| side_akuja | success | Fit review. Strongly defined scalp and jaw, but the back of the neck carries dark joined geometry that needs isolation before fitting. |
+| side_ryozo | success | Hold. The preserved pale face and dark fringe are recognizable, but the lower neck has a large black, grey and gold fused collar. |
+| side_hatomu | success | Fit candidate. The silver bun and chin are intact. Inspect the deep bun indentation and trim the angled neck base. |
+| side_katsutoshi | success | Hold. The sculpt has the complete red-bound topknot but adds a black shelf between the hair and neck on the bottom edge. |
+| side_yasu | success | Fit review. Full chin and haircut. Inspect the collar remnant and sharply shaded angled neck before fitting. |
+| side_kyumi | success | Hold. The generated model has a broad shelf across the underside of the neck and hair. Use a new separated input or repair the joined geometry. |
+| trav_mitsue_soldier_swept_fringe | success | Rejected for game use. The user asked to restore the existing forehead and keep her original bangs. Keep this export as review history and leave it out of the fitting and gameplay queue. |
+| side_yasurugi | success | Hold. The generator mirrored the single ponytail into two and joined the blue collar to the neck. Prepare a clean upright reference with the single ponytail clear. |
+| side_yuko | success | Fit candidate. Bob, head, and chin are intact. Trim the small collar sliver at the base of the neck and match the shared body skin. |
+| side_adoru | success | Fit review. Inspect the blue and white collar traces at the ends of the bob and the marked seam in the crown texture. |
+| side_goro | success | First head held after production socket test. Its broad oblique neck forces 17.8-degree pitch and 15.9-degree roll. Straight-neck identity revision queued. |
+| side_togawa | success | First mesh held after rigid-fit measurements. The sculpt is too broad at the first viable plane beneath the jaw and has rear garment material. A short-neck replacement is queued. |
+| side_h_iuchi | success | Fit candidate. The neck ends at an angle and needs a rigid fit. The strong baked ear and neck highlight may need a skin pass. |
+| side_h_moshi | success | Hold. The dark band between the lower sides of the hair crosses the neckline and needs repair or a cleaner source. |
+| side_sumi | success | Stern face and shaved crown are complete. A large white cloth strip fuses at the back and side of the neck, and the scalp has a strong baked lighting split. |
+| side_actor_b | success | The low bun was mirrored to both sides. Large light patches on the crown read as bare skin. Chin and neck are otherwise complete. |
+| side_h_jadeseller | success | The one-sided gold pin, updo and chin are intact. Trim the thin white collar remnant, and match the strongly red rear neck to the shared rig. |
+| side_herbseller | success | The leafy pin stays one-sided and the short neck is separate. Uneven eye brightness, a damaged loose lock and a small collar remnant need review before routing to the game. |
+| side_nihime | success | Both intended side buns and the red needle survived. Dark rear hair is bunched into a braid-like neck shape, with a stray collar fragment. Clean these before fitting. |
+| side_togawa_short_neck | success | Collar-free revision. The bottom mesh is an oblique shallow partial lip. Width by depth is 0.603 by 0.154 at Y -0.941 but widens to 0.840 by 0.637 at Y -0.881. It remains above the shared-neck target without distorting the jaw fit. |
+| side_noburo | success | Full bob and chin with no prominent fused collar. A low Y -0.794 contour is 0.375 by 0.333, but higher sections add hair and widen. Fit review requires an exact shared-body check and light split cleanup. |
+| side_h_bomonk | success | The crown and face shape are complete. Neck extends into a broad angled wedge with collar color, and cannot be cleared visually for a slim rigid socket. |
+| side_goro_straight_neck | success | Straight and collar-free, but the near-base neck is 0.790 wide by 0.633 deep, still oversized. Grey pupils become largely white and both original cheek scars fade. Earlier result remains the better face donor. |
+| side_ferryman | success | Strong face and close-cropped hair. The short front silhouette becomes a wide oblique rear neck in 3D. The lowest section is only 0.102 deep; fuller sections expand to 0.813 wide by 0.402 deep. Needs fit repair. |
+| side_h_lamplighter | success | No clothes on the neck and face silhouette is complete. The dark bright-speckled hair, strong baked contrast and angled base need checks before fitting. |
+| side_charmseller | success | Full chin, clean short neck and the one-sided red earring are intact. Tame the side-hair glare and account for the earring extending below the neck in mesh bounds. |
+| side_h_fisherman | success | Face and stubble survive, but a bright white slab at one side of the crown and pronounced colored hair split need cleanup. Check the sloped lower neck. |
+| side_clerk | export found history unverified | The neck ends in a dark broad oblique wedge. The sculpt retains the original eyes and short fringe, while one side of the dark hair becomes pale brown. |
+| side_gatekeeper | export found history unverified | Front and crown are intact, but the low neck is an angled tip with pronounced rear expansion. Tone down the face and crown glare if it proceeds to repair. |
+| side_goro_slim_socket_geometry | export found history unverified | Geometry-only cross-section is centered. Width and depth are 0.310 by 0.383 at Y -0.941, and 0.323 by 0.419 at Y -0.882. The short neck, jaw and full head are intact. Submit the exact same source and seed in textured mode, then inspect eyes and scars. |
+| side_actor_a | export found history unverified | Good face shape and hair with a slim visible front neck. Strong warm-white cheek and neck color split plus possible pale rear collar-like paint. Measure the neck ring and retouch before any game use. |
+| side_hiro | export found history unverified | Face and crown complete. The generator placed the lowest skin at the rear as a loose dangling strip, leaving the front underside without a viable centered ring. |
+| side_h_windpriest | export found history unverified | Continuous base, but low slices are 0.518 by 0.489 at center depth -0.410 and drift substantially toward the face farther up. The rear-biased curved profile needs a proper joint check. |
+| side_goro_slim_socket | export found history unverified | Textured export exactly matches pilot measurements. Rigging confirmed shared male ring center errors of 0.003 and 0.028 units, and 2.05 degrees of centerline difference. Pass geometry for offline fit. Atlas held because both gray irises and cheek scars are missing. |
+| side_gontaboy | export found history unverified | Clean chin and the small neck remained separate. The back and one side of his brown bob were repainted vivid gold, and a thin collar trace lightly touches the neck base. Hold for hair atlas and seam review. |
+| side_ff_boatman | export found history unverified | Face and stubble are intact. The lower neck is still oblique in profile, and a warm skin-colored patch appears on the crown plus a bright stubble patch. Requires fit and material review. |
+| side_shrinekeeper | export found history unverified | The low bun was mirrored. Large pale color artifacts on the crown and an oblique, off-center neck make the current export unsuitable as a direct fit. |
+| side_akari | export found history unverified | Soot detail, side locks and tied hairstyle survived, but the hair has a large copper patch and the eyes lost or shifted the painted pupils. Hold for atlas and shape repair. |
+| side_hitoro | export found history unverified | Face/head intact with correct severe age creases. Large bulbous skin overhang at the rear and oblique neck base fail shape review. |
+| side_pilgrimgirl | export found history unverified | Full chin, amber irises and single ponytail. Separate neck loops are 0.385 by 0.223, 0.384 by 0.240 and 0.383 by 0.263 with a stable center. Passed to rigging, with minor hair debris to inspect. |
+| side_gonbei | export found history unverified | The swept hair and stubble are recognizable, but the side face is painted almost black and a pale collar wedge reaches the bottom neck. Hold for materials and neck review. |
+| side_togawa_slim_socket_geometry | export found history unverified | The narrow alpha source still generated a partial bottom wedge and a wide oblique neck. Width by depth at Y -0.941 is 0.629 by 0.153 and at Y -0.882 is 0.856 by 0.648. Do not submit this source to textured mode. |
+| side_grandmother_slim_socket_geometry | export found history unverified | First clean geometry from fresh bust-based reference, previous donor rejected. Isolated neck loops from Y -0.935 to -0.880 range 0.271 by 0.340 to 0.275 by 0.352 with stable center x -0.013 and z +0.265. No rear wedge. Same-source textured run approved. |
+| side_merchant | export found history unverified | Textured mesh has a severe pale patch at one temple and a red-orange color seam down cheek and neck. The neck also cuts diagonally behind the jaw. Hold for material and fit repair. |
+| side_grandmother_slim_socket | export found history unverified | New donor geometry only released to offline rigging. Geometry mode and textured mode have identical 20,000 faces, bounds and neck cross-sections. Complete older face, silver hair and chin, no rear pad. Skin/hair are newly generated; eyelids read almost closed and gray irises are missing. Hold atlas/live route until the face pass and root daylight test. |
+| side_kosai | export found history unverified | Forehead and eyes are intact, but most of the rear hair turned skin-colored. The lower neck is angled and thin near the tip, widening to 0.639 by 0.341 in fuller sections. Hold for texture and fit. |
+| side_veteran | export found history unverified | Strong gray hair and older face. Low usable sections are wide, shallow and slope rearward. The center moves from depth +0.178 to -0.041 over the first three low slices. Hold for a straight neck revision. |
+| side_mosuke | export found history unverified | Silhouette preserves the elder beard and close hair. The low skin strip has only 0.052 to 0.053 depth on three planes, so it is not a round usable neck. High-contrast orange crown seam also needs atlas review. |
+| side_mcaptain | export found history unverified | Four isolated closed neck sections measure 0.224 by 0.236 up to 0.238 by 0.291 with lateral center near 0.025. Candidate for an offline rigid fit after pale side-hair atlas review. |
+| side_kurako | export found history unverified | Original blue eyes, bun and hair ornament survive. The lower neck is 0.533 by 0.523 into a flared posterior neck, and skin albedo splits hard across her face. Hold for a narrow-neck source/texture repair. |
+| side_mantisenvoy | export found history unverified | Recognizable moustache and long hair. The lowest rear dangling geometry has only 0.075 to 0.088 depth and the neck is hidden in joined hair above it. This is not a usable neck socket. |
+| side_riichi | export found history unverified | Crown has a flesh-colored texture patch and the lower stump is broad and angled. Keep out of fit work until both are repaired. |
+| side_swordsmith | export found history unverified | Profile shows a single thin oblique neck wedge at the end of the taper. Prepare a fresh straight forward-looking donor before fitting. |
+| side_tokubei_slim_socket | export found history unverified | Complete blunt chin, distinct moustache and hair, with both eyes preserved and only mild iris narrowing. Three isolated closed neck sections measure 0.310 by 0.306 up to 0.335 by 0.391 with stable lateral center near -0.007. Cleared for offline fitting. |
+| side_pilgrim | export found history unverified | Whole hair and adult face survive. Neck is sharply diagonal and reaches 0.605 by 0.746 early, with its lateral center drifting 0.158 between the first and third low slices. Hard baked skin contrast also needs repair. |
+| side_senior_student | export found history unverified | Ponytail and chin survive. Black collar-like material and geometry remain fused beneath the jaw. Sideways pupils and a red-brown cheek wedge also need a fresh donor. |
+| side_yodo | export found history unverified | Original moustache, goatee, and topknot survived. A large skin-colored crown patch and bright orange material across the posterior neck need an atlas repair. |
+| side_beggarmonk | export found history unverified | Original deep facial creases and a short centered neck survive. In profile the cranium bulges far behind the cervical column. Broad color band on the crown and strong orange ears need face and head repair before fit. |
+
+Inspect the local queue and job history before submitting a replacement. Keep preview and fitting separate from gameplay testing.

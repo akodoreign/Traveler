@@ -24,7 +24,7 @@ if( phase == 0){
 	verify( crab.nativeGear.body == "A173" && crab.nativeOutfit && crab.nativeGear.head == "A110" && crab.nativeHead,
 		"Starting Crab armor and helmet were not equipped and visible");
 	local hairMaps = false;
-	foreach( face in crab.nativeBody.mesh.face){
+	foreach( face in (crab.nativeFace || crab.nativeBody).mesh.face){
 		if( face.m.tex0 && face.m.tex1) hairMaps = true;
 	}
 	verify( hairMaps, "Starter character has no paired head color and bump textures");
@@ -41,28 +41,31 @@ if( phase == 0){
 	equip( leader, "A110");
 	local helmetOnly = render();
 	verify( !helmetOnly.nativeOutfit && helmetOnly.nativeHead, "Helmet alone restored unequipped armor");
-	equip( leader, "A111");
+	equip( leader, "A124");
 	equip( leader, "A102");
 	equip( leader, "A149");
 	equip( leader, "W100");
-	equip( follower, "A111");
+	equip( follower, "A124");
 	equip( follower, "A102");
 	printf( "[NATIVE GEAR] equipped shared robes and hats\n");
 }else if( phase == 1){
 	local crab = stage.player3d;
-	verify( crab.nativeGear.body == "A111" && crab.nativeHead && crab.nativeMask, "Field leader did not refresh gear");
+	verify( crab.nativeGear.body == "A124" && crab.nativeHead && crab.nativeMask, "Field leader did not refresh gear");
 	verify( crab.nativeWeapon && crab.nativeGear.weapon == "katana", "Alternate weapon lost native outfit");
 	verify( crab.nativeOutfit.mesh.bones[0] == crab.nativeBody.findBone( crab.nativeOutfit.mesh.wmapname[0]),
 		"Outfit is not bound to the wearer rig");
 	local phoenix = RPG3DObject.create3DObject( follower.data);
 	local other = RPG3DObject.create3DObject( { mdlid=follower.data.mdlid, rt_wearer=follower });
-	verify( phoenix.nativeGear.body == "A111" && other.nativeGear.body == "A111",
+	verify( phoenix.nativeGear.body == "A124" && other.nativeGear.body == "A124",
 		"Party and battle actor factories skipped live equipment");
 	verify( phoenix.nativeOutfit.mesh.vtx == crab.nativeOutfit.mesh.vtx, "Clan colour duplicated garment geometry");
 	local crabTex = crab.nativeOutfit.mesh.face[0].m.tex0, phoenixTex = phoenix.nativeOutfit.mesh.face[0].m.tex0;
 	verify( crabTex && phoenixTex && crabTex != phoenixTex, "Wearers did not get separate textures");
-	verify( crab.nativeHead.mesh.face[0].m.tex0 == crabTex && phoenix.nativeHead.mesh.face[0].m.tex0 == phoenixTex,
-		"Hat ignored wearer palette");
+	local crabHat = crab.nativeHead.mesh.face[0].m.tex0, phoenixHat = phoenix.nativeHead.mesh.face[0].m.tex0;
+	verify( crab.nativeHead.mesh.vtx == phoenix.nativeHead.mesh.vtx && crabHat && phoenixHat && crabHat != phoenixHat,
+		"Shared hat lost its mesh or the wearer clan dye");
+	verify( crab.nativeTailoring == "A124" && phoenix.nativeTailoring == "A124",
+		"Generic robes did not select the generated design");
 	verify( length( crab.nativeDecals) == 3 && length( phoenix.nativeDecals) == 2,
 		"Missing equipped clan decals");
 	local crabDecal = crab.nativeDecals[0].mesh.face[0].m, phoenixDecal = phoenix.nativeDecals[0].mesh.face[0].m;
@@ -76,7 +79,7 @@ if( phase == 0){
 	printf( "[NATIVE GEAR] shared mesh, distinct clans, bound skeleton and katana action\n");
 }else if( phase == 2){
 	::Rokugan.gearTestModel.kill();
-	leader.setEquip( leader.getEquipableSlot( "A111"), null);
+	leader.setEquip( leader.getEquipableSlot( "A124"), null);
 	leader.setEquip( leader.getEquipableSlot( "A102"), null);
 	leader.setEquip( leader.getEquipableSlot( "A149"), null);
 	leader.setEquip( leader.getEquipableSlot( "W100"), null);

@@ -1,0 +1,178 @@
+{
+  "out": "generated-wardrobe",
+  "body_fit": "../body_fits.json",
+  "outfits": [
+    {
+      "key": "rensei_robe",
+      "fit": "male",
+      "decal": "A111",
+      "source": "rensei_robe_source.glb",
+      "fit_overrides": {
+        "torso_width": 90,
+        "depth_scale": 84,
+        "limb_width": 100,
+        "leg_width": 88,
+        "arm": [
+          [
+            0.442,
+            0.268,
+            0.018
+          ],
+          [
+            0.532,
+            0.268,
+            0.021
+          ],
+          [
+            0.582,
+            0.245,
+            0.032
+          ],
+          [
+            0.76,
+            0.175,
+            0.039
+          ],
+          [
+            0.89,
+            0.124,
+            0.042
+          ]
+        ],
+        "arm_floor": 0.548,
+        "arm_gaps": [
+          [
+            0.48,
+            0.201
+          ],
+          [
+            0.56,
+            0.168
+          ],
+          [
+            0.64,
+            0.146
+          ],
+          [
+            0.73,
+            0.116
+          ],
+          [
+            0.83,
+            0.096
+          ],
+          [
+            0.91,
+            0.105
+          ]
+        ]
+      },
+      "fit_parts": [
+        1
+      ],
+      "skirt": 26,
+      "neck_opening": [
+        95.12,
+        0.69,
+        0.1,
+        1.5
+      ],
+      "back_collar": 2.4,
+      "obi_ties": [
+        3.1,
+        37,
+        7,
+        -0.4
+      ],
+      "drape": [
+        13,
+        63,
+        5.3,
+        2.9,
+        0.66
+      ],
+      "follow_arm_surface": true
+    },
+    {
+      "key": "trav_haruki_signature",
+      "fit": "male",
+      "armor": false,
+      "skirt": 17,
+      "source": "trav_haruki_signature_source.glb",
+      "fit_overrides": {
+        "torso_width": 88,
+        "depth_scale": 84,
+        "leg_width": 84,
+        "limb_width": 97,
+        "arm_floor": 0.535,
+        "arm_gaps": [
+          [
+            0.46,
+            0.218
+          ],
+          [
+            0.54,
+            0.187
+          ],
+          [
+            0.64,
+            0.152
+          ],
+          [
+            0.73,
+            0.116
+          ],
+          [
+            0.83,
+            0.096
+          ],
+          [
+            0.91,
+            0.105
+          ]
+        ],
+        "limb_limit": 8,
+        "arm": [
+          [
+            0.45,
+            0.277,
+            0.018
+          ],
+          [
+            0.548,
+            0.268,
+            0.022
+          ],
+          [
+            0.578,
+            0.25,
+            0.033
+          ],
+          [
+            0.762,
+            0.175,
+            0.036
+          ],
+          [
+            0.888,
+            0.119,
+            0.045
+          ]
+        ]
+      },
+      "decal": "A111",
+      "fit_parts": [
+        1
+      ],
+      "drape": [
+        14,
+        64,
+        6.2,
+        3.0,
+        0.6
+      ],
+      "follow_arm_surface": true
+    }
+  ],
+  "body_pack": "../body-stage"
+}

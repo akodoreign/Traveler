@@ -67,11 +67,14 @@ def weapon_mesh(item, kind, label):
 def bank(rig, frames, destination):
     """Use the RPG-Cobo writer directly, with the same bind transforms as the body exporter."""
     motion = MotionData()
-    for index, bone in enumerate(rig.data.bones):
+    bones = sorted(rig.data.bones, key=lambda bone: len(bone.parent_recursive))
+    indexes = {bone.name: i for i, bone in enumerate(bones)}
+    for index, bone in enumerate(bones):
         part = BoneParts()
         part.id, part.name = index, bone.name
         part.bindpose = mtx_xm90 @ bone.matrix_local
         part.length = bone.length
+        part.parentid = indexes[bone.parent.name] if bone.parent else -1
         motion.parts.append(part)
     previous = {}
     for frame in frames:
@@ -81,6 +84,9 @@ def bank(rig, frames, destination):
         for part in motion.parts:
             target = frame[part.name]
             matrix = mtx_xm90 @ c.matrix(target) if target else part.bindpose @ Matrix.Scale(0., 4)
+            if part.parentid >= 0:
+                parent = mtx_xm90 @ c.matrix(frame[motion.parts[part.parentid].name])
+                matrix = parent.inverted() @ matrix
             location, rotation, scale = matrix.decompose()
             if part.name in previous and target:
                 rotation.make_compatible(previous[part.name])
@@ -104,7 +110,7 @@ def victory_frames(kind, family, actors):
 
 def combat_frames(weapon, info):
     for clip, index, count in info["frames"]:
-        controls = c.poses.controls(clip, index, count, info["family"])
+        controls = c.combat_controls(clip, index, count, info["family"])
         if controls["weapon"] is None and controls["carry"]:
             controls["weapon"] = {"hand": "F", "dir": (.32, -.61, -.47), "shift": 0}
         yield c.pose_frames(controls)

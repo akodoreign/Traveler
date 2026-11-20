@@ -1,0 +1,71 @@
+// Isawa focus has three visible tiers. Existing boost owns every combat number.
+local tiers = { [15]=2, [30]=3, [50]=5 };
+local poles = { bo=true, yari=true, shakujo=true, naginata=true };
+local isawaId = "hero_isawa_rising";
+::Rokugan.registerHeroSignatureClip( "trav_haruki", isawaId, "isawa_rising", 28,
+	@( actor ) poles[actor.nativeWeaponKind] ? 0 : null );
+
+local isawaTier = function( cmd, func ){
+	local sk = cmd.skill, animation = sk ? sk["aimani"] : null;
+	local aim = animation ? animation["id"] : null;
+	if( cmd.src.dataid != "P104" || func != sk["useact"] || typeof( func ) != SS_TABLE ||
+		!aim || aim.indexOf( "cast_" ) != 0 ) return null;
+	local flag = sk["rt_vcrit"];
+	return flag ? tiers[flag] : null;
+};
+::Rokugan.HERO_SIGNATURE_ROUTES .. @( cmd, func ) !!isawaTier( cmd, func );
+
+::Rokugan.heroIsawaCharge <- function( actor, amount ){
+	local stage = ::rpgstage, battle = stage["battle"];
+	if( !battle || !actor || actor["nativeKey"] != "trav_haruki" ||
+		!::getResource( "/resource/efx/rt/hero_isawa_rising.ptd" ) ) return;
+	local marks = [], layer = null, base = Vector3D( actor.pos );
+	local seal = null;
+	try{
+		if( actor.animemap[isawaId] ) layer = actor.anime2( #{ id="hero_isawa_rising" } );
+		local strength = amount == 2 ? .83 : amount == 3 ? 1.04 : 1.30;
+		seal = this.heroMark( stage, "hero_isawa_seal", Vector3D( base ).add( 0,.26,0 ), strength );
+		local start = skGetTime();
+		while( ::rpgstage == stage && stage.battle == battle && !actor.rpgobj.isDead() ){
+			local elapsed = skGetTime()-start;
+			if( elapsed >= 925.0 ) break;
+			if( length( marks ) < amount && elapsed >= 78.0 + 97.0*length( marks ) ){
+				local ring = this.heroMark( stage, "hero_isawa_rising", Vector3D( base ).add( 0,.27,0 ), strength );
+				marks .. { mark=ring, at=elapsed };
+			}
+			foreach( i, coil in marks ){
+				local fx = coil.mark;
+				if( !fx ) continue;
+				local age = Math.clamp( (elapsed-coil.at)/720.0, 0.0, 1.0 );
+				local u = age * (1.74-.74*age);
+				local angle = i*2.55 + age*Math.PI2*1.34;
+				local radius = (.25 + .16*Math.sin( age*Math.PI )) * strength;
+				local height = .40 + (1.38+.14*amount)*u;
+				fx.pos( Vector3D( actor.pos ).add( radius*Math.cos( angle ), height, radius*Math.sin( angle ) ) );
+				fx.scale( strength*(.61+.44*u) );
+				fx.matdirty = true;
+			}
+			sleep( 16 );
+		}
+	}catch( ex ){}
+	local active = ::rpgstage == stage && stage.battle == battle;
+	if( !active ){
+		if( seal && seal.alive ) seal.kill();
+		foreach( coil in marks ) if( coil.mark && coil.mark.alive ) coil.mark.kill();
+	}
+};
+
+// Run the original use script in its own ManualMoveAction context after the charge.
+::SkillCommand._rt_heroIsawaAct <- ::SkillCommand.act;
+::SkillCommand.act <- function( func, ctx=null ){
+	local amount = isawaTier( this, func );
+	if( !amount ) return this._rt_heroIsawaAct( func, ctx );
+	local srcscript = func["scp"] || ::skillscriptmap[func["id"]];
+	if( !length( srcscript ) ) return this._rt_heroIsawaAct( func, ctx );
+	local old = compilestring_c( srcscript, srcscript );
+	local context = { ...func, ...ctx };
+	return this._rt_heroIsawaAct( function(){
+		::Rokugan.heroIsawaCharge( rp3d, amount );
+		return old();
+	}, context );
+};

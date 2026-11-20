@@ -185,6 +185,9 @@ class RTCutIn extends SKImageView
 ::Rokugan.criticalPlan <- function( pc, sk, isVoid, rp){
 	local kind = isVoid ? "void_critical" : "critical";
 	local key = sk["rt_anim_key"] || sk["atkact"]["atkani"]["id"] || "attack", cfg = {};
+	local atk = sk["atkact"], weapon = rp["nativeWeaponKind"];
+	local kakita = isVoid && pc.dataid == "P101" && rp["nativeBody"] && (weapon == "katana" || weapon == "kakita") &&
+		typeof( atk) == SS_TABLE && atk["id"] == "atk_normal" && !atk["scp"];
 	foreach( id in [pc.dataid .. ":" .. key, pc.dataid .. ":*", "*:" .. key, "*:*"]){
 		local entry = this.CRIT_PRESENTATION[id .. ":" .. kind];
 		if( entry){ cfg = entry; break; }
@@ -192,15 +195,18 @@ class RTCutIn extends SKImageView
 	local shout = this.VOID_SHOUT[pc.data["rt_school_key"] || ""] || ["The Void strikes!"];
 	local plan = { kind = kind, key = key, clip = null, ani = null, duration = 0.0,
 		title = cfg["title"] || shout[0], title_ms = Math.clamp( cfg["title_ms"] ?? 1500.0, 1000.0, 2000.0) };
-	local speed = Math.clamp( cfg["speed"] ?? (isVoid ? 0.65 : 1.0), 0.35, 1.0);
-	foreach( id in [cfg["clip"], kind .. "_" .. key, kind]){
+	local schoolClip = ::Rokugan.schoolSpecialClip( pc, sk, isVoid, rp);
+	foreach( id in [cfg["clip"], (kakita ? "void_critical_kakita" : null), schoolClip, kind .. "_" .. key, kind]){
 		if( !id || !rp || !rp["animemap"] || !rp.animemap[id]) continue;
+		if( id == "void_critical_kakita" && !kakita) continue;
+		if( id == "void_critical_yari" && id != schoolClip) continue;
 		local clip = rp.animemap[id], frames = (clip["en"] ?? clip.st) - clip.st;
 		if( clip["loop"] || clip["replay"] == false || frames <= 0 || clip.spd <= 0){
 			log( "CRIT PRESENT invalid clip %S (requires a replayable non-looping forward range and positive speed)" % id);
 			continue;
 		}
 		//	Complete even a long authored clip within two seconds; never change global time or its shared definition.
+		local speed = Math.clamp( cfg["speed"] ?? (isVoid && id != "void_critical_kakita" ? 0.65 : 1.0), 0.35, 1.0);
 		speed = Math.max( speed, frames * 1000.0 / (clip.spd * 2000.0));
 		plan.clip = id;
 		plan.ani = { id = id, spd = speed };
@@ -208,6 +214,63 @@ class RTCutIn extends SKImageView
 		break;
 	}
 	return plan;
+};
+
+//	Follow the same beats in both the hat and bareheaded motion ranges.
+local smoothBeat = function( t, start, end){
+	local w = Math.clamp( (t - start) / (end - start), 0.0, 1.0);
+	return w * w * (3.0 - 2.0 * w);
+};
+::SkillCommand._rt_kakitaVoid <- function( dmg, battle, rp, plan){
+	local dst = battle.getChara3D( dmg.dst), body = rp.nativeBody;
+	if( !dst || !body) return false;
+	local inverse = Matrix();
+	rp.gmat.invert34u( inverse);
+	local path = (dst.pos - rp.pos).transform0( inverse);
+	local distance = Math.sqrt( path.x * path.x + path.z * path.z);
+	if( distance < 0.1) return false;
+	//	The picture's default facing uses its negative local Z axis.
+	local heading = Math.atan2( -path.x, -path.z);
+	local home = Vector3D( body.pos), homeRot = Quaternion();
+	homeRot << body.rot;
+	local layer = rp.anime2( plan.ani);
+	if( !layer) return false;
+	layer.locked = 1;
+	local start = skGetTime(), hit = false, error = null;
+	local atk = skill["atkact"], farSide = 0.65 / distance, strike = 0.275;
+	try{
+		while( ::rpgstage["battle"] == battle && rp.nativeBody == body){
+			local t = Math.clamp( (skGetTime() - start) / plan.duration, 0.0, 1.0);
+			local progress = (smoothBeat( t, 0.0, strike) + farSide * smoothBeat( t, strike, 0.41)) *
+				(1.0 - smoothBeat( t, 0.735, 0.985));
+			local turn = heading + Math.PI * smoothBeat( t, 0.40, 0.56);
+			body.pos( home.x + path.x * progress, home.y + path.y * Math.min( progress, 1.0), home.z + path.z * progress);
+			body.rot.setHPB( Math.HPI + turn * (1.0 - smoothBeat( t, 0.93, 1.0)), 0.0, 0.0);
+			body.matdirty = true;
+			if( !hit && t >= strike){
+				if( atk["atkefx"]) rp.effect( atk.atkefx);
+				if( atk["atksnd"]) rp.playSound( atk.atksnd);
+				hit = true;
+				log( "KAKITA VOID strike %S" % dmg.dst.dataid);
+				this.hitAction( dmg);
+			}
+			if( t >= 1.0) break;
+			sleep( 16);
+		}
+	}catch( ex){ error = ex; }
+	body.pos( home);
+	body.rot << homeRot;
+	body.matdirty = true;
+	layer.locked = 0;
+	layer.animating = false;
+	if( ::rpgstage["battle"] != battle) return true;
+	if( rp.nativeBody == body) rp.anime2( #{id="stand"});
+	if( error){
+		if( hit) throw error;
+		log( "KAKITA VOID unavailable; using native action: %S" % error);
+	}
+	if( hit) log( "KAKITA VOID complete");
+	return hit;
 };
 
 ::SkillCommand.rt_critShown <- false;
@@ -235,6 +298,17 @@ class RTCutIn extends SKImageView
 	}
 	if( ::rpgstage["battle"] != battle) return;
 	log( "CRIT PRESENT action %S %S clip=%S" % (dmg.src.name, plan.kind, plan.clip || "native"));
+	if( isVoid && ::Rokugan.useTattooDragon( dmg.src, dmg.skill, rp ) &&
+		this._rt_tattooDragonVoid( dmg, ::rpgstage, battle, rp ) ) return;
+	if( isVoid && ::Rokugan.canHeroLion( dmg, rp ) && this._rt_lionCourage( dmg, battle, rp ) ) return;
+	if( plan.clip == "void_critical_yari"){
+		if( this._rt_schoolSpearVoid( dmg, battle, rp, plan)) return;
+		plan.clip = null;
+	}
+	if( plan.clip == "void_critical_kakita"){
+		if( this._rt_kakitaVoid( dmg, battle, rp, plan)) return;
+		plan.clip = null;
+	}
 	rt_critVisual = plan;
 	try{
 		this._rt_attackAction_cp( dmg);
