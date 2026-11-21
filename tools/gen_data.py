@@ -2169,6 +2169,10 @@ def main():
                                         "Isle; RokuganField SEA_FROM)", "type": 2}
     gv["G1398"] = {"defval": 0, "name": "a save-then-move scene's owed map move (gen_maps resume_pass)", "type": 2}
     gv["G1362"] = {"defval": 0, "name": "guests met (bits by guest number; RokuganBattle guestSkills)", "type": 2}
+    gv["G1397"] = {"defval": 0, "name": "guest roster: the last 3 guests, oldest first, 5 bits each (RokuganBattle "
+                                        "guestRoster)", "type": 2}
+    gv["G1448"] = {"defval": 0, "name": "guests taken into the roster (bits by guest number; a guest pushed out by a "
+                                        "4th does not come back)", "type": 2}
     gv["G1363"] = {"defval": False, "name": "the finale: 8 party places (RokuganParty partyCap)", "type": 1}
     for _n in range(1, 18):                             # RokuganAI guestVar: lifetime calls spent
         gv["G%d" % (1364 + _n)] = {"defval": 0, "name": "guest %d: calls spent (lifetime)" % _n, "type": 2}
@@ -3373,6 +3377,17 @@ def main():
                [dict(PUT_BY_ID("K136"))]})
     s["S799"] = sw
     _costumes.skills(s)
+    # Guests stand in the third row (user 2026-11-21: "make guest call max to 3, and actually have them in the 3rd row
+    # as well ... if player has more than that keep the last three"): each call skill carries its guest's number and
+    # side-cast model (RokuganBattle.sk guestRoster / the back row). Number order = RokuganBattle GUEST_SKILLS.
+    GUEST_CALLS = {"S143": (1, "takeo"), "S144": (2, "mai"), "S145": (3, "fujio"), "S146": (4, "sakura"),
+                   "S400": (5, "seigen"), "S401": (6, "kiku"), "S406": (7, "goro"), "S429": (8, "ijako"),
+                   "S430": (9, "ashimita"), "S439": (10, "benjiro"), "S634": (10, "benjiro"), "S478": (11, "momo"),
+                   "S559": (12, "karasu"), "S565": (13, "naohida"), "S588": (14, "hiro"), "S596": (15, "jinnai"),
+                   "S602": (16, "hikaru"), "S633": (17, "kage")}
+    for _sid, (_n, _key) in GUEST_CALLS.items():
+        if _sid in s:
+            s[_sid].update({"rt_gnum": _n, "rt_gmdl": _sc_epid(_key)})
     save("skill", s)
 
     # ---- weapon.json  (eqtype: 1 dagger, 2 sword, 3 spear, 5 staff, 6 bow, 7 hammer)

@@ -1,0 +1,18 @@
+// Executed only by tools/test_guest_row.py (bot evalf): guests in the third row. Launched with four guests met
+// (G233-G236 = guests 1-4) and a hireling (G293/G294): the roster keeps the last three, they stand in the back row
+// with the hireling, Support lists them; then a guest's calls run out and they leave the roster.
+local b = ::rpgstage["battle"];
+local pc = b.members.find( @( m) m && !m.isDead());
+local names = function( arr){ local s = ""; foreach( i, v in arr) s += (i ? ", " : "") .. v; return s; };
+printf( "[RT] GUEST TEST roster %S\n", names( ::Rokugan.guestRoster().map( @( n) ::Rokugan.guestName( n))));
+printf( "[RT] GUEST TEST back row %d figures, guests %d, hireling %S\n", length( ::Rokugan.backrow),
+	length( ::Rokugan.guest3d), ::Rokugan.hire3d ? "yes" : "no");
+printf( "[RT] GUEST TEST support list %S\n", names( ::Rokugan.callables( pc).map( @( v) v.sk.name .. " x" .. v.left)));
+newthread().start( @(){
+	sleep( 1500);
+	::Rokugan.rtshot( "tmp/rt_shot/bot_guestrow.raw");
+	::rpgvar["G1366"] = 6;												//	Yogo Mai (guest 2): every lifetime call spent
+	printf( "[RT] GUEST TEST after Mai is spent: roster %S; leaving: %S\n",
+		names( ::Rokugan.guestRoster().map( @( n) ::Rokugan.guestName( n))), names( ::Rokugan.guestLeaving));
+	printf( "[RT] GUEST TEST COMPLETE\n");
+});

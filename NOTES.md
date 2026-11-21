@@ -5020,3 +5020,9 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
 - Same effect again = replace + restart the timer, never stack (user 2026-11-21). The engine refused a repeat once a
   condition was at MAXLV (canPutCondition), so recasts were lost; RokuganDurations.sk lets the repeat through
   (putCondition resets cond.turn). ATK/DEF Up/Down + Void Guard MAXLV 2 -> 1 (no +60%). Taint still stacks (a meter).
+- Guests (user 2026-11-21: "make guest call max to 3, and actually have them in the 3rd row ... keep the last three"):
+  RokuganBattle guestRoster: rpgvar G1397 = the last 3 guests met (oldest first, 5 bits each), G1448 = guests ever
+  taken in. A 4th guest pushes the oldest out for good; a guest whose lifetime calls are spent leaves (like a
+  hireling); both say so on the field after the fight (hireCheck). Support lists only the roster. They stand in the
+  third row with the hireling, centred on the party's 2 m columns (skill fields rt_gnum / rt_gmdl from gen_data,
+  side-cast EP models), and their name pops over them when called. Test: tools/test_guest_row.py.

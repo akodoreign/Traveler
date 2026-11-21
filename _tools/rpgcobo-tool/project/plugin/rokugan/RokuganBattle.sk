@@ -812,13 +812,59 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 //	guest (G232; rpgvar G1362 = bits by guest number, for the guests set straight through G232).
 ::Rokugan.GUEST_FLAGS <- { [1] = "G233", [2] = "G234", [3] = "G235", [4] = "G236", [5] = "G302", [6] = "G305",
 	[7] = "G368", [8] = "G456", [9] = "G462", [10] = "G507", [11] = "G715", [17] = "G1212" };
-::Rokugan.guestSkills <- function(){
-	local bits = int( ::rpgvar["G1362"] || 0), cur = int( ::rpgvar["G232"] || 0), a = [];
+//	(user 2026-11-21: "make guest call max to 3, and actually have them in the 3rd row as well. (using same rules for
+//	hirelings for join leave etc, except there can be 3) if player has more than that keep the last three guest calls")
+//	The roster (rpgvar G1397: guest numbers, oldest first, 5 bits each) holds the last GUEST_MAX guests met. A guest
+//	joins when met (taken once: G1448 bits); a 4th pushes the oldest out for good; a guest whose lifetime calls are
+//	spent leaves, like a hireling with no charges. Leaving guests say so on the field after the fight (hireCheck).
+::Rokugan.GUEST_MAX <- 3;
+::Rokugan.guestLeaving <- [];
+::Rokugan.guestSkillFor <- function( n){
+	if( n <= 0 || n >= length( this.GUEST_SKILLS)) return null;
+	return (n == 10 && ::rpgvar["G1214"]) ? ::conf.skill["S634"] : ::conf.skill[this.GUEST_SKILLS[n]];
+};
+::Rokugan.guestName <- function( n){
+	local sk = this.guestSkillFor( n);
+	if( !sk) return "?";
+	local i = sk.name.indexOf( ":");
+	return i > 0 ? sk.name.substring( 0, i) : sk.name;
+};
+::Rokugan.guestRoster <- function(){
+	local bits = int( ::rpgvar["G1362"] || 0), cur = int( ::rpgvar["G232"] || 0);
 	if( cur > 0 && cur < 31 && !(bits & (1 << cur))){ bits = bits | (1 << cur); ::rpgvar["G1362"] = bits; }
-	for( local n = 1; n < length( this.GUEST_SKILLS); n ++){
+	local code = int( ::rpgvar["G1397"] || 0), taken = int( ::rpgvar["G1448"] || 0), roster = [], code0 = code;
+	while( code){ roster.append( code & 31); code = code >> 5; }			//	oldest first
+	for( local n = 1; n < length( this.GUEST_SKILLS); n ++){				//	newly met (several at once: number order)
 		local f = (n in this.GUEST_FLAGS) ? this.GUEST_FLAGS[n] : null;
-		if( !(bits & (1 << n)) && !(f && ::rpgvar[f])) continue;
-		local sk = (n == 10 && ::rpgvar["G1214"]) ? ::conf.skill["S634"] : ::conf.skill[this.GUEST_SKILLS[n]];
+		if( (taken & (1 << n)) || (!(bits & (1 << n)) && !(f && ::rpgvar[f]))) continue;
+		taken = taken | (1 << n);
+		if( roster.indexOf( n) < 0) roster.append( n);
+	}
+	local keep = [];
+	foreach( n in roster){
+		local sk = this.guestSkillFor( n);
+		if( sk && this.usesLeft( null, sk) > 0) keep.append( n);
+		else this.guestLeaving.append( "%S heads home: no calls left." % this.guestName( n));
+	}
+	while( length( keep) > this.GUEST_MAX){
+		this.guestLeaving.append( "%S parts ways with you." % this.guestName( keep[0]));
+		delete keep[0];
+	}
+	code = 0;
+	foreach( i, n in keep) code = code | (n << (5 * i));
+	if( code != code0){
+		local s = "";
+		foreach( i, n in keep) s += (i ? ", " : "") .. this.guestName( n);
+		printf( "[RT] guest roster: %S\n", s == "" ? "(none)" : s);
+	}
+	::rpgvar["G1397"] = code;
+	::rpgvar["G1448"] = taken;
+	return keep;
+};
+::Rokugan.guestSkills <- function(){
+	local a = [];
+	foreach( n in this.guestRoster()){
+		local sk = this.guestSkillFor( n);
 		if( sk && a.indexOf( sk) < 0) a .. sk;
 	}
 	return a;
@@ -988,7 +1034,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 ::RPGCameraworkFixed._rt_update_hire <- ::RPGCameraworkFixed.updateBody;
 ::RPGCameraworkFixed.updateBody <- function( stage, dt){
 	this._rt_update_hire( stage, dt);
-	local hire = ::Rokugan.hire3d;
+	local br = ::Rokugan.backrow, hire = length( br) ? br[length( br) / 2] : null;	//	the middle of the third row
 	if( !stage["battle"] || !hire || hire.scn != stage.scn) return;
 	local marker = stage.getMarker( data.mkid);
 	if( !marker || marker["name"] != "*maincam") return;
@@ -1003,20 +1049,60 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 	::Rokugan.freecmds = [];
 	::Rokugan.supportTurn = -1;
 	::Rokugan.downed = {};
+	::Rokugan.backrow = [];
+	::Rokugan.guest3d = {};
+	//	the third row: the roster's guests (oldest first), then the hireling, centred on the party's columns
+	local figs = [];
+	if( !::Rokugan["sumai_party"]) foreach( n in ::Rokugan.guestRoster()){
+		local g = ::Rokugan.guestSkillFor( n);
+		if( g && g["rt_gmdl"]) figs.append( { mdl = g.rt_gmdl, guest = n, what = "guest " .. ::Rokugan.guestName( n) });
+	}
 	local sk = ::Rokugan.hireSkill();
-	if( !sk || !sk["rt_hmdl"]) return;
-	try{
-		local m = stage.getLocation( "*memberloc");
-		local back = Vector3D( 0.0, 0, -4.2).rotate( m.dir, 0, 0);	//	the third row (RokuganParty: rows 0 and -2.1)
-		local p = Vector3D( m.pos).add( back.x, back.y, back.z);
-		local rp3d = RPG3DObject.create3DObject( { mdlid = sk.rt_hmdl });
-		rp3d.manuaction = ManualMoveAction( rp3d);
-		if( rp3d["startBattleStance"]) rp3d.startBattleStance();
-		stage.scn.addObject( rp3d);
-		rp3d.setPosition( (p.x, p.y, p.z, m.dir));
-		::Rokugan.hire3d = rp3d;
-		log( "hireling in the back row: %S (%d charges)" % (sk.rt_hname, ::Rokugan.hireCharges()));
-	}catch( ex){ printexception( ex); }
+	if( sk && sk["rt_hmdl"]) figs.append( { mdl = sk.rt_hmdl, guest = 0,
+		what = "hireling %S (%d charges)" % (sk.rt_hname, ::Rokugan.hireCharges()) });
+	if( !length( figs)) return;
+	local m = stage.getLocation( "*memberloc");
+	local side = Vector3D( 1, 0, 0).rotate( m.dir, 0, 0);
+	local back = Vector3D( 0.0, 0, -4.2).rotate( m.dir, 0, 0);	//	the third row (RokuganParty: rows 0 and -2.1)
+	foreach( j, f in figs){
+		try{
+			local lat = ((length( figs) - 1) * 0.5 - j) * 2.0;		//	the party's 2 m columns
+			local p = Vector3D( m.pos) + side * lat + back;
+			local rp3d = RPG3DObject.create3DObject( { mdlid = f.mdl });
+			rp3d.manuaction = ManualMoveAction( rp3d);
+			if( rp3d["startBattleStance"]) rp3d.startBattleStance();
+			stage.scn.addObject( rp3d);
+			rp3d.setPosition( (p.x, p.y, p.z, m.dir));
+			::Rokugan.backrow.append( rp3d);
+			if( f.guest) ::Rokugan.guest3d[f.guest] <- rp3d;
+			else ::Rokugan.hire3d = rp3d;
+			log( "back row: %S" % f.what);
+		}catch( ex){ printexception( ex); }
+	}
+};
+::Rokugan.backrow <- [];
+::Rokugan.guest3d <- {};
+//	a guest's call: their name over them in the back row
+::Rokugan._rt_pre_gname <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	this._rt_pre_gname( cmd);
+	local sk = cmd.skill, n = sk ? (sk["rt_gnum"] || 0) : 0;
+	if( !n || !(cmd.src instanceof ::RPGPlayer) || !(n in this.guest3d)) return;
+	local g3d = this.guest3d[n], txt = this.guestName( n);
+	if( g3d && g3d["manuaction"]) g3d.manuaction.act( @(){ popdamage( txt, 0xffe080ff); wait( 200); });
+};
+//	back on the field: guests who left (spent, or pushed out by a newer one) say so, like a hireling going home
+::Rokugan._rt_hirecheck_g <- ::Rokugan.hireCheck;
+::Rokugan.hireCheck <- function( st){
+	this._rt_hirecheck_g( st);
+	if( st["battle"] || !st["player3d"]) return;
+	this.guestRoster();
+	if( !length( this.guestLeaving)) return;
+	local s = "";
+	foreach( i, t in this.guestLeaving) s += (i ? "  " : "") .. t;
+	this.guestLeaving = [];
+	st.player3d.popupDamage( s, 0xffe080ff, 0);
+	printf( "[RT] %S\n", s);
 };
 
 ///////////////////////////////////////////////////////////////////////////////////

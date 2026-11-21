@@ -8562,5 +8562,15 @@
 		"defval": 0,
 		"name": "weakness memory: Oni no Akuma (revealed weakness bits)",
 		"type": 2
+	},
+	"G1397": {
+		"defval": 0,
+		"name": "guest roster: the last 3 guests, oldest first, 5 bits each (RokuganBattle guestRoster)",
+		"type": 2
+	},
+	"G1448": {
+		"defval": 0,
+		"name": "guests taken into the roster (bits by guest number; a guest pushed out by a 4th does not come back)",
+		"type": 2
 	}
 }

@@ -3318,11 +3318,12 @@
    "palette": "A168"
   },
   "side_rui": {
-   "mesh": "A168",
+   "mesh": "A168_mantis_tadayasu",
    "dyed": true,
    "decal": "A168",
    "coverCore": true,
-   "clan": "mantis"
+   "clan": "mantis",
+   "palette": "A168"
   },
   "side_yoritomo": {
    "mesh": "A168",

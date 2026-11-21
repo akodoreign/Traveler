@@ -4784,7 +4784,9 @@
 		},
 		"rt_uses": 2,
 		"rt_guest": true,
-		"rt_aoe": true
+		"rt_aoe": true,
+		"rt_gnum": 1,
+		"rt_gmdl": "EP382"
 	},
 	"S144": {
 		"H1": null,
@@ -4834,7 +4836,9 @@
 			"usesnd": "SE229"
 		},
 		"rt_uses": 2,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 2,
+		"rt_gmdl": "EP383"
 	},
 	"S145": {
 		"H1": null,
@@ -4919,7 +4923,9 @@
 			"scp": null
 		},
 		"rt_uses": 1,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 3,
+		"rt_gmdl": "EP384"
 	},
 	"S400": {
 		"HACT": null,
@@ -4984,7 +4990,9 @@
 			"usesnd": null
 		},
 		"rt_uses": 2,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 5,
+		"rt_gmdl": "EP398"
 	},
 	"S401": {
 		"H1": null,
@@ -5059,7 +5067,9 @@
 			"scp": null
 		},
 		"rt_uses": 1,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 6,
+		"rt_gmdl": "EP399"
 	},
 	"S406": {
 		"H1": null,
@@ -5134,7 +5144,9 @@
 			"scp": null
 		},
 		"rt_uses": 2,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 7,
+		"rt_gmdl": "EP381"
 	},
 	"S146": {
 		"H1": null,
@@ -5184,7 +5196,9 @@
 			"usesnd": "SE229"
 		},
 		"rt_uses": 2,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 4,
+		"rt_gmdl": "EP385"
 	},
 	"S147": {
 		"H1": null,
@@ -15342,7 +15356,9 @@
 			"scp": null
 		},
 		"rt_uses": 1,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 8,
+		"rt_gmdl": "EP312"
 	},
 	"S430": {
 		"H1": null,
@@ -15417,7 +15433,9 @@
 			"scp": null
 		},
 		"rt_uses": 2,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 9,
+		"rt_gmdl": "EP318"
 	},
 	"S439": {
 		"H1": null,
@@ -15478,7 +15496,9 @@
 		},
 		"elembits": 512,
 		"rt_uses": 2,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 10,
+		"rt_gmdl": "EP314"
 	},
 	"S634": {
 		"H1": null,
@@ -15539,7 +15559,9 @@
 		},
 		"elembits": 512,
 		"rt_uses": 3,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 10,
+		"rt_gmdl": "EP314"
 	},
 	"S445": {
 		"H1": null,
@@ -16279,7 +16301,9 @@
 		},
 		"rt_uses": 2,
 		"rt_guest": true,
-		"rt_interrogate": true
+		"rt_interrogate": true,
+		"rt_gnum": 11,
+		"rt_gmdl": "EP594"
 	},
 	"S481": {
 		"H1": null,
@@ -19335,7 +19359,9 @@
 			"scp": null
 		},
 		"rt_uses": 2,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 12,
+		"rt_gmdl": "EP322"
 	},
 	"S555": {
 		"H1": null,
@@ -19724,7 +19750,9 @@
 		},
 		"rt_uses": 1,
 		"rt_guest": true,
-		"rt_aoe": true
+		"rt_aoe": true,
+		"rt_gnum": 13,
+		"rt_gmdl": "EP1101"
 	},
 	"S566": {
 		"H1": null,
@@ -20971,7 +20999,9 @@
 		},
 		"rt_uses": 2,
 		"rt_guest": true,
-		"rt_aoe": true
+		"rt_aoe": true,
+		"rt_gnum": 14,
+		"rt_gmdl": "EP325"
 	},
 	"S589": {
 		"H1": null,
@@ -24877,7 +24907,9 @@
 			"scp": null
 		},
 		"rt_uses": 2,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 15,
+		"rt_gmdl": "EP326"
 	},
 	"S597": {
 		"H1": null,
@@ -25269,7 +25301,9 @@
 			"scp": null
 		},
 		"rt_uses": 2,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 16,
+		"rt_gmdl": "EP1147"
 	},
 	"S633": {
 		"H1": null,
@@ -25344,7 +25378,9 @@
 			"scp": null
 		},
 		"rt_uses": 2,
-		"rt_guest": true
+		"rt_guest": true,
+		"rt_gnum": 17,
+		"rt_gmdl": "EP301"
 	},
 	"S635": {
 		"HACT": null,
