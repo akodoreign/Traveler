@@ -98,6 +98,10 @@ local hudSprite = function(){
 	}
 };
 
+//	A short notice in the Story box (a guest or hireling leaving, ...): shown for `ms` from when the box is first on
+//	screen, then the story comes back. Several in a row queue up.
+::Rokugan.hudNotes <- [];
+::Rokugan.hudNotice <- function( text, ms = 6000){ this.hudNotes.append( { text = text, ms = ms, until = 0 }); };
 ::Rokugan.hudTick <- function( st){
 	if( !::rootview) return;
 	local root = ::rootview.findChild( "stageui");
@@ -114,7 +118,15 @@ local hudSprite = function(){
 	local lv = this.areaLevels( st.map), clv = int( ::rpgvar["G1228"] || 0);
 	//	(user 2026-11-14) a quest tracked in the Journal (RokuganJournal.sk) takes the box while it is open
 	local tr = ("journalTracked" in this) ? this.journalTracked() : null;
-	local key = "%S|%d|%S|%d|%S" % (st["mapid"], oi, lv ? lv[0] .. "-" .. lv[1] : "-", clv, tr ? tr[0] : "");
+	local now = skGetTime(), note = null;
+	while( length( this.hudNotes)){
+		local n = this.hudNotes[0];
+		if( !n.until) n.until = now + n.ms;
+		if( now < n.until){ note = n; break; }
+		delete this.hudNotes[0];
+	}
+	if( note) tr = ["Party", note.text];
+	local key = "%S|%d|%S|%d|%S" % (st["mapid"], oi, lv ? lv[0] .. "-" .. lv[1] : "-", clv, tr ? tr[0] .. tr[1] : "");
 	if( key != H.key || H.root != root){
 		H.key = key; H.root = root;
 		local story = tr ? wrap( tr[1], CHARS) : (oi >= 0 && oi < length( objs)) ? wrap( objs[oi], CHARS) : [];

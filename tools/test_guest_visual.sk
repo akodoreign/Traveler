@@ -1,0 +1,17 @@
+// Executed only by tools/test_guest_visual.py (bot evalf). Battle: a guest's call pops their name over them in the back
+// row. Field (-map): a guest pushed out by a 4th says so on arrival.
+local b = ::rpgstage["battle"];
+newthread().start( @(){
+	if( b){
+		sleep( 1200);
+		local pc = b.members.find( @( m) m && !m.isDead()), sk = ::Rokugan.guestSkillFor( 3);	//	Ide Fujio
+		local cmd = SkillCommand( pc, sk, [b.enemies[0]]);
+		::Rokugan.onPreCommand( cmd);
+		sleep( 250);
+		::Rokugan.rtshot( "tmp/rt_shot/bot_guestcall.raw");
+	}else{
+		sleep( 1500);
+		::Rokugan.rtshot( "tmp/rt_shot/bot_guestfield.raw");
+	}
+	printf( "[RT] GUESTVIS COMPLETE\n");
+});

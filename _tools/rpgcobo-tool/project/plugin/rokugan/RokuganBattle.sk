@@ -957,7 +957,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 	local sk = this.hireSkill();
 	if( !sk || this.hireCharges() > 0 || st["battle"] || !st["player3d"]) return;
 	::rpgvar["G293"] = 0;
-	st.player3d.popupDamage( "%S heads back to %S." % (sk.rt_hname, sk.rt_hhome), 0xffe080ff, 0);
+	this.hudNotice( "%S heads back to %S." % (sk.rt_hname, sk.rt_hhome));
 	printf( "[RT] hireling %S goes home to %S\n", sk.rt_hname, sk.rt_hhome);
 };
 
@@ -1101,7 +1101,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 	local s = "";
 	foreach( i, t in this.guestLeaving) s += (i ? "  " : "") .. t;
 	this.guestLeaving = [];
-	st.player3d.popupDamage( s, 0xffe080ff, 0);
+	this.hudNotice( s);										//	(RokuganHUD: the Story box, long enough to read)
 	printf( "[RT] %S\n", s);
 };
 

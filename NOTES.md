@@ -5026,3 +5026,6 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
   hireling); both say so on the field after the fight (hireCheck). Support lists only the roster. They stand in the
   third row with the hireling, centred on the party's 2 m columns (skill fields rt_gnum / rt_gmdl from gen_data,
   side-cast EP models), and their name pops over them when called. Test: tools/test_guest_row.py.
+- Leaving notices (guests and the hireling going home) now show in the field Story box for 6 s (RokuganHUD
+  hudNotice, title "Party"): the old popupDamage over the player faded before anyone could read it. Visual tests:
+  tools/test_guest_visual.py (guest call pop, field notice), screenshots in _art/preview/guest_*.png.
