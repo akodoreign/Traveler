@@ -2,8 +2,8 @@
 
 The user requested batch rollout without individual approvals. Promote internal fit and in-game checks in groups. Record exceptions and continue through the queue.
 
-- 165 of 349 catalog entries currently have the regenerated portrait route and both native files present. [Cast progress](cast-head-progress.csv)
-- 129 verified in the new batch runs. Pilgrim girl, Soshi Shinobu, Soshi Bantaro, Sabu, Sariko, Tamori Rain-caller, Kitsuki Seigen, Hantei Kusada, Kakita Miyoshi, Miya Yachiko, Kitsuki clerk, Kitsuki Oharu, The hostess, Cart driver, Suzume Rika, Mantis captain, Doji poet, Doji courtier, Isawa Uona, Isawa Rujo, Guard sergeant, Mob leader, The karo, Jade clerk, Kaiu Mami, Crane make-up artist, Incense-seller, Seppun Satomi, Suzume Sweeper, Imuro, Widow, Doji Seikidera, Kitsuki Momo, Hiruma Ryoichi, Sparrow Ronin, Kaiu Yutaka, Akodo Ozaki, Kuni Miyubi, Daidoji guard, Village girl, Hida Veteran, Hida Taneo, Kitchen girl, Tattooed beggar, Drunk actor, Iuchi farmer, Crane duellist, Mirumoto drummer, Iuchi Daiyu, Shosuro Noburo, Kitsu Takeo, Akodo Seoko, Mirumoto sentry, Court actor, Mirumoto Tabezu, Iuchi soldier, Iuchi Takanobu, Shinjo Yoriki, Ashigaru Archer, Mantis Ferry Archer, Daidoji Sakura, Lamplighter, Old Mirumoto Koshi, Akodo Tama, Bayushi Shoju, Tadayasu, Hida Ren, Hida Jade Archer, Akodo Goroso, Gochu, Akodo Hiruto, Akodo Gusai, Daidoji Atsuko, Hida Masakazu, Hida Yakamo, Daidoji general, Old fisherman, Boy with a crab, Shiba Noboru, Shinjo Ryuko, Soshi Ichihito, Soshi officer, Scorpion yojimbo, Yasuki Kasamashi, Kaiu Engineer, Kaiu Sapper, Fishwife, Tsuruchi Archer, Ebisu, Old woman, Bargeman, Muika, Village Herbalist, Ume-baa, Ship's master, Pigeon-keeper, Shrine peasant, Hanabi Seller, Mask-maker, Mirumoto Sen, Masked citizen, Old pilgrim, Iuchi Karasu, Mirumoto Yari Sergeant, Akodo Nishi, Beggar, Drunk sailor, Agasha Fire-Shugenja, Akodo Hojiki, Isawa Michio, Doji Hayato, Ide Xue, Doji Sanae, Iuchi Water-Shugenja, Asako Keiki, Isawa Sanro, Hiruma Goro, Akodo Kafu, Akodo Kafu (no-sword route), Smith's apprentice, Seppun Ushimo, Shiba Ashimita, Isawa Kasiko, Akodo Rin, Hida Sachiko, Lion rider, Tamori Haku, Matsu Hanae, Hiruma Kage. [Daylight profiles](cast_heads/bulk-cast-daylight-profiles.png)
+- 221 of 349 catalog entries currently have the regenerated portrait route and both native files present. [Cast progress](cast-head-progress.csv)
+- 185 verified in the new batch runs. Pilgrim girl, Soshi Shinobu, Soshi Bantaro, Sabu, Sariko, Tamori Rain-caller, Kitsuki Seigen, Hantei Kusada, Kakita Miyoshi, Miya Yachiko, Kitsuki clerk, Kitsuki Oharu, The hostess, Cart driver, Suzume Rika, Mantis captain, Doji poet, Doji courtier, Isawa Uona, Isawa Rujo, Guard sergeant, Mob leader, The karo, Jade clerk, Kaiu Mami, Crane make-up artist, Incense-seller, Seppun Satomi, Suzume Sweeper, Imuro, Widow, Doji Seikidera, Kitsuki Momo, Hiruma Ryoichi, Sparrow Ronin, Kaiu Yutaka, Akodo Ozaki, Kuni Miyubi, Daidoji guard, Village girl, Hida Veteran, Hida Taneo, Kitchen girl, Tattooed beggar, Drunk actor, Iuchi farmer, Crane duellist, Mirumoto drummer, Iuchi Daiyu, Shosuro Noburo, Kitsu Takeo, Akodo Seoko, Mirumoto sentry, Court actor, Mirumoto Tabezu, Iuchi soldier, Iuchi Takanobu, Shinjo Yoriki, Ashigaru Archer, Mantis Ferry Archer, Daidoji Sakura, Lamplighter, Old Mirumoto Koshi, Akodo Tama, Bayushi Shoju, Tadayasu, Hida Ren, Hida Jade Archer, Akodo Goroso, Gochu, Akodo Hiruto, Akodo Gusai, Daidoji Atsuko, Hida Masakazu, Hida Yakamo, Daidoji general, Old fisherman, Boy with a crab, Shiba Noboru, Shinjo Ryuko, Soshi Ichihito, Soshi officer, Scorpion yojimbo, Yasuki Kasamashi, Kaiu Engineer, Kaiu Sapper, Fishwife, Tsuruchi Archer, Ebisu, Old woman, Bargeman, Muika, Village Herbalist, Ume-baa, Ship's master, Pigeon-keeper, Shrine peasant, Hanabi Seller, Mask-maker, Mirumoto Sen, Masked citizen, Old pilgrim, Iuchi Karasu, Mirumoto Yari Sergeant, Akodo Nishi, Beggar, Drunk sailor, Agasha Fire-Shugenja, Akodo Hojiki, Isawa Michio, Doji Hayato, Ide Xue, Doji Sanae, Iuchi Water-Shugenja, Asako Keiki, Isawa Sanro, Hiruma Goro, Akodo Kafu, Akodo Kafu (no-sword route), Smith's apprentice, Seppun Ushimo, Shiba Ashimita, Isawa Kasiko, Akodo Rin, Hida Sachiko, Lion rider, Tamori Haku, Matsu Hanae, Hiruma Kage, Yoritomo Rui, Gonta, Kakita Yumi, Asako Kuhime, Ikoma Sadanobu, Magistrate's clerk, Temple gatekeeper, Kakita Masanori, Kakita Kumpei, Hoshi Fisherman, Merchant, Old Mosuke, Hitoro, Kosai, Senior student, Swordsmith, Riichi, Kasuga Yodo, Court actress, Togashi Bo-Monk, Soshi Nihime, Kakita Yasurugi, Moshi Wind-caller, Wandering Air-Shugenja, Yasuki Kurako, Ikoma bard, Doji Nashiko, Isawa Akiko, Iuchi Shahai, Camp follower, Wall veteran, Masked sake-seller, Kuni Taira, Net-mender, Akodo Hojato, Shrine-keeper, Jinnai, Kitsu Kenshai, Doji Siko, Child with a kite, Ichiro Itami, Herb seller, Kiyo, Jade-dust Pedlar, Moto Outrider, Quartermaster, Young Sayo, Mirumoto Mountain Guide, Fish-seller, Innkeeper, Goat-herd Archer, Isawa acolyte, Censor-monk, Mirumoto Hikaru, Dying healer, Daidoji Hagane. [Daylight profiles](cast_heads/bulk-cast-daylight-profiles.png)
 - The source audit recovered 11 usable portraits from 60 missing entries. It identified 8 actor-specific variants and 41 original design briefs. The progress CSV tracks newly generated references and exports as these are processed. [Source cross-checks](cast-missing-source-audit.json), [recovered references](cast-recovered-references.json)
 
 ## Keep moving through the remaining cast
@@ -12,7 +12,7 @@ Use the exact sources and prompts in `reframed_heads`, the corrected painted don
 
 ## Companion priority
 
-The current rollout puts human story companions first. 19 of 21 companion routes have regenerated heads bound. The current route keys come from the scripted party entries in `tools/gen_data.py` and the native picture index. Use one face design for Kafu's sword and no-sword variants and one for Kage and his chapter-three route. Check each variant with its original body and equipment. [Companion keys](companion-head-priority.json)
+The current rollout puts human story companions first. 21 of 21 companion routes have regenerated heads bound. 21 were also verified in their actual Coast Road party slots. The current route keys come from the scripted party entries in `tools/gen_data.py` and the native picture index. Use one face design for Kafu's sword and no-sword variants. Keep Kage and his chapter-three appearance recognizably the same character, and check both with their original equipment. [Companion keys](companion-head-priority.json)
 
 Moved queued jobs retain their exact workflow, image and seed. The receipt list records both the original and the new prompt ID. Upcoming companion renders and fit handoffs go ahead of the general cast work.
 
@@ -68,10 +68,24 @@ Kitchen Girl and Iuchi Farmer use the same peasant A100 robe. The isolated A100 
 | Soshi Envoy, Beggar, Drunk Sailor, Ronin Yojimbo | First pilots run wide or change depth too quickly through the lower socket. Keep the original source identities and screen fresh geometry separately. |
 | Shosuro Mayumi, Doji Siko, Hiruma Kage, Matsu Hanae | Mayumi's first neck is thin front to back. Siko's crown has holes. Kage's rear hair limits the stem to a mount with excessive lean. Hanae's low tail and raised eye contours need a fresh source. |
 | Mitsue's maid route | Mechanical A127 checks passed. The actual daylight front still shows a pale horizontal neck stripe. The previous live route is active and the exact candidate and color calibration are saved for review. |
+| Ide Keiyomi, Shinjo Miyahana, Shinjo O-Shito | Their individual head fits are saved. Unicorn A155 still exposes an uneven throat band or rear opening, so these routes retain their prior bindings. Miyahana's silver horn is a separate fitted piece. |
+| Shadow Hunter | Fitted black linen clears face and expressions. The existing A127 exposes an abrupt pale collar gap. Keep the original route pending outfit review. |
+| Hiruma Kage, regular route | Long locks cross A173 in the original arrangement. The chapter-three companion route is already verified and retains its approved separate fit. |
+| Kuni Akuja V2 | The rig, A100 and walk loaded in daylight. A pale scalp crescent and gray forehead strip cross the original hairline, so his prior binding is active until the atlas is corrected. [Daylight front](cast_heads/akuja-v2-held-scalp-paint.png) |
+| Doji Aoi V2, Asahina priest V2 | Stock Crane A124 leaves a visible rear opening. The existing fitted collar intersects their hair, so their neutral mesh proofs are saved for the wardrobe pass. |
+| Isawa Wind-Priest, Isawa Kamasari, Iuchi Kurosho | Exact mounts retain a visible throat overlap, shoulder or rear collar opening on the current A140 or A155. Preserve their previous routes. |
+| Bayushi Kei | The A127 route still crosses the pilot's lower rear lock, and the story requires a fitted cloth mask. The neutral rig and exact contact locations are saved. |
 | Yogo Mai V3 | Mounted exact paint shows a broad pale scalloped overlap at the front of A127. The corrected head and collar proof are staged. |
 | Yogo Meyako V2 | Bare fit clears hair and the A127 robe, but the active story mask projects visibly in both profiles. The native Noh mask stays active pending a separate fit. |
 | Moto Benjiro V2 | Corrected face preserves purple paint. The registered death mask and uncovered canonical portrait disagree. Hold his neutral presentation until story equipment is confirmed. |
 | Kitchen Servant, Ferry Fisherman, Kitsune Hyobe | Servant has an undersized lower neck, Fisherman has an oversized upper ring with A100 contact, and Hyobe's hair touches his A108 collar. |
+| Beggar-monk, Ferryman, Boatman, Hiro | Initial lower stems have narrow pegs or abrupt shelves at the upper neck. Actual bare and dressed reviews are preserved. |
+| Matsu Bushi, Bayushi Depura | Matsu Bushi's lower locks intersect A135. Depura has lower hair contacts on A127 and a broad front body reveal. |
+| Shinjo O-Shito | The exact head and separate hair fittings are staged. The original A155 exposes visible skin islands and a pale front rim. |
+| Miya Hatomu | Both A167 collar trials show cheek contact in guard and irregular rear neck bulk. |
+| Mirumoto Hikaru | V1 lower stem shifts through a deep shelf and joins low hair. The V2 source review preserves the gold facial marks. |
+| Moshi Wind-caller | V1 was held after daylight showed a flesh-colored bob tip. The V2 atlas matches the tip to neighboring hair. Its same 50-joint fit and both game profiles passed, and V2 is live. [V1 daylight hold proof](cast_heads/moshi-held-bob-tip-daylight.png) |
+| Regular Hiruma Kage | The V2 low-ring cut clipped the rear locks. Keeping the exact hair ends produced A173 contacts across all four poses. The separate Chapter Three companion appearance is live. |
 | Moto Zhang | Later rigid seat reduces depth mismatch. The stock A159 still exposes a prominent rear neck window. |
 | Gusai Iami, Yoritomo | Stock A168 exposes the right rear skin rim. Iami also has lock-edge contacts on the independently checked Tadayasu alias. |
 | Lion Sergeant, Ryohei, Yosuke | Lower hair contacts their stock garments in the four samples. Preserve the face and hair designs while checking clearance. |
@@ -120,6 +134,20 @@ Isawa Michio, Ide Xue, Iuchi Water-Shugenja and Asako Keiki passed on their nati
 
 Goro, Michio, Sanro, Ushimo, Ashimita, Kasiko, Sachiko, Lion Rider and Rin also loaded the regenerated heads in their actual party slots. These use the hero's equipped wardrobe, which can differ from the field model's defaults. Both Kafu field routes use the same source and rigid head fit. Smith's apprentice and Sachiko each have an independently fitted red linen hachimaki. [Sachiko's headband](cast_heads/side_sachiko_fitted-headwear/painted-headwear-fit.png)
 
+Hanae passed with her separate gold crest band. Rui passed on A168 with the existing fitted Mantis collar validated on her female body. Rin's localized crown tint removes the far-side pale patch and preserves the warm fringe and red tie. Gonta passed the field A108 and his actual P125 A100. The lineup uses the approved body proportions, with Yosai tallest, Natsuko second and Gonta broadest. [Daylight lineup](cast_heads/gonta-stature-daylight-front.png), [Quarter view](cast_heads/gonta-stature-daylight-quarter.png)
+
+The Senior Student passed with his bokken and fitted Crane collar. Riichi's small local nose reshape retained the original seven facial controls and passed on Coast Road. Moshi and Akiko both passed their local hair color revisions. The Masked Sake-seller passed with a separate scarlet mask with real eye openings. [Latest profiles](cast_heads/rigs-200-daylight.png)
+
+Kite Child, Itami, and the Herb Seller passed the Coast Road profile and walk checks. Itami's fitted stone mask and the Herb Seller's gold leaf sprig are independently mounted. [Daylight profiles](cast_heads/recent-fitted-heads-daylight.png), [Itami mask](cast_heads/itami-stone-mask/fitted-stone-mask.png), [Herb Seller sprig](cast_heads/herb-seller-leaf-sprig/fitted-ornaments.png)
+
+Kiyo passed with separate scarlet linen. Jade-dust Pedlar passed with a fitted gold lotus and seven drops. Moto Outrider, Quartermaster and Mountain Guide passed with their original equipment. Young Sayo passed with a separate woven straw hat and the headwear toggle. [Daylight profiles](cast_heads/batch-105-107-daylight.png)
+
+Doji Siko V3 passed with her fitted porcelain mask, Crane A109 and original katana. The head-bound piece replaces the original floating mask and clears all seven expressions. [Fitted daylight profiles](cast_heads/siko-porcelain-mask/siko-fitted-porcelain-daylight.png), [Original placement](cast_heads/siko-held-stock-mask-daylight.png)
+
+The Fish-seller, Innkeeper, and Goat-herd Archer passed with separately fitted linen equipment in ivory gray, wine, and flax. Each accurately fits its actor's active field headwear route and follows the visibility setting. [Daylight profiles](cast_heads/batch-108-109-daylight.png), [With and without linen headwear](cast_heads/field-linen-headwear/rigged-b34-field-headcloths.png)
+
+Isawa Acolyte, Censor-monk, Mirumoto Hikaru and the Dying Healer passed in their original equipment. Hikaru preserves his gold facial marks. Censor-monk uses the verified Imperial A167 collar fit and original tanto. Daidoji Hagane passed with his fitted Crane collar and separate indigo lower-face mask. [Daylight profiles](cast_heads/batch-112-113-daylight.png)
+
 Use `work/review_cast_geometry.py` to compare pilot silhouettes and centered sections across each group. Once a pilot clears, `work/queue_cast_texture.py` submits the exact input at seed 47. Its optional front placement only takes effect when all pending jobs belong to the recorded Traveler queue.
 
 ## Reference screening
@@ -149,6 +177,16 @@ Use `work/review_cast_geometry.py` to compare pilot silhouettes and centered sec
 | 30 | 5 | Agasha Kusuri, Akodo Ijako, Doji Himeko, Doji Miyako, Katsuo the White Brother, Soshi courtier, Young Sayo |
 | 31 | 9 | Akodo Shogen, Iuchi Kurosho, Doji Tomeko |
 | 32 | 3 | Gonta |
+| 33 | 4 | Kuni Witch-hunter, Iuchi Hiroichi, Matsu Hisae, Matsu Rokuro |
+| 34 | 7 | Yasuki Tessai |
+| 35 | 7 | Suitengu priest |
+| 36 | 8 | — |
+| 37 | 8 | Kakita Morishu, Isawa Hoju, Doji Miyako, Doji Tomeko |
+| 38 | 9 | Akari, Matsu Hisae, Isawa Mieko |
+| 39 | 4 | Kakita Morishu, Iuchi Hiroichi, Doji Tomeko, Oyuki |
+| 40 | 8 | — |
+| 41 | 6 | Togashi outfitter, Yosuke the Bold |
+| 42 | 8 | — |
 
 ## Local Hunyuan receipts
 
@@ -479,51 +517,51 @@ All batch jobs use seed 47. The status is a snapshot of ComfyUI, and a successfu
 | `side_h_iuchi_paint` | `1dbd6140-a130-475d-be29-153e92c0b126` | Success |
 | `side_beggarmonk_geometry` | `6a509352-a1e3-49fd-9714-0572137018cd` | Success |
 | `side_clerk_geometry` | `8032aa9f-4474-496e-afa3-a9990090264e` | Success |
-| `side_ferryman_geometry` | `a0ddca54-b0bf-4dea-9cad-8ec75e177c66` | Pending |
-| `side_ff_boatman_geometry` | `168bf031-7faa-48bc-b0df-eeb5de78a040` | Pending |
-| `side_gatekeeper_geometry` | `86cf39bc-3235-4305-b5dc-eb68ae56fadb` | Pending |
-| `side_h_fisherman_geometry` | `765fc4e9-22d7-433b-b0fd-96d72f085c22` | Pending |
-| `side_hiro_geometry` | `bdc06d7c-e179-4622-bbc1-bca7d32100aa` | Pending |
-| `side_hitoro_geometry` | `e030e596-fbab-4d01-aedb-01ebfef2d969` | Pending |
-| `side_kosai_geometry` | `5d451e9f-6478-4b37-8d78-51c01a55663c` | Pending |
-| `side_merchant_geometry` | `2ef81db9-0d3d-459d-8b5d-7e30155d5f34` | Pending |
-| `side_mosuke_geometry` | `bd163ab1-adf4-4334-a599-4eb754a1f8b1` | Pending |
-| `side_riichi_geometry` | `3d6b9c31-37be-4cf6-8f4e-97002df17423` | Pending |
-| `side_senior_student_geometry` | `d84dfefb-8e47-4e55-a755-323269429b1b` | Pending |
-| `side_swordsmith_geometry` | `db3ee6aa-68ab-4994-8627-03736c373bee` | Pending |
-| `side_veteran_geometry` | `a2125aad-cf54-4978-bb64-91d372cf1076` | Pending |
-| `side_yodo_geometry` | `be937c47-dcf6-4977-9619-550ff4c19ea3` | Pending |
+| `side_ferryman_geometry` | `a0ddca54-b0bf-4dea-9cad-8ec75e177c66` | Success |
+| `side_ff_boatman_geometry` | `168bf031-7faa-48bc-b0df-eeb5de78a040` | Success |
+| `side_gatekeeper_geometry` | `86cf39bc-3235-4305-b5dc-eb68ae56fadb` | Success |
+| `side_h_fisherman_geometry` | `765fc4e9-22d7-433b-b0fd-96d72f085c22` | Success |
+| `side_hiro_geometry` | `bdc06d7c-e179-4622-bbc1-bca7d32100aa` | Success |
+| `side_hitoro_geometry` | `e030e596-fbab-4d01-aedb-01ebfef2d969` | Success |
+| `side_kosai_geometry` | `5d451e9f-6478-4b37-8d78-51c01a55663c` | Success |
+| `side_merchant_geometry` | `2ef81db9-0d3d-459d-8b5d-7e30155d5f34` | Success |
+| `side_mosuke_geometry` | `bd163ab1-adf4-4334-a599-4eb754a1f8b1` | Success |
+| `side_riichi_geometry` | `3d6b9c31-37be-4cf6-8f4e-97002df17423` | Success |
+| `side_senior_student_geometry` | `d84dfefb-8e47-4e55-a755-323269429b1b` | Success |
+| `side_swordsmith_geometry` | `db3ee6aa-68ab-4994-8627-03736c373bee` | Success |
+| `side_veteran_geometry` | `a2125aad-cf54-4978-bb64-91d372cf1076` | Success |
+| `side_yodo_geometry` | `be937c47-dcf6-4977-9619-550ff4c19ea3` | Success |
 | `side_ushimo_geometry` | `da0c0c5a-cce0-450b-b087-8492faa42f30` | Moved earlier |
-| `side_actor_b_geometry` | `195c6deb-4b95-4be4-b25b-d71f5234b449` | Pending |
-| `side_campfollower_geometry` | `3c44957a-ec17-4bf2-b6fb-7245b0a2d0b6` | Pending |
-| `side_kurako_geometry` | `11cca3b7-1622-4e77-bb05-1e46743b82d4` | Pending |
+| `side_actor_b_geometry` | `195c6deb-4b95-4be4-b25b-d71f5234b449` | Success |
+| `side_campfollower_geometry` | `3c44957a-ec17-4bf2-b6fb-7245b0a2d0b6` | Success |
+| `side_kurako_geometry` | `11cca3b7-1622-4e77-bb05-1e46743b82d4` | Success |
 | `side_sanae_paint` | `f47cb5e8-b5c3-4157-b2a1-17113814972f` | Success |
 | `side_hayato_paint` | `d93a5ab3-57ac-440a-9c6a-65244d014487` | Success |
-| `side_h_bomonk_geometry` | `82045fa4-7743-4355-9e9f-eb04061a25a7` | Pending |
-| `side_nihime_geometry` | `16d9b8c9-e6c7-4021-ba2b-314c3bd91bbb` | Pending |
-| `side_yasurugi_v2_geometry` | `133e509c-6a16-4b78-93fe-6cb046e0904a` | Pending |
-| `side_h_moshi_geometry` | `e370a731-37bd-4017-ab00-0170c3486e03` | Pending |
-| `side_h_windpriest_geometry` | `07a0202b-e8d2-4737-961b-79a301c4c341` | Pending |
-| `side_hikaru_geometry` | `2c3a3488-64dc-4582-9fbe-7e52f85b1c9f` | Pending |
-| `side_hatomu_geometry` | `217cac51-4238-4dd4-aa98-5dccbac0d3c7` | Pending |
-| `side_asahina_geometry` | `4dddc7a5-325e-4970-9d4d-eb43cf3f8eac` | Pending |
-| `side_akuja_geometry` | `b242d9bb-141a-4edc-8c15-836978241bd3` | Pending |
-| `side_shahai_geometry` | `8618478a-82ac-447d-bdd5-701726e2a620` | Pending |
-| `side_ikomabard_geometry` | `7b012a47-a04a-4339-a5b0-589d42311c2d` | Pending |
-| `side_dojiaoi_geometry` | `11114f20-d761-4448-9253-e97799b40740` | Pending |
-| `side_empress_geometry` | `20307d38-e667-4a21-80a9-ea725ab1edeb` | Pending |
-| `side_palecourtier_geometry` | `75be9c77-fc36-4377-bbfd-0dab11c5793f` | Pending |
-| `side_shiruko_geometry` | `c2e7902f-f7b1-498c-abc8-9cb3cc966aac` | Pending |
-| `side_akiko_geometry` | `78604aef-82e5-44ef-acb2-2dd744d2f3c2` | Pending |
-| `side_mutsuye_geometry` | `3283eb9a-531d-48a7-a5de-c6e29a20ae84` | Pending |
-| `side_taira_geometry` | `c15f39d8-f7db-4d10-9dbc-822d45300b8a` | Pending |
-| `side_ryozo_geometry` | `516a3ecd-65de-491f-b2f8-d46679fc56cd` | Pending |
-| `side_katsutoshi_geometry` | `0797e080-219d-411e-bd74-d44ac73e8b9d` | Pending |
-| `side_netmender_geometry` | `b8204f56-4794-4846-b7cd-7a1e75d067d9` | Pending |
-| `side_shrinekeeper_geometry` | `b484625c-6e28-49b3-8908-8ca2d6552421` | Pending |
+| `side_h_bomonk_geometry` | `82045fa4-7743-4355-9e9f-eb04061a25a7` | Success |
+| `side_nihime_geometry` | `16d9b8c9-e6c7-4021-ba2b-314c3bd91bbb` | Success |
+| `side_yasurugi_v2_geometry` | `133e509c-6a16-4b78-93fe-6cb046e0904a` | Success |
+| `side_h_moshi_geometry` | `e370a731-37bd-4017-ab00-0170c3486e03` | Success |
+| `side_h_windpriest_geometry` | `07a0202b-e8d2-4737-961b-79a301c4c341` | Success |
+| `side_hikaru_geometry` | `2c3a3488-64dc-4582-9fbe-7e52f85b1c9f` | Success |
+| `side_hatomu_geometry` | `217cac51-4238-4dd4-aa98-5dccbac0d3c7` | Success |
+| `side_asahina_geometry` | `4dddc7a5-325e-4970-9d4d-eb43cf3f8eac` | Success |
+| `side_akuja_geometry` | `b242d9bb-141a-4edc-8c15-836978241bd3` | Success |
+| `side_shahai_geometry` | `8618478a-82ac-447d-bdd5-701726e2a620` | Success |
+| `side_ikomabard_geometry` | `7b012a47-a04a-4339-a5b0-589d42311c2d` | Success |
+| `side_dojiaoi_geometry` | `11114f20-d761-4448-9253-e97799b40740` | Success |
+| `side_empress_geometry` | `20307d38-e667-4a21-80a9-ea725ab1edeb` | Success |
+| `side_palecourtier_geometry` | `75be9c77-fc36-4377-bbfd-0dab11c5793f` | Success |
+| `side_shiruko_geometry` | `c2e7902f-f7b1-498c-abc8-9cb3cc966aac` | Success |
+| `side_akiko_geometry` | `78604aef-82e5-44ef-acb2-2dd744d2f3c2` | Success |
+| `side_mutsuye_geometry` | `3283eb9a-531d-48a7-a5de-c6e29a20ae84` | Success |
+| `side_taira_geometry` | `c15f39d8-f7db-4d10-9dbc-822d45300b8a` | Success |
+| `side_ryozo_geometry` | `516a3ecd-65de-491f-b2f8-d46679fc56cd` | Success |
+| `side_katsutoshi_geometry` | `0797e080-219d-411e-bd74-d44ac73e8b9d` | Success |
+| `side_netmender_geometry` | `b8204f56-4794-4846-b7cd-7a1e75d067d9` | Success |
+| `side_shrinekeeper_geometry` | `b484625c-6e28-49b3-8908-8ca2d6552421` | Success |
 | `side_kafu_v2_geometry` | `baf36598-0582-46db-a7c7-f4153e58fef8` | Moved earlier |
-| `side_siko_v3_geometry` | `e48f23da-1ebb-4266-b951-734b9e72fcd8` | Pending |
-| `side_kenshai_v3_geometry` | `e9d7e5b3-4c34-4500-b5f9-002310b66b21` | Pending |
+| `side_siko_v3_geometry` | `e48f23da-1ebb-4266-b951-734b9e72fcd8` | Success |
+| `side_kenshai_v3_geometry` | `e9d7e5b3-4c34-4500-b5f9-002310b66b21` | Success |
 | `side_sanro_paint` | `93bb4d4d-aa51-4af5-a640-c415984973d0` | Success |
 | `side_keiki_paint` | `88a03afd-6361-4226-b56b-d209f2843ace` | Success |
 | `side_kuhime_paint` | `daebda19-452b-4437-80e4-29360db7c205` | Success |
@@ -549,23 +587,179 @@ All batch jobs use seed 47. The status is a snapshot of ComfyUI, and a successfu
 | `side_sachiko_paint` | `d18fc53a-228f-4ee7-94d9-40ff60b4e218` | Success |
 | `side_gonta_v2_geometry` | `bd419631-91b6-4609-93c5-10a52f427655` | Success |
 | `side_haku_v2_paint` | `e1fed7a0-48ac-4904-a3af-f10a63ef3242` | Success |
-| `side_jinnai_geometry` | `bf0f5ad2-4c8f-4793-a2c1-7a8a5f2c334b` | Pending |
-| `side_sakeseller_geometry` | `2db9d4c3-b122-4e76-8a8c-bf6c955d11dc` | Pending |
-| `side_pilgrim_geometry` | `e0befde3-d27c-45d5-9d42-9dfa55d59f86` | Pending |
-| `side_kitechild_geometry` | `828807bc-abc4-4c6a-9f85-cbb3336f0b74` | Pending |
-| `side_hojato_geometry` | `cb408a61-3f57-4974-9f0a-620fe3c28e8c` | Pending |
-| `side_toturi_geometry` | `ba29285f-5024-4479-9325-4d6af1b8acc9` | Pending |
-| `side_keiyomi_geometry` | `247bc526-404b-451b-b75d-e7c992aee6db` | Pending |
-| `side_tadaka_geometry` | `3bb8b865-d92d-4091-a011-0512703f2158` | Pending |
-| `side_yasu_geometry` | `ce7aac32-d1ee-4e8f-8908-c6529d7a8d67` | Pending |
-| `side_h_jadeseller_geometry` | `9bde18fe-087a-4576-bc8c-c51d7bc4ce5f` | Pending |
-| `side_herbseller_geometry` | `93dbe08b-be1c-469d-8488-aba0035d606d` | Pending |
+| `side_jinnai_geometry` | `bf0f5ad2-4c8f-4793-a2c1-7a8a5f2c334b` | Success |
+| `side_sakeseller_geometry` | `2db9d4c3-b122-4e76-8a8c-bf6c955d11dc` | Success |
+| `side_pilgrim_geometry` | `e0befde3-d27c-45d5-9d42-9dfa55d59f86` | Success |
+| `side_kitechild_geometry` | `828807bc-abc4-4c6a-9f85-cbb3336f0b74` | Success |
+| `side_hojato_geometry` | `cb408a61-3f57-4974-9f0a-620fe3c28e8c` | Success |
+| `side_toturi_geometry` | `ba29285f-5024-4479-9325-4d6af1b8acc9` | Success |
+| `side_keiyomi_geometry` | `247bc526-404b-451b-b75d-e7c992aee6db` | Success |
+| `side_tadaka_geometry` | `3bb8b865-d92d-4091-a011-0512703f2158` | Success |
+| `side_yasu_geometry` | `ce7aac32-d1ee-4e8f-8908-c6529d7a8d67` | Success |
+| `side_h_jadeseller_geometry` | `9bde18fe-087a-4576-bc8c-c51d7bc4ce5f` | Success |
+| `side_herbseller_geometry` | `93dbe08b-be1c-469d-8488-aba0035d606d` | Success |
 | `side_hanae_v2_paint` | `1421c26b-3668-4c91-b824-2be64ac32478` | Success |
 | `side_rui_paint` | `3c481363-4454-4651-91bd-f773a31004ce` | Success |
 | `side_kage_ch3_paint` | `01769639-935e-4599-adf3-f1be67984554` | Success |
-| `side_kumpei_paint` | `78984534-95b0-4972-9560-ec6cd486ef96` | Pending |
-| `side_masanori_paint` | `e4cc6c33-d046-48a0-8aec-29c5e9efeef1` | Running |
+| `side_kumpei_paint` | `78984534-95b0-4972-9560-ec6cd486ef96` | Success |
+| `side_masanori_paint` | `e4cc6c33-d046-48a0-8aec-29c5e9efeef1` | Success |
 | `side_kyumi_paint` | `dcf31d5f-654d-4397-8b50-2d0e5b6d2cd7` | Success |
 | `side_sadanobu_paint` | `25f78d84-a50c-4208-94c0-c30efe45baaf` | Success |
 | `side_clerk_paint` | `ec2acacf-b902-42f8-8d00-92c2f708ed3e` | Success |
 | `side_gonta_v2_paint` | `26740cc0-de63-48b4-be0e-e07116fc5c9f` | Success |
+| `side_gatekeeper_paint` | `1b2f9bc0-1a9a-4a74-acb7-bc77dbf78425` | Success |
+| `side_h_fisherman_paint` | `dacf9fe2-0b14-4b40-9231-3dd478a23586` | Success |
+| `side_hitoro_paint` | `ee224bc2-2476-40a8-ba1b-cd11e16b9a73` | Success |
+| `side_kosai_paint` | `90cfadab-aa4b-4ca7-86f8-87803d9ef5c6` | Success |
+| `side_merchant_paint` | `47769e5d-16a1-4f3d-9920-79fa09ee4524` | Success |
+| `side_mosuke_paint` | `09af12fa-2fc0-414e-bc7c-279bd1021d36` | Success |
+| `side_miyahana_geometry` | `b9a03f53-4097-49d8-8347-5b9ed87ca9b5` | Success |
+| `side_soshi_geometry` | `ff6afbb6-f0ac-44c2-9703-78ab9bfbb770` | Success |
+| `side_kage_v2_geometry` | `cb5e8d41-9a3f-438a-83e3-444a77fd5451` | Success |
+| `side_tsukaru_geometry` | `66a9a0aa-c0cb-451a-9de7-2ad5db13ead6` | Success |
+| `side_fishseller_geometry` | `18694ec8-66e6-4e7d-81d9-1bf0ae1f323c` | Success |
+| `side_innkeeper_geometry` | `b8db1618-db72-45a6-9610-904771aac484` | Success |
+| `side_kiyo_geometry` | `886633b3-28ad-4ea8-bb3c-1232a5039e8a` | Success |
+| `side_h_goatherd_geometry` | `cf1a62dc-3d0a-466f-b9e3-20879831e211` | Success |
+| `side_h_moto_geometry` | `f119a345-45b0-44cc-99bc-d4c79941de7f` | Success |
+| `side_quartermaster_geometry` | `c4ec40fe-3e42-4bbd-8921-66ed89c89508` | Success |
+| `side_youngsayo_geometry` | `c72b3ac0-f7c3-410e-84f2-adf331f2d923` | Success |
+| `side_riichi_paint` | `4a3b611b-f4a8-48b0-bcf7-b0a69749a2d4` | Moved earlier |
+| `side_senior_student_paint` | `0d994604-167d-4f1b-9e6b-bd903d391630` | Moved earlier |
+| `side_yodo_paint` | `b7a206b8-b8d5-40f0-a914-db3d0a22ba96` | Moved earlier |
+| `side_swordsmith_paint` | `b3df3233-b449-47cf-a9b4-6ef32175308d` | Moved earlier |
+| `side_veteran_paint` | `4e1339fb-0299-4b6c-9ae9-7b78ea1f5ee9` | Moved earlier |
+| `side_actor_b_paint` | `f635f477-ca7c-4ea0-8001-4a2b404f729e` | Moved earlier |
+| `side_campfollower_paint` | `a2802446-e926-414f-8dfe-93715659b118` | Moved earlier |
+| `side_kurako_paint` | `a6bede70-771a-4992-b2b4-dfdf372445f7` | Moved earlier |
+| `side_h_bomonk_paint` | `50acff8e-6cef-4dda-883e-00084e2ed7ed` | Moved earlier |
+| `side_nihime_paint` | `e8f8a3ef-bcaa-455b-a91b-092f9b0e9c8e` | Moved earlier |
+| `side_yasurugi_v2_paint` | `2752ab1c-cb14-4d8f-a7d6-da867dda5186` | Moved earlier |
+| `side_h_moshi_paint` | `6934978f-3abd-487c-81c9-41c52033c204` | Moved earlier |
+| `side_h_windpriest_paint` | `93f7bcd0-7817-472b-9221-c7d421824587` | Moved earlier |
+| `side_shahai_paint` | `a4908a9a-a006-4a0a-832e-d2c51332bd94` | Moved earlier |
+| `side_ikomabard_paint` | `99a23d4c-46b3-45e5-8ec9-01708a124389` | Moved earlier |
+| `side_empress_paint` | `0d4d9ff8-579f-4a7d-bfcd-9356f5765647` | Moved earlier |
+| `side_taira_paint` | `62c5b1f6-ffc5-4a2f-b670-d8d32844508a` | Moved earlier |
+| `side_h_guide_v2_geometry` | `898b0430-62a1-480d-a617-af6f70493c79` | Success |
+| `side_diver_v2_geometry` | `b62b503b-56cd-4ac9-8f02-5ca701a68880` | Success |
+| `side_acolyte_v2_geometry` | `c7bc9f69-14ad-4f99-a40e-66dadff8c550` | Success |
+| `side_hagane_v2_geometry` | `09bae490-aa75-4da8-a1d0-9775d4787b60` | Success |
+| `side_censormonk_v2_geometry` | `406f12a7-9e0b-4fdc-ab4a-e9ec9fb1ac9e` | Success |
+| `side_hikaru_v2_geometry` | `9dd9bdeb-64f8-46a6-a625-863108114006` | Success |
+| `side_akiko_paint` | `748294d5-26d3-475b-8ea5-25b6602f65c3` | Moved earlier |
+| `side_netmender_paint` | `dd0290e8-248d-4469-af06-ccd445354cce` | Moved earlier |
+| `side_shrinekeeper_paint` | `85f6a206-26be-47a7-89c3-a22b0feb98bd` | Moved earlier |
+| `side_himeko_geometry` | `c76ba356-038d-4852-a6a1-9aeb4e08380f` | Success |
+| `side_ijako_v2_geometry` | `bc6e6e24-788e-4b42-95cd-e425e038989b` | Success |
+| `side_kenshai_v3_paint` | `c5b4a4d8-0e61-421d-b244-39419d105238` | Moved earlier |
+| `side_siko_v3_paint` | `96499812-46dd-4f2f-bf39-8c87b8811c07` | Moved earlier |
+| `side_riichi_paint` | `2f610c21-0f40-496d-b952-97393a31e750` | Success |
+| `side_senior_student_paint` | `733b6fb8-a785-4058-9dea-02d149d186fc` | Success |
+| `side_yodo_paint` | `9f48dda1-88ac-401a-bc9e-ec4df9449979` | Success |
+| `side_swordsmith_paint` | `cf99ea43-4c5c-4829-bd9c-1cf2275ac5d9` | Success |
+| `side_veteran_paint` | `6560f2a2-972b-4e2d-b0f1-a9909343b6ed` | Success |
+| `side_actor_b_paint` | `0405feee-3587-4567-a136-13714846aea9` | Success |
+| `side_campfollower_paint` | `6e39c620-0973-4ed2-8657-e59788b7cb77` | Success |
+| `side_kurako_paint` | `7c5302ae-2896-447d-9e97-8104900239ef` | Success |
+| `side_h_bomonk_paint` | `6df90493-f503-4c70-97b6-0b1edebe7fa7` | Success |
+| `side_nihime_paint` | `c74a6866-6aab-4482-a70c-c8af050b8631` | Success |
+| `side_yasurugi_v2_paint` | `434c638b-cf8a-407a-974f-851cd3f19728` | Success |
+| `side_h_moshi_paint` | `1ee070d6-d4b1-47e9-9019-b87198f376da` | Success |
+| `side_h_windpriest_paint` | `93f741ef-0605-4207-a914-31884563e147` | Success |
+| `side_shahai_paint` | `f5db98c3-acb8-4e55-8572-a2224906dd06` | Success |
+| `side_ikomabard_paint` | `d422323c-fc96-45b5-8282-08f237b8cd3d` | Success |
+| `side_empress_paint` | `02684630-c881-4856-b498-1ed5529e36cb` | Success |
+| `side_taira_paint` | `00dc504b-c1c6-49f1-8cdc-db7239b3f104` | Success |
+| `side_akiko_paint` | `503e092c-d31e-4773-95f5-f7cf18441006` | Success |
+| `side_netmender_paint` | `8fbedf2a-1c60-4963-b23a-1c1aff1d7967` | Success |
+| `side_shrinekeeper_paint` | `e013666a-cf2c-4c0e-9985-7192d5a11f9c` | Success |
+| `side_kenshai_v3_paint` | `ca5ac4ad-e472-4486-8fc4-644ced2e95ff` | Success |
+| `side_siko_v3_paint` | `09bf10f9-8f0f-4051-a7be-48a69b7341fd` | Success |
+| `side_hojato_paint` | `ce8e395f-1758-46a4-95cd-b0db2926e7bd` | Success |
+| `side_jinnai_paint` | `bb0d5541-6f2b-4679-aab0-d4bb94cb4297` | Success |
+| `side_sakeseller_paint` | `d026335d-b570-4be2-811c-4d5e0471de12` | Success |
+| `side_keiyomi_paint` | `1b923435-1860-4b49-b10f-41c001f8769a` | Success |
+| `side_kitechild_paint` | `8f5a96f3-1691-4370-a106-26d4e744849e` | Success |
+| `side_tadaka_paint` | `483ebaf7-56be-4b96-9b31-9e56b54125e2` | Success |
+| `side_yasu_paint` | `e8dc32f4-d86c-4e72-a824-1cf17e91862c` | Success |
+| `side_healer_v2_geometry` | `f1cabff5-ab57-4a7d-9c06-7f1d9aa77e1c` | Success |
+| `side_beggarmonk_v2_geometry` | `2588e96a-69b4-47ac-80a8-f57c63e08062` | Success |
+| `side_ferryman_v2_geometry` | `c3c5bcb3-c2ed-4c46-8835-273a1566fb99` | Success |
+| `side_ff_boatman_v2_geometry` | `0ee9b915-8fa5-4f06-a9f5-3a38435a4f90` | Success |
+| `side_hiro_v2_geometry` | `baccb143-1b3d-4898-802d-43192112e001` | Success |
+| `side_dojiaoi_v2_geometry` | `1406a533-99d7-43b1-9cc4-cfb6403faf65` | Success |
+| `side_asahina_v2_geometry` | `436b29ff-2c0d-4464-8a08-c78f9ce57f22` | Success |
+| `side_akuja_v2_geometry` | `407b356b-d62f-4593-b961-5e877b664f98` | Success |
+| `side_hatomu_v2_geometry` | `78f28803-4fc3-4756-b1d0-e00b947d8ebb` | Success |
+| `side_grandmother_v2_geometry` | `db16ad9c-7db4-4e52-ba48-d0fbb3a56f82` | Success |
+| `side_togawa_v2_geometry` | `0f569fd0-64a1-4dbf-8470-77e31da5c2bb` | Success |
+| `side_h_thundermonk_v2_geometry` | `92033b1b-a05a-4166-a3a0-3efd1d4b56dc` | Success |
+| `side_kamasari_geometry` | `b481a3ee-c654-412f-9fcb-7bf3bf4833ec` | Success |
+| `side_kurosho_geometry` | `6fc81a50-ae2f-4e20-bff6-2a90ce4c74dd` | Success |
+| `side_shogen_geometry` | `9037ef56-304e-46d9-bca0-d1825095c09f` | Success |
+| `side_kusuri_geometry` | `87270f2e-481e-4284-b070-eaa2d4fb2f7c` | Success |
+| `side_h_windisawa_geometry` | `de9546d0-f0d4-4af0-8ac8-00eb5440c5c2` | Success |
+| `side_h_jadeseller_paint` | `e2a1b4cf-4823-4bdd-8346-d5237d19703b` | Success |
+| `side_herbseller_paint` | `e3409a1f-7b2f-49c3-876a-209a871a044d` | Success |
+| `side_miyahana_paint` | `948864e7-3ad2-408c-ab15-bf61fd3ce89c` | Success |
+| `side_fishseller_paint` | `3d569e70-1e13-4b10-95a4-52412a3dcf63` | Success |
+| `side_innkeeper_paint` | `b8d1a94d-e03e-4831-a289-b9855496efad` | Success |
+| `side_kiyo_paint` | `62051090-dce5-46e6-a87c-36acb9308833` | Success |
+| `side_h_goatherd_paint` | `d4ac535b-5167-46e2-8e2f-956bce3a1109` | Success |
+| `side_h_moto_paint` | `f975edb3-0dcd-433e-8846-4e15554c1572` | Success |
+| `side_quartermaster_paint` | `d73a9310-8199-4b57-84d7-cf7f46c9f56e` | Success |
+| `side_youngsayo_paint` | `cd74ccdd-8359-4934-8ef5-c0e9ef89c7ce` | Success |
+| `side_h_guide_v2_paint` | `7b4b7b24-c155-4874-8594-f22cba9afc02` | Success |
+| `side_bayushikei_geometry` | `75f53c30-f23b-485b-93d2-1a7329b99537` | Success |
+| `side_courier_geometry` | `2da81f5a-95d6-4382-b857-841605c429a9` | Pending |
+| `side_sumi_geometry` | `464b7bd8-ee11-4a77-ab68-854333715020` | Pending |
+| `side_katsuo_geometry` | `9ee3ff18-814d-4652-8da7-02713b4e5922` | Pending |
+| `side_mantisenvoy_geometry` | `333240e0-d7fc-475f-b8eb-477173e69c4e` | Pending |
+| `side_hoju_geometry` | `8fa1d052-1eef-4630-a3ed-4855b983e7ca` | Pending |
+| `side_h_witch_geometry` | `759e3bb1-75cf-4f13-b9f7-60c9aa9ff701` | Pending |
+| `side_adoru_geometry` | `e40cf189-e322-464a-94ee-94abb6603d72` | Pending |
+| `side_gonbei_geometry` | `6c567e7e-82e4-44eb-8411-7fa3d549fa49` | Pending |
+| `side_tessai_geometry` | `72f76edd-32fa-4f1e-9d22-3d837136d556` | Pending |
+| `side_rokuro_geometry` | `6af0a8cd-2700-48c4-a5f9-a32adbe29522` | Pending |
+| `side_miyako_geometry` | `6020356f-2455-4ebc-9d01-8b1f204aeb65` | Pending |
+| `side_gontaboy_v2_geometry` | `c556df74-c6ea-4aca-a419-ebd1fbddda51` | Pending |
+| `side_acolyte_v2_paint` | `97865c15-5522-4beb-ad6f-fbdb72f7a503` | Success |
+| `side_hagane_v2_paint` | `8b5fb38a-65cd-43bb-87e7-1147e6320287` | Success |
+| `side_censormonk_v2_paint` | `5003c8a2-8fb0-4d7e-bb1c-755f3ed11c69` | Success |
+| `side_hikaru_v2_paint` | `961e7b3e-b292-4ab5-a3a2-b12caeff3d92` | Success |
+| `side_healer_v2_paint` | `78e988e8-e753-4f9e-902f-30a31fb11c05` | Success |
+| `side_akuja_v2_paint` | `fb6924a5-e73e-4f34-bd19-17c98ff2d6dc` | Success |
+| `side_hiroichi_geometry` | `5fe67d65-efea-445d-a950-95c7d9982d33` | Pending |
+| `side_hisae_geometry` | `05f1b114-4c73-438f-a723-286fdf160d73` | Pending |
+| `side_tomoe_v2_geometry` | `5bd07135-7e72-43b8-92ae-0df53a5aa8c9` | Pending |
+| `side_takakana_v2_geometry` | `9d8e0b66-b7aa-4d09-811d-68aa55d9dd3c` | Pending |
+| `side_dorin_v2_geometry` | `7e7dfaa8-a35d-459a-8c0d-fb7acbcd2b3a` | Pending |
+| `side_yoshi_v2_geometry` | `0fd9924b-6c60-4182-a476-db9f4f923e2e` | Pending |
+| `side_mizochi_v2_geometry` | `bfc0449f-8696-4c33-bed9-217184113fbd` | Pending |
+| `side_soshienvoy_v2_geometry` | `5a09ba48-6910-47a3-bffa-8d80861409da` | Pending |
+| `side_beggarmonk_v2_paint` | `00df4472-8847-433e-8955-e6811947003d` | Success |
+| `side_ferryman_v2_paint` | `ef833984-a45e-454d-b0a0-928f0067f150` | Success |
+| `side_ff_boatman_v2_paint` | `f0f84096-fbbf-4e44-9b0b-0f701abce181` | Success |
+| `side_grandmother_v2_paint` | `0ed3da20-73be-4209-b270-b3fba7b4d531` | Success |
+| `side_himeko_paint` | `2e24f745-7dab-4b74-b85e-78b1121f2fdf` | Success |
+| `side_dojiaoi_v2_paint` | `99d1eb79-43b5-4b12-aea9-3dd6d732f498` | Success |
+| `side_hiro_v2_paint` | `bedcf669-4554-4ad5-9195-e4f259fa9cb6` | Success |
+| `side_togawa_v2_paint` | `36494d62-6508-427d-b3f6-b1c468fa8fa7` | Success |
+| `side_h_thundermonk_v2_paint` | `52114374-aa20-4fec-8cf2-ff28fab160f4` | Running |
+| `side_shogen_paint` | `576b9fbe-f0a3-4f1c-a45b-2ad4199178b9` | Pending |
+| `side_morishu_v2_geometry` | `9b6c6e88-22e7-4303-bc6d-4bb8dbed72cd` | Pending |
+| `side_tomeko_geometry` | `d4c755a2-0a3f-42b6-9265-db413c3d5b44` | Pending |
+| `side_actor_c_v2_geometry` | `6beed6fc-b63f-4063-afa1-099921804ff5` | Pending |
+| `side_h_scout_v2_geometry` | `70ed8c53-d969-4d8b-bb9d-6d21466fe026` | Pending |
+| `side_nagai_v3_geometry` | `109b116b-4aa8-47b4-ab8c-ae8276baf2bf` | Pending |
+| `side_ryohei_v2_geometry` | `428c0fdc-d39a-4bb0-9e21-e1caf76de31c` | Pending |
+| `side_kusuri_paint` | `0ad9ba98-5268-4297-80b7-e4edcc8c23b9` | Pending |
+| `side_servant_v2_geometry` | `cc02eae1-ee1b-4f37-aa2e-f270d4af9ef9` | Pending |
+| `side_censorclerk_v2_geometry` | `63b69ab8-5815-4523-a97d-d4cfe0a2d363` | Pending |
+| `side_rteacher_v2_geometry` | `86bf4314-6e02-439b-85c0-023f65309511` | Pending |
+| `side_roninchef_v2_geometry` | `f79f0ae0-cc53-40e3-9ec8-f97eb9bd70f7` | Pending |
+| `side_gaijintrader_v2_geometry` | `56952215-0459-42a0-abda-6fc3c409df48` | Pending |
+| `side_taxman_v2_geometry` | `059b028d-3feb-4217-a307-9276df75b65c` | Pending |
+| `side_magistrate_v2_geometry` | `549a6c93-00cf-4e35-bc69-cb3a44c143ae` | Pending |
+| `side_doorman_v2_geometry` | `36c3d514-a693-4359-8db4-38ff78202a81` | Pending |

@@ -1,0 +1,117 @@
+{
+  "key": "side_shahai_portrait_face",
+  "source": "side_shahai_repaired_atlas.glb",
+  "scale": 14.3,
+  "features": {
+    "eyes": [
+      [
+        201,
+        277,
+        0.04
+      ],
+      [
+        278,
+        278,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        196,
+        260
+      ],
+      [
+        283,
+        260
+      ]
+    ],
+    "mouth": [
+      240,
+      331
+    ]
+  },
+  "socket_sample_levels": [
+    -0.807,
+    -0.799,
+    -0.791,
+    -0.783,
+    -0.775,
+    -0.767,
+    -0.759,
+    -0.751,
+    -0.743,
+    -0.735,
+    -0.727,
+    -0.719,
+    -0.711,
+    -0.703,
+    -0.695,
+    -0.6869999999999999,
+    -0.6789999999999999,
+    -0.6709999999999999,
+    -0.6629999999999999,
+    -0.6549999999999999,
+    -0.6469999999999999,
+    -0.6389999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.016,
+    -0.009
+  ],
+  "skin_match": [
+    246,
+    200,
+    181
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 14.3,
+  "fit_matrix_blender": [
+    [
+      14.299328295215243,
+      -0.13578617230362172,
+      0.0277924642490097,
+      0.40653518465350785
+    ],
+    [
+      0.13621374606499215,
+      14.297520289592859,
+      -0.22882172988485677,
+      -0.0417155253243657
+    ],
+    [
+      -0.02561485976622662,
+      0.22907571694897538,
+      14.298142123886809,
+      110.68719430419411
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.595,
+  "seam_weights": {
+    "vertex_count": 16311,
+    "lower_overlap_blended_vertices": 115,
+    "minimum_seam_head_weight": 0.6787335828547998,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    "left cheek",
+    "right cheek",
+    "left lower neck",
+    "right lower neck"
+  ],
+  "skin_sample_view": "Diffuse probes omit the deepest blush and the baked glare. Use the exact fitted paint and check the visibly exposed A155 front material edge.",
+  "raw_skin_srgb": [
+    250,
+    194,
+    176
+  ],
+  "proof_pose_family": "short"
+}

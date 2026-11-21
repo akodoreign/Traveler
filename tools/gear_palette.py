@@ -58,13 +58,31 @@ def ground_dye(rgb):
     return tuple(round(c * 255) for c in colorsys.hsv_to_rgb(h, s, v))
 
 
+def deepen(rgb):
+    """A washed-out pastel (light and greyish) as a deeper, richer dye of the same hue; whites and darks stay."""
+    h, s, v = colorsys.rgb_to_hsv(*(c / 255 for c in rgb))
+    if min(rgb) >= 205 or v < .62 or s < .08:
+        return tuple(rgb)
+    s, v = min(.78, s * 1.45 + .12), min(v, .62 - .1 * (s > .4))
+    return tuple(round(c * 255) for c in colorsys.hsv_to_rgb(h, s, v))
+
+
 def clan_tones(clan, wearer):
+    # (user 2026-11-21: "companions, npcs, guests all are still using the light (pastel) colors can we swap these to
+    # the darker richer colors of their clan?") The side cast's own colours are the old 2-D sprite pastels: for them
+    # the clan dye now dominates (a 6% hint of their own keeps people apart), and commoners' pastels are deepened.
+    side = str(wearer.get("model_key", "")).startswith("side_")
     tones = {}
     for role, rgb in zip(CLAN_ROLES, NATIVE_CLANS[clan]):
         own = wearer.get(role)
-        weight = .62 if clan in COMMON else .14 if clan in ("crab", "dragon", "phoenix") else .28
+        if side:
+            weight = .62 if clan in COMMON else .06
+        else:
+            weight = .62 if clan in COMMON else .14 if clan in ("crab", "dragon", "phoenix") else .28
         if isinstance(own, (tuple, list)) and clan in COMMON and min(own) >= 205:
             tones[role] = tuple(own)
+        elif isinstance(own, (tuple, list)) and side and clan in COMMON:
+            tones[role] = mix(rgb, deepen(ground_dye(own)), weight)
         else:
             tones[role] = mix(rgb, ground_dye(own), weight) if isinstance(own, (tuple, list)) else rgb
     tones.update(lining=mix(tones["accent"], tones["top"], .24),

@@ -1,0 +1,32 @@
+{
+  "actor": "side_sakeseller",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_sakeseller_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_sakeseller_portrait_scarlet_mask.pm",
+      "to": "side_sakeseller_portrait_scarlet_mask.pm",
+      "sha256": "6757420dc81f76871b10320cb94d042c1df44856a5e66044423f918535280dec"
+    },
+    {
+      "from": "assets/side_sakeseller_portrait_scarlet_mask.mdl",
+      "to": "side_sakeseller_portrait_scarlet_mask.mdl",
+      "sha256": "1bc2c66d2dc66ef86d8c6a93febb8953af64ee08d3aac28ca04a1a4ed4d1c370"
+    },
+    {
+      "from": "assets/tex/side_sakeseller_portrait_scarlet_mask_color_srgb.png",
+      "to": "tex/side_sakeseller_portrait_scarlet_mask_color_srgb.png",
+      "sha256": "d13a9cc361960be481e99fc3b89ab2808532311eefecbdde6fa0751dcf74348b"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_sakeseller_portrait_scarlet_mask"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_sakeseller\\painted-atlas-v2\\assets\\side_sakeseller_portrait_face.glb",
+    "sha256": "54d3074b5f3737f10354e9d666110e769d5a1f92c3f814e4a7408ef78e8e20a9"
+  }
+}

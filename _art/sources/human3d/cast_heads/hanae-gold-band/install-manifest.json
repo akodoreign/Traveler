@@ -1,0 +1,32 @@
+{
+  "actor": "side_hanae",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_hanae_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_hanae_portrait_gold_band.pm",
+      "to": "side_hanae_portrait_gold_band.pm",
+      "sha256": "2af3df36a232f1f04aeec405ab094313805e6f99bea95f7ff9d672e64a3d25f7"
+    },
+    {
+      "from": "assets/side_hanae_portrait_gold_band.mdl",
+      "to": "side_hanae_portrait_gold_band.mdl",
+      "sha256": "cda6716ef9a3e4e8b7892a6a2963a9b029aa251740dcd6c6c02877621fd47371"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_hanae_portrait_gold_band",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:/Users/akodo/Documents/Codex/2026-11-20/ok/work/model-rigging/batch-07/evening-cast/side_hanae/painted-final/assets/side_hanae_portrait_face.glb",
+    "sha256": "3086a9d674032efa9184f9121688b3107165a8ad73baefeea9bb45915a2ccf86"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "actor": "side_kuhime",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_kuhime_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_kuhime_autumn_bun_wrap.pm",
+      "to": "side_kuhime_autumn_bun_wrap.pm",
+      "sha256": "ebfdfd139a475175acf1c2f55065d00f8a0223a9770834cf6e4c938e50c02172"
+    },
+    {
+      "from": "assets/side_kuhime_autumn_bun_wrap.mdl",
+      "to": "side_kuhime_autumn_bun_wrap.mdl",
+      "sha256": "b532ee09805e132d0d335a1a2e0f162e0a3e230bdc36b7bb1995a39efcc552b9"
+    },
+    {
+      "from": "assets/side_kuhime_gold_phoenix_pin.pm",
+      "to": "side_kuhime_gold_phoenix_pin.pm",
+      "sha256": "de45476336861bc6bfcb6ef2555ccd9ce393812e2155b6815e21bc978f4f5194"
+    },
+    {
+      "from": "assets/side_kuhime_gold_phoenix_pin.mdl",
+      "to": "side_kuhime_gold_phoenix_pin.mdl",
+      "sha256": "70b15690deb7a10ccda7d4222ccb1c67021a5202bce46e7fbd316a64bcc77b84"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_kuhime_autumn_bun_wrap",
+        "headwear": true
+      },
+      {
+        "mesh": "side_kuhime_gold_phoenix_pin",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\release\\side_kuhime\\assets\\side_kuhime_portrait_face.glb",
+    "sha256": "2116cf033bae42e635ff678f0771aca8c986f25768915c2a96fb70d7ca6f27ce"
+  }
+}

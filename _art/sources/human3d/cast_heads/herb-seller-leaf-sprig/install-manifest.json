@@ -1,0 +1,32 @@
+{
+  "actor": "side_herbseller",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_herbseller_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_herbseller_leaf_sprig.pm",
+      "to": "side_herbseller_leaf_sprig.pm",
+      "sha256": "26ad1f710c90c9d39e3de8d9a4ebbf8432b125a16d65d9349932bb7b5f0debbd"
+    },
+    {
+      "from": "assets/side_herbseller_leaf_sprig.mdl",
+      "to": "side_herbseller_leaf_sprig.mdl",
+      "sha256": "7ad6533b159a8c1c16d9ae4caf0a37505ddeed35c9457fa8753db0de55694a5c"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_herbseller_leaf_sprig",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\release\\side_herbseller\\assets\\side_herbseller_portrait_face.glb",
+    "sha256": "b59f763609665d4f550c7632d4918465d7df0e114d1a9b30e1949b79b605f96b"
+  }
+}

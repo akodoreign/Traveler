@@ -1,0 +1,118 @@
+{
+  "key": "side_yodo_portrait_face",
+  "source": "side_yodo_repaired_atlas.glb",
+  "scale": 12.6,
+  "features": {
+    "eyes": [
+      [
+        205,
+        267,
+        0.04
+      ],
+      [
+        275,
+        267,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        200,
+        250
+      ],
+      [
+        281,
+        249
+      ]
+    ],
+    "mouth": [
+      240,
+      331
+    ]
+  },
+  "socket_sample_levels": [
+    -0.849,
+    -0.841,
+    -0.833,
+    -0.825,
+    -0.817,
+    -0.8089999999999999,
+    -0.8009999999999999,
+    -0.7929999999999999,
+    -0.7849999999999999,
+    -0.7769999999999999,
+    -0.7689999999999999,
+    -0.7609999999999999,
+    -0.7529999999999999,
+    -0.7449999999999999,
+    -0.7369999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.054,
+    -0.009
+  ],
+  "skin_match": [
+    241,
+    192,
+    155
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.6,
+  "fit_matrix_blender": [
+    [
+      12.599787481431076,
+      0.0455795286328077,
+      -0.057253203781607136,
+      1.617644424126216
+    ],
+    [
+      -0.04558135231077284,
+      12.599917549398683,
+      -0.0002977915123547622,
+      0.10694063928463828
+    ],
+    [
+      0.057251751896063095,
+      0.0005049038271375621,
+      12.59986991924834,
+      108.82962617201466
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.1825,
+  "seam_weights": {
+    "vertex_count": 19213,
+    "lower_overlap_blended_vertices": 138,
+    "minimum_seam_head_weight": 0.4453421460274076,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      190,
+      302
+    ],
+    [
+      282,
+      305
+    ],
+    [
+      220,
+      410
+    ]
+  ],
+  "skin_sample_view": "Diffuse cheek pair and lower neck from the exact portrait. The baked lower shade was blended to the body near the fixed seam, preserving his gray hair and facial hair.",
+  "raw_skin_srgb": [
+    241,
+    192,
+    155
+  ],
+  "proof_pose_family": "short"
+}

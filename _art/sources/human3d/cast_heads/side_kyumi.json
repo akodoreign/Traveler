@@ -1,0 +1,113 @@
+{
+  "key": "side_kyumi_portrait_face",
+  "source": "side_kyumi_repaired_atlas.glb",
+  "scale": 15.1,
+  "features": {
+    "eyes": [
+      [
+        192,
+        273,
+        0.04
+      ],
+      [
+        285,
+        274,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        190,
+        252
+      ],
+      [
+        288,
+        253
+      ]
+    ],
+    "mouth": [
+      238,
+      336
+    ]
+  },
+  "socket_sample_levels": [
+    -0.609,
+    -0.601,
+    -0.593,
+    -0.585,
+    -0.577,
+    -0.569,
+    -0.5609999999999999,
+    -0.5529999999999999,
+    -0.5449999999999999,
+    -0.5369999999999999,
+    -0.5289999999999999,
+    -0.5209999999999999,
+    -0.5129999999999999,
+    -0.5049999999999999,
+    -0.4969999999999999,
+    -0.4889999999999999,
+    -0.48099999999999987,
+    -0.47299999999999986
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.029,
+    -0.03
+  ],
+  "skin_match": [
+    241,
+    193,
+    165
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 15.1,
+  "fit_matrix_blender": [
+    [
+      15.091307692398626,
+      0.5085362345225656,
+      0.06183066819041412,
+      -0.12163770648573861
+    ],
+    [
+      -0.5081662804933467,
+      15.091182791412729,
+      -0.08926918585017637,
+      0.4111554914167655
+    ],
+    [
+      -0.06480096234489173,
+      0.08713698612186627,
+      15.0996095307439,
+      108.55599672919753
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.4575,
+  "seam_weights": {
+    "vertex_count": 19469,
+    "lower_overlap_blended_vertices": 125,
+    "minimum_seam_head_weight": 0.7830535992130107,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    "left cheek",
+    "right cheek",
+    "chin"
+  ],
+  "skin_sample_view": "Exact UV repair operator sampled diffuse on the clear cheek and chin regions. The existing Crane collar and original A124 palette remain in the equipped review.",
+  "raw_skin_srgb": [
+    241,
+    193,
+    165
+  ],
+  "review_wardrobe_mesh": "A124_sono_kagemaro",
+  "proof_pose_family": "fist"
+}

@@ -6,10 +6,10 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c4b1313"
+		name = "c4a1213"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x110000ff
+		basecol = 0x100000ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -19,7 +19,7 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c5a1b1b"
+		name = "c591a1b"
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x190101ff
@@ -32,10 +32,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c822222_cloth"
+		name = "c802021_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x390303ff
+		basecol = 0x370202ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -45,10 +45,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c953219_cloth"
+		name = "c922a15_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x4e0701ff
+		basecol = 0x4a0401ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -58,10 +58,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cb54814_cloth"
+		name = "cb44411_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x770f00ff
+		basecol = 0x760d00ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -84,10 +84,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "ccb4026"
+		name = "cc73321"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x9a0c03ff
+		basecol = 0x930702ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -97,10 +97,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "ccf4623_cloth"
+		name = "ccc3b1e_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xa10e03ff
+		basecol = 0x9c0a02ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -110,10 +110,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cdd5819_cloth"
+		name = "cdc5315_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xba1801ff
+		basecol = 0xb81501ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -149,10 +149,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cf9ad39"
+		name = "cf9aa35"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xf16c09ff
+		basecol = 0xf16808ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000

@@ -1,0 +1,37 @@
+{
+  "actor": "side_innkeeper",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_innkeeper_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_innkeeper_headcloth.pm",
+      "to": "side_innkeeper_headcloth.pm",
+      "sha256": "3d78dacaa42861fc283d37801d424467b9bcedffe220474e56f21fdb27707054"
+    },
+    {
+      "from": "assets/side_innkeeper_headcloth.mdl",
+      "to": "side_innkeeper_headcloth.mdl",
+      "sha256": "2613b2db8032a08738ca066c7e56ed45b87436ee44adf2b017d03b03281ac021"
+    },
+    {
+      "from": "assets/tex/side_innkeeper_headcloth_linen.png",
+      "to": "tex/side_innkeeper_headcloth_linen.png",
+      "sha256": "c2986558921d1f7d1f8ac9885af7f942852c19a7c1d55a7b0d13243b1ea3a0da"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_innkeeper_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_innkeeper\\painted-final\\assets\\side_innkeeper_portrait_face.glb",
+    "sha256": "622c62cc467ac6d45cd4cd0024f4ffeb9d86e66f07cff6e6af09a63256e2c330"
+  }
+}

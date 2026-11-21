@@ -1,0 +1,32 @@
+{
+  "actor": "side_hagane",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_hagane_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_hagane_portrait_death_mask.pm",
+      "to": "side_hagane_portrait_death_mask.pm",
+      "sha256": "f122e829f95d112fd07e9cf78f7acfc33cdcd717533c50067bc5014f6f600f3c"
+    },
+    {
+      "from": "assets/side_hagane_portrait_death_mask.mdl",
+      "to": "side_hagane_portrait_death_mask.mdl",
+      "sha256": "32e64acc2cd83b4932fd977c0d439888a3a1a24e31d7f039557b19378cf98c84"
+    },
+    {
+      "from": "assets/tex/side_hagane_portrait_death_mask_color_srgb.png",
+      "to": "tex/side_hagane_portrait_death_mask_color_srgb.png",
+      "sha256": "33e8bcb70581908cb7d7e35483540604813b5b6a21f020051a950014dd471a6e"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_hagane_portrait_death_mask"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_hagane\\fitted-a124-final\\assets\\side_hagane_portrait_face.glb",
+    "sha256": "fd612b572c4eac1976a0d73d94af6652be515f513a979b4efe7349d0b1c5937e"
+  }
+}

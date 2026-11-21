@@ -1,0 +1,37 @@
+{
+  "actor": "side_youngsayo",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_youngsayo_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_youngsayo_portrait_straw_hat.pm",
+      "to": "side_youngsayo_portrait_straw_hat.pm",
+      "sha256": "ba9f8aac063d2f4eb6b5e5361a8a0b3dd96b27059f9559feb7046935b7fa412c"
+    },
+    {
+      "from": "assets/side_youngsayo_portrait_straw_hat.mdl",
+      "to": "side_youngsayo_portrait_straw_hat.mdl",
+      "sha256": "b9cb529f24630956b1bc406e3a800cc81996246dd11bf4072ae934611dc9ec40"
+    },
+    {
+      "from": "assets/tex/side_youngsayo_portrait_straw_hat_color_srgb.png",
+      "to": "tex/side_youngsayo_portrait_straw_hat_color_srgb.png",
+      "sha256": "e5c394bf0cbf95016ab03b41e48c36bcaf83b048279a71f31d5b65480c137785"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_youngsayo_portrait_straw_hat",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_youngsayo\\painted-final\\assets\\side_youngsayo_portrait_face.glb",
+    "sha256": "ffce56c679c449da7075c292a96807047c84d1871f9b07fba77d697a7d1969c0"
+  }
+}

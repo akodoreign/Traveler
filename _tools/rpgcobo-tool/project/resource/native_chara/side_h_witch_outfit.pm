@@ -6,10 +6,10 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c0c1522"
+		name = "c0b1423"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x000103ff
+		basecol = 0x000003ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -19,10 +19,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c131d2c"
+		name = "c121c2d"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x000205ff
+		basecol = 0x000105ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -32,10 +32,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c16253b_cloth"
+		name = "c14243d_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x01030aff
+		basecol = 0x00030aff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -45,10 +45,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c22375a_cloth"
+		name = "c1f365c_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x030819ff
+		basecol = 0x02081bff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -58,10 +58,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c2a446e_checks"
+		name = "c274371_checks"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x040d28ff
+		basecol = 0x040d2aff
 		rough = 0.720000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -71,10 +71,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c2a446e_cloth"
+		name = "c274371_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x040d28ff
+		basecol = 0x040d2aff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -123,10 +123,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cb72b29"
+		name = "cb82b29"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x7a0504ff
+		basecol = 0x7c0504ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -149,10 +149,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cca372e"
+		name = "cce372e"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x980805ff
+		basecol = 0x9f0805ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000

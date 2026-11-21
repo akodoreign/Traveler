@@ -1,0 +1,113 @@
+{
+  "key": "side_h_fisherman_portrait_face",
+  "source": "side_h_fisherman_repaired_atlas.glb",
+  "scale": 12.1,
+  "features": {
+    "eyes": [
+      [
+        199,
+        252,
+        0.04
+      ],
+      [
+        281,
+        251,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        196,
+        237
+      ],
+      [
+        284,
+        237
+      ]
+    ],
+    "mouth": [
+      239,
+      323
+    ]
+  },
+  "socket_sample_levels": [
+    -0.62,
+    -0.612,
+    -0.604,
+    -0.596,
+    -0.588,
+    -0.58,
+    -0.572,
+    -0.564,
+    -0.5559999999999999,
+    -0.5479999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.012,
+    0.022
+  ],
+  "skin_match": [
+    220,
+    163,
+    121
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.1,
+  "fit_matrix_blender": [
+    [
+      12.097486667723627,
+      0.06299515000915645,
+      -0.2384280506259096,
+      0.7467203387600327
+    ],
+    [
+      -0.06028493695748739,
+      12.099063656181878,
+      0.13792885861129253,
+      -0.17183449692368793
+    ],
+    [
+      0.23912768686620073,
+      -0.13671230645814544,
+      12.096864374483127,
+      106.07299896406494
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 22004,
+    "lower_overlap_blended_vertices": 149,
+    "minimum_seam_head_weight": 0.3172448091184069,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      185,
+      303
+    ],
+    [
+      282,
+      304
+    ],
+    [
+      531,
+      779
+    ]
+  ],
+  "skin_sample_view": "Diffuse Hoshi Fisherman cheek centers with a canonical lower-face sample complement the original A100 Peasant outfit and bo.",
+  "raw_skin_srgb": [
+    220,
+    162,
+    119
+  ],
+  "proof_pose_family": "pole"
+}

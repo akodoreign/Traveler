@@ -1,0 +1,125 @@
+{
+  "key": "side_campfollower_portrait_face",
+  "source": "side_campfollower_repaired_atlas.glb",
+  "scale": 12.8,
+  "features": {
+    "eyes": [
+      [
+        194,
+        263,
+        0.04
+      ],
+      [
+        281,
+        262,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        192,
+        247
+      ],
+      [
+        283,
+        246
+      ]
+    ],
+    "mouth": [
+      240,
+      326
+    ]
+  },
+  "socket_sample_levels": [
+    -0.802,
+    -0.793,
+    -0.784,
+    -0.775,
+    -0.766,
+    -0.757,
+    -0.748,
+    -0.739,
+    -0.73,
+    -0.721,
+    -0.712,
+    -0.703,
+    -0.694,
+    -0.6849999999999999,
+    -0.6759999999999999,
+    -0.6669999999999999,
+    -0.6579999999999999,
+    -0.6489999999999999,
+    -0.6399999999999999,
+    -0.6309999999999999,
+    -0.6219999999999999,
+    -0.6129999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.025,
+    -0.017
+  ],
+  "skin_match": [
+    235,
+    176,
+    145
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.8,
+  "fit_matrix_blender": [
+    [
+      12.799964390518204,
+      -0.020000034701626045,
+      -0.022618578177824634,
+      0.5522396854499708
+    ],
+    [
+      0.02010652226470524,
+      12.79984184149116,
+      0.060370196106273824,
+      0.2617751004569644
+    ],
+    [
+      0.02252397010456919,
+      -0.06040555791833045,
+      12.799837648944836,
+      109.33923849384206
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.32,
+  "seam_weights": {
+    "vertex_count": 14418,
+    "lower_overlap_blended_vertices": 161,
+    "minimum_seam_head_weight": 0.6870573759153258,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      190,
+      296
+    ],
+    [
+      282,
+      299
+    ],
+    [
+      238,
+      344
+    ]
+  ],
+  "skin_sample_view": "Bilateral cheek and chin diffuse samples match the exact shared female body in the original A100 clothing.",
+  "raw_skin_srgb": [
+    236,
+    176,
+    146
+  ],
+  "proof_pose_family": "fist"
+}

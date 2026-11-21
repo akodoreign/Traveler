@@ -1,0 +1,123 @@
+{
+  "key": "side_herbseller_portrait_face",
+  "source": "side_herbseller_repaired_atlas.glb",
+  "scale": 12.6,
+  "features": {
+    "eyes": [
+      [
+        197,
+        267,
+        0.04
+      ],
+      [
+        290,
+        267,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        193,
+        250
+      ],
+      [
+        294,
+        251
+      ]
+    ],
+    "mouth": [
+      249,
+      328
+    ]
+  },
+  "socket_sample_levels": [
+    -0.667,
+    -0.659,
+    -0.651,
+    -0.643,
+    -0.635,
+    -0.627,
+    -0.619,
+    -0.611,
+    -0.603,
+    -0.595,
+    -0.587,
+    -0.579,
+    -0.571,
+    -0.563,
+    -0.5549999999999999,
+    -0.5469999999999999,
+    -0.5389999999999999,
+    -0.5309999999999999,
+    -0.5229999999999999,
+    -0.5149999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.019,
+    0.01
+  ],
+  "skin_match": [
+    249,
+    202,
+    175
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.6,
+  "fit_matrix_blender": [
+    [
+      12.59993688635143,
+      -0.03354996577258085,
+      -0.0215606066286676,
+      0.1382931269476624
+    ],
+    [
+      0.033445602904113754,
+      12.599808964509842,
+      -0.060790208973721234,
+      -0.1733330288709543
+    ],
+    [
+      0.02172214556432729,
+      0.06073267372137483,
+      12.599834907281009,
+      107.59526207764317
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.1825,
+  "seam_weights": {
+    "vertex_count": 16583,
+    "lower_overlap_blended_vertices": 177,
+    "minimum_seam_head_weight": 0.5451039202679794,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      192,
+      288
+    ],
+    [
+      286,
+      289
+    ],
+    [
+      247,
+      331
+    ]
+  ],
+  "skin_sample_view": "The fitted warm complexion accounts for slight clipped red in the raw frontal paint. The green leaf sprig remains a separate head accessory.",
+  "raw_skin_srgb": [
+    253,
+    204,
+    182
+  ],
+  "proof_pose_family": "fist"
+}

@@ -1,0 +1,32 @@
+{
+  "actor": "side_h_jadeseller",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_h_jadeseller_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_h_jadeseller_gold_lotus_and_drops.pm",
+      "to": "side_h_jadeseller_gold_lotus_and_drops.pm",
+      "sha256": "981587054409b71c2bad9d2884e728b09cbe296fe6fba6cf36831732216db0ff"
+    },
+    {
+      "from": "assets/side_h_jadeseller_gold_lotus_and_drops.mdl",
+      "to": "side_h_jadeseller_gold_lotus_and_drops.mdl",
+      "sha256": "3987df5ceb281cea6ec6b798b289b9604c6b6ab0bd9a5969a682c9596fb43a69"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_h_jadeseller_gold_lotus_and_drops",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\release\\side_h_jadeseller\\assets\\side_h_jadeseller_portrait_face.glb",
+    "sha256": "40dea71e6b9e4f4386685a6ea170a151bb5ef625ae265ce73855f3b0588e55f0"
+  }
+}

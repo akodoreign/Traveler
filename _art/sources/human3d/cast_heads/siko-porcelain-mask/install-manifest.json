@@ -1,0 +1,32 @@
+{
+  "actor": "side_siko",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_siko_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_siko_portrait_porcelain_mask.pm",
+      "to": "side_siko_portrait_porcelain_mask.pm",
+      "sha256": "9beda53bd66839869996d9a246ecc56c2877f6e671ea23e25c5503a81a8efe0e"
+    },
+    {
+      "from": "assets/side_siko_portrait_porcelain_mask.mdl",
+      "to": "side_siko_portrait_porcelain_mask.mdl",
+      "sha256": "9b95a74cdcb88e0261b039c1dc9333cf9b3a5995d6de782e8bcb7652128911ee"
+    },
+    {
+      "from": "assets/tex/side_siko_portrait_porcelain_mask_color_srgb.png",
+      "to": "tex/side_siko_portrait_porcelain_mask_color_srgb.png",
+      "sha256": "8fcc0a083c735bcf8939c255a1a38aa54a77a8f69f4b0071af394781f3428c9f"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_siko_portrait_porcelain_mask"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\release\\side_siko\\assets\\side_siko_portrait_face.glb",
+    "sha256": "b97589c93e95008ef46cd64c9ac15487dcd10a30075288080d8bac75064b0710"
+  }
+}

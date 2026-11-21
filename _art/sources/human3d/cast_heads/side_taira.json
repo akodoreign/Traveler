@@ -1,0 +1,118 @@
+{
+  "key": "side_taira_portrait_face",
+  "source": "side_taira_repaired_atlas.glb",
+  "scale": 13.8,
+  "features": {
+    "eyes": [
+      [
+        194,
+        266,
+        0.04
+      ],
+      [
+        284,
+        267,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        191,
+        251
+      ],
+      [
+        287,
+        251
+      ]
+    ],
+    "mouth": [
+      237,
+      328
+    ]
+  },
+  "socket_sample_levels": [
+    -0.709,
+    -0.701,
+    -0.693,
+    -0.6849999999999999,
+    -0.6769999999999999,
+    -0.6689999999999999,
+    -0.6609999999999999,
+    -0.6529999999999999,
+    -0.6449999999999999,
+    -0.6369999999999999,
+    -0.6289999999999999,
+    -0.6209999999999999,
+    -0.6129999999999999,
+    -0.6049999999999999,
+    -0.5969999999999999,
+    -0.5889999999999999,
+    -0.5809999999999998,
+    -0.5729999999999998,
+    -0.5649999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.035,
+    -0.013
+  ],
+  "skin_match": [
+    242,
+    209,
+    187
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 13.8,
+  "fit_matrix_blender": [
+    [
+      13.798322628078543,
+      0.2137058797961582,
+      0.024948915755372687,
+      1.306881739334247
+    ],
+    [
+      -0.2136759275903706,
+      13.798335569863077,
+      -0.01667631324783966,
+      0.16801928504039196
+    ],
+    [
+      -0.02520415491965744,
+      0.016287983168419354,
+      13.799967371417289,
+      107.76599172709763
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 22421,
+    "lower_overlap_blended_vertices": 99,
+    "minimum_seam_head_weight": 0.38079599798566144,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      191,
+      299
+    ],
+    [
+      282,
+      304
+    ]
+  ],
+  "skin_sample_view": "Diffuse cheek pair supports the fixed male skin color. Keep the original Crab A100 fabric and fists.",
+  "raw_skin_srgb": [
+    242,
+    209,
+    187
+  ],
+  "proof_pose_family": "fist"
+}

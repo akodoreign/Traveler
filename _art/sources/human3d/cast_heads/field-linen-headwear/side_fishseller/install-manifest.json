@@ -1,0 +1,37 @@
+{
+  "actor": "side_fishseller",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_fishseller_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_fishseller_headcloth.pm",
+      "to": "side_fishseller_headcloth.pm",
+      "sha256": "dd0a78e54fb3c0b3f0ad02a1103b3b8bdb6e8bb01cf92093deba98f953f95011"
+    },
+    {
+      "from": "assets/side_fishseller_headcloth.mdl",
+      "to": "side_fishseller_headcloth.mdl",
+      "sha256": "f1ade34fe3434d914060659a4365f02ff0b62283e4da59f61250f7f26d5f3f25"
+    },
+    {
+      "from": "assets/tex/side_fishseller_headcloth_linen.png",
+      "to": "tex/side_fishseller_headcloth_linen.png",
+      "sha256": "c2986558921d1f7d1f8ac9885af7f942852c19a7c1d55a7b0d13243b1ea3a0da"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_fishseller_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_fishseller\\painted-final\\assets\\side_fishseller_portrait_face.glb",
+    "sha256": "6facc2ecf5de6d2692e7b16c89389f80ba4bff78e82db573c95b25e3c41c6cb2"
+  }
+}

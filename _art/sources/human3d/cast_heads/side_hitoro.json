@@ -1,0 +1,127 @@
+{
+  "key": "side_hitoro_portrait_face",
+  "source": "side_hitoro_repaired_atlas.glb",
+  "scale": 16.3,
+  "features": {
+    "eyes": [
+      [
+        200,
+        229,
+        0.04
+      ],
+      [
+        280,
+        229,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        193,
+        216
+      ],
+      [
+        285,
+        216
+      ]
+    ],
+    "mouth": [
+      239,
+      309
+    ]
+  },
+  "socket_sample_levels": [
+    -0.788,
+    -0.78,
+    -0.772,
+    -0.764,
+    -0.756,
+    -0.748,
+    -0.74,
+    -0.732,
+    -0.724,
+    -0.716,
+    -0.708,
+    -0.7,
+    -0.692,
+    -0.6839999999999999,
+    -0.6759999999999999,
+    -0.6679999999999999,
+    -0.6599999999999999,
+    -0.6519999999999999,
+    -0.6439999999999999,
+    -0.6359999999999999,
+    -0.6279999999999999,
+    -0.6199999999999999,
+    -0.6119999999999999,
+    -0.6039999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.211,
+    -0.013
+  ],
+  "skin_match": [
+    234,
+    183,
+    146
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 16.3,
+  "fit_matrix_blender": [
+    [
+      16.299989258267214,
+      0.01771181627521553,
+      0.006039200217632016,
+      4.35135222509373
+    ],
+    [
+      -0.017734741901955436,
+      16.299871591285193,
+      0.06222207445110246,
+      0.26992619354774794
+    ],
+    [
+      -0.005971541233774485,
+      -0.06222860422314238,
+      16.299880120464554,
+      111.41704810372468
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 12176,
+    "lower_overlap_blended_vertices": 292,
+    "minimum_seam_head_weight": 0.38218274762025817,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      281,
+      305
+    ],
+    [
+      218,
+      406
+    ],
+    [
+      261,
+      411
+    ]
+  ],
+  "skin_sample_view": "Calibrated from diffuse cheek and bilateral near-stem samples on the exact donor, preserving the older skin and cool brows.",
+  "raw_skin_srgb": [
+    234,
+    185,
+    153
+  ],
+  "proof_pose_family": "fist"
+}

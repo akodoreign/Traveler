@@ -1,0 +1,121 @@
+{
+  "key": "side_kumpei_portrait_face",
+  "source": "side_kumpei_repaired_atlas.glb",
+  "scale": 15.3,
+  "features": {
+    "eyes": [
+      [
+        192,
+        279,
+        0.04
+      ],
+      [
+        280,
+        279,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        193,
+        266
+      ],
+      [
+        281,
+        263
+      ]
+    ],
+    "mouth": [
+      239,
+      344
+    ]
+  },
+  "socket_sample_levels": [
+    -0.614,
+    -0.606,
+    -0.598,
+    -0.59,
+    -0.582,
+    -0.574,
+    -0.566,
+    -0.5579999999999999,
+    -0.5499999999999999,
+    -0.5419999999999999,
+    -0.5339999999999999,
+    -0.5259999999999999,
+    -0.5179999999999999,
+    -0.5099999999999999,
+    -0.5019999999999999,
+    -0.4939999999999999,
+    -0.4859999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.046,
+    -0.019
+  ],
+  "skin_match": [
+    231,
+    183,
+    154
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 15.3,
+  "fit_matrix_blender": [
+    [
+      15.297773735830782,
+      -0.26092254222379774,
+      0.0061769156385559215,
+      1.5585377075039266
+    ],
+    [
+      0.26090093466762915,
+      15.297693266281938,
+      0.05011420004900646,
+      0.3408503939638831
+    ],
+    [
+      -0.007030619950890757,
+      -0.05000157713976432,
+      15.29991667992574,
+      107.68972240438497
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 19714,
+    "lower_overlap_blended_vertices": 123,
+    "minimum_seam_head_weight": 0.41846409699532694,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      185,
+      303
+    ],
+    [
+      282,
+      304
+    ],
+    [
+      240,
+      347
+    ]
+  ],
+  "skin_sample_view": "Diffuse cheeks and chin reflect his original complexion in the exact rigid fit. The original A124 palette and decal follow the separate collar alias.",
+  "raw_skin_srgb": [
+    230,
+    182,
+    154
+  ],
+  "review_wardrobe_mesh": "A124_sono_kagemaro",
+  "proof_pose_family": "short"
+}

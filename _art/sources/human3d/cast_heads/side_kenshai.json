@@ -1,0 +1,115 @@
+{
+  "key": "side_kenshai_portrait_face",
+  "source": "side_kenshai_repaired_atlas.glb",
+  "scale": 12.1,
+  "features": {
+    "eyes": [
+      [
+        199,
+        243,
+        0.04
+      ],
+      [
+        281,
+        244,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        192,
+        228
+      ],
+      [
+        286,
+        228
+      ]
+    ],
+    "mouth": [
+      239,
+      321
+    ]
+  },
+  "socket_sample_levels": [
+    -0.977,
+    -0.969,
+    -0.961,
+    -0.953,
+    -0.945,
+    -0.9369999999999999,
+    -0.9289999999999999,
+    -0.9209999999999999,
+    -0.9129999999999999,
+    -0.9049999999999999,
+    -0.8969999999999999,
+    -0.8889999999999999,
+    -0.8809999999999999,
+    -0.8729999999999999,
+    -0.8649999999999999,
+    -0.8569999999999999,
+    -0.8489999999999999,
+    -0.8409999999999999,
+    -0.8329999999999999,
+    -0.8249999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.15,
+    -0.013
+  ],
+  "skin_match": [
+    205,
+    128,
+    86
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.1,
+  "fit_matrix_blender": [
+    [
+      12.099611608188804,
+      -0.09668635078589125,
+      0.007119027692590988,
+      2.5826202824127487
+    ],
+    [
+      0.09661911230639318,
+      12.09913406886647,
+      0.10779392717029239,
+      0.2806621553474984
+    ],
+    [
+      -0.00797985718575266,
+      -0.10773362135089079,
+      12.099517750254016,
+      110.05514051910428
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 12158,
+    "lower_overlap_blended_vertices": 411,
+    "minimum_seam_head_weight": 0.35266231789139235,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    "lower frontal",
+    "lateral diffuse",
+    "source left cheek",
+    "source right cheek"
+  ],
+  "skin_sample_view": "The narrow lower diffuse samples required weighting against the original cheeks, preserving his intended warmer complexion and regional shade.",
+  "raw_skin_srgb": [
+    214,
+    145,
+    101
+  ],
+  "proof_pose_family": "fist"
+}

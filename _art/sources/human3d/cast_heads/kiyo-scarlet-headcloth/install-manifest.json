@@ -1,0 +1,37 @@
+{
+  "actor": "side_kiyo",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_kiyo_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_kiyo_headcloth.pm",
+      "to": "side_kiyo_headcloth.pm",
+      "sha256": "7695f8391eccf296b77b1ceaab67decb2d68889c060ae2f4fa56a7d56c0aa489"
+    },
+    {
+      "from": "assets/side_kiyo_headcloth.mdl",
+      "to": "side_kiyo_headcloth.mdl",
+      "sha256": "77ce3fdc87bad3c9f2d2cbe2ab49afcc1c603fae05d52bfe8e362e5ee7e74416"
+    },
+    {
+      "from": "assets/tex/side_kiyo_headcloth_linen.png",
+      "to": "tex/side_kiyo_headcloth_linen.png",
+      "sha256": "c2986558921d1f7d1f8ac9885af7f942852c19a7c1d55a7b0d13243b1ea3a0da"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_kiyo_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_kiyo\\painted-final\\assets\\side_kiyo_portrait_face.glb",
+    "sha256": "04237ddc577db34269c57ee30b4454092a5e68a3d780c1dd751f49b2751e42db"
+  }
+}

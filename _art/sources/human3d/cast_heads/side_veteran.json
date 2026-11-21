@@ -1,0 +1,160 @@
+{
+  "scale": 13.9,
+  "cranial_scale": [
+    0.84,
+    104.35
+  ],
+  "socket_sample_levels": [
+    -0.653,
+    -0.647,
+    -0.641,
+    -0.635,
+    -0.629,
+    -0.623,
+    -0.617,
+    -0.611,
+    -0.605,
+    -0.599,
+    -0.593
+  ],
+  "socket_ring_hint": [
+    -0.018,
+    0.019
+  ],
+  "features": {
+    "eyes": [
+      [
+        193,
+        258,
+        0.035
+      ],
+      [
+        283,
+        256,
+        -0.035
+      ]
+    ],
+    "brows": [
+      [
+        179,
+        239
+      ],
+      [
+        293,
+        239
+      ]
+    ],
+    "mouth": [
+      237,
+      340
+    ]
+  },
+  "maximum_pitch": 3,
+  "proof_motion": "fist",
+  "taper_donor_overlap": true,
+  "key": "side_veteran_portrait_face",
+  "source": "side_veteran_repaired_atlas.glb",
+  "exact_native_outfit": true,
+  "preserve_long_hair": true,
+  "fit_shallow_neck_overlap": true,
+  "recenter_donor_seat": true,
+  "skin_match": [
+    243,
+    197,
+    170
+  ],
+  "skin_sample_view": "Diffuse cheeks and chin from the final unlit face. Lower seam determines matched body paint.",
+  "skin_sample_patches": [
+    [
+      239,
+      410,
+      4
+    ],
+    [
+      236,
+      173,
+      4
+    ],
+    [
+      248,
+      178,
+      4
+    ],
+    [
+      218,
+      183,
+      4
+    ],
+    [
+      267,
+      187,
+      4
+    ]
+  ],
+  "raw_skin_srgb": [
+    244,
+    205,
+    177
+  ],
+  "fit_method": "production shared body socket",
+  "fit_scale": 13.9,
+  "fit_matrix_blender": [
+    [
+      13.893711565890271,
+      0.06051062617919918,
+      0.41366337518251883,
+      0.835324078210878
+    ],
+    [
+      -0.0770564568330064,
+      13.888643117715842,
+      0.556466217472816,
+      0.5920849904631783
+    ],
+    [
+      -0.41090294025272645,
+      -0.5585076658807466,
+      13.882695270042012,
+      107.4298323580658
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 19830,
+    "lower_overlap_blended_vertices": 169,
+    "minimum_seam_head_weight": 0.279154812911943,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 0.84,
+    "pivot": [
+      0.8199825000000002,
+      0.006992499999999957,
+      104.35
+    ],
+    "seated_rings": [
+      {
+        "height": 98.55,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      },
+      {
+        "height": 99.1,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      }
+    ],
+    "original_entire_silhouette_width": 20.02513885498047,
+    "final_entire_silhouette_width": 16.821117401123047,
+    "original_crown_native": 117.10517883300781,
+    "final_crown_native": 115.0643539428711,
+    "origin_geometry_sha256": "54c3853b2633b694b57d0ebebbfe217a20440b66b7a3a1c3db1205218c24653d"
+  },
+  "post_fit_source": "C:/Users/akodo/Documents/Codex/2026-11-20/ok/work/batch26-rig-fit-screen/shape_wall_veteran_nape.py"
+}

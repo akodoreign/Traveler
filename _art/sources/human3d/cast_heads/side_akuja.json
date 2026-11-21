@@ -1,0 +1,125 @@
+{
+  "key": "side_akuja_portrait_face",
+  "source": "side_akuja_repaired_atlas.glb",
+  "scale": 15.0,
+  "features": {
+    "eyes": [
+      [
+        192,
+        246,
+        0.04
+      ],
+      [
+        285,
+        244,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        186,
+        225
+      ],
+      [
+        289,
+        227
+      ]
+    ],
+    "mouth": [
+      236,
+      330
+    ]
+  },
+  "socket_sample_levels": [
+    -0.701,
+    -0.693,
+    -0.6849999999999999,
+    -0.6769999999999999,
+    -0.6689999999999999,
+    -0.6609999999999999,
+    -0.6529999999999999,
+    -0.6449999999999999,
+    -0.6369999999999999,
+    -0.6289999999999999,
+    -0.6209999999999999,
+    -0.6129999999999999,
+    -0.6049999999999999,
+    -0.5969999999999999,
+    -0.5889999999999999,
+    -0.5809999999999998,
+    -0.5729999999999998,
+    -0.5649999999999998,
+    -0.5569999999999998,
+    -0.5489999999999998,
+    -0.5409999999999998,
+    -0.5329999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.181,
+    -0.014
+  ],
+  "skin_match": [
+    225,
+    180,
+    153
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 15.0,
+  "fit_matrix_blender": [
+    [
+      14.996900198643852,
+      -0.30493243910269396,
+      -0.0007996875359116743,
+      4.137299422114721
+    ],
+    [
+      0.3049136542897002,
+      14.995424553975438,
+      0.21040463270230772,
+      0.43543121016523145
+    ],
+    [
+      -0.0034778362491269827,
+      -0.21037740757451148,
+      14.99852423577201,
+      109.23280410332849
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 12034,
+    "lower_overlap_blended_vertices": 557,
+    "minimum_seam_head_weight": 0.6458987906867831,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      288,
+      285
+    ],
+    [
+      272,
+      301
+    ],
+    [
+      237,
+      346
+    ]
+  ],
+  "skin_sample_view": "Diffuse skin probes from the exact V2 portrait before local lower skin blending. The chosen tone keeps Akuja\u2019s deeper facial contours and grayscale shaved stippling.",
+  "raw_skin_srgb": [
+    225,
+    180,
+    153
+  ],
+  "proof_pose_family": "fist"
+}

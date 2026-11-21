@@ -1,0 +1,119 @@
+{
+  "key": "side_ikomabard_portrait_face",
+  "source": "side_ikomabard_repaired_atlas.glb",
+  "scale": 12.8,
+  "features": {
+    "eyes": [
+      [
+        205,
+        241,
+        0.04
+      ],
+      [
+        294,
+        241,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        203,
+        223
+      ],
+      [
+        296,
+        223
+      ]
+    ],
+    "mouth": [
+      251,
+      317
+    ]
+  },
+  "socket_sample_levels": [
+    -0.809,
+    -0.801,
+    -0.793,
+    -0.785,
+    -0.777,
+    -0.769,
+    -0.761,
+    -0.753,
+    -0.745,
+    -0.737,
+    -0.729,
+    -0.721,
+    -0.713,
+    -0.705,
+    -0.697,
+    -0.689,
+    -0.6809999999999999,
+    -0.6729999999999999,
+    -0.6649999999999999,
+    -0.6569999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.111,
+    -0.001
+  ],
+  "skin_match": [
+    240,
+    190,
+    158
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.8,
+  "fit_matrix_blender": [
+    [
+      12.780169393577012,
+      -0.33581598095368087,
+      -0.6280906769046606,
+      1.8374992816227302
+    ],
+    [
+      0.3335069672917488,
+      12.79553540167176,
+      -0.05519861715527413,
+      0.017941666072866142
+    ],
+    [
+      0.6293197710594368,
+      0.038748051616946215,
+      12.784461475332147,
+      108.98736768573984
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 17775,
+    "lower_overlap_blended_vertices": 312,
+    "minimum_seam_head_weight": 0.5923853507367716,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      282,
+      299
+    ],
+    [
+      238,
+      344
+    ]
+  ],
+  "skin_sample_view": "The diffuse right cheek and chin avoid the hairstyle shadow. Preserve the original Lion A100 and bokken.",
+  "raw_skin_srgb": [
+    241,
+    192,
+    160
+  ],
+  "proof_pose_family": "blade"
+}

@@ -6,7 +6,7 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c0e251b"
+		name = "c0d251b"
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x000301ff
@@ -19,10 +19,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c152f24"
+		name = "c142f24"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x010603ff
+		basecol = 0x000603ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -32,7 +32,7 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c194030_cloth"
+		name = "c17402f_cloth"
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x010c06ff
@@ -45,10 +45,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c25633f_cloth"
+		name = "c1c5d3b_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x031f0bff
+		basecol = 0x011b0aff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -58,10 +58,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c2e794e_cloth"
+		name = "c237248_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x053112ff
+		basecol = 0x032b0fff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -71,10 +71,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c7b6c2b_cloth"
+		name = "c796927_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x332605ff
+		basecol = 0x312404ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -84,10 +84,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cab973c_cloth"
+		name = "ca99337_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x69500aff
+		basecol = 0x674b08ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -110,10 +110,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cd3a036"
+		name = "cd39d32"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xa85b08ff
+		basecol = 0xa85707ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -123,10 +123,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "ceabd4c"
+		name = "cecbd4b"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xd38311ff
+		basecol = 0xd78311ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000

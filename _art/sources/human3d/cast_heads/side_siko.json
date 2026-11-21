@@ -1,0 +1,116 @@
+{
+  "key": "side_siko_portrait_face",
+  "source": "side_siko_repaired_atlas.glb",
+  "scale": 11.3,
+  "features": {
+    "eyes": [
+      [
+        176,
+        284,
+        0.04
+      ],
+      [
+        260,
+        285,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        175,
+        270
+      ],
+      [
+        262,
+        270
+      ]
+    ],
+    "mouth": [
+      218,
+      336
+    ]
+  },
+  "socket_sample_levels": [
+    -0.975,
+    -0.966,
+    -0.957,
+    -0.948,
+    -0.939,
+    -0.9299999999999999,
+    -0.9209999999999999,
+    -0.9119999999999999,
+    -0.9029999999999999,
+    -0.8939999999999999,
+    -0.8849999999999999,
+    -0.8759999999999999,
+    -0.8669999999999999,
+    -0.8579999999999999,
+    -0.8489999999999999,
+    -0.8399999999999999,
+    -0.8309999999999998,
+    -0.8219999999999998,
+    -0.8129999999999998,
+    -0.8039999999999998,
+    -0.7949999999999998,
+    -0.7859999999999998,
+    -0.7769999999999998,
+    -0.7679999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.004,
+    -0.109
+  ],
+  "skin_match": [
+    249,
+    220,
+    206
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.3,
+  "fit_matrix_blender": [
+    [
+      11.299856073540658,
+      -0.05097959181055299,
+      -0.02556948348805665,
+      0.16087951070857856
+    ],
+    [
+      0.05073389679218246,
+      11.299373635113543,
+      -0.10761749773983764,
+      1.127749850227393
+    ],
+    [
+      0.026053579088041342,
+      0.10750132707242772,
+      11.299458600999262,
+      110.39157885542524
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.4575,
+  "seam_weights": {
+    "vertex_count": 17228,
+    "lower_overlap_blended_vertices": 109,
+    "minimum_seam_head_weight": 0.7961672596035677,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    "median of source points (411,680), (598,704) and (510,800)"
+  ],
+  "skin_sample_view": "The shared female complexion is calibrated to the median of diffuse skin probes in the prepared exact Siko reference. The operator kept this calibrated color through the original V3 eye and lip correction.",
+  "raw_skin_srgb": [
+    249,
+    220,
+    206
+  ],
+  "proof_pose_family": "blade"
+}

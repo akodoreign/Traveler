@@ -1,0 +1,9 @@
+// Executed only by tools (bot evalf): which battle figures are native 3-D models and which are the old pictures.
+local b = ::rpgstage["battle"];
+local show = function( tag, rp){
+	printf( "[RT] NATIVE CHECK %S native %S key %S\n", tag, 
+		rp["nativeBody"] ? "yes" : "no", rp["nativeKey"] ? rp.nativeKey : "-");
+};
+foreach( m in b.members) if( m) show( m.name, b.getChara3D( m));
+foreach( i, rp in ::Rokugan.backrow) show( "backrow" .. i, rp);
+printf( "[RT] NATIVE CHECK COMPLETE\n");

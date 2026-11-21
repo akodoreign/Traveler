@@ -6,7 +6,7 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c0e1625"
+		name = "c0c1524"
 		tec = "pbr.basic"
 		mtype = 0
 		basecol = 0x000103ff
@@ -19,10 +19,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c151e2f"
+		name = "c131d2e"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x010206ff
+		basecol = 0x000205ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -32,10 +32,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c192741_cloth"
+		name = "c15253f_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x01040cff
+		basecol = 0x01030bff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -45,10 +45,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c24385f_cloth"
+		name = "c21375f_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x03091dff
+		basecol = 0x02081dff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -58,10 +58,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c2d4575_cloth"
+		name = "c294474_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x050e2dff
+		basecol = 0x040d2dff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -71,10 +71,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c6e2e2c_cloth"
+		name = "c6d272b_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x280505ff
+		basecol = 0x270405ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -84,10 +84,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c9a403e_cloth"
+		name = "c98373c_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x540c0bff
+		basecol = 0x51080aff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -97,10 +97,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cbd3e2c"
+		name = "cbb332a"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x830b05ff
+		basecol = 0x800704ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -123,10 +123,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cca372e"
+		name = "cce372e"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x980805ff
+		basecol = 0x9f0805ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000

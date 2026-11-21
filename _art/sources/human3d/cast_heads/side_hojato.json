@@ -1,0 +1,107 @@
+{
+  "key": "side_hojato_portrait_face",
+  "source": "side_hojato_repaired_atlas.glb",
+  "scale": 14.8,
+  "features": {
+    "eyes": [
+      [
+        197,
+        244,
+        0.04
+      ],
+      [
+        281,
+        245,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        195,
+        227
+      ],
+      [
+        286,
+        226
+      ]
+    ],
+    "mouth": [
+      239,
+      322
+    ]
+  },
+  "socket_sample_levels": [
+    -0.659,
+    -0.651,
+    -0.643,
+    -0.635,
+    -0.627,
+    -0.619,
+    -0.611,
+    -0.603,
+    -0.595,
+    -0.587,
+    -0.579,
+    -0.571,
+    -0.563,
+    -0.5549999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.109,
+    -0.013
+  ],
+  "skin_match": [
+    241,
+    183,
+    134
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 14.8,
+  "fit_matrix_blender": [
+    [
+      14.799241941384942,
+      -0.12796175113561786,
+      -0.07787008796971091,
+      2.2945145927441666
+    ],
+    [
+      0.1280482359347446,
+      14.799437284604105,
+      0.016115469223815404,
+      0.22044187117274888
+    ],
+    [
+      0.07772779186432949,
+      -0.016788368610729094,
+      14.799786368088377,
+      107.71723477671286
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 17863,
+    "lower_overlap_blended_vertices": 256,
+    "minimum_seam_head_weight": 0.27910582361222525,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    "left cheek",
+    "right cheek"
+  ],
+  "skin_sample_view": "Combined diffuse cheek color captures the original older complexion without overly saturated edge lighting.",
+  "raw_skin_srgb": [
+    244,
+    186,
+    136
+  ],
+  "proof_pose_family": "fist"
+}

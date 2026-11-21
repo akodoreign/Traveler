@@ -1,0 +1,115 @@
+{
+  "key": "side_kosai_portrait_face",
+  "source": "side_kosai_repaired_atlas.glb",
+  "scale": 11.7,
+  "features": {
+    "eyes": [
+      [
+        197,
+        267,
+        0.04
+      ],
+      [
+        280,
+        264,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        195,
+        253
+      ],
+      [
+        284,
+        250
+      ]
+    ],
+    "mouth": [
+      237,
+      329
+    ]
+  },
+  "socket_sample_levels": [
+    -0.668,
+    -0.66,
+    -0.652,
+    -0.644,
+    -0.636,
+    -0.628,
+    -0.62,
+    -0.612,
+    -0.604,
+    -0.596,
+    -0.588,
+    -0.58
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.037,
+    -0.055
+  ],
+  "skin_match": [
+    245,
+    204,
+    176
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.7,
+  "fit_matrix_blender": [
+    [
+      11.681044865747811,
+      0.6281733501309196,
+      -0.22042932330519396,
+      1.06812481772778
+    ],
+    [
+      -0.6256204473899523,
+      11.682431778986365,
+      0.1392364361071912,
+      0.7627752424402725
+    ],
+    [
+      0.2275739444556228,
+      -0.12722409959409067,
+      11.697094687497804,
+      106.18821107389485
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 22383,
+    "lower_overlap_blended_vertices": 296,
+    "minimum_seam_head_weight": 0.3263079799882628,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      185,
+      303
+    ],
+    [
+      282,
+      304
+    ],
+    [
+      523,
+      781
+    ]
+  ],
+  "skin_sample_view": "Diffuse cheek and original chin samples establish the matching complexion. The lower stem blends at the approved placement on his fixed Mantis A100 and shared male rig.",
+  "raw_skin_srgb": [
+    246,
+    204,
+    175
+  ],
+  "proof_pose_family": "fist"
+}

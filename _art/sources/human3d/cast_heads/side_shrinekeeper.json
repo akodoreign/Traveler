@@ -1,0 +1,114 @@
+{
+  "key": "side_shrinekeeper_portrait_face",
+  "source": "side_shrinekeeper_repaired_atlas.glb",
+  "scale": 13.1,
+  "features": {
+    "eyes": [
+      [
+        192,
+        260,
+        0.04
+      ],
+      [
+        283,
+        260,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        189,
+        246
+      ],
+      [
+        286,
+        246
+      ]
+    ],
+    "mouth": [
+      240,
+      330
+    ]
+  },
+  "socket_sample_levels": [
+    -0.712,
+    -0.704,
+    -0.696,
+    -0.688,
+    -0.6799999999999999,
+    -0.6719999999999999,
+    -0.6639999999999999,
+    -0.6559999999999999,
+    -0.6479999999999999,
+    -0.6399999999999999,
+    -0.6319999999999999,
+    -0.6239999999999999,
+    -0.6159999999999999,
+    -0.6079999999999999,
+    -0.5999999999999999,
+    -0.5919999999999999,
+    -0.5839999999999999,
+    -0.5759999999999998,
+    -0.5679999999999998,
+    -0.5599999999999998,
+    -0.5519999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.03,
+    -0.013
+  ],
+  "skin_match": [
+    243,
+    209,
+    186
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 13.1,
+  "fit_matrix_blender": [
+    [
+      13.099136940769686,
+      0.14991869421466947,
+      -0.011652986269654659,
+      0.6425420019726014
+    ],
+    [
+      -0.14991721232638988,
+      13.099142026572572,
+      0.001731222706830988,
+      0.1599967298755835
+    ],
+    [
+      0.011672035483015375,
+      -0.0015977511522843354,
+      13.09999470270051,
+      108.2474208504253
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.045,
+  "seam_weights": {
+    "vertex_count": 17800,
+    "lower_overlap_blended_vertices": 142,
+    "minimum_seam_head_weight": 0.7585758926363579,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    "left cheek",
+    "right cheek"
+  ],
+  "skin_sample_view": "Bilateral diffuse consistency supports the fixed shared female color and the original A100 peasant fit.",
+  "raw_skin_srgb": [
+    243,
+    211,
+    189
+  ],
+  "proof_pose_family": "fist"
+}

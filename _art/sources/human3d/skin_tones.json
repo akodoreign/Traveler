@@ -833,5 +833,275 @@
     237,
     160,
     105
+  ],
+  "side_kyumi": [
+    241,
+    193,
+    165
+  ],
+  "side_kuhime": [
+    250,
+    211,
+    187
+  ],
+  "side_sadanobu": [
+    218,
+    150,
+    104
+  ],
+  "side_clerk": [
+    246,
+    194,
+    157
+  ],
+  "side_gatekeeper": [
+    240,
+    190,
+    153
+  ],
+  "side_masanori": [
+    241,
+    198,
+    171
+  ],
+  "side_kumpei": [
+    231,
+    183,
+    154
+  ],
+  "side_h_fisherman": [
+    220,
+    163,
+    121
+  ],
+  "side_merchant": [
+    217,
+    160,
+    121
+  ],
+  "side_mosuke": [
+    219,
+    159,
+    121
+  ],
+  "side_hitoro": [
+    234,
+    183,
+    146
+  ],
+  "side_kosai": [
+    245,
+    204,
+    176
+  ],
+  "side_senior_student": [
+    238,
+    190,
+    158
+  ],
+  "side_swordsmith": [
+    237,
+    185,
+    152
+  ],
+  "side_riichi": [
+    234,
+    175,
+    133
+  ],
+  "side_yodo": [
+    241,
+    192,
+    155
+  ],
+  "side_actor_b": [
+    236,
+    184,
+    156
+  ],
+  "side_h_bomonk": [
+    234,
+    178,
+    134
+  ],
+  "side_nihime": [
+    238,
+    190,
+    156
+  ],
+  "side_yasurugi": [
+    239,
+    189,
+    154
+  ],
+  "side_h_windpriest": [
+    240,
+    183,
+    147
+  ],
+  "side_kurako": [
+    246,
+    207,
+    177
+  ],
+  "side_ikomabard": [
+    240,
+    190,
+    158
+  ],
+  "side_empress": [
+    235,
+    195,
+    179
+  ],
+  "side_akiko": [
+    239,
+    197,
+    176
+  ],
+  "side_shahai": [
+    246,
+    200,
+    181
+  ],
+  "side_campfollower": [
+    235,
+    176,
+    145
+  ],
+  "side_veteran": [
+    243,
+    197,
+    170
+  ],
+  "side_h_moshi": [
+    243,
+    188,
+    155
+  ],
+  "side_sakeseller": [
+    244,
+    195,
+    160
+  ],
+  "side_taira": [
+    242,
+    209,
+    187
+  ],
+  "side_netmender": [
+    244,
+    205,
+    181
+  ],
+  "side_hojato": [
+    241,
+    183,
+    134
+  ],
+  "side_shrinekeeper": [
+    243,
+    209,
+    186
+  ],
+  "side_jinnai": [
+    237,
+    177,
+    134
+  ],
+  "side_kenshai": [
+    205,
+    128,
+    86
+  ],
+  "side_kitechild": [
+    238,
+    182,
+    138
+  ],
+  "side_itami": [
+    230,
+    175,
+    137
+  ],
+  "side_herbseller": [
+    249,
+    202,
+    175
+  ],
+  "side_kiyo": [
+    246,
+    165,
+    101
+  ],
+  "side_h_jadeseller": [
+    244,
+    186,
+    153
+  ],
+  "side_h_moto": [
+    237,
+    172,
+    128
+  ],
+  "side_quartermaster": [
+    246,
+    189,
+    147
+  ],
+  "side_youngsayo": [
+    251,
+    192,
+    138
+  ],
+  "side_h_guide": [
+    237,
+    168,
+    118
+  ],
+  "side_siko": [
+    249,
+    220,
+    206
+  ],
+  "side_fishseller": [
+    248,
+    215,
+    187
+  ],
+  "side_innkeeper": [
+    244,
+    172,
+    120
+  ],
+  "side_h_goatherd": [
+    249,
+    192,
+    151
+  ],
+  "side_acolyte": [
+    246,
+    209,
+    185
+  ],
+  "side_censormonk": [
+    228,
+    162,
+    117
+  ],
+  "side_hikaru": [
+    158,
+    110,
+    88
+  ],
+  "side_healer": [
+    203,
+    142,
+    106
+  ],
+  "side_hagane": [
+    233,
+    195,
+    169
   ]
 }

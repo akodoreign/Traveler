@@ -1,0 +1,32 @@
+{
+  "actor": "side_itami",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_itami_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_itami_portrait_stone_mask.pm",
+      "to": "side_itami_portrait_stone_mask.pm",
+      "sha256": "b6a6f90b92d08d6ac6d7fa372b37b242c0c819abe252a434829687bb3d57df98"
+    },
+    {
+      "from": "assets/side_itami_portrait_stone_mask.mdl",
+      "to": "side_itami_portrait_stone_mask.mdl",
+      "sha256": "59cca91886bdf95fac9a9acc592358992bf27d1ca2530ad24d08918d67c40eda"
+    },
+    {
+      "from": "assets/tex/side_itami_portrait_stone_mask_color_srgb.png",
+      "to": "tex/side_itami_portrait_stone_mask_color_srgb.png",
+      "sha256": "8e538f39fad61ac2a5e497743acde303aa9be40bd70813077ebef063e37c425f"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_itami_portrait_stone_mask"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_itami\\final\\assets\\side_itami_portrait_face.glb",
+    "sha256": "88a5826158e1c8efcd10ed9021752f061188113f8c6ba34365dce1c52cb0a5b5"
+  }
+}

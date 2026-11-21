@@ -1,0 +1,119 @@
+{
+  "key": "side_masanori_portrait_face",
+  "source": "side_masanori_repaired_atlas.glb",
+  "scale": 15.6,
+  "features": {
+    "eyes": [
+      [
+        195,
+        273,
+        0.04
+      ],
+      [
+        283,
+        274,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        193,
+        258
+      ],
+      [
+        286,
+        259
+      ]
+    ],
+    "mouth": [
+      239,
+      350
+    ]
+  },
+  "socket_sample_levels": [
+    -0.702,
+    -0.694,
+    -0.6859999999999999,
+    -0.6779999999999999,
+    -0.6699999999999999,
+    -0.6619999999999999,
+    -0.6539999999999999,
+    -0.6459999999999999,
+    -0.6379999999999999,
+    -0.6299999999999999,
+    -0.6219999999999999,
+    -0.6139999999999999,
+    -0.6059999999999999,
+    -0.5979999999999999,
+    -0.5899999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.005,
+    -0.012
+  ],
+  "skin_match": [
+    241,
+    198,
+    171
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 15.6,
+  "fit_matrix_blender": [
+    [
+      15.596815074921242,
+      -0.3152063794553454,
+      -0.00211117539734431,
+      1.077227761483246
+    ],
+    [
+      0.3151978313448111,
+      15.594652404655076,
+      0.2597435371787881,
+      0.37307439995733105
+    ],
+    [
+      -0.003137805990656911,
+      -0.2597331637301473,
+      15.597837312840385,
+      109.46604662646057
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 17980,
+    "lower_overlap_blended_vertices": 388,
+    "minimum_seam_head_weight": 0.4938134116345141,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      185,
+      303
+    ],
+    [
+      282,
+      304
+    ],
+    [
+      240,
+      347
+    ]
+  ],
+  "skin_sample_view": "Diffuse cheeks and lower face on the regenerated exact atlas, matched to the fixed shared male body under the original A124 fabric.",
+  "raw_skin_srgb": [
+    239,
+    198,
+    172
+  ],
+  "review_wardrobe_mesh": "A124_sono_kagemaro",
+  "proof_pose_family": "blade"
+}

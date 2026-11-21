@@ -6,10 +6,10 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c383e45"
+		name = "c273544"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x090b0eff
+		basecol = 0x04080dff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -19,10 +19,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c454c53"
+		name = "c324152"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x0e1115ff
+		basecol = 0x070c15ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -32,10 +32,23 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c4a5d43_cloth"
+		name = "c41553d_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x101b0dff
+		basecol = 0x0c160aff
+		rough = 0.770000
+		metal = 0.000000
+		mparam = 0xff000000
+		texmap = 0x00000000
+		texture0 = "tex/head_cloth_color.png"
+		texture1 = "tex/head_cloth_normal.png"
+		texture2 = null
+	}
+	{
+		name = "c445d76_cloth"
+		tec = "pbr.basic"
+		mtype = 0
+		basecol = 0x0d1b2eff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -71,10 +84,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c616c77_cloth"
+		name = "c5b7755_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x1e262fff
+		basecol = 0x1a2f16ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -84,10 +97,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c67825e_cloth"
+		name = "c656362_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x22391cff
+		basecol = 0x211f1fff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -97,23 +110,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c8f8881_cloth"
+		name = "c7c7978_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x473f38ff
-		rough = 0.770000
-		metal = 0.000000
-		mparam = 0xff000000
-		texmap = 0x00000000
-		texture0 = "tex/head_cloth_color.png"
-		texture1 = "tex/head_cloth_normal.png"
-		texture2 = null
-	}
-	{
-		name = "cafa69e_cloth"
-		tec = "pbr.basic"
-		mtype = 0
-		basecol = 0x6f6358ff
+		basecol = 0x343130ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000

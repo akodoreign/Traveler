@@ -1,0 +1,117 @@
+{
+  "key": "side_kurako_portrait_face",
+  "source": "side_kurako_repaired_atlas.glb",
+  "scale": 14.3,
+  "features": {
+    "eyes": [
+      [
+        201,
+        276,
+        0.04
+      ],
+      [
+        280,
+        277,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        198,
+        257
+      ],
+      [
+        281,
+        259
+      ]
+    ],
+    "mouth": [
+      240,
+      327
+    ]
+  },
+  "socket_sample_levels": [
+    -0.87,
+    -0.861,
+    -0.852,
+    -0.843,
+    -0.834,
+    -0.825,
+    -0.816,
+    -0.8069999999999999,
+    -0.7979999999999999,
+    -0.7889999999999999,
+    -0.7799999999999999,
+    -0.7709999999999999,
+    -0.7619999999999999,
+    -0.7529999999999999,
+    -0.7439999999999999,
+    -0.7349999999999999,
+    -0.7259999999999999,
+    -0.7169999999999999,
+    -0.7079999999999999,
+    -0.6989999999999998,
+    -0.6899999999999998,
+    -0.6809999999999998,
+    -0.6719999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.04,
+    -0.014
+  ],
+  "skin_match": [
+    246,
+    207,
+    177
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 14.3,
+  "fit_matrix_blender": [
+    [
+      14.299732852381059,
+      0.019514996806343585,
+      0.08520279006414083,
+      0.8180610873808598
+    ],
+    [
+      -0.018981510111867245,
+      14.299707132016602,
+      -0.08953011131136433,
+      0.12281973234549494
+    ],
+    [
+      -0.08532322549539952,
+      0.08941534240386574,
+      14.299465893652702,
+      111.57779741069261
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.4575,
+  "seam_weights": {
+    "vertex_count": 15937,
+    "lower_overlap_blended_vertices": 122,
+    "minimum_seam_head_weight": 0.4886416575561565,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    "left cheek",
+    "right cheek",
+    "chin"
+  ],
+  "skin_sample_view": "Three diffuse face samples support the exact warm complexion on the original Crab A100 and fan route.",
+  "raw_skin_srgb": [
+    246,
+    207,
+    177
+  ],
+  "proof_pose_family": "short"
+}

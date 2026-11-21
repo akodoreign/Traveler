@@ -24,7 +24,7 @@ def main():
         (shots / f"bot_{c}.raw").unlink(missing_ok=True)
     log = OUT / "guest_row.log"
     args = [str(TOOL / "rpgcobo.exe"), "-testplay", "-battle", "M001", "3", "-debuglv", "20",
-            "-rtparty", "P101", "-rtvar", "G233,G234,G235,G236,G293=1,G294=3", "-rtbot", "wait,600|evalf,../../tools/test_guest_row.sk|wait,3000"]
+            "-rtparty", "P101,P120,P127", "-rtvar", "G233,G234,G235,G236,G293=1,G294=3", "-rtbot", "wait,600|evalf,../../tools/test_guest_row.sk|wait,3000"]
     with log.open("w") as fh:
         proc = engine_lock.launch(args, cwd=TOOL, stdout=fh, stderr=subprocess.STDOUT)
         try:

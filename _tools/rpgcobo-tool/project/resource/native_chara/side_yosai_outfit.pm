@@ -6,10 +6,10 @@ bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
 	{
-		name = "c18291b"
+		name = "c11261b"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x010401ff
+		basecol = 0x000301ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -19,10 +19,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c213424"
+		name = "c193024"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x020703ff
+		basecol = 0x010603ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -32,10 +32,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c2b482f_cloth"
+		name = "c1f432f_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x050f06ff
+		basecol = 0x020d06ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -45,10 +45,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c357644_cloth"
+		name = "c267144_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x082e0dff
+		basecol = 0x032a0dff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -58,10 +58,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "c776125_cloth"
+		name = "c776426_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x2f1e03ff
+		basecol = 0x2f2003ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -71,10 +71,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "ca68834_cloth"
+		name = "ca68c35_cloth"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x633f07ff
+		basecol = 0x634408ff
 		rough = 0.770000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -97,10 +97,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "cca8e2f"
+		name = "ccf9530"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0x984606ff
+		basecol = 0xa14e06ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -110,10 +110,10 @@ material = [
 		texture2 = null
 	}
 	{
-		name = "ceabd4c"
+		name = "cecbd4b"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xd38311ff
+		basecol = 0xd78311ff
 		rough = 0.500000
 		metal = 0.000000
 		mparam = 0xff000000

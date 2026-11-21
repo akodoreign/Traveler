@@ -1,0 +1,120 @@
+{
+  "key": "side_kuhime_portrait_face",
+  "source": "side_kuhime_repaired_atlas.glb",
+  "scale": 15.0,
+  "features": {
+    "eyes": [
+      [
+        194,
+        279,
+        0.04
+      ],
+      [
+        283,
+        280,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        195,
+        263
+      ],
+      [
+        284,
+        264
+      ]
+    ],
+    "mouth": [
+      239,
+      343
+    ]
+  },
+  "socket_sample_levels": [
+    -0.742,
+    -0.734,
+    -0.726,
+    -0.718,
+    -0.71,
+    -0.702,
+    -0.694,
+    -0.6859999999999999,
+    -0.6779999999999999,
+    -0.6699999999999999,
+    -0.6619999999999999,
+    -0.6539999999999999,
+    -0.6459999999999999,
+    -0.6379999999999999,
+    -0.6299999999999999,
+    -0.6219999999999999,
+    -0.6139999999999999,
+    -0.6059999999999999,
+    -0.5979999999999999,
+    -0.5899999999999999,
+    -0.5819999999999999,
+    -0.5739999999999998,
+    -0.5659999999999998,
+    -0.5579999999999998,
+    -0.5499999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.047,
+    -0.02
+  ],
+  "skin_match": [
+    250,
+    211,
+    187
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 15.0,
+  "fit_matrix_blender": [
+    [
+      14.998574741813867,
+      -0.10649992935234862,
+      -0.1772384813530064,
+      -0.22155398582878633
+    ],
+    [
+      0.10589339154974871,
+      14.999536407086975,
+      -0.051905318638756054,
+      0.25464867026902166
+    ],
+    [
+      0.1776015311039499,
+      0.05064916114649636,
+      14.998863035531327,
+      110.60611981483241
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.4575,
+  "seam_weights": {
+    "vertex_count": 14298,
+    "lower_overlap_blended_vertices": 121,
+    "minimum_seam_head_weight": 0.8115086013776164,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      514,
+      690
+    ]
+  ],
+  "skin_sample_view": "The original diffuse face patch and the clean lit side of the generated lower neck establish the shared female body match. Deep warm shadows vary spatially under the jaw.",
+  "raw_skin_srgb": [
+    253,
+    217,
+    192
+  ],
+  "proof_pose_family": "short"
+}

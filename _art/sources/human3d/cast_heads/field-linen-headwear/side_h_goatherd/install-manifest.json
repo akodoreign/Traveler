@@ -1,0 +1,37 @@
+{
+  "actor": "side_h_goatherd",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_h_goatherd_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_h_goatherd_headcloth.pm",
+      "to": "side_h_goatherd_headcloth.pm",
+      "sha256": "2382ca0664802020349b399d24fe88fab4be148abc47670c04dc3be9f1aa9f22"
+    },
+    {
+      "from": "assets/side_h_goatherd_headcloth.mdl",
+      "to": "side_h_goatherd_headcloth.mdl",
+      "sha256": "2d21e883291d70145c7d11035257a22e8c9826598480f83fe85e9127a76815c3"
+    },
+    {
+      "from": "assets/tex/side_h_goatherd_headcloth_linen.png",
+      "to": "tex/side_h_goatherd_headcloth_linen.png",
+      "sha256": "c2986558921d1f7d1f8ac9885af7f942852c19a7c1d55a7b0d13243b1ea3a0da"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_h_goatherd_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_h_goatherd\\painted-final\\assets\\side_h_goatherd_portrait_face.glb",
+    "sha256": "3a7659a6dfdf16f3326f843d14fdf432338d1132365e2aebbb5a32bd77aa7321"
+  }
+}
