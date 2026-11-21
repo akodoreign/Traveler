@@ -1,0 +1,80 @@
+// Executed only by tools/test_durations.py (bot evalf): do conditions last the rounds they promise? A real auto battle.
+// Round 1, before anyone acts: timed buffs on the lead, Netted on an enemy (lands before its action), Paralysis on
+// another. Right after the first enemy action: Scandalized on that enemy (lands after its action); after the lead's
+// first action: Shocked on the lead. Every round start logs who holds what; Terror is tried on a Stillness holder.
+local T = { round = -1, dumped = -1, put = false, postE = false, postP = false };
+local WATCH = ["K020", "K053", "K057", "K058", "K155", "K157", "K159", "K160", "K161", "K164", "K028", "K025", "K052", "K006",
+	"K166", "K167", "K007"];
+printf( "[RT] DUR TEST armed\n");
+
+local lead = function(){
+	local b = ::rpgstage["battle"];
+	return b ? b.members.find( @( m) m && !m.isDead()) : null;
+};
+local foes = function(){
+	local b = ::rpgstage["battle"];
+	return b ? b.enemies.filter( @( e) e && !e.isDead() && !e.escaped) : [];
+};
+local dump = function(){
+	local b = ::rpgstage["battle"];
+	foreach( ch in [ ...b.members, ...b.enemies]){
+		if( !ch) continue;
+		local s = "";
+		foreach( k in WATCH) if( ch.hasCondition( k)) s += " " .. k;
+		printf( "[RT] DUR TEST round %d %S:%S\n", b.turn, ch.name, s);
+	}
+};
+
+::Rokugan._dt_turn <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._dt_turn( chr);
+	local b = ::rpgstage["battle"];
+	if( !b || b.turn == T.round) return;
+	T.round = b.turn;
+	if( !T.put){
+		T.put = true;
+		local p = lead(), es = foes();
+		foreach( k in ["K053", "K057", "K058", "K155", "K157", "K159", "K160", "K161", "K164", "K020"]) p.putCondition( k);
+		p.putCondition( "K007");		//	Terror on a Stillness / Courage holder: refused
+		if( length( es) > 0) es[0].putCondition( "K028");
+		if( length( es) > 1){ es[1].putCondition( "K006"); es[1].putCondition( "K166"); es[1].putCondition( "K167"); }
+		printf( "[RT] DUR TEST put in round %d\n", b.turn);
+	}
+	if( T.put && b.turn == 3){		//	a recast, through the same gate skills use: the timer restarts, no stack
+		local p = lead();
+		foreach( k in ["K053", "K020"]){
+			local ok = p.canPutCondition( k);
+			if( ok) p.putCondition( k);
+			printf( "[RT] DUR TEST recast %S in round %d: %S, LV %d\n", k, b.turn, ok ? "taken" : "REFUSED", p.getConditionLV( k));
+		}
+	}
+	foreach( ch in [ ...b.members, ...b.enemies]) if( ch && !ch.isDead()) ch.HP = ch.MAXHP;	//	nobody falls: 6 rounds
+	if( b.turn >= 6) printf( "[RT] DUR TEST COMPLETE\n");
+};
+::Rokugan._dt_post <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._dt_post( cmd);
+	local b = ::rpgstage["battle"];
+	if( !b || !cmd.src) return;
+	if( !T.postE && (cmd.src instanceof ::RPGEnemy) && !cmd.src.isDead() && !cmd.src.hasCondition( "K028")){
+		T.postE = true;
+		cmd.src.putCondition( "K025");
+		printf( "[RT] DUR TEST Scandalized %S after its action in round %d\n", cmd.src.name, b.turn);
+	}
+	if( !T.postP && (cmd.src instanceof ::RPGPlayer)){
+		T.postP = true;
+		cmd.src.putCondition( "K052");
+		printf( "[RT] DUR TEST Shocked %S after their action in round %d\n", cmd.src.name, b.turn);
+	}
+};
+::Rokugan._dt_skip <- ::Rokugan.onSkillChange;
+::Rokugan.onSkillChange <- function( cmd){
+	this._dt_skip( cmd);
+	local b = ::rpgstage["battle"];
+	if( !b) return;
+	if( T.dumped != b.turn){ T.dumped = b.turn; dump(); }		//	after every round-start (preturn) hook has run
+	printf( "[RT] DUR TEST round %d act %S %S\n", b.turn, cmd.src.name, cmd.skill ? cmd.skill["name"] : "-");
+};
+local b = ::rpgstage["battle"];
+if( b && "setAutoBattle" in b) b.setAutoBattle( true);
+else if( b && "runner" in b && b.runner) b.runner.setAutoBattle( true);

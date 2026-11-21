@@ -5966,7 +5966,17 @@
 		"icon": "",
 		"name": "The Fury of Osano-wo",
 		"occasion": 1,
-		"option": [],
+		"option": [
+			{
+				"condid": "K165",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 0.5,
+				"showmiss": false,
+				"when": 0,
+				"whom": 0
+			}
+		],
 		"skilltype": "attack",
 		"spdrate": 1.0,
 		"useact": {
@@ -5980,7 +5990,8 @@
 			},
 			"useefx": null,
 			"usesnd": "SE229"
-		}
+		},
+		"putconds": 0
 	},
 	"S304": {
 		"H1": null,
@@ -6037,7 +6048,17 @@
 		"icon": "",
 		"name": "Tempest of Air",
 		"occasion": 1,
-		"option": [],
+		"option": [
+			{
+				"condid": "K166",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 1.0,
+				"showmiss": false,
+				"when": 0,
+				"whom": 0
+			}
+		],
 		"skilltype": "attack",
 		"spdrate": 1.0,
 		"useact": {
@@ -6051,7 +6072,8 @@
 			},
 			"useefx": null,
 			"usesnd": "SE229"
-		}
+		},
+		"putconds": 0
 	},
 	"S305": {
 		"H1": null,
@@ -7136,7 +7158,17 @@
 		"icon": "",
 		"name": "Burst",
 		"occasion": 1,
-		"option": [],
+		"option": [
+			{
+				"condid": "K167",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 1.0,
+				"showmiss": false,
+				"when": 0,
+				"whom": 0
+			}
+		],
 		"skilltype": "attack",
 		"spdrate": 1.0,
 		"useact": {
@@ -7150,7 +7182,8 @@
 			},
 			"useefx": null,
 			"usesnd": "SE229"
-		}
+		},
+		"putconds": 0
 	},
 	"S324": {
 		"H1": null,
@@ -7183,8 +7216,18 @@
 		"icon": "",
 		"name": "Biting Steel",
 		"occasion": 1,
-		"option": [],
-		"putconds": 1048576,
+		"option": [
+			{
+				"condid": "K160",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 1.0,
+				"showmiss": false,
+				"when": 0,
+				"whom": 0
+			}
+		],
+		"putconds": 0,
 		"skilltype": "buff",
 		"spdrate": 1.0,
 		"useact": {
@@ -7619,8 +7662,18 @@
 		"icon": "",
 		"name": "Hungry Blade",
 		"occasion": 1,
-		"option": [],
-		"putconds": 1048576,
+		"option": [
+			{
+				"condid": "K164",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 1.0,
+				"showmiss": false,
+				"when": 0,
+				"whom": 0
+			}
+		],
+		"putconds": 0,
 		"skilltype": "buff",
 		"spdrate": 1.0,
 		"useact": {
@@ -8173,7 +8226,17 @@
 		"icon": "",
 		"name": "Everburning Rage",
 		"occasion": 1,
-		"option": [],
+		"option": [
+			{
+				"condid": "K168",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 1.0,
+				"showmiss": false,
+				"when": 0,
+				"whom": 0
+			}
+		],
 		"skilltype": "attack",
 		"spdrate": 1.0,
 		"useact": {
@@ -8187,7 +8250,8 @@
 			},
 			"useefx": null,
 			"usesnd": "SE229"
-		}
+		},
+		"putconds": 0
 	},
 	"S342": {
 		"H1": null,
@@ -9209,7 +9273,7 @@
 		"occasion": 1,
 		"option": [
 			{
-				"condid": "K043",
+				"condid": "K159",
 				"efx_start": null,
 				"opttype": "opt_putcond",
 				"rate": 1.0,
@@ -9528,8 +9592,18 @@
 		"icon": "",
 		"name": "Earth's Stagnation",
 		"occasion": 1,
-		"option": [],
-		"putconds": 2097152,
+		"option": [
+			{
+				"condid": "K163",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 1.0,
+				"showmiss": false,
+				"when": 0,
+				"whom": 0
+			}
+		],
+		"putconds": 0,
 		"skilltype": "debuff",
 		"spdrate": 1.0,
 		"useact": {
@@ -9628,7 +9702,7 @@
 		"occasion": 1,
 		"option": [
 			{
-				"condid": "K042",
+				"condid": "K158",
 				"efx_start": null,
 				"opttype": "opt_putcond",
 				"rate": 1.0,
@@ -9736,7 +9810,7 @@
 		"occasion": 1,
 		"option": [
 			{
-				"condid": "K058",
+				"condid": "K155",
 				"efx_start": null,
 				"opttype": "opt_putcond",
 				"rate": 1.0,
@@ -9794,8 +9868,18 @@
 		"icon": "",
 		"name": "Grasp of Earth",
 		"occasion": 1,
-		"option": [],
-		"putconds": 64,
+		"option": [
+			{
+				"condid": "K162",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 1.0,
+				"showmiss": false,
+				"when": 0,
+				"whom": 0
+			}
+		],
+		"putconds": 0,
 		"skilltype": "debuff",
 		"spdrate": 1.0,
 		"useact": {
@@ -10137,8 +10221,18 @@
 		"icon": "",
 		"name": "Armor of the Emperor",
 		"occasion": 1,
-		"option": [],
-		"putconds": 4194304,
+		"option": [
+			{
+				"condid": "K161",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 1.0,
+				"showmiss": false,
+				"when": 0,
+				"whom": 0
+			}
+		],
+		"putconds": 0,
 		"skilltype": "buff",
 		"spdrate": 1.0,
 		"useact": {
@@ -11204,7 +11298,7 @@
 		"occasion": 1,
 		"option": [
 			{
-				"condid": "K058",
+				"condid": "K157",
 				"efx_start": null,
 				"opttype": "opt_putcond",
 				"rate": 1.0,

@@ -1,0 +1,112 @@
+{
+  "key": "side_beggar_portrait_face",
+  "source": "side_beggar_repaired_atlas.glb",
+  "scale": 9.7,
+  "features": {
+    "eyes": [
+      [
+        195,
+        261,
+        0.04
+      ],
+      [
+        279,
+        260,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        194,
+        243
+      ],
+      [
+        280,
+        243
+      ]
+    ],
+    "mouth": [
+      236,
+      335
+    ]
+  },
+  "socket_sample_levels": [
+    -0.976,
+    -0.969,
+    -0.962,
+    -0.955,
+    -0.948,
+    -0.941,
+    -0.9339999999999999,
+    -0.9269999999999999,
+    -0.9199999999999999,
+    -0.9129999999999999,
+    -0.9059999999999999,
+    -0.8989999999999999,
+    -0.8919999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.044,
+    -0.02
+  ],
+  "skin_match": [
+    225,
+    176,
+    141
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 9.7,
+  "fit_matrix_blender": [
+    [
+      9.687198636422991,
+      -0.47868302344384445,
+      0.13800413599494676,
+      1.3280063767808625
+    ],
+    [
+      0.4774782391887733,
+      9.687851882475954,
+      0.08683567417887962,
+      0.31341523793321874
+    ],
+    [
+      -0.14211653523163267,
+      -0.0799278817157602,
+      9.698629512675463,
+      108.38984763610169
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.045,
+  "seam_weights": {
+    "vertex_count": 22491,
+    "lower_overlap_blended_vertices": 200,
+    "minimum_seam_head_weight": 0.7412627847148178,
+    "upper_face_head_weight": 1.0
+  },
+  "proof_pose_family": "fist",
+  "skin_sample_patches": [
+    [
+      412,
+      652
+    ],
+    [
+      586,
+      675
+    ]
+  ],
+  "skin_sample_view": "Clean diffuse cheek patches in the frozen source and canonical art establish the warmer grayscale-stubble portrait's matched skin.",
+  "raw_skin_srgb": [
+    227,
+    178,
+    143
+  ]
+}

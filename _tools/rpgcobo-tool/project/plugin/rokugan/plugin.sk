@@ -48,6 +48,7 @@ function loadPlugin( args, opt){
 	runsk( srcdir .. "/RokuganBattleUI.sk");
 	runsk( srcdir .. "/RokuganRumble.sk");
 	runsk( srcdir .. "/RokuganHazard.sk");
+	runsk( srcdir .. "/RokuganDurations.sk");	//	condition durations: lose-an-action conditions, Courage, Terror immunity
 	runsk( srcdir .. "/RokuganAI.sk");
 	runsk( srcdir .. "/RokuganIdePerformance.sk");
 	runsk( srcdir .. "/RokuganIdeSong.sk");
@@ -56,6 +57,7 @@ function loadPlugin( args, opt){
 	runsk( srcdir .. "/RokuganSchoolSpecial.sk");
 	runsk( srcdir .. "/RokuganTattooDragon.sk");
 	runsk( srcdir .. "/RokuganVoidCrit.sk");	//	Void criticals (bust cut-in + party gift), companion school ranks
+	runsk( srcdir .. "/RokuganCompanionVoid.sk");	//	companion Void crit preludes (school clip + flashing ally icon)
 	runsk( srcdir .. "/RokuganSpellFlight.sk");
 	runsk( srcdir .. "/RokuganHeroSignatureCore.sk");
 	runsk( srcdir .. "/RokuganHeroLion.sk");

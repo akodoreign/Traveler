@@ -1469,7 +1469,7 @@ def main():
     c["K052"] = sk_
     fe = copy.deepcopy(c["K020"])                      # Watchful Falcon (kata.md Kakita 2): accuracy, and an eye for
     fe.update({"name": "Watchful Falcon", "desc": "The falcon's eye: accuracy and critical hits up.",  # the opening
-               "MAXLV": 1, "revcondid": None, "rem_turn": [3, 3], "resistg": 0,
+               "MAXLV": 1, "revcondid": None, "rem_turn": [4, 4], "resistg": 0,     # "for 3 turns" (S426)
                "option": [{"LV": 1, "opttype": "opt_status", "propid": "PHIT", "val": 15, "valtype": "supply"},
                           {"LV": 1, "opttype": "opt_status", "propid": "CRI", "val": 15, "valtype": "supply"}]})
     c["K053"] = fe
@@ -1489,15 +1489,14 @@ def main():
     c["K056"] = dt
     hw = copy.deepcopy(c["K022"])                      # Scorpion Ch4: Tamori Haku's Heat-Ward (Fire damage halved)
     hw.update({"name": "Heat-Ward", "desc": "A Tamori ward against fire: Fire damage halved.", "revcondid": None,
-               "rem_turn": [3, 3], "MAXLV": 1, "option": [{"LV": 1, "opttype": "opt_elemdef", "EDR.6": 50}]})
-    c["K057"] = hw
-    cg = copy.deepcopy(c["K056"])                      # Courage of the Seven Thunders / Stillness of the Void: no
-    cg.update({"name": "Courage", "desc": "The heart is still: immune to Terror.", "rem_turn": [4, 4]})   # Terror,
-    c["K058"] = cg                                     # 4 turns (the plugin's Terror check, RokuganHazard)
+               "rem_turn": [4, 4], "MAXLV": 1, "option": [{"LV": 1, "opttype": "opt_elemdef", "EDR.6": 50}]})
+    c["K057"] = hw                                     # ("for three turns", S538)
+    # Courage (Courage of the Seven Thunders / Stillness of the Void: no Terror) used to be K058 too, and Veiled below
+    # overwrote it, so both spells put Veiled. Courage now has its own ids K155-K157 (with the duration fixes below).
     c["K040"]["MAXLV"] = 1                             # Regen: one stack (recasting Regrow refreshes, doesn't pile up)
     vl = copy.deepcopy(c["K022"])                      # Unicorn Ch4: Tamotsu's R3 When the Veil Moves (the Wail and the
     vl.update({"name": "Veiled", "desc": "Tamotsu saw it coming. The next Wail or song can't take you; DEF up.",  # Hum
-               "revcondid": None, "rem_turn": [3, 3], "MAXLV": 1})                                 # pass you by)
+               "revcondid": None, "rem_turn": [4, 4], "MAXLV": 1})                     # pass you by; "three turns")
     c["K058"] = vl
     wt = copy.deepcopy(c["K022"])                      # Ronin Duelist R1 The Wind Technique: she acts early
     wt.update({"name": "Wind Technique", "desc": "Faster than the current: Speed up.", "revcondid": None,
@@ -1526,9 +1525,67 @@ def main():
                "Rank); accuracy -10%.", "MAXLV": 1, "rem_turn": [2, 2], "revcondid": None, "rt_waves": True,
                "option": [{"LV": 1, "opttype": "opt_status", "propid": "PHIT", "val": -10, "valtype": "supply"}]})
     c["K136"] = sw
+    # Duration audit (user 2026-11-21: "since gifts were not stacking, can you check school effects and skills (kata,
+    # kiho, spells) see if they all have the right durations"). The countdown ticks for everyone at the END of every
+    # round, and the round a condition lands in counts: rem_turn [n, n] = the rest of that round + (n - 1) full rounds.
+    # So "for N turns" is [N + 1, N + 1] (kata_data.cond_for already does this). Spells that borrowed a generic
+    # condition with the wrong length, or one that never ran out, get their own here; the skills point at them below.
+    def timed(base, cid, name, desc, turns, opts=None, **extra):
+        x = copy.deepcopy(c[base])
+        n = turns if turns >= 99 else turns + 1
+        x.update({"name": name, "desc": desc, "MAXLV": 1, "revcondid": None, "rem_turn": [n, n], "rem_battle": True,
+                  "rem_die": True, "showpop": True, "showstat": True})
+        if opts is not None:
+            x["option"] = [dict(o, LV=1) for o in opts]
+        x.update(extra)
+        c[cid] = x
+    ST = lambda p, v: {"opttype": "opt_status", "propid": p, "val": v,  # noqa: E731
+                       "valtype": "totalrate" if p in _kata.RATE else "supply"}
+    for cid, name, desc, turns in (     # Courage (no Terror): rt_fearless is what the plugin's Terror check looks for
+            ("K155", "Courage", "Courage of the Seven Thunders: immune to Terror for 3 turns.", 3),
+            ("K156", "Courage (Honor)", "Courage of the Seven Thunders, doubled by the party's Honor: immune to Terror "
+                                        "for 6 turns.", 6),
+            ("K157", "Stillness of the Void", "There is no fear in the Void: immune to Terror for 4 turns.", 4)):
+        timed("K056", cid, name, desc, turns, [], rt_fearless=True)
+    # Force of Will: Auto-Revive for 2 turns (K042 itself stays Grasp the Earth Dragon's whole-battle auto-revive)
+    timed("K042", "K158", "Force of Will", "Endure: survive one lethal hit at 1 HP. 2 turns.", 2)
+    c["K158"]["option"] = [dict(o, countrem={"condid": "K158", "val": 1}) for o in c["K042"]["option"]]
+    timed("K043", "K159", "Blessings of Jizo", "Spells bounce back at their caster. 5 turns.", 5)
+    c["K159"]["option"] = [{k: v for k, v in o.items() if k != "countrem"} for o in c["K043"]["option"]]
+    timed("K020", "K160", "Biting Steel", "The steel bites: ATK up for the whole battle.", 99, [ST("PATK", 30)])
+    timed("K022", "K161", "Armor of the Emperor", "The Emperor's armour: DEF up, damage taken -20%, for 5 turns.", 5,
+          [ST("PDEF", 40)], rt_dmgtaken=0.8)
+    timed("K021", "K162", "Rooted", "Grasp of Earth: the ground holds its feet. Evasion -20%, Speed down, 3 turns.",
+          3, [ST("PEVA", -20), ST("AGI", -20)])
+    timed("K021", "K163", "Earth's Stagnation", "Heavy as wet clay: Speed and evasion down for 3 turns.", 3,
+          [ST("AGI", -25), ST("PEVA", -10)])
+    timed("K020", "K164", "Hungry Blade", "A blade that wants blood: criticals and accuracy up for 3 turns.", 3,
+          [ST("CRI", 20), ST("PHIT", 10)])
+    timed("K003", "K165", "Thunderstruck", "Osano-wo's thunder rings in its ears: no spells for 1 turn.", 1)
+    timed("K021", "K166", "Buffeted", "Tempest of Air: hard to aim in the wind. Accuracy down for 2 turns.", 2,
+          [ST("PHIT", -15)])
+    timed("K021", "K167", "Dazzled", "A flash of fire in the eyes: accuracy down for 2 turns.", 2, [ST("PHIT", -30)])
+    timed("K023", "K168", "Everburning Rage", "Treated as Down: it loses its next action and its guard is open.", 1,
+          [ST("PDEF", -25)], rt_skip=True)
+    # Lose-an-action conditions: the round a net / letter / shock lands in may already be past the victim's action,
+    # so they last [2, 2] and the plugin (RokuganDurations.sk) ends them as soon as they've cost exactly one action
+    for cid in ("K025", "K028", "K052", "K168"):
+        c[cid].update({"rem_turn": [2, 2], "rt_skip": True})
+    c["K025"]["desc"] = "Reading a scandalous letter about itself. Too shocked to act: loses its next action."
+    c["K052"]["desc"] = "The eel's shock. Loses the next action."
+    # Paralysis never ran out ([0, 0]; it even outlived the battle): Burn the Mind, Grasp of Earth's old mapping and
+    # the atemi kiho locked a foe for the whole fight. Now 1-2 rounds after the one it lands in.
+    # the same effect again replaces itself and restarts its timer, never stacks (user 2026-11-21; plugin
+    # RokuganDurations.sk lets the repeat through): ATK/DEF Up/Down and Void Guard went to +60% on a second cast
+    for cid in ("K020", "K021", "K022", "K023", "K024"):
+        c[cid]["MAXLV"] = 1
+    c["K006"].update({"rem_turn": [2, 3], "rem_battle": True,
+                      "desc": "Paralysed: can't act. Wears off after a round or two."})
     # Void-critical party buffs (user 2026-11-12: "when a void spent crit happens have the bust of the char pop up with
     # text ... Hiruma ... 20% avoid for 2 turns, for the Hida ... 75 damage reduction for 2 turns etc."). 2 turns after
-    # the one it lands in. rt_dmgtaken: the plugin scales damage taken (RokuganVoidCrit.sk).
+    # the one it lands in. rt_dmgtaken: the plugin scales damage taken (RokuganVoidCrit.sk). rem_turn [4, 4] (user
+    # 2026-11-21 "make sure the status effects are sticking"): [3, 3] dropped them a round early - the countdown counts the
+    # round they land in (engine test tools/test_void_gift.py).
     for cid, name, opts, extra in (
             ("K125", "Razor's Edge (party)", [("PEVA", 20, "supply")], {}),
             ("K126", "The Mountain Does Not Fall", [], {"rt_dmgtaken": 0.25}),
@@ -1539,13 +1596,45 @@ def main():
             ("K131", "Clear Sight (accuracy)", [("PHIT", 20, "supply")], {})):
         vb = copy.deepcopy(c["K020"])
         vb.update({"name": name, "desc": name + ": a Void critical's gift to the party.", "MAXLV": 1,
-                   "rem_turn": [3, 3], "revcondid": None,
+                   "rem_turn": [4, 4], "revcondid": None,
+                   "option": [{"LV": 1, "opttype": "opt_status", "propid": p_, "val": v_, "valtype": t_}
+                              for p_, v_, t_ in opts]})
+        vb.update(extra)
+        c[cid] = vb
+    # Each companion's own Void-critical gift (user 2026-11-21: "Change the names of the shouts for the ones that just
+    # copy from the Traveler, all names effects should be unique"): one named condition per companion, K137-K154
+    # (shouts and ids: VOID_SHOUT_PC in plugin/rokugan/RokuganCompanionVoid.sk; Hida Sachiko keeps K126).
+    for cid, who, name, opts, extra in (
+            ("K137", "Hiruma Ryoichi", "Shadow of the Wall", [("PEVA", 20, "supply"), ("AGI", 15, "totalrate")], {}),
+            ("K138", "Hiruma Goro", "Hunter's Patience", [("PEVA", 15, "supply"), ("PHIT", 15, "supply")], {}),
+            ("K139", "Hiruma Kage", "Blood on the Wall", [("PEVA", 15, "supply"), ("PATK", 15, "totalrate")], {}),
+            ("K140", "Akodo Gusai", "The Line Advances", [("PATK", 20, "totalrate"), ("PDEF", 15, "totalrate")], {}),
+            ("K141", "Akodo Kafu", "Roar of the Pride", [("PATK", 35, "totalrate")], {}),
+            ("K142", "Akodo Hiruto", "Victory Before Battle", [("PATK", 20, "totalrate"), ("PHIT", 10, "supply")], {}),
+            ("K143", "Akodo Rin", "Honor's Edge", [("PATK", 20, "totalrate"), ("CRI", 10, "supply")], {}),
+            ("K144", "the Lion rider", "Thunder of Hooves", [("PATK", 25, "totalrate"), ("AGI", 15, "totalrate")], {}),
+            ("K145", "Matsu Hanae", "Matsu Fury", [("PATK", 40, "totalrate"), ("PDEF", -10, "totalrate")], {}),
+            ("K146", "Shiba Ashimita", "Shield of Honor", [("MDEF", 15, "totalrate")], {"rt_dmgtaken": 0.5}),
+            ("K147", "Seppun Ushimo", "Heaven's Shield", [("PEVA", 10, "supply")], {"rt_dmgtaken": 0.6}),
+            ("K148", "Doji Hayato", "Strike of the Just", [("CRI", 25, "supply")], {}),
+            ("K149", "Yoritomo Rui", "The Rolling Wave", [("PATK", 15, "totalrate"), ("PEVA", 10, "supply"),
+                                                          ("AGI", 10, "totalrate")], {}),
+            ("K150", "Shinjo Ryuko", "Spirit of Our Lady", [("AGI", 35, "totalrate"), ("PEVA", 10, "supply")], {}),
+            ("K151", "Isawa Michio", "Amaterasu's Ember", [("MATK", 25, "totalrate")], {}),
+            ("K152", "Isawa Sanro", "The Ward-Fire", [("MDEF", 30, "totalrate")], {"rt_dmgtaken": 0.85}),
+            ("K153", "Isawa Kasiko", "Osano-wo's Breath", [("AGI", 25, "totalrate"), ("MATK", 15, "totalrate")], {}),
+            ("K154", "Tamori Haku", "Tamori's Forge-Heat", [("MATK", 20, "totalrate"), ("PATK", 10, "totalrate")], {})):
+        vb = copy.deepcopy(c["K020"])
+        vb.update({"name": name, "desc": "%s: %s's Void critical gift to the party." % (name, who), "MAXLV": 1,
+                   "rem_turn": [4, 4], "revcondid": None,
                    "option": [{"LV": 1, "opttype": "opt_status", "propid": p_, "val": v_, "valtype": t_}
                               for p_, v_, t_ in opts]})
         vb.update(extra)
         c[cid] = vb
     localise("cond", c)
     save("cond", c)
+    import gen_status_icons                     # each effect's own icon (usericon atlas), not the stock fist / shield
+    gen_status_icons.main()
     dc = load("dict")                                     # term overrides (engine T[] dictionary)
     dc.update({"money": {"en": " zeni", "ja": " zeni"},
                "stealok": {"en": "Stole $v!", "ja": "Stole $v!"},
@@ -2381,9 +2470,21 @@ def main():
     s["S153"] = sc3
     spell_skills(s)
     sp_ids = {sp["name"]: sp["skill"] for sp in json.load(open(os.path.join(DATA, "rt_spells.json"), encoding="utf-8"))}
-    for nm in ("Courage of the Seven Thunders", "Stillness of the Void"):          # (Courage did nothing before:
-        if nm in sp_ids:                                                           # "immune" matched no condition)
-            s[sp_ids[nm]].update({"putconds": 0, "option": [PUT_BY_ID("K058")], "remconds": 1 << 7})   # (+ cures Terror)
+    for nm, cid in (("Courage of the Seven Thunders", "K155"), ("Stillness of the Void", "K157")):  # (Courage did
+        if nm in sp_ids:                                                  # nothing before: "immune" matched nothing)
+            s[sp_ids[nm]].update({"putconds": 0, "option": [PUT_BY_ID(cid)], "remconds": 1 << 7})   # (+ cures Terror)
+    # duration audit 2026-11-21 (cond.json K155-K168): spells whose regex-mapped condition had the wrong length or the
+    # wrong effect, and the debuff spells whose stated effect had no condition at all
+    for nm, cid, rate in (("Force of Will", "K158", 1.0), ("Blessings of Jizo", "K159", 1.0),
+                          ("Biting Steel", "K160", 1.0), ("Armor of the Emperor", "K161", 1.0),
+                          ("Grasp of Earth", "K162", 1.0), ("Earth's Stagnation", "K163", 1.0),
+                          ("Hungry Blade", "K164", 1.0), ("The Fury of Osano-wo", "K165", 0.5),
+                          ("Tempest of Air", "K166", 1.0), ("Burst", "K167", 1.0), ("Everburning Rage", "K168", 1.0)):
+        if nm in sp_ids:
+            k = s[sp_ids[nm]]
+            k["putconds"] = 0
+            k["option"] = [o for o in (k.get("option") or []) if o.get("opttype") != "opt_putcond"] + [
+                dict(PUT_BY_ID(cid), rate=rate)]
     if "Return the Soul" in sp_ids:                                                # the revive: the engine's Raise
         k = s[sp_ids["Return the Soul"]]                                           # (S043: cures Down, % of max HP)
         k.update({"remconds": 1, "dmgform": 2, "atkform": "50", "flags": s["S043"].get("flags", k.get("flags"))})

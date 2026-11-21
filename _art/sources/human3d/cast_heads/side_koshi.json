@@ -1,0 +1,120 @@
+{
+  "key": "side_koshi_portrait_face",
+  "source": "side_koshi_repaired_atlas.glb",
+  "scale": 11.9,
+  "features": {
+    "eyes": [
+      [
+        193,
+        258,
+        0.04
+      ],
+      [
+        288,
+        257,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        190,
+        243
+      ],
+      [
+        288,
+        241
+      ]
+    ],
+    "mouth": [
+      241,
+      330
+    ]
+  },
+  "socket_sample_levels": [
+    -0.975,
+    -0.965,
+    -0.955,
+    -0.945,
+    -0.9349999999999999,
+    -0.9249999999999999,
+    -0.9149999999999999,
+    -0.9049999999999999,
+    -0.8949999999999999,
+    -0.8849999999999999,
+    -0.8749999999999999,
+    -0.8649999999999999,
+    -0.8549999999999999,
+    -0.8449999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.012,
+    -0.013
+  ],
+  "skin_match": [
+    233,
+    189,
+    157
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.9,
+  "fit_matrix_blender": [
+    [
+      11.899100587115399,
+      -0.09761887755692804,
+      -0.10897601779915761,
+      0.8456577154594986
+    ],
+    [
+      0.09782939986685418,
+      11.899576480931756,
+      0.02256065115157191,
+      0.18696663161427404
+    ],
+    [
+      0.10878706831479641,
+      -0.02345483325920543,
+      11.899479620746709,
+      109.68205707942417
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 12315,
+    "lower_overlap_blended_vertices": 303,
+    "minimum_seam_head_weight": 0.33033096009116214,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      194,
+      286,
+      5
+    ],
+    [
+      286,
+      286,
+      5
+    ],
+    [
+      232,
+      197,
+      5
+    ]
+  ],
+  "skin_sample_view": "Unlit 480x480 final corrected front. Bilateral diffuse cheeks and unwrinkled forehead. The lower stem supplies the body target.",
+  "raw_skin_srgb": [
+    233,
+    190,
+    157
+  ],
+  "proof_pose_family": "blade"
+}

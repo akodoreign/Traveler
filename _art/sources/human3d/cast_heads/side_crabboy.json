@@ -1,0 +1,132 @@
+{
+  "scale": 10.5,
+  "cranial_scale": [
+    0.93,
+    104.35
+  ],
+  "socket_ring_hint": [
+    -0.071,
+    -0.013
+  ],
+  "features": {
+    "eyes": [
+      [
+        183,
+        273,
+        0.04
+      ],
+      [
+        286,
+        273,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        183,
+        248
+      ],
+      [
+        288,
+        249
+      ]
+    ],
+    "mouth": [
+      239,
+      327
+    ]
+  },
+  "socket_sample_levels": [
+    -0.978,
+    -0.966,
+    -0.954,
+    -0.942,
+    -0.93,
+    -0.918,
+    -0.906,
+    -0.894,
+    -0.882,
+    -0.87,
+    -0.858,
+    -0.846
+  ],
+  "maximum_pitch": 3,
+  "source": "side_crabboy_repaired_atlas.glb",
+  "key": "side_crabboy_portrait_face",
+  "exact_native_outfit": true,
+  "preserve_long_hair": true,
+  "fit_shallow_neck_overlap": true,
+  "recenter_donor_seat": true,
+  "skin_match": [
+    239,
+    186,
+    146
+  ],
+  "skin_sample_view": "Diffuse cheeks and chin from the final unlit face. Lower seam determines matched body paint.",
+  "skin_sample_patches": [],
+  "raw_skin_srgb": [
+    239,
+    186,
+    146
+  ],
+  "fit_method": "production shared body socket",
+  "fit_scale": 10.5,
+  "fit_matrix_blender": [
+    [
+      10.49966528725515,
+      -0.08372644797298326,
+      -0.0043286856820652355,
+      1.5466767563343304
+    ],
+    [
+      0.08370334027154887,
+      10.499530364653346,
+      -0.05344036444528473,
+      0.10700168638856801
+    ],
+    [
+      0.004754622728692021,
+      0.05340415371941357,
+      10.499863112913891,
+      108.73416016558747
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 19351,
+    "lower_overlap_blended_vertices": 132,
+    "minimum_seam_head_weight": 0.5391576640018131,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 0.93,
+    "pivot": [
+      0.8266375000000001,
+      0.005354999999999888,
+      104.35
+    ],
+    "seated_rings": [
+      {
+        "height": 98.6875,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      },
+      {
+        "height": 99.375,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      }
+    ],
+    "original_entire_silhouette_width": 18.38333034515381,
+    "final_entire_silhouette_width": 17.09649658203125,
+    "original_crown_native": 118.9332275390625,
+    "final_crown_native": 117.91239929199219,
+    "origin_geometry_sha256": "cbb132d5f1e7358d6ca6c8493daac2ed8144aa294f448d9a92c68437e47046f0"
+  }
+}

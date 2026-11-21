@@ -1,0 +1,40 @@
+{
+  "piece": "A135_lion_goroso",
+  "assets": [
+    {
+      "source": "A135_lion_takeo.mdl",
+      "file": "A135_lion_goroso.mdl",
+      "edited_vertices": 123,
+      "collar_reweighted_vertices": 0,
+      "before_sha256": "9005120f3a85f555f1a7bbb134b5e7aabac864bc697a9a8de7049079f5b50fcc",
+      "after_sha256": "0d7d93fe72798ec5553b65eeee5f83101843967ba62527ca770911fe498ce4e3"
+    },
+    {
+      "source": "A135_lion_takeo_decal.mdl",
+      "file": "A135_lion_goroso_decal.mdl",
+      "edited_vertices": 0,
+      "collar_reweighted_vertices": 0,
+      "before_sha256": "b6d4283824d3cf6911b255c4634a3a5937bd1b963f84967cb4dba1a128880d75",
+      "after_sha256": "b6d4283824d3cf6911b255c4634a3a5937bd1b963f84967cb4dba1a128880d75"
+    }
+  ],
+  "default_records": {
+    "side_goroso": {
+      "before": {
+        "mesh": "A135",
+        "dyed": true,
+        "decal": "A135",
+        "coverCore": true,
+        "clan": "lion"
+      },
+      "after": {
+        "mesh": "A135_lion_goroso",
+        "dyed": true,
+        "decal": "A135",
+        "coverCore": true,
+        "clan": "lion",
+        "palette": "A135"
+      }
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "source": "side_satomi_repaired_atlas.glb",
+  "scale": 11.65,
+  "socket_ring_hint": [
+    -0.11,
+    -0.015
+  ],
+  "socket_sample_levels": [
+    -0.976,
+    -0.963,
+    -0.95,
+    -0.937,
+    -0.924,
+    -0.911,
+    -0.898,
+    -0.885,
+    -0.872,
+    -0.859
+  ],
+  "features": {
+    "eyes": [
+      [
+        201,
+        312,
+        0.04
+      ],
+      [
+        277,
+        313,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        199,
+        299
+      ],
+      [
+        279,
+        302
+      ]
+    ],
+    "mouth": [
+      243,
+      371
+    ]
+  },
+  "cranial_scale": [
+    0.91,
+    104.3
+  ],
+  "maximum_pitch": 3,
+  "review_wardrobe_mesh": "A167_yachiko",
+  "key": "side_satomi_portrait_face",
+  "exact_native_outfit": true,
+  "preserve_long_hair": true,
+  "fit_shallow_neck_overlap": true,
+  "recenter_donor_seat": true,
+  "skin_match": [
+    229,
+    214,
+    206
+  ],
+  "skin_sample_view": "Unlit front source skin, selected diffuse cheek and chin. Final atlas retains these features.",
+  "skin_sample_patches": [
+    [
+      154,
+      337,
+      3
+    ],
+    [
+      326,
+      337,
+      3
+    ],
+    [
+      236,
+      419,
+      3
+    ]
+  ],
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.65,
+  "fit_matrix_blender": [
+    [
+      11.644715252166883,
+      0.24874252698289517,
+      -0.24745474580814492,
+      1.2658761450499576
+    ],
+    [
+      -0.2509136515889443,
+      11.646868310994996,
+      -0.10000442885000642,
+      0.038253004662066194
+    ],
+    [
+      0.2452530028340393,
+      0.10528865852254389,
+      11.646942313886052,
+      110.68202736770705
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.4575,
+  "seam_weights": {
+    "vertex_count": 15837,
+    "lower_overlap_blended_vertices": 112,
+    "minimum_seam_head_weight": 0.7771579993334926,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 0.91,
+    "pivot": [
+      0.18131750000000002,
+      -0.0006249999999999867,
+      104.3
+    ],
+    "seated_rings": [
+      {
+        "height": 99.2375,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      },
+      {
+        "height": 99.7875,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      }
+    ],
+    "original_entire_silhouette_width": 17.345314025878906,
+    "final_entire_silhouette_width": 15.784235954284668,
+    "original_crown_native": 122.00494384765625,
+    "final_crown_native": 120.4114990234375,
+    "origin_geometry_sha256": "63aa38b5e54380bc896b5b840fc0a8f8d76777b81dbb6765eaf80beda06110bb"
+  }
+}

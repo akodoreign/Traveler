@@ -160,7 +160,9 @@ class RTCutIn extends SKImageView
 };
 
 ::Rokugan.voidShout <- function( pc){
-	local key = pc.data["rt_school_key"] || "", sh = this.VOID_SHOUT[key] || ["The Void strikes!", "K128"];
+	//	(a companion's own shout and gift first: RokuganCompanionVoid.sk VOID_SHOUT_PC)
+	local key = pc.data["rt_school_key"] || "",
+		sh = ("shoutFor" in this) ? this.shoutFor( pc) : (this.VOID_SHOUT[key] || ["The Void strikes!", "K128"]);
 	local b = ::rpgstage["battle"];
 	log( "VOID CRIT %S: %S" % (pc.name, sh[0]));
 	foreach( m in (b ? b.members : [])){
@@ -192,7 +194,7 @@ class RTCutIn extends SKImageView
 		local entry = this.CRIT_PRESENTATION[id .. ":" .. kind];
 		if( entry){ cfg = entry; break; }
 	}
-	local shout = this.VOID_SHOUT[pc.data["rt_school_key"] || ""] || ["The Void strikes!"];
+	local shout = ("shoutFor" in this) ? this.shoutFor( pc) : (this.VOID_SHOUT[pc.data["rt_school_key"] || ""] || ["The Void strikes!"]);
 	local plan = { kind = kind, key = key, clip = null, ani = null, duration = 0.0,
 		title = cfg["title"] || shout[0], title_ms = Math.clamp( cfg["title_ms"] ?? 1500.0, 1000.0, 2000.0) };
 	local schoolClip = ::Rokugan.schoolSpecialClip( pc, sk, isVoid, rp);
@@ -296,6 +298,9 @@ local smoothBeat = function( t, start, end){
 			log( "CRIT PRESENT title cleared");
 		}
 	}
+	if( ::rpgstage["battle"] != battle) return;
+	//	a companion's school prelude (RokuganCompanionVoid.sk), then the attack itself
+	if( isVoid && ("compVoidPrelude" in ::Rokugan)) ::Rokugan.compVoidPrelude( dmg, battle, rp);
 	if( ::rpgstage["battle"] != battle) return;
 	log( "CRIT PRESENT action %S %S clip=%S" % (dmg.src.name, plan.kind, plan.clip || "native"));
 	if( isVoid && ::Rokugan.useTattooDragon( dmg.src, dmg.skill, rp ) &&

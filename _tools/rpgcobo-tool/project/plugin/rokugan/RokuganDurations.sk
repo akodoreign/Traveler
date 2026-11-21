@@ -1,0 +1,103 @@
+//	Condition durations (user 2026-11-21: "since gifts were not stacking, can you check school effects and skills
+//	(kata, kiho, spells) see if they all have the right durations"). Data side: gen_data.py "Duration audit".
+//
+//	1. Lose-an-action conditions (cond field rt_skip: Scandalized K025, Netted K028, Shocked K052, Everburning Rage
+//	   K168). A net thrown after the foe has already acted this round used to run out at the end of the round and do
+//	   nothing; thrown before, it cost this round. They now last [2, 2] and end here as soon as they've cost exactly
+//	   one action: landed before the victim acted -> it ends with this round; after -> it runs to the end of the next.
+//	2. Terror immunity is any condition with rt_fearless (Courage K155/K156, Stillness of the Void K157), not K058
+//	   (that id is Tamotsu's Veiled; Courage used to share it and was overwritten).
+//	3. Courage of the Seven Thunders lasts twice as long with party Honor (G060) >= 3: K156 instead of K155.
+//	4. Everburning Rage: "Not on bosses".
+
+::Rokugan.fearless <- function( p){
+	if( p.hasCondition( "K056")) return true;		//	Death Trance
+	foreach( c in p.conds) if( c && c.data["rt_fearless"]) return true;
+	return false;
+};
+
+//	the round each character last acted in (a skip condition landing after that has nothing left to cost this round)
+::Rokugan._rt_post_dur <- ::Rokugan.onPostCommand;
+::Rokugan.onPostCommand <- function( cmd){
+	this._rt_post_dur( cmd);
+	local b = ::rpgstage["battle"];
+	if( b && cmd.src) this.state( cmd.src).lastActed <- b.turn;
+};
+
+::Rokugan.markSkip <- function( chr, condid){
+	local d = ::conf.cond[condid], b = ::rpgstage["battle"];
+	if( !d || !d["rt_skip"] || !b || !chr.hasCondition( condid)) return;
+	local st = this.state( chr);
+	local acted = ("lastActed" in st) && st.lastActed == b.turn;
+	if( !("skipEnd" in st)) st.skipEnd <- {};
+	st.skipEnd[condid] <- acted ? b.turn + 1 : b.turn;		//	the last round it may cost an action in
+	printf( "[RT] %S: %S until the end of round %d\n", chr.name, d.name, st.skipEnd[condid]);
+};
+
+::RPGPlayer._rt_putCond_dur <- ::RPGPlayer.putCondition;
+::RPGPlayer.putCondition <- function( condid){
+	local r = this._rt_putCond_dur( condid);
+	::Rokugan.markSkip( this, condid);
+	return r;
+};
+::RPGEnemy._rt_putCond_dur <- ::RPGEnemy.putCondition;
+::RPGEnemy.putCondition <- function( condid){
+	if( condid == "K168" && ("bossTitleFor" in ::Rokugan) && ::Rokugan.bossTitleFor( this)){
+		if( ::rpgstage && ::rpgstage["battle"]) ::Rokugan.pop( this, "Unmoved", 0xffc080ff);
+		return;
+	}
+	local r = this._rt_putCond_dur( condid);
+	::Rokugan.markSkip( this, condid);
+	return r;
+};
+
+//	round start, before anyone picks a command: end the skip conditions that have already cost their action
+::Rokugan._rt_preturn_dur <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	local b = ::rpgstage["battle"], st = this.state( chr);
+	if( b && ("skipEnd" in st)){
+		foreach( cid, last in clone st.skipEnd){
+			if( b.turn <= last) continue;
+			delete st.skipEnd[cid];
+			if( chr.hasCondition( cid)){
+				chr.removeCondition( cid);
+				printf( "[RT] %S: %S has cost its action, removed\n", chr.name, ::conf.cond[cid].name);
+			}
+		}
+	}
+	return this._rt_preturn_dur( chr);
+};
+
+//	Courage of the Seven Thunders: doubled by Honor
+::Rokugan._rt_pre_dur <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	local sk = cmd.skill;
+	if( sk && (cmd.src instanceof ::RPGPlayer) && int( ::rpgvar["G060"] || 0) >= 3
+			&& (sk["option"] || []).find( @( o) o && o["condid"] == "K155")){
+		local nsk = clone sk;
+		nsk["option"] <- sk["option"].map( @( o) (o && o["condid"] == "K155") ? { ...o, condid = "K156" } : o);
+		cmd.skill = nsk;
+		printf( "[RT] Courage of the Seven Thunders: Honor %d, doubled\n", int( ::rpgvar["G060"]));
+	}
+	return this._rt_pre_dur( cmd);
+};
+
+//	5. The same effect again replaces itself and restarts its timer (user 2026-11-21: "if its the same effect it replaces
+//	   the same effect not stacks (resets the timer)"). The engine's putCondition already restarts the timer on a
+//	   repeat (cond.turn = 0), but canPutCondition refused any condition already at its MAXLV, so a recast buff was
+//	   thrown away and ran out on the old timer. Nothing stacks now either (gen_data: MAXLV 1; Taint keeps its stacks).
+::Rokugan.refreshable <- function( chr, condid){
+	if( !chr.hasCondition( condid)) return false;
+	if( ::conf.cond[condid]["rem_die"] && chr.isDead()) return false;
+	local idx = int( condid.substring( 1));
+	foreach( c in chr.conds) if( c && ::bitget( c.data.xcondbits, idx)) return false;	//	still blocked by another
+	return true;
+};
+::RPGPlayer._rt_canput_dur <- ::RPGPlayer.canPutCondition;
+::RPGPlayer.canPutCondition <- function( condid){
+	return ::Rokugan.refreshable( this, condid) || this._rt_canput_dur( condid);
+};
+::RPGEnemy._rt_canput_dur <- ::RPGEnemy.canPutCondition;
+::RPGEnemy.canPutCondition <- function( condid){
+	return ::Rokugan.refreshable( this, condid) || this._rt_canput_dur( condid);
+};

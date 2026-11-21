@@ -1,0 +1,125 @@
+{
+  "key": "side_kasiko_portrait_face",
+  "source": "side_kasiko_repaired_atlas.glb",
+  "scale": 13.0,
+  "features": {
+    "eyes": [
+      [
+        193,
+        269,
+        0.04
+      ],
+      [
+        283,
+        269,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        192,
+        257
+      ],
+      [
+        283,
+        257
+      ]
+    ],
+    "mouth": [
+      239,
+      339
+    ]
+  },
+  "socket_sample_levels": [
+    -0.697,
+    -0.689,
+    -0.6809999999999999,
+    -0.6729999999999999,
+    -0.6649999999999999,
+    -0.6569999999999999,
+    -0.6489999999999999,
+    -0.6409999999999999,
+    -0.6329999999999999,
+    -0.6249999999999999,
+    -0.6169999999999999,
+    -0.6089999999999999,
+    -0.6009999999999999,
+    -0.5929999999999999,
+    -0.5849999999999999,
+    -0.5769999999999998,
+    -0.5689999999999998,
+    -0.5609999999999998,
+    -0.5529999999999998,
+    -0.5449999999999998,
+    -0.5369999999999998,
+    -0.5289999999999998,
+    -0.5209999999999998,
+    -0.5129999999999998,
+    -0.5049999999999998,
+    -0.4969999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.044,
+    -0.015
+  ],
+  "skin_match": [
+    246,
+    200,
+    168
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 13.0,
+  "fit_matrix_blender": [
+    [
+      12.999195885698704,
+      0.11593807675598275,
+      -0.08639842355573567,
+      -0.07502247259816479
+    ],
+    [
+      -0.11614401469136182,
+      12.999445031376494,
+      -0.030650351969286435,
+      0.1677595714342108
+    ],
+    [
+      0.08612138576547315,
+      0.03142035299916395,
+      12.999676760148063,
+      108.41463913337805
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.595,
+  "seam_weights": {
+    "vertex_count": 20701,
+    "lower_overlap_blended_vertices": 66,
+    "minimum_seam_head_weight": 0.732197855908366,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      220,
+      409
+    ],
+    [
+      261,
+      415
+    ]
+  ],
+  "skin_sample_view": "Clean exact lower diffuse patches support the head-to-body tone because the generated cheeks clipped. The atlas matches at the measured lower neck ring and feathers toward the face while preserving distinct orange irises.",
+  "raw_skin_srgb": [
+    246,
+    200,
+    168
+  ],
+  "proof_pose_family": "fist"
+}

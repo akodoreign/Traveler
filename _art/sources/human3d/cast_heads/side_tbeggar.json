@@ -1,0 +1,146 @@
+{
+  "scale": 10.8,
+  "socket_ring_hint": [
+    -0.092,
+    -0.013
+  ],
+  "features": {
+    "eyes": [
+      [
+        194,
+        231,
+        0.04
+      ],
+      [
+        282,
+        233,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        194,
+        213
+      ],
+      [
+        282,
+        215
+      ]
+    ],
+    "mouth": [
+      239,
+      315
+    ]
+  },
+  "cranial_scale": [
+    0.95,
+    104.3
+  ],
+  "maximum_pitch": 3,
+  "socket_sample_levels": [
+    -0.95,
+    -0.936,
+    -0.922,
+    -0.908,
+    -0.894,
+    -0.88,
+    -0.866,
+    -0.852,
+    -0.838,
+    -0.824
+  ],
+  "key": "side_tbeggar_portrait_face",
+  "source": "side_tbeggar_repaired_atlas.glb",
+  "exact_native_outfit": true,
+  "preserve_long_hair": true,
+  "fit_shallow_neck_overlap": true,
+  "recenter_donor_seat": true,
+  "skin_match": [
+    226,
+    170,
+    126
+  ],
+  "skin_sample_view": "Diffuse cheeks and chin from the final unlit face. Lower seam determines matched body paint.",
+  "skin_sample_patches": [
+    [
+      186,
+      274,
+      4
+    ],
+    [
+      286,
+      270,
+      4
+    ],
+    [
+      235,
+      192,
+      4
+    ]
+  ],
+  "raw_skin_srgb": [
+    226,
+    170,
+    126
+  ],
+  "fit_method": "production shared body socket",
+  "fit_scale": 10.8,
+  "fit_matrix_blender": [
+    [
+      10.799990227853085,
+      0.010048261213180327,
+      -0.010493365769845208,
+      1.802812184524844
+    ],
+    [
+      -0.010001715196023145,
+      10.799889545576319,
+      0.04780971707555192,
+      0.19062386891244862
+    ],
+    [
+      0.010537740351977439,
+      -0.04779995607004636,
+      10.799889079070658,
+      108.61110324092905
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 11887,
+    "lower_overlap_blended_vertices": 560,
+    "minimum_seam_head_weight": 0.36215760271505215,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 0.95,
+    "pivot": [
+      0.8266249999999999,
+      0.011340000000000017,
+      104.3
+    ],
+    "seated_rings": [
+      {
+        "height": 98.6875,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      },
+      {
+        "height": 99.375,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      }
+    ],
+    "original_entire_silhouette_width": 16.27975845336914,
+    "final_entire_silhouette_width": 15.465770721435547,
+    "original_crown_native": 119.1268310546875,
+    "final_crown_native": 118.38549041748047,
+    "origin_geometry_sha256": "18272ed34ebb823d8f52feede9a95deec8d758f46a808ffbc1e3a181171021ce"
+  }
+}

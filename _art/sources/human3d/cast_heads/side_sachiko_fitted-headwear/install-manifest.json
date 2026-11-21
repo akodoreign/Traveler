@@ -1,0 +1,42 @@
+{
+  "actor": "side_sachiko",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_sachiko_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_sachiko_hachimaki.pm",
+      "to": "side_sachiko_hachimaki.pm",
+      "sha256": "58981879672f19c6fa0082bc48519fb60abbf81d093fbf4cb6552a718cb0f385"
+    },
+    {
+      "from": "assets/side_sachiko_hachimaki.mdl",
+      "to": "side_sachiko_hachimaki.mdl",
+      "sha256": "e9ba90d09d93e640f28a5771cff12b700ef6d4e9e1e9defa41fc298b67cb84da"
+    },
+    {
+      "from": "assets/tex/side_sachiko_hachimaki_weave.png",
+      "to": "tex/side_sachiko_hachimaki_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_sachiko_hachimaki",
+        "headwear": true,
+        "replacesHeadband": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\fits\\side_sachiko\\rigid-geometry\\assets\\side_sachiko_portrait_face.glb",
+    "sha256": "1b49080c30ed65cd5092d9f4f8adfb68374d9dacf4cc958830f9ef0214e2f99b"
+  },
+  "final_fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\release\\side_sachiko\\assets\\side_sachiko_portrait_face.glb",
+    "sha256": "0106f5d96b514a3237c149ad41c1098af11ec7746d59eafab245ff63b33496fd"
+  }
+}

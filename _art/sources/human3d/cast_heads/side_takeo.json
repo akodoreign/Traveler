@@ -1,0 +1,120 @@
+{
+  "key": "side_takeo_portrait_face",
+  "source": "side_takeo_repaired_atlas.glb",
+  "scale": 15.1,
+  "features": {
+    "eyes": [
+      [
+        202,
+        309,
+        0.04
+      ],
+      [
+        270,
+        311,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        203,
+        292
+      ],
+      [
+        275,
+        292
+      ]
+    ],
+    "mouth": [
+      238,
+      368
+    ]
+  },
+  "socket_sample_levels": [
+    -0.979,
+    -0.968,
+    -0.957,
+    -0.946,
+    -0.9349999999999999,
+    -0.9239999999999999,
+    -0.9129999999999999,
+    -0.9019999999999999,
+    -0.8909999999999999,
+    -0.8799999999999999,
+    -0.8689999999999999,
+    -0.8579999999999999,
+    -0.8469999999999999,
+    -0.8359999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.011,
+    -0.029
+  ],
+  "skin_match": [
+    247,
+    193,
+    153
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 15.1,
+  "fit_matrix_blender": [
+    [
+      15.09822208434075,
+      -0.11785445970154951,
+      -0.1994999204386118,
+      0.907547503732514
+    ],
+    [
+      0.11487639294117948,
+      15.097883851627762,
+      -0.22518129830653594,
+      0.2366677386681221
+    ],
+    [
+      0.20122948658529394,
+      0.22363704767021214,
+      15.097002787462193,
+      113.57231547090099
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 13574,
+    "lower_overlap_blended_vertices": 187,
+    "minimum_seam_head_weight": 0.6477091901628821,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      206,
+      332,
+      5
+    ],
+    [
+      271,
+      332,
+      5
+    ],
+    [
+      240,
+      384,
+      4
+    ]
+  ],
+  "skin_sample_view": "Final corrected albedo, unlit 480x480 front. Cheek and chin measured from three patches. Lower blend sets the body RGB supplied with the frozen atlas.",
+  "raw_skin_srgb": [
+    247,
+    193,
+    153
+  ],
+  "review_wardrobe_mesh": "A135_lion_takeo"
+}

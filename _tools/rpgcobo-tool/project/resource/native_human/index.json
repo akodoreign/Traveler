@@ -6,11 +6,11 @@
  },
  "side_takeo": {
   "base": "shared_male",
-  "face": "side_takeo_face"
+  "face": "side_takeo_portrait_face"
  },
  "side_h_agasha": {
   "base": "shared_female",
-  "face": "side_h_agasha_face"
+  "face": "side_h_agasha_portrait_face"
  },
  "side_kusuri": {
   "base": "shared_female",
@@ -22,11 +22,21 @@
  },
  "side_nishi": {
   "base": "shared_female",
-  "face": "side_nishi_face"
+  "face": "side_nishi_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_nishi_gold_bun_band",
+    "headwear": true
+   },
+   {
+    "mesh": "side_nishi_flower_tassel_pin",
+    "headwear": true
+   }
+  ]
  },
  "side_seoko": {
   "base": "shared_female",
-  "face": "side_seoko_face"
+  "face": "side_seoko_portrait_face"
  },
  "side_tatanko": {
   "base": "shared_female",
@@ -38,15 +48,15 @@
  },
  "side_hojiki": {
   "base": "shared_male",
-  "face": "side_hojiki_face"
+  "face": "side_hojiki_portrait_face"
  },
  "side_kafu": {
   "base": "shared_male",
-  "face": "side_kafu_face"
+  "face": "side_kafu_portrait_face"
  },
  "side_kafu_nosword": {
   "base": "shared_male",
-  "face": "side_kafu_nosword_face"
+  "face": "side_kafu_nosword_portrait_face"
  },
  "side_ryuzoji": {
   "base": "shared_male",
@@ -70,7 +80,7 @@
  },
  "side_keiki": {
   "base": "shared_male",
-  "face": "side_keiki_face"
+  "face": "side_keiki_portrait_face"
  },
  "side_palecourtier": {
   "base": "shared_female",
@@ -115,7 +125,7 @@
  },
  "side_courtier": {
   "base": "shared_female",
-  "face": "side_courtier_face"
+  "face": "side_courtier_portrait_face"
  },
  "side_dojiaoi": {
   "base": "shared_female",
@@ -123,7 +133,7 @@
  },
  "side_dojipoet": {
   "base": "shared_female",
-  "face": "side_dojipoet_face"
+  "face": "side_dojipoet_portrait_face"
  },
  "side_empress": {
   "base": "shared_female",
@@ -139,7 +149,7 @@
  },
  "side_sanae": {
   "base": "shared_female",
-  "face": "side_sanae_face"
+  "face": "side_sanae_portrait_face"
  },
  "side_tomeko": {
   "base": "shared_female",
@@ -147,11 +157,11 @@
  },
  "side_hayato": {
   "base": "shared_male",
-  "face": "side_hayato_face"
+  "face": "side_hayato_portrait_face"
  },
  "side_kage_ch3": {
   "base": "shared_male",
-  "face": "side_kage_ch3_face"
+  "face": "side_kage_ch3_portrait_face"
  },
  "side_keiyomi": {
   "base": "shared_female",
@@ -171,7 +181,7 @@
  },
  "side_kasiko": {
   "base": "shared_female",
-  "face": "side_kasiko_face"
+  "face": "side_kasiko_portrait_face"
  },
  "side_mieko": {
   "base": "shared_female",
@@ -183,7 +193,7 @@
  },
  "side_uona": {
   "base": "shared_female",
-  "face": "side_uona_face"
+  "face": "side_uona_portrait_face"
  },
  "side_acolyte": {
   "base": "shared_male",
@@ -203,11 +213,11 @@
  },
  "side_rujo": {
   "base": "shared_male",
-  "face": "side_rujo_face"
+  "face": "side_rujo_portrait_face"
  },
  "side_sanro": {
   "base": "shared_male",
-  "face": "side_sanro_face"
+  "face": "side_sanro_portrait_face"
  },
  "side_shahai": {
   "base": "shared_female",
@@ -215,19 +225,26 @@
  },
  "side_daiyu": {
   "base": "shared_male",
-  "face": "side_daiyu_face"
+  "face": "side_daiyu_portrait_face"
  },
  "side_h_iuchi": {
   "base": "shared_male",
-  "face": "side_h_iuchi_face"
+  "face": "side_h_iuchi_portrait_face"
  },
  "side_iuchifarmer": {
   "base": "shared_male",
-  "face": "side_iuchifarmer_face"
+  "face": "side_iuchifarmer_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_iuchifarmer_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_karasu": {
   "base": "shared_male",
-  "face": "side_karasu_face"
+  "face": "side_karasu_portrait_face",
+  "portraitMask": "side_karasu_portrait_ceremonial_mask"
  },
  "side_kurosho": {
   "base": "shared_male",
@@ -235,20 +252,33 @@
  },
  "side_mami": {
   "base": "shared_female",
-  "face": "side_mami_face"
+  "face": "side_mami_portrait_face"
  },
  "side_gesshin": {
   "base": "shared_male",
-  "face": "side_gesshin_face"
+  "face": "side_gesshin_portrait_face"
  },
  "side_h_engineer": {
   "base": "shared_male",
-  "face": "side_h_engineer_face",
-  "headband": "side_h_engineer_headband"
+  "face": "side_h_engineer_portrait_face",
+  "headband": "side_h_engineer_headband",
+  "portraitAccessories": [
+   {
+    "mesh": "side_h_engineer_hachimaki",
+    "headwear": true,
+    "replacesHeadband": true
+   }
+  ]
  },
  "side_h_sapper": {
   "base": "shared_male",
-  "face": "side_h_sapper_face"
+  "face": "side_h_sapper_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_h_sapper_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_kyumi": {
   "base": "shared_female",
@@ -256,7 +286,7 @@
  },
  "side_miyoshi": {
   "base": "shared_female",
-  "face": "side_miyoshi_face"
+  "face": "side_miyoshi_portrait_face"
  },
  "side_yuko": {
   "base": "shared_female",
@@ -300,15 +330,25 @@
  },
  "side_oharu": {
   "base": "shared_female",
-  "face": "side_oharu_face"
+  "face": "side_oharu_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_oharu_round_gold_glasses",
+    "headwear": false
+   },
+   {
+    "mesh": "side_oharu_crown_gold",
+    "headwear": true
+   }
+  ]
  },
  "side_kitsukiclerk": {
   "base": "shared_male",
-  "face": "side_kitsukiclerk_face"
+  "face": "side_kitsukiclerk_portrait_face"
  },
  "side_seigen": {
   "base": "shared_male",
-  "face": "side_seigen_face"
+  "face": "side_seigen_portrait_face"
  },
  "side_yasu": {
   "base": "shared_male",
@@ -316,11 +356,11 @@
  },
  "side_h_kuni": {
   "base": "shared_female",
-  "face": "side_h_kuni_face"
+  "face": "side_h_kuni_portrait_face"
  },
  "side_miyubi": {
   "base": "shared_female",
-  "face": "side_miyubi_face"
+  "face": "side_miyubi_portrait_face"
  },
  "side_akuja": {
   "base": "shared_male",
@@ -336,11 +376,17 @@
  },
  "side_kiku": {
   "base": "shared_female",
-  "face": "side_kiku_face"
+  "face": "side_kiku_portrait_face"
  },
  "side_drummer": {
   "base": "shared_male",
-  "face": "side_drummer_face"
+  "face": "side_drummer_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_drummer_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_h_guide": {
   "base": "shared_male",
@@ -352,7 +398,7 @@
  },
  "side_yachiko": {
   "base": "shared_female",
-  "face": "side_yachiko_face"
+  "face": "side_yachiko_portrait_face"
  },
  "side_hatomu": {
   "base": "shared_male",
@@ -368,7 +414,7 @@
  },
  "side_satomi": {
   "base": "shared_female",
-  "face": "side_satomi_face"
+  "face": "side_satomi_portrait_face"
  },
  "side_ryozo": {
   "base": "shared_male",
@@ -400,11 +446,11 @@
  },
  "side_osuko": {
   "base": "shared_female",
-  "face": "side_osuko_face"
+  "face": "side_osuko_portrait_face"
  },
  "side_shiko": {
   "base": "shared_female",
-  "face": "side_shiko_face"
+  "face": "side_shiko_portrait_face"
  },
  "side_h_stagehand": {
   "base": "shared_male",
@@ -412,7 +458,7 @@
  },
  "side_noburo": {
   "base": "shared_male",
-  "face": "side_noburo_face"
+  "face": "side_noburo_portrait_face"
  },
  "side_nihime": {
   "base": "shared_female",
@@ -420,15 +466,15 @@
  },
  "side_shinobu": {
   "base": "shared_female",
-  "face": "side_shinobu_face"
+  "face": "side_shinobu_portrait_face"
  },
  "side_bantaro": {
   "base": "shared_male",
-  "face": "side_bantaro_face"
+  "face": "side_bantaro_portrait_face"
  },
  "side_onaka": {
   "base": "shared_male",
-  "face": "side_onaka_face"
+  "face": "side_onaka_portrait_face"
  },
  "side_soshi": {
   "base": "shared_male",
@@ -440,11 +486,11 @@
  },
  "side_h_tamori": {
   "base": "shared_female",
-  "face": "side_h_tamori_face"
+  "face": "side_h_tamori_portrait_face"
  },
  "side_haku": {
   "base": "shared_male",
-  "face": "side_haku_face"
+  "face": "side_haku_portrait_face"
  },
  "side_tamorimonk": {
   "base": "shared_male",
@@ -472,8 +518,15 @@
  },
  "side_h_tsuruchi": {
   "base": "shared_male",
-  "face": "side_h_tsuruchi_face",
-  "headband": "side_h_tsuruchi_headband"
+  "face": "side_h_tsuruchi_portrait_face",
+  "headband": "side_h_tsuruchi_headband",
+  "portraitAccessories": [
+   {
+    "mesh": "side_h_tsuruchi_hachimaki",
+    "headwear": true,
+    "replacesHeadband": true
+   }
+  ]
  },
  "side_actor_b": {
   "base": "shared_female",
@@ -493,11 +546,17 @@
  },
  "side_fishwife": {
   "base": "shared_female",
-  "face": "side_fishwife_face"
+  "face": "side_fishwife_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_fishwife_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_fumi": {
   "base": "shared_female",
-  "face": "side_fumi_face"
+  "face": "side_fumi_portrait_face"
  },
  "side_grandmother": {
   "base": "shared_female",
@@ -505,7 +564,13 @@
  },
  "side_h_herbalist": {
   "base": "shared_female",
-  "face": "side_h_herbalist_face"
+  "face": "side_h_herbalist_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_h_herbalist_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_h_jadeseller": {
   "base": "shared_female",
@@ -513,15 +578,15 @@
  },
  "side_h_kitsune": {
   "base": "shared_female",
-  "face": "side_h_kitsune_face"
+  "face": "side_h_kitsune_portrait_face"
  },
  "side_hagi": {
   "base": "shared_female",
-  "face": "side_hagi_face"
+  "face": "side_hagi_portrait_face"
  },
  "side_hana": {
   "base": "shared_female",
-  "face": "side_hana_face"
+  "face": "side_hana_portrait_face"
  },
  "side_herald": {
   "base": "shared_female",
@@ -533,11 +598,11 @@
  },
  "side_hostess": {
   "base": "shared_female",
-  "face": "side_hostess_face"
+  "face": "side_hostess_portrait_face"
  },
  "side_incense": {
   "base": "shared_female",
-  "face": "side_incense_face"
+  "face": "side_incense_portrait_face"
  },
  "side_innkeeper": {
   "base": "shared_female",
@@ -545,11 +610,17 @@
  },
  "side_jadeclerk": {
   "base": "shared_female",
-  "face": "side_jadeclerk_face"
+  "face": "side_jadeclerk_portrait_face"
  },
  "side_kitchengirl": {
   "base": "shared_female",
-  "face": "side_kitchengirl_face"
+  "face": "side_kitchengirl_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_kitchengirl_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_kiyo": {
   "base": "shared_female",
@@ -557,11 +628,11 @@
  },
  "side_makeup": {
   "base": "shared_female",
-  "face": "side_makeup_face"
+  "face": "side_makeup_portrait_face"
  },
  "side_megu": {
   "base": "shared_female",
-  "face": "side_megu_face"
+  "face": "side_megu_portrait_face"
  },
  "side_miko": {
   "base": "shared_female",
@@ -573,7 +644,13 @@
  },
  "side_muika": {
   "base": "shared_female",
-  "face": "side_muika_face"
+  "face": "side_muika_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_muika_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_nashiko": {
   "base": "shared_female",
@@ -585,7 +662,13 @@
  },
  "side_oldwoman": {
   "base": "shared_female",
-  "face": "side_oldwoman_face"
+  "face": "side_oldwoman_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_oldwoman_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_oyuki": {
   "base": "shared_female",
@@ -593,15 +676,15 @@
  },
  "side_pilgrimgirl": {
   "base": "shared_female",
-  "face": "side_pilgrimgirl_face"
+  "face": "side_pilgrimgirl_portrait_face"
  },
  "side_rika": {
   "base": "shared_female",
-  "face": "side_rika_face"
+  "face": "side_rika_portrait_face"
  },
  "side_sariko": {
   "base": "shared_female",
-  "face": "side_sariko_face"
+  "face": "side_sariko_portrait_face"
  },
  "side_shrinekeeper": {
   "base": "shared_female",
@@ -613,15 +696,21 @@
  },
  "side_twin": {
   "base": "shared_female",
-  "face": "side_twin_face"
+  "face": "side_twin_portrait_face"
  },
  "side_umebaa": {
   "base": "shared_female",
-  "face": "side_umebaa_face"
+  "face": "side_umebaa_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_umebaa_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_widow": {
   "base": "shared_female",
-  "face": "side_widow_face"
+  "face": "side_widow_portrait_face"
  },
  "side_youngsayo": {
   "base": "shared_female",
@@ -633,7 +722,7 @@
  },
  "side_actor_a": {
   "base": "shared_male",
-  "face": "side_actor_a_face"
+  "face": "side_actor_a_portrait_face"
  },
  "side_actor_c": {
   "base": "shared_male",
@@ -641,15 +730,21 @@
  },
  "side_akuro": {
   "base": "shared_male",
-  "face": "side_akuro_face"
+  "face": "side_akuro_portrait_face"
  },
  "side_bargeman": {
   "base": "shared_male",
-  "face": "side_bargeman_face"
+  "face": "side_bargeman_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_bargeman_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_beggar": {
   "base": "shared_male",
-  "face": "side_beggar_face"
+  "face": "side_beggar_portrait_face"
  },
  "side_beggarmonk": {
   "base": "shared_male",
@@ -657,7 +752,7 @@
  },
  "side_cartdriver": {
   "base": "shared_male",
-  "face": "side_cartdriver_face"
+  "face": "side_cartdriver_portrait_face"
  },
  "side_censorclerk": {
   "base": "shared_male",
@@ -669,11 +764,12 @@
  },
  "side_charmseller": {
   "base": "shared_male",
-  "face": "side_charmseller_face"
+  "face": "side_charmseller_portrait_face"
  },
  "side_citizen": {
   "base": "shared_male",
-  "face": "side_citizen_face"
+  "face": "side_citizen_portrait_face",
+  "portraitMask": "side_citizen_portrait_porcelain_mask"
  },
  "side_clerk": {
   "base": "shared_male",
@@ -681,7 +777,7 @@
  },
  "side_crabboy": {
   "base": "shared_male",
-  "face": "side_crabboy_face"
+  "face": "side_crabboy_portrait_face"
  },
  "side_diver": {
   "base": "shared_male",
@@ -693,15 +789,21 @@
  },
  "side_drunkactor": {
   "base": "shared_male",
-  "face": "side_drunkactor_face"
+  "face": "side_drunkactor_portrait_face"
  },
  "side_drunksailor": {
   "base": "shared_male",
-  "face": "side_drunksailor_face"
+  "face": "side_drunksailor_portrait_face"
  },
  "side_ebisu": {
   "base": "shared_male",
-  "face": "side_ebisu_face"
+  "face": "side_ebisu_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_ebisu_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_ferryman": {
   "base": "shared_male",
@@ -725,7 +827,7 @@
  },
  "side_gochu": {
   "base": "shared_male",
-  "face": "side_gochu_face"
+  "face": "side_gochu_portrait_face"
  },
  "side_gonbei": {
   "base": "shared_male",
@@ -749,7 +851,13 @@
  },
  "side_h_hanabi": {
   "base": "shared_male",
-  "face": "side_h_hanabi_face"
+  "face": "side_h_hanabi_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_h_hanabi_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_h_hunter": {
   "base": "shared_male",
@@ -757,11 +865,11 @@
  },
  "side_h_lamplighter": {
   "base": "shared_male",
-  "face": "side_h_lamplighter_face"
+  "face": "side_h_lamplighter_portrait_face"
  },
  "side_h_suzume": {
   "base": "shared_male",
-  "face": "side_h_suzume_face"
+  "face": "side_h_suzume_portrait_face"
  },
  "side_h_thundermonk": {
   "base": "shared_male",
@@ -797,7 +905,7 @@
  },
  "side_imuro": {
   "base": "shared_male",
-  "face": "side_imuro_face"
+  "face": "side_imuro_portrait_face"
  },
  "side_itami": {
   "base": "shared_male",
@@ -809,11 +917,11 @@
  },
  "side_kagemaro": {
   "base": "shared_male",
-  "face": "side_kagemaro_face"
+  "face": "side_kagemaro_portrait_face"
  },
  "side_karo": {
   "base": "shared_male",
-  "face": "side_karo_face"
+  "face": "side_karo_portrait_face"
  },
  "side_katsuo": {
   "base": "shared_male",
@@ -833,11 +941,11 @@
  },
  "side_koshi": {
   "base": "shared_male",
-  "face": "side_koshi_face"
+  "face": "side_koshi_portrait_face"
  },
  "side_kusada": {
   "base": "shared_male",
-  "face": "side_kusada_face"
+  "face": "side_kusada_portrait_face"
  },
  "side_magistrate": {
   "base": "shared_male",
@@ -845,7 +953,7 @@
  },
  "side_mamoru": {
   "base": "shared_male",
-  "face": "side_mamoru_face"
+  "face": "side_mamoru_portrait_face"
  },
  "side_mantisenvoy": {
   "base": "shared_male",
@@ -853,11 +961,11 @@
  },
  "side_maskmaker": {
   "base": "shared_male",
-  "face": "side_maskmaker_face"
+  "face": "side_maskmaker_portrait_face"
  },
  "side_mcaptain": {
   "base": "shared_male",
-  "face": "side_mcaptain_face"
+  "face": "side_mcaptain_portrait_face"
  },
  "side_merchant": {
   "base": "shared_male",
@@ -865,7 +973,7 @@
  },
  "side_mobleader": {
   "base": "shared_male",
-  "face": "side_mobleader_face"
+  "face": "side_mobleader_portrait_face"
  },
  "side_mosuke": {
   "base": "shared_male",
@@ -889,11 +997,11 @@
  },
  "side_oldpilgrim": {
   "base": "shared_male",
-  "face": "side_oldpilgrim_face"
+  "face": "side_oldpilgrim_portrait_face"
  },
  "side_oracle": {
   "base": "shared_male",
-  "face": "side_oracle_face"
+  "face": "side_oracle_portrait_face"
  },
  "side_pedlar": {
   "base": "shared_male",
@@ -901,7 +1009,13 @@
  },
  "side_pigeonkeeper": {
   "base": "shared_male",
-  "face": "side_pigeonkeeper_face"
+  "face": "side_pigeonkeeper_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_pigeonkeeper_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_pilgrim": {
   "base": "shared_male",
@@ -934,7 +1048,7 @@
  },
  "side_sabu": {
   "base": "shared_male",
-  "face": "side_sabu_face"
+  "face": "side_sabu_portrait_face"
  },
  "side_sakeseller": {
   "base": "shared_male",
@@ -950,16 +1064,35 @@
  },
  "side_shipmaster": {
   "base": "shared_male",
-  "face": "side_shipmaster_face"
+  "face": "side_shipmaster_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_shipmaster_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_shrinepeasant": {
   "base": "shared_male",
-  "face": "side_shrinepeasant_face"
+  "face": "side_shrinepeasant_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_shrinepeasant_headcloth",
+    "headwear": true
+   }
+  ]
  },
  "side_smithboy": {
   "base": "shared_male",
-  "face": "side_smithboy_face",
-  "headband": "side_smithboy_headband"
+  "face": "side_smithboy_portrait_face",
+  "headband": "side_smithboy_headband",
+  "portraitAccessories": [
+   {
+    "mesh": "side_smithboy_hachimaki",
+    "headwear": true,
+    "replacesHeadband": true
+   }
+  ]
  },
  "side_snakeelder": {
   "base": "shared_male",
@@ -967,7 +1100,7 @@
  },
  "side_sonoservant": {
   "base": "shared_male",
-  "face": "side_sonoservant_face"
+  "face": "side_sonoservant_portrait_face"
  },
  "side_swordsmith": {
   "base": "shared_male",
@@ -975,7 +1108,7 @@
  },
  "side_tbeggar": {
   "base": "shared_male",
-  "face": "side_tbeggar_face"
+  "face": "side_tbeggar_portrait_face"
  },
  "side_thundermonk": {
   "base": "shared_male",
@@ -983,11 +1116,11 @@
  },
  "side_tokubei": {
   "base": "shared_male",
-  "face": "side_tokubei_face"
+  "face": "side_tokubei_portrait_face"
  },
  "side_torishigawa": {
   "base": "shared_male",
-  "face": "side_torishigawa_face"
+  "face": "side_torishigawa_portrait_face"
  },
  "side_veteran": {
   "base": "shared_male",
@@ -999,7 +1132,7 @@
  },
  "side_youth": {
   "base": "shared_male",
-  "face": "side_youth_face"
+  "face": "side_youth_portrait_face"
  },
  "side_kurako": {
   "base": "shared_female",
@@ -1007,15 +1140,16 @@
  },
  "side_kanbe": {
   "base": "shared_male",
-  "face": "side_kanbe_face"
+  "face": "side_kanbe_portrait_face"
  },
  "side_kanemori": {
   "base": "shared_male",
-  "face": "side_kanemori_face"
+  "face": "side_kanemori_portrait_face"
  },
  "side_kasamashi": {
   "base": "shared_male",
-  "face": "side_kasamashi_face"
+  "face": "side_kasamashi_portrait_face",
+  "portraitMask": "side_kasamashi_portrait_jade_mask"
  },
  "side_tessai": {
   "base": "shared_male",
@@ -1031,11 +1165,11 @@
  },
  "side_sakura": {
   "base": "shared_female",
-  "face": "side_sakura_face"
+  "face": "side_sakura_portrait_face"
  },
  "side_goro": {
   "base": "shared_male",
-  "face": "side_goro_face"
+  "face": "side_goro_portrait_face"
  },
  "side_h_scout": {
   "base": "shared_female",
@@ -1048,7 +1182,7 @@
  },
  "side_ryoichi": {
   "base": "shared_male",
-  "face": "side_ryoichi_face"
+  "face": "side_ryoichi_portrait_face"
  },
  "side_fujio": {
   "base": "shared_male",
@@ -1060,7 +1194,7 @@
  },
  "side_michio": {
   "base": "shared_male",
-  "face": "side_michio_face"
+  "face": "side_michio_portrait_face"
  },
  "trav_haruki": {
   "base": "shared_male",
@@ -1072,7 +1206,7 @@
  },
  "side_momo": {
   "base": "shared_female",
-  "face": "side_momo_face"
+  "face": "side_momo_portrait_face"
  },
  "trav_gendo": {
   "base": "shared_male",
@@ -1080,27 +1214,27 @@
  },
  "side_akodorin": {
   "base": "shared_female",
-  "face": "side_akodorin_face"
+  "face": "side_akodorin_portrait_face"
  },
  "side_goroso": {
   "base": "shared_male",
-  "face": "side_goroso_face"
+  "face": "side_goroso_portrait_face"
  },
  "side_gusai": {
   "base": "shared_male",
-  "face": "side_gusai_face"
+  "face": "side_gusai_portrait_face"
  },
  "side_hiruto": {
   "base": "shared_male",
-  "face": "side_hiruto_face"
+  "face": "side_hiruto_portrait_face"
  },
  "side_ozaki": {
   "base": "shared_male",
-  "face": "side_ozaki_face"
+  "face": "side_ozaki_portrait_face"
  },
  "side_tama": {
   "base": "shared_male",
-  "face": "side_tama_face"
+  "face": "side_tama_portrait_face"
  },
  "side_ukita": {
   "base": "shared_male",
@@ -1112,19 +1246,19 @@
  },
  "side_shoju": {
   "base": "shared_male",
-  "face": "side_shoju_face"
+  "face": "side_shoju_portrait_face"
  },
  "side_atsuko": {
   "base": "shared_female",
-  "face": "side_atsuko_face"
+  "face": "side_atsuko_portrait_face"
  },
  "side_craneguard": {
   "base": "shared_male",
-  "face": "side_craneguard_face"
+  "face": "side_craneguard_portrait_face"
  },
  "side_daidoji_general": {
   "base": "shared_male",
-  "face": "side_daidoji_general_face"
+  "face": "side_daidoji_general_portrait_face"
  },
  "side_siko": {
   "base": "shared_female",
@@ -1132,12 +1266,19 @@
  },
  "side_seikidera": {
   "base": "shared_male",
-  "face": "side_seikidera_face"
+  "face": "side_seikidera_portrait_face"
  },
  "side_sachiko": {
   "base": "shared_female",
-  "face": "side_sachiko_face",
-  "headband": "side_sachiko_headband"
+  "face": "side_sachiko_portrait_face",
+  "headband": "side_sachiko_headband",
+  "portraitAccessories": [
+   {
+    "mesh": "side_sachiko_hachimaki",
+    "headwear": true,
+    "replacesHeadband": true
+   }
+  ]
  },
  "side_chuto": {
   "base": "shared_male",
@@ -1149,15 +1290,15 @@
  },
  "side_h_jadearcher": {
   "base": "shared_male",
-  "face": "side_h_jadearcher_face"
+  "face": "side_h_jadearcher_portrait_face"
  },
  "side_h_veteran": {
   "base": "shared_male",
-  "face": "side_h_veteran_face"
+  "face": "side_h_veteran_portrait_face"
  },
  "side_hidaren": {
   "base": "shared_male",
-  "face": "side_hidaren_face"
+  "face": "side_hidaren_portrait_face"
  },
  "side_kisada": {
   "base": "shared_male",
@@ -1165,11 +1306,11 @@
  },
  "side_masakazu": {
   "base": "shared_male",
-  "face": "side_masakazu_face"
+  "face": "side_masakazu_portrait_face"
  },
  "side_taneo": {
   "base": "shared_male",
-  "face": "side_taneo_face"
+  "face": "side_taneo_portrait_face"
  },
  "side_tomoe": {
   "base": "shared_male",
@@ -1177,7 +1318,7 @@
  },
  "side_yakamo": {
   "base": "shared_male",
-  "face": "side_yakamo_face"
+  "face": "side_yakamo_portrait_face"
  },
  "side_kage": {
   "base": "shared_male",
@@ -1185,7 +1326,7 @@
  },
  "side_xue": {
   "base": "shared_female",
-  "face": "side_xue_face"
+  "face": "side_xue_portrait_face"
  },
  "side_sadanobu": {
   "base": "shared_male",
@@ -1201,11 +1342,11 @@
  },
  "side_iuchisoldier": {
   "base": "shared_male",
-  "face": "side_iuchisoldier_face"
+  "face": "side_iuchisoldier_portrait_face"
  },
  "side_takanobu": {
   "base": "shared_male",
-  "face": "side_takanobu_face"
+  "face": "side_takanobu_portrait_face"
  },
  "side_naname": {
   "base": "shared_male",
@@ -1217,11 +1358,17 @@
  },
  "side_yutaka": {
   "base": "shared_male",
-  "face": "side_yutaka_face"
+  "face": "side_yutaka_portrait_face"
  },
  "side_hanae": {
   "base": "shared_female",
-  "face": "side_hanae_face"
+  "face": "side_hanae_portrait_face",
+  "portraitAccessories": [
+   {
+    "mesh": "side_hanae_portrait_gold_band",
+    "headwear": true
+   }
+  ]
  },
  "side_hisae": {
   "base": "shared_female",
@@ -1245,19 +1392,19 @@
  },
  "side_h_yari": {
   "base": "shared_male",
-  "face": "side_h_yari_face"
+  "face": "side_h_yari_portrait_face"
  },
  "side_mirumotosen": {
   "base": "shared_male",
-  "face": "side_mirumotosen_face"
+  "face": "side_mirumotosen_portrait_face"
  },
  "side_mirumotosentry": {
   "base": "shared_male",
-  "face": "side_mirumotosentry_face"
+  "face": "side_mirumotosentry_portrait_face"
  },
  "side_tabezu": {
   "base": "shared_male",
-  "face": "side_tabezu_face"
+  "face": "side_tabezu_portrait_face"
  },
  "side_tsukaru": {
   "base": "shared_male",
@@ -1281,27 +1428,27 @@
  },
  "side_ushimo": {
   "base": "shared_male",
-  "face": "side_ushimo_face"
+  "face": "side_ushimo_portrait_face"
  },
  "side_noboru": {
   "base": "shared_male",
-  "face": "side_noboru_face"
+  "face": "side_noboru_portrait_face"
  },
  "side_ryuko": {
   "base": "shared_female",
-  "face": "side_ryuko_face"
+  "face": "side_ryuko_portrait_face"
  },
  "side_h_shinjo": {
   "base": "shared_male",
-  "face": "side_h_shinjo_face"
+  "face": "side_h_shinjo_portrait_face"
  },
  "side_ichihito": {
   "base": "shared_male",
-  "face": "side_ichihito_face"
+  "face": "side_ichihito_portrait_face"
  },
  "side_soshiofficer": {
   "base": "shared_male",
-  "face": "side_soshiofficer_face"
+  "face": "side_soshiofficer_portrait_face"
  },
  "side_chihaya": {
   "base": "shared_female",
@@ -1309,15 +1456,15 @@
  },
  "side_craneduellist": {
   "base": "shared_male",
-  "face": "side_craneduellist_face"
+  "face": "side_craneduellist_portrait_face"
  },
  "side_h_archer": {
   "base": "shared_male",
-  "face": "side_h_archer_face"
+  "face": "side_h_archer_portrait_face"
  },
  "side_h_ferryarcher": {
   "base": "shared_male",
-  "face": "side_h_ferryarcher_face"
+  "face": "side_h_ferryarcher_portrait_face"
  },
  "side_h_shrinearcher": {
   "base": "shared_male",
@@ -1325,7 +1472,7 @@
  },
  "side_h_sparrow": {
   "base": "shared_male",
-  "face": "side_h_sparrow_face"
+  "face": "side_h_sparrow_portrait_face"
  },
  "side_hyobe": {
   "base": "shared_male",
@@ -1337,7 +1484,7 @@
  },
  "side_lionrider": {
   "base": "shared_male",
-  "face": "side_lionrider_face"
+  "face": "side_lionrider_portrait_face"
  },
  "side_lionsergeant": {
   "base": "shared_male",
@@ -1357,11 +1504,11 @@
  },
  "side_sergeant": {
   "base": "shared_male",
-  "face": "side_sergeant_face"
+  "face": "side_sergeant_portrait_face"
  },
  "side_tadayasu": {
   "base": "shared_male",
-  "face": "side_tadayasu_face"
+  "face": "side_tadayasu_portrait_face"
  },
  "side_taxman": {
   "base": "shared_male",
@@ -1373,7 +1520,7 @@
  },
  "side_uyojimbo": {
   "base": "shared_male",
-  "face": "side_uyojimbo_face"
+  "face": "side_uyojimbo_portrait_face"
  },
  "side_yosuke": {
   "base": "shared_male",
@@ -1393,7 +1540,7 @@
  },
  "side_ashimita": {
   "base": "shared_male",
-  "face": "side_ashimita_face"
+  "face": "side_ashimita_portrait_face"
  },
  "trav_mitsue": {
   "base": "shared_female",

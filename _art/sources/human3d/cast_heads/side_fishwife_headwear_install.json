@@ -1,0 +1,41 @@
+{
+  "actor": "side_fishwife",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_fishwife_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_fishwife_headcloth.pm",
+      "to": "side_fishwife_headcloth.pm",
+      "sha256": "9b9b21cecfb04428222fef040ced693213ac569fc053410747703b2a7d698969"
+    },
+    {
+      "from": "assets/side_fishwife_headcloth.mdl",
+      "to": "side_fishwife_headcloth.mdl",
+      "sha256": "3b7a0b8047d4bda3b2966d6757579a021b2c77c5d428c5d84c015b025ff406a6"
+    },
+    {
+      "from": "assets/tex/side_fishwife_headcloth_weave.png",
+      "to": "tex/side_fishwife_headcloth_weave.png",
+      "sha256": "090160c78d9eb9721a930aa5fc844d65c1fa0791361d2400e376d2882303a918"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_fishwife_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\fits\\side_fishwife\\rigid-geometry\\assets\\side_fishwife_portrait_face.glb",
+    "sha256": "fcf9ae27d59ed636dbf45b72cdad40f9411aad2d4e606c6a9d83996e35206cae"
+  },
+  "final_fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\release\\side_fishwife\\assets\\side_fishwife_portrait_face.glb",
+    "sha256": "49959e9b7c09b157fa9f9c675652a5956d107888f2d5458d519925a1f1aa96ad"
+  }
+}

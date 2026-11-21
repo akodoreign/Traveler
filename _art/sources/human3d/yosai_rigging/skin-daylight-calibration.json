@@ -1,0 +1,43 @@
+{
+  "source_face_albedo_srgb": [
+    239,
+    150,
+    85
+  ],
+  "daylight_actor": "P132",
+  "daylight_map": "M811",
+  "daylight_face_patches": [
+    [
+      658,
+      393,
+      3
+    ],
+    [
+      649,
+      401,
+      3
+    ]
+  ],
+  "daylight_face_srgb": [
+    202,
+    110,
+    53
+  ],
+  "daylight_chest_before_srgb": [
+    255,
+    158,
+    75
+  ],
+  "daylight_chest_after_srgb": [
+    199,
+    111,
+    54
+  ],
+  "calibrated_body_basecol": "0x5b1f07ff",
+  "skin_materials": [
+    "c807060_core",
+    "c807060_hands",
+    "c807060_neck",
+    "c807060_throat"
+  ]
+}

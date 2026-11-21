@@ -1,0 +1,32 @@
+{
+  "actor": "side_kasamashi",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_kasamashi_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_kasamashi_portrait_jade_mask.pm",
+      "to": "side_kasamashi_portrait_jade_mask.pm",
+      "sha256": "8e9842860ee64aab7f2a02330ace2eb0b4eb1cbe3d565695ade3557eb06bcc0c"
+    },
+    {
+      "from": "assets/side_kasamashi_portrait_jade_mask.mdl",
+      "to": "side_kasamashi_portrait_jade_mask.mdl",
+      "sha256": "5e6d1b3771c2855f382f7eb00ae3b728f9dddd0dd44266e377d275d8a0cd23f5"
+    },
+    {
+      "from": "assets/tex/side_kasamashi_portrait_jade_mask_jade.png",
+      "to": "tex/side_kasamashi_portrait_jade_mask_jade.png",
+      "sha256": "8df7890ed74b7176b6a66f0998337777f1222e3c1880c8085589dc248dfadeef"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_kasamashi_portrait_jade_mask"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\kasamashi-jade-mask\\painted-final\\assets\\side_kasamashi_portrait_face.glb",
+    "sha256": "fb5bfe671a168d9c926d12f17b548f7eef1796d0d69e737a98f17d5019840d8c"
+  }
+}

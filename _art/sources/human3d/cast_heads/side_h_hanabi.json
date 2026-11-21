@@ -1,0 +1,119 @@
+{
+  "key": "side_h_hanabi_portrait_face",
+  "source": "side_h_hanabi_repaired_atlas.glb",
+  "scale": 11.6,
+  "features": {
+    "eyes": [
+      [
+        201,
+        312,
+        0.04
+      ],
+      [
+        285,
+        310,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        199,
+        299
+      ],
+      [
+        281,
+        290
+      ]
+    ],
+    "mouth": [
+      246,
+      372
+    ]
+  },
+  "socket_sample_levels": [
+    -0.975,
+    -0.967,
+    -0.959,
+    -0.951,
+    -0.943,
+    -0.9349999999999999,
+    -0.9269999999999999,
+    -0.9189999999999999,
+    -0.9109999999999999,
+    -0.9029999999999999,
+    -0.8949999999999999,
+    -0.8869999999999999,
+    -0.8789999999999999,
+    -0.8709999999999999,
+    -0.8629999999999999,
+    -0.8549999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.021,
+    -0.015
+  ],
+  "skin_match": [
+    231,
+    173,
+    132
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.6,
+  "fit_matrix_blender": [
+    [
+      11.593563955742457,
+      -0.31492483064899873,
+      -0.2238239378413295,
+      0.9176411095848404
+    ],
+    [
+      0.3194698426125096,
+      11.593199480012446,
+      0.2359339659798222,
+      0.4178136489987787
+    ],
+    [
+      0.21728742202723075,
+      -0.24196728638914644,
+      11.595440397352233,
+      109.96992611487457
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 25695,
+    "lower_overlap_blended_vertices": 59,
+    "minimum_seam_head_weight": 0.6878423817744224,
+    "upper_face_head_weight": 1.0
+  },
+  "proof_pose_family": "fist",
+  "skin_sample_patches": [
+    [
+      437,
+      675
+    ],
+    [
+      586,
+      675
+    ],
+    [
+      455,
+      755
+    ]
+  ],
+  "skin_sample_view": "Diffuse portions of both clean cheeks calibrated against the source portrait and kept outside the repaired pale cheek mark.",
+  "raw_skin_srgb": [
+    232,
+    172,
+    131
+  ]
+}

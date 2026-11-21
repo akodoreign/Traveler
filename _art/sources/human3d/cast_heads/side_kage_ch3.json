@@ -1,0 +1,116 @@
+{
+  "key": "side_kage_ch3_portrait_face",
+  "source": "side_kage_ch3_repaired_atlas.glb",
+  "scale": 13.9,
+  "features": {
+    "eyes": [
+      [
+        194,
+        283,
+        0.04
+      ],
+      [
+        281,
+        283,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        192,
+        270
+      ],
+      [
+        282,
+        270
+      ]
+    ],
+    "mouth": [
+      238,
+      349
+    ]
+  },
+  "socket_sample_levels": [
+    -0.786,
+    -0.778,
+    -0.77,
+    -0.762,
+    -0.754,
+    -0.746,
+    -0.738,
+    -0.73,
+    -0.722,
+    -0.714,
+    -0.706,
+    -0.698,
+    -0.69
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.007,
+    -0.012
+  ],
+  "skin_match": [
+    242,
+    178,
+    128
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 13.9,
+  "fit_matrix_blender": [
+    [
+      13.874870201634415,
+      -0.7796291924742077,
+      -0.30025857196832195,
+      0.46552446267190123
+    ],
+    [
+      0.7823236129941021,
+      13.877467392047642,
+      0.11776479614152129,
+      0.27247993477522686
+    ],
+    [
+      0.2931665948744927,
+      -0.13445112457843464,
+      13.896257634440724,
+      109.4658236477823
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 19943,
+    "lower_overlap_blended_vertices": 116,
+    "minimum_seam_head_weight": 0.5071848536713346,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      191,
+      303
+    ],
+    [
+      279,
+      306
+    ],
+    [
+      239,
+      350
+    ]
+  ],
+  "skin_sample_view": "Clean diffuse cheeks and lower face match the Chapter Three version\u2019s body and preserve the individual moustache, topknot and white tie.",
+  "raw_skin_srgb": [
+    242,
+    179,
+    128
+  ],
+  "proof_pose_family": "club"
+}

@@ -1,0 +1,37 @@
+{
+  "actor": "side_ebisu",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_ebisu_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_ebisu_headcloth.pm",
+      "to": "side_ebisu_headcloth.pm",
+      "sha256": "ca1397a83a252939ed98f56a4141ff132b5bec524829513b9193fd1824230658"
+    },
+    {
+      "from": "assets/side_ebisu_headcloth.mdl",
+      "to": "side_ebisu_headcloth.mdl",
+      "sha256": "da5912056b658e107fc1cf115000f7ba5240187233321e4137156cf49ece0978"
+    },
+    {
+      "from": "assets/tex/side_ebisu_headcloth_linen.png",
+      "to": "tex/side_ebisu_headcloth_linen.png",
+      "sha256": "c2986558921d1f7d1f8ac9885af7f942852c19a7c1d55a7b0d13243b1ea3a0da"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_ebisu_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_ebisu\\painted-final\\assets\\side_ebisu_portrait_face.glb",
+    "sha256": "3a279ac67b80fd12442de60e7eea8898cd0fa0ea60929d30feb4901c9d591ede"
+  }
+}

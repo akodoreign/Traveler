@@ -11,3 +11,19 @@ Togashi Yosai (`P132`, `side_yosai`) previously pointed to `side_yosai_face`. Th
 ![Yosai’s final daylight fit from the front and side](yosai_rigging/daylight-fit.png)
 
 The illustrated **Traveler humanoid rigging** skill records the general procedure, including the face-to-body skin color step. The fit data and locally archived source assets document this specific model.
+
+## Daylight skin and robe follow-up
+
+The initial diffuse transfer still rendered the bare chest brighter than the cheek. I isolated the skin and garment in the same Coast Road camera and found a dark inner robe panel at the collar. I recessed that panel and moved its decal projection with it. The source for this pass is `fit_yosai_inner_robe.py`.
+
+I resampled two unmarked face patches in the fixed daylight camera and calibrated the four body skin materials to `0x5b1f07ff`. The face measured sRGB **202, 110, 53**. The chest moved from **255, 158, 75** to **199, 111, 54** in the same shot. The original diffuse sample and rendered calibration are recorded separately.
+
+![Previous and calibrated skin in front and profile](yosai_rigging/skin-match-daylight.png)
+
+## Rear neck color and head-size follow-up
+
+The pointed-out orange patch came from an older baked tint in Yosai’s head atlas. The new rear-neck atlas matches the current body and fades into the untouched jaw and ear. At the marked point, the daylight RGB changed from 220, 78, 32 to 188, 99, 42 beside body skin at 192, 107, 53.
+
+Yosai’s skull and face are another 10% smaller. Ear span went from 16.49 to 14.84 native units while the seated neck band, 50-joint bind, and seven expression morphs stayed in place. The updated GLB includes the nape correction. The rigging skill now compares new neutral heads with approved Travelers using a common daylight camera.
+
+![Yosai’s nape and size comparison](yosai_rigging/nape-and-size-daylight.png)

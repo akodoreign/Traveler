@@ -1,0 +1,41 @@
+{
+  "actor": "side_pigeonkeeper",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_pigeonkeeper_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_pigeonkeeper_headcloth.pm",
+      "to": "side_pigeonkeeper_headcloth.pm",
+      "sha256": "446f6be87ce71e19a2eeccfa7498be343919150999203c5fb7b086a941308e8c"
+    },
+    {
+      "from": "assets/side_pigeonkeeper_headcloth.mdl",
+      "to": "side_pigeonkeeper_headcloth.mdl",
+      "sha256": "e72c629310a8d1d52004269171be2d348269f0802c7c85e5739c03a5fa70e602"
+    },
+    {
+      "from": "assets/tex/side_pigeonkeeper_headcloth_weave.png",
+      "to": "tex/side_pigeonkeeper_headcloth_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_pigeonkeeper_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\fits\\side_pigeonkeeper\\rigid-geometry\\assets\\side_pigeonkeeper_portrait_face.glb",
+    "sha256": "9806daffd911dbdddf14c82f09cfc9c6b6d246fcc4d8282d1d5f421df3ace995"
+  },
+  "final_fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\release\\side_pigeonkeeper\\assets\\side_pigeonkeeper_portrait_face.glb",
+    "sha256": "00457dfca1437ea0766705fc91dc961797fd0618ba94761decdae840af64ff82"
+  }
+}

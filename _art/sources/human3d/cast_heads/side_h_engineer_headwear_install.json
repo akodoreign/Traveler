@@ -1,0 +1,42 @@
+{
+  "actor": "side_h_engineer",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_h_engineer_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_h_engineer_hachimaki.pm",
+      "to": "side_h_engineer_hachimaki.pm",
+      "sha256": "81c00e199c04d098cb1c7fffa8feaf3aea69a5db579c58b1cef813e9954bf97b"
+    },
+    {
+      "from": "assets/side_h_engineer_hachimaki.mdl",
+      "to": "side_h_engineer_hachimaki.mdl",
+      "sha256": "7a434567183a22593c39baeb499bb54ed7ceca0779f592412405a3446ed8c9f3"
+    },
+    {
+      "from": "assets/tex/side_h_engineer_hachimaki_weave.png",
+      "to": "tex/side_h_engineer_hachimaki_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_h_engineer_hachimaki",
+        "headwear": true,
+        "replacesHeadband": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\fits\\side_h_engineer\\rigid-geometry\\assets\\side_h_engineer_portrait_face.glb",
+    "sha256": "769cdc8d76d6edbd7ea25732211279c5d06ceff0b7c81c571e065009d7364aaf"
+  },
+  "final_fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\release\\side_h_engineer\\assets\\side_h_engineer_portrait_face.glb",
+    "sha256": "13025f3884bb461ebcc39448456b4b46cacfb7d6a666dcb7a5df1538e2fe72a7"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "key": "side_masakazu_portrait_face",
+  "source": "side_masakazu_repaired_atlas.glb",
+  "scale": 10.3,
+  "features": {
+    "eyes": [
+      [
+        199,
+        270,
+        0.04
+      ],
+      [
+        275,
+        268,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        194,
+        253
+      ],
+      [
+        282,
+        251
+      ]
+    ],
+    "mouth": [
+      241,
+      340
+    ]
+  },
+  "socket_sample_levels": [
+    -0.939,
+    -0.9309999999999999,
+    -0.9229999999999999,
+    -0.9149999999999999,
+    -0.9069999999999999,
+    -0.8989999999999999,
+    -0.8909999999999999,
+    -0.8829999999999999,
+    -0.8749999999999999,
+    -0.8669999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.108,
+    -0.039
+  ],
+  "skin_match": [
+    244,
+    185,
+    141
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 10.3,
+  "fit_matrix_blender": [
+    [
+      10.294490034319134,
+      0.22640581011586344,
+      0.24943003518113976,
+      2.196813610914719
+    ],
+    [
+      -0.2302170539410893,
+      10.296249677245655,
+      0.15570064834674335,
+      0.5272156117504901
+    ],
+    [
+      -0.2459167366800643,
+      -0.1611924097676109,
+      10.295802152608385,
+      108.21251264873109
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 22462,
+    "lower_overlap_blended_vertices": 459,
+    "minimum_seam_head_weight": 0.39654309661640386,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      192,
+      300,
+      4
+    ],
+    [
+      279,
+      306,
+      4
+    ],
+    [
+      255,
+      402,
+      4
+    ]
+  ],
+  "skin_sample_view": "Diffuse face and lower seam on corrected atlas",
+  "raw_skin_srgb": [
+    244,
+    185,
+    141
+  ],
+  "proof_pose_family": "club"
+}

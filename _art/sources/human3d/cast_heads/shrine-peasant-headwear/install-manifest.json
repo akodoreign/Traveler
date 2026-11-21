@@ -1,0 +1,37 @@
+{
+  "actor": "side_shrinepeasant",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_shrinepeasant_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_shrinepeasant_headcloth.pm",
+      "to": "side_shrinepeasant_headcloth.pm",
+      "sha256": "680d1ef5a72ddc563380c2473853696f381aa5a225f93a4f743ab68cad3781bf"
+    },
+    {
+      "from": "assets/side_shrinepeasant_headcloth.mdl",
+      "to": "side_shrinepeasant_headcloth.mdl",
+      "sha256": "21b511ee03bcc639188cecf67db700d5ecbe1b25a8efd2edb8ee8876dc814504"
+    },
+    {
+      "from": "assets/tex/side_shrinepeasant_headcloth_linen.png",
+      "to": "tex/side_shrinepeasant_headcloth_linen.png",
+      "sha256": "c2986558921d1f7d1f8ac9885af7f942852c19a7c1d55a7b0d13243b1ea3a0da"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_shrinepeasant_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_shrinepeasant\\painted-final\\assets\\side_shrinepeasant_portrait_face.glb",
+    "sha256": "36b775fda70a7e3b012ef9169cb51ad97a991e111ec751f42b43b7a941212df5"
+  }
+}

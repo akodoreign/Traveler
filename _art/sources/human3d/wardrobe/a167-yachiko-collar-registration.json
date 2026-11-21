@@ -1,0 +1,40 @@
+{
+  "piece": "A167_yachiko",
+  "assets": [
+    {
+      "source": "A167.mdl",
+      "file": "A167_yachiko.mdl",
+      "edited_vertices": 649,
+      "collar_reweighted_vertices": 187,
+      "before_sha256": "23778b5b4f1af6c214367dff389db7888d1d70837423b5630113aa3f96c45f2f",
+      "after_sha256": "80e46006965a7f7da4461d65a633e138066126704de86e4d7f56d6ec58e75994"
+    },
+    {
+      "source": "A167_decal.mdl",
+      "file": "A167_yachiko_decal.mdl",
+      "edited_vertices": 273,
+      "collar_reweighted_vertices": 9,
+      "before_sha256": "16f553af2ac9efe7dec02fcae50b01b06c331ba084fa1c76d75df4cc8c05234e",
+      "after_sha256": "c55503325ed1a4446baa5ae5f42558359b719b75b3510224ad0d998703dc4593"
+    }
+  ],
+  "default_records": {
+    "side_yachiko": {
+      "before": {
+        "mesh": "A167",
+        "dyed": true,
+        "decal": "A167",
+        "coverCore": true,
+        "clan": "imperial"
+      },
+      "after": {
+        "mesh": "A167_yachiko",
+        "dyed": true,
+        "decal": "A167",
+        "coverCore": true,
+        "clan": "imperial",
+        "palette": "A167"
+      }
+    }
+  }
+}

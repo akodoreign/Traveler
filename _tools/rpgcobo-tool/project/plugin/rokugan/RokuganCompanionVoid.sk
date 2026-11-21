@@ -1,0 +1,159 @@
+//	RokuganCompanionVoid.sk (user 2026-11-21: "start giving the other companions (not travelers) their own animation if
+//	they have a void crit"; "everyone should be somewhat unique"; "use the icons there are a bunch of them now"; Hida
+//	Sachiko: "have her raise her arms then use the already pre rendered earth icon and give everyone the damage
+//	reduction for 2 turns"; "just all the companions, except togashi").
+//
+//	A companion's first Void critical, after its school title, plays that companion's prelude: an in-place native clip
+//	(tools/blender/companion_void.py, hida_rally.py), the companion's own effect, and a flashing ward icon
+//	(tools/companion_void_fx.py) rising over every living ally - the school's party gift (VOID_SHOUT in
+//	RokuganVoidCrit.sk) is what that icon shows. Then the attack lands as usual. Presentation only: damage, the crit
+//	and the gift stay in RokuganVoidCrit.sk. Travelers keep their own Void crits; Togashi Yosai keeps his dragon.
+
+local ROOT = "/resource/native_chara/";
+
+//	companion -> clip (= motion bank <clip>.mot), frames, ally ward, the beat (0..1) where the ward and effects light,
+//	selfFx (on the companion), allyFx (on every ally)
+//	selfScale / selfAt: the companion's own effect's size and beat (default 0.6 at the ward's beat)
+local E = function( clip, frames, ward, at, selfFx = null, allyFx = null, selfScale = 0.6, selfAt = null){
+	//	(a function, not @( ) { }: that form is a function body here, and returned null)
+	return { clip = clip, frames = frames, ward = ward, at = at, selfFx = selfFx, allyFx = allyFx,
+		selfScale = selfScale, selfAt = selfAt == null ? at : selfAt };
+};
+::Rokugan.COMP_VOID <- {
+	P120 = E( "hida_rally", 42, "hida_earth_ward", 0.34, "FX471"),			//	Hida Sachiko: the war cry, Tremor
+	P121 = E( "cv_ryoichi", 40, "cv_ward_air_teal", 0.30, "FX454", null, 0.28),	//	Hiruma Ryoichi: kama twirl, Symbol of Air
+	P123 = E( "cv_goro", 40, "cv_ward_katana_teal", 0.62, "FX447", null, 0.45),	//	Hiruma Goro: scan, flick to guard, Yari of Air
+	P126 = E( "cv_kage", 44, "cv_ward_tetsubo_teal", 0.66, "FX447", null, 0.6, 0.30),	//	Hiruma Kage: club spin, the wind of it
+	P127 = E( "cv_gusai", 44, "cv_ward_katana_gold", 0.58, "hero_lion_courage", null, 0.45),	//	Akodo Gusai: points the line forward
+	P129 = E( "cv_kafu", 40, "cv_ward_unarmed_gold", 0.34, "hero_lion_upswing"),	//	Akodo Kafu: fists up, a roar
+	P130 = E( "cv_hiruto", 46, "cv_ward_katana_gold", 0.62, null, "FX468"),	//	Akodo Hiruto: the lord's sweep, Seven Thunders
+	P138 = E( "cv_rin", 38, "cv_ward_katana_gold", 0.26, "FX466"),			//	Akodo Rin: the blade salute, Force of Will
+	P128 = E( "cv_lionrider", 44, "cv_ward_yari_crimson", 0.24, "hero_lion_upswing"),	//	the Lion rider: yari war cry
+	P141 = E( "cv_hanae", 42, "cv_ward_fire_crimson", 0.44, "FX441"),			//	Matsu Hanae: roaring stance, Everburning Rage
+	P131 = E( "cv_ashimita", 46, "cv_ward_fire_ember", 0.26, "FX465"),		//	Shiba Ashimita: naginata cross-guard, Elemental Ward
+	P134 = E( "cv_ushimo", 44, "cv_ward_jade_ivory", 0.50, "FX473"),			//	Seppun Ushimo: heaven's guard, Protection of Shinsei
+	P133 = E( "cv_hayato", 52, "cv_ward_katana_white", 0.80, "hero_shosuro_trace", null, 0.6, 0.16),	//	Doji Hayato: the trace follows his strokes
+	P136 = E( "cv_rui", 40, "cv_ward_water_sea", 0.44, "FX415", null, 0.45),		//	Yoritomo Rui: the rolling wave, Silent Waters
+	P140 = E( "cv_ryuko", 40, "cv_ward_air_pale", 0.54, "FX428"),				//	Shinjo Ryuko: draw and point, Hurried Steps
+	P124 = E( "cv_michio", 44, "cv_ward_fire_violet", 0.36, "hero_isawa_seal"),	//	Isawa Michio: the rings shaken
+	P135 = E( "cv_sanro", 46, "cv_ward_jade_amber", 0.60, "FX474", null, 0.32),	//	Isawa Sanro: count, ward pressed into earth
+	P137 = E( "cv_kasiko", 42, "cv_ward_air_violet", 0.52, "hero_isawa_rising", null, 0.5),	//	Isawa Kasiko: palms lift, the Isawa rising
+	P139 = E( "cv_haku", 48, "cv_ward_fire_orange", 0.70, "FX429", null, 0.45),	//	Tamori Haku: kneel, the palm rises, Aura of Flame
+};
+//	Each companion's own Void shout and gift (user 2026-11-21: "Change the names of the shouts for the ones that just
+//	copy from the Traveler, all names effects should be unique"): [shout, condition (gen_data K137-K154), special].
+//	RokuganVoidCrit.sk's title and voidShout read this before the school table (shoutFor).
+::Rokugan.VOID_SHOUT_PC <- {
+	P120 = ["The Mountain DOES NOT FALL!!!", "K126"],			//	Hida Sachiko (the user's Hida shout)
+	P121 = ["The Scout Is Never Seen!", "K137"],				//	Hiruma Ryoichi
+	P123 = ["Patience of the Hunter!", "K138"],					//	Hiruma Goro
+	P126 = ["Into the Shadowlands, and Back!", "K139"],			//	Hiruma Kage
+	P127 = ["The Line Advances!", "K140"],						//	Akodo Gusai
+	P129 = ["Hear the Lion Roar!", "K141"],						//	Akodo Kafu
+	P130 = ["Victory Before the Battle!", "K142"],				//	Akodo Hiruto
+	P138 = ["My Blade Is My Honor!", "K143"],					//	Akodo Rin
+	P128 = ["Ride Them Down!", "K144"],							//	the Lion rider (Matsu)
+	P141 = ["The Matsu Never Retreat!", "K145"],					//	Matsu Hanae
+	P131 = ["A Single Life!", "K146"],							//	Shiba Ashimita
+	P134 = ["Heaven Never Falls!", "K147"],						//	Seppun Ushimo
+	P133 = ["Eternal Justice!", "K148"],							//	Doji Hayato
+	P136 = ["Hand of Osano-Wo!", "K149"],						//	Yoritomo Rui
+	P140 = ["Dancing with the Fortunes!", "K150"],				//	Shinjo Ryuko
+	P124 = ["Amaterasu's Fire!", "K151", "vp"],					//	Isawa Michio
+	P135 = ["Feed the Ward-Fire!", "K152", "vp"],				//	Isawa Sanro
+	P137 = ["Tempest, Answer Me!", "K153", "vp"],				//	Isawa Kasiko
+	P139 = ["Ember of the Mountain!", "K154", "vp"],				//	Tamori Haku
+};
+::Rokugan.shoutFor <- function( pc){
+	local own = (pc instanceof ::RPGPlayer) ? this.VOID_SHOUT_PC[pc.dataid] : null;
+	return own || this.VOID_SHOUT[pc.data["rt_school_key"] || ""] || ["The Void strikes!", "K128"];
+};
+
+::Rokugan.COMP_VOID_BANKS <- {};
+foreach( pid, v in ::Rokugan.COMP_VOID) ::Rokugan.COMP_VOID_BANKS[v.clip] <- ROOT .. v.clip .. ".mot";
+
+//	(the native picture asks for a clip's motion by id: RokuganNativeChara routes these ids here)
+::Rokugan.compVoidMotion <- function( clip){
+	local path = this.COMP_VOID_BANKS[clip];
+	return path && ::getResource( path) ? ::getMotionData( ::getResource( path)) : null;
+};
+
+::Rokugan._rt_add_ssc_cv <- ::Rokugan.addSchoolSpecialClips;
+::Rokugan.addSchoolSpecialClips <- function( actor){
+	this._rt_add_ssc_cv( actor);
+	//	(the actor's player is not bound yet when its clips are registered: every prelude is listed, and only
+	//	compVoidPrelude - keyed by the striker's player id - ever plays one)
+	foreach( pid, v in this.COMP_VOID)
+		if( ::getResource( ROOT .. v.clip .. ".mot"))
+			actor.animemap[v.clip] <- { st=0, en=v.frames, spd=30.0, loop=false, replay=true };
+};
+
+local fxAt = function( stage, name, pos, scale = 0.6){
+	local path = "/resource/efx/rt/" .. name .. ".ptd";
+	if( !::getResource( path)) return null;
+	local fx = SK3DEffect( path);
+	fx.efx = #{ efx = path };
+	fx.pos( pos);
+	fx.scale( scale);
+	stage.scn.addObject( fx);
+	fx.startParticle();
+	return fx;
+};
+
+local iconOver = function( stage, battle, actor, ward, delay){
+	local path = "/resource/efx/rt/" .. ward .. ".ptd";
+	if( !::getResource( path)) return;
+	local effect = null, start = skGetTime();
+	try{
+		while( ::rpgstage == stage && stage.battle == battle && actor.rpgobj && !actor.rpgobj.isDead()){
+			local elapsed = skGetTime() - start - delay;
+			if( elapsed >= 1250.0) break;
+			if( elapsed >= 0.0 && !effect) effect = fxAt( stage, ward, actor.pos, 0.7);
+			if( effect){
+				local t = Math.clamp( elapsed / 1150.0, 0.0, 1.0), rise = 1.0 - (1.0 - t) * (1.0 - t);
+				effect.pos( Vector3D( actor.pos).add( 0, actor.bnd.y + actor.bnd.s * 0.55 + 0.7 * rise, 0));
+				effect.scale( 0.7 + 0.18 * rise);
+				effect.matdirty = true;
+			}
+			sleep( 16);
+		}
+	}catch( ex){}				//	a presentation fault never interrupts the battle
+	if( effect) effect.kill();
+};
+
+//	Called by RokuganVoidCrit.sk's attackAction after the school title: true when a prelude played.
+::Rokugan.compVoidPrelude <- function( dmg, battle, rp){
+	local v = (dmg.src instanceof ::RPGPlayer) ? this.COMP_VOID[dmg.src.dataid] : null;
+	if( !v || !battle || !rp || !rp["nativeBody"] || !rp["animemap"] || !rp.animemap[v.clip]) return false;
+	local stage = ::rpgstage, layer = rp.anime2( #{ id = v.clip });
+	if( !layer) return false;
+	layer.locked = 1;
+	local ms = v.frames * 1000.0 / 30.0, start = skGetTime(), lit = false, own = null;
+	printf( "[RT] COMP VOID prelude %S %S\n", dmg.src.name, v.clip);
+	try{
+		while( ::rpgstage == stage && stage.battle == battle && skGetTime() - start < ms){
+			if( v.selfFx && !own && skGetTime() - start >= ms * v.selfAt)
+				own = fxAt( stage, v.selfFx, Vector3D( rp.pos).add( 0, rp.bnd.y + rp.bnd.s * 0.35, 0), v.selfScale) || true;
+			if( !lit && skGetTime() - start >= ms * v.at){
+				lit = true;
+				local k = 0;
+				foreach( m in battle.members){
+					if( !m || m.isDead()) continue;
+					local a = battle.getChara3D( m);
+					if( !a) continue;
+					local d = k * 90.0;
+					stage.subthread( @() iconOver( stage, battle, a, v.ward, d));
+					if( v.allyFx) fxAt( stage, v.allyFx, Vector3D( a.pos).add( 0, a.bnd.y + a.bnd.s * 0.3, 0), 0.5);
+					k++;
+				}
+			}
+			sleep( 16);
+		}
+	}catch( ex){}
+	layer.locked = 0;
+	layer.animating = false;
+	if( ::rpgstage == stage && stage.battle == battle && rp.nativeBody) rp.anime2( #{ id = "stand"});
+	return true;
+};
+
+printf( "Rokugan companion Void loaded\n");

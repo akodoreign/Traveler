@@ -1,0 +1,120 @@
+{
+  "key": "side_smithboy_portrait_face",
+  "source": "side_smithboy_repaired_atlas.glb",
+  "scale": 10.8,
+  "features": {
+    "eyes": [
+      [
+        195,
+        267,
+        0.04
+      ],
+      [
+        289,
+        267,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        194,
+        248
+      ],
+      [
+        289,
+        248
+      ]
+    ],
+    "mouth": [
+      242,
+      335
+    ]
+  },
+  "socket_sample_levels": [
+    -0.975,
+    -0.966,
+    -0.957,
+    -0.948,
+    -0.939,
+    -0.9299999999999999,
+    -0.9209999999999999,
+    -0.9119999999999999,
+    -0.9029999999999999,
+    -0.8939999999999999,
+    -0.8849999999999999,
+    -0.8759999999999999,
+    -0.8669999999999999,
+    -0.8579999999999999,
+    -0.8489999999999999,
+    -0.8399999999999999,
+    -0.8309999999999998,
+    -0.8219999999999998,
+    -0.8129999999999998,
+    -0.8039999999999998,
+    -0.7949999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.04,
+    -0.012
+  ],
+  "skin_match": [
+    233,
+    173,
+    130
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 10.8,
+  "fit_matrix_blender": [
+    [
+      10.799945666421538,
+      -0.009589778348802242,
+      -0.03288827290259498,
+      1.1273330819989995
+    ],
+    [
+      0.009648940708603344,
+      10.799978232538072,
+      0.01941841006371793,
+      0.1470286041479476
+    ],
+    [
+      0.032870964185683804,
+      -0.01944769542700845,
+      10.799932466773011,
+      108.1812060176065
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 18557,
+    "lower_overlap_blended_vertices": 147,
+    "minimum_seam_head_weight": 0.30423555156169946,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      404,
+      669
+    ],
+    [
+      603,
+      673
+    ]
+  ],
+  "skin_sample_view": "Exact unshaded diffuse cheeks and and lower face corroborate the original young tan complexion, with highlights controlled independently of the body match.",
+  "raw_skin_srgb": [
+    234,
+    173,
+    128
+  ],
+  "proof_pose_family": "fist"
+}

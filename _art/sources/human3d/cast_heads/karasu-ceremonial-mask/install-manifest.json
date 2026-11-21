@@ -1,0 +1,32 @@
+{
+  "actor": "side_karasu",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_karasu_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_karasu_portrait_ceremonial_mask.pm",
+      "to": "side_karasu_portrait_ceremonial_mask.pm",
+      "sha256": "7095ad63140fbe65193b0405de08701deea4bc2671677801284a550076f6c077"
+    },
+    {
+      "from": "assets/side_karasu_portrait_ceremonial_mask.mdl",
+      "to": "side_karasu_portrait_ceremonial_mask.mdl",
+      "sha256": "06e2a41196f2857b89e00d571c6df354de8abe047f7cf1a34864f37b5a6eebc6"
+    },
+    {
+      "from": "assets/tex/side_karasu_portrait_ceremonial_mask_color_srgb.png",
+      "to": "tex/side_karasu_portrait_ceremonial_mask_color_srgb.png",
+      "sha256": "f97253b2e9db2343afb43fec8e969d43739e526f1af011c1c5af6f7827844f76"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_karasu_portrait_ceremonial_mask"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_karasu\\painted-final\\assets\\side_karasu_portrait_face.glb",
+    "sha256": "a60b962d944a15dc84be4f697f85dd6c8be4dc209c2923332a5812cffbb38363"
+  }
+}

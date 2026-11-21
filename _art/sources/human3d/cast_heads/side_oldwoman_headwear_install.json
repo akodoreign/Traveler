@@ -1,0 +1,37 @@
+{
+  "actor": "side_oldwoman",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_oldwoman_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_oldwoman_headcloth.pm",
+      "to": "side_oldwoman_headcloth.pm",
+      "sha256": "313c1f97b868d8a4b1da3c1395e751c1b38b82348eba12cc59020997b35cd9f2"
+    },
+    {
+      "from": "assets/side_oldwoman_headcloth.mdl",
+      "to": "side_oldwoman_headcloth.mdl",
+      "sha256": "6f62e1e3c8f28b02b15a879fecc8981b068be147cd293b2b2146d4fd84528132"
+    },
+    {
+      "from": "assets/tex/side_oldwoman_headcloth_linen.png",
+      "to": "tex/side_oldwoman_headcloth_linen.png",
+      "sha256": "c2986558921d1f7d1f8ac9885af7f942852c19a7c1d55a7b0d13243b1ea3a0da"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_oldwoman_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_oldwoman\\painted-final\\assets\\side_oldwoman_portrait_face.glb",
+    "sha256": "295b159a93ce39298a636dd84ec8b2e7e6a35a92666fa00a08317c52667f9531"
+  }
+}

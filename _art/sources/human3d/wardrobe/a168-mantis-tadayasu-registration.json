@@ -1,0 +1,40 @@
+{
+  "piece": "A168_mantis_tadayasu",
+  "assets": [
+    {
+      "source": "A168_mantis_ferryarcher.mdl",
+      "file": "A168_mantis_tadayasu.mdl",
+      "edited_vertices": 79,
+      "collar_reweighted_vertices": 0,
+      "before_sha256": "6cb01b5fee46f0526cd4e24b19b29241b231f3b2ca454718ecc08390c05f0f8f",
+      "after_sha256": "ab17bc251a146c456db992d615c5637fc9dce3e7ace9a2978ce2cef1b56f0402"
+    },
+    {
+      "source": "A168_mantis_ferryarcher_decal.mdl",
+      "file": "A168_mantis_tadayasu_decal.mdl",
+      "edited_vertices": 0,
+      "collar_reweighted_vertices": 0,
+      "before_sha256": "5dcd38ea95a3ffd67a0a31a512ac0c908411dd9994b4a6b80a2664fe45d50f81",
+      "after_sha256": "5dcd38ea95a3ffd67a0a31a512ac0c908411dd9994b4a6b80a2664fe45d50f81"
+    }
+  ],
+  "default_records": {
+    "side_tadayasu": {
+      "before": {
+        "mesh": "A168",
+        "dyed": true,
+        "decal": "A168",
+        "coverCore": true,
+        "clan": "mantis"
+      },
+      "after": {
+        "mesh": "A168_mantis_tadayasu",
+        "dyed": true,
+        "decal": "A168",
+        "coverCore": true,
+        "clan": "mantis",
+        "palette": "A168"
+      }
+    }
+  }
+}

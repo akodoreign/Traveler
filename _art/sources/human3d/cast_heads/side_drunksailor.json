@@ -1,0 +1,115 @@
+{
+  "key": "side_drunksailor_portrait_face",
+  "source": "side_drunksailor_repaired_atlas.glb",
+  "scale": 9.8,
+  "features": {
+    "eyes": [
+      [
+        200,
+        247,
+        0.04
+      ],
+      [
+        278,
+        247,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        199,
+        233
+      ],
+      [
+        280,
+        233
+      ]
+    ],
+    "mouth": [
+      236,
+      324
+    ]
+  },
+  "socket_sample_levels": [
+    -0.951,
+    -0.943,
+    -0.9349999999999999,
+    -0.9269999999999999,
+    -0.9189999999999999,
+    -0.9109999999999999,
+    -0.9029999999999999,
+    -0.8949999999999999,
+    -0.8869999999999999,
+    -0.8789999999999999,
+    -0.8709999999999999,
+    -0.8629999999999999,
+    -0.8549999999999999,
+    -0.8469999999999999,
+    -0.8389999999999999,
+    -0.8309999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.0,
+    -0.015
+  ],
+  "skin_match": [
+    240,
+    181,
+    139
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 9.8,
+  "fit_matrix_blender": [
+    [
+      9.795203195764524,
+      -0.3063200608199114,
+      0.012742606652770293,
+      0.8975638168777137
+    ],
+    [
+      0.30644337854555626,
+      9.794597074631469,
+      -0.10936453432529693,
+      0.060484528112777686
+    ],
+    [
+      -0.009317157861055072,
+      0.10970946158781561,
+      9.79938146132749,
+      107.98964772034367
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.045,
+  "seam_weights": {
+    "vertex_count": 24584,
+    "lower_overlap_blended_vertices": 136,
+    "minimum_seam_head_weight": 0.4916227107757142,
+    "upper_face_head_weight": 1.0
+  },
+  "proof_pose_family": "fist",
+  "skin_sample_patches": [
+    [
+      193,
+      307
+    ],
+    [
+      278,
+      312
+    ]
+  ],
+  "skin_sample_view": "Two bilateral diffuse cheek patches match exactly and preserve the original beard and brow shade. The darker low stem is used as a blend cross-check.",
+  "raw_skin_srgb": [
+    240,
+    181,
+    139
+  ]
+}

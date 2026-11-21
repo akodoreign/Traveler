@@ -1,0 +1,44 @@
+// Executed only by tools/test_status_icons.py (bot evalf): the new status icons (usericon atlas, gen_status_icons.py)
+// on the party rows and in the pop-ups, and the hover tooltip (RokuganBattleUI.sk UI.tickStatus). Puts a spread of
+// conditions on each member, screenshots, then parks the pointer over icons (the test sets the mouse position itself).
+local b = ::rpgstage["battle"];
+printf( "[RT] ICON TEST usericon %S\n", ::getResource( "/resource/icon/usericon.json") ? "found" : "MISSING");
+local sets = [
+	["K020", "K022", "K053", "K126", "K076"],		//	ATK up, DEF up, falcon eye, Void gift mountain, kata crit
+	["K021", "K023", "K051", "K055", "K029"],		//	debuffs: ATK down, DEF down, slowed, bleeding, prone
+	["K157", "K159", "K161", "K121", "K075"],		//	Stillness, Jizo, Emperor's armour, tiger tattoo, counter kata
+	["K162", "K163", "K166", "K167", "K026"],		//	rooted, stagnation, buffeted, dazzled, taint
+];
+local i = 0;
+foreach( m in b.members){
+	if( !m) continue;
+	foreach( k in sets[i % length( sets)]) m.putCondition( k);
+	i++;
+}
+foreach( e in b.enemies) if( e){ e.putCondition( "K028"); e.putCondition( "K168"); }
+foreach( m in [ ...b.members, ...b.enemies]) if( m) foreach( c in m.conds) printf( "[RT] ICON TEST line %S: %S\n", m.name, ::Rokugan.statusLine( c));
+local hover = function( row, k){				//	the pointer onto icon k of party row `row` (UI row coordinates)
+	local r = ::Rokugan.ui.rows[row], v = r.icons[k];
+	local ms = ::rootview.mouses[0];
+	ms.mousex = 0.0; ms.mousey = 0.0;		//	two probes give the screen -> row mapping (scale and offset)
+	local t = ::getMousePos( 0, r.row), a = { x = t.x, y = t.y };	//	(a shared temporary: copy it out)
+	ms.mousex = 100.0; ms.mousey = 100.0;
+	t = ::getMousePos( 0, r.row);
+	local c = { x = t.x, y = t.y };
+	local sx = (c.x - a.x) / 100.0, sy = (c.y - a.y) / 100.0;
+	ms.mousex = (v.x + 11.0 - a.x) / sx;
+	ms.mousey = (20.0 - a.y) / sy;
+	printf( "[RT] ICON TEST hover row %d icon %d %S at %d,%d\n", row, k, v.cond.data.name, ms.mousex, ms.mousey);
+};
+newthread().start( @(){
+	sleep( 1800);
+	::Rokugan.rtshot( "tmp/rt_shot/bot_icons_rows.raw");
+	foreach( m in b.members) if( m){ b.getChara3D( m).popupCondition( "K164", "put"); break; }
+	sleep( 250);
+	::Rokugan.rtshot( "tmp/rt_shot/bot_icons_pop.raw");
+	try{
+		hover( 0, 3); sleep( 300); ::Rokugan.rtshot( "tmp/rt_shot/bot_icons_hover1.raw");
+		hover( 2, 4); sleep( 300); ::Rokugan.rtshot( "tmp/rt_shot/bot_icons_hover2.raw");
+	}catch( ex){ printf( "[RT] ICON TEST hover failed: %S\n", "" .. ex); }
+	printf( "[RT] ICON TEST COMPLETE\n");
+});

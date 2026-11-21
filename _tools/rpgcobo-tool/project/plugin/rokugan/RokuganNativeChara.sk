@@ -316,11 +316,25 @@ class RokuganNativePicture extends RPG3DPicture
 			}
 			nativeFace = addNativePart( face);
 		}
-		if( person && !wear && person["headband"] && ClientConfig.showHeadwear())
+		local fittedHeadband = false;
+		if( person && person["portraitAccessories"] && person.face == key .. "_portrait_face"){
+			foreach( accessory in person.portraitAccessories){
+				if( accessory["headwear"] && (!ClientConfig.showHeadwear() || nativeHead)) continue;
+				local ornament = addNativePart( HUMAN .. accessory.mesh);
+				nativeOrnaments .. ornament;
+				if( ornament && accessory["replacesHeadband"]) fittedHeadband = true;
+			}
+		}
+		if( person && !wear && person["headband"] && !fittedHeadband && ClientConfig.showHeadwear())
 			nativeHeadband = addNativePart( HUMAN .. person.headband);
 		local generatedMask = key == "trav_mitsue" && wear && wear.costume == "shinobi" && tailored( "costumeAccessories", "shinobi_mask");
-		if( !generatedMask && !nativeMask && spec["mask"] && (!wear || (wear.costume == "shinobi" && wear.shinobiHead && ClientConfig.showHeadwear()) || (!wear.costume && !wear.starterMask && key != "trav_mitsue")))
-			nativeMask = addNativePart( (shinobi ? ornamentRoot : ROOT) .. key .. "_mask");
+		local portraitWithoutFallbackMask = person && person.face == key .. "_portrait_face" &&
+			(key == "side_osuko" || key == "side_onaka" || key == "side_shinobu" || key == "side_bantaro");
+		if( !generatedMask && !portraitWithoutFallbackMask && !nativeMask && spec["mask"] && (!wear || (wear.costume == "shinobi" && wear.shinobiHead && ClientConfig.showHeadwear()) || (!wear.costume && !wear.starterMask && key != "trav_mitsue"))){
+			local fittedMask = person && person.face == key .. "_portrait_face" ? person["portraitMask"] : null;
+			if( fittedMask) nativeMask = addNativePart( HUMAN .. fittedMask);
+			if( !nativeMask) nativeMask = addNativePart( (shinobi ? ornamentRoot : ROOT) .. key .. "_mask");
+		}
 		if( key == "trav_mitsue" && wear && wear.costume){
 			local costumeExtra = tailored( "costumeAccessories", wear.costume);
 			if( costumeExtra) nativeOrnaments .. addNativePart( TAILOR .. costumeExtra.mesh);
@@ -330,7 +344,8 @@ class RokuganNativePicture extends RPG3DPicture
 			}
 		}
 		foreach( role in personal){
-			if( role == "ink" || (role == "sash" && nativeOutfit && !nativeTailoring))
+			if( role == "ink" || (role == "sash" && nativeOutfit && !nativeTailoring) ||
+				(role == "flower_comb" && ClientConfig.showHeadwear()))
 				nativeOrnaments .. addNativePart( ornamentRoot .. key .. "_" .. role);
 		}
 		if( key == "trav_rensei" && (kind == "katana" || kind == "kakita") && ::getResource( kakitaVoidPath)){
@@ -418,6 +433,8 @@ class RokuganNativePicture extends RPG3DPicture
 			motion = ::Rokugan.idePerformanceMotion( request.id );
 		}else if( request.id == "void_critical_yari"){
 			motion = ::Rokugan.schoolSpecialMotion( request.id);
+		}else if( ("COMP_VOID_BANKS" in ::Rokugan) && (request.id in ::Rokugan.COMP_VOID_BANKS)){
+			motion = ::Rokugan.compVoidMotion( request.id);			//	companion Void preludes (RokuganCompanionVoid.sk)
 		}else if( request.id == "void_critical_kakita"){
 			motion = ::getMotionData( ::getResource( kakitaVoidPath));
 		}else if( request.id == "_battle_fidget"){
@@ -604,6 +621,7 @@ class RokuganNativeFoe extends RokuganNativePicture
 			if( person["weapon"]) nativeWeapon = addNativePart( HUMAN .. person.weapon);
 		}
 		foreach( role in (ornaments[key] || [])){
+			if( role == "flower_comb" && !ClientConfig.showHeadwear()) continue;
 			local part = celNative( SK3DObject( ornamentRoot .. key .. "_" .. role .. ".pm"));
 			nativeBody.assignBonesToPolygonMesh( part.mesh);
 			nativeBody.addChild( part);

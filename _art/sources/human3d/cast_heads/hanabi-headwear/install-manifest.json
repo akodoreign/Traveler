@@ -1,0 +1,41 @@
+{
+  "actor": "side_h_hanabi",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_h_hanabi_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_h_hanabi_headcloth.pm",
+      "to": "side_h_hanabi_headcloth.pm",
+      "sha256": "0d0ef6c0c4f275991449ce998634569f6fc3e38a5dd409e81b5e5a5bdb4fc5f5"
+    },
+    {
+      "from": "assets/side_h_hanabi_headcloth.mdl",
+      "to": "side_h_hanabi_headcloth.mdl",
+      "sha256": "8dc28f8c9b4f4bee9ae5314536780aac2f483379b25ac34919e7bb412a113968"
+    },
+    {
+      "from": "assets/tex/side_h_hanabi_headcloth_weave.png",
+      "to": "tex/side_h_hanabi_headcloth_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_h_hanabi_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\fits\\side_h_hanabi\\rigid-geometry\\assets\\side_h_hanabi_portrait_face.glb",
+    "sha256": "6dd894430d608193cd9ed914df65c20466a204f2fecd5baf448db0a3f7b8d2a9"
+  },
+  "final_fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\release\\side_h_hanabi\\assets\\side_h_hanabi_portrait_face.glb",
+    "sha256": "796b15c2d08b8c1df4f4108025b924da670da7bab7ceb8d2191a3951cdcb3ead"
+  }
+}

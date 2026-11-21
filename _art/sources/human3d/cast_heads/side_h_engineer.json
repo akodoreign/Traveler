@@ -1,0 +1,121 @@
+{
+  "key": "side_h_engineer_portrait_face",
+  "source": "side_h_engineer_repaired_atlas.glb",
+  "scale": 11.1,
+  "features": {
+    "eyes": [
+      [
+        197,
+        277,
+        0.04
+      ],
+      [
+        279,
+        277,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        196,
+        257
+      ],
+      [
+        279,
+        253
+      ]
+    ],
+    "mouth": [
+      238,
+      351
+    ]
+  },
+  "socket_sample_levels": [
+    -0.98,
+    -0.972,
+    -0.964,
+    -0.956,
+    -0.948,
+    -0.94,
+    -0.9319999999999999,
+    -0.9239999999999999,
+    -0.9159999999999999,
+    -0.9079999999999999,
+    -0.8999999999999999,
+    -0.8919999999999999,
+    -0.8839999999999999,
+    -0.8759999999999999,
+    -0.8679999999999999,
+    -0.8599999999999999,
+    -0.8519999999999999,
+    -0.8439999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.085,
+    -0.012
+  ],
+  "skin_match": [
+    244,
+    191,
+    149
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.1,
+  "fit_matrix_blender": [
+    [
+      11.092536717033402,
+      -0.3577673815747731,
+      0.1939888706798991,
+      1.8536478606370212
+    ],
+    [
+      0.35854101795488674,
+      11.094131010444928,
+      -0.04129723393234059,
+      0.13252474982151152
+    ],
+    [
+      -0.19255523807574795,
+      0.047535500078548926,
+      11.098227915145895,
+      109.08959346332979
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 26156,
+    "lower_overlap_blended_vertices": 77,
+    "minimum_seam_head_weight": 0.43186746554909305,
+    "upper_face_head_weight": 1.0
+  },
+  "proof_pose_family": "club",
+  "skin_sample_patches": [
+    [
+      394,
+      606
+    ],
+    [
+      428,
+      638
+    ],
+    [
+      590,
+      635
+    ]
+  ],
+  "skin_sample_view": "Diffuse canonical cheeks compared with raw unlit generated front, away from beard and eye shine.",
+  "raw_skin_srgb": [
+    246,
+    193,
+    150
+  ]
+}

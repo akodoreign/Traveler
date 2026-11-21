@@ -1,0 +1,118 @@
+{
+  "key": "side_nishi_portrait_face",
+  "source": "side_nishi_repaired_atlas.glb",
+  "scale": 14.4,
+  "features": {
+    "eyes": [
+      [
+        204,
+        289,
+        0.04
+      ],
+      [
+        273,
+        289,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        203,
+        277
+      ],
+      [
+        273,
+        277
+      ]
+    ],
+    "mouth": [
+      241,
+      345
+    ]
+  },
+  "socket_sample_levels": [
+    -0.786,
+    -0.778,
+    -0.77,
+    -0.762,
+    -0.754,
+    -0.746,
+    -0.738,
+    -0.73,
+    -0.722,
+    -0.714,
+    -0.706,
+    -0.698,
+    -0.69,
+    -0.6819999999999999,
+    -0.6739999999999999,
+    -0.6659999999999999,
+    -0.6579999999999999,
+    -0.6499999999999999,
+    -0.6419999999999999,
+    -0.6339999999999999,
+    -0.6259999999999999,
+    -0.6179999999999999,
+    -0.6099999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.05,
+    -0.008
+  ],
+  "skin_match": [
+    242,
+    194,
+    165
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 14.4,
+  "fit_matrix_blender": [
+    [
+      14.354262673333865,
+      1.1466359779248991,
+      0.019210389467032435,
+      -0.22655144573363933
+    ],
+    [
+      -1.1467797906755015,
+      14.353351813926896,
+      0.161826503836572,
+      0.256713405840089
+    ],
+    [
+      -0.006262318543198434,
+      -0.16284237708258403,
+      14.399077857404466,
+      110.67865332058402
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.32,
+  "seam_weights": {
+    "vertex_count": 19400,
+    "lower_overlap_blended_vertices": 76,
+    "minimum_seam_head_weight": 0.712568282271091,
+    "upper_face_head_weight": 1.0
+  },
+  "proof_pose_family": "short",
+  "skin_sample_patches": [
+    [
+      586,
+      675
+    ]
+  ],
+  "skin_sample_view": "The exact painted donor's diffuse left and right cheek and lower neck were matched to the clean original right cheek, excluding cosmetics and specular marks.",
+  "raw_skin_srgb": [
+    243,
+    194,
+    167
+  ]
+}

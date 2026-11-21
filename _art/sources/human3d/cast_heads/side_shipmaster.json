@@ -1,0 +1,116 @@
+{
+  "key": "side_shipmaster_portrait_face",
+  "source": "side_shipmaster_repaired_atlas.glb",
+  "scale": 12.2,
+  "features": {
+    "eyes": [
+      [
+        195,
+        267,
+        0.04
+      ],
+      [
+        284,
+        267,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        192,
+        248
+      ],
+      [
+        287,
+        248
+      ]
+    ],
+    "mouth": [
+      239,
+      342
+    ]
+  },
+  "socket_sample_levels": [
+    -0.978,
+    -0.97,
+    -0.962,
+    -0.954,
+    -0.946,
+    -0.938,
+    -0.9299999999999999,
+    -0.9219999999999999,
+    -0.9139999999999999,
+    -0.9059999999999999,
+    -0.8979999999999999,
+    -0.8899999999999999,
+    -0.8819999999999999,
+    -0.8739999999999999,
+    -0.8659999999999999,
+    -0.8579999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.025,
+    -0.004
+  ],
+  "skin_match": [
+    248,
+    200,
+    168
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.2,
+  "fit_matrix_blender": [
+    [
+      12.19942479718442,
+      -0.0819236530991222,
+      -0.08557530546599165,
+      1.0261413256157768
+    ],
+    [
+      0.08322494514046413,
+      12.198289032492584,
+      0.18659659236025125,
+      0.23163262705342044
+    ],
+    [
+      0.08431029800131222,
+      -0.18717156524692907,
+      12.198272770307115,
+      110.17061645063343
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 20409,
+    "lower_overlap_blended_vertices": 125,
+    "minimum_seam_head_weight": 0.38805012462855115,
+    "upper_face_head_weight": 1.0
+  },
+  "proof_pose_family": "fist",
+  "skin_sample_patches": [
+    [
+      437,
+      675
+    ],
+    [
+      617,
+      654
+    ]
+  ],
+  "skin_sample_view": "Diffuse mature skin away from the silver beard, checked against both original cheeks.",
+  "raw_skin_srgb": [
+    249,
+    203,
+    174
+  ],
+  "review_wardrobe_mesh": "A124_sono_kagemaro"
+}

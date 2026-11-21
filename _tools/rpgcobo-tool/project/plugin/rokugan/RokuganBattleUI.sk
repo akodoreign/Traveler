@@ -129,7 +129,7 @@ UI.tickEnemies <- function( b){
 //	--- party rows (row-local coordinates at the panel's own scale)
 local BAR_H = 8, HP_X = 330, MP_X = 456, TP_X = 570, HP_W = 116, MP_W = 104, TP_W = 96;
 UI.styleRows <- function( b){
-	foreach( r in UI.rows) foreach( v in r.own) v.removeFromParent();
+	foreach( r in UI.rows){ foreach( v in r.own) v.removeFromParent(); foreach( v in r.icons) v.lbl.removeFromParent(); }
 	UI.rows = [];
 	local list = b.battleui.findChild( "memberlist");
 	foreach( i, m in b.members){
@@ -144,6 +144,7 @@ UI.styleRows <- function( b){
 		place( "tp", TP_X + TP_W - 44, 5);
 		place( "name", 19, 3);
 		place( "conds", 214, 11);
+		row.findChild( "conds").setVisible( false);		//	drawn per icon instead (UI.tickIcons), so each can be hovered
 		local own = [];
 		local clan = m.data["rt_clan"];
 		if( clan && (clan in CLAN_COL)){
@@ -180,7 +181,7 @@ UI.styleRows <- function( b){
 			own.append( iv);
 			gems.append( iv);
 		}
-		UI.rows.append( { m = m, row = row, hp = hp, mp = mp, tp = tp, gems = gems, own = own, bp = -1 });
+		UI.rows.append( { m = m, row = row, hp = hp, mp = mp, tp = tp, gems = gems, own = own, bp = -1, icons = [], csig = null });
 	}
 };
 
@@ -284,6 +285,147 @@ UI.tint <- function( v){
 	if( ch) foreach( c in ch) UI.tint( c);
 };
 
+//	--- status tooltip (user 2026-11-21: "better status effect icons ... then if you have time tool tips for them").
+//	A panel over the party box lists the effects on whoever the player is looking at: the highlighted target while
+//	choosing one, else the character choosing a command. One line each: icon, name, turns left, what it does (read
+//	from the condition's own options, so it never disagrees with the numbers; story effects use their description).
+local STATN = { PATK = "ATK", PDEF = "DEF", MATK = "E.ATK", MDEF = "E.DEF", AGI = "Speed", PEVA = "Evasion",
+	PHIT = "Accuracy", CRI = "Criticals", CEVA = "Crit guard", TGR = "Drawn attacks", MAXHP = "Max HP" };
+local RATEP = { PATK = true, PDEF = true, MATK = true, MDEF = true, AGI = true, MAXHP = true };
+local ST_X = 676, ST_W = 590, ST_LINE = 22, ST_MAX = 6, ST_CHARS = 74;
+UI.st <- null;
+UI.signed <- function( v){ v = int( v); return (v > 0 ? "+" : "") .. v; };
+UI.turnsLeft <- function( c){
+	local d = c.data, t = d.rem_turn;
+	if( d["rt_skip"]) return "next action";
+	if( !t[0] && !t[1]) return d.rem_battle ? "this battle" : "until cured";
+	if( t[1] >= 99) return "whole battle";
+	local hi = t[1] - c.turn, lo = t[0] - c.turn;
+	if( hi <= 1) return "last turn";
+	if( lo >= 1 && lo < hi) return lo .. "-" .. hi .. " turns";
+	return hi .. " turns";
+};
+UI.effectText <- function( c){
+	local d = c.data, sums = {}, order = [], parts = [];
+	foreach( o in d.option){
+		if( !o || (o["LV"] && c.LV < int( o["LV"]))) continue;
+		local ot = o["opttype"];
+		if( ot == "opt_status" && (o["propid"] in STATN)){
+			if( !(o.propid in sums)){ sums[o.propid] <- 0.0; order.append( o.propid); }
+			sums[o.propid] += o["val"] || 0;
+		}else if( ot == "opt_counter") parts.append( "counters " .. int( (o["rate"] || 0) * 100 + 0.5) .. "% of attacks");
+		else if( ot == "opt_conddef") parts.append( "fear, charm and confusion can't take hold");
+		else if( ot == "opt_turndmg") parts.append( (o["dmgtype"] == 2 ? "heals " : "loses ") .. int( o["dmgval"] || 0) .. "% HP each turn");
+		else if( ot == "opt_reflect") parts.append( "spells bounce back");
+		else if( ot == "opt_dyingskill" || ot == "opt_autocond") parts.append( "survives a lethal hit");
+		else if( ot == "opt_elemdef" && o["EDR.6"]) parts.append( "Fire damage " .. UI.signed( -o["EDR.6"]) .. "%");
+	}
+	local stats = [];
+	foreach( p in order) if( sums[p]) stats.append( STATN[p] .. " " .. UI.signed( sums[p]) .. (p in RATEP ? "%" : ""));
+	if( d["rt_dmgtaken"]) stats.append( "damage taken " .. UI.signed( -(1.0 - d.rt_dmgtaken) * 100 - 0.5) .. "%");
+	if( d["rt_fearless"]) parts.append( "immune to Terror");
+	if( d["rt_skip"]) parts.append( "loses its next action");
+	else if( d["uncommandable"]) parts.append( "can't act");
+	local s = "";
+	foreach( i, x in [ ...stats, ...parts]) s += (i ? ", " : "") .. x;
+	if( s == "") s = d["desc"] || "";		//	story effects with no numbers: their own words
+	return s;
+};
+UI.statusLine <- function( c){
+	local s = c.data.name .. "  (" .. UI.turnsLeft( c) .. ")", e = UI.effectText( c);
+	if( e != "") s += "  " .. e;
+	if( length( s) > ST_CHARS) s = s.substring( 0, ST_CHARS - 3) .. "...";
+	return c.data.icon .. " " .. s;
+};
+//	Each party row's effect icons are our own labels (the stock "conds" label is one string: no per-icon box to hover),
+//	at the stock spot; hovering one shows that effect alone, just above it.
+local IC_X = 214, IC_Y = 9, IC_STEP = 23, IC_SIZE = 19, IC_MAX = 12;
+UI.tickIcons <- function( r){
+	local m = r.m, sig = "", list = [];
+	foreach( c in m.conds) if( c && c.data["showstat"] && c.data["icon"] && c.data.icon != ""){
+		list.append( c);
+		sig += c.dataid .. ":" .. c.LV .. "|";
+	}
+	if( sig == r.csig) return;
+	r.csig = sig;
+	foreach( v in r.icons) v.lbl.removeFromParent();
+	r.icons = [];
+	foreach( i, c in list){
+		if( i >= IC_MAX) break;
+		local x = IC_X + i * IC_STEP;
+		local l = UI.lbl( r.row, x, IC_Y, IC_STEP, IC_STEP + 4, IC_SIZE, 0xffffffff);
+		l.setText( c.LV >= 2 ? sprintf( "%S\b%c", c.data.icon, 0xf7d0 + Math.min( c.LV - 2, 2)) : c.data.icon);
+		r.icons.append( { lbl = l, cond = c, x = x });
+	}
+};
+UI.makeStatus <- function( ui){
+	local st = { sig = "", lines = [], bg = null, rim = [], ui = ui };
+	st.bg = UI.img( ui, "white", 0, 0, 10, 10, 0x0e1116ee);
+	foreach( q in [0, 1, 2, 3]) st.rim.append( UI.img( ui, "white", 0, 0, 1, 1, 0xc9a86aff));
+	st.lines.append( UI.lbl( ui, 0, 0, 10, ST_LINE, 16, 0xf4ead2ff));
+	for( local i = 1; i < 3; i++) st.lines.append( UI.lbl( ui, 0, 0, 10, ST_LINE, 15, 0xc9c0a8ff));
+	UI.st = st;
+	UI.showTip( null, 0, 0);
+};
+UI.wrap <- function( text, n){
+	local out = [], cur = "";
+	foreach( w in text.split( " ")){
+		if( cur != "" && length( cur) + 1 + length( w) > n){ out.append( cur); cur = w; }
+		else cur = cur == "" ? w : cur .. " " .. w;
+	}
+	if( cur != "") out.append( cur);
+	return out;
+};
+//	c: the hovered condition (null hides); ax, ay: the icon's top centre in battle-UI coordinates
+UI.showTip <- function( c, ax, ay){
+	local st = UI.st;
+	local rows = c ? [c.data.icon .. " " .. c.data.name .. "  (" .. UI.turnsLeft( c) .. ")", ...UI.wrap( UI.effectText( c), 60)] : [];
+	if( length( rows) > 3){ rows = rows.slice( 0, 3); rows[2] = rows[2] .. "..."; }
+	local n = length( rows), vis = n > 0;
+	st.bg.setVisible( vis);
+	foreach( r in st.rim) r.setVisible( vis);
+	foreach( i, l in st.lines) l.setVisible( vis && i < n);
+	if( !vis) return;
+	local w = 24;
+	foreach( t in rows) w = Math.max( w, length( t) * 8 + 34);
+	w = Math.min( w, 560);
+	local h = 10 + ST_LINE * n, x = Math.clamp( ax - w / 2, 8, 1272 - w), y = ay - h - 6;
+	st.bg.setRect( x, y, w, h);
+	st.rim[0].setRect( x, y, w, 1);
+	st.rim[1].setRect( x, y + h - 1, w, 1);
+	st.rim[2].setRect( x, y, 1, h);
+	st.rim[3].setRect( x + w - 1, y, 1, h);
+	foreach( i, l in st.lines) if( i < n){
+		l.setRect( x + 12, y + 5 + ST_LINE * i, w - 20, ST_LINE);
+		l.matdirty = true;
+		l.setText( rows[i]);
+	}
+};
+UI.tickStatus <- function( b){
+	if( !UI.st) return;
+	foreach( r in UI.rows) UI.tickIcons( r);
+	local hit = null;
+	try{
+		foreach( r in UI.rows){
+			if( !r.row.visible) continue;
+			local p = ::getMousePos( 0, r.row);
+			foreach( v in r.icons){
+				if( p.x >= v.x && p.x < v.x + IC_STEP && p.y >= IC_Y && p.y < IC_Y + IC_STEP + 4){
+					local q = ::getMousePos( 0, b.battleui);		//	the tip goes just above the pointer
+					hit = [v.cond, q.x, q.y - 10];
+					break;
+				}
+			}
+			if( hit) break;
+		}
+	}catch( ex){ hit = null; }
+	local sig = hit ? hit[0].dataid .. ":" .. hit[0].turn .. ":" .. int( hit[1]) .. ":" .. int( hit[2]) : "";
+	if( sig == UI.st.sig) return;
+	UI.st.sig = sig;
+	if( hit) UI.showTip( hit[0], hit[1], hit[2]); else UI.showTip( null, 0, 0);
+};
+::Rokugan.statusLine <- function( c){ return UI.statusLine( c); };		//	(tests)
+
 //	--- the panel
 UI.style <- function( b){
 	UI.b = b;
@@ -324,12 +466,14 @@ UI.style <- function( b){
 	UI.tint( ui.findChild( "cmdlist"));
 	UI.tint( ui.findChild( "memberlist"));
 	UI.styleRows( b);
+	UI.makeStatus( ui);
 	win.addUpdateFunc( function( dt){
 		try{
 			UI.tickEnemies( b);
 			UI.tickPanel( b);
 			UI.tickPop( b);
 			UI.tickRows();
+			UI.tickStatus( b);
 		}catch( ex){ printexception( ex); return false; }
 		return true;
 	});

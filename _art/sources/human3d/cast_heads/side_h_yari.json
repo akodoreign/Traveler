@@ -1,0 +1,121 @@
+{
+  "key": "side_h_yari_portrait_face",
+  "source": "side_h_yari_repaired_atlas.glb",
+  "scale": 11.8,
+  "features": {
+    "eyes": [
+      [
+        198,
+        246,
+        0.04
+      ],
+      [
+        283,
+        242,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        197,
+        231
+      ],
+      [
+        284,
+        228
+      ]
+    ],
+    "mouth": [
+      239,
+      321
+    ]
+  },
+  "socket_sample_levels": [
+    -0.806,
+    -0.8,
+    -0.794,
+    -0.788,
+    -0.782,
+    -0.776,
+    -0.77,
+    -0.764,
+    -0.758,
+    -0.752,
+    -0.746,
+    -0.74,
+    -0.734,
+    -0.728,
+    -0.722,
+    -0.716,
+    -0.71,
+    -0.704
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.088,
+    -0.013
+  ],
+  "skin_match": [
+    250,
+    198,
+    162
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.8,
+  "fit_matrix_blender": [
+    [
+      11.795020630654403,
+      0.19862467333288222,
+      -0.2793502489371776,
+      1.3398666078313717
+    ],
+    [
+      -0.19342697664272993,
+      11.796355566178923,
+      0.2204117986612447,
+      0.3285128094628551
+    ],
+    [
+      0.28297407503994154,
+      -0.21573964731972026,
+      11.794633613530841,
+      107.95166135442678
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 21910,
+    "lower_overlap_blended_vertices": 121,
+    "minimum_seam_head_weight": 0.32854886342159106,
+    "upper_face_head_weight": 1.0
+  },
+  "proof_pose_family": "pole",
+  "skin_sample_patches": [
+    [
+      412,
+      652
+    ],
+    [
+      437,
+      675
+    ],
+    [
+      455,
+      755
+    ]
+  ],
+  "skin_sample_view": "The three cross-checked canonical albedo patches offset clipping in the raw front and keep the separate nape and stubble calibration intact.",
+  "raw_skin_srgb": [
+    254,
+    203,
+    163
+  ]
+}

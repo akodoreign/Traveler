@@ -1,0 +1,41 @@
+{
+  "actor": "side_h_sapper",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_h_sapper_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_h_sapper_headcloth.pm",
+      "to": "side_h_sapper_headcloth.pm",
+      "sha256": "6ce6b0292dc51fb64f44058601e4c13986832ee3e485967a5a069bb227ee23a4"
+    },
+    {
+      "from": "assets/side_h_sapper_headcloth.mdl",
+      "to": "side_h_sapper_headcloth.mdl",
+      "sha256": "9925bb9826aefaf4e8169fa877ec0d23dd2efb598db55018d9f41c1dce68aff9"
+    },
+    {
+      "from": "assets/tex/side_h_sapper_headcloth_weave.png",
+      "to": "tex/side_h_sapper_headcloth_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_h_sapper_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\fits\\side_h_sapper\\rigid-geometry\\assets\\side_h_sapper_portrait_face.glb",
+    "sha256": "82ffa8c2c50fbb5d456a26710f95b8c563d02ac8f7e08ed373e6cd0fd7adca1d"
+  },
+  "final_fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\release\\side_h_sapper\\assets\\side_h_sapper_portrait_face.glb",
+    "sha256": "2d30c4dd51a0c01a4f66c808cd4ab8a21f18b6f5bc57aa290c3487ba27b3743c"
+  }
+}

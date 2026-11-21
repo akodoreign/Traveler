@@ -1,0 +1,122 @@
+{
+  "key": "side_oldpilgrim_portrait_face",
+  "source": "side_oldpilgrim_repaired_atlas.glb",
+  "scale": 11.6,
+  "features": {
+    "eyes": [
+      [
+        195,
+        241,
+        0.04
+      ],
+      [
+        283,
+        241,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        191,
+        224
+      ],
+      [
+        286,
+        225
+      ]
+    ],
+    "mouth": [
+      239,
+      325
+    ]
+  },
+  "socket_sample_levels": [
+    -0.979,
+    -0.969,
+    -0.959,
+    -0.949,
+    -0.939,
+    -0.9289999999999999,
+    -0.9189999999999999,
+    -0.9089999999999999,
+    -0.8989999999999999,
+    -0.8889999999999999,
+    -0.8789999999999999,
+    -0.8689999999999999,
+    -0.8589999999999999,
+    -0.8489999999999999,
+    -0.8389999999999999,
+    -0.8289999999999998,
+    -0.8189999999999998,
+    -0.8089999999999998,
+    -0.7989999999999998,
+    -0.7889999999999998,
+    -0.7789999999999998,
+    -0.7689999999999998,
+    -0.7589999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.121,
+    -0.015
+  ],
+  "skin_match": [
+    221,
+    166,
+    135
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.6,
+  "fit_matrix_blender": [
+    [
+      11.599841656155393,
+      0.04111192405594475,
+      0.04453495058205289,
+      2.3122732275492766
+    ],
+    [
+      -0.04126132174101155,
+      11.599861408605427,
+      0.03889478727845485,
+      0.21036386100187018
+    ],
+    [
+      -0.04439657026294284,
+      -0.03905266763832816,
+      11.599849302197901,
+      109.85941965421927
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 14446,
+    "lower_overlap_blended_vertices": 281,
+    "minimum_seam_head_weight": 0.48006642501718866,
+    "upper_face_head_weight": 1.0
+  },
+  "proof_pose_family": "pole",
+  "skin_sample_patches": [
+    [
+      412,
+      652
+    ],
+    [
+      437,
+      675
+    ]
+  ],
+  "skin_sample_view": "Calibration uses unshaded cheek and lower face albedo in the exact painted donor, preserving the original age creases and their local value range.",
+  "raw_skin_srgb": [
+    219,
+    164,
+    133
+  ]
+}

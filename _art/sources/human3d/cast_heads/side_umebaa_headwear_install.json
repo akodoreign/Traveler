@@ -1,0 +1,37 @@
+{
+  "actor": "side_umebaa",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_umebaa_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_umebaa_headcloth.pm",
+      "to": "side_umebaa_headcloth.pm",
+      "sha256": "6f1635409d0643a56d89d36e06f4bafa80467f4fcf3bcfeb9e15f6107dd24804"
+    },
+    {
+      "from": "assets/side_umebaa_headcloth.mdl",
+      "to": "side_umebaa_headcloth.mdl",
+      "sha256": "4d735a8d45ef1de7f61c36fe56109379d49f310ec1584486f91ae08043ae39ad"
+    },
+    {
+      "from": "assets/tex/side_umebaa_headcloth_linen.png",
+      "to": "tex/side_umebaa_headcloth_linen.png",
+      "sha256": "c2986558921d1f7d1f8ac9885af7f942852c19a7c1d55a7b0d13243b1ea3a0da"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_umebaa_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_umebaa\\painted-final\\assets\\side_umebaa_portrait_face.glb",
+    "sha256": "122158d74251934a043fd39a76fc08dfe44505d353dea8b1c105f019524cec7c"
+  }
+}

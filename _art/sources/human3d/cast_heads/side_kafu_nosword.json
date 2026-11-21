@@ -1,0 +1,149 @@
+{
+  "source": "side_kafu_nosword_repaired_atlas.glb",
+  "scale": 11.35,
+  "cranial_scale": [
+    0.956,
+    104.35
+  ],
+  "socket_sample_levels": [
+    -0.846,
+    -0.837,
+    -0.828,
+    -0.819,
+    -0.81,
+    -0.801,
+    -0.792,
+    -0.783,
+    -0.774,
+    -0.765,
+    -0.756,
+    -0.747
+  ],
+  "socket_ring_hint": [
+    -0.102,
+    0.064
+  ],
+  "features": {
+    "eyes": [
+      [
+        182,
+        289,
+        0.035
+      ],
+      [
+        257,
+        289,
+        -0.035
+      ]
+    ],
+    "brows": [
+      [
+        179,
+        274
+      ],
+      [
+        262,
+        278
+      ]
+    ],
+    "mouth": [
+      219,
+      341
+    ]
+  },
+  "maximum_pitch": 3,
+  "proof_motion": "fist",
+  "key": "side_kafu_nosword_portrait_face",
+  "exact_native_outfit": true,
+  "preserve_long_hair": true,
+  "fit_shallow_neck_overlap": true,
+  "recenter_donor_seat": true,
+  "skin_match": [
+    236,
+    181,
+    137
+  ],
+  "skin_sample_view": "Diffuse cheeks and chin from the final unlit face. Lower seam determines matched body paint.",
+  "skin_sample_patches": [
+    [
+      181,
+      321,
+      4
+    ],
+    [
+      256,
+      317,
+      4
+    ],
+    [
+      217,
+      362,
+      4
+    ]
+  ],
+  "raw_skin_srgb": [
+    236,
+    181,
+    137
+  ],
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.35,
+  "fit_matrix_blender": [
+    [
+      11.349209977419285,
+      0.05729114905433661,
+      0.1210397153307508,
+      0.19382795387470203
+    ],
+    [
+      -0.060686026917366194,
+      11.345321297544016,
+      0.32015911924182,
+      1.4348274675048949
+    ],
+    [
+      -0.11937376003251465,
+      -0.3207840079192639,
+      11.344837924169775,
+      108.04221836919324
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 19254,
+    "lower_overlap_blended_vertices": 167,
+    "minimum_seam_head_weight": 0.4029115402694833,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 0.956,
+    "pivot": [
+      0.826565,
+      0.01175499999999996,
+      104.35
+    ],
+    "seated_rings": [
+      {
+        "height": 98.6875,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      },
+      {
+        "height": 99.375,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      }
+    ],
+    "original_entire_silhouette_width": 17.826919078826904,
+    "final_entire_silhouette_width": 17.04253387451172,
+    "original_crown_native": 119.0211181640625,
+    "final_crown_native": 118.3755874633789,
+    "origin_geometry_sha256": "bb46e66b5f0817cb734fba1e0811df1da922d5f22743aa6d0318b9ee12698b6d"
+  }
+}

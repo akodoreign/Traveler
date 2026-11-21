@@ -1,0 +1,119 @@
+{
+  "key": "side_kitchengirl_portrait_face",
+  "source": "side_kitchengirl_repaired_atlas.glb",
+  "scale": 11.1,
+  "features": {
+    "eyes": [
+      [
+        192,
+        280,
+        0.04
+      ],
+      [
+        285,
+        281,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        190,
+        251
+      ],
+      [
+        288,
+        252
+      ]
+    ],
+    "mouth": [
+      241,
+      347
+    ]
+  },
+  "socket_sample_levels": [
+    -0.979,
+    -0.967,
+    -0.955,
+    -0.943,
+    -0.9309999999999999,
+    -0.9189999999999999,
+    -0.9069999999999999,
+    -0.8949999999999999,
+    -0.8829999999999999,
+    -0.8709999999999999,
+    -0.8589999999999999,
+    -0.8469999999999999,
+    -0.8349999999999999,
+    -0.8229999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.008,
+    -0.013
+  ],
+  "skin_match": [
+    218,
+    160,
+    125
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "raw_skin_srgb": [
+    218,
+    160,
+    125
+  ],
+  "skin_sample_patches": [
+    [
+      174,
+      319,
+      4
+    ],
+    [
+      305,
+      319,
+      4
+    ],
+    [
+      240,
+      371,
+      4
+    ]
+  ],
+  "skin_sample_view": "Exact raw neutral frontal unlit cheeks and chin",
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.1,
+  "fit_matrix_blender": [
+    [
+      11.09907209737686,
+      -0.1433332149877904,
+      -0.0073598038266313465,
+      0.04490858764707198
+    ],
+    [
+      0.1432447447750255,
+      11.098419305074598,
+      -0.12070572415685812,
+      0.026671889035593938
+    ],
+    [
+      0.008917416971340476,
+      0.120600656014622,
+      11.099341239976594,
+      110.25348929469112
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.4575,
+  "seam_weights": {
+    "vertex_count": 12845,
+    "lower_overlap_blended_vertices": 226,
+    "minimum_seam_head_weight": 0.8318387879645253,
+    "upper_face_head_weight": 1.0
+  }
+}

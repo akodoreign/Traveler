@@ -959,7 +959,7 @@ local WARDS = { ["Oni no Tsukakoro"] = 11 };			//	boss name -> ELEMS bit (11 = J
 //	Boost. Jade-inlaid War Fans (A131) resist it 60%; Death Trance (K056, Moto Benjiro) blocks it and Ianwa's charm.
 ::RPGPlayer._rt_putCond_terror <- ::RPGPlayer.putCondition;
 ::RPGPlayer.putCondition <- function( condid){
-	if( condid == "K007" && (this.hasCondition( "K056") || this.hasCondition( "K058") || ::Rokugan.wears( this, "A134")	//	Demon's Shadow
+	if( condid == "K007" && (::Rokugan.fearless( this) || ::Rokugan.wears( this, "A134")	//	Demon's Shadow
 			|| (::Rokugan.wears( this, "A131") && ::Rokugan.roll( 60)))){
 		if( ::rpgstage && ::rpgstage["battle"]) ::Rokugan.pop( this, "No fear", 0x80ff9cff);
 		printf( "[RT] %S resists Terror\n", this.name);

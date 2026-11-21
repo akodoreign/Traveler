@@ -140,3 +140,45 @@ Goro's first daylight fit was pulled for neck alignment. Goro, Togawa, and Iuchi
 - The active combat presentation audit reconciles 284 selectable skill IDs. `active-ability-coverage.csv` records the route used by each ID. Regenerate the eight rig-family banks per group with `tools/blender/ability_animation/export_spell_motion.py` and `export_school_motion.py` using the second script with `--bank school` and `--bank support`. Pass the repo and a scratch output folder after Blender's `--`, with `spell_profiles.json` copied into the scratch folder. The mark generator writes alongside its profile source. Run it from a scratch copy with Pillow, then install the resulting `efx/rt/ability` and `native_chara/ability` folders under the project resources.
 
 - Togashi Yosai now uses the regenerated upright face on the shared male rig. His final 20% size adjustment held both neck rings fixed. The open robe collar, face-derived body skin tone, and live Coast Road verification are detailed in [Yosai rigging notes](yosai-rigging-notes.md). The local `traveler-humanoid-rigging` skill carries the illustrated full workflow.
+
+## Traveler head size reference and new cast
+
+Use several approved Traveler heads at the same daylight camera distance to set skull scale. Scale the new face and each expression together. Preserve the seated neck rings. Use the local traveler-humanoid-rigging skill and the illustrated reference in yosai_rigging.
+
+Charmseller, Osuko, Torishigawa, Kiku, Kuni Shugenja and Gesshin passed Coast Road face, shared rig, outfit and walking checks at the revised sizes. Charmseller’s hair atlas received a local dark strand correction. Osuko’s generated portrait skips the floating legacy mask so the face matches her source portrait. The older Tokubei head and body route were restored after the user rejected the replacement’s rear neck angle. The fresh upright geometry pilot 3f248ad7-4f06-478b-afb8-9df71e79750a passed profile checks. Its matching textured output b6cbe363-8afe-4acc-8fb6-983d9caa1407 received the moustache and lower-neck atlas correction. The fitted replacement is live and passed both Coast Road profiles and the walk cycle. The final source, fit report, and daylight comparison are under cast_heads.
+
+## Hana and Madame Hagi daylight profiles
+
+Kitsune Hana and Madame Hagi are live on the shared female body. Coast Road loaded each fitted portrait and its original outfit, found all 50 shared joints, verified the matching skin materials, and captured walking frames. Hana kept A100 and Hagi kept A127. The new stem on Hana’s head clears both long locks.
+
+The face shells were sized against Rensei, Yosai and Sayo and checked against recent smaller female cast fits. Visible cheek spans were about 9.27 native units for Hana and 8.36 for Hagi, with locks and the bun judged separately. Final donor neck-section center errors were .016/.004 for Hana and .050/.042 for Hagi, with the production body necks held fixed. Matched body skin samples are Hana sRGB 238, 188, 163 and Hagi sRGB 220, 138, 101 from unpainted lower neck.
+
+The lower neck is visible from both game sides in [the Coast Road profiles](cast_heads/hana-hagi-daylight-profiles.png). Raw generation source, lighting-independent fit comparison, calibrated portable rigs and exact section reports are in cast_heads. Madame Hagi’s separate flower comb was fitted in the following pass.
+
+## Evening cast profiles and Hagi’s flower comb
+
+Madame Hagi’s ornament is a separate lacquer comb with crimson petals, a brass center, cord loops, and a tassel. Its tines seat in her bun and the native mesh weights every vertex to the shared head joint. The existing face and outfit are used with the attachment. The runtime headwear option controls the comb. Coast Road verified equipped and hidden routes, front, both profiles, and walking. The fitted accessory is in [cast_heads](cast_heads/side_hagi_flower_comb.glb), with a [daylight sample](cast_heads/hagi-flower-comb-daylight.png). To regenerate the native and exchange files, run `hagi_flower_comb.py <native_ornament folder> <output folder>` with NumPy and trimesh.
+
+Soshi Onaka, the Kitsune Herb Woman, Mamoru, Kanemori, Fumi, Megu, Village Youth and Shosuro Shiko now use regenerated portrait heads. Head scale came from the Travelers’ current heads. The Coast Road run loaded all 50 joints, original fitted outfits and face-matched body skin, then checked both profiles and walking. Onaka’s neutral bust and merchant scene provided the appearance reference, so his regenerated portrait skips the floating Noh fallback. Shiko kept her equipped fan and received a local throat atlas correction. The Kitsune Herb Woman’s orange nape crescent was isolated to her head texture and softened on both sides. Use `cast_heads/side_h_kitsune_nape_srgb.png` as the final export albedo at `native_human/tex/side_h_kitsune_portrait_face_srgb.png`. Some warm shading remains. See [Onaka and the Kitsune Herb Woman](cast_heads/onaka-kitsune-daylight-profiles.png), [Mamoru and Kanemori](cast_heads/mamoru-kanemori-daylight-profiles.png), [Fumi and Megu](cast_heads/fumi-megu-daylight-profiles.png), and [Village Youth and Shiko](cast_heads/youth-shiko-daylight-profiles.png).
+
+Shadow Hunter and Ichiro Itami passed the bare head fit. Their authored cloth and stone masks project away from the resized faces, so their old routes were restored and checked in the game. Both new head packages are staged for the mask pass. Hold Bantaro for the forward narrow neck and asymmetric nape, Naohida for the thin neck under the beard, and Abbot Munashii for the broad rear neck wedge. Censor Monk, Morishu and Thunder Monk still need source or texture work. See the [evening Hunyuan receipt ledger](evening-head-queue.md) before submitting a replacement.
+
+## Yasuki Kanbe
+
+Yasuki Kanbe now uses the regenerated head on his shared male body, Crab A100 clothing and fan. Both field routes (EP330 and EP730) selected the fitted head. Coast Road verified both strict profiles, the fan, the shared 50 joints and four walk frames. Body skin derives from Kanbe's finished face sample, sRGB 239, 182, 143. The final native overlap was measured at heights 98.6875 and 99.375, with the fitted neck axis within 0.33 degrees of the body socket. The body mesh was fixed throughout. A little warm shading remains under the rear hair. See [daylight profiles](cast_heads/kanbe-daylight-profiles.png), the [portable rig](cast_heads/side_kanbe_portrait_face.glb) with seven expressions, and the [source fit report](cast_heads/side_kanbe_production_fit.json).
+
+Sono Servant’s shared-male head fit moved into the A124 collar pass below.
+
+## Crane A124 collar and two verified portrait fits
+
+Sono Servant and Kagemaro are live on the shared male rig. Their generated heads were already centered. The apparent chest and neck misalignment came from the A124 collar projecting forward and following the head. Their fitted alias `A124_sono_kagemaro` seats the upper collar near the neck axis. The collar now follows the spine with up to 20% neck influence around the rim. Its upper lapels and matching decal are fitted together. The two actor defaults retain the Crane A124 dye, base texture, normal and decal sheet. See the [two actor registrations](wardrobe/a124-sono-kagemaro-registration.json) and [live daylight profiles](cast_heads/sono-kagemaro-daylight-profiles.png).
+
+Both actor routes passed the installed head, fitted robe, decal, body skin, 50-joint and four-frame side-walk checks. The final native albedo overrides are `cast_heads/side_sonoservant_nape_srgb.png` and `cast_heads/side_kagemaro_nape_srgb.png`. Use them at the matching `native_human/tex/*_portrait_face_srgb.png` paths when rebuilding. Some warm shading remains in both heads.
+
+## Oracle of Fire
+
+The regenerated Oracle of Fire is live on the shared male body with Phoenix A140 robes. The corrected donor preserves the original ember-colored eyes, beard and loose silver locks. Two overlap ring center offsets were .00051 and .02033 native units. The final fit used the neck-blend atlas and face-derived sRGB body color 244, 194, 159. The same Coast Road run verified the real outfit, 50 joints, both sides and four walking poses. See [daylight profiles](cast_heads/oracle-daylight-profiles.png) and the [portable presentation mesh](cast_heads/side_oracle_portrait_face.glb).
+
+## Bulk cast rollout
+
+Continue internally reviewed batches without individual approval. 129 new heads passed the recorded live checks, and 165 of 349 catalog entries have regenerated portraits bound. The [bulk report](bulk-cast-heads.md) tracks the installed routes, remaining sources, wardrobe fixes, and current Hunyuan receipts. [Full cast inventory](cast-head-progress.csv)

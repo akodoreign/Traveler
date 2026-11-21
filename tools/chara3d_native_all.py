@@ -113,6 +113,9 @@ def verify_assets(directory, roster):
         expected.update({"deduce_brush.pm", "deduce_brush.mdl"})
     if (directory / "isawa_rising.mot").is_file():
         expected.add("isawa_rising.mot")
+    for path in [directory / "hida_rally.mot", *directory.glob("cv_*.mot")]:   # companion Void preludes
+        if path.is_file():                                                       # (RokuganCompanionVoid.sk)
+            expected.add(path.name)
     ability = directory / "ability"
     for index_name, bank in (("spell-index.json", "spells"), ("school-index.json", "school"),
                              ("support-index.json", "support")):

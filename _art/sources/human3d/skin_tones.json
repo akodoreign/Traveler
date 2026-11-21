@@ -73,5 +73,755 @@
     239,
     150,
     85
+  ],
+  "side_charmseller": [
+    235,
+    183,
+    137
+  ],
+  "side_osuko": [
+    239,
+    190,
+    161
+  ],
+  "side_torishigawa": [
+    238,
+    180,
+    143
+  ],
+  "side_kiku": [
+    254,
+    221,
+    205
+  ],
+  "side_h_kuni": [
+    254,
+    229,
+    207
+  ],
+  "side_gesshin": [
+    238,
+    197,
+    169
+  ],
+  "side_tokubei": [
+    240,
+    189,
+    152
+  ],
+  "side_hana": [
+    238,
+    188,
+    163
+  ],
+  "side_hagi": [
+    220,
+    138,
+    101
+  ],
+  "side_h_kitsune": [
+    218,
+    152,
+    113
+  ],
+  "side_onaka": [
+    233,
+    184,
+    151
+  ],
+  "side_mamoru": [
+    198,
+    127,
+    82
+  ],
+  "side_fumi": [
+    229,
+    190,
+    167
+  ],
+  "side_megu": [
+    227,
+    167,
+    147
+  ],
+  "side_kanemori": [
+    223,
+    167,
+    128
+  ],
+  "side_youth": [
+    219,
+    147,
+    107
+  ],
+  "side_shiko": [
+    244,
+    199,
+    178
+  ],
+  "side_kanbe": [
+    239,
+    182,
+    143
+  ],
+  "side_sonoservant": [
+    248,
+    212,
+    187
+  ],
+  "side_kagemaro": [
+    229,
+    174,
+    145
+  ],
+  "side_oracle": [
+    244,
+    194,
+    159
+  ],
+  "side_pilgrimgirl": [
+    197,
+    133,
+    93
+  ],
+  "side_shinobu": [
+    224,
+    165,
+    137
+  ],
+  "side_bantaro": [
+    214,
+    162,
+    129
+  ],
+  "side_sabu": [
+    236,
+    164,
+    120
+  ],
+  "side_sariko": [
+    251,
+    208,
+    190
+  ],
+  "side_h_tamori": [
+    242,
+    193,
+    163
+  ],
+  "side_seigen": [
+    246,
+    196,
+    145
+  ],
+  "side_kusada": [
+    207,
+    170,
+    145
+  ],
+  "side_miyoshi": [
+    249,
+    219,
+    196
+  ],
+  "side_yachiko": [
+    239,
+    192,
+    169
+  ],
+  "side_kitsukiclerk": [
+    244,
+    195,
+    159
+  ],
+  "side_oharu": [
+    247,
+    221,
+    204
+  ],
+  "side_hostess": [
+    214,
+    131,
+    93
+  ],
+  "side_cartdriver": [
+    225,
+    163,
+    119
+  ],
+  "side_rika": [
+    248,
+    202,
+    173
+  ],
+  "side_mcaptain": [
+    216,
+    169,
+    131
+  ],
+  "side_dojipoet": [
+    243,
+    217,
+    204
+  ],
+  "side_courtier": [
+    244,
+    214,
+    203
+  ],
+  "side_uona": [
+    230,
+    166,
+    130
+  ],
+  "side_rujo": [
+    248,
+    190,
+    158
+  ],
+  "side_sergeant": [
+    242,
+    189,
+    153
+  ],
+  "side_mobleader": [
+    204,
+    132,
+    96
+  ],
+  "side_karo": [
+    243,
+    188,
+    161
+  ],
+  "side_jadeclerk": [
+    234,
+    176,
+    144
+  ],
+  "side_mami": [
+    224,
+    148,
+    109
+  ],
+  "side_makeup": [
+    243,
+    215,
+    199
+  ],
+  "side_incense": [
+    237,
+    182,
+    149
+  ],
+  "side_satomi": [
+    229,
+    214,
+    206
+  ],
+  "side_h_suzume": [
+    244,
+    192,
+    160
+  ],
+  "side_imuro": [
+    240,
+    160,
+    107
+  ],
+  "side_widow": [
+    232,
+    167,
+    118
+  ],
+  "side_seikidera": [
+    187,
+    135,
+    103
+  ],
+  "side_momo": [
+    232,
+    180,
+    154
+  ],
+  "side_ryoichi": [
+    250,
+    205,
+    181
+  ],
+  "side_h_sparrow": [
+    203,
+    146,
+    105
+  ],
+  "side_yutaka": [
+    250,
+    200,
+    163
+  ],
+  "side_ozaki": [
+    224,
+    167,
+    128
+  ],
+  "side_miyubi": [
+    251,
+    216,
+    200
+  ],
+  "side_craneguard": [
+    252,
+    202,
+    161
+  ],
+  "side_twin": [
+    219,
+    160,
+    120
+  ],
+  "side_h_veteran": [
+    252,
+    195,
+    140
+  ],
+  "side_taneo": [
+    250,
+    201,
+    160
+  ],
+  "side_kitchengirl": [
+    218,
+    160,
+    125
+  ],
+  "side_tbeggar": [
+    226,
+    170,
+    126
+  ],
+  "side_drunkactor": [
+    235,
+    186,
+    150
+  ],
+  "side_iuchifarmer": [
+    189,
+    114,
+    78
+  ],
+  "side_craneduellist": [
+    242,
+    220,
+    208
+  ],
+  "side_drummer": [
+    230,
+    163,
+    110
+  ],
+  "side_daiyu": [
+    226,
+    186,
+    159
+  ],
+  "side_noburo": [
+    244,
+    195,
+    161
+  ],
+  "side_takeo": [
+    247,
+    193,
+    153
+  ],
+  "side_seoko": [
+    237,
+    185,
+    157
+  ],
+  "side_mirumotosentry": [
+    213,
+    154,
+    109
+  ],
+  "side_actor_a": [
+    229,
+    173,
+    137
+  ],
+  "side_tabezu": [
+    247,
+    186,
+    142
+  ],
+  "side_iuchisoldier": [
+    252,
+    198,
+    165
+  ],
+  "side_takanobu": [
+    228,
+    155,
+    111
+  ],
+  "side_h_shinjo": [
+    247,
+    201,
+    171
+  ],
+  "side_h_archer": [
+    251,
+    208,
+    170
+  ],
+  "side_h_ferryarcher": [
+    251,
+    196,
+    160
+  ],
+  "side_sakura": [
+    247,
+    213,
+    194
+  ],
+  "side_h_lamplighter": [
+    199,
+    139,
+    101
+  ],
+  "side_koshi": [
+    233,
+    189,
+    157
+  ],
+  "side_tama": [
+    250,
+    203,
+    166
+  ],
+  "side_shoju": [
+    240,
+    188,
+    151
+  ],
+  "side_tadayasu": [
+    221,
+    156,
+    117
+  ],
+  "side_hidaren": [
+    249,
+    210,
+    180
+  ],
+  "side_h_jadearcher": [
+    246,
+    198,
+    164
+  ],
+  "side_goroso": [
+    223,
+    159,
+    120
+  ],
+  "side_gochu": [
+    226,
+    172,
+    143
+  ],
+  "side_hiruto": [
+    250,
+    195,
+    149
+  ],
+  "side_gusai": [
+    196,
+    143,
+    109
+  ],
+  "side_atsuko": [
+    237,
+    196,
+    179
+  ],
+  "side_masakazu": [
+    244,
+    185,
+    141
+  ],
+  "side_yakamo": [
+    233,
+    172,
+    135
+  ],
+  "side_daidoji_general": [
+    233,
+    187,
+    153
+  ],
+  "side_akuro": [
+    222,
+    160,
+    114
+  ],
+  "side_crabboy": [
+    239,
+    186,
+    146
+  ],
+  "side_noboru": [
+    249,
+    213,
+    190
+  ],
+  "side_ryuko": [
+    240,
+    176,
+    133
+  ],
+  "side_ichihito": [
+    212,
+    159,
+    124
+  ],
+  "side_soshiofficer": [
+    245,
+    189,
+    150
+  ],
+  "side_uyojimbo": [
+    247,
+    203,
+    169
+  ],
+  "side_kasamashi": [
+    243,
+    197,
+    164
+  ],
+  "side_h_engineer": [
+    244,
+    191,
+    149
+  ],
+  "side_h_sapper": [
+    251,
+    205,
+    161
+  ],
+  "side_fishwife": [
+    223,
+    161,
+    126
+  ],
+  "side_h_tsuruchi": [
+    230,
+    169,
+    133
+  ],
+  "side_ebisu": [
+    226,
+    170,
+    141
+  ],
+  "side_oldwoman": [
+    233,
+    193,
+    169
+  ],
+  "side_bargeman": [
+    222,
+    153,
+    106
+  ],
+  "side_muika": [
+    242,
+    159,
+    107
+  ],
+  "side_h_herbalist": [
+    238,
+    200,
+    184
+  ],
+  "side_umebaa": [
+    238,
+    198,
+    179
+  ],
+  "side_shipmaster": [
+    248,
+    200,
+    168
+  ],
+  "side_pigeonkeeper": [
+    242,
+    193,
+    160
+  ],
+  "side_shrinepeasant": [
+    231,
+    176,
+    140
+  ],
+  "side_h_hanabi": [
+    231,
+    173,
+    132
+  ],
+  "side_maskmaker": [
+    231,
+    179,
+    144
+  ],
+  "side_mirumotosen": [
+    237,
+    181,
+    141
+  ],
+  "side_citizen": [
+    218,
+    173,
+    136
+  ],
+  "side_oldpilgrim": [
+    221,
+    166,
+    135
+  ],
+  "side_karasu": [
+    231,
+    204,
+    194
+  ],
+  "side_h_yari": [
+    250,
+    198,
+    162
+  ],
+  "side_nishi": [
+    242,
+    194,
+    165
+  ],
+  "side_beggar": [
+    225,
+    176,
+    141
+  ],
+  "side_drunksailor": [
+    240,
+    181,
+    139
+  ],
+  "side_h_agasha": [
+    250,
+    209,
+    169
+  ],
+  "side_hojiki": [
+    234,
+    174,
+    127
+  ],
+  "side_michio": [
+    252,
+    205,
+    162
+  ],
+  "side_hayato": [
+    240,
+    195,
+    168
+  ],
+  "side_xue": [
+    225,
+    183,
+    167
+  ],
+  "side_sanae": [
+    239,
+    206,
+    189
+  ],
+  "side_h_iuchi": [
+    235,
+    181,
+    147
+  ],
+  "side_keiki": [
+    249,
+    216,
+    190
+  ],
+  "side_sanro": [
+    252,
+    204,
+    161
+  ],
+  "side_goro": [
+    250,
+    160,
+    89
+  ],
+  "side_kafu": [
+    236,
+    181,
+    137
+  ],
+  "side_kafu_nosword": [
+    236,
+    181,
+    137
+  ],
+  "side_smithboy": [
+    233,
+    173,
+    130
+  ],
+  "side_ushimo": [
+    241,
+    192,
+    153
+  ],
+  "side_ashimita": [
+    221,
+    150,
+    100
+  ],
+  "side_kasiko": [
+    246,
+    200,
+    168
+  ],
+  "side_akodorin": [
+    213,
+    149,
+    105
+  ],
+  "side_sachiko": [
+    240,
+    162,
+    107
+  ],
+  "side_lionrider": [
+    242,
+    178,
+    127
+  ],
+  "side_haku": [
+    240,
+    185,
+    145
+  ],
+  "side_hanae": [
+    250,
+    217,
+    197
+  ],
+  "side_kage_ch3": [
+    242,
+    178,
+    128
   ]
 }

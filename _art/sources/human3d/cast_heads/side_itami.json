@@ -1,0 +1,138 @@
+{
+  "key": "side_itami_portrait_face",
+  "source": "side_itami_repaired_atlas.glb",
+  "exact_native_outfit": true,
+  "fit_straight_nape": true,
+  "scale": 14.5,
+  "cranial_scale": [
+    0.7,
+    104.4
+  ],
+  "socket_ring_hint": [
+    0.02,
+    -0.014
+  ],
+  "socket_sample_levels": [
+    -0.986,
+    -0.976,
+    -0.966,
+    -0.956,
+    -0.946,
+    -0.936,
+    -0.926,
+    -0.916,
+    -0.906,
+    -0.896
+  ],
+  "features": {
+    "eyes": [
+      [
+        196,
+        268,
+        0.045
+      ],
+      [
+        290,
+        267,
+        -0.045
+      ]
+    ],
+    "brows": [
+      [
+        195,
+        245
+      ],
+      [
+        290,
+        244
+      ]
+    ],
+    "mouth": [
+      241,
+      352
+    ]
+  },
+  "skin_match": [
+    230,
+    175,
+    137
+  ],
+  "skin_sample_patches": [
+    [
+      193,
+      298,
+      3
+    ],
+    [
+      276,
+      299,
+      3
+    ],
+    [
+      222,
+      301,
+      3
+    ]
+  ],
+  "skin_sample_view": "Unlit front, diffuse facial skin",
+  "fit_method": "production shared body socket",
+  "fit_scale": 14.5,
+  "fit_matrix_blender": [
+    [
+      14.496921691504646,
+      0.29407225372705964,
+      -0.05275395692386764,
+      0.4534698094986701
+    ],
+    [
+      -0.2915014326116953,
+      14.483340927365871,
+      0.6307634235418188,
+      0.8175082938119427
+    ],
+    [
+      0.06548576309830971,
+      -0.6295689726159884,
+      14.486178050940618,
+      112.44589208671874
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 23599,
+    "lower_overlap_blended_vertices": 38,
+    "minimum_seam_head_weight": 0.34818195331646506,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 0.7,
+    "pivot": [
+      0.829715,
+      0.036872499999999975,
+      104.4
+    ],
+    "seated_rings": [
+      {
+        "height": 98.55,
+        "center_change": 5.80826581241433e-06,
+        "diameter_change": 1.0215458962154216e-05
+      },
+      {
+        "height": 99.1,
+        "center_change": 1.526526329531905e-06,
+        "diameter_change": 2.1875681405056405e-07
+      }
+    ],
+    "original_entire_silhouette_width": 25.51071071624756,
+    "final_entire_silhouette_width": 17.857498168945312,
+    "original_crown_native": 126.49406433105469,
+    "final_crown_native": 119.8658447265625,
+    "origin_geometry_sha256": "f3fd37c8fd9b1a20e48c4ed3ee5ab45dce2e957b8f1824bd2680c06cfc16ef8c"
+  }
+}

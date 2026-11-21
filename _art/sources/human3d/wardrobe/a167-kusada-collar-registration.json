@@ -1,0 +1,40 @@
+{
+  "piece": "A167_kusada",
+  "assets": [
+    {
+      "source": "A167.mdl",
+      "file": "A167_kusada.mdl",
+      "edited_vertices": 823,
+      "collar_reweighted_vertices": 187,
+      "before_sha256": "23778b5b4f1af6c214367dff389db7888d1d70837423b5630113aa3f96c45f2f",
+      "after_sha256": "7e9326e67b370d007f4741f5e1bb267c939781a9397e9518c56f99ac7ca24e85"
+    },
+    {
+      "source": "A167_decal.mdl",
+      "file": "A167_kusada_decal.mdl",
+      "edited_vertices": 312,
+      "collar_reweighted_vertices": 9,
+      "before_sha256": "16f553af2ac9efe7dec02fcae50b01b06c331ba084fa1c76d75df4cc8c05234e",
+      "after_sha256": "f09b160e91a1b7c6df52fde8da2986c913532d03125b214f1a9866d6a7311d21"
+    }
+  ],
+  "default_records": {
+    "side_kusada": {
+      "before": {
+        "mesh": "A167",
+        "dyed": true,
+        "decal": "A167",
+        "coverCore": true,
+        "clan": "imperial"
+      },
+      "after": {
+        "mesh": "A167_kusada",
+        "dyed": true,
+        "decal": "A167",
+        "coverCore": true,
+        "clan": "imperial",
+        "palette": "A167"
+      }
+    }
+  }
+}

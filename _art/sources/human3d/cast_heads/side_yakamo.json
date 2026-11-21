@@ -1,0 +1,113 @@
+{
+  "key": "side_yakamo_portrait_face",
+  "source": "side_yakamo_repaired_atlas.glb",
+  "scale": 8.8,
+  "features": {
+    "eyes": [
+      [
+        200,
+        247,
+        0.04
+      ],
+      [
+        278,
+        246,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        193,
+        228
+      ],
+      [
+        283,
+        228
+      ]
+    ],
+    "mouth": [
+      241,
+      328
+    ]
+  },
+  "socket_sample_levels": [
+    -0.955,
+    -0.947,
+    -0.939,
+    -0.9309999999999999,
+    -0.9229999999999999,
+    -0.9149999999999999,
+    -0.9069999999999999,
+    -0.8989999999999999,
+    -0.8909999999999999,
+    -0.8829999999999999,
+    -0.8749999999999999,
+    -0.8669999999999999,
+    -0.8589999999999999,
+    -0.8509999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.163,
+    -0.012
+  ],
+  "skin_match": [
+    233,
+    172,
+    135
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 8.8,
+  "fit_matrix_blender": [
+    [
+      8.79658406608936,
+      0.20026614204487553,
+      0.14142927763961477,
+      2.255928315755515
+    ],
+    [
+      -0.20188693007474745,
+      8.797114874449324,
+      0.10005774937014847,
+      0.1836624666402381
+    ],
+    [
+      -0.13910584347250157,
+      -0.10326353710040415,
+      8.798294505540174,
+      107.12534220928438
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 24641,
+    "lower_overlap_blended_vertices": 67,
+    "minimum_seam_head_weight": 0.592141756642117,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      591,
+      615
+    ],
+    [
+      623,
+      581
+    ]
+  ],
+  "skin_sample_view": "The raw unlit bilateral face and lower stem agree with canonical diffuse skin. The corrected lower stem uses the calibrated body target.",
+  "raw_skin_srgb": [
+    233,
+    172,
+    135
+  ],
+  "proof_pose_family": "club"
+}

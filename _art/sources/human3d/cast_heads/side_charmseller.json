@@ -1,0 +1,111 @@
+{
+  "key": "side_charmseller_portrait_face",
+  "source": "side_charmseller_neck_polished.glb",
+  "scale": 16.4,
+  "skin_match": [
+    235,
+    183,
+    137
+  ],
+  "preserve_lower_positive_side": 4.55,
+  "socket_sample_levels": [
+    -0.701,
+    -0.689,
+    -0.677,
+    -0.665,
+    -0.653,
+    -0.641,
+    -0.629,
+    -0.617,
+    -0.605
+  ],
+  "features": {
+    "eyes": [
+      [
+        205,
+        224,
+        0.05
+      ],
+      [
+        286,
+        226,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        204,
+        208
+      ],
+      [
+        289,
+        210
+      ]
+    ],
+    "mouth": [
+      243,
+      291
+    ]
+  },
+  "raw_source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_head_side_charmseller_upright_head_00001_.glb",
+  "fit_method": "production shared body socket",
+  "fit_scale": 16.4,
+  "fit_matrix_blender": [
+    [
+      16.376924454690084,
+      0.001620833258783247,
+      -0.869679698667818,
+      1.64532989125838
+    ],
+    [
+      -0.06234741471088161,
+      16.359961914224563,
+      -1.1435728944872308,
+      -0.09042090073261809
+    ],
+    [
+      0.8674434882194204,
+      1.1452700720906726,
+      16.336948866196618,
+      109.72538090672171
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 21523,
+    "lower_overlap_blended_vertices": 406,
+    "minimum_seam_head_weight": 0.3587080390941704,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 0.615,
+    "pivot": [
+      0.6635624999999999,
+      -0.03367500000000012,
+      104.8
+    ],
+    "seated_rings": [
+      {
+        "height": 98.55,
+        "center_change": 3.0534502812671076e-06,
+        "diameter_change": 5.855956670062059e-07
+      },
+      {
+        "height": 99.5125,
+        "center_change": 3.052258577249521e-06,
+        "diameter_change": 8.418332419519043e-07
+      }
+    ],
+    "original_entire_silhouette_width": 25.747328758239746,
+    "final_entire_silhouette_width": 15.834606170654297,
+    "original_crown_native": 125.64274597167969,
+    "final_crown_native": 117.6182861328125,
+    "origin_geometry_sha256": "20475beca12ccd59decf04829e960be76aaf3e4d3b3f394647bf4bab7907f0a9"
+  }
+}

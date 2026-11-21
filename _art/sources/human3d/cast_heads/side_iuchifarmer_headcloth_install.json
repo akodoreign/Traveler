@@ -1,0 +1,37 @@
+{
+  "actor": "side_iuchifarmer",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_iuchifarmer_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_iuchifarmer_headcloth.pm",
+      "to": "side_iuchifarmer_headcloth.pm",
+      "sha256": "eb0b161669cc8eae67016ff193fb7580ac3d0821a76fb1571d862db402b0825b"
+    },
+    {
+      "from": "assets/side_iuchifarmer_headcloth.mdl",
+      "to": "side_iuchifarmer_headcloth.mdl",
+      "sha256": "e1fcb0304ba02dd3f9a8ac44892b3152dd4a1ca2aa6cd3366c1616d2cc300a16"
+    },
+    {
+      "from": "assets/tex/side_iuchifarmer_headcloth_flax.png",
+      "to": "tex/side_iuchifarmer_headcloth_flax.png",
+      "sha256": "79896c4a249181362f03cfc09b6b86073c1ef420824b41025f66b649d2390914"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_iuchifarmer_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_iuchifarmer\\geometry-pilot\\assets\\side_iuchifarmer_portrait_face.glb",
+    "sha256": "14a6e80fdfa595cdb56070f1552b857781da4ce90710643c33620020c26499a7"
+  }
+}

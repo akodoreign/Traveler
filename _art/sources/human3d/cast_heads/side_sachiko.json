@@ -1,0 +1,127 @@
+{
+  "key": "side_sachiko_portrait_face",
+  "source": "side_sachiko_repaired_atlas.glb",
+  "scale": 10.4,
+  "features": {
+    "eyes": [
+      [
+        195,
+        272,
+        0.04
+      ],
+      [
+        282,
+        274,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        194,
+        259
+      ],
+      [
+        284,
+        254
+      ]
+    ],
+    "mouth": [
+      238,
+      341
+    ]
+  },
+  "socket_sample_levels": [
+    -0.973,
+    -0.964,
+    -0.955,
+    -0.946,
+    -0.9369999999999999,
+    -0.9279999999999999,
+    -0.9189999999999999,
+    -0.9099999999999999,
+    -0.9009999999999999,
+    -0.8919999999999999,
+    -0.8829999999999999,
+    -0.8739999999999999,
+    -0.8649999999999999,
+    -0.8559999999999999,
+    -0.8469999999999999,
+    -0.8379999999999999,
+    -0.8289999999999998,
+    -0.8199999999999998,
+    -0.8109999999999998,
+    -0.8019999999999998,
+    -0.7929999999999998,
+    -0.7839999999999998,
+    -0.7749999999999998,
+    -0.7659999999999998,
+    -0.7569999999999998,
+    -0.7479999999999998,
+    -0.7389999999999998,
+    -0.7299999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.022,
+    -0.014
+  ],
+  "skin_match": [
+    240,
+    162,
+    107
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 10.4,
+  "fit_matrix_blender": [
+    [
+      10.399582814759974,
+      -0.0810629101117088,
+      -0.04589208596056576,
+      0.42637426035528864
+    ],
+    [
+      0.08065498473750436,
+      10.39928112426022,
+      -0.09190686614336699,
+      0.06386150871904446
+    ],
+    [
+      0.04660528281841026,
+      0.0915472730971421,
+      10.39949263398958,
+      109.51246916588053
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.595,
+  "seam_weights": {
+    "vertex_count": 18004,
+    "lower_overlap_blended_vertices": 89,
+    "minimum_seam_head_weight": 0.767490812599636,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      423,
+      735
+    ],
+    [
+      591,
+      744
+    ]
+  ],
+  "skin_sample_view": "Two prepared portrait cheeks and three exact diffuse patches establish the warm tan sample. Chestnut highlights and the separate red hachimaki are independent of the shared body match.",
+  "raw_skin_srgb": [
+    243,
+    164,
+    109
+  ],
+  "proof_pose_family": "club"
+}

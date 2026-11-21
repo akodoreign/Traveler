@@ -234,11 +234,12 @@
    "showThroat": true
   },
   "side_takeo": {
-   "mesh": "A135",
+   "mesh": "A135_lion_takeo",
    "dyed": true,
    "decal": "A135",
    "coverCore": true,
-   "clan": "lion"
+   "clan": "lion",
+   "palette": "A135"
   },
   "side_h_agasha": {
    "mesh": "A153",
@@ -409,11 +410,12 @@
    "clan": "crane"
   },
   "side_courtier": {
-   "mesh": "A124",
+   "mesh": "A124_miyoshi",
    "dyed": true,
    "decal": "A124",
    "coverCore": true,
-   "clan": "crane"
+   "clan": "crane",
+   "palette": "A124"
   },
   "side_dojiaoi": {
    "mesh": "A124",
@@ -423,11 +425,12 @@
    "clan": "crane"
   },
   "side_dojipoet": {
-   "mesh": "A124",
+   "mesh": "A124_miyoshi",
    "dyed": true,
    "decal": "A124",
    "coverCore": true,
-   "clan": "crane"
+   "clan": "crane",
+   "palette": "A124"
   },
   "side_empress": {
    "mesh": "A124",
@@ -451,11 +454,12 @@
    "clan": "crane"
   },
   "side_sanae": {
-   "mesh": "A124",
+   "mesh": "A124_miyoshi",
    "dyed": true,
    "decal": "A124",
    "coverCore": true,
-   "clan": "crane"
+   "clan": "crane",
+   "palette": "A124"
   },
   "side_tomeko": {
    "mesh": "A124",
@@ -465,11 +469,12 @@
    "clan": "crane"
   },
   "side_hayato": {
-   "mesh": "A124",
+   "mesh": "A124_sono_kagemaro",
    "dyed": true,
    "decal": "A124",
    "coverCore": true,
-   "clan": "crane"
+   "clan": "crane",
+   "palette": "A124"
   },
   "side_kage_ch3": {
    "mesh": "A100",
@@ -577,11 +582,12 @@
    "clan": "crane"
   },
   "side_miyoshi": {
-   "mesh": "A124",
+   "mesh": "A124_miyoshi",
    "dyed": true,
    "decal": "A124",
    "coverCore": true,
-   "clan": "crane"
+   "clan": "crane",
+   "palette": "A124"
   },
   "side_yuko": {
    "mesh": "A124",
@@ -1053,11 +1059,12 @@
    "clan": "peasant"
   },
   "side_makeup": {
-   "mesh": "A124",
+   "mesh": "A124_miyoshi",
    "dyed": true,
    "decal": "A124",
    "coverCore": true,
-   "clan": "crane"
+   "clan": "crane",
+   "palette": "A124"
   },
   "side_megu": {
    "mesh": "A100",
@@ -1179,11 +1186,12 @@
    "clan": "peasant"
   },
   "side_actor_a": {
-   "mesh": "A124",
+   "mesh": "A124_sono_kagemaro",
    "dyed": true,
    "decal": "A124",
    "coverCore": true,
-   "clan": "crane"
+   "clan": "crane",
+   "palette": "A124"
   },
   "side_actor_c": {
    "mesh": "A124",
@@ -1466,11 +1474,12 @@
    "clan": "ronin"
   },
   "side_kagemaro": {
-   "mesh": "A124",
+   "mesh": "A124_sono_kagemaro",
    "dyed": true,
    "decal": "A124",
    "coverCore": true,
-   "clan": "crane"
+   "clan": "crane",
+   "palette": "A124"
   },
   "side_karo": {
    "mesh": "A100",
@@ -1683,11 +1692,12 @@
    "clan": "peasant"
   },
   "side_shipmaster": {
-   "mesh": "A124",
+   "mesh": "A124_sono_kagemaro",
    "dyed": true,
    "decal": "A124",
    "coverCore": true,
-   "clan": "crane"
+   "clan": "crane",
+   "palette": "A124"
   },
   "side_shrinepeasant": {
    "mesh": "A100",
@@ -1711,11 +1721,12 @@
    "clan": "peasant"
   },
   "side_sonoservant": {
-   "mesh": "A124",
+   "mesh": "A124_sono_kagemaro",
    "dyed": true,
    "decal": "A124",
    "coverCore": true,
-   "clan": "crane"
+   "clan": "crane",
+   "palette": "A124"
   },
   "side_swordsmith": {
    "mesh": "A100",
@@ -1882,25 +1893,28 @@
    "clan": "lion"
   },
   "side_goroso": {
-   "mesh": "A135",
+   "mesh": "A135_lion_goroso",
    "dyed": true,
    "decal": "A135",
    "coverCore": true,
-   "clan": "lion"
+   "clan": "lion",
+   "palette": "A135"
   },
   "side_gusai": {
-   "mesh": "A135",
+   "mesh": "A135_lion_takeo",
    "dyed": true,
    "decal": "A135",
    "coverCore": true,
-   "clan": "lion"
+   "clan": "lion",
+   "palette": "A135"
   },
   "side_hiruto": {
-   "mesh": "A135",
+   "mesh": "A135_lion_takeo",
    "dyed": true,
    "decal": "A135",
    "coverCore": true,
-   "clan": "lion"
+   "clan": "lion",
+   "palette": "A135"
   },
   "side_ozaki": {
    "mesh": "A135",
@@ -1910,11 +1924,12 @@
    "clan": "lion"
   },
   "side_tama": {
-   "mesh": "A135",
+   "mesh": "A135_lion_takeo",
    "dyed": true,
    "decal": "A135",
    "coverCore": true,
-   "clan": "lion"
+   "clan": "lion",
+   "palette": "A135"
   },
   "side_ukita": {
    "mesh": "A135",
@@ -1952,11 +1967,12 @@
    "clan": "crane"
   },
   "side_daidoji_general": {
-   "mesh": "A109",
+   "mesh": "A109_crane_daidoji_general",
    "dyed": true,
    "decal": "A109",
    "coverCore": true,
-   "clan": "crane"
+   "clan": "crane",
+   "palette": "A109"
   },
   "side_siko": {
    "mesh": "A109",
@@ -2141,11 +2157,12 @@
    "clan": "scorpion"
   },
   "side_soshiofficer": {
-   "mesh": "A120",
+   "mesh": "A120_scorpion_soshi_officer",
    "dyed": true,
    "decal": "A120",
    "coverCore": true,
-   "clan": "scorpion"
+   "clan": "scorpion",
+   "palette": "A120"
   },
   "side_chihaya": {
    "mesh": "A101",
@@ -2190,11 +2207,12 @@
    "clan": "peasant"
   },
   "side_lionrider": {
-   "mesh": "A135",
+   "mesh": "A135_lion_takeo",
    "dyed": true,
    "decal": "A135",
    "coverCore": true,
-   "clan": "lion"
+   "clan": "lion",
+   "palette": "A135"
   },
   "side_lionsergeant": {
    "mesh": "A135",
@@ -3043,11 +3061,12 @@
    "clan": "phoenix"
   },
   "side_yachiko": {
-   "mesh": "A167",
+   "mesh": "A167_yachiko",
    "dyed": true,
    "decal": "A167",
    "coverCore": true,
-   "clan": "imperial"
+   "clan": "imperial",
+   "palette": "A167"
   },
   "side_hatomu": {
    "mesh": "A167",
@@ -3064,11 +3083,12 @@
    "clan": "imperial"
   },
   "side_satomi": {
-   "mesh": "A167",
+   "mesh": "A167_yachiko",
    "dyed": true,
    "decal": "A167",
    "coverCore": true,
-   "clan": "imperial"
+   "clan": "imperial",
+   "palette": "A167"
   },
   "side_ryozo": {
    "mesh": "A167",
@@ -3113,11 +3133,12 @@
    "clan": "phoenix"
   },
   "side_kusada": {
-   "mesh": "A167",
+   "mesh": "A167_kusada",
    "dyed": true,
    "decal": "A167",
    "coverCore": true,
-   "clan": "imperial"
+   "clan": "imperial",
+   "palette": "A167"
   },
   "side_magistrate": {
    "mesh": "A167",
@@ -3267,11 +3288,12 @@
    "clan": "unicorn"
   },
   "side_h_ferryarcher": {
-   "mesh": "A168",
+   "mesh": "A168_mantis_ferryarcher",
    "dyed": true,
    "decal": "A168",
    "coverCore": true,
-   "clan": "mantis"
+   "clan": "mantis",
+   "palette": "A168"
   },
   "side_iami": {
    "mesh": "A168",
@@ -3288,11 +3310,12 @@
    "clan": "mantis"
   },
   "side_tadayasu": {
-   "mesh": "A168",
+   "mesh": "A168_mantis_tadayasu",
    "dyed": true,
    "decal": "A168",
    "coverCore": true,
-   "clan": "mantis"
+   "clan": "mantis",
+   "palette": "A168"
   },
   "side_rui": {
    "mesh": "A168",

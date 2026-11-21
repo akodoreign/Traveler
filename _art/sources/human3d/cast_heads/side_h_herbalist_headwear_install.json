@@ -1,0 +1,41 @@
+{
+  "actor": "side_h_herbalist",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_h_herbalist_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_h_herbalist_headcloth.pm",
+      "to": "side_h_herbalist_headcloth.pm",
+      "sha256": "33f3048eebd225dcf4917a73af3e1cd922ccd698155c51e29881c0ce86302481"
+    },
+    {
+      "from": "assets/side_h_herbalist_headcloth.mdl",
+      "to": "side_h_herbalist_headcloth.mdl",
+      "sha256": "6a792ba695c583ca6f6ea49f616187d54c5e6f96443c30a5df2108b278881a29"
+    },
+    {
+      "from": "assets/tex/side_h_herbalist_headcloth_weave.png",
+      "to": "tex/side_h_herbalist_headcloth_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_h_herbalist_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\fits\\side_h_herbalist\\rigid-geometry\\assets\\side_h_herbalist_portrait_face.glb",
+    "sha256": "78f6bc4d0c18f7987ac989c8a9a2f3f4fd67582e6916b78c422835949f4d0aed"
+  },
+  "final_fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\release\\side_h_herbalist\\assets\\side_h_herbalist_portrait_face.glb",
+    "sha256": "6ef5b343f67d0c6d38165b6f0b9ec01030aca4152e0dab937c273ff12bcb301c"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "key": "side_h_herbalist_portrait_face",
+  "source": "side_h_herbalist_repaired_atlas.glb",
+  "scale": 12.1,
+  "features": {
+    "eyes": [
+      [
+        191,
+        294,
+        0.04
+      ],
+      [
+        284,
+        294,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        188,
+        278
+      ],
+      [
+        284,
+        279
+      ]
+    ],
+    "mouth": [
+      240,
+      359
+    ]
+  },
+  "socket_sample_levels": [
+    -0.976,
+    -0.966,
+    -0.956,
+    -0.946,
+    -0.9359999999999999,
+    -0.9259999999999999,
+    -0.9159999999999999,
+    -0.9059999999999999,
+    -0.8959999999999999,
+    -0.8859999999999999,
+    -0.8759999999999999,
+    -0.8659999999999999,
+    -0.8559999999999999,
+    -0.8459999999999999,
+    -0.8359999999999999,
+    -0.8259999999999998,
+    -0.8159999999999998,
+    -0.8059999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.18,
+    -0.027
+  ],
+  "skin_match": [
+    238,
+    200,
+    184
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.1,
+  "fit_matrix_blender": [
+    [
+      12.09999349625216,
+      -0.011599743867820485,
+      0.0047787653640623245,
+      -1.922384176111096
+    ],
+    [
+      0.011588976031704478,
+      12.099963894759188,
+      0.027192667422643865,
+      0.34333626211458884
+    ],
+    [
+      -0.0048048195325503945,
+      -0.027188075864667084,
+      12.0999685008781,
+      111.09665881110739
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.32,
+  "seam_weights": {
+    "vertex_count": 18319,
+    "lower_overlap_blended_vertices": 128,
+    "minimum_seam_head_weight": 0.7910380579889276,
+    "upper_face_head_weight": 1.0
+  },
+  "proof_pose_family": "fist",
+  "skin_sample_patches": [
+    [
+      437,
+      675
+    ],
+    [
+      586,
+      675
+    ],
+    [
+      455,
+      755
+    ]
+  ],
+  "skin_sample_view": "Diffuse shoulders and cheeks share the calibrated neck tone from the repaired painted head and original portrait.",
+  "raw_skin_srgb": [
+    241,
+    202,
+    187
+  ]
+}

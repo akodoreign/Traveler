@@ -1,0 +1,112 @@
+{
+  "key": "side_daidoji_general_portrait_face",
+  "source": "side_daidoji_general_repaired_atlas.glb",
+  "scale": 9.8,
+  "features": {
+    "eyes": [
+      [
+        200,
+        246,
+        0.04
+      ],
+      [
+        284,
+        245,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        196,
+        233
+      ],
+      [
+        282,
+        233
+      ]
+    ],
+    "mouth": [
+      239,
+      325
+    ]
+  },
+  "socket_sample_levels": [
+    -0.899,
+    -0.889,
+    -0.879,
+    -0.869,
+    -0.859,
+    -0.849,
+    -0.839,
+    -0.829,
+    -0.819,
+    -0.8089999999999999,
+    -0.7989999999999999,
+    -0.7889999999999999,
+    -0.7789999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.09,
+    -0.015
+  ],
+  "skin_match": [
+    233,
+    187,
+    153
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 9.8,
+  "fit_matrix_blender": [
+    [
+      9.792521563991516,
+      0.04244685694078277,
+      -0.3804204031037382,
+      1.2631308935842855
+    ],
+    [
+      -0.038588523242566994,
+      9.799412911784145,
+      0.10008751287809751,
+      0.24288603912655748
+    ],
+    [
+      0.3808311235124062,
+      -0.09851319046713546,
+      9.792102062717161,
+      107.186851418951
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 20997,
+    "lower_overlap_blended_vertices": 187,
+    "minimum_seam_head_weight": 0.26984881211839085,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      400,
+      556
+    ],
+    [
+      423,
+      591
+    ]
+  ],
+  "skin_sample_view": "Calibrated diffuse cheek and lower face from the raw unlit front and original actor art.",
+  "raw_skin_srgb": [
+    231,
+    187,
+    153
+  ],
+  "proof_pose_family": "blade"
+}

@@ -1,0 +1,40 @@
+{
+  "piece": "A124_miyoshi",
+  "assets": [
+    {
+      "source": "A124.mdl",
+      "file": "A124_miyoshi.mdl",
+      "edited_vertices": 1163,
+      "collar_reweighted_vertices": 332,
+      "before_sha256": "fb301213af3dd96e2e0e65adab4bed1ef43c9b9fc96fc925617deada602ae332",
+      "after_sha256": "26ea044b7c58ff71bde6ab41535343ee6e3a919ccc8a786abeac4f7b3a974b74"
+    },
+    {
+      "source": "A124_decal.mdl",
+      "file": "A124_miyoshi_decal.mdl",
+      "edited_vertices": 247,
+      "collar_reweighted_vertices": 0,
+      "before_sha256": "c55da68511c7b841fa95f97fe2ac1da2341ade52bf03f99862f1d877db127f87",
+      "after_sha256": "38941d3e9e6cec1a66aa6f628316f5bf2dd128b9d45d323252e87bd46de8c3aa"
+    }
+  ],
+  "default_records": {
+    "side_miyoshi": {
+      "before": {
+        "mesh": "A124",
+        "dyed": true,
+        "decal": "A124",
+        "coverCore": true,
+        "clan": "crane"
+      },
+      "after": {
+        "mesh": "A124_miyoshi",
+        "dyed": true,
+        "decal": "A124",
+        "coverCore": true,
+        "clan": "crane",
+        "palette": "A124"
+      }
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "key": "side_gusai_portrait_face",
+  "source": "side_gusai_repaired_atlas.glb",
+  "scale": 9.8,
+  "features": {
+    "eyes": [
+      [
+        198,
+        243,
+        0.04
+      ],
+      [
+        280,
+        243,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        195,
+        231
+      ],
+      [
+        283,
+        229
+      ]
+    ],
+    "mouth": [
+      246,
+      323
+    ]
+  },
+  "socket_sample_levels": [
+    -0.975,
+    -0.965,
+    -0.955,
+    -0.945,
+    -0.9349999999999999,
+    -0.9249999999999999,
+    -0.9149999999999999,
+    -0.9049999999999999,
+    -0.8949999999999999,
+    -0.8849999999999999,
+    -0.8749999999999999,
+    -0.8649999999999999,
+    -0.8549999999999999,
+    -0.8449999999999999,
+    -0.8349999999999999,
+    -0.8249999999999998,
+    -0.8149999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.006,
+    0.007
+  ],
+  "skin_match": [
+    196,
+    143,
+    109
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 9.8,
+  "fit_matrix_blender": [
+    [
+      9.793838989738555,
+      -0.34597606657970087,
+      0.03191244947475749,
+      0.849801997106177
+    ],
+    [
+      0.3456244249567887,
+      9.793364183756307,
+      0.10277023496301413,
+      0.030029438662403263
+    ],
+    [
+      -0.035519008301631794,
+      -0.10158014409864075,
+      9.799409159453214,
+      107.78252444819599
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 23554,
+    "lower_overlap_blended_vertices": 87,
+    "minimum_seam_head_weight": 0.3950846533507021,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      401,
+      565
+    ],
+    [
+      433,
+      594
+    ]
+  ],
+  "skin_sample_view": "Calibrated lower skin target between the diffuse generated front and stable original cheek samples.",
+  "raw_skin_srgb": [
+    198,
+    142,
+    105
+  ],
+  "review_wardrobe_mesh": "A135_lion_takeo",
+  "proof_pose_family": "blade"
+}

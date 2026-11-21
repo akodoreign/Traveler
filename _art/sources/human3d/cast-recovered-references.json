@@ -1,0 +1,387 @@
+{
+  "side_sailor": {
+    "name": "Daidoji sailor",
+    "roster_design": "tools/gen_sidecast.py:352",
+    "roster_traits": {
+      "clan": "crane",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "bangs": "short",
+      "head": "hachimaki",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP485",
+      "EP805"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_sailor_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_sailor.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Sailor",
+    "bust_folder": "npc_sailor",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_sailor\\neutral.png",
+    "resource": "/resource/bust/npc_sailor/neutral.png",
+    "dimensions": [
+      410,
+      600
+    ],
+    "status": "ready",
+    "identity": "same_literal_actor_and_stock_route",
+    "evidence": "tools/gen_maps.py:18587–18589 and 18651–18655 bind the Sailor's Orochi dialogue to this field model.",
+    "care": "Use the event-specific face. The headband is a separate accessory. Drunk Sailor has a different stock model."
+  },
+  "side_hostess": {
+    "name": "The hostess",
+    "roster_design": "tools/gen_sidecast.py:487",
+    "roster_traits": {
+      "clan": "lion",
+      "face": "round",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "bun",
+      "mouth": "smile",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP572",
+      "EP852"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_hostess_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_hostess.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Hostess",
+    "bust_folder": "npc_hostess",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hostess\\neutral.png",
+    "resource": "/resource/bust/npc_hostess/neutral.png",
+    "dimensions": [
+      422,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "The literal role alias, black bun and female face match the roster."
+  },
+  "side_mitsue_maid": {
+    "name": "Lady's maid",
+    "roster_design": "tools/gen_sidecast.py:614",
+    "roster_traits": {
+      "clan": "scorpion",
+      "face": "sharp",
+      "skin": "SKIN",
+      "hair": [
+        34,
+        26,
+        38
+      ],
+      "hairstyle": "bun",
+      "eye": [
+        160,
+        44,
+        56
+      ],
+      "mouth": "smile",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP619",
+      "EP899"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_mitsue_maid_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_mitsue_maid.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Shosuro Mitsue",
+    "bust_folder": "mitsue",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\mitsue\\neutral.png",
+    "resource": "/resource/bust/mitsue/neutral.png",
+    "dimensions": [
+      419,
+      600
+    ],
+    "status": "ready",
+    "identity": "same_actor_costume_disguise",
+    "evidence": "tools/gen_maps.py:10774–10781 explicitly names Mitsue under the maid disguise. tools/gen_sidecast.py:613–616 preserves her own red eyes.",
+    "care": "Use Mitsue's established face and red eyes. Reference her maid hairstyle separately. Do not use the generic Maid portrait."
+  },
+  "side_cartdriver": {
+    "name": "Cart driver",
+    "roster_design": "tools/gen_sidecast.py:154",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BROWN",
+      "hairstyle": "short",
+      "bangs": "short",
+      "facial": "stubble",
+      "hat": "jingasa",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP341",
+      "EP741"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_cartdriver_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_cartdriver.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Cart Driver",
+    "bust_folder": "npc_cart_driver",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_cart_driver\\neutral.png",
+    "resource": "/resource/bust/npc_cart_driver/neutral.png",
+    "dimensions": [
+      417,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "Literal role alias. Keep this route separate from the mule-driver."
+  },
+  "side_diver": {
+    "name": "Old diver",
+    "roster_design": "tools/gen_sidecast.py:599",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "TAN",
+      "hair": "GREY",
+      "hairstyle": "short",
+      "age": "old",
+      "mouth": "smile",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP614",
+      "EP894"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_diver_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_diver.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Old Diver",
+    "bust_folder": "npc_old_diver",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_old_diver\\neutral.png",
+    "resource": "/resource/bust/npc_old_diver/neutral.png",
+    "dimensions": [
+      423,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "Literal role alias and matching older gray-haired identity."
+  },
+  "side_karo": {
+    "name": "The karo",
+    "roster_design": "tools/gen_sidecast.py:500",
+    "roster_traits": {
+      "clan": "lion",
+      "face": "long",
+      "skin": "SKIN",
+      "hair": "GREY",
+      "hairstyle": "chonmage",
+      "age": "old",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP578",
+      "EP858"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_karo_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_karo.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Akodo Kagehisa",
+    "bust_folder": "npc_akodo_kagehisa",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_kagehisa\\neutral.png",
+    "resource": "/resource/bust/npc_akodo_kagehisa/neutral.png",
+    "dimensions": [
+      410,
+      600
+    ],
+    "status": "ready",
+    "identity": "same_literal_actor",
+    "evidence": "tools/gen_maps.py:7349–7354 places the karo model at the office. docs/story/production/lion-ch3.md:16–17 names him Akodo Kagehisa.",
+    "care": "Use the named mature portrait. The generic Karo folder depicts a younger man."
+  },
+  "side_kitechild": {
+    "name": "Child with a kite",
+    "roster_design": "tools/gen_sidecast.py:132",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "SKIN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "bangs": "heavy",
+      "mouth": "frown",
+      "height": -8,
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP333",
+      "EP733"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_kitechild_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_kitechild.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Child",
+    "bust_folder": "npc_child",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_child\\neutral.png",
+    "resource": "/resource/bust/npc_child/neutral.png",
+    "dimensions": [
+      418,
+      600
+    ],
+    "status": "ready",
+    "identity": "same_literal_actor_and_stock_route",
+    "evidence": "tools/gen_maps.py:1114–1119 routes the Kite Child quest through Child dialogue and EP333. EP333 names side_kitechild.png.",
+    "care": "Retain the child face and age. Other field uses of this stock model do not prove those NPCs are the same person."
+  },
+  "side_magistrate": {
+    "name": "Imperial magistrate",
+    "roster_design": "tools/gen_sidecast.py:515",
+    "roster_traits": {
+      "clan": "imperial",
+      "face": "long",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "eyes": "narrow",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP583",
+      "EP863"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_magistrate_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_magistrate.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Imperial Magistrate",
+    "bust_folder": "npc_imperial_magistrate",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_imperial_magistrate\\neutral.png",
+    "resource": "/resource/bust/npc_imperial_magistrate/neutral.png",
+    "dimensions": [
+      410,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "The male Zumiki magistrate in the Phoenix Chapter 2 cast. Keep Miya Yachiko and Otomo Shinken separate."
+  },
+  "side_mobleader": {
+    "name": "Mob leader",
+    "roster_design": "tools/gen_sidecast.py:517",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "brow": "angry",
+      "mouth": "frown",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP584",
+      "EP864"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_mobleader_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_mobleader.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Mob Leader",
+    "bust_folder": "npc_mob_leader",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mob_leader\\neutral.png",
+    "resource": "/resource/bust/npc_mob_leader/neutral.png",
+    "dimensions": [
+      415,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "Literal role alias for the Phoenix Chapter 2 mob leader."
+  },
+  "side_pedlar": {
+    "name": "\"Pedlar\"",
+    "roster_design": "tools/gen_sidecast.py:980",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "sharp",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "brow": "angled",
+      "mouth": "smile",
+      "head": "headcloth",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP1138",
+      "EP1018"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_pedlar_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_pedlar.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "\"Pedlar\"",
+    "bust_folder": "npc_pedlar",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_pedlar\\neutral.png",
+    "resource": "/resource/bust/npc_pedlar/neutral.png",
+    "dimensions": [
+      415,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "The quoted speaker at tools/gen_maps.py:15583 and 15712. This is distinct from the Jade-dust Pedlar."
+  },
+  "side_sergeant": {
+    "name": "Guard sergeant",
+    "roster_design": "tools/gen_sidecast.py:173",
+    "roster_traits": {
+      "clan": "crab",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "facial": "mustache",
+      "brow": "stern",
+      "hat": "jingasa",
+      "build": "armored_light"
+    },
+    "registered_picture_ids": [
+      "EP346",
+      "EP746"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_sergeant_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_sergeant.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Guard Sergeant",
+    "bust_folder": "npc_guard_sergeant",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_guard_sergeant\\neutral.png",
+    "resource": "/resource/bust/npc_guard_sergeant/neutral.png",
+    "dimensions": [
+      418,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "Crab Chapter 1 Guard Sergeant. The actor's helmet and equipment stay separate from the face input."
+  }
+}

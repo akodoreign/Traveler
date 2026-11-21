@@ -1,0 +1,32 @@
+{
+  "actor": "side_citizen",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_citizen_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_citizen_portrait_porcelain_mask.pm",
+      "to": "side_citizen_portrait_porcelain_mask.pm",
+      "sha256": "682c7ef8987a094f2435552cec1f9d84a778c9a7ba886bf915161b43cc8b6ac2"
+    },
+    {
+      "from": "assets/side_citizen_portrait_porcelain_mask.mdl",
+      "to": "side_citizen_portrait_porcelain_mask.mdl",
+      "sha256": "5556352c285ec7d945c8df37e399ab9b4e9f3ad876a2e10ce6d50cd023bd966d"
+    },
+    {
+      "from": "assets/tex/side_citizen_portrait_porcelain_mask_color_srgb.png",
+      "to": "tex/side_citizen_portrait_porcelain_mask_color_srgb.png",
+      "sha256": "c112ba2fb95b783737d539de8251077b1e71abb774ffda310e90d287195bc2da"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_citizen_portrait_porcelain_mask"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_citizen\\neck-detail-final\\assets\\side_citizen_portrait_face.glb",
+    "sha256": "3f5b9051ee8266985f8b5e95e125f10991aa03d7e537da22b75472e76efebf5c"
+  }
+}

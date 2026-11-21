@@ -1,0 +1,33 @@
+{
+  "actor": "side_kitchengirl",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_kitchengirl_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_kitchengirl_headcloth.pm",
+      "to": "side_kitchengirl_headcloth.pm",
+      "sha256": "6945cb76fabde23aca0122a61f6492d0e5be37eceb67c378ca3f74124ffbbc78"
+    },
+    {
+      "from": "assets/side_kitchengirl_headcloth.mdl",
+      "to": "side_kitchengirl_headcloth.mdl",
+      "sha256": "e3648d7d8e901a40a59e732c9e27fc0ef436376bb36410b265f04cc5bd16fd50"
+    },
+    {
+      "from": "assets/tex/side_kitchengirl_headcloth_linen.png",
+      "to": "tex/side_kitchengirl_headcloth_linen.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_kitchengirl_headcloth",
+        "headwear": true
+      }
+    ]
+  }
+}

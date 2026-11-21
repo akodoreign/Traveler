@@ -1,0 +1,122 @@
+{
+  "key": "side_kasamashi_portrait_face",
+  "source": "side_kasamashi_repaired_atlas.glb",
+  "scale": 12.2,
+  "features": {
+    "eyes": [
+      [
+        196,
+        281,
+        0.04
+      ],
+      [
+        278,
+        282,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        193,
+        271
+      ],
+      [
+        281,
+        271
+      ]
+    ],
+    "mouth": [
+      237,
+      347
+    ]
+  },
+  "socket_sample_levels": [
+    -0.978,
+    -0.968,
+    -0.958,
+    -0.948,
+    -0.938,
+    -0.9279999999999999,
+    -0.9179999999999999,
+    -0.9079999999999999,
+    -0.8979999999999999,
+    -0.8879999999999999,
+    -0.8779999999999999,
+    -0.8679999999999999,
+    -0.8579999999999999,
+    -0.8479999999999999,
+    -0.8379999999999999,
+    -0.8279999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.005,
+    -0.012
+  ],
+  "skin_match": [
+    243,
+    197,
+    164
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.2,
+  "fit_matrix_blender": [
+    [
+      12.199082186295767,
+      -0.14197244089644911,
+      0.047303678800780145,
+      0.8076827899445733
+    ],
+    [
+      0.14214833714196973,
+      12.199087573995905,
+      -0.04534547639435686,
+      0.10454737154876818
+    ],
+    [
+      -0.046772451827505536,
+      0.04589322398309175,
+      12.199824021261314,
+      110.10942965244969
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 20279,
+    "lower_overlap_blended_vertices": 179,
+    "minimum_seam_head_weight": 0.35131125663561136,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      203,
+      306,
+      4
+    ],
+    [
+      270,
+      307,
+      4
+    ],
+    [
+      238,
+      355,
+      4
+    ]
+  ],
+  "skin_sample_view": "Diffuse cheeks against the final locked color",
+  "raw_skin_srgb": [
+    243,
+    197,
+    164
+  ],
+  "proof_pose_family": "fist"
+}

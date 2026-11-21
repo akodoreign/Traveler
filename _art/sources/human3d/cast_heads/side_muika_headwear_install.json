@@ -1,0 +1,41 @@
+{
+  "actor": "side_muika",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_muika_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_muika_headcloth.pm",
+      "to": "side_muika_headcloth.pm",
+      "sha256": "7ad0a4dbdc9d4c71b37d6afd4e576fb7ac704cb79fa6d9330e1215b8c1b12ce6"
+    },
+    {
+      "from": "assets/side_muika_headcloth.mdl",
+      "to": "side_muika_headcloth.mdl",
+      "sha256": "52461b2f57e11bfc46ef0cb648c288ebd6be6f4941fcca262607701df6a37068"
+    },
+    {
+      "from": "assets/tex/side_muika_headcloth_weave.png",
+      "to": "tex/side_muika_headcloth_weave.png",
+      "sha256": "cced8c27950cd2783b8fc0c6e84e788283ef81ee332a874c7dcd68aca05f0deb"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_muika_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\fits\\side_muika\\rigid-geometry\\assets\\side_muika_portrait_face.glb",
+    "sha256": "0ffd9970c48a57bf48edcd78725e3151ff7dd21b89c2f6b2aca88c0167443733"
+  },
+  "final_fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\release\\side_muika\\assets\\side_muika_portrait_face.glb",
+    "sha256": "99f968e121c37a07258d1e60d61998596f89b93f545d8db6922a390ac88d42ec"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "actor": "side_smithboy",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_smithboy_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_smithboy_hachimaki.pm",
+      "to": "side_smithboy_hachimaki.pm",
+      "sha256": "7698571ba0512e2dc4a5b8f2c1b1fb696fb3e6056f2914dd8650039ed46d5871"
+    },
+    {
+      "from": "assets/side_smithboy_hachimaki.mdl",
+      "to": "side_smithboy_hachimaki.mdl",
+      "sha256": "d922296201fe69d74052f73f7d61af2a59b81c9f877f5dbe0974049669cd0c3a"
+    },
+    {
+      "from": "assets/tex/side_smithboy_hachimaki_weave.png",
+      "to": "tex/side_smithboy_hachimaki_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_smithboy_hachimaki",
+        "headwear": true,
+        "replacesHeadband": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\fits\\side_smithboy\\rigid-geometry\\assets\\side_smithboy_portrait_face.glb",
+    "sha256": "55113129653cbe611e02962790219eec83b04422c8564f43022ca380ea085eac"
+  },
+  "final_fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\release\\side_smithboy\\assets\\side_smithboy_portrait_face.glb",
+    "sha256": "b28ad0f8782e5bf249c50b7cca0223d6a14056d2db2c435437e8422d6d606327"
+  }
+}

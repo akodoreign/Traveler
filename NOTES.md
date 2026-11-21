@@ -4991,3 +4991,32 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
 - Dialogue: gen_maps gesture()/gestures()/say_g(); acting cues on a traveler's own road gesture automatically (gesture_pass). Gestures hold through the line via <id>_hold (looping).
 - Engine fix: src/rpg/RPG3DObject.sk RPG3DPicture.anime2 returns its layer (cmd_anime can lock sprite animations).
 - Playtest: rpgcobo -rtanim <id>; snapmaps.py --anim <id> --dir 90 --party P132.
+## 2026-11-21: Companion Void criticals
+- Every companion except Togashi Yosai (who keeps his tattoo dragon) has its own Void critical prelude; travelers keep theirs. After the school title: an in-place native clip, the companion's own effect, and a flashing ward icon rising over every living ally (the school gift), then the attack lands as before.
+- Clips: tools/blender/companion_void.py (cv_<name>, timed key poses on rig3d_poses.controls) and tools/blender/hida_rally.py (Hida Sachiko's war cry) -> resource/native_chara/*.mot. Wards: tools/companion_void_fx.py (battle UI element/weapon icons in a coloured flashing ring, Ide-heart style strips) -> resource/efx/rt/cv_ward_*.png/.ptd, hida_earth_ward.
+- Plugin: RokuganCompanionVoid.sk (COMP_VOID per player id: clip, frames, ward, beat, self/ally effect, scale); hooks in RokuganVoidCrit.sk attackAction and RokuganNativeChara.sk clip motion; chara3d_native_all.py keeps the banks.
+- Test: python -E tools/test_companion_void_all.py (real engine, forced Void crit per companion, review sheet _art/preview/companion_void/review.png). All 19 pass. tools/blender/hida_void.py (a full-body tetsubo swing) is baked but not wired.
+
+## 2026-11-21: Condition durations, status icons, hover tooltips
+- Countdown rule (engine spendTurn, end of every round, landing round counts): rem_turn [n, n] = rest of the landing
+  round + (n - 1) full rounds, so "for N turns" = [N+1, N+1]. Kata/kiho (kata_data.cond_for) were already right.
+- Fixed (gen_data "Duration audit" + cond.json/skill.json patched directly): Watchful Falcon / Heat-Ward / Veiled
+  [3,3] -> [4,4]; Courage was overwritten by Veiled (same K058) -> K155 Courage, K156 Courage (Honor >= 3, doubled,
+  plugin swap), K157 Stillness of the Void; Force of Will K158 (2 turns), Blessings of Jizo K159 (5 turns, all
+  spells), Biting Steel K160 (whole battle), Armor of the Emperor K161 (5 turns), Grasp of Earth K162 Rooted (was
+  permanent Paralysis), Earth's Stagnation K163, Hungry Blade K164, Osano-wo K165, Tempest of Air K166, Burst K167,
+  Everburning Rage K168 (not on bosses). Paralysis K006 no longer lasts forever ([2,3]).
+- Lose-an-action conditions (rt_skip: Scandalized, Netted, Shocked, Everburning Rage): RokuganDurations.sk ends them
+  after exactly one lost action, whether they land before or after the victim acts. Terror immunity = rt_fearless.
+- Test: tools/test_durations.py (all OK). Spells whose stated effects still aren't implemented at all: Wall of Fire,
+  Follow the Flame, Tail/Breath of the Fire Dragon, Wall of Air, Kami's Strength, Void Release/Suppression, Reversal of
+  Fortunes, Rise Water, Words of the Kami's deafen.
+- Status icons: tools/gen_status_icons.py -> resource/icon/usericon.bin/json (engine user atlas, U+E400..), 66 icons
+  for 129 conditions (pictogram = effect, green/red badge = buff/debuff, gold frame = kata, violet = Void gift).
+  gen_data re-applies them after saving cond.json. Stock poison/sleep/etc. tiles kept. Preview _art/preview/status_icons*.png
+- Tooltips (user: "just have it show the info if you hover over the icon ... not the total info for the char"): party
+  row icons are drawn per icon (RokuganBattleUI UI.tickIcons); hovering one shows that effect only: name, turns left,
+  numbers from its own options. Test: tools/test_status_icons.py (sets the mouse itself).
+- Same effect again = replace + restart the timer, never stack (user 2026-11-21). The engine refused a repeat once a
+  condition was at MAXLV (canPutCondition), so recasts were lost; RokuganDurations.sk lets the repeat through
+  (putCondition resets cond.turn). ATK/DEF Up/Down + Void Guard MAXLV 2 -> 1 (no +60%). Taint still stacks (a meter).

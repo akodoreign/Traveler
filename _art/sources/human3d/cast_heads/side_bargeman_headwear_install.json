@@ -1,0 +1,37 @@
+{
+  "actor": "side_bargeman",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_bargeman_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_bargeman_headcloth.pm",
+      "to": "side_bargeman_headcloth.pm",
+      "sha256": "8b271ad8175f2425a0f7567bbb9d4f6efa00603dc10ed25185f40c1c61984530"
+    },
+    {
+      "from": "assets/side_bargeman_headcloth.mdl",
+      "to": "side_bargeman_headcloth.mdl",
+      "sha256": "db4ab21dbd4643aafb206d6518ba6252f86754408388adcb3a1db209dae0b7c8"
+    },
+    {
+      "from": "assets/tex/side_bargeman_headcloth_linen.png",
+      "to": "tex/side_bargeman_headcloth_linen.png",
+      "sha256": "c2986558921d1f7d1f8ac9885af7f942852c19a7c1d55a7b0d13243b1ea3a0da"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_bargeman_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_bargeman\\painted-final\\assets\\side_bargeman_portrait_face.glb",
+    "sha256": "717afa6fbd473e44054004e751c27dce6159f48dbc34db7b8bd1b9c4229e9661"
+  }
+}

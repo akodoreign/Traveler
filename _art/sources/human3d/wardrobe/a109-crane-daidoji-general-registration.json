@@ -1,0 +1,40 @@
+{
+  "piece": "A109_crane_daidoji_general",
+  "assets": [
+    {
+      "source": "A109.mdl",
+      "file": "A109_crane_daidoji_general.mdl",
+      "edited_vertices": 164,
+      "collar_reweighted_vertices": 0,
+      "before_sha256": "bc7397bdf242d99612b49f86ea3eb2a54d6d31de726c1792fce4119a6fdc8d96",
+      "after_sha256": "728a17ffb05803fc42ab20fb50c78a0892ea74138074c0a7edf70eaf747d7e2c"
+    },
+    {
+      "source": "A109_decal.mdl",
+      "file": "A109_crane_daidoji_general_decal.mdl",
+      "edited_vertices": 0,
+      "collar_reweighted_vertices": 0,
+      "before_sha256": "108875874917386560dae4a0d3e116b0067fbba576f49ec3aca3c8b0c700df71",
+      "after_sha256": "108875874917386560dae4a0d3e116b0067fbba576f49ec3aca3c8b0c700df71"
+    }
+  ],
+  "default_records": {
+    "side_daidoji_general": {
+      "before": {
+        "mesh": "A109",
+        "dyed": true,
+        "decal": "A109",
+        "coverCore": true,
+        "clan": "crane"
+      },
+      "after": {
+        "mesh": "A109_crane_daidoji_general",
+        "dyed": true,
+        "decal": "A109",
+        "coverCore": true,
+        "clan": "crane",
+        "palette": "A109"
+      }
+    }
+  }
+}

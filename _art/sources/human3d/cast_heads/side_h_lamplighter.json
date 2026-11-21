@@ -1,0 +1,121 @@
+{
+  "key": "side_h_lamplighter_portrait_face",
+  "source": "side_h_lamplighter_repaired_atlas.glb",
+  "scale": 12.0,
+  "features": {
+    "eyes": [
+      [
+        187,
+        264,
+        0.04
+      ],
+      [
+        287,
+        268,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        189,
+        246
+      ],
+      [
+        286,
+        247
+      ]
+    ],
+    "mouth": [
+      240,
+      328
+    ]
+  },
+  "socket_sample_levels": [
+    -0.925,
+    -0.913,
+    -0.901,
+    -0.889,
+    -0.877,
+    -0.865,
+    -0.853,
+    -0.841,
+    -0.829,
+    -0.817,
+    -0.8049999999999999,
+    -0.7929999999999999,
+    -0.7809999999999999,
+    -0.7689999999999999,
+    -0.7569999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.089,
+    -0.013
+  ],
+  "skin_match": [
+    199,
+    139,
+    101
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.0,
+  "fit_matrix_blender": [
+    [
+      11.9963065983893,
+      -0.295729607845587,
+      -0.03423443421180997,
+      1.8965058964106587
+    ],
+    [
+      0.2953683178961074,
+      11.995746388664807,
+      -0.1217626199676331,
+      0.08485843709494739
+    ],
+    [
+      0.037223033534797875,
+      0.1208824961756341,
+      11.99933339264706,
+      109.63163696591425
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 22397,
+    "lower_overlap_blended_vertices": 126,
+    "minimum_seam_head_weight": 0.4648754584490503,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      187,
+      299,
+      5
+    ],
+    [
+      294,
+      298,
+      5
+    ],
+    [
+      247,
+      353,
+      4
+    ]
+  ],
+  "skin_sample_view": "Unlit 480x480 final corrected front. Cheek/chin diffuse stamps and stem recorded; final body targets corrected lower neck.",
+  "raw_skin_srgb": [
+    199,
+    139,
+    101
+  ],
+  "proof_pose_family": "pole"
+}

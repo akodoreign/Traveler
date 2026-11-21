@@ -1,0 +1,35 @@
+// Executed only by tools/test_companion_void.py through the bot evalf command: a forced companion Void critical.
+import DamageResultType;
+local check = function( ok, text){
+	if( !ok) throw Exception( "COMPVOID TEST FAIL: " .. text);
+	printf( "[RT] COMPVOID TEST PASS: %S\n", text);
+};
+local who = ::arguments.indexOf( "-rtcv") >= 0 ? ::arguments[::arguments.indexOf( "-rtcv") + 1] : "P120";
+local b = ::rpgstage["battle"];
+check( !!b, "battle opened");
+local pc = null;
+foreach( m in b.members) if( m && m.dataid == who) pc = m;
+check( !!pc, who .. " in the party");
+local dst = b.enemies[0], rp = b.getChara3D( pc);
+check( rp && rp["nativeBody"], "native body loaded");
+local v = ::Rokugan.COMP_VOID[pc.dataid];
+check( !!v, "companion has a prelude");
+check( !!rp.animemap[v.clip], "prelude clip registered on the actor");
+local vsk = clone pc.getAttackSkill();
+vsk["rt_vcrit"] <- 15;
+local cmd = SkillCommand( pc, vsk, [dst]);
+local clipMs = v.frames * 1000.0 / 30.0;
+newthread().start( @(){
+	sleep( 1500 + clipMs * v.at * 0.75); ::Rokugan.rtshot( "tmp/rt_shot/bot_compvoid_rally.raw");
+	sleep( clipMs * v.at * 0.25 + 450); ::Rokugan.rtshot( "tmp/rt_shot/bot_compvoid_icons.raw");
+});
+local d = Damage( cmd, dst);
+d.critical = true;
+d.val = 17;
+d.result = DMG_CRITICAL;
+local hp = dst.HP;
+cmd.attackAction( d);
+cmd.waitFor( pc, dst);
+check( dst.HP == hp - 17, "the attack still lands, exactly once");
+check( !rp.animlayers.layers[0].locked, "prelude layer released");
+printf( "[RT] COMPVOID TEST COMPLETE\n");

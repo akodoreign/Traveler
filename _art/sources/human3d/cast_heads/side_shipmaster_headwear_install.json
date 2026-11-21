@@ -1,0 +1,41 @@
+{
+  "actor": "side_shipmaster",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_shipmaster_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_shipmaster_headcloth.pm",
+      "to": "side_shipmaster_headcloth.pm",
+      "sha256": "7be35f5c7320e781aad77e1ecd01d018cf9649dec28cfafedbf868cb733b3032"
+    },
+    {
+      "from": "assets/side_shipmaster_headcloth.mdl",
+      "to": "side_shipmaster_headcloth.mdl",
+      "sha256": "08237503de16d6a70974e31d59c8f67c16595a8efa39d9df0ca56b6478547077"
+    },
+    {
+      "from": "assets/tex/side_shipmaster_headcloth_weave.png",
+      "to": "tex/side_shipmaster_headcloth_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_shipmaster_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\fits\\side_shipmaster\\rigid-geometry\\assets\\side_shipmaster_portrait_face.glb",
+    "sha256": "5e5a057fd6ba8214db4f8e928e7754157880e3bfec6b271d7f8021a9f94174f2"
+  },
+  "final_fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\release\\side_shipmaster\\assets\\side_shipmaster_portrait_face.glb",
+    "sha256": "cef6e5be6a872ca154e980cdd21786eb60dc6c39abb64ea1c88e71044c931d60"
+  }
+}

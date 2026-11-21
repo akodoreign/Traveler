@@ -1,0 +1,1862 @@
+{
+  "side_hagane": {
+    "name": "Daidoji Hagane",
+    "roster_design": "tools/gen_sidecast.py:715",
+    "roster_traits": {
+      "clan": "crane",
+      "face": "square",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "mask": "death",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP652",
+      "EP932"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_hagane_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_hagane.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "distinct_named_actor",
+    "care": "The stock model is Daidoji Hagane with a death mask. Author its underlying face, with the mask removed from the head source and fitted independently."
+  },
+  "side_sailor": {
+    "name": "Daidoji sailor",
+    "roster_design": "tools/gen_sidecast.py:352",
+    "roster_traits": {
+      "clan": "crane",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "bangs": "short",
+      "head": "hachimaki",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP485",
+      "EP805"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_sailor_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_sailor.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Sailor",
+    "bust_folder": "npc_sailor",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_sailor\\neutral.png",
+    "resource": "/resource/bust/npc_sailor/neutral.png",
+    "dimensions": [
+      410,
+      600
+    ],
+    "status": "ready",
+    "identity": "same_literal_actor_and_stock_route",
+    "evidence": "tools/gen_maps.py:18587–18589 and 18651–18655 bind the Sailor's Orochi dialogue to this field model.",
+    "care": "Use the event-specific face. The headband is a separate accessory. Drunk Sailor has a different stock model."
+  },
+  "side_courtier": {
+    "name": "Doji courtier",
+    "roster_design": "tools/gen_sidecast.py:381",
+    "roster_traits": {
+      "clan": "crane",
+      "face": "sharp",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "long",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP494",
+      "EP814"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_courtier_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_courtier.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief.",
+    "rejected_near_match": {
+      "speaker": "Courtier",
+      "bust_folder": "npc_courtier",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_courtier\\neutral.png",
+      "resource": "/resource/bust/npc_courtier/neutral.png",
+      "dimensions": [
+        421,
+        600
+      ],
+      "issue": "The generic Courtier portrait is male and used in the Lion Central Dojo. This field model is a female Doji courtier in the Crane domains."
+    }
+  },
+  "side_dojipoet": {
+    "name": "Doji poet",
+    "roster_design": "tools/gen_sidecast.py:425",
+    "roster_traits": {
+      "clan": "crane",
+      "face": "sharp",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "long",
+      "mouth": "smirk",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP549",
+      "EP829"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_dojipoet_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_dojipoet.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "requires_variant",
+    "identity": "source_conflicts_with_authored_actor",
+    "evidence": "RokuganBustData.sk maps a male-looking portrait. tools/gen_sidecast.py:425 sets female=True, and Ide's dialogue in tools/gen_maps.py:2097 refers to her as she.",
+    "care": "Author a new feminine Doji poet portrait using the roster's sharp face, long black hair, pale skin and white face preparation. Keep the stored PNG as a mismatch report only.",
+    "identity_or_conflicting_portrait": {
+      "speaker": "Doji Poet",
+      "bust_folder": "npc_doji_poet",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_poet\\neutral.png",
+      "resource": "/resource/bust/npc_doji_poet/neutral.png",
+      "dimensions": [
+        412,
+        600
+      ]
+    }
+  },
+  "side_acolyte": {
+    "name": "Isawa acolyte",
+    "roster_design": "tools/gen_sidecast.py:465",
+    "roster_traits": {
+      "clan": "phoenix",
+      "face": "round",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "brow": "worried",
+      "height": -1,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP564",
+      "EP844"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_acolyte_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_acolyte.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief.",
+    "rejected_near_match": {
+      "speaker": "Isawa Fire-acolyte",
+      "bust_folder": "npc_isawa_fire_acolyte",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_isawa_fire_acolyte\\neutral.png",
+      "resource": "/resource/bust/npc_isawa_fire_acolyte/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ],
+      "issue": "The pale Isawa scroll-copier model is reused in several scenes. Do not bind the separately named Fire-acolyte based only on the generic title."
+    }
+  },
+  "side_iuchifarmer": {
+    "name": "Iuchi farmer",
+    "roster_design": "tools/gen_sidecast.py:854",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "mouth": "set",
+      "head": "headcloth",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP698",
+      "EP978"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_iuchifarmer_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_iuchifarmer.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_mami": {
+    "name": "Kaiu Mami",
+    "roster_design": "tools/gen_sidecast.py:485",
+    "roster_traits": {
+      "clan": "crab",
+      "face": "round",
+      "skin": "TAN",
+      "hair": "GREY",
+      "hairstyle": "bun",
+      "mouth": "grin",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP571",
+      "EP851"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_mami_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_mami.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "distinct_named_actor",
+    "care": "Female siege planner with round features, gray hair in a bun and tan skin. Her origami belongs in her prop slot."
+  },
+  "side_mizochi": {
+    "name": "Kakita Mizochi",
+    "roster_design": "tools/gen_sidecast.py:467",
+    "roster_traits": {
+      "clan": "crane",
+      "face": "long",
+      "skin": "PALE",
+      "hair": "WHITE",
+      "hairstyle": "chonmage",
+      "eyes": "narrow",
+      "build": "normal"
+    },
+    "registered_picture_ids": [
+      "EP565",
+      "EP845"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_mizochi_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_mizochi.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "distinct_named_actor",
+    "care": "Pale white-haired Kakita challenger in the Lion Chapter 1 duel. Keep this named face apart from similar-looking Kakita stock fighters."
+  },
+  "side_miyubi": {
+    "name": "Kuni Miyubi",
+    "roster_design": "tools/gen_sidecast.py:336",
+    "roster_traits": {
+      "clan": "crab",
+      "face": "round",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "ponytail",
+      "eye": [
+        60,
+        120,
+        236
+      ],
+      "mouth": "grin",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP479",
+      "EP799"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_miyubi_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_miyubi.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "requires_variant",
+    "identity": "distinct_magical_disguise",
+    "evidence": "docs/story/scripts/crane-ch2-the-iron-cranes.md:14,34 explicitly differentiates white-haired Miyako and black-ponytailed Kuni Miyubi.",
+    "care": "Create the pale, black-ponytailed Kuni face with blue eyes. Keep the Miyako bust as an identity clue, not a matching face reference.",
+    "identity_or_conflicting_portrait": {
+      "speaker": "Doji Miyako",
+      "bust_folder": "npc_doji_miyako",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_miyako\\neutral.png",
+      "resource": "/resource/bust/npc_doji_miyako/neutral.png",
+      "dimensions": [
+        403,
+        600
+      ]
+    }
+  },
+  "side_drummer": {
+    "name": "Mirumoto drummer",
+    "roster_design": "tools/gen_sidecast.py:879",
+    "roster_traits": {
+      "clan": "dragon",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "mouth": "grin",
+      "head": "headcloth",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP1106",
+      "EP986"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_drummer_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_drummer.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_outfitter": {
+    "name": "Togashi outfitter",
+    "roster_design": "tools/gen_sidecast.py:810",
+    "roster_traits": {
+      "clan": "dragon",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "bald",
+      "mouth": "grin",
+      "head_tattoo": true,
+      "tattoo": [
+        40,
+        90,
+        70
+      ],
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP683",
+      "EP963"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_outfitter_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_outfitter.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief.",
+    "rejected_near_match": {
+      "speaker": "Outfitter",
+      "bust_folder": "npc_outfitter",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_outfitter\\neutral.png",
+      "resource": "/resource/bust/npc_outfitter/neutral.png",
+      "dimensions": [
+        412,
+        600
+      ],
+      "issue": "The shop model is a bald Togashi with a green head tattoo. The portrait named Outfitter shows a young man with thick brown hair and belongs to another chapter."
+    }
+  },
+  "side_togashi": {
+    "name": "Togashi",
+    "roster_design": "tools/gen_sidecast.py:792",
+    "roster_traits": {
+      "clan": "dragon",
+      "face": "long",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "bald",
+      "eyes": "closed",
+      "mouth": "set",
+      "height": 4,
+      "head_tattoo": true,
+      "tattoo": [
+        150,
+        70,
+        40
+      ],
+      "build": "monk"
+    },
+    "registered_picture_ids": [
+      "EP677",
+      "EP957"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_togashi_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_togashi.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief.",
+    "rejected_near_match": {
+      "speaker": "Togashi Akuro",
+      "bust_folder": "npc_togashi_akuro",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_togashi_akuro\\neutral.png",
+      "resource": "/resource/bust/npc_togashi_akuro/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ],
+      "issue": "The Kyuden Togashi garden identifies this actor as the Kami Togashi. He is distinct from Akuro, Yosai, Sumi and other Togashi family members."
+    }
+  },
+  "side_hostess": {
+    "name": "The hostess",
+    "roster_design": "tools/gen_sidecast.py:487",
+    "roster_traits": {
+      "clan": "lion",
+      "face": "round",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "bun",
+      "mouth": "smile",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP572",
+      "EP852"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_hostess_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_hostess.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Hostess",
+    "bust_folder": "npc_hostess",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_hostess\\neutral.png",
+    "resource": "/resource/bust/npc_hostess/neutral.png",
+    "dimensions": [
+      422,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "The literal role alias, black bun and female face match the roster."
+  },
+  "side_incense": {
+    "name": "Incense-seller",
+    "roster_design": "tools/gen_sidecast.py:807",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "SKIN",
+      "hair": "GREY",
+      "hairstyle": "bun",
+      "age": "old",
+      "mouth": "smile",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP682",
+      "EP962"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_incense_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_incense.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_jadeclerk": {
+    "name": "Jade clerk",
+    "roster_design": "tools/gen_sidecast.py:146",
+    "roster_traits": {
+      "clan": "crab",
+      "face": "round",
+      "skin": "SKIN",
+      "hair": "GREY",
+      "hairstyle": "bun",
+      "age": "old",
+      "eyes": "old",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP338",
+      "EP738"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_jadeclerk_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_jadeclerk.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_kitchengirl": {
+    "name": "Kitchen girl",
+    "roster_design": "tools/gen_sidecast.py:495",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "ponytail",
+      "female": true,
+      "height": -2,
+      "head": "headcloth",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP576",
+      "EP856"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_kitchengirl_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_kitchengirl.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief.",
+    "rejected_near_match": {
+      "speaker": "Kitchen servant",
+      "bust_folder": "npc_kitchen_servant",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitchen_servant\\neutral.png",
+      "resource": "/resource/bust/npc_kitchen_servant/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ],
+      "issue": "The Kitchen servant speaks through SC[servant] at tools/gen_maps.py:2320. The Kitchen girl uses a different model and the other PNG shows a man."
+    }
+  },
+  "side_makeup": {
+    "name": "Crane make-up artist",
+    "roster_design": "tools/gen_sidecast.py:557",
+    "roster_traits": {
+      "clan": "crane",
+      "face": "round",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "bun",
+      "mouth": "frown",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP599",
+      "EP879"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_makeup_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_makeup.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_miko": {
+    "name": "Shrine maiden",
+    "roster_design": "tools/gen_sidecast.py:977",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "long",
+      "mouth": "smile",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP1137",
+      "EP1017"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_miko_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_miko.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_mitsue_maid": {
+    "name": "Lady's maid",
+    "roster_design": "tools/gen_sidecast.py:614",
+    "roster_traits": {
+      "clan": "scorpion",
+      "face": "sharp",
+      "skin": "SKIN",
+      "hair": [
+        34,
+        26,
+        38
+      ],
+      "hairstyle": "bun",
+      "eye": [
+        160,
+        44,
+        56
+      ],
+      "mouth": "smile",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP619",
+      "EP899"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_mitsue_maid_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_mitsue_maid.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Shosuro Mitsue",
+    "bust_folder": "mitsue",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\mitsue\\neutral.png",
+    "resource": "/resource/bust/mitsue/neutral.png",
+    "dimensions": [
+      419,
+      600
+    ],
+    "status": "ready",
+    "identity": "same_actor_costume_disguise",
+    "evidence": "tools/gen_maps.py:10774–10781 explicitly names Mitsue under the maid disguise. tools/gen_sidecast.py:613–616 preserves her own red eyes.",
+    "care": "Use Mitsue's established face and red eyes. Reference her maid hairstyle separately. Do not use the generic Maid portrait."
+  },
+  "side_nashiko": {
+    "name": "Blue-eyed woman",
+    "roster_design": "tools/gen_sidecast.py:1033",
+    "roster_traits": {
+      "clan": "scorpion",
+      "face": "long",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "long",
+      "eye": [
+        70,
+        130,
+        220
+      ],
+      "brow": "straight",
+      "mouth": "smile",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP1154",
+      "EP1034"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_nashiko_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_nashiko.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "requires_variant",
+    "identity": "distinct_echo_disguise",
+    "evidence": "docs/story/04-supporting-cast-and-hireables.md:96 calls the blue-eyed figure Nashiko's echo. tools/gen_maps.py:16766–16774 describes the same smile in three different faces.",
+    "care": "Create the Scorpion-gray blue-eyed manifestation. The Doji Nashiko portrait has red-brown eyes and represents her other face.",
+    "identity_or_conflicting_portrait": {
+      "speaker": "Doji Nashiko",
+      "bust_folder": "npc_doji_nashiko",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_doji_nashiko\\neutral.png",
+      "resource": "/resource/bust/npc_doji_nashiko/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ]
+    }
+  },
+  "side_tsuhime": {
+    "name": "Tsuhime",
+    "roster_design": "tools/gen_sidecast.py:563",
+    "roster_traits": {
+      "clan": "imperial",
+      "face": "long",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "long",
+      "mouth": "frown",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP601",
+      "EP881"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_tsuhime_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_tsuhime.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "distinct_named_actor",
+    "care": "Ushimo's adult wife in the year-400 house scene. Preserve the thin gray sick-stage appearance and long black hair. Do not substitute another Imperial woman."
+  },
+  "side_twin": {
+    "name": "Village girl",
+    "roster_design": "tools/gen_sidecast.py:402",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "ponytail",
+      "female": true,
+      "height": -4,
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP541",
+      "EP821"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_twin_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_twin.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "Use an original young village-girl design for this stock model. The stock key is reused across several set pieces.",
+    "rejected_near_match": {
+      "speaker": "Kitsune Hana",
+      "bust_folder": "npc_kitsune_hana",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kitsune_hana\\neutral.png",
+      "resource": "/resource/bust/npc_kitsune_hana/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ],
+      "issue": "This reused child model represents several village children, including the sick Hana. Do not substitute the unrelated adult/named Kitsune Hana design."
+    }
+  },
+  "side_widow": {
+    "name": "Widow",
+    "roster_design": "tools/gen_sidecast.py:493",
+    "roster_traits": {
+      "clan": "lion",
+      "face": "long",
+      "skin": "SKIN",
+      "hair": "GREY",
+      "hairstyle": "bun",
+      "age": "old",
+      "female": true,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP575",
+      "EP855"
+    ],
+    "body": "shared_female",
+    "existing_head": "side_widow_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_widow.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_akuro": {
+    "name": "Old fisherman",
+    "roster_design": "tools/gen_sidecast.py:596",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "long",
+      "skin": "TAN",
+      "hair": "GREY",
+      "hairstyle": "bald",
+      "age": "old",
+      "eyes": "old",
+      "mouth": "frown",
+      "hat": "jingasa",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP613",
+      "EP893"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_akuro_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_akuro.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "requires_variant",
+    "identity": "distinct_fisherman_disguise",
+    "evidence": "docs/story/production/dragon-ch2.md:61–62 and docs/story/scripts/dragon-ch2-the-painting.md:39 identify the old fisherman as a different face worn by Togashi Akuro.",
+    "care": "Create the elderly fisherman alias and keep his hat separate. Both the younger Akuro bust and the unrelated Fisherman bust are identity evidence only.",
+    "identity_or_conflicting_portrait": {
+      "speaker": "Togashi Akuro",
+      "bust_folder": "npc_togashi_akuro",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_togashi_akuro\\neutral.png",
+      "resource": "/resource/bust/npc_togashi_akuro/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ]
+    }
+  },
+  "side_cartdriver": {
+    "name": "Cart driver",
+    "roster_design": "tools/gen_sidecast.py:154",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BROWN",
+      "hairstyle": "short",
+      "bangs": "short",
+      "facial": "stubble",
+      "hat": "jingasa",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP341",
+      "EP741"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_cartdriver_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_cartdriver.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Cart Driver",
+    "bust_folder": "npc_cart_driver",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_cart_driver\\neutral.png",
+    "resource": "/resource/bust/npc_cart_driver/neutral.png",
+    "dimensions": [
+      417,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "Literal role alias. Keep this route separate from the mule-driver."
+  },
+  "side_censorclerk": {
+    "name": "Censor's clerk",
+    "roster_design": "tools/gen_sidecast.py:422",
+    "roster_traits": {
+      "clan": "crane",
+      "face": "round",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "height": -1,
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP548",
+      "EP828"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_censorclerk_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_censorclerk.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_crabboy": {
+    "name": "Boy with a crab",
+    "roster_design": "tools/gen_sidecast.py:601",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "mouth": "grin",
+      "height": -4,
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP615",
+      "EP895"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_crabboy_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_crabboy.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "Use an original boy's head, with the crab remaining a held prop. Do not use the Kite Child identity."
+  },
+  "side_diver": {
+    "name": "Old diver",
+    "roster_design": "tools/gen_sidecast.py:599",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "TAN",
+      "hair": "GREY",
+      "hairstyle": "short",
+      "age": "old",
+      "mouth": "smile",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP614",
+      "EP894"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_diver_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_diver.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Old Diver",
+    "bust_folder": "npc_old_diver",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_old_diver\\neutral.png",
+    "resource": "/resource/bust/npc_old_diver/neutral.png",
+    "dimensions": [
+      423,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "Literal role alias and matching older gray-haired identity."
+  },
+  "side_doorman": {
+    "name": "House of Tranquillity doorman",
+    "roster_design": "tools/gen_sidecast.py:920",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "long",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "brow": "stern",
+      "mouth": "set",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP1119",
+      "EP999"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_doorman_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_doorman.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_drunkactor": {
+    "name": "Drunk actor",
+    "roster_design": "tools/gen_sidecast.py:434",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "long",
+      "skin": "SKIN",
+      "hair": "BLACK",
+      "hairstyle": "mane",
+      "mouth": "open",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP552",
+      "EP832"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_drunkactor_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_drunkactor.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_healer": {
+    "name": "Dying healer",
+    "roster_design": "tools/gen_sidecast.py:528",
+    "roster_traits": {
+      "clan": "phoenix",
+      "face": "long",
+      "skin": "SKIN",
+      "hair": "WHITE",
+      "hairstyle": "bald",
+      "age": "old",
+      "mouth": "smile",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP588",
+      "EP868"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_healer_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_healer.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "requires_variant",
+    "identity": "exact_speaker_distinct_age",
+    "evidence": "RokuganBustData.sk maps Dying Healer directly, while tools/gen_sidecast.py:528 requires a bald older healer with white hair.",
+    "care": "The dark-haired youthful bust is a likeness anchor only. Prepare the older sick-stage face before generating.",
+    "identity_or_conflicting_portrait": {
+      "speaker": "Dying Healer",
+      "bust_folder": "npc_dying_healer",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_dying_healer\\neutral.png",
+      "resource": "/resource/bust/npc_dying_healer/neutral.png",
+      "dimensions": [
+        413,
+        600
+      ]
+    }
+  },
+  "side_hidden1": {
+    "name": "Hidden One",
+    "roster_design": "tools/gen_sidecast.py:164",
+    "roster_traits": {
+      "clan": "ronin",
+      "face": "long",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "ponytail",
+      "facial": "stubble",
+      "eyes": "narrow",
+      "mouth": "frown",
+      "build": "normal"
+    },
+    "registered_picture_ids": [
+      "EP343",
+      "EP743"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_hidden1_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_hidden1.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "The first Hidden One has a tan long face, black ponytail and stubble. The role label is shared with Hidden One 2, but their authored identities differ."
+  },
+  "side_hidden2": {
+    "name": "Hidden One",
+    "roster_design": "tools/gen_sidecast.py:167",
+    "roster_traits": {
+      "clan": "ronin",
+      "face": "long",
+      "skin": "SKIN",
+      "hair": "BROWN",
+      "hairstyle": "short",
+      "bangs": "messy",
+      "eyes": "old",
+      "mouth": "frown",
+      "hat": "jingasa",
+      "build": "normal"
+    },
+    "registered_picture_ids": [
+      "EP344",
+      "EP744"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_hidden2_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_hidden2.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "The older Hidden One has lighter skin and short brown hair. Keep a separate source from the tan ponytailed Hidden One."
+  },
+  "side_karo": {
+    "name": "The karo",
+    "roster_design": "tools/gen_sidecast.py:500",
+    "roster_traits": {
+      "clan": "lion",
+      "face": "long",
+      "skin": "SKIN",
+      "hair": "GREY",
+      "hairstyle": "chonmage",
+      "age": "old",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP578",
+      "EP858"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_karo_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_karo.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Akodo Kagehisa",
+    "bust_folder": "npc_akodo_kagehisa",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_akodo_kagehisa\\neutral.png",
+    "resource": "/resource/bust/npc_akodo_kagehisa/neutral.png",
+    "dimensions": [
+      410,
+      600
+    ],
+    "status": "ready",
+    "identity": "same_literal_actor",
+    "evidence": "tools/gen_maps.py:7349–7354 places the karo model at the office. docs/story/production/lion-ch3.md:16–17 names him Akodo Kagehisa.",
+    "care": "Use the named mature portrait. The generic Karo folder depicts a younger man."
+  },
+  "side_kitechild": {
+    "name": "Child with a kite",
+    "roster_design": "tools/gen_sidecast.py:132",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "SKIN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "bangs": "heavy",
+      "mouth": "frown",
+      "height": -8,
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP333",
+      "EP733"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_kitechild_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_kitechild.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Child",
+    "bust_folder": "npc_child",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_child\\neutral.png",
+    "resource": "/resource/bust/npc_child/neutral.png",
+    "dimensions": [
+      418,
+      600
+    ],
+    "status": "ready",
+    "identity": "same_literal_actor_and_stock_route",
+    "evidence": "tools/gen_maps.py:1114–1119 routes the Kite Child quest through Child dialogue and EP333. EP333 names side_kitechild.png.",
+    "care": "Retain the child face and age. Other field uses of this stock model do not prove those NPCs are the same person."
+  },
+  "side_koshi": {
+    "name": "Old Mirumoto Koshi",
+    "roster_design": "tools/gen_sidecast.py:585",
+    "roster_traits": {
+      "clan": "dragon",
+      "face": "long",
+      "skin": "TAN",
+      "hair": "GREY",
+      "hairstyle": "long_topknot",
+      "facial": "longbeard",
+      "age": "old",
+      "eyes": "old",
+      "mouth": "frown",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP609",
+      "EP889"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_koshi_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_koshi.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "requires_variant",
+    "identity": "same_actor_distinct_age",
+    "evidence": "tools/gen_maps.py:9732–9734 explicitly pairs the ridge-dojo model with Mirumoto Koshi. tools/gen_sidecast.py:585–587 specifies older gray hair and a long beard.",
+    "care": "The linked bust is young, black-haired and clean-shaven. Use it for likeness only and prepare a distinct old-age reference.",
+    "identity_or_conflicting_portrait": {
+      "speaker": "Mirumoto Koshi",
+      "bust_folder": "npc_mirumoto_koshi",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mirumoto_koshi\\neutral.png",
+      "resource": "/resource/bust/npc_mirumoto_koshi/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ]
+    }
+  },
+  "side_magistrate": {
+    "name": "Imperial magistrate",
+    "roster_design": "tools/gen_sidecast.py:515",
+    "roster_traits": {
+      "clan": "imperial",
+      "face": "long",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "eyes": "narrow",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP583",
+      "EP863"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_magistrate_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_magistrate.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Imperial Magistrate",
+    "bust_folder": "npc_imperial_magistrate",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_imperial_magistrate\\neutral.png",
+    "resource": "/resource/bust/npc_imperial_magistrate/neutral.png",
+    "dimensions": [
+      410,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "The male Zumiki magistrate in the Phoenix Chapter 2 cast. Keep Miya Yachiko and Otomo Shinken separate."
+  },
+  "side_mobleader": {
+    "name": "Mob leader",
+    "roster_design": "tools/gen_sidecast.py:517",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "brow": "angry",
+      "mouth": "frown",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP584",
+      "EP864"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_mobleader_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_mobleader.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Mob Leader",
+    "bust_folder": "npc_mob_leader",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_mob_leader\\neutral.png",
+    "resource": "/resource/bust/npc_mob_leader/neutral.png",
+    "dimensions": [
+      415,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "Literal role alias for the Phoenix Chapter 2 mob leader."
+  },
+  "side_muledriver": {
+    "name": "Mule-driver",
+    "roster_design": "tools/gen_sidecast.py:801",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "spiky",
+      "facial": "stubble",
+      "mouth": "grin",
+      "head": "headcloth",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP680",
+      "EP960"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_muledriver_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_muledriver.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_musician": {
+    "name": "Street musician",
+    "roster_design": "tools/gen_sidecast.py:917",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "mouth": "smile",
+      "hat": "jingasa",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP1118",
+      "EP998"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_musician_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_musician.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_pedlar": {
+    "name": "\"Pedlar\"",
+    "roster_design": "tools/gen_sidecast.py:980",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "sharp",
+      "skin": "PALE",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "brow": "angled",
+      "mouth": "smile",
+      "head": "headcloth",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP1138",
+      "EP1018"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_pedlar_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_pedlar.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "\"Pedlar\"",
+    "bust_folder": "npc_pedlar",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_pedlar\\neutral.png",
+    "resource": "/resource/bust/npc_pedlar/neutral.png",
+    "dimensions": [
+      415,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "The quoted speaker at tools/gen_maps.py:15583 and 15712. This is distinct from the Jade-dust Pedlar."
+  },
+  "side_porter": {
+    "name": "Dock porter",
+    "roster_design": "tools/gen_sidecast.py:384",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "bangs": "short",
+      "head": "hachimaki",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP495",
+      "EP815"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_porter_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_porter.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief.",
+    "rejected_near_match": {
+      "speaker": "Zumiki Porter",
+      "bust_folder": "npc_zumiki_porter",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_zumiki_porter\\neutral.png",
+      "resource": "/resource/bust/npc_zumiki_porter/neutral.png",
+      "dimensions": [
+        425,
+        600
+      ],
+      "issue": "The specific Zumiki Porter is distinct from the general dock porter asset, which also represents a Dragon courier later."
+    }
+  },
+  "side_priest": {
+    "name": "Suitengu priest",
+    "roster_design": "tools/gen_sidecast.py:355",
+    "roster_traits": {
+      "clan": "imperial",
+      "face": "round",
+      "skin": "SKIN",
+      "hair": "BLACK",
+      "hairstyle": "bald",
+      "eyes": "closed",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP486",
+      "EP806"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_priest_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_priest.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "requires_variant",
+    "identity": "exact_speaker_different_hair",
+    "evidence": "RokuganBustData.sk points to the exact Suitengu Priest. tools/gen_sidecast.py:355–357 specifies a shaved head.",
+    "care": "Prepare a bald reference guided by the true portrait's facial features. Do not substitute the unrelated generic Priest.",
+    "identity_or_conflicting_portrait": {
+      "speaker": "Suitengu Priest",
+      "bust_folder": "npc_suitengu_priest",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_suitengu_priest\\neutral.png",
+      "resource": "/resource/bust/npc_suitengu_priest/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ]
+    }
+  },
+  "side_roninchef": {
+    "name": "Ronin cook",
+    "roster_design": "tools/gen_sidecast.py:851",
+    "roster_traits": {
+      "clan": "ronin",
+      "face": "round",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "mane",
+      "facial": "stubble",
+      "mouth": "grin",
+      "build": "round"
+    },
+    "registered_picture_ids": [
+      "EP697",
+      "EP977"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_roninchef_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_roninchef.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_rteacher": {
+    "name": "Rakusho teacher",
+    "roster_design": "tools/gen_sidecast.py:547",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "long",
+      "skin": "SKIN",
+      "hair": "GREY",
+      "hairstyle": "bald",
+      "age": "old",
+      "mouth": "frown",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP596",
+      "EP876"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_rteacher_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_rteacher.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "requires_variant",
+    "identity": "same_actor_distinct_age",
+    "evidence": "tools/gen_maps.py:9349, 9412 and docs/story/production/dragon-ch1.md:120 match the Rakusho teacher's scene and line.",
+    "care": "The linked bust has a young face and full dark hair. Prepare the elderly bald teacher with gray side hair per tools/gen_sidecast.py:547.",
+    "identity_or_conflicting_portrait": {
+      "speaker": "Teacher",
+      "bust_folder": "npc_teacher",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_teacher\\neutral.png",
+      "resource": "/resource/bust/npc_teacher/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ]
+    }
+  },
+  "side_smithboy": {
+    "name": "Smith's apprentice",
+    "roster_design": "tools/gen_sidecast.py:428",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "round",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "bangs": "short",
+      "height": -2,
+      "head": "hachimaki",
+      "build": "peasant"
+    },
+    "registered_picture_ids": [
+      "EP550",
+      "EP830"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_smithboy_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_smithboy.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "Author the young apprentice's individual face and keep the headband owned by the outfit."
+  },
+  "side_snakeelder": {
+    "name": "Snake elder",
+    "roster_design": "tools/gen_sidecast.py:1027",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "long",
+      "skin": "TAN",
+      "hair": "GREY",
+      "hairstyle": "bun",
+      "facial": "beard",
+      "age": "old",
+      "eyes": "narrow",
+      "mouth": "smile",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP1152",
+      "EP1032"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_snakeelder_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_snakeelder.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "Preserve the old role's gray bun, beard and narrow eyes. Keep him distinct from the similarly clothed village elders."
+  },
+  "side_tbeggar": {
+    "name": "Tattooed beggar",
+    "roster_design": "tools/gen_sidecast.py:804",
+    "roster_traits": {
+      "clan": "eta",
+      "face": "long",
+      "skin": "TAN",
+      "hair": "GREY",
+      "hairstyle": "bald",
+      "facial": "stubble",
+      "age": "old",
+      "eyes": "old",
+      "mouth": "smirk",
+      "head_tattoo": true,
+      "tattoo": [
+        60,
+        60,
+        90
+      ],
+      "build": "monk"
+    },
+    "registered_picture_ids": [
+      "EP681",
+      "EP961"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_tbeggar_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_tbeggar.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "The road's aging tattooed beggar is an independent stock identity. Preserve his faded forehead ink; do not use Yosai or a generic unmarked monk as the same actor."
+  },
+  "side_thundermonk": {
+    "name": "Thunder monk",
+    "roster_design": "tools/gen_sidecast.py:1051",
+    "roster_traits": {
+      "clan": "peasant",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "bald",
+      "brow": "thick",
+      "mouth": "grin",
+      "build": "robe"
+    },
+    "registered_picture_ids": [
+      "EP1159",
+      "EP1039"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_thundermonk_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_thundermonk.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief.",
+    "rejected_near_match": {
+      "speaker": "Osano-Wo Thunder Monk",
+      "bust_folder": "npc_osano_wo_thunder_monk",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_osano_wo_thunder_monk\\neutral.png",
+      "resource": "/resource/bust/npc_osano_wo_thunder_monk/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ],
+      "issue": "The generic shrine monk and the hireable Osano-Wo Thunder Monk have separate model keys and a different head tattoo. See tools/gen_sidecast.py:1051–1060."
+    }
+  },
+  "side_bayushiguard": {
+    "name": "Bayushi guard",
+    "roster_design": "tools/gen_sidecast.py:626",
+    "roster_traits": {
+      "clan": "scorpion",
+      "face": "square",
+      "skin": "SKIN",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "brow": "angled",
+      "mask": "cloth",
+      "build": "armored_light"
+    },
+    "registered_picture_ids": [
+      "EP623",
+      "EP903"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_bayushiguard_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_bayushiguard.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_chuto": {
+    "name": "Hida Chuto",
+    "roster_design": "tools/gen_sidecast.py:350",
+    "roster_traits": {
+      "clan": "crab",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "GREY",
+      "hairstyle": "chonmage",
+      "facial": "beard",
+      "age": "old",
+      "eyes": "old",
+      "mouth": "grin",
+      "height": 3,
+      "build": "heavy"
+    },
+    "registered_picture_ids": [
+      "EP484",
+      "EP804"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_chuto_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_chuto.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "distinct_named_actor",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_dorin": {
+    "name": "Hida Dorin",
+    "roster_design": "tools/gen_sidecast.py:727",
+    "roster_traits": {
+      "clan": "crab",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "mask": "reed",
+      "build": "heavy"
+    },
+    "registered_picture_ids": [
+      "EP656",
+      "EP936"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_dorin_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_dorin.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "distinct_named_actor",
+    "care": "The chapter's Hida Dorin is a named masked actor. Build an individual underlying face; his mask is separate equipment."
+  },
+  "side_mirumotosentry": {
+    "name": "Mirumoto sentry",
+    "roster_design": "tools/gen_sidecast.py:819",
+    "roster_traits": {
+      "clan": "dragon",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "brow": "stern",
+      "mouth": "set",
+      "build": "armored_light"
+    },
+    "registered_picture_ids": [
+      "EP686",
+      "EP966"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_mirumotosentry_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_mirumotosentry.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_seppunguard": {
+    "name": "Seppun guard",
+    "roster_design": "tools/gen_sidecast.py:593",
+    "roster_traits": {
+      "clan": "imperial",
+      "face": "square",
+      "skin": "SKIN",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "mouth": "frown",
+      "build": "armored"
+    },
+    "registered_picture_ids": [
+      "EP612",
+      "EP892"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_seppunguard_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_seppunguard.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_craneduellist": {
+    "name": "Crane duellist",
+    "roster_design": "tools/gen_sidecast.py:929",
+    "roster_traits": {
+      "clan": "crane",
+      "face": "sharp",
+      "skin": "PALE",
+      "hair": "WHITE",
+      "hairstyle": "ponytail",
+      "brow": "angled",
+      "mouth": "set",
+      "build": "armored_light"
+    },
+    "registered_picture_ids": [
+      "EP1122",
+      "EP1002"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_craneduellist_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_craneduellist.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief.",
+    "rejected_near_match": {
+      "speaker": "Kakita Yasurugi",
+      "bust_folder": "npc_kakita_yasurugi",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_kakita_yasurugi\\neutral.png",
+      "resource": "/resource/bust/npc_kakita_yasurugi/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ],
+      "issue": "The stock white-haired Crane teacher appears as a different actor in the Ronin chapters. Kakita Mizochi's named duel and Yasurugi's quest are separate."
+    }
+  },
+  "side_lionrider": {
+    "name": "Lion rider",
+    "roster_design": "tools/gen_sidecast.py:444",
+    "roster_traits": {
+      "clan": "lion",
+      "face": "round",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "bangs": "short",
+      "hat": "jingasa",
+      "build": "armored_light"
+    },
+    "registered_picture_ids": [
+      "EP555",
+      "EP835"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_lionrider_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_lionrider.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief.",
+    "rejected_near_match": {
+      "speaker": "Lion deserter",
+      "bust_folder": "npc_lion_deserter",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_lion_deserter\\neutral.png",
+      "resource": "/resource/bust/npc_lion_deserter/neutral.png",
+      "dimensions": [
+        418,
+        600
+      ],
+      "issue": "The same stock sprite is reused as deserter, rider and picket. The named/deserter-specific image is not a valid global face association."
+    }
+  },
+  "side_mbushi": {
+    "name": "Mantis bushi",
+    "roster_design": "tools/gen_sidecast.py:607",
+    "roster_traits": {
+      "clan": "mantis",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "spiky",
+      "brow": "angled",
+      "mouth": "grin",
+      "build": "armored_light"
+    },
+    "registered_picture_ids": [
+      "EP617",
+      "EP897"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_mbushi_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_mbushi.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_sergeant": {
+    "name": "Guard sergeant",
+    "roster_design": "tools/gen_sidecast.py:173",
+    "roster_traits": {
+      "clan": "crab",
+      "face": "square",
+      "skin": "TAN",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "facial": "mustache",
+      "brow": "stern",
+      "hat": "jingasa",
+      "build": "armored_light"
+    },
+    "registered_picture_ids": [
+      "EP346",
+      "EP746"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_sergeant_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_sergeant.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "speaker": "Guard Sergeant",
+    "bust_folder": "npc_guard_sergeant",
+    "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_guard_sergeant\\neutral.png",
+    "resource": "/resource/bust/npc_guard_sergeant/neutral.png",
+    "dimensions": [
+      418,
+      600
+    ],
+    "status": "ready",
+    "identity": "exact_speaker",
+    "evidence": "Literal RokuganBustData mapping, allowing case or leading-article differences.",
+    "care": "Crab Chapter 1 Guard Sergeant. The actor's helmet and equipment stay separate from the face input."
+  },
+  "side_taxman": {
+    "name": "Lion tax-collector",
+    "roster_design": "tools/gen_sidecast.py:289",
+    "roster_traits": {
+      "clan": "lion",
+      "face": "square",
+      "skin": "SKIN",
+      "hair": "BLACK",
+      "hairstyle": "chonmage",
+      "facial": "mustache",
+      "brow": "stern",
+      "hat": "jingasa",
+      "build": "armored_light"
+    },
+    "registered_picture_ids": [
+      "EP464",
+      "EP784"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_taxman_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_taxman.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief."
+  },
+  "side_townguard": {
+    "name": "Town guard",
+    "roster_design": "tools/gen_sidecast.py:176",
+    "roster_traits": {
+      "clan": "crab",
+      "face": "round",
+      "skin": "SKIN",
+      "hair": "BLACK",
+      "hairstyle": "short",
+      "bangs": "short",
+      "hat": "jingasa",
+      "build": "armored_light"
+    },
+    "registered_picture_ids": [
+      "EP347",
+      "EP747"
+    ],
+    "body": "shared_male",
+    "existing_head": "side_townguard_face",
+    "sprite_design_reference": "/resource/enemy_pic2x/side_townguard.png",
+    "sprite_use": "Visual guidance for a fresh design; do not reuse the old sprite or mesh as the new head.",
+    "status": "needs_new_reference",
+    "identity": "original_stock_role",
+    "care": "No verified matching bust. Use the authored face, hair, age, and role traits as the fresh concept brief.",
+    "rejected_near_match": {
+      "speaker": "Crab guard",
+      "bust_folder": "npc_crab_guard",
+      "reference": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\bust\\npc_crab_guard\\neutral.png",
+      "resource": "/resource/bust/npc_crab_guard/neutral.png",
+      "dimensions": [
+        410,
+        600
+      ],
+      "issue": "Town Guard is used across several locations. The Crab Guard role already has its own named model and portrait."
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "source": "side_h_ferryarcher_repaired_atlas.glb",
+  "scale": 10.45,
+  "cranial_scale": [
+    0.91,
+    104.35
+  ],
+  "socket_ring_hint": [
+    -0.09,
+    -0.015
+  ],
+  "features": {
+    "eyes": [
+      [
+        194,
+        268,
+        0.04
+      ],
+      [
+        287,
+        268,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        191,
+        253
+      ],
+      [
+        289,
+        253
+      ]
+    ],
+    "mouth": [
+      237,
+      343
+    ]
+  },
+  "socket_sample_levels": [
+    -0.978,
+    -0.966,
+    -0.954,
+    -0.942,
+    -0.93,
+    -0.918,
+    -0.906,
+    -0.894,
+    -0.882,
+    -0.87
+  ],
+  "maximum_pitch": 3,
+  "key": "side_h_ferryarcher_portrait_face",
+  "exact_native_outfit": true,
+  "preserve_long_hair": true,
+  "fit_shallow_neck_overlap": true,
+  "recenter_donor_seat": true,
+  "skin_match": [
+    251,
+    196,
+    160
+  ],
+  "skin_sample_view": "Stable unlit cheek skin in the exact donor",
+  "review_wardrobe_mesh": "A168_mantis_ferryarcher",
+  "raw_skin_srgb": [
+    251,
+    196,
+    160
+  ],
+  "skin_sample_patches": [
+    [
+      190,
+      334,
+      4
+    ],
+    [
+      209,
+      367,
+      4
+    ]
+  ],
+  "fit_method": "production shared body socket",
+  "fit_scale": 10.45,
+  "fit_matrix_blender": [
+    [
+      10.449232212163441,
+      -0.0394729596176674,
+      0.12036636467697977,
+      1.860629669896864
+    ],
+    [
+      0.038223439579765685,
+      10.449366629987075,
+      0.10851728333047066,
+      0.28263435755149113
+    ],
+    [
+      -0.12076897347092844,
+      -0.10806904077373658,
+      10.44874327072278,
+      108.98702019384336
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 22394,
+    "lower_overlap_blended_vertices": 88,
+    "minimum_seam_head_weight": 0.720076112399041,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 0.91,
+    "pivot": [
+      0.82663,
+      0.010229999999999961,
+      104.35
+    ],
+    "seated_rings": [
+      {
+        "height": 98.6875,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      },
+      {
+        "height": 99.375,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      }
+    ],
+    "original_entire_silhouette_width": 18.426337242126465,
+    "final_entire_silhouette_width": 16.767967224121094,
+    "original_crown_native": 119.10150146484375,
+    "final_crown_native": 117.77386474609375,
+    "origin_geometry_sha256": "6cccad81c7aec5b1abfe0f621bfa090f56893e6c9691fb60f8912a8c8d1b5e39"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "piece": "A120_scorpion_soshi_officer",
+  "assets": [
+    {
+      "source": "A120.mdl",
+      "file": "A120_scorpion_soshi_officer.mdl",
+      "edited_vertices": 49,
+      "collar_reweighted_vertices": 0,
+      "before_sha256": "39d39b598ef4db5b97a6bf81a86451d30b80f6ec00d43d3e5fd258203d68ed14",
+      "after_sha256": "d3a1c2d7c4ba714b41a6fb8f5a0e8ad531ee512ffe6b625b95ded73021b26508"
+    },
+    {
+      "source": "A120_decal.mdl",
+      "file": "A120_scorpion_soshi_officer_decal.mdl",
+      "edited_vertices": 0,
+      "collar_reweighted_vertices": 0,
+      "before_sha256": "e4a25d86fa400a9bbae1cde3e9f441dfcc863a8d8ccbee1c6e409f1d00dcae6f",
+      "after_sha256": "e4a25d86fa400a9bbae1cde3e9f441dfcc863a8d8ccbee1c6e409f1d00dcae6f"
+    }
+  ],
+  "default_records": {
+    "side_soshiofficer": {
+      "before": {
+        "mesh": "A120",
+        "dyed": true,
+        "decal": "A120",
+        "coverCore": true,
+        "clan": "scorpion"
+      },
+      "after": {
+        "mesh": "A120_scorpion_soshi_officer",
+        "dyed": true,
+        "decal": "A120",
+        "coverCore": true,
+        "clan": "scorpion",
+        "palette": "A120"
+      }
+    }
+  }
+}

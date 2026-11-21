@@ -1,0 +1,145 @@
+{
+  "key": "side_hagi_portrait_face",
+  "source": "side_hagi_fitted_source_repaired_atlas.glb",
+  "scale": 17.5,
+  "cranial_scale": [
+    0.64,
+    104.4
+  ],
+  "exact_native_outfit": true,
+  "preserve_long_hair": true,
+  "fit_shallow_neck_overlap": true,
+  "skin_match": [
+    220,
+    138,
+    101
+  ],
+  "skin_sample_patches": [
+    [
+      222,
+      415,
+      3
+    ],
+    [
+      227,
+      420,
+      3
+    ],
+    [
+      242,
+      420,
+      3
+    ]
+  ],
+  "skin_sample_view": "Flat near profile, exposed lower neck below cosmetics and dark nape shadow",
+  "socket_ring_hint": [
+    0.043,
+    -0.013
+  ],
+  "socket_sample_levels": [
+    -0.968,
+    -0.956,
+    -0.944,
+    -0.932,
+    -0.92,
+    -0.908,
+    -0.896,
+    -0.884,
+    -0.872,
+    -0.86,
+    -0.848,
+    -0.836,
+    -0.824,
+    -0.812,
+    -0.8
+  ],
+  "features": {
+    "eyes": [
+      [
+        203,
+        265,
+        0.03
+      ],
+      [
+        276,
+        265,
+        -0.03
+      ]
+    ],
+    "brows": [
+      [
+        202,
+        249
+      ],
+      [
+        276,
+        249
+      ]
+    ],
+    "mouth": [
+      240,
+      322
+    ]
+  },
+  "raw_geometry_source": "C:/AI/comfy-3d/app/output/nonhumans/traveler_geom_side_hagi_slim_socket_check_00001_.glb",
+  "fit_method": "production shared body socket",
+  "fit_scale": 17.5,
+  "fit_matrix_blender": [
+    [
+      17.49998105786976,
+      -0.013741253803581061,
+      -0.021775034910852673,
+      -0.8186221642660659
+    ],
+    [
+      0.013691066869958506,
+      17.499948211612228,
+      -0.040313094448750385,
+      0.151701251330728
+    ],
+    [
+      0.021806624897621828,
+      0.040296015187324674,
+      17.499940019962207,
+      114.52552952177652
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.1825,
+  "seam_weights": {
+    "vertex_count": 18961,
+    "lower_overlap_blended_vertices": 64,
+    "minimum_seam_head_weight": 0.42215119362105524,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 0.64,
+    "pivot": [
+      0.054287500000000044,
+      -0.022379999999999955,
+      104.4
+    ],
+    "seated_rings": [
+      {
+        "height": 98.9625,
+        "center_change": 1.5269603792891664e-06,
+        "diameter_change": 2.0834411182867804e-07
+      },
+      {
+        "height": 100.2,
+        "center_change": 3.0523521562030764e-06,
+        "diameter_change": 2.0264642782143475e-07
+      }
+    ],
+    "original_entire_silhouette_width": 25.622353553771973,
+    "final_entire_silhouette_width": 16.398305892944336,
+    "original_crown_native": 131.5673065185547,
+    "final_crown_native": 121.78707885742188,
+    "origin_geometry_sha256": "0795e050c01f80c0a095ed5d30fd20aa597911ea729b454b7a65c62a2cb5ca39"
+  }
+}

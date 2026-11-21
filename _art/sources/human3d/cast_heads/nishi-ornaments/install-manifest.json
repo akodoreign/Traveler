@@ -1,0 +1,46 @@
+{
+  "actor": "side_nishi",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_nishi_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_nishi_gold_bun_band.pm",
+      "to": "side_nishi_gold_bun_band.pm",
+      "sha256": "59c2c49f1f9aea505ca08533188d5fe4e05f6e713ce15396cbe2de79a7564222"
+    },
+    {
+      "from": "assets/side_nishi_gold_bun_band.mdl",
+      "to": "side_nishi_gold_bun_band.mdl",
+      "sha256": "c83317877e38e90f42039c092aa3e5910704cb0144e4896a5d7f87d9e773651e"
+    },
+    {
+      "from": "assets/side_nishi_flower_tassel_pin.pm",
+      "to": "side_nishi_flower_tassel_pin.pm",
+      "sha256": "d4bc69d7cfcd7c9a476db99a347fd5400f940b57b601ed0a605eade1a0904b39"
+    },
+    {
+      "from": "assets/side_nishi_flower_tassel_pin.mdl",
+      "to": "side_nishi_flower_tassel_pin.mdl",
+      "sha256": "ec8d51e876b88421e83f9d14aa76e3b47478619210921d2bae9cfbd50312c8c9"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_nishi_gold_bun_band",
+        "headwear": true
+      },
+      {
+        "mesh": "side_nishi_flower_tassel_pin",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\release\\side_nishi\\assets\\side_nishi_portrait_face.glb",
+    "sha256": "bc5df1530e422dabc0f27e1be39d9c3298f12d205142de438eb2a336a6deff82"
+  }
+}

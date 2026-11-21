@@ -1,0 +1,49 @@
+// Executed only by tools/test_void_gift.py (bot evalf): does a companion's Void-critical gift reach every ally and stay
+// for its turns? A real auto battle; the companion's first attack carries a certain Void critical (rt_vcrit 100), the
+// normal onAttack path grants the gift; every turn start logs who holds it.
+local who = ::arguments.indexOf( "-rtcv") >= 0 ? ::arguments[::arguments.indexOf( "-rtcv") + 1] : "P120";
+local sh = ::Rokugan.shoutFor( ::rpgstat.playermap[who]);
+local gift = sh[1];
+local T = { forced = false, fired = -1, round = 0, seen = {}, last = null };
+printf( "[RT] GIFT TEST %S gift %S (%S)\n", who, gift, ::conf.cond[gift] ? ::conf.cond[gift].name : "MISSING");
+
+::Rokugan._gt_pre <- ::Rokugan.onPreCommand;
+::Rokugan.onPreCommand <- function( cmd){
+	this._gt_pre( cmd);
+	if( !T.forced && cmd.src && cmd.src.dataid == who && cmd.skill && cmd.skill["skilltype"] == "attack"){
+		local nsk = clone cmd.skill;
+		nsk["rt_vcrit"] <- 100;
+		nsk["rt_vfired"] <- false;
+		cmd.skill = nsk;
+		T.forced = true;
+		printf( "[RT] GIFT TEST forced Void attack in round %d\n", T.round);
+	}
+};
+::Rokugan._gt_shout <- ::Rokugan.voidShout;
+::Rokugan.voidShout <- function( pc){
+	this._gt_shout( pc);
+	T.fired = T.round;
+	printf( "[RT] GIFT TEST shout fired in round %d by %S\n", T.round, pc.name);
+};
+::Rokugan._gt_turn <- ::Rokugan.onPreTurn;
+::Rokugan.onPreTurn <- function( chr){
+	this._gt_turn( chr);
+	local b = ::rpgstage["battle"];
+	if( !b || !(chr instanceof ::RPGPlayer)) return;
+	if( chr != b.members.find( @( m) m && !m.isDead())) return;		//	once per round: the first living member's turn
+	T.round++;
+	local names = "", n = 0;
+	foreach( m in b.members){
+		if( !m) continue;
+		local has = false;
+		foreach( c in m.conds) if( c.dataid == gift) has = true;
+		if( has){ names += (n ? ", " : "") .. m.name; n++; }
+	}
+	printf( "[RT] GIFT TEST round %d holders [%S]\n", T.round, names);
+	T.seen[T.round] <- n;
+	if( T.round >= 8) printf( "[RT] GIFT TEST COMPLETE fired=%d\n", T.fired);
+};
+local b = ::rpgstage["battle"];
+if( b && "setAutoBattle" in b) b.setAutoBattle( true);
+else if( b && "runner" in b && b.runner) b.runner.setAutoBattle( true);
+printf( "[RT] GIFT TEST armed (auto battle)\n");

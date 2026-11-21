@@ -119,9 +119,9 @@ local log( s){ printf( "[RT] %S\n", s); }
 		local dsts = b.getCommandTargets( pc, pc, ph.cmdtgt, false);
 		if( length( dsts)){ log( "auto: %S heals the party with %S" % (pc.name, ph.name)); return SkillCommand( pc, ph, dsts); }
 	}
-	//	a party ward against Terror (Stillness of the Void: puts K058) once someone is Terrified and nobody is warded
-	if( party.find( @( m) m.hasCondition( "K007")) && !party.find( @( m) m.hasCondition( "K058"))){
-		local wd = skills.find( @( sk) sk.cmdtgt == 11 && (sk["option"] || []).find( @( o) o["condid"] == "K058"));
+	//	a party ward against Terror (Stillness of the Void: an rt_fearless condition, K157) once someone is Terrified and nobody is warded
+	if( party.find( @( m) m.hasCondition( "K007")) && !party.find( @( m) ::Rokugan.fearless( m))){
+		local wd = skills.find( @( sk) sk.cmdtgt == 11 && (sk["option"] || []).find( @( o) o["condid"] && ::conf.cond[o["condid"]] && ::conf.cond[o["condid"]]["rt_fearless"]));
 		if( wd && this.getBP( pc) >= (wd["rt_vp"] || 0)){
 			local dsts = b.getCommandTargets( pc, pc, wd.cmdtgt, false);
 			if( length( dsts)){ log( "auto: %S wards the party with %S" % (pc.name, wd.name)); return SkillCommand( pc, wd, dsts); }

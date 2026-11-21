@@ -1,0 +1,145 @@
+{
+  "scale": 14.25,
+  "socket_sample_levels": [
+    -0.987,
+    -0.975,
+    -0.963,
+    -0.951,
+    -0.939,
+    -0.927,
+    -0.915,
+    -0.903,
+    -0.891,
+    -0.879
+  ],
+  "socket_ring_hint": [
+    -0.006,
+    -0.014
+  ],
+  "features": {
+    "eyes": [
+      [
+        189,
+        256,
+        0.04
+      ],
+      [
+        282,
+        258,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        188,
+        241
+      ],
+      [
+        281,
+        242
+      ]
+    ],
+    "mouth": [
+      239,
+      329
+    ]
+  },
+  "cranial_scale": [
+    0.77,
+    104.3
+  ],
+  "key": "side_sergeant_portrait_face",
+  "source": "side_sergeant_repaired_atlas.glb",
+  "exact_native_outfit": true,
+  "preserve_long_hair": true,
+  "fit_shallow_neck_overlap": true,
+  "recenter_donor_seat": true,
+  "skin_match": [
+    242,
+    189,
+    153
+  ],
+  "skin_sample_view": "Exact repaired front atlas. Sampled matte cheek and chin. Body material matches the fitted lower stem.",
+  "skin_sample_patches": [
+    [
+      199,
+      293,
+      3
+    ],
+    [
+      271,
+      287,
+      3
+    ],
+    [
+      244,
+      344,
+      3
+    ]
+  ],
+  "raw_skin_srgb": [
+    241,
+    200,
+    168
+  ],
+  "fit_method": "production shared body socket",
+  "fit_scale": 14.25,
+  "fit_matrix_blender": [
+    [
+      14.069709938679745,
+      2.242236946117451,
+      -0.2795276710515539,
+      0.5064985923814747
+    ],
+    [
+      -2.2371695942367356,
+      14.070817523999995,
+      0.2639439579179828,
+      0.44591582871592805
+    ],
+    [
+      0.31754440325777233,
+      -0.21672028923149125,
+      14.24481301625957,
+      112.64571210594661
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 19689,
+    "lower_overlap_blended_vertices": 74,
+    "minimum_seam_head_weight": 0.6779109775889911,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 0.77,
+    "pivot": [
+      0.6553049999999998,
+      0.012360000000000038,
+      104.3
+    ],
+    "seated_rings": [
+      {
+        "height": 98.55,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      },
+      {
+        "height": 99.65,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      }
+    ],
+    "original_entire_silhouette_width": 23.46503448486328,
+    "final_entire_silhouette_width": 18.068077087402344,
+    "original_crown_native": 126.54793548583984,
+    "final_crown_native": 121.430908203125,
+    "origin_geometry_sha256": "ebfae3ab5848245f1b4cba7774308670f1030ffa1ed826922f7ac18871c22252"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "piece": "A168_mantis_ferryarcher",
+  "assets": [
+    {
+      "source": "A168.mdl",
+      "file": "A168_mantis_ferryarcher.mdl",
+      "edited_vertices": 642,
+      "collar_reweighted_vertices": 581,
+      "before_sha256": "73c6d852136ee7cfd35ef2758d3a22ebe4a09f24287d59707eee3ea954eb03c0",
+      "after_sha256": "6cb01b5fee46f0526cd4e24b19b29241b231f3b2ca454718ecc08390c05f0f8f"
+    },
+    {
+      "source": "A168_decal.mdl",
+      "file": "A168_mantis_ferryarcher_decal.mdl",
+      "edited_vertices": 0,
+      "collar_reweighted_vertices": 0,
+      "before_sha256": "5dcd38ea95a3ffd67a0a31a512ac0c908411dd9994b4a6b80a2664fe45d50f81",
+      "after_sha256": "5dcd38ea95a3ffd67a0a31a512ac0c908411dd9994b4a6b80a2664fe45d50f81"
+    }
+  ],
+  "default_records": {
+    "side_h_ferryarcher": {
+      "before": {
+        "mesh": "A168",
+        "dyed": true,
+        "decal": "A168",
+        "coverCore": true,
+        "clan": "mantis"
+      },
+      "after": {
+        "mesh": "A168_mantis_ferryarcher",
+        "dyed": true,
+        "decal": "A168",
+        "coverCore": true,
+        "clan": "mantis",
+        "palette": "A168"
+      }
+    }
+  }
+}

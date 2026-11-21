@@ -1,0 +1,57 @@
+{
+  "piece": "A124_sono_kagemaro",
+  "assets": [
+    {
+      "source": "A124.mdl",
+      "file": "A124_sono_kagemaro.mdl",
+      "edited_vertices": 1318,
+      "collar_reweighted_vertices": 332,
+      "before_sha256": "fb301213af3dd96e2e0e65adab4bed1ef43c9b9fc96fc925617deada602ae332",
+      "after_sha256": "656c009316d0616747a10241101b94b4da8e1c77f59d501763575cfe03a035b7"
+    },
+    {
+      "source": "A124_decal.mdl",
+      "file": "A124_sono_kagemaro_decal.mdl",
+      "edited_vertices": 273,
+      "collar_reweighted_vertices": 0,
+      "before_sha256": "c55da68511c7b841fa95f97fe2ac1da2341ade52bf03f99862f1d877db127f87",
+      "after_sha256": "1f8326bea11dd74269234db0eef754d09dceac6b2bf0da939dc219db44951640"
+    }
+  ],
+  "default_records": {
+    "side_sonoservant": {
+      "before": {
+        "mesh": "A124",
+        "dyed": true,
+        "decal": "A124",
+        "coverCore": true,
+        "clan": "crane"
+      },
+      "after": {
+        "mesh": "A124_sono_kagemaro",
+        "dyed": true,
+        "decal": "A124",
+        "coverCore": true,
+        "clan": "crane",
+        "palette": "A124"
+      }
+    },
+    "side_kagemaro": {
+      "before": {
+        "mesh": "A124",
+        "dyed": true,
+        "decal": "A124",
+        "coverCore": true,
+        "clan": "crane"
+      },
+      "after": {
+        "mesh": "A124_sono_kagemaro",
+        "dyed": true,
+        "decal": "A124",
+        "coverCore": true,
+        "clan": "crane",
+        "palette": "A124"
+      }
+    }
+  }
+}

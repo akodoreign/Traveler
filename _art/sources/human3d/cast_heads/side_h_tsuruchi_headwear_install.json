@@ -1,0 +1,42 @@
+{
+  "actor": "side_h_tsuruchi",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_h_tsuruchi_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_h_tsuruchi_hachimaki.pm",
+      "to": "side_h_tsuruchi_hachimaki.pm",
+      "sha256": "ad6b3ece314f6ce545b5f9a6f56f59454b3da0f8209a6fd84c4b85b43dd687da"
+    },
+    {
+      "from": "assets/side_h_tsuruchi_hachimaki.mdl",
+      "to": "side_h_tsuruchi_hachimaki.mdl",
+      "sha256": "abe44a9ec2d6c2b529c36a8b570be735cc62ec4437f259baf32fd2cb8fbd35f2"
+    },
+    {
+      "from": "assets/tex/side_h_tsuruchi_hachimaki_weave.png",
+      "to": "tex/side_h_tsuruchi_hachimaki_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_h_tsuruchi_hachimaki",
+        "headwear": true,
+        "replacesHeadband": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_h_tsuruchi\\geometry-pilot\\assets\\side_h_tsuruchi_portrait_face.glb",
+    "sha256": "b067d9533a3d29c867eae4f358fe43476f9565bb2ff67a2cdaeb677643491c45"
+  },
+  "final_fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\batch19-geometry\\release\\side_h_tsuruchi\\assets\\side_h_tsuruchi_portrait_face.glb",
+    "sha256": "aa481a631c2313c209a4333bc375ff1a18ff628861fc5be303bba965baf296dc"
+  }
+}

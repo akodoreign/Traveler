@@ -1,0 +1,126 @@
+{
+  "key": "side_mitsue_maid_portrait_face",
+  "source": "side_mitsue_maid_repaired_atlas.glb",
+  "scale": 12.2,
+  "features": {
+    "eyes": [
+      [
+        197,
+        297,
+        0.04
+      ],
+      [
+        277,
+        296,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        190,
+        285
+      ],
+      [
+        287,
+        283
+      ]
+    ],
+    "mouth": [
+      240,
+      345
+    ]
+  },
+  "socket_sample_levels": [
+    -0.979,
+    -0.969,
+    -0.959,
+    -0.949,
+    -0.939,
+    -0.9289999999999999,
+    -0.9189999999999999,
+    -0.9089999999999999,
+    -0.8989999999999999,
+    -0.8889999999999999,
+    -0.8789999999999999,
+    -0.8689999999999999,
+    -0.8589999999999999,
+    -0.8489999999999999,
+    -0.8389999999999999,
+    -0.8289999999999998,
+    -0.8189999999999998,
+    -0.8089999999999998,
+    -0.7989999999999998,
+    -0.7889999999999998,
+    -0.7789999999999998,
+    -0.7689999999999998,
+    -0.7589999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.021,
+    -0.013
+  ],
+  "skin_match": [
+    230,
+    218,
+    205
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.2,
+  "fit_matrix_blender": [
+    [
+      12.198470961050585,
+      -0.09327820960568443,
+      -0.1691312745152381,
+      0.3418785035155171
+    ],
+    [
+      0.09337254557223112,
+      12.199641127508238,
+      0.006158550625113952,
+      0.1667426789591558
+    ],
+    [
+      0.16907921261868006,
+      -0.007452222836063585,
+      12.198826037133129,
+      111.55131667477201
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.7325,
+  "seam_weights": {
+    "vertex_count": 15099,
+    "lower_overlap_blended_vertices": 131,
+    "minimum_seam_head_weight": 0.8459083623033423,
+    "upper_face_head_weight": 1.0
+  },
+  "proof_pose_family": "fist",
+  "skin_sample_patches": [
+    [
+      437,
+      675
+    ],
+    [
+      586,
+      675
+    ],
+    [
+      570,
+      759
+    ]
+  ],
+  "skin_sample_view": "The repaired face atlas retains the original pale cheeks. Four rendered body colors were compared against the exact seated lower head in front, strict profile, and guard. The selected body material removes the visible pale ring while maintaining pale hands.",
+  "raw_skin_srgb": [
+    255,
+    253,
+    241
+  ]
+}

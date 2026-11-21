@@ -1,0 +1,117 @@
+{
+  "key": "side_ushimo_portrait_face",
+  "source": "side_ushimo_repaired_atlas.glb",
+  "scale": 11.8,
+  "features": {
+    "eyes": [
+      [
+        199,
+        249,
+        0.04
+      ],
+      [
+        280,
+        248,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        199,
+        231
+      ],
+      [
+        282,
+        229
+      ]
+    ],
+    "mouth": [
+      240,
+      325
+    ]
+  },
+  "socket_sample_levels": [
+    -0.64,
+    -0.632,
+    -0.624,
+    -0.616,
+    -0.608,
+    -0.6,
+    -0.592,
+    -0.584,
+    -0.576,
+    -0.568,
+    -0.5599999999999999,
+    -0.5519999999999999,
+    -0.5439999999999999,
+    -0.5359999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.058,
+    0.015
+  ],
+  "skin_match": [
+    241,
+    192,
+    153
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.8,
+  "fit_matrix_blender": [
+    [
+      11.798219759608575,
+      0.09981925389506609,
+      0.17901569912844387,
+      0.20149201324395993
+    ],
+    [
+      -0.10212168177506602,
+      11.798584944446848,
+      0.15154032726109726,
+      -0.0627694759999117
+    ],
+    [
+      -0.17771231272493737,
+      -0.1530667345532672,
+      11.79766879127742,
+      106.30791018797937
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.045,
+  "seam_weights": {
+    "vertex_count": 22157,
+    "lower_overlap_blended_vertices": 161,
+    "minimum_seam_head_weight": 0.3691270468444754,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      194,
+      307
+    ],
+    [
+      280,
+      308
+    ],
+    [
+      238,
+      352
+    ]
+  ],
+  "skin_sample_view": "Diffuse cheeks and lower face are calibrated on the exact regenerated atlas, excluding hair, cast shadows and shine. Imperial A166 occludes the trimmed lower transition.",
+  "raw_skin_srgb": [
+    242,
+    192,
+    153
+  ],
+  "proof_pose_family": "blade"
+}

@@ -1,0 +1,37 @@
+{
+  "actor": "side_drummer",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_drummer_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_drummer_headcloth.pm",
+      "to": "side_drummer_headcloth.pm",
+      "sha256": "f789e6572c6c7e585189dc3af895c876eae09098cc4eff42bd51c11ed0e03f2c"
+    },
+    {
+      "from": "assets/side_drummer_headcloth.mdl",
+      "to": "side_drummer_headcloth.mdl",
+      "sha256": "6df6d10ec0a92e81fd49fc23fd51560e1aefbb7c2a9914bd6ae136ab5015ad98"
+    },
+    {
+      "from": "assets/tex/side_drummer_headcloth_reed.png",
+      "to": "tex/side_drummer_headcloth_reed.png",
+      "sha256": "4cf1a1a34f7e344ecb886cd44f09f61b8f4c47b6fb47059d19c588938d715780"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_drummer_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_drummer\\painted-final\\assets\\side_drummer_portrait_face.glb",
+    "sha256": "c637aaa097a64bd1d330369260e6dc60a91ffca64571d7a230e753fb44c1db6e"
+  }
+}
