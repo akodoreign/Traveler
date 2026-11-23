@@ -1,0 +1,123 @@
+{
+  "key": "side_adoru_portrait_face",
+  "source": "side_adoru_repaired_atlas.glb",
+  "scale": 11.8,
+  "features": {
+    "eyes": [
+      [
+        195,
+        240,
+        0.04
+      ],
+      [
+        281,
+        239,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        190,
+        225
+      ],
+      [
+        285,
+        225
+      ]
+    ],
+    "mouth": [
+      240,
+      312
+    ]
+  },
+  "socket_sample_levels": [
+    -0.977,
+    -0.97,
+    -0.963,
+    -0.956,
+    -0.949,
+    -0.942,
+    -0.9349999999999999,
+    -0.9279999999999999,
+    -0.9209999999999999,
+    -0.9139999999999999,
+    -0.9069999999999999,
+    -0.8999999999999999,
+    -0.8929999999999999,
+    -0.8859999999999999,
+    -0.8789999999999999,
+    -0.8719999999999999,
+    -0.8649999999999999,
+    -0.8579999999999999,
+    -0.8509999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.057,
+    -0.013
+  ],
+  "skin_match": [
+    204,
+    135,
+    95
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.8,
+  "fit_matrix_blender": [
+    [
+      11.791612967739818,
+      -0.34245501465116746,
+      -0.2838805769530975,
+      1.1663798809798065
+    ],
+    [
+      0.3445799220049301,
+      11.79466449842749,
+      0.08458159899218856,
+      0.26969474139973565
+    ],
+    [
+      0.2812975228864155,
+      -0.09281127343844627,
+      11.796281523053894,
+      110.35065267661355
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 17386,
+    "lower_overlap_blended_vertices": 100,
+    "minimum_seam_head_weight": 0.7057855440484246,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      191,
+      275
+    ],
+    [
+      281,
+      275
+    ],
+    [
+      238,
+      339
+    ]
+  ],
+  "skin_sample_view": "Repeated diffuse facial measurements on the exact Adoru head. The original short bob and paired dark brown irises are preserved.",
+  "raw_skin_srgb": [
+    204,
+    135,
+    95
+  ],
+  "review_wardrobe_mesh": "A124_sono_kagemaro",
+  "proof_pose_family": "fist"
+}

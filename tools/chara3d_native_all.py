@@ -71,8 +71,12 @@ def proportions(key):
     frame = 1.0 + wide + 0.22 * size + 0.16 * (spec.get("mass", 1.0) - 1.0)
     if spec.get("female"):
         frame -= 0.03
-    return [round(max(0.78, min(1.40, x)), 4)
-            for x in (frame + thickness, stature, frame + breadth)]
+    dimensions = (frame + thickness, stature, frame + breadth)
+    proportions = [round(max(0.78, min(1.40, x)), 4) for x in dimensions]
+    if key == "side_grandmother":
+        # The fitted portrait compensates for the smaller body scale.
+        return [round(x * 0.75, 5) for x in proportions]
+    return proportions
 
 
 def verify_assets(directory, roster):
@@ -113,7 +117,7 @@ def verify_assets(directory, roster):
         expected.update({"deduce_brush.pm", "deduce_brush.mdl"})
     if (directory / "isawa_rising.mot").is_file():
         expected.add("isawa_rising.mot")
-    for path in [directory / "hida_rally.mot", *directory.glob("cv_*.mot")]:   # companion Void preludes
+    for path in [directory / "hida_rally.mot", directory / "natsuko_dance.mot", directory / "kabuki.mot", *directory.glob("cv_*.mot")]:   # companion Void preludes
         if path.is_file():                                                       # (RokuganCompanionVoid.sk)
             expected.add(path.name)
     ability = directory / "ability"

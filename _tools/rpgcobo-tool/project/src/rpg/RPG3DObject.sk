@@ -6,6 +6,7 @@ import BlockFlagID;
 
 local v_0 = Vector3D(), v_1 = Vector3D(), v_2 = Vector3D(), v_3 = Vector3D(), v_4 = Vector3D(), v_5 = Vector3D(), v_6 = Vector3D();
 local m_1 = Matrix(), r_1 = Rect3D(), q_1 = Quaternion(), q_2 = Quaternion(), a_1 = [0,0];
+local npcDraw = Matrix(), npcLocalAnchor = Vector3D(), npcWorldAnchor = Vector3D(), npcScaledOffset = Vector3D();
 
 AnimationLayer.id <- null;
 AnimationLayer.part <- null;
@@ -187,6 +188,7 @@ class RPG3DObject extends SK3DObject
 	
 	rpgobj = null;				//	RPGPlayer | RPGEnemy | null : キャラから生成された場合に設定される
 	event = null;				//	EventRunner : イベントから生成された場合に設定される
+	fieldNpcScale = 1.0;
 	
 	//	位置、スムーズ移動
 	basepos = null;				//	(x,y,z,dir) : 基準位置。バトルなどで隊列指定されたときに入る
@@ -261,6 +263,25 @@ class RPG3DObject extends SK3DObject
 
 	constructor(){
 		rot.setHPB( Math.PI, 0.0, 0.0);
+	}
+
+	function setFieldNpcScale( size){
+		fieldNpcScale = size;
+	}
+
+	// Keep the draw transform separate from gmat, which supplies collision and event bounds.
+	function fieldNpcDrawMatrix( anchor = null){
+		local size = fieldNpcScale;
+		if( size == 1.0) return gmat;
+		npcDraw.set( gmat).lscale( size, size, size);
+		if( anchor){
+			npcWorldAnchor( anchor).transform( gmat);
+			npcScaledOffset( anchor).transform0( npcDraw);
+			npcDraw.setTranslation( npcWorldAnchor.sub( npcScaledOffset));
+		}else{
+			npcDraw.setTranslation( gmat.getTranslation( npcWorldAnchor));
+		}
+		return npcDraw;
 	}
 
 	function addedToScene( scn){
@@ -1289,6 +1310,14 @@ class RPG3DPicture extends RPG3DObject
 	function getPickingImage(){
 		return img;
 	}
+
+	function render( cam, visiblemask){
+		if( fieldNpcScale == 1.0 || !pivot || !mesh) return super.render( cam, visiblemask);
+		// setPicture stores the sprite's ground point as the inverse mesh-pivot offset.
+		skSetMatrix( SK_WORLD, fieldNpcDrawMatrix( npcLocalAnchor( pivot).scale( -1.0)));
+		if( billboard) skBillboardMatrix( billboardbank);
+		mesh.render( visiblemask);
+	}
 	
 	function update( dt, pmatdirty=true){
 		matdirty = true;	//	毎回updateSRTする
@@ -1392,12 +1421,13 @@ class RPG3DVoxChara extends RPG3DObject
 	//	描画
 
 	function render( cam, visiblemask){
+		local world = fieldNpcDrawMatrix();
 		//	ボーン毎にpm描画
 		foreach( b in bones){
 			local pm = drawpmmap[b.parts.id];
 			if( !pm) continue;
 			//	pivot -> invbindpose -> bonepose -> gmat の順
-			local m = m_1.integrate( gmat, b.mat, b.invbindpose, pm.pivot);
+			local m = m_1.integrate( world, b.mat, b.invbindpose, pm.pivot);
 			skSetMatrix( SK_WORLD, m);
 			pm.render( visiblemask);
 		}

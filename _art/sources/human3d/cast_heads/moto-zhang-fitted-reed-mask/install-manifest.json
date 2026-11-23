@@ -1,0 +1,32 @@
+{
+  "actor": "side_zhang",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_zhang_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_zhang_portrait_olive_reed.pm",
+      "to": "side_zhang_portrait_olive_reed.pm",
+      "sha256": "e2d78755c00dbbbb56ae9fcbaa8bbd26bbbe9d3bc66e1b1a155c80e51d49fb0b"
+    },
+    {
+      "from": "assets/side_zhang_portrait_olive_reed.mdl",
+      "to": "side_zhang_portrait_olive_reed.mdl",
+      "sha256": "af783643864c44f14d903097b359e213efcfb25727218471499cbeef38ef8fe3"
+    },
+    {
+      "from": "assets/tex/side_zhang_portrait_olive_reed_color_srgb.png",
+      "to": "tex/side_zhang_portrait_olive_reed_color_srgb.png",
+      "sha256": "2754e0a6103205712e7350a78f7da9d5d1ef8e308aa9a057e7f07c5af2d04355"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_zhang_portrait_olive_reed"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\variants\\b51\\release\\side_zhang\\assets\\side_zhang_portrait_face.glb",
+    "sha256": "a275fa9c6db5ca893891eaed01e2474d2b31b66fcf51b9573e512d69b2e45573"
+  }
+}

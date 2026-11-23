@@ -1,0 +1,53 @@
+{
+  "actor": "side_kisada",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_kisada_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_kisada_portrait_kabuto.pm",
+      "to": "side_kisada_portrait_kabuto.pm",
+      "sha256": "3f2b62c8713d8e4b6705f469794818af8ecf721f4bd3d883690c2c329e708efd"
+    },
+    {
+      "from": "assets/side_kisada_portrait_kabuto.mdl",
+      "to": "side_kisada_portrait_kabuto.mdl",
+      "sha256": "61ac4e879090b7f68d87c3f85bd47a23f51046f006a6561d322118e52103cbbe"
+    },
+    {
+      "from": "assets/tex/side_kisada_portrait_kabuto_color_srgb.png",
+      "to": "tex/side_kisada_portrait_kabuto_color_srgb.png",
+      "sha256": "4927f5a6c25405a602d6fb30c9d96ae37c3e906649a1c07dd10b679398cb859d"
+    },
+    {
+      "from": "assets/side_kisada_portrait_mempo.pm",
+      "to": "side_kisada_portrait_mempo.pm",
+      "sha256": "2811d0f27868c422d3cbe2f660f9922d4057421c78907702e8d7731a8ff0123c"
+    },
+    {
+      "from": "assets/side_kisada_portrait_mempo.mdl",
+      "to": "side_kisada_portrait_mempo.mdl",
+      "sha256": "df4ac8b6fad8fb3df83549c1942e0c842258fa35f1b6805324d00cf11e240c94"
+    },
+    {
+      "from": "assets/tex/side_kisada_portrait_mempo_color_srgb.png",
+      "to": "tex/side_kisada_portrait_mempo_color_srgb.png",
+      "sha256": "bd2222fcaa53340b0d643cca75e05a39dbdb5b919635def93253c436557bf3f5"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_kisada_portrait_kabuto",
+        "headwear": true
+      }
+    ],
+    "set_portraitMask": "side_kisada_portrait_mempo"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_kisada\\v2-unhelmeted\\assets\\side_kisada_portrait_face.glb",
+    "sha256": "04f0e03026a9d889546d2312188b09fdb5b4008c0b1a415d16cf5bbd51fb70d7"
+  }
+}

@@ -89,11 +89,25 @@ local celNative = function( model){
 	return model;
 };
 
+// Head, neck, fingers and prop geometry retain their shape on the broader player build.
+local widthStretchJoints = {
+	pelvis = true, spine = true, chest = true, collarN = true, collarF = true,
+	upperN = true, upperF = true, foreN = true, foreF = true,
+	thighN = true, thighF = true, shinN = true, shinF = true,
+	footN = true, footF = true
+};
+local widthTranslation = Vector3D();
+
 class RokuganNativePicture extends RPG3DPicture
 {
 	nativeBody = null;
 	nativeFace = null;
 	nativeBodyTemplate = null;
+	fieldTalkLabel = false;
+	travelerWidth = 1.0;
+	widthDeform = null;
+	widthRigid = null;
+	widthPose = null;
 	nativeTailoring = null;
 	nativeHeadband = null;
 	nativeOutfit = null;
@@ -204,7 +218,7 @@ class RokuganNativePicture extends RPG3DPicture
 			nativeBody.setMotion( ::getMotionData( ::getResource( ROOT .. "motion_" .. spec.motion .. ".mot")));
 			nativeBodyTemplate = person.base;
 		}
-		local baseScale = 0.015 * 0.75;
+		local baseScale = 0.015 * 0.75 * fieldNpcScale;
 		local proportions = spec["proportions"] || [1.0, 1.0, 1.0];
 		nativeBody.scale << Vector3D( proportions[0], proportions[1], proportions[2]).scale( baseScale);
 		nativeBody.rot.setHPB( Math.HPI, 0.0, 0.0);
@@ -370,8 +384,84 @@ class RokuganNativePicture extends RPG3DPicture
 		anime2( #{ id="stand" });
 	}
 
+	function setFieldNpcScale( size){
+		local old = fieldNpcScale;
+		super.setFieldNpcScale( size);
+		if( nativeBody && size != old){
+			nativeBody.scale.scale( size / old);
+			nativeBody.matdirty = true;
+		}
+	}
+
+	function keepFieldInteraction( original){
+		b3body = original.b3body;
+		b3body.ref = this;
+		bnd.set( original.bnd);
+		offsy = original.offsy;
+		movdiv = original.movdiv;
+		fieldTalkLabel = original instanceof ::RPG3DVoxChara;
+		if( original.pivot){
+			// The inherited collision pivot stays; cancel its offset on the grounded visual child.
+			setPivot( original.pivot);
+			nativeBody.pos << Vector3D( original.pivot).scale( -1.0);
+		}
+	}
+
+	function getSearchButtonLabel(){
+		if( !fieldTalkLabel) return super.getSearchButtonLabel();
+		return event["page"]["searchtext"] ?? event["searchtext"] ?? "$T.btn_talk";
+	}
+
+	function widthBone( source, stretch){
+		local output = Bone();
+		output.parts = source.parts;
+		output.name = source.name;
+		output.invbindpose = source.invbindpose;
+		output.mat = Matrix();
+		widthPose .. { source = source, output = output, stretch = stretch };
+		return output;
+	}
+
+	function bindTravelerWidth( part, rigid = false){
+		if( !part || !widthPose || !part.mesh["wmapname"]) return;
+		local lookup = rigid ? widthRigid : widthDeform;
+		part.mesh.bones = part.mesh.wmapname.map( @( name) lookup[name] || nativeBody.findBone( name));
+	}
+
+	function setTravelerWidth( size){
+		if( widthPose || size == 1.0 || !nativeBodyTemplate) return;
+		travelerWidth = size;
+		widthPose = [];
+		widthDeform = {};
+		widthRigid = {};
+		foreach( source in nativeBody.bones){
+			local name = source.name, rigid = widthBone( source, false);
+			widthRigid[name] <- rigid;
+			widthDeform[name] <- name in widthStretchJoints ? widthBone( source, true) : rigid;
+		}
+		foreach( part in [nativeBody, nativeOutfit, nativeCape]) bindTravelerWidth( part);
+		foreach( part in [nativeFace, nativeHead, nativeHeadband, nativeMask, nativeWeapon]) bindTravelerWidth( part, true);
+		if( nativeDecals) foreach( part in nativeDecals) bindTravelerWidth( part);
+		if( nativeOrnaments) foreach( part in nativeOrnaments) bindTravelerWidth( part);
+		updateTravelerWidth();
+	}
+
+	function updateTravelerWidth(){
+		if( !widthPose) return;
+		local w = travelerWidth;
+		foreach( pose in widthPose){
+			local source = pose.source.mat, output = pose.output.mat;
+			output.set( source);
+			if( pose.stretch) output.scale( w, 1.0, w);
+			// Widen shared joint positions. Rigid surfaces keep their original rotation and axes.
+			source.getTranslation( widthTranslation).scale( w, 1.0, w);
+			output.setTranslation( widthTranslation);
+		}
+	}
+
 	function addTailoredPart( record, clan){
-		local texture = record["dyed"] ? TAILOR .. "tex/" .. clan .. "/" .. (record["palette"] || record.mesh) .. ".png" : null;
+		local dye = ("commonerDye" in ::Rokugan) ? ::Rokugan.commonerDye( record, clan) : null;	//	RokuganCommonerDyes.sk
+		local texture = record["dyed"] ? TAILOR .. "tex/" .. clan .. "/" .. (dye || record["palette"] || record.mesh) .. ".png" : null;
 		local part = addNativePart( TAILOR .. record.mesh, texture && ::getResource(texture) ? texture : null);
 		local decalItem = record["decal"];
 		local sheet = record["sheet"] ? TAILOR .. record.sheet :
@@ -402,6 +492,7 @@ class RokuganNativePicture extends RPG3DPicture
 		if( palette) part.mesh.face[0].m.tex0 = ::getTexture( ::getResource( palette));
 		nativeBody.assignBonesToPolygonMesh( part.mesh);
 		nativeBody.addChild( part);
+		bindTravelerWidth( part, path.startsWith( fidgetRoot));
 		return part;
 	}
 
@@ -429,6 +520,10 @@ class RokuganNativePicture extends RPG3DPicture
 			motion = ::Rokugan.tattooMorphMotion();
 		}else if( request.id == "ide_song_kirin"){
 			motion = ::Rokugan.ideSongMotion( request.id );
+		}else if( ("DANCE_CLIPS" in ::Rokugan) && (request.id in ::Rokugan.DANCE_CLIPS)){
+			motion = ::Rokugan.danceMotion();				//	the dance contest (RokuganDance.sk)
+		}else if( ("KABUKI_CLIPS" in ::Rokugan) && (request.id in ::Rokugan.KABUKI_CLIPS)){
+			motion = ::Rokugan.kabukiMotion();				//	the kabuki rehearsal (RokuganKabuki.sk)
 		}else if( request.id == "heart_listens"){
 			motion = ::Rokugan.idePerformanceMotion( request.id );
 		}else if( request.id == "void_critical_yari"){
@@ -548,6 +643,7 @@ class RokuganNativePicture extends RPG3DPicture
 			if( layer && !layer.partsmap && nativeBody.motion) layer.partsmap = nativeBody.motion.partsmap;
 		}
 		animlayers.integrateBonePoses( nativeBody.bones, nativeBody.gmat, true);
+		updateTravelerWidth();
 	}
 
 	function setVisible( b){
@@ -686,6 +782,11 @@ local nativeFoe = RokuganNativeFoe;
 	return model;
 };
 
+::Rokugan.createFieldHumanoidFoe <- function( data){
+	local key = data["mdlid"], spec = key ? foes[key] : null;
+	return spec && spec["human"] && modularPerson( key) ? this.createNativeFoe( data) : null;
+};
+
 ::Rokugan.createNativeChara <- function( v, player=null){
 	local pc = v["mdl"];
 	if( !pc && v["mdlid"]) pc = ::rpgres[v.mdlid];
@@ -697,6 +798,10 @@ local nativeFoe = RokuganNativeFoe;
 	if( !spec) return null;
 	if( length( names) > 1 && names[1] != spec.weapon .. "_own") return null;
 	local actor = nativePicture();
-	actor.setNative( pc, key, spec, this.clothingFor( player));
+	local wear = this.clothingFor( player);
+	actor.setNative( pc, key, spec, wear);
+	// A209 uses the proportions that the dance ribbon was authored to follow.
+	if( player && actor.nativeBodyTemplate && (!wear || wear.body != "A209"))
+		actor.setTravelerWidth( actor.nativeBodyTemplate.indexOf( "female") >= 0 ? 1.17 : 1.20);
 	return actor;
 };

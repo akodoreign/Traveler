@@ -810,5 +810,113 @@
 		"startpoint": 0,
 		"wav": "/resource/bgm/rt_ending.ogg",
 		"memo": "tools/gen_music.py"
+	},
+	"MU126": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3467172
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "The Shrine Maidens' Dance",
+			"ja": "The Shrine Maidens' Dance"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_kagura.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU127": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 3660661
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "Jo, Ha, Kyu",
+			"ja": "Jo, Ha, Kyu"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_kyu.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU128": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 2394000
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "The Empress of Nothing - Act I",
+			"ja": "The Empress of Nothing - Act I"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_kabuki1.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU129": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 1984500
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "The Empress of Nothing - Act II",
+			"ja": "The Empress of Nothing - Act II"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_kabuki2.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU130": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 1701000
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "The Empress of Nothing - Act III",
+			"ja": "The Empress of Nothing - Act III"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_kabuki3.ogg",
+		"memo": "tools/gen_music.py"
+	},
+	"MU131": {
+		"endpoint": -1,
+		"gain": 1.0,
+		"info": {
+			"ch": 2,
+			"format": "ogg",
+			"freq": 44100,
+			"length": 1603636
+		},
+		"looppoint": 0,
+		"name": {
+			"en": "The Empress of Nothing - Act IV",
+			"ja": "The Empress of Nothing - Act IV"
+		},
+		"startpoint": 0,
+		"wav": "/resource/bgm/rt_kabuki4.ogg",
+		"memo": "tools/gen_music.py"
 	}
 }

@@ -1,0 +1,31 @@
+{
+  "M102": {
+    "removed_free_blocks": 93,
+    "replacement_props": 93,
+    "asset_types": [
+      "coast_lantern",
+      "coast_pine",
+      "egg_cave_arch",
+      "road_notice",
+      "shore_talus"
+    ]
+  },
+  "M105": {
+    "removed_free_blocks": 94,
+    "replacement_props": 94,
+    "asset_types": [
+      "coast_lantern",
+      "coast_pine",
+      "egg_cave_arch",
+      "shore_talus"
+    ]
+  },
+  "M811": {
+    "removed_free_blocks": 19,
+    "replacement_props": 19,
+    "asset_types": [
+      "coast_pine",
+      "shore_talus"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "job_spec": "e5326ba0b423b738cbbe7b90829c1b7b3b02e95c58a6dc5950913605a45dd041",
+  "worlds": {
+    "M355": {
+      "removed_stock_fixtures": 6,
+      "events_preserved": 110,
+      "sha256": "4287ddd2ec5bfe4427749dae7ff58c9aecd50d0f955bf9dc5c4bed2dad3330f6"
+    },
+    "M356": {
+      "removed_stock_fixtures": 24,
+      "events_preserved": 80,
+      "sha256": "ded32fa28c12672c223b0561918fd3a4b3232713484e289d3a23dbdbff06a599"
+    },
+    "M357": {
+      "removed_stock_fixtures": 20,
+      "events_preserved": 114,
+      "sha256": "68182edca8bd0da1c0d135345722f08134318e87e9bdc846254e81e3a7ba89c3"
+    },
+    "M358": {
+      "removed_stock_fixtures": 51,
+      "events_preserved": 76,
+      "sha256": "97567d247ccefbf9fae42ec43fb689dddeb327d9da396d1c3773deeb962735a5"
+    },
+    "M862": {
+      "removed_stock_fixtures": 8,
+      "events_preserved": 0,
+      "sha256": "ae68a10cb096698355fdbfbdddde7a541ceb9f6551a017ea708f8685e8313fd9"
+    },
+    "M863": {
+      "removed_stock_fixtures": 9,
+      "events_preserved": 0,
+      "sha256": "9ce24811e85bb655ad303a3a251eb3aad242cb25779b6f1beacdf81190d657d2"
+    },
+    "M864": {
+      "removed_stock_fixtures": 12,
+      "events_preserved": 0,
+      "sha256": "db938f14db2aed1851c77365bc2ebe7be856af536b74edc2bbb82e27b138e0fc"
+    }
+  }
+}

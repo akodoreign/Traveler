@@ -1,0 +1,97 @@
+{
+  "maps": {
+    "M359": {
+      "props": 82,
+      "events": 83
+    },
+    "M360": {
+      "props": 32,
+      "events": 89
+    },
+    "M361": {
+      "props": 33,
+      "events": 115
+    },
+    "M865": {
+      "props": 122,
+      "events": 0
+    }
+  },
+  "sources": {
+    "kensu_bath_supplies": {
+      "name": "kensu_bath_supplies",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kensu_bath_supplies_00001_.glb",
+      "grid": [
+        35,
+        35,
+        37
+      ],
+      "occupied": 6924,
+      "world_size": [
+        0.94,
+        0.57,
+        0.7600000000000001
+      ]
+    },
+    "kensu_spring_rocks": {
+      "name": "kensu_spring_rocks",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kensu_spring_rocks_00001_.glb",
+      "grid": [
+        40,
+        36,
+        27
+      ],
+      "occupied": 4220,
+      "world_size": [
+        1.7999999999999998,
+        0.89,
+        0.67
+      ]
+    },
+    "kensu_rice_seedlings": {
+      "name": "kensu_rice_seedlings",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kensu_rice_seedlings_00001_.glb",
+      "grid": [
+        38,
+        10,
+        32
+      ],
+      "occupied": 1781,
+      "world_size": [
+        0.6,
+        0.56,
+        0.5
+      ]
+    },
+    "kensu_field_jizo": {
+      "name": "kensu_field_jizo",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kensu_field_jizo_00001_.glb",
+      "grid": [
+        18,
+        18,
+        37
+      ],
+      "occupied": 2267,
+      "world_size": [
+        0.6300000000000001,
+        0.51,
+        0.99
+      ]
+    },
+    "kamen_hospitality_lantern": {
+      "name": "kamen_hospitality_lantern",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_hospitality_lantern_00001_.glb",
+      "grid": [
+        26,
+        26,
+        42
+      ],
+      "occupied": 2706,
+      "world_size": [
+        0.48,
+        0.41,
+        1.55
+      ]
+    }
+  }
+}

@@ -37,7 +37,7 @@ def wrap(name, kind):
     setattr(g, name, w)
 
 
-for n in ("koto", "musicbox", "bass_koto", "shamisen", "biwa", "bass", "guitar", "lead"):
+for n in ("koto", "musicbox", "bass_koto", "shamisen", "biwa", "bass", "guitar", "lead", "real_shamisen", "real_koto"):
     wrap(n, "m")
 for n in ("pad", "sho"):
     wrap(n, "ms")

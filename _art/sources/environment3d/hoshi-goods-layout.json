@@ -1,0 +1,39 @@
+{
+  "room": [
+    36,
+    36
+  ],
+  "furnishings": 26,
+  "generated_props": {
+    "hoshi_trade_chest": {
+      "name": "hoshi_trade_chest",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hoshi_trade_chest_00001_.glb",
+      "grid": [
+        36,
+        22,
+        16
+      ],
+      "occupied": 2339,
+      "world_size": [
+        0.65,
+        0.35999999999999993,
+        0.38
+      ]
+    },
+    "hoshi_salt_sack": {
+      "name": "hoshi_salt_sack",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hoshi_salt_sack_00001_.glb",
+      "grid": [
+        32,
+        24,
+        31
+      ],
+      "occupied": 2976,
+      "world_size": [
+        0.47,
+        0.44,
+        0.46
+      ]
+    }
+  }
+}

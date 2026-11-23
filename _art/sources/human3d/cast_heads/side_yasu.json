@@ -1,0 +1,129 @@
+{
+  "key": "side_yasu_portrait_face",
+  "source": "side_yasu_repaired_atlas.glb",
+  "scale": 16.8,
+  "features": {
+    "eyes": [
+      [
+        200,
+        243,
+        0.04
+      ],
+      [
+        280,
+        242,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        192,
+        230
+      ],
+      [
+        287,
+        230
+      ]
+    ],
+    "mouth": [
+      239,
+      319
+    ]
+  },
+  "socket_sample_levels": [
+    -0.599,
+    -0.591,
+    -0.583,
+    -0.575,
+    -0.567,
+    -0.5589999999999999,
+    -0.5509999999999999,
+    -0.5429999999999999,
+    -0.5349999999999999,
+    -0.5269999999999999,
+    -0.5189999999999999,
+    -0.5109999999999999,
+    -0.5029999999999999,
+    -0.4949999999999999,
+    -0.4869999999999999,
+    -0.47899999999999987,
+    -0.47099999999999986,
+    -0.46299999999999986,
+    -0.45499999999999985,
+    -0.44699999999999984,
+    -0.43899999999999983,
+    -0.4309999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.13,
+    -0.014
+  ],
+  "skin_match": [
+    219,
+    153,
+    107
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 16.8,
+  "fit_matrix_blender": [
+    [
+      16.799007654860546,
+      0.14666918718289879,
+      0.10876562632308859,
+      3.3397521749473515
+    ],
+    [
+      -0.14734235489021483,
+      16.79903232415095,
+      0.10393845579350783,
+      0.2803731966655686
+    ],
+    [
+      -0.1078519466386788,
+      -0.10488623202518248,
+      16.799326380421977,
+      108.606499200905
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 14563,
+    "lower_overlap_blended_vertices": 435,
+    "minimum_seam_head_weight": 0.33083359682106506,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      186,
+      296
+    ],
+    [
+      291,
+      293
+    ],
+    [
+      196,
+      308
+    ],
+    [
+      280,
+      308
+    ]
+  ],
+  "skin_sample_view": "Repeated diffuse bilateral cheek probes on the exact Kitsuki Yasu donor. Retains dark-gray eyes and the original short dark hair.",
+  "raw_skin_srgb": [
+    219,
+    153,
+    107
+  ],
+  "proof_pose_family": "short"
+}

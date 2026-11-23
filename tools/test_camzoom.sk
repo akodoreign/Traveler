@@ -1,0 +1,5 @@
+//	tools/test_closeup.py --cam: does a stage camerawork zoom show? (evalf)
+local st = ::rpgstage;
+printf( "[RT] CAMTEST before zoom=%S to=%S\n", "" .. st.camwork.zoom, "" .. st.camwork.data["viewport"]);
+st.setCamerawork( { type = 1, target = 0, dzoom = 7.0, fade = 0 });
+printf( "[RT] CAMTEST after zoom=%S vp=%S cls=%S\n", "" .. st.camwork.zoom, "" .. st.camwork.data["viewport"], "" .. typeof( st.camwork));

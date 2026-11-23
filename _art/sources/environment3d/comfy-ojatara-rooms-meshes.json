@@ -1,0 +1,14 @@
+{
+  "ojatara_nihime_screen": {
+    "prompt_id": "cba523d4-9c49-4b16-a18a-adebc7fce27e",
+    "history": "http://127.0.0.1:8189/history/cba523d4-9c49-4b16-a18a-adebc7fce27e"
+  },
+  "ojatara_incense_set": {
+    "prompt_id": "ab36dd22-f334-4218-ac1c-dbcacef4f139",
+    "history": "http://127.0.0.1:8189/history/ab36dd22-f334-4218-ac1c-dbcacef4f139"
+  },
+  "ojatara_court_ledger": {
+    "prompt_id": "387e6f0f-c1c4-4a5b-bc57-8ae2e3ecdaad",
+    "history": "http://127.0.0.1:8189/history/387e6f0f-c1c4-4a5b-bc57-8ae2e3ecdaad"
+  }
+}

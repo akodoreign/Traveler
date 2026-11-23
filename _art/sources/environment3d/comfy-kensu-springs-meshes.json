@@ -1,0 +1,18 @@
+{
+  "kensu_bath_supplies": {
+    "prompt_id": "dba2b50b-fc4e-4326-ab76-d13e01bca756",
+    "history": "http://127.0.0.1:8189/history/dba2b50b-fc4e-4326-ab76-d13e01bca756"
+  },
+  "kensu_spring_rocks": {
+    "prompt_id": "5ce01e0b-36dc-4bf1-8e82-cf9e0d877253",
+    "history": "http://127.0.0.1:8189/history/5ce01e0b-36dc-4bf1-8e82-cf9e0d877253"
+  },
+  "kensu_rice_seedlings": {
+    "prompt_id": "cf9db8f2-af2a-4487-8967-bc250f2a114e",
+    "history": "http://127.0.0.1:8189/history/cf9db8f2-af2a-4487-8967-bc250f2a114e"
+  },
+  "kensu_field_jizo": {
+    "prompt_id": "83f926f4-3663-4352-976f-29f845482035",
+    "history": "http://127.0.0.1:8189/history/83f926f4-3663-4352-976f-29f845482035"
+  }
+}

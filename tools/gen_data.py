@@ -636,6 +636,8 @@ def crab_items(it):
             ("I442", "Back-gate Key", "An iron key as long as a hand, from the old priest who sweeps the lower shrine. "
                                       "The crater shrine's back gate, above the last switchback."),
             # The finale, Act 2 (F07: the glade)
+            ("I573", "Storehouse Key", "A small iron key from Yasuki Kanbe's lacquer box. "
+                                       "Opens the Hoshi-no-Ichi storehouse."),
             ("I443", "\"Duty\" Plaque", "Old Lion work, a single word cut deep: DUTY. Stolen from Shiro Akodo and "
                                         "nailed to a tree in the Shinomen to be laughed at. Shizue carries it now."),
             ("I177", "\"Against the Bloodspeakers\"", "The Phoenix book of every ward against the Bloodspeakers, a "
@@ -1018,6 +1020,9 @@ def crab_armor(ar):
     body("A111", "A021", "Shugenja's Haori", 10, 520)
     ar["A111"]["desc"] = "A priest's over-robe, ofuda sewn into the lining. E.Def and SP up."
     ar["A108"]["desc"] = "Heavy laced plate of the Hida. Built for the Wall, not for court."
+    ar["A209"] = copy.deepcopy(ar["A108"])
+    ar["A209"].update({"name": "Hiruma's Miko Attire", "desc": "The white kosode and crimson hakama Natsuko wears for the blessing dance. Fitted for Hiruma Natsuko alone.",
+                       "price": 0, "rt_only_player": "P100", "rt_unsellable": True})
     body("A109", "A025", "Lacquered Do-maru", 20, 700)
     ar["A109"]["desc"] = "O-Shito's spare: black lacquer, purple cords. Light for its strength."
     body("A106", "A055", "Old Jade Bead", 1, 200)
@@ -1063,6 +1068,8 @@ def crab_armor(ar):
     ar["A125"]["desc"] = "A ship's master's oiled cape. The sea gets in less. (Water damage -25%)"
     opt("A125", opttype="opt_elemdef", **{"EDR.%d" % ELEMS.index("Water"): 25})
     # Crane Ch4 (storyboard: Kyuden Doji is the T4 / expensive-accessory hub)
+    ar["A210"] = copy.deepcopy(ar["A100"])
+    ar["A210"].update({'name': "Rensei's Kabuki Costume", 'desc': "The guard's stage costume from The Empress of Nothing. Fitted for Kakita Rensei alone.", 'price': 0, 'rt_only_player': 'P101', 'rt_unsellable': True})
     body("A126", "A055", "Father's Hilt-wrap", 2, 0)
     ar["A126"]["desc"] = "New white silk, wound by someone who knows how. There was no note. (Critical +15)"
     opt("A126", opttype="opt_status", propid="CRI", val=15, valtype="supply")
@@ -1203,6 +1210,23 @@ def crab_armor(ar):
                          "Water damage taken -50%)"
     opt("A139", opttype="opt_status", propid="MATK", val=10, valtype="totalrate")
     opt("A139", opttype="opt_elemdef", **{"EDR.%d" % ELEMS.index("Water"): 50})
+    # Crab Ch2: the dance contest's prizes, one per grade (user 2026-11-22: "depending on quality gets a crab accessory
+    # reward (different ones for how well it was done)"; gen_maps hida_hall, plugin RokuganDance.sk)
+    body("A175", "A055", "Red Claw Kanzashi", 1, 0)                     # grade B: Yasuki Kurako's hairpin
+    ar["A175"]["desc"] = "A hairpin of red lacquer carved as a crab's claw. Yasuki Kurako pulled it from her own hair. " \
+                         "(Defence +5%)"
+    opt("A175", opttype="opt_status", propid="PDEF", val=5, valtype="totalrate")
+    body("A176", "A055", "Kaiu Iron Fan", 1, 0)                         # grade A: from Kaiu Takakana
+    ar["A176"]["desc"] = "A war fan from the Kaiu forges: iron ribs under paper painted with a crab on a wave. Kaiu " \
+                         "Takakana doesn't give gifts. He gave this. (Speed +6%, Evasion +6)"
+    opt("A176", opttype="opt_status", propid="AGI", val=6, valtype="totalrate")
+    opt("A176", opttype="opt_status", propid="PEVA", val=6, valtype="supply")
+    body("A177", "A055", "Jade Claw of the Wall", 2, 0)                 # grade S (Hard): the Champion's, by Yakamo
+    ar["A177"]["desc"] = "A crab's claw cut from Hida jade, on a red cord: the Champion's gift, carried down from the " \
+                         "dais by his son. Hida Kisada said nothing. (Defence +8%, Speed +6%, E.Def +8%)"
+    opt("A177", opttype="opt_status", propid="PDEF", val=8, valtype="totalrate")
+    opt("A177", opttype="opt_status", propid="AGI", val=6, valtype="totalrate")
+    opt("A177", opttype="opt_status", propid="MDEF", val=8, valtype="totalrate")
     body("A137", "A055", "Mountain's-Feet Charm", 2, 900)               # Phoenix Ch3: the Off-Balance counter
     ar["A137"]["desc"] = "An Earth charm of mountain stone, for pilgrims on steep roads. Its wearer can't be knocked " \
                          "Off-Balance. (Oni no Kuzushi's Unbalancing Breath)"
@@ -2176,6 +2200,9 @@ def main():
     gv["G1363"] = {"defval": False, "name": "the finale: 8 party places (RokuganParty partyCap)", "type": 1}
     for _n in range(1, 18):                             # RokuganAI guestVar: lifetime calls spent
         gv["G%d" % (1364 + _n)] = {"defval": 0, "name": "guest %d: calls spent (lifetime)" % _n, "type": 2}
+    # guests 18+ count from G1648 (G1382 onward belong to the odd jobs; RokuganAI guestVar)
+    gv["G1648"] = {"defval": 0, "name": "guest 18 (Doji Sanae): calls spent (lifetime)", "type": 2}
+    gv["G1649"] = {"defval": False, "name": "Doji Sanae waits (not with Rensei: RokuganBattle guestPresent)", "type": 1}
     gv["G1244"] = {"defval": 0,"name": "Journal: the tracked entry (0 = the main story; RokuganJournal.sk)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}
     gv["G1092"] = {"defval": 0, "name": "ronin_technique_second (Ronin Ch2 Rank 2: 1-3 another school's R1, 4 Punish "
@@ -2230,6 +2257,20 @@ def main():
                   "Sakura)", "type": 2}
     for code, name, fl, _m, _p in __import__("gen_maps").TRAVEL:       # world map: visited nodes
         gv[fl] = {"defval": False, "name": "visited: %s (%s)" % (name, code), "type": 1}
+    for _k in range(2):                                                  # the other roads' towns: bits
+        gv["G%d" % (1640 + _k)] = {"defval": 0, "name": "fast travel: towns visited, bits %d-%d of TRAVEL_AUTO" % (
+            30 * _k, 30 * _k + 29), "type": 2}
+    gv["G1642"] = {"defval": 0, "name": "dance contest: prizes won (bits: 1 Red Claw Kanzashi, 2 Kaiu Iron Fan, "
+                                     "4 Jade Claw of the Wall)", "type": 2}
+    gv["G1647"] = {"defval": False, "name": "Crane Ch4: slept the night before the duel (dawn: the east road opens)",
+                   "type": 1}
+    gv["G1646"] = {"defval": False, "name": "Crane Ch4: the morning letter from Kakita Masanori (after the rehearsal)",
+                   "type": 1}
+    gv["G1645"] = {"defval": 0, "name": "Crane Ch4: the kabuki rehearsal's grade (0 a flop, 1 B, 2 A, 3 S; RokuganKabuki.sk)",
+                   "type": 2}
+    gv["G1644"] = {"defval": False, "name": "Crab Ch4: Kyuden Hida under siege tonight (RokuganCastleSiege.sk: G271 and not G286)",
+                   "type": 1}
+    gv["G1643"] = {"defval": 0, "name": "dance contest: first completed dance's grade (0 laughed at, 1 B, 2 A, 3 S; RokuganDance.sk)", "type": 2}
     gv["G061"] = {"defval": 3, "name": "Hoshi-no-Ichi standing (failed chance path actions lower it; 0 = refused)",
                   "type": 2}
     for gid, nm in (("G062", "Sumai: the Wall veteran beaten"), ("G063", "Kite Mirror returned"),
@@ -3109,6 +3150,12 @@ def main():
     guest_skill("S602", TPL_PUTCOND, "Mirumoto Hikaru: Endless Strike", "Two swords move like a hurricane: one cut, and "
                 "then up to three more. (Katana, one enemy, 2-4 hits)", 2, option=[], elembits=B["Katana"],
                 dmgrate=[0.75, 0.75], atknum=[2, 4], hitrate=1.0)
+    # (user 2026-11-22: "the whole defender of honor thing is weird, as she keeps popping out of nowhere ... at least
+    # put her as a call in 3rd row"; Rensei is her yojimbo) Doji Sanae travels with him from Crane Ch1 on
+    guest_skill("S645", s["S145"], "Doji Sanae: A Quiet Word", "The Keeper of the House Honor murmurs something about "
+                "the enemy's family. Its sword arm falters. (ATK Down, one enemy. She never runs out.)", 0,   # (user:
+                option=[{"condid": "K021", "efx_start": None, "opttype": "opt_putcond", "rate": 1.0,      # unlimited,
+                         "showmiss": True, "when": 0, "whom": 0}])                                         # but weak)
     guest_skill("S633", TPL_PUTCOND, "Hiruma Kage: Father's Tanto", "Kage's father's jade tanto, into the place a "   # the
                 "Hiruma always find. (Tanto and Jade, one enemy)", 2, option=[],                       # finale, from
                 elembits=B["Tanto"] | B["Jade"], dmgrate=[2.2, 2.4], hitrate=1.0)                  # wave 4 (flare)
@@ -3384,7 +3431,7 @@ def main():
                    "S400": (5, "seigen"), "S401": (6, "kiku"), "S406": (7, "goro"), "S429": (8, "ijako"),
                    "S430": (9, "ashimita"), "S439": (10, "benjiro"), "S634": (10, "benjiro"), "S478": (11, "momo"),
                    "S559": (12, "karasu"), "S565": (13, "naohida"), "S588": (14, "hiro"), "S596": (15, "jinnai"),
-                   "S602": (16, "hikaru"), "S633": (17, "kage")}
+                   "S602": (16, "hikaru"), "S633": (17, "kage"), "S645": (18, "sanae")}
     for _sid, (_n, _key) in GUEST_CALLS.items():
         if _sid in s:
             s[_sid].update({"rt_gnum": _n, "rt_gmdl": _sc_epid(_key)})
@@ -4774,7 +4821,18 @@ def main():
                                      "EMPRESS-"})
     for eid in ("E583", "E584", "E585", "E586"):
         e[eid]["item0"]["itemid"] = e[eid]["item1"]["itemid"] = None
+    # Crane Ch4 S03 (user 2026-11-22: "right after the rehersal she charges the stage" - Doji Nashiko learns of the
+    # secret rehearsal of the play that exposes her, and comes up onto the north-garden stage; gen_maps NASHIKO_STAGE).
+    # Not the finale's Empress: a first, furious attack in a borrowed beauty. A cut to her face undoes her - at 45%
+    # she flees (rt_flee_pct), shrieking, to be met again at the end of the eight roads.
+    hum("E952", "Doji Nashiko", "EP190", 44, 5.0, 10, ["Katana", "Jade", "Crystal", "Air"], "The demon bride, four "
+        "hundred years old, in a borrowed face. She came to stop a play. A blade near her face is the one thing she "
+        "fears.", atkx=1.0, exp=0, money=0)
+    e["E952"].update({"rt_flee_pct": 45, "rt_fleebark": "(a thin red line across her perfect cheek) My FACE - you "
+                                                         "cut my FACE -"})
+    e["E952"]["item0"]["itemid"] = e["E952"]["item1"]["itemid"] = None
     for eid, cmds in (("E583", [(None, 35), ("S626", 30), ("S627", 35)]), ("E584", [(None, 100)]),
+                      ("E952", [(None, 45), ("S626", 30), ("S627", 25)]),
                       ("E585", [(None, 30), ("S628", 35), ("S629", 35)]),
                       ("E586", [(None, 20), ("S630", 30), ("S631", 30), ("S632", 20)])):
         base = e[eid]["ai"][0]["cmds"][0]
@@ -5410,7 +5468,9 @@ def main():
                                 (170, "b_ss_team_nest", "M813", ["E588", "E587", "E589", "E587"]),
                                 (171, "b_ss_benjiro_father", "M897", ["E590"]),
                                 (172, "b_boss_okura", "M808", ["E606"]),
-                                (173, "b_superboss_orochi", "M809", ["E607"])):
+                                (173, "b_superboss_orochi", "M809", ["E607"]),
+                                # Crane Ch4 S03: she charges the rehearsal stage (gen_maps NASHIKO_STAGE)
+                                (174, "b_boss_nashiko_stage", "M832", ["E952"])):
         g = copy.deepcopy(groups[0])
         spots = ([(-0.6, 1.2), (-2.6, -0.8)] if gid == 14 else
                  [(-0.6, 0.2), (-1.2, 1.7), (-2.6, -0.8), (-2.8, 1.4)] if gid == 21 else
@@ -5461,7 +5521,8 @@ def main():
                    163: [("E575", -2.2, 0.6)],
                    167: [("E583", -2.4, 0.3), ("E584", -0.4, -1.2), ("E584", -0.5, 1.6)],
                    168: [("E585", -2.3, 0.4)], 169: [("E586", -2.4, 0.5)],
-                   171: [("E590", -2.4, 0.2)], 172: [("E606", -2.4, 0.3)], 173: [("E607", -2.6, 0.2)]}
+                   171: [("E590", -2.4, 0.2)], 172: [("E606", -2.4, 0.3)], 173: [("E607", -2.6, 0.2)],
+                   174: [("E952", -2.4, 0.3)]}
     for g in cave + ch2:
         if g["gid"] in BOSS_LAYOUT:
             g["enemies"] = [{"id": f, "x": x, "z": z} for f, x, z in BOSS_LAYOUT[g["gid"]]]

@@ -169,7 +169,7 @@ RPGSystem.ui ..
 		local makelist( type){
 			local typekey = ["items","weapons","armors",];	//	"keyitems"は無し
 			local a = ::rpgstat[typekey[type]];
-			return a.map( @( v, i) v && !v.data["rt_costume"] && !v.data["rt_costume_head"] ? {
+			return a.map( @( v, i) v && !v.data["rt_costume"] && !v.data["rt_costume_head"] && !v.data["rt_unsellable"] ? {
 				lbl=v.iconname(), _name="i"..i, item=v, rlbl=@() v.num>1 ? v.num : "", sellprice=v.data.price/2,	//	売却価格
 			} : { lbl="", _name="i"..i, rlbl="", item=null, sellprice=0});
 		}

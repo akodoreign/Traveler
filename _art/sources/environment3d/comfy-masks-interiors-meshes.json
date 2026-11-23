@@ -1,0 +1,18 @@
+{
+  "kamen_sweet_cup_counter": {
+    "prompt_id": "2a7a4c8b-9757-439c-8b86-2c94320983eb",
+    "history": "http://127.0.0.1:8189/history/2a7a4c8b-9757-439c-8b86-2c94320983eb"
+  },
+  "kamen_scriptorium_desk": {
+    "prompt_id": "eedf32f5-fa50-4d8c-8bab-dfcc1fd6d210",
+    "history": "http://127.0.0.1:8189/history/eedf32f5-fa50-4d8c-8bab-dfcc1fd6d210"
+  },
+  "kamen_monastery_dais": {
+    "prompt_id": "8338ffe3-2dfb-4750-ba3a-4c5baa682d95",
+    "history": "http://127.0.0.1:8189/history/8338ffe3-2dfb-4750-ba3a-4c5baa682d95"
+  },
+  "kamen_sun_reliquary": {
+    "prompt_id": "ea55c1c8-a13c-4b4c-a400-38f9934876a7",
+    "history": "http://127.0.0.1:8189/history/ea55c1c8-a13c-4b4c-a400-38f9934876a7"
+  }
+}

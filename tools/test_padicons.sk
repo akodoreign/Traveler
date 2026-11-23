@@ -1,0 +1,25 @@
+//	Engine check for Options > Button Icons (control.padicons) and the engine's buttonicon (RPGSystem.sk):
+//	a fake pad of each type, every setting, the glyph it picks (UTF-8 hex: ee b8 8a = Xbox A, ee b9 aa = PlayStation
+//	Cross); the option list of the Options screen; then the screen opens for a shot.
+//	Run: bot step "evalf,../../tools/test_padicons.sk" (see NOTES, controller support).
+local old = ::gpui.gpdevice, keep = ::clientconf.control["padicons"] || 0;
+foreach( t in [1, 2]){
+	::gpui.gpdevice = { gp = { type = t, buttonmask = 0, axis0 = 0.0, axis1 = 0.0, axis2 = 0.0, axis3 = 0.0, axis4 = 0.0,
+		axis5 = 0.0 }, update = @( dt, e) null, isButtonDown = @( vb) false };
+	foreach( ov in [0, 1, 2, 3]){
+		::clientconf.control.padicons <- ov;
+		local g = ::buttonicon( 10), hx = "";
+		for( local i = 0; i < length( g); i++) hx = hx .. ("%02x " % [g[i] & 255]);
+		printf( "[RT] PADICON pad %d setting %d -> A %s\n", t, ov, hx);
+	}
+}
+::clientconf.control.padicons <- keep;
+::gpui.gpdevice = old;
+local u = ::RPGSystem.ui["menu_config"];
+foreach( tab in u.configtabs) foreach( c in tab.list){
+	local cur = c["get"] ? c.get() : "-";
+	printf( "[RT] PADICON option %S (now %S)\n", "" .. c.lbl, "" .. cur);
+}
+newthread().start( @(){
+	try{ ::RPGMain.showUI( { key = "menu_config" }); }catch( ex){ printexception( ex); }
+});

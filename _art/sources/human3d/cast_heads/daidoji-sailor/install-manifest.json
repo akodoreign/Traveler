@@ -1,0 +1,38 @@
+{
+  "actor": "side_sailor",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_sailor_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_sailor_hachimaki.pm",
+      "to": "side_sailor_hachimaki.pm",
+      "sha256": "49ff52267a4a77e4c8e4b398ecc144a4fb2862079b9d54262906db874f36b441"
+    },
+    {
+      "from": "assets/side_sailor_hachimaki.mdl",
+      "to": "side_sailor_hachimaki.mdl",
+      "sha256": "8873646dc90d89bc87e2cac6843f6eed23e54b173375005397b1f8b1d8a82e7a"
+    },
+    {
+      "from": "assets/tex/side_sailor_hachimaki_weave.png",
+      "to": "tex/side_sailor_hachimaki_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_sailor_hachimaki",
+        "headwear": true,
+        "replacesHeadband": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_sailor\\fitted-a124-final\\assets\\side_sailor_portrait_face.glb",
+    "sha256": "93e88b9722c446ada0ff63e1d6b49f574523a5dd6434d72061d9c3302b27e31d"
+  }
+}

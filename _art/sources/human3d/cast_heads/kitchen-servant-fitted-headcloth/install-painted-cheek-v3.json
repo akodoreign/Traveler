@@ -1,0 +1,37 @@
+{
+  "actor": "side_servant",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_servant_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_servant_headcloth.pm",
+      "to": "side_servant_headcloth.pm",
+      "sha256": "7de3911f3d0bfaad46615525652fb3395650abb7d64ed55cfc2ca445c0b7d6c2"
+    },
+    {
+      "from": "assets/side_servant_headcloth.mdl",
+      "to": "side_servant_headcloth.mdl",
+      "sha256": "46263f7f2fd8543f6b4d2ee312411dd153ba56c5a0a43c9ac9993722070fabf9"
+    },
+    {
+      "from": "assets/tex/side_servant_headcloth_weave.png",
+      "to": "tex/side_servant_headcloth_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_servant_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_servant\\painted-cheek-v3\\assets\\side_servant_portrait_face.glb",
+    "sha256": "f83f835076684d6a3d5a9045e836fe5422b068cd1f642ef700bf6c13c86edb40"
+  }
+}

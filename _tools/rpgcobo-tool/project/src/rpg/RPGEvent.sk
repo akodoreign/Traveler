@@ -1166,11 +1166,15 @@ class RPGStageEventRunner extends RPGEventRunner
 		trgdisable = false;
 	}
 
+	function createEventObject(){
+		return ::RPG3DObject.create3DObject( data);
+	}
+
 	//	ページ
 	function setPage( p){
 		local isnew = (p && !rp3d);
 		if( isnew){
-			rp3d = ::RPG3DObject.create3DObject( data);
+			rp3d = createEventObject();
 			rp3d.setPosition( spawnpos);
 			rp3d.event = this;
 			// rp3d.setBaloon( p["baloon"]);

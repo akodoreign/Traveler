@@ -1,0 +1,287 @@
+{
+  "A111": {},
+  "A120": {
+    "N": [
+      {
+        "cut": 81.0,
+        "vertices": 467,
+        "bottom_y": 54.98,
+        "cuff_hip_mean": 0.0326,
+        "cuff_hip_above_20pct": 14,
+        "upper_same_side_arm_mean": 0.9218
+      }
+    ],
+    "F": [
+      {
+        "cut": 81.0,
+        "vertices": 497,
+        "bottom_y": 55.12,
+        "cuff_hip_mean": 0.0305,
+        "cuff_hip_above_20pct": 15,
+        "upper_same_side_arm_mean": 0.9205
+      }
+    ]
+  },
+  "A124": {},
+  "A127": {
+    "F": [
+      {
+        "cut": 82.0,
+        "vertices": 428,
+        "bottom_y": 58.59,
+        "cuff_hip_mean": 0.0,
+        "cuff_hip_above_20pct": 0,
+        "upper_same_side_arm_mean": 0.9621
+      }
+    ],
+    "N": [
+      {
+        "cut": 82.0,
+        "vertices": 435,
+        "bottom_y": 58.63,
+        "cuff_hip_mean": 0.0,
+        "cuff_hip_above_20pct": 0,
+        "upper_same_side_arm_mean": 0.9667
+      }
+    ]
+  },
+  "A128": {
+    "N": [
+      {
+        "cut": 79.0,
+        "vertices": 966,
+        "bottom_y": 41.91,
+        "cuff_hip_mean": 0.9616,
+        "cuff_hip_above_20pct": 661,
+        "upper_same_side_arm_mean": 0.7102
+      },
+      {
+        "cut": 76.0,
+        "vertices": 1213,
+        "bottom_y": 41.89,
+        "cuff_hip_mean": 0.6084,
+        "cuff_hip_above_20pct": 204,
+        "upper_same_side_arm_mean": 0.9996
+      }
+    ],
+    "F": [
+      {
+        "cut": 78.0,
+        "vertices": 1135,
+        "bottom_y": 42.0,
+        "cuff_hip_mean": 0.96,
+        "cuff_hip_above_20pct": 602,
+        "upper_same_side_arm_mean": 0.8253
+      },
+      {
+        "cut": 76.0,
+        "vertices": 1260,
+        "bottom_y": 41.89,
+        "cuff_hip_mean": 0.6005,
+        "cuff_hip_above_20pct": 209,
+        "upper_same_side_arm_mean": 0.9996
+      }
+    ]
+  },
+  "A140": {
+    "F": [
+      {
+        "cut": 82.0,
+        "vertices": 711,
+        "bottom_y": 44.22,
+        "cuff_hip_mean": 0.4592,
+        "cuff_hip_above_20pct": 213,
+        "upper_same_side_arm_mean": 0.916
+      }
+    ],
+    "N": [
+      {
+        "cut": 82.0,
+        "vertices": 716,
+        "bottom_y": 44.13,
+        "cuff_hip_mean": 0.4472,
+        "cuff_hip_above_20pct": 214,
+        "upper_same_side_arm_mean": 0.9259
+      }
+    ]
+  },
+  "A153": {
+    "F": [
+      {
+        "cut": 78.0,
+        "vertices": 768,
+        "bottom_y": 43.0,
+        "cuff_hip_mean": 0.5142,
+        "cuff_hip_above_20pct": 264,
+        "upper_same_side_arm_mean": 0.8758
+      }
+    ],
+    "N": [
+      {
+        "cut": 78.0,
+        "vertices": 769,
+        "bottom_y": 42.88,
+        "cuff_hip_mean": 0.5225,
+        "cuff_hip_above_20pct": 265,
+        "upper_same_side_arm_mean": 0.8911
+      }
+    ]
+  },
+  "A155": {
+    "N": [
+      {
+        "cut": 78.0,
+        "vertices": 687,
+        "bottom_y": 58.19,
+        "cuff_hip_mean": 0.019,
+        "cuff_hip_above_20pct": 4,
+        "upper_same_side_arm_mean": 0.9898
+      }
+    ],
+    "F": [
+      {
+        "cut": 78.0,
+        "vertices": 674,
+        "bottom_y": 57.9,
+        "cuff_hip_mean": 0.0208,
+        "cuff_hip_above_20pct": 6,
+        "upper_same_side_arm_mean": 0.986
+      }
+    ]
+  },
+  "A167": {},
+  "rensei_robe": {
+    "N": [
+      {
+        "cut": 78.0,
+        "vertices": 556,
+        "bottom_y": 59.48,
+        "cuff_hip_mean": 0.0244,
+        "cuff_hip_above_20pct": 0,
+        "upper_same_side_arm_mean": 0.9456
+      }
+    ],
+    "F": [
+      {
+        "cut": 79.0,
+        "vertices": 586,
+        "bottom_y": 59.56,
+        "cuff_hip_mean": 0.0229,
+        "cuff_hip_above_20pct": 0,
+        "upper_same_side_arm_mean": 0.9034
+      }
+    ]
+  },
+  "trav_gendo_signature": {
+    "F": [
+      {
+        "cut": 75.0,
+        "vertices": 324,
+        "bottom_y": 58.5,
+        "cuff_hip_mean": 0.0341,
+        "cuff_hip_above_20pct": 10,
+        "upper_same_side_arm_mean": 1.0
+      }
+    ],
+    "N": [
+      {
+        "cut": 75.0,
+        "vertices": 322,
+        "bottom_y": 58.22,
+        "cuff_hip_mean": 0.0395,
+        "cuff_hip_above_20pct": 6,
+        "upper_same_side_arm_mean": 1.0
+      }
+    ]
+  },
+  "trav_haruki_signature": {
+    "F": [
+      {
+        "cut": 80.0,
+        "vertices": 733,
+        "bottom_y": 45.45,
+        "cuff_hip_mean": 0.5724,
+        "cuff_hip_above_20pct": 232,
+        "upper_same_side_arm_mean": 0.9669
+      }
+    ],
+    "N": [
+      {
+        "cut": 80.0,
+        "vertices": 752,
+        "bottom_y": 45.21,
+        "cuff_hip_mean": 0.574,
+        "cuff_hip_above_20pct": 224,
+        "upper_same_side_arm_mean": 0.9363
+      }
+    ]
+  },
+  "trav_sayo_signature": {},
+  "mitsue_maid": {
+    "N": [
+      {
+        "cut": 82.0,
+        "vertices": 908,
+        "bottom_y": 45.9,
+        "cuff_hip_mean": 0.0403,
+        "cuff_hip_above_20pct": 37,
+        "upper_same_side_arm_mean": 0.8767
+      }
+    ],
+    "F": [
+      {
+        "cut": 82.0,
+        "vertices": 1008,
+        "bottom_y": 45.91,
+        "cuff_hip_mean": 0.045,
+        "cuff_hip_above_20pct": 44,
+        "upper_same_side_arm_mean": 0.914
+      }
+    ]
+  },
+  "mitsue_fox": {},
+  "mitsue_clerk": {
+    "N": [
+      {
+        "cut": 81.0,
+        "vertices": 399,
+        "bottom_y": 58.88,
+        "cuff_hip_mean": 0.0076,
+        "cuff_hip_above_20pct": 0,
+        "upper_same_side_arm_mean": 0.8439
+      }
+    ],
+    "F": [
+      {
+        "cut": 81.0,
+        "vertices": 400,
+        "bottom_y": 58.86,
+        "cuff_hip_mean": 0.0128,
+        "cuff_hip_above_20pct": 0,
+        "upper_same_side_arm_mean": 0.8244
+      }
+    ]
+  },
+  "mitsue_pilgrim": {
+    "F": [
+      {
+        "cut": 68.0,
+        "vertices": 806,
+        "bottom_y": 44.33,
+        "cuff_hip_mean": 0.0368,
+        "cuff_hip_above_20pct": 37,
+        "upper_same_side_arm_mean": 0.8071
+      }
+    ],
+    "N": [
+      {
+        "cut": 68.0,
+        "vertices": 925,
+        "bottom_y": 44.36,
+        "cuff_hip_mean": 0.0454,
+        "cuff_hip_above_20pct": 52,
+        "upper_same_side_arm_mean": 0.7241
+      }
+    ]
+  }
+}

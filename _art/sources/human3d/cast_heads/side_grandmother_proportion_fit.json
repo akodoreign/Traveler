@@ -1,0 +1,38 @@
+{
+  "actor": "side_grandmother",
+  "body_frame_original_depth_height_breadth": [
+    0.934,
+    0.849,
+    0.934
+  ],
+  "body_frame_before_depth_height_breadth": [
+    0.8686,
+    0.7896,
+    0.8686
+  ],
+  "body_frame_after_depth_height_breadth": [
+    0.7005,
+    0.63675,
+    0.7005
+  ],
+  "body_frame_factor": 0.75,
+  "neck_transition_native_height": [
+    101.0,
+    105.8
+  ],
+  "neutral_face_world_dimensions_preserved_above_transition": true,
+  "unchanged_lower_seat_vertices": 245,
+  "joint_count": 50,
+  "portable_expression_controls": [
+    "blink_right",
+    "blink_left",
+    "brows_up",
+    "brows_knit",
+    "smile",
+    "frown",
+    "mouth_open"
+  ],
+  "prior_head_sha256": "627cd18c7b49c0771c59cafe4dc9d397c79b950d0ef4708e718ec9c36ce62685",
+  "new_head_sha256": "032b364cc911c1a81ba4bc0e4babffba902a563911ac3a608993806aec33b75d",
+  "face_srgb_sha256": "87d7ae4d2b645c045b0672bee25c6dc689002be3b76e7f7b0c2c251fe774537c"
+}

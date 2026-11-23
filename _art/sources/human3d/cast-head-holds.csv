@@ -1,0 +1,53 @@
+actor,name,state,selected_face,reason
+side_kusuri,Agasha Kusuri,Textured export,side_kusuri_face,The independent gold Noh mask fits. A bright horizontal throat band remains visible in the actual A153 front.
+side_asahina,Asahina priest,Textured export,side_asahina_face,Stock A124 leaves a visible opening behind the neck. The established collar alias intersects the hair.
+side_palecourtier,Bayushi courtier,Textured export,side_palecourtier_face,The original source ends at the chin. The reframe fuses the robe and shoulders into the sculpt.
+side_shiruko,Bayushi Shiruko,Textured export,side_shiruko_face,The original lacks a usable neck stem. The reframe fuses the long locks to a clothed bust.
+side_atsuki,Bayushi Atsuki,Textured export,side_atsuki_face,The sculpt retains red-gray collar geometry below the jaw and adjacent to the locks.
+side_bayushikei,Bayushi Kei,Textured export,side_bayushikei_face,The rear lock protrudes into A127 through all four poses. The registered cloth mask still needs independent fitting.
+side_courier,Bayushi courier,Textured export,side_courier_face,"The neutral pose fits, but stock A127 shows a broad pale collar lip."
+side_depura,Bayushi Depura,Textured export,side_depura_face,A127 exposes the front body and intersects the lower hair.
+side_dojiaoi,Doji Aoi,Textured export,side_dojiaoi_face,Stock A124 leaves a visible rear opening. The existing fitted collar crosses the new lower locks.
+side_himeko,Doji Himeko,Textured export,side_himeko_face,"The fitted collar closes the side opening, but the actual daylight front shows a bright lower-throat patch."
+side_miyako,Doji Miyako,Textured export,side_miyako_face,Both strict profiles fit. Final paint still shows a prominent front A124 throat band.
+side_keiyomi,Ide Keiyomi,Textured export,side_keiyomi_face,The centered V2 package is staged. Stock A155 exposes an uneven throat band or rear opening.
+side_h_windisawa,Isawa Wind-Priest,Textured export,side_h_windisawa_face,The current A140 exposes the front throat and shoulders. Remaining contact is at the stock collar.
+side_hoju,Isawa Hoju,Textured export,side_hoju_face,Both fitted scales expose the raised front body throat and stock A140 shoulder openings.
+side_kamasari,Isawa Kamasari,Textured export,side_kamasari_face,The current A140 visibly opens around the shoulder and raises the throat near the seated head.
+side_kurosho,Iuchi Kurosho,Textured export,side_kurosho_face,A155 exposes a broad front and rear body ledge after the neutral fit.
+side_kakita_sensei,Kakita sensei,Textured export,side_kakita_sensei_face,Long silver locks still penetrate the fitted A124 in rest and guard.
+side_akuja,Kuni Akuja,Textured export,side_akuja_face,The refitted A100 clears the scalp and hair in four poses. The baked pale forehead crescent still shows in prior native daylight.
+side_hatomu,Miya Hatomu,Textured export,side_hatomu_face,The seated V2 has A167 contacts and an intersecting dormant mask. The prior route stays active.
+side_katsutoshi,Shiba Katsutoshi,Textured export,side_katsutoshi_face,Both latest meshes block eye openings with the fringe. V3 also extends an oversized knot stem to the rear.
+side_miyahana,Shinjo Miyahana,Textured export,side_miyahana_face,The exact V2 head and separate silver horn are staged. The stock A155 exposes the lower throat and rear.
+side_oshito,Shinjo O-Shito,Textured export,side_oshito_face,The exact head fit remains held for the visible A155 neck opening.
+side_tsune,Shinjo Tsune,Geometry export,side_tsune_face,The existing A155 collar crosses the character's long locks during the nod.
+side_mayumi,Shosuro Mayumi,Geometry export,side_mayumi_face,The exact V3 head and fan fit but A127 shows a visible pale collar gap.
+side_norie,Shosuro Norie,Geometry export,side_norie_face,The V2 head seats level and tanto clears. A127 shows a pale exposed throat band.
+side_h_stagehand,Shosuro Stagehand,Geometry export,side_h_stagehand_face,"The neutral head sits level, but the shallow lower front stem leaves a wide throat overlap above A127."
+side_soshi,Soshi courtier,Geometry export,side_soshi_face,Both upright seats expose a front body throat tab and shoulder openings in A127. The cloth mask stays separate.
+side_soshienvoy,Soshi envoy,Geometry export,side_soshienvoy_face,The V2 neutral seat exposes a raised throat ledge and shoulder gaps in A127.
+side_outfitter,Togashi outfitter,Geometry export,side_outfitter_face,The V2 lower stem slopes forward enough to require more than eleven degrees of head pitch.
+side_togashi,Togashi,Geometry export,side_togashi_face,The Kami's V2 lower stem slopes back and changes depth. This NPC is separate from the accepted traveler Togashi Yosai.
+side_akari,Akari,Textured export,side_akari_face,The latest reference and available paint still need lower-lock separation and cleanup of the copper crown patch and shifted pupils.
+side_herald,Herald,Geometry export,side_herald_face,V3 leaves a pronounced exposed A127 throat tab and uneven upper eye sockets.
+side_mitsue_maid,Lady's maid,Textured export,side_mitsue_maid_face,"The A127 route passed mechanical checks, but the real daylight front retained a pale horizontal neck stripe."
+side_nashiko,Blue-eyed woman,Geometry export,side_nashiko_face,Both upright fits retain a pronounced exposed front throat on her original A127.
+side_oyuki,Oyuki,Textured export,side_oyuki_face,The exact painted long locks still contact the refitted A100 and the bare body in all four poses.
+side_tsuhime,Tsuhime,Geometry export,side_tsuhime_face,The fitted A167 closes the rear gap. Both upright seats expose a broad straight front throat band.
+side_diver,Old diver,Geometry export,side_diver_face,The earlier fitted head clears the refitted A100. The current V2 pilot still has a rear shelf beneath the skull.
+side_doorman,House of Tranquillity doorman,Geometry export,side_doorman_face,The refitted A100 clears the hair. The donor's square rear ledge and excessive pitch at lower seats remain.
+side_h_hunter,Shadow Hunter,Textured export,side_h_hunter_face,The fitted black linen clears the animated face. Original A127 has an abrupt pale collar opening.
+side_pedlar,"""Pedlar""",Textured export,side_pedlar_face,Both long locks still cross the refitted A100 and the bare body. The original headcloth still needs its own fit.
+side_pilgrim,Pilgrim,Textured export,side_pilgrim_face,The exact geometry still has a wide diagonal neck with measurable section drift. This is separate from the passed story Pilgrim.
+side_porter,Dock porter,Geometry export,side_porter_face,The refitted A100 clears the outer hair. The current stem still needs excessive pitch and has a rear neck ledge.
+side_priest,Suitengu priest,Geometry export,side_priest_face,The A167 guard cuff intersects the nose during guard and the lower front collar leaves a band visible.
+side_meyako,Yogo Meyako,Geometry export,side_meyako_face,"The neutral V2 fits, but the original Noh mask projects visibly in both profiles."
+side_shigeru,Yogo Shigeru,Geometry export,side_shigeru_face,V3 lower hair blends into a broad crossbar at the neck. A later reference was held because its crown was cut off.
+side_ukita,Akodo Ukita,Geometry export,side_ukita_face,The Lion collar variant still contacts the one-sided ponytail through all four poses.
+side_kage,Hiruma Kage,Geometry export,side_kage_face,The regular A173 route has lower strand intersections. The distinct chapter-three companion route passed.
+side_matsuduel,Matsu bushi,Geometry export,side_matsuduel_face,Low locks intersect the original A135 collar.
+side_nagai,Matsu Nagai,Geometry export,side_nagai_face,The V3 jaw and sideburns cross both the original and previously fitted A135 collars.
+side_tsukaru,Mirumoto Tsukaru,Geometry export,side_tsukaru_face,The longer lower locks contact the original A141 during the fit tests.
+side_benjiro,Moto Benjiro,Textured export,side_benjiro_face,The uncovered canonical portrait and active death mask disagree. The original equipment remains active.
+side_mai,Yogo Mai,Textured export,side_mai_face,The V3 A127 front shows an obvious pale scalloped overlap in the exact mounted paint.

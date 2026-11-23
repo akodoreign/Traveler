@@ -2404,6 +2404,753 @@ def c_fall_intro(rng):
 
 
 # key -> (MU id, title, builder, kind, loudness target LUFS). Fights are loudest; calm places sit 3-6 dB under.
+# ------------------------------------------------------------------------------------------- the dance contest
+# (user 2026-11-22: "dance minigame ... a Dance dance type hit the keys. use our music maker to give us some appropriate
+# priestess type dance music. let it have 2 difficulties easy and hard") Miko-mai, the shrine maidens' kagura: the
+# koto carries the tune, the shamisen shadows it in the second verse, jushichigen underneath, the suzu bell-tree shaken on the beat, shime / kakko / o-daiko, hyoshigi clappers counting the dancer in.
+# One take, no loop: the mini-game (plugin RokuganDance.sk) plays it once, and its arrows are written from these same
+# melody notes (dance_chart below -> RokuganDanceChart.sk), so every arrow lands on a note you hear. (Easy only: Hard dances to t_jhk below.)
+KAGURA_BPM = 116
+KAGURA_A = "3:1 5:.5 4:.5 3:1 2:1 | 3:.5 4:.5 5:1 4:2 | 3:1 2:.5 1:.5 2:1 3:1 | 2:3 r:1 | " \
+           "3:1 5:.5 4:.5 3:1 2:1 | 4:.5 5:.5 6:1 5:2 | 4:1 3:.5 2:.5 1:1 2:1 | 0:3 r:1"
+KAGURA_A2 = "3:1 5^:.5 4:.5 3:1 2~:1 | 3:.5 4:.5 5:1 4:1 3:.5 4:.5 | 3:1 2:.5 1:.5 2:1 3:1 | 2:2 1:1 2:1 | " \
+            "3:1 5^:.5 4:.5 3:1 2~:1 | 4:.5 5:.5 6:1 5:1 7:1 | 6:.5 5:.5 4:1 3:.5 2:.5 1:1 | 0:3 r:1"
+KAGURA_B = "5:.5 6:.5 7:1 6:.5 5:.5 4:1 | 5:1 6:1 5:2 | 4:.5 5:.5 6:1 5:.5 4:.5 3:1 | 2:1 3:1 4:2 | " \
+           "5:.5 6:.5 7:1 8:1 7:1 | 6:.5 7:.5 6:.5 5:.5 4:2 | 3:1 4:1 5:.5 4:.5 3:1 | 2:2 3:2"
+KAGURA_CODA = "4:.5 3:.5 2:1 1:1 2:1 | 0:4"
+KAGURA_HA = [0, 2, 3, 1, 0, 4, 2, 0]
+KAGURA_HB = [3, 4, 2, 1, 3, 4, 2, 3]
+# the plan: (first bar, melody, harmony, section); 4 intro bars, A, A', B, A'', a 2-bar coda = 38 bars (~79 s)
+KAGURA_PLAN = [(4, KAGURA_A, KAGURA_HA, 0), (12, KAGURA_A2, KAGURA_HA, 1), (20, KAGURA_B, KAGURA_HB, 2),
+               (28, KAGURA_A2, KAGURA_HA, 3), (36, KAGURA_CODA, [3, 0], 4)]
+
+
+def suzu(rng):
+    """The kagura suzu: a bell-tree of tiny bells shaken once - a bright jingle, the bells a few ms apart."""
+    def make():
+        t = tvec(0.45)
+        out = np.zeros(len(t))
+        for k in range(9):
+            f = rng.uniform(3400, 7600)
+            at = int(rng.uniform(0, 0.035) * SR)
+            tt = t[:len(t) - at]
+            seg = np.sin(2 * np.pi * f * tt + rng.uniform(0, 6)) * np.exp(-tt * rng.uniform(9, 16))
+            seg += 0.4 * np.sin(2 * np.pi * f * 2.7 * tt) * np.exp(-tt * 30)
+            out[at:] += seg * rng.uniform(0.5, 1.0)
+        shake = norm(bandpass(noise(len(t), rng), 5000, 12000)) * np.exp(-t / 0.03)
+        return norm(out + 0.35 * shake) * 0.45
+    return cached(("suzu",), rng, make, takes=4)
+
+
+def t_kagura(rng):
+    """The dance contest at Kyuden Hida, Easy (D yo, 116 BPM, 38 bars, one take): intro (suzu, o-daiko, a rolled koto
+    chord, the hyoshigi count the dancer in) - A on the koto - A' koto with the shamisen shadowing it - B (shamisen
+    leads, the koto answers below, the taiko drive) - A'' koto and shamisen together - a coda that lands on the last
+    o-daiko stroke. (user 2026-11-22: "replace any synthetic with actual japanese instrament" - the kagura-bue,
+    hichiriki and sho voices were tone generators; everything here is plucked, struck or shaken.)"""
+    tr = Track(38, KAGURA_BPM, rng=rng, send=0.22, loop=False)
+    sc, root = YO, 62
+    tr.sc, tr.root = sc, root
+    # intro: the bell-tree, the drum, the clappers' count (bar 2: two clacks, bar 3: four)
+    for b in range(4):
+        real_taiko_bar(tr, b, [(0, "odaiko", 0.45 + 0.1 * b)], 0.7)
+        tr.add(real_koto(deg(sc, root - 24, 0), 2.5, rng), tr.at(b), 0.0, 0.6, 0.1, 0.0, "bass")
+        for beat in (0, 2):
+            tr.add(real_suzu(rng), tr.at(b, beat), rng.uniform(-0.3, 0.3), 0.8, 0.3, 0.004, "suzu")
+    for j, m in enumerate((50, 57, 62, 64, 69, 74)):                       # a rolled koto chord opens the dance
+        tr.add(real_koto(m, 3.0, rng, vel=0.85, decay=0.7), tr.at(0) + 0.06 * j, -0.2 + 0.08 * j, 0.45, 0.4, 0.0, "arp")
+    real_taiko_bar(tr, 2, [(0, "hyoshigi", 0.9), (2, "hyoshigi", 0.9)], 0.9)
+    real_taiko_bar(tr, 3, [(0, "hyoshigi", 0.9), (1, "hyoshigi", 0.9), (2, "hyoshigi", 0.95), (3, "hyoshigi", 1.0)], 0.9)
+    for bar0, s, H, sec in KAGURA_PLAN:
+        mel = M(s, len(H))
+        if sec in (0, 1, 3, 4):
+            play(tr, mel, real_koto, bar0, sc, root + 12, pan=-0.1, gain=1.0)
+        if sec in (1, 3):
+            play(tr, mel, real_shamisen, bar0, sc, root, pan=0.3, gain=0.45, ring=0.2, tag="ctr")
+        if sec == 2:
+            play(tr, mel, real_shamisen, bar0, sc, root + 12, pan=0.2, gain=1.05)
+            play(tr, shift(mel, -5), real_koto, bar0, sc, root + 12, pan=-0.3, gain=0.4, tag="ctr")
+        for k, d in enumerate(H):
+            b = bar0 + k
+            last = sec == 4 and k == len(H) - 1
+            tr.add(real_koto(deg(sc, root - 24, d), 2.2, rng), tr.at(b), 0.0, 0.8, 0.1, 0.004, "bass")
+            if sec >= 2 and not last:
+                tr.add(real_koto(deg(sc, root - 24, d + 3), 1.0, rng), tr.at(b, 2.5), 0.0, 0.5, 0.1, 0.004, "bass")
+            if not last:
+                real_arp(tr, b, stack(sc, root, d), [0, 2, 1, 3, 2, 1, 3, 2] if sec else [0, 2, 1, 3],
+                    step=0.5 if sec else 1.0, pan=-0.3, gain=0.28)
+            for beat in range(4):                         # the suzu on every beat (A' and A'': the off-beats lightly)
+                if last and beat:
+                    break
+                tr.add(real_suzu(rng), tr.at(b, beat), rng.uniform(-0.35, 0.35), 0.75 if beat % 2 == 0 else 0.55, 0.3,
+                       0.004, "suzu")
+                if sec in (1, 3) and not last:
+                    tr.add(real_suzu(rng), tr.at(b, beat + 0.5), rng.uniform(-0.35, 0.35), 0.3, 0.3, 0.004, "suzu")
+            pat = [(0, "odaiko", 0.6 if k % 2 == 0 else 0.4), (1, "shime", 0.5), (2, "shime", 0.4), (3, "shime", 0.5),
+                   (3.5, "kakko", 0.4)]
+            if sec >= 1:
+                pat += [(1.5, "kakko", 0.3), (2.5, "shime", 0.35)]
+            if sec >= 2:
+                pat += [(2, "odaiko", 0.4), (0.5, "shime", 0.3), (1, "atarigane", 0.5), (3, "atarigane", 0.5)]
+            if k == len(H) - 1 and sec < 4:                                        # a fill into the next section
+                pat += [(2, "shime", 0.6), (2.5, "shime", 0.65), (3, "shime", 0.7), (3.25, "shime", 0.6),
+                        (3.5, "shime", 0.8), (3.75, "shime", 0.85)]
+            if last:
+                pat = [(0, "odaiko", 1.0), (0, "hyoshigi", 0.8)]
+            real_taiko_bar(tr, b, pat, gain=0.65)
+    for j, m in enumerate((50, 57, 62, 69, 74)):                           # and a rolled chord closes it
+        tr.add(real_koto(m, 3.0, rng, vel=0.9, decay=0.6), tr.at(37) + 0.05 * j, -0.2 + 0.1 * j, 0.45, 0.4, 0.0, "arp")
+    reverb(tr, rt60=2.2, wet=0.9)
+    tr.dance = dance_chart(tr)
+    return tr
+
+
+def chart_lanes(seq):
+    """[(ms, degree)] -> [(ms, lane)]: each arrow follows the tune's contour (a leap up = up, a step up = right or up by
+    turns, a step down = left or down by turns, a leap down = down, a repeat alternates left / right; never four of
+    the same arrow running). Lanes 0 left, 1 down, 2 up, 3 right."""
+    out, prev, flip, run, ups, downs = [], None, 0, 0, 0, 0
+    for ms, d in seq:
+        if prev is None or d - prev >= 2:
+            lane = 2
+        elif d - prev == 1:
+            ups += 1
+            lane = 3 if ups % 3 else 2
+        elif d - prev == -1:
+            downs += 1
+            lane = 0 if downs % 2 else 1
+        elif d - prev <= -2:
+            lane = 1
+        else:
+            flip ^= 1
+            lane = 0 if flip else 3
+        if out and lane == out[-1][1]:
+            run += 1
+            if run >= 3:
+                lane = (lane + 1) % 4
+                run = 0
+        else:
+            run = 0
+        out.append((int(round(ms)), lane))
+        prev = d
+    return out
+
+
+def dance_chart(tr):
+    """Easy (the kagura): at most one arrow a beat - the melody notes that start on a beat and ring at least one."""
+    seq, last = [], -9.0
+    for bar0, s, H, sec in KAGURA_PLAN:
+        for t, ln, d, a, o in M(s, len(H)):
+            beat = bar0 * tr.beats + t
+            if abs(beat - round(beat)) < 1e-6 and ln >= 1 and beat - last >= 1.0 - 1e-6:
+                seq.append((tr.at(0, beat) * 1000, d))
+                last = beat
+    return {"mode": "easy", "mu": TRACKS["kagura"][0], "length": int(round(tr.n / SR * 1000)),
+            "notes": chart_lanes(seq)}
+
+
+def write_dance_chart(chart):
+    path = os.path.normpath(os.path.join(RES, "..", "plugin", "rokugan", "RokuganDanceChart_%s.sk" % chart["mode"]))
+    v = chart["notes"]
+    rows = ",\n\t\t".join(", ".join("[%d, %d]" % p for p in v[i:i + 8]) for i in range(0, len(v), 8))
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        f.write("//\tRokuganDanceChart_%s.sk : the dance contest's %s step chart (written by tools/gen_music.py; do not\n"
+                "//\tedit). notes: [ms from the track's start, lane 0 left / 1 down / 2 up / 3 right]\n"
+                % (chart["mode"], chart["mode"]))
+        f.write("if( !(\"DANCE_CHARTS\" in ::Rokugan)) ::Rokugan.DANCE_CHARTS <- {};\n")
+        f.write("::Rokugan.DANCE_CHARTS.%s <- {\n\tmu = \"%s\", length = %d,\n\tnotes = [\n\t\t%s]\n};\n"
+                % (chart["mode"], chart["mu"], chart["length"], rows))
+    print("dance chart %s: %d arrows -> %s" % (chart["mode"], len(v), path))
+
+
+# ---- Hard: a piece of its own (user 2026-11-22: "hard mode can be a different song (new) very slow building up to very
+# fast, like a traditional japanese dance. where it comes to a sudden stop at the end") Jo-ha-kyu, the shape of noh and
+# kabuki dance: jo (the opening, slow and grave), ha (the breaking-open, gathering), kyu (the rush), and a dead stop on
+# one stroke. The tempo is a curve, not a number: WarpTrack maps beats to seconds through it, so the arrows, written
+# from the same notes, crowd closer as the music runs.
+class WarpTrack(Track):
+    def __init__(self, bars, bpm_of_beat, beats=4, tail=2.0, **kw):
+        super().__init__(bars, 120, beats=beats, **kw)
+        nb = bars * beats
+        self.T = np.concatenate([[0.0], np.cumsum([60.0 / bpm_of_beat(k) for k in range(nb)])])
+        self.n = int(round((self.T[-1] + tail) * SR))
+        self.L, self.R = np.zeros(self.n), np.zeros(self.n)
+        self.SL, self.SR_ = np.zeros(self.n), np.zeros(self.n)
+
+    def at(self, bar, beat=0.0):
+        x = bar * self.beats + beat
+        k = int(min(max(np.floor(x), 0), len(self.T) - 2))
+        return float(self.T[k] + (x - k) * (self.T[k + 1] - self.T[k]))
+
+    def bar(self, b):
+        """Set spb to bar b's own (the helpers time notes within a bar and their lengths with it)."""
+        self.spb = (self.at(b + 1) - self.at(b)) / self.beats
+        return self
+
+
+JHK_JO, JHK_HA, JHK_KYU, JHK_STOP = 0, 4, 16, 32             # first bars: jo 4, ha 12, kyu 16, the stop bar
+
+
+def jhk_bpm(k):
+    if k < JHK_HA * 4:
+        return 54.0
+    if k < JHK_KYU * 4:
+        return 56.0 * (116.0 / 56.0) ** ((k - JHK_HA * 4) / ((JHK_KYU - JHK_HA) * 4))
+    if k < JHK_STOP * 4:
+        return 116.0 * (210.0 / 116.0) ** ((k - JHK_KYU * 4) / ((JHK_STOP - JHK_KYU) * 4))
+    return 210.0
+
+
+JHK_JO_M = "0>:2 0:1 2~:1 | 2:3 3^:1 | 2:2 1~:2 | 0z:4"      # (the biwa: a struck opening, oshi-de presses, a
+#                                                             tremolo on the last held note)
+JHK_HA_M = "0>:1 2:1 3~:2 | 4:1 3:1 2z:2 | 3:1 4:1 5^:1 4:1 | 3z:4 | 2:1 3:1 4~:2 | 5:1 4:1 3:1 2:1 | 1~:2 2:2 | " \
+           "0z:4 | 0>:.5 2:.5 3:1 4:1 5:1 | 4:1 3:1 2:1 3~:1 | 4:.5 5:.5 6^:1 5:1 4:1 | 3:2 4z:2"
+# (user 2026-11-22 on the first kyu: "it becomes tetris after that") Not even scale runs over arpeggios: the rush is
+# tsugaru-style - a struck note, repeated, pressed into the next, tremolo on the long ones.
+JHK_KYU_M = "5>:1 5:.5 5:.5 4:1 3~:1 | 4:1 3:.5 2:.5 3z:2 | 5>:1 5:.5 5:.5 6^:1 5:1 | 4:1 3:1 2z:2 | " \
+            "3>:1 3:.5 3:.5 4~:1 5:1 | 6:1 5:.5 4:.5 5z:2 | 7>:1 6:.5 5:.5 4:1 3:1 | 2:1 1~:1 0z:2 | " \
+            "7>:1 7:.5 7:.5 8^:1 7:1 | 6:1 5:1 4z:2 | 5>:.5 5:.5 6:.5 5:.5 4:1 3:1 | 2:2 3~:2 | " \
+            "5>:1 5:1 7:1 5:1 | 8>:1 7:.5 6:.5 5z:2 | 4:.5 3:.5 2:.5 1:.5 2:1 3:1 | 2:1 1:1 0:2"
+JHK_HA_H = [0, 2, 3, 0, 1, 3, 2, 0, 0, 3, 4, 3]
+JHK_KYU_H = [3, 4, 3, 2, 3, 4, 5, 3, 3, 4, 3, 2, 3, 4, 2, 1]
+
+
+# (user 2026-11-22, the first take "sounded off": music_census --all found 189 s of semitone rubs - the in scale's two
+# half-steps, D-Eb and A-Bb, between the koto / bass chords and the tune) The accompaniment now follows the tune: each
+# half-bar takes whichever of the scale's four clash-free shapes leaves no note a semitone from the melody there.
+IN_CHORDS = [[2, 9], [7, 10, 2], [3, 7, 10], [2, 7, 9], [7, 2]]  # D5, G minor, E-flat, Dsus, G5 (pitch classes, root
+#                                                                first; G5 is for runs that use both A and Bb)
+
+
+def fit_chord(mel, t0, t1, sc, root):
+    """The shape for beats t0..t1 of a bar's melody: fewest semitone rubs, weighted by how long each note sounds
+    there; then the one that holds the longest melody note; then the list order."""
+    w = {}
+    for t, ln, d, acc, o in mel:
+        a, b = max(t, t0), min(t + ln, t1)
+        if b > a:
+            pc = (deg(sc, root, d) + acc) % 12
+            w[pc] = w.get(pc, 0.0) + (b - a)
+
+    def score(ch):
+        rub = sum(v for pc, v in w.items() if any((pc - c) % 12 in (1, 11) for c in ch))
+        held = sum(v for pc, v in w.items() if pc in ch)
+        return (rub, -held)
+    return min(IN_CHORDS, key=score)
+
+
+def voiced(ch, low=62):
+    """Chord tones from `low` up, the root doubled an octave higher (an arp's four notes)."""
+    ms = sorted(low + (pc - low) % 12 for pc in ch)
+    return ms + [ms[0] + 12]
+
+
+def jhk_ensemble(tr, rng, sc, root, ha, kyu):
+    """Everything but the tune - all plucked and struck (user 2026-11-22: "replace any synthetic with actual japanese
+    instrament"): no sho, no winds, no arpeggios. The koto answers in gakuso pairs (two notes of the bar's fitted
+    shape, struck together), the jushichigen on the strong beats, the taiko ensemble building through ha and kyu."""
+    for b in range(JHK_STOP):
+        tr.bar(b)
+        if b < JHK_HA:                                          # jo: the biwa alone with the drums
+            real_taiko_bar(tr, b, [(0, "odaiko", 0.6), (2, "kakko", 0.45)] + ([(3.5, "kakko", 0.3)] if b % 2 else []), 0.8)
+            if b == 0:
+                tr.add(real_koto(38, 4.0, rng), tr.at(b), 0.0, 0.45, 0.15, 0.0, "bass")
+            continue
+        part, k = (ha, b - JHK_HA) if b < JHK_KYU else (kyu, b - JHK_KYU)
+        mel = cut(part, k, k + 1)
+        halves = [fit_chord(mel, 0, 2, sc, root), fit_chord(mel, 2, 4, sc, root)]
+        for h, ch in enumerate(halves):
+            low = 38 + (ch[0] - 38) % 12
+            tr.add(real_koto(low, 2 * tr.spb, rng), tr.at(b, 2 * h), 0.0, 0.7 if b < JHK_KYU else 0.6, 0.1, 0.004,
+                   "bass")
+            if b >= JHK_HA + 3:                                 # the koto's pair, struck on each half-bar
+                pair = voiced(ch, 62)[:2] if len(ch) > 1 else [62, 74]
+                for j, m in enumerate(pair):
+                    tr.add(real_koto(m, 1.2 * tr.spb, rng, vel=0.9, decay=0.9), tr.at(b, 2 * h) + 0.012 * j, -0.35,
+                           0.3, None, 0.004, "arp")
+        if b < JHK_KYU:
+            pat = [(0, "odaiko", 0.5), (2, "shime", 0.35), (3, "shime", 0.4), (3.5, "kakko", 0.3)]
+            if k >= 6:
+                pat += [(1, "shime", 0.35), (1.5, "kakko", 0.25), (2, "odaiko", 0.3)]
+            if k == 11:
+                pat += [(3, "shime", 0.55), (3.25, "shime", 0.55), (3.5, "shime", 0.65), (3.75, "shime", 0.75)]
+            real_taiko_bar(tr, b, pat, 0.8)
+            continue
+        pat = [(x * 0.5, "shime", 0.35 + 0.1 * (x % 2 == 0)) for x in range(8)]
+        pat += [(0, "odaiko", 0.65), (2, "odaiko", 0.45), (1, "atarigane", 0.4), (3, "atarigane", 0.4)]
+        if k >= 8:
+            pat += [(1, "odaiko", 0.4), (3, "odaiko", 0.4), (1.5, "kakko", 0.3), (3.5, "kakko", 0.3)]
+        if k == 15:
+            pat += [(2 + x * 0.25, "shime", 0.7 + 0.03 * x) for x in range(8)]
+        real_taiko_bar(tr, b, pat, 0.78)
+
+
+def t_jhk(rng):
+    """The dance contest, Hard (D in / miyako-bushi, 54 -> 210 BPM, 33 bars, one take; user: "very slow building up to
+    very fast, like a traditional japanese dance. where it comes to a sudden stop"). Jo: the biwa alone, an o-daiko
+    stroke and a kakko tap a bar. Ha: the biwa keeps the tune, the koto answers on the half-bars, the shamisen shadows
+    it an octave up from the middle. Kyu: shamisen and biwa together, tsugaru-style. The stop: one stroke from
+    everyone, the hyoshigi clack, silence. (user: "that first instrament should be a bawa"; "we loose the bawa ...
+    it becomes tetris after that": the biwa carries the tune to the end, and nothing is a synthesized wind or pad.)"""
+    tr = WarpTrack(JHK_STOP + 1, jhk_bpm, rng=rng, send=0.24, loop=False, tail=2.2)
+    sc, root = IN, 62
+    tr.sc, tr.root = sc, root
+    jo, ha, kyu = M(JHK_JO_M, 4), M(JHK_HA_M, 12), M(JHK_KYU_M, 16)
+    for b in range(JHK_STOP):                                   # the tune, a bar at a time at that bar's tempo
+        tr.bar(b)
+        if b < JHK_HA:
+            play(tr, cut(jo, b, b + 1), real_shamisen, b, sc, root - 12, pan=0.0, gain=1.0, vel=1.0, decay=1.4)
+        elif b < JHK_KYU:
+            k = b - JHK_HA
+            bar_m = cut(ha, k, k + 1)
+            play(tr, bar_m, real_shamisen, b, sc, root - 12, pan=-0.1, gain=1.0, vel=1.0, decay=1.1)
+            if k >= 6:
+                play(tr, bar_m, real_shamisen, b, sc, root, pan=0.25, gain=0.5, ring=0.2, tag="ctr")
+        else:
+            k = b - JHK_KYU
+            bar_m = cut(kyu, k, k + 1)
+            play(tr, bar_m, real_shamisen, b, sc, root, pan=0.2, gain=1.0, ring=0.12)
+            play(tr, bar_m, real_shamisen, b, sc, root - 12, pan=-0.15, gain=0.6, vel=0.95, decay=0.8, ring=0.15, tag="ctr")
+    jhk_ensemble(tr, rng, sc, root, ha, kyu)
+    # the stop: one stroke from everyone, the clappers, and nothing after
+    b = JHK_STOP
+    tr.bar(b)
+    real_taiko_bar(tr, b, [(0, "odaiko", 1.2), (0, "hyoshigi", 1.0), (0, "atarigane", 0.7)], 0.9)
+    for m in (50, 57, 62):
+        tr.add(real_shamisen(m, 1.6, rng, vel=1.1), tr.at(b), -0.1, 0.55, 0.2, 0.0, "lead")
+        tr.add(real_shamisen(m + 12, 0.9, rng, vel=1.1), tr.at(b), 0.2, 0.5, 0.2, 0.0, "lead")
+    tr.add(real_koto(38, 1.4, rng), tr.at(b), 0.0, 0.9, 0.1, 0.0, "bass")
+    reverb(tr, rt60=1.6, wet=0.8)
+    tr.dance = jhk_chart(tr, jo, ha, kyu)
+    return tr
+
+
+def jhk_chart(tr, jo, ha, kyu, gap=170.0):
+    """Hard: every melody note, plus in the jo the o-daiko and kakko strokes (two a bar - the tune alone is too
+    sparse there), a jump (two arrows) on the first beat of the ha and the kyu, and the final stroke as a jump. No two
+    arrows closer than `gap` ms (the kyu's last eighths at 210 BPM are ~143 ms: every other one is kept)."""
+    seq = []
+    for part, b0 in ((jo, JHK_JO), (ha, JHK_HA), (kyu, JHK_KYU)):
+        for t, ln, d, a, o in part:
+            seq.append((tr.at(b0, t) * 1000, d))
+    for b in range(JHK_HA):
+        for beat, d in ((0, 0), (2, 3)):
+            ms = tr.at(b, beat) * 1000
+            if all(abs(ms - s) > 200 for s, _ in seq):
+                seq.append((ms, d))
+    seq.append((tr.at(JHK_STOP) * 1000, 0))
+    seq.sort()
+    kept = []
+    for ms, d in seq:
+        if not kept or ms - kept[-1][0] >= gap:
+            kept.append((ms, d))
+    notes = chart_lanes(kept)
+    jumps = {int(round(tr.at(b) * 1000)) for b in (JHK_HA, JHK_KYU, JHK_STOP)}
+    notes += [(ms, (ln + 2) % 4) for ms, ln in notes if ms in jumps]
+    return {"mode": "hard", "mu": TRACKS["kyu"][0], "length": int(round(tr.n / SR * 1000)), "notes": sorted(notes)}
+
+
+# ---- the kabuki rehearsal (Crane Ch4 S03): "The Empress of Nothing" in four acts
+# (user 2026-11-22: "a minigame modeled on the hiruma dance minigame but with kabuki"; "4 parts ... longer than the
+# dance"; "heavy taiko drums at key moments"; "the music i think kinda pauses ... then the taiko drums"; "look it up";
+# "remove any non real instrament and fill in what real ones"; "replace synthetics with real ... only if you can";
+# "lighter ominous music in 2, heavyer scary danger music in 3 ... then a hero's triumph in 4 ... compose new music
+# for each part") Played on real recordings (tools/real_samples.py: a shamisen player's plucks, a kotsuzumi, a tsuzumi,
+# taiko and o-daiko hits, wooden clappers - Freesound, CC0 / CC-BY, credited in _art/sources/real_instruments). Only
+# the otsuzumi and the shime-daiko have no recording of their own: they are the tsuzumi and a taiko hit, pitched up.
+# The moods: I the court (stately, uneasy), II the mirror (light, ominous, creeping), III the blade (heavy, dangerous,
+# building to the reveal), IV the title (the hero's triumph, in the bright yo scale).
+REAL = os.path.normpath(os.path.join(HERE, "..", "_art", "sources", "real_instruments", "samples"))
+_REAL = {}
+
+
+def real(name):
+    """A one-shot from the real-instrument samples (mono float), cached."""
+    if name not in _REAL:
+        with wave.open(os.path.join(REAL, name)) as w:
+            _REAL[name] = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(float) / 32767
+    return _REAL[name]
+
+
+def real_index():
+    if "_index" not in _REAL:
+        _REAL["_index"] = json.load(open(os.path.join(REAL, "index.json"), encoding="utf-8"))
+    return _REAL["_index"]
+
+
+def repitch(x, semis):
+    """Resample a one-shot by `semis` semitones (shorter and higher, or longer and lower)."""
+    r = 2.0 ** (semis / 12.0)
+    n = int(len(x) / r)
+    return np.interp(np.arange(n) * r, np.arange(len(x)), x)
+
+
+def real_shamisen(m, dur, rng, vel=1.0, **kw):
+    """A real shamisen pluck at MIDI m: the recorded note nearest m, retuned; trimmed to dur."""
+    idx = real_index()["shamisen"]
+    keys = sorted(int(k) for k in idx)
+    while m > keys[-1] + 4:                                 # (outside what was recorded: the note an octave over,
+        m -= 12                                             # rather than a sample stretched out of shape)
+    while m < keys[0] - 4:
+        m += 12
+    k = min(keys, key=lambda q: abs(q - m))
+    x = repitch(real(idx[str(k)]["file"]), m - (k + idx[str(k)]["detune"]))
+    n = min(len(x), int(max(dur, 0.12) * SR))
+    y = x[:n].copy()
+    f = min(n, int(0.04 * SR))
+    y[-f:] *= np.linspace(1, 0, f)
+    return y * 0.75 * vel
+
+
+def real_pluck(kind, m, dur, vel=1.0):
+    """A real plucked note at MIDI m from the samples of `kind` (shamisen / koto): the recorded note nearest m,
+    retuned; notes outside the recorded range are re-voiced an octave in, not stretched."""
+    idx = real_index()[kind]
+    keys = sorted(int(k) for k in idx)
+    while m > keys[-1] + 4:
+        m -= 12
+    while m < keys[0] - 4:
+        m += 12
+    k = min(keys, key=lambda q: abs(q - m))
+    x = repitch(real(idx[str(k)]["file"]), m - (k + idx[str(k)]["detune"]))
+    n = min(len(x), int(max(dur, 0.12) * SR))
+    y = x[:n].copy()
+    f = min(n, int(0.04 * SR))
+    y[-f:] *= np.linspace(1, 0, f)
+    return y * 0.75 * vel
+
+
+def real_koto(m, dur, rng, vel=1.0, **kw):
+    """A real koto pluck at MIDI m (tools/real_samples.py)."""
+    return real_pluck("koto", m, dur + 0.6, vel)
+
+
+def real_suzu(rng):
+    """The kagura suzu / shrine bells: a real shake."""
+    idx = real_index()["suzu"]
+    return real(idx[int(rng.integers(len(idx)))]) * 0.6
+
+
+def real_arp(*a, **k):
+    k.setdefault("inst", real_koto)
+    return arp(*a, **k)
+
+
+REAL_DRUM = {"odaiko": lambda rng: big_taiko(rng) * 0.8, "odaiko_rim": lambda rng: shime_daiko("ten", rng),
+             "shime": lambda rng: shime_daiko("ten", rng), "kakko": lambda rng: kotsuzumi("ta", rng),
+             "hyoshigi": lambda rng: clap(rng, 2), "atarigane": lambda rng: real_suzu(rng) * 0.7,
+             "chappa": lambda rng: real_suzu(rng) * 0.6}
+
+
+def real_taiko_bar(tr, b, pattern, gain=1.0, pan_spread=0.25):
+    """taiko_bar on the real recordings (the festival drums of the miko dances)."""
+    for beat, kind, g in pattern:
+        tr.add(REAL_DRUM[kind](tr.rng), tr.at(b, beat), tr.rng.uniform(-pan_spread, pan_spread),
+               gain * g * float(np.exp(tr.rng.normal(0, 0.07))), 0.15 if kind == "odaiko" else 0.1, 0.004, "taiko")
+
+
+def kotsuzumi(kind, rng):
+    """The kotsuzumi: "pon" (a real kotsuzumi stroke, ringing), "ta" (the tsuzumi's slap), "po" (a soft pon)."""
+    idx = real_index()
+    if kind == "ta":
+        return real(idx["tsuzumi"][0]) * 0.55
+    x = real(idx["kotsuzumi"][int(rng.integers(len(idx["kotsuzumi"])))])
+    return x * (0.6 if kind == "pon" else 0.32)
+
+
+def otsuzumi(rng):
+    """The otsuzumi's dry "kan": the tsuzumi hit, pitched up and cut short."""
+    x = repitch(real(real_index()["tsuzumi"][0]), 6)[:int(0.14 * SR)].copy()
+    x[-int(0.02 * SR):] *= np.linspace(1, 0, int(0.02 * SR))
+    return x * 0.5
+
+
+def shime_daiko(kind, rng):
+    """The shime-daiko: a real taiko hit pitched up into the small laced drum's "ten" (or a light "tsu")."""
+    x = repitch(real(real_index()["taiko_open"][0]), 10)[:int(0.2 * SR)].copy()
+    x[-int(0.03 * SR):] *= np.linspace(1, 0, int(0.03 * SR))
+    return x * (0.42 if kind == "ten" else 0.22)
+
+
+def big_taiko(rng):
+    """The geza's o-daiko: the deep recorded drum, now and then one of the other real taiko hits under it."""
+    idx = real_index()
+    x = real(idx["odaiko"][0]).copy()
+    if rng.random() < 0.5:
+        y = repitch(real(idx["taiko"][int(rng.integers(len(idx["taiko"])))]), -3)
+        y = np.pad(y, (0, max(0, len(x) - len(y))))[:len(x)]
+        x = x + 0.5 * y
+    return x * 0.9
+
+
+def clap(rng, semis=0.0):
+    idx = real_index()["clap"]
+    return repitch(real(idx[int(rng.integers(len(idx)))]), semis)
+
+
+def tsuke(rng):
+    """The tsuke: the wooden clappers struck on a board - a real clap, with a low taiko knock for the board."""
+    c = clap(rng, -2)
+    board = repitch(real(real_index()["taiko_open"][0]), 5)[:len(c)]
+    board = np.pad(board, (0, len(c) - len(board)))
+    return (c * 0.8 + board * 0.35) * 0.9
+
+
+def hit(tr, sig, b, beat, gain, pan=0.0, send=0.15, tag="hayashi"):
+    tr.add(sig, tr.at(b, beat), pan, gain * float(np.exp(tr.rng.normal(0, 0.06))), send, 0.004, tag)
+
+
+def ki(tr, b, beat, span, start_gap=1.0):
+    """The ki: the clappers struck together, quickening over `span` beats from (b, beat)."""
+    t, gap = 0.0, start_gap
+    while t < span - 0.3:
+        tr.add(clap(tr.rng, 2), tr.at(b, beat + t), 0.0, 0.8, 0.25, 0.003, "ki")
+        t += gap
+        gap = max(0.2, gap * 0.78)
+
+
+def dorodoro(tr, b, bars, gain=0.16):
+    """The geza's ghost drum: a soft, rapid o-daiko roll that swells and ebbs, for the demon."""
+    n = int(bars * tr.beats * 4)
+    for k in range(n):
+        x = k / n
+        tr.add(big_taiko(tr.rng), tr.at(b, k * 0.25), tr.rng.uniform(-0.3, 0.3),
+               gain * (0.35 + 0.65 * np.sin(np.pi * x)) * float(np.exp(tr.rng.normal(0, 0.1))), 0.3, 0.004, "geza")
+
+
+def taiko_roll(tr, b, beat, n, step, gain=1.0, rise=0.5):
+    for k in range(n):
+        g = gain * (1 - rise + rise * (k + 1) / n)
+        tr.add(big_taiko(tr.rng), tr.at(b, beat + k * step), tr.rng.uniform(-0.2, 0.2), g, 0.25, 0.003, "geza")
+
+
+def battari(tr, b, beat, gain=1.0):
+    """The tsuke's battari for a mie - a quick pair, then the big stroke - with the o-daiko under it."""
+    for off, g in ((-0.5, 0.55), (-0.25, 0.65), (0.0, 1.0)):
+        tr.add(tsuke(tr.rng), tr.at(b, beat + off), 0.0, gain * g, 0.15, 0.002, "geza")
+    tr.add(big_taiko(tr.rng), tr.at(b, beat), 0.0, 0.7 * gain, 0.3, 0.0, "geza")
+
+
+KABUKI_TUNES = {
+    1: ("3>:2 2:1 3:1 | 4:3 3:1 | 2:2 1~:1 0:1 | 1z:4 | 3>:2 4:1 5:1 | 6^:3 5:1 | 4:1 3:1 2:1 1:1 | 2:2 r:2 | "
+        "5>:2 4:1 5:1 | 6:2 7^:2 | 6:1 5:1 4:2 | 3z:4 | 4>:1 3:1 2:2 | 3:1 2:1 1:2 | 2:1 1:1 0:2 | 0>:1 r:3", 16),
+    2: ("1:2 0:2 | r:1 1:1 0:2 | 4:2 3:2 | 3z:4 | 1:1 0:1 r:1 1:1 | 2:2 1~:2 | 4:1 3:1 r:1 4:1 | 3:2 r:2 | "
+        "6:2 5:2 | r:1 6:1 5:2 | 4:1 3:1 4:1 3:1 | 3z:4 | 6>:1 5:1 4:1 3:1 | 4:2 3~:2 | 1:1 0:1 1:1 0:1 | 0:2 r:2", 16),
+    3: ("5>:.5 5:.5 6:.5 5:.5 4:1 3:1 | 4:.5 4:.5 5:.5 4:.5 3:2 | 5>:.5 5:.5 6:.5 5:.5 7:1 6:1 | 5z:4 | "
+        "3>:.5 3:.5 4:.5 3:.5 2:1 1:1 | 2:.5 2:.5 3:.5 2:.5 1:2 | 0:.5 1:.5 0:.5 1:.5 0:.5 1:.5 2:1 | 1:2 r:2 | "
+        "6>:.5 6:.5 7:.5 6:.5 5:1 6:1 | 7:.5 7:.5 8:.5 7:.5 6:2 | 8>:.5 8:.5 9:.5 8:.5 10:1 9:1 | 8z:4 | "
+        "10>:1 9:1 8:1 7:1 | 6:1 5:1 4:1 3:1 | 2:.5 1:.5 2:.5 1:.5 0:.5 1:.5 0:1 | 0>:2 r:2", 16),
+    4: ("5>:1 3:1 5:1 7:1 | 8:2 7:1 8:1 | 10:2 9:1 8:1 | 7z:4 | 5>:1 7:1 8:1 7:1 | 5:1 3:1 5:2 | "
+        "7:1 8:1 9:1 10:1 | 8:2 r:2 | 10>:1 8:1 7:1 8:1 | 10:1 9:1 8:2 | 7:.5 8:.5 9:1 8:1 7:1 | 8z:4 | "
+        "5>:1 7:1 8:1 10:1 | 9:1 10:1 8:2 | 7:1 8:1 7:1 5:1 | 5:2 r:2 | 10>:2 8:1 7:1 | 5>:1 r:3", 18),
+}
+# act: (title, BPM, intro bars, [mie (bar, beat)], [break bars]) - bars counted from the act's first melody bar
+KABUKI_ACTS = {
+    1: ("The Court of Komatsu", 84, 2, [(7, 2.0), (15, 1.5)], [3, 11]),
+    2: ("The Mirror", 96, 1, [(7, 2.0), (15, 2.0)], [3, 11]),
+    3: ("The Blade", 112, 1, [(7, 2.0), (15, 2.0)], [3, 11]),
+    4: ("The Title", 132, 1, [(7, 2.0), (15, 2.0), (17, 0.0)], [3, 11]),
+}
+KABUKI_SCALE = {1: IN, 2: IN, 3: IN, 4: YO}                 # (the triumph turns bright: the yo scale)
+KABUKI_BREAK = (2.0, 3.0, 3.5)                              # the great drums in a break bar (beats)
+KABUKI_DORO = {2: [(8, 8, 0.12)], 3: [(0, 3, 0.2), (12, 4, 0.28)]}   # act: [(bar, bars, gain)] the demon's drum
+KABUKI_FIGHT = {3: (8, 7)}                                  # act: (first melody bar, bars) of the tsuke's fight
+KABUKI_CREEP = {2: [0, 0, 3, 0], 3: [0, 0, 0, 3, 0, 0, 3, 2]}   # the low strings' ostinato (degrees; 8ths in III)
+# (user: "one instrument is playing counter productive to the others ... a string one") the ostinato used to lean on
+# the half step (D - Eb); it stays on D, A and G now, and the menace is in the register and the drums
+
+
+HAYASHI = {
+    1: [(0, "ko:pon", .9), (1.5, "o", .7), (2.5, "ko:po", .6), (3, "o", .55)],
+    2: [(0, "ko:pon", .7), (2.5, "ko:po", .45), (3, "o", .5)],
+    3: [(0, "ko:pon", .9), (0.5, "o", .75), (1.5, "ko:ta", .65), (2, "ko:pon", .8), (2.5, "o", .7), (3.5, "ko:ta", .5)]
+       + [(x * 0.5, "sh:ten" if x % 2 == 0 else "sh:tsu", .7) for x in range(8)],
+    4: [(0, "ko:pon", 1.0), (0.5, "o", .8), (1, "ko:ta", .6), (1.5, "o", .6), (2, "ko:pon", .9), (2.5, "o", .75),
+        (3, "ko:ta", .6), (3.5, "ko:ta", .55)] + [(x * 0.5, "sh:ten" if x % 2 == 0 else "sh:tsu", .75)
+                                                   for x in range(8)],
+}
+
+
+def hayashi_bar(tr, b, act):
+    for beat, inst, g in HAYASHI[act]:
+        kind = inst.split(":")
+        sig = kotsuzumi(kind[1], tr.rng) if kind[0] == "ko" else otsuzumi(tr.rng) if kind[0] == "o" else \
+            shime_daiko(kind[1], tr.rng)
+        hit(tr, sig, b, beat, g, pan={"ko": -0.25, "o": 0.25, "sh": 0.0}[kind[0]])
+
+
+def kabuki_tune(act):
+    """The act's tune with the break bars cut back to their first stroke (one beat long)."""
+    s, n = KABUKI_TUNES[act]
+    breaks = KABUKI_ACTS[act][4]
+    mel = []
+    for t, ln, d, a, o in M(s, n):
+        if int(t // 4) in breaks:
+            if t % 4 < 1e-6:
+                mel.append((t, min(ln, 1.0), d, a, o.replace("z", "")))
+            continue
+        mel.append((t, ln, d, a, o))
+    return mel, n
+
+
+def t_kabuki_act(act):
+    def build(rng):
+        title, bpm, intro, mie, breaks = KABUKI_ACTS[act]
+        mel, n = kabuki_tune(act)
+        nb = intro + n + 1                                                  # (+ the bar the ki close the act in)
+        tr = Track(nb, bpm, rng=rng, send=0.2, loop=False)
+        sc, root = KABUKI_SCALE[act], 62
+        tr.sc, tr.root = sc, root
+        ki(tr, 0, 0.0, intro * 4)                                           # the ki open the act ...
+        ki(tr, nb - 1, 0.5, 3.4, 0.6)                                       # ... and close it
+        for b0, n_, g in KABUKI_DORO.get(act, []):
+            dorodoro(tr, intro + b0, n_, g)
+        lead = 1.0 if act != 2 else 0.85
+        play(tr, mel, real_shamisen, intro, sc, root, pan=0.15, gain=lead, ring=0.3)
+        if act >= 3:                                                        # a second shamisen an octave down
+            play(tr, [nt for nt in mel if act == 4 or nt[0] >= 32], real_shamisen, intro, sc, root - 12, pan=-0.25,
+                 gain=0.5, ring=0.25, tag="ctr")
+        f0, fn = KABUKI_FIGHT.get(act, (-1, 0))
+        creep = KABUKI_CREEP.get(act)
+        for k in range(n):
+            b = intro + k
+            bar_m = cut(mel, k, k + 1)
+            last = k == n - 1
+            brk = k in breaks
+            if creep and not brk and not last:                              # the creeping low strings (II, III)
+                step = 4.0 / len(creep)
+                for j, d in enumerate(creep):
+                    tr.add(real_shamisen(deg(sc, root - 24, d), step * tr.spb + 0.15, rng, vel=0.9 if j == 0 else
+                                         0.7), tr.at(b, j * step), -0.1, 0.75 if act == 3 else 0.55, 0.1, 0.004,
+                           "bass")
+            elif not creep:                                                 # the low strings on the strong beats
+                for h in (0, 1):
+                    if (last or brk) and h:
+                        continue
+                    if act == 4:
+                        low = deg(sc, root - 24, (0, 3)[h])                 # (the yo scale: D and A, always clean)
+                    else:
+                        ch = fit_chord(bar_m, 2 * h, 2 * h + 2, sc, root)
+                        low = 50 + (ch[0] - 50) % 12
+                    tr.add(real_shamisen(low, 1.1, rng, vel=0.95), tr.at(b, 2 * h), -0.1, 0.8, 0.1, 0.004, "bass")
+            if last:
+                continue
+            if brk:                                                         # ma, then the great drums
+                for j, beat in enumerate(KABUKI_BREAK):
+                    tr.add(big_taiko(rng), tr.at(b, beat), rng.uniform(-0.15, 0.15), (0.6, 0.55, 0.75)[j], 0.3, 0.0,
+                           "geza")
+                continue
+            hayashi_bar(tr, b, act)
+            if f0 <= k < f0 + fn:                                           # the tsuke through the fight
+                for beat in (0, 1.5, 2, 3.5):
+                    tr.add(tsuke(rng), tr.at(b, beat), 0.0, 0.45 if beat % 2 else 0.6, 0.15, 0.002, "geza")
+            if act == 3 and k >= 12:                                        # III: the drums close in on the reveal
+                for beat in range(4):
+                    tr.add(big_taiko(rng), tr.at(b, beat), rng.uniform(-0.2, 0.2), 0.35 + 0.08 * (k - 12), 0.25, 0.0,
+                           "geza")
+            if act == 4 and k % 2 == 0:                                     # IV: the triumph's great downbeats
+                tr.add(big_taiko(rng), tr.at(b, 0), 0.0, 0.55, 0.25, 0.0, "geza")
+        for b, beat in mie:
+            battari(tr, intro + b, beat, 1.0 if (b, beat) == mie[-1] else 0.85)
+        if act == 4:                                                        # the grand mie: the great drums
+            taiko_roll(tr, intro + mie[-1][0] - 1, 2.0, 4, 0.5, 0.8)        # gather into it
+        reverb(tr, rt60=1.9, wet=0.85)
+        tr.dance = kabuki_charts(tr, act)
+        return tr
+    build.__name__ = "t_kabuki_%d" % act
+    return build
+
+
+# the play's lines (crane-ch4-play.md), shown over the stage at (melody bar, who, line)
+KABUKI_LINES = {
+    1: [(0, "Chorus", "In the court of Komatsu the lanterns burn gold, and a bride comes in white who will never "
+                      "grow old."),
+        (2, "Komatsu", "My lady. The court has waited all spring."),
+        (4, "The Bride", "Then let it wait. I am worth the waiting."),
+        (6, "The Steward", "(aside) The new bride never blinks. The servants have stopped looking at her."),
+        (8, "The Guard", "My lord - she casts no shadow on the screen."),
+        (10, "Komatsu", "Peace, Kakita. She is my wife."),
+        (13, "Chorus", "And the lanterns burned lower, and nobody said.")],
+    2: [(0, "Chorus", "A mirror of bronze and a river-washed stone; she sees only jade, and she sees it alone."),
+        (2, "Courtier", "My lady - jade, from the mountain. For you."),
+        (4, "The Bride", "Green as the deep sea. Lay it at my feet."),
+        (8, "The Guard", "(aside) It is a pebble. Grey as ash. She cannot tell."),
+        (10, "The Bride", "Another. Bring me another."),
+        (13, "Chorus", "The colours are lost to her. The colours are lost.")],
+    3: [(0, "Chorus", "Night, and the palace is still as a held breath."),
+        (2, "The Guard", "Demon. I have watched you. Show me your face."),
+        (4, "The Bride", "Strike my heart, if you dare. But not my face - not my face!"),
+        (8, "Chorus", "A cut to her face undoes her. She cannot bear to be marred."),
+        (10, "The Guard", "Then I know where to strike."),
+        (13, "Chorus", "Steel, and the lamps going out one by one.")],
+    4: [(0, "Chorus", "The court kneels down in a field of white."),
+        (2, "Courtiers", "(two voices at once) Lady of the Mirror - / Lady of the Blade -"),
+        (4, "The Bride", "Which of you speaks? I hear - I hear neither."),
+        (6, "The Guard", "EMPRESS."),
+        (8, "Chorus", "For a breath her guard falls. She wants it more than life."),
+        (12, "The Guard", "Empress of nothing. Of nothing at all."),
+        (16, "Chorus", "And the court of Komatsu was ashes by spring.")],
+}
+
+
+def kabuki_charts(tr, act, gap=170.0):
+    """Easy: one arrow a beat at most (on-beat notes that ring a beat). Hard: every note (none closer than `gap` ms).
+    Both: each mie on the up lane with nothing crowding it, the break strokes on the down lane (stamp with the drums);
+    Act IV ends on a jump (the grand mie). And the play's lines, timed."""
+    title, bpm, intro, mie, breaks = KABUKI_ACTS[act]
+    mel, n = kabuki_tune(act)
+    notes = [(intro * tr.beats + t, ln, d) for t, ln, d, a, o in mel]
+    mie_ms = [tr.at(intro + b, beat) * 1000 for b, beat in mie]
+
+    def finish(seq, jump, strokes):
+        out = [(ms, ln) for ms, ln in chart_lanes(seq) if all(abs(ms - m_) > 300 for m_ in mie_ms)]
+        out += [(int(round(m_)), 2) for m_ in mie_ms]
+        out += [(int(round(tr.at(intro + b, beat) * 1000)), 1) for b in breaks for beat in strokes]
+        if jump:
+            out.append((int(round(mie_ms[-1])), 1))
+        return sorted(out)
+    easy, last = [], -9.0
+    for beat, ln, d in notes:
+        if abs(beat - round(beat)) < 1e-6 and ln >= 1 and beat - last >= 1.0 - 1e-6:
+            easy.append((tr.at(0, beat) * 1000, d))
+            last = beat
+    hard = []
+    for beat, ln, d in notes:
+        ms = tr.at(0, beat) * 1000
+        if not hard or ms - hard[-1][0] >= gap:
+            hard.append((ms, d))
+    length = int(round(tr.n / SR * 1000))
+    mu = TRACKS["kabuki%d" % act][0]
+    lines = [(int(round(tr.at(intro + b) * 1000)), who, text) for b, who, text in KABUKI_LINES[act]]
+    f = "kabuki_%d" % act
+    return [{"mode": "kabuki_easy_%d" % act, "file": f, "mu": mu, "length": length, "lines": lines,
+             "notes": finish(easy, False, KABUKI_BREAK[:2])},
+            {"mode": "kabuki_hard_%d" % act, "file": f, "mu": mu, "length": length, "lines": lines,
+             "notes": finish(hard, act == 4, KABUKI_BREAK)}]
+
+
+def write_dance_charts(charts):
+    """Charts that share a "file" go in one plugin file (the kabuki's two charts an act, and its lines)."""
+    groups = {}
+    for ch in charts:
+        groups.setdefault(ch.get("file", ch["mode"]), []).append(ch)
+    for f, chs in groups.items():
+        path = os.path.normpath(os.path.join(RES, "..", "plugin", "rokugan", "RokuganDanceChart_%s.sk" % f))
+        with open(path, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write("//\tRokuganDanceChart_%s.sk : step charts (written by tools/gen_music.py; do not edit).\n"
+                     "//\tnotes: [ms from the track's start, lane 0 left / 1 down / 2 up / 3 right]; lines: [ms, who, "
+                     "line]\n" % f)
+            fh.write("if( !(\"DANCE_CHARTS\" in ::Rokugan)) ::Rokugan.DANCE_CHARTS <- {};\n")
+            for ch in chs:
+                v = ch["notes"]
+                rows = ",\n\t\t".join(", ".join("[%d, %d]" % p for p in v[i:i + 8]) for i in range(0, len(v), 8))
+                lines = ",\n\t\t".join("[%d, %s, %s]" % (ms, json.dumps(w), json.dumps(t)) for ms, w, t in
+                                       ch.get("lines", []))
+                fh.write("::Rokugan.DANCE_CHARTS.%s <- {\n\tmu = \"%s\", length = %d,\n\tnotes = [\n\t\t%s],\n"
+                         "\tlines = [\n\t\t%s]\n};\n" % (ch["mode"], ch["mu"], ch["length"], rows, lines))
+                print("dance chart %s: %d arrows -> %s" % (ch["mode"], len(v), path))
+
+
 TRACKS = {
     "town": ("MU101", "Village Lanterns", t_town, "loop", -15.0),
     "road": ("MU102", "The Long Road", t_road, "loop", -15.0),
@@ -2427,6 +3174,12 @@ TRACKS = {
     "okura": ("MU123", "Akuma's Daughter", t_okura, "loop", -11.0),
     "travelers": ("MU124", "Eight Roads, One Dawn", t_travelers, "loop", -14.0),
     "ending": ("MU125", "Lanterns on the River", t_ending, "loop", -16.0),
+    "kagura": ("MU126", "The Shrine Maidens' Dance", t_kagura, "once", -13.0),
+    "kyu": ("MU127", "Jo, Ha, Kyu", t_jhk, "once", -12.5),
+    "kabuki1": ("MU128", "The Empress of Nothing - Act I", t_kabuki_act(1), "once", -12.5),
+    "kabuki2": ("MU129", "The Empress of Nothing - Act II", t_kabuki_act(2), "once", -12.5),
+    "kabuki3": ("MU130", "The Empress of Nothing - Act III", t_kabuki_act(3), "once", -12.5),
+    "kabuki4": ("MU131", "The Empress of Nothing - Act IV", t_kabuki_act(4), "once", -12.5),
 }
 CUES = {
     "victory": ("MU112", "Victory", c_victory_intro, c_victory_body, "MU021", -12.5, -19.0),
@@ -2469,6 +3222,7 @@ BATTLE_MUSIC = {
     # the finale and the post-game
     "b_boss_final_nashiko_p1": "final1", "b_boss_final_nashiko_p2": "final2", "b_boss_final_nashiko_p3": "final3",
     "b_superboss_orochi": "orochi", "b_boss_okura": "okura",
+    "b_boss_nashiko_stage": "final1",                 # (Crane Ch4: her first attack, to her own theme)
 }
 
 
@@ -2558,8 +3312,13 @@ def main():
         tr = fn(rng)
         x = master(tr, lufs)
         j[mid] = entry(write_ogg(x, key), x.shape[1], title, tr.i0)
+        if getattr(tr, "dance", None):                  # (one chart, or several: the kabuki has two)
+            if isinstance(tr.dance, list):
+                write_dance_charts(tr.dance)
+            else:
+                write_dance_chart(tr.dance)
         if clips:
-            write_clip(x, key, tr.i0)
+            write_clip(x, key, tr.i0, secs=45.0 if tr.loop else x.shape[1] / SR)
         report.append("%s %-9s %-30s %5.1f s%s  %5.1f LUFS  peak %5.1f dBFS  bands %s\n      stems: %s" % (
             mid, key, title, x.shape[1] / SR, " (intro %.1f s)" % (tr.i0 / SR) if tr.i0 else "", loudness(x),
             20 * np.log10(np.abs(x).max()), bands(x), stem_report(tr)))

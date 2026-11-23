@@ -67577,5 +67577,105 @@
 		"tribebits": 0,
 		"RES": 6,
 		"rt_species": "G2218"
+	},
+	"E952": {
+		"AGI": 132,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 44,
+		"MATK": 10,
+		"MAXHP": 4983,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 166,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 140,
+		"PDEF": 181,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 45,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					},
+					{
+						"affecttgr": true,
+						"rate": 30,
+						"rndwgt": 20,
+						"skillid": "S626",
+						"target": "random",
+						"turnbits": 4095
+					},
+					{
+						"affecttgr": true,
+						"rate": 25,
+						"rndwgt": 20,
+						"skillid": "S627",
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "The demon bride, four hundred years old, in a borrowed face. She came to stop a play. A blade near her face is the one thing she fears.",
+		"exp": 2394,
+		"item0": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": null,
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP190",
+		"money": 406,
+		"name": "Doji Nashiko",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.0": -50,
+				"EDR.11": -50,
+				"EDR.13": -50,
+				"EDR.8": -50
+			}
+		],
+		"tribebits": 0,
+		"RES": 10,
+		"rt_flee_pct": 45,
+		"rt_fleebark": "(a thin red line across her perfect cheek) My FACE - you cut my FACE -",
+		"rt_species": "G2047"
 	}
 }

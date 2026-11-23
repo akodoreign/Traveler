@@ -1,0 +1,4 @@
+// tools/test_guest_row_sanae.py helper: what does guestPresent( 18) see?
+local m = ::rpgstat.members, ids = "";
+foreach( v in m) ids += (v ? ("" .. v.dataid) : "null") .. " ";
+printf( "[RT] GUEST TEST dbg ids %S present %S g1649 %S\n", ids, "" .. ::Rokugan.guestPresent( 18), "" .. ::rpgvar["G1649"]);

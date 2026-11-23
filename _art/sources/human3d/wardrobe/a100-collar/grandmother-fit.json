@@ -1,0 +1,71 @@
+{
+  "actor": "side_grandmother",
+  "assets": [
+    {
+      "source": "shared_female.mdl",
+      "file": "side_grandmother_soft_body.mdl",
+      "source_sha256": "230f7f42de8f065f3ed0b958845cecadf9277187403a25d90dfc560ef8fb9f4d",
+      "candidate_sha256": "014de11fca6296ac4848d8a04244e29d02862a3391a347289fd613c0bfc57c2c",
+      "reshaped_vertices": 5295,
+      "max_vertex_displacement": 2.3546417962929582,
+      "topology_uv_and_weights_preserved": true
+    },
+    {
+      "source": "A100.mdl",
+      "file": "A100_grandmother.mdl",
+      "source_sha256": "1da85d8269af96435b88b52e1f57c587ff5dabc30779d81ed13216554d5ef747",
+      "candidate_sha256": "c78c2c4b958fd52cffb22409ea5bfb432c938e3a935261a79a6bce817ac32917",
+      "reshaped_vertices": 9545,
+      "max_vertex_displacement": 3.1357954635726735,
+      "topology_uv_and_weights_preserved": true
+    },
+    {
+      "source": "A100_decal.mdl",
+      "file": "A100_grandmother_decal.mdl",
+      "source_sha256": "ba771ca0c0276d084db5c0e0152ca56287566cf79516db57145727fbe7dffcbd",
+      "candidate_sha256": "f63dabc5c0e1e609bc2a62120bcbd983b5217ab09be4e0a6d4f87cd34c145f70",
+      "reshaped_vertices": 338,
+      "max_vertex_displacement": 1.8133338498177984,
+      "topology_uv_and_weights_preserved": true
+    }
+  ],
+  "wardrobe_before": {
+    "mesh": "A100",
+    "dyed": true,
+    "decal": "A100",
+    "coverCore": true,
+    "clan": "peasant"
+  },
+  "wardrobe_after": {
+    "mesh": "A100_grandmother",
+    "dyed": true,
+    "decal": "A100",
+    "coverCore": true,
+    "clan": "peasant",
+    "palette": "A100"
+  },
+  "final_tailored_robe_sha256": "88c16fd06377e2ac6a23f73dbcceffe4b16f841b26da1be87f23270b14f22f68",
+  "final_shared_a100_sha256": "14415c7ccc203ce2e41fa9b00ea0d5527d98b2c25c520fdc484657cad230e823",
+  "pose_clearance": {
+    "Rest": {
+      "face_to_robe_outside_seat": 0,
+      "face_to_body_outside_seat": 0,
+      "hand_faces_touching_robe_beyond_cuff": 0
+    },
+    "Stride": {
+      "face_to_robe_outside_seat": 0,
+      "face_to_body_outside_seat": 0,
+      "hand_faces_touching_robe_beyond_cuff": 0
+    },
+    "Guard": {
+      "face_to_robe_outside_seat": 0,
+      "face_to_body_outside_seat": 0,
+      "hand_faces_touching_robe_beyond_cuff": 0
+    },
+    "Turn and nod": {
+      "face_to_robe_outside_seat": 0,
+      "face_to_body_outside_seat": 0,
+      "hand_faces_touching_robe_beyond_cuff": 0
+    }
+  }
+}

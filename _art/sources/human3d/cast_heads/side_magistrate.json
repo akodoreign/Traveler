@@ -1,0 +1,127 @@
+{
+  "key": "side_magistrate_portrait_face",
+  "source": "side_magistrate_repaired_atlas.glb",
+  "scale": 15.0,
+  "features": {
+    "eyes": [
+      [
+        215,
+        268,
+        0.04
+      ],
+      [
+        300,
+        268,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        207,
+        252
+      ],
+      [
+        304,
+        252
+      ]
+    ],
+    "mouth": [
+      256,
+      343
+    ]
+  },
+  "socket_sample_levels": [
+    -0.653,
+    -0.646,
+    -0.639,
+    -0.632,
+    -0.625,
+    -0.618,
+    -0.611,
+    -0.604,
+    -0.597,
+    -0.59,
+    -0.583,
+    -0.576,
+    -0.569,
+    -0.5619999999999999,
+    -0.5549999999999999,
+    -0.5479999999999999,
+    -0.5409999999999999,
+    -0.5339999999999999,
+    -0.5269999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.168,
+    0.051
+  ],
+  "skin_match": [
+    231,
+    166,
+    119
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 15.0,
+  "fit_matrix_blender": [
+    [
+      14.994575484591671,
+      -0.40263235774213046,
+      -0.024356136450730412,
+      3.583765027823151
+    ],
+    [
+      0.40269252875519423,
+      14.994546709775447,
+      0.03751927040300284,
+      -0.634184495817614
+    ],
+    [
+      0.02334018355846464,
+      -0.038159571090845314,
+      14.999933302617341,
+      108.48491308633093
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 20122,
+    "lower_overlap_blended_vertices": 112,
+    "minimum_seam_head_weight": 0.6247031437147329,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      190,
+      300
+    ],
+    [
+      290,
+      300
+    ],
+    [
+      274,
+      315
+    ],
+    [
+      239,
+      358
+    ]
+  ],
+  "skin_sample_view": "Comparative cheek and low face measurements on exact Imperial Magistrate V2. Intentional directional portrait shading remains.",
+  "raw_skin_srgb": [
+    231,
+    166,
+    119
+  ],
+  "review_wardrobe_mesh": "A167_kusada",
+  "proof_pose_family": "short"
+}

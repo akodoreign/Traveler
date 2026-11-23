@@ -1,0 +1,27 @@
+{
+  "M345": {
+    "removed_stock_fixtures": 106,
+    "events_preserved": 82,
+    "sha256": "b00c052c1e0d2b99756a5c000e0bb4b54d8743a35a1d1acf51af5960415bffe7"
+  },
+  "M347": {
+    "removed_stock_fixtures": 100,
+    "events_preserved": 137,
+    "sha256": "c0561c4bb2081bd90944fcb609094abc0be18d18cf975ca9819ad5d16e7aca10"
+  },
+  "M348": {
+    "removed_stock_fixtures": 128,
+    "events_preserved": 83,
+    "sha256": "b3050a73cfe50cd0ba09bfe3fd1a168c4c3bad2c5a677e230d5026249e0833c2"
+  },
+  "M349": {
+    "removed_stock_fixtures": 2,
+    "events_preserved": 90,
+    "sha256": "5b5359666b03c700bc845b6c94850e72433e83187f55658f9886aad7b4e9a424"
+  },
+  "M861": {
+    "removed_stock_fixtures": 14,
+    "events_preserved": 0,
+    "sha256": "59a428fdc775c4f644da591cf7e91c0f5b921aa5fc4ac23810b691e4a595165a"
+  }
+}

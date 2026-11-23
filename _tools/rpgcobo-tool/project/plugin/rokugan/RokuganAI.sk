@@ -260,7 +260,7 @@ local log( s){ printf( "[RT] %S\n", s); }
 ::Rokugan.GUEST_LIFE <- 3;
 ::Rokugan.guestVar <- function( sk){
 	if( !sk || !sk["rt_guest"] || !("GUEST_SKILLS" in ::Rokugan)) return null;
-	foreach( n, id in this.GUEST_SKILLS) if( id && ::conf.skill[id] == sk) return "G%d" % (1364 + n);
+	foreach( n, id in this.GUEST_SKILLS) if( id && ::conf.skill[id] == sk) return "G%d" % (n >= 18 ? 1648 + n - 18 : 1364 + n);	//	(G1382+ are odd-job flags)
 	if( ::conf.skill["S634"] == sk) return "G1374";						//	Benjiro's Death Trance (guest 10)
 	return null;
 };

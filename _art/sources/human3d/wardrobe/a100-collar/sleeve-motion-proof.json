@@ -1,0 +1,296 @@
+{
+  "Grandmother": {
+    "Point": {
+      "original": {
+        "p95_edge_stretch": 3.3383,
+        "p99_edge_stretch": 6.5143,
+        "fraction_stretched_over_1_3": 0.19066
+      },
+      "fixed": {
+        "p95_edge_stretch": 1.5176,
+        "p99_edge_stretch": 3.0367,
+        "fraction_stretched_over_1_3": 0.1036
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 4.9558,
+          "p99_edge_stretch": 8.0601,
+          "fraction_stretched_over_1_3": 0.21817
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0002,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    },
+    "Opposite point": {
+      "original": {
+        "p95_edge_stretch": 3.3383,
+        "p99_edge_stretch": 6.5143,
+        "fraction_stretched_over_1_3": 0.19066
+      },
+      "fixed": {
+        "p95_edge_stretch": 1.5176,
+        "p99_edge_stretch": 3.0367,
+        "fraction_stretched_over_1_3": 0.1036
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 4.9558,
+          "p99_edge_stretch": 8.0601,
+          "fraction_stretched_over_1_3": 0.21817
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0002,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    },
+    "Shrug": {
+      "original": {
+        "p95_edge_stretch": 3.1002,
+        "p99_edge_stretch": 5.4266,
+        "fraction_stretched_over_1_3": 0.25973
+      },
+      "fixed": {
+        "p95_edge_stretch": 2.1369,
+        "p99_edge_stretch": 3.2218,
+        "fraction_stretched_over_1_3": 0.14448
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 3.8304,
+          "p99_edge_stretch": 7.0743,
+          "fraction_stretched_over_1_3": 0.33119
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0001,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    },
+    "Walk": {
+      "original": {
+        "p95_edge_stretch": 1.9527,
+        "p99_edge_stretch": 3.7154,
+        "fraction_stretched_over_1_3": 0.18608
+      },
+      "fixed": {
+        "p95_edge_stretch": 1.5427,
+        "p99_edge_stretch": 2.2421,
+        "fraction_stretched_over_1_3": 0.09549
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 1.7711,
+          "p99_edge_stretch": 2.7553,
+          "fraction_stretched_over_1_3": 0.23534
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0001,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    }
+  },
+  "Iuchi Farmer": {
+    "Point": {
+      "original": {
+        "p95_edge_stretch": 3.3152,
+        "p99_edge_stretch": 6.4204,
+        "fraction_stretched_over_1_3": 0.1983
+      },
+      "fixed": {
+        "p95_edge_stretch": 1.5831,
+        "p99_edge_stretch": 3.0105,
+        "fraction_stretched_over_1_3": 0.10969
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 4.9584,
+          "p99_edge_stretch": 8.0597,
+          "fraction_stretched_over_1_3": 0.21817
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0002,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    },
+    "Opposite point": {
+      "original": {
+        "p95_edge_stretch": 3.3152,
+        "p99_edge_stretch": 6.4204,
+        "fraction_stretched_over_1_3": 0.1983
+      },
+      "fixed": {
+        "p95_edge_stretch": 1.5831,
+        "p99_edge_stretch": 3.0105,
+        "fraction_stretched_over_1_3": 0.10969
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 4.9584,
+          "p99_edge_stretch": 8.0597,
+          "fraction_stretched_over_1_3": 0.21817
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0002,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    },
+    "Shrug": {
+      "original": {
+        "p95_edge_stretch": 3.043,
+        "p99_edge_stretch": 5.3476,
+        "fraction_stretched_over_1_3": 0.26249
+      },
+      "fixed": {
+        "p95_edge_stretch": 2.2966,
+        "p99_edge_stretch": 3.2159,
+        "fraction_stretched_over_1_3": 0.1448
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 3.803,
+          "p99_edge_stretch": 7.0743,
+          "fraction_stretched_over_1_3": 0.33119
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0001,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    },
+    "Walk": {
+      "original": {
+        "p95_edge_stretch": 2.0218,
+        "p99_edge_stretch": 3.6375,
+        "fraction_stretched_over_1_3": 0.19393
+      },
+      "fixed": {
+        "p95_edge_stretch": 1.6264,
+        "p99_edge_stretch": 2.2788,
+        "fraction_stretched_over_1_3": 0.10169
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 1.7728,
+          "p99_edge_stretch": 2.802,
+          "fraction_stretched_over_1_3": 0.23534
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0001,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    }
+  },
+  "Kitchen Girl": {
+    "Point": {
+      "original": {
+        "p95_edge_stretch": 3.3152,
+        "p99_edge_stretch": 6.4204,
+        "fraction_stretched_over_1_3": 0.1983
+      },
+      "fixed": {
+        "p95_edge_stretch": 1.5831,
+        "p99_edge_stretch": 3.0105,
+        "fraction_stretched_over_1_3": 0.10969
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 4.9584,
+          "p99_edge_stretch": 8.0597,
+          "fraction_stretched_over_1_3": 0.21817
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0002,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    },
+    "Opposite point": {
+      "original": {
+        "p95_edge_stretch": 3.3152,
+        "p99_edge_stretch": 6.4204,
+        "fraction_stretched_over_1_3": 0.1983
+      },
+      "fixed": {
+        "p95_edge_stretch": 1.5831,
+        "p99_edge_stretch": 3.0105,
+        "fraction_stretched_over_1_3": 0.10969
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 4.9584,
+          "p99_edge_stretch": 8.0597,
+          "fraction_stretched_over_1_3": 0.21817
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0002,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    },
+    "Shrug": {
+      "original": {
+        "p95_edge_stretch": 3.043,
+        "p99_edge_stretch": 5.3476,
+        "fraction_stretched_over_1_3": 0.26249
+      },
+      "fixed": {
+        "p95_edge_stretch": 2.2966,
+        "p99_edge_stretch": 3.2159,
+        "fraction_stretched_over_1_3": 0.1448
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 3.803,
+          "p99_edge_stretch": 7.0743,
+          "fraction_stretched_over_1_3": 0.33119
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0001,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    },
+    "Walk": {
+      "original": {
+        "p95_edge_stretch": 2.0218,
+        "p99_edge_stretch": 3.6375,
+        "fraction_stretched_over_1_3": 0.19393
+      },
+      "fixed": {
+        "p95_edge_stretch": 1.6264,
+        "p99_edge_stretch": 2.2788,
+        "fraction_stretched_over_1_3": 0.10169
+      },
+      "lower_drape": {
+        "original": {
+          "p95_edge_stretch": 1.7728,
+          "p99_edge_stretch": 2.802,
+          "fraction_stretched_over_1_3": 0.23534
+        },
+        "fixed": {
+          "p95_edge_stretch": 1.0001,
+          "p99_edge_stretch": 1.0008,
+          "fraction_stretched_over_1_3": 0.0
+        }
+      }
+    }
+  }
+}

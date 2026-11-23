@@ -1,0 +1,328 @@
+{
+  "maps": {
+    "M370": {
+      "terrain": "m370_ojatara_shell",
+      "placements": [
+        [
+          "m370_ojatara_trim",
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          "ojatara_tribunal_seat",
+          5.94,
+          1.057,
+          10.52,
+          0.91,
+          0.0
+        ],
+        [
+          "ojatara_court_ledger",
+          6.210000000000001,
+          1.51,
+          10.4,
+          0.8,
+          0.08
+        ],
+        [
+          "ojatara_tribunal_seat",
+          10.02,
+          1.057,
+          10.88,
+          1.11,
+          0.0
+        ],
+        [
+          "ojatara_court_ledger",
+          10.29,
+          1.51,
+          10.760000000000002,
+          0.8,
+          0.08
+        ],
+        [
+          "ojatara_tribunal_seat",
+          14.1,
+          1.057,
+          10.5,
+          0.92,
+          0.0
+        ],
+        [
+          "ojatara_court_ledger",
+          14.37,
+          1.51,
+          10.38,
+          0.8,
+          0.08
+        ],
+        [
+          "hoshi_inn_bench",
+          12.2,
+          1.057,
+          6.55,
+          1.03,
+          0.09
+        ],
+        [
+          "hoshi_case_bundle",
+          3.32,
+          1.057,
+          7.63,
+          0.89,
+          0.11
+        ],
+        [
+          "kamen_temple_andon",
+          2.97,
+          1.057,
+          6.25,
+          0.92,
+          0.0
+        ],
+        [
+          "kamen_temple_andon",
+          5.72,
+          1.057,
+          12.47,
+          0.92,
+          0.0
+        ],
+        [
+          "kamen_temple_andon",
+          10.0,
+          1.057,
+          12.4,
+          0.92,
+          0.0
+        ],
+        [
+          "kamen_temple_andon",
+          14.16,
+          1.057,
+          12.48,
+          0.92,
+          0.0
+        ],
+        [
+          "kamen_temple_andon",
+          16.52,
+          1.057,
+          6.36,
+          0.92,
+          0.0
+        ]
+      ],
+      "poolLights": [
+        [
+          2.97,
+          1.71,
+          6.25,
+          4.95,
+          1.63
+        ],
+        [
+          5.72,
+          1.71,
+          12.47,
+          4.95,
+          1.63
+        ],
+        [
+          10.0,
+          1.71,
+          12.4,
+          4.95,
+          1.63
+        ],
+        [
+          14.16,
+          1.71,
+          12.48,
+          4.95,
+          1.63
+        ],
+        [
+          16.52,
+          1.71,
+          6.36,
+          4.95,
+          1.63
+        ]
+      ]
+    },
+    "M376": {
+      "terrain": "m376_ojatara_shell",
+      "placements": [
+        [
+          "m376_ojatara_trim",
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          "ojatara_nihime_screen",
+          10.65,
+          1.057,
+          11.13,
+          1.21,
+          -0.06
+        ],
+        [
+          "ojatara_nihime_screen",
+          4.21,
+          1.057,
+          11.33,
+          0.87,
+          0.17
+        ],
+        [
+          "hoshi_tea_table",
+          7.43,
+          1.057,
+          7.71,
+          1.11,
+          0.0
+        ],
+        [
+          "ojatara_incense_set",
+          7.57,
+          1.4,
+          7.72,
+          1.03,
+          -0.07
+        ],
+        [
+          "ojatara_flower_planter",
+          3.05,
+          1.057,
+          8.81,
+          0.93,
+          0.13
+        ],
+        [
+          "kudo_carp_sake_rack",
+          12.25,
+          1.057,
+          9.49,
+          0.82,
+          1.56
+        ],
+        [
+          "kamen_temple_andon",
+          2.91,
+          1.057,
+          6.1,
+          0.92,
+          0.0
+        ],
+        [
+          "kamen_temple_andon",
+          7.67,
+          1.057,
+          11.66,
+          0.92,
+          0.0
+        ],
+        [
+          "kamen_temple_andon",
+          12.03,
+          1.057,
+          6.15,
+          0.92,
+          0.0
+        ]
+      ],
+      "poolLights": [
+        [
+          2.91,
+          1.71,
+          6.1,
+          4.95,
+          1.63
+        ],
+        [
+          7.67,
+          1.71,
+          11.66,
+          4.95,
+          1.63
+        ],
+        [
+          12.03,
+          1.71,
+          6.15,
+          4.95,
+          1.63
+        ]
+      ]
+    }
+  },
+  "sources": {
+    "ojatara_tribunal_seat": {
+      "name": "ojatara_tribunal_seat",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_ojatara_tribunal_seat_00001_.glb",
+      "grid": [
+        29,
+        42,
+        25
+      ],
+      "occupied": 5350,
+      "world_size": [
+        1.45,
+        0.76,
+        0.83
+      ]
+    },
+    "ojatara_nihime_screen": {
+      "name": "ojatara_nihime_screen",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_ojatara_nihime_screen_00001_.glb",
+      "grid": [
+        43,
+        9,
+        35
+      ],
+      "occupied": 3536,
+      "world_size": [
+        1.85,
+        0.6099999999999999,
+        1.38
+      ]
+    },
+    "ojatara_incense_set": {
+      "name": "ojatara_incense_set",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_ojatara_incense_set_00001_.glb",
+      "grid": [
+        29,
+        18,
+        7
+      ],
+      "occupied": 1690,
+      "world_size": [
+        0.5,
+        0.3,
+        0.31
+      ]
+    },
+    "ojatara_court_ledger": {
+      "name": "ojatara_court_ledger",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_ojatara_court_ledger_00001_.glb",
+      "grid": [
+        31,
+        35,
+        8
+      ],
+      "occupied": 2785,
+      "world_size": [
+        0.39,
+        0.26,
+        0.21
+      ]
+    }
+  }
+}

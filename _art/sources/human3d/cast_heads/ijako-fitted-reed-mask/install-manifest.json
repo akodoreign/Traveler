@@ -1,0 +1,32 @@
+{
+  "actor": "side_ijako",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_female",
+    "face": "side_ijako_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_ijako_portrait_dark_reed.pm",
+      "to": "side_ijako_portrait_dark_reed.pm",
+      "sha256": "748ac392d6c0574bb7e6984444637b76414fffde80196f8522120b42d5c15263"
+    },
+    {
+      "from": "assets/side_ijako_portrait_dark_reed.mdl",
+      "to": "side_ijako_portrait_dark_reed.mdl",
+      "sha256": "277c4fae6a782e508af909d282cc71d700055f7165db3b63994e92c437c0673c"
+    },
+    {
+      "from": "assets/tex/side_ijako_portrait_dark_reed_color_srgb.png",
+      "to": "tex/side_ijako_portrait_dark_reed_color_srgb.png",
+      "sha256": "c5832330d7ffee47fd5e886453ce6671b51d929f311e817af5fb7863142dd00d"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_ijako_portrait_dark_reed"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_ijako\\painted-v3-final\\assets\\side_ijako_portrait_face.glb",
+    "sha256": "febcf81f1dc153aeb78dc49707c25ef6d096dc134170f1817becdc49467b0ace"
+  }
+}

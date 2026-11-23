@@ -1,0 +1,37 @@
+{
+  "coast_pine": {
+    "image": "a2ff6e34-4cc9-4972-9043-9090fcd0268c",
+    "model": {
+      "prompt_id": "28fa7c51-54b6-4983-88bf-a3284a919ff3",
+      "history": "http://127.0.0.1:8189/history/28fa7c51-54b6-4983-88bf-a3284a919ff3"
+    }
+  },
+  "stone_lantern": {
+    "image": "51a28578-6830-4d80-bcf7-33c590169563",
+    "model": {
+      "prompt_id": "ecdc7a63-2b9d-44f0-9b9a-d63d96110dd6",
+      "history": "http://127.0.0.1:8189/history/ecdc7a63-2b9d-44f0-9b9a-d63d96110dd6"
+    }
+  },
+  "road_milestone": {
+    "image": "f0f5815e-3328-4a29-a54d-ed5eb35bb180",
+    "model": {
+      "prompt_id": "1b3f3959-11e8-4bdc-98e8-5bb84224afa9",
+      "history": "http://127.0.0.1:8189/history/1b3f3959-11e8-4bdc-98e8-5bb84224afa9"
+    }
+  },
+  "castle_stone_bay": {
+    "image": "38f5a625-3df0-4e1d-9807-9eb1ea819edb",
+    "model": {
+      "prompt_id": "8af7c224-7b57-4eaa-9bb4-bd1036c5c88d",
+      "history": "http://127.0.0.1:8189/history/8af7c224-7b57-4eaa-9bb4-bd1036c5c88d"
+    }
+  },
+  "castle_roof_eave": {
+    "image": "0378b878-0e6f-4af8-bb39-58efa1172d51",
+    "model": {
+      "prompt_id": "5d40f154-8389-4c72-9c83-623aa4b95867",
+      "history": "http://127.0.0.1:8189/history/5d40f154-8389-4c72-9c83-623aa4b95867"
+    }
+  }
+}

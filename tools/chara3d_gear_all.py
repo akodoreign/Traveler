@@ -31,6 +31,11 @@ def build_index():
     visible = {item for item, spec in armor.items() if isinstance(spec, dict)
                and spec.get("eqtype") in (10, 11, 13, 14, 15) and spec.get("name") and not (spec.get("rt_costume") or spec.get("rt_costume_head"))
                and not spec["name"].startswith("(unused")}
+    tailored = read(PROJECT / "resource/native_tailoring/index.json")["items"]
+    for item in visible - items.keys():
+        if (armor[item].get("rt_only_player") and armor[item]["eqtype"] in (13, 14, 15)
+                and tailored.get(item, {}).get("mesh")):
+            items[item] = "body"
     if visible - items.keys() or items.keys() - armor.keys():
         raise ValueError(f"Missing armor designs {sorted(visible - items.keys())}; "
                          f"unknown IDs {sorted(items.keys() - armor.keys())}")
@@ -51,11 +56,13 @@ def build_index():
 def verify(index, out=OUT):
     if index != read(out / "gear.json"):
         raise ValueError("The native gear catalog is out of date")
-    decal_meshes = [item + "_decal" for item in index["items"]]
-    meshes = [*index["items"], *decal_meshes, *("weapon_" + k for k in index["weapons"]), "natsuko_uncovered"]
+    # Only the procedural gear bank is emitted here. Bespoke costumes live in native_tailoring.
+    procedural = catalog.registry()
+    decal_meshes = [item + "_decal" for item in procedural]
+    meshes = [*procedural, *decal_meshes, *("weapon_" + k for k in index["weapons"]), "natsuko_uncovered"]
     meshes += [f"{item}_yosai{suffix}" for item in catalog.HEAD for suffix in ("", "_decal")]
     decal_meshes += [f"{item}_yosai_decal" for item in catalog.HEAD]
-    decals = [f"decal/{clan}/{item}.png" for clan in index["clans"] for item in index["items"]]
+    decals = [f"decal/{clan}/{item}.png" for clan in index["clans"] for item in procedural]
     expected = {"gear.json", "tex/wardrobe_normal.png", *(name + ext for name in meshes for ext in (".pm", ".mdl"))}
     textures = [*index["palettes"], *("clan_" + name for name in index["clans"])]
     expected.update(f"palette/{name}.png" for name in textures)
@@ -99,11 +106,12 @@ def textures(out, index, looks):
     palette.mkdir(parents=True, exist_ok=True)
     (out / "tex").mkdir(exist_ok=True)
     normal_atlas(out / "tex" / "wardrobe_normal.png")
+    procedural = catalog.registry()
     for name, colours in CLAN.items():
         atlas(palette / f"clan_{name}.png", colours, {}, name)
         decal_dir = out / "decal" / name
         decal_dir.mkdir(parents=True, exist_ok=True)
-        for item, slot in index["items"].items():
+        for item, slot in procedural.items():
             style = catalog.BODY[item][0] if slot == "body" else (
                 catalog.HEAD.get(item) or catalog.ACCESSORY.get(item) or "cape")
             sheet(decal_dir / f"{item}.png", name, NATIVE_CLANS.get(name, colours), item, slot, style)

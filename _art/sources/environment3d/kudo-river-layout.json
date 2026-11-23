@@ -1,0 +1,76 @@
+{
+  "maps": {
+    "M350": {
+      "placements": 47,
+      "water_cells": 2106,
+      "events": 79
+    },
+    "M351": {
+      "placements": 57,
+      "water_cells": 2256,
+      "events": 103
+    }
+  },
+  "sources": {
+    "kudo_cargo_boat": {
+      "name": "kudo_cargo_boat",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_cargo_boat_00001_.glb",
+      "grid": [
+        45,
+        15,
+        8
+      ],
+      "occupied": 1822,
+      "world_size": [
+        3.8000000000000003,
+        1.03,
+        0.81
+      ]
+    },
+    "kudo_reed_bank": {
+      "name": "kudo_reed_bank",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_reed_bank_00001_.glb",
+      "grid": [
+        24,
+        22,
+        24
+      ],
+      "occupied": 2328,
+      "world_size": [
+        0.65,
+        0.55,
+        0.74
+      ]
+    },
+    "kudo_eel_basket": {
+      "name": "kudo_eel_basket",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_eel_basket_00001_.glb",
+      "grid": [
+        27,
+        21,
+        25
+      ],
+      "occupied": 1888,
+      "world_size": [
+        0.42,
+        0.29,
+        0.52
+      ]
+    },
+    "kudo_river_lantern": {
+      "name": "kudo_river_lantern",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_river_lantern_00001_.glb",
+      "grid": [
+        22,
+        21,
+        33
+      ],
+      "occupied": 2330,
+      "world_size": [
+        0.38,
+        0.37,
+        1.13
+      ]
+    }
+  }
+}

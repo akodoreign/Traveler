@@ -1,0 +1,51 @@
+{
+  "maps": {
+    "M362": {
+      "props": 37,
+      "lights": 9,
+      "events": 91
+    },
+    "M364": {
+      "props": 43,
+      "lights": 11,
+      "events": 93
+    },
+    "M866": {
+      "props": 17,
+      "lights": 8,
+      "events": 0
+    }
+  },
+  "sources": {
+    "kamen_mask_display": {
+      "name": "kamen_mask_display",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_mask_display_00001_.glb",
+      "grid": [
+        34,
+        22,
+        37
+      ],
+      "occupied": 4930,
+      "world_size": [
+        1.14,
+        0.57,
+        1.55
+      ]
+    },
+    "kamen_merchant_awning": {
+      "name": "kamen_merchant_awning",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_merchant_awning_00001_.glb",
+      "grid": [
+        44,
+        32,
+        43
+      ],
+      "occupied": 5147,
+      "world_size": [
+        2.74,
+        1.68,
+        2.49
+      ]
+    }
+  }
+}

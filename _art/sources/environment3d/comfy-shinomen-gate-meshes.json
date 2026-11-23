@@ -1,0 +1,22 @@
+{
+  "shinomen_watch_drum": {
+    "prompt_id": "14c06181-4cd7-4b06-b160-fa67d0ef7ba4",
+    "history": "http://127.0.0.1:8189/history/14c06181-4cd7-4b06-b160-fa67d0ef7ba4"
+  },
+  "shinomen_smith_anvil": {
+    "prompt_id": "5b358acf-a5f5-4b1a-ae41-9ebfd4a253a0",
+    "history": "http://127.0.0.1:8189/history/5b358acf-a5f5-4b1a-ae41-9ebfd4a253a0"
+  },
+  "shinomen_covered_supplies": {
+    "prompt_id": "5ab56737-7208-4fe2-8faf-f362aae02d9b",
+    "history": "http://127.0.0.1:8189/history/5ab56737-7208-4fe2-8faf-f362aae02d9b"
+  },
+  "shadowlands_oni_bones": {
+    "prompt_id": "dba8ff01-5fff-4728-9dea-423b72ea0502",
+    "history": "http://127.0.0.1:8189/history/dba8ff01-5fff-4728-9dea-423b72ea0502"
+  },
+  "shadowlands_burnt_stump": {
+    "prompt_id": "4a2394bf-a21a-4b85-ba57-e3162f571c94",
+    "history": "http://127.0.0.1:8189/history/4a2394bf-a21a-4b85-ba57-e3162f571c94"
+  }
+}

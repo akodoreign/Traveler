@@ -1,0 +1,15 @@
+{
+  "spec": "5037ebdbb03196521c2f1ce17c558341b1de3a077f4cdda8eb0fc5e18f69d69e",
+  "rooms": {
+    "M346": {
+      "old_decor_removed": [
+        "#5#",
+        "#6#",
+        "#7#",
+        "#8#"
+      ],
+      "story_events_retained": 76,
+      "sha256": "fe3289bb29a185711e4392ad3e820714f3fb891174e5926bb5c6beefb00746db"
+    }
+  }
+}

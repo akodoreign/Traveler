@@ -1,0 +1,227 @@
+{
+ "shamisen": {
+  "47": {
+   "file": "shamisen_47.wav",
+   "detune": 0.283,
+   "from": "fs_365262.mp3"
+  },
+  "53": {
+   "file": "shamisen_53.wav",
+   "detune": -0.452,
+   "from": "fs_365262.mp3"
+  },
+  "54": {
+   "file": "shamisen_54.wav",
+   "detune": -0.372,
+   "from": "fs_365262.mp3"
+  },
+  "57": {
+   "file": "shamisen_57.wav",
+   "detune": 0.113,
+   "from": "fs_365262.mp3"
+  },
+  "58": {
+   "file": "shamisen_58.wav",
+   "detune": -0.132,
+   "from": "fs_365262.mp3"
+  },
+  "59": {
+   "file": "shamisen_59.wav",
+   "detune": 0.474,
+   "from": "fs_365262.mp3"
+  },
+  "60": {
+   "file": "shamisen_60.wav",
+   "detune": -0.325,
+   "from": "fs_365262.mp3"
+  },
+  "62": {
+   "file": "shamisen_62.wav",
+   "detune": 0.117,
+   "from": "fs_365262.mp3"
+  },
+  "63": {
+   "file": "shamisen_63.wav",
+   "detune": 0.032,
+   "from": "fs_365262.mp3"
+  },
+  "64": {
+   "file": "shamisen_64.wav",
+   "detune": 0.101,
+   "from": "fs_365262.mp3"
+  },
+  "65": {
+   "file": "shamisen_65.wav",
+   "detune": 0.184,
+   "from": "fs_365262.mp3"
+  },
+  "66": {
+   "file": "shamisen_66.wav",
+   "detune": 0.377,
+   "from": "fs_365262.mp3"
+  },
+  "67": {
+   "file": "shamisen_67.wav",
+   "detune": -0.309,
+   "from": "fs_365262.mp3"
+  },
+  "70": {
+   "file": "shamisen_70.wav",
+   "detune": -0.394,
+   "from": "fs_365262.mp3"
+  },
+  "71": {
+   "file": "shamisen_71.wav",
+   "detune": 0.175,
+   "from": "fs_365262.mp3"
+  },
+  "77": {
+   "file": "shamisen_77.wav",
+   "detune": 0.093,
+   "from": "fs_365262.mp3"
+  }
+ },
+ "kotsuzumi": [
+  "kotsuzumi_0.wav",
+  "kotsuzumi_1.wav",
+  "kotsuzumi_2.wav",
+  "kotsuzumi_3.wav",
+  "kotsuzumi_4.wav",
+  "kotsuzumi_5.wav",
+  "kotsuzumi_6.wav"
+ ],
+ "tsuzumi": [
+  "tsuzumi_0.wav"
+ ],
+ "taiko": [
+  "taiko_a_0.wav",
+  "taiko_b_0.wav"
+ ],
+ "odaiko": [
+  "odaiko_0.wav"
+ ],
+ "taiko_open": [
+  "taiko_open_0.wav"
+ ],
+ "clap": [
+  "clap_0.wav",
+  "clap_1.wav",
+  "clap_2.wav"
+ ],
+ "koto": {
+  "50": {
+   "file": "koto_50.wav",
+   "detune": 0.456,
+   "from": "fs_365242.mp3"
+  },
+  "51": {
+   "file": "koto_51.wav",
+   "detune": -0.45,
+   "from": "fs_365242.mp3"
+  },
+  "52": {
+   "file": "koto_52.wav",
+   "detune": -0.497,
+   "from": "fs_365242.mp3"
+  },
+  "56": {
+   "file": "koto_56.wav",
+   "detune": -0.464,
+   "from": "fs_365242.mp3"
+  },
+  "57": {
+   "file": "koto_57.wav",
+   "detune": 0.482,
+   "from": "fs_365242.mp3"
+  },
+  "58": {
+   "file": "koto_58.wav",
+   "detune": -0.479,
+   "from": "fs_365242.mp3"
+  },
+  "59": {
+   "file": "koto_59.wav",
+   "detune": -0.484,
+   "from": "fs_365242.mp3"
+  },
+  "62": {
+   "file": "koto_62.wav",
+   "detune": 0.499,
+   "from": "fs_365242.mp3"
+  },
+  "63": {
+   "file": "koto_63.wav",
+   "detune": -0.049,
+   "from": "fs_365242.mp3"
+  },
+  "64": {
+   "file": "koto_64.wav",
+   "detune": 0.031,
+   "from": "fs_365242.mp3"
+  },
+  "68": {
+   "file": "koto_68.wav",
+   "detune": -0.006,
+   "from": "fs_365242.mp3"
+  },
+  "69": {
+   "file": "koto_69.wav",
+   "detune": 0.445,
+   "from": "fs_365242.mp3"
+  },
+  "70": {
+   "file": "koto_70.wav",
+   "detune": -0.402,
+   "from": "fs_365242.mp3"
+  },
+  "71": {
+   "file": "koto_71.wav",
+   "detune": -0.401,
+   "from": "fs_365242.mp3"
+  },
+  "74": {
+   "file": "koto_74.wav",
+   "detune": 0.493,
+   "from": "fs_365242.mp3"
+  },
+  "75": {
+   "file": "koto_75.wav",
+   "detune": -0.401,
+   "from": "fs_365242.mp3"
+  },
+  "76": {
+   "file": "koto_76.wav",
+   "detune": -0.451,
+   "from": "fs_365242.mp3"
+  },
+  "79": {
+   "file": "koto_79.wav",
+   "detune": 0.216,
+   "from": "fs_365242.mp3"
+  },
+  "81": {
+   "file": "koto_81.wav",
+   "detune": 0.481,
+   "from": "fs_365242.mp3"
+  },
+  "82": {
+   "file": "koto_82.wav",
+   "detune": -0.484,
+   "from": "fs_365242.mp3"
+  }
+ },
+ "suzu": [
+  "suzu_0.wav",
+  "suzu_1.wav",
+  "suzu_2.wav",
+  "suzu_3.wav",
+  "suzu_4.wav",
+  "suzu_5.wav",
+  "shrinebell_0.wav",
+  "shrinebell_1.wav",
+  "shrinebell_2.wav",
+  "shrinebell_3.wav",
+  "bells_0.wav",
+  "bells_1.wav"
+ ]
+}

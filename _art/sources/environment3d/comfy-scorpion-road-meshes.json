@@ -1,0 +1,18 @@
+{
+  "scorpion_memorial_stele": {
+    "prompt_id": "5c5deb17-fe4f-499a-b038-37755cc94fd0",
+    "history": "http://127.0.0.1:8189/history/5c5deb17-fe4f-499a-b038-37755cc94fd0"
+  },
+  "scorpion_grove_cedar": {
+    "prompt_id": "1d8aa036-3c6c-4a75-a70e-f62bd441f609",
+    "history": "http://127.0.0.1:8189/history/1d8aa036-3c6c-4a75-a70e-f62bd441f609"
+  },
+  "scorpion_willow_tea_service": {
+    "prompt_id": "c78ea9e4-b2de-400f-95f6-ab845529f063",
+    "history": "http://127.0.0.1:8189/history/c78ea9e4-b2de-400f-95f6-ab845529f063"
+  },
+  "scorpion_shutai_sake_store": {
+    "prompt_id": "ec98f2ac-c6e8-45ff-924a-6d396515f7a9",
+    "history": "http://127.0.0.1:8189/history/ec98f2ac-c6e8-45ff-924a-6d396515f7a9"
+  }
+}

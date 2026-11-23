@@ -1,0 +1,123 @@
+{
+  "maps": {
+    "M171": {
+      "terrain_quads": 971,
+      "props": 8,
+      "event_count": 77,
+      "live_fluid_frames": 0
+    },
+    "M172": {
+      "terrain_quads": 735,
+      "props": 22,
+      "event_count": 85,
+      "live_fluid_frames": 24
+    },
+    "M173": {
+      "terrain_quads": 784,
+      "props": 88,
+      "event_count": 83,
+      "live_fluid_frames": 0
+    },
+    "M174": {
+      "terrain_quads": 480,
+      "props": 5,
+      "event_count": 82,
+      "live_fluid_frames": 0
+    },
+    "M175": {
+      "terrain_quads": 1023,
+      "props": 11,
+      "event_count": 84,
+      "live_fluid_frames": 0
+    },
+    "M176": {
+      "terrain_quads": 769,
+      "props": 11,
+      "event_count": 81,
+      "live_fluid_frames": 0
+    },
+    "M177": {
+      "terrain_quads": 947,
+      "props": 10,
+      "event_count": 82,
+      "live_fluid_frames": 0
+    }
+  },
+  "sources": {
+    "tainted_poppy_clump": {
+      "name": "tainted_poppy_clump",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_tainted_poppy_clump_00001_.glb",
+      "grid": [
+        24,
+        17,
+        23
+      ],
+      "occupied": 1373,
+      "world_size": [
+        0.67,
+        0.59,
+        0.43
+      ]
+    },
+    "shadowlands_tar_bridge_end": {
+      "name": "shadowlands_tar_bridge_end",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_shadowlands_tar_bridge_end_00001_.glb",
+      "grid": [
+        11,
+        37,
+        9
+      ],
+      "occupied": 659,
+      "world_size": [
+        1.4399999999999997,
+        0.94,
+        1.2
+      ]
+    },
+    "shadowlands_obsidian_tree": {
+      "name": "shadowlands_obsidian_tree",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_shadowlands_obsidian_tree_00001_.glb",
+      "grid": [
+        38,
+        26,
+        39
+      ],
+      "occupied": 5476,
+      "world_size": [
+        1.46,
+        1.38,
+        2.51
+      ]
+    },
+    "shadowlands_watchpost_winch": {
+      "name": "shadowlands_watchpost_winch",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_shadowlands_watchpost_winch_00001_.glb",
+      "grid": [
+        36,
+        29,
+        37
+      ],
+      "occupied": 3821,
+      "world_size": [
+        1.37,
+        0.83,
+        1.2000000000000002
+      ]
+    },
+    "toshi_kijo_gravestone": {
+      "name": "toshi_kijo_gravestone",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_toshi_kijo_gravestone_00001_.glb",
+      "grid": [
+        32,
+        17,
+        35
+      ],
+      "occupied": 2318,
+      "world_size": [
+        0.73,
+        0.57,
+        1.43
+      ]
+    }
+  }
+}

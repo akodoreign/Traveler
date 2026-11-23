@@ -1,0 +1,126 @@
+{
+  "key": "side_h_yojimbo_portrait_face",
+  "source": "side_h_yojimbo_repaired_atlas.glb",
+  "scale": 15.1,
+  "features": {
+    "eyes": [
+      [
+        196,
+        286,
+        0.04
+      ],
+      [
+        288,
+        283,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        190,
+        267
+      ],
+      [
+        291,
+        264
+      ]
+    ],
+    "mouth": [
+      236,
+      350
+    ]
+  },
+  "socket_sample_levels": [
+    -0.754,
+    -0.747,
+    -0.74,
+    -0.733,
+    -0.726,
+    -0.719,
+    -0.712,
+    -0.705,
+    -0.698,
+    -0.691,
+    -0.6839999999999999,
+    -0.6769999999999999,
+    -0.6699999999999999,
+    -0.6629999999999999,
+    -0.6559999999999999,
+    -0.6489999999999999,
+    -0.6419999999999999,
+    -0.6349999999999999,
+    -0.6279999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.054,
+    -0.025
+  ],
+  "skin_match": [
+    248,
+    188,
+    140
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 15.1,
+  "fit_matrix_blender": [
+    [
+      15.08168649382156,
+      0.7414332724116423,
+      -0.054856217902911335,
+      -0.11917941588260106
+    ],
+    [
+      -0.740310850380834,
+      15.07930774245828,
+      0.27643779237059596,
+      0.6269267565237178
+    ],
+    [
+      0.0683545674411223,
+      -0.2734130772353019,
+      15.097369735894727,
+      110.01816969890467
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 22213,
+    "lower_overlap_blended_vertices": 79,
+    "minimum_seam_head_weight": 0.6222168146138359,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      208,
+      299
+    ],
+    [
+      279,
+      299
+    ],
+    [
+      289,
+      315
+    ],
+    [
+      233,
+      362
+    ]
+  ],
+  "skin_sample_view": "Diffuse bilateral cheeks and chin on exact V2",
+  "raw_skin_srgb": [
+    248,
+    188,
+    140
+  ],
+  "proof_pose_family": "blade"
+}

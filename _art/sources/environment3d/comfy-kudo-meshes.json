@@ -1,0 +1,18 @@
+{
+  "kudo_cargo_boat": {
+    "prompt_id": "32481214-4953-4827-831d-db38b42a724d",
+    "history": "http://127.0.0.1:8189/history/32481214-4953-4827-831d-db38b42a724d"
+  },
+  "kudo_reed_bank": {
+    "prompt_id": "ff104d07-4f27-4c4c-8f3f-e689ee41d721",
+    "history": "http://127.0.0.1:8189/history/ff104d07-4f27-4c4c-8f3f-e689ee41d721"
+  },
+  "kudo_eel_basket": {
+    "prompt_id": "627e1c68-d373-41d4-8945-01c0cd103af1",
+    "history": "http://127.0.0.1:8189/history/627e1c68-d373-41d4-8945-01c0cd103af1"
+  },
+  "kudo_river_lantern": {
+    "prompt_id": "d2e2ceb5-421f-4435-b115-3d218a08dbfd",
+    "history": "http://127.0.0.1:8189/history/d2e2ceb5-421f-4435-b115-3d218a08dbfd"
+  }
+}

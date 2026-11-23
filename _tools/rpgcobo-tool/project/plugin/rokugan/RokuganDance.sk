@@ -1,0 +1,570 @@
+//	RokuganDance.sk : the Winter Court dance contest (user 2026-11-22: "dance minigame, build a stage for it with people
+//	from the region (important ones) to watch and judge, can do a Dance dance type hit the keys ... 2 difficulties easy
+//	and hard. with failure only having her be laughed at. and depending on quality gets a crab accessory reward";
+//	"make sure to use her model for it"; "shes 3d so you can rig animations").
+//	- ::Rokugan.miniGame( "dance_easy" | "dance_hard" [.. "_practice"]) (RokuganMini.sk) opens RTDance: arrow lanes over
+//	  the live great hall, where Hiruma Natsuko's own 3-D model stands on the stage (::Rokugan.danceStage) and dances
+//	  each step you hit (the clips of tools/blender/natsuko_dance.py -> natsuko_dance.mot).
+//	- The music: Easy MU126 "The Shrine Maidens' Dance" (tools/gen_music.py t_kagura), Hard MU127 "Jo, Ha, Kyu" (t_jhk:
+//	  54 BPM rising to 210, then a dead stop - user: "very slow building up to very fast, like a traditional japanese
+//	  dance"). The arrows are each track's own melody notes (RokuganDanceChart_easy / _hard.sk), timed against the
+//	  BGM's playback position, not a separate clock.
+//	- Three judges score it (Hida Yakamo, Kaiu Takakana, Yasuki Kurako); the grade (0 laughed at, 1 B, 2 A, 3 S - Easy
+//	  tops out at A) goes to G1643 on the first completed dance. Replay rewards and the Miko outfit are one-time.
+//	Test hooks as the other mini-games: -rtmini "win" / "lose" / "ok" plays itself, -rtminishot NAME saves frames.
+local log( s){ printf( "[RT] %S\n", s); }
+local sfx = function( id){ try{ ::playSound( id); }catch( ex){} };
+
+///////////////////////////////////////////////////////////////////////////////
+//	Natsuko's dance clips (frame ranges in natsuko_dance.mot; tools/blender/natsuko_dance.py prints this table)
+local DANCE_BANK = "/resource/native_chara/natsuko_dance.mot";
+::Rokugan.DANCE_CLIPS <- {
+	dance_idle = [0, 29, true], dance_left = [30, 44, false], dance_right = [45, 59, false],
+	dance_up = [60, 74, false], dance_down = [75, 89, false], dance_stumble = [90, 110, false],
+	dance_finale = [111, 141, false], dance_bow = [142, 182, false], dance_shame = [183, 231, false],
+	court_throne = [232, 291, true] };				//	(Hida Kisada seated on his throne by the stage: any native human)
+local DANCE_MOT = { m = null };
+local DANCE_CAM_SHIFT = 0.0;								//	(world units; 0: the throne at the left stays in view)
+::Rokugan.danceMotion <- function(){				//	RokuganNativeChara.sk anime2: the motion for a dance_* clip
+	if( !DANCE_MOT.m){
+		local r = ::getResource( DANCE_BANK);
+		if( r) DANCE_MOT.m = ::getMotionData( r);
+	}
+	return DANCE_MOT.m;
+};
+//	Every native human gets the clips in its animemap as it is made, so an event page's "ani" can name one (gen_maps:
+//	Kisada's page plays court_throne). (::Rokugan.createNativeChara is wrapped once more; RokuganCommonerDyes.sk too.)
+::Rokugan._rt_createNativeChara_dance <- ::Rokugan.createNativeChara;
+::Rokugan.createNativeChara <- function( v, player = null){
+	local model = ::Rokugan._rt_createNativeChara_dance( v, player);
+	if( model && ("animemap" in model) && ::getResource( DANCE_BANK))
+		foreach( id, c in ::Rokugan.DANCE_CLIPS)
+			if( !(id in model.animemap)) model.animemap[id] <- { st = c[0], en = c[1], spd = 30.0, loop = c[2], replay = true };
+	return model;
+};
+// A single wardrobe lease owns every temporary change made while Natsuko is onstage.
+local MIKO_ARMOR = "A209";
+local DANCE_WARDROBE = { current = null };
+::Rokugan._rt_miko_canWearCostume <- ::Rokugan.canWearCostume;
+::Rokugan.canWearCostume <- function( p, d){
+	if( d && d["rt_only_player"] && p.dataid != d.rt_only_player) return false;
+	return this._rt_miko_canWearCostume( p, d);
+};
+
+// Play on the staged Hiruma even if someone else leads the party this visit.
+::Rokugan.danceActor <- function(){
+	local lease = DANCE_WARDROBE.current;
+	return lease && lease.stage == ::rpgstage ? lease.actor : null;
+};
+::Rokugan.danceAnim <- function( id, spd = 1.0){
+	local a = ::Rokugan.danceActor();
+	if( !a || !a.animemap[id]) return null;
+	try{
+		local layers = a.animlayers.layers, prev = layers[0];
+		if( prev) prev.locked = 0;
+		local al = a.anime2( { id = id, spd = spd });
+		if( !al) return null;
+		al.locked = 1;
+		if( prev && prev != al && prev.weight > 0.0){
+			prev.wfunc = SK3DObject._fadeoutfunc( 0.09);
+			layers[1] = prev;
+		}
+		return al;
+	}catch( ex){ printexception( ex); }
+	return null;
+};
+
+local restoreDanceStage = function( exit = null){
+	local lease = DANCE_WARDROBE.current;
+	if( !lease) return;
+	if( "mikoRelease" in ::Rokugan){
+		try{ ::Rokugan.mikoRelease(); }catch( ex){ printexception( ex); }
+	}
+	DANCE_WARDROBE.current = null;
+	// Restore the original inventory objects, including levels, options and empty slots.
+	try{
+		lease.player.equips = lease.equips;
+		lease.player.updateOptions();
+		lease.player.updateScoreMap();
+		lease.player.HP = lease.vitals[0];
+		lease.player.MP = lease.vitals[1];
+		lease.player.TP = lease.vitals[2];
+	}catch( ex){ printexception( ex); }
+	try{ if( lease.actor) lease.actor.kill(); }catch( ex){ printexception( ex); }
+	try{
+		local rp = lease.field;
+		rp.pos( lease.position);
+		rp.setDir( lease.direction);
+		exit ??= lease.exit;
+		if( exit && lease.stage == ::rpgstage){
+			local s = ::Rokugan.nearestFloor( rp, exit[0], exit[1]);
+			if( s) rp.pos( s.x, s.y, s.z);
+			rp.setDir( exit[2]);
+		}
+		rp.matdirty = true;
+	}catch( ex){ printexception( ex); }
+	try{ lease.field.setVisible( lease.visible); }catch( ex){ printexception( ex); }
+	try{
+		if( lease.stage == ::rpgstage) lease.stage.setCamerawork( { fade = 600 });
+	}catch( ex){ printexception( ex); }
+	log( "dance: restored Hiruma's stage wardrobe");
+};
+
+::Rokugan.danceStage <- function( x, z, dir, zoom = 0.0){
+	if( DANCE_WARDROBE.current) restoreDanceStage();
+	local stage = ::rpgstage, rp = stage ? stage["player3d"] : null;
+	local p = ::rpgstat ? ::rpgstat.playermap["P100"] : null;
+	if( !rp || !p || !::rpgdata[MIKO_ARMOR] || !::getResource( DANCE_BANK)) return false;
+	local lease = { stage = stage, event = stage["mainevent"], player = p, equips = p.equips,
+		vitals = [p.HP, p.MP, p.TP],
+		field = rp, actor = null, position = Vector3D( rp.pos), direction = rp.dir, visible = rp.visible, exit = null };
+	DANCE_WARDROBE.current = lease;
+	try{
+		local s = ::Rokugan.nearestFloor( rp, x, z);
+		if( !s) throw "dance: no walkable stage floor";
+		// Use only the ceremonial outfit onstage. The complete field loadout is kept by the lease.
+		p.equips = array( length( lease.equips));
+		p.setEquip( 3, RPGObject.create( MIKO_ARMOR));
+		if( !p.equips[3] || p.equips[3].dataid != MIKO_ARMOR) throw "dance: unable to fit Hiruma's stage outfit";
+		local actor = ::Rokugan.createNativeChara( p.data, p);
+		if( !actor) throw "dance: Hiruma's stage model is unavailable";
+		lease.actor = actor;
+		actor.rpgobj = p;
+		actor.pos( s.x, s.y, s.z);
+		actor.setDir( dir);
+		actor.matdirty = true;
+		stage.scn.addObject( actor);
+		rp.setVisible( false);
+		rp.pos( s.x, s.y, s.z);
+		rp.setDir( dir);
+		rp.matdirty = true;
+		stage.setCamerawork( { dzoom = zoom, dpos = [DANCE_CAM_SHIFT, 0.0, 0.0], fade = 600 });
+		::Rokugan.danceAnim( "dance_idle");
+		log( "dance: Hiruma fitted with %S at %.2f %.2f" % [MIKO_ARMOR, s.x, s.z]);
+		return true;
+	}catch( ex){
+		printexception( ex);
+		restoreDanceStage();
+		return false;
+	}
+};
+
+::Rokugan.danceStageEnd <- function( x, z, dir){
+	restoreDanceStage( [x, z, dir]);
+};
+::Rokugan.danceRelease <- function(){
+	restoreDanceStage();
+};
+::Rokugan.runDance <- function( kind, sx, sz, fx, fz, dir){
+	if( !this.danceStage( sx, sz, dir)) return 0;
+	DANCE_WARDROBE.current.exit = [fx, fz, dir];
+	local result = 0;
+	try{ result = this.miniGame( kind); }catch( ex){ printexception( ex); }
+	restoreDanceStage();
+	return result;
+};
+
+// An interrupted event or stage must also return the costume loan.
+::RPGStage._rt_dance_stage_body <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	local lease = DANCE_WARDROBE.current;
+	if( lease && (lease.stage != this || (lease.event && lease.event != this["mainevent"])))
+		restoreDanceStage();
+	this._rt_dance_stage_body( dt);
+};
+
+local DANCE_PRIZES = [
+	null,
+	["A175", 1, "Red Claw Kanzashi"],
+	["A176", 2, "Kaiu Iron Fan"],
+	["A177", 4, "Jade Claw of the Wall"]];
+local danceHistory = function(){
+	local etc = ::rpgstat.etc;
+	if( !etc["mikoDance"]) etc.mikoDance <- {};
+	return etc.mikoDance;
+};
+local hasCompletedDance = function(){
+	local history = ::rpgstat.etc["mikoDance"];
+	// Older saves wrote only the most recent grade and the prize mask.
+	return (history && ("firstGrade" in history)) || ::rpgvar["G1642"] > 0 || ::rpgvar["G1643"] > 0;
+};
+local alreadyHasMiko = function(){
+	local stat = ::rpgstat, loan = DANCE_WARDROBE.current;
+	local isMiko = @( item) item && item.dataid == MIKO_ARMOR;
+	if( stat.countItems( MIKO_ARMOR, false) || stat.storage.find( isMiko)) return true;
+	foreach( id, person in stat.playermap){
+		if( !person) continue;
+		local owned = loan && person == loan.player ? loan.equips : person.equips;
+		if( owned.find( isMiko)) return true;
+	}
+	foreach( owner, bag in (stat.etc["roadBags"] || {})){
+		if( (bag["armors"] || []).find( isMiko) || (bag["storage"] || []).find( isMiko)) return true;
+	}
+	return false;
+};
+local recordDance = function( grade, qualifies){
+	local history = danceHistory();
+	local out = { first = !hasCompletedDance(), prize = null, miko = false };
+	if( out.first){
+		history.firstGrade <- grade;
+		::rpgvar["G1643"] = grade;
+		log( "dance: saved first completed grade %d" % grade);
+	}
+	if( qualifies && !history["mikoAwarded"]){
+		if( !alreadyHasMiko()){
+			::rpgstat.addItemID( MIKO_ARMOR, 1, 1);
+			out.miko = true;
+			log( "dance: awarded Hiruma's Miko Attire");
+		}
+		history.mikoAwarded <- true;
+	}
+	local tier = DANCE_PRIZES[grade];
+	if( !out.first && tier && (::rpgvar["G1642"] & tier[1]) == 0){
+		::rpgstat.addItemID( tier[0], 1, 1);
+		::rpgvar["G1642"] = ::rpgvar["G1642"] | tier[1];
+		out.prize = tier[2];
+		log( "dance: awarded replay prize " .. tier[0]);
+	}
+	return out;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	The arrows: an "up" arrow drawn from rects in a 64 x 64 box, turned for the other lanes.
+local ARROW_UP = [[26, 2, 12, 6], [20, 8, 24, 6], [14, 14, 36, 6], [8, 20, 48, 6], [2, 26, 60, 6], [22, 32, 20, 28]];
+local LANE_NAMES = ["left", "down", "up", "right"];
+local LANE_COL = [0xd8443cff, 0x3fa7c9ff, 0x7cc45aff, 0xe8b23aff];		//	crimson, river blue, pine green, gold
+local arrowRects = function( lane){
+	local out = [];
+	foreach( r in ARROW_UP){
+		local x = r[0], y = r[1], w = r[2], h = r[3];
+		switch( lane){
+		case 0: out.append( [y, x, h, w]); break;				//	left: the up arrow, transposed
+		case 1: out.append( [x, 64 - y - h, w, h]); break;		//	down: flipped
+		case 2: out.append( [x, y, w, h]); break;
+		case 3: out.append( [64 - y - h, x, h, w]); break;		//	right
+		}
+	}
+	return out;
+};
+local ARROWS = [arrowRects( 0), arrowRects( 1), arrowRects( 2), arrowRects( 3)];
+
+local JUDGES = [
+	{ name = "Hida Yakamo", short = "Yakamo" },
+	{ name = "Kaiu Takakana", short = "Takakana" },
+	{ name = "Yasuki Kurako", short = "Kurako" }];
+//	what each judge says at each grade (0 laughed at .. 3)
+local JUDGE_SAYS = [
+	["Ha! HA! Father, did you see that?", "She didn't fall over. That's something.", "Good. Loud, but good.",
+		"Ha! She dances like she fights - all the way in."],
+	["Scouts should stay in the trees.", "Adequate.", "A few steps late. A few.", "Not one wasted step."],
+	["Oh dear. Oh, Hiruma-san.", "Brave! The court likes brave. Mostly.", "Very fine, Hiruma-san. Very fine.",
+		"The Crane will be talking about this until spring."]];
+local JUDGE_LIVE = [["Hm.", "Ha!", "HA! Yes!", "...Hm."], ["...", "Mm.", "Precise.", "Late."],
+	["Oh!", "Lovely!", "Wonderful!", "Oh dear."]];		//	[watching, a run of 10, a run of 25, a miss streak]
+local GRADES = ["Laughed at", "B", "A", "S"];
+
+class RTDance extends ::RTMini
+{
+	hard = false; practice = false; chart = null; notes = null; next = 0; songMs = -1000.0; started = false;
+	waitMs = 0.0; bgm = null; oldBgm = null; speed = 0.4; perfWin = 80.0; goodWin = 150.0; recY = 96.0;
+	laneX = null; LW = 72.0; recs = null; flash = null; ljudge = null; lcombo = null; lmeter = null; meter = null;
+	busts = null; lreact = null; combo = 0; best = 0; nPerf = 0; nGood = 0; nMiss = 0; missRun = 0;
+	lastMove = 0.0; lastMiss = -9999.0; grade = 0; scores = null; resumeState = null; endT = 0.0; pending = null;
+	aiT = 0.0;
+	firstPerformance = true; stopped = false; scoreActive = false; accuracy = 0.0; mikoQualified = false;
+
+	constructor( r, kind){
+		super( r, 0x00000000);
+		game = "dance";
+		hard = kind.indexOf( "hard") >= 0;
+		practice = kind.indexOf( "practice") >= 0;
+		firstPerformance = !hasCompletedDance();
+		speed = hard ? 0.56 : 0.40;
+		perfWin = hard ? 50.0 : 80.0;
+		goodWin = hard ? 110.0 : 150.0;
+		notes = []; flash = []; recs = []; busts = []; lreact = []; laneX = []; scores = [0, 0, 0]; pending = [];
+		chart = ::Rokugan.DANCE_CHARTS[hard ? "hard" : "easy"];		//	(RokuganDanceChart_easy / _hard.sk)
+		foreach( p in chart.notes) notes.append( { t = p[0] + 0.0, lane = p[1], done = false, views = null });
+		//	the lanes: a dark strip on the right, four receptors at the top
+		local total = 4 * LW + 3 * 10.0, x0 = W - total - 56.0;
+		rect( x0 - 14, 0, total + 28, H, 0x0b0a1288);
+		rect( x0 - 14, 0, 2, H, 0xc9a45c88);
+		rect( x0 + total + 12, 0, 2, H, 0xc9a45c88);
+		for( local k = 0; k < 4; k++){
+			local x = x0 + k * (LW + 10.0);
+			laneX.append( x);
+			local rr = [];
+			foreach( q in ARROWS[k]) rr.append( rect( x + 4 + q[0], recY - 32 + q[1], q[2], q[3], 0xf4f0e640));
+			recs.append( rr);
+			flash.append( 0.0);
+		}
+		ljudge = label( x0 - 14, recY + 70, total + 28, 40, 30, 0xf4e2b0ff, 1);
+		lcombo = label( x0 - 14, recY + 108, total + 28, 30, 22, 0xd9c9a0ff, 1);
+		//	the judges, top left: bust, name, their live reaction; and a grace meter under them
+		foreach( i, j in JUDGES){
+			local x = 24.0 + i * 128.0, y = 16.0;
+			rect( x - 3, y - 3, 118, 136, 0x0b0a12cc);
+			local key = ("bustKey" in ::Rokugan) ? ::Rokugan.bustKey( j.name) : null;
+			local tex = key ? ::Rokugan.bustTexture( "/resource/bust/" .. key .. "/neutral.png") : null;
+			if( tex){
+				local s = Math.min( 112.0 / tex.width, 130.0 / tex.height);
+				local img = ::SKImageView( Sprite( tex));
+				img.sp.blend = SK_PMAMIX; img.enabled = false;
+				img.setRect( x + (112 - tex.width * s) / 2, y, tex.width * s, tex.height * s);
+				root.addChild( img); views.append( img);
+			}
+			local n = label( x - 3, y + 134, 118, 22, 16, 0xf4e2b0ff, 1);
+			n.setText( j.name);
+			local rl = label( x - 3, y + 156, 118, 24, 18, 0xf4f0e6ff, 1);
+			rl.setText( "");
+			lreact.append( rl);
+		}
+		rect( 24, 206, 374, 14, 0x0b0a12cc);
+		meter = rect( 26, 208, 1, 10, 0xc9a45cff);
+		lmeter = label( 24, 222, 374, 24, 16, 0xd9c9a0ff, 0);
+		buildPanel();
+		intro();
+	}
+	function intro(){
+		state = "intro";
+		showPanel( true, practice ? "The Dancers' Stage" : "The Dance Contest", [
+			"Arrows rise up the lanes. Press the same arrow (" .. (haspad ? "D-pad or stick" : "or WASD") .. ") as it meets the marks at the top.",
+			hard ? "Hard: a dance of its own. It starts slow. It doesn't stay slow." : "Easy: one step on the beat.",
+			"Hida Yakamo, Kaiu Takakana and Yasuki Kurako judge. " .. ctl( "stop") .. " stops.",
+			"Score 90% on Hard to keep Hiruma's Miko Attire."], ["Begin"]);
+		shot( "intro");
+	}
+	function begin(){
+		state = "play"; st = 0.0;
+		try{ oldBgm = ::getBGMID(); }catch( ex){ oldBgm = null; }
+		try{ bgm = ::playBGMID( chart.mu); }catch( ex){ printexception( ex); bgm = null; }
+		songMs = 0.0; started = false; waitMs = 0.0;
+		::Rokugan.danceAnim( "dance_idle");
+		log( "dance: %S%S, %d arrows (%S)" % [hard ? "hard" : "easy", practice ? " practice" : "", length( notes), aiMode() || "player"]);
+	}
+	function tellMs(){
+		try{ if( bgm) return bgm.tell() * 1000.0 / 44100.0; }catch( ex){}
+		return 0.0;
+	}
+	function clock( dt){
+		if( !started){												//	wait for the stream to start (decode, buffer)
+			local t = tellMs();
+			waitMs += dt;
+			if( t > 0.0 || waitMs > 1500.0){ started = true; songMs = t; }
+			return;
+		}
+		songMs += dt;
+		// tell() is the looping decoder position. The output counter detects the completed score.
+		try{
+			if( bgm && bgm.isLoopEnd()){ songMs = Math.max( songMs, chart.length); return; }
+		}catch( ex){}
+		local t = tellMs();
+		if( songMs >= chart.length - 500.0 && t > 0.0 && t < songMs - 400.0) return;
+		if( t > 0.0 && fabs( t - songMs) > 25.0) songMs += (t - songMs) * (fabs( t - songMs) > 400.0 ? 1.0 : 0.15);
+	}
+	function fabs( v){ return v < 0 ? -v : v; }
+	function moveFor( lane, spd){
+		::Rokugan.danceAnim( "dance_" .. LANE_NAMES[lane], spd);
+		lastMove = songMs;
+	}
+	function react( i, text){ if( i < length( lreact)) lreact[i].setText( text); }
+	function judge( n, dt){
+		n.done = true;
+		dropViews( n);
+		local a = fabs( dt);
+		if( a <= perfWin){ nPerf++; ljudge.setText( "Perfect"); ljudge.setColor( 0xffe08aff); }
+		else{ nGood++; ljudge.setText( "Good"); ljudge.setColor( 0xb8d0a0ff); }
+		combo++; missRun = 0;
+		if( combo > best) best = combo;
+		if( firstPerformance && combo == 10) foreach( i, v in JUDGE_LIVE) react( i, v[1]);
+		if( firstPerformance && combo == 25) foreach( i, v in JUDGE_LIVE) react( i, v[2]);
+		flash[n.lane] = 160.0;
+		if( scoreActive) return;
+		//	the move: faster when the next arrow is close (Hard's eighth notes); two at once is a leap
+		local gap = 520.0;
+		for( local k = next; k < length( notes); k++) if( !notes[k].done && notes[k].t > n.t + 1.0){ gap = notes[k].t - n.t; break; }
+		local spd = Math.clamp( 470.0 / Math.max( gap, 120.0), 1.0, 2.2);
+		local twin = false;
+		foreach( m in notes) if( m != n && m.done && fabs( m.t - n.t) < 1.0 && m.lane != n.lane) twin = true;
+		if( twin) ::Rokugan.danceAnim( "dance_up", spd); else moveFor( n.lane, spd);
+		lastMove = songMs;
+	}
+	function miss( n){
+		n.done = true;
+		dropViews( n);
+		nMiss++; combo = 0; missRun++;
+		ljudge.setText( "Miss"); ljudge.setColor( 0xd8443cff);
+		if( firstPerformance && missRun == 4) foreach( i, v in JUDGE_LIVE) react( i, v[3]);
+		if( !scoreActive && songMs - lastMiss > 700.0){ ::Rokugan.danceAnim( "dance_stumble", 1.3); lastMove = songMs; }
+		lastMiss = songMs;
+	}
+	function dropViews( n){
+		if( n.views) foreach( v in n.views) v.removeFromParent();
+		n.views = null;
+	}
+	function press( lane){
+		flash[lane] = Math.max( flash[lane], 90.0);
+		local bestN = null, bestD = 1000000000.0;
+		for( local k = next; k < length( notes); k++){
+			local n = notes[k];
+			if( n.t - songMs > goodWin) break;
+			if( n.done || n.lane != lane) continue;
+			local d = fabs( n.t - songMs);
+			if( d <= goodWin && d < bestD){ bestN = n; bestD = d; }
+		}
+		if( bestN) judge( bestN, bestN.t - songMs);
+	}
+	function drawNotes(){
+		for( local k = next; k < length( notes); k++){
+			local n = notes[k];
+			local y = recY - 32 + (n.t - songMs) * speed;
+			if( y > H + 40) break;
+			if( n.done) continue;
+			local x = laneX[n.lane] + 4;
+			if( !n.views){
+				n.views = [];
+				foreach( q in ARROWS[n.lane]){
+					local v = ::SKImageView( ::Rokugan.miniSpriteWhite());
+					v.enabled = false; v.setColor( LANE_COL[n.lane]);
+					root.addChild( v);
+					n.views.append( v);
+				}
+			}
+			foreach( i, q in ARROWS[n.lane]) n.views[i].setRect( x + q[0], y + q[1], q[2], q[3]);
+		}
+		while( next < length( notes) && notes[next].done) next++;
+		foreach( k, rr in recs){
+			local on = flash[k] > 0.0;
+			foreach( v in rr) v.setColor( on ? (LANE_COL[k] & 0xffffff00) | 0xff : 0xf4f0e640);
+		}
+		local tot = nPerf + nGood + nMiss;
+		local acc = tot ? (nPerf * 2.0 + nGood) / (2.0 * tot) : 1.0;
+		meter.setRect( 26, 208, Math.max( 1.0, 370.0 * acc), 10);
+		meter.setColor( acc >= 0.9 ? 0xffe08aff : acc >= 0.75 ? 0xb8d0a0ff : acc >= 0.55 ? 0xc9a45cff : 0xd8443cff);
+		lmeter.setText( "Grace %d%%" % [int( acc * 100.0 + 0.5)]);
+		lcombo.setText( combo >= 4 ? "%d in a row" % [combo] : "");
+	}
+	function aiStep( dt){
+		local m = aiMode();
+		if( !m || m == "lose") return;
+		for( local k = next; k < length( notes); k++){
+			local n = notes[k];
+			if( n.t > songMs) break;
+			if( n.done) continue;
+			if( m == "ok" && (k % 4) == 3) continue;			//	("ok": every fourth arrow is left to miss)
+			judge( n, songMs - n.t);
+		}
+	}
+	function step( dt){
+		foreach( k, f in flash) flash[k] = Math.max( 0.0, f - dt);
+		if( state == "play"){
+			if( hit.back){ askQuit(); return; }
+			clock( dt);
+			if( !started) return;
+			scoreActive = ("mikoPerform" in ::Rokugan) && ::Rokugan.mikoPerform( hard, songMs);
+			aiStep( dt);
+			for( local k = 0; k < 4; k++) if( hit[LANE_NAMES[k]]) press( k);
+			for( local k = next; k < length( notes); k++){
+				local n = notes[k];
+				if( n.t - songMs > -goodWin) break;
+				if( !n.done) miss( n);
+			}
+			if( !scoreActive && songMs - lastMove > 650.0){ ::Rokugan.danceAnim( "dance_idle"); lastMove = songMs + 1000000.0; }
+			drawNotes();
+			if( shotname && songMs > 20000.0 && songMs - dt <= 20000.0) shot( "play");
+			local last = length( notes) ? notes[length( notes) - 1].t : 0.0;
+			if( next >= length( notes) && songMs >= Math.max( chart.length, last + 900.0)) finish();
+			return;
+		}
+		if( state == "ending"){
+			endT -= dt;
+			if( endT <= 0.0) results();
+			return;
+		}
+		if( state == "bowing"){
+			endT -= dt;
+			if( endT <= 0.0){ result = grade >= 1 ? 1 : 2; done = true; }
+		}
+	}
+	function askQuit(){
+		resumeState = state; state = "quit";
+		try{ if( bgm) bgm.pause( true); }catch( ex){}
+		showPanel( true, "Stop dancing?", ["\"The music's still playing, Hiruma!\"", "",
+			"Stopping now counts as a stumble off the stage.", ""], ["Keep dancing", "Stop"]);
+	}
+	function finish( quit = false){
+		state = "ending"; endT = 1600.0;
+		local tot = Math.max( 1, length( notes));
+		local hits = nPerf * 2 + nGood;
+		local acc = hits / (2.0 * tot);
+		accuracy = acc;
+		stopped = quit;
+		mikoQualified = !quit && hard && hits * 5 >= tot * 9;
+		grade = quit ? 0 : acc >= 0.90 ? 3 : acc >= 0.75 ? 2 : acc >= 0.55 ? 1 : 0;
+		if( !hard && grade > 2) grade = 2;								//	(Easy tops out at A)
+		local base = acc * 10.0;
+		scores = [Math.clamp( int( base * 0.6 + 4.0 * best / tot + 0.5), 0, 10),	//	Yakamo: the run, the nerve
+			Math.clamp( int( 10.0 * nPerf / tot + 0.5), 0, 10),						//	Takakana: only the exact ones
+			Math.clamp( int( base + 1.0 + 0.5), 0, 10)];								//	Kurako: generous
+		log( "dance: over - perfect %d good %d miss %d, best %d, acc %.2f, grade %S, judges %d %d %d" % [nPerf, nGood,
+			nMiss, best, acc, GRADES[grade], scores[0], scores[1], scores[2]]);
+		try{ if( bgm) bgm.fadeout( 1200); }catch( ex){}
+		if( "mikoRelease" in ::Rokugan) ::Rokugan.mikoRelease();
+		scoreActive = false;
+		::Rokugan.danceAnim( grade >= 1 ? "dance_finale" : "dance_shame");
+		if( grade >= 1) sfx( "SE300"); else sfx( "SE301");
+		foreach( i, v in JUDGE_SAYS) react( i, "");
+		ljudge.setText( firstPerformance && grade < 1 && !quit ? "The court laughs." : "");
+		shot( "end");
+	}
+	function results(){
+		state = "results";
+		local scored = stopped ? null : recordDance( grade, mikoQualified);
+		local total = scores[0] + scores[1] + scores[2];
+		local title = stopped ? "Dance stopped" : scored.first ?
+			(grade == 3 ? "The hall is on its feet." : grade == 2 ? "Warm applause." :
+			grade == 1 ? "Polite applause." : "The court laughs behind its fans.") : "Dance complete";
+		local lines = [
+			"Yakamo %d   Takakana %d   Kurako %d   -   %d / 30" % [scores[0], scores[1], scores[2], total],
+			"Grade: %S   Accuracy: %.1f%%   (%d perfect, %d good, %d missed)" %
+				[GRADES[grade], accuracy * 100.0, nPerf, nGood, nMiss]];
+		if( scored && scored.first){
+			lines.append( "Yakamo: \"" .. JUDGE_SAYS[0][grade] .. "\"");
+			if( !scored.miko) lines.append( "Takakana: \"" .. JUDGE_SAYS[1][grade] .. "\"   Kurako: \"" .. JUDGE_SAYS[2][grade] .. "\"");
+		}
+		if( scored && scored.prize) lines.append( "Replay prize: " .. scored.prize);
+		if( scored && scored.miko) lines.append( "Hiruma can keep her Miko Attire.");
+		showPanel( true, title, lines, [grade >= 1 ? "Bow" : "Step off the stage"]);
+		shot( "results");
+	}
+	function chosen( i){
+		if( state == "intro"){ begin(); return; }
+		if( state == "quit"){
+			if( i == 0){ state = resumeState; try{ if( bgm) bgm.pause( false); }catch( ex){} return; }
+			try{ if( bgm) bgm.pause( false); }catch( ex){}
+			log( "dance: stopped at %.1f s" % [songMs / 1000.0]);
+			foreach( n in notes) if( !n.done){ n.done = true; dropViews( n); nMiss++; }
+			finish( true);
+			return;
+		}
+		if( state == "results"){
+			state = "bowing"; endT = grade >= 1 ? 1500.0 : 900.0;
+			::Rokugan.danceAnim( grade >= 1 ? "dance_bow" : "dance_shame");
+		}
+	}
+	function close(){
+		restoreDanceStage();
+		foreach( n in notes) dropViews( n);
+		try{ if( bgm) bgm.fadeout( 300); }catch( ex){}
+		try{ if( oldBgm) ::fadeBGMID( oldBgm, 800); }catch( ex){ printexception( ex); }
+		foreach( v in views) if( v) v.removeFromParent();		//	(RTMini.close: no base. calls in this dialect)
+		views = [];
+		removeFromParent();
+	}
+}
+::RTDance <- RTDance;
+
+if( !("mikoPerform" in ::Rokugan))
+	runsk( dirname( callee().getSourceName()) .. "/RokuganMikoChoreography.sk");
+
+printf( "Rokugan dance contest loaded\n");

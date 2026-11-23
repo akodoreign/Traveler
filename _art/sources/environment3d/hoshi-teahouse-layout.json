@@ -1,0 +1,40 @@
+{
+  "room": [
+    42,
+    38
+  ],
+  "furnishings": 41,
+  "sources": [
+    {
+      "name": "hoshi_tea_bowl",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hoshi_tea_bowl_00001_.glb",
+      "grid": [
+        25,
+        25,
+        13
+      ],
+      "occupied": 1787,
+      "world_size": [
+        0.272,
+        0.261,
+        0.145
+      ]
+    },
+    {
+      "name": "hoshi_tea_kettle",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hoshi_tea_kettle_00001_.glb",
+      "grid": [
+        30,
+        20,
+        27
+      ],
+      "occupied": 1830,
+      "world_size": [
+        0.53,
+        0.47,
+        0.35
+      ]
+    }
+  ],
+  "fit": "M123 original gameplay events 1\u20133"
+}

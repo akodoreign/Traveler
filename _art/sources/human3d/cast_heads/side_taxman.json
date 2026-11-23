@@ -1,0 +1,124 @@
+{
+  "key": "side_taxman_portrait_face",
+  "source": "side_taxman_repaired_atlas.glb",
+  "scale": 13.9,
+  "features": {
+    "eyes": [
+      [
+        192,
+        289,
+        0.04
+      ],
+      [
+        286,
+        288,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        188,
+        272
+      ],
+      [
+        290,
+        272
+      ]
+    ],
+    "mouth": [
+      239,
+      358
+    ]
+  },
+  "socket_sample_levels": [
+    -0.615,
+    -0.608,
+    -0.601,
+    -0.594,
+    -0.587,
+    -0.58,
+    -0.573,
+    -0.566,
+    -0.5589999999999999,
+    -0.5519999999999999,
+    -0.5449999999999999,
+    -0.5379999999999999,
+    -0.5309999999999999,
+    -0.5239999999999999,
+    -0.5169999999999999,
+    -0.5099999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    0.028,
+    -0.015
+  ],
+  "skin_match": [
+    236,
+    175,
+    131
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 13.9,
+  "fit_matrix_blender": [
+    [
+      13.899653039894844,
+      -0.03484871470910155,
+      0.0918201373679567,
+      0.3193936219805006
+    ],
+    [
+      0.033688376932836175,
+      13.89885313268482,
+      0.17534733907547834,
+      0.31268258320142095
+    ],
+    [
+      -0.09225217505716617,
+      -0.17512042469210462,
+      13.898590661396414,
+      107.01535718154707
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 11433,
+    "lower_overlap_blended_vertices": 663,
+    "minimum_seam_head_weight": 0.2703036272223289,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      190,
+      300
+    ],
+    [
+      290,
+      300
+    ],
+    [
+      207,
+      315
+    ],
+    [
+      239,
+      358
+    ]
+  ],
+  "skin_sample_view": "Diffuse bilateral and lower face measurements taken on exact Lion Tax-collector V2.",
+  "raw_skin_srgb": [
+    236,
+    175,
+    131
+  ],
+  "review_wardrobe_mesh": "A135_lion_takeo",
+  "proof_pose_family": "blade"
+}

@@ -1,0 +1,465 @@
+//	RokuganKabuki.sk : the kabuki rehearsal (user 2026-11-22: "in one of them you have to do a play, tht should be a
+//	minigame modeled on the hiruma dance minigame but with kabuki ... so make sure to add a stage there").
+//	Crane Ch4 S03: Kakita Rensei rehearses "The Empress of Nothing" on the old stage in Kyuden Doji's north garden.
+//	- ::Rokugan.miniGame( "kabuki_easy" | "kabuki_hard") (RokuganMini.sk) opens RTKabuki: four lanes over the live stage
+//	  - Turn / Stamp / Mie / Draw - and Rensei's own 3-D model performs each one you hit (tools/blender/kabuki_poses.py
+//	  -> resource/native_chara/kabuki.mot; hook in RokuganNativeChara anime2). The mie land on the tsuke's battari.
+//	- The music is MU128 (tools/gen_music.py t_kabuki); the charts are its own notes (RokuganDanceChart_kabuki_*.sk),
+//	  timed against the BGM's playback position.
+//	- The three actors judge; the grade (0 a flop, 1 B, 2 A, 3 S; Easy tops out at A) goes to G1645, the result to G1231
+//	  (1 = it played, 2 = it fell apart / stopped). Test hooks as the other mini-games (-rtmini win / ok / lose).
+local log( s){ printf( "[RT] %S\n", s); }
+local sfx = function( id){ try{ ::playSound( id); }catch( ex){} };
+
+local KABUKI_BANK = "/resource/native_chara/kabuki.mot";
+::Rokugan.KABUKI_CLIPS <- {
+	kabuki_idle = [0, 39, true], kabuki_turn = [40, 54, false], kabuki_stamp = [55, 71, false],
+	kabuki_mie = [72, 92, false], kabuki_draw = [93, 107, false], kabuki_falter = [108, 126, false],
+	kabuki_grand_mie = [127, 167, false], kabuki_bow = [168, 208, false] };
+local KABUKI_MOT = { m = null };
+::Rokugan.kabukiMotion <- function(){				//	RokuganNativeChara.sk anime2: the motion for a kabuki_* clip
+	if( !KABUKI_MOT.m){
+		local r = ::getResource( KABUKI_BANK);
+		if( r) KABUKI_MOT.m = ::getMotionData( r);
+	}
+	return KABUKI_MOT.m;
+};
+::Rokugan.kabukiAnim <- function( id, spd = 1.0){
+	local a = ::rpgstage ? ::rpgstage["player3d"] : null;
+	if( !a || !("animemap" in a) || !::getResource( KABUKI_BANK)) return null;
+	foreach( k, c in ::Rokugan.KABUKI_CLIPS)
+		if( !(k in a.animemap)) a.animemap[k] <- { st = c[0], en = c[1], spd = 30.0, loop = c[2], replay = true };
+	try{
+		local layers = a.animlayers.layers, prev = layers[0];
+		if( prev) prev.locked = 0;
+		local al = a.anime2( { id = id, spd = spd });					//	(a fresh table: #{} is built once)
+		if( !al) return null;
+		al.locked = 1;
+		if( prev && prev != al && prev.weight > 0.0){
+			prev.wfunc = SK3DObject._fadeoutfunc( 0.08);
+			layers[1] = prev;
+		}
+		return al;
+	}catch( ex){ printexception( ex); }
+	return null;
+};
+::Rokugan.kabukiRelease <- function(){
+	local a = ::rpgstage ? ::rpgstage["player3d"] : null;
+	if( !a) return;
+	try{
+		local al = a.animlayers.layers[0];
+		if( al) al.locked = 0;
+		a.anime2( #{ id = "stand" });
+	}catch( ex){ printexception( ex); }
+};
+//	gen_maps: Rensei to the stage's centre (world x, z) facing the garden, and back down after
+::Rokugan.kabukiStage <- function( x, z, dir){
+	local rp = ::rpgstage ? ::rpgstage["player3d"] : null;
+	if( !rp) return false;
+	local s = ::Rokugan.nearestFloor( rp, x, z);
+	if( s) rp.pos( s.x, s.y, s.z);
+	rp.setDir( dir);
+	rp.matdirty = true;
+	::Rokugan.kabukiAnim( "kabuki_idle");
+	return true;
+};
+::Rokugan.kabukiStageEnd <- function( x, z, dir){
+	::Rokugan.kabukiRelease();
+	local rp = ::rpgstage ? ::rpgstage["player3d"] : null;
+	if( !rp) return;
+	local s = ::Rokugan.nearestFloor( rp, x, z);
+	if( s) rp.pos( s.x, s.y, s.z);
+	rp.setDir( dir);
+	rp.matdirty = true;
+};
+
+local ARROW_UP = [[26, 2, 12, 6], [20, 8, 24, 6], [14, 14, 36, 6], [8, 20, 48, 6], [2, 26, 60, 6], [22, 32, 20, 28]];
+local arrowRects = function( lane){
+	local out = [];
+	foreach( r in ARROW_UP){
+		local x = r[0], y = r[1], w = r[2], h = r[3];
+		switch( lane){
+		case 0: out.append( [y, x, h, w]); break;
+		case 1: out.append( [x, 64 - y - h, w, h]); break;
+		case 2: out.append( [x, y, w, h]); break;
+		case 3: out.append( [64 - y - h, x, h, w]); break;
+		}
+	}
+	return out;
+};
+local ARROWS = [arrowRects( 0), arrowRects( 1), arrowRects( 2), arrowRects( 3)];
+local KEYS = ["left", "down", "up", "right"];
+local MOVES = ["turn", "stamp", "mie", "draw"];
+local MOVE_LABEL = ["Turn", "Stamp", "Mie", "Draw"];
+//	kabuki colours: the curtain's persimmon, black (as ink blue), green; and gold
+local LANE_COL = [0xd9692aff, 0x5a6fa8ff, 0xe8c23aff, 0x3f9a5cff];
+//	(user: "judges should be crane high ranking figures") Lady Sanae watches in secret, with two she trusts
+local JUDGES = ["Doji Sanae", "Daidoji Uji", "Kakita Yasurugi"];
+local JUDGE_SAYS = [
+	["Hm. Again, Rensei-san. Quietly.", "It holds. She may believe it.", "There. That is the court of Komatsu.",
+		"Four hundred years, and it still plays. Hm."],
+	["I've seen better order from drunk sailors.", "A wall with gaps. Adequate.", "Disciplined. Good.",
+		"That would stop an army."],
+	["Kakita feet. The hands were not.", "Brave, young lord.", "The blade scene - yes.",
+		"Your father should have seen that. Perhaps better he did not."]];
+//	(user: "the kabuki i think should have 4 parts ... with scene setting narration between parts") the play's four
+//	acts; the event (gen_maps S03_CR4) narrates each before it starts
+local ACTS = ["", "Act One - The Court of Komatsu", "Act Two - The Mirror", "Act Three - The Blade",
+	"Act Four - The Title"];
+local ACT_SHORT = ["", "Act One", "Act Two", "Act Three", "Act Four"];
+local CURTAIN = ["", "The bride has taken her place.", "The mirror lies, and the court believes it.",
+	"The guard's blade has found her fear."];
+::Rokugan.kabukiRun <- { perf = 0, good = 0, miss = 0, best = 0, hardActs = 0, hardNotes = 0 };		//	the four acts together (reset at Act One)
+local CALLS = ["Kakita-ya!", "Matte mashita!", "Nippon-ichi!"];			//	the kakegoe: the house's name, "we waited for this!"
+local GRADES = ["A flop", "B", "A", "S"];
+local KABUKI_COSTUME = "A210";
+local grantKabukiCostume = function( run){
+	if( run.hardActs != 4 || run.hardNotes <= 0 || run.perf + run.good + run.miss != run.hardNotes) return false;
+	if( (run.perf * 2 + run.good) * 5 < run.hardNotes * 9 || !::rpgdata[KABUKI_COSTUME]) return false;
+	local stat = ::rpgstat, history = stat.etc;
+	if( history["kabukiCostumeAwarded"]) return false;
+	local alreadyOwned = stat.countItems( KABUKI_COSTUME, false) > 0;
+	if( !alreadyOwned) stat.addItemID( KABUKI_COSTUME, 1, 1);
+	history.kabukiCostumeAwarded <- true;
+	if( !alreadyOwned) log( "kabuki: awarded " .. KABUKI_COSTUME .. " Rensei's Kabuki Costume");
+	return !alreadyOwned;
+};
+
+class RTKabuki extends ::RTMini
+{
+	hard = false; chart = null; notes = null; next = 0; songMs = 0.0; started = false; waitMs = 0.0; bgm = null;
+	oldBgm = null; speed = 0.4; perfWin = 80.0; goodWin = 150.0; recY = 96.0; laneX = null; LW = 72.0; recs = null;
+	flash = null; ljudge = null; lcombo = null; lcall = null; lreact = null; combo = 0; best = 0; nPerf = 0; nGood = 0;
+	nMiss = 0; missRun = 0; lastMove = 0.0; lastMiss = -9999.0; grade = 0; scores = null; resumeState = null;
+	endT = 0.0; meter = null; lmeter = null; act = 1; stopped = false; stageScore = false;
+	caps = null; capIdx = 0; capT = 0.0; capBg = null; lspk = null; lcap = null;
+
+	constructor( r, kind){
+		super( r, 0x00000000);
+		game = "kabuki";
+		hard = kind.indexOf( "hard") >= 0;
+		act = int( kind.slice( kind.len() - 1));				//	kabuki_<easy|hard>_<act>
+		if( act == 1) ::Rokugan.kabukiRun = { perf = 0, good = 0, miss = 0, best = 0, hardActs = 0, hardNotes = 0 };
+		speed = hard ? 0.52 : 0.38;
+		perfWin = hard ? 55.0 : 85.0;
+		goodWin = hard ? 115.0 : 155.0;
+		notes = []; flash = []; recs = []; laneX = []; lreact = []; scores = [0, 0, 0];
+		chart = ::Rokugan.DANCE_CHARTS[kind];
+		foreach( p in chart.notes) notes.append( { t = p[0] + 0.0, lane = p[1], done = false, views = null });
+		local total = 4 * LW + 3 * 10.0, x0 = W - total - 56.0;
+		rect( x0 - 14, 0, total + 28, H, 0x120a0888);
+		rect( x0 - 14, 0, 2, H, 0xd9692a88);
+		rect( x0 + total + 12, 0, 2, H, 0xd9692a88);
+		for( local k = 0; k < 4; k++){
+			local x = x0 + k * (LW + 10.0);
+			laneX.append( x);
+			local rr = [];
+			foreach( q in ARROWS[k]) rr.append( rect( x + 4 + q[0], recY - 32 + q[1], q[2], q[3], 0xf4f0e640));
+			recs.append( rr);
+			local l = label( x - 6, recY + 34, LW + 12, 22, 16, 0xf4e2b0ff, 1);
+			l.setText( MOVE_LABEL[k]);
+			flash.append( 0.0);
+		}
+		ljudge = label( x0 - 14, recY + 70, total + 28, 40, 30, 0xf4e2b0ff, 1);
+		lcombo = label( x0 - 14, recY + 108, total + 28, 30, 22, 0xd9c9a0ff, 1);
+		lcall = label( 0, 262, x0 - 20, 60, 44, 0xffe08aff, 1);			//	(below the judges and the meter)		//	the audience's call, over the stage
+		foreach( i, nm in JUDGES){								//	the judges: bust, name, their live reaction
+			local x = 24.0 + i * 128.0, y = 16.0;
+			rect( x - 3, y - 3, 118, 136, 0x0b0a12cc);
+			local key = ("bustKey" in ::Rokugan) ? ::Rokugan.bustKey( nm) : null;
+			local tex = key ? ::Rokugan.bustTexture( "/resource/bust/" .. key .. "/neutral.png") : null;
+			if( tex){
+				local sc = Math.min( 112.0 / tex.width, 130.0 / tex.height);
+				local img = ::SKImageView( Sprite( tex));
+				img.sp.blend = SK_PMAMIX; img.enabled = false;
+				img.setRect( x + (112 - tex.width * sc) / 2, y, tex.width * sc, tex.height * sc);
+				root.addChild( img); views.append( img);
+			}
+			local n = label( x - 3, y + 134, 118, 22, 16, 0xf4e2b0ff, 1);
+			n.setText( nm);
+			local rl = label( x - 3, y + 156, 118, 24, 17, 0xf4f0e6ff, 1);
+			rl.setText( "");
+			lreact.append( rl);
+		}
+		rect( 24, 206, 374, 14, 0x0b0a12cc);
+		meter = rect( 26, 208, 1, 10, 0xd9692aff);
+		lmeter = label( 24, 222, 374, 24, 16, 0xd9c9a0ff, 0);
+		//	(user: "you may need to write the play ... so the narations can be done at the right spots") the play's
+		//	lines (docs/story/production/crane-ch4-play.md), shown over the stage as the music reaches them
+		caps = ("lines" in chart) ? chart.lines : [];
+		capBg = rect( 24, H - 196, x0 - 60, 118, 0x0b0a12cc);
+		lspk = label( 40, H - 188, x0 - 90, 28, 20, 0xffe08aff, 0);
+		lcap = [label( 40, H - 156, x0 - 90, 30, 22, 0xf4f0e6ff, 0), label( 40, H - 124, x0 - 90, 30, 22, 0xf4f0e6ff, 0)];
+		showCaption( null);
+		buildPanel();
+		state = "intro";
+		if( act == 1) showPanel( true, "The Empress of Nothing", [
+			"Four acts. Arrows rise up the lanes: Turn, Stamp, Mie, Draw.",
+			"Mie fall on the tsuke's crack; stamp with the great drum.",
+			hard ? "Hard: every note of the shamisen." : "Easy: one move on the beat. (The best run needs Hard.)",
+			(haspad ? "D-pad or stick plays the lanes. " : "") .. ctl( "stop") .. " stops the run-through."], ["Begin"]);
+		else showPanel( true, ACTS[act], ["", "", "", ""], ["Begin"]);
+		shot( "intro");
+	}
+	function fabs( v){ return v < 0 ? -v : v; }
+	function showCaption( c){
+		local on = c != null;
+		capBg.setVisible( on); lspk.setVisible( on);
+		foreach( l in lcap) l.setVisible( on);
+		if( !on) return;
+		lspk.setText( c[1]);
+		local words = c[2].split( " "), rows = ["", ""], k = 0;		//	two rows, wrapped at about 58 characters
+		foreach( w in words){
+			if( k == 0 && rows[0].len() + w.len() > 58) k = 1;
+			rows[k] = rows[k].len() ? rows[k] .. " " .. w : w;
+		}
+		lcap[0].setText( rows[0]); lcap[1].setText( rows[1]);
+		capT = 6500.0;
+	}
+	function begin(){
+		if( ("kabukiPrepareSet" in ::Rokugan) && ::Rokugan.kabukiPrepareSet( act)){
+			state = "set_change";
+			return;
+		}
+		startScore();
+	}
+	function startScore(){
+		state = "play"; st = 0.0;
+		try{ oldBgm = ::getBGMID(); }catch( ex){ oldBgm = null; }
+		try{ bgm = ::playBGMID( chart.mu); }catch( ex){ printexception( ex); bgm = null; }
+		songMs = 0.0; started = false; waitMs = 0.0;
+		stageScore = ("kabukiPerform" in ::Rokugan) && ::Rokugan.kabukiPerform( act, 0.0);
+		if( !stageScore) ::Rokugan.kabukiAnim( "kabuki_idle");
+		log( "kabuki: act %d %S, %d arrows (%S)" % [act, hard ? "hard" : "easy", length( notes), aiMode() || "player"]);
+	}
+	function tellMs(){
+		try{ if( bgm) return bgm.tell() * 1000.0 / 44100.0; }catch( ex){}
+		return 0.0;
+	}
+	function clock( dt){
+		if( !started){
+			local t = tellMs();
+			waitMs += dt;
+			if( t > 0.0 || waitMs > 1500.0){ started = true; songMs = t; }
+			return;
+		}
+		songMs += dt;
+		local t = tellMs();
+		if( t > 0.0 && fabs( t - songMs) > 25.0) songMs += (t - songMs) * (fabs( t - songMs) > 400.0 ? 1.0 : 0.15);
+	}
+	function react( i, text){ if( i < length( lreact)) lreact[i].setText( text); }
+	function judge( n, dt){
+		n.done = true;
+		dropViews( n);
+		if( fabs( dt) <= perfWin){ nPerf++; ljudge.setText( "Perfect"); ljudge.setColor( 0xffe08aff); }
+		else{ nGood++; ljudge.setText( "Good"); ljudge.setColor( 0xb8d0a0ff); }
+		combo++; missRun = 0;
+		if( combo > best) best = combo;
+		if( combo == 10 || combo == 25 || combo == 50){
+			lcall.setText( CALLS[combo == 10 ? 0 : combo == 25 ? 1 : 2]);
+			foreach( i, v in lreact) react( i, combo == 10 ? "Hm!" : "Yes!");
+		}
+		flash[n.lane] = 160.0;
+		if( stageScore) return;
+		local gap = 520.0;
+		for( local k = next; k < length( notes); k++) if( !notes[k].done && notes[k].t > n.t + 1.0){ gap = notes[k].t - n.t; break; }
+		::Rokugan.kabukiAnim( "kabuki_" .. MOVES[n.lane], Math.clamp( 470.0 / Math.max( gap, 120.0), 1.0, 2.2));
+		lastMove = songMs;
+	}
+	function miss( n){
+		n.done = true;
+		dropViews( n);
+		nMiss++; combo = 0; missRun++;
+		ljudge.setText( "Miss"); ljudge.setColor( 0xd8443cff);
+		lcall.setText( "");
+		if( missRun == 4) foreach( i, v in lreact) react( i, "...");
+		if( !stageScore && songMs - lastMiss > 700.0){ ::Rokugan.kabukiAnim( "kabuki_falter", 1.3); lastMove = songMs; }
+		lastMiss = songMs;
+	}
+	function dropViews( n){
+		if( n.views) foreach( v in n.views) v.removeFromParent();
+		n.views = null;
+	}
+	function press( lane){
+		flash[lane] = Math.max( flash[lane], 90.0);
+		local bestN = null, bestD = 999999999.0;
+		for( local k = next; k < length( notes); k++){
+			local n = notes[k];
+			if( n.t - songMs > goodWin) break;
+			if( n.done || n.lane != lane) continue;
+			local d = fabs( n.t - songMs);
+			if( d <= goodWin && d < bestD){ bestN = n; bestD = d; }
+		}
+		if( bestN) judge( bestN, bestN.t - songMs);
+	}
+	function drawNotes(){
+		for( local k = next; k < length( notes); k++){
+			local n = notes[k];
+			local y = recY - 32 + (n.t - songMs) * speed;
+			if( y > H + 40) break;
+			if( n.done) continue;
+			local x = laneX[n.lane] + 4;
+			if( !n.views){
+				n.views = [];
+				foreach( q in ARROWS[n.lane]){
+					local v = ::SKImageView( ::Rokugan.miniSpriteWhite());
+					v.enabled = false; v.setColor( LANE_COL[n.lane]);
+					root.addChild( v);
+					n.views.append( v);
+				}
+			}
+			foreach( i, q in ARROWS[n.lane]) n.views[i].setRect( x + q[0], y + q[1], q[2], q[3]);
+		}
+		while( next < length( notes) && notes[next].done) next++;
+		foreach( k, rr in recs) foreach( v in rr) v.setColor( flash[k] > 0.0 ? LANE_COL[k] : 0xf4f0e640);
+		local tot = nPerf + nGood + nMiss;
+		local acc = tot ? (nPerf * 2.0 + nGood) / (2.0 * tot) : 1.0;
+		meter.setRect( 26, 208, Math.max( 1.0, 370.0 * acc), 10);
+		lmeter.setText( "Presence %d%%" % [int( acc * 100.0 + 0.5)]);
+		lcombo.setText( combo >= 4 ? "%d in a row" % [combo] : "");
+	}
+	function aiStep( dt){
+		local m = aiMode();
+		if( !m || m == "lose") return;
+		for( local k = next; k < length( notes); k++){
+			local n = notes[k];
+			if( n.t > songMs) break;
+			if( n.done) continue;
+			if( m == "ok" && (k % 4) == 3) continue;
+			judge( n, songMs - n.t);
+		}
+	}
+	function step( dt){
+		foreach( k, f in flash) flash[k] = Math.max( 0.0, f - dt);
+		if( state == "set_change"){
+			if( hit.back){ askQuit(); return; }
+			if( !::Rokugan.kabukiAdvanceSet( dt)) startScore();
+			return;
+		}
+		if( state == "play"){
+			if( hit.back){ askQuit(); return; }
+			clock( dt);
+			if( !started) return;
+			stageScore = ("kabukiPerform" in ::Rokugan) && ::Rokugan.kabukiPerform( act, songMs);
+			aiStep( dt);
+			while( capIdx < length( caps) && caps[capIdx][0] <= songMs){ showCaption( caps[capIdx]); capIdx++; }
+			if( capT > 0.0){ capT -= dt; if( capT <= 0.0) showCaption( null); }
+			for( local k = 0; k < 4; k++) if( hit[KEYS[k]]) press( k);
+			for( local k = next; k < length( notes); k++){
+				local n = notes[k];
+				if( n.t - songMs > -goodWin) break;
+				if( !n.done) miss( n);
+			}
+			if( !stageScore && songMs - lastMove > 700.0){ ::Rokugan.kabukiAnim( "kabuki_idle"); lastMove = songMs + 1000000.0; }
+			drawNotes();
+			if( shotname && songMs > 20000.0 && songMs - dt <= 20000.0) shot( "play");
+			local last = length( notes) ? notes[length( notes) - 1].t : 0.0;
+			if( next >= length( notes) && songMs > last + 900.0) finish( false);
+			return;
+		}
+		if( state == "ending"){ endT -= dt; if( endT <= 0.0) results(); return; }
+		if( state == "bowing"){ endT -= dt; if( endT <= 0.0){ result = grade >= 1 ? 1 : 2; done = true; } }
+	}
+	function askQuit(){
+		resumeState = state; state = "quit";
+		try{ if( bgm) bgm.pause( true); }catch( ex){}
+		showPanel( true, "Stop the run-through?", ["\"From the top, then, young lord?\"", "",
+			"Stopping now counts as the scene falling apart.", ""], ["Keep going", "Stop"]);
+	}
+	function finish( quit){
+		state = "ending"; endT = 1800.0;
+		stopped = quit;
+		if( quit && ("kabukiScoreRelease" in ::Rokugan)){
+			::Rokugan.kabukiScoreRelease();
+			stageScore = false;
+		}
+		local run = ::Rokugan.kabukiRun;
+		run.perf += nPerf; run.good += nGood; run.miss += nMiss; run.best = Math.max( run.best, best);
+		// Only the four Hard acts of this uninterrupted run qualify for the costume.
+		if( !quit && hard && run.hardActs == act - 1){
+			run.hardActs = act;
+			run.hardNotes += length( notes);
+		}else run.hardActs = -1;
+		log( "kabuki: act %d over - perfect %d good %d miss %d%S" % [act, nPerf, nGood, nMiss, quit ? " (stopped)" : ""]);
+		if( quit || act < 4){											//	a curtain between acts (or the end)
+			grade = quit ? 0 : 1;
+			try{ if( bgm) bgm.fadeout( 1200); }catch( ex){}
+			if( !stageScore) ::Rokugan.kabukiAnim( quit ? "kabuki_falter" : "kabuki_mie");
+			lcall.setText( "");
+			shot( "end");
+			return;
+		}
+		nPerf = run.perf; nGood = run.good; nMiss = run.miss; best = run.best;		//	the verdict: all four acts
+		local tot = Math.max( 1, nPerf + nGood + nMiss);
+		local acc = (nPerf * 2.0 + nGood) / (2.0 * tot);
+		grade = quit ? 0 : acc >= 0.90 ? 3 : acc >= 0.75 ? 2 : acc >= 0.55 ? 1 : 0;
+		if( !hard && grade > 2) grade = 2;
+		local base = acc * 10.0;
+		scores = [Math.clamp( int( base + 0.5), 0, 10), Math.clamp( int( base * 0.6 + 4.0 * best / tot + 0.5), 0, 10),
+			Math.clamp( int( 10.0 * nPerf / tot + 0.5), 0, 10)];
+		log( "kabuki: over - perfect %d good %d miss %d, best %d, acc %.2f, grade %S" % [nPerf, nGood, nMiss, best, acc,
+			GRADES[grade]]);
+		try{ if( bgm) bgm.fadeout( 1500); }catch( ex){}
+		if( !stageScore) ::Rokugan.kabukiAnim( grade >= 1 ? "kabuki_grand_mie" : "kabuki_falter");
+		lcall.setText( grade >= 2 ? CALLS[grade == 3 ? 1 : 0] : "");
+		ljudge.setText( "");
+		shot( "end");
+	}
+	function results(){
+		state = "results";
+		if( stopped){
+			try{ ::rpgvar["G1645"] = 0; }catch( ex){}
+			showPanel( true, "The run-through falls apart.", ["", JUDGES[0] .. ": \"" .. JUDGE_SAYS[0][0] .. "\"", "", ""],
+				["Bow"]);
+			return;
+		}
+		if( act < 4){
+			local tot = Math.max( 1, nPerf + nGood + nMiss), acc = (nPerf * 2.0 + nGood) / (2.0 * tot);
+			local k = acc >= 0.9 ? 3 : acc >= 0.75 ? 2 : acc >= 0.55 ? 1 : 0;
+			showPanel( true, "Curtain on " .. ACT_SHORT[act], [CURTAIN[act], "Perfect %d, Good %d, Miss %d" % [nPerf,
+				nGood, nMiss], "", JUDGES[act % 3] .. ": \"" .. JUDGE_SAYS[act % 3][k] .. "\""], ["Continue"]);
+			return;
+		}
+		local awarded = false;
+		try{ awarded = grantKabukiCostume( ::Rokugan.kabukiRun); }catch( ex){ printexception( ex); }
+		local title = awarded ? "Rensei can keep his Kabuki Costume." : grade == 3 ? "Nobody in the garden breathes." :
+			grade == 2 ? "It works." : grade == 1 ? "It holds together." : "The scene falls apart.";
+		showPanel( true, title, [
+			"Sanae %d   Uji %d   Yasurugi %d   -   %d / 30" % [scores[0], scores[1], scores[2],
+				scores[0] + scores[1] + scores[2]],
+			"Grade: %S   (Perfect %d, Good %d, Miss %d; best run %d)" % [GRADES[grade], nPerf, nGood, nMiss, best],
+			"Sanae: \"" .. JUDGE_SAYS[0][grade] .. "\"",
+			"Uji: \"" .. JUDGE_SAYS[1][grade] .. "\"   Yasurugi: \"" .. JUDGE_SAYS[2][grade] .. "\""],
+			["Bow"]);
+		try{ ::rpgvar["G1645"] = grade; }catch( ex){ printexception( ex); }
+		shot( "results");
+	}
+	function chosen( i){
+		if( state == "intro"){ begin(); return; }
+		if( state == "quit"){
+			try{ if( bgm) bgm.pause( false); }catch( ex){}
+			if( i == 0){ state = resumeState; return; }
+			foreach( n in notes) if( !n.done){ n.done = true; dropViews( n); nMiss++; }
+			finish( true);
+			return;
+		}
+		if( state == "results"){
+			if( !stopped && act < 4){ result = 1; done = true; return; }		//	on to the next act (narrated)
+			if( stageScore && ("kabukiBowRelease" in ::Rokugan)) ::Rokugan.kabukiBowRelease();
+			stageScore = false;
+			state = "bowing"; endT = 1500.0; ::Rokugan.kabukiAnim( !stopped && grade >= 1 ? "kabuki_bow" : "kabuki_falter");
+		}
+	}
+	function close(){
+		foreach( n in notes) dropViews( n);
+		try{ if( bgm) bgm.fadeout( 300); }catch( ex){}
+		try{ if( oldBgm) ::fadeBGMID( oldBgm, 800); }catch( ex){ printexception( ex); }
+		foreach( v in views) if( v) v.removeFromParent();
+		views = [];
+		removeFromParent();
+	}
+}
+::RTKabuki <- RTKabuki;
+local staging = dirname( callee().getSourceName()) .. "/RokuganKabukiStaging.sk";
+if( ::getResource( staging)) runsk( staging);
+printf( "Rokugan kabuki rehearsal loaded\n");

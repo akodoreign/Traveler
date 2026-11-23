@@ -1,0 +1,14 @@
+// Executed only by tools/test_mini_pause.py (bot evalf), right after talking to Ide Fujio: once the memory game is
+// open, the pause menu (Esc) opens for 12 s and closes again, as a player reaching for "quit" would. Logs what the
+// game and the event do next.
+newthread().start( @(){
+	sleep( 6000);
+	printf( "[RT] MINI PAUSE TEST pausing (paused %S)\n", "" .. ::RPGMain.isPaused());
+	::RPGMain.setPaused( true);
+	sleep( 12000);
+	printf( "[RT] MINI PAUSE TEST unpausing\n");
+	::RPGMain.setPaused( false);
+	sleep( 6000);
+	::Rokugan.rtshot( "tmp/rt_shot/bot_minipause.raw");
+	printf( "[RT] MINI PAUSE TEST COMPLETE G1231 %S\n", "" .. ::rpgvar["G1231"]);
+});

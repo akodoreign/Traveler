@@ -1,0 +1,33 @@
+{
+  "map": "M555",
+  "mark": [
+    48,
+    55
+  ],
+  "stage_relative_origin": [
+    37.25,
+    2.5,
+    29.75
+  ],
+  "screen_width": 9.1,
+  "screen_height": 6.35,
+  "screen_travel": [
+    13.8,
+    4.5
+  ],
+  "mirror_source": {
+    "name": "kabuki_bronze_mirror",
+    "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kabuki_bronze_mirror_00001_.glb",
+    "grid": [
+      25,
+      17,
+      41
+    ],
+    "occupied": 2210,
+    "world_size": [
+      0.86,
+      0.48,
+      1.47
+    ]
+  }
+}

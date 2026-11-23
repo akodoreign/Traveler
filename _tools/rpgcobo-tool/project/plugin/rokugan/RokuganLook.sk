@@ -151,4 +151,108 @@ foreach( g in ["facepalm", "shrug", "crossarms", "scratch", "point"]){
 // Load the subclass after installing the sprite animation fallback it inherits.
 runsk( srcdir .. "/RokuganNativeChara.sk");
 
+// Field events own these actors. The party and battles use separate creation paths.
+local FIELD_NPC_SCALE = 1.25;
+// The quest-badged picture IDs share the exact playable cast identities.
+local sideStoryLooks = {
+	EP1165 = "EP382",	// Kitsu Takeo
+	EP1166 = "EP383",	// Yogo Mai
+	EP1167 = "EP384",	// Ide Fujio
+	EP1168 = "EP385",	// Daidoji Sakura
+	EP1169 = "EP381",	// Hiruma Goro
+	EP1170 = "EP380",	// Isawa Michio
+	EP1171 = "EP314"		// Moto Benjiro
+};
+local sideStoryBadgePath = "/resource/efx/rt/side_story_question.png";
+local addSideStoryBadge = function( actor){
+	local icon = clone ::rpgres["EP2651"];
+	icon.pic3d = sideStoryBadgePath;
+	icon.scale = 0.16;
+	local badge = RPG3DPicture();
+	badge.setPicture( icon);
+	badge.setBillboard( true);
+	badge.b3body = null;
+	badge.mesh.face[0].m.visiblemask = SK_VISIBLE_OPAQUE | SK_VISIBLE_TRANSPARENT;
+	local top = 0.0;
+	foreach( part in [actor.nativeBody, actor.nativeFace, actor.nativeHead, actor.nativeHeadband]){
+		if( part) top = Math.max( top, part.bnd.y + part.bnd.s);
+	}
+	local offset = actor.nativeBody.pos;
+	local height = Math.max( 1.0, top * actor.nativeBody.scale.y) + 0.18;
+	badge.setPosition( (offset.x, offset.y + height, offset.z, 0.0));
+	actor.addChild( badge);
+	actor.addGroup( badge);
+};
+// Both stand-ins use the same Kommei mesh as their battles.
+local fieldCreatureLooks = { EP435 = "EP123" };
+// The older generic humanoid roles use complete native looks with already-fitted clothes.
+local fieldPresets = {
+	CV003 = ["EP791", "EP797"],		// Nobleman
+	CV004 = ["EP821", "EP964"],		// Village girl
+	CV005 = ["EP768", "EP967"],		// Woman spellcaster
+	CV006 = ["EP818", "EP792"],		// Rogue
+	CV007 = ["EP825", "EP879"],		// Dancer
+	CV008 = ["EP740", "EP813"],		// Merchant
+	CV009 = ["EP1041", "EP951"],		// Unarmed fighter
+	CV014 = ["EP895", "EP745"],		// Boy
+	CV018 = ["EP853", "EP998"],		// Bard
+	CV019 = ["EP896", "EP779"],		// Nun
+	CV021 = ["EP913", "EP812"],		// Village woman
+	CV028 = ["EP978", "EP1040"],		// Farmer
+	CV029 = ["EP814", "EP908"],		// Matron
+	CV030 = ["EP705", "EP883"]		// Princess
+};
+local isFieldNpc = function( actor, data){	//	("local function" does not compile in this dialect)
+	local role = data["role"];
+	if( role != "villager" && role != "clerk" && role != "hotel" && role != "custom") return false;
+	if( actor instanceof ::RPG3DVoxChara){
+		local mot = actor.cv["mot"];
+		return mot && (mot.indexOf( "/leg2") >= 0 || mot.indexOf( "/leg4") >= 0);
+	}
+	if( !(actor instanceof ::RPG3DPicture)) return false;
+	local path = actor.pic["pic3d"];
+	if( !path) return false;
+	local stem = path.substring( path.lastIndexOf( "/") + 1, path.lastIndexOf( "."));
+	// Several props share the custom and villager roles so that players can inspect them.
+	return !stem.startsWith( "prop_") && !stem.startsWith( "decor_") &&
+		stem != "powder_keg" && stem != "bloodstone_basin";
+}
+
+::RPGStageEventRunner._rt_create_field_event <- ::RPGStageEventRunner.createEventObject;
+::RPGStageEventRunner.createEventObject <- function(){
+	local original = this._rt_create_field_event();
+	if( !original || stage["battle"] || original.rpgobj || !isFieldNpc( original, data)) return original;
+	local actor = original;
+	local model = data["mdlid"];
+	local storyLook = model ? sideStoryLooks[model] : null;
+	if( !original["nativeBody"]){
+		// Existing humanoid foes keep their exact head and clothes when they appear in story scenes.
+		local replacement = storyLook ? ::Rokugan.createNativeChara( { mdlid = storyLook })
+			: ::Rokugan.createFieldHumanoidFoe( data);
+		if( !replacement && !storyLook && model){
+			// Encounter previews use the installed creature rig at its battle scale.
+			local creature = ::Rokugan.createNativeFoe( { mdlid = fieldCreatureLooks[model] || model });
+			if( creature && creature.creatureReady){
+				creature.keepFieldInteraction( original);
+				return creature;
+			}
+		}
+		local options = model ? fieldPresets[model] : null;
+		if( !replacement && options && length( options)){
+			local mix = 0;
+			foreach( c in evid) mix = (mix * 31 + c) & 0x7fffffff;
+			local id = options[mix % length( options)];
+			replacement = ::Rokugan.createNativeChara( { mdlid = id });
+		}
+		if( replacement){
+			replacement.keepFieldInteraction( original);
+			actor = replacement;
+		}
+	}
+	actor.setFieldNpcScale( FIELD_NPC_SCALE);
+	if( storyLook && actor["nativeBodyTemplate"] && ::getResource( sideStoryBadgePath))
+		addSideStoryBadge( actor);
+	return actor;
+};
+
 printf( "Rokugan look plugin loaded\n");

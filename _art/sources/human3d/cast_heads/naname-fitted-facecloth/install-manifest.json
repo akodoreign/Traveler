@@ -1,0 +1,32 @@
+{
+  "actor": "side_naname",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_naname_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_naname_portrait_field_cloth.pm",
+      "to": "side_naname_portrait_field_cloth.pm",
+      "sha256": "4b8b8725939e6c8d00823af3796b841b771b52b7e8c0d105b8d907b8032564e1"
+    },
+    {
+      "from": "assets/side_naname_portrait_field_cloth.mdl",
+      "to": "side_naname_portrait_field_cloth.mdl",
+      "sha256": "f3e186cb9fe6346ae90c69a81ea055e8839f54437ea486bad53d5471adebcb56"
+    },
+    {
+      "from": "assets/tex/side_naname_portrait_field_cloth_color_srgb.png",
+      "to": "tex/side_naname_portrait_field_cloth_color_srgb.png",
+      "sha256": "947ce8c2b24e7977a089059b1817097a6f5e508e291562415d330d6b86a6303b"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_naname_portrait_field_cloth"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_naname\\painted-v2-final\\assets\\side_naname_portrait_face.glb",
+    "sha256": "8f8dfbb0423eda5da570df8b1345de21e9268dbc229c4177aac0e887d7f3bae1"
+  }
+}

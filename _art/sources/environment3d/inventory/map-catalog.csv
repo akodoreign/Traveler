@@ -1,0 +1,699 @@
+﻿map,name,family,purpose,source,registered,world_on_disk,render,event_count,linked_maps,environment_status
+M000,タイトル画面マップ,Named location review,,other registered map,True,True,rt_hd2d_field,1,M000,Awaiting voxel replacement
+M001,最初のマップ,Named location review,,other registered map,True,True,rt_hd2d_field,11,,Awaiting voxel replacement
+M002,草原1,Named location review,,other registered map,True,True,rt_hd2d_field,0,,Awaiting voxel replacement
+M003,街1,Named location review,,other registered map,True,True,rt_hd2d_field,6,,Awaiting voxel replacement
+M004,マップ M004,Named location review,,other registered map,True,True,pbr_df-1,0,,Awaiting voxel replacement
+M005,マップ M005,Named location review,,other registered map,True,True,rt_hd2d_field,1,,Awaiting voxel replacement
+M006,ルーム,Named location review,,other registered map,True,True,pbr_df-3-1,5,M001,Awaiting voxel replacement
+M007,ラクガキマップ,Named location review,,other registered map,True,True,pbr_df,0,,Awaiting voxel replacement
+M008,ウェブ用,Named location review,,other registered map,True,True,pbr_df,14,,Awaiting voxel replacement
+M094,M094,Named location review,,diagnostic,False,True,,0,,Awaiting voxel replacement
+M099,Prologue,Named location review,,Traveler generator,True,True,rt_hd2d_night,9,"M100, M200, M240, M253, M303, M345, M388, M414, M444",Awaiting voxel replacement
+M100,Kaiu Wall - Watchtower,Fortifications,"Watchtower flagstones, parapet masonry and hut timbers.",Traveler generator,True,True,rt_hd2d_night,77,"M101, M110",Native environment pass
+M101,Kaiu Wall - Garrison,Fortifications,"Connect the sealed Kaiu gate, armoury, watch posts and training yard.",Traveler generator,True,True,rt_hd2d_field,158,"M100, M170, M504, M110, M111, M112, M113, M102, M140",Native environment pass
+M102,Coast Road,Coastal trade road,"Keep the cart lane open, with an exposed tidal shelf and rest points on the cliff-side verge.",Traveler generator,True,True,rt_hd2d_field,89,"M130, M101, M103",Native environment pass
+M103,Hoshi-no-Ichi,Hoshi-no-Ichi market,"Anchor the town street around Kiyo's Drop Soup stall, Taneo, the tea-house door, egg trade, and the quay.",Traveler generator,True,True,rt_hd2d_field,107,"M120, M121, M122, M123, M124, M125, M102, M104, M470, M630",Native environment pass
+M104,Old Quarry - Hidden Ones' camp,Quarry and camp,"Open the shelters, animate their cloth and keep the old quarry's story route through the pit.",Traveler generator,True,True,rt_hd2d_field,91,M103,Native environment pass
+M105,Coast Road (night),Coast Road after dark,Use the same shoreline silhouette and landmark locations with light at the road and cave approach.,Traveler generator,True,True,rt_hd2d_night,80,M130,Native environment pass
+M110,Garrison - Tomoe's office,Fortifications,,Traveler generator,True,True,rt_hd2d_field,79,M101,Awaiting voxel replacement
+M111,Garrison - Barracks,Fortifications,,Traveler generator,True,True,rt_hd2d_field,77,M101,Awaiting voxel replacement
+M112,Garrison - Armoury,Fortifications,,Traveler generator,True,True,rt_hd2d_field,79,M101,Awaiting voxel replacement
+M113,Garrison - Jade store,Fortifications,,Traveler generator,True,True,rt_hd2d_field,77,M101,Awaiting voxel replacement
+M120,Hoshi-no-Ichi - Inn,Inn interior,Open the reception aisle and separate the shared hearth from the sleeping bays.,Traveler generator,True,True,rt_hd2d_field,74,"M103, M105",Native environment pass
+M121,Hoshi-no-Ichi - Arms,Equipment shop,Keep the clerk and cedar displays accessible.,Traveler generator,True,True,rt_hd2d_field,74,M103,Native environment pass
+M122,Hoshi-no-Ichi - Goods,Coastal goods shop,Give the clerk two open aisles and wood storage racks.,Traveler generator,True,True,rt_hd2d_field,74,M103,Native environment pass
+M123,Hoshi-no-Ichi - Tea house,Tea-house interior,"Keep Satomi accessible with a central aisle, two tea settings and a shoji-backed alcove.",Traveler generator,True,True,rt_hd2d_field,75,M103,Native environment pass
+M124,Hoshi-no-Ichi - Magistrate's office,Magistrate office,Frame the hearing desk without blocking Kanbe or the return door.,Traveler generator,True,True,rt_hd2d_field,74,M103,Native environment pass
+M125,Hoshi-no-Ichi - Storehouse,Storehouse interior,"Use a raised timber floor, clay infill, storage racks, rice bales, pots and low paper lamps.",Traveler generator,True,True,rt_hd2d_field,74,M103,Native environment pass
+M130,Egg Caves - the nests,Rock and underground,Use limestone cutaways and woven nests beside the existing quest route.,Traveler generator,True,True,rt_hd2d_cave,90,"M102, M131",Native environment pass
+M131,Egg Caves - the painted eggs,Rock and underground,"Frame the painted eggs, cracked wall and underground water with damp limestone.",Traveler generator,True,True,rt_hd2d_cave,94,"M130, M132",Native environment pass
+M132,Egg Caves - the armour,Rock and underground,Keep the armour chamber readable with a continuous coastal limestone wall.,Traveler generator,True,True,rt_hd2d_cave,91,"M131, M133",Native environment pass
+M133,Egg Caves - the altar,Rock and underground,"Keep the altar, eggs and Ryozo clear with the calcite formations close to the walls.",Traveler generator,True,True,rt_hd2d_cave,86,"M102, M132",Native environment pass
+M140,Hida road,Road and field,,Traveler generator,True,True,rt_hd2d_field,86,"M200, M101, M141, M151",Awaiting voxel replacement
+M141,Kyuden Hida - castle town,Fortifications,,Traveler generator,True,True,rt_hd2d_field,94,"M500, M504, M160, M161, M162, M163, M164, M165, M140",Awaiting voxel replacement
+M142,Kyuden Hida - 1F entry hall,Interiors,,Traveler generator,True,True,rt_hd2d_field,73,M541,Awaiting voxel replacement
+M143,Kyuden Hida - 2F winter garden,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,73,M538,Awaiting voxel replacement
+M144,Kyuden Hida - 3F guest wings,Named location review,,Traveler generator,True,True,rt_hd2d_field,73,M539,Awaiting voxel replacement
+M145,Kyuden Hida - 4F great hall,Interiors,,Traveler generator,True,True,rt_hd2d_field,73,M501,Awaiting voxel replacement
+M146,Kyuden Hida - 5F/6F audience hall,Interiors,,Traveler generator,True,True,rt_hd2d_field,73,M504,Awaiting voxel replacement
+M147,The women's shrine,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,81,"M504, M542",Awaiting voxel replacement
+M148,Kyuden Hida - donjon cells,Named location review,,Traveler generator,True,True,rt_hd2d_cave,86,"M148, M541, M149",Awaiting voxel replacement
+M149,Kyuden Hida - trap catacombs,Named location review,,Traveler generator,True,True,rt_hd2d_cave,85,"M148, M150",Awaiting voxel replacement
+M150,Kyuden Hida - deepest cell,Named location review,,Traveler generator,True,True,rt_hd2d_cave,79,"M504, M149",Awaiting voxel replacement
+M151,Kyuden Hida - castle town (summer),Fortifications,,Traveler generator,True,True,rt_hd2d_field,131,"M140, M500, M100, M200, M240, M253, M303, M345, M388, M414, M444",Awaiting voxel replacement
+M152,Kyuden Hida - the outer yard (siege),Named location review,,Traveler generator,True,True,rt_hd2d_night,73,M500,Awaiting voxel replacement
+M153,Kyuden Hida - the cellars,Interiors,,Traveler generator,True,True,rt_hd2d_cave,86,M501,Awaiting voxel replacement
+M154,Kyuden Hida - dark castle (great hall),Fortifications,,Traveler generator,True,True,rt_hd2d_cave,73,M501,Awaiting voxel replacement
+M155,Kyuden Hida - dark castle (guest wing),Fortifications,,Traveler generator,True,True,rt_hd2d_cave,73,M502,Awaiting voxel replacement
+M156,Kyuden Hida - dark castle (children's quarters),Fortifications,,Traveler generator,True,True,rt_hd2d_cave,73,M503,Awaiting voxel replacement
+M157,Kyuden Hida - the deep trap tunnels,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,76,M158,Awaiting voxel replacement
+M158,"The Kaiu Wall - the top, at the tunnel mouth",Fortifications,,Traveler generator,True,True,rt_hd2d_night,73,M151,Awaiting voxel replacement
+M160,Kyuden Hida - Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,78,M141,Awaiting voxel replacement
+M161,Kyuden Hida - Kaiu forge,Named location review,,Traveler generator,True,True,rt_hd2d_field,77,M141,Awaiting voxel replacement
+M162,Kyuden Hida - Hida armoury,Named location review,,Traveler generator,True,True,rt_hd2d_field,77,M141,Awaiting voxel replacement
+M163,Kyuden Hida - Jade merchant,Named location review,,Traveler generator,True,True,rt_hd2d_field,76,M141,Awaiting voxel replacement
+M164,Kyuden Hida - Hida dojo,Named location review,,Traveler generator,True,True,rt_hd2d_field,76,M141,Awaiting voxel replacement
+M165,Kyuden Hida - Tea house,Named location review,,Traveler generator,True,True,rt_hd2d_field,74,M141,Awaiting voxel replacement
+M170,Kaiu Wall - trap tunnels,Fortifications,,Traveler generator,True,True,rt_hd2d_cave,84,"M101, M171",Awaiting voxel replacement
+M171,Shadowlands - the tar chasm,Shadowlands march,"Preserve the chapter route, side chests and existing event pages.",Traveler generator,True,True,rt_hd2d_shadow,77,M172,Native environment pass
+M172,Shadowlands - the lava trees,Shadowlands march,"Preserve the chapter route, side chests and existing event pages.",Traveler generator,True,True,rt_hd2d_shadow,85,"M171, M173",Native environment pass
+M173,Shadowlands - the poppy fields,Shadowlands march,"Preserve the chapter route, side chests and existing event pages.",Traveler generator,True,True,rt_hd2d_shadow,83,"M172, M174",Native environment pass
+M174,Shadowlands - the watchpost,Shadowlands march,"Preserve the chapter route, side chests and existing event pages.",Traveler generator,True,True,rt_hd2d_shadow,82,"M173, M175",Native environment pass
+M175,Shadowlands - Toshi no Kijo,Shadowlands march,"Preserve the chapter route, side chests and existing event pages.",Traveler generator,True,True,rt_hd2d_shadow,84,"M174, M176",Native environment pass
+M176,Shadowlands - the plain,Shadowlands march,"Preserve the chapter route, side chests and existing event pages.",Traveler generator,True,True,rt_hd2d_shadow,81,"M175, M177",Native environment pass
+M177,Shadowlands - the road home,Shadowlands march,"Preserve the chapter route, side chests and existing event pages.",Traveler generator,True,True,rt_hd2d_shadow,82,"M101, M176",Native environment pass
+M200,Kakita Dueling Academy,Named location review,,Traveler generator,True,True,rt_hd2d_field,182,"M454, M201, M216",Awaiting voxel replacement
+M201,Road west,Road and field,,Traveler generator,True,True,rt_hd2d_field,84,"M200, M202",Awaiting voxel replacement
+M202,Pleasant Eaves,Named location review,,Traveler generator,True,True,rt_hd2d_field,153,"M900, M201, M203, M477, M631",Awaiting voxel replacement
+M203,Mountains' Cloak Forest,Woodland and wetland,,Traveler generator,True,True,rt_hd2d_night,86,"M204, M203, M202",Awaiting voxel replacement
+M204,Mountains' Cloak Forest - the clearing,Woodland and wetland,,Traveler generator,True,True,rt_hd2d_night,126,"M203, M205",Awaiting voxel replacement
+M205,The Green Ronin's village,Town and service,,Traveler generator,True,True,rt_hd2d_field,127,"M204, M206, M632",Awaiting voxel replacement
+M206,Goroso's castle - the hall,Fortifications,,Traveler generator,True,True,rt_hd2d_field,86,"M205, M207",Awaiting voxel replacement
+M207,Goroso's castle - the corridor,Fortifications,,Traveler generator,True,True,rt_hd2d_field,86,"M206, M208, M209",Awaiting voxel replacement
+M208,Goroso's castle - the cells,Fortifications,,Traveler generator,True,True,rt_hd2d_cave,83,"M207, M201",Awaiting voxel replacement
+M209,Goroso's castle - the yard,Fortifications,,Traveler generator,True,True,rt_hd2d_field,88,"M201, M207",Awaiting voxel replacement
+M210,Garden Under Shadow City,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,128,"M211, M902, M903, M216, M236, M633",Awaiting voxel replacement
+M211,Garden Under Shadow - the lantern garden,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,84,"M210, M217",Awaiting voxel replacement
+M212,The land-bridge,Tidal crossing,Traversable land bridge at low tide.,Traveler generator,True,True,rt_hd2d_field,83,"M210, M213",Native environment pass
+M213,Yasuki Yashiki,Named location review,,Traveler generator,True,True,rt_hd2d_field,86,"M219, M905, M236, M470",Awaiting voxel replacement
+M214,The border conference - the Crane lines,Named location review,,Traveler generator,True,True,rt_hd2d_night,132,"M210, M215",Awaiting voxel replacement
+M215,The border conference - the ridge at dawn,Highland,,Traveler generator,True,True,rt_hd2d_field,81,"M218, M214",Awaiting voxel replacement
+M216,Crane coast road,Coast and water,,Traveler generator,True,True,rt_hd2d_field,85,"M220, M200, M210",Awaiting voxel replacement
+M217,Garden Under Shadow - Lady Sanae's rooms,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M211, M214",Awaiting voxel replacement
+M218,Garden Under Shadow - Doji Miyako's chamber,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,80,"M211, M210",Awaiting voxel replacement
+M219,Yasuki Yashiki - the hall,Interiors,,Traveler generator,True,True,rt_hd2d_field,85,M213,Awaiting voxel replacement
+M220,The Crane port,Coast and water,,Traveler generator,True,True,rt_hd2d_field,108,"M221, M907, M908, M909, M216, M634",Awaiting voxel replacement
+M221,Your ship,Named location review,,Traveler generator,True,True,rt_hd2d_field,80,"M491, M494, M490",Awaiting voxel replacement
+M222,Cove Fort,Fortifications,,Traveler generator,True,True,rt_hd2d_field,80,"M221, M750",Awaiting voxel replacement
+M223,The Temples of the Sun,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,82,"M221, M911, M912, M751",Awaiting voxel replacement
+M224,The storm,Named location review,,Traveler generator,True,True,rt_hd2d_night,74,M225,Awaiting voxel replacement
+M225,The Isle of the Heavenly Sheen,Coast and water,,Traveler generator,True,True,rt_hd2d_field,80,"M226, M221, M227, M752",Awaiting voxel replacement
+M226,The White Squid shrine,Sacred and garden,,Traveler generator,True,True,rt_hd2d_cave,85,"M225, M227",Awaiting voxel replacement
+M227,The White Squid shrine - the inner shrine,Interiors,,Traveler generator,True,True,rt_hd2d_cave,78,"M226, M220",Awaiting voxel replacement
+M228,Kyuden Doji,Named location review,,Traveler generator,True,True,rt_hd2d_field,129,"M221, M505, M507, M914, M915, M916, M917, M235, M474",Awaiting voxel replacement
+M229,Kyuden Doji - the court,Interiors,,Traveler generator,True,True,rt_hd2d_field,73,M509,Awaiting voxel replacement
+M230,Kyuden Doji - Lady Sanae's rooms,Interiors,,Traveler generator,True,True,rt_hd2d_field,73,M507,Awaiting voxel replacement
+M231,The Kyuden Doji archives - the public stacks,Named location review,,Traveler generator,True,True,rt_hd2d_field,73,M508,Awaiting voxel replacement
+M232,The Kyuden Doji archives - the sealed stacks,Coast and water,,Traveler generator,True,True,rt_hd2d_field,87,"M508, M233",Awaiting voxel replacement
+M233,The Kyuden Doji archives - the forbidden wing,Named location review,,Traveler generator,True,True,rt_hd2d_field,85,M232,Awaiting voxel replacement
+M234,The rehearsal hall,Interiors,,Traveler generator,True,True,rt_hd2d_field,73,M555,Awaiting voxel replacement
+M235,The Kakita dueling ground,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M509, M228",Awaiting voxel replacement
+M236,The land-bridge - high tide,Tidal crossing,High-tide shelf with a wait option on both shores.,Traveler generator,True,True,rt_hd2d_field,78,"M212, M210, M213",Native environment pass
+M240,The Magonojo river,Named location review,,Traveler generator,True,True,rt_hd2d_night,77,M242,Awaiting voxel replacement
+M241,Hiruto's castle town,Fortifications,,Traveler generator,True,True,rt_hd2d_field,132,"M242, M919, M920, M921, M250, M254, M635",Awaiting voxel replacement
+M242,Lord Hiruto's castle,Fortifications,,Traveler generator,True,True,rt_hd2d_field,99,"M243, M245, M246, M248, M278, M281, M241",Awaiting voxel replacement
+M243,Lord Hiruto's castle - the chapel,Fortifications,,Traveler generator,True,True,rt_hd2d_field,83,M242,Awaiting voxel replacement
+M245,Lord Hiruto's castle - the barracks,Fortifications,,Traveler generator,True,True,rt_hd2d_field,81,M242,Awaiting voxel replacement
+M246,Lord Hiruto's castle - the guest wing,Fortifications,,Traveler generator,True,True,rt_hd2d_field,81,M242,Awaiting voxel replacement
+M248,Lord Hiruto's castle - the hall,Fortifications,,Traveler generator,True,True,rt_hd2d_field,82,"M242, M253",Awaiting voxel replacement
+M250,The shrine road (Lion side),Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,89,"M241, M251",Awaiting voxel replacement
+M251,The shrine road (Phoenix side),Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,79,"M250, M252",Awaiting voxel replacement
+M252,Shiro no Kamatori,Named location review,,Traveler generator,True,True,rt_hd2d_field,137,"M253, M923, M924, M251, M282, M475",Awaiting voxel replacement
+M253,Shiro no Kamatori - Hoju's study,Interiors,,Traveler generator,True,True,rt_hd2d_field,89,"M252, M281",Awaiting voxel replacement
+M254,The Lion winter road,Road and field,,Traveler generator,True,True,rt_hd2d_field,80,"M241, M255",Awaiting voxel replacement
+M255,Shiro Akodo,Named location review,,Traveler generator,True,True,rt_hd2d_field,182,"M510, M926, M927, M928, M254, M266, M272, M472",Awaiting voxel replacement
+M256,Shiro Akodo - the castle,Fortifications,,Traveler generator,True,True,rt_hd2d_field,73,M510,Awaiting voxel replacement
+M257,Shiro Akodo - the Hall of Honors,Interiors,,Traveler generator,True,True,rt_hd2d_field,73,M511,Awaiting voxel replacement
+M258,Shiro Akodo - the Central Dojo,Named location review,,Traveler generator,True,True,rt_hd2d_field,73,M512,Awaiting voxel replacement
+M259,Shiro Akodo - the North Dojo,Named location review,,Traveler generator,True,True,rt_hd2d_field,73,M512,Awaiting voxel replacement
+M260,Shiro Akodo - the South Dojo at night,Named location review,,Traveler generator,True,True,rt_hd2d_night,73,M513,Awaiting voxel replacement
+M261,Under the South Dojo,Named location review,,Traveler generator,True,True,rt_hd2d_cave,81,M513,Awaiting voxel replacement
+M262,Shiro Akodo - the Hall of Akodo,Interiors,,Traveler generator,True,True,rt_hd2d_field,73,M511,Awaiting voxel replacement
+M263,Shiro Akodo - the library,Named location review,,Traveler generator,True,True,rt_hd2d_field,73,M513,Awaiting voxel replacement
+M264,Shiro Akodo - the cells,Named location review,,Traveler generator,True,True,rt_hd2d_field,73,M557,Awaiting voxel replacement
+M265,Shiro Akodo - the karo's office,Interiors,,Traveler generator,True,True,rt_hd2d_field,73,M514,Awaiting voxel replacement
+M266,The Lion west road,Road and field,,Traveler generator,True,True,rt_hd2d_field,81,"M255, M267",Awaiting voxel replacement
+M267,The Village of the Burned Bridge,Town and service,,Traveler generator,True,True,rt_hd2d_field,124,"M930, M266, M268",Awaiting voxel replacement
+M268,The sleet waystation,Named location review,,Traveler generator,True,True,rt_hd2d_night,110,"M267, M269",Awaiting voxel replacement
+M269,The pass,Highland,,Traveler generator,True,True,rt_hd2d_field,77,"M268, M270",Awaiting voxel replacement
+M270,The pass - the ice shelf,Highland,,Traveler generator,True,True,rt_hd2d_field,81,"M269, M271, M265",Awaiting voxel replacement
+M271,Kaze-no-Tani,Named location review,,Traveler generator,True,True,rt_hd2d_field,79,"M265, M270",Awaiting voxel replacement
+M272,Sorrow's Path road,Road and field,,Traveler generator,True,True,rt_hd2d_field,87,"M255, M273, M274, M276",Awaiting voxel replacement
+M273,The Lion camp at the ford,Named location review,,Traveler generator,True,True,rt_hd2d_field,97,"M274, M100, M200, M240, M253, M303, M345, M388, M414, M444, M272, M275",Awaiting voxel replacement
+M274,The Lion camp at the ford (night),Named location review,,Traveler generator,True,True,rt_hd2d_night,104,"M276, M272, M275",Awaiting voxel replacement
+M275,The riverbank,Named location review,,Traveler generator,True,True,rt_hd2d_night,101,"M274, M276",Awaiting voxel replacement
+M276,The ford at Sorrow's Path,Named location review,,Traveler generator,True,True,rt_hd2d_field,147,"M277, M272",Awaiting voxel replacement
+M277,The courtier's tent,Interiors,,Traveler generator,True,True,rt_hd2d_field,78,"M276, M273",Awaiting voxel replacement
+M278,Hiruto's castle - the west tower,Fortifications,,Traveler generator,True,True,rt_hd2d_field,78,"M242, M279",Awaiting voxel replacement
+M279,"Hiruto's castle - the west tower, 2F",Fortifications,,Traveler generator,True,True,rt_hd2d_field,78,"M278, M280",Awaiting voxel replacement
+M280,Hiruto's castle - the top of the west tower,Fortifications,,Traveler generator,True,True,rt_hd2d_field,78,M279,Awaiting voxel replacement
+M281,Shiro no Kamatori - the inner garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,78,"M413, M253",Awaiting voxel replacement
+M282,Zumiki,Named location review,,Traveler generator,True,True,rt_hd2d_field,141,"M932, M933, M252, M283, M473, M636",Awaiting voxel replacement
+M283,The snowbound pass,Highland,,Traveler generator,True,True,rt_hd2d_field,80,"M282, M284",Awaiting voxel replacement
+M284,The snowbound pass - the slopes,Highland,,Traveler generator,True,True,rt_hd2d_field,81,"M283, M285",Awaiting voxel replacement
+M285,Honored Treaty City,Town and service,,Traveler generator,True,True,rt_hd2d_field,192,"M286, M515, M935, M284, M287, M637, M288",Awaiting voxel replacement
+M286,Treaty City - the snow garden,Sacred and garden,,Traveler generator,True,True,rt_hd2d_night,76,M285,Awaiting voxel replacement
+M287,The traitor's torii,Named location review,,Traveler generator,True,True,rt_hd2d_field,83,M285,Awaiting voxel replacement
+M288,Kyuden Isawa,Named location review,,Traveler generator,True,True,rt_hd2d_field,191,"M296, M937, M938, M285, M297, M289",Awaiting voxel replacement
+M289,The fever road,Road and field,,Traveler generator,True,True,rt_hd2d_field,86,"M290, M288, M291",Awaiting voxel replacement
+M290,The temple hospital,Rock and underground,,Traveler generator,True,True,rt_hd2d_field,82,M289,Awaiting voxel replacement
+M291,The fever road - the ferry,Coast and water,,Traveler generator,True,True,rt_hd2d_field,118,"M289, M292",Awaiting voxel replacement
+M292,The Isawa Mori,Named location review,,Traveler generator,True,True,rt_hd2d_field,79,"M291, M293",Awaiting voxel replacement
+M293,The Isawa Mori - the webs,Named location review,,Traveler generator,True,True,rt_hd2d_field,76,"M292, M294",Awaiting voxel replacement
+M294,The Mieko estate,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M295, M293",Awaiting voxel replacement
+M295,The Mieko estate - the cellar,Interiors,,Traveler generator,True,True,rt_hd2d_field,79,"M294, M288",Awaiting voxel replacement
+M296,Kyuden Isawa - the sealed library,Coast and water,,Traveler generator,True,True,rt_hd2d_field,84,M288,Awaiting voxel replacement
+M297,The coast temple town,Coast and water,,Traveler generator,True,True,rt_hd2d_field,131,"M940, M941, M100, M200, M240, M253, M303, M345, M388, M414, M444, M288, M298, M638",Awaiting voxel replacement
+M298,The cliff path,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M297, M299",Awaiting voxel replacement
+M299,The cliff path - the shrines,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,82,"M298, M300",Awaiting voxel replacement
+M300,The last shrine,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,81,"M299, M301",Awaiting voxel replacement
+M301,"The dream - the forest estate, twelve years ago",Woodland and wetland,,Traveler generator,True,True,rt_hd2d_field,79,M302,Awaiting voxel replacement
+M302,The red torii on the cliff,Named location review,,Traveler generator,True,True,rt_hd2d_field,77,"M297, M300",Awaiting voxel replacement
+M303,A Mantis trading ship,Named location review,,Traveler generator,True,True,rt_hd2d_field,76,M305,Awaiting voxel replacement
+M304,The Isle of Silk,Coast and water,,Traveler generator,True,True,rt_hd2d_field,167,"M305, M306, M308, M313, M492, M943, M307, M309, M314, M753",Awaiting voxel replacement
+M305,The Isle of Silk - Yoritomo's hall,Coast and water,,Traveler generator,True,True,rt_hd2d_field,82,"M304, M306",Awaiting voxel replacement
+M306,The Isle of Silk - the guest house,Coast and water,,Traveler generator,True,True,rt_hd2d_field,82,M304,Awaiting voxel replacement
+M307,The Isle of Silk - the dump,Coast and water,,Traveler generator,True,True,rt_hd2d_field,79,M304,Awaiting voxel replacement
+M308,The Isle of Silk - the Rakusho school,Coast and water,,Traveler generator,True,True,rt_hd2d_field,81,M304,Awaiting voxel replacement
+M309,The silk hill path,Named location review,,Traveler generator,True,True,rt_hd2d_field,78,"M304, M310",Awaiting voxel replacement
+M310,Kyuden Gusai - the broken stair,Named location review,,Traveler generator,True,True,rt_hd2d_field,88,"M309, M311",Awaiting voxel replacement
+M311,Kyuden Gusai - the terrace of stones,Named location review,,Traveler generator,True,True,rt_hd2d_field,80,"M310, M312",Awaiting voxel replacement
+M312,Kyuden Gusai - the wall,Named location review,,Traveler generator,True,True,rt_hd2d_field,76,M311,Awaiting voxel replacement
+M313,The Isle of Silk - the boathouse,Coast and water,,Traveler generator,True,True,rt_hd2d_field,79,M304,Awaiting voxel replacement
+M314,Tortoise beach,Named location review,,Traveler generator,True,True,rt_hd2d_field,78,"M306, M304",Awaiting voxel replacement
+M315,Tortoise Island,Coast and water,,Traveler generator,True,True,rt_hd2d_field,110,"M316, M317, M304, M343, M945, M946, M318, M754",Awaiting voxel replacement
+M316,Tortoise Island - the new house,Coast and water,,Traveler generator,True,True,rt_hd2d_field,82,M315,Awaiting voxel replacement
+M317,Tortoise Island - the ridge dojo,Coast and water,,Traveler generator,True,True,rt_hd2d_field,80,M315,Awaiting voxel replacement
+M318,The Tortoise cove - the tide entrance,Named location review,,Traveler generator,True,True,rt_hd2d_field,83,"M315, M319",Awaiting voxel replacement
+M319,The Tortoise cove - the clay city,Town and service,,Traveler generator,True,True,rt_hd2d_field,85,"M318, M320",Awaiting voxel replacement
+M320,The Tortoise cove - the painted portal,Coast and water,,Traveler generator,True,True,rt_hd2d_field,81,"M319, M321, M323, M337, M344",Awaiting voxel replacement
+M321,Outside time,Named location review,,Traveler generator,True,True,rt_hd2d_field,91,M322,Awaiting voxel replacement
+M322,A winter orchard (the year 400),Named location review,,Traveler generator,True,True,rt_hd2d_field,115,"M324, M326",Awaiting voxel replacement
+M323,Otosan Uchi - the south gate (the year 400),Named location review,,Traveler generator,True,True,rt_hd2d_field,129,"M324, M327, M328, M323, M320, M333, M325",Awaiting voxel replacement
+M324,Otosan Uchi - the guest house (the year 400),Named location review,,Traveler generator,True,True,rt_hd2d_field,80,M323,Awaiting voxel replacement
+M325,Otosan Uchi - the streets (the year 400),Town and service,,Traveler generator,True,True,rt_hd2d_field,85,"M329, M330, M331, M323, M326",Awaiting voxel replacement
+M326,Otosan Uchi - the palace (the year 400),Fortifications,,Traveler generator,True,True,rt_hd2d_field,84,"M332, M325, M322",Awaiting voxel replacement
+M327,Otosan Uchi - Ushimo's house,Named location review,,Traveler generator,True,True,rt_hd2d_field,79,M323,Awaiting voxel replacement
+M328,Otosan Uchi - Kakita Miyoshi's studio,Named location review,,Traveler generator,True,True,rt_hd2d_field,78,M323,Awaiting voxel replacement
+M329,Otosan Uchi - the Bayushi mansion,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,M325,Awaiting voxel replacement
+M330,Otosan Uchi - the Doji mansion,Named location review,,Traveler generator,True,True,rt_hd2d_field,80,M325,Awaiting voxel replacement
+M331,Otosan Uchi - the Shiba mansion,Named location review,,Traveler generator,True,True,rt_hd2d_field,80,M325,Awaiting voxel replacement
+M332,Otosan Uchi - the war council,Named location review,,Traveler generator,True,True,rt_hd2d_field,84,"M326, M336, M337",Awaiting voxel replacement
+M333,The Izumida road (the year 400),Road and field,,Traveler generator,True,True,rt_hd2d_field,79,"M323, M334",Awaiting voxel replacement
+M334,Shiro Izumida - the outer halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,79,"M333, M335",Awaiting voxel replacement
+M335,Shiro Izumida - the great hall,Interiors,,Traveler generator,True,True,rt_hd2d_field,78,"M334, M326",Awaiting voxel replacement
+M336,The parley ship (the year 400),Named location review,,Traveler generator,True,True,rt_hd2d_field,77,M332,Awaiting voxel replacement
+M337,The war camp (the year 400),Named location review,,Traveler generator,True,True,rt_hd2d_field,91,"M339, M323, M340",Awaiting voxel replacement
+M339,The Mantis council (a ship's cabin),Named location review,,Traveler generator,True,True,rt_hd2d_field,78,M337,Awaiting voxel replacement
+M340,The harbour tunnels (the year 400),Rock and underground,,Traveler generator,True,True,rt_hd2d_field,83,"M337, M341",Awaiting voxel replacement
+M341,The gaijin flagship (the year 400),Named location review,,Traveler generator,True,True,rt_hd2d_field,74,M342,Awaiting voxel replacement
+M342,Otosan Uchi - a private audience (the year 400),Named location review,,Traveler generator,True,True,rt_hd2d_field,79,M320,Awaiting voxel replacement
+M343,Shiro Kitsuki,Named location review,,Traveler generator,True,True,rt_hd2d_field,83,"M344, M492, M525, M948, M949",Awaiting voxel replacement
+M344,Shiro Kitsuki - Lord Kitsuki Yasu's hall,Interiors,,Traveler generator,True,True,rt_hd2d_field,82,"M343, M100, M200, M240, M253, M303, M345, M388, M414, M444",Awaiting voxel replacement
+M345,Kyuden Bayushi - the memorial garden,Kyuden Bayushi,Walk the lacquered bridge over the animated koi pond in the memorial garden.,Traveler generator,True,True,rt_hd2d_field,82,M346,Native environment pass
+M346,Kyuden Bayushi - the willow teahouse,Kyuden Bayushi interior,"Keep Norie, the attendant, and the conversation trigger in a fitted teahouse.",Traveler generator,True,True,rt_hd2d_field,76,M347,Native environment pass
+M347,Kyuden Bayushi castle town,Kyuden Bayushi,Route the town storefronts around the shared well and the theater gate.,Traveler generator,True,True,rt_hd2d_field,137,"M359, M520, M951, M952, M953, M348, M477",Native environment pass
+M348,Traitor's Grove,Scorpion grove,Keep the eastbound road clear under the dense cedar canopy.,Traveler generator,True,True,rt_hd2d_field,83,"M347, M349",Native environment pass
+M349,Shutai,River of Gold,"Use lanterns, damp cedar and boat landings to distinguish Shutai.",Traveler generator,True,True,rt_hd2d_field,90,"M348, M350, M639",Native environment pass
+M350,The River of Gold road,River of Gold,Continue east into Kudo along a raised river road.,Traveler generator,True,True,rt_hd2d_field,79,"M349, M351",Native environment pass
+M351,Kudo,Kudo waterfront,"Connect the fish stall, working docks, and three accessible interiors.",Traveler generator,True,True,rt_hd2d_field,103,"M352, M353, M354, M355, M350, M471, M640",Native environment pass
+M352,Kudo - the Kitsune Hall,Kudo interior,Kitsune household hall with an open center aisle.,Traveler generator,True,True,rt_hd2d_field,79,M351,Native environment pass
+M353,Kudo - the Mantis guest house,Kudo interior,Mantis guest house with a chart desk and dock records.,Traveler generator,True,True,rt_hd2d_field,79,M351,Native environment pass
+M354,Kudo - the Dreaming Carp,Kudo interior,Dreaming Carp inn with sake racks and sleeping bays.,Traveler generator,True,True,rt_hd2d_field,78,M351,Native environment pass
+M355,The river crossing (night),Kudo marsh,Follow the stone ford across the river toward the west marsh.,Traveler generator,True,True,rt_hd2d_night,110,"M351, M356",Native environment pass
+M356,The west marsh,Kudo marsh,Find the drifting barge through willows and reed beds.,Traveler generator,True,True,rt_hd2d_field,80,"M355, M357",Native environment pass
+M357,"The west marsh, deeper",Kudo marsh,Follow the trail past the Miya relics.,Traveler generator,True,True,rt_hd2d_field,114,"M356, M358",Native environment pass
+M358,The heart clearing,Kudo marsh,Follow earthen banks around the ritual pool.,Traveler generator,True,True,rt_hd2d_field,76,"M354, M357",Native environment pass
+M359,The plains road,Hisatu Kensu approach,Follow the clay road between flooded paddies and the Ojatara waymark.,Traveler generator,True,True,rt_hd2d_field,83,"M347, M368, M360",Native environment pass
+M360,Hisatu Kensu,Hisatu Kensu,Working inn and trader doors face the hot springs and bathhouse.,Traveler generator,True,True,rt_hd2d_field,89,"M955, M956, M359, M361, M641",Native environment pass
+M361,The plain before the city,City of Masks approach,Keep the scout and east gate story path clear.,Traveler generator,True,True,rt_hd2d_field,115,"M360, M362",Native environment pass
+M362,Kamen no Toshi - the Hospitality District,City of Masks,Enter through the west gateway and reach the Sweet Cup under the lanterns.,Traveler generator,True,True,rt_hd2d_field,91,"M363, M364, M361, M365",Native environment pass
+M363,Kamen no Toshi - the Sweet Cup's back room,City of Masks interior,Reach the back room clerk and preserved mask scenes among sake racks and screens.,Traveler generator,True,True,rt_hd2d_field,81,M362,Native environment pass
+M364,Kamen no Toshi - the Merchant District,City of Masks,Give each mask maker an open awning and display without interrupting the market route.,Traveler generator,True,True,rt_hd2d_field,93,M362,Native environment pass
+M365,Kamen no Toshi - the Temple District,City of Masks temple,Find the damaged sun statue and its reliquary in the eastern chamber.,Traveler generator,True,True,rt_hd2d_field,79,"M362, M366",Native environment pass
+M366,"Kamen no Toshi - the Temple District, the shrine of sewn faces",City of Masks temple,"Keep the scriptorium, cloth-mask shrine and monastery approach reachable.",Traveler generator,True,True,rt_hd2d_field,79,"M365, M367",Native environment pass
+M367,Kamen no Toshi - the Monastery of the Silent Self,City of Masks interior,Frame the abbot and dais with the mask silhouette and low lanterns.,Traveler generator,True,True,rt_hd2d_field,76,"M366, M361",Native environment pass
+M368,The Ojatara road,Ojatara Valleys,Connect the burned fields and Iuchi roadside shelters to Buried Leaves.,Traveler generator,True,True,rt_hd2d_field,83,"M359, M369",Native environment pass
+M369,The Town of Buried Leaves,Ojatara Valleys,"Keep the tribunal, inn and both traders accessible from the refugee camp.",Traveler generator,True,True,rt_hd2d_field,143,"M370, M371, M372, M379, M399, M958, M959, M960, M368, M374, M642",Native environment pass
+M370,Buried Leaves - the tribunal hall,Ojatara interior,Preserve the testimony route through the refurbished tribunal.,Traveler generator,True,True,rt_hd2d_field,84,M369,Native environment pass
+M371,The Soshi camp before Shiro no Soshi,Ojatara Valleys,Distinguish the cream command tent from the refugee shelters.,Traveler generator,True,True,rt_hd2d_field,82,M369,Native environment pass
+M372,Shioden,Ojatara Valleys,Frame Shioden's burned manor and its funeral offering.,Traveler generator,True,True,rt_hd2d_field,80,"M369, M643",Native environment pass
+M374,Yotomo bell hill,Ojatara Valleys,Set Yotomo's bell over the existing approach and story trigger.,Traveler generator,True,True,rt_hd2d_field,113,"M369, M375",Native environment pass
+M375,Perfume Petal Blossom,Ojatara Valleys,Animate the flower fields and keep the house and grave path accessible.,Traveler generator,True,True,rt_hd2d_field,128,"M376, M377, M374, M378, M644",Native environment pass
+M376,Perfume Petal Blossom - the most beautiful house,Ojatara interior,Keep Nihime and both directions of the house entrance accessible.,Traveler generator,True,True,rt_hd2d_field,77,M375,Native environment pass
+M377,The grave path,Ojatara Valleys,Keep the sealed mine blocked and place markers along the grave path.,Traveler generator,True,True,rt_hd2d_field,78,M375,Native environment pass
+M378,The mountain road at dusk,Ojatara Valleys,Give the dusk road a clear encounter lane between slate and cypress.,Traveler generator,True,True,rt_hd2d_night,75,"M370, M375",Native environment pass
+M379,Dragon mountain town,Dragon mountain town,Place the incense counter under the cliffs beside the inn and outfitter.,Traveler generator,True,True,rt_hd2d_field,134,"M369, M962, M963, M100, M200, M240, M253, M303, M345, M388, M414, M444, M380, M645, M475, M476",Native environment pass
+M380,The mountain road,Dragon mountain road,Fit the cypress leaf and slate steps to the actual mountain inn entrance.,Traveler generator,True,True,rt_hd2d_field,107,"M381, M379, M382",Native environment pass
+M381,The mountain inn - the common room,Dragon mountain inn,"Furnish the common room with clay jars, open shelves and staggered cypress boards.",Traveler generator,True,True,rt_hd2d_field,80,M380,Native environment pass
+M382,The Togashi road,Dragon procession road,Keep the procession and Furnace road clear around the cedar gate.,Traveler generator,True,True,rt_hd2d_field,116,"M383, M456, M380, M384",Native environment pass
+M383,Kyuden Togashi - the garden,Kyuden Togashi,Rake gravel around uncut slate and preserve the courtyard audience scene.,Traveler generator,True,True,rt_hd2d_field,82,"M382, M623",Native environment pass
+M384,Tamori's Furnace - the lava tubes,Volcanic caves,Set apart three active molten pools in Tamori's Furnace lava tubes.,Traveler generator,True,True,rt_hd2d_cave,88,"M382, M385",Native environment pass
+M385,Tamori's Furnace - the ash-shrines,Volcanic caves,Separate the two glowing pools from the ash-shrine route.,Traveler generator,True,True,rt_hd2d_cave,84,"M384, M386",Native environment pass
+M386,The crater's mouth,Volcanic caves,Use basalt silhouettes below the crater lip.,Traveler generator,True,True,rt_hd2d_field,77,"M379, M385",Native environment pass
+M387,The Town of Buried Leaves (autumn),Buried Leaves in autumn,"Set the Welcome Road entrance, the stable and fabric stalls along the market road.",Traveler generator,True,True,rt_hd2d_field,93,"M388, M965, M389, M390, M642, M395, M476",Native environment pass
+M388,Buried Leaves - the Welcome Road inn,Welcome Road inn,"Leave a clear aisle to the petition board, testimony and innkeeper.",Traveler generator,True,True,rt_hd2d_field,87,"M387, M370",Native environment pass
+M389,The refugee camps,Buried Leaves refugee camps,Group open canvas shelters around the shared cooking fires.,Traveler generator,True,True,rt_hd2d_field,87,M387,Native environment pass
+M390,The valley road (autumn),The autumn valley road,Mark the village and testimony routes between maples and burned plots.,Traveler generator,True,True,rt_hd2d_field,87,"M391, M392, M396, M394, M387, M393",Native environment pass
+M391,Shiro Iuchi - the garden,Shiro Iuchi garden,"Set banners, maples and basins against the windy garden frontage.",Traveler generator,True,True,rt_hd2d_field,81,"M530, M390",Native environment pass
+M392,The Hafuna fields,Hafuna fields,Show the salted planting beds and keep the officer's testimony accessible.,Traveler generator,True,True,rt_hd2d_field,76,M390,Native environment pass
+M393,The Motobu crater,Motobu crater,Place fractured stones and timbers below the Jizo temple's former site.,Traveler generator,True,True,rt_hd2d_field,77,M390,Native environment pass
+M394,Shiro no Soshi - the hall,Shiro no Soshi hall,"Frame the hearing with brocade screens, low writing tables and an open approach.",Traveler generator,True,True,rt_hd2d_field,80,M390,Native environment pass
+M395,Miyahana's cottage,Miyahana's cottage,Put the tea setting outside the cottage beside flower beds and autumn foliage.,Traveler generator,True,True,rt_hd2d_field,78,M387,Native environment pass
+M396,Yotomo,Yotomo pigeon village,Set dovecotes by the road and lead the eastern route under a recessed cave roof.,Traveler generator,True,True,rt_hd2d_field,114,"M390, M397, M646",Native environment pass
+M397,The pigeon cave,Yotomo pigeon cave,Fit the return and vat chamber exits to the playable passages.,Traveler generator,True,True,rt_hd2d_cave,85,"M396, M398",Native environment pass
+M398,The pigeon cave - the vat chamber,Yotomo vat chamber,Keep the chamber and story trigger clear of the cedar vats and lanterns.,Traveler generator,True,True,rt_hd2d_cave,85,"M388, M397",Native environment pass
+M399,The star field outside Shiro Iuchi,Road and field,,Traveler generator,True,True,rt_hd2d_field,173,"M400, M369, M403, M404",Awaiting voxel replacement
+M400,Shiro Iuchi - the tower hall,Interiors,,Traveler generator,True,True,rt_hd2d_field,84,"M399, M401",Awaiting voxel replacement
+M401,Shiro Iuchi - the tower stair,Named location review,,Traveler generator,True,True,rt_hd2d_field,82,"M400, M402",Awaiting voxel replacement
+M402,Shiro Iuchi - the top of the tower,Named location review,,Traveler generator,True,True,rt_hd2d_field,80,"M401, M399",Awaiting voxel replacement
+M403,The Iuchi woods,Woodland and wetland,,Traveler generator,True,True,rt_hd2d_field,85,M399,Awaiting voxel replacement
+M404,The Mirumoto war-camp,Named location review,,Traveler generator,True,True,rt_hd2d_field,136,"M408, M399, M405",Awaiting voxel replacement
+M405,The jade mines - the entrance,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,99,"M404, M406",Awaiting voxel replacement
+M406,The jade mines - the galleries,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,113,"M405, M407",Awaiting voxel replacement
+M407,The jade mines - the deep gallery,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,80,"M404, M406",Awaiting voxel replacement
+M408,The siege camp before Shiro Iuchi,Named location review,,Traveler generator,True,True,rt_hd2d_field,95,"M409, M404",Awaiting voxel replacement
+M409,The wind tunnel,Rock and underground,,Traveler generator,True,True,rt_hd2d_field,82,"M408, M410",Awaiting voxel replacement
+M410,The wind tunnel - the narrows,Rock and underground,,Traveler generator,True,True,rt_hd2d_field,82,"M411, M409",Awaiting voxel replacement
+M411,Shiro Iuchi - the great stair,Named location review,,Traveler generator,True,True,rt_hd2d_field,85,"M410, M412",Awaiting voxel replacement
+M412,Shiro Iuchi - the storm room,Interiors,,Traveler generator,True,True,rt_hd2d_night,80,"M411, M413",Awaiting voxel replacement
+M413,The valley road home,Road and field,,Traveler generator,True,True,rt_hd2d_field,84,"M369, M455, M100, M200, M240, M253, M303, M345, M388, M414, M444",Awaiting voxel replacement
+M414,"Memory: the riverbank, nine years ago",Named location review,,Traveler generator,True,True,rt_hd2d_field,75,M415,Awaiting voxel replacement
+M415,Cakon: the docks,Coast and water,,Traveler generator,True,True,rt_hd2d_field,94,"M422, M967, M968, M416, M474",Awaiting voxel replacement
+M416,Cakon: the market,Town and service,,Traveler generator,True,True,rt_hd2d_field,102,"M970, M971, M415, M417, M647",Awaiting voxel replacement
+M417,Cakon: the alley and the river gate,Named location review,,Traveler generator,True,True,rt_hd2d_field,113,"M416, M418",Awaiting voxel replacement
+M418,The eta village outside the walls,Town and service,,Traveler generator,True,True,rt_hd2d_field,125,"M417, M419, M648",Awaiting voxel replacement
+M419,The canal bridge,Highland,,Traveler generator,True,True,rt_hd2d_field,113,"M418, M420",Awaiting voxel replacement
+M420,The paddy edge,Named location review,,Traveler generator,True,True,rt_hd2d_field,96,"M419, M421",Awaiting voxel replacement
+M421,Tomie Cho's hut,Named location review,,Traveler generator,True,True,rt_hd2d_night,78,"M416, M420",Awaiting voxel replacement
+M422,The river road in winter,Road and field,,Traveler generator,True,True,rt_hd2d_field,114,"M415, M423, M424",Awaiting voxel replacement
+M423,"A rice barge, at night",Highland,,Traveler generator,True,True,rt_hd2d_night,75,M424,Awaiting voxel replacement
+M424,The Village of Floating Flowers,Town and service,,Traveler generator,True,True,rt_hd2d_field,104,"M425, M429, M973, M422, M471, M649",Awaiting voxel replacement
+M425,The snake den - under the floor mats,Named location review,,Traveler generator,True,True,rt_hd2d_cave,85,"M424, M426",Awaiting voxel replacement
+M426,The snake den - the sand room,Interiors,,Traveler generator,True,True,rt_hd2d_cave,85,"M425, M427",Awaiting voxel replacement
+M427,The snake den - the serpent's mouth,Named location review,,Traveler generator,True,True,rt_hd2d_cave,76,"M426, M428",Awaiting voxel replacement
+M428,The snake den - the way out,Named location review,,Traveler generator,True,True,rt_hd2d_cave,85,"M427, M424",Awaiting voxel replacement
+M429,The road north to the Wounded Lion,Road and field,,Traveler generator,True,True,rt_hd2d_field,85,"M424, M430",Awaiting voxel replacement
+M430,The Village of the Wounded Lion,Town and service,,Traveler generator,True,True,rt_hd2d_field,143,"M437, M975, M976, M429, M431, M650, M472, M473",Awaiting voxel replacement
+M431,The Mountain of the White Snow - the cedar slopes,Highland,,Traveler generator,True,True,rt_hd2d_field,117,"M430, M432",Awaiting voxel replacement
+M432,The Mountain of the White Snow - the ice ledges,Highland,,Traveler generator,True,True,rt_hd2d_field,98,"M433, M431",Awaiting voxel replacement
+M433,The Mountain of the White Snow - the cloud bridge,Highland,,Traveler generator,True,True,rt_hd2d_field,80,"M434, M432",Awaiting voxel replacement
+M434,The Castle of the White Snow - the courtyard,Fortifications,,Traveler generator,True,True,rt_hd2d_field,79,"M433, M435",Awaiting voxel replacement
+M435,The Castle of the White Snow - the pagoda,Fortifications,,Traveler generator,True,True,rt_hd2d_field,95,"M434, M436",Awaiting voxel replacement
+M436,The Castle of the White Snow - the basin hall,Fortifications,,Traveler generator,True,True,rt_hd2d_field,79,"M435, M430",Awaiting voxel replacement
+M437,The pilgrim road to the Oracle's mountain,Volcanic highland,Cut a walkable passage into the basalt at the pilgrim road's lava tube.,Traveler generator,True,True,rt_hd2d_field,108,"M430, M438",Native environment pass
+M438,The Oracle's shrine town,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,142,"M978, M979, M986, M100, M200, M240, M253, M303, M345, M388, M414, M444, M437, M439, M651",Awaiting voxel replacement
+M439,The eta quarter below the shrine town,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,82,"M441, M440, M438, M652",Awaiting voxel replacement
+M440,The eta quarter's well (night),Named location review,,Traveler generator,True,True,rt_hd2d_night,80,M439,Awaiting voxel replacement
+M441,The shrine town rooftops (night),Sacred and garden,,Traveler generator,True,True,rt_hd2d_night,93,M442,Awaiting voxel replacement
+M442,The switchback stair (night),Named location review,,Traveler generator,True,True,rt_hd2d_night,83,M443,Awaiting voxel replacement
+M443,The crater shrine (dawn),Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,79,M438,Awaiting voxel replacement
+M444,The Plains of Thunder,Road and field,,Traveler generator,True,True,rt_hd2d_field,85,M445,Awaiting voxel replacement
+M445,The Shrine of Osano-Wo,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,96,"M446, M457, M491, M988, M989, M444",Awaiting voxel replacement
+M446,Shinomen Mori - the edge,Named location review,,Traveler generator,True,True,rt_hd2d_field,80,"M445, M447",Awaiting voxel replacement
+M447,Shinomen Mori - the deer track,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M446, M448",Awaiting voxel replacement
+M448,Shinomen Mori - the carved tree,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M447, M449",Awaiting voxel replacement
+M449,Shinomen Mori - the root-wall,Named location review,,Traveler generator,True,True,rt_hd2d_field,84,"M448, M450",Awaiting voxel replacement
+M450,Shinomen Mori - the Lava Trees,Named location review,,Traveler generator,True,True,rt_hd2d_field,85,"M449, M451",Awaiting voxel replacement
+M451,Shinomen Mori - a fire in the forest,Woodland and wetland,,Traveler generator,True,True,rt_hd2d_night,86,"M450, M452",Awaiting voxel replacement
+M452,Shinomen Mori - the glade,Named location review,,Traveler generator,True,True,rt_hd2d_field,80,"M453, M451",Awaiting voxel replacement
+M453,The heart of the glade,Named location review,,Traveler generator,True,True,rt_hd2d_night,77,M140,Awaiting voxel replacement
+M454,Shiro Kitsuki - Gendo's office,Interiors,,Traveler generator,True,True,rt_hd2d_field,79,"M343, M242",Awaiting voxel replacement
+M455,A road inn - the long table,Interiors,,Traveler generator,True,True,rt_hd2d_field,88,"M445, M382",Awaiting voxel replacement
+M456,Otosan Uchi - the river at night (1123),Named location review,,Traveler generator,True,True,rt_hd2d_night,103,M445,Awaiting voxel replacement
+M457,Kaiu Wall - the Shinomen gate,Fortifications,Light the walkable gate tunnel and mark the separate smith entrance.,Traveler generator,True,True,rt_hd2d_field,78,"M445, M458, M991",Native environment pass
+M458,Shadowlands deep - the Fallen road,Shadowlands,Keep the waymarker and winding route through shale and tainted ground.,Traveler generator,True,True,rt_hd2d_field,77,"M457, M459",Native environment pass
+M459,Shadowlands deep - the shifting waste,Shadowlands,Wind around shale banks and tainted earth. Preserve the original route and treasure detours.,Traveler generator,True,True,rt_hd2d_field,76,"M465, M458",Native environment pass
+M460,Shadowlands deep - the Hiruma road,Shadowlands,Follow the climbing switchbacks to Natsuko's concealed castle approach.,Traveler generator,True,True,rt_hd2d_field,77,"M458, M461",Native environment pass
+M461,Shiro Hiruma - the outer bailey,Fortifications,Ruined outer bailey with its gate on the east transition.,Traveler generator,True,True,rt_hd2d_field,77,"M460, M462",Native environment pass
+M462,Shiro Hiruma - the keep,Interiors,Shiro Hiruma keep with an open ancestral altar.,Traveler generator,True,True,rt_hd2d_cave,78,"M461, M463",Native environment pass
+M463,Shiro Hiruma - the lord's hall,Interiors,"Lord's hall with charred timber, plaster screens and a clear dais.",Traveler generator,True,True,rt_hd2d_night,77,M462,Native environment pass
+M464,The Orochi's water - off the Crane coast,Coast and water,,Traveler generator,True,True,rt_hd2d_night,76,M445,Awaiting voxel replacement
+M465,Shadowlands deep - the shifting waste,Shadowlands,Wind around shale banks and tainted earth. Preserve the original route and treasure detours.,Traveler generator,True,True,rt_hd2d_field,76,"M459, M458, M466",Native environment pass
+M466,Shadowlands deep - the shifting waste,Shadowlands,Wind around shale banks and tainted earth. Preserve the original route and treasure detours.,Traveler generator,True,True,rt_hd2d_field,77,"M465, M458, M467",Native environment pass
+M467,Shadowlands deep - the shifting waste,Shadowlands,Wind around shale banks and tainted earth. Preserve the original route and treasure detours.,Traveler generator,True,True,rt_hd2d_field,76,"M468, M466, M458",Native environment pass
+M468,Shadowlands deep - the shifting waste,Shadowlands,Wind around shale banks and tainted earth. Preserve the original route and treasure detours.,Traveler generator,True,True,rt_hd2d_field,77,"M469, M467, M458",Native environment pass
+M469,Shadowlands deep - the shifting waste,Shadowlands,Wind around shale banks and tainted earth. Preserve the original route and treasure detours.,Traveler generator,True,True,rt_hd2d_field,76,"M468, M460, M458",Native environment pass
+M470,The Yasuki coast road,Coast and water,,Traveler generator,True,True,rt_hd2d_field,163,"M480, M481, M103, M213",Awaiting voxel replacement
+M471,The River of Gold east bank road,Road and field,,Traveler generator,True,True,rt_hd2d_field,158,"M482, M351, M424",Awaiting voxel replacement
+M472,The Lion hills road,Road and field,,Traveler generator,True,True,rt_hd2d_field,160,"M483, M484, M255, M430",Awaiting voxel replacement
+M473,The snow road to Zumiki,Highland,,Traveler generator,True,True,rt_hd2d_field,158,"M485, M430, M282",Awaiting voxel replacement
+M474,The Doji coast road,Coast and water,,Traveler generator,True,True,rt_hd2d_field,161,"M486, M415, M228",Awaiting voxel replacement
+M475,The northern road - Phoenix lands,Road and field,,Traveler generator,True,True,rt_hd2d_field,158,"M487, M252, M379",Awaiting voxel replacement
+M476,The northern road - Dragon lands,Road and field,,Traveler generator,True,True,rt_hd2d_field,158,"M488, M387, M379",Awaiting voxel replacement
+M477,The Beiden hill road,Road and field,,Traveler generator,True,True,rt_hd2d_field,158,"M489, M202, M347",Awaiting voxel replacement
+M480,The Yasuki sea cave,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,84,M470,Awaiting voxel replacement
+M481,"The smugglers' cave, deep",Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,85,M470,Awaiting voxel replacement
+M482,The river cave,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,84,M471,Awaiting voxel replacement
+M483,The hill cave,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,83,M472,Awaiting voxel replacement
+M484,"The old mine, deep",Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,83,M472,Awaiting voxel replacement
+M485,The ice cave,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,83,M473,Awaiting voxel replacement
+M486,The tide cave,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,85,M474,Awaiting voxel replacement
+M487,The fox cave,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,83,M475,Awaiting voxel replacement
+M488,The mountain cave,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,84,M476,Awaiting voxel replacement
+M489,The bandit cave,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,86,M477,Awaiting voxel replacement
+M490,The Crane sea - the shallows,Coast and water,,Traveler generator,True,True,rt_hd2d_field,4,"M220, M222, M223, M225, M224",Awaiting voxel replacement
+M491,The Crane sea,Coast and water,,Traveler generator,True,True,rt_hd2d_field,6,"M220, M222, M223, M225, M224, M493, M464",Awaiting voxel replacement
+M492,The Mantis isles,Coast and water,,Traveler generator,True,True,rt_hd2d_field,2,"M304, M315",Awaiting voxel replacement
+M493,The Crane sea - the outer coast,Coast and water,,Traveler generator,True,True,rt_hd2d_field,5,"M491, M494, M755, M756, M757",Awaiting voxel replacement
+M494,The Crane sea - the Doji coast,Coast and water,,Traveler generator,True,True,rt_hd2d_field,5,"M228, M493, M758, M759, M760",Awaiting voxel replacement
+M500,Kyuden Hida - Entrance reception,Named location review,,Traveler generator,True,True,rt_hd2d_field,103,"M141, M535, M536, M538",Awaiting voxel replacement
+M501,Kyuden Hida - 1F - reception and service halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,110,"M541, M502, M147",Awaiting voxel replacement
+M502,Kyuden Hida - 2F - guest and council chambers,Named location review,,Traveler generator,True,True,rt_hd2d_field,96,"M501, M503",Awaiting voxel replacement
+M503,Kyuden Hida - 3F - archives and strategy halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,102,"M502, M504, M157",Awaiting voxel replacement
+M504,Kyuden Hida - 4F - audience and watch halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,114,"M503, M541, M151",Awaiting voxel replacement
+M505,Kyuden Doji - Entrance reception,Named location review,,Traveler generator,True,True,rt_hd2d_field,85,"M228, M546, M547, M549",Awaiting voxel replacement
+M506,Kyuden Doji - 1F - reception and service halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,90,"M552, M507",Awaiting voxel replacement
+M507,Kyuden Doji - 2F - guest and council chambers,Named location review,,Traveler generator,True,True,rt_hd2d_field,96,"M506, M508",Awaiting voxel replacement
+M508,Kyuden Doji - 3F - archives and strategy halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,104,"M507, M509, M232",Awaiting voxel replacement
+M509,Kyuden Doji - 4F - audience and watch halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,109,"M508, M100, M200, M240, M253, M303, M345, M388, M414, M444",Awaiting voxel replacement
+M510,Shiro Akodo - Entrance reception,Named location review,,Traveler generator,True,True,rt_hd2d_field,85,"M255, M557, M558, M560",Awaiting voxel replacement
+M511,Shiro Akodo - 1F - reception and service halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,98,"M563, M512",Awaiting voxel replacement
+M512,Shiro Akodo - 2F - guest and council chambers,Named location review,,Traveler generator,True,True,rt_hd2d_field,95,"M511, M513",Awaiting voxel replacement
+M513,Shiro Akodo - 3F - archives and strategy halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,106,"M512, M514, M261, M560",Awaiting voxel replacement
+M514,Shiro Akodo - 4F - audience and watch halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,106,M513,Awaiting voxel replacement
+M515,Kyuden Isawa - Entrance reception,Named location review,,Traveler generator,True,True,rt_hd2d_field,85,"M285, M568, M569, M571",Awaiting voxel replacement
+M516,Kyuden Isawa - 1F - reception and service halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,90,"M574, M517",Awaiting voxel replacement
+M517,Kyuden Isawa - 2F - guest and council chambers,Named location review,,Traveler generator,True,True,rt_hd2d_field,91,"M516, M518",Awaiting voxel replacement
+M518,Kyuden Isawa - 3F - archives and strategy halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,99,"M517, M519",Awaiting voxel replacement
+M519,Kyuden Isawa - 4F - audience and watch halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,100,M518,Awaiting voxel replacement
+M520,Kyuden Bayushi - Entrance reception,Named location review,,Traveler generator,True,True,rt_hd2d_field,85,"M347, M579, M580, M582",Awaiting voxel replacement
+M521,Kyuden Bayushi - 1F - reception and service halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,90,"M585, M522",Awaiting voxel replacement
+M522,Kyuden Bayushi - 2F - guest and council chambers,Named location review,,Traveler generator,True,True,rt_hd2d_field,91,"M521, M523",Awaiting voxel replacement
+M523,Kyuden Bayushi - 3F - archives and strategy halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,99,"M522, M524",Awaiting voxel replacement
+M524,Kyuden Bayushi - 4F - audience and watch halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,100,M523,Awaiting voxel replacement
+M525,Shiro Kitsuki - Entrance reception,Named location review,,Traveler generator,True,True,rt_hd2d_field,85,"M343, M590, M591, M593",Awaiting voxel replacement
+M526,Shiro Kitsuki - 1F - reception and service halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,90,"M596, M527",Awaiting voxel replacement
+M527,Shiro Kitsuki - 2F - guest and council chambers,Named location review,,Traveler generator,True,True,rt_hd2d_field,91,"M526, M528",Awaiting voxel replacement
+M528,Shiro Kitsuki - 3F - archives and strategy halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,99,"M527, M529",Awaiting voxel replacement
+M529,Shiro Kitsuki - 4F - audience and watch halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,100,M528,Awaiting voxel replacement
+M530,Shiro Iuchi - Entrance reception,Named location review,,Traveler generator,True,True,rt_hd2d_field,85,"M391, M601, M602, M604",Awaiting voxel replacement
+M531,Shiro Iuchi - 1F - reception and service halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,90,"M607, M532",Awaiting voxel replacement
+M532,Shiro Iuchi - 2F - guest and council chambers,Named location review,,Traveler generator,True,True,rt_hd2d_field,91,"M531, M533",Awaiting voxel replacement
+M533,Shiro Iuchi - 3F - archives and strategy halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,99,"M532, M534",Awaiting voxel replacement
+M534,Shiro Iuchi - 4F - audience and watch halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,100,M533,Awaiting voxel replacement
+M535,Kyuden Hida - Guard barracks,Named location review,,Traveler generator,True,True,rt_hd2d_field,86,"M500, M537",Awaiting voxel replacement
+M536,Kyuden Hida - Stables and stores,Named location review,,Traveler generator,True,True,rt_hd2d_field,87,"M500, M539",Awaiting voxel replacement
+M537,Kyuden Hida - Training court,Interiors,,Traveler generator,True,True,rt_hd2d_field,90,"M535, M538, M540",Awaiting voxel replacement
+M538,Kyuden Hida - Courtyard garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,90,"M500, M537, M539, M541",Awaiting voxel replacement
+M539,Kyuden Hida - Guest pavilion,Named location review,,Traveler generator,True,True,rt_hd2d_field,90,"M536, M538, M542",Awaiting voxel replacement
+M540,Kyuden Hida - Archive court,Interiors,,Traveler generator,True,True,rt_hd2d_field,88,"M537, M541, M543",Awaiting voxel replacement
+M541,Kyuden Hida - Keep approach,Fortifications,,Traveler generator,True,True,rt_hd2d_field,91,"M501, M148, M153, M538, M540, M542, M544",Awaiting voxel replacement
+M542,Kyuden Hida - Shrine court,Interiors,,Traveler generator,True,True,rt_hd2d_field,86,"M147, M539, M541, M545",Awaiting voxel replacement
+M543,Kyuden Hida - Kitchen garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,81,"M540, M544",Awaiting voxel replacement
+M544,Kyuden Hida - North garden,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,82,"M541, M543, M545",Awaiting voxel replacement
+M545,Kyuden Hida - Watch terrace,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M542, M544",Awaiting voxel replacement
+M546,Kyuden Doji - Guard barracks,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M505, M548",Awaiting voxel replacement
+M547,Kyuden Doji - Stables and stores,Named location review,,Traveler generator,True,True,rt_hd2d_field,83,"M505, M550",Awaiting voxel replacement
+M548,Kyuden Doji - Training court,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M546, M549, M551",Awaiting voxel replacement
+M549,Kyuden Doji - Courtyard garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M505, M548, M550, M552",Awaiting voxel replacement
+M550,Kyuden Doji - Guest pavilion,Named location review,,Traveler generator,True,True,rt_hd2d_field,84,"M547, M549, M553",Awaiting voxel replacement
+M551,Kyuden Doji - Archive court,Interiors,,Traveler generator,True,True,rt_hd2d_field,88,"M548, M552, M554",Awaiting voxel replacement
+M552,Kyuden Doji - Keep approach,Fortifications,,Traveler generator,True,True,rt_hd2d_field,84,"M506, M549, M551, M553, M555",Awaiting voxel replacement
+M553,Kyuden Doji - Shrine court,Interiors,,Traveler generator,True,True,rt_hd2d_field,84,"M550, M552, M556",Awaiting voxel replacement
+M554,Kyuden Doji - Kitchen garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,81,"M551, M555",Awaiting voxel replacement
+M555,Kyuden Doji - North garden,Sacred and garden,Kyuden Doji theatre with four changing sets and a shared stage.,Traveler generator,True,True,rt_hd2d_field,89,"M552, M554, M556",Native Kabuki stage pass
+M556,Kyuden Doji - Watch terrace,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M553, M555",Awaiting voxel replacement
+M557,Shiro Akodo - Guard barracks,Named location review,,Traveler generator,True,True,rt_hd2d_field,82,"M510, M559",Awaiting voxel replacement
+M558,Shiro Akodo - Stables and stores,Named location review,,Traveler generator,True,True,rt_hd2d_field,85,"M510, M561",Awaiting voxel replacement
+M559,Shiro Akodo - Training court,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M557, M560, M562",Awaiting voxel replacement
+M560,Shiro Akodo - Courtyard garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,87,"M510, M559, M561, M563",Awaiting voxel replacement
+M561,Shiro Akodo - Guest pavilion,Named location review,,Traveler generator,True,True,rt_hd2d_field,82,"M558, M560, M564",Awaiting voxel replacement
+M562,Shiro Akodo - Archive court,Interiors,,Traveler generator,True,True,rt_hd2d_field,88,"M559, M563, M565",Awaiting voxel replacement
+M563,Shiro Akodo - Keep approach,Fortifications,,Traveler generator,True,True,rt_hd2d_field,84,"M511, M560, M562, M564, M566",Awaiting voxel replacement
+M564,Shiro Akodo - Shrine court,Interiors,,Traveler generator,True,True,rt_hd2d_field,84,"M561, M563, M567",Awaiting voxel replacement
+M565,Shiro Akodo - Kitchen garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,82,"M562, M566",Awaiting voxel replacement
+M566,Shiro Akodo - North garden,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,82,"M563, M565, M567",Awaiting voxel replacement
+M567,Shiro Akodo - Watch terrace,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M564, M566",Awaiting voxel replacement
+M568,Kyuden Isawa - Guard barracks,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M515, M570",Awaiting voxel replacement
+M569,Kyuden Isawa - Stables and stores,Named location review,,Traveler generator,True,True,rt_hd2d_field,83,"M515, M572",Awaiting voxel replacement
+M570,Kyuden Isawa - Training court,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M568, M571, M573",Awaiting voxel replacement
+M571,Kyuden Isawa - Courtyard garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M515, M570, M572, M574",Awaiting voxel replacement
+M572,Kyuden Isawa - Guest pavilion,Named location review,,Traveler generator,True,True,rt_hd2d_field,82,"M569, M571, M575",Awaiting voxel replacement
+M573,Kyuden Isawa - Archive court,Interiors,,Traveler generator,True,True,rt_hd2d_field,88,"M570, M574, M576",Awaiting voxel replacement
+M574,Kyuden Isawa - Keep approach,Fortifications,,Traveler generator,True,True,rt_hd2d_field,84,"M516, M571, M573, M575, M577",Awaiting voxel replacement
+M575,Kyuden Isawa - Shrine court,Interiors,,Traveler generator,True,True,rt_hd2d_field,84,"M572, M574, M578",Awaiting voxel replacement
+M576,Kyuden Isawa - Kitchen garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,81,"M573, M577",Awaiting voxel replacement
+M577,Kyuden Isawa - North garden,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,82,"M574, M576, M578",Awaiting voxel replacement
+M578,Kyuden Isawa - Watch terrace,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M575, M577",Awaiting voxel replacement
+M579,Kyuden Bayushi - Guard barracks,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M520, M581",Awaiting voxel replacement
+M580,Kyuden Bayushi - Stables and stores,Named location review,,Traveler generator,True,True,rt_hd2d_field,83,"M520, M583",Awaiting voxel replacement
+M581,Kyuden Bayushi - Training court,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M579, M582, M584",Awaiting voxel replacement
+M582,Kyuden Bayushi - Courtyard garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M520, M581, M583, M585",Awaiting voxel replacement
+M583,Kyuden Bayushi - Guest pavilion,Named location review,,Traveler generator,True,True,rt_hd2d_field,82,"M580, M582, M586",Awaiting voxel replacement
+M584,Kyuden Bayushi - Archive court,Interiors,,Traveler generator,True,True,rt_hd2d_field,88,"M581, M585, M587",Awaiting voxel replacement
+M585,Kyuden Bayushi - Keep approach,Fortifications,,Traveler generator,True,True,rt_hd2d_field,84,"M521, M582, M584, M586, M588",Awaiting voxel replacement
+M586,Kyuden Bayushi - Shrine court,Interiors,,Traveler generator,True,True,rt_hd2d_field,84,"M583, M585, M589",Awaiting voxel replacement
+M587,Kyuden Bayushi - Kitchen garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,81,"M584, M588",Awaiting voxel replacement
+M588,Kyuden Bayushi - North garden,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,82,"M585, M587, M589",Awaiting voxel replacement
+M589,Kyuden Bayushi - Watch terrace,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M586, M588",Awaiting voxel replacement
+M590,Shiro Kitsuki - Guard barracks,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M525, M592",Awaiting voxel replacement
+M591,Shiro Kitsuki - Stables and stores,Named location review,,Traveler generator,True,True,rt_hd2d_field,83,"M525, M594",Awaiting voxel replacement
+M592,Shiro Kitsuki - Training court,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M590, M593, M595",Awaiting voxel replacement
+M593,Shiro Kitsuki - Courtyard garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M525, M592, M594, M596",Awaiting voxel replacement
+M594,Shiro Kitsuki - Guest pavilion,Named location review,,Traveler generator,True,True,rt_hd2d_field,82,"M591, M593, M597",Awaiting voxel replacement
+M595,Shiro Kitsuki - Archive court,Interiors,,Traveler generator,True,True,rt_hd2d_field,88,"M592, M596, M598",Awaiting voxel replacement
+M596,Shiro Kitsuki - Keep approach,Fortifications,,Traveler generator,True,True,rt_hd2d_field,84,"M526, M593, M595, M597, M599",Awaiting voxel replacement
+M597,Shiro Kitsuki - Shrine court,Interiors,,Traveler generator,True,True,rt_hd2d_field,84,"M594, M596, M600",Awaiting voxel replacement
+M598,Shiro Kitsuki - Kitchen garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,81,"M595, M599",Awaiting voxel replacement
+M599,Shiro Kitsuki - North garden,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,82,"M596, M598, M600",Awaiting voxel replacement
+M600,Shiro Kitsuki - Watch terrace,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M597, M599",Awaiting voxel replacement
+M601,Shiro Iuchi - Guard barracks,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M530, M603",Awaiting voxel replacement
+M602,Shiro Iuchi - Stables and stores,Named location review,,Traveler generator,True,True,rt_hd2d_field,83,"M530, M605",Awaiting voxel replacement
+M603,Shiro Iuchi - Training court,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M601, M604, M606",Awaiting voxel replacement
+M604,Shiro Iuchi - Courtyard garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M530, M603, M605, M607",Awaiting voxel replacement
+M605,Shiro Iuchi - Guest pavilion,Named location review,,Traveler generator,True,True,rt_hd2d_field,82,"M602, M604, M608",Awaiting voxel replacement
+M606,Shiro Iuchi - Archive court,Interiors,,Traveler generator,True,True,rt_hd2d_field,88,"M603, M607, M609",Awaiting voxel replacement
+M607,Shiro Iuchi - Keep approach,Fortifications,,Traveler generator,True,True,rt_hd2d_field,84,"M531, M604, M606, M608, M610",Awaiting voxel replacement
+M608,Shiro Iuchi - Shrine court,Interiors,,Traveler generator,True,True,rt_hd2d_field,84,"M605, M607, M611",Awaiting voxel replacement
+M609,Shiro Iuchi - Kitchen garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,81,"M606, M610",Awaiting voxel replacement
+M610,Shiro Iuchi - North garden,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,82,"M607, M609, M611",Awaiting voxel replacement
+M611,Shiro Iuchi - Watch terrace,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M608, M610",Awaiting voxel replacement
+M612,Kyuden Togashi - Guard barracks,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M623, M614",Awaiting voxel replacement
+M613,Kyuden Togashi - Stables and stores,Named location review,,Traveler generator,True,True,rt_hd2d_field,83,"M623, M616",Awaiting voxel replacement
+M614,Kyuden Togashi - Training court,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M612, M615, M617",Awaiting voxel replacement
+M615,Kyuden Togashi - Courtyard garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,83,"M623, M614, M616, M618",Awaiting voxel replacement
+M616,Kyuden Togashi - Guest pavilion,Named location review,,Traveler generator,True,True,rt_hd2d_field,82,"M613, M615, M619",Awaiting voxel replacement
+M617,Kyuden Togashi - Archive court,Interiors,,Traveler generator,True,True,rt_hd2d_field,88,"M614, M618, M620",Awaiting voxel replacement
+M618,Kyuden Togashi - Keep approach,Fortifications,,Traveler generator,True,True,rt_hd2d_field,84,"M624, M615, M617, M619, M621",Awaiting voxel replacement
+M619,Kyuden Togashi - Shrine court,Interiors,,Traveler generator,True,True,rt_hd2d_field,84,"M616, M618, M622",Awaiting voxel replacement
+M620,Kyuden Togashi - Kitchen garden,Interiors,,Traveler generator,True,True,rt_hd2d_field,81,"M617, M621",Awaiting voxel replacement
+M621,Kyuden Togashi - North garden,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,82,"M618, M620, M622",Awaiting voxel replacement
+M622,Kyuden Togashi - Watch terrace,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M619, M621",Awaiting voxel replacement
+M623,Kyuden Togashi - Entrance reception,Named location review,,Traveler generator,True,True,rt_hd2d_field,85,"M383, M612, M613, M615",Awaiting voxel replacement
+M624,Kyuden Togashi - 1F - reception and service halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,90,"M618, M625",Awaiting voxel replacement
+M625,Kyuden Togashi - 2F - guest and council chambers,Named location review,,Traveler generator,True,True,rt_hd2d_field,91,"M624, M626",Awaiting voxel replacement
+M626,Kyuden Togashi - 3F - archives and strategy halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,99,"M625, M627",Awaiting voxel replacement
+M627,Kyuden Togashi - 4F - audience and watch halls,Interiors,,Traveler generator,True,True,rt_hd2d_field,100,M626,Awaiting voxel replacement
+M630,Hoshi-no-Ichi - Harbor Ward,Coast and water,,Traveler generator,True,True,rt_hd2d_field,81,"M700, M103",Awaiting voxel replacement
+M631,Pleasant Eaves - Lantern Lane,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M701, M202",Awaiting voxel replacement
+M632,The Green Ronin's Village - Bamboo Row,Town and service,,Traveler generator,True,True,rt_hd2d_field,81,"M702, M205",Awaiting voxel replacement
+M633,Garden Under Shadow City - Daidoji Quay,Coast and water,,Traveler generator,True,True,rt_hd2d_field,81,"M703, M210",Awaiting voxel replacement
+M634,The Crane Port - Sailmaker's Row,Coast and water,,Traveler generator,True,True,rt_hd2d_field,81,"M704, M220",Awaiting voxel replacement
+M635,Hiruto's Castle Town - Banner Square,Fortifications,,Traveler generator,True,True,rt_hd2d_field,81,"M705, M241",Awaiting voxel replacement
+M636,Zumiki - Pilgrim's Quarter,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M706, M282",Awaiting voxel replacement
+M637,Honored Treaty City - Treaty Market,Town and service,,Traveler generator,True,True,rt_hd2d_field,81,"M707, M285",Awaiting voxel replacement
+M638,The Coast Temple Town - Tide Shrine Ward,Coast and water,,Traveler generator,True,True,rt_hd2d_field,81,"M708, M297",Awaiting voxel replacement
+M639,Shutai - River Gate,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M709, M349",Awaiting voxel replacement
+M640,Kudo - Caravan Market,Town and service,,Traveler generator,True,True,rt_hd2d_field,81,"M710, M351",Awaiting voxel replacement
+M641,Hisatu Kensu - Maskmakers' Lane,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M711, M360",Awaiting voxel replacement
+M642,The Town of Buried Leaves - Autumn Market,Town and service,,Traveler generator,True,True,rt_hd2d_field,83,"M712, M369, M387",Awaiting voxel replacement
+M643,Shioden - Bellmaker's Walk,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M713, M372",Awaiting voxel replacement
+M644,Perfume Petal Blossom - Perfumer's Row,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M714, M375",Awaiting voxel replacement
+M645,Dragon Mountain Town - Mountain Spring,Town and service,,Traveler generator,True,True,rt_hd2d_field,81,"M715, M379",Awaiting voxel replacement
+M646,Yotomo - Horsefair,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M716, M396",Awaiting voxel replacement
+M647,Cakon - River Market,Town and service,,Traveler generator,True,True,rt_hd2d_field,81,"M717, M416",Awaiting voxel replacement
+M648,The Eta Village - Willow Row,Town and service,,Traveler generator,True,True,rt_hd2d_field,81,"M718, M418",Awaiting voxel replacement
+M649,The Village of Floating Flowers - Lotus Landing,Town and service,,Traveler generator,True,True,rt_hd2d_field,81,"M719, M424",Awaiting voxel replacement
+M650,The Village of the Wounded Lion - Snowmelt Row,Town and service,,Traveler generator,True,True,rt_hd2d_field,81,"M720, M430",Awaiting voxel replacement
+M651,The Oracle's Shrine Town - Pilgrim's Landing,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,81,"M721, M438",Awaiting voxel replacement
+M652,The Eta Quarter - Hearth Lane,Named location review,,Traveler generator,True,True,rt_hd2d_field,81,"M722, M439",Awaiting voxel replacement
+M700,Hoshi-no-Ichi - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M630,Awaiting voxel replacement
+M701,Pleasant Eaves - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M631,Awaiting voxel replacement
+M702,The Green Ronin's Village - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M632,Awaiting voxel replacement
+M703,Garden Under Shadow City - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M633,Awaiting voxel replacement
+M704,The Crane Port - Ward Inn,Coast and water,,Traveler generator,True,True,rt_hd2d_field,74,M634,Awaiting voxel replacement
+M705,Hiruto's Castle Town - Ward Inn,Fortifications,,Traveler generator,True,True,rt_hd2d_field,74,M635,Awaiting voxel replacement
+M706,Zumiki - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M636,Awaiting voxel replacement
+M707,Honored Treaty City - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M637,Awaiting voxel replacement
+M708,The Coast Temple Town - Ward Inn,Coast and water,,Traveler generator,True,True,rt_hd2d_field,74,M638,Awaiting voxel replacement
+M709,Shutai - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M639,Awaiting voxel replacement
+M710,Kudo - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M640,Awaiting voxel replacement
+M711,Hisatu Kensu - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M641,Awaiting voxel replacement
+M712,The Town of Buried Leaves - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M642,Awaiting voxel replacement
+M713,Shioden - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M643,Awaiting voxel replacement
+M714,Perfume Petal Blossom - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M644,Awaiting voxel replacement
+M715,Dragon Mountain Town - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M645,Awaiting voxel replacement
+M716,Yotomo - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M646,Awaiting voxel replacement
+M717,Cakon - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M647,Awaiting voxel replacement
+M718,The Eta Village - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M648,Awaiting voxel replacement
+M719,The Village of Floating Flowers - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M649,Awaiting voxel replacement
+M720,The Village of the Wounded Lion - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M650,Awaiting voxel replacement
+M721,The Oracle's Shrine Town - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M651,Awaiting voxel replacement
+M722,The Eta Quarter - Ward Inn,Interiors,,Traveler generator,True,True,rt_hd2d_field,74,M652,Awaiting voxel replacement
+M750,Cove Fort - The Fisher's Cove,Fortifications,,Traveler generator,True,True,rt_hd2d_field,82,M222,Awaiting voxel replacement
+M751,The Temples of the Sun - Pilgrim's Landing,Sacred and garden,,Traveler generator,True,True,rt_hd2d_field,82,M223,Awaiting voxel replacement
+M752,The Isle of the Heavenly Sheen - Wreckers' Shore,Coast and water,,Traveler generator,True,True,rt_hd2d_field,82,M225,Awaiting voxel replacement
+M753,The Isle of Silk - Mulberry Quay,Coast and water,,Traveler generator,True,True,rt_hd2d_field,82,M304,Awaiting voxel replacement
+M754,Tortoise Island - South Beach,Coast and water,,Traveler generator,True,True,rt_hd2d_field,82,M315,Awaiting voxel replacement
+M755,Kiku Shoal,Named location review,,Traveler generator,True,True,rt_hd2d_field,78,M493,Awaiting voxel replacement
+M756,Gulls' Shelf,Named location review,,Traveler generator,True,True,rt_hd2d_field,78,M493,Awaiting voxel replacement
+M757,White Gull Islet,Coast and water,,Traveler generator,True,True,rt_hd2d_field,78,M493,Awaiting voxel replacement
+M758,Paper Lantern Islet,Coast and water,,Traveler generator,True,True,rt_hd2d_field,78,M494,Awaiting voxel replacement
+M759,White Heron Key,Named location review,,Traveler generator,True,True,rt_hd2d_field,78,M494,Awaiting voxel replacement
+M760,Reed-Song Islet,Coast and water,,Traveler generator,True,True,rt_hd2d_field,78,M494,Awaiting voxel replacement
+M800,草原バトル,Named location review,,other registered map,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M801,街中バトル,Named location review,,other registered map,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M802,森バトル,Named location review,,other registered map,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M803,神殿バトル,Named location review,,other registered map,True,True,rt_hd2d_battle,2,,Awaiting voxel replacement
+M804,洞窟バトル1,Named location review,,other registered map,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M805,屋内バトル,Named location review,,other registered map,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M806,Battle: the corrupted glade,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M807,Battle: the starfield (Body of Damned Time),Road and field,,Traveler generator,True,True,rt_hd2d_night,1,,Awaiting voxel replacement
+M808,Battle: Shiro Hiruma - the lord's hall,Combat arena,Match the lord's hall while keeping formation lanes open.,Traveler generator,True,True,rt_hd2d_battle,1,,Native environment pass
+M809,Battle: the Orochi's water,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M810,Battle: Kaiu Wall (night),Fortifications,Bring the Kaiu masonry and stone walk into the Wall arena.,Traveler generator,True,True,rt_hd2d_night,1,,Native environment pass
+M811,Battle: Coast Road,Coastal combat ground,"Keep the central fight free of tall props and show the tidal shelf, vegetation, and cliff layers around it.",Traveler generator,True,True,rt_hd2d_battle,1,,Native environment pass
+M812,Battle: Old quarry,Quarry combat ground,Carry the camp's canvas and old cut stone into the arena while keeping formation lanes clear.,Traveler generator,True,True,rt_hd2d_battle,3,,Native environment pass
+M813,Battle: Egg Caves,Rock and underground,"Frame the arena with coastal calcite, mud and clear sightlines.",Traveler generator,True,True,rt_hd2d_cave,1,,Native environment pass
+M814,Battle: Hida road,Road and field,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M815,Battle: donjon,Named location review,,Traveler generator,True,True,rt_hd2d_cave,1,,Awaiting voxel replacement
+M816,Battle: castle hall,Fortifications,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M817,Battle: Shadowlands,Shadowlands combat ground,"Frame the formations with tar pools, burnt stumps and bones.",Traveler generator,True,True,rt_hd2d_shadow,1,,Native environment pass
+M818,Battle: the road home,Shadowlands combat ground,Leave formations clear on the road beneath the Kaiu Wall.,Traveler generator,True,True,rt_hd2d_shadow,1,,Native environment pass
+M820,Battle: Kakita Academy,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M821,Battle: Beiden road,Road and field,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M822,Battle: Mountains' Cloak Forest,Woodland and wetland,,Traveler generator,True,True,rt_hd2d_night,1,,Awaiting voxel replacement
+M823,Battle: Goroso's yard,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M824,Battle: Goroso's cells,Named location review,,Traveler generator,True,True,rt_hd2d_cave,1,,Awaiting voxel replacement
+M825,Battle: the border meadow,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M826,Battle: the Crane coast,Coast and water,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M827,Battle: a ship's deck,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M828,Battle: the cove,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M829,Battle: the sea-cave shrine,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,1,,Awaiting voxel replacement
+M830,Battle: the deck in the storm,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M831,Battle: the archives,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M832,Battle: the dueling ground,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M833,Battle: the Magonojo at night,Named location review,,Traveler generator,True,True,rt_hd2d_night,1,,Awaiting voxel replacement
+M834,Battle: Lord Hiruto's castle,Fortifications,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M835,Battle: the shrine road,Sacred and garden,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M836,Battle: Lord Hiruto's hall,Interiors,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M837,Battle: the winter road,Road and field,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M838,Battle: a dojo,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M839,Battle: the South Dojo at night,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M840,Battle: the thaw road,Road and field,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M841,Battle: the old battlefield,Road and field,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M842,Battle: the ford at dawn,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M843,Battle: the west tower,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M844,Battle: the snowbound pass,Highland,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M845,Battle: the traitor's torii,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M846,Battle: the Isawa Mori,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M847,Battle: the cellar under the house,Interiors,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M848,Battle: the cliffs in the storm,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M849,Battle: the red torii,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M850,Battle: the Silk docks,Coast and water,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M851,Battle: the Gusai ruins,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M852,Battle: Tortoise beach at dusk,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M853,Battle: the Tortoise cove,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M854,Battle: the winter orchard,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M855,Battle: the Izumida snow,Highland,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M856,Battle: the parley ship,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M857,Battle: the land front,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M858,Battle: the lighthouse peninsula,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M859,Battle: the harbour tunnels,Rock and underground,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M860,Battle: the gaijin flagship,Named location review,,Traveler generator,True,True,rt_hd2d_battle,1,,Awaiting voxel replacement
+M861,Battle: the grove road,Scorpion combat ground,Use the grove's cedar silhouette behind the Road Bandit formations.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M862,Battle: the river at night,Kudo combat ground,Keep the ford's low stones clear of both formations.,Traveler generator,True,True,rt_hd2d_night,1,,Native environment pass
+M863,Battle: the west marsh,Kudo combat ground,Frame the battle with drowned timber and a narrow run of marsh water.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M864,Battle: the heart clearing,Kudo combat ground,Keep the ritual pool between the formations.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M865,Battle: the plains north of Shiro no Soshi,Hisatu Kensu combat ground,Show the flooded paddies behind the clear formation lanes.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M866,Battle: a street in the City of Masks,City of Masks combat ground,Stage the city ambush in front of the district gate and market awnings.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M867,Battle: the temple paths,City of Masks combat ground,Light the stitched monks' arena with paper lanterns behind the formation.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M868,Battle: the Monastery of the Silent Self,City of Masks combat ground,Stage Munashii's fight beneath the monastery shadow.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M869,Battle: the Ojatara Valleys,Ojatara combat ground,Set camp shelters and autumn brush behind the valley arena.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M870,Battle: the grave path,Ojatara combat ground,Frame the arena with grave markers and moving wildflowers.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M871,Battle: the mountain road at dusk,Ojatara combat ground,Keep the mountain-road formations clear of the hillside lanterns.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M872,Battle: the Dragon mountains,Dragon mountain combat ground,Keep the wolf and Traveler formations clear under slate and snow.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M873,Battle: Tamori's Furnace,Volcanic combat ground,Carry a narrow spattering tributary between travelers and fire elementals.,Traveler generator,True,True,rt_hd2d_cave,1,,Native environment pass
+M874,Battle: the crater's mouth,Volcanic combat ground,Break the crater lip with a narrow tributary and distant molten field.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M875,Battle: the valley road in autumn,Autumn valley combat ground,Frame the bandit encounter with russet maples and burned plots.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M876,Battle: the pigeon cave,Pigeon cave combat ground,Set perches and chalk-streaked slate behind the encounter lanes.,Traveler generator,True,True,rt_hd2d_cave,1,,Native environment pass
+M877,Battle: the vat chamber,Yotomo vat combat ground,Stage the vat chamber fight between the formations with the barrels in the background.,Traveler generator,True,True,rt_hd2d_cave,1,,Native environment pass
+M878,Battle: Shiro Iuchi's tower,Named location review,,Traveler generator,True,True,rt_hd2d_night,1,,Awaiting voxel replacement
+M879,Battle: the jade mines,Rock and underground,,Traveler generator,True,True,rt_hd2d_cave,1,,Awaiting voxel replacement
+M880,Battle: the deep gallery,Named location review,,Traveler generator,True,True,rt_hd2d_cave,1,,Awaiting voxel replacement
+M881,Battle: the wind tunnel,Rock and underground,,Traveler generator,True,True,pbr_df-4-1-1,1,,Awaiting voxel replacement
+M882,Battle: the storm room,Interiors,,Traveler generator,True,True,rt_hd2d_night,1,,Awaiting voxel replacement
+M883,Battle: Cakon,Named location review,,Traveler generator,True,True,pbr_df-4-1-1,1,,Awaiting voxel replacement
+M884,Battle: the canal log,Named location review,,Traveler generator,True,True,pbr_df-4-1-1,1,,Awaiting voxel replacement
+M885,Battle: the paddies,Named location review,,Traveler generator,True,True,pbr_df-4-1-1,1,,Awaiting voxel replacement
+M886,Battle: Tomie Cho's hut,Named location review,,Traveler generator,True,True,rt_hd2d_night,1,,Awaiting voxel replacement
+M887,Battle: inside the mud hut,Interiors,,Traveler generator,True,True,rt_hd2d_cave,1,,Awaiting voxel replacement
+M888,Battle: the river road in winter,Road and field,,Traveler generator,True,True,pbr_df-4-1-1,1,,Awaiting voxel replacement
+M889,Battle: the jetties in the storm,Named location review,,Traveler generator,True,True,rt_hd2d_night,1,,Awaiting voxel replacement
+M890,Battle: the snake den,Named location review,,Traveler generator,True,True,rt_hd2d_battle,2,,Awaiting voxel replacement
+M891,Battle: the north road checkpoint,Road and field,,Traveler generator,True,True,pbr_df-4-1-1,1,,Awaiting voxel replacement
+M892,Battle: the mountain snow,Highland,,Traveler generator,True,True,pbr_df-4-1-1,1,,Awaiting voxel replacement
+M893,Battle: the basin hall,Interiors,,Traveler generator,True,True,rt_hd2d_battle,2,,Awaiting voxel replacement
+M894,Battle: the pilgrim road,Volcanic combat ground,Set a shallow molten stream into the ash beside the pilgrim route.,Traveler generator,True,True,pbr_df-4-1-1,1,,Native environment pass
+M895,Battle: the shrine town at night,Sacred and garden,,Traveler generator,True,True,rt_hd2d_night,2,,Awaiting voxel replacement
+M896,Battle: the switchback stair,Named location review,,Traveler generator,True,True,rt_hd2d_battle,2,,Awaiting voxel replacement
+M897,Battle: the Plains of Thunder,Road and field,,Traveler generator,True,True,pbr_df-4-1-1,1,,Awaiting voxel replacement
+M898,Battle: the stockade of Osano-Wo,Named location review,,Traveler generator,True,True,rt_hd2d_battle,2,,Awaiting voxel replacement
+M899,Battle: the Shinomen Mori,Named location review,,Traveler generator,True,True,pbr_df-4-1-1,1,,Awaiting voxel replacement
+M900,Pleasant Eaves - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M202,Awaiting voxel replacement
+M902,Garden Under Shadow City - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M210,Awaiting voxel replacement
+M903,Garden Under Shadow City - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M210,Awaiting voxel replacement
+M905,Yasuki Yashiki - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M213,Awaiting voxel replacement
+M907,The Crane port - Shop,Coast and water,,other registered map,True,True,rt_hd2d_field,4,M220,Awaiting voxel replacement
+M908,The Crane port - Shop,Coast and water,,other registered map,True,True,rt_hd2d_field,4,M220,Awaiting voxel replacement
+M909,The Crane port - Inn,Coast and water,,other registered map,True,True,rt_hd2d_field,3,M220,Awaiting voxel replacement
+M911,The Temples of the Sun - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M223,Awaiting voxel replacement
+M912,The Temples of the Sun - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M223,Awaiting voxel replacement
+M914,Kyuden Doji - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M228,Awaiting voxel replacement
+M915,Kyuden Doji - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M228,Awaiting voxel replacement
+M916,Kyuden Doji - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M228,Awaiting voxel replacement
+M917,Kyuden Doji - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M228,Awaiting voxel replacement
+M919,Hiruto's castle town - Shop,Fortifications,,other registered map,True,True,rt_hd2d_field,4,M241,Awaiting voxel replacement
+M920,Hiruto's castle town - Shop,Fortifications,,other registered map,True,True,rt_hd2d_field,4,M241,Awaiting voxel replacement
+M921,Hiruto's castle town - Inn,Fortifications,,other registered map,True,True,rt_hd2d_field,3,M241,Awaiting voxel replacement
+M923,Shiro no Kamatori - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M252,Awaiting voxel replacement
+M924,Shiro no Kamatori - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M252,Awaiting voxel replacement
+M926,Shiro Akodo - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M255,Awaiting voxel replacement
+M927,Shiro Akodo - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M255,Awaiting voxel replacement
+M928,Shiro Akodo - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M255,Awaiting voxel replacement
+M930,The Village of the Burned Bridge - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M267,Awaiting voxel replacement
+M932,Zumiki - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M282,Awaiting voxel replacement
+M933,Zumiki - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M282,Awaiting voxel replacement
+M935,Honored Treaty City - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M285,Awaiting voxel replacement
+M937,Kyuden Isawa - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M288,Awaiting voxel replacement
+M938,Kyuden Isawa - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M288,Awaiting voxel replacement
+M940,The coast temple town - Inn,Coast and water,,other registered map,True,True,rt_hd2d_field,3,M297,Awaiting voxel replacement
+M941,The coast temple town - Shop,Coast and water,,other registered map,True,True,rt_hd2d_field,4,M297,Awaiting voxel replacement
+M943,The Isle of Silk - Shop,Coast and water,,other registered map,True,True,rt_hd2d_field,4,M304,Awaiting voxel replacement
+M945,Tortoise Island - Inn,Coast and water,,other registered map,True,True,rt_hd2d_field,3,M315,Awaiting voxel replacement
+M946,Tortoise Island - Shop,Coast and water,,other registered map,True,True,rt_hd2d_field,4,M315,Awaiting voxel replacement
+M948,Shiro Kitsuki - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M343,Awaiting voxel replacement
+M949,Shiro Kitsuki - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M343,Awaiting voxel replacement
+M951,Kyuden Bayushi castle town - Shop,Fortifications,,other registered map,True,True,rt_hd2d_field,4,M347,Awaiting voxel replacement
+M952,Kyuden Bayushi castle town - Shop,Fortifications,,other registered map,True,True,rt_hd2d_field,4,M347,Awaiting voxel replacement
+M953,Kyuden Bayushi castle town - Inn,Fortifications,,other registered map,True,True,rt_hd2d_field,3,M347,Awaiting voxel replacement
+M955,Hisatu Kensu - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M360,Awaiting voxel replacement
+M956,Hisatu Kensu - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M360,Awaiting voxel replacement
+M958,The Town of Buried Leaves - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M369,Awaiting voxel replacement
+M959,The Town of Buried Leaves - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M369,Awaiting voxel replacement
+M960,The Town of Buried Leaves - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M369,Awaiting voxel replacement
+M962,Dragon mountain town - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M379,Awaiting voxel replacement
+M963,Dragon mountain town - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M379,Awaiting voxel replacement
+M965,The Town of Buried Leaves (autumn) - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M387,Awaiting voxel replacement
+M967,Cakon: the docks - Inn,Coast and water,,other registered map,True,True,rt_hd2d_field,3,M415,Awaiting voxel replacement
+M968,Cakon: the docks - Shop,Coast and water,,other registered map,True,True,rt_hd2d_field,4,M415,Awaiting voxel replacement
+M970,Cakon: the market - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M416,Awaiting voxel replacement
+M971,Cakon: the market - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M416,Awaiting voxel replacement
+M973,The Village of Floating Flowers - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M424,Awaiting voxel replacement
+M975,The Village of the Wounded Lion - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M430,Awaiting voxel replacement
+M976,The Village of the Wounded Lion - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M430,Awaiting voxel replacement
+M978,The Oracle's shrine town - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M438,Awaiting voxel replacement
+M979,The Oracle's shrine town - Inn,Interiors,,other registered map,True,True,rt_hd2d_field,3,M438,Awaiting voxel replacement
+M980,フラットテンプレート,Named location review,,other registered map,True,True,pbr_df,0,,Awaiting voxel replacement
+M981,草原テンプレート,Named location review,,other registered map,True,True,pbr_df,0,,Awaiting voxel replacement
+M982,街テンプレート,Named location review,,other registered map,True,True,pbr_df-4,0,,Awaiting voxel replacement
+M983,ダンジョンテンプレート1,Named location review,,other registered map,True,True,pbr_df,0,,Awaiting voxel replacement
+M984,ダンジョンテンプレート2,Named location review,,other registered map,True,True,pbr_df-1,0,,Awaiting voxel replacement
+M985,荒野テンプレート,Named location review,,other registered map,True,True,pbr_df,0,,Awaiting voxel replacement
+M986,The Oracle's shrine town - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M438,Awaiting voxel replacement
+M988,The Shrine of Osano-Wo - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M445,Awaiting voxel replacement
+M989,The Shrine of Osano-Wo - Shop,Interiors,,other registered map,True,True,rt_hd2d_field,4,M445,Awaiting voxel replacement
+M991,Kaiu Wall - the Shinomen gate - Shop,Smithy interior,"Give the Kaiu smith a hearth, anvil and clear approach from the door.",other registered map,True,True,rt_hd2d_field,2,M457,Native environment pass
+M995,バトルテンプレート,Named location review,,other registered map,True,True,pbr_df-4-1-1,1,,Awaiting voxel replacement

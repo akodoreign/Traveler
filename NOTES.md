@@ -5029,3 +5029,286 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
 - Leaving notices (guests and the hireling going home) now show in the field Story box for 6 s (RokuganHUD
   hudNotice, title "Party"): the old popupDamage over the player faded before anyone could read it. Visual tests:
   tools/test_guest_visual.py (guest call pop, field notice), screenshots in _art/preview/guest_*.png.
+- Scorpion Ch? city (user 2026-11-21: "scorpion path breaks after the guy explains the elemental masks. quest marker
+  heads to a pond"): after the mask gate (G882) the next step is buying 2 masks (G883) in the Merchant District, a
+  talk, so no marker beat existed; the marker fell to the Iuchi soldier's talk on the Ojatara road (M368, G922),
+  whose beat ignored the nested "if G967 / if G990" and was due from the start. Fixed in gen_maps marker_pass: a
+  manual beat at the M364 mask sellers (G882 and G883 < 2), and talk beats now carry the story-flag conditions of
+  the cmd_ifs they sit in (_first_flag_set). RokuganMarkerData.sk regenerated from the current map.json (marker_pass
+  alone; it also refreshed stale exit sizes). Verified in the engine: M362 -> M364 sellers -> collapse -> Siko.
+- Outfit colours (in progress): the side cast's default outfits are tailored meshes dyed by
+  resource/native_tailoring/tex/<clan>/*.png (RokuganNativeChara addTailoredPart), not the *_outfit.pm rebuilt with
+  the new gear_palette weights; the rebuild changed nothing visible. Next: darken those clan dye textures.
+- Town wards side by side (user 2026-11-22, two sketches: "a lot of towns organized like image 1, they need to be
+  re organized like image 2"; separate maps + exits): each extra ward (TOWN_WARDS / ISLAND_WARDS, M630-M652,
+  M750-M754) was entered from a portal mid-town and arrived at the ward's south edge, so the ward sat ON the town.
+  Now gen_maps _ward_edge_tile picks a town edge (free first: front, east, west, back; else the stretch of a used edge
+  farthest from its exits; reachable, room to arrive), mark_exits/edge_triggers make it a whole-edge exit, and the
+  ward's way back is on the opposite edge (_ward_return_sides; Buried Leaves' two seasons take two ward edges).
+  The landing keeps the map's last-but-post event id (parked as "#ward#", numbered at the end of make) so every
+  other event id matches the shipped maps (saves). test_settlements updated (landing + edge strip).
+- Fast travel on every road (user 2026-11-22: "all of them should get their own colored boxes (based on clans)
+  ... After they all meet up make them all available (any visited)"): gen_maps TRAVEL_AUTO (31 towns, 7 roads) +
+  the Crab three; make() places each post last (_auto_signpost: open level ground near the middle, beside a road,
+  clear of anything built); write_travel_data -> plugin RokuganTravelData.sk (::Rokugan.TRAVEL_NODES). Visits:
+  RokuganField travelMark on map load, bits of G1640/G1641 (the Crab three keep G100-G102). The menu offers the
+  lead traveler's road's visited towns; with G1363 or 8 roads walked, every visited town. Posts: map_vox exterior
+  #60-#66 = Crab's #10 re-dyed per clan (tools/gen_travel_posts.py; pal0 words are 0xMMBBGGRR, 169-172 = the box,
+  the greys = leg and mark). Engine test: tools/test_travel.py (screens _art/preview/travel_*.png).
+- Pipeline note: _tools/data_orig was incomplete here; the missing originals were copied from
+  D:\RokuganTraveler\_tools\data_orig (2026-11-22; the 8 already present differ and were kept). A full gen_data run
+  then WORKED but reverted data other tools had patched in place since its last run (S391 playVoidBolt, S608
+  playLionCharge, 9 enemies' EXP, P131 TP curve, S906 text, M001 reqs0 gates, map weather, some event positions),
+  so it was rolled back byte-for-byte. Until those patches live in gen_data: after gen_maps run gen_render,
+  apply_bust_emotions, apply_dialog_fixes by hand, not regen.py (map.json is sometimes briefly locked: retry).
+  test_settlements' governor test fails after apply_bust_emotions (it adds emo tags the generator doesn't).
+- Regional commoner robes (user 2026-11-22: "go through the generic a100 robes and vary the colors based on region"):
+  the ~150 townsfolk in Travelling Clothes (A100) dyed peasant / eta / ronin shared one texture per dye.
+  tools/gen_commoner_dyes.py re-dyes those (blender/generated_wardrobe.dyes in numpy, folds kept): per region 4
+  everyday dyes (crab slate/indigo/iron/bark, crane grey-blue, lion ochre/rust, phoenix persimmon/saffron, scorpion
+  maroon/charcoal/brick, dragon moss/olive, unicorn plum/horse-tan, mantis teal/sea), each person one of four looks
+  (main + second dye, from a hash of their key); eta one muted regional dye; ronin four of their own anywhere.
+  44 textures tex/<peasant|eta|ronin>/A100_<region>_<k>.png. Runtime: plugin RokuganCommonerDyes.sk (generated:
+  DYE_REGION map -> region from the town's ward clan, place names, else the road; wraps createNativeChara for the
+  key) + a 2-line hook in RokuganNativeChara addTailoredPart (asks ::Rokugan.commonerDye; null = the clan's dye).
+  Engine-checked: Hoshi-no-Ichi, Pleasant Eaves, Shutai (_art/preview/dyes_people*.png).
+- Memory mini-game (user 2026-11-22: "if you try to quit the game without finishing it soft locks, and should flash
+  all the cards for like 5 seconds before going face down"): RokuganMini RTMemory - after "Deal the cards" every card
+  shows face up for 5 s with a countdown ("preview" state), then turns down; X / Esc during play or preview asks "Put
+  the cards away?" (Keep playing / Stop); Stop = result 2 (Fujio's lost line, the event goes on). The wait loop
+  ignores time in the Esc pause menu. Intro text fixed (32 pairs, not six). Test: tools/test_mini_pause.py --quit.
+  (Squirrel: `resume` is a keyword - a member named so broke the whole plugin load; the other session renamed it.)
+- Castle rework, pilot Kyuden Hida (user 2026-11-22: "scrap the rooms and let the player roam the castle areas when
+  they get there ... have the quest marker of course lead them to the new right room"; "Rebuild the scenes"; fix the
+  court scenes too). The Winter Court lives in the roamable castle (CLAN_CASTLES[0], gen_maps HIDA / CASTLE_STORY,
+  hooks at the end of clan_castle_yard / clan_castle_floor):
+  - Guard barracks M535: free rest, Sachiko + the Sumai ring. Training court M537: Kurako's archery (+ watchers).
+    Stables M536: Takeo (+ the Matsu cousins until he joins). Keep approach M541: the cellar stair house = the donjon
+    door (DOOR_EV donjon, G211 > 0), Shigeru, Taira, Mai. Shrine court M542: the path up to the women's shrine
+    (DOOR_EV shrinegate, G210). Courtyard garden M538: the winter garden (pond), Mutsuye, Kuhime, Keiyomi, Akiko,
+    O-Shito, Sakura. Guest pavilion M539: Shiko, Kage, Fujio, Shigeru's and Kuhime's rooms (Veil Thread).
+    Keep 1F M501: the great hall (Kurako after, the kitchen, Fine Sake; the S02b dance on entering after HUB4).
+    Keep 4F M504: the audience hall - Kisada (his own sprite now) on the dais, Takakana, the window over the Wall;
+    S01, S04, S07, Crab Ch4's wedding. Staging: the S04 hearing has Mutsuye, Kuhime, Shigeru, Noboru and Kage in the
+    hall while it is due; Kage at S01.
+  - The town's castle gate goes to the reception M500 (castle "gate": True: no second access portal). Every scene move
+    into the old rooms re-pointed (gate guard, S03, S04 -> the cellar, S06, Crab Ch4's call); M147/M148 return to
+    the shrine gate / cellar door (hida_door). M142-M146 are stubs (castle_stub) that move an old save to the
+    matching spot. Mutsuye's G210 line moved from apply_dialog_fixes (M143/#3#) into hida_garden.
+  - Marker: manual beats for the four required court threads (G202-G205, due from S01 until the dance) so the
+    optional Sumai ring near the gate doesn't win. Engine-checked: town -> garden, entrance -> garden, 3 threads ->
+    training court, garden -> great hall (dance), dawn -> audience hall, night -> the cellar stair -> donjon.
+    Journal side markers 1-6, minitest spots and gen_busts' court backdrops follow the new maps.
+  - Screens: _art/preview/castle/. Not yet: Crab Ch4's dark castle (M154-M156, a siege dungeon) stays as is; the
+    other castles (Doji, Akodo, Isawa, Bayushi, Kitsuki, Iuchi, Togashi) next, one at a time.
+
+- **Winter Court dance contest (user 2026-11-22: "dance minigame, build a stage ... important ones to watch and judge
+  ... Dance dance type ... easy and hard ... failure only having her be laughed at ... crab accessory reward").**
+  - Stage: keep 1F (M501) gen_maps hida_stage / hida_hall: noh-style stage mid-hall (the camera looks from low z, so
+    the screen + beam are at z 27-28 behind her), Hida Kisada seated on a throne on a dais at the stage's left
+    (court_throne clip, tetsubo hidden by the pose), the judges Yakamo / Takakana / Kurako in a row before the stage,
+    the court behind them, Sachiko + Wall Crabs along the right, Keiyomi waiting at the right corner (all DANCE_ON =
+    HUB4 + G209 false). After the contest a musician by the stage offers practice rounds (prizes not yet won).
+  - Scene: S02b opening -> Kurako calls Natsuko up -> Easy / Hard / Bow out -> the dance -> prize or laughter ->
+    canon Keiyomi lines -> barracks. Prizes by grade (G1643; G1642 bits): B A175 Red Claw Kanzashi (Kurako), A A176
+    Kaiu Iron Fan (Takakana), S A177 Jade Claw of the Wall (Kisada's, via Yakamo; Kisada still never speaks). Easy
+    tops out at A. Fail = the court laughs behind its fans (SE301), Sachiko consoles.
+  - Mini-game: plugin RokuganDance.sk (RTDance on RTMini) - arrow lanes over the live hall, judges' busts + live
+    reactions, timing from the BGM's tell(), Natsuko's own model dancing each hit (tools/blender/natsuko_dance.py ->
+    resource/native_chara/natsuko_dance.mot; hook in RokuganNativeChara anime2). NOTE: a dedicated choreography agent
+    (user) now owns RokuganDance.sk (it added a miko costume A209 etc.) - don't edit it from here.
+  - Music: MU126 "The Shrine Maidens' Dance" (Easy, gen_music t_kagura, D yo 116 BPM) and MU127 "Jo, Ha, Kyu" (Hard,
+    t_jhk: WarpTrack tempo curve 54 -> 210 BPM, biwa from start to finish, dead stop). User: winds/sho read as
+    synthetic and fast koto arps as "tetris" -> both tracks are plucked/struck only now. music_census --all: kagura 0 s
+    of semitone rubs, kyu 31 s (in scale; the approved "shadow" track is 44 s). Charts written from the melodies:
+    RokuganDanceChart_easy / _hard.sk. SFX: tools/gen_court_sfx.py SE300 applause, SE301 fans.
+  - Tests: tools/test_dance.py [win|ok|lose] [--hard] [--practice] | --anim [--court]. Engine-checked: Easy A (fan),
+    Hard S (jade claw), every clip on her model, the throne. SK gotchas found: strings use indexOf (no find), no
+    base.method() calls, and #{...} is a literal built ONCE (never put variables in it).
+- **Deeper, richer clan dyes (user 2026-11-22: "deeper richer colors"; Kisada "dark blue ... red studs"; then "make
+  those pinks red, and the blues darker" / "thats the deep richness each clan should have").** gear_palette
+  NATIVE_CLANS for the nine samurai clans re-set (Crab navy plate + true red lace; the others stepped to the same
+  depth, Crane whites kept); tools/gen_clan_dyes.py [clan ...] re-dyes tex/<clan>/*.png from the as-deployed textures
+  (kept in _tools/rpgcobo-tool/tmp/clan_dye_src, uncommitted) - 362 textures. Swatches _art/preview/clan_dyes.png.
+  Commoners unchanged. Own-mesh outfits (side_*_outfit.pm) pick it up on their next Blender rebuild; LOOK3D
+  side_kisada added; side_kisada_outfit.pm recoloured (not what he wears - he wears tailored A112).
+
+- **Kyuden Hida finished: Crab Ch4's siege night in the roamable castle (user 2026-11-22: "not sure if you finished
+  expanding hida castle or not, if not go ahead and finish it up").** Ch4 no longer has its own copy of the castle:
+  M151's gate (night falls) -> the Entrance reception M500 (S02 autoplays, the tampered trap stones on the avenue,
+  Takakana, the old guard, the goblin breach b_siege_breach_a across the avenue before the garden gate, supply crates,
+  the Kaiu Sapper hireling moved here) -> north through the garden -> the Keep approach stair house (the cellar door;
+  the donjon portal is barred tonight) -> M153 cellars (unchanged; its servants' stair now climbs into the keep) ->
+  keep 1F maid, 2F guard + Akiko, 3F the false servant (stalk_npc / split_up as before; stair locks keep the climb in
+  order) -> M157 tunnels. gen_maps SIEGE_STORY / siege_hook (CLAN_CASTLES[0]["siege"]); plugin RokuganCastleSiege.sk
+  sets G1644 = G271 and not G286 on every launch and lights the castle maps rt_hd2d_night; while it's on, the castle's
+  everyday people and the Winter Court's are gone (siege_calm), the siege's own events show (siege_mark). M152 and
+  M154-M156 are stubs for old saves. Marker beats for the stalk (G276-G279) added; engine-checked: yard -> breach,
+  approach -> cellars, 1F maid, 2F guard, 3F servant (tools/test_siege.py yard|approach|keep1|keep2|keep3).
+  test_castles OK. test_settlements: the governor emo failure (known) and two doorway-box mismatches on M111 / M206
+  that are not from this work (map.json's boxes were changed outside gen_maps).
+  - Also fixed someone's RokuganLook.sk line 156 ("local function" does not compile here; it stopped the whole plugin
+    load): now "local isFieldNpc = function(...)".
+
+- **Kyuden Doji in the roamable castle (user 2026-11-22: "next will be the crane castles").** Crane Ch4's rooms moved
+  into the castle (gen_maps DOJI / doji_court / doji_suite / doji_stacks, CASTLE_STORY): the town gate opens on the
+  grounds (CLAN_CASTLES[1] gate True); Lady Sanae's rooms = a screened suite on keep 2F (S01 ends there, S03 and S04
+  too, the save); the public stacks = keep 3F (shelf runs down the west aisle, the censor-monk, the shelf on no
+  catalogue -> M232 sealed stacks, which with M233 stay their own maps); the court = keep 4F audience hall (S06, the
+  finale's road FINALE_GATES M509). M229-M231 and M234 are stubs. Marker beat for the censor-monk (G418). Engine-
+  checked: gate/suite/stacks -> the monk, after him -> M232, the court plays S06 (tools/test_castle_story.py).
+- **The kabuki rehearsal (Crane Ch4 S03; user: "a minigame modeled on the hiruma dance minigame but with kabuki",
+  "add a stage", "4 parts ... longer than the dance", "narration between parts", "judges should be crane high ranking
+  figures", "heavy taiko at key moments", "the music kinda pauses then the taiko", "look it up ... semi accurate",
+  "don't reuse any current music", "remove any non real instrument", "you may need to write the play").**
+  - Stage: Kyuden Doji's north garden (M555, gen_maps kabuki_stage): boards on a dark frame, a striped curtain, the
+    hanamichi through the audience, mats; the three actors on stage; Doji Sanae, Daidoji Uji and Kakita Yasurugi on the
+    mats watching in secret (KABUKI_WATCH). S03 there: the two dialogue picks as written, then the play in four acts,
+    each narrated before it (KABUKI_ACT_TEXT) and closed by KABUKI_END; a flop or a stop ends it. Grade G1645 adds
+    to rehearsal_quality G438 (0/2/3/3); >= 4 it works (G427).
+  - The play: docs/story/production/crane-ch4-play.md ("The Empress of Nothing", four acts, chorus + roles; Rensei is
+    the Guard). Its lines are captions timed to the music (gen_music KABUKI_LINES -> chart files -> the plugin).
+  - Mini-game: plugin RokuganKabuki.sk (RTKabuki on RTMini): lanes Turn / Stamp / Mie / Draw, Rensei's own model doing
+    each move (tools/blender/kabuki_poses.py -> native_chara/kabuki.mot; RokuganNativeChara hook), Crane judges'
+    busts, kakegoe calls ("Kakita-ya!", "Matte mashita!"), a curtain panel between acts, the verdict over all four.
+  - Music: MU128-MU131 "The Empress of Nothing - Act I-IV" (84 / 100 / 118 / 132 BPM, ~3 min in all), new tunes each,
+    only kabuki instruments: shamisen (lead, second, low), kotsuzumi / otsuzumi / shime-daiko (the hayashi), o-daiko
+    (dorodoro under the demon, the great strokes after a beat of silence in the break bars), ki in and out of each
+    act, tsuke for each mie and the Act III fight. Research (search results): ki open/close acts, tsuke punctuate mie
+    and fights, geza drums paint weather and otherworldly beings. Charts RokuganDanceChart_kabuki_<1-4>.sk (easy + hard
+    + lines). Engine-checked: all four acts, S on Hard -> it works -> S04 (tools/test_kabuki.py).
+  - SK dialect gotchas met: no 1e9 literals, no "str".tointeger() (int( s)), super(...) for parent constructors,
+    "local function" does not compile.
+
+- **Crane Ch4, rehearsal to duel, with exposition and walking (user 2026-11-22: Nashiko "charges the stage";
+  "I thought they were the same person cause no one ... says anything about whats going on ... add the full exposition
+  of, heading to get a night sleep, being summoned by letter to the duel"; "can be done making the player wander").**
+  - After the four acts Rensei stays on the stage. NASHIKO_STAGE: a slow clap, a lady in white up the hanamichi, who she
+    is (Doji Komatsu's demon bride), why the play matters (the steward wrote her down; 400 years of burying it), the
+    threat, Sanae's "the third act", then b_boss_nashiko_stage (gid 174, E952 Doji Nashiko Lv 44, flees at 45% when
+    cut: rt_flee_pct; to her theme MU119). Sanae: "So. It works ... Your father will have heard the screaming."
+  - Then the player walks: the guest pavilion (M550, DOJI_ROOM: sleep -> the morning letter from Masanori, G1646) ->
+    Lady Sanae's rooms (S04: his father already waiting; the formal challenge by letter that evening) -> back to the
+    room (the night before, G1647) -> at dawn out the castle gate and east through the town (the east road opens on
+    G1647) -> the dueling ground (S05 after G1647). Marker legs engine-checked (tools/test_castle_story.py doji_*).
+  - E952 / group 174 were built by running gen_data against a temp copy of data/ and copying only those two entries
+    in (a full gen_data run reverts other tools' patches); gen_data.py has them for future runs.
+  - Kabuki music now on real recordings: tools/real_samples.py cuts one-shots from Freesound CC0 / CC-BY sounds
+    (_art/sources/real_instruments: freesound/ previews + sources.json, samples/ + index.json, CREDITS.md); shamisen
+    pitches double-checked (YIN + HPS, sub-sample YIN), notes outside the recorded range re-voiced by octave. Act II
+    lighter ominous, Act III heavy danger to the reveal, Act IV the hero's triumph (yo scale). Ostinato moved off the
+    half step (user: "one instrument playing counter productive"). Memory: exposition-matters.
+
+- **Miko dances on real instruments (user 2026-11-22: "backfill the miko dance ... with real instruments").** t_kagura
+  (MU126) and t_jhk (MU127) now play the real recordings: koto (365242 + 175672, CC0), shamisen, suzu / shrine bells
+  (519190, 364846, 521822, CC0), and the real drums (REAL_DRUM / real_taiko_bar: o-daiko, shime from a taiko hit, the
+  tsuzumi for the kakko, clappers for the hyoshigi, bells for the atarigane). No free biwa recording exists: the Hard
+  track's biwa part is the real shamisen played low (user's pick). Census: kagura 0 s of rubs, kyu 22 s. Credits in
+  _art/sources/real_instruments/CREDITS.md. Trade-off: the real koto's lowest note is D3, so less sub-bass.
+- **Shiro Akodo in the roamable castle (Lion Ch2 + Ch3's karo's office).** gen_maps LION / lion_* (CASTLE_STORY): the
+  town gate opens on the grounds (CLAN_CASTLES[2] gate True); 1F = the Hall of Honors (hostess HOSTESS, Toturi on the
+  dais, S01; the Hall of Akodo trophies in the west wing, a walk-on scene after Beat 2); 2F = the Central Dojo (west, the
+  "Duty" scene after Beat 1) and the North Dojo (east, Nishi's go); 3F = the library (Atsuko) and the South Dojo (east
+  wing: S06 on the wet trail, the loose board -> M261, the inner screen, S09-S10 -> dawn in the courtyard garden), lit
+  for night from G498 to G510 (RokuganCastleSiege.sk); 4F = the karo's office (Lion Ch3 S01 / S05B / S07); Atsuko's
+  cell in the Guard barracks; Benjiro and the stable girl in the Stables; Yutaka, Mami and Kafu in the Courtyard
+  garden; the kitchen girl in the Kitchen garden. M256-M260 and M262-M265 are stubs. Marker beats added for the
+  required talks (the hostess's four events, Atsuko's cell, Benjiro, the swordsmith). Engine-checked marker legs
+  (tools/test_castle_story.py lion_*): gate -> grounds; hall -> hostess; Beat 1 -> 2F Central Dojo; Beat 2 -> the Hall
+  of Akodo; Beat 3 -> hostess; night -> 3F South Dojo; arrest -> the barracks cell; cell -> the stables.
+
+- **Conversational exposition, emotes and close-ups (user 2026-11-22: "you are responsible now for conversational
+  exposition"; "crabs first story has great exposition, it just falls off after that"; "busts for multiple feelings
+  ... emotes the avatars can do, tie them in with a zoom and emote"; "travelers are the big focus for emotes"; "the
+  player needs a couple seconds of the emote happening to register").**
+  - Plugin RokuganCloseup.sk (after RokuganBust, wraps showMessage): a line's `act` = the speaker's 3D emote (native
+    animap ids: nod rei rei_full seiza seiza_rei sit think surprise laugh talk + held facepalm shrug crossarms
+    scratch point -> _hold), `zoom` = camera closes on the speaker (fraction of the map viewport, default 0.6; an act
+    line zooms too unless zoom=false). Speaker found by name: player3d, else nearest event whose mdlid model carries
+    the name. The event takes the actor over (setManualAction), turns it to the camera, plays the clip LOCKED (as
+    startAnime does - without the lock the walk controller wipes it next frame), and the words wait EMOTE_LEAD_MS
+    1800 (zoom only: ~0.5 s). Next undirected line / event end / map change eases the camera back.
+  - Authoring: tools/apply_dialog_fixes.py new kind ("dir", where, "Speaker|fragment", {emo, act, zoom}); inserted
+    lines take a 4th item {act, zoom}; IF(flag, lines) inserts a conditional block; shorthands Z and A(act, zoom).
+    The dir pass beats bust_emotions.json (it runs later). Section "Conversational exposition" at the end of FIXES.
+  - Busts: only the 8 travelers have all 8 moods; the other 414 busts are neutral.png only (emo on them does nothing).
+  - Reading copy: python -E tools/dialog_read.py M500-M542 [--grep TEXT] [--out FILE] - every page / IF / CHOICE,
+    flags, <mood> {emote} ^zoom. Copies in _art/preview/dialog/.
+  - Engine test: python -E tools/test_closeup.py barrel|hearing (-rt closeshot: a shot inside each directed line;
+    _art/preview/bot/closeup/). Barrel (Crab Ch4 S03) verified: zoom 15 -> 6, surprise / think / point_hold /
+    crossarms_hold play, camera returns.
+  - Done so far (Crab): Ch2 S01 why a scout is at court + who Kisada is; S04 hearing rebuilt as Takakana's quiet
+    debrief before the Champion (case laid out by the one man who must hear it first; mud on Kuhime and why her name
+    can't be said; filed chains only IF G208; Mutsuye's laugh IF G202), Shiba Noboru introduced, duel outcome, the
+    Shigeru scrolls read aloud; the dance's empty laughed-at line restored (gen_maps too); Ch4 S03 barrel: Sachiko and
+    Goro ask, Natsuko works out the tests (sake / jade dust / river stone / split up) before the tutorial note; S04
+    Nashiko unmasks and names herself. Moods / emotes / close-ups on Natsuko's key beats M147-M150, M153, M157,
+    M501-M504. Stale event-scoped fixes in M101 (#8#/#12#/#13# ids moved) re-pointed to the map: Kage's map-case
+    lead-in now plays.
+  - NEXT: Crab Ch3 (M170+, Beyond the Wall), then the other seven roads chapter by chapter (read with dialog_read,
+    fix exposition by the rules in the FIXES header, direct the traveler's key beats).
+  - **Full read, path by path (user: "don't be lazy, read the rules of exposition and look at all the conversations,
+    not just important ones").** Reading copies: _art/preview/dialog/full_<path>.txt (dialog_read, every event);
+    t_<traveler>.txt (trav_lines.py: each traveler line with the line before). tools/expo_audit.py only finds spots.
+    Progress: Crab Ch2/Ch4 done; **Crane all 4 chapters done** (section "CRANE" in apply_dialog_fixes: Sanae's
+    "as you know" briefing turned into a question, the inro letter's words, the tax ledger, Sariko, the four ways
+    broken up, Yasurugi's motive in the cells and the bandit branch, Ch2 why-war briefing, Masakazu named, the
+    debrief trimmed to what Sanae didn't see, the four brothers through the fishwife, Katsuo/Yajinden, the library
+    guardian, Masanori's letters in Rensei's voice, Sanae's House-or-Empire question framed). **Lion done** (section
+    "LION": the Ashimita duel was MISSING - script_scene only takes lines that start with [BATTLE, and lion-ch1 has
+    "[PA Duel Ashimita] [BATTLE b_duel_ashimita]" (group 52 now inserted after her challenge in every clue branch);
+    clue deductions spoken by Shizue, Ashimita's grandfather, O-Tamai named + the three plans before the hall choice,
+    Toturi / Kaiu Gesshin / Daidoji Atsuko introduced, the karo-office narration that described the wrong scene, the
+    Demon named with a motive, the Shinomen mark on the stone). NEXT: Phoenix, Dragon, Scorpion, Unicorn, Ronin, then
+    Crab Ch1/Ch3 NPC talk. (Not fixed in the generator: lion-ch3 / ronin-ch4 [PA ..] [BATTLE ..] lines are hand-built.)
+  - **Doji Sanae travels with Rensei (user: "she keeps popping out of nowhere ... put her as a call in 3rd row";
+    "unlimited support if you make it weak like a debuff"; "wait at an inn like togashi"; "So you need me now, do
+    you?!").** Guest 18, S645 "Doji Sanae: A Quiet Word" (ATK Down K021, one enemy, rt_uses 0 = unlimited; one
+    Support per round anyway), model EP305, flag G302 (met on the road, Crane Ch1). RokuganBattle: GUEST_SKILLS /
+    GUEST_FLAGS [18]; never pushed out and not counted in the 3-guest cap; guestPresent(18) = Rensei in the party
+    and not G1649 (she waits: set on the land-bridge in Ch2 and when he takes ship in Ch3; cleared in her rooms /
+    at the port by talking to her - "So you need me now, do you?!" - or by the reunion scenes). RokuganAI guestVar:
+    guests 18+ count lifetime calls from G1648 (G1382+ are odd-job flags). gen_data has S645, G1648, G1649.
+    Test: tools/test_guest_row_sanae.py -> _art/preview/guest_row_sanae.png (Seigen, Kiku, Sanae in the third row).
+  - **Exposition pass finished for all eight roads + the finale (2026-11-22).** Sections in apply_dialog_fixes
+    (CRANE, LION, PHOENIX, DRAGON, SCORPION, UNICORN, RONIN, CRAB Ch3, FINALE): 292 emote lines, 296 close-ups.
+    Beyond the per-path notes above: Scorpion (Rui's four-fact briefing split by Mitsue's questions; Osuko's history
+    broken where Mitsue realises Giseiki is in her sleeve; a "Cornered at last, the man behind the mask" lead-in that
+    was keyed to the wrong scene replaced; the crater Bloodspeaker says it followed the box from Kudo). Unicorn
+    (Kurosho's motive before the last fight). Ronin (the White Snow ghosts' meanings spoken by the descendants they
+    shame, not the narrator). Finale (Mamoru names himself).
+  - Generator bugs found by reading: script_scene drops "[PA ...] [BATTLE id]" lines (lion-ch1 Ashimita duel; fixed
+    in data); ward errands "X's resident waits in the Y" -> "X, who lives in the Y, has a small local errand" (gen_maps
+    FQ_PRE + REGEX), "Back to the <Name>." -> "Back to <Name>."; nine ward residents renamed off real characters'
+    names (Sayo->Sayu, Hiro->Hiroe, Sanae->Sanami, Kiyo->Kiyoe, Hana->Haneko, Rin->Rinka, Mosuke->Mosaku,
+    Akari->Akane, Goro->Genzo; Kiyo / Akari / Sayo pulled the wrong busts); choice labels SP -> MP.
+  - GOTCHA: writing Python through a bash heredoc turned "\1" / "\b" into control bytes (0x01, 0x08) twice -
+    regexes silently broke and blanked 66 lines (restored from %TEMP%/map_before_exposition.json). Use the Write /
+    Edit tools or a script file for anything with backslashes. apply_dialog_fixes now writes map.json via a temp
+    file + os.replace with retries (it was "Invalid argument" when another process held the file).
+- **Bug pass after the exposition read (user 2026-11-22: "fix what you can of the bugs").**
+  - gen_maps script_scene now reads "[BATTLE id]" anywhere in a bracket line ("[PA Duel X] [BATTLE id]"), so a
+    regen keeps lion-ch1's Ashimita duel (checked: ESC4 has gid 52 once, after the challenge; the apply_dialog_fixes
+    insert sees the same narration and skips, so no double duel). Other inline cues (lion-ch3/4, ronin-ch4, finale,
+    dragon-ch4, crab) have no battles table in their calls and stay hand-built - all their groups are fought.
+  - Battle audit: every scripted group 13-174 is fought somewhere except 40-44 (b_sea_*): leftovers from the old sea
+    chart; the helm maps M490/M491 roll the same foes as random encounters (ENCOUNTERS, M827), so not a bug.
+  - Text lint (cmd_showmsg / cmd_choices): "who lives in the The Fisher's Cove" (FQ_PRE strips a leading "The" now,
+    + REGEX), Yosai's "third brother to die like this this year" -> "third brother this year to die like this".
+    No leaked [SET]/[IF]/arrows/em-dashes left in any line.
+
+- **Controller support: Xbox / PS5 / Steam Deck, mini-games included (user 2026-11-22).**
+  - Already in the engine: XInput pads (Xbox, and the Steam Deck through Steam Input; on a Deck with the Steam API
+    the engine goes pad-native, GPUI.sk), PS4 / PS5 / DualSense Edge by USB id (conf/gamepad.json, 054c:0ce6 /
+    0df2), one layout for all (A = bottom face = Cross, B = right = Circle). Field, menus and battle already ran on it.
+  - New: Options > Game > Button Icons (control.padicons: Auto / Xbox / PlayStation / Steam Deck; SystemMenuUI
+    padiconconf, sysdict game_padicons*, ClientConfig default 0). RPGSystem buttonicon honours it (Deck = Xbox set).
+  - Mini-games (RokuganMini RTMini, so Yumi / Race / Memory / Dance / Kabuki): left stick moves (hysteresis 0.55 /
+    0.35), LB / RB and LT / RT also count as left / right (the race gallops on the shoulders), the Yumi crosshair
+    aims with either stick at analog speed; every prompt reads ctl( "fire" | "back" | "move" | "lr" | "stop"): pad
+    glyphs when a pad is on, keyboard text when not, redrawn if a pad is plugged in or pulled (refreshHints). A held
+    pad A no longer leaks into the next line after a mini-game.
+  - Tests: tools/minitest.py ... --fakepad 1|2 (-rtfakepad: a stub pad device for the prompts, test only, removed
+    on close); tools/test_padicons.sk (bot evalf: every pad type x setting -> glyph; Options entries). All five
+    mini-games pass; glyph shots _art/preview/bot/mini_*/, pad_race_*_xbox.png. Not tested: real hardware, and the
+    Options screen itself (the bot can't open it from a thread; the entry is registered and reads Auto).

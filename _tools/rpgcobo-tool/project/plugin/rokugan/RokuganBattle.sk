@@ -788,7 +788,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 //	by the whole party (skill fields rt_uses + rt_guest, RokuganAI.sk). The guest is called in, not seated: they take
 //	no party slot.
 ::Rokugan.GUEST_SKILLS <- [null, "S143", "S144", "S145", "S146", "S400", "S401", "S406", "S429", "S430", "S439",
-	"S478", "S559", "S565", "S588", "S596", "S602", "S633"];								//	+ 17 Hiruma Kage (the finale)																	//	+ 11 Kitsuki Momo (Dragon Ch1)	//	Takeo, Mai, Fujio, Sakura, Seigen,
+	"S478", "S559", "S565", "S588", "S596", "S602", "S633", "S645"];	//	+ 18 Doji Sanae (Crane, from Ch1)								//	+ 17 Hiruma Kage (the finale)																	//	+ 11 Kitsuki Momo (Dragon Ch1)	//	Takeo, Mai, Fujio, Sakura, Seigen,
 																					//	Kiku (gen_maps GUESTS)
 ::Rokugan.guestSkill <- function(){
 	local n = int( ::rpgvar["G232"] || 0);
@@ -811,7 +811,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 //	keeps their call in Support for good, once each: their join flag (gen_maps GUESTS), or having been the current
 //	guest (G232; rpgvar G1362 = bits by guest number, for the guests set straight through G232).
 ::Rokugan.GUEST_FLAGS <- { [1] = "G233", [2] = "G234", [3] = "G235", [4] = "G236", [5] = "G302", [6] = "G305",
-	[7] = "G368", [8] = "G456", [9] = "G462", [10] = "G507", [11] = "G715", [17] = "G1212" };
+	[7] = "G368", [8] = "G456", [9] = "G462", [10] = "G507", [11] = "G715", [17] = "G1212", [18] = "G302" };
 //	(user 2026-11-21: "make guest call max to 3, and actually have them in the 3rd row as well. (using same rules for
 //	hirelings for join leave etc, except there can be 3) if player has more than that keep the last three guest calls")
 //	The roster (rpgvar G1397: guest numbers, oldest first, 5 bits each) holds the last GUEST_MAX guests met. A guest
@@ -846,9 +846,11 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 		if( sk && this.usesLeft( null, sk) > 0) keep.append( n);
 		else this.guestLeaving.append( "%S heads home: no calls left." % this.guestName( n));
 	}
-	while( length( keep) > this.GUEST_MAX){
-		this.guestLeaving.append( "%S parts ways with you." % this.guestName( keep[0]));
-		delete keep[0];
+	while( length( keep) - (keep.indexOf( 18) >= 0 ? 1 : 0) > this.GUEST_MAX){	//	(Sanae is extra, not one of three)
+		local i = 0;											//	the oldest - but never Doji Sanae (18): Rensei is her
+		while( i < length( keep) - 1 && keep[i] == 18) i++;		//	yojimbo, she doesn't part ways with him
+		this.guestLeaving.append( "%S parts ways with you." % this.guestName( keep[i]));
+		delete keep[i];
 	}
 	code = 0;
 	foreach( i, n in keep) code = code | (n << (5 * i));
@@ -861,9 +863,20 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 	::rpgvar["G1448"] = taken;
 	return keep;
 };
+//	Doji Sanae (18) travels with Rensei only: she is in the third row while he is in the party (user 2026-11-22).
+//	(user: "then she should wait at an inn like togashi does when not in party") rpgvar G1649 = she is waiting: set when
+//	Rensei goes where she won't follow (Crane Ch2 across the land-bridge, Ch3 to sea), cleared when he fetches her
+//	("So you need me now, do you?!") or a story scene brings them together again (tools/apply_dialog_fixes.py).
+::Rokugan.guestPresent <- function( n){
+	if( n != 18) return true;
+	if( ::rpgvar["G1649"]) return false;
+	foreach( v in ::rpgstat.members) if( v && v.dataid == "P101") return true;		//	where Rensei goes, she goes
+	return false;
+};
 ::Rokugan.guestSkills <- function(){
 	local a = [];
 	foreach( n in this.guestRoster()){
+		if( !this.guestPresent( n)) continue;
 		local sk = this.guestSkillFor( n);
 		if( sk && a.indexOf( sk) < 0) a .. sk;
 	}
@@ -1054,6 +1067,7 @@ local _ebase = ::RPGEnemy.getBaseOptions;
 	//	the third row: the roster's guests (oldest first), then the hireling, centred on the party's columns
 	local figs = [];
 	if( !::Rokugan["sumai_party"]) foreach( n in ::Rokugan.guestRoster()){
+		if( !::Rokugan.guestPresent( n)) continue;
 		local g = ::Rokugan.guestSkillFor( n);
 		if( g && g["rt_gmdl"]) figs.append( { mdl = g.rt_gmdl, guest = n, what = "guest " .. ::Rokugan.guestName( n) });
 	}

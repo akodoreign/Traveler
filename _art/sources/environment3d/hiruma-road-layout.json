@@ -1,0 +1,119 @@
+{
+  "trail": [
+    [
+      0,
+      16,
+      3
+    ],
+    [
+      11,
+      16,
+      3
+    ],
+    [
+      21,
+      9,
+      3
+    ],
+    [
+      34,
+      10,
+      3
+    ],
+    [
+      42,
+      31,
+      4
+    ],
+    [
+      57,
+      44,
+      4
+    ],
+    [
+      68,
+      33,
+      5
+    ],
+    [
+      76,
+      15,
+      5
+    ],
+    [
+      88,
+      15,
+      6
+    ],
+    [
+      95,
+      28,
+      7
+    ],
+    [
+      99,
+      38,
+      8
+    ],
+    [
+      112,
+      43,
+      9
+    ]
+  ],
+  "props": 23,
+  "brush": [
+    {
+      "x": 66.76,
+      "y": 5.0,
+      "z": 22.75,
+      "size": 1.18,
+      "side": -1,
+      "yaw": -0.38
+    },
+    {
+      "x": 66.76,
+      "y": 5.0,
+      "z": 23.75,
+      "size": 1.18,
+      "side": 1,
+      "yaw": 0.38
+    }
+  ],
+  "size": [
+    164,
+    70
+  ],
+  "source": {
+    "shadowlands_thorns": {
+      "name": "shadowlands_thorns",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_shadowlands_thorns_00001_.glb",
+      "grid": [
+        41,
+        41,
+        30
+      ],
+      "occupied": 7707,
+      "world_size": [
+        1.39,
+        1.26,
+        1.33
+      ]
+    },
+    "shadowlands_shards": {
+      "name": "shadowlands_shards",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_shadowlands_shards_00001_.glb",
+      "grid": [
+        43,
+        43,
+        29
+      ],
+      "occupied": 6712,
+      "world_size": [
+        1.9499999999999997,
+        1.51,
+        1.63
+      ]
+    }
+  }
+}

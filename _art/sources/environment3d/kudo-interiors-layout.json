@@ -1,0 +1,390 @@
+{
+  "maps": {
+    "M352": {
+      "terrain": "m352_kudo_interior",
+      "placements": [
+        [
+          "kudo_fox_pillar",
+          4.27,
+          1.075,
+          10.38,
+          0.9,
+          0.03
+        ],
+        [
+          "kudo_fox_pillar",
+          6.72,
+          1.075,
+          11.09,
+          1.03,
+          -0.03
+        ],
+        [
+          "kudo_fox_pillar",
+          10.93,
+          1.075,
+          11.08,
+          1.03,
+          0.01
+        ],
+        [
+          "kudo_fox_pillar",
+          13.49,
+          1.075,
+          10.34,
+          0.96,
+          -0.04
+        ],
+        [
+          "hoshi_tea_table",
+          8.11,
+          1.114,
+          9.58,
+          1.13,
+          0.0
+        ],
+        [
+          "kudo_bamboo_food_cover",
+          8.1,
+          1.44,
+          9.51,
+          1.03,
+          0.1
+        ],
+        [
+          "hoshi_storage_jar",
+          3.86,
+          1.078,
+          11.76,
+          1.09,
+          0.23
+        ],
+        [
+          "hoshi_goods_rack",
+          13.39,
+          1.078,
+          12.24,
+          1.02,
+          0.0
+        ],
+        [
+          "hoshi_andon",
+          2.82,
+          1.072,
+          6.81,
+          0.95,
+          0.01
+        ],
+        [
+          "hoshi_andon",
+          7.45,
+          1.072,
+          11.88,
+          0.95,
+          0.01
+        ],
+        [
+          "hoshi_andon",
+          13.66,
+          1.072,
+          7.51,
+          0.95,
+          0.01
+        ]
+      ],
+      "poolLights": [
+        [
+          2.82,
+          1.51,
+          6.81,
+          4.45,
+          1.28
+        ],
+        [
+          7.45,
+          1.51,
+          11.88,
+          4.45,
+          1.28
+        ],
+        [
+          13.66,
+          1.51,
+          7.51,
+          4.45,
+          1.28
+        ]
+      ]
+    },
+    "M353": {
+      "terrain": "m353_kudo_interior",
+      "placements": [
+        [
+          "kudo_mantis_chart_desk",
+          4.66,
+          1.072,
+          9.29,
+          1.06,
+          0.01
+        ],
+        [
+          "hoshi_trade_chest",
+          4.25,
+          1.12,
+          11.52,
+          1.27,
+          0.17
+        ],
+        [
+          "hoshi_inn_bench",
+          7.36,
+          1.072,
+          10.54,
+          0.93,
+          0.0
+        ],
+        [
+          "hoshi_goods_rack",
+          12.91,
+          1.074,
+          12.17,
+          0.92,
+          0.0
+        ],
+        [
+          "hoshi_case_bundle",
+          12.92,
+          1.48,
+          12.16,
+          1.03,
+          0.11
+        ],
+        [
+          "hoshi_case_bundle",
+          12.63,
+          2.04,
+          12.15,
+          0.99,
+          -0.09
+        ],
+        [
+          "hoshi_andon",
+          2.82,
+          1.072,
+          6.81,
+          0.95,
+          0.01
+        ],
+        [
+          "hoshi_andon",
+          7.45,
+          1.072,
+          11.88,
+          0.95,
+          0.01
+        ],
+        [
+          "hoshi_andon",
+          13.66,
+          1.072,
+          7.51,
+          0.95,
+          0.01
+        ]
+      ],
+      "poolLights": [
+        [
+          2.82,
+          1.51,
+          6.81,
+          4.45,
+          1.28
+        ],
+        [
+          7.45,
+          1.51,
+          11.88,
+          4.45,
+          1.28
+        ],
+        [
+          13.66,
+          1.51,
+          7.51,
+          4.45,
+          1.28
+        ]
+      ]
+    },
+    "M354": {
+      "terrain": "m354_kudo_interior",
+      "placements": [
+        [
+          "hoshi_goods_counter",
+          5.26,
+          1.071,
+          7.62,
+          1.09,
+          0.0
+        ],
+        [
+          "kudo_carp_sake_rack",
+          4.1,
+          1.071,
+          12.18,
+          1.12,
+          0.04
+        ],
+        [
+          "kudo_carp_sake_rack",
+          6.86,
+          1.071,
+          12.19,
+          0.97,
+          -0.03
+        ],
+        [
+          "hoshi_tea_table",
+          8.3,
+          1.076,
+          9.66,
+          1.09,
+          0.0
+        ],
+        [
+          "kudo_bamboo_food_cover",
+          8.23,
+          1.403,
+          9.66,
+          0.99,
+          0.0
+        ],
+        [
+          "hoshi_inn_bedding",
+          11.32,
+          1.125,
+          11.63,
+          0.83,
+          0.0
+        ],
+        [
+          "hoshi_inn_bedding",
+          13.37,
+          1.125,
+          11.42,
+          0.83,
+          0.0
+        ],
+        [
+          "hoshi_andon",
+          2.82,
+          1.072,
+          6.81,
+          0.95,
+          0.01
+        ],
+        [
+          "hoshi_andon",
+          7.45,
+          1.072,
+          11.88,
+          0.95,
+          0.01
+        ],
+        [
+          "hoshi_andon",
+          13.66,
+          1.072,
+          7.51,
+          0.95,
+          0.01
+        ]
+      ],
+      "poolLights": [
+        [
+          2.82,
+          1.51,
+          6.81,
+          4.45,
+          1.28
+        ],
+        [
+          7.45,
+          1.51,
+          11.88,
+          4.45,
+          1.28
+        ],
+        [
+          13.66,
+          1.51,
+          7.51,
+          4.45,
+          1.28
+        ]
+      ]
+    }
+  },
+  "sources": {
+    "kudo_fox_pillar": {
+      "name": "kudo_fox_pillar",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_fox_pillar_00001_.glb",
+      "grid": [
+        6,
+        6,
+        37
+      ],
+      "occupied": 616,
+      "world_size": [
+        0.44,
+        0.41999999999999993,
+        2.19
+      ]
+    },
+    "kudo_mantis_chart_desk": {
+      "name": "kudo_mantis_chart_desk",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_mantis_chart_desk_00001_.glb",
+      "grid": [
+        40,
+        26,
+        16
+      ],
+      "occupied": 3703,
+      "world_size": [
+        1.59,
+        0.9100000000000001,
+        0.79
+      ]
+    },
+    "kudo_carp_sake_rack": {
+      "name": "kudo_carp_sake_rack",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_carp_sake_rack_00001_.glb",
+      "grid": [
+        33,
+        18,
+        41
+      ],
+      "occupied": 9805,
+      "world_size": [
+        1.64,
+        0.64,
+        1.57
+      ]
+    },
+    "kudo_bamboo_food_cover": {
+      "name": "kudo_bamboo_food_cover",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_bamboo_food_cover_00001_.glb",
+      "grid": [
+        32,
+        32,
+        11
+      ],
+      "occupied": 1959,
+      "world_size": [
+        0.49,
+        0.41,
+        0.34
+      ]
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "spec": "1afb3477e47a625d01c9a64a51ececc681859092c24ae57926d42c2d97893360",
+  "maps": {
+    "M171": {
+      "floor_cells_before": 8065,
+      "floor_cells_after": 7771,
+      "story_points_connected": 5,
+      "legacy_objects_removed": 12,
+      "height_cells_changed": 294,
+      "sha256": "40080b2e45baef838235facb71c28366a9d7f8c8a87ab3346223016a00d66178"
+    },
+    "M172": {
+      "floor_cells_before": 8327,
+      "floor_cells_after": 8198,
+      "story_points_connected": 13,
+      "legacy_objects_removed": 27,
+      "height_cells_changed": 194,
+      "sha256": "5d63f1a1c09c135ec0fb9a27503055689ece229330ae08fa576f1587754d9d8a"
+    },
+    "M173": {
+      "floor_cells_before": 8150,
+      "floor_cells_after": 8067,
+      "story_points_connected": 11,
+      "legacy_objects_removed": 117,
+      "height_cells_changed": 121,
+      "sha256": "657d57cfcfd3773d76a82baed59f682f3d442f0057b7da5ed356141ba7527bdb"
+    },
+    "M174": {
+      "floor_cells_before": 7346,
+      "floor_cells_after": 7178,
+      "story_points_connected": 7,
+      "legacy_objects_removed": 6,
+      "height_cells_changed": 168,
+      "sha256": "3c260bd6efd0e3e5ba3939a3b5ebf5ec39376c6790947dfd3a1a859b4548d62a"
+    },
+    "M175": {
+      "floor_cells_before": 8028,
+      "floor_cells_after": 7827,
+      "story_points_connected": 9,
+      "legacy_objects_removed": 35,
+      "height_cells_changed": 201,
+      "sha256": "9071fe6f0387b141b29621f3150942a8322e7abcd568df9f04d2bb841b34675d"
+    },
+    "M176": {
+      "floor_cells_before": 9726,
+      "floor_cells_after": 9504,
+      "story_points_connected": 6,
+      "legacy_objects_removed": 14,
+      "height_cells_changed": 312,
+      "sha256": "31778aa5629f8bea62da5bd6642075d8e5c788690cbb3e5a6ac04816ba2d666c"
+    },
+    "M177": {
+      "floor_cells_before": 7134,
+      "floor_cells_after": 6976,
+      "story_points_connected": 7,
+      "legacy_objects_removed": 13,
+      "height_cells_changed": 287,
+      "sha256": "aa43101724584662399cb20c005ae38701ba48a68c50c2bd2856c4e782c66252"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+ladders: 78 maps, 333 re-levelled foes (C:\Users\akodo\.copilot\repos\copilot-worktrees\Traveler\akodoreign-laughing-chainsaw\tools\_ladder_foes.json)
+   M350 #78# west/left -> M349 lands east/right (2 from that edge)
+   M350 #79# east/right -> M351 lands west/left (1 from that edge)
+   M351 #99# west/left -> M350 lands east/right (2 from that edge)
+   M351 #100# south/front -> M471 lands north/back (2 from that edge)
+   M351 #101# north/back -> M640 lands south/front (1 from that edge)
+   M640 #81# south/front -> M351 lands north/back (2 from that edge)
+-- 0 exits land on the wrong side (or away from an edge)

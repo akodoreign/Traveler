@@ -1,0 +1,32 @@
+{
+  "actor": "side_dorin",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_dorin_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_dorin_portrait_woven_reed.pm",
+      "to": "side_dorin_portrait_woven_reed.pm",
+      "sha256": "4ef37cdac7c2e362be486be40e43717faf556b92a16ac850a4d950ad287e9207"
+    },
+    {
+      "from": "assets/side_dorin_portrait_woven_reed.mdl",
+      "to": "side_dorin_portrait_woven_reed.mdl",
+      "sha256": "2138aadf0fa9a5eb59d3faf1c99ed820afbbbe863d7503c809d4eb48bd9281d9"
+    },
+    {
+      "from": "assets/tex/side_dorin_portrait_woven_reed_color_srgb.png",
+      "to": "tex/side_dorin_portrait_woven_reed_color_srgb.png",
+      "sha256": "c25eede8e643f309d6828a4d35c9a3e52e649868947ca832715de52574f21564"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_dorin_portrait_woven_reed"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\variants\\b40\\release\\side_dorin\\assets\\side_dorin_portrait_face.glb",
+    "sha256": "ff4e8650708c5c7a74cb9b1fcbd6b5ad3fab164776c3516802e4977e66cca811"
+  }
+}

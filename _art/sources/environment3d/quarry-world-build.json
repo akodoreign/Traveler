@@ -1,0 +1,12 @@
+{
+  "M104": {
+    "removed_stock_entries": 55,
+    "new_tents": 4,
+    "sha256": "a5fcef0eed92b5ee6a57cfd55a5494b9a59de5f94ad02011910cb152e6fa1403"
+  },
+  "M812": {
+    "removed_stock_entries": 24,
+    "new_tents": 3,
+    "sha256": "2528343decd8bfd16fda46599ecf2fd3dd997909f867cb47459464b7aa5a7977"
+  }
+}

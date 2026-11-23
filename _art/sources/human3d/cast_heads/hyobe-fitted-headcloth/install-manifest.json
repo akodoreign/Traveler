@@ -1,0 +1,37 @@
+{
+  "actor": "side_hyobe",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_hyobe_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_hyobe_headcloth.pm",
+      "to": "side_hyobe_headcloth.pm",
+      "sha256": "9891e55323a449f45c292de4097c3f58cb56a4f4cd62f0c385ca3dd3285c6eae"
+    },
+    {
+      "from": "assets/side_hyobe_headcloth.mdl",
+      "to": "side_hyobe_headcloth.mdl",
+      "sha256": "dd469b92a2829d44bc44ac14e26c278256631afbf2a227fc0f0f441f81f265be"
+    },
+    {
+      "from": "assets/tex/side_hyobe_headcloth_weave.png",
+      "to": "tex/side_hyobe_headcloth_weave.png",
+      "sha256": "04cd4cf15a7b455e0ff9af35fd539ea264fc0c0f29630a8146ae0a98320d1ff0"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_hyobe_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\model-rigging\\batch-07\\evening-cast\\side_hyobe\\painted-final\\assets\\side_hyobe_portrait_face.glb",
+    "sha256": "5ac177242c45ea802c88845bfd806bf82a89e77aa20f827cdfc41c7f3f5a55a9"
+  }
+}

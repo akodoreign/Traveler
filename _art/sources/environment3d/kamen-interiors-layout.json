@@ -1,0 +1,171 @@
+{
+  "maps": {
+    "M363": {
+      "props": 12,
+      "lanterns": 3,
+      "events": 81
+    },
+    "M367": {
+      "props": 9,
+      "lanterns": 4,
+      "events": 76
+    },
+    "M365": {
+      "props": 12,
+      "lanterns": 9,
+      "events": 79
+    },
+    "M366": {
+      "props": 13,
+      "lanterns": 9,
+      "events": 79
+    },
+    "M867": {
+      "props": 13,
+      "lanterns": 10,
+      "events": 0
+    },
+    "M868": {
+      "props": 14,
+      "lanterns": 10,
+      "events": 0
+    }
+  },
+  "sources": {
+    "kamen_shrine_offering_stand": {
+      "name": "kamen_shrine_offering_stand",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_shrine_offering_stand_00001_.glb",
+      "grid": [
+        40,
+        40,
+        12
+      ],
+      "occupied": 3434,
+      "world_size": [
+        1.21,
+        0.58,
+        0.88
+      ]
+    },
+    "kamen_sweet_cup_counter": {
+      "name": "kamen_sweet_cup_counter",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_sweet_cup_counter_00001_.glb",
+      "grid": [
+        44,
+        17,
+        14
+      ],
+      "occupied": 2767,
+      "world_size": [
+        1.9699999999999998,
+        0.79,
+        1.19
+      ]
+    },
+    "kamen_scriptorium_desk": {
+      "name": "kamen_scriptorium_desk",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_scriptorium_desk_00001_.glb",
+      "grid": [
+        19,
+        37,
+        23
+      ],
+      "occupied": 2604,
+      "world_size": [
+        1.1,
+        0.66,
+        0.73
+      ]
+    },
+    "kamen_monastery_dais": {
+      "name": "kamen_monastery_dais",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_monastery_dais_00001_.glb",
+      "grid": [
+        42,
+        42,
+        11
+      ],
+      "occupied": 5700,
+      "world_size": [
+        1.89,
+        1.4400000000000002,
+        0.28
+      ]
+    },
+    "kamen_sun_reliquary": {
+      "name": "kamen_sun_reliquary",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_sun_reliquary_00001_.glb",
+      "grid": [
+        34,
+        37,
+        34
+      ],
+      "occupied": 7014,
+      "world_size": [
+        0.59,
+        0.42,
+        0.78
+      ]
+    },
+    "kamen_sewn_face_shrine": {
+      "name": "kamen_sewn_face_shrine",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_sewn_face_shrine_00001_.glb",
+      "grid": [
+        30,
+        33,
+        43
+      ],
+      "occupied": 6058,
+      "world_size": [
+        1.32,
+        0.75,
+        1.73
+      ]
+    },
+    "kamen_sun_statue": {
+      "name": "kamen_sun_statue",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_sun_statue_00001_.glb",
+      "grid": [
+        25,
+        14,
+        42
+      ],
+      "occupied": 2858,
+      "world_size": [
+        0.88,
+        0.66,
+        1.7000000000000002
+      ]
+    },
+    "kamen_temple_andon": {
+      "name": "kamen_temple_andon",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_temple_andon_00001_.glb",
+      "grid": [
+        13,
+        13,
+        35
+      ],
+      "occupied": 1440,
+      "world_size": [
+        0.39,
+        0.34,
+        0.8699999999999999
+      ]
+    },
+    "kamen_rotted_sleep_mat": {
+      "name": "kamen_rotted_sleep_mat",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kamen_rotted_sleep_mat_00001_.glb",
+      "grid": [
+        38,
+        20,
+        6
+      ],
+      "occupied": 1731,
+      "world_size": [
+        0.94,
+        0.67,
+        0.29
+      ]
+    }
+  }
+}

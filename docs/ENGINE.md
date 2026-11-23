@@ -86,6 +86,10 @@ which keys are done; everything not listed there still uses its previous sheet.
 The cast bake scales the assembled cutout around its foot anchor at X 121%, Y 90%, Z 110%, with
 a wider 248x184 output cell. To rebake installed batches without recutting the atlases, run
 `py -3.12 -E tools\cutout_batch_run.py --rebake` (append batch names to limit the scope).
+Cast heads render at 82% of their authored size and sit into the collar using each view's drawn
+shoulder sockets. Travelers and Togashi Yosai keep their original head fit.
+Cast faces keep their neutral angle during ordinary animation, following the collar without
+independent head motion. Explicit emote clips can still move the head.
 
 ## 3. The battle plugin (`plugin/rokugan/RokuganBattle.sk`)
 | System | Implementation |
@@ -126,6 +130,31 @@ while its window is not focused.
 **Verified (session 3):** weak hits chip shields 3→2→1→0 · SUKI! · the enemy's queued action and next action are
 skipped · shields refill after two turn-ends · VP 1→5 cap · no VP gain after a boost · Boost x3 = 4 hits (each hit
 chips a shield). No script errors.
+
+### Parallel Windows playtests
+
+Use Python 3.12 or newer and run these commands from the Traveler worktree. A testplay profile uses the unchanged
+RPG-Cobo executable in its own folder. Profiles keep separate saves and client settings, logs, screenshots,
+temporary files, and a physical copy of the project. Allow about 7 GiB for each copy. The default profile location
+is `%LOCALAPPDATA%\RokuganTraveler\Instances`.
+
+```powershell
+python tools/traveler_instances.py provision qa-a
+python tools/traveler_instances.py provision qa-b
+python tools/traveler_instances.py launch qa-a
+# Separate terminal
+python tools/traveler_instances.py launch qa-b -- -map M555 '[48,12,48,0]'
+```
+
+Use `sync qa-a` while that slot is closed to copy new and updated worktree files into it. Saves and settings stay
+in the slot. Provision a fresh slot when removed worktree assets must also disappear. Run `launch --dry-run qa-a`
+to inspect the arguments, paths and environment before launch. Each launch records its own file under the slot's
+`log`. Use `--profiles C:\path\to\instances` before the command to choose another profile location.
+
+RPG-Cobo derives its testplay window ID and working directory from the executable's folder. A second launch
+in the same folder can bring that folder's existing window forward and return exit code 7. Independent slots use
+different folder IDs. Plain `rpgcobo.exe` opens the editor. The Traveler batch launcher and these slots both use
+`-testplay`. The debug window lowers its sound gain when it loses focus. Keyboard input follows the focused window.
 
 ### Critical presentation and reusable animation clips
 

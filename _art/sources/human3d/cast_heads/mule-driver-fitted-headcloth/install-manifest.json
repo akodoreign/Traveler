@@ -1,0 +1,37 @@
+{
+  "actor": "side_muledriver",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_muledriver_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_muledriver_headcloth.pm",
+      "to": "side_muledriver_headcloth.pm",
+      "sha256": "c7e6760272323e3e07960d36c66abee08d7da2c4b5128f18235ffac9ed6c0b0c"
+    },
+    {
+      "from": "assets/side_muledriver_headcloth.mdl",
+      "to": "side_muledriver_headcloth.mdl",
+      "sha256": "d85478fc94b4ad4596f1217642af597ee9e46c8242f2f366cd3bfa1916b679f3"
+    },
+    {
+      "from": "assets/tex/side_muledriver_headcloth_linen.png",
+      "to": "tex/side_muledriver_headcloth_linen.png",
+      "sha256": "c2986558921d1f7d1f8ac9885af7f942852c19a7c1d55a7b0d13243b1ea3a0da"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_muledriver_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\variants\\b45\\release\\side_muledriver\\assets\\side_muledriver_portrait_face.glb",
+    "sha256": "4d17aa2b2ae6d5c0feceb33d24dc467c7a51d21fbb1124918f24f8472a89dcf4"
+  }
+}

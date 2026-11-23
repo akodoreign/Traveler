@@ -1,0 +1,40 @@
+//	RokuganDanceChart_kabuki_3.sk : step charts (written by tools/gen_music.py; do not edit).
+//	notes: [ms from the track's start, lane 0 left / 1 down / 2 up / 3 right]; lines: [ms, who, line]
+if( !("DANCE_CHARTS" in ::Rokugan)) ::Rokugan.DANCE_CHARTS <- {};
+::Rokugan.DANCE_CHARTS.kabuki_easy_3 <- {
+	mu = "MU130", length = 38571,
+	notes = [
+		[3214, 2], [3750, 0], [5357, 0], [7500, 2], [8036, 1], [8571, 0], [9643, 1], [10179, 1],
+		[11786, 1], [12321, 1], [13929, 3], [16607, 3], [17143, 0], [18214, 2], [20357, 2], [20893, 3],
+		[22500, 0], [24643, 2], [25179, 1], [25714, 0], [26786, 1], [27321, 1], [27857, 2], [28393, 1],
+		[28929, 0], [29464, 1], [30000, 0], [30536, 1], [31071, 0], [31607, 1], [33750, 1], [34286, 3],
+		[35357, 2]],
+	lines = [
+		[2143, "Chorus", "Night, and the palace is still as a held breath."],
+		[6429, "The Guard", "Demon. I have watched you. Show me your face."],
+		[10714, "The Bride", "Strike my heart, if you dare. But not my face - not my face!"],
+		[19286, "Chorus", "A cut to her face undoes her. She cannot bear to be marred."],
+		[23571, "The Guard", "Then I know where to strike."],
+		[30000, "Chorus", "Steel, and the lamps going out one by one."]]
+};
+::Rokugan.DANCE_CHARTS.kabuki_hard_3 <- {
+	mu = "MU130", length = 38571,
+	notes = [
+		[2143, 2], [2411, 0], [2679, 3], [2946, 0], [3214, 1], [3750, 0], [4286, 3], [4554, 3],
+		[4821, 2], [5089, 1], [5357, 0], [6429, 2], [6696, 0], [6964, 3], [7232, 1], [7500, 2],
+		[8036, 0], [8571, 1], [9643, 1], [10179, 1], [10446, 1], [10714, 1], [10982, 3], [11250, 3],
+		[11518, 0], [11786, 1], [12321, 0], [12857, 2], [13125, 0], [13393, 3], [13661, 1], [13929, 0],
+		[15000, 1], [15268, 3], [15536, 0], [15804, 2], [16071, 1], [16339, 3], [16607, 3], [17143, 0],
+		[18214, 2], [19286, 2], [19554, 3], [19821, 2], [20089, 1], [20357, 0], [20893, 3], [21429, 3],
+		[21696, 0], [21964, 2], [22232, 1], [22500, 0], [23571, 2], [23839, 3], [24107, 3], [24375, 1],
+		[24643, 2], [25179, 0], [25714, 1], [26786, 1], [27321, 1], [27589, 1], [27857, 2], [28393, 0],
+		[28929, 1], [29464, 0], [30000, 1], [30536, 0], [31071, 1], [31607, 0], [32143, 1], [32411, 0],
+		[32679, 3], [32946, 1], [33214, 0], [33482, 2], [33750, 1], [34286, 0], [35357, 2]],
+	lines = [
+		[2143, "Chorus", "Night, and the palace is still as a held breath."],
+		[6429, "The Guard", "Demon. I have watched you. Show me your face."],
+		[10714, "The Bride", "Strike my heart, if you dare. But not my face - not my face!"],
+		[19286, "Chorus", "A cut to her face undoes her. She cannot bear to be marred."],
+		[23571, "The Guard", "Then I know where to strike."],
+		[30000, "Chorus", "Steel, and the lamps going out one by one."]]
+};

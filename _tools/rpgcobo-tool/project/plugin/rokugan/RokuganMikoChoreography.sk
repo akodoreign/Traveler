@@ -1,0 +1,246 @@
+// Follow the scoring clock with a continuous presentation clock for body and silk.
+local FPS = 60.0;
+local NATIVE = "/resource/native_chara/";
+local RIBBON = NATIVE .. "natsuko_dance_ribbon.pm";
+local stepFile = ::getResource( NATIVE .. "natsuko_miko_contacts.json");
+local steps = stepFile ? decodeJSON( stepFile.loadData()) : {};
+local stepSounds = [NATIVE .. "natsuko_miko_step_0.wav", NATIVE .. "natsuko_miko_step_1.wav"];
+local tasselModule = dirname( callee().getSourceName()) .. "/RokuganMikoTassels.sk";
+if( ::getResource( tasselModule)) runsk( tasselModule);
+local scores = [
+	{ name = "easy", lengthMs = 78621.0, lastFrame = 4718.0,
+		traces = [850, 12420, 20450, 30550, 43450, 64140, 76000, 78080] },
+	{ name = "hard", lengthMs = 83008.0, lastFrame = 4981.0,
+		traces = [850, 8200, 20450, 32850, 58050, 70480, 79880, 82520] }
+];
+local performance = { active = null };
+local stagedFollowers = { hidden = [] };
+
+// The temporary costume belongs to the staged actor. Keep equipment refreshes
+// from creating a second Hiruma while the stage owns her field visibility.
+local lookCheck = ::Rokugan.lookCheck.bindenv( ::Rokugan);
+::Rokugan.lookCheck = function( stage){
+	if( stage == ::rpgstage && ::Rokugan.danceActor()) return;
+	lookCheck( stage);
+};
+
+local partyFollow = ::Rokugan.partyFollow.bindenv( ::Rokugan);
+::Rokugan.partyFollow = function( stage){
+	partyFollow( stage);
+	local fieldParty = ::Rokugan.pfol;
+	if( fieldParty.stage != stage) return;
+	local stageActor = stage == ::rpgstage ? ::Rokugan.danceActor() : null;
+	if( !stageActor){
+		foreach( follower in stagedFollowers.hidden)
+			if( follower.alive && fieldParty.objs.find( @( o) o == follower)) follower.setVisible( true);
+		stagedFollowers.hidden.clear();
+		return;
+	}
+	foreach( follower in fieldParty.objs){
+		if( follower != stageActor && follower.visible && follower["nativeKey"] == "trav_natsuko"){
+			follower.setVisible( false);
+			stagedFollowers.hidden.append( follower);
+		}
+	}
+};
+
+local poseLayer = function( motion, lastFrame){
+	local layer = AnimationLayer();
+	layer.id = "miko_performance";
+	layer.partsmap = motion.partsmap;
+	layer.locked = 1;
+	layer.setAnime( 0.0, lastFrame, FPS, false);
+	layer.animating = false;
+	return layer;
+};
+
+local MikoPoseUpdate = class extends SK3DObject
+{
+	applyPose = null;
+	constructor( fn){
+		super( null);
+		applyPose = fn;
+	}
+	function update( dt, pmatdirty = true){
+		if( !alive) return false;
+		applyPose();
+		animating = true;
+		return true;
+	}
+};
+
+::Rokugan.mikoRelease <- function(){
+	local active = performance.active;
+	performance.active = null;
+	if( !active) return;
+	active.body.locked = 0;
+	active.model.animlayers = active.previousBodyLayers;
+	if( active.driver) active.driver.kill();
+	if( active.prop){
+		active.prop.setVisible( false);
+		active.prop.kill();
+	}
+	if( active.tassels){
+		::Rokugan.mikoTasselRelease( active.tassels);
+		printf( "[RT] miko tassels released; visible=%d alive=%d\n", active.tassels.node.visible ? 1 : 0, active.tassels.node.alive ? 1 : 0);
+	}
+};
+
+local beginPerformance = function( actor, score, songMs, now){
+	local resource = ::getResource( NATIVE .. "natsuko_miko_" .. score.name .. ".mot");
+	local motion = resource ? ::getMotionData( resource) : null;
+	if( !motion || !motion.partsmap) return null;
+	local body = poseLayer( motion, score.lastFrame), model = actor.nativeBody;
+	local previousBodyLayers = model.animlayers;
+	model.animlayers = null;
+	local layers = actor.animlayers.layers;
+	if( layers[0]) layers[0].locked = 0;
+	layers[1] = null;
+	local prop = null, silk = null;
+	try{
+		local silkResource = ::getResource( NATIVE .. "natsuko_miko_ribbon_" .. score.name .. ".mot");
+		if( silkResource && ::getResource( RIBBON)){
+			local silkMotion = ::getMotionData( silkResource);
+			prop = SK3DObject( RIBBON);
+			prop.setMotion( silkMotion);
+			foreach( material in prop.getMaterials()) if( material.mtype == 0) material.mtype = 3;
+			silk = poseLayer( silkMotion, score.lastFrame);
+			prop.animlayers.layers[0] = silk;
+			model.addChild( prop);
+		}
+	}catch( ex){
+		if( prop){ prop.setVisible( false); prop.kill(); }
+		prop = silk = null;
+		printexception( ex);
+	}
+	local tassels = ("mikoTasselCreate" in ::Rokugan) ? ::Rokugan.mikoTasselCreate( actor, score.name, score.lastFrame) : null;
+	local contacts = score.name == "easy" ? (steps.easy || []) : [];
+	printf( "[RT] miko choreography %S at %d fps; ribbon %S; cursor final-rig; %d foot contacts; child layer %S; tassels %S\n",
+		score.name, int( FPS), prop ? "ready" : "missing", length( contacts), previousBodyLayers ? "suspended" : "none", tassels ? "ready" : "none");
+	local joints = { pelvis = model.findBone( "pelvis"), near = model.findBone( "handN"), far = model.findBone( "handF"),
+		grip = prop ? prop.findBone( "ribbon_handle") : null, tip = prop ? prop.findBone( "ribbon_12") : null };
+	return { actor = actor, model = model, score = score, body = body, prop = prop, silk = silk, joints = joints, tassels = tassels,
+		previousBodyLayers = previousBodyLayers, driver = null, frame = 0.0,
+		ms = songMs, clock = songMs, now = now, contacts = contacts, nextStep = 0, nextTrace = 0 };
+};
+
+local advancePresentation = function( active, songMs, now){
+	local elapsed = Math.max( 0.0, now - active.now);
+	// A menu or lost frame should not flush the entire wall-clock delay into a pose.
+	if( elapsed > 90.0) elapsed = Math.clamp( songMs - active.clock, 0.0, 40.0);
+	local ahead = songMs - (active.ms + elapsed);
+	local speed = Math.clamp( 1.0 + ahead * 0.0045, 0.72, 1.28);
+	active.ms = Math.min( active.score.lengthMs, active.ms + elapsed * speed);
+	active.now = now;
+	active.clock = songMs;
+};
+
+local playFootContacts = function( active){
+	local contacts = active.contacts;
+	while( active.nextStep < length( contacts)){
+		local foot = contacts[active.nextStep];
+		if( foot[0] > active.ms) return;
+		active.nextStep++;
+		if( active.ms - foot[0] > 74.0) continue;
+		try{ ::playSound( stepSounds[foot[1]], { gain = foot[2], memcache = 4 }); }
+		catch( ex){
+			active.nextStep = length( contacts);
+			printexception( ex);
+			return;
+		}
+	}
+};
+
+local renderPalette = function( part, model, name){
+	local out = { correct = 0, size = 0, joint = null };
+	if( !part || !part.mesh["wmapname"] || !part.mesh["bones"]) return out;
+	local mesh = part.mesh;
+	out.size = length( mesh.wmapname);
+	foreach( k, id in mesh.wmapname){
+		local rendered = mesh.bones[k];
+		if( rendered && rendered == model.findBone( id)) out.correct++;
+		if( id == name && rendered) out.joint = rendered.mat.getTranslation( Vector3D());
+	}
+	return out;
+};
+
+local tracePose = function( active, frame){
+	local index = active.nextTrace, traceTimes = active.score.traces;
+	if( index >= length( traceTimes) || active.ms < traceTimes[index]) return;
+	while( active.nextTrace < length( traceTimes) && active.ms >= traceTimes[active.nextTrace]) active.nextTrace++;
+	local j = active.joints;
+	if( !j.pelvis || !j.near || !j.far || !j.grip || !j.tip){
+		if( index == 0) printf( "[RT] miko sync unavailable: missing live rig attachment\n");
+		return;
+	}
+	local p = j.pelvis.mat.getTranslation( Vector3D());
+	local n = j.near.mat.getTranslation( Vector3D());
+	local f = j.far.mat.getTranslation( Vector3D());
+	local wand = j.grip.mat.getTranslation( Vector3D());
+	local grip = Vector3D( 0.0, 2.6, 1.1).transform( j.near.mat).sub( wand).length();
+	local tip = -1.0;
+	if( active.ms < 2300.0){
+		tip = Vector3D( 0.0, 4.1, -0.45).transform( j.far.mat).sub( j.tip.mat.getTranslation( Vector3D())).length();
+	}
+	printf( "[RT] miko sync ms=%d frame=%.3f body=%.3f silk=%.3f pelvis=(%.2f,%.2f,%.2f) right=(%.2f,%.2f,%.2f) left=(%.2f,%.2f,%.2f) gripErr=%.3f tipErr=%.3f\n",
+		int( active.ms), frame, active.body.frametime, active.silk.frametime,
+		p.x, p.y, p.z, n.x, n.y, n.z, f.x, f.y, f.z, grip, tip);
+	local outfit = renderPalette( active.actor.nativeOutfit, active.model, "pelvis");
+	local face = renderPalette( active.actor.nativeFace, active.model, "head");
+	local pelvis = outfit.joint || Vector3D(), head = face.joint || Vector3D();
+	local field = ::rpgstage["player3d"], duplicates = 0;
+	if( field && field.visible && field != active.actor && field["nativeKey"] == "trav_natsuko") duplicates++;
+	if( ::Rokugan.pfol.stage == ::rpgstage)
+		foreach( follower in ::Rokugan.pfol.objs)
+			if( follower.visible && follower != active.actor && follower["nativeKey"] == "trav_natsuko") duplicates++;
+	printf( "[RT] miko render ms=%d outfit=%d/%d outfitPelvis=(%.2f,%.2f,%.2f) face=%d/%d faceHead=(%.2f,%.2f,%.2f) duplicates=%d phase=after-children\n",
+		int( active.ms), outfit.correct, outfit.size, pelvis.x, pelvis.y, pelvis.z,
+		face.correct, face.size, head.x, head.y, head.z, duplicates);
+};
+
+local applyFinalRigPose = function( active){
+	local actor = active.actor, frame = active.frame;
+	if( actor.animlayers.layers[0] != active.body) actor.setAnimeLayer( active.body);
+	active.body.animating = false;
+	active.body.frametime = frame;
+	actor.animlayers.integrateBonePoses( active.model.bones, active.model.gmat, true);
+	actor.updateTravelerWidth();
+	actor.animating = active.model.animating = true;
+	if( actor.nativeFace) actor.nativeFace.animating = true;
+	if( actor.nativeOutfit) actor.nativeOutfit.animating = true;
+	if( active.silk){
+		active.silk.frametime = frame;
+		active.prop.calcBonePoses();
+		active.prop.animating = true;
+	}
+	if( active.tassels) ::Rokugan.mikoTasselPose( active.tassels, frame);
+	tracePose( active, frame);
+};
+
+::Rokugan.mikoPerform <- function( hard, songMs){
+	local actor = ::Rokugan.danceActor();
+	if( !actor || !("nativeKey" in actor) || actor.nativeKey != "trav_natsuko"){
+		::Rokugan.mikoRelease();
+		return false;
+	}
+	local score = scores[hard ? 1 : 0], now = skGetTime();
+	local active = performance.active;
+	if( !active || active.actor != actor || active.score != score){
+		::Rokugan.mikoRelease();
+		active = beginPerformance( actor, score, songMs, now);
+		performance.active = active;
+		if( !active) return false;
+	}else{
+		advancePresentation( active, songMs, now);
+	}
+	active.frame = Math.clamp( active.ms * FPS / 1000.0, 0.0, score.lastFrame);
+	if( !active.driver){
+		// The scene visits actor children in insertion order. Commit the final pose
+		// after the body, outfit, face and prop have performed their ordinary updates.
+		local state = active;
+		active.driver = MikoPoseUpdate( @() applyFinalRigPose( state));
+		actor.addChild( active.driver);
+	}
+	playFootContacts( active);
+	return true;
+};

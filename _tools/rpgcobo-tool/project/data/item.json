@@ -6744,5 +6744,17 @@
 		"skilltype": "unusable",
 		"stacknum": 99,
 		"occasion": 0
+	},
+	"I573": {
+		"consume": 1,
+		"desc": "A small iron key from Yasuki Kanbe's lacquer box. Opens the Hoshi-no-Ichi storehouse.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Storehouse Key",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 99,
+		"occasion": 0
 	}
 }

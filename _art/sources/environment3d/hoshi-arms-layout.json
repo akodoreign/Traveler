@@ -1,0 +1,39 @@
+{
+  "room": [
+    36,
+    36
+  ],
+  "furnishings": 23,
+  "generated_props": {
+    "hoshi_arms_bundle": {
+      "name": "hoshi_arms_bundle",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hoshi_arms_bundle_00001_.glb",
+      "grid": [
+        42,
+        5,
+        7
+      ],
+      "occupied": 665,
+      "world_size": [
+        1.22,
+        0.18,
+        0.19
+      ]
+    },
+    "hoshi_arms_armor_sample": {
+      "name": "hoshi_arms_armor_sample",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hoshi_arms_armor_sample_00001_.glb",
+      "grid": [
+        16,
+        13,
+        41
+      ],
+      "occupied": 2606,
+      "world_size": [
+        0.78,
+        0.61,
+        1.13
+      ]
+    }
+  }
+}

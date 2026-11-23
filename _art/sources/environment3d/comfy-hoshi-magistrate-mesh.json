@@ -1,0 +1,10 @@
+{
+  "hoshi_case_bundle": {
+    "prompt_id": "1deb9646-eca9-41ff-b053-26df08cbe671",
+    "history": "http://127.0.0.1:8189/history/1deb9646-eca9-41ff-b053-26df08cbe671"
+  },
+  "hoshi_inkstone": {
+    "prompt_id": "c0490bcd-52ff-49e3-ba19-47334c834ec3",
+    "history": "http://127.0.0.1:8189/history/c0490bcd-52ff-49e3-ba19-47334c834ec3"
+  }
+}

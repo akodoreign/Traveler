@@ -1,0 +1,32 @@
+{
+  "actor": "side_bayushiguard",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_bayushiguard_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_bayushiguard_portrait_charcoal_cloth.pm",
+      "to": "side_bayushiguard_portrait_charcoal_cloth.pm",
+      "sha256": "454cc845f17acd1297af2bdd93cc7d1f86dca4b0d63afdcc0a0bceaae18b3f9a"
+    },
+    {
+      "from": "assets/side_bayushiguard_portrait_charcoal_cloth.mdl",
+      "to": "side_bayushiguard_portrait_charcoal_cloth.mdl",
+      "sha256": "3ec19997f05af1b3537ab7361f9325c3c8fd55eb847ccf47bf6e4ea350e0c58b"
+    },
+    {
+      "from": "assets/tex/side_bayushiguard_portrait_charcoal_cloth_color_srgb.png",
+      "to": "tex/side_bayushiguard_portrait_charcoal_cloth_color_srgb.png",
+      "sha256": "50b3cedce625eb72f915b5d9fb5c7f325d15d025e9c926de37a8fa3ca93dea7b"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_bayushiguard_portrait_charcoal_cloth"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\variants\\b43\\release\\side_bayushiguard\\assets\\side_bayushiguard_portrait_face.glb",
+    "sha256": "c3c85d64c7a18a9f8e80ed311e3b78286f93e42798dec6752e2378bbc86c200d"
+  }
+}

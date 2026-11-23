@@ -1,0 +1,39 @@
+{
+  "room": [
+    44,
+    40
+  ],
+  "furnishings": 54,
+  "generated_props": {
+    "hoshi_case_bundle": {
+      "name": "hoshi_case_bundle",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hoshi_case_bundle_00001_.glb",
+      "grid": [
+        38,
+        25,
+        12
+      ],
+      "occupied": 3222,
+      "world_size": [
+        0.31,
+        0.25,
+        0.125
+      ]
+    },
+    "hoshi_inkstone": {
+      "name": "hoshi_inkstone",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hoshi_inkstone_00001_.glb",
+      "grid": [
+        19,
+        38,
+        8
+      ],
+      "occupied": 1506,
+      "world_size": [
+        0.24,
+        0.14,
+        0.063
+      ]
+    }
+  }
+}

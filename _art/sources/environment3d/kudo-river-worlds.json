@@ -1,0 +1,15 @@
+{
+  "job_spec": "753a98b13e0195341e7a1b512c435dc9c8881e0cd91387f253bf2832c56dfe91",
+  "worlds": {
+    "M350": {
+      "removed_stock_fixtures": 13,
+      "events_preserved": 79,
+      "sha256": "4b7e241567b2edf3aa0bce48cfc9ef79b3a231e3d3102f581d7d962207189b1b"
+    },
+    "M351": {
+      "removed_stock_fixtures": 18,
+      "events_preserved": 103,
+      "sha256": "02e648a53e7ee002104188e5703e3f5d6a192b0da59f10ecda27d972d212b9c9"
+    }
+  }
+}

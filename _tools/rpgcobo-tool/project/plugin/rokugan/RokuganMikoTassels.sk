@@ -1,0 +1,45 @@
+// A209 belt tassels share the final stage pose clock with the dancer and ribbon.
+local TASSELS = "/resource/native_chara/natsuko_miko_tassels";
+
+::Rokugan.mikoTasselCreate <- function( actor, mode, lastFrame){
+	if( !actor || actor != ::Rokugan.danceActor() || actor.nativeKey != "trav_natsuko" ||
+		actor.nativeTailoring != "trav_natsuko_miko" || !actor.nativeBody) return null;
+	if( mode != "easy" && mode != "hard") return null;
+	local resource = ::getResource( TASSELS .. "_" .. mode .. ".mot");
+	local mesh = ::getResource( TASSELS .. ".pm");
+	if( !resource || !mesh) return null;
+	local motion = ::getMotionData( resource);
+	if( !motion || !motion.partsmap) return null;
+	local node = SK3DObject( mesh);
+	try{
+		node.setMotion( motion);
+		foreach( material in node.getMaterials()) if( material.mtype == 0) material.mtype = 3;
+		local layer = AnimationLayer();
+		layer.id = "miko_tassel_pose";
+		layer.partsmap = motion.partsmap;
+		layer.setAnime( 0.0, lastFrame, 60.0, false);
+		layer.animating = false;
+		layer.locked = 1;
+		node.animlayers.layers[0] = layer;
+		actor.nativeBody.addChild( node);
+		return { node = node, layer = layer };
+	}catch( ex){
+		node.kill();
+		printexception( ex);
+		return null;
+	}
+};
+
+::Rokugan.mikoTasselPose <- function( slot, frame){
+	if( !slot) return;
+	slot.layer.animating = false;
+	slot.layer.frametime = frame;
+	slot.node.calcBonePoses();
+	slot.node.animating = true;
+};
+
+::Rokugan.mikoTasselRelease <- function( slot){
+	if( !slot) return;
+	slot.node.setVisible( false);
+	slot.node.kill();
+};

@@ -1,0 +1,32 @@
+{
+  "spec": "9282b3129768e89a66ad45250d1d31763c65a0f8e8548885eff1ffbb66313351",
+  "rooms": {
+    "M352": {
+      "old_decor_removed": [
+        "#10#",
+        "#11#",
+        "#8#",
+        "#9#"
+      ],
+      "story_events_retained": 79,
+      "sha256": "8caf64c549d56e3f68ce0b3cf7728b7d9036bc9970da4220ea9969559cd7b87f"
+    },
+    "M353": {
+      "old_decor_removed": [
+        "#10#",
+        "#8#",
+        "#9#"
+      ],
+      "story_events_retained": 79,
+      "sha256": "24dc618e36aee61d424f69b4a04d04dd66f37795b3345b1cbfc2c1ce8426f650"
+    },
+    "M354": {
+      "old_decor_removed": [
+        "#6#",
+        "#7#"
+      ],
+      "story_events_retained": 78,
+      "sha256": "24dc618e36aee61d424f69b4a04d04dd66f37795b3345b1cbfc2c1ce8426f650"
+    }
+  }
+}

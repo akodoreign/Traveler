@@ -2,6 +2,7 @@
 import VarType;
 import VirtualKeyCode;
 import GamepadButtonCode;
+import GamepadType;
 
 ////////////////////////////////////////////////////////////////////////////////
 //	
@@ -710,7 +711,13 @@ function buttonicon( i, dark=false){
 	dark = dark&1;
 	local gp = ::gpui.getGPUIDevice()["gp"];
 	if( gp){
-		local t = gp.type, cbase = 0xee00 + (t>=1&&t<4?t-1:0)*0x60 + dark*0x30;
+		//	Options > Button icons (control.padicons): 0 = from the pad, 1 = Xbox, 2 = PlayStation, 3 = Steam Deck
+		//	(the Deck's face buttons are Xbox-style A / B / X / Y, so it uses the Xbox set).
+		local t = gp.type, ov = 0;
+		try{ ov = ::clientconf.control["padicons"] || 0; }catch( ex){}
+		if( ov == 1 || ov == 3) t = GAMEPAD_XINPUT;
+		else if( ov == 2) t = GAMEPAD_DS4;
+		local cbase = 0xee00 + (t>=1&&t<4?t-1:0)*0x60 + dark*0x30;
 		switch( i){
 		case -1: return char( cbase + 44);
 		case -2: return char( cbase + BTN_LB)..char( cbase + BTN_RB);

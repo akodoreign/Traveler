@@ -1,0 +1,319 @@
+{
+  "maps": {
+    "M461": {
+      "terrain_quads": 700,
+      "placements": [
+        [
+          "hiruma_gate_ruin",
+          78.25,
+          2.0,
+          14.25,
+          1.04,
+          1.5707963267948966
+        ],
+        [
+          "hiruma_gate_structure",
+          78.25,
+          2.0,
+          14.25,
+          1.04,
+          1.5707963267948966
+        ],
+        [
+          "hiruma_fallen_standard",
+          18.25,
+          2.0,
+          13.25,
+          0.97,
+          -0.43
+        ],
+        [
+          "hiruma_fallen_standard",
+          58.75,
+          2.0,
+          14.25,
+          1.1,
+          0.31
+        ],
+        [
+          "shadowlands_dead_cedar",
+          20.25,
+          2.0,
+          15.75,
+          1.22,
+          0.45
+        ],
+        [
+          "shadowlands_dead_cedar",
+          44.75,
+          2.0,
+          16.25,
+          1.35,
+          -0.6
+        ],
+        [
+          "shadowlands_shards",
+          21.75,
+          2.0,
+          6.25,
+          1.0,
+          0.72
+        ],
+        [
+          "shadowlands_shards",
+          29.25,
+          2.0,
+          14.75,
+          1.0,
+          0.96
+        ],
+        [
+          "shadowlands_shards",
+          37.25,
+          2.0,
+          7.75,
+          1.0,
+          1.44
+        ],
+        [
+          "shadowlands_shards",
+          46.25,
+          2.0,
+          13.25,
+          1.0,
+          0.72
+        ],
+        [
+          "shadowlands_shards",
+          51.75,
+          2.0,
+          8.25,
+          1.0,
+          0.0
+        ],
+        [
+          "shadowlands_shards",
+          62.25,
+          2.0,
+          14.25,
+          1.0,
+          0.0
+        ]
+      ]
+    },
+    "M462": {
+      "terrain_quads": 98,
+      "placements": [
+        [
+          "hiruma_gate_ruin",
+          71.25,
+          2.0,
+          13.25,
+          0.87,
+          1.5707963267948966
+        ],
+        [
+          "hiruma_gate_structure",
+          71.25,
+          2.0,
+          13.25,
+          0.87,
+          1.5707963267948966
+        ],
+        [
+          "hiruma_ancestor_altar",
+          36.75,
+          2.0,
+          12.25,
+          1.0,
+          0.0
+        ],
+        [
+          "hiruma_ancestor_tablets",
+          36.75,
+          2.233,
+          12.25,
+          0.93,
+          3.141592653589793
+        ],
+        [
+          "hoshi_andon",
+          35.25,
+          2.0,
+          12.25,
+          0.92,
+          0.0
+        ],
+        [
+          "hoshi_andon",
+          38.25,
+          2.0,
+          12.25,
+          0.92,
+          0.0
+        ],
+        [
+          "hiruma_hall_screen",
+          29.25,
+          2.0,
+          14.25,
+          0.93,
+          -0.04
+        ],
+        [
+          "hiruma_hall_screen",
+          42.75,
+          2.0,
+          14.25,
+          0.9,
+          0.07
+        ],
+        [
+          "hiruma_fallen_standard",
+          20.25,
+          2.0,
+          13.25,
+          0.74,
+          0.36
+        ]
+      ]
+    },
+    "M463": {
+      "terrain_quads": 82,
+      "placements": [
+        [
+          "hiruma_hall_screen",
+          19.25,
+          2.0,
+          11.75,
+          0.89,
+          0.0
+        ],
+        [
+          "hiruma_hall_screen",
+          31.25,
+          2.0,
+          11.75,
+          0.89,
+          0.0
+        ],
+        [
+          "hiruma_fallen_standard",
+          21.75,
+          2.0,
+          10.75,
+          0.75,
+          -0.46
+        ],
+        [
+          "hiruma_fallen_standard",
+          28.75,
+          2.0,
+          10.75,
+          0.75,
+          0.46
+        ]
+      ]
+    },
+    "M808": {
+      "terrain_quads": 67,
+      "placements": [
+        [
+          "hiruma_hall_screen",
+          6.75,
+          0.5,
+          40.25,
+          1.11,
+          0.05
+        ],
+        [
+          "hiruma_hall_screen",
+          23.75,
+          0.5,
+          40.25,
+          1.11,
+          0.05
+        ],
+        [
+          "hiruma_hall_screen",
+          39.25,
+          0.5,
+          40.25,
+          1.11,
+          -0.05
+        ],
+        [
+          "hiruma_hall_screen",
+          56.25,
+          0.5,
+          40.25,
+          1.11,
+          -0.05
+        ],
+        [
+          "hiruma_fallen_standard",
+          10.25,
+          0.5,
+          36.75,
+          0.98,
+          -0.32
+        ],
+        [
+          "hiruma_fallen_standard",
+          23.75,
+          0.5,
+          37.25,
+          0.98,
+          0.43
+        ]
+      ]
+    }
+  },
+  "generated_props": {
+    "hiruma_gate_ruin": {
+      "name": "hiruma_gate_ruin",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hiruma_gate_ruin_00001_.glb",
+      "grid": [
+        49,
+        38,
+        45
+      ],
+      "occupied": 8480,
+      "world_size": [
+        4.68,
+        2.14,
+        3.69
+      ]
+    },
+    "hiruma_ancestor_tablets": {
+      "name": "hiruma_ancestor_tablets",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hiruma_ancestor_tablets_00001_.glb",
+      "grid": [
+        49,
+        23,
+        37
+      ],
+      "occupied": 8524,
+      "world_size": [
+        1.59,
+        0.63,
+        1.2199999999999998
+      ]
+    },
+    "hiruma_fallen_standard": {
+      "name": "hiruma_fallen_standard",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hiruma_fallen_standard_00001_.glb",
+      "grid": [
+        18,
+        14,
+        47
+      ],
+      "occupied": 1026,
+      "world_size": [
+        1.43,
+        0.82,
+        1.45
+      ]
+    }
+  }
+}

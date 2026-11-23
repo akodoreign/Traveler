@@ -47,6 +47,10 @@ LOOK3D = {
                         pcol=(250, 187, 108), lining=(233, 158, 81), long_robe=True),
     "trav_mitsue": dict(top=(153, 29, 54), lower=(43, 33, 50), accent=(178, 32, 56),
                         pcol=(222, 145, 111), lining=(124, 35, 48), long_robe=True),
+    # (user 2026-11-22: "put him in dark blue, with darker blue tint, red studs") Hida Kisada: dark blue lamellar, the
+    # cloth a darker blue, the rivets and trim red. (The deployed side_kisada_outfit.pm was recoloured to match.)
+    "side_kisada": dict(armor=(31, 45, 92), top=(26, 48, 96), lower=(16, 26, 50), trim=(184, 40, 42),
+                        lace=(150, 34, 36)),
 }
 
 # Small pieces that remain on the body when clothing is swapped.

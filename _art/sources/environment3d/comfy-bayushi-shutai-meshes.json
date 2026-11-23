@@ -1,0 +1,18 @@
+{
+  "bayushi_household_well": {
+    "prompt_id": "8e0c833d-9a3c-46fe-8f9c-0338fee51a98",
+    "history": "http://127.0.0.1:8189/history/8e0c833d-9a3c-46fe-8f9c-0338fee51a98"
+  },
+  "bayushi_scarlet_lantern": {
+    "prompt_id": "9266c86f-0d74-44df-93f5-7868f51387cf",
+    "history": "http://127.0.0.1:8189/history/9266c86f-0d74-44df-93f5-7868f51387cf"
+  },
+  "shutai_willow_cart": {
+    "prompt_id": "0698c522-96da-48a1-bb14-7975107881b7",
+    "history": "http://127.0.0.1:8189/history/0698c522-96da-48a1-bb14-7975107881b7"
+  },
+  "bayushi_shrine_lattice": {
+    "prompt_id": "7416a02b-cc2a-4f83-99ae-4d33cf0d9eeb",
+    "history": "http://127.0.0.1:8189/history/7416a02b-cc2a-4f83-99ae-4d33cf0d9eeb"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "spec": "59486f92f36eae9fac0a42a452b0e1384ad1f016dfe9474f909e6c52627ce319",
+  "rooms": {
+    "M363": {
+      "old_decor_removed": [
+        "#10#",
+        "#11#",
+        "#12#",
+        "#9#"
+      ],
+      "story_events_retained": 81,
+      "sha256": "927d33b1bccb05845fbd026983d2ff1984a2bfa1d6adca7bbfee89581795261d"
+    },
+    "M367": {
+      "old_decor_removed": [
+        "#5#",
+        "#6#",
+        "#7#",
+        "#8#"
+      ],
+      "story_events_retained": 76,
+      "sha256": "eab34bd0749b1ae7a30ad06255f6ccd9090ff8be2251c1a219b4f575c6c83ecf"
+    },
+    "M365": {
+      "old_decor_removed": [],
+      "story_events_retained": 79,
+      "sha256": "d09fd5d96c3e530703447a29192ebf2a60a2280028906206f837bf724dac5418"
+    },
+    "M366": {
+      "old_decor_removed": [],
+      "story_events_retained": 79,
+      "sha256": "afdf21d2cf525ddad072616fdb16380562ce546ba0f40ed3e4821c457619b0ce"
+    },
+    "M867": {
+      "old_decor_removed": [],
+      "story_events_retained": 0,
+      "sha256": "4210de034f1544f6aba22aec33d400a5b6577aca68c64c590679acb27f973e2a"
+    },
+    "M868": {
+      "old_decor_removed": [],
+      "story_events_retained": 0,
+      "sha256": "98562a719833e86da6e05bcbadca3a815e58aff8348d23dca9dbb58df5bff478"
+    }
+  }
+}

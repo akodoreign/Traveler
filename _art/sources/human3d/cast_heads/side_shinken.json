@@ -1,0 +1,171 @@
+{
+  "source": "side_shinken_repaired_atlas.glb",
+  "scale": 18.8,
+  "cranial_scale": [
+    1,
+    104.35
+  ],
+  "socket_sample_levels": [
+    -0.525,
+    -0.514,
+    -0.503,
+    -0.492,
+    -0.481,
+    -0.47,
+    -0.459,
+    -0.448,
+    -0.437,
+    -0.426
+  ],
+  "socket_ring_hint": [
+    -0.013,
+    -0.142
+  ],
+  "features": {
+    "eyes": [
+      [
+        191,
+        247,
+        0.01
+      ],
+      [
+        284,
+        248,
+        -0.01
+      ]
+    ],
+    "brows": [
+      [
+        184,
+        221
+      ],
+      [
+        286,
+        220
+      ]
+    ],
+    "mouth": [
+      238,
+      345
+    ]
+  },
+  "maximum_pitch": 3.25,
+  "proof_motion": "short",
+  "taper_donor_overlap": true,
+  "key": "side_shinken_portrait_face",
+  "exact_native_outfit": true,
+  "preserve_long_hair": true,
+  "fit_shallow_neck_overlap": true,
+  "recenter_donor_seat": true,
+  "skin_match": [
+    247,
+    201,
+    174
+  ],
+  "skin_sample_view": "Diffuse cheeks and chin from the final unlit face. Lower seam determines matched body paint.",
+  "skin_sample_patches": [
+    [
+      188,
+      295,
+      4
+    ],
+    [
+      285,
+      296,
+      4
+    ],
+    [
+      239,
+      211,
+      4
+    ],
+    [
+      235,
+      365,
+      4
+    ]
+  ],
+  "raw_skin_srgb": [
+    [
+      248,
+      201,
+      173
+    ],
+    [
+      248,
+      202,
+      175
+    ],
+    [
+      247,
+      201,
+      173
+    ],
+    [
+      247,
+      200,
+      173
+    ]
+  ],
+  "fit_method": "production shared body socket",
+  "fit_scale": 18.8,
+  "fit_matrix_blender": [
+    [
+      18.790789337942087,
+      -0.14259357560216018,
+      -0.5708792598098366,
+      2.4781237930401954
+    ],
+    [
+      0.15156782499434573,
+      18.797092817552468,
+      0.29381763519348575,
+      0.41771040013674027
+    ],
+    [
+      0.5685624429299923,
+      -0.29827618161898073,
+      18.789033186089515,
+      108.59571086996169
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 12160,
+    "lower_overlap_blended_vertices": 285,
+    "minimum_seam_head_weight": 0.6204609669972116,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 1,
+    "pivot": [
+      0.030424999999999924,
+      -0.0024600000000000177,
+      104.35
+    ],
+    "seated_rings": [
+      {
+        "height": 98.6875,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      },
+      {
+        "height": 99.2375,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      }
+    ],
+    "original_entire_silhouette_width": 14.332925796508789,
+    "final_entire_silhouette_width": 14.332925796508789,
+    "original_crown_native": 118.14723205566406,
+    "final_crown_native": 118.14723205566406,
+    "origin_geometry_sha256": "e99be4f2e9cb68e53b4aebae6ea0a77cbf3e6df7b51d6cf9fb022827c732f96d"
+  },
+  "review_wardrobe_mesh": "A167_yachiko"
+}

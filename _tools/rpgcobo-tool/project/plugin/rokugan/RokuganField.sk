@@ -496,8 +496,36 @@ foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]
 //	World map fast travel (Octopath's map screen). gen_maps.py puts a road-map signpost in each town; examining it shows
 //	the painted map (EP360, gen_worldmap.py) and calls this with the node table. Only visited nodes (their G flag set
 //	by a silent arrival event) other than this one are offered.
+//	(user 2026-11-22) Every road has its posts (RokuganTravelData.sk). The Crab three keep their own G flags; the others
+//	are bits of G1640 + bit / 30, set when the town's map loads. A traveler's road offers its own visited towns; once all
+//	eight have walked their roads (they meet at the finale), every visited town.
+::Rokugan.travelVisited <- function( n){
+	if( n.flag) return !!::rpgvar[n.flag];
+	local v = ::rpgvar["G" .. (1640 + n.bit / 30)];
+	return !!((v ? int( v) : 0) & (1 << (n.bit % 30)));
+};
+::Rokugan.travelMark <- function( mapid){
+	if( !("TRAVEL_NODES" in ::Rokugan) || !mapid) return;
+	foreach( n in this.TRAVEL_NODES){
+		if( n.mapid != mapid || n.flag) continue;
+		local g = "G" .. (1640 + n.bit / 30), v = ::rpgvar[g];
+		v = v ? int( v) : 0;
+		if( !(v & (1 << (n.bit % 30)))) printf( "[RT] travel: visited %S\n", n.code);
+		::rpgvar[g] = v | (1 << (n.bit % 30));
+	}
+};
+::Rokugan.travelOpen <- function( n){
+	if( ::rpgvar["G1363"] || this.pathsWalked() >= 8) return true;			//	together: any road's towns
+	local lead = ::rpgstat.members.find( @( v) v && ::Rokugan.TRAVELERS.indexOf( v.dataid) >= 0);
+	return !lead || n.pids.indexOf( lead.dataid) >= 0;
+};
+::RPGStage._rt_launch_travel <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	try{ ::Rokugan.travelMark( this["mapid"]); }catch( ex){ printexception( ex); }
+	return this._rt_launch_travel( opt);
+};
 ::Rokugan.travel <- function( runner, here, nodes){
-	local opts = nodes.filter( @( n) n.code != here && ::rpgvar[n.flag]);
+	local opts = nodes.filter( @( n) n.code != here && ::Rokugan.travelVisited( n) && ::Rokugan.travelOpen( n));
 	::RPGMain.showPicture( { idx = 0, op = 0, picid = "EP360", pos = [640, 360], scale = 100, rot = 0, fade = 300,
 		flipx = false, col = 0xffffffff, easing = 0, aniid = null });
 	sleep( 320);

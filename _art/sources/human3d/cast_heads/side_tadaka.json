@@ -1,0 +1,111 @@
+{
+  "key": "side_tadaka_portrait_face",
+  "source": "side_tadaka_repaired_atlas.glb",
+  "scale": 12.9,
+  "features": {
+    "eyes": [
+      [
+        184,
+        266,
+        0.04
+      ],
+      [
+        261,
+        264,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        179,
+        248
+      ],
+      [
+        270,
+        246
+      ]
+    ],
+    "mouth": [
+      222,
+      339
+    ]
+  },
+  "socket_sample_levels": [
+    -0.714,
+    -0.707,
+    -0.7,
+    -0.693,
+    -0.6859999999999999,
+    -0.6789999999999999,
+    -0.6719999999999999,
+    -0.6649999999999999,
+    -0.6579999999999999,
+    -0.6509999999999999,
+    -0.6439999999999999,
+    -0.6369999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.018,
+    -0.092
+  ],
+  "skin_match": [
+    234,
+    170,
+    124
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 12.9,
+  "fit_matrix_blender": [
+    [
+      12.897592096595629,
+      -0.2197446478581509,
+      0.11760271923990093,
+      1.1835732775220635
+    ],
+    [
+      0.21870784723044867,
+      12.897643802464554,
+      0.1138034371658897,
+      1.2763239430519124
+    ],
+    [
+      -0.11951982009166896,
+      -0.111788346837425,
+      12.898961910871703,
+      107.6154446354044
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 20014,
+    "lower_overlap_blended_vertices": 137,
+    "minimum_seam_head_weight": 0.5103356922255573,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      186,
+      296
+    ],
+    [
+      196,
+      308
+    ]
+  ],
+  "skin_sample_view": "Unlit exact Tadaka portrait. Lower diffuse skin follows the cleaner cheek anchor, preserving the original warm shading, silver moustache and braided beard.",
+  "raw_skin_srgb": [
+    234,
+    170,
+    124
+  ],
+  "proof_pose_family": "short"
+}

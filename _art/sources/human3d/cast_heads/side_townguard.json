@@ -1,0 +1,122 @@
+{
+  "key": "side_townguard_portrait_face",
+  "source": "side_townguard_repaired_atlas.glb",
+  "scale": 16.1,
+  "features": {
+    "eyes": [
+      [
+        199,
+        269,
+        0.04
+      ],
+      [
+        285,
+        266,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        193,
+        249
+      ],
+      [
+        291,
+        247
+      ]
+    ],
+    "mouth": [
+      248,
+      343
+    ]
+  },
+  "socket_sample_levels": [
+    -0.605,
+    -0.598,
+    -0.591,
+    -0.584,
+    -0.577,
+    -0.57,
+    -0.563,
+    -0.5559999999999999,
+    -0.5489999999999999,
+    -0.5419999999999999,
+    -0.5349999999999999,
+    -0.5279999999999999,
+    -0.5209999999999999,
+    -0.5139999999999999,
+    -0.5069999999999999,
+    -0.4999999999999999,
+    -0.4929999999999999,
+    -0.4859999999999999,
+    -0.47899999999999987
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.078,
+    0.003
+  ],
+  "skin_match": [
+    250,
+    204,
+    168
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 16.1,
+  "fit_matrix_blender": [
+    [
+      16.09372786587827,
+      -0.4479245224630069,
+      0.03587479938619376,
+      2.056723848423632
+    ],
+    [
+      0.44784875911415406,
+      16.09373390998576,
+      0.03406352212455634,
+      0.027186726434001905
+    ],
+    [
+      -0.03680853181842061,
+      -0.033052333592382376,
+      16.099923995945854,
+      107.78623373869925
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 17418,
+    "lower_overlap_blended_vertices": 193,
+    "minimum_seam_head_weight": 0.2841540728232901,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      190,
+      300
+    ],
+    [
+      290,
+      300
+    ],
+    [
+      207,
+      315
+    ]
+  ],
+  "skin_sample_view": "Repeated diffuse cheek patches for the exact Town Guard V2 portrait.",
+  "raw_skin_srgb": [
+    250,
+    204,
+    168
+  ],
+  "proof_pose_family": "pole"
+}

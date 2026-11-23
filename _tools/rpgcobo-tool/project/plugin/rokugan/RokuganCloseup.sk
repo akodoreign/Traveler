@@ -1,0 +1,185 @@
+//	RokuganCloseup.sk - conversation direction: emotes and close-ups (user 2026-11-22: "you are responsible now for
+//	conversational exposition ... there are emotes the avatars can do, tie them in with a zoom and emote when
+//	appropriate"; "travelers are the big focus for emotes").
+//
+//	A dialogue line (cmd_showmsg message_talk) may carry two more fields beside the bust's emo:
+//	    act  = "laugh"	the speaker's 3D model plays that emote as the line opens. Any id of the native models' animap:
+//	                	nod rei rei_full seiza seiza_rei sit think surprise laugh talk, and the held gestures facepalm
+//	                	shrug crossarms scratch point (the move, then its _hold pose until the next line).
+//	    zoom = true		the camera closes on the speaker for this line (an act line closes in too unless zoom = false) (or a number: the fraction of the map's view
+//	                	to cut, default 0.6). The next line without zoom eases the camera back; so does the end of the
+//	                	event (a stop function on the runner).
+//	The speaker is found by name: the field leader (player3d) when the name is the lead traveler's, else the nearest
+//	spawned event whose model (mdlid -> enemy_pic name) carries that name ("Natsuko" matches "Hiruma Natsuko").
+//	No match (a narrator, someone off-screen, a battle): the line plays as usual. Written by tools/apply_dialog_fixes.py
+//	("dir" entries) and gen_maps; read back with tools/dialog_read.py ({emote} and ^zoom).
+//	-rtfast logs "[RT] CLOSEUP <name> act=<id> zoom=<z>" for each directed line.
+
+local HOLDS = { facepalm = 800, shrug = 600, crossarms = 500, scratch = 450, point = 400 };
+local LOOPS = { seiza = true, sit = true };
+local ZOOM_IN_MS = 380, ZOOM_OUT_MS = 480;
+local EMOTE_LEAD_MS = 1800;		//	the emote plays this long before the line's words show (user: "a couple seconds")
+local FACE_CAMERA = true;
+
+::Rokugan.closeup <- { zoomed = null, actor = null, held = false, serial = 0 };
+
+local plainName = function( n){
+	if( typeof( n) == SS_TABLE) n = n["en"] || n["ja"];
+	if( typeof( n) != SS_STRING) return "";
+	local p = n.indexOf( " (");
+	return p > 0 ? n.substring( 0, p) : n;
+};
+
+//	"Natsuko" names "Hiruma Natsuko"; a full name must match in full
+local sameName = function( speaker, model){
+	if( speaker == "" || model == "") return false;
+	if( speaker == model) return true;
+	local sp = model.lastIndexOf( " ");
+	return speaker.indexOf( " ") < 0 && sp > 0 && model.substring( sp + 1) == speaker;
+};
+
+//	[target id for the camera (0 = player, or the event id), the 3D object] or null
+::Rokugan.closeupFind <- function( name){
+	local st = ::rpgstage;
+	if( !st || st["battle"]) return null;
+	local who = plainName( name);
+	if( who == "") return null;
+	local pl = st["player3d"];
+	if( pl && pl["rpgobj"]){
+		local pn = "";
+		try{ pn = plainName( pl.rpgobj.name); }catch( ex){}
+		if( sameName( who, pn)) return [0, pl];
+	}
+	local best = null, bestd = 1000000.0;
+	foreach( e in st.events){
+		local r = e["rp3d"];
+		if( !r || !e["data"]) continue;
+		local mid = e.data["mdlid"];
+		if( !mid) continue;
+		local md = ::rpgres[mid];
+		if( !md || !sameName( who, plainName( md["name"]))) continue;
+		local d = 0.0;
+		if( pl){ local a = r.pos, b = pl.pos; d = (a.x - b.x) * (a.x - b.x) + (a.z - b.z) * (a.z - b.z); }
+		if( d < bestd){ bestd = d; best = [e.evid, r]; }
+	}
+	return best;
+};
+
+::Rokugan.closeupRelease <- function( runner, fade = ZOOM_OUT_MS){
+	local c = this.closeup;
+	if( c.actor && (c.held)) this.closeupPlay( c.actor, "stand");
+	c.actor = null; c.held = false;
+	if( c.zoomed != null){
+		c.zoomed = null;
+		try{ ::rpgstage.resetCamerawork( { fade = fade, easing = 2 }); }catch( ex){ printexception( ex); }
+	}
+	if( runner) try{ runner._removestopfunc( "rt_closeup"); }catch( ex){}
+};
+
+::Rokugan.closeupLine <- function( runner, cmd){
+	local c = this.closeup;
+	local act = cmd["act"], zoom = cmd["zoom"];
+	if( act && !zoom && typeof( zoom) != SS_BOOL) zoom = true;	//	(a missing field reads as undefined)			//	an emote is too small to read from the wide shot: it closes in too
+	if( !zoom) zoom = null;					//	(zoom = false on the line keeps the wide shot)
+	if( !act && !zoom){
+		if( c.zoomed != null || c.held) this.closeupRelease( runner);
+		return;
+	}
+	local hit = this.closeupFind( cmd["name"]);
+	if( ::Rokugan.rtfast) printf( "[RT] CLOSEUP %S act=%S zoom=%S found=%S\n", "" .. cmd["name"], "" .. act, "" .. zoom, hit ? "" .. hit[0] : "no");
+	if( c.held && c.actor && (!hit || hit[1] != c.actor || act)){
+		this.closeupPlay( c.actor, "stand");
+		c.held = false;
+	}
+	if( !hit){
+		if( c.zoomed != null) this.closeupRelease( runner);
+		return;
+	}
+	local target = hit[0], actor = hit[1];
+	//	the camera
+	if( zoom){
+		if( c.zoomed != target){
+			local frac = typeof( zoom) == SS_FLOAT || typeof( zoom) == SS_INTEGER ? zoom.tofloat() : 0.6;
+			if( frac <= 0.0 || frac >= 0.9) frac = 0.6;
+			local st = ::rpgstage, vp = 12.0;
+			try{ vp = st.map.camwork["viewport"] || 12.0; }catch( ex){}
+			try{
+				st.setCamerawork( { type = 1, target = target, dzoom = vp * frac, fade = ZOOM_IN_MS, easing = 2 });
+				c.zoomed = target;
+				if( runner) runner._setstopfunc( "rt_closeup", @() ::Rokugan.closeupRelease( null));
+			}catch( ex){ printexception( ex); }
+		}
+	}else if( c.zoomed != null){
+		this.closeupRelease( runner);
+	}
+	//	the emote (as the engine's own cmd_anime does it: the event takes the actor over, the clip is locked so the
+	//	walk / idle controller can't replace it next frame; a loop stays locked until the line after)
+	if( act){
+		c.serial++;
+		local my = c.serial;
+		try{
+			if( runner) runner.setManualAction( actor);
+			if( FACE_CAMERA){							//	turn to the camera: the face has to be seen
+				local p = actor.pos;
+				actor.dir = ::aimdir( p, Vector3D( p.x, p.y, p.z - 1.0));
+			}
+		}catch( ex){ printexception( ex); }
+		this.closeupPlay( actor, act);
+		c.actor = actor;
+		c.held = (act in HOLDS) || (act in LOOPS);
+		if( act in HOLDS){
+			local hold = act .. "_hold", ms = HOLDS[act];
+			newthread().start( function(){
+				sleep( ms);
+				if( ::Rokugan.closeup.serial == my && ::Rokugan.closeup.actor == actor)
+					::Rokugan.closeupPlay( actor, hold);
+			});
+		}
+	}
+	//	(user 2026-11-22: "the player needs a couple seconds of the emote happening to register. it can't be fast")
+	//	the line waits: the camera arrives, the emote plays, then the words
+	if( !::Rokugan.rtfast || ::Rokugan.closeshot){
+		if( act) sleep( EMOTE_LEAD_MS);
+		else if( zoom) sleep( ZOOM_IN_MS + 120);
+	}
+};
+
+//	play a clip and lock it against the movement controller (RPGEventRunner.startAnime's rule)
+::Rokugan.closeupPlay <- function( actor, id){
+	try{
+		local al0 = actor.animlayers.layers[0];
+		if( al0) al0.locked = 0;					//	a locked clip refuses the next one: free it first
+		local al = actor.anime2( { id = id });
+		if( !al) return;
+		al.locked = al["loop"] ? 1 : @() al.animating;
+	}catch( ex){ printexception( ex); }
+};
+
+//	wraps the bust's showMessage (load after RokuganBust.sk)
+::Rokugan.closeshot <- ::arguments.indexOf( "-rtcloseshot") >= 0;	//	test: a screenshot ~1 s into each directed line
+::Rokugan.closeshotn <- 0;
+local closeupShowMessage = function( cmd){
+	if( cmd["key"] == "message_talk" && !cmd["op"]){
+		try{ ::Rokugan.closeupLine( this, cmd); }catch( ex){ printexception( ex); }
+		if( ::Rokugan.closeshot && (cmd["act"] || cmd["zoom"])){
+			sleep( 200);
+			try{ printf( "[RT] CLOSEUP cam zoom=%S fade=%S anim=%S\n", "" .. ::rpgstage.camwork.zoom, "" .. (::rpgstage.camfade != null),
+				"" .. ::rpgstage.player3d.animlayers.layers[0]["id"]); }catch( ex){ printexception( ex); }
+			::Rokugan.rtshot( "tmp/rt_shot/bot_closeup_line" .. (++::Rokugan.closeshotn) .. ".raw");
+		}
+	}
+	return this._rt_closeup_showMessage( cmd);
+};
+foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]){
+	cls._rt_closeup_showMessage <- cls.showMessage;
+	cls.showMessage <- closeupShowMessage;
+}
+
+//	a map change forgets any close-up (the new stage has its own camera)
+::RPGStage._rt_closeup_launch <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	::Rokugan.closeup.zoomed = null;
+	::Rokugan.closeup.actor = null;
+	::Rokugan.closeup.held = false;
+	return _rt_closeup_launch( opt);
+};

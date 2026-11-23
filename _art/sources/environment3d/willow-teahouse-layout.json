@@ -1,0 +1,109 @@
+{
+  "map": {
+    "terrain": "m346_willow_teahouse",
+    "placements": [
+      [
+        "willow_tea_trim",
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        "hoshi_tea_table",
+        7.48,
+        1.093,
+        7.39,
+        1.17,
+        0.04
+      ],
+      [
+        "scorpion_willow_tea_service",
+        7.49,
+        1.435,
+        7.43,
+        0.97,
+        0.09
+      ],
+      [
+        "ojatara_nihime_screen",
+        7.39,
+        1.062,
+        11.89,
+        0.89,
+        0.0
+      ],
+      [
+        "kudo_carp_sake_rack",
+        11.81,
+        1.069,
+        10.57,
+        0.81,
+        1.54
+      ],
+      [
+        "kamen_temple_andon",
+        2.87,
+        1.067,
+        6.25,
+        0.94,
+        0.0
+      ],
+      [
+        "kamen_temple_andon",
+        7.43,
+        1.067,
+        10.77,
+        0.94,
+        0.0
+      ],
+      [
+        "kamen_temple_andon",
+        12.04,
+        1.067,
+        6.21,
+        0.94,
+        0.0
+      ]
+    ],
+    "poolLights": [
+      [
+        2.87,
+        1.72,
+        6.25,
+        4.84,
+        1.66
+      ],
+      [
+        7.43,
+        1.72,
+        10.77,
+        4.84,
+        1.66
+      ],
+      [
+        12.04,
+        1.72,
+        6.21,
+        4.84,
+        1.66
+      ]
+    ]
+  },
+  "source": {
+    "name": "scorpion_willow_tea_service",
+    "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_scorpion_willow_tea_service_00001_.glb",
+    "grid": [
+      38,
+      33,
+      21
+    ],
+    "occupied": 3572,
+    "world_size": [
+      0.65,
+      0.46,
+      0.42
+    ]
+  }
+}

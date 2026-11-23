@@ -1,0 +1,131 @@
+{
+  "maps": {
+    "M384": {
+      "name": "Tamori's Furnace - the lava tubes",
+      "grid": [
+        180,
+        56
+      ],
+      "magma_quads": 3,
+      "basalt_quads": 1798,
+      "liquid_cells": 42,
+      "props": 11,
+      "lights": 3,
+      "events": 88
+    },
+    "M385": {
+      "name": "Tamori's Furnace - the ash-shrines",
+      "grid": [
+        132,
+        56
+      ],
+      "magma_quads": 2,
+      "basalt_quads": 1362,
+      "liquid_cells": 18,
+      "props": 3,
+      "lights": 2,
+      "events": 84
+    },
+    "M386": {
+      "name": "The crater's mouth",
+      "grid": [
+        142,
+        50
+      ],
+      "magma_quads": 1,
+      "basalt_quads": 546,
+      "liquid_cells": 2200,
+      "props": 7,
+      "lights": 1,
+      "events": 77
+    },
+    "M873": {
+      "name": "Battle: Tamori's Furnace",
+      "grid": [
+        128,
+        128
+      ],
+      "magma_quads": 68,
+      "basalt_quads": 208,
+      "liquid_cells": 2219,
+      "props": 21,
+      "lights": 9,
+      "events": 0
+    },
+    "M874": {
+      "name": "Battle: the crater's mouth",
+      "grid": [
+        128,
+        128
+      ],
+      "magma_quads": 87,
+      "basalt_quads": 89,
+      "liquid_cells": 5396,
+      "props": 8,
+      "lights": 9,
+      "events": 0
+    }
+  },
+  "voxels": [
+    {
+      "name": "basalt_organ",
+      "source": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\coast-kit\\surface_sources\\furnace_columns.png",
+      "grid": [
+        22,
+        20,
+        30
+      ],
+      "occupied": 5931,
+      "world_size": [
+        2.09,
+        1.9,
+        2.85
+      ]
+    },
+    {
+      "name": "basalt_spires",
+      "source": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\coast-kit\\surface_sources\\furnace_columns.png",
+      "grid": [
+        20,
+        15,
+        24
+      ],
+      "occupied": 3288,
+      "world_size": [
+        1.9,
+        1.425,
+        2.2800000000000002
+      ]
+    },
+    {
+      "name": "lava_crust_shelf",
+      "source": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\coast-kit\\surface_sources\\furnace_flow.png",
+      "grid": [
+        41,
+        15,
+        5
+      ],
+      "occupied": 1475,
+      "world_size": [
+        3.034,
+        1.1099999999999999,
+        0.37
+      ]
+    },
+    {
+      "name": "magma_spatter",
+      "source": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\coast-kit\\surface_sources\\furnace_flow.png",
+      "grid": [
+        4,
+        4,
+        5
+      ],
+      "occupied": 10,
+      "world_size": [
+        0.18,
+        0.18,
+        0.21000000000000002
+      ]
+    }
+  ]
+}

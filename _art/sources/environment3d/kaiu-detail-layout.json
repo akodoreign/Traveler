@@ -1,0 +1,81 @@
+{
+  "maps": {
+    "M100": {
+      "stock_fixtures": 4,
+      "animated_watchfires": 4,
+      "events": 77
+    },
+    "M101": {
+      "stock_fixtures": 7,
+      "animated_watchfires": 4,
+      "events": 158
+    },
+    "M810": {
+      "stock_fixtures": 9,
+      "animated_watchfires": 9,
+      "events": 0
+    }
+  },
+  "voxels": [
+    {
+      "name": "watchtower_signal",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_watchtower_signal_00001_.glb",
+      "grid": [
+        17,
+        16,
+        31
+      ],
+      "occupied": 1314,
+      "world_size": [
+        0.83,
+        0.78,
+        1.03
+      ]
+    },
+    {
+      "name": "garrison_gate",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_garrison_gate_00001_.glb",
+      "grid": [
+        50,
+        17,
+        39
+      ],
+      "occupied": 6327,
+      "world_size": [
+        3.5000000000000004,
+        0.61,
+        4.44
+      ]
+    },
+    {
+      "name": "kaiu_straw_target",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kaiu_straw_target_00001_.glb",
+      "grid": [
+        28,
+        13,
+        36
+      ],
+      "occupied": 2482,
+      "world_size": [
+        1.04,
+        0.69,
+        1.63
+      ]
+    },
+    {
+      "name": "kaiu_brazier_flame",
+      "source": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\coast-kit\\surface_sources\\watchtower_signal.png",
+      "grid": [
+        11,
+        9,
+        22
+      ],
+      "occupied": 698,
+      "world_size": [
+        0.506,
+        0.423,
+        0.836
+      ]
+    }
+  ]
+}

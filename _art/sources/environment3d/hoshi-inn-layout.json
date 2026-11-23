@@ -1,0 +1,22 @@
+{
+  "room": [
+    44,
+    40
+  ],
+  "furnishings": 26,
+  "source": {
+    "name": "hoshi_travel_bundle",
+    "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hoshi_travel_bundle_00001_.glb",
+    "grid": [
+      32,
+      23,
+      23
+    ],
+    "occupied": 3259,
+    "world_size": [
+      0.56,
+      0.41,
+      0.37
+    ]
+  }
+}

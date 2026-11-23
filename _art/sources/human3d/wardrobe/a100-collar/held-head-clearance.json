@@ -1,0 +1,142 @@
+{
+  "toturi": {
+    "stock_head": [
+      47,
+      45,
+      48,
+      48
+    ],
+    "fitted_head": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "body_vs_head": [
+      3,
+      3,
+      3,
+      3
+    ]
+  },
+  "akuja": {
+    "stock_head": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "fitted_head": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "body_vs_head": [
+      13,
+      13,
+      13,
+      13
+    ]
+  },
+  "oyuki": {
+    "stock_head": [
+      737,
+      729,
+      679,
+      705
+    ],
+    "fitted_head": [
+      754,
+      738,
+      707,
+      723
+    ],
+    "body_vs_head": [
+      586,
+      599,
+      639,
+      524
+    ]
+  },
+  "diver": {
+    "stock_head": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "fitted_head": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "body_vs_head": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "doorman": {
+    "stock_head": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "fitted_head": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "body_vs_head": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "pedlar": {
+    "stock_head": [
+      199,
+      174,
+      199,
+      158
+    ],
+    "fitted_head": [
+      142,
+      148,
+      170,
+      131
+    ],
+    "body_vs_head": [
+      57,
+      50,
+      64,
+      56
+    ]
+  },
+  "porter": {
+    "stock_head": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "fitted_head": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "body_vs_head": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

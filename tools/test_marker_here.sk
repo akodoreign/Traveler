@@ -1,0 +1,7 @@
+// Executed only by tools (bot evalf): where the quest marker points on the current map (any chapter).
+local st = ::rpgstage;
+local road = ::Rokugan.mkRoad( st.mapid);
+local g = ::Rokugan.mkGoal( st.mapid, road);
+printf( "[RT] MARKER HERE map %S siege %S goal %S\n", st.mapid, "" .. ::rpgvar["G1644"],
+	g ? g[0] .. " " .. g[1] .. "," .. g[2] : "none");
+printf( "[RT] MARKER HERE COMPLETE\n");

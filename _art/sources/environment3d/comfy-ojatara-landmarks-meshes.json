@@ -1,0 +1,18 @@
+{
+  "ojatara_yotomo_bell": {
+    "prompt_id": "a447983d-e58f-4dfa-85c8-21b88ee36e5e",
+    "history": "http://127.0.0.1:8189/history/a447983d-e58f-4dfa-85c8-21b88ee36e5e"
+  },
+  "ojatara_tribunal_seat": {
+    "prompt_id": "82b07f4b-0da3-45c6-9705-262d3178f050",
+    "history": "http://127.0.0.1:8189/history/82b07f4b-0da3-45c6-9705-262d3178f050"
+  },
+  "ojatara_flower_planter": {
+    "prompt_id": "b4dbfced-62ca-4126-900c-2e2987b367b9",
+    "history": "http://127.0.0.1:8189/history/b4dbfced-62ca-4126-900c-2e2987b367b9"
+  },
+  "ojatara_grave_marker": {
+    "prompt_id": "8db577ab-06a1-442f-afb5-fb6093b07af0",
+    "history": "http://127.0.0.1:8189/history/8db577ab-06a1-442f-afb5-fb6093b07af0"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "ojatara_patched_canopy": {
+    "prompt_id": "49669c6b-ab55-4af0-9947-4972ce2b35e6",
+    "history": "http://127.0.0.1:8189/history/49669c6b-ab55-4af0-9947-4972ce2b35e6"
+  },
+  "ojatara_costume_trunk": {
+    "prompt_id": "4d96eabb-223a-4bc4-a38a-ffc5501e55d5",
+    "history": "http://127.0.0.1:8189/history/4d96eabb-223a-4bc4-a38a-ffc5501e55d5"
+  },
+  "ojatara_stone_waypost": {
+    "prompt_id": "17a9e71e-94fd-41bb-9020-1534d1ce4613",
+    "history": "http://127.0.0.1:8189/history/17a9e71e-94fd-41bb-9020-1534d1ce4613"
+  },
+  "ojatara_field_sacks": {
+    "prompt_id": "a47add47-08aa-4cb9-89cc-73e71f29731b",
+    "history": "http://127.0.0.1:8189/history/a47add47-08aa-4cb9-89cc-73e71f29731b"
+  }
+}

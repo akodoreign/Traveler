@@ -1,0 +1,14 @@
+{
+  "M102": {
+    "previous_sha256": "9e387e416ee44ef9e0ad0451d9a215cd72c7c96e2b8b79e0c4dbf715819b0122",
+    "current_sha256": "24e4b320e67bdb701ab9277f85cea379cbb8002f598ffbf351fca341f7e5f31b"
+  },
+  "M105": {
+    "previous_sha256": "c47dfb1f4bb3c8df7c3231741454ef395a91185e1d43b91ffcb84a45b5aea01b",
+    "current_sha256": "9632362af385a1f7e387375ddff293f6b4f102b38605bb3206571b3441038a50"
+  },
+  "M811": {
+    "previous_sha256": "0ea35b3e6dd1917d9033150afe6334bcc090ab55da38c884a6112fd03ad66652",
+    "current_sha256": "e19eb500bf91b0a1132d60a0bd004bdbff172fc203fa3d8a2b785b7aac2058ab"
+  }
+}

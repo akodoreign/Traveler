@@ -1,0 +1,181 @@
+{
+  "maps": {
+    "M345": {
+      "events": 82,
+      "props": 30,
+      "koi": 3
+    },
+    "M347": {
+      "events": 137,
+      "props": 21,
+      "koi": 0
+    },
+    "M348": {
+      "events": 83,
+      "props": 63,
+      "koi": 0
+    },
+    "M349": {
+      "events": 90,
+      "props": 55,
+      "koi": 0
+    },
+    "M861": {
+      "events": 0,
+      "props": 24,
+      "koi": 0
+    }
+  },
+  "sources": {
+    "scorpion_memorial_stele": {
+      "name": "scorpion_memorial_stele",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_scorpion_memorial_stele_00001_.glb",
+      "grid": [
+        45,
+        36,
+        46
+      ],
+      "occupied": 9038,
+      "world_size": [
+        1.7800000000000002,
+        0.9299999999999999,
+        2.11
+      ]
+    },
+    "scorpion_grove_cedar_v2": {
+      "name": "scorpion_grove_cedar_v2",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_scorpion_grove_cedar_v2_00001_.glb",
+      "grid": [
+        49,
+        44,
+        49
+      ],
+      "occupied": 15556,
+      "world_size": [
+        2.59,
+        2.24,
+        5.28
+      ]
+    },
+    "scorpion_shutai_sake_store": {
+      "name": "scorpion_shutai_sake_store",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_scorpion_shutai_sake_store_00001_.glb",
+      "grid": [
+        20,
+        26,
+        41
+      ],
+      "occupied": 3504,
+      "world_size": [
+        1.45,
+        0.83,
+        1.21
+      ]
+    },
+    "bayushi_household_well": {
+      "name": "bayushi_household_well",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_bayushi_household_well_00001_.glb",
+      "grid": [
+        35,
+        30,
+        42
+      ],
+      "occupied": 5889,
+      "world_size": [
+        1.5400000000000003,
+        1.45,
+        2.01
+      ]
+    },
+    "bayushi_scarlet_lantern": {
+      "name": "bayushi_scarlet_lantern",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_bayushi_scarlet_lantern_00001_.glb",
+      "grid": [
+        16,
+        17,
+        40
+      ],
+      "occupied": 909,
+      "world_size": [
+        0.43,
+        0.38,
+        1.35
+      ]
+    },
+    "shutai_willow_cart": {
+      "name": "shutai_willow_cart",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_shutai_willow_cart_00001_.glb",
+      "grid": [
+        45,
+        26,
+        28
+      ],
+      "occupied": 5225,
+      "world_size": [
+        1.77,
+        0.9400000000000001,
+        1.04
+      ]
+    },
+    "bayushi_shrine_lattice": {
+      "name": "bayushi_shrine_lattice",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_bayushi_shrine_lattice_00001_.glb",
+      "grid": [
+        30,
+        33,
+        41
+      ],
+      "occupied": 6450,
+      "world_size": [
+        1.21,
+        0.72,
+        1.7100000000000002
+      ]
+    },
+    "bayushi_pond_koi": {
+      "name": "bayushi_pond_koi",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_bayushi_pond_koi_00001_.glb",
+      "grid": [
+        35,
+        16,
+        21
+      ],
+      "occupied": 962,
+      "world_size": [
+        0.69,
+        0.32,
+        0.18000000000000002
+      ]
+    },
+    "bayushi_water_lilies": {
+      "name": "bayushi_water_lilies",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_bayushi_water_lilies_00001_.glb",
+      "grid": [
+        36,
+        36,
+        5
+      ],
+      "occupied": 2137,
+      "world_size": [
+        0.74,
+        0.55,
+        0.26
+      ]
+    },
+    "bayushi_pond_basin": {
+      "name": "bayushi_pond_basin",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_bayushi_pond_basin_00001_.glb",
+      "grid": [
+        43,
+        43,
+        39
+      ],
+      "occupied": 9846,
+      "world_size": [
+        1.02,
+        0.9,
+        1.17
+      ]
+    }
+  }
+}

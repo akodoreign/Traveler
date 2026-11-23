@@ -1,0 +1,32 @@
+{
+  "M102": {
+    "entrance_cell": [
+      96,
+      27
+    ],
+    "unchanged_events": 88,
+    "roof_blocks": 61,
+    "previous": "24e4b320e67bdb701ab9277f85cea379cbb8002f598ffbf351fca341f7e5f31b",
+    "current": "0bd1e4ed6e2c1ab843b66c3c932f0e0fd4c9a0c456c64e98a47ad52742085543"
+  },
+  "M105": {
+    "entrance_cell": [
+      96,
+      27
+    ],
+    "unchanged_events": 80,
+    "roof_blocks": 61,
+    "previous": "9632362af385a1f7e387375ddff293f6b4f102b38605bb3206571b3441038a50",
+    "current": "b0103dc26479894c2cdcf797cdf4f4ee339db744ef2599a5443c68f069898968"
+  },
+  "M437": {
+    "entrance_cell": [
+      110,
+      26
+    ],
+    "unchanged_events": 108,
+    "roof_blocks": 68,
+    "previous": "d9123319bf08f6d017c84a498325ea0d53f8384c17407bbe503f26633ccd1183",
+    "current": "518f73edf8d81094f9ea67c5510cd7914bf0ad561f4d69cefdeb13a4f00780fb"
+  }
+}

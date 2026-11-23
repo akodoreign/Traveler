@@ -1,0 +1,124 @@
+{
+  "key": "side_gonbei_portrait_face",
+  "source": "side_gonbei_repaired_atlas.glb",
+  "scale": 10.3,
+  "features": {
+    "eyes": [
+      [
+        204,
+        259,
+        0.04
+      ],
+      [
+        277,
+        260,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        201,
+        246
+      ],
+      [
+        279,
+        246
+      ]
+    ],
+    "mouth": [
+      240,
+      333
+    ]
+  },
+  "socket_sample_levels": [
+    -0.953,
+    -0.945,
+    -0.9369999999999999,
+    -0.9289999999999999,
+    -0.9209999999999999,
+    -0.9129999999999999,
+    -0.9049999999999999,
+    -0.8969999999999999,
+    -0.8889999999999999,
+    -0.8809999999999999,
+    -0.8729999999999999,
+    -0.8649999999999999,
+    -0.8569999999999999,
+    -0.8489999999999999,
+    -0.8409999999999999,
+    -0.8329999999999999,
+    -0.8249999999999998
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.156,
+    -0.013
+  ],
+  "skin_match": [
+    234,
+    195,
+    161
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 10.3,
+  "fit_matrix_blender": [
+    [
+      10.287627832747347,
+      -0.32101165097697487,
+      0.389442030114618,
+      2.877714413889152
+    ],
+    [
+      0.32091987661181104,
+      10.294995785471114,
+      0.008497642590333443,
+      0.20590911012765323
+    ],
+    [
+      -0.3895176602905461,
+      0.003646514934639045,
+      10.292631475733119,
+      108.5585531586462
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 98.045,
+  "seam_weights": {
+    "vertex_count": 21886,
+    "lower_overlap_blended_vertices": 193,
+    "minimum_seam_head_weight": 0.5739708430557413,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      192,
+      285
+    ],
+    [
+      286,
+      285
+    ],
+    [
+      280,
+      306
+    ],
+    [
+      272,
+      328
+    ]
+  ],
+  "skin_sample_view": "Repeated diffuse cheek and lower-face measurements on the exact Gonbei head. Retains light stubble and silver-black hair.",
+  "raw_skin_srgb": [
+    234,
+    195,
+    161
+  ],
+  "proof_pose_family": "fist"
+}

@@ -1,0 +1,44 @@
+{
+  "room": [
+    32,
+    32
+  ],
+  "origin": [
+    2.0,
+    3.5
+  ],
+  "placed_props": 26,
+  "lanterns": 3,
+  "sources": [
+    {
+      "name": "hoshi_storage_jar",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hoshi_storage_jar_00001_.glb",
+      "grid": [
+        33,
+        33,
+        33
+      ],
+      "occupied": 4210,
+      "world_size": [
+        0.49,
+        0.48,
+        0.73
+      ]
+    },
+    {
+      "name": "hoshi_rice_bale",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hoshi_rice_bale_00001_.glb",
+      "grid": [
+        27,
+        20,
+        16
+      ],
+      "occupied": 1881,
+      "world_size": [
+        0.9100000000000001,
+        0.56,
+        0.53
+      ]
+    }
+  ]
+}

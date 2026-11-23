@@ -296,6 +296,20 @@ local btnhelpconf = {
 	...onoffconf,
 };
 
+local padiconconf = {		//	(Rokugan: Xbox / PS5 / Steam Deck. Auto reads the pad; a choice wins over it.)
+	lbl = "$T.game_padicons",
+	desc = "$T.game_padicons_desc"
+	pid = "control.padicons",
+	type = "choice"
+	list = [{lbl="$T.padicons_auto",val=0},{lbl="Xbox",val=1},{lbl="PlayStation",val=2},{lbl="Steam Deck",val=3}]
+	get = @() ::clientconf.control["padicons"] || 0
+	set = @( val){
+		::clientconf.control.padicons <- val;
+		try{ RPGMain.buttonhelp( RPGMain._btnhelp); }catch( ex){}	//	(redraw the help bar in the new icons)
+		return true;
+	}
+};
+
 local bgmvolconf = {
 	lbl = "$T.sound_bgmvol"
 	desc = "$T.sound_bgmvol_desc"
@@ -573,7 +587,7 @@ RPGSystem.ui ..
 	order = 120
 
 	configtabs = [
-		{ lbl="$T.config_game", list=[ cmdconf, battlespdconf, btnhelpconf, bgmvolconf, sevolconf, langconf], }
+		{ lbl="$T.config_game", list=[ cmdconf, battlespdconf, btnhelpconf, padiconconf, bgmvolconf, sevolconf, langconf], }
 		{ lbl="$T.config_video", list=[ fullconf, winresoconf, scresoconf, quaconf, headwearconf, ], }
 	];
 

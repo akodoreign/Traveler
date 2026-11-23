@@ -1,0 +1,29 @@
+{
+  "maps": {
+    "M104": {
+      "tents": 4,
+      "stock_free_blocks_replaced": 31,
+      "faces": 585
+    },
+    "M812": {
+      "tents": 3,
+      "stock_free_blocks_replaced": 6,
+      "faces": 876
+    }
+  },
+  "rock": {
+    "name": "quarry_cut_rock",
+    "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_quarry_cut_rock_00001_.glb",
+    "grid": [
+      31,
+      31,
+      10
+    ],
+    "occupied": 2688,
+    "world_size": [
+      1.18,
+      0.94,
+      0.54
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+//	RokuganDanceChart_kabuki_2.sk : step charts (written by tools/gen_music.py; do not edit).
+//	notes: [ms from the track's start, lane 0 left / 1 down / 2 up / 3 right]; lines: [ms, who, line]
+if( !("DANCE_CHARTS" in ::Rokugan)) ::Rokugan.DANCE_CHARTS <- {};
+::Rokugan.DANCE_CHARTS.kabuki_easy_2 <- {
+	mu = "MU129", length = 45000,
+	notes = [
+		[2500, 2], [3750, 0], [5625, 3], [6250, 1], [7500, 2], [8750, 0], [10000, 0], [11250, 1],
+		[11875, 1], [12500, 1], [13125, 1], [14375, 3], [15000, 2], [16250, 0], [17500, 2], [18125, 1],
+		[19375, 3], [20000, 0], [21250, 2], [22500, 2], [23750, 1], [25625, 3], [26250, 0], [27500, 1],
+		[28125, 0], [28750, 2], [29375, 1], [30000, 3], [31250, 1], [31875, 1], [32500, 2], [33125, 0],
+		[33750, 1], [34375, 0], [35000, 3], [36250, 1], [37500, 1], [38125, 0], [38750, 3], [39375, 1],
+		[40000, 0], [41250, 2]],
+	lines = [
+		[2500, "Chorus", "A mirror of bronze and a river-washed stone; she sees only jade, and she sees it alone."],
+		[7500, "Courtier", "My lady - jade, from the mountain. For you."],
+		[12500, "The Bride", "Green as the deep sea. Lay it at my feet."],
+		[22500, "The Guard", "(aside) It is a pebble. Grey as ash. She cannot tell."],
+		[27500, "The Bride", "Another. Bring me another."],
+		[35000, "Chorus", "The colours are lost to her. The colours are lost."]]
+};
+::Rokugan.DANCE_CHARTS.kabuki_hard_2 <- {
+	mu = "MU129", length = 45000,
+	notes = [
+		[2500, 2], [3750, 0], [5625, 3], [6250, 1], [7500, 2], [8750, 0], [10000, 0], [11250, 1],
+		[11875, 1], [12188, 1], [12500, 1], [13125, 1], [14375, 3], [15000, 2], [16250, 0], [17500, 2],
+		[18125, 1], [19375, 3], [20000, 0], [21250, 2], [22500, 2], [23750, 1], [25625, 3], [26250, 0],
+		[27500, 1], [28125, 0], [28750, 2], [29375, 1], [30000, 3], [31250, 1], [31875, 1], [32188, 1],
+		[32500, 2], [33125, 0], [33750, 1], [34375, 0], [35000, 3], [36250, 1], [37500, 1], [38125, 0],
+		[38750, 3], [39375, 1], [40000, 0], [41250, 2]],
+	lines = [
+		[2500, "Chorus", "A mirror of bronze and a river-washed stone; she sees only jade, and she sees it alone."],
+		[7500, "Courtier", "My lady - jade, from the mountain. For you."],
+		[12500, "The Bride", "Green as the deep sea. Lay it at my feet."],
+		[22500, "The Guard", "(aside) It is a pebble. Grey as ash. She cannot tell."],
+		[27500, "The Bride", "Another. Bring me another."],
+		[35000, "Chorus", "The colours are lost to her. The colours are lost."]]
+};

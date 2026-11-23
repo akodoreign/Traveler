@@ -1,0 +1,14 @@
+{
+  "map": "M124",
+  "sha256": "29f92f9e2ff3a544cbf542af9c8bc2a11b0ec796cad022a2afd05dc5a8f11527",
+  "size": [
+    44,
+    64,
+    40
+  ],
+  "removed_stock": [
+    "#3#",
+    "#4#",
+    "#5#"
+  ]
+}

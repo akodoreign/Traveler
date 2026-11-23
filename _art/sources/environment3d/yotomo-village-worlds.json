@@ -1,0 +1,69 @@
+{
+  "M396": {
+    "net_new_fixtures": 147,
+    "events_preserved": 114,
+    "event_positions_updated": {
+      "#2#": [
+        125,
+        4,
+        24,
+        3
+      ]
+    },
+    "sha256": "3465ecdd074638cb3c86d5b651849c034307be38c8c09e4447c4e8ec92f7a9fa"
+  },
+  "M397": {
+    "removed_stock_fixtures": 2,
+    "events_preserved": 85,
+    "event_positions_updated": {
+      "#1#": [
+        38,
+        3,
+        7,
+        2
+      ],
+      "#84#": [
+        38,
+        3,
+        4,
+        2
+      ],
+      "#85#": [
+        84,
+        3,
+        48,
+        0
+      ]
+    },
+    "sha256": "ea769de7cd7463cf4afa1858143ad9c8dd32e2ee2acf73e3ed2f4bcec94557a4"
+  },
+  "M398": {
+    "removed_stock_fixtures": 1,
+    "events_preserved": 85,
+    "event_positions_updated": {
+      "#1#": [
+        61,
+        3,
+        7,
+        2
+      ],
+      "#85#": [
+        61,
+        3,
+        4,
+        2
+      ]
+    },
+    "sha256": "0289902d6f8aa593d418496089a60766f3cd58f0232be08e7546d571abd629b7"
+  },
+  "M876": {
+    "removed_stock_fixtures": 0,
+    "events_preserved": 0,
+    "sha256": "c1af9f87e658b5f571bace5e2697ed33b0d5bdc7fa402a718812ee4e402ed678"
+  },
+  "M877": {
+    "removed_stock_fixtures": 0,
+    "events_preserved": 0,
+    "sha256": "c14bb820051d8346003d71767b1bf9e4df751435800cc8ab82ed01c69e1467c9"
+  }
+}

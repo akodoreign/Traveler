@@ -83,7 +83,7 @@ HIRELINGS = [
          bark="(writing on an ofuda) Hold still. No, the other arm.",
          gone="Out of ofuda. I go back to the ruin to write more."),
     dict(n=10, lv=40, key="h_sapper", name="Kaiu Sapper", sid="S186", charges=2, price=600, sumai=45,
-         reqs=[("G272", True), ("G286", False)], spots=[("M152", 40, 12)], home="the outer yard",
+         reqs=[("G272", True), ("G286", False)], spots=[("M500", 40, 24)], home="the reception yard",   # (2026-11-22: the siege is in the roamable castle)
          hello="The siege rollers on the yard stair are mine. Give me a target and I'll drop one on it.",
          joined="Two rollers left that the saboteurs didn't jam. Pick your goblins.",
          taunt="(spitting dust) A Hiruma! Of course. Pay me in coin, then.",

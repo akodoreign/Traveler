@@ -1,0 +1,18 @@
+{
+  "kamen_sewn_face_shrine": {
+    "prompt_id": "2ff38c35-a25f-4384-90dd-16f027cb51a1",
+    "history": "http://127.0.0.1:8189/history/2ff38c35-a25f-4384-90dd-16f027cb51a1"
+  },
+  "kamen_sun_statue": {
+    "prompt_id": "4944cdfb-f429-485f-9a2c-feb1743161e7",
+    "history": "http://127.0.0.1:8189/history/4944cdfb-f429-485f-9a2c-feb1743161e7"
+  },
+  "kamen_temple_andon": {
+    "prompt_id": "1619d82c-5e77-48fc-8441-c3d9027a8eff",
+    "history": "http://127.0.0.1:8189/history/1619d82c-5e77-48fc-8441-c3d9027a8eff"
+  },
+  "kamen_rotted_sleep_mat": {
+    "prompt_id": "bab765cf-4b4c-4046-a10f-6c42024b3313",
+    "history": "http://127.0.0.1:8189/history/bab765cf-4b4c-4046-a10f-6c42024b3313"
+  }
+}

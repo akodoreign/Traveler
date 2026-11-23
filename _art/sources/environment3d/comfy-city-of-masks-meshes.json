@@ -1,0 +1,18 @@
+{
+  "kamen_mask_display": {
+    "prompt_id": "2a4e6a1d-628d-427e-8881-c757931a66d4",
+    "history": "http://127.0.0.1:8189/history/2a4e6a1d-628d-427e-8881-c757931a66d4"
+  },
+  "kamen_hospitality_lantern": {
+    "prompt_id": "35b6bd83-36f5-4e5c-b651-59b914b17d55",
+    "history": "http://127.0.0.1:8189/history/35b6bd83-36f5-4e5c-b651-59b914b17d55"
+  },
+  "kamen_merchant_awning": {
+    "prompt_id": "7cd7efb6-db00-427e-977d-bcb5c9710edb",
+    "history": "http://127.0.0.1:8189/history/7cd7efb6-db00-427e-977d-bcb5c9710edb"
+  },
+  "kamen_shrine_offering_stand": {
+    "prompt_id": "002bd7e6-2295-447b-acda-bb0af0f92e51",
+    "history": "http://127.0.0.1:8189/history/002bd7e6-2295-447b-acda-bb0af0f92e51"
+  }
+}

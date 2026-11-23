@@ -54,6 +54,7 @@ class ClientConfig
 		control = {
 			usegamepad = 2,				//	ゲームパッドを常に使用
 			usevirtualpad = 1,			//	他デバイスの接続が無ければバーチャルパッドを使用
+			padicons = 0,				//	Options > Button Icons: 0 auto, 1 Xbox, 2 PlayStation, 3 Steam Deck (RPGSystem buttonicon)
 		},
 		keyboard_menu = {				//	キーマップは変化のあるもののみ定義。
 		},

@@ -1,0 +1,42 @@
+//	RokuganDanceChart_kabuki_4.sk : step charts (written by tools/gen_music.py; do not edit).
+//	notes: [ms from the track's start, lane 0 left / 1 down / 2 up / 3 right]; lines: [ms, who, line]
+if( !("DANCE_CHARTS" in ::Rokugan)) ::Rokugan.DANCE_CHARTS <- {};
+::Rokugan.DANCE_CHARTS.kabuki_easy_4 <- {
+	mu = "MU131", length = 36364,
+	notes = [
+		[1818, 2], [2273, 1], [2727, 2], [3182, 2], [3636, 3], [4545, 0], [5000, 3], [5455, 2],
+		[6364, 1], [6818, 0], [7273, 1], [8182, 1], [8636, 1], [9091, 1], [9545, 2], [10000, 2],
+		[10455, 0], [10909, 1], [11364, 1], [11818, 2], [12727, 2], [13182, 3], [13636, 3], [14091, 2],
+		[14545, 1], [15455, 2], [16364, 2], [16818, 1], [17273, 1], [17727, 3], [18182, 2], [18636, 0],
+		[19091, 1], [20455, 3], [20909, 0], [21364, 1], [21818, 2], [22727, 1], [23182, 1], [23636, 1],
+		[24091, 2], [24545, 3], [25000, 2], [25455, 0], [25909, 3], [26364, 1], [27273, 1], [27727, 2],
+		[28182, 0], [28636, 1], [29091, 0], [30000, 2], [30909, 2], [31818, 1], [32273, 1], [32727, 2]],
+	lines = [
+		[1818, "Chorus", "The court kneels down in a field of white."],
+		[5455, "Courtiers", "(two voices at once) Lady of the Mirror - / Lady of the Blade -"],
+		[9091, "The Bride", "Which of you speaks? I hear - I hear neither."],
+		[12727, "The Guard", "EMPRESS."],
+		[16364, "Chorus", "For a breath her guard falls. She wants it more than life."],
+		[23636, "The Guard", "Empress of nothing. Of nothing at all."],
+		[30909, "Chorus", "And the court of Komatsu was ashes by spring."]]
+};
+::Rokugan.DANCE_CHARTS.kabuki_hard_4 <- {
+	mu = "MU131", length = 36364,
+	notes = [
+		[1818, 2], [2273, 1], [2727, 2], [3182, 2], [3636, 3], [4545, 0], [5000, 3], [5455, 2],
+		[6364, 1], [6818, 0], [7273, 1], [8182, 1], [8636, 1], [8864, 1], [9091, 1], [9545, 2],
+		[10000, 2], [10455, 0], [10909, 1], [11364, 1], [11818, 2], [12727, 2], [13182, 3], [13636, 3],
+		[14091, 2], [14545, 1], [15455, 2], [16364, 2], [16818, 1], [17273, 1], [17727, 3], [18182, 2],
+		[18636, 0], [19091, 1], [20000, 0], [20227, 3], [20455, 2], [20909, 1], [21364, 0], [21818, 3],
+		[22727, 1], [23182, 1], [23409, 1], [23636, 1], [24091, 2], [24545, 3], [25000, 2], [25455, 1],
+		[25909, 2], [26364, 1], [27273, 0], [27727, 3], [28182, 1], [28636, 1], [29091, 0], [30000, 2],
+		[30909, 2], [31818, 1], [32273, 0], [32727, 1], [32727, 2]],
+	lines = [
+		[1818, "Chorus", "The court kneels down in a field of white."],
+		[5455, "Courtiers", "(two voices at once) Lady of the Mirror - / Lady of the Blade -"],
+		[9091, "The Bride", "Which of you speaks? I hear - I hear neither."],
+		[12727, "The Guard", "EMPRESS."],
+		[16364, "Chorus", "For a breath her guard falls. She wants it more than life."],
+		[23636, "The Guard", "Empress of nothing. Of nothing at all."],
+		[30909, "Chorus", "And the court of Komatsu was ashes by spring."]]
+};

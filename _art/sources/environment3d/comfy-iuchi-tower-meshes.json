@@ -1,0 +1,14 @@
+{
+  "iuchi_mountain_birch": {
+    "prompt_id": "e259fd77-3515-43f2-b2f1-904548f756f1",
+    "history": "http://127.0.0.1:8189/history/e259fd77-3515-43f2-b2f1-904548f756f1"
+  },
+  "iuchi_tower_andon": {
+    "prompt_id": "b0b3e2b6-a64d-4f3b-aa1c-ab4472b1ba25",
+    "history": "http://127.0.0.1:8189/history/b0b3e2b6-a64d-4f3b-aa1c-ab4472b1ba25"
+  },
+  "iuchi_jade_seam": {
+    "prompt_id": "6c2f6288-dced-4084-aaa8-5056fec02c0f",
+    "history": "http://127.0.0.1:8189/history/6c2f6288-dced-4084-aaa8-5056fec02c0f"
+  }
+}

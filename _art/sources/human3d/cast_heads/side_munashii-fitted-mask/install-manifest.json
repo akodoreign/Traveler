@@ -1,0 +1,32 @@
+{
+  "actor": "side_munashii",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_munashii_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_munashii_portrait_ash_reed.pm",
+      "to": "side_munashii_portrait_ash_reed.pm",
+      "sha256": "bebc0043d2f761f71727e8754756b2f1087df016ad9c1fed1403f8d6bae3de4f"
+    },
+    {
+      "from": "assets/side_munashii_portrait_ash_reed.mdl",
+      "to": "side_munashii_portrait_ash_reed.mdl",
+      "sha256": "4b52f2b1b4dfb6de8e8f3a8a0094b7ae106c24843406ec08a8e0cda66999c98e"
+    },
+    {
+      "from": "assets/tex/side_munashii_portrait_ash_reed_color_srgb.png",
+      "to": "tex/side_munashii_portrait_ash_reed_color_srgb.png",
+      "sha256": "dd7004610ddcabd47c601a5e738cca41f98f5385c313cdc5782cf62af5939c97"
+    }
+  ],
+  "native_human_index": {
+    "set_portraitMask": "side_munashii_portrait_ash_reed"
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\variants\\b43\\release\\side_munashii\\assets\\side_munashii_portrait_face.glb",
+    "sha256": "71b52f11d116bab8d4d0d9b863be5945cbf1a991f613f0cd8975b535e372773e"
+  }
+}

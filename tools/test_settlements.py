@@ -172,14 +172,20 @@ class SettlementExpansionTests(unittest.TestCase):
             for source_index, source in enumerate(region["sources"]):
                 with self.subTest(area=area_mid, source=source):
                     source_map, source_events = gm.make(source)
-                    access = next(((int(key[1:-1]), event) for key, event in source_events.ev.items()
-                                   if event.get("role") == "portal"
-                                   and event.get("dest", {}).get("mapid") == area_mid), None)
-                    self.assertIsNotNone(access, (source, area_mid))
-                    radius = access[1]["mdl"]["r"]
+                    trigger = next((event for event in source_events.ev.values()
+                                    if event.get("role") == "portal"
+                                    and event.get("dest", {}).get("mapid") == area_mid), None)
+                    self.assertIsNotNone(trigger, (source, area_mid))
+                    radius = trigger["mdl"]["r"]
                     self.assertGreaterEqual(radius[3], 1.5)
                     self.assertGreaterEqual(radius[4], 3.0)
-                    self.assertGreaterEqual(radius[5], 1.0)
+                    # (2026-11-22) the ward opens from the town's edge, beside it, not from a portal mid-town
+                    side = region["town_side"][source_index]
+                    if side:
+                        self.assertIn(side, dict(source_map.exits).values(), (source, "ward not on an edge"))
+                        self.assertGreaterEqual(radius[5], 0.5)
+                    entry = region["entry"][source_index]
+                    access = (entry, source_events.ev["#%d#" % entry])           # the landing other maps arrive at
                     _, wide = walkable(source_map, source_events)
                     x, _, z, _ = access[1]["pos"]
                     self.assertTrue(any(0 <= z + dz < wide.shape[0] and 0 <= x + dx < wide.shape[1]
@@ -282,15 +288,20 @@ class SettlementExpansionTests(unittest.TestCase):
             for source in region["sources"]:
                 with self.subTest(source=source, destination=region["mid"]):
                     source_events = project_maps[source]["event"]
-                    route_key = next(
-                        key for key, event in source_events.items()
-                        if event.get("role") == "portal"
-                        and event.get("dest", {}).get("mapid") == region["mid"])
+                    # (2026-11-22) the way to the ward is an edge strip; the ward's way back lands on the town's
+                    # landing spot, which keeps the id the generator gives it
+                    self.assertTrue(any(event.get("role") == "portal"
+                                        and event.get("dest", {}).get("mapid") == region["mid"]
+                                        for event in source_events.values()), (source, "no way to the ward"))
                     return_event = next(
                         event for event in project_maps[region["mid"]]["event"].values()
                         if event.get("role") == "portal"
                         and event.get("dest", {}).get("mapid") == source)
-                    self.assertEqual(return_event["dest"]["evid"], int(route_key[1:-1]))
+                    self.assertEqual(return_event["dest"]["evid"],
+                                     region["entry"][region["sources"].index(source)])
+                    landing = source_events["#%d#" % return_event["dest"]["evid"]]
+                    self.assertTrue(landing["role"] == "portal" or any(
+                        p.get("memo") == "landing" for p in landing.get("page", [])), (source, "not a landing"))
 
         # M103's original herbalist event occupied #27 before the new ward entrance was added.
         original = project_maps["M103"]["event"]["#27#"]

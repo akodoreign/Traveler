@@ -1,0 +1,132 @@
+{
+  "M103": [
+    {
+      "x": 18.5,
+      "y": 2.5,
+      "z": 17.882,
+      "grade": 2.0,
+      "stoop": "town_door_stoop_half",
+      "event": 19,
+      "dest": "M124"
+    },
+    {
+      "x": 31.5,
+      "y": 2.5,
+      "z": 17.882,
+      "grade": 2.0,
+      "stoop": "town_door_stoop_half",
+      "event": 20,
+      "dest": "M125"
+    },
+    {
+      "x": 38.0,
+      "y": 2.5,
+      "z": 17.882,
+      "grade": 2.0,
+      "stoop": "town_door_stoop_half",
+      "event": null,
+      "dest": null
+    },
+    {
+      "x": 50.0,
+      "y": 2.5,
+      "z": 17.882,
+      "grade": 2.0,
+      "stoop": "town_door_stoop_half",
+      "event": 18,
+      "dest": "M123"
+    },
+    {
+      "x": 18.5,
+      "y": 2.5,
+      "z": 8.882,
+      "grade": 2.0,
+      "stoop": "town_door_stoop_half",
+      "event": 15,
+      "dest": "M120"
+    },
+    {
+      "x": 36.5,
+      "y": 2.5,
+      "z": 8.882,
+      "grade": 2.0,
+      "stoop": "town_door_stoop_half",
+      "event": 16,
+      "dest": "M121"
+    },
+    {
+      "x": 46.5,
+      "y": 2.5,
+      "z": 8.882,
+      "grade": 2.0,
+      "stoop": "town_door_stoop_half",
+      "event": null,
+      "dest": null
+    },
+    {
+      "x": 58.0,
+      "y": 2.5,
+      "z": 8.882,
+      "grade": 2.0,
+      "stoop": "town_door_stoop_half",
+      "event": 17,
+      "dest": "M122"
+    },
+    {
+      "x": 58.0,
+      "y": 5.5,
+      "z": 31.882,
+      "grade": 4.0,
+      "stoop": null,
+      "event": null,
+      "dest": null
+    }
+  ],
+  "M101": [
+    {
+      "x": 18.0,
+      "y": 2.0,
+      "z": 16.882,
+      "grade": 1.5,
+      "stoop": "town_door_stoop_half",
+      "event": 32,
+      "dest": "M110"
+    },
+    {
+      "x": 29.5,
+      "y": 2.0,
+      "z": 16.882,
+      "grade": 1.5,
+      "stoop": "town_door_stoop_half",
+      "event": 33,
+      "dest": "M111"
+    },
+    {
+      "x": 17.5,
+      "y": 2.0,
+      "z": 8.382,
+      "grade": 1.5,
+      "stoop": "town_door_stoop_half",
+      "event": 34,
+      "dest": "M112"
+    },
+    {
+      "x": 37.0,
+      "y": 2.0,
+      "z": 8.382,
+      "grade": 1.5,
+      "stoop": "town_door_stoop_half",
+      "event": 35,
+      "dest": "M113"
+    },
+    {
+      "x": 44.0,
+      "y": 2.0,
+      "z": 7.382,
+      "grade": 1.5,
+      "stoop": "town_door_stoop_half",
+      "event": null,
+      "dest": null
+    }
+  ]
+}

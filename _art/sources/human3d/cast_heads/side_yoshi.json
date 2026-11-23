@@ -1,0 +1,130 @@
+{
+  "key": "side_yoshi_portrait_face",
+  "source": "side_yoshi_repaired_atlas.glb",
+  "scale": 15.6,
+  "features": {
+    "eyes": [
+      [
+        194,
+        255,
+        0.04
+      ],
+      [
+        278,
+        254,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        190,
+        242
+      ],
+      [
+        279,
+        240
+      ]
+    ],
+    "mouth": [
+      232,
+      324
+    ]
+  },
+  "socket_sample_levels": [
+    -0.607,
+    -0.6,
+    -0.593,
+    -0.586,
+    -0.579,
+    -0.572,
+    -0.565,
+    -0.5579999999999999,
+    -0.5509999999999999,
+    -0.5439999999999999,
+    -0.5369999999999999,
+    -0.5299999999999999,
+    -0.5229999999999999,
+    -0.5159999999999999,
+    -0.5089999999999999,
+    -0.5019999999999999,
+    -0.4949999999999999,
+    -0.4879999999999999,
+    -0.48099999999999987,
+    -0.47399999999999987,
+    -0.46699999999999986,
+    -0.45999999999999985
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.066,
+    -0.038
+  ],
+  "skin_match": [
+    232,
+    169,
+    125
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 15.6,
+  "fit_matrix_blender": [
+    [
+      15.59696580888366,
+      0.299446217377717,
+      -0.07063653030619893,
+      1.8872667649322556
+    ],
+    [
+      -0.2980927129226484,
+      15.59448605404177,
+      0.28834951847372664,
+      0.7515306362230793
+    ],
+    [
+      0.076146510215099,
+      -0.28694367600591897,
+      15.597174905597027,
+      107.8925758391241
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 21284,
+    "lower_overlap_blended_vertices": 154,
+    "minimum_seam_head_weight": 0.42466826847156747,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      193,
+      303
+    ],
+    [
+      288,
+      304
+    ],
+    [
+      278,
+      320
+    ],
+    [
+      236,
+      356
+    ]
+  ],
+  "skin_sample_view": "Repeated diffuse samples on both cheeks and low face of the exact Ikoma Yoshi V2 source.",
+  "raw_skin_srgb": [
+    232,
+    169,
+    125
+  ],
+  "review_wardrobe_mesh": "A135_lion_takeo",
+  "proof_pose_family": "fist"
+}

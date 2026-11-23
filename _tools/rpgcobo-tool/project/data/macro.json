@@ -212,7 +212,8 @@
 									"op": "==",
 									"rvar": true
 								}
-							]
+							],
+							"text": "Couldn't get away!"
 						}
 					]
 				],

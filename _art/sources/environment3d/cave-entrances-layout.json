@@ -1,0 +1,35 @@
+{
+  "M102": {
+    "width_in_cells": 7,
+    "depth_in_cells": 14,
+    "entry_world": [
+      48.25,
+      2.0,
+      13.5
+    ],
+    "roof_cells": 61,
+    "events": 88
+  },
+  "M105": {
+    "width_in_cells": 7,
+    "depth_in_cells": 14,
+    "entry_world": [
+      48.25,
+      2.0,
+      13.5
+    ],
+    "roof_cells": 61,
+    "events": 80
+  },
+  "M437": {
+    "width_in_cells": 7,
+    "depth_in_cells": 14,
+    "entry_world": [
+      55.25,
+      2.0,
+      13.0
+    ],
+    "roof_cells": 68,
+    "events": 108
+  }
+}

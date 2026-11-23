@@ -1,0 +1,131 @@
+{
+  "key": "side_mizochi_portrait_face",
+  "source": "side_mizochi_repaired_atlas.glb",
+  "scale": 15.3,
+  "features": {
+    "eyes": [
+      [
+        195,
+        269,
+        0.04
+      ],
+      [
+        283,
+        268,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        189,
+        258
+      ],
+      [
+        288,
+        256
+      ]
+    ],
+    "mouth": [
+      241,
+      338
+    ]
+  },
+  "socket_sample_levels": [
+    -0.789,
+    -0.781,
+    -0.773,
+    -0.765,
+    -0.757,
+    -0.749,
+    -0.741,
+    -0.733,
+    -0.725,
+    -0.717,
+    -0.709,
+    -0.701,
+    -0.693,
+    -0.6849999999999999,
+    -0.6769999999999999,
+    -0.6689999999999999,
+    -0.6609999999999999,
+    -0.6529999999999999,
+    -0.6449999999999999,
+    -0.6369999999999999,
+    -0.6289999999999999,
+    -0.6209999999999999,
+    -0.6129999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.153,
+    -0.013
+  ],
+  "skin_match": [
+    236,
+    208,
+    191
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 15.3,
+  "fit_matrix_blender": [
+    [
+      15.297482988284155,
+      -0.2746074828704712,
+      0.040061871021917245,
+      3.468101728768589
+    ],
+    [
+      0.27375395213858267,
+      15.2945004681115,
+      0.3054737380370075,
+      0.49177080309438825
+    ],
+    [
+      -0.04553017512310495,
+      -0.30470668074943463,
+      15.296897752219675,
+      110.58409079380557
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 12206,
+    "lower_overlap_blended_vertices": 533,
+    "minimum_seam_head_weight": 0.4850514858162458,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      193,
+      303
+    ],
+    [
+      288,
+      304
+    ],
+    [
+      278,
+      320
+    ],
+    [
+      236,
+      356
+    ]
+  ],
+  "skin_sample_view": "Repeated diffuse samples on both cheeks and low face of the exact Kakita Mizochi V2 source.",
+  "raw_skin_srgb": [
+    236,
+    208,
+    191
+  ],
+  "review_wardrobe_mesh": "A124_sono_kagemaro",
+  "proof_pose_family": "blade"
+}

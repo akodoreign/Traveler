@@ -1,0 +1,86 @@
+{
+  "maps": {
+    "M130": {
+      "name": "Egg Caves - the nests",
+      "world_grid": [
+        164,
+        60
+      ],
+      "faces": 1781,
+      "props": 11,
+      "events": 90
+    },
+    "M131": {
+      "name": "Egg Caves - the painted eggs",
+      "world_grid": [
+        164,
+        60
+      ],
+      "faces": 1962,
+      "props": 8,
+      "events": 94
+    },
+    "M132": {
+      "name": "Egg Caves - the armour",
+      "world_grid": [
+        164,
+        60
+      ],
+      "faces": 1899,
+      "props": 10,
+      "events": 91
+    },
+    "M133": {
+      "name": "Egg Caves - the altar",
+      "world_grid": [
+        154,
+        82
+      ],
+      "faces": 1469,
+      "props": 3,
+      "events": 86
+    },
+    "M813": {
+      "name": "Battle: Egg Caves",
+      "world_grid": [
+        128,
+        128
+      ],
+      "faces": 2024,
+      "props": 15,
+      "events": 0
+    }
+  },
+  "sources": [
+    {
+      "name": "egg_calcite",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_egg_calcite_00001_.glb",
+      "grid": [
+        40,
+        38,
+        42
+      ],
+      "occupied": 7116,
+      "world_size": [
+        1.45,
+        0.94,
+        1.69
+      ]
+    },
+    {
+      "name": "egg_nest",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_egg_nest_00001_.glb",
+      "grid": [
+        40,
+        38,
+        15
+      ],
+      "occupied": 5687,
+      "world_size": [
+        1.27,
+        1.13,
+        0.27
+      ]
+    }
+  ]
+}

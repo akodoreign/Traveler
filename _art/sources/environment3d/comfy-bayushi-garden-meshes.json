@@ -1,0 +1,14 @@
+{
+  "bayushi_pond_koi": {
+    "prompt_id": "713dbdc5-e7ca-4196-a426-74e8ffc0ea9e",
+    "history": "http://127.0.0.1:8189/history/713dbdc5-e7ca-4196-a426-74e8ffc0ea9e"
+  },
+  "bayushi_water_lilies": {
+    "prompt_id": "ed4287ad-8b26-428a-9eae-f871e132879c",
+    "history": "http://127.0.0.1:8189/history/ed4287ad-8b26-428a-9eae-f871e132879c"
+  },
+  "bayushi_pond_basin": {
+    "prompt_id": "ea4bb307-541c-411e-a8ee-b6176c6b6f7e",
+    "history": "http://127.0.0.1:8189/history/ea4bb307-541c-411e-a8ee-b6176c6b6f7e"
+  }
+}

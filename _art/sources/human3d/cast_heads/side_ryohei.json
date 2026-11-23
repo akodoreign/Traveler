@@ -1,0 +1,127 @@
+{
+  "key": "side_ryohei_portrait_face",
+  "source": "side_ryohei_repaired_atlas.glb",
+  "scale": 13.4,
+  "features": {
+    "eyes": [
+      [
+        195,
+        282,
+        0.04
+      ],
+      [
+        283,
+        282,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        189,
+        269
+      ],
+      [
+        287,
+        268
+      ]
+    ],
+    "mouth": [
+      239,
+      374
+    ]
+  },
+  "socket_sample_levels": [
+    -0.562,
+    -0.555,
+    -0.548,
+    -0.541,
+    -0.534,
+    -0.527,
+    -0.52,
+    -0.513,
+    -0.506,
+    -0.499,
+    -0.492,
+    -0.485,
+    -0.478,
+    -0.471,
+    -0.46399999999999997,
+    -0.45699999999999996,
+    -0.44999999999999996,
+    -0.44299999999999995,
+    -0.43599999999999994,
+    -0.42899999999999994
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.035,
+    -0.01
+  ],
+  "skin_match": [
+    244,
+    194,
+    158
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 13.4,
+  "fit_matrix_blender": [
+    [
+      13.39520600712979,
+      0.3496523024725014,
+      -0.0787355950683748,
+      0.06792170760564463
+    ],
+    [
+      -0.34934988296027364,
+      13.395344117853545,
+      0.05206364917752788,
+      0.19626906921317686
+    ],
+    [
+      0.08006675858767806,
+      -0.049992316066714275,
+      13.399667536267684,
+      105.71283930097132
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 18011,
+    "lower_overlap_blended_vertices": 319,
+    "minimum_seam_head_weight": 0.31148154415525897,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      193,
+      330
+    ],
+    [
+      274,
+      328
+    ],
+    [
+      230,
+      360
+    ],
+    [
+      218,
+      371
+    ]
+  ],
+  "skin_sample_view": "Diffuse cheek and lower throat samples from the exact Ryohei V2 donor, keeping his soft lower gradient.",
+  "raw_skin_srgb": [
+    244,
+    194,
+    158
+  ],
+  "proof_pose_family": "short"
+}

@@ -1,0 +1,31 @@
+{
+  "maps": {
+    "M437": {
+      "name": "The pilgrim road to the Oracle's mountain",
+      "props": 4,
+      "liquid_cells": 69,
+      "events": 108
+    },
+    "M894": {
+      "name": "Battle: the pilgrim road",
+      "props": 26,
+      "liquid_cells": 436,
+      "events": 0
+    }
+  },
+  "tube": {
+    "name": "oracle_lava_tube",
+    "source": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\coast-kit\\surface_sources\\furnace_columns.png",
+    "grid": [
+      37,
+      12,
+      23
+    ],
+    "occupied": 3663,
+    "world_size": [
+      3.848,
+      1.02,
+      2.3000000000000003
+    ]
+  }
+}

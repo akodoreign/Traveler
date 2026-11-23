@@ -29,9 +29,16 @@ local miniSprite = function(){
 	sp.blend = SK_PMAMIX;
 	return sp;
 };
+::Rokugan.miniSpriteWhite <- miniSprite;						//	(RokuganDance.sk draws its arrows with it)
 local KEYMAP = { left = [VK_LEFT, VK_A], right = [VK_RIGHT, VK_D], up = [VK_UP, VK_W], down = [VK_DOWN, VK_S],
 	fire = [VK_Z, VK_SPACE, VK_ENTER], back = [VK_X, VK_ESCAPE] };
-local PADMAP = { left = BTN_LEFT, right = BTN_RIGHT, up = BTN_UP, down = BTN_DOWN, fire = BTN_A, back = BTN_B };
+//	Pads (user 2026-11-22: "xbox/ps5/steamdeck control options ... including the mini games"): the engine maps Xbox
+//	(XInput, also the Steam Deck through Steam Input) and PS4 / PS5 pads (conf/gamepad.json) onto one layout, so A is
+//	the bottom face button (Cross on PlayStation) and B the right one (Circle). D-pad or left stick move; LB / RB
+//	(L1 / R1) and the triggers also count as left / right - the race gallops on the shoulders.
+local PADMAP = { left = [BTN_LEFT, BTN_LB], right = [BTN_RIGHT, BTN_RB], up = [BTN_UP], down = [BTN_DOWN],
+	fire = [BTN_A], back = [BTN_B] };
+local STICK_ON = 0.55, STICK_OFF = 0.35, TRIG_ON = 0.5;		//	(a hysteresis band so a resting stick never chatters)
 local BOTMAP = { left = ["left"], right = ["right"], up = ["up"], down = ["down"], fire = ["z", "space", "enter"],
 	back = ["x", "esc"] };
 local KEYNAMES = ["left", "right", "up", "down", "fire", "back"];
@@ -68,6 +75,12 @@ class RTMini extends SKImageView
 		if( i >= 0 && i + 1 < length( ::arguments)) aiq = ::arguments[i+1].split( ",").filter( @( v) v != "");
 		i = ::arguments.indexOf( "-rtminishot");
 		if( i >= 0 && i + 1 < length( ::arguments)) shotname = ::arguments[i+1];
+		i = ::arguments.indexOf( "-rtfakepad");			//	test only: a pad of type N (1 Xbox, 2 PlayStation) for
+		if( i >= 0 && i + 1 < length( ::arguments) && !::gpui.gpdevice){	//	the glyph prompts; gone again on close
+			fakepad = true;
+			::gpui.gpdevice = { gp = { type = int( ::arguments[i+1]), buttonmask = 0, axis0 = 0.0, axis1 = 0.0, axis2 = 0.0,
+				axis3 = 0.0, axis4 = 0.0, axis5 = 0.0 }, update = @( dt, e) null, isButtonDown = @( vb) false };
+		}
 		readDevices();
 		foreach( k in KEYNAMES) prev[k] <- isDown( k);		//	(the key that picked the menu option is still held)
 		foreach( k in KEYNAMES) hit[k] <- false;
@@ -87,22 +100,63 @@ class RTMini extends SKImageView
 		root.addChild( v); views.append( v);
 		return v;
 	}
-	padmask = 0; mousebtn = false;
+	padmask = 0; mousebtn = false; stick = null; ax = 0.0; ay = 0.0; haspad = false;
 	function isDown( k){
 		foreach( vk in KEYMAP[k]) if( skIsKeyPressed( vk)) return true;
-		if( padmask & (1 << PADMAP[k])) return true;
+		foreach( b in PADMAP[k]) if( padmask & (1 << b)) return true;
+		if( stick && stick[k]) return true;
 		if( "botkeys" in ::Rokugan) foreach( b in BOTMAP[k]) if( b in ::Rokugan.botkeys) return true;
 		if( k == "fire" && mousebtn) return true;
 		return k in aidown;
 	}
 	function readDevices(){
-		padmask = 0; mousebtn = false;
+		padmask = 0; mousebtn = false; ax = 0.0; ay = 0.0;
+		if( !stick) stick = { left = false, right = false, up = false, down = false };
+		local had = haspad;
+		haspad = false;
 		try{
 			local dev = ::gpui ? ::gpui.getGPUIDevice() : null, gp = dev ? dev["gp"] : null;
-			if( gp && gp["buttonmask"]) padmask = gp["buttonmask"];
+			if( gp){
+				haspad = true;
+				if( gp["buttonmask"]) padmask = gp["buttonmask"];
+				//	left stick (axis0 right +, axis1 up +); the right stick aims too, for the Yumi
+				local lx = gp["axis0"] || 0.0, ly = gp["axis1"] || 0.0, rx = gp["axis2"] || 0.0, ry = gp["axis3"] || 0.0;
+				ax = fabs( rx) > fabs( lx) ? rx : lx; ay = fabs( ry) > fabs( ly) ? -ry : -ly;	//	(ay: screen down +)
+				local band = @( on, v) on ? v > STICK_OFF : v > STICK_ON;
+				stick.right = band( stick.right, lx); stick.left = band( stick.left, -lx);
+				stick.up = band( stick.up, ly); stick.down = band( stick.down, -ly);
+				if( (gp["axis4"] || 0.0) > TRIG_ON) stick.left = true;		//	LT / L2
+				if( (gp["axis5"] || 0.0) > TRIG_ON) stick.right = true;		//	RT / R2
+			}else{
+				stick.left = stick.right = stick.up = stick.down = false;
+			}
 		}catch( ex){}
 		try{ mousebtn = !!(::rootview.mouses[0].modifiers & BUTTON1_MASK); }catch( ex){}
+		if( had != haspad) try{ refreshHints(); }catch( ex){ printexception( ex); }	//	(a pad plugged in / pulled)
 	}
+	//	The control prompt for a pad (the engine's glyphs: Xbox, PlayStation or the Deck, Options > Button Icons) or
+	//	for the keyboard. fire / back / move / lr / stop.
+	function ctl( what){
+		local gp = false;
+		try{ gp = !!::gpui.getGPUIDevice()["gp"]; }catch( ex){}
+		local ic = @( b) ::buttonicon( b);
+		if( gp) switch( what){
+			case "fire": return ic( BTN_A);
+			case "back": return ic( BTN_B);
+			case "move": return ic( -1) .. " / stick";
+			case "lr": return ic( BTN_LEFT) .. ic( BTN_RIGHT) .. " or " .. ic( -2);
+			case "stop": return ic( BTN_B);
+		}
+		switch( what){
+			case "fire": return "Z / Space";
+			case "back": return "X / Esc";
+			case "move": return "Arrows / WASD";
+			case "lr": return "Left / Right";
+			case "stop": return "X / Esc";
+		}
+		return what;
+	}
+	function refreshHints(){}			//	(each game redraws its prompts here when a pad comes or goes)
 	function readInput(){
 		readDevices();
 		foreach( k in KEYNAMES){
@@ -180,7 +234,9 @@ class RTMini extends SKImageView
 			chosen( i);
 		}
 	}
+	fakepad = false;
 	function close(){
+		if( fakepad){ fakepad = false; ::gpui.gpdevice = null; }
 		foreach( v in views) if( v) v.removeFromParent();
 		views = [];
 		removeFromParent();
@@ -267,7 +323,7 @@ class RTYumi extends RTMini
 		larrows = label( 450, RAIL_Y + 30, 380, 40, 30, 0xf4e2b0ff, 1);
 		ltime = label( W - 330, RAIL_Y + 30, 300, 40, 30, 0xf4e2b0ff, 2);
 		lhint = label( 0, RAIL_Y + 76, 860, 30, 18, 0xd9c9a0ff, 1);		//	(left of the engine's key-hint bar)
-		lhint.setText( "Arrows / WASD / mouse: aim      Z / Space / click: loose an arrow");
+		refreshHints();
 		ltitle = label( 0, 24, W, 50, 36, 0xf4e2b0ff, 1);
 		ltitle.setText( "The Yumi Contest at Kyuden Hida");
 		buildPanel();
@@ -281,6 +337,11 @@ class RTYumi extends RTMini
 		foreach( f in fx){ f.on = false; f.v.setVisible( false); }
 		aidown = {};
 		drawCross(); drawBoard();
+	}
+	function refreshHints(){
+		if( !lhint) return;
+		lhint.setText( haspad ? ctl( "move") .. ": aim      " .. ctl( "fire") .. ": loose an arrow"
+			: "Arrows / WASD / mouse: aim      Z / Space / click: loose an arrow");
 	}
 	function intro(){
 		state = "intro";
@@ -402,7 +463,13 @@ class RTYumi extends RTMini
 		//	aim
 		local sp = 0.62 * dt, mx = (prev.right ? 1 : 0) - (prev.left ? 1 : 0), my = (prev.down ? 1 : 0) - (prev.up ? 1 : 0);
 		if( mx && my) sp *= 0.7071;
-		cx += mx * sp; cy += my * sp;
+		local amag = Math.sqrt( ax * ax + ay * ay);
+		if( amag > 0.2){										//	a stick: analog speed, a touch faster at full tilt
+			local k = (Math.min( amag, 1.0) - 0.2) / 0.8, s = 0.62 * dt * (0.25 + 1.15 * k * k) / amag;
+			cx += ax * s; cy += ay * s;
+		}else{
+			cx += mx * sp; cy += my * sp;
+		}
 		try{
 			local m = ::rootview.mouses[0], k = root.bnd.w / (::rootview.bnd.w * ::rootview.scale.x);
 			local p = [m.mousex * k, m.mousey * k];
@@ -504,10 +571,10 @@ class RTRace extends RTMini
 		label( 1130, 596, 140, 30, 18, 0xd9c9a0ff).setText( "finish");
 		keyL = rect( W / 2 - 150, 640, 120, 56, 0x2a2430ff); keyR = rect( W / 2 + 30, 640, 120, 56, 0x2a2430ff);
 		lkeyL = label( W / 2 - 150, 652, 120, 40, 26, 0xf4f0e6ff, 1); lkeyR = label( W / 2 + 30, 652, 120, 40, 26, 0xf4f0e6ff, 1);
-		lkeyL.setText( "< LEFT"); lkeyR.setText( "RIGHT >");
+		refreshHints();
 		lhint = label( 0, 650, W / 2 - 170, 40, 18, 0xd9c9a0ff, 2);
 		lhint.setText( "Left, right, left, right...");
-		label( W / 2 + 170, 650, W / 2 - 190, 40, 18, 0xd9c9a0ff).setText( "Same key twice: she stumbles");
+		label( W / 2 + 170, 650, W / 2 - 190, 40, 18, 0xd9c9a0ff).setText( "Same side twice: she stumbles");
 		lmsg = label( 0, 120, W, 60, 44, 0xf4e2b0ff, 1);
 		lme = label( 0, 0, 240, 26, 18, 0xf4f0e6ff, 1); lme.setText( "Hiruma Natsuko");		//	(names ride above
 		lrv = label( 0, 0, 240, 26, 18, 0xf4e2b0ff, 1); lrv.setText( "Matsu rider");			//	the horses)
@@ -542,13 +609,21 @@ class RTRace extends RTMini
 		lmsg.setText( "");
 		draw();
 	}
+	function refreshHints(){
+		if( !lkeyL) return;
+		if( haspad){
+			lkeyL.setText( ::buttonicon( BTN_LEFT) .. ::buttonicon( BTN_LB)); lkeyR.setText( ::buttonicon( BTN_RB) .. ::buttonicon( BTN_RIGHT));
+		}else{
+			lkeyL.setText( "< LEFT"); lkeyR.setText( "RIGHT >");
+		}
+	}
 	function intro(){
 		state = "intro";
 		showPanel( true, "Three Laps of the Yard", [
 			"Kitsu Takeo's saddle rides on this. Beat the Matsu rider.",
-			"Tap Left and Right in turn to gallop: left, right, left...",
+			"Tap " .. ctl( "lr") .. " in turn to gallop: left, right, left...",
 			"(Or right, left. Any order, as long as it changes.)",
-			"Hitting the same key twice makes the horse stumble."], ["Mount up"]);
+			"Hitting the same side twice makes the horse stumble."], ["Mount up"]);
 		shot( "intro");
 	}
 	function chosen( i){
@@ -780,10 +855,24 @@ class RTMemory extends RTMini
 		state = "intro";
 		showPanel( true, "Faces of the Court", [
 			"\"Sixty-four cards, thirty-two faces, two of each. Help me pair them up.\"",
-			"\"If I can remember who is who, my novel won't marry the wrong cousins.\"",
-			"Arrows move. Z / Space / Enter turns a card over.",
-			"Find all six pairs before " .. MEM_MISSES .. " wrong guesses."], ["Deal the cards"]);
+			"\"I'll show you every face first. Then they go face down.\"",
+			(haspad ? ctl( "move") : "Arrows") .. " move. " .. (haspad ? ctl( "fire") : "Z / Space / Enter") .. " turns a card over. " .. ctl( "back") .. " puts the cards away.",
+			"Find all " .. MEM_PAIRS .. " pairs before " .. MEM_MISSES .. " wrong guesses."], ["Deal the cards"]);
 		shot( "intro");
+	}
+	//	(user 2026-11-22: "should flash all the cards for like 5 seconds before going face down to be fair to the player")
+	function preview(){
+		state = "preview"; st = 0.0;
+		foreach( c in cards) c.up = true;
+		draw();
+	}
+	//	(user 2026-11-22: quitting before the end soft-locked - there was no way out but to finish) Back asks; "Stop" is
+	//	the same as declining another round: Fujio gathers the cards and the event goes on.
+	resumeState = null;
+	function askQuit(){
+		resumeState = state; state = "quit";
+		showPanel( true, "Put the cards away?", ["\"Leaving already? The faces will keep.\"", "",
+			"Pairs " .. matched .. " of " .. MEM_PAIRS .. ".", ""], ["Keep playing", "Stop"]);
 	}
 	function flip( k){
 		local c = cards[k];
@@ -828,7 +917,22 @@ class RTMemory extends RTMini
 		flip( k);
 	}
 	function step( dt){
+		if( state == "preview"){
+			local left = 5 - int( st / 1000.0);
+			lmsg.setText( "Memorize the faces...  " .. Math.max( left, 1));
+			if( hit.back){ askQuit(); return; }
+			if( st >= 5000.0){
+				foreach( c in cards) c.up = false;
+				state = "play"; st = 0.0;
+				lmsg.setText( "Fujio: \"Now - who was who?\"");
+				log( "memory: round %d starts (%S)" % [round + 1, aiMode() || "player"]);
+				sfx( "SE000");
+			}
+			draw();
+			return;
+		}
 		if( state != "play"){ draw(); return; }
+		if( hit.back){ askQuit(); return; }								//	(any time: a wrong pair's reveal waits)
 		if( int( st / 5000.0) != int( (st - dt) / 5000.0))
 			log( "memory: %.0f s, %d pairs, %d misses, %d flips, open %d, peek %.0f" % [st / 1000.0, matched, misses, flips, length( open), peek]);
 		aiStep( dt);
@@ -870,7 +974,12 @@ class RTMemory extends RTMini
 		shot( state);
 	}
 	function chosen( i){
-		if( state == "intro"){ state = "play"; st = 0.0; log( "memory: round %d starts (%S)" % [round + 1, aiMode() || "player"]); draw(); return; }
+		if( state == "intro"){ preview(); return; }
+		if( state == "quit"){
+			if( i == 0){ state = resumeState; draw(); return; }
+			log( "memory: put away at %d pairs, %d misses" % [matched, misses]);
+			result = 2; done = true; return;
+		}
 		if( state == "won"){ result = 1; done = true; return; }
 		if( state == "lost"){
 			if( i == 0){ round++; deal(); intro(); }
@@ -888,7 +997,8 @@ class RTMemory extends RTMini
 		local root = ::rootview ? ::rootview.findChild( "stageui") : null;
 		if( !root){ log( "mini-game " .. kind .. ": no stage UI, narrated outcome"); return 0; }
 		if( ::arguments.indexOf( "-rtminifail") >= 0) throw "test: -rtminifail";		//	(tests the fallback)
-		g = kind == "yumi" ? ::RTYumi( root) : kind == "memory" ? ::RTMemory( root) : ::RTRace( root);
+		g = kind == "yumi" ? ::RTYumi( root) : kind == "memory" ? ::RTMemory( root) :
+			kind.indexOf( "dance") == 0 ? ::RTDance( root, kind) : kind.indexOf( "kabuki") == 0 ? ::RTKabuki( root, kind) : ::RTRace( root);	//	(RokuganDance.sk)
 	}catch( ex){
 		printexception( ex);
 		log( "mini-game " .. kind .. ": could not start, narrated outcome");
@@ -901,13 +1011,15 @@ class RTMemory extends RTMini
 		sleep( 40);
 		if( skGetTime() - w0 > 5000){ w0 = skGetTime(); log( "mini-game %S waiting (state %S, last tick %d ms ago)" % [kind, "" .. g.state, skGetTime() - g.lastTick]); }
 		if( g.shotreq){ local s = g.shotreq; g.shotreq = null; sleep( 250); this.rtshot( s); }	//	(a frame for a new panel)
+		if( ::RPGMain.isPaused()) g.lastTick = skGetTime();			//	(the Esc pause menu is not a stall)
 		if( skGetTime() - g.lastTick > 8000){ log( "mini-game " .. kind .. ": stalled"); g.err = true; break; }
 	}
 	if( g.shotreq) this.rtshot( g.shotreq);
 	local r = g.err ? 0 : g.result;
 	try{ g.close(); }catch( ex){ printexception( ex); }
 	local t = 0;
-	while( t < 1500 && (skIsKeyPressed( VK_Z) || skIsKeyPressed( VK_SPACE) || skIsKeyPressed( VK_ENTER))){ sleep( 30); t += 30; }
+	local padA = function(){ try{ local gp = ::gpui.getGPUIDevice()["gp"]; return gp && (gp["buttonmask"] & (1 << BTN_A)); }catch( ex){} return false; };
+	while( t < 1500 && (skIsKeyPressed( VK_Z) || skIsKeyPressed( VK_SPACE) || skIsKeyPressed( VK_ENTER) || padA())){ sleep( 30); t += 30; }
 	log( "mini-game %S result %d" % [kind, r]);
 	return r;
 };

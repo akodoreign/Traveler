@@ -1,0 +1,10 @@
+{
+  "hoshi_trade_chest": {
+    "prompt_id": "bd1a8a56-5fca-4485-94bf-6ca10f54fa0e",
+    "history": "http://127.0.0.1:8189/history/bd1a8a56-5fca-4485-94bf-6ca10f54fa0e"
+  },
+  "hoshi_salt_sack": {
+    "prompt_id": "353e68f6-117c-48c5-9531-2f0031cc030a",
+    "history": "http://127.0.0.1:8189/history/353e68f6-117c-48c5-9531-2f0031cc030a"
+  }
+}

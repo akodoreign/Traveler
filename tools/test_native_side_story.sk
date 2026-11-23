@@ -1,0 +1,40 @@
+// Run after the real field events spawn. The table uses live story event IDs.
+local stage = ::rpgstage;
+local fixtures = {
+	M101 = [[16, "side_goro"], [17, "side_goro"], [19, "side_michio"]],
+	M444 = [[11, "side_benjiro"]],
+	M536 = [[8, "side_takeo"]],
+	M538 = [[13, "side_sakura"]],
+	M539 = [[14, "side_fujio"]],
+	M541 = [[13, "side_mai"]],
+	M130 = [[9, "EP101"], [10, "EP101"], [11, "EP101"]],
+	M131 = [[13, "EP102"], [14, "EP102"], [15, "EP102"]],
+	M172 = [[4, "EP110"], [5, "EP110"], [6, "EP110"], [7, "EP110"]],
+	M177 = [[3, "EP123"]],
+	M355 = [[3, "EP123"]]
+};
+local cases = fixtures[stage.mapid], checked = 0;
+if( !cases) throw Exception( "Run this test on a marked side-story or Kommei map");
+foreach( pair in cases){
+	local evid = pair[0], expected = pair[1];
+	local runner = stage.getEvent( evid);
+	local actor = runner ? runner["rp3d"] : null;
+	if( !actor) continue;	// Mutually exclusive event pages are valid on M101.
+	if( actor["nativeKey"] != expected || !actor.nativeBody || actor.event != runner)
+		throw Exception( "Field event did not receive its native actor: " .. evid);
+	if( expected.startsWith( "side_")){
+		if( !actor.nativeBodyTemplate || length( actor.nativeBody.bones) != 50 ||
+		    !actor.nativeBody.findBone( "neck") || !actor.nativeBody.findBone( "head") ||
+		    !actor.nativeFace || !actor.nativeOutfit || actor.fieldNpcScale != 1.25)
+			throw Exception( "Missing field rig, face, outfit, or scale: " .. expected);
+		local badge = actor.children.find( @( child) child["pic"] &&
+			child.pic.pic3d == "/resource/efx/rt/side_story_question.png");
+		if( !badge || badge.b3body || !badge.billboard || badge.pos.y <= 1.0)
+			throw Exception( "Missing or misplaced independent question mark: " .. expected);
+	}else if( !actor.creatureReady || actor.nativeBodyTemplate || !actor.animemap["stand"]){
+		throw Exception( "Field foe did not retain the native creature rig: " .. expected);
+	}
+	printf( "[FIELD RIG] %S event %d: %S\n", stage.mapid, evid, expected);
+	checked++;
+}
+if( !checked) throw Exception( "No matching event spawned. Check map position and story flags.");

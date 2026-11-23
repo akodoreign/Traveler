@@ -1,0 +1,179 @@
+{
+  "source": "side_ryozo_repaired_atlas.glb",
+  "scale": 13.56,
+  "cranial_scale": [
+    1,
+    104.35
+  ],
+  "socket_sample_levels": [
+    -0.653,
+    -0.635,
+    -0.617,
+    -0.599,
+    -0.581,
+    -0.563,
+    -0.545,
+    -0.527
+  ],
+  "socket_ring_hint": [
+    -0.023,
+    -0.074
+  ],
+  "features": {
+    "eyes": [
+      [
+        193,
+        285,
+        0.01
+      ],
+      [
+        286,
+        285,
+        -0.01
+      ]
+    ],
+    "brows": [
+      [
+        190,
+        265
+      ],
+      [
+        285,
+        263
+      ]
+    ],
+    "mouth": [
+      236,
+      333
+    ]
+  },
+  "maximum_pitch": 3.25,
+  "proof_motion": "fist",
+  "taper_donor_overlap": true,
+  "key": "side_ryozo_portrait_face",
+  "exact_native_outfit": true,
+  "preserve_long_hair": true,
+  "fit_shallow_neck_overlap": true,
+  "recenter_donor_seat": true,
+  "skin_match": [
+    242,
+    231,
+    224
+  ],
+  "skin_sample_view": "Diffuse cheeks and chin from the final unlit face. Lower seam determines matched body paint.",
+  "review_wardrobe_mesh": "A167_kusada",
+  "skin_sample_patches": [
+    [
+      198,
+      313,
+      4
+    ],
+    [
+      282,
+      313,
+      4
+    ],
+    [
+      231,
+      350,
+      4
+    ],
+    [
+      218,
+      324,
+      4
+    ],
+    [
+      268,
+      327,
+      4
+    ]
+  ],
+  "raw_skin_srgb": [
+    [
+      241,
+      230,
+      223
+    ],
+    [
+      243,
+      233,
+      226
+    ],
+    [
+      242,
+      231,
+      224
+    ],
+    [
+      242,
+      231,
+      224
+    ],
+    [
+      244,
+      234,
+      228
+    ]
+  ],
+  "fit_method": "production shared body socket",
+  "fit_scale": 13.56,
+  "fit_matrix_blender": [
+    [
+      13.55976798547176,
+      0.06923153229951456,
+      0.038719182735166245,
+      1.8620987503752828
+    ],
+    [
+      -0.06956909889813485,
+      13.559298856803835,
+      0.11905734904047088,
+      0.39107229407854166
+    ],
+    [
+      -0.038109325036263825,
+      -0.119253959336804,
+      13.559422044192383,
+      107.14774527863267
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 19949,
+    "lower_overlap_blended_vertices": 123,
+    "minimum_seam_head_weight": 0.3195019181137112,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 1,
+    "pivot": [
+      0.8266375,
+      0.011260000000000048,
+      104.35
+    ],
+    "seated_rings": [
+      {
+        "height": 98.6875,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      },
+      {
+        "height": 99.375,
+        "center_change": 0.0,
+        "diameter_change": 0.0
+      }
+    ],
+    "original_entire_silhouette_width": 14.354322910308838,
+    "final_entire_silhouette_width": 14.35432243347168,
+    "original_crown_native": 115.25454711914062,
+    "final_crown_native": 115.25454711914062,
+    "origin_geometry_sha256": "c261196618c1905ccba1393ec702587fef9267429ba47ad5d98e0b2e198649dc"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "sleeve_segmentation_height": 78.0,
+  "fully_transferred_below": 75.75,
+  "forearm_bind_height": {
+    "N": 76.5,
+    "F": 76.5
+  },
+  "sleeves": {
+    "F": {
+      "outer_sleeve_vertices": 2208,
+      "vertices_with_hip_transfer": 923,
+      "height_span": [
+        49.3390007019043,
+        77.9990005493164
+      ],
+      "lower_drape_mean_hip_before": 0.8736,
+      "lower_drape_mean_hip_after": 0.0,
+      "remaining_hip_above_taper_only": true
+    },
+    "N": {
+      "outer_sleeve_vertices": 2013,
+      "vertices_with_hip_transfer": 830,
+      "height_span": [
+        49.340999603271484,
+        77.98400115966797
+      ],
+      "lower_drape_mean_hip_before": 0.87432,
+      "lower_drape_mean_hip_after": 0.0,
+      "remaining_hip_above_taper_only": true
+    }
+  },
+  "assets": [
+    {
+      "source": "C:\\Users\\akodo\\.copilot\\repos\\copilot-worktrees\\Traveler\\akodoreign-laughing-chainsaw\\_tools\\rpgcobo-tool\\project\\resource\\native_tailoring\\A100.mdl",
+      "source_sha256": "1da85d8269af96435b88b52e1f57c587ff5dabc30779d81ed13216554d5ef747",
+      "result_sha256": "14415c7ccc203ce2e41fa9b00ea0d5527d98b2c25c520fdc484657cad230e823",
+      "result": "A100_sleeve_rigged.mdl",
+      "decal_sha256": "ba771ca0c0276d084db5c0e0152ca56287566cf79516db57145727fbe7dffcbd",
+      "edited_weight_rows": 1748,
+      "installed_resource": "A100.mdl"
+    },
+    {
+      "source": "work\\a100-collar\\grandmother-petite\\native_tailoring\\A100_grandmother.mdl",
+      "source_sha256": "c78c2c4b958fd52cffb22409ea5bfb432c938e3a935261a79a6bce817ac32917",
+      "result_sha256": "88c16fd06377e2ac6a23f73dbcceffe4b16f841b26da1be87f23270b14f22f68",
+      "result": "A100_grandmother_sleeve_rigged.mdl",
+      "decal_sha256": "f63dabc5c0e1e609bc2a62120bcbd983b5217ab09be4e0a6d4f87cd34c145f70",
+      "edited_weight_rows": 1748,
+      "installed_resource": "A100_grandmother.mdl"
+    }
+  ]
+}

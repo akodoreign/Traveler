@@ -1,0 +1,18 @@
+{
+  "kudo_fox_pillar": {
+    "prompt_id": "51105780-96f0-4190-8866-63285d5bcbde",
+    "history": "http://127.0.0.1:8189/history/51105780-96f0-4190-8866-63285d5bcbde"
+  },
+  "kudo_mantis_chart_desk": {
+    "prompt_id": "46aa7414-c812-4c4c-a849-ff7121ede7c5",
+    "history": "http://127.0.0.1:8189/history/46aa7414-c812-4c4c-a849-ff7121ede7c5"
+  },
+  "kudo_carp_sake_rack": {
+    "prompt_id": "da75df60-4813-4526-856d-5a48864fb943",
+    "history": "http://127.0.0.1:8189/history/da75df60-4813-4526-856d-5a48864fb943"
+  },
+  "kudo_bamboo_food_cover": {
+    "prompt_id": "701d12ea-2a9a-4d21-a8ac-a580c0f67869",
+    "history": "http://127.0.0.1:8189/history/701d12ea-2a9a-4d21-a8ac-a580c0f67869"
+  }
+}

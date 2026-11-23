@@ -1,0 +1,18 @@
+{
+  "kudo_marsh_barge": {
+    "prompt_id": "f3fbc0d0-2d35-47ab-8e37-640112c1af8a",
+    "history": "http://127.0.0.1:8189/history/f3fbc0d0-2d35-47ab-8e37-640112c1af8a"
+  },
+  "kudo_sap_willow": {
+    "prompt_id": "ecb81e9f-240a-44de-a7e2-59a865575a53",
+    "history": "http://127.0.0.1:8189/history/ecb81e9f-240a-44de-a7e2-59a865575a53"
+  },
+  "kudo_ford_slab": {
+    "prompt_id": "35bf564b-cad0-4f6c-a37b-26e6bd3b7012",
+    "history": "http://127.0.0.1:8189/history/35bf564b-cad0-4f6c-a37b-26e6bd3b7012"
+  },
+  "kudo_miya_casket": {
+    "prompt_id": "e4015f55-f5cb-43bf-9e2f-d2d53a3868e3",
+    "history": "http://127.0.0.1:8189/history/e4015f55-f5cb-43bf-9e2f-d2d53a3868e3"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "maps": {
+    "M355": {
+      "props": 28,
+      "surface_cells": 1700,
+      "pulse_seconds": 11.8,
+      "events": 110
+    },
+    "M356": {
+      "props": 18,
+      "surface_cells": 251,
+      "pulse_seconds": 11.8,
+      "events": 80
+    },
+    "M357": {
+      "props": 18,
+      "surface_cells": 159,
+      "pulse_seconds": 11.8,
+      "events": 114
+    },
+    "M358": {
+      "props": 28,
+      "surface_cells": 47,
+      "pulse_seconds": 3.52,
+      "events": 76
+    },
+    "M862": {
+      "props": 28,
+      "surface_cells": 5120,
+      "pulse_seconds": 11.8,
+      "events": 0
+    },
+    "M863": {
+      "props": 24,
+      "surface_cells": 4608,
+      "pulse_seconds": 11.8,
+      "events": 0
+    },
+    "M864": {
+      "props": 27,
+      "surface_cells": 446,
+      "pulse_seconds": 3.52,
+      "events": 0
+    }
+  },
+  "sources": {
+    "kudo_marsh_barge": {
+      "name": "kudo_marsh_barge",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_marsh_barge_00001_.glb",
+      "grid": [
+        18,
+        46,
+        10
+      ],
+      "occupied": 2807,
+      "world_size": [
+        5.2,
+        1.85,
+        1.21
+      ]
+    },
+    "kudo_sap_willow": {
+      "name": "kudo_sap_willow",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_sap_willow_00001_.glb",
+      "grid": [
+        41,
+        35,
+        39
+      ],
+      "occupied": 8472,
+      "world_size": [
+        1.6700000000000002,
+        1.56,
+        3.26
+      ]
+    },
+    "kudo_ford_slab": {
+      "name": "kudo_ford_slab",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_ford_slab_00001_.glb",
+      "grid": [
+        34,
+        22,
+        11
+      ],
+      "occupied": 1751,
+      "world_size": [
+        1.14,
+        0.8399999999999999,
+        0.28
+      ]
+    },
+    "kudo_miya_casket": {
+      "name": "kudo_miya_casket",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_kudo_miya_casket_00001_.glb",
+      "grid": [
+        25,
+        19,
+        27
+      ],
+      "occupied": 3167,
+      "world_size": [
+        0.36,
+        0.26,
+        0.21
+      ]
+    }
+  }
+}

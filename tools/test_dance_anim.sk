@@ -1,0 +1,32 @@
+// Executed only by tools/test_dance.py --anim (bot evalf): Natsuko's dance clips on her field model, one after another,
+// logging what the animation layers report and taking a frame of each (RokuganDance.sk danceAnim).
+newthread().start( @(){
+	sleep( 1500);
+	local a = ::rpgstage.player3d;
+	printf( "[RT] DANCE ANIM player3d %S nativeKey %S animemap %S\n", "" .. a, "" .. a["nativeKey"],
+		"" .. ("animemap" in a));
+	local rp = a;
+	::Rokugan.danceStage( rp.pos.x, rp.pos.z, Math.PI, 0.0);
+	sleep( 800);
+	::Rokugan.rtshot( "tmp/rt_shot/bot_dance_anim_wide.raw");
+	sleep( 400);
+	foreach( id in ["dance_idle", "dance_left", "dance_right", "dance_up", "dance_down", "dance_stumble", "dance_finale",
+		"dance_bow", "dance_shame"]){
+		local b0 = a.animlayers.layers[0];
+		printf( "[RT] DANCE ANIM before %S: l0 %S id %S locked %S; map %S\n", id, "" .. b0, "" .. (b0 ? b0["id"] : null),
+			"" .. (b0 ? b0["locked"] : null), "" .. a.animemap[id]);
+		local al = ::Rokugan.danceAnim( id);
+		local l0 = a.animlayers.layers[0], l1 = a.animlayers.layers[1];
+		printf( "[RT] DANCE ANIM %S -> al %S (id %S) l0 %S id %S l1 %S\n", id, "" .. al, "" .. (al ? al["id"] : null),
+			"" .. l0, "" .. (l0 ? l0["id"] : null), "" .. l1);
+		sleep( id == "dance_idle" ? 800 : 250);
+		::Rokugan.rtshot( "tmp/rt_shot/bot_dance_anim_" .. id .. ".raw");
+		sleep( 300);
+	}
+	::Rokugan.danceRelease();
+	::Rokugan.danceStageEnd( 22.5, 13.5, Math.PI);			//	beside the Champion's throne (keep 1F 41, 23)
+	sleep( 1500);
+	::Rokugan.rtshot( "tmp/rt_shot/bot_dance_anim_throne.raw");
+	sleep( 400);
+	printf( "[RT] DANCE ANIM COMPLETE\n");
+});

@@ -1,0 +1,26 @@
+{
+  "noodle_counter": {
+    "image": "376f9858-ed66-4d2e-9715-93ad941839a1",
+    "model": {
+      "prompt_id": "6e7d3bf7-7c97-4173-a3b3-eaaac3b99419",
+      "history": "http://127.0.0.1:8189/history/6e7d3bf7-7c97-4173-a3b3-eaaac3b99419"
+    }
+  },
+  "iron_pot": {
+    "image": "13973fdb-f852-4573-88d6-8531e918b2a7",
+    "model": {
+      "prompt_id": "2b1a939e-aca8-44f8-89c6-346d370c52f7",
+      "history": "http://127.0.0.1:8189/history/2b1a939e-aca8-44f8-89c6-346d370c52f7"
+    }
+  },
+  "soup_bowl": {
+    "image": "9e5b0ce9-dc6e-4551-bfa9-786e785346a8",
+    "model": {
+      "prompt_id": "a3728d85-cebb-49c8-a1cd-bb33b5de708f",
+      "history": "http://127.0.0.1:8189/history/a3728d85-cebb-49c8-a1cd-bb33b5de708f"
+    }
+  },
+  "cedar_well": {
+    "image": "b5ddf65a-dcfc-44d4-b5d9-d29d06a44463"
+  }
+}

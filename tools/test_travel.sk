@@ -1,0 +1,25 @@
+// Executed only by tools/test_travel.py (bot evalf): fast travel on every road. Launched on a town map next to its
+// post: the visit is recorded on load; the menu offers only the lead's own road's visited towns until the travelers
+// are together (G1363), then every visited town.
+local st = ::rpgstage, here = ::Rokugan.TRAVEL_NODES.find( @( n) n.mapid == ::rpgstage.mapid);
+if( here) ::Rokugan.pathBegin( here.pids[0]);						//	this town's road's traveler leads, alone
+local lead = ::rpgstat.members.find( @( v) v && ::Rokugan.TRAVELERS.indexOf( v.dataid) >= 0);
+local offer = function(){
+	local s = "";
+	foreach( n in ::Rokugan.TRAVEL_NODES)
+		if( n.code != here.code && ::Rokugan.travelVisited( n) && ::Rokugan.travelOpen( n)) s += " " .. n.code;
+	return s;
+};
+printf( "[RT] TRAVEL TEST map %S node %S lead %S visited-here %S\n", st.mapid, here ? here.code : "-",
+	lead ? lead.dataid : "-", here && ::Rokugan.travelVisited( here) ? "yes" : "NO");
+foreach( n in ::Rokugan.TRAVEL_NODES) if( !n.flag) ::Rokugan.travelMark( n.mapid);		//	pretend every town was seen
+::rpgvar["G100"] = true; ::rpgvar["G101"] = true;
+printf( "[RT] TRAVEL TEST own road offers:%S\n", offer());
+::rpgvar["G1363"] = true;
+printf( "[RT] TRAVEL TEST together offers:%S\n", offer());
+::rpgvar["G1363"] = false;
+newthread().start( @(){
+	sleep( 1200);
+	::Rokugan.rtshot( "tmp/rt_shot/bot_travel.raw");
+	printf( "[RT] TRAVEL TEST COMPLETE\n");
+});

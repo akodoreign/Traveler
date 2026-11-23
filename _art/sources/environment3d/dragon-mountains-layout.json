@@ -1,0 +1,165 @@
+{
+  "maps": {
+    "M379": {
+      "events": 134,
+      "props": 27
+    },
+    "M380": {
+      "events": 107,
+      "props": 34
+    },
+    "M382": {
+      "events": 116,
+      "props": 34
+    },
+    "M383": {
+      "events": 82,
+      "props": 13
+    },
+    "M872": {
+      "events": 0,
+      "props": 24
+    },
+    "M381": {
+      "events": 80,
+      "props": 10
+    }
+  },
+  "sources": {
+    "dragon_slate_waystation": {
+      "name": "dragon_slate_waystation",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_dragon_slate_waystation_00001_.glb",
+      "grid": [
+        42,
+        32,
+        38
+      ],
+      "occupied": 7266,
+      "world_size": [
+        2.35,
+        1.48,
+        2.05
+      ]
+    },
+    "dragon_forest_torii": {
+      "name": "dragon_forest_torii",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_dragon_forest_torii_00001_.glb",
+      "grid": [
+        44,
+        17,
+        43
+      ],
+      "occupied": 4411,
+      "world_size": [
+        3.24,
+        0.81,
+        2.91
+      ]
+    },
+    "dragon_mountain_andon": {
+      "name": "dragon_mountain_andon",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_dragon_mountain_andon_00001_.glb",
+      "grid": [
+        19,
+        20,
+        33
+      ],
+      "occupied": 2638,
+      "world_size": [
+        0.36,
+        0.33,
+        0.93
+      ]
+    },
+    "dragon_togashi_stele": {
+      "name": "dragon_togashi_stele",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_dragon_togashi_stele_00001_.glb",
+      "grid": [
+        16,
+        11,
+        35
+      ],
+      "occupied": 1355,
+      "world_size": [
+        0.69,
+        0.47,
+        1.26
+      ]
+    },
+    "dragon_inn_hearth": {
+      "name": "dragon_inn_hearth",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_dragon_inn_hearth_00001_.glb",
+      "grid": [
+        40,
+        40,
+        10
+      ],
+      "occupied": 2803,
+      "world_size": [
+        1.6599999999999997,
+        1.23,
+        0.67
+      ]
+    },
+    "dragon_procession_bell": {
+      "name": "dragon_procession_bell",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_dragon_procession_bell_00001_.glb",
+      "grid": [
+        40,
+        23,
+        38
+      ],
+      "occupied": 3545,
+      "world_size": [
+        1.06,
+        0.56,
+        1.44
+      ]
+    },
+    "dragon_garden_stone_lantern": {
+      "name": "dragon_garden_stone_lantern",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_dragon_garden_stone_lantern_00001_.glb",
+      "grid": [
+        32,
+        32,
+        38
+      ],
+      "occupied": 4289,
+      "world_size": [
+        0.69,
+        0.61,
+        1.36
+      ]
+    },
+    "dragon_inn_hanging_screen": {
+      "name": "dragon_inn_hanging_screen",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_dragon_inn_hanging_screen_00001_.glb",
+      "grid": [
+        28,
+        11,
+        37
+      ],
+      "occupied": 1550,
+      "world_size": [
+        1.54,
+        0.27,
+        1.48
+      ]
+    },
+    "togashi_garden_stone": {
+      "name": "togashi_garden_stone",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_togashi_garden_stone_00001_.glb",
+      "grid": [
+        41,
+        24,
+        25
+      ],
+      "occupied": 13100,
+      "world_size": [
+        1.7000000000000002,
+        1.03,
+        0.89
+      ]
+    }
+  }
+}

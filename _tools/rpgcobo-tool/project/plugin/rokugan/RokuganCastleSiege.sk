@@ -1,0 +1,32 @@
+//	RokuganCastleSiege.sk : Crab Ch4's siege night in the roamable Kyuden Hida (user 2026-11-22: "finish expanding hida
+//	castle"; gen_maps HIDA_SIEGE). From the wedding (G271) until the chapter ends (G286) the castle is under siege:
+//	G1644 says so to the events (siege content shows on G1644, the castle's everyday people on G1644 == false - an
+//	event's reqs can't say "not (A and not B)" on their own), and the castle's grounds and keep are lit for night.
+::Rokugan.SIEGE_MAPS <- { M500 = 1, M501 = 1, M502 = 1, M503 = 1, M504 = 1, M535 = 1, M536 = 1, M537 = 1, M538 = 1,
+	M539 = 1, M540 = 1, M541 = 1, M542 = 1, M543 = 1, M544 = 1, M545 = 1 };
+::Rokugan.siegeOn <- function(){
+	try{ return ::rpgvar["G271"] == true && ::rpgvar["G286"] != true; }catch( ex){}
+	return false;
+};
+::RPGStage._rt_launch_siege <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	try{
+		::rpgvar["G1644"] = ::Rokugan.siegeOn();										//	(before the events spawn)
+		printf( "[RT] siege check: G271 %S G286 %S -> %S\n", "" .. ::rpgvar["G271"], "" .. ::rpgvar["G286"],
+			"" .. ::rpgvar["G1644"]);
+	}catch( ex){ printexception( ex); }
+	local r = _rt_launch_siege( opt);
+	try{
+		local mid = "" .. this["mapid"];			//	(Shiro Akodo's 3F holds the South Dojo: night from "the South Dojo,
+		if( mid == "M513" && ::rpgvar["G498"] == true && ::rpgvar["G510"] != true){	//	tonight", G498, to Lion Ch2's end)
+			this.changeRenderSetting( "rt_hd2d_night");
+			printf( "[RT] night on %S (the South Dojo)\n", mid);
+		}
+		if( ::rpgvar["G1644"] && (("" .. this["mapid"]) in ::Rokugan.SIEGE_MAPS)){
+			this.changeRenderSetting( "rt_hd2d_night");
+			printf( "[RT] siege night on %S\n", "" .. this["mapid"]);
+		}
+	}catch( ex){ printexception( ex); }
+	return r;
+};
+printf( "Rokugan castle siege loaded\n");

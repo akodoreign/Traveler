@@ -1,0 +1,144 @@
+{
+  "key": "side_kisada_portrait_face",
+  "source": "side_kisada_v2_repaired_atlas.glb",
+  "exact_native_outfit": true,
+  "scale": 10.25,
+  "cranial_scale": [
+    1.0,
+    104.4
+  ],
+  "skin_match": [
+    230,
+    171,
+    128
+  ],
+  "socket_ring_hint": [
+    -0.135,
+    -0.013
+  ],
+  "socket_sample_levels": [
+    -0.99,
+    -0.982,
+    -0.974,
+    -0.966,
+    -0.958,
+    -0.95,
+    -0.942,
+    -0.9339999999999999,
+    -0.9259999999999999,
+    -0.9179999999999999,
+    -0.9099999999999999,
+    -0.9019999999999999,
+    -0.8939999999999999
+  ],
+  "features": {
+    "eyes": [
+      [
+        191,
+        234,
+        0.04
+      ],
+      [
+        287,
+        234,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        191,
+        216
+      ],
+      [
+        283,
+        216
+      ]
+    ],
+    "mouth": [
+      240,
+      308
+    ]
+  },
+  "fit_shallow_neck_overlap": true,
+  "recenter_donor_seat": true,
+  "donor_fore_growth_cap": 1.0,
+  "raw_geometry_source": "C:/AI/comfy-3d/app/output/nonhumans/traveler_geom_side_kisada_slim_socket_v2_check_00001_.glb",
+  "skin_sample_patches": [
+    [
+      191,
+      275,
+      3
+    ],
+    [
+      285,
+      276,
+      3
+    ],
+    [
+      208,
+      287,
+      3
+    ]
+  ],
+  "skin_sample_view": "Unlit front, unshadowed cheek plane swatches and checked lower neck",
+  "fit_method": "production shared body socket",
+  "fit_scale": 10.25,
+  "fit_matrix_blender": [
+    [
+      10.246033373083351,
+      -0.031442969598447945,
+      -0.28339276159708926,
+      1.9068303477547428
+    ],
+    [
+      0.03416179100225478,
+      10.249475365845568,
+      0.09791678590764281,
+      0.24259431073949206
+    ],
+    [
+      0.28307788627569025,
+      -0.09882340102321871,
+      10.245613736898017,
+      108.73346694904185
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 23920,
+    "lower_overlap_blended_vertices": 110,
+    "minimum_seam_head_weight": 0.7547253855451865,
+    "upper_face_head_weight": 1.0
+  },
+  "requested_head_scale": {
+    "uniform_cranial_scale": 1.0,
+    "pivot": [
+      0.76639,
+      0.008040000000000047,
+      104.4
+    ],
+    "seated_rings": [
+      {
+        "height": 98.55,
+        "center_change": 5.840457305189907e-06,
+        "diameter_change": 9.971765225628733e-06
+      },
+      {
+        "height": 99.375,
+        "center_change": 7.855917766868188e-08,
+        "diameter_change": 3.1333454240453364e-07
+      }
+    ],
+    "original_entire_silhouette_width": 14.961289405822754,
+    "final_entire_silhouette_width": 14.961289405822754,
+    "original_crown_native": 118.64888763427734,
+    "final_crown_native": 118.64888763427734,
+    "origin_geometry_sha256": "bc302502ec456b4dbc5fcc263c2861485e83ed631be998ff55079d53b49fcf17"
+  }
+}

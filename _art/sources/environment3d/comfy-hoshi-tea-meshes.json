@@ -1,0 +1,10 @@
+{
+  "hoshi_tea_bowl": {
+    "prompt_id": "f1f6a78f-db8d-46c7-82b1-5d11c7be4a52",
+    "history": "http://127.0.0.1:8189/history/f1f6a78f-db8d-46c7-82b1-5d11c7be4a52"
+  },
+  "hoshi_tea_kettle": {
+    "prompt_id": "c2446683-8aef-4c8e-a100-e966b6a58417",
+    "history": "http://127.0.0.1:8189/history/c2446683-8aef-4c8e-a100-e966b6a58417"
+  }
+}

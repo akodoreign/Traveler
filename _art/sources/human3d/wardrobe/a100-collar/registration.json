@@ -1,0 +1,21 @@
+{
+  "trimmed_source_vertices": 170,
+  "reshaped_vertices": 321,
+  "turn_under_edges": 74,
+  "new_faces": 20296,
+  "reweighted_vertices": 252,
+  "opening_profile": [
+    97.55,
+    0.2
+  ],
+  "rear_seat": 1.6,
+  "front_tuck": 0.85,
+  "facing_lift": 0.88,
+  "open_collar_edges": 74,
+  "finished_edge_height": [
+    98.10064697265625,
+    98.64909362792969
+  ],
+  "before_sha256": "26c4e6be2dc6b997a69977222b72bc99bda8917d6777ea0735cba7217601fcdb",
+  "after_sha256": "1da85d8269af96435b88b52e1f57c587ff5dabc30779d81ed13216554d5ef747"
+}

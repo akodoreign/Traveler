@@ -218,7 +218,8 @@ if "npc_isawa_mieko" in CHARS:
 # Maps whose whole floor plan is one scene look (the plugin uses it unless a line or a script says otherwise):
 # the Winter Court floors of Kyuden Hida (Crab Ch2) and the Kyuden Doji court. Bath / inn scenes are too few and too
 # mixed for whole maps: tag those lines ("[bath]") or call ::Rokugan.bustScene("bath") from the scene's cmd_script.
-MAP_SCENES = {"M142": "court", "M143": "court", "M144": "court", "M145": "court", "M146": "court", "M229": "court"}
+MAP_SCENES = {"M142": "court", "M143": "court", "M144": "court", "M145": "court", "M146": "court", "M229": "court",
+              **{"M%d" % n: "court" for n in (*range(500, 515), *range(535, 568))}}   # (Kyuden Hida's grounds and keep)
 
 # Scene variants: the base bust re-dressed by inpainting the body below the chin (and the crown of the head where the
 # variant changes headwear); the face, hair and skin stay the base's. Emotions are the same face patches pasted on.

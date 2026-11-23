@@ -1,7 +1,7 @@
 ///  PolygonMesh converted by Blender.
 /// 
 return {
-modeldata = "shared_female.mdl"
+modeldata = "side_grandmother_soft_body.mdl"
 bnd = [0.000000,52.500000,0.000000,125.000000,112.500000,125.000000]
 
 material = [
@@ -9,7 +9,7 @@ material = [
 		name = "c807060_core"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xd17c53ff
+		basecol = 0xcf7249ff
 		rough = 0.740000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -22,7 +22,7 @@ material = [
 		name = "c807060_hands"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xd17c53ff
+		basecol = 0xcf7249ff
 		rough = 0.740000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -35,7 +35,7 @@ material = [
 		name = "c807060_neck"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xd17c53ff
+		basecol = 0xcf7249ff
 		rough = 0.740000
 		metal = 0.000000
 		mparam = 0xff000000
@@ -61,7 +61,7 @@ material = [
 		name = "c807060_throat"
 		tec = "pbr.basic"
 		mtype = 0
-		basecol = 0xd17c53ff
+		basecol = 0xcf7249ff
 		rough = 0.740000
 		metal = 0.000000
 		mparam = 0xff000000

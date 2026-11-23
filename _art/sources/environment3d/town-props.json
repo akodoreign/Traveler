@@ -1,0 +1,32 @@
+[
+  {
+    "name": "iron_pot",
+    "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iron_pot_00001_.glb",
+    "grid": [
+      11,
+      10,
+      12
+    ],
+    "occupied": 217,
+    "world_size": [
+      0.41,
+      0.38,
+      0.35
+    ]
+  },
+  {
+    "name": "soup_bowl",
+    "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_soup_bowl_00001_.glb",
+    "grid": [
+      20,
+      20,
+      14
+    ],
+    "occupied": 1836,
+    "world_size": [
+      0.2,
+      0.19,
+      0.1
+    ]
+  }
+]

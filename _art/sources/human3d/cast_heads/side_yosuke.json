@@ -1,0 +1,123 @@
+{
+  "key": "side_yosuke_portrait_face",
+  "source": "side_yosuke_repaired_atlas.glb",
+  "scale": 11.2,
+  "features": {
+    "eyes": [
+      [
+        207,
+        273,
+        0.04
+      ],
+      [
+        274,
+        272,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        198,
+        257
+      ],
+      [
+        283,
+        256
+      ]
+    ],
+    "mouth": [
+      240,
+      342
+    ]
+  },
+  "socket_sample_levels": [
+    -0.788,
+    -0.781,
+    -0.774,
+    -0.767,
+    -0.76,
+    -0.753,
+    -0.746,
+    -0.739,
+    -0.732,
+    -0.725,
+    -0.718,
+    -0.711,
+    -0.704,
+    -0.697,
+    -0.69,
+    -0.6829999999999999,
+    -0.6759999999999999,
+    -0.6689999999999999,
+    -0.6619999999999999,
+    -0.6549999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.126,
+    -0.013
+  ],
+  "skin_match": [
+    217,
+    126,
+    77
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 11.2,
+  "fit_matrix_blender": [
+    [
+      11.199890334421761,
+      0.04005866021412981,
+      -0.029185624348394862,
+      2.1917764300991895
+    ],
+    [
+      -0.040077607169151465,
+      11.199925965342594,
+      -0.007221928472283597,
+      0.14118445490978584
+    ],
+    [
+      0.02915960099781753,
+      0.00732629436430672,
+      11.199959644707755,
+      107.66452221116161
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.9075,
+  "seam_weights": {
+    "vertex_count": 20916,
+    "lower_overlap_blended_vertices": 170,
+    "minimum_seam_head_weight": 0.6964118918628298,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      203,
+      309
+    ],
+    [
+      285,
+      296
+    ],
+    [
+      274,
+      310
+    ]
+  ],
+  "skin_sample_view": "Diffuse bilaterally matched cheeks on exact V2",
+  "raw_skin_srgb": [
+    217,
+    126,
+    78
+  ],
+  "proof_pose_family": "blade"
+}

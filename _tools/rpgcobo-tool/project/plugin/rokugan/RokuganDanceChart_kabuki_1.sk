@@ -1,0 +1,39 @@
+//	RokuganDanceChart_kabuki_1.sk : step charts (written by tools/gen_music.py; do not edit).
+//	notes: [ms from the track's start, lane 0 left / 1 down / 2 up / 3 right]; lines: [ms, who, line]
+if( !("DANCE_CHARTS" in ::Rokugan)) ::Rokugan.DANCE_CHARTS <- {};
+::Rokugan.DANCE_CHARTS.kabuki_easy_1 <- {
+	mu = "MU128", length = 54286,
+	notes = [
+		[5714, 2], [7143, 0], [7857, 3], [8571, 3], [10714, 1], [11429, 0], [12857, 1], [13571, 0],
+		[14286, 2], [15714, 1], [16429, 1], [17143, 2], [18571, 3], [19286, 3], [20000, 2], [22143, 1],
+		[22857, 0], [23571, 1], [24286, 0], [25000, 1], [25714, 3], [27143, 2], [28571, 2], [30000, 0],
+		[30714, 3], [31429, 2], [32857, 3], [34286, 1], [35000, 0], [35714, 1], [37143, 0], [38571, 1],
+		[39286, 1], [40000, 3], [40714, 1], [41429, 0], [42857, 2], [43571, 1], [44286, 0], [45714, 3],
+		[46429, 1], [47143, 0], [48571, 0], [49643, 2]],
+	lines = [
+		[5714, "Chorus", "In the court of Komatsu the lanterns burn gold, and a bride comes in white who will never grow old."],
+		[11429, "Komatsu", "My lady. The court has waited all spring."],
+		[17143, "The Bride", "Then let it wait. I am worth the waiting."],
+		[22857, "The Steward", "(aside) The new bride never blinks. The servants have stopped looking at her."],
+		[28571, "The Guard", "My lord - she casts no shadow on the screen."],
+		[34286, "Komatsu", "Peace, Kakita. She is my wife."],
+		[42857, "Chorus", "And the lanterns burned lower, and nobody said."]]
+};
+::Rokugan.DANCE_CHARTS.kabuki_hard_1 <- {
+	mu = "MU128", length = 54286,
+	notes = [
+		[5714, 2], [7143, 0], [7857, 3], [8571, 3], [10714, 1], [11429, 0], [12857, 1], [13571, 0],
+		[14286, 2], [15714, 1], [16429, 1], [16786, 1], [17143, 2], [18571, 3], [19286, 3], [20000, 2],
+		[22143, 1], [22857, 0], [23571, 1], [24286, 0], [25000, 1], [25714, 3], [27143, 2], [28571, 2],
+		[30000, 0], [30714, 3], [31429, 2], [32857, 3], [34286, 1], [35000, 0], [35714, 1], [37143, 0],
+		[38571, 1], [39286, 1], [39643, 1], [40000, 3], [40714, 1], [41429, 0], [42857, 2], [43571, 1],
+		[44286, 0], [45714, 3], [46429, 1], [47143, 0], [48571, 0], [49643, 2]],
+	lines = [
+		[5714, "Chorus", "In the court of Komatsu the lanterns burn gold, and a bride comes in white who will never grow old."],
+		[11429, "Komatsu", "My lady. The court has waited all spring."],
+		[17143, "The Bride", "Then let it wait. I am worth the waiting."],
+		[22857, "The Steward", "(aside) The new bride never blinks. The servants have stopped looking at her."],
+		[28571, "The Guard", "My lord - she casts no shadow on the screen."],
+		[34286, "Komatsu", "Peace, Kakita. She is my wife."],
+		[42857, "Chorus", "And the lanterns burned lower, and nobody said."]]
+};

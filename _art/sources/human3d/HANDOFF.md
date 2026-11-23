@@ -181,4 +181,4 @@ The regenerated Oracle of Fire is live on the shared male body with Phoenix A140
 
 ## Bulk cast rollout
 
-Continue internally reviewed batches without individual approval. 185 new heads passed the recorded live checks, and 221 of 349 catalog entries have regenerated portraits bound. The [bulk report](bulk-cast-heads.md) tracks the installed routes, remaining sources, wardrobe fixes, and current Hunyuan receipts. [Full cast inventory](cast-head-progress.csv)
+Continue internally reviewed batches without individual approval. 261 new heads passed the recorded live checks, and 297 of 349 catalog entries have regenerated portraits bound. The [bulk report](bulk-cast-heads.md) tracks the installed routes, remaining sources, wardrobe fixes, and current Hunyuan receipts. [Full cast inventory](cast-head-progress.csv) · [Current holds](cast-head-holds.csv)

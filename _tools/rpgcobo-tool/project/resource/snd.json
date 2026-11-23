@@ -1000,6 +1000,28 @@
 		"tags":4,
 		"wav":"/resource/snd/atk_shoot1.wav"
 	},
+	"SE300":{
+		"detune":0.0,
+		"gain":0.80,
+		"info":{"ch":2,"format":"ogg","freq":44100,"length":185220},
+		"memcache":2,
+		"muteg":0,
+		"name":{"en":"Court applause","ja":"Court applause"},
+		"src3d":"3D_OFF",
+		"tags":1,
+		"wav":"/resource/snd/rt_applause.ogg"
+	},
+	"SE301":{
+		"detune":0.0,
+		"gain":0.90,
+		"info":{"ch":2,"format":"ogg","freq":44100,"length":132300},
+		"memcache":2,
+		"muteg":0,
+		"name":{"en":"Court laughs behind fans","ja":"Court laughs behind fans"},
+		"src3d":"3D_OFF",
+		"tags":1,
+		"wav":"/resource/snd/rt_fans.ogg"
+	},
 	"_env":{
 		"irwavs":["/resource/IR/IR_room.wav","/resource/IR/IR_stadium.wav","/resource/IR/IR_hall.wav","/resource/IR/IR_cave.wav"],
 		"reverbs":[

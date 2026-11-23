@@ -1,0 +1,551 @@
+local stage=::rpgstage;
+local furnaceBattle=("@MAP@"=="M873" || "@MAP@"=="M874" || "@MAP@"=="M894");
+local shadowBattle=("@MAP@"=="M817" || "@MAP@"=="M818");
+local marshBattle=("@MAP@"=="M862" || "@MAP@"=="M863" || "@MAP@"=="M864");
+local paddyBattle="@MAP@"=="M865";
+local cityBattle="@MAP@"=="M866";
+local templeBattle=("@MAP@"=="M867" || "@MAP@"=="M868");
+local ojataraBattle=("@MAP@"=="M869" || "@MAP@"=="M870" || "@MAP@"=="M871");
+local groveBattle="@MAP@"=="M861";
+local dragonBattle="@MAP@"=="M872";
+local autumnBattle="@MAP@"=="M875";
+local yotomoBattle=("@MAP@"=="M876" || "@MAP@"=="M877");
+if(("@MAP@"=="M808" || "@MAP@"=="M811" || "@MAP@"=="M810" || "@MAP@"=="M812" || "@MAP@"=="M813" || furnaceBattle || shadowBattle || marshBattle || paddyBattle || cityBattle || templeBattle || ojataraBattle || groveBattle || dragonBattle || autumnBattle || yotomoBattle) && !stage["battle"]){
+    local fire="@MAP@"=="M894" ? "E558" : "E484";
+    local foes=furnaceBattle ? [{id=fire,x=1.5,z=-.4},{id=fire,x=.4,z=.65}] :
+        [{id="@MAP@"=="M813" ? "E103" : ("@MAP@"=="M812" ? "E120" : ("@MAP@"=="M808" ? "E600" : "E430")),x=1.5,z=-.4}];
+    if(shadowBattle) foes=[{id="E591",x=1.5,z=-.55},{id="E592",x=.45,z=.85}];
+    if(paddyBattle) foes=[{id="E462",x=1.50,z=-.55},{id="E462",x=.50,z=.85}];
+    if(cityBattle) foes=[{id="E470",x=1.50,z=-.55},{id="E466",x=.50,z=.85}];
+    if(groveBattle) foes=[{id="E449",x=1.5,z=-.65},{id="E449",x=.45,z=.65},{id="E449",x=1.62,z=1.10}];
+    if(dragonBattle) foes=[{id="E479",x=1.6,z=-.74},{id="E479",x=.52,z=.53},{id="E479",x=1.72,z=1.14}];
+    if(autumnBattle) foes=[{id="E493",x=1.65,z=-.48},{id="E493",x=.55,z=.78}];
+    if(yotomoBattle) foes=[{id="E497",x=1.58,z=-.48},{id="E497",x=.52,z=.72}];
+    if(templeBattle) foes="@MAP@"=="M867" ?
+        [{id="E466",x=1.50,z=-.55},{id="E466",x=.50,z=.85}] : [{id="E471",x=1.50,z=-.55}];
+    if(ojataraBattle){
+        local foe="@MAP@"=="M869" ? "E472" : ("@MAP@"=="M870" ? "E476" : "E477");
+        foes=[{id=foe,x=1.50,z=-.55},{id="@MAP@"=="M871" ? "E478" : foe,x=.50,z=.85}];
+    }
+    if(marshBattle){
+        local enemy="@MAP@"=="M862" ? "E455" : ("@MAP@"=="M863" ? "E457" : "E460");
+        foes=[{id=enemy,x=1.40,z=-.55}];
+        if("@MAP@"=="M863") foes.append({id=enemy,x=.50,z=.86});
+    }
+    ::RPGMain.enterBattle({mapid="@MAP@",escape=true,enemies=foes});
+    return;
+}
+
+class CoastCamera extends RPGCameraMotion {
+    target = null;
+    level = 1.0;
+    heading = 0.0;
+    pitch = .48;
+    lens = 30.;
+    function update(dt){}
+    function modifyCamera(cw){
+        cw.to(target);
+        cw.zoom = level;
+        cw.hpb.x = heading;
+        cw.hpb.y = pitch;
+        cw.fovy = lens;
+    }
+}
+
+if (stage.mapid!="@MAP@") throw Exception("Unexpected sample map " .. stage.mapid);
+local kit=stage.rtEnvironmentKit;
+if(!kit || ((stage.mapid=="M102" || stage.mapid=="M105" || stage.mapid=="M811") &&
+           (!kit.water || length(kit.vegetation)<10)))
+    throw Exception("Coast environment kit not present");
+local watchCount={"M100":4,"M101":4,"M810":9};
+if(stage.mapid in watchCount && length(kit.watchfires)!=watchCount[stage.mapid])
+    throw Exception("Kaiu watchfire count does not match the world");
+if((furnaceBattle || stage.mapid=="M384" || stage.mapid=="M385" || stage.mapid=="M386" || stage.mapid=="M437") &&
+   (!kit.water || length(kit.waterTextures)!=24 || !length(kit.poolLighting) || !length(kit.magmaSpatter)))
+    throw Exception("Furnace kit not present");
+local cam=CoastCamera({});
+stage.camwork.addMotion(cam);
+local battle=stage["battle"];
+if(battle) battle.battleui.setVisible(false);
+local renderer=stage.view3d.renderer;
+if(@DAYLIGHT@ || stage.mapid=="M100" || stage.mapid=="M810") stage.changeRenderSetting("rt_hd2d_field");
+::renderhint.set(ClientConfig.renderhints[4]);
+renderer.updateRenderHint(::renderhint);
+
+function screenshot(renderer, path,w=3840,h=2160){
+    local target=Texture();
+    if(!skBeginRender()) throw Exception("No render thread for 4K frame");
+    target.create(w,h,SK_RGBA8,2,0);
+    skPushRenderStates();
+    local old=skSetRenderTarget(target);
+    skClearScreen(#ClearParam(0,0,0,1));
+    renderer.render((0,0,w,h));
+    local width=renderer.rtw, height=renderer.rth;
+    skSetRenderTarget(old);
+    skPopRenderStates();
+    skEndRender();
+    if(width!=w || height!=h) throw Exception("The 3D target did not render at 4K");
+    local pixels=PixelBuffer(), waits=0;
+    while(!pixels.readPixels(target,0,0,w,h)){
+        if(++waits>90) throw Exception("4K pixel buffer stalled");
+        suspend();
+    }
+    while(!pixels.isDone()) suspend();
+    local result=ByteBuffer();
+    result.endian=0;
+    result.puti(w);
+    result.puti(h);
+    result.putBuffer(pixels.getData());
+    result.pos=0;
+    FileRef(path).save(result);
+    if(w==3840) printf("[ENV] 4K frame %S\n",path);
+}
+
+local views;
+if(@DOORS@){
+    local store=null, regular=null;
+    foreach(row in kit.townDoors){
+        if(row[0]==20) store=row;
+        if(row[0]==16) regular=row;
+    }
+    if(!store || !regular || !(regular[2]>.80))
+        throw Exception("An accessible town doorway is still shut");
+    local haskey=::reqchk({lvar="NUM_I573",op=">=",rvar=1});
+    if(haskey ? !(store[2]>.80) : store[2]!=0.0)
+        throw Exception("Storehouse door does not match the key state");
+    views=[[haskey ? "storehouse-ajar" : "storehouse-locked",
+            [32.01,3.29,18.03],.10,.17,6.1,49.]];
+    if(!haskey)
+        views.append(["street-doorways",[42.20,3.18,9.31],.15,.27,13.3,57.]);
+}else if(@ENTRANCE@){
+    local coast=stage.mapid!="M437";
+    local x=coast ? 48.23 : 55.25;
+    local z=coast ? 13.5 : 13.0;
+    if(!stage.player3d || stage.player3d.pos.z<z+2.05 || stage.player3d.pos.y>3.1 ||
+       Math.abs(stage.player3d.pos.x-x)>1.2)
+        throw Exception("The party could not walk beneath the cave roof");
+    printf("[ENV] Entered the recessed passage on foot at %S.\n",stage.player3d.pos);
+    views=[["recessed-entrance",[x,2.95,z+1.65],.23,.28,8.4,56.],
+           ["tunnel-interior",[x,2.29,z+2.61],.03,.09,5.8,56.]];
+}else if(stage.mapid=="M811"){
+    views=[["battle", [32.,1.2,34.0], .44,.27, 13.0], ["foreshore",[31.5,.9,21.0], -.35,.46, 14.0]];
+}else if(stage.mapid=="M103"){
+    if(!stage.getEvent(4) || !stage.getEvent(10) || !stage.getEvent(23))
+        throw Exception("Kiyo, Taneo or the original Drop Soup trigger did not load");
+    local kiyo=stage.getLocation(4).pos;
+    if(kiyo.z<18.25) throw Exception("Kiyo is outside the counter");
+    views=[["noodle-stall",[57.05,3.25,17.95],.07,.19,6.1,78.],
+           ["street",[57.45,3.26,17.65],.28,.70,11.50,77.],
+           ["well",[24.85,2.70,20.05],.18,.36,4.5,70.]];
+}else if(stage.mapid=="M100"){
+    views=[["watchtower",[31.,9.1,7.8],.47,.48,12.2,49.],
+           ["parapet",[29.,9.35,9.5],-.31,.31,6.4,48.]];
+}else if(stage.mapid=="M101"){
+    views=[["garrison",[31.0,3.45,16.6],.34,.45,18.,54.],
+           ["gate",[19.72,3.46,22.65],-.07,.13,1.98,94.],
+           ["training-yard",[28.6,2.55,12.20],.14,.23,7.8,55.]];
+}else if(stage.mapid=="M810"){
+    views=[["wall-arena",[32.,1.1,34.25],.16,.23,10.4,46.]];
+}else if(stage.mapid=="M104"){
+    if(length(kit.vegetation)!=4) throw Exception("The four camp shelter flaps did not load");
+    views=[["quarry-camp",[32.,2.72,13.0],.25,.52,17.8,60.],
+           ["quarry-shelters",[25.8,2.82,14.05],.11,.31,8.8,55.]];
+}else if(stage.mapid=="M812"){
+    if(length(kit.vegetation)!=3) throw Exception("The three battle shelter flaps did not load");
+    views=[["quarry-arena",[32.2,1.25,36.9],.23,.35,14.8,54.]];
+}else if(stage.mapid=="M813"){
+    views=[["limestone-arena",[32.,1.1,34.55],.22,.32,13.3,52.],
+           ["paper-lanterns",[33.50,1.92,42.02],.21,.31,8.5,52.]];
+}else if(stage.mapid=="M124"){
+    if(!stage.getEvent(1) || !stage.getEvent(2) || length(kit.poolLighting)!=3)
+        throw Exception("The rebuilt office or Kanbe's event did not load");
+    views=[["magistrate-room",[10.5,1.98,9.1],.12,.62,16.5,59.],
+           ["magistrate-desk",[10.54,1.92,8.95],-.16,.32,6.98,55.]];
+}else if(stage.mapid=="M125"){
+    if(!stage.getEvent(1) || !stage.getEvent(2) || length(kit.storageLids)!=1 || length(kit.poolLighting)!=3)
+        throw Exception("The rebuilt room, lanterns or gameplay fixtures did not load");
+    views=[["storehouse-room",[8.,1.88,7.94],.16,.62,13.2,59.],
+           ["paper-lantern",[3.28,1.49,5.45],-.21,.24,4.55,50.]];
+}else if(stage.mapid=="M120"){
+    if(!stage.getEvent(1) || !stage.getEvent(2) || length(kit.poolLighting)!=5)
+        throw Exception("The rebuilt inn or its original interactions did not load");
+    views=[["inn-room",[11.,1.87,9.4],.18,.68,18.0,62.],
+           ["sleeping-bays",[15.75,1.65,13.22],.22,.38,7.7,56.]];
+}else if(stage.mapid=="M121"){
+    if(!stage.getEvent(1) || !stage.getEvent(2) || length(kit.poolLighting)!=3)
+        throw Exception("The rebuilt equipment shop or its original service did not load");
+    views=[["arms-room",[9.37,1.99,8.82],.12,.62,16.1,59.],
+           ["arms-displays",[12.68,1.96,10.72],.19,.37,9.0,54.]];
+}else if(stage.mapid=="M122"){
+    if(!stage.getEvent(1) || !stage.getEvent(2) || length(kit.poolLighting)!=3)
+        throw Exception("The rebuilt goods shop or its original service did not load");
+    views=[["goods-room",[9.52,1.94,9.60],.12,.64,16.9,59.],
+           ["goods-shelves",[8.11,1.86,11.36],-.20,.32,8.1,55.]];
+}else if(stage.mapid=="M123"){
+    if(!stage.getEvent(1) || !stage.getEvent(2) || !stage.getEvent(3) || length(kit.poolLighting)!=4)
+        throw Exception("The rebuilt tea room or its original interactions did not load");
+    views=[["teahouse-room",[10.5,1.96,9.04],.15,.66,17.0,62.],
+           ["satomi-and-tea",[11.60,2.00,10.64],.18,.29,9.6,55.]];
+}else if(stage.mapid=="M130"){
+    views=[["nest-chamber",[31.2,2.02,10.8],.29,.67,10.6,52.],
+           ["stock-lantern",[28.18,1.92,8.15],.23,.39,4.5,48.]];
+}else if(stage.mapid=="M131"){
+    views=[["underground-pool",[42.2,1.9,9.3],.20,.67,10.4,51.]];
+}else if(stage.mapid=="M132"){
+    views=[["armour-chamber",[30.4,2.02,12.2],.14,.65,10.6,52.]];
+}else if(stage.mapid=="M133"){
+    views=[["altar-chamber",[29.,2.02,15.5],.20,.66,13.0,52.]];
+}else if(stage.mapid=="M873"){
+    views=[["fire-elementals",[31.5,1.02,34.45],.20,.35,13.5,51.],
+           ["molten-bank",[32.6,1.35,42.8],-.21,.35,12.2,52.]];
+}else if(stage.mapid=="M874"){
+    views=[["crater-arena",[32.,.94,39.2],.24,.45,20.4,55.]];
+}else if(stage.mapid=="M384"){
+    views=[["lava-tube",[32.5,1.95,17.4],.19,.70,12.6,54.],
+           ["robe-ledge",[43.,1.83,17.4],.19,.52,8.4,54.]];
+}else if(stage.mapid=="M385"){
+    views=[["ash-shrines",[36.9,2.11,20.1],.19,.61,10.8,54.]];
+}else if(stage.mapid=="M386"){
+    views=[["crater-mouth",[39.,2.42,18.75],.16,.48,13.8,55.]];
+}else if(stage.mapid=="M350" || stage.mapid=="M351"){
+    if(length(kit.waterTextures)!=32 || Math.abs(kit.waterSeconds-9.20)>.001 || length(kit.vegetation)<10)
+        throw Exception("The River of Gold current or reed animation is absent");
+    if(stage.mapid=="M350"){
+        views=[["river-road",[38.5,2.75,9.10],.45,.58,23.2,57.],
+               ["river-reeds",[38.4,2.20,6.15],.08,.36,10.5,53.]];
+    }else{
+        if(length(kit.townDoors)!=3 || !stage.getEvent(3) || !stage.getEvent(4))
+            throw Exception("Kudo's three accessible halls did not load");
+        views=[["kudo-quay",[22.65,3.1,13.20],.34,.62,28.9,58.],
+               ["district-bridge",[41.3,3.17,12.15],.36,.49,19.40,55.],
+               ["fish-stall",[24.40,2.47,8.14],.10,.34,8.8,51.]];
+    }
+}else if(stage.mapid=="M352"){
+    if(!stage.getEvent(1) || !stage.getEvent(5)) throw Exception("The Kitsune Hall scenes are absent");
+    views=[["kitsune-hall",[8.36,1.91,8.77],.14,.47,13.3,54.]];
+}else if(stage.mapid=="M353"){
+    if(!stage.getEvent(1) || !stage.getEvent(6)) throw Exception("The Mantis chart interaction is absent");
+    views=[["mantis-guest-house",[7.73,1.94,8.85],.18,.48,13.0,54.]];
+}else if(stage.mapid=="M354"){
+    if(!stage.getEvent(1) || !stage.getEvent(3)) throw Exception("The Dreaming Carp innkeeper is absent");
+    views=[["dreaming-carp",[8.05,1.94,8.72],.11,.48,13.0,54.]];
+}else if(stage.mapid=="M355"){
+    views=[["night-ford",[33.2,2.45,9.22],.38,.49,19.8,55.]];
+}else if(stage.mapid=="M356"){
+    views=[["barge-in-the-reeds",[47.6,2.46,5.54],.30,.41,14.4,53.]];
+}else if(stage.mapid=="M357"){
+    views=[["miya-relics",[21.6,2.51,12.36],.20,.45,14.8,56.]];
+}else if(stage.mapid=="M358"){
+    if(length(kit.waterTextures)!=32 || Math.abs(kit.waterSeconds-3.52)>.001)
+        throw Exception("The heart clearing pool stopped pulsing");
+    views=[["heart-clearing",[28.6,2.46,10.9],.31,.46,15.3,54.]];
+}else if(stage.mapid=="M862"){
+    views=[["night-river-arena",[31.1,1.40,37.4],.15,.45,17.8,56.]];
+}else if(stage.mapid=="M863"){
+    views=[["west-marsh-arena",[32.0,1.35,37.7],.13,.41,18.4,56.]];
+}else if(stage.mapid=="M864"){
+    views=[["heart-arena",[26.8,1.51,34.4],.36,.45,21.6,57.]];
+}else if(stage.mapid=="M359"){
+    if(length(kit.vegetation)!=64 || length(kit.waterTextures)!=32)
+        throw Exception("The paddy water or rice plants did not load");
+    views=[["rice-road",[42.6,2.26,12.0],.42,.53,21.2,56.],
+           ["seedlings",[41.0,1.74,14.1],.26,.41,7.7,54.]];
+}else if(stage.mapid=="M360"){
+    if(length(kit.waterTextures)!=32 || length(kit.townDoors)!=2)
+        throw Exception("Hisatu Kensu's springs or door fixtures did not load");
+    if(kit.townDoors[0][0]!=85 || kit.townDoors[0][2]<.7)
+        throw Exception("The available inn door did not open");
+    views=[["hisatu-kensu",[28.8,2.6,9.1],.27,.56,24.8,57.],
+           ["bathhouse-spring",[29.4,2.1,6.4],.30,.48,10.1,54.]];
+}else if(stage.mapid=="M361"){
+    views=[["city-approach",[53.2,2.62,12.2],.33,.50,22.1,56.]];
+}else if(paddyBattle){
+    if(length(kit.vegetation)!=112 || length(kit.waterTextures)!=32)
+        throw Exception("The plains arena's paddy assets did not load");
+    views=[["paddy-arena",[31.9,1.6,42.5],.17,.49,27.2,58.]];
+}else if(stage.mapid=="M362"){
+    if(length(kit.townDoors)!=1 || kit.townDoors[0][2]<.8 || length(kit.poolLighting)!=9)
+        throw Exception("Kamen's working Sweet Cup door or district lanterns did not load");
+    views=[["hospitality-district",[25.65,3.15,12.32],.29,.49,18.0,55.],
+           ["the-sweet-cup",[20.45,3.21,12.92],.14,.26,7.4,50.],
+           ["city-gateway",[14.4,3.12,10.4],.62,.27,8.0,51.]];
+}else if(stage.mapid=="M364"){
+    if(length(kit.poolLighting)!=11) throw Exception("The merchant row is missing its lanterns");
+    views=[["mask-market",[42.3,3.11,13.35],.25,.45,19.1,56.],
+           ["mask-racks",[38.25,3.22,14.75],.12,.26,8.0,49.]];
+}else if(cityBattle){
+    views=[["kamen-street-arena",[31.2,1.65,40.8],.22,.44,25.9,57.]];
+}else if(stage.mapid=="M363"){
+    if(length(kit.poolLighting)!=3 || !stage.getEvent(7))
+        throw Exception("The Sweet Cup clerk or paper lanterns are absent");
+    views=[["sweet-cup-back-room",[7.94,1.89,9.13],.17,.43,13.0,54.]];
+}else if(stage.mapid=="M365"){
+    if(length(kit.poolLighting)!=9) throw Exception("The sun temple lanterns are absent");
+    views=[["sun-temple",[43.1,1.88,14.96],.22,.55,12.6,55.]];
+}else if(stage.mapid=="M366"){
+    if(length(kit.poolLighting)!=9) throw Exception("The temple path lanterns are absent");
+    views=[["sewn-face-shrine",[40.8,1.91,13.52],.18,.56,11.6,55.]];
+}else if(stage.mapid=="M367"){
+    if(length(kit.poolLighting)!=4 || !stage.getEvent(3))
+        throw Exception("The abbot or monastery lights are absent");
+    views=[["silent-self",[8.84,1.91,9.67],.14,.42,13.9,54.]];
+}else if(templeBattle){
+    views=[["@MAP@"=="M867" ? "temple-arena" : "monastery-arena",[31.8,1.52,40.9],.19,.43,25.5,55.]];
+}else if(stage.mapid=="M368"){
+    views=[["ojatara-road",[42.9,2.84,13.12],.30,.54,20.4,56.],
+           ["iuchi-roadside-tents",[48.1,2.70,13.31],.12,.37,10.6,55.]];
+}else if(stage.mapid=="M369"){
+    if(length(kit.townDoors)!=4) throw Exception("The Buried Leaves inn, tribunal or shop doors are missing");
+    views=[["buried-leaves",[29.33,3.20,13.48],.27,.54,24.7,55.],
+           ["buried-leaves-shelter",[28.63,2.53,7.26],.26,.40,10.9,54.]];
+}else if(stage.mapid=="M370"){
+    if(length(kit.poolLighting)!=5 || !stage.getEvent(4))
+        throw Exception("The tribunal dais, lanterns or magistrate did not load");
+    views=[["ojatara-tribunal",[9.55,1.92,9.73],.18,.43,14.7,55.]];
+}else if(stage.mapid=="M371"){
+    views=[["soshi-camp",[43.0,3.06,13.05],.22,.49,19.0,55.]];
+}else if(stage.mapid=="M372"){
+    views=[["shioden",[31.31,3.19,12.13],.23,.45,15.0,55.]];
+}else if(stage.mapid=="M374"){
+    views=[["bell-hill",[36.8,4.22,13.2],.20,.37,10.9,54.]];
+}else if(stage.mapid=="M375"){
+    if(length(kit.vegetation)!=66 || length(kit.townDoors)!=1)
+        throw Exception("The flower fields or Nihime's door did not load");
+    views=[["perfume-petal-blossom",[35.8,2.60,9.1],.24,.58,25.2,55.],
+           ["perfume-petal-flowers",[35.0,2.25,5.62],.12,.40,9.8,55.]];
+}else if(stage.mapid=="M376"){
+    if(length(kit.poolLighting)!=3 || !stage.getEvent(3))
+        throw Exception("Nihime or her sitting room lanterns did not load");
+    views=[["nihimes-house",[8.03,1.91,8.99],.15,.45,12.7,54.]];
+}else if(stage.mapid=="M377"){
+    views=[["grave-path",[42.20,2.66,13.10],.22,.48,17.6,55.],
+           ["sealed-jade-mine",[54.55,2.93,9.51],.68,.31,10.5,56.]];
+}else if(stage.mapid=="M378"){
+    views=[["mountain-road",[35.16,3.08,9.52],.29,.48,22.8,57.]];
+}else if(ojataraBattle){
+    local name=stage.mapid=="M869" ? "ojatara-valley-arena" :
+        (stage.mapid=="M870" ? "grave-path-arena" : "mountain-road-arena");
+    views=[[name,[31.5,1.83,41.8],.18,.49,25.9,56.]];
+}else if(stage.mapid=="M345"){
+    if(length(kit.pondFish)!=3 || length(kit.waterTextures)!=32)
+        throw Exception("The memorial pond is missing koi or ripples");
+    local koi=kit.pondFish[0][0], x=koi.pos.x, z=koi.pos.z;
+    sleep(760);
+    if(Math.abs(koi.pos.x-x)+Math.abs(koi.pos.z-z)<.09)
+        throw Exception("The koi stayed stationary");
+    printf("[ENV] Three koi use separate motion phases.\n");
+    views=[["bayushi-memorial",[24.45,2.91,13.80],.30,.53,20.8,56.],
+           ["bayushi-pond",[21.1,2.35,13.70],.20,.48,10.6,51.]];
+}else if(stage.mapid=="M346"){
+    if(length(kit.poolLighting)!=3 || !stage.getEvent(2) || !stage.getEvent(3))
+        throw Exception("The teahouse actors or lanterns are absent");
+    views=[["willow-teahouse",[7.9,1.91,8.98],.15,.44,12.4,54.]];
+}else if(stage.mapid=="M347"){
+    if(length(kit.townDoors)!=3) throw Exception("The three accessible storefronts are missing");
+    views=[["bayushi-castle-town",[32.4,3.25,13.2],.23,.46,21.8,55.],
+           ["bayushi-well",[33.4,2.72,8.85],.16,.35,8.6,52.]];
+}else if(stage.mapid=="M348"){
+    views=[["traitors-grove",[38.0,2.89,11.9],.22,.45,18.4,54.]];
+}else if(stage.mapid=="M349"){
+    if(length(kit.waterTextures)!=32 || length(kit.vegetation)<19)
+        throw Exception("The Shutai waterfront lost its current or wind");
+    views=[["shutai-riverfront",[39.68,3.07,8.48],.36,.60,26.3,57.],
+           ["shutai-sake-house",[48.7,2.76,12.88],.20,.37,13.0,54.]];
+}else if(stage.mapid=="M379"){
+    if(length(kit.townDoors)!=2) throw Exception("The mountain town shop entrances did not load");
+    views=[["dragon-town",[32.5,3.52,13.33],.23,.47,18.6,55.],
+           ["dragon-incense",[35.8,2.94,12.45],.16,.31,8.8,51.]];
+}else if(stage.mapid=="M380"){
+    if(length(kit.townDoors)!=1) throw Exception("The mountain inn door did not load");
+    views=[["dragon-mountain-road",[42.9,4.29,11.69],.59,.37,18.4,55.],
+           ["dragon-inn-exterior",[43.45,4.4,12.10],.16,.35,9.2,52.],
+           ["dragon-inn-door",[43.46,5.13,12.28],.30,.24,4.0,46.]];
+}else if(stage.mapid=="M381"){
+    if(length(kit.poolLighting)!=4 || !stage.getEvent(5)) throw Exception("The common room or innkeeper did not load");
+    views=[["dragon-mountain-inn",[8.13,1.97,9.40],.15,.43,13.66,55.],
+           ["dragon-inn-shelves",[2.46,1.94,10.64],-1.17,.24,3.25,46.]];
+}else if(stage.mapid=="M382"){
+    views=[["dragon-procession-road",[45.80,4.47,10.75],.39,.45,20.2,55.],
+           ["dragon-road-gate",[62.90,4.77,10.32],.45,.31,9.4,53.]];
+}else if(stage.mapid=="M383"){
+    views=[["kyuden-togashi-garden",[29.6,3.02,10.25],.16,.54,19.9,56.],
+           ["togashi-raked-gravel",[29.64,2.61,6.55],.24,.38,11.5,52.]];
+}else if(dragonBattle){
+    views=[["dragon-mountain-combat",[31.6,1.25,40.4],.13,.32,17.1,55.]];
+}else if(stage.mapid=="M387"){
+    if(length(kit.townDoors)!=2 || kit.townDoors[0][2]<.8 || kit.townDoors[1][2]<.8)
+        throw Exception("The Welcome Road inn or merchant door is closed");
+    views=[["buried-leaves-market",[35.0,3.04,12.35],.24,.43,24.4,54.],
+           ["welcome-road-frontage",[21.4,3.60,12.09],.28,.38,13.2,53.]];
+}else if(stage.mapid=="M388"){
+    if(!stage.getEvent(11)) throw Exception("The Welcome Road innkeeper is absent");
+    views=[["welcome-road-common-room",[9.02,1.8,9.48],.16,.42,14.5,54.]];
+}else if(stage.mapid=="M389"){
+    views=[["buried-leaves-refugee-camps",[39.02,3.12,12.32],.44,.43,20.8,55.],
+           ["refugee-camp-cooking-area",[39.64,2.85,12.46],.06,.32,10.5,53.]];
+}else if(stage.mapid=="M390"){
+    if(length(kit.vegetation)<10) throw Exception("The autumn road foliage is missing");
+    views=[["autumn-valley-road",[51.02,3.15,12.33],.36,.42,22.4,54.],
+           ["hafuna-turnoff",[51.80,2.64,10.24],.08,.34,9.95,51.]];
+}else if(stage.mapid=="M391"){
+    views=[["shiro-iuchi-garden",[33.45,3.09,11.05],.17,.39,20.6,54.]];
+}else if(stage.mapid=="M392"){
+    views=[["hafuna-salted-fields",[40.0,2.70,11.02],.43,.49,21.1,54.]];
+}else if(stage.mapid=="M393"){
+    views=[["motobu-crater",[35.75,2.15,13.37],.35,.50,21.7,55.]];
+}else if(stage.mapid=="M394"){
+    if(!stage.getEvent(5)) throw Exception("The Shiro no Soshi scene is absent");
+    views=[["shiro-no-soshi-hall",[9.10,1.92,9.93],.18,.42,15.2,54.]];
+}else if(stage.mapid=="M395"){
+    views=[["miyahana-cottage",[28.23,3.10,9.77],.18,.40,15.2,54.]];
+}else if(autumnBattle){
+    views=[["autumn-valley-combat",[31.60,1.31,40.10],.12,.32,17.3,55.]];
+}else if(stage.mapid=="M396"){
+    views=[["yotomo-pigeon-village",[42.52,3.34,12.94],.23,.43,23.3,53.],
+           ["yotomo-pigeon-cave-mouth",[65.36,3.10,12.23],1.39,.27,10.9,52.]];
+}else if(stage.mapid=="M397"){
+    views=[["yotomo-pigeon-cave",[29.00,1.94,10.13],.13,.52,17.3,54.]];
+}else if(stage.mapid=="M398"){
+    views=[["yotomo-vat-room",[30.40,1.87,13.33],.15,.46,15.0,53.]];
+}else if(yotomoBattle){
+    views=[[(stage.mapid=="M876" ? "yotomo-cave-combat" : "yotomo-vat-combat"),[31.60,1.27,40.70],.12,.31,17.1,55.]];
+}else if(groveBattle){
+    views=[["grove-road-combat",[31.3,1.54,40.1],.18,.43,24.2,56.]];
+}else if(stage.mapid=="M212" || stage.mapid=="M236"){
+    if(!kit.water || length(kit.waterTextures)!=32)
+        throw Exception("The calm tide water kit did not load");
+    local raised=stage.mapid=="M212";
+    views=[[raised ? "exposed-bridge" : "submerged-bridge",[43.0,2.45,12.3],.13,.57,40.5,60.],
+           [raised ? "dry-west-bank" : "flooded-west-bank",[16.6,2.32,10.6],.24,.41,12.8,58.]];
+}else if(stage.mapid=="M458"){
+    views=[["fallen-road",[32.6,2.92,15.35],.27,.64,19.2,57.],
+           ["scout-waymarker",[20.5,2.64,9.28],.14,.38,8.5,53.]];
+}else if(stage.mapid=="M457"){
+    if(length(kit.watchfires)!=5) throw Exception("Shinomen watchfires did not load");
+    views=[["shinomen-gate",[40.7,3.26,17.35],.21,.34,13.2,52.],
+           ["gate-court",[29.2,3.15,12.15],.25,.57,21.8,57.]];
+}else if(stage.mapid=="M991"){
+    if(length(kit.watchfires)!=1 || !stage.getEvent(2)) throw Exception("The working forge or clerk is absent");
+    views=[["wall-smith",[8.64,1.95,8.76],.20,.48,12.2,54.],
+           ["forge-hearth",[10.8,1.87,10.19],.27,.30,7.6,46.]];
+}else if(stage.mapid=="M171"){
+    views=[["tar-chasm",[38.9,2.96,9.83],.43,.44,17.8,55.]];
+}else if(stage.mapid=="M172"){
+    if(length(kit.waterTextures)!=24 || !length(kit.magmaSpatter))
+        throw Exception("The Lava Trees lost their animated pools");
+    views=[["lava-trees",[32.4,3.20,13.96],.24,.33,17.6,55.]];
+}else if(stage.mapid=="M173"){
+    if(length(kit.vegetation)<35) throw Exception("The poppy animation groups did not load");
+    local cluster=null, close=225.0;
+    foreach(row in kit.vegetation){
+        local x=row[2]-stage.player3d.pos.x, z=row[3]-stage.player3d.pos.z, dist=x*x+z*z;
+        if(dist<close){ close=dist; cluster=row[0]; }
+    }
+    if(!cluster) throw Exception("The poppy groups are out of view");
+    local initial=cluster.rot.getHPB().y;
+    kit.update(380.0);
+    if(Math.abs(cluster.rot.getHPB().y-initial)<.0001)
+        throw Exception("The poppy group stayed still");
+    views=[["poppy-fields",[34.7,3.15,11.09],.21,.46,20.8,54.]];
+}else if(stage.mapid=="M174"){
+    views=[["watchpost",[30.23,3.02,13.14],.16,.46,15.9,53.]];
+}else if(stage.mapid=="M175"){
+    views=[["kijo-ring",[34.64,2.98,12.46],.26,.53,19.9,56.]];
+}else if(stage.mapid=="M176"){
+    views=[["ash-plain",[41.54,2.83,11.45],.26,.60,20.0,58.]];
+}else if(stage.mapid=="M177"){
+    views=[["road-home",[60.86,3.08,12.87],.55,.47,17.90,57.]];
+}else if(stage.mapid=="M817"){
+    views=[["tar-and-bones-arena",[32.1,1.33,36.4],.20,.37,20.6,56.]];
+}else if(stage.mapid=="M818"){
+    views=[["wall-road-arena",[32.1,1.34,37.8],-.18,.42,20.8,54.]];
+}else if(stage.mapid=="M459" || stage.mapid=="M465" || stage.mapid=="M466" ||
+         stage.mapid=="M467" || stage.mapid=="M468" || stage.mapid=="M469"){
+    views=[["shifting-waste",[32.75,3.05,15.80],.29,.72,23.2,57.],
+           ["ruined-shrine",[19.40,2.85,20.10],-.22,.42,8.65,54.]];
+}else if(stage.mapid=="M461"){
+    views=[["outer-bailey",[41.3,3.28,13.60],.20,.56,23.6,56.],
+           ["keep-gate",[75.7,3.26,13.8],.43,.36,11.6,53.]];
+}else if(stage.mapid=="M462"){
+    views=[["ancestral-keep",[36.6,3.30,11.30],.16,.44,20.5,54.],
+           ["tablets",[35.4,2.92,12.03],.05,.29,7.7,51.]];
+}else if(stage.mapid=="M463"){
+    views=[["lords-hall",[25.33,3.20,10.20],.12,.39,13.5,55.]];
+}else if(stage.mapid=="M808"){
+    views=[["hiruma-hall-arena",[31.70,1.30,34.30],.14,.35,16.5,54.]];
+}else if(stage.mapid=="M555"){
+    if(!stage.getEvent(14) || length(kit.poolLighting)!=4)
+        throw Exception("The garden rehearsal stage or story event did not load");
+    views=[];
+    foreach(name in ["komatsu","mirror","blade","title","screens"])
+        views.append([name,[37.35,3.66,29.3],.12,.21,18.20,54.]);
+}else if(stage.mapid=="M460"){
+    if(length(kit.brushReveal)!=2) throw Exception("The two trail brambles did not load");
+    local reveal=::rpgvar["G1215"];
+    local expected=reveal ? 1.0 : 0.0;
+    if(kit.brushReveal[0][2]!=expected || kit.brushReveal[1][2]!=expected)
+        throw Exception("The brush did not match Hiruma's discovery flag");
+    views=[[reveal ? "brush-open" : "brush-closed",[66.7,5.82,22.85],.44,.36,10.2,55.]];
+    if(!reveal) views.append(["switchbacks",[44.2,3.39,18.26],.30,.69,22.2,56.]);
+}else if(stage.mapid=="M437"){
+    views=[["pilgrim-road",[54.,2.64,10.7],.17,.48,16.8,51.],
+           ["lava-tube-entrance",[55.,2.79,12.35],.10,.34,10.9,48.]];
+}else if(stage.mapid=="M894"){
+    views=[["pilgrim-road-arena",[31.8,1.04,33.45],.19,.35,13.3,51.]];
+}else{
+    views=[["road",[26.7,2.04,10.15],.53,.57,12.2],["detail",[25.65,2.16,12.12],-.25,.40,5.4]];
+}
+local frame0=kit.waterFrame, time0=kit.seconds;
+local previewProps=[];
+foreach(view in views){
+    if(stage.mapid=="M555"){
+        foreach(obj in previewProps){ obj.setVisible(false); obj.kill(); }
+        previewProps=[];
+        if(view[0]=="screens"){
+            foreach(x in (32.75,41.75))
+                previewProps.append(kit.add("kabuki_screen_panel",x,2.5,27.70,1.0,0.0));
+        }else{
+            previewProps.append(kit.add("kabuki_act_"..view[0],37.25,2.5,29.75,1.0,0.0));
+        }
+    }
+    cam.target=Vector3D(view[1][0],view[1][1],view[1][2]);
+    cam.heading=view[2];
+    cam.pitch=view[3];
+    cam.level=view[4];
+    cam.lens=length(view)>5 ? view[5] : 30.;
+    sleep(480);
+    screenshot(renderer,"tmp/rt_shot/bot_@STAMP@_"..view[0]..".raw");
+}
+foreach(obj in previewProps){ obj.setVisible(false); obj.kill(); }
+if(kit.water && (kit.seconds<=time0+.15 || (kit.waterFrame==frame0 && kit.waterFrame<0)))
+    throw Exception("The environment animation did not tick");
+if(stage.mapid=="M103" && !kit.patronSeats[0][2])
+    throw Exception("Taneo did not use the native seated pose");
+if (kit.water) printf("[ENV] Liquid cycle %0.2f s with %d authored phase frames.\n",kit.waterSeconds,length(kit.waterTextures));
+if(stage.mapid=="M102" && @WAVE_CLIP@){
+    cam.target=Vector3D(27.1,1.28,7.30);
+    cam.heading=.45; cam.pitch=.55; cam.level=8.7; cam.lens=41.;
+    sleep(240);
+    for(local wave=0;wave<length(kit.waterTextures);++wave){
+        kit.water.mesh.face[0].m.tex0=kit.waterTextures[wave];
+        screenshot(renderer,"tmp/rt_shot/bot_@STAMP@_wave"..("%02d" % wave)..".raw",1280,720);
+    }
+}
+if(stage.mapid=="M873" && @WAVE_CLIP@){
+    cam.target=Vector3D(32.0,.92,34.4);
+    cam.heading=.20; cam.pitch=.36; cam.level=12.2; cam.lens=47.;
+    local active=false;
+    sleep(200);
+    for(local frame=0;frame<26;++frame){
+        foreach(pair in kit.magmaSpatter)
+            if(pair[0].pos.y>pair[1][1]+.12) active=true;
+        screenshot(renderer,"tmp/rt_shot/bot_@STAMP@_pop"..("%02d" % frame)..".raw",1280,720);
+        sleep(70);
+    }
+    if(!active) throw Exception("The lava spatter did not rise");
+    printf("[ENV] Captured flow and rising spatter from %d live emitters.\n",length(kit.magmaSpatter));
+}
+printf("[LIVE COMBAT] %S verified at 3840x2160. Water frames %d to %d. %d wind-driven plant clusters.\n",
+       stage.mapid,frame0,kit.waterFrame,length(kit.vegetation));
+stage.camwork.cammots.removeValue(cam);
+if(battle) battle.battleui.setVisible(true);

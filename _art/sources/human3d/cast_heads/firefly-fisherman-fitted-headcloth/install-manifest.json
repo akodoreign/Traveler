@@ -1,0 +1,37 @@
+{
+  "actor": "side_ff_fisherman",
+  "resource_destination": "resource/native_human",
+  "requires": {
+    "base": "shared_male",
+    "face": "side_ff_fisherman_portrait_face"
+  },
+  "files": [
+    {
+      "from": "assets/side_ff_fisherman_headcloth.pm",
+      "to": "side_ff_fisherman_headcloth.pm",
+      "sha256": "072abb389e74b2505a2912695af0644fe0222bb6ea5821d18e6044be6b701963"
+    },
+    {
+      "from": "assets/side_ff_fisherman_headcloth.mdl",
+      "to": "side_ff_fisherman_headcloth.mdl",
+      "sha256": "82f40fd6b02408c6cecd4c3a0b52b24da8250b845d16ee5b9b8206ace1704672"
+    },
+    {
+      "from": "assets/tex/side_ff_fisherman_headcloth_linen.png",
+      "to": "tex/side_ff_fisherman_headcloth_linen.png",
+      "sha256": "c2986558921d1f7d1f8ac9885af7f942852c19a7c1d55a7b0d13243b1ea3a0da"
+    }
+  ],
+  "native_human_index": {
+    "append_portraitAccessories": [
+      {
+        "mesh": "side_ff_fisherman_headcloth",
+        "headwear": true
+      }
+    ]
+  },
+  "fitted_source": {
+    "file": "C:\\Users\\akodo\\Documents\\Codex\\2026-11-20\\ok\\work\\reserve-v2-heads\\variants\\b44\\release\\side_ff_fisherman\\assets\\side_ff_fisherman_portrait_face.glb",
+    "sha256": "ea3c67e5292b0b48ab103dc91646feeb2ee8149548546598f162c66e82fc6bbe"
+  }
+}

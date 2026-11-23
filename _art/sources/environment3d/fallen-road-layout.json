@@ -1,0 +1,89 @@
+{
+  "trail": [
+    [
+      0,
+      16
+    ],
+    [
+      12,
+      16
+    ],
+    [
+      21,
+      12
+    ],
+    [
+      30,
+      12
+    ],
+    [
+      38,
+      27
+    ],
+    [
+      47,
+      39
+    ],
+    [
+      62,
+      38
+    ],
+    [
+      69,
+      25
+    ],
+    [
+      79,
+      12
+    ],
+    [
+      92,
+      10
+    ],
+    [
+      102,
+      16
+    ],
+    [
+      111,
+      16
+    ]
+  ],
+  "placements": 21,
+  "size": [
+    164,
+    68
+  ],
+  "source": {
+    "shadowlands_waymarker": {
+      "name": "shadowlands_waymarker",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_shadowlands_waymarker_00001_.glb",
+      "grid": [
+        30,
+        25,
+        37
+      ],
+      "occupied": 3611,
+      "world_size": [
+        0.58,
+        0.49,
+        0.95
+      ]
+    },
+    "shadowlands_broken_cart": {
+      "name": "shadowlands_broken_cart",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_shadowlands_broken_cart_00001_.glb",
+      "grid": [
+        29,
+        39,
+        21
+      ],
+      "occupied": 3448,
+      "world_size": [
+        2.02,
+        1.12,
+        1.07
+      ]
+    }
+  }
+}

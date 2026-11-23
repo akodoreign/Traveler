@@ -1,0 +1,18 @@
+{
+  "dragon_inn_hearth": {
+    "prompt_id": "6034544e-ce51-4ab3-84a9-afed2c94cee0",
+    "history": "http://127.0.0.1:8189/history/6034544e-ce51-4ab3-84a9-afed2c94cee0"
+  },
+  "dragon_procession_bell": {
+    "prompt_id": "73c70ecd-69fc-4dce-8e03-538ad7bd55f2",
+    "history": "http://127.0.0.1:8189/history/73c70ecd-69fc-4dce-8e03-538ad7bd55f2"
+  },
+  "dragon_garden_stone_lantern": {
+    "prompt_id": "ec02f27a-1c60-413d-b8e2-67bdb0ecfabc",
+    "history": "http://127.0.0.1:8189/history/ec02f27a-1c60-413d-b8e2-67bdb0ecfabc"
+  },
+  "dragon_inn_hanging_screen": {
+    "prompt_id": "29cc2a3c-c646-48ed-a888-026d65fe634f",
+    "history": "http://127.0.0.1:8189/history/29cc2a3c-c646-48ed-a888-026d65fe634f"
+  }
+}

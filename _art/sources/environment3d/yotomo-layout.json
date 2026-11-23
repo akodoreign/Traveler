@@ -1,0 +1,56 @@
+{
+  "maps": {
+    "M396": {
+      "events": 114,
+      "placements": 25
+    },
+    "M397": {
+      "events": 85,
+      "placements": 15
+    },
+    "M398": {
+      "events": 85,
+      "placements": 13
+    },
+    "M876": {
+      "events": 0,
+      "placements": 16
+    },
+    "M877": {
+      "events": 0,
+      "placements": 18
+    }
+  },
+  "sources": {
+    "autumn_yotomo_pigeon_house": {
+      "name": "autumn_yotomo_pigeon_house",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_autumn_yotomo_pigeon_house_00001_.glb",
+      "grid": [
+        27,
+        30,
+        42
+      ],
+      "occupied": 5008,
+      "world_size": [
+        1.18,
+        0.85,
+        1.6
+      ]
+    },
+    "autumn_yotomo_storage_vat": {
+      "name": "autumn_yotomo_storage_vat",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_autumn_yotomo_storage_vat_00001_.glb",
+      "grid": [
+        41,
+        41,
+        17
+      ],
+      "occupied": 5129,
+      "world_size": [
+        0.8200000000000001,
+        0.77,
+        0.9099999999999999
+      ]
+    }
+  }
+}

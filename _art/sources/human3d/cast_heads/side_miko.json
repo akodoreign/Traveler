@@ -1,0 +1,112 @@
+{
+  "key": "side_miko_portrait_face",
+  "source": "side_miko_repaired_atlas.glb",
+  "scale": 14.8,
+  "features": {
+    "eyes": [
+      [
+        202,
+        285,
+        0.04
+      ],
+      [
+        275,
+        284,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        199,
+        270
+      ],
+      [
+        283,
+        268
+      ]
+    ],
+    "mouth": [
+      240,
+      331
+    ]
+  },
+  "socket_sample_levels": [
+    -0.702,
+    -0.695,
+    -0.688,
+    -0.6809999999999999,
+    -0.6739999999999999,
+    -0.6669999999999999,
+    -0.6599999999999999,
+    -0.6529999999999999,
+    -0.6459999999999999,
+    -0.6389999999999999,
+    -0.6319999999999999,
+    -0.6249999999999999,
+    -0.6179999999999999,
+    -0.6109999999999999,
+    -0.6039999999999999,
+    -0.5969999999999999,
+    -0.5899999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.068,
+    -0.013
+  ],
+  "skin_match": [
+    249,
+    207,
+    184
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 14.8,
+  "fit_matrix_blender": [
+    [
+      14.7990904131489,
+      0.16088060285172018,
+      -0.03225484570997345,
+      1.0048608971478352
+    ],
+    [
+      -0.16043265736501128,
+      14.797791770891399,
+      0.1990479032645599,
+      0.3074781099206794
+    ],
+    [
+      0.03441374574945783,
+      -0.19868602610471423,
+      14.79862627263549,
+      109.1605950277908
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 13164,
+    "lower_overlap_blended_vertices": 175,
+    "minimum_seam_head_weight": 0.3691005459413854,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      127,
+      367
+    ]
+  ],
+  "skin_sample_view": "Canonical neutral diffuse chin and cheeks with uncropped raw cliff",
+  "raw_skin_srgb": [
+    255,
+    216,
+    192
+  ],
+  "proof_pose_family": "fist"
+}

@@ -1,0 +1,14 @@
+{
+  "M100": {
+    "replaced": 4,
+    "sha256": "0e8940daacb038ca2f41bd028770251d5e97ee5936647c94730ba6d6d8be3eac"
+  },
+  "M101": {
+    "replaced": 7,
+    "sha256": "05758c011a95d56adeeaf4d4eadd3e4f6c368dda551460dea1a55d302248938a"
+  },
+  "M810": {
+    "replaced": 9,
+    "sha256": "d6ab3cdb5126251a59166f1f870c2a2399553595b7a0f5fed705c1abc054a891"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "hoshi_arms_bundle": {
+    "prompt_id": "fad1a524-ae39-4ef9-ae28-747a983f1ca2",
+    "history": "http://127.0.0.1:8189/history/fad1a524-ae39-4ef9-ae28-747a983f1ca2"
+  },
+  "hoshi_arms_armor_sample": {
+    "prompt_id": "a2811794-47da-46a0-8a45-05019dc3d3e4",
+    "history": "http://127.0.0.1:8189/history/a2811794-47da-46a0-8a45-05019dc3d3e4"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "key": "side_gaijintrader_portrait_face",
+  "source": "side_gaijintrader_repaired_atlas.glb",
+  "scale": 15.7,
+  "features": {
+    "eyes": [
+      [
+        194,
+        266,
+        0.04
+      ],
+      [
+        286,
+        267,
+        -0.04
+      ]
+    ],
+    "brows": [
+      [
+        190,
+        249
+      ],
+      [
+        288,
+        249
+      ]
+    ],
+    "mouth": [
+      241,
+      347
+    ]
+  },
+  "socket_sample_levels": [
+    -0.602,
+    -0.595,
+    -0.588,
+    -0.581,
+    -0.574,
+    -0.567,
+    -0.5599999999999999,
+    -0.5529999999999999,
+    -0.5459999999999999,
+    -0.5389999999999999,
+    -0.5319999999999999,
+    -0.5249999999999999,
+    -0.5179999999999999,
+    -0.5109999999999999,
+    -0.5039999999999999,
+    -0.4969999999999999,
+    -0.4899999999999999,
+    -0.4829999999999999
+  ],
+  "maximum_pitch": 3.0,
+  "socket_ring_hint": [
+    -0.125,
+    -0.012
+  ],
+  "skin_match": [
+    240,
+    180,
+    137
+  ],
+  "exact_native_outfit": true,
+  "offline_only": false,
+  "fit_method": "production shared body socket",
+  "fit_scale": 15.7,
+  "fit_matrix_blender": [
+    [
+      15.699525959213668,
+      -0.07303462477789281,
+      -0.09772716900134616,
+      2.455448176534876
+    ],
+    [
+      0.07492785937451643,
+      15.696835886803704,
+      0.30615185553210644,
+      0.3558918614422095
+    ],
+    [
+      0.09628328965619158,
+      -0.3066090121632937,
+      15.696710497483119,
+      107.08655809230531
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "trim": 97.77,
+  "seam_weights": {
+    "vertex_count": 17773,
+    "lower_overlap_blended_vertices": 195,
+    "minimum_seam_head_weight": 0.2790446539973539,
+    "upper_face_head_weight": 1.0
+  },
+  "skin_sample_patches": [
+    [
+      190,
+      300
+    ],
+    [
+      207,
+      315
+    ],
+    [
+      286,
+      302
+    ],
+    [
+      239,
+      358
+    ]
+  ],
+  "skin_sample_view": "Diffuse bright and intentionally shaded cheeks plus midtone below the mouth on the exact Gaijin Trader V2 donor. Original beard and dark eyes remain.",
+  "raw_skin_srgb": [
+    240,
+    180,
+    137
+  ],
+  "proof_pose_family": "fist"
+}

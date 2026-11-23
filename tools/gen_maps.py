@@ -664,9 +664,10 @@ def script_scene(chapter, sid, battles=None, stop_at=None, start_at=None):
         if ln.startswith("(") and ")" not in ln:
             buf = ln
             continue
-        m = re.match(r"^\[BATTLE (\w+)\]", ln)
-        if m:
-            out += (battles or {}).get(m.group(1), [])
+        ids = re.findall(r"\[BATTLE (\w+)\]", ln) if ln.startswith("[") else []
+        if ids:                                  # also "[PA Duel X] [BATTLE id]" (lion-ch1's Ashimita duel was lost)
+            for bid in ids:
+                out += (battles or {}).get(bid, [])
             continue
         if ln.startswith("["):
             continue
@@ -808,27 +809,110 @@ TRAVEL = [("KW", "Kaiu Wall", "G100", "M101", (68, 4)),
 TRAVEL_ALT = {"KH": ("G286", "M151", (54, 38))}     # after Crab Ch4 Kyuden Hida is the summer town
 
 
+# (user 2026-11-22: "the only clan that has fast travel is crab clan, all of them should get their own colored boxes
+# (based on clans) so they can use fast travel as well. After they all meet up make them all available (any visited)")
+# Every road's towns: (code, name, map, roads). The post is placed by make() (_auto_signpost); a visit is recorded by
+# the plugin when the map loads (bit k of G1640 + k // 30, k = index here). A traveler's own road offers its own
+# visited towns; once all eight roads are walked (the finale), every visited town on every road.
+TRAVEL_AUTO = [
+    ("PE", "Pleasant Eaves", "M202", ["P101"]), ("GR", "The Green Ronin's Village", "M205", ["P101"]),
+    ("GS", "Garden Under Shadow City", "M210", ["P101"]), ("CP", "The Crane Port", "M220", ["P101"]),
+    ("KD", "Kyuden Doji", "M228", ["P101"]),
+    ("IS", "The Isle of Silk", "M304", ["P102"]), ("SK", "Shiro Kitsuki", "M343", ["P102"]),
+    ("HT", "Hiruto's Castle Town", "M241", ["P103", "P104"]), ("SA", "Shiro Akodo", "M255", ["P103"]),
+    ("BB", "The Village of the Burned Bridge", "M267", ["P103"]),
+    ("SN", "Shiro no Kamatori", "M252", ["P104"]), ("ZU", "Zumiki", "M282", ["P104"]),
+    ("TC", "Honored Treaty City", "M285", ["P104"]), ("KI", "Kyuden Isawa", "M288", ["P104"]),
+    ("CT", "The Coast Temple Town", "M297", ["P104"]),
+    ("KB", "Kyuden Bayushi", "M347", ["P105"]), ("SH", "Shutai", "M349", ["P105"]), ("KU", "Kudo", "M351", ["P105"]),
+    ("HK", "Hisatu Kensu", "M360", ["P105"]), ("KT", "Kamen no Toshi", "M362", ["P105"]),
+    ("BL", "The Town of Buried Leaves", "M369", ["P105"]), ("SO", "Shioden", "M372", ["P105"]),
+    ("PP", "Perfume Petal Blossom", "M375", ["P105"]), ("DM", "Dragon Mountain Town", "M379", ["P105"]),
+    ("BA", "Buried Leaves (autumn)", "M387", ["P106"]), ("YO", "Yotomo", "M396", ["P106"]),
+    ("CK", "Cakon", "M416", ["P107"]), ("EV", "The Eta Village", "M418", ["P107"]),
+    ("FF", "The Village of Floating Flowers", "M424", ["P107"]),
+    ("WL", "The Village of the Wounded Lion", "M430", ["P107"]), ("OS", "The Oracle's Shrine Town", "M438", ["P107"]),
+]
+TRAVEL_AUTO_MAP = {t[2]: t for t in TRAVEL_AUTO}
+TRAVEL_SPOT = {}                                     # map -> arrival (x, z) on the padded map, filled by make()
+# each road's post: exterior free block 10 (Crab's grey box) or its clan-dyed copy (tools/gen_travel_posts.py)
+TRAVEL_POST = {"P100": 10, "P101": 60, "P102": 61, "P103": 62, "P104": 63, "P105": 64, "P106": 65, "P107": 66}
+
+
 def travel_cmds(here):
-    def node(code, name, flag_, mid, xz):
+    return [script('::Rokugan.travel( this, "%s", ::Rokugan.TRAVEL_NODES);' % here)]
+
+
+def write_travel_data():
+    """plugin/rokugan/RokuganTravelData.sk: every node (the Crab three with their flags, then TRAVEL_AUTO)."""
+    rows = []
+    for code, name, flag_, mid, xz in TRAVEL:
         alt = ""
         if code in TRAVEL_ALT:
             af, am, axz = TRAVEL_ALT[code]
             alt = ', altflag="%s", altmap="%s", altpos=[%.1f, null, %.1f, 0.0]' % (
                 af, am, (axz[0] + PAD_X) / 2.0, (axz[1] + PAD_BOTTOM) / 2.0)
-        return '{code="%s", name="%s", flag="%s", mapid="%s", pos=[%.1f, null, %.1f, 0.0]%s}' % (
-            code, name, flag_, mid, (xz[0] + PAD_X) / 2.0, (xz[1] + PAD_BOTTOM) / 2.0, alt)
-    table = ", ".join(node(*t) for t in TRAVEL)
-    return [script('::Rokugan.travel( this, "%s", [%s]);' % (here, table))]
+        rows.append('{code="%s", name="%s", flag="%s", bit=-1, mapid="%s", pos=[%.1f, null, %.1f, 0.0], '
+                    'pids=["P100"]%s}' % (code, name, flag_, mid, (xz[0] + PAD_X) / 2.0,
+                                          (xz[1] + PAD_BOTTOM) / 2.0, alt))
+    for k, (code, name, mid, pids) in enumerate(TRAVEL_AUTO):
+        if mid not in TRAVEL_SPOT:
+            make(mid)
+        x, z = TRAVEL_SPOT[mid]
+        rows.append('{code="%s", name="%s", flag=null, bit=%d, mapid="%s", pos=[%.1f, null, %.1f, 0.0], pids=[%s]}' % (
+            code, name.replace('"', '\\"'), k, mid, x / 2.0, z / 2.0, ", ".join('"%s"' % p for p in pids)))
+    path = os.path.join(PROJ, "plugin", "rokugan", "RokuganTravelData.sk")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("// Generated by tools/gen_maps.py write_travel_data: the fast-travel nodes (RokuganField "
+                "::Rokugan.travel).\n::Rokugan.TRAVEL_NODES <- [\n\t%s\n];\n" % ",\n\t".join(rows))
+    print("travel: %d nodes" % len(rows))
 
 
-def signpost(m, ev, x, z, here):
-    """A road-map post (exterior post1) + its examine event, and the node's visited flag."""
-    fb(m, x, z + 1, 3, 10)
+def signpost(m, ev, x, z, here, pid="P100"):
+    """A road-map post (exterior post1, dyed for the road's clan) + its examine event, and (the Crab three) the node's
+    visited flag."""
+    fb(m, x, z + 1, 3, TRAVEL_POST[pid])
     ev.talk(x, z - 1, "CE000", [(None, [narrate("A road map, painted on a weathered board. (Travel)")] +
                                  travel_cmds(here))], trigger=1)
-    flag_ = next(t[2] for t in TRAVEL if t[0] == here)
-    n = ev.scene(x, z - 2, flag_, [])                   # silent: arriving here marks the node visited
-    ev.ev["#%d#" % n]["spawndist"] = 5
+    flag_ = next((t[2] for t in TRAVEL if t[0] == here), None)
+    if flag_:
+        n = ev.scene(x, z - 2, flag_, [])               # silent: arriving here marks the node visited
+        ev.ev["#%d#" % n]["spawndist"] = 5
+
+
+def _auto_signpost(mid, m, ev):
+    """After pad(): the post on open ground near the middle of the town, beside a road where there is one, with room
+    in front for the board and the arrival; nothing within 3 blocks of another event."""
+    code, name, _mid, pids = TRAVEL_AUTO_MAP[mid]
+    seen = _reach(m, ev)
+    built = set()                                                          # anything built, even a low bench (Cakon)
+    for o in m.objs:
+        if o["t"] == "fill" and o["blk"] != 0:
+            built.update((o["x"] + i, o["z"] + j) for i in range(-1, o["w"] + 1) for j in range(-1, o["d"] + 1))
+        elif o["t"] in ("fb", "asset", "blk"):
+            built.update((o["x"] + i, o["z"] + j) for i in (-1, 0, 1) for j in (-1, 0, 1))
+    seen = {c for c in seen if c not in built}
+    taken = [(int(e["pos"][0]), int(e["pos"][2])) for e in ev.ev.values() if e.get("pos")]
+    cx, cz = m.w // 2, m.d // 2
+    best = None
+    for (x, z) in seen:
+        if not (PAD_X + 6 <= x < m.w - PAD_X - 6 and PAD_BOTTOM + 6 <= z < m.d - PAD_TOP - 6):
+            continue
+        if int(m.blk[z, x]) == ROAD or any((x + dx, z - dz) not in seen for dx in (-1, 0, 1) for dz in range(0, 5)):
+            continue
+        if any(abs(x - a) <= 3 and abs(z - dz) <= 5 for a, dz in taken):
+            continue
+        if any(abs(int(m.hgt[z - dz, x]) - int(m.hgt[z, x])) > 0 for dz in range(1, 4)):
+            continue
+        road = any(int(m.blk[z - dz, x + dx]) == ROAD for dx in (-1, 0, 1) for dz in range(1, 6))
+        score = abs(x - cx) + abs(z - cz) + (0 if road else 40)
+        if best is None or score < best[0]:
+            best = (score, x, z)
+    if best is None:
+        raise RuntimeError("No place for the travel post on %s" % mid)
+    _, x, z = best
+    signpost(m, ev, x, z - 1, code, pids[0])            # post at (x, z); the board 2 in front
+    TRAVEL_SPOT[mid] = (x, z - 3)
 
 
 def bust_hold(key, emo=None):
@@ -1021,7 +1105,7 @@ def road_coast(mid="M102", night=False):
                       "radish off you.", gap=1.4, reqs=ESCORT)
     ev.follower(3, 18, EP_SERVICE["cart"], "Rice, salt fish and one barrel of pickled radish.", lead=drv, gap=1.3,
                 reqs=ESCORT)
-    ev.talk(CAVE[0] + 2, CAVE[1] - 2, "CE000", [
+    ev.egg_cave_entry = ev.talk(CAVE[0] + 2, CAVE[1] - 2, "CE000", [
         (None, [narrate("A cave mouth in the cliff. It stinks of rotten eggs."),
                 say("Natsuko", "Not my business. I'm on leave.")]),
         ([flag("G024")], cave_enter())], trigger=1)
@@ -1058,7 +1142,7 @@ def follow_walk(m, ev):
     ev.npc(95, 19, EP["squeak"], "Squeak! Squeak!", reqs=[flag("G025"), flag("G026", False)])
     ev.npc(CAVE[0] + 3, CAVE[1] - 2, EP["squeak"], "Scout come! Come-come!", reqs=[flag("G026")])
     ev.scene(CAVE[0] + 3, CAVE[1] - 4, "G024", S05_CAVE, after="G027", touch=True)
-    ev.talk(CAVE[0] + 2, CAVE[1] - 2, "CE000", [([flag("G024")], cave_enter())], trigger=1)
+    ev.egg_cave_entry = ev.talk(CAVE[0] + 2, CAVE[1] - 2, "CE000", [([flag("G024")], cave_enter())], trigger=1)
     return ev
 
 
@@ -1087,7 +1171,10 @@ def hoshi_town():
         m.block(x, 32, FENCE)
         m.block(x, 37, FENCE)
     building(m, 68, 32, 14, 8, two_storey=True)                              # Satomi's tea house
-    building(m, 86, 32, 7, 5, wall_h=3, wall=WOOD)                           # noodle stall
+    # The open cedar noodle stall is dressed by the environment kit. Reserve its rear wall
+    # and outer posts, with the street-facing approach open for Kiyo and Taneo.
+    m.walls.extend([(x, 36) for x in range(83, 94)])
+    m.walls.extend([(83, 32), (94, 32), (94, 36)])
     # south side
     building(m, 4, 14, 16, 8, wall_h=5, two_storey=True)                     # the inn
     building(m, 44, 14, 9, 7)                                                # weapons & armour
@@ -1095,14 +1182,15 @@ def hoshi_town():
     building(m, 86, 14, 10, 7)                                               # goods
     shrine(m, 88, 60)
     torii(m, 89, 55)
-    for x in (24, 60, 84):
+    for x in (24, 60):
         fb(m, x, 29, 2, LAMP_STREET)
+    fb(m, 82, 30, 2, LAMP_STREET)
     for x, z in ((100, 45), (6, 50), (14, 58), (50, 62), (100, 66)):
         m.tree(x, z, TREE_L)
     ev = Events(m)
     ev.portal(1, 26, "M102", 2, d=1)
     signpost(m, ev, 6, 22, "HI")
-    ev.talk(89, 30, EP["kiyo"], townsperson("Kiyo", "Kiyo", "Drop soup! I'm putting it on the menu.") + [
+    ev.talk(90, 33, EP["kiyo"], townsperson("Kiyo", "Kiyo", "Drop soup! I'm putting it on the menu.") + [
         returned("I112", "G065", [narrate("Natsuko sets the pearl hairpin on the counter."),
                                   say("Kiyo", "My hairpin! I thought I'd dropped it in the soup!"),
                                   say("Natsuko", "Something with whiskers borrowed it.")],
@@ -1208,6 +1296,14 @@ def gonta_menu():
                     narrate("Objective: rest at the inn tonight.")]))]
 
 
+def quarry_shelter(m, x, z):
+    if not hasattr(m, "quarry_shelters"):
+        m.quarry_shelters = []
+    m.quarry_shelters.append((x, z))
+    # Poles and rear edge retain their footprint. The front of each tent opens.
+    m.walls.extend([(x, z), (x + 5, z)] + [(px, z + 4) for px in range(x, x + 6)])
+
+
 def quarry_camp():
     m = MapSpec("M104", "Old Quarry - Hidden Ones' camp", 80, 50, base=T(2, 6), y=3)
     m.rect(0, 0, 80, 9, GRASS, 6)                                            # the ridge (the town trail arrives)
@@ -1223,7 +1319,7 @@ def quarry_camp():
     for x in (4, 14, 47, 58, 73):
         m.tree(x, 3, (TREE_M, TREE_L)[x % 2])
     for x, z in ((10, 18), (22, 25), (54, 23), (66, 19)):                  # the Hidden Ones' ragged tents
-        tent(m, x, z)
+        quarry_shelter(m, x, z)
     m.tree(40, 21, ROCK_S)                                                   # the thin fire (campfire: events below)
     for x, z in ((33, 19), (34, 18)):
         fb(m, x, z, 4, IN["pot"])                                            # the empty pots (*1)
@@ -1370,8 +1466,7 @@ def egg_cave_1():
     m = cave_map("M130", "Egg Caves - the nests", 70, 44,
                  rooms=[(35, 4, 6, 4), (35, 17, 13, 7), (12, 19, 6, 5), (42, 33, 10, 6)],
                  links=[(35, 0, 35, 10, 5), (24, 18, 14, 19, 4), (37, 22, 41, 28, 5), (42, 36, 42, 44, 5)], seed=3)
-    for x, z in ((28, 15), (33, 20), (40, 14), (44, 19)):                 # straw nests (yellow flowers as straw)
-        m.block(x, z, TUFT)
+    # The environment kit sets woven nests on the cave floor.
     fb(m, 30, 12, 2, LAMP_CANDLE)
     fb(m, 46, 30, 2, LAMP_CANDLE)
     ev = Events(m)
@@ -1662,7 +1757,7 @@ def leave(pid):
 def hub_done(f):
     """Set a hub flag; when the four required hub scenes are done, point at the dance."""
     return [setf(f), if_(HUB4 + [flag("G209", False)],
-                         [narrate("Objective: the dance contest tonight, in the great hall (4F).")])]
+                         [narrate("Objective: the dance contest tonight, in the great hall (the keep, 1F).")])]
 
 
 ROOM_DIMS = {"M229": (40, 14), "M230": (30, 12), "M231": (44, 16), "M232": (44, 16), "M233": (40, 16),
@@ -1772,7 +1867,7 @@ def kh_town():
         m.tree(x, z, TREE_M)
     ev = Events(m)
     ev.portal(108, 32, "M140", 2, d=3)                                     # event 1: the Hida road (east side)
-    DOOR_EV[("M141", "castle")] = ev.portal(54, 46, "M142", 1, d=0)
+    DOOR_EV[("M141", "castle")] = ev.portal(54, 46, HIDA["reception"], 1, d=0)   # (2026-11-22: the castle grounds)
     ev.ev["#%d#" % DOOR_EV[("M141", "castle")]]["reqs0"] = [flag("G200")]
     ev.talk(54, 44, SC["townguard"], [
         (None, [say("Gate guard", "Court's in session. Hida business only.")]),
@@ -1780,7 +1875,7 @@ def kh_town():
             say("Gate guard", "Hiruma Natsuko? The karo's been asking for you since yesterday."),
             narrate("CHAPTER 2 - Winter Court at Kyuden Hida. (Recommended level 18)"),
             choices(("Go up to the court.", [setf("G200"), narrate("Seven floors of black stone...")] +
-                     [go("M146", 20, 12, padded=False)]),
+                     [go(HIDA["audience"], *HIDA_AUDIENCE, padded=False)]),
                     ("Not yet.", []))]),
         ([flag("G200")], [say("Gate guard", "Up you go, Hiruma-sama. The stairs are steep and so is the court.")])])
     for room, (fp, imid) in KH_ROOMS.items():
@@ -1943,66 +2038,130 @@ def castle_floor(mid, name, w, d, layout, up=None, down=None, wall=PLASTER, extr
     return m, ev
 
 
-def castle_1f():
-    def extra(m, ev):
-        ev.portal(36, 2, "M148", 1, d=2)                                   # event 3: the donjon door (after S04)
-        ev.ev["#3#"]["reqs0"] = [{"lvar": "G211", "op": ">", "rvar": 0}]
-        ev.talk(36, 3, "CE000", [(None, [narrate("An iron-bound door down to the cells. Locked.")]),
-                                 ([{"lvar": "G211", "op": ">", "rvar": 0}], [])], trigger=1)
-        ev.portal(2, 10, "M147", 1, d=1)                                   # event 5: the rear gate (the shrine path)
-        ev.ev["#5#"]["reqs0"] = [flag("G210")]
-        # barracks (left): free rest, Sachiko and the Wall Crabs (Sumai -> wall_crab_trust)
-        ev.inn(5, 13, EP_SERVICE["quartermaster"], 0)
-        ev.talk(8, 9, EP["sachiko"], [(None, ch2("S02", start_at="(HIDA SACHIKO and three",
-                                                 stop_at="[PA Sumai") + [
-            choices(("Sumai match with the Wall Crabs.", sumai_match("Wall Crab veteran", EP["veteran"], 60, WALL_WON(), WALL_LOST())),
-                    ("Quick throw (60%).", [script("W = ::Rokugan.roll( 60);"), if_([flag("W")], WALL_WON(), WALL_LOST())]),
+# ------------------------------------------------------------------ Kyuden Hida: the Winter Court roams the castle
+# (user 2026-11-22: "scrap the rooms and let the player roam the castle areas when they get there ... have the quest
+# marker of course lead them to the new right room") The court no longer lives in five small floor-rooms (M142-M146):
+# it is staged across the castle grounds and keep (CLAN_CASTLES[0], gen 2026-11): the barracks and the Sumai ring in
+# the Guard barracks, the archery in the Training court, Takeo's horses in the Stables, the winter garden in the
+# Courtyard garden, the guest wings in the Guest pavilion, the cellar stair and the donjon door at the Keep approach,
+# the shrine path from the Shrine court, the great hall on the keep's 1F and the audience hall on its 4F. The old room
+# ids stay as stubs that move an old save to the matching spot. Builder coordinates (yards 96 x 64, keep floors 94 x 61).
+HIDA = {"reception": "M500", "barracks": "M535", "stables": "M536", "training": "M537", "garden": "M538",
+        "guests": "M539", "approach": "M541", "shrine": "M542", "hall": "M501", "audience": "M504"}
+HIDA_AUDIENCE = (48, 44)                                     # in front of the Champion's dais (keep 4F)
+HIDA_CELLAR = (70, 9)                                        # in front of the cellar stair (Keep approach)
+
+
+def hida_door(key):
+    """A story doorway on a Kyuden Hida district (event id), building that district if it has not been yet."""
+    mid = {"donjon": HIDA["approach"], "shrinegate": HIDA["shrine"]}[key]
+    if (mid, key) not in DOOR_EV:
+        make(mid)
+    return DOOR_EV[(mid, key)]
+
+
+def hida_barracks(m, ev):
+    """Guard barracks: free rest with the quartermaster; Sachiko and the Wall Crabs at the Sumai ring."""
+    m.rect(22, 12, 14, 9, SAND, 3)                                         # the Sumai ring, trodden snow and sand
+    for x in (21, 36):
+        fb(m, x, 12, 3, 14)                                                # ring posts
+    ev.prop(12, 15, DECOR_EP["sword"], d=2)
+    ev.inn(14, 11, EP_SERVICE["quartermaster"], 0)
+    ev.talk(26, 10, EP["sachiko"], [(None, ch2("S02", start_at="(HIDA SACHIKO and three", stop_at="[PA Sumai") + [
+        choices(("Sumai match with the Wall Crabs.", sumai_match("Wall Crab veteran", EP["veteran"], 60, WALL_WON(),
+                                                                   WALL_LOST())),
+                ("Quick throw (60%).", [script("W = ::Rokugan.roll( 60);"), if_([flag("W")], WALL_WON(), WALL_LOST())]),
                 ("Not now.", []))]),
-            ([flag("G208")], [say("Sachiko", "Filed chains, he says. Filed! Court gets stranger every winter.")])])
-        ev.npc(11, 9, EP["veteran"], "Forty years on the Wall, and they invite me to court. I'm wrestling for sake.")
-        # outer yard (right): the archery contest (Kurako)
-        for x in (22, 25, 28):                                            # archery butts (clear of the stair)
-            fb(m, x, 14, 4, IN["shield"], y=1)
-        arch_won = [narrate("Natsuko's arrow splits the straw goblin's nose. The court applauds. "
-                            "Asako Kuhime claps a beat too late."), setf("G219", 1)]
-        # (user 2026-11-14: the mini-games give prizes) the contest's prize; every later win at the butts a tonic
-        arch_prize = [say("Yasuki Kurako", "The prize, Hiruma. A pilgrim's charm from the mountain shrines - it "
-                                           "keeps the feet sure.")] + got("A137", "the Mountain's-Feet Charm")
-        arch = [setf("W", 0)] + ch2("S02", start_at="(The court gathers", stop_at="> CHOICE") + [
-            choices(("Shoot to win.", mini_game("yumi", arch_won + arch_prize + [setf("G1232")], [
-                narrate("Natsuko's arrows find the straw, and not much else. A Crane courtier takes the prize."),
-                say("Isawa Mutsuye", "You're kind to let him have it."), setf("G219", 2)], arch_won)),
-                    ("Shoot to lose politely.", [narrate("The arrow lands politely in the straw."),
-                                                 say("Isawa Mutsuye", "You're kind."), setf("G219", 2)]),
-                    ("Shoot the straw goblin's hat off.", [narrate("The straw hat spins away. The court gasps. On his "
-                                                                   "balcony, the Champion almost smiles."),
-                                                           setf("G219", 3)]))] + hub_done("G205")
-        ev.talk(30, 10, SC["kurako"], [(None, arch)], reqs=[flag("G205", False)])
-        ev.talk(25, 13, "CE000", [(None, [                                  # (after the contest - Kurako has gone up
-            narrate("The archery butts. A quiver of practice arrows leans on the rail."),   # to 4F: shoot again, for fun)
-            choices(("Shoot another round.", mini_game("yumi", [
-                narrate("A servant runs the arrows back, grinning. \"Every one of them, Hiruma-sama!\""), setf("G1232")]
-                + got("I131", "a Ginseng Tonic"),
-                [narrate("Natsuko looks at the wind, then at the straw. The straw wins this time.")], [])),
-                    ("Leave the bow.", []))])], reqs=[flag("G205")], trigger=1)
-        guest_npc(ev, 21, 9, 1, TAKEO_SS, "The horses are saddled, Hiruma. Ride with me?",
-                  "I'm with you. Charge first, think later.",
-                  extra=("Race the yard again.", mini_game("race", [
-                      say("Kitsu Takeo", "Ha! The Matsu won't even look at us now. Here - the stable's tonic, for "
-                                         "the rider.")] + got("I131", "a Ginseng Tonic") + [setf("G1233")],
-                      [say("Kitsu Takeo", "The horses are tired. Or we are. Again some other day.")], [])))
-        guest_npc(ev, 36, 6, 2, MAI_SS, "More tea, Hiruma? Or more confessions?", "Ready when you are. I'll ask nicely.")
-        # basement stair: Yogo Shigeru and Kuni Taira over the troll notes
-        ev.talk(33, 4, SC["shigeru"], [(None, ch2("S02", start_at="**Yogo Shigeru", stop_at="**Yasuki Kurako**") +
-                                        [setf("G221")]),
-                                       ([flag("G221")], [say("Yogo Shigeru", "Another week. Just one more week.")])],
-                reqs=[flag("G211", 0)])
-        ev.npc(39, 4, SC["taira"], "That one's nearly worn out. Fascinating creature. Fascinating.",
-               reqs=[flag("G211", 0)])
-    return castle_floor("M142", "Kyuden Hida - 1F entry hall", 40, 14, [
-        ("futon", 2, 11), ("futon", 5, 11), ("futon", 2, 7), ("sword", 1, 15), ("pillar", 14, 4), ("pillar", 14, 12),
-        ("pillar", 26, 4), ("pillar", 26, 12), ("barrel", 38, 4), ("ricebag", 37, 15)],
-        up=("M143", 1), down=("M141", DOOR_EV[("M141", "castle")]), extra=extra)
+        ([flag("G208")], [say("Sachiko", "Filed chains, he says. Filed! Court gets stranger every winter.")])])
+    ev.npc(31, 10, EP["veteran"], "Forty years on the Wall, and they invite me to court. I'm wrestling for sake.")
+
+
+def hida_training(m, ev):
+    """Training court: the archery contest (Kurako) at the straw butts; after it, shoot again for fun."""
+    for x in (29, 33, 37):
+        fb(m, x, 19, 4, IN["shield"], y=int(m.hgt[19, x]))                 # archery butts
+    arch_won = [narrate("Natsuko's arrow splits the straw goblin's nose. The court applauds. "
+                        "Asako Kuhime claps a beat too late."), setf("G219", 1)]
+    # (user 2026-11-14: the mini-games give prizes) the contest's prize; every later win at the butts a tonic
+    arch_prize = [say("Yasuki Kurako", "The prize, Hiruma. A pilgrim's charm from the mountain shrines - it "
+                                       "keeps the feet sure.")] + got("A137", "the Mountain's-Feet Charm")
+    arch = [setf("W", 0)] + ch2("S02", start_at="(The court gathers", stop_at="> CHOICE") + [
+        choices(("Shoot to win.", mini_game("yumi", arch_won + arch_prize + [setf("G1232")], [
+            narrate("Natsuko's arrows find the straw, and not much else. A Crane courtier takes the prize."),
+            say("Isawa Mutsuye", "You're kind to let him have it."), setf("G219", 2)], arch_won)),
+                ("Shoot to lose politely.", [narrate("The arrow lands politely in the straw."),
+                                             say("Isawa Mutsuye", "You're kind."), setf("G219", 2)]),
+                ("Shoot the straw goblin's hat off.", [narrate("The straw hat spins away. The court gasps. On his "
+                                                               "balcony, the Champion almost smiles."),
+                                                       setf("G219", 3)]))] + hub_done("G205")
+    ev.talk(33, 11, SC["kurako"], [(None, arch)], reqs=[flag("G205", False)])
+    for x, z, k in ((28, 9, "courtier"), (38, 9, "servant")):             # the court watching the contest
+        ev.npc(x, z, SC[k], "The Champion is on his balcony. Shoot well, or shoot politely.",
+               reqs=[flag("G205", False)])
+    ev.talk(33, 15, "CE000", [(None, [                                     # (after the contest Kurako goes to the
+        narrate("The archery butts. A quiver of practice arrows leans on the rail."),   # great hall: shoot again)
+        choices(("Shoot another round.", mini_game("yumi", [
+            narrate("A servant runs the arrows back, grinning. \"Every one of them, Hiruma-sama!\""), setf("G1232")]
+            + got("I131", "a Ginseng Tonic"),
+            [narrate("Natsuko looks at the wind, then at the straw. The straw wins this time.")], [])),
+                ("Leave the bow.", []))])], reqs=[flag("G205")], trigger=1)
+
+
+def hida_stables(m, ev):
+    """Stables and stores: Kitsu Takeo walks the Champion's horses (his race, the Matsu)."""
+    guest_npc(ev, 30, 12, 1, TAKEO_SS, "The horses are saddled, Hiruma. Ride with me?",
+              "I'm with you. Charge first, think later.",
+              extra=("Race the yard again.", mini_game("race", [
+                  say("Kitsu Takeo", "Ha! The Matsu won't even look at us now. Here - the stable's tonic, for "
+                                     "the rider.")] + got("I131", "a Ginseng Tonic") + [setf("G1233")],
+                  [say("Kitsu Takeo", "The horses are tired. Or we are. Again some other day.")], [])))
+    for x in (26, 34):                                                     # the Matsu cousins, crowing
+        ev.npc(x, 9, SC["courtier"], "A Kitsu who can't hear his grandfathers can't ride either.",
+               reqs=[flag("G233", False)])
+
+
+def hida_approach(m, ev):
+    """Keep approach: the cellar stair house (the donjon door, open after S04), Yogo Shigeru and Kuni Taira over the
+    troll notes, Yogo Mai and her goblin at the foot of the stair."""
+    building(m, 64, 11, 12, 7, wall=STONEW, door=True)                    # the cellar stair house
+    dx, dz = door_of(64, 11, 12)
+    DOOR_EV[(m.mid, "donjon")] = n = ev.portal(dx, dz, "M148", 1, d=0)
+    ev.ev["#%d#" % n]["reqs0"] = [{"lvar": "G211", "op": ">", "rvar": 0}]
+    doorway(m, dx, dz)
+    ev.talk(dx, dz - 1, "CE000", [(None, [narrate("The cellar stair. An iron-bound door down to the cells. Locked.")]),
+                                  ([{"lvar": "G211", "op": ">", "rvar": 0}], [])], trigger=1)
+    ev.talk(62, 8, SC["shigeru"], [(None, ch2("S02", start_at="**Yogo Shigeru", stop_at="**Yasuki Kurako**") +
+                                    [setf("G221")]),
+                                   ([flag("G221")], [say("Yogo Shigeru", "Another week. Just one more week.")])],
+            reqs=[flag("G211", 0)])
+    ev.npc(78, 8, SC["taira"], "That one's nearly worn out. Fascinating creature. Fascinating.",
+           reqs=[flag("G211", 0)])
+    guest_npc(ev, 82, 14, 2, MAI_SS, "More tea, Hiruma? Or more confessions?", "Ready when you are. I'll ask nicely.")
+
+
+def hida_shrine(m, ev):
+    """Shrine court: the mountain path up to the women's shrine (open from the dawn of S03)."""
+    m.rect(80, 16, 13, 6, T(2, 4), int(m.hgt[18, 86]))                    # the red clay path up the mountain
+    torii(m, 82, 15, span=6, h=8)
+    DOOR_EV[(m.mid, "shrinegate")] = n = ev.portal(88, 18, "M147", 1, d=1)
+    ev.ev["#%d#" % n]["reqs0"] = [flag("G210")]
+    ev.talk(84, 18, "CE000", [(None, [narrate("The path up to the women's shrine. A guard turns you back: \"Not "
+                                             "before dawn, Hiruma-sama.\"")]),
+                             ([flag("G210")], [])], trigger=1)
+
+
+def castle_stub(mid, name, dest, x, z, padded=True):
+    """A retired story room: an old save that stood here moves at once to the same place in the roamable castle."""
+    m = MapSpec(mid, name, 12, 8, base=DARKWOOD, y=0)
+    m.rect(1, 1, 10, 6, PLANK, 1)
+    ev = Events(m)
+    ev.talk(6, 4, "CE000", [(None, [go(dest, x, z, padded=padded)])], trigger=6)
+    ROOM_OFS[mid] = embed(m, ev)
+    return m, ev
+
+
+def castle_1f():
+    return castle_stub("M142", "Kyuden Hida - 1F entry hall", HIDA["approach"], *HIDA_CELLAR)
 
 
 # ---- Guest side stories (sidestories/guests-07-12.md SS1; storyboard crab-ch2 "6 guest side-story icons").
@@ -2250,84 +2409,190 @@ OSHITO_RIBBON = [
     {"cmd": "cmd_itemop", "itemid": "I123", "op": 1, "num": 1, "LV": 1}] + honor(1) + [setf("G228")]
 
 
+def hida_garden(m, ev):
+    """Courtyard garden: the winter garden - a frozen carp pond, the bride and her friends, the Unicorn girls,
+    Daidoji Sakura alone by the wall."""
+    y = int(m.hgt[18, 18])
+    m.objs = [o for o in m.objs if not (o["t"] == "fb" and 10 <= o["x"] <= 28 and 11 <= o["z"] <= 26)]
+    m.rect(12, 13, 14, 11, SNOW, y)
+    m.rect(15, 16, 8, 4, WATER, y - 1)                                     # the frozen carp pond
+    live = [flag("G216", False)]
+    ev.talk(16, 11, SC["mutsuye"], [(None, ch2("S02", start_at="**Isawa Mutsuye**", stop_at="**Asako Kuhime**") +
+                                     hub_done("G202")),
+                                    ([flag("G202")], [say("Isawa Mutsuye", "\"He wasn't, this week.\" I keep thinking "
+                                                                           "about that, Hiruma-san. It's a nice thing "
+                                                                           "to be told.")]),
+                                    ([flag("G210")], [                    # (was apply_dialog_fixes "M143/#3#")
+                                        say("Isawa Mutsuye", "...I didn't do this, Hiruma-san. I don't even know what "
+                                                             "it is on my skin."),
+                                        dict(say("Hiruma Natsuko", "I know. Somebody threw it at you. I mean to find "
+                                                                   "out who."), emo="worried")])],
+            reqs=live)
+    ev.talk(20, 11, SC["kuhime"], [(None, ch2("S02", start_at="**Asako Kuhime**", stop_at="**Isawa Akiko**") +
+                                    hub_done("G203")),
+                                   ([flag("G203")], [say("Asako Kuhime", "She's exactly what she seems. I'd know.")])])
+    ev.talk(31, 16, SC["keiyomi"], [(None, ch2("S02", start_at="**Ide Keiyomi**", stop_at="**Shosuro Shiko**") +
+                                     hub_done("G204")),
+                                    ([flag("G204")], [narrate("Keiyomi spins on the frozen stones, alone.")]),
+                                    ([flag("G204"), flag("G231", False)], KEIYOMI_RIBBON)],
+            reqs=[flag("G210", False)])
+    ev.talk(9, 15, SC["akiko"], [(None, ch2("S02", start_at="**Isawa Akiko**", stop_at="**Ide Keiyomi**") +
+                                  [setf("G206")]),
+                                 ([flag("G206")], [say("Isawa Akiko", "Don't ask about the exploding Togashi!")])])
+    ev.talk(33, 21, SC["oshito"], [
+        (None, [say("Shinjo O-Shito", "Mother of six. I've seen worse than court. Not much worse.")]),
+        ([flag("G210"), {"lvar": "NUM_I123", "op": ">=", "rvar": 1}, flag("G228", False)], OSHITO_RIBBON),
+        ([flag("G228")], [say("Shinjo O-Shito", "Six children, and not one of them dances like that. She'd "
+                                                "have laughed at me for saying so.")])])
+    guest_npc(ev, 7, 21, 4, SAKURA_SS, "Need a spear that knows when to say no, Hiruma?", "I'm here, Hiruma.")
+
+
+def hida_guests(m, ev):
+    """Guest pavilion: the guest wings - Shosuro Shiko, Hiruma Kage, Ide Fujio and his cards, Yogo Shigeru's room
+    and Asako Kuhime's empty one (the Blue-Silk Veil Thread)."""
+    for x, z in ((58, 9), (84, 9)):                                        # the two rooms' screens and bedding
+        y = int(m.hgt[z, x])
+        fill(m, x - 2, y + 1, z + 2, 6, 3, 1, SHOJI)
+        fill(m, x - 1, y + 1, z + 1, 3, 1, 1, FUTON)
+    ev.talk(58, 8, "CE000", [(None, [narrate("Yogo Shigeru's room. Scrolls in a bad hand: love letters, "
+                                             "forged, to three different ladies.")]),
+                             ([flag("G210")], [narrate("Under the love letters, newer scrolls in a far better "
+                                                       "hand, pointing straight at Yogo Shigeru. Too neat. Planted.")])],
+            trigger=1)
+    ev.prop(61, 8, DECOR_EP["doc"], d=2)
+    ev.talk(84, 8, "CE000", [(None, [narrate("Asako Kuhime's room. The bedding hasn't been slept in.")])], trigger=1)
+    ev.chest(88, 8, "I122", 1)                                             # Blue-Silk Veil Thread
+    ev.talk(62, 26, SC["shiko"], [(None, ch2("S02", start_at="**Shosuro Shiko**", stop_at="**Yogo Shigeru") +
+                                   [setf("G207")]),
+                                  ([flag("G207")], [say("Shosuro Shiko", "The bride's friend never sleeps. Try the "
+                                                                         "barracks, Hiruma. Crabs hear things.")])])
+    ev.talk(80, 26, SC["kage"] if "kage" in SC else "EP301", [
+        (None, [say("Hiruma Kage", "Court is a map with no roads, Natsuko."), setf("G222")]),
+        ([flag("G210")], [say("Hiruma Kage", "...She danced. And now she's a body on the shrine steps. And they "
+                                             "look at Mutsuye.")]),
+        ([flag("G216")], [say("Hiruma Kage", "Leave me the map, Natsuko. I can't read it tonight.")])])
+    guest_npc(ev, 71, 9, 3, FUJIO_SS, "Need a scandal, Hiruma? I have several drafted.",
+              "My brush is wet and my reputation is terrible. Ready.", extra=FUJIO_AGAIN)
+
+
+# ---- the dance contest (user 2026-11-22: "dance minigame, build a stage for it with people from the region (importan
+# ones) to watch and judge, can do a Dance dance type hit the keys ... 2 difficulties easy and hard. with failure only
+# having her be laughed at. and depending on quality gets a crab accessory reward (different ones for how well it was
+# done)"; "make sure to use her model for it"). A noh-style stage in the middle of the great hall; the judges in a
+# row before it (Hida Yakamo, Kaiu Takakana, Yasuki Kurako), the Champion seated on a throne at its left, the court
+# behind the judges, the Wall Crabs along the right. Natsuko is called up by the Wall Crabs; her own 3-D model dances on the stage (plugin RokuganDance.sk);
+# Easy dances to the kagura (MU126), Hard to "Jo, Ha, Kyu" (MU127, slow to very fast, a dead stop). The grade (G1643:
+# 0 laughed at, 1 B, 2 A, 3 S - Easy tops out at A) is frozen on the first completed performance. After the contest a
+# musician keeps the stage open. The game records the new score and any prizes without replaying the court dialogue.
+DANCE_SPOT, DANCE_FRONT = (48, 21), (48, 16)                 # centre stage; in front of the stage (keep 1F, builder;
+#                                                              the camera looks from the low-z side: "front" is low z)
+DANCE_ON = HUB4 + [flag("G209", False)]                      # the contest is tonight: the court is in the hall
+DANCE_JUDGEMENTS = (
+    (3, 'Hida Yakamo', 'Ha! She dances like she fights. All the way in.'),
+    (2, 'Kaiu Takakana', 'A clean finish, Hiruma. That was good work.'),
+    (1, 'Yasuki Kurako', 'The court likes brave. You have more of it than most.'),
+)
+
+
+
+def dance_run(kind, laughed, fallback):
+    """A wardrobe-safe performance. Only the contest scene branches on the first result."""
+    sx, _, sz, _ = world(HIDA["hall"], *DANCE_SPOT, padded=False)
+    fx, _, fz, _ = world(HIDA["hall"], *DANCE_FRONT, padded=False)
+    run = '::rpgvar["%s"] = ::Rokugan.runDance( "%s", %.2f, %.2f, %.2f, %.2f, %.5f);'
+    commands = [setf(MINI_RES, 0), script(run % (MINI_RES, kind, sx, sz, fx, fz, math.pi))]
+    if not kind.endswith("_practice"):
+        judged = [if_([{"lvar": "G1643", "op": "==", "rvar": grade}], [say(speaker, line)])
+                  for grade, speaker, line in DANCE_JUDGEMENTS]
+        commands.append(if_([{"lvar": MINI_RES, "op": "==", "rvar": 1}], judged,
+                            [if_([{"lvar": MINI_RES, "op": "==", "rvar": 2}], laughed, fallback)]))
+    return commands
+
+
+def hida_stage(m):
+    """The dance stage: cypress boards on a dark frame a step up, four pillars, a beam, a screen behind; the judges'
+    platform at its left, the Champion's seat at its right, lanterns at the corners."""
+    y = int(m.hgt[23, 48])
+    m.rect(41, 18, 15, 10, DARKWOOD, y + 1)
+    m.rect(42, 19, 13, 8, WOOD, y + 1)
+    m.rect(46, 17, 5, 1, DARKWOOD, y)                                     # the front step (toward the camera)
+    for x, z in ((41, 18), (55, 18), (41, 27), (55, 27)):
+        fill(m, x, y + 2, z, 1, 6, 1, DARKWOOD)                            # the four pillars
+    fill(m, 41, y + 8, 27, 15, 1, 1, DARKWOOD)                             # the beam over the back pillars
+    fill(m, 42, y + 2, 28, 13, 5, 1, SHOJI)                                # the screen behind her
+    # (user 2026-11-22: "make a throne and have him sit down") the Champion's dais at the stage's left, a dark throne
+    # on it, its high back behind him; he faces the stage
+    m.rect(34, 19, 6, 9, DARKWOOD, y + 2)
+    m.rect(40, 22, 1, 3, DARKWOOD, y + 1)                                  # a step down toward the stage
+    fill(m, 35, y + 3, 22, 1, 5, 3, DARKWOOD)                              # the high back (no seat or arm blocks:
+    fill(m, 35, y + 8, 21, 1, 1, 5, SHOJI)                                 # whole blocks hid him from the camera;
+    #                                                                        his seated pose covers the seat)
+    for x, z in ((39, 16), (57, 16), (39, 29), (57, 29)):
+        fb(m, x, z, 2, LAMP_STREET)
+
+
+def hida_hall(m, ev):
+    """Keep 1F: the great hall and its kitchens - the dance stage (the contest starts as you come in once the four
+    court threads are done, S02b), Kurako at the judges' platform, the sake run to the audience hall."""
+    hida_stage(m)
+    # the judges sit in a row before the stage (Kurako stays there after the contest); the court behind them; the Wall
+    # Crabs along the right; Keiyomi waiting her turn at the stage's right corner
+    ev.talk(52, 15, SC["kurako"], [(None, ch2("S02", start_at="**Yasuki Kurako**", stop_at="### Archery"))],
+            reqs=[flag("G205")], d=0)
+    for x, z, key, d in ((44, 15, "yakamo", 0), (48, 15, "takakana", 0),
+                         (42, 12, "kage", 0), (46, 12, "mutsuye", 0), (50, 12, "kuhime", 0), (54, 12, "oshito", 0),
+                         (58, 12, "shiko", 0), (57, 19, "keiyomi", 3)):
+        ev.npc(x, z, SC[key], "(The dance contest. Not now.)", d=d, reqs=DANCE_ON)
+    for z, key in ((21, "sachiko"), (23, "veteran"), (25, "veteran")):
+        ev.npc(58, z, EP[key], "Go on, Hiruma! For the Wall!", d=3, reqs=DANCE_ON)
+    # Hida Kisada on his throne (seated: the court_throne clip, RokuganDance.sk; his tetsubo put away by the pose)
+    n = ev.talk(36, 23, SC["kisada"], [(None, [narrate("The Champion watches the stage. He does not look at you.")])],
+                reqs=DANCE_ON, d=1)
+    e = ev.ev["#%d#" % n]
+    e["pos"][1] = int(m.hgt[23, 37]) + 1                                    # (on the dais, not on the seat block)
+    for pg in e["page"]:
+        pg["ani"], pg["standani"] = {"id": "court_throne"}, {"id": "court_throne"}
+    # after the contest: a musician keeps the stage (dance again for the prizes not yet won)
+    kindly = [narrate("The musicians hide their smiles behind their sleeves. Kindly.")]
+    musician = [narrate("A musician sits by the stage with a flute across her knees. \"Dance, Hiruma-sama? I know "
+                        "both pieces.\""),
+                choices(("Dance. (Easy)", dance_run("dance_easy_practice", kindly, [])),
+                        ("Dance. (Hard)", dance_run("dance_hard_practice", kindly, [])),
+                        ("Not now.", []))]
+    ev.talk(54, 16, SC["servant"], [(None, musician)], reqs=[flag("G209")], d=0)
+    ev.talk(62, 31, SC["servant"], [(None, [say("Kitchen servant", "Sake for the audience hall, sake for the "
+                                                                   "audience hall...")])],
+            reqs=[flag("G212", False)])
+    ev.chest(63, 33, "I125", 1)                                            # kitchens: Fine Sake
+    s02b = [c for c in ch2("S02b") if c.get("text") != "Fade. The barracks."]
+    opening, keiyomi = s02b[0]["text"].split(" Then ", 1)                  # (the canon line, split round Natsuko's turn)
+    laughed = [narrate("The court laughs behind its fans. Somewhere a fan snaps shut, too late to hide it."),
+               dict(say("Hiruma Natsuko", "x"), text="(Well. The Wall doesn't dance either.)", emo="hurt"),   # say() cuts a line all in brackets to nothing
+               say("Hida Sachiko", "...You were great. Don't listen to them.")]
+    shrug = [narrate("Natsuko dances. Not well, not badly. The court claps the way courts clap.")]
+    natsuko_turn = [
+        say("Yasuki Kurako", "And for the Crab! The Wall Crabs have put forward a name. Hiruma Natsuko!"),
+        narrate("At the back of the hall the Wall Crabs stamp and cheer. Hida Sachiko is grinning. This was her idea."),
+        narrate("The judges: Hida Yakamo, the Champion's son; Kaiu Takakana; Yasuki Kurako. On his seat above the "
+                "stage, Hida Kisada watches."),
+        choices(("Dance. (Easy)", dance_run("dance_easy", laughed, shrug)),
+                ("Dance. (Hard)", dance_run("dance_hard", laughed, shrug)),
+                ("Bow out.", [narrate("Natsuko bows to the judges and steps back. Sachiko groans.")]))]
+    ev.scene(48, 9, "G209", [narrate(opening)] + natsuko_turn + [narrate("Then " + keiyomi)] + s02b[1:] +
+             [narrate("Natsuko sleeps in the barracks. Badly.")] + DARK + REST + [narrate("Dawn."), go("M147", 40, 6)],
+             after=HUB4, touch=True)
+
+
 def castle_2f():
-    """The winter garden: a snowy courtyard inside the keep, a frozen carp pond, pines."""
-    def extra(m, ev):
-        m.rect(5, 4, 30, 10, SNOW, 1)
-        m.rect(14, 7, 8, 4, WATER, 1)                                     # level with the floor: water gets a bed
-        for x, z in ((7, 12), (33, 12)):                                  # two dwarf pines
-            m.tree(x, z, ROCK_S)
-            fb(m, x, z, 11, 3, y=1)
-        live = [flag("G216", False)]
-        ev.talk(18, 12, SC["mutsuye"], [(None, ch2("S02", start_at="**Isawa Mutsuye**", stop_at="**Asako Kuhime**") +
-                                         hub_done("G202")),
-                                        ([flag("G202")], [say("Isawa Mutsuye", "\"He wasn't, this week.\" I keep thinking about that, "
-                                                                       "Hiruma-san. It's a nice thing to be told.")])],
-                reqs=live)
-        ev.talk(21, 12, SC["kuhime"], [(None, ch2("S02", start_at="**Asako Kuhime**", stop_at="**Isawa Akiko**") +
-                                        hub_done("G203")),
-                                       ([flag("G203")], [say("Asako Kuhime", "She's exactly what she seems. I'd know.")])])
-        ev.talk(29, 8, SC["keiyomi"], [(None, ch2("S02", start_at="**Ide Keiyomi**", stop_at="**Shosuro Shiko**") +
-                                        hub_done("G204")),
-                                       ([flag("G204")], [narrate("Keiyomi spins on the frozen stones, alone.")]),
-                                       ([flag("G204"), flag("G231", False)], KEIYOMI_RIBBON)],
-                reqs=[flag("G210", False)])
-        ev.talk(10, 9, SC["akiko"], [(None, ch2("S02", start_at="**Isawa Akiko**", stop_at="**Ide Keiyomi**") +
-                                      [setf("G206")]),
-                                     ([flag("G206")], [say("Isawa Akiko", "Don't ask about the exploding Togashi!")])])
-        ev.talk(34, 5, SC["oshito"], [
-            (None, [say("Shinjo O-Shito", "Mother of six. I've seen worse than court. Not much worse.")]),
-            ([flag("G210"), {"lvar": "NUM_I123", "op": ">=", "rvar": 1}, flag("G228", False)], OSHITO_RIBBON),
-            ([flag("G228")], [say("Shinjo O-Shito", "Six children, and not one of them dances like that. She'd "
-                                                    "have laughed at me for saying so.")])])
-        guest_npc(ev, 6, 8, 4, SAKURA_SS, "Need a spear that knows when to say no, Hiruma?", "I'm here, Hiruma.")
-    return castle_floor("M143", "Kyuden Hida - 2F winter garden", 38, 14, [
-        ("pillar", 4, 3), ("pillar", 36, 3), ("candle", 3, 15), ("candle", 36, 15)],
-        up=("M144", 1), down=("M142", 2), wall=WOOD, extra=extra)
+    return castle_stub("M143", "Kyuden Hida - 2F winter garden", HIDA["garden"], 18, 9)
 
 
 def castle_3f():
-    def extra(m, ev):
-        ev.talk(6, 12, "CE000", [(None, [narrate("Yogo Shigeru's room. Scrolls in a bad hand: love letters, "
-                                                 "forged, to three different ladies.")]),
-                                 ([flag("G210")], [narrate("Under the love letters, newer scrolls in a far better "
-                                                           "hand, pointing straight at Yogo Shigeru. Too neat. Planted.")])],
-                trigger=1)
-        ev.talk(16, 8, SC["shiko"], [(None, ch2("S02", start_at="**Shosuro Shiko**", stop_at="**Yogo Shigeru") +
-                                      [setf("G207")]),
-                                     ([flag("G207")], [say("Shosuro Shiko", "The bride's friend never sleeps. Try the "
-                                                                            "barracks, Hiruma. Crabs hear things.")])])
-        ev.talk(26, 9, SC["kage"] if "kage" in SC else "EP301", [
-            (None, [say("Hiruma Kage", "Court is a map with no roads, Natsuko."), setf("G222")]),
-            ([flag("G210")], [say("Hiruma Kage", "...She danced. And now she's a body on the shrine steps. And they "
-                                                 "look at Mutsuye.")]),
-            ([flag("G216")], [say("Hiruma Kage", "Leave me the map, Natsuko. I can't read it tonight.")])])
-        ev.talk(33, 12, "CE000", [(None, [narrate("Asako Kuhime's room. The bedding hasn't been slept in.")])],
-                trigger=1)
-        ev.chest(35, 13, "I122", 1)                                        # Blue-Silk Veil Thread
-        guest_npc(ev, 12, 9, 3, FUJIO_SS, "Need a scandal, Hiruma? I have several drafted.",
-                  "My brush is wet and my reputation is terrible. Ready.", extra=FUJIO_AGAIN)
-    return castle_floor("M144", "Kyuden Hida - 3F guest wings", 38, 14, [
-        ("screen", 10, 6, 1), ("screen", 21, 6, 1), ("screen", 30, 6, 1), ("futon", 3, 11), ("futon", 32, 11),
-        ("doc", 6, 13), ("candle", 13, 14), ("lowchest", 23, 14)],
-        up=("M145", 1), down=("M143", 2), extra=extra)
+    return castle_stub("M144", "Kyuden Hida - 3F guest wings", HIDA["guests"], 71, 6)
 
 
 def castle_4f():
-    def extra(m, ev):
-        ev.talk(14, 9, SC["kurako"], [(None, ch2("S02", start_at="**Yasuki Kurako**", stop_at="### Archery"))],
-                reqs=[flag("G205")])
-        ev.talk(30, 12, SC["servant"], [(None, [say("Kitchen servant", "Sake for the 6th floor, sake for the 6th "
-                                                                        "floor...")])], reqs=[flag("G212", False)])
-        ev.chest(33, 13, "I125", 1)                                        # kitchens: Fine Sake
-        dance = [c for c in ch2("S02b") if c.get("text") != "Fade. The barracks."]
-        ev.scene(4, 4, "G209", dance + [narrate("Natsuko sleeps in the barracks. Badly.")] + DARK + REST + [
-            narrate("Dawn."), go("M147", 40, 6)], after=HUB4, touch=True)
-    return castle_floor("M145", "Kyuden Hida - 4F great hall", 38, 14, [
-        ("table", 8, 7), ("table", 14, 7), ("table", 20, 7), ("table", 8, 11), ("table", 14, 11), ("table", 20, 11),
-        ("dish", 8, 7), ("dish", 20, 11), ("counter", 31, 10), ("barrel", 36, 12), ("ricebag", 35, 14),
-        ("hearth", 34, 6), ("candle", 3, 12), ("candle", 25, 12)],
-        up=("M146", 1), down=("M144", 2), extra=extra)
+    return castle_stub("M145", "Kyuden Hida - 4F great hall", HIDA["hall"], 48, 14, padded=False)
 
 
 S01 = ch2("S01") + got("I120", "the Blue Flare") + [setf("G217")] + join("P123", "Hiruma Goro", [
@@ -2336,8 +2601,8 @@ S01 = ch2("S01") + got("I120", "the Blue Flare") + [setf("G217")] + join("P123",
                        "look large."),
     say("Natsuko", "Do you also look at exits?"),
     say("Hiruma Goro", "Constantly.")]) + [narrate(
-    "Objective: vet Isawa Mutsuye. The court is on floors 1-4: talk to the bride, her friend, the Unicorn girl, and "
-    "shoot at the archery contest (1F yard).")]
+    "Objective: vet Isawa Mutsuye. The court is all over the castle grounds: the bride, her friend and the Unicorn "
+    "girl in the courtyard garden, and the archery contest in the training court.")]
 S04_HEAD = ch2("S04", stop_at="> CHOICE")
 ACC_MUTSUYE = ("Isawa Mutsuye.", [setf("G211", 1)] + ch2("S04", start_at="      SHIBA NOBORU",
                                                         stop_at="      [BATTLE") +
@@ -2353,8 +2618,8 @@ ACC_NIGHT = ("No one yet. One more night.", [setf("G211", 3)] + ch2("S04", start
 S04 = S04_HEAD + [
     if_([flag("G210"), flag("G208")], [choices(ACC_MUTSUYE, ACC_SHIGERU, ACC_NIGHT)],
         [choices(ACC_MUTSUYE, ACC_SHIGERU)]),
-    narrate("Night. Objective: follow the grey mud. The cellar door on 1F is open."),
-    go("M142", 36, 4, padded=False)]
+    narrate("Night. Objective: follow the grey mud. The cellar stair at the keep approach is open."),
+    go(HIDA["approach"], *HIDA_CELLAR)]
 S07 = ch2("S07", stop_at="[CHAPTER COMPLETE]") + [
     narrate("\"Winter Court at Kyuden Hida\" - complete."),
     narrate("A dancer without a face, a bride with a stain thrown on her, and a puppet's word-perfect confession. "
@@ -2367,24 +2632,42 @@ S07 = ch2("S07", stop_at="[CHAPTER COMPLETE]") + [
     leave("P123"), leave("P120"), leave("P124"), setf("G216")]
 
 
+def hida_audience(m, ev):
+    """Keep 4F: the audience hall - the Champion on his dais, Takakana at his side, the window over the Wall; S01, S04
+    and S07 (and Crab Ch4's wedding) play here. (user 2026-11-22: "court scenes need some help") The people a scene
+    is about stand in the hall while it is due: the hearing of S04 has the bride, her friend, the accused and the
+    Phoenix duellist in the room, not just two voices."""
+    y = int(m.hgt[50, 48])
+    fill(m, 38, y + 1, 48, 20, 1, 5, TATAMI)                               # the dais
+    fill(m, 41, y + 1, 56, 14, 3, 1, SHOJI)                                # the painted screen behind the Champion
+    k = ev.npc(48, 51, SC["kisada"], "...", d=2)
+    ev.ev["#%d#" % k]["pos"][1] += 1                                      # standing on the dais
+    ev.npc(43, 49, EP["takakana"], "The Champion is listening, Hiruma. He is always listening.", d=2)
+    ev.talk(78, 57, "CE000", [(None, [narrate("The window over the Wall. Grey stone to the edge of sight, and beyond "
+                                              "it, the dark.")])], trigger=1)
+    hearing = [flag("G210"), flag("G230", False)]                         # S04 is due
+    for x, z, k, line in ((34, 44, "mutsuye", "(very still) ..."), (37, 42, "kuhime", "Such a long court. Such pretty "
+                                                                                     "dancers."),
+                          (59, 44, "shigeru", "I didn't. I wouldn't. Ask anyone. Ask the troll."),
+                          (62, 42, "noboru", "The Phoenix will have its answer, Hiruma."),
+                          (30, 40, "kage", "Say what the mud says, Natsuko. Nothing more.")):
+        ev.npc(x, z, SC[k], line, reqs=hearing, d=2)
+    ev.npc(37, 42, SC["kuhime"], "Such a long court. Such pretty dancers.", reqs=[flag("G230"), flag("G216", False)])
+    ev.npc(32, 44, SC["kage"], "Court is a map with no roads, Natsuko.", reqs=[flag("G200"), flag("G201", False)])
+    ev.scene(50, 40, "G201", S01, after="G200")
+    ev.scene(51, 40, "G230", S04, after="G210")
+    ev.scene(52, 40, "G216", S07, after="G214")
+    ch4_wedding(ev)                                                        # Crab Ch4 S01
+
+
 def castle_6f():
-    """5F corridor with the window over the Wall (front) and the 6F audience hall (back)."""
-    def extra(m, ev):
-        fill(m, 1, 2, 7, 12, 3, 1, SHOJI)                                  # the hall's screens
-        fill(m, 27, 2, 7, 12, 3, 1, SHOJI)
-        ev.talk(4, 2, "CE000", [(None, [narrate("The window over the Wall. Grey stone to the edge of sight, and "
-                                                "beyond it, the dark.")])], trigger=1)
-        ev.npc(20, 15, EP["kisada"] if "kisada" in EP else "EP300", "...", reqs=None)
-        ev.npc(17, 13, EP["takakana"], "The Champion is listening, Hiruma. He is always listening.")
-        ev.npc(9, 11, SC["kuhime"], "Such a long court. Such pretty dancers.", reqs=[flag("G210")])
-        ev.scene(20, 9, "G201", S01, after="G200")
-        ev.scene(20, 8, "G230", S04, after="G210")
-        ev.scene(20, 7, "G216", S07, after="G214")
-        ch4_wedding(ev)                                                    # Crab Ch4 S01
-    return castle_floor("M146", "Kyuden Hida - 5F/6F audience hall", 38, 15, [
-        ("dais", 15, 13, 9, 3), ("pillar", 6, 9), ("pillar", 33, 9), ("candle", 13, 15), ("candle", 26, 15),
-        ("candle", 6, 13), ("candle", 33, 13)],
-        down=("M145", 2), extra=extra)
+    return castle_stub("M146", "Kyuden Hida - 5F/6F audience hall", HIDA["audience"], *HIDA_AUDIENCE, padded=False)
+
+
+# district / keep floor -> its story (clan_castle_yard and clan_castle_floor call these last)
+CASTLE_STORY = {HIDA["barracks"]: hida_barracks, HIDA["training"]: hida_training, HIDA["stables"]: hida_stables,
+                HIDA["approach"]: hida_approach, HIDA["shrine"]: hida_shrine, HIDA["garden"]: hida_garden,
+                HIDA["guests"]: hida_guests, HIDA["hall"]: hida_hall, HIDA["audience"]: hida_audience}
 
 
 # ---- S03 the women's shrine (dawn)
@@ -2398,7 +2681,7 @@ S03 = after_line(ch2("S03"), "You were the only honest thing here.", [
     narrate("Isawa Mutsuye stands at the edge of the ring. There is a dark stain at her collar: fresh Taint."),
     narrate("Someone finds scrolls in Yogo Shigeru's room. They name him. Neatly."),
     narrate("Asako Kuhime, who found the body, has wet mud on her hem.")]) + MICHIO + [
-    setf("G210"), narrate("Dusk. The audience hall."), go("M146", 20, 10, padded=False)]
+    setf("G210"), narrate("Dusk. The audience hall."), go(HIDA["audience"], *HIDA_AUDIENCE, padded=False)]
 
 
 def womens_shrine():
@@ -2415,7 +2698,7 @@ def womens_shrine():
     for x in (8, 18, 56, 66, 74):
         m.tree(x, 30, TREE_M)
     ev = Events(m)
-    ev.portal(39, 1, "M142", 5, d=2)
+    ev.portal(39, 1, HIDA["shrine"], hida_door("shrinegate"), d=2)
     ev.prop(39, 22, SC["servant"], msg="A cloth over her face.", d=0, reqs=[flag("G229", False)])
     for x, z, k in ((34, 18, "mutsuye"), (44, 18, "kuhime"), (31, 16, "oshito"), (47, 16, "akiko")):
         ev.npc(x, z, SC[k], "...", reqs=[flag("G210", False)])
@@ -2446,7 +2729,7 @@ def donjon_1():
     for x in range(26, 46, 4):                                             # cell bars
         m.block(x, 21, FENCE)
     ev = Events(m)
-    ev.portal(35, 1, "M142", 3, d=2)                                       # event 1: up to 1F
+    ev.portal(35, 1, HIDA["approach"], hida_door("donjon"), d=2)              # event 1: up to the keep approach
     ev.portal(35, 38, "M149", 1, d=0)
     ev.scene(35, 6, "G224", S05_IN_CRAB2, touch=True)
     ev.talk(30, 18, "CE000", [(None, [narrate("The troll's cell. The door hangs open; the chains lie in pieces, the "
@@ -2489,7 +2772,7 @@ S06_IN_CRAB2 = ch2("S06", stop_at="[BATTLE b_boss_puppet_troll]") + [narrate(
 S06_OUT = ch2("S06", start_at="(Victory.", stop_at="> CHOICE") + [choices(
     ("Spare him. Tell his family he was innocent.", [setf("G215")] + honor(1)),
     ("End it quickly.", [narrate("Natsuko does it quickly. It is the kindest thing she has.")]))] + [
-    setf("G214"), narrate("Morning. The audience hall."), go("M146", 20, 10, padded=False)]
+    setf("G214"), narrate("Morning. The audience hall."), go(HIDA["audience"], *HIDA_AUDIENCE, padded=False)]
 
 
 def donjon_2():
@@ -3326,10 +3609,26 @@ def magistrate():
 
 
 def storehouse():
-    return interior("M125", "Hoshi-no-Ichi - Storehouse", 8, 6, [
-        ("ricebag", 2, 6), ("ricebag", 3, 7), ("ricebag", 2, 4), ("barrel", 7, 7), ("barrel", 7, 5), ("box", 6, 3)],
-        ("M103", DOOR_EV[("M103", "store")]),
-        chests=[(4, 6, "N000", 200)])
+    mid = "M125"
+    m, ev = interior(mid, "Hoshi-no-Ichi - Storehouse", 22, 14, [],
+                     ("M103", DOOR_EV[("M103", "store")]),
+                     chests=[(10, 12, "N000", 200)], scale=1)
+    ox, oz = ROOM_OFS[mid]
+    # Retain the return gate and loot event, then build a new cutaway shell.
+    m.objs.clear()
+    fill(m, ox, 2, oz + 16, 24, 5, 1, PLASTER)
+    for x in (ox, ox + 23):
+        fill(m, x, 2, oz, 1, 5, 17, PLASTER)
+    for x, w in ((ox + 1, 9), (ox + 14, 9)):
+        fill(m, x, 2, oz, w, 1, 1, DARKWOOD)
+    m.walls.extend((ox+x,oz+z) for left,front,width,depth in ((2,13,6,2),(15,13,7,2),(3,5,2,5),(18,5,3,6))
+                   for x in range(left,left+width) for z in range(front,front+depth))
+    treasure = ev.ev["#2#"]
+    treasure["mdlid"] = "CE000"
+    treasure["mdl"] = {"r": [0, .45, 0, .49, .55, .41]}
+    # Previous saves keep all IDs for the two gameplay events and the dormant followers.
+    ev.n = 4
+    return m, ev
 
 
 INTERIORS = {"M110": office, "M111": barracks, "M112": armoury, "M113": jadestore, "M120": hoshi_inn,
@@ -3780,8 +4079,6 @@ def battle_shadowlands():
     for x in range(0, 128):
         hh = 9 + int(3 * np.sin(x * 0.15) + 2 * np.sin(x * 0.37))
         m.rect(x, 92, 1, 36, T(0, None), hh)
-    for x in range(6, 128, 12):
-        m.tree(x, 84 + (x * 5) % 6, (TREE_L, TREE_M)[x % 2])
     return m
 
 
@@ -3797,10 +4094,11 @@ def battle_road_home():
 
 # ------------------------------------------------------------------------------------------- Crab Ch4
 # "The Fairest One of All" (production/crab-ch4.md, storyboards/crab-ch4.md). Flags G270-G291 (gen_data).
-# M101 (the call) -> M146 6F audience hall (S01 wedding) -> M151 summer town (last free roam, T4 stalls) -> M152 siege
-# yard at night (S02, tampered traps, b_siege_breach_a) -> M153 cellars (b_siege_breach_b, S03 the barrel, save) ->
-# M154-M156 the dark castle (S04 the stalk: tests, Dread, Split up) -> M157 deep tunnels (S05 chase, blue flare) ->
-# M158 the Wall top (S06 boss, S07 smoke, Kage) -> M151 at dawn.
+# M101 (the call) -> the keep's 4F audience hall (S01 wedding) -> M151 summer town (last free roam, T4 stalls) ->
+# the castle at night (2026-11-22, the roamable castle: S02 and b_siege_breach_a in the Entrance reception, the cellar
+# stair at the Keep approach) -> M153 cellars (b_siege_breach_b, S03 the barrel, save) -> the keep 1F-3F (S04 the
+# stalk: tests, Dread, Split up; see siege_reception and on) -> M157 deep tunnels (S05 chase, blue flare) -> M158 the
+# Wall top (S06 boss, S07 smoke, Kage) -> M151 at dawn. M152 and M154-M156 are stubs for old saves.
 CH4 = "crab-ch4"
 TAMPERED = T(0, 4)                                              # the jammed roller / filled pit: scuffed yellow earth
 
@@ -3818,7 +4116,7 @@ CH4_START = [narrate("CHAPTER 4 - The Fairest One of All. (Recommended level 34)
              *gestures("facepalm"),                                         # (user: "a face palm as well")
              narrate("Natsuko thinks about grey mud on a hem, and says nothing."),
              gesture("stand"),
-             setf("G270"), go("M146", 20, 11, padded=False)]
+             setf("G270"), go(HIDA["audience"], *HIDA_AUDIENCE, padded=False)]
 S01_CH4 = ch4("S01", stop_at="[IF same_woman_proven]") + [
     narrate("(Free roam in the castle town: the stalls sell Kaiu-forged gear. Night will fall when you return to the "
             "castle.)"),
@@ -3870,7 +4168,7 @@ def kh_town_summer():
     ev.talk(54, 44, SC["townguard"], [(None, [
         say("Gate guard", "Back up to the feast, Hiruma-sama? It'll be dark soon."),
         choices(("Go back up to the castle. (Night falls.)", [
-            narrate("Night falls over Kyuden Hida. Then the war drums start."), go("M152", 50, 8)]),
+            narrate("Night falls over Kyuden Hida. Then the war drums start."), go(HIDA["reception"], 48, 8)]),
                 ("Not yet.", [step_back(0, -2.0)]))])], reqs=[flag("G286", False)])
     ev.npc(54, 44, SC["townguard"], "Quiet, after all that. Too quiet, if you ask me.", reqs=[flag("G286")])
     return m, ev
@@ -3902,42 +4200,7 @@ def trap_tile(ev, x, z):
 
 
 def siege_yard():
-    m = MapSpec("M152", "Kyuden Hida - the outer yard (siege)", 100, 44, base=T(0, 5), y=3)
-    m.rect(0, 32, 100, 12, KAIU, 16)                                        # the Wall behind the yard
-    for x in range(0, 100, 4):
-        fill(m, x, 17, 32, 2, 2, 2, KAIU)
-    for x in range(8, 96, 12):                                              # siege ladders against the Wall
-        fill(m, x, 4, 31, 1, 12, 1, DARKWOOD)
-        fb(m, x + 2, 30, 2, LAMP_TORCH)
-    fill(m, 6, 4, 26, 8, 8, 5, STONE)                                       # the gate tower
-    building(m, 70, 22, 12, 7, wall=DARKWOOD)                               # the armoury
-    for (x, z) in ((24, 14), (25, 14), (40, 18), (41, 18), (58, 12), (59, 12)):
-        m.rect(x, z, 1, 1, TAMPERED)
-    ev = Events(m)
-    ev.scene(50, 10, "G272", S02_HEAD + [if_([flag("G248")], S02_GUARD)] + S02_ORDERS + S02_JOIN, after="G271")
-    for (x, z) in ((24, 14), (25, 14), (40, 18), (41, 18), (58, 12), (59, 12)):
-        trap_tile(ev, x, z)
-    ev.npc(46, 10, EP["veteran"], "Sector six. The east stair. Wrong, all wrong. I told them.", reqs=[flag("G248")])
-    ev.npc(30, 24, EP["takakana"], "Cellars, Hiruma! Go!")
-    cave_fight(ev, 62, 16, "G273", 22, [narrate("Goblins over the wall on wolves, knives in their teeth.")],
-               [(65, 14, "EP436"), (66, 18, "EP110"), (67, 15, "EP436"), (68, 19, "EP110")],
-               # (user 2026-11-12: stuck here - nothing said where to go after the breach)
-               after=[narrate("Objective: the cellar stair, at the far east end of the yard."), setf("G1229")])
-    ev.scene(40, 6, "G1229", [narrate("Objective: the cellar stair, at the far east end of the yard.")],
-             after=[flag("G273"), flag("G274", False)])                     # (saves made after the breach)
-    ev.chest(84, 12, "I131", 3)                                             # a burst supply crate
-    ev.chest(86, 12, "I130", 2)
-    ev.chest(76, 21, "W125", 1)                                             # the armoury: a Hida Tetsubo
-    # (user 2026-11-12: "what cellar-stair? i went all over that map" - it was an invisible spot) a dark wooden cellar
-    # hatch in the yard, a chevron pointing at it from the west, and a bigger step-on box
-    m.rect(90, 14, 5, 5, DARKWOOD)
-    for k, j in ((3, 0), (4, -1), (4, 1), (5, -2), (5, 2), (5, 0), (6, -1), (6, 1), (7, -2), (7, 2)):
-        m.blk[16 + j, 90 - k] = TORII
-    k = ev.talk(92, 16, "CE000", [
-        (None, [narrate("The cellar stair. Goblins in the yard between her and it.")]),
-        ([flag("G273")], [narrate("Down the cellar stair, the court behind her."), go("M153", 8, 14)])], trigger=5)
-    ev.ev["#%d#" % k]["mdl"] = {"r": [0, 1.0, 0, 2.0, 3.0, 2.0]}
-    return m, ev
+    return castle_stub("M152", "Kyuden Hida - the outer yard (siege)", HIDA["reception"], 48, 8)
 
 
 # ---- M153 the cellars (b_siege_breach_b, S03, save)
@@ -3956,8 +4219,10 @@ def cellars():
     for x in range(44, 64, 3):                                              # pickle barrels
         m.block(x, 9, DARKWOOD), m.block(x + 1, 19, DARKWOOD)
     ev = Events(m)
-    ev.portal(66, 14, "M154", 1, d=3)                                      # event 1: the servants' stair (after S03)
-    ev.ev["#1#"]["reqs0"] = [flag("G275")]
+    n = ev.talk(66, 14, "CE000", [(None, [narrate("The servants' stair, up into the keep."),         # (after S03:
+                                          go(HIDA["hall"], *SIEGE_1F_IN, padded=False)])],       # the real keep's
+                reqs=[flag("G275")], trigger=5)                                                  # 1F now)
+    ev.ev["#%d#" % n]["mdl"] = {"r": [0, 1.0, 0, 1.0, 3.0, 1.0]}
     cave_fight(ev, 18, 14, "G274", 23, [narrate("An ogre has broken through to the cellar stair. It turns toward "
                                                 "the courtiers.")],
                [(21, 14, "EP118"), (22, 11, "EP433"), (22, 17, "EP433")], after=COURTIERS)
@@ -4031,64 +4296,139 @@ def split_up(ev, x, z, fl):
         ([flag(fl)], [narrate("The junction. They've already used it.")])], trigger=1)
 
 
-def dark_floor(mid, name, layout, up, down, extra):
-    m, ev = castle_floor(mid, name, 38, 14, layout, up=up, down=down, extra=extra)
-    return m, ev
+# ---- the siege night in the roamable castle (user 2026-11-22: "not sure if you finished expanding hida castle or not,
+# if not go ahead and finish it up") Crab Ch4 no longer has its own copy of Kyuden Hida: S02 happens in the Entrance
+# reception (the trap stones, the goblin breach), the cellar stair is the Keep approach's stair house, and the stalk
+# (S04) climbs the real keep - the maid on 1F, the guard and Akiko on 2F, the false servant on 3F. The old maps (M152
+# the outer yard, M154-M156 the dark castle) are stubs that move an old save to the same place. While the siege is on
+# (G1644, set by plugin RokuganCastleSiege.sk from G271 / G286, which also lights the castle for night) the castle's
+# everyday people are gone (siege_calm) and only the siege's own events show (siege_mark).
+SIEGE = "G1644"
+SIEGE_TRAPS = ((46, 16), (47, 16), (50, 22), (51, 22), (45, 30), (46, 30))
+SIEGE_1F_IN = (12, 30)                                      # the servants' stair up from the cellars (keep 1F)
+SIEGE_GO_CELLAR = "Objective: the cellar stair at the keep approach - north through the courtyard garden."
+
+
+def siege_mark(ev, n0):
+    """Events made after n0 are the siege's: shown only while it is on."""
+    for k in range(n0 + 1, ev.n + 1):
+        e = ev.ev["#%d#" % k]
+        e["reqs0"] = (e.get("reqs0") or []) + [flag(SIEGE)]
+
+
+def siege_calm(ev, upto):
+    """The castle's everyday people (and the Winter Court's) are not about on the siege night."""
+    for k in range(1, upto + 1):
+        e = ev.ev["#%d#" % k]
+        if e.get("role") in ("villager", "custom", "hotel", "clerk") and e.get("mdlid") not in (None, "CE000"):
+            e["reqs0"] = (e.get("reqs0") or []) + [flag(SIEGE, False)]
+
+
+def siege_reception(m, ev):
+    """S02: the war drums, Takakana's alarm, the tampered trap stones on the avenue, the goblin breach before the
+    garden gate."""
+    ev.scene(48, 6, "G272", S02_HEAD + [if_([flag("G248")], S02_GUARD)] + S02_ORDERS + S02_JOIN +
+             [narrate(SIEGE_GO_CELLAR)], after="G271")
+    for x, z in SIEGE_TRAPS:
+        m.rect(x, z, 1, 1, TAMPERED)
+        trap_tile(ev, x, z)
+    ev.npc(54, 9, EP["veteran"], "Sector six. The east stair. Wrong, all wrong. I told them.", reqs=[flag("G248")])
+    ev.npc(40, 18, EP["takakana"], "Cellars, Hiruma! Go!")
+    cave_fight(ev, 48, 40, "G273", 22, [narrate("Goblins over the wall on wolves, knives in their teeth.")],
+               [(45, 43, "EP436"), (47, 44, "EP110"), (50, 43, "EP436"), (52, 44, "EP110")],
+               after=[narrate(SIEGE_GO_CELLAR), setf("G1229")])
+    ev.ev["#%d#" % ev.n]["mdl"] = {"r": [0, 1.0, 0, 2.8, 3.0, 0.5]}       # (the whole avenue, not one tile)
+    ev.chest(60, 30, "I131", 3)                                             # a burst supply crate
+    ev.chest(62, 30, "I130", 2)
+    ev.chest(88, 30, "W125", 1)                                             # the armourer's rack: a Hida Tetsubo
+
+
+def siege_approach(m, ev):
+    """The cellar stair house: down to the cellars (the donjon door is barred tonight)."""
+    if (m.mid, "donjon") in DOOR_EV:
+        e = ev.ev["#%d#" % DOOR_EV[(m.mid, "donjon")]]
+        e["reqs0"] = (e.get("reqs0") or []) + [flag(SIEGE, False)]
+    dx, dz = door_of(64, 11, 12)
+    n = ev.talk(dx, dz, "CE000", [
+        (None, [narrate("The cellar stair. Goblins in the reception yard between the court and it.")]),
+        ([flag("G273")], [narrate("Down the cellar stair, the court behind her."), go("M153", 8, 14)])], trigger=5)
+    ev.ev["#%d#" % n]["mdl"] = {"r": [0, 1.0, 0, 1.0, 3.0, 1.0]}
+
+
+def siege_stair_lock(ev, reqs):
+    """The stair up stays behind her while someone on this floor is still unaccounted for."""
+    n = ev.talk(87, 45, "CE000", [(None, [narrate("Not up yet. There are still people on this floor, in the dark."),
+                                          step_back(0, -1.5)])], reqs=reqs, trigger=5)
+    ev.ev["#%d#" % n]["mdl"] = {"r": [0, 1.0, 0, 1.6, 3.0, 0.5]}
+
+
+def siege_keep_1f(m, ev):
+    """S04, the great hall: the frightened maid with the sake tray."""
+    stalk_npc(ev, 52, 33, SC["servant"], "A frightened maid with a tray of sake, shaking in the dark.",
+              ["She flinches from the hot cup and nearly drops the tray.",
+               "\"It's a pebble, Hiruma-sama.\" She holds it out, puzzled.",
+               "Nothing happens. She brushes the dust off her sleeve, frightened."],
+              pass_flag="G276", pass_lines=[say("Maid", "Thank you, Hiruma-sama...")], reqs=[flag("G276", False)])
+    split_up(ev, 60, 31, "G287")
+    siege_stair_lock(ev, [flag("G276", False)])
+
+
+def siege_keep_2f(m, ev):
+    """S04, the guest and council chambers: the Crab guard at the stair, Isawa Akiko running."""
+    stalk_npc(ev, 76, 40, SC["townguard"], "A Crab guard at the stair, spear levelled at the dark.",
+              ["He swallows the hot sake and swears at the heat.",
+               "\"It's a pebble.\" He hands it back. \"Jade's green, Hiruma.\"",
+               "Nothing happens. \"What's that dust?\""],
+              pass_flag="G277", pass_lines=[say("Crab guard", "Go, Hiruma. I'll hold the stair.")],
+              reqs=[flag("G277", False)])
+    akiko_pass = [say("Isawa Akiko", "Natsuko-san! Lady Kuhime said to come to the roof! She said it was safe!"),
+                  say("Natsuko", "Akiko. Go to the cellars."),
+                  if_([flag("G051")], [narrate("Two bright eyes in a vent."), say("Squeak", "Squeak take little one! "
+                                                                                     "Rat-ways!"),
+                                       narrate("Akiko vanishes into the wall with a squeak.")],
+                      [narrate("Akiko runs for the cellar stair.")])]
+    stalk_npc(ev, 42, 33, SC["akiko"], "Isawa Akiko, thirteen, running through the dark.",
+              ["She squeaks at the hot cup and nearly drops it.", "\"That's a rock, Natsuko-san.\"",
+               "Nothing happens. She stares at her sleeve, and starts to cry."],
+              pass_flag="G278", pass_lines=akiko_pass, reqs=[flag("G278", False)])
+    split_up(ev, 34, 31, "G288")
+    siege_stair_lock(ev, [flag("G277", False)])
+    siege_stair_lock(ev, [flag("G278", False)])
+
+
+def siege_keep_3f(m, ev):
+    """S04, the top of the stalk: the children's quarters, and a servant whose lantern gives no warmth."""
+    stalk_npc(ev, 66, 33, SC["servant"], "A servant with a lantern. The lantern gives no warmth.", [], nashiko=True,
+              reqs=[flag("G279", False)])
+    split_up(ev, 34, 31, "G289")
+    ev.npc(20, 40, "CE000", "The children's quarters. Empty, thank the Fortunes.")
+
+
+SIEGE_STORY = {HIDA["reception"]: siege_reception, HIDA["approach"]: siege_approach, HIDA["hall"]: siege_keep_1f,
+               "M502": siege_keep_2f, "M503": siege_keep_3f}
+
+
+def siege_hook(castle, m, ev):
+    """Called last by clan_castle_yard / clan_castle_floor for a castle with a siege night."""
+    if not castle.get("siege"):
+        return
+    n0 = ev.n
+    siege_calm(ev, n0)
+    if m.mid in SIEGE_STORY:
+        SIEGE_STORY[m.mid](m, ev)
+        siege_mark(ev, n0)
 
 
 def dark_castle_1():
-    def extra(m, ev):
-        stalk_npc(ev, 20, 9, SC["servant"], "A frightened maid with a tray of sake, shaking in the dark.",
-                  ["She flinches from the hot cup and nearly drops the tray.",
-                   "\"It's a pebble, Hiruma-sama.\" She holds it out, puzzled.",
-                   "Nothing happens. She brushes the dust off her sleeve, frightened."],
-                  pass_flag="G276", pass_lines=[say("Maid", "Thank you, Hiruma-sama...")],
-                  reqs=[flag("G276", False)])
-        split_up(ev, 12, 6, "G287")
-    m, ev = castle_floor("M154", "Kyuden Hida - dark castle (great hall)", 38, 14, [
-        ("table", 8, 7), ("table", 14, 7), ("table", 20, 11), ("pillar", 26, 4), ("pillar", 26, 12)],
-        up=("M155", 1), down=("M153", 1), extra=extra)
-    ev.ev["#2#"]["reqs0"] = [flag("G276")]
-    return m, ev
+    return castle_stub("M154", "Kyuden Hida - dark castle (great hall)", HIDA["hall"], *SIEGE_1F_IN, padded=False)
 
 
 def dark_castle_2():
-    def extra(m, ev):
-        stalk_npc(ev, 16, 9, SC["townguard"], "A Crab guard at the stair, spear levelled at the dark.",
-                  ["He swallows the hot sake and swears at the heat.",
-                   "\"It's a pebble.\" He hands it back. \"Jade's green, Hiruma.\"",
-                   "Nothing happens. \"What's that dust?\""],
-                  pass_flag="G277", pass_lines=[say("Crab guard", "Go, Hiruma. I'll hold the stair.")],
-                  reqs=[flag("G277", False)])
-        akiko_pass = [say("Isawa Akiko", "Natsuko-san! Lady Kuhime said to come to the roof! She said it was safe!"),
-                      say("Natsuko", "Akiko. Go to the cellars."),
-                      if_([flag("G051")], [narrate("Two bright eyes in a vent."),
-                                           say("Squeak", "Squeak take little one! Rat-ways!"),
-                                           narrate("Akiko vanishes into the wall with a squeak.")],
-                          [narrate("Akiko runs for the cellar stair.")])]
-        stalk_npc(ev, 27, 8, SC["akiko"], "Isawa Akiko, thirteen, running through the dark.",
-                  ["She squeaks at the hot cup and nearly drops it.",
-                   "\"That's a rock, Natsuko-san.\"",
-                   "Nothing happens. She stares at her sleeve, and starts to cry."],
-                  pass_flag="G278", pass_lines=akiko_pass, reqs=[flag("G278", False)])
-        split_up(ev, 10, 6, "G288")
-    m, ev = castle_floor("M155", "Kyuden Hida - dark castle (guest wing)", 38, 14, [
-        ("screen", 10, 6, 1), ("screen", 21, 6, 1), ("futon", 3, 11), ("candle", 13, 14)],
-        up=("M156", 1), down=("M154", 2), extra=extra)
-    ev.ev["#2#"]["reqs0"] = [flag("G277"), flag("G278")]
-    return m, ev
+    return castle_stub("M155", "Kyuden Hida - dark castle (guest wing)", "M502", 9, 14, padded=False)
 
 
 def dark_castle_3():
-    def extra(m, ev):
-        stalk_npc(ev, 24, 9, SC["servant"], "A servant with a lantern. The lantern gives no warmth.",
-                  [], nashiko=True, reqs=[flag("G279", False)])
-        split_up(ev, 12, 6, "G289")
-        ev.npc(32, 12, "CE000", "The children's quarters. Empty, thank the Fortunes.")
-    m, ev = castle_floor("M156", "Kyuden Hida - dark castle (children's quarters)", 38, 14, [
-        ("futon", 4, 11), ("futon", 7, 11), ("futon", 30, 11), ("lowchest", 23, 14)],
-        up=None, down=("M155", 2), extra=extra)
-    return m, ev
+    return castle_stub("M156", "Kyuden Hida - dark castle (children's quarters)", "M503", 9, 14, padded=False)
 
 
 # ---- M157 the deep trap tunnels (S05 chase + the blue flare)
@@ -4194,7 +4534,7 @@ def battle_quarry():
         m.rect(x, 86, 1, 6, STONE, hh)
         m.rect(x, 92, 1, 36, STONE, hh + 4)
     for x in (30, 52, 88):
-        tent(m, x, 78)
+        quarry_shelter(m, x, 78)
     for x in range(8, 128, 13):
         m.tree(x, 50 + (x * 7) % 12, (ROCK_S, ROCK_M)[x % 2])
     ev = Events(m)
@@ -5041,7 +5381,7 @@ def garden_port():
         fb(m, x, 19, 2, LAMP_STREET)
     ev = Events(m)
     ev.portal(1, 16, "M216", 2, d=1)                                        # event 1: the coast road
-    south = ev.portal(108, 16, "M212", 1, d=3)                            # event 2: the land-bridge (after S01)
+    south = ev.portal(108, 16, "M236", 1, d=3)                            # event 2: the land-bridge (after S01)
     ev.ev["#%d#" % south]["reqs0"] = [flag("G347")]
     ev.talk(106, 16, "CE000", [(None, [narrate("The road to the land-bridge. Tomorrow, at low tide."),
                                        step_back(-2.0, 0)]), ([flag("G347")], [])], trigger=5)
@@ -5199,15 +5539,42 @@ def tide_ashore():
     return [(None, []), ([flag("G376")], [setf("G376", False)])]
 
 
+def tidal_bridge_banks(m):
+    for left,width in ((0,8),(112,8)):
+        m.rect(left,0,width,36,SAND,2)
+    for z in (7,24):
+        m.rect(8,z,2,4,SAND,2)
+        m.rect(110,z+1,2,4,SAND,2)
+
+
+def tide_submerged():
+    m = MapSpec("M236","The land-bridge - high tide",120,36,base=WATER,y=2)
+    tidal_bridge_banks(m)
+    ev = Events(m)
+    ev.portal(1,16,"M210",2,d=1)
+    ev.portal(118,16,"M213",1,d=3)
+    for x, shore, landing, retreat in ((6,"Crab",6,-1.5),(113,"Crane",113,1.5)):
+        enter = go("M212",landing,16)
+        ev.talk(x,16,"CE000",[(None,[
+            narrate("The causeway to the %s side is under water." % shore),
+            choices(("Wait for low tide.",[
+                if_([flag("G363")],
+                    [narrate("The Tide Chart says low water within the hour. Rensei waits on the bridgehead.")],
+                    [narrate("Rensei waits on the bridgehead until the sand shows.")]),
+                setf("G376"),enter,
+            ]),("Not now.",[step_back(retreat,0)])),
+        ])],trigger=5)
+    return m,ev
+
+
 def land_bridge():
     m = MapSpec("M212", "The land-bridge", 120, 36, base=WATER, y=1)
-    m.rect(0, 13, 120, 7, SAND, 2)                                          # the causeway
-    m.rect(0, 0, 8, 36, SAND, 2)                                            # the Crane shore
-    m.rect(112, 0, 8, 36, SAND, 2)                                          # the Crab shore
-    m.rect(70, 21, 6, 5, SAND, 2)                                           # the tide pool's rocks (low tide only)
-    m.rect(71, 22, 4, 3, WATER, 1)
-    for x in (3, 116):
-        m.tree(x, 28, TREE_M)
+    for x in range(120):
+        center = 16 + int(1.8*np.sin((x-4)*.077)+.5*np.sin(x*.28))
+        m.rect(x,center-4,1,9,SAND,2)
+    tidal_bridge_banks(m)
+    m.rect(70,21,6,5,SAND,2)
+    m.rect(71,22,4,3,WATER,1)
     ev = Events(m)
     ev.portal(1, 16, "M210", 2, d=1)                                        # event 1: Garden Under Shadow City
     ev.portal(118, 16, "M213", 1, d=3)                                      # event 2: Yasuki Yashiki
@@ -5238,7 +5605,7 @@ def yasuki_yashiki():
     for x in (2, 22, 46, 70, 94):
         fb(m, x, 19, 2, LAMP_STREET)
     ev = Events(m)
-    ev.portal(1, 16, "M212", 2, d=1)                                        # event 1: the land-bridge
+    ev.portal(1, 16, "M236", 2, d=1)                                        # event 1: the land-bridge
     hall = ev.portal(50, 29, "M219", 1, d=0)                                # event 2: into the Yasuki hall
     assert hall == 2
     ev.talk(98, 16, "CE000", [(None, [narrate("The Crab road north, to the Wall. Not this time."),
@@ -6009,7 +6376,8 @@ SCENES_KNOWN = lambda f: [setf(f), setf("G421", 1, "+=")]                      #
 
 # ---- M228 Kyuden Doji, the castle town (S01 at the castle gate; T4 shops; the rehearsal hall; the dueling ground)
 S01_CR4 = cr4("S01") + [setf("G417"), SAVE_CHOICE,
-                        narrate("Objective: the archives, below the court. (The castle, then the stair at the back.)")]
+                        narrate("Objective: the archives - the keep's third floor. (Down from her rooms, then up the keep "
+                                "stair.)")]
 
 
 def kyuden_doji():
@@ -6032,7 +6400,8 @@ def kyuden_doji():
     ev = Events(m)
     ev.talk(8, 9, SC["shipmaster"], [(None, [say("Ship's master", "The boat's at the steps, captain. Back aboard?"),
                                              choices(("Go aboard.", [go("M221", 30, 12)]), ("Not yet.", []))])])
-    gate = DOOR_EV[("M228", "gate")] = ev.portal(57, 31, "M229", 1, d=0)    # the castle (after S01)
+    gate = DOOR_EV[("M228", "gate")] = ev.portal(57, 31, DOJI["reception"], 1, d=0)   # the castle grounds
+                                                                            # (after S01; the roamable castle)
     ev.ev["#%d#" % gate]["reqs0"] = [flag("G417")]
     ev.talk(57, 29, SC["craneguard"], [
         (None, [say("Daidoji guard", "Kyuden Doji receives no one today, Kakita-sama. The court is in mourning for "
@@ -6041,14 +6410,13 @@ def kyuden_doji():
             say("Daidoji guard", "Kakita-sama. Lady Sanae is in her rooms. She asked for tea for two, and she does not "
                                  "drink tea."),
             narrate("CHAPTER 4 - The Play No One Performs. (Recommended level 41)"),
-            choices(("Go in.", S01_CR4 + [go("M230", 15, 4, padded=False)]), ("Not yet.", []))]),
+            choices(("Go in.", S01_CR4 + [go(DOJI["suite"], *DOJI_SUITE, padded=False)]), ("Not yet.", []))]),
         ([flag("G417")], [say("Daidoji guard", "Go up, Kakita-sama.")])], reqs=[flag("G434", False)])
-    hall = DOOR_EV[("M228", "hall")] = ev.portal(105, 19, "M234", 1, d=0)   # the rehearsal hall (after the play)
-    ev.ev["#%d#" % hall]["reqs0"] = [flag("G425")]
-    duel = DOOR_EV[("M228", "east")] = ev.portal(108, 14, "M235", 1, d=3)   # the dueling ground (after the duel)
-    ev.ev["#%d#" % duel]["reqs0"] = [flag("G430")]
+    # (2026-11-22) the rehearsal hall's door is gone: S03 is rehearsed on the castle's north-garden kabuki stage
+    duel = DOOR_EV[("M228", "east")] = ev.portal(108, 14, "M235", 1, d=3)   # the dueling ground (open the dawn of
+    ev.ev["#%d#" % duel]["reqs0"] = [flag("G1647")]                       # the duel, G1647, and after)
     ev.talk(106, 14, "CE000", [(None, [narrate("The road east to the Kakita dueling ground. Nobody goes there without "
-                                               "a reason."), step_back(-2.0, 0)]), ([flag("G430")], [])], trigger=5)
+                                               "a reason."), step_back(-2.0, 0)]), ([flag("G1647")], [])], trigger=5)
     ev.clerk(10, 18, EP_SERVICE["merchant"], "R123")
     ev.clerk(26, 18, EP_SERVICE["quartermaster"], "R124")
     ev.clerk(41, 18, EP_SERVICE["jadeclerk"], "R125")
@@ -6097,22 +6465,13 @@ S06_CR4 = cr4("S06", stop_at="> CHOICE") + [choices(
 
 
 def kyuden_court():
-    def extra(m, ev):
-        DOOR_EV[("M229", "rooms")] = ev.portal(36, 3, "M230", 1, d=0)       # event 3: Lady Sanae's rooms
-        ev.prop(20, 11, SC["sanae"], reqs=[flag("G430"), flag("G432", False)], d=0)
-        for x, z in ((8, 8), (12, 6), (28, 6), (32, 8)):
-            ev.prop(x, z, SC["courtier"], d=0)
-        ev.scene(20, 5, "G439", S06_CR4, after="G430")
-        ev.npc(16, 8, SC["dojipoet"], "The archive stair is at the back. The monks say nothing is down there. "
-                                      "Loudly.", reqs=[flag("G432", False)])
-    return castle_floor("M229", "Kyuden Doji - the court", 40, 14, [
-        ("tatami", 6, 5), ("tatami", 12, 5), ("tatami", 26, 5), ("tatami", 32, 5), ("dais", 17, 10, 6, 2),
-        ("hearth", 20, 8), ("screen", 4, 12, 4), ("screen", 32, 12, 4), ("candle", 3, 14), ("candle", 38, 14)],
-        up=("M231", 1), down=("M228", DOOR_EV.get(("M228", "gate"), 2)),
-        extra=extra)
+    return castle_stub("M229", "Kyuden Doji - the court", DOJI["court"], *DOJI_COURT, padded=False)
 
 
-S04_CR4 = cr4("S04", stop_at="> CHOICE") + [choices(
+S04_CR4 = [narrate("Lady Sanae's rooms, on the keep's second floor. Kakita Masanori, Rensei's father and the master of "
+                   "the Kakita duelists, is already there - standing, which in a Doji lady's rooms nobody does - while "
+                   "Lady Sanae pours tea for three as if nothing at all were happening.")] + \
+    cr4("S04", start_at="KAKITA MASANORI: A forbidden play", stop_at="> CHOICE") + [choices(
     ("Hand it over.", [say("Rensei", "...Yes, Father."), narrate("Rensei bows, and holds out the play."),
                        narrate("Later, Lady Sanae, alone, draws a second copy from her sleeve."), say("Sanae", "Hm."),
                        setf("G429"), {"cmd": "cmd_itemop", "itemid": "I147", "op": 1, "num": 1, "LV": 1},
@@ -6120,27 +6479,26 @@ S04_CR4 = cr4("S04", stop_at="> CHOICE") + [choices(
     ("Refuse.", [say("Rensei", "No, Father."),
                  narrate("Silence. Nobody in the room has ever heard a Kakita son say it."),
                  say("Masanori", "Then we will settle it the Kakita way. First blood. At dawn.")])),
-    setf("G428"), narrate("Lady Sanae's rooms, the night before."),
+    setf("G428"),
+    narrate("That evening a Kakita servant brings the formal challenge: white paper folded three times, the seal pressed "
+            "in red."),
+    if_([flag("G429")],
+        [narrate("\"You have given me the play. Now show me what you have been taught. At dawn, the Kakita dueling "
+                 "ground, east of the castle town. First blood. The court will witness. - Kakita Masanori\"")],
+        [narrate("\"At dawn, the Kakita dueling ground, east of the castle town. First blood, for the play. The court "
+                 "will witness. - Kakita Masanori, to his son\"")]),
+    say("Rensei", "\"To his son.\" He's never written that before."),
+    narrate("Lady Sanae's rooms, the night before."),
     say("Sanae", "Your father has never in his life faced anything but a katana, Rensei-san. The Kakita gallery sells "
                  "short blades."),
     narrate("(A formal duel: no guest, no hireling. He resists a katana; a short blade, a spear or the wind reach "
             "him.)"),
-    setf("G437"), ROOM_SAVE[1], narrate("Dawn.")] + DARK + [go("M235", 30, 8)]
+    setf("G437"), ROOM_SAVE[1],
+    narrate("Objective: rest in your room in the guest pavilion. At dawn, the dueling ground.")]
 
 
 def sanae_rooms_kd():
-    def extra(m, ev):
-        ev.prop(15, 9, SC["sanae"], reqs=[flag("G434", False)], d=0)
-        ev.prop(18, 6, SC["masanori"], reqs=[flag("G426"), flag("G428", False)], d=0)
-        ev.scene(15, 4, "G440", S04_CR4, after="G426")
-        ev.talk(8, 9, "CE000", [(None, ROOM_SAVE)], trigger=1)
-        ev.talk(15, 8, "CE000", [(None, [say("Sanae", "The archives, Rensei-san. Everything they hold on her.")]),
-                                 ([flag("G425")], [say("Sanae", "You found it. Of course you did. Now find out if "
-                                                                "it works. Quietly.")])])
-    return castle_floor("M230", "Kyuden Doji - Lady Sanae's rooms", 30, 12, [
-        ("tatami", 8, 5), ("tatami", 18, 5), ("screen", 4, 7, 2), ("screen", 25, 7, 2), ("candle", 3, 11),
-        ("candle", 27, 11), ("doc", 10, 10), ("book", 20, 10)],
-        down=("M229", DOOR_EV[("M229", "rooms")] if ("M229", "rooms") in DOOR_EV else 3), extra=extra)
+    return castle_stub("M230", "Kyuden Doji - Lady Sanae's rooms", DOJI["suite"], *DOJI_SUITE, padded=False)
 
 
 # ---- M231-M233 the archives (S02): the censor-monk, b_archive_spirits, the forbidden wing's three lecterns
@@ -6165,16 +6523,8 @@ CENSOR = [(None, [say("Censor-monk", "The forbidden shelves are forbidden, young
 
 
 def archives_1():
-    def extra(m, ev):
-        shelves(m, [(4, 4, 14, True), (4, 9, 14, True), (24, 4, 16, True), (24, 9, 16, True), (20, 2, 10, False)])
-        ev.talk(30, 13, SC["censormonk"], CENSOR)
-        ev.ev["#2#"]["reqs0"] = [flag("G418")]                              # the way down: after the monk
-        ev.chest(8, 14, "I131", 2)
-        ev.talk(38, 6, "CE000", [(None, [narrate("A box filed under the wrong year. The label is in a cipher only a "
-                                                 "trained eye would read. (Discern)")])], trigger=1)
-    return castle_floor("M231", "The Kyuden Doji archives - the public stacks", 44, 16, [
-        ("candle", 3, 15), ("candle", 41, 15), ("book", 12, 14), ("doc", 36, 14)],
-        up=("M232", 1), down=("M229", 2), wall=DARKWOOD, extra=extra)
+    return castle_stub("M231", "The Kyuden Doji archives - the public stacks", DOJI["stacks"], *DOJI_STACKS,
+                       padded=False)
 
 
 S02_SPIRITS = [narrate("The sealed stacks. Paper stirs on the shelves with no wind to stir it, and stands up."),
@@ -6198,7 +6548,7 @@ def archives_2():
                 trigger=1)
     return castle_floor("M232", "The Kyuden Doji archives - the sealed stacks", 44, 16, [
         ("candle", 3, 15), ("candle", 41, 15), ("book", 30, 15)],
-        up=("M233", 1), down=("M231", 2), wall=DARKWOOD, extra=extra)
+        up=("M233", 1), down=(DOJI["stacks"], doji_door("stacks")), wall=DARKWOOD, extra=extra)
 
 
 SCENE1 = [narrate("Scene 1 - The Mirror: \"She sees all smooth stone as jade. The colours are lost to her.\""),
@@ -6238,11 +6588,109 @@ def archives_3():
                                       narrate("The third lectern, behind shelf nine.")] + SCENE3 +
                                    SCENES_KNOWN("G424") + [SAVE_CHOICE,
                                                            narrate("Objective: find out if the play works. The old "
-                                                                   "rehearsal hall in the castle town, tonight.")]),
+                                                                   "kabuki stage in the castle's north garden, "
+                                                                   "tonight.")]),
                                   ([flag("G424")], SCENE3)], trigger=1)
     return castle_floor("M233", "The Kyuden Doji archives - the forbidden wing", 40, 16, [
         ("candle", 3, 15), ("candle", 37, 15), ("doc", 8, 9), ("doc", 16, 14), ("doc", 30, 14)],
         down=("M232", 2), wall=DARKWOOD, extra=extra)
+
+
+# ---- Kyuden Doji in the roamable castle (user 2026-11-22: "next will be the crane castles"; castles-roamable) Crane
+# Ch4 no longer climbs small story rooms: the town gate opens on the castle grounds (CLAN_CASTLES[1] "gate"), Lady
+# Sanae's rooms are a suite on the keep's 2F (S01 ends there, S03 and S04 too), the public stacks of the archives fill
+# the keep's 3F (the censor-monk, and the shelf on no catalogue that hides the way down to the sealed stacks and the
+# forbidden wing, which stay their own maps), and the court (S06, the finale's road) is the keep's 4F audience hall.
+# The old rooms M229-M231 are stubs that move an old save to the matching spot. Keep floors are 94 x 61 (builder).
+DOJI = {"reception": "M505", "court": "M509", "suite": "M507", "stacks": "M508", "north": "M555", "guests": "M550"}
+DOJI_ROOM = (58, 11)                                         # Rensei's room in the guest pavilion
+DOJI_COURT = (48, 44)                                        # before Lady Sanae's seat on the dais (4F)
+DOJI_SUITE = (70, 36)                                        # the corridor before her suite (2F)
+DOJI_STACKS = (10, 20)                                       # the archive floor's west aisle (3F)
+
+
+def doji_door(key):
+    """A story doorway on a Kyuden Doji map (event id), building that map if it has not been yet."""
+    mid = {"stacks": DOJI["stacks"]}[key]
+    if (mid, key) not in DOOR_EV:
+        make(mid)
+    return DOOR_EV[(mid, key)]
+
+
+def doji_court(m, ev):
+    """4F, the audience hall as the court: Lady Sanae on the dais, the courtiers, S06 when the duel is done."""
+    ev.prop(48, 50, SC["sanae"], reqs=[flag("G430"), flag("G432", False)], d=0)
+    for x, z in ((40, 42), (44, 40), (52, 40), (56, 42)):
+        ev.prop(x, z, SC["courtier"], d=0, reqs=[flag("G434", False)])
+    ev.scene(DOJI_COURT[0], DOJI_COURT[1], "G439", S06_CR4, after="G430")
+    ev.npc(60, 44, SC["dojipoet"], "The archives are on the third floor. The monks say nothing is in them. Loudly.",
+           reqs=[flag("G432", False)])
+
+
+def doji_suite(m, ev):
+    """2F, Lady Sanae's suite: screens round a tatami room in the east wing; S04 the night before, the save."""
+    y = int(m.hgt[42, 72])
+    fill(m, 64, y + 1, 37, 1, 3, 12, SHOJI)                                # her screens, the open side to the hall
+    fill(m, 64, y + 1, 49, 24, 3, 1, SHOJI)
+    ev.prop(72, 42, SC["sanae"], reqs=[flag("G434", False)], d=0)
+    ev.prop(78, 41, SC["masanori"], reqs=[flag("G426"), flag("G428", False)], d=0)
+    ev.scene(DOJI_SUITE[0], DOJI_SUITE[1], "G440", S04_CR4, after="G1646")       # (after the morning letter)
+    ev.talk(66, 44, "CE000", [(None, ROOM_SAVE)], trigger=1)
+    ev.talk(72, 41, "CE000", [(None, [say("Sanae", "The archives, Rensei-san. Everything they hold on her.")]),
+                              ([flag("G425")], [say("Sanae", "You found it. Of course you did. Now find out if it "
+                                                             "works. Quietly.")])])
+
+
+def doji_stacks(m, ev):
+    """3F, the public stacks: shelf runs down the west aisle, the censor-monk, the box filed under the wrong year, and
+    the shelf on no catalogue - the way down (after the monk, G418)."""
+    y = int(m.hgt[20, 6]) + 1
+    for x in (3, 7):
+        for z in range(12, 50):
+            if z % 7 != 6:
+                fill(m, x, y, z, 1, 4, 1, DARKWOOD)
+    ev.talk(10, 26, SC["censormonk"], CENSOR, d=3)
+    DOOR_EV[(m.mid, "stacks")] = n = ev.portal(5, 50, "M232", 1, d=2)      # the shelf on no catalogue
+    ev.ev["#%d#" % n]["reqs0"] = [flag("G418")]
+    ev.talk(5, 49, "CE000", [(None, [narrate("A shelf at the end of the aisle that is on no catalogue. A draught "
+                                             "behind it.")]),
+                             ([flag("G418")], [])], trigger=1)
+    ev.chest(10, 14, "I131", 2)
+    ev.talk(10, 34, "CE000", [(None, [narrate("A box filed under the wrong year. The label is in a cipher only a "
+                                              "trained eye would read. (Discern)")])], trigger=1)
+
+
+DOJI_SLEEP = [narrate("Rensei's room in the guest pavilion. He lies down in his clothes and listens to the castle "
+                      "for a long time. When he does sleep, somebody else is wearing his face.")] + DARK + REST
+DOJI_LETTER = DOJI_SLEEP + [
+    narrate("Morning, in the guest pavilion of Kyuden Doji. A servant kneels outside Rensei's screen with a folded "
+            "letter, sealed in plain white wax with the Kakita crest, and will not meet his eyes."),
+    narrate("\"Rensei. A Kakita on a stage, at night, playing what the Emperors banned - and the whole castle heard what "
+            "came to watch. Come to Lady Sanae's rooms. Bring the play. - Kakita Masanori\""),
+    say("Rensei", "He didn't sign it \"Father\"."),
+    narrate("Objective: Lady Sanae's rooms - the keep, second floor.")]
+
+
+DOJI_EVE = [narrate("The night before the duel. Rensei oils a blade he has been told not to use, and puts it down, and "
+                    "picks it up again.")] + DARK + REST + [
+    narrate("Dawn."),
+    narrate("Objective: the Kakita dueling ground - out through the castle gate, then east through the castle town.")]
+
+
+def doji_guests(m, ev):
+    """The guest pavilion: Rensei's room (screens, bedding) - where he sleeps after the rehearsal, and the letter."""
+    x, z = DOJI_ROOM
+    y = int(m.hgt[z, x])
+    fill(m, x - 3, y + 1, z + 2, 7, 3, 1, SHOJI)
+    fill(m, x - 1, y + 1, z + 1, 3, 1, 1, FUTON)
+    n = ev.scene(x, z, "G1646", DOJI_LETTER, after="G426", touch=True)       # the night after the rehearsal
+    ev.ev["#%d#" % n]["mdl"] = {"r": [0, 1.0, 0, 1.5, 3.0, 1.0]}
+    n = ev.scene(x, z, "G1647", DOJI_EVE, after="G437", touch=True)          # the night before the duel
+    ev.ev["#%d#" % n]["mdl"] = {"r": [0, 1.0, 0, 1.5, 3.0, 1.0]}
+
+
+CASTLE_STORY.update({DOJI["court"]: doji_court, DOJI["suite"]: doji_suite, DOJI["stacks"]: doji_stacks,
+                     DOJI["guests"]: doji_guests})
 
 
 # ---- M234 the rehearsal hall (S03: 3 timing prompts + 2 dialogue picks -> rehearsal_quality)
@@ -6254,38 +6702,142 @@ def cue(line_who, line):
 
 
 MITSUE_HERE = [in_party("P105")]
-S03_CR4 = cr4("S03", stop_at="[IF mitsue_in_party]") + MITSUE_HERE + [if_([flag("W")], [
-    say("Mitsue", "Oh, please let me direct."), say("Rensei", "You're a Scorpion."),
-    say("Mitsue", "I'm an actress. The Scorpion part is a hobby.")])] + [
-    narrate("The rehearsal: three cues and two choices. When \"NOW!\" appears, confirm at once."),
-    setf("G438", 0)] + cue("Court actor", "The lady gazes - and sees jade where there is only stone!") + [
+# (user 2026-11-22: "in one of them you have to do a play, tht should be a minigame modeled on the hiruma dance
+# minigame but with kabuki ... so make sure to add a stage there") S03 now plays on the old kabuki stage in Kyuden
+# Doji's north garden (kabuki_stage): the two dialogue picks as written, then the run-through - the kabuki mini-game
+# (plugin RokuganKabuki.sk) in place of the three timing cues. Its grade (G1645) adds to rehearsal_quality (G438):
+# a flop 0, B 2, A or S 3; 4 or more and it works (G427), as before.
+KABUKI_SPOT, KABUKI_FRONT = (48, 55), (48, 46)              # centre stage; the garden before it (the north garden)
+
+
+# (user: "the kabuki i think should have 4 parts ... and be longer than the dance mini game. with scene setting
+# narration between parts. beginning and end") The play's four acts, each set by a narration before it; Lady Sanae
+# watches in secret with two she trusts (user: "judges should be crane high ranking figures").
+KABUKI_WATCH = [narrate("Lady Sanae has come, as she said she would - quietly - and brought two witnesses she trusts "
+                        "with her life: Daidoji Uji, the Iron Crane, and Kakita Yasurugi. They sit on the mats in the "
+                        "dark and say nothing.")]
+KABUKI_ACT_TEXT = {
+    1: "Act One - The Court of Komatsu. The curtain draws back on a court four hundred years dead: lacquer and gold, "
+       "the Emperor on his dais, and beside him a new bride who never blinks.",
+    2: "Act Two - The Mirror. A bronze mirror on its stand. The bride gazes into it and sees jade where there is only "
+       "river stone, and the courtiers lay the false jade at her feet.",
+    3: "Act Three - The Blade. Night in the palace. A loyal guard draws on her - and all the bride fears for is her "
+       "face.",
+    4: "Act Four - The Title. The whole court kneels. Two voices speak at once, and one word falls like a blade: "
+       "Empress.",
+}
+KABUKI_END = [narrate("The ki close the last act. In the dark garden nobody moves for a long moment. Then Lady Sanae "
+                      "folds her fan, once.")]
+
+
+def kabuki_run(diff):
+    """The four acts at one difficulty: each narrated, then danced; a flop or a stop ends the run-through."""
+    sx, _, sz, _ = world(DOJI["north"], *KABUKI_SPOT)
+    flop = [narrate("The scene comes apart in the middle. The actors stop. Somewhere in the dark, a fan closes."),
+            say("Old actor", "Again, young lord. On the night it has to be perfect.")]
+    walk = [narrate("Rensei walks the play through, stiffly, the actors feeding him every move."), setf("G1645", 1)]
+
+    def act(k):
+        nxt = act(k + 1) if k < 4 else KABUKI_END
+        return [narrate(KABUKI_ACT_TEXT[k])] + mini_game("kabuki_%s_%d" % (diff, k), nxt, flop, walk)
+    return [script("::Rokugan.kabukiStage( %.2f, %.2f, %.5f);" % (sx, sz, math.pi))] + act(1)   # (he stays up there)
+
+
+# (user 2026-11-22: "need a bit of exposition before the battle after the play, like have her come up on stage and
+# attack him for doing the play, but have a monologue before she attacks ... that is something this game misses a lot
+# of is the exposition of who, what, when, why"; "right after the rehersal she charges the stage") Doji Nashiko - the
+# demon bride the play was written about - has heard of the secret rehearsal. Rensei is still on the stage.
+NASHIKO_STAGE = [
+    narrate("The last ki fade into the dark garden. Somebody begins to clap - slowly, alone."),
+    narrate("A woman walks out of the trees and up the hanamichi, between the mats, as if the walkway had been built for "
+            "her: a Doji lady in white, young and impossibly lovely, and nobody in the garden knows her face. Lady "
+            "Sanae's fan stops moving."),
+    say("Doji Nashiko", "Lovely. Four hundred years, and they still remember my mirror. My blade. My title."),
+    say("Rensei", "My lady, the stage is closed tonight. Who are you?"),
+    say("Doji Nashiko", "You have just spent four acts telling them who I am, Kakita."),
+    narrate("She steps up onto the boards. Every lantern round the stage leans toward her at once, like flowers toward "
+            "a sun that is not there."),
+    say("Doji Nashiko", "I was the bride of Doji Komatsu. I was the court that burned. One frightened little steward "
+                        "with a brush wrote me down - and I have spent four hundred years making sure nobody ever read "
+                        "him."),
+    say("Doji Nashiko", "The censors banned him. The fires took the copies. The monks forgot the shelf. And tonight a "
+                        "Kakita boy with his father's eyes dusts him off and plays him in a garden. For an audience."),
+    say("Doji Nashiko", "Do you know what a play is, Rensei-san? A promise that something will happen again. I do not "
+                        "care to be promised."),
+    say("Doji Sanae", "(very quietly) Rensei-san. The third act."),
+    say("Doji Nashiko", "I wear faces, little crane. Tomorrow I will wear yours to your father's breakfast, and he will "
+                        "pour my tea."),
+    narrate("Her beauty does not crack. It sharpens. Somewhere under the white silk, wings of smoke unfold."),
+    say("Doji Nashiko", "Curtain."),
+    dict(battle("M001", 174), losefunc=1),                                  # b_boss_nashiko_stage (she flees at 45%)
+    narrate("A thin red line opens on that perfect cheek. Doji Nashiko screams - not in pain. In horror."),
+    say("Doji Nashiko", "...You will not do that again, Kakita. Not to this face. Not to THIS face."),
+    narrate("Smoke. When it clears, the hanamichi is empty, the lanterns stand straight, and there is blood on the "
+            "boards that belongs to no one in the garden."),
+    say("Doji Sanae", "So. It works."),
+    say("Rensei", "She knows we have it."),
+    say("Doji Sanae", "She has always known it existed. Tonight she learned it can be performed. Go to bed, Rensei-san. "
+                      "Your father will have heard the screaming.")]
+
+
+S03_CR4 = [narrate("The north garden, at night. An old kabuki stage nobody has used since Rensei was a boy, its "
+                   "curtain faded to three greys. He recruits three court actors who owe him favours, and swears them "
+                   "to silence.")] + cr4("S03", start_at="ACTOR: A forbidden play", stop_at="[IF mitsue_in_party]") + \
+    MITSUE_HERE + [if_([flag("W")], [
+        say("Mitsue", "Oh, please let me direct."), say("Rensei", "You're a Scorpion."),
+        say("Mitsue", "I'm an actress. The Scorpion part is a hobby.")])] + [
+    setf("G438", 0), setf("G1645", 0),
     narrate("How should the title be spoken?"), choices(
         ("\"With awe.\"", [setf("G438", 1, "+="), in_party("P105"), if_([flag("W")], [
             say("Mitsue", "Yes. Mean it. She can tell flattery from worship."), say("Rensei", "How do you know?"),
             say("Mitsue", "Because I can.")], [say("Old actor", "Yes. Like that. As if your life depended on it.")])]),
-        ("\"With mockery.\"", [say("Court actor", "She'd tear your throat out for that tone, young lord.")]))] + \
-    cue("Court actress", "And here - the false jade, laid at her feet!") + [
+        ("\"With mockery.\"", [say("Court actor", "She'd tear your throat out for that tone, young lord.")])),
     narrate("The margin note: two truths at once."), choices(
         ("Two actors speak at the same time.", [setf("G438", 1, "+="), say("Court actor", "It sounds like chaos!"),
                                                 say("Rensei", "Exactly. She can only follow one.")]),
-        ("One speaks, then the other.", [narrate("Clear, and useless: she would hear every word.")]))] + \
-    cue("Old actor", "Now. The title.") + [
+        ("One speaks, then the other.", [narrate("Clear, and useless: she would hear every word.")])),
+    narrate("The run-through: the whole play, four acts. Kakita Rensei takes the stage.")] + KABUKI_WATCH + [
+    choices(("Perform it. (Easy)", kabuki_run("easy")),
+            ("Perform it. (Hard)", kabuki_run("hard"))),
+    script('::rpgvar["G438"] = ::rpgvar["G438"] + [0, 2, 3, 3][Math.clamp( ::rpgvar["G1645"], 0, 3)];'),
     if_([{"lvar": "G438", "op": ">=", "rvar": 4}],
-        [setf("G427"), narrate("When the last word lands, nobody in the hall breathes. It works.")],
+        [setf("G427"), narrate("When the last word lands, nobody in the garden breathes. It works.")],
         [narrate("It holds together, mostly. It might work.")]),
-    setf("G426"), narrate("Rensei swears the actors to silence. They swear it delightedly, which worries him."),
-    narrate("Morning.")] + DARK + [go("M230", 15, 4, padded=False)]
+    setf("G426")] + NASHIKO_STAGE + [
+    # (user 2026-11-22: "I thought they were the same person cause no one ... says anything about whats going on ...
+    # add the full exposition of, heading to get a night sleep, being summoned by letter to the duel")
+    narrate("The garden empties. Daidoji Uji walks Lady Sanae back to the keep, one hand on his sword the whole way. "
+            "Kakita Yasurugi looks a long while at the blood on the boards, then goes without a word."),
+    narrate("Rensei swears the three actors to silence. After tonight, they swear it gladly."),
+    script("::Rokugan.kabukiStageEnd( %.2f, %.2f, %.5f);" % (world(DOJI["north"], *KABUKI_FRONT)[0],
+                                                            world(DOJI["north"], *KABUKI_FRONT)[2], math.pi)),
+    narrate("Objective: get some sleep - your room in the guest pavilion, back through the grounds.")]
+
+
+def kabuki_stage(m, ev):
+    """The north garden's old kabuki stage: cypress boards on a dark frame, the striped curtain (black, persimmon,
+    green) at the back, the hanamichi walkway out through the audience, mats for the audience, lanterns; the three
+    actors waiting for the run-through (S03)."""
+    y = int(m.hgt[55, 48])
+    m.rect(30, 51, 37, 10, DARKWOOD, y + 1)
+    m.rect(31, 52, 35, 8, WOOD, y + 1)
+    # The native fitted backdrop takes the place of the stock curtain.
+    m.walls.extend((x, 61) for x in range(30, 67))
+    m.rect(33, 38, 3, 13, WOOD, y + 1)                                      # the hanamichi, through the audience
+    m.rect(38, 40, 26, 9, MATTING, y)                                       # the audience's mats
+    for x, z, k in ((40, 57, "actor_a"), (56, 57, "actor_b"), (61, 55, "actor_c")):
+        ev.prop(x, z, SC[k], reqs=[flag("G425"), flag("G428", False)], d=0)        # (G426 is set as S03 starts)
+    for x, k in ((44, "sanae"), (48, "uji"), (52, "yasurugi")):            # the witnesses on the mats, watching
+        ev.prop(x, 42, SC[k], reqs=[flag("G425"), flag("G428", False)], d=0)
+    n = ev.scene(KABUKI_FRONT[0], KABUKI_FRONT[1] + 1, "G426", S03_CR4, after="G425", touch=True)
+    ev.ev["#%d#" % n]["mdl"] = {"r": [0, 1.0, 0, 4.0, 3.0, 1.0]}           # (the whole front of the stage)
+
+
+CASTLE_STORY[DOJI["north"]] = kabuki_stage
 
 
 def rehearsal_hall():
-    def extra(m, ev):
-        fill(m, 6, 2, 9, 18, 1, 3, PLANK)                                   # the stage
-        for x, k in ((10, "actor_a"), (15, "actor_b"), (20, "actor_c")):
-            ev.prop(x, 10, SC[k], d=0)
-        ev.scene(15, 4, "G426", S03_CR4, after="G425")
-    return castle_floor("M234", "The rehearsal hall", 30, 12, [("candle", 4, 11), ("candle", 26, 11),
-                                                              ("box", 26, 5), ("screen", 3, 6, 2)],
-                        down=("M228", DOOR_EV[("M228", "hall")] if ("M228", "hall") in DOOR_EV else 4), extra=extra)
+    return castle_stub("M234", "The rehearsal hall", DOJI["north"], *KABUKI_FRONT)
 
 
 # ---- M235 the Kakita dueling ground (S05 "First Blood": formal duel, b_boss_masanori, losefunc 1)
@@ -6300,7 +6852,7 @@ S05_CR4 = cr4("S05", stop_at="[BATTLE") + [
         if_([flag("G429", False)], [narrate("He holds out his hand. Rensei gives him the play."), setf("G429"),
                                     {"cmd": "cmd_itemop", "itemid": "I147", "op": 1, "num": 1, "LV": 1},
                                     narrate("(Lady Sanae, watching from the veranda, does not look surprised.)")])]),
-    narrate("The court goes back inside."), go("M229", 20, 4, padded=False)]
+    narrate("The court goes back inside."), go(DOJI["court"], *DOJI_COURT, padded=False)]
 
 
 def dueling_ground():
@@ -6314,7 +6866,7 @@ def dueling_ground():
     for x, k in ((22, "courtier"), (26, "sanae"), (30, "censorclerk"), (34, "dojipoet"), (38, "courtier")):
         ev.prop(x, 18, SC[k], d=0)
     ev.prop(30, 13, SC["masanori"], reqs=[flag("G430", False)], d=0)
-    ev.scene(30, 8, "G430", S05_CR4, after="G428")
+    ev.scene(30, 8, "G430", S05_CR4, after="G1647")                         # (the dawn: he walked here)
     return m, ev
 
 
@@ -6967,7 +7519,7 @@ def shiro_akodo_town():
         fb(m, x, 18, 2, LAMP_STREET)
     ev = Events(m)
     ev.portal(1, 15, "M254", 2, d=1)                                        # event 1: the winter road
-    ev.portal(50, 30, "M256", 1, d=0)                                       # event 2: the castle
+    ev.portal(50, 30, LION["reception"], 1, d=0)                            # event 2: the castle grounds
     if "M266" in MAPS_LION:
         east = DOOR_EV[("M255", "east")] = ev.portal(98, 15, "M266", 1, d=3)   # the west road (after Lion Ch3 S01)
         ev.ev["#%d#" % east]["reqs0"] = [flag("G519")]
@@ -7009,49 +7561,7 @@ S08_CL2 = cl2("S08") + guest_join(10) + [setf("G507"), narrate(
 
 
 def shiro_akodo_grounds():
-    m = MapSpec("M256", "Shiro Akodo - the castle", 70, 40, base=SNOW, y=3)
-    m.rect(26, 12, 18, 10, GRASS2, 3)                                       # the Central Garden (winter)
-    building(m, 28, 32, 16, 6, two_storey=True)                             # the Hall of Honors
-    building(m, 4, 24, 12, 6, wall=WOOD)                                    # the Central Dojo
-    building(m, 54, 24, 12, 6, wall=WOOD)                                   # the North Dojo
-    building(m, 54, 4, 12, 5, wall=DARKWOOD)                                # the South Dojo (cold)
-    building(m, 4, 4, 12, 5)                                                # the Hall of Akodo
-    building(m, 18, 32, 8, 6, wall=WOOD)                                    # the library
-    building(m, 46, 32, 6, 6, wall=STONE)                                   # the cells
-    fill(m, 20, 3, 4, 10, 3, 5, WOOD)                                       # the stables
-    for x, z in ((27, 13), (43, 13), (27, 21), (43, 21)):                  # the garden's corners (big trees in the
-        m.tree(x, z, TREE_S)                                                # middle hid the player)
-    ev = Events(m)
-    ev.portal(35, 1, "M255", 2, d=2)                                        # event 1: the castle town
-    for i, (mid, (x, z)) in enumerate(DOORS_SA):
-        door = ev.portal(x, z, mid, 1, d=2 if z < 15 else 0)              # (tester 2026-11-11: the South Dojo and the
-        assert door == i + 2                                                # Hall of Akodo face south, the building to
-                                                                            # their north: d 0 set you down inside it,
-                                                                            # and the fall-rescue put you on the roof)
-    ev.ev["#5#"]["reqs0"] = [flag("G498")]                                  # the South Dojo: after Beat 3
-    ev.ev["#8#"]["reqs0"] = [flag("G504")]                                  # the cells: after the arrest
-    if "M265" in MAPS_LION:
-        karo = ev.portal(12, 32, "M265", 1, d=2)                            # event 9: the karo's office (Lion Ch3)
-        # (tester 2026-11-11: at (12, 30) d 0 it sat inside the Central Dojo's eaves - no way in, and arriving set you
-        # down in the building. A square clear of the back wall now, facing out.)
-        assert karo == 9
-        ev.ev["#9#"]["reqs0"] = [flag("G510")]
-    ev.talk(60, 12, "CE000", [(None, [narrate("The South Dojo. Kafu-sama's. The door is cold to the touch.")]),
-                              ([flag("G498")], [])], trigger=5)
-    ev.talk(24, 10, SC["benjiro"], [(None, [say("Benjiro", "The Crab laugh at me. Let them.")]),   # (at the stables'
-                                                                            # door: at (24, 6) he stood inside the
-                                                                            # stables' solid block - tester 2026-11-11)
-                                   ([flag("G506"), flag("G507", False)], S08_CL2),
-                                   ([flag("G507")], [say("Benjiro", "Tonight, Lion. It is fat enough now.")])])
-    ev.npc(28, 7, SC["kitechild"], "Benjiro-sama paints his face every morning.")                # the stable girl
-    ev.npc(62, 30, SC["kitchengirl"], "The South Dojo is cold even with the braziers lit.")
-    ev.npc(34, 20, SC["yutaka"], "I paint the Wall. With birds in it.")
-    ev.npc(40, 22, SC["mami"], "Watch - this paper crane is the Kaiu Wall. This one is your castle. Now it's on fire.")
-    ev.talk(30, 24, SC["kafu"], [(None, [say("Kafu", "Court is a battlefield with better tea.")])],
-            reqs=[flag("G498", False)])
-    ev.talk(30, 24, SC["kafu_nosword"], [(None, [say("Kafu", "My sword? Rewrapping. The hilt was worn.")])],
-            reqs=[flag("G498"), flag("G509", False)])
-    return m, ev
+    return castle_stub("M256", "Shiro Akodo - the castle", LION["reception"], 48, 8)
 
 
 # ---- M257 the Hall of Honors: S01 and the hostess's four beats
@@ -7133,16 +7643,7 @@ HOSTESS = [(None, [say("Hostess", "Welcome to Winter Court, Akodo-san.")]),
 
 
 def hall_of_honors():
-    def extra(m, ev):
-        ev.talk(18, 10, SC["hostess"], HOSTESS)
-        ev.npc(24, 11, SC["toturi"], "...", reqs=[flag("G499", False)])
-        ev.npc(24, 11, SC["toturi"], "Akodo Shizue.", reqs=[flag("G499")])
-        ev.npc(8, 9, SC["gesshin"], "Sufficient.")
-        ev.npc(30, 9, SC["hiruto"], "The far end of the hall, Shizue. You see the whole board from there.")
-        ev.scene(18, 4, "G489", S01_CL2)
-    return castle_floor("M257", "Shiro Akodo - the Hall of Honors", 36, 12, [
-        ("tatami", 6, 5), ("tatami", 12, 5), ("tatami", 24, 5), ("tatami", 30, 5), ("dais", 15, 10, 6, 2),
-        ("candle", 3, 12), ("candle", 33, 12)], down=("M256", 2), extra=extra)
+    return castle_stub("M257", "Shiro Akodo - the Hall of Honors", LION["hall"], 48, 28, padded=False)
 
 
 ESC1 = [narrate("The Central Dojo. A pale rectangle on the wall where a painting hung. Servants whisper."),
@@ -7151,13 +7652,7 @@ ESC1 = [narrate("The Central Dojo. A pale rectangle on the wall where a painting
 
 
 def central_dojo():
-    def extra(m, ev):
-        ev.scene(12, 4, "G493", ESC1, after="G491")
-        ev.talk(12, 10, "CE000", [(None, [narrate("The bushido paintings, in order like a scroll.")]),
-                                  ([flag("G493")], [narrate("The bushido paintings, in order like a scroll. One is "
-                                                            "missing: \"Duty\".")])], trigger=1)
-    return castle_floor("M258", "Shiro Akodo - the Central Dojo", 26, 10, [("candle", 3, 10), ("candle", 23, 10)],
-                        down=("M256", 3), extra=extra)
+    return castle_stub("M258", "Shiro Akodo - the Central Dojo", LION["dojos"], 24, 22, padded=False)
 
 
 GO_GAME = [say("Nishi", "Sit. Black, as always?"), narrate("A go game in the North Dojo. Nishi plays fast."),
@@ -7168,14 +7663,7 @@ GO_GAME = [say("Nishi", "Sit. Black, as always?"), narrate("A go game in the Nor
 
 
 def north_dojo():
-    def extra(m, ev):
-        ev.talk(12, 9, SC["nishi"], [(None, [say("Nishi", "My wedding is in eleven weeks. Everyone keeps telling me."),
-                                             choices(("A game of go?", GO_GAME), ("Leave.", []))]),
-                                     ([flag("G510")], [say("Nishi", "...Black, as always.")])])
-        ev.talk(18, 10, "CE000", [(None, [narrate("The painting \"Honor\", Nishi's favourite.")])], trigger=1)
-    return castle_floor("M259", "Shiro Akodo - the North Dojo", 26, 10, [("tatami", 10, 6), ("candle", 3, 10),
-                                                                        ("candle", 23, 10)],
-                        down=("M256", 4), extra=extra)
+    return castle_stub("M259", "Shiro Akodo - the North Dojo", LION["dojos"], 72, 26, padded=False)
 
 
 S06_IN = [narrate("The South Dojo at night. Cold. Braziers guttering. A wet trail across the floorboards that hisses "
@@ -7223,18 +7711,16 @@ S10_CL2 = [narrate("Dawn.")] + [if_([flag("G508")], [
 
 
 def south_dojo():
-    def extra(m, ev):
-        ev.prop(14, 9, SC["kafu_nosword"], reqs=[flag("G507"), flag("G509", False)], d=0)
-        ev.scene(12, 4, "G502", S06_IN, after="G498")
-        DOOR_EV[("M260", "board")] = ev.portal(20, 6, "M261", 1, d=0)       # the loose board (after the fight)
-        ev.ev["#%d#" % DOOR_EV[("M260", "board")]]["reqs0"] = [flag("G502")]
-        ev.talk(6, 9, "CE000", [(None, [narrate("The inner screen. Behind it, silence.")]),
-                                ([flag("G511"), flag("G513", False)], S06_VOICES),
-                                ([flag("G513")], [narrate("The inner screen. Cold air breathes through it.")])],
-                trigger=1)
-        ev.scene(12, 6, "G514", S09_CL2 + S10_CL2 + DARK + [go("M256", 35, 4)], after="G507")
-    return castle_floor("M260", "Shiro Akodo - the South Dojo at night", 26, 10, [
-        ("candle", 3, 10), ("candle", 23, 10)], down=("M256", 5), extra=extra)
+    return castle_stub("M260", "Shiro Akodo - the South Dojo at night", LION["upper"], LION_SOUTH[0], LION_SOUTH[1] - 2,
+                       padded=False)
+
+
+def lion_door(key):
+    """A story doorway on a Shiro Akodo keep floor (event id), building that floor if it has not been yet."""
+    mid = {"board": LION["upper"]}[key]
+    if (mid, key) not in DOOR_EV:
+        make(mid)
+    return DOOR_EV[(mid, key)]
 
 
 def under_dojo():
@@ -7243,7 +7729,7 @@ def under_dojo():
                  links=[(12, 15, 18, 14, 3), (33, 13, 41, 10, 3), (46, 14, 46, 18, 3)], seed=21,
                  floor=PLANK, wall=DARKWOOD)
     ev = Events(m)
-    ev.portal(4, 15, "M260", DOOR_EV.get(("M260", "board"), 4), d=1)        # event 1: back up the loose board
+    ev.portal(4, 15, LION["upper"], lion_door("board"), d=1)                # event 1: back up the loose board
     ev.talk(26, 13, "CE000", [(None, [narrate("A scarf, caught on a nail: the first stolen thing. As Shizue reaches "
                                               "for it, something in the dark drags it away.")])], trigger=1)
     ev.chest(30, 16, item_named("Jade Dust"), 2)
@@ -7251,29 +7737,17 @@ def under_dojo():
                                               "old jade bead.")] + got("A106", "an Old Jade Bead") + [setf("G512")]),
                               ([flag("G512")], [narrate("The prayer-board, alone.")])], trigger=1)
     ev.talk(48, 8, "CE000", [(None, [narrate("A floor-hatch, up into the South Dojo behind the inner screen."),
-                                     setf("G511"), go("M260", 6, 8, padded=False)])], trigger=1)
+                                     setf("G511"), go(LION["upper"], LION_SOUTH[0] + 10, LION_SOUTH[1] + 2,
+                                                      padded=False)])], trigger=1)
     return m, ev
 
 
 def hall_of_akodo():
-    def extra(m, ev):
-        ev.scene(12, 4, "G497", [narrate("The Hall of Akodo. Gasps. The great trophy of the Lion - the Crane banner "
-                                         "of Sorrow's Path - is gone from its wall."),
-                                 say("Lion general", "The Crane spy! Arrest her!"),
-                                 say("Toturi", "Not without proof.")], after="G495")
-        ev.talk(12, 10, "CE000", [(None, [narrate("Trophies: Crane, mostly. Then Scorpion.")]),
-                                  ([flag("G497")], [narrate("Trophies: Crane, mostly. A bare wall where the Sorrow's "
-                                                            "Path banner hung.")])], trigger=1)
-    return castle_floor("M262", "Shiro Akodo - the Hall of Akodo", 26, 10, [("candle", 3, 10), ("candle", 23, 10)],
-                        down=("M256", 6), extra=extra)
+    return castle_stub("M262", "Shiro Akodo - the Hall of Akodo", LION["hall"], 24, 36, padded=False)
 
 
 def library_sa():
-    def extra(m, ev):
-        ev.npc(12, 9, SC["atsuko"], "I'm only reading. Is that a crime here?", reqs=[flag("G504", False)])
-    return castle_floor("M263", "Shiro Akodo - the library", 22, 10, [("book", 6, 9), ("book", 10, 9),
-                                                                     ("doc", 16, 9), ("candle", 3, 10)],
-                        down=("M256", 7), extra=extra)
+    return castle_stub("M263", "Shiro Akodo - the library", LION["upper"], 24, 38, padded=False)
 
 
 ATSUKO_CELL = [say("Atsuko", "I'll tell you exactly one true thing, Lion, because you came yourself instead of sending a "
@@ -7287,10 +7761,120 @@ ATSUKO_CELL = [say("Atsuko", "I'll tell you exactly one true thing, Lion, becaus
 
 
 def cells_sa():
-    def extra(m, ev):
-        ev.talk(10, 8, SC["atsuko"], [(None, ATSUKO_CELL), ([flag("G506")], [
-            say("Atsuko", "One true thing, Lion. That was the deal.")])])
-    return castle_floor("M264", "Shiro Akodo - the cells", 20, 9, [("candle", 3, 9)], down=("M256", 8), extra=extra)
+    return castle_stub("M264", "Shiro Akodo - the cells", LION["barracks"], 30, 16)
+
+
+# ---- Shiro Akodo in the roamable castle (user 2026-11-22: "then get back to expanding castles"; castles-roamable)
+# Lion Ch2 ("Shadow of a Doubt") and Ch3's karo's office no longer live in story rooms: the town gate opens on the
+# castle grounds (CLAN_CASTLES[2] "gate"); the Hall of Honors is the keep's 1F great hall (the hostess, Toturi, S01) with
+# the Hall of Akodo's trophies in its west wing; the Central Dojo and the North Dojo are the 2F's west and east wings;
+# the library and the South Dojo (cold; the loose board down to the oni's lair, M261, which stays its own map) are on
+# 3F; the karo's office is on 4F; Atsuko's cell is in the Guard barracks, Benjiro in the Stables, the garden folk in
+# the Courtyard garden. The old rooms (M256-M260, M262-M265) are stubs that move an old save to the matching spot.
+LION = {"reception": "M510", "hall": "M511", "dojos": "M512", "upper": "M513", "top": "M514", "barracks": "M557",
+        "stables": "M558", "garden": "M560", "kitchen": "M565"}
+LION_SOUTH = (72, 40)                                       # the South Dojo, 3F east wing (back)
+LION_GARDEN = (48, 20)                                      # the courtyard garden (Kafu's last morning)
+
+
+def lion_hall(m, ev):
+    """1F: the Hall of Honors (the hostess and her four beats, Toturi on the dais) and, in the west wing, the Hall of
+    Akodo's trophies (the stolen banner, after Beat 2)."""
+    ev.talk(48, 30, SC["hostess"], HOSTESS)
+    ev.npc(48, 50, SC["toturi"], "...", reqs=[flag("G499", False)])
+    ev.npc(48, 50, SC["toturi"], "Akodo Shizue.", reqs=[flag("G499")])
+    ev.npc(40, 32, SC["gesshin"], "Sufficient.")
+    ev.npc(56, 32, SC["hiruto"], "The far end of the hall, Shizue. You see the whole board from there.")
+    ev.scene(48, 12, "G489", S01_CL2)
+    n = ev.scene(24, 38, "G497", [narrate("The Hall of Akodo, the keep's west wing. Gasps. The great trophy of the "
+                                          "Lion - the Crane banner of Sorrow's Path - is gone from its wall."),
+                                  say("Lion general", "The Crane spy! Arrest her!"),
+                                  say("Toturi", "Not without proof.")], after="G495", touch=True)
+    ev.ev["#%d#" % n]["mdl"] = {"r": [0, 1.0, 0, 3.0, 3.0, 1.0]}
+    ev.talk(24, 44, "CE000", [(None, [narrate("Trophies: Crane, mostly. Then Scorpion.")]),
+                              ([flag("G497")], [narrate("Trophies: Crane, mostly. A bare wall where the Sorrow's Path "
+                                                        "banner hung.")])], trigger=1)
+
+
+def lion_dojos(m, ev):
+    """2F: the Central Dojo (west wing: the bushido paintings, "Duty" stolen after Beat 1) and the North Dojo (east
+    wing: Nishi's go board, "Honor")."""
+    n = ev.scene(24, 20, "G493", ESC1, after="G491", touch=True)
+    ev.ev["#%d#" % n]["mdl"] = {"r": [0, 1.0, 0, 3.0, 3.0, 1.0]}
+    ev.talk(20, 24, "CE000", [(None, [narrate("The bushido paintings, in order like a scroll.")]),
+                              ([flag("G493")], [narrate("The bushido paintings, in order like a scroll. One is "
+                                                        "missing: \"Duty\".")])], trigger=1)
+    ev.talk(72, 22, SC["nishi"], [(None, [say("Nishi", "My wedding is in eleven weeks. Everyone keeps telling me."),
+                                          choices(("A game of go?", GO_GAME), ("Leave.", []))]),
+                                  ([flag("G510")], [say("Nishi", "...Black, as always.")])])
+    ev.talk(78, 24, "CE000", [(None, [narrate("The painting \"Honor\", Nishi's favourite.")])], trigger=1)
+
+
+def lion_upper(m, ev):
+    """3F: the library (Atsuko, reading, until the arrest) and the South Dojo in the east wing - cold at night; the
+    fight on the wet trail (S06), the loose board down to the lair, the inner screen, and Kafu's end (S09-S10)."""
+    ev.npc(24, 42, SC["atsuko"], "I'm only reading. Is that a crime here?", reqs=[flag("G504", False)])
+    x, z = LION_SOUTH
+    ev.prop(x + 4, z + 4, SC["kafu_nosword"], reqs=[flag("G507"), flag("G509", False)], d=0)
+    n = ev.scene(x, z, "G502", S06_IN, after="G498", touch=True)
+    ev.ev["#%d#" % n]["mdl"] = {"r": [0, 1.0, 0, 3.0, 3.0, 1.0]}
+    DOOR_EV[(m.mid, "board")] = b = ev.portal(x + 8, z + 6, "M261", 1, d=0)   # the loose board (after the fight)
+    ev.ev["#%d#" % b]["reqs0"] = [flag("G502")]
+    ev.talk(x + 12, z + 2, "CE000", [(None, [narrate("The inner screen. Behind it, silence.")]),
+                                     ([flag("G511"), flag("G513", False)], S06_VOICES),
+                                     ([flag("G513")], [narrate("The inner screen. Cold air breathes through it.")])],
+            trigger=1)
+    n = ev.scene(x + 1, z, "G514", S09_CL2 + S10_CL2 + DARK + [go(LION["garden"], *LION_GARDEN)], after="G507",
+                 touch=True)
+    ev.ev["#%d#" % n]["mdl"] = {"r": [0, 1.0, 0, 3.0, 3.0, 1.0]}
+    ev.talk(x - 2, z - 3, "CE000", [(None, [narrate("The South Dojo. Kafu-sama's. The floor is cold to the touch, "
+                                                    "even here.")])], trigger=1)
+
+
+def lion_top(m, ev):
+    """4F: the karo's office (Lion Ch3 S01, S05B; Toturi's study, S07)."""
+    ev.prop(24, 24, SC["karo"], d=0)
+    ev.scene(22, 20, "G542", S01_CL3, after="G510")
+    ev.scene(22, 21, "G544", S05B_CL3, after=[ROUTE_B, flag("G525")])
+    ev.prop(28, 24, SC["toturi"], reqs=[flag("G533"), flag("G537", False)], d=0)
+    ev.scene(22, 22, "G536", S07_CL3, after=[flag("G533"), {"lvar": "G535", "op": "==", "rvar": True}])
+    ev.scene(22, 23, "G545", S07_CL3, after=[flag("G533"), ROUTE_A])
+
+
+def lion_barracks(m, ev):
+    """The Guard barracks: Atsuko's cell (after the arrest)."""
+    y = int(m.hgt[14, 30])
+    for x in range(26, 35, 2):
+        fill(m, x, y + 1, 11, 1, 4, 1, DARKWOOD)                            # the cell's bars
+    ev.talk(30, 13, SC["atsuko"], [(None, ATSUKO_CELL), ([flag("G506")], [
+        say("Atsuko", "One true thing, Lion. That was the deal.")])], reqs=[flag("G504")])
+
+
+def lion_stables(m, ev):
+    """The stables: Moto Benjiro (S08) and the stable girl."""
+    ev.talk(30, 14, SC["benjiro"], [(None, [say("Benjiro", "The Crab laugh at me. Let them.")]),
+                                    ([flag("G506"), flag("G507", False)], S08_CL2),
+                                    ([flag("G507")], [say("Benjiro", "Tonight, Lion. It is fat enough now.")])])
+    ev.npc(36, 12, SC["kitechild"], "Benjiro-sama paints his face every morning.")
+
+
+def lion_garden(m, ev):
+    """The courtyard garden: Kaiu Yutaka and Kaiu Mami at their paper and paint; Akodo Kafu, before and after."""
+    ev.npc(40, 20, SC["yutaka"], "I paint the Wall. With birds in it.")
+    ev.npc(44, 22, SC["mami"], "Watch - this paper crane is the Kaiu Wall. This one is your castle. Now it's on fire.")
+    ev.talk(52, 24, SC["kafu"], [(None, [say("Kafu", "Court is a battlefield with better tea.")])],
+            reqs=[flag("G498", False)])
+    ev.talk(52, 24, SC["kafu_nosword"], [(None, [say("Kafu", "My sword? Rewrapping. The hilt was worn.")])],
+            reqs=[flag("G498"), flag("G509", False)])
+
+
+def lion_kitchen(m, ev):
+    ev.npc(40, 20, SC["kitchengirl"], "The South Dojo is cold even with the braziers lit.")
+
+
+CASTLE_STORY.update({LION["hall"]: lion_hall, LION["dojos"]: lion_dojos, LION["upper"]: lion_upper,
+                     LION["top"]: lion_top, LION["barracks"]: lion_barracks, LION["stables"]: lion_stables,
+                     LION["garden"]: lion_garden, LION["kitchen"]: lion_kitchen})
 
 
 def battle_dojo():
@@ -7348,16 +7932,7 @@ S07_CL3 = cl3("S07", stop_at="[IF shogen_joined]") + [if_([flag("G532")], [
 
 
 def karo_office():
-    def extra(m, ev):
-        ev.prop(12, 8, SC["karo"], d=0)
-        ev.scene(12, 4, "G542", S01_CL3, after="G510")
-        ev.scene(12, 5, "G544", S05B_CL3, after=[ROUTE_B, flag("G525")])
-        ev.prop(16, 8, SC["toturi"], reqs=[flag("G533"), flag("G537", False)], d=0)
-        ev.scene(12, 6, "G536", S07_CL3, after=[flag("G533"), {"lvar": "G535", "op": "==", "rvar": True}])
-        ev.scene(12, 7, "G545", S07_CL3, after=[flag("G533"), ROUTE_A])
-    return castle_floor("M265", "Shiro Akodo - the karo's office", 22, 9, [("doc", 8, 8), ("candle", 3, 9),
-                                                                         ("candle", 19, 9)],
-                        down=("M256", 9), extra=extra)
+    return castle_stub("M265", "Shiro Akodo - the karo's office", LION["top"], 22, 18, padded=False)
 
 
 # ---- M266 the west road (spring thaw)
@@ -7570,7 +8145,7 @@ SHOGEN = cl3("S05A", stop_at="[PA Duel") + [narrate("A Duel: first blood. Win or
     narrate("Shogen pours bitter tea into two chipped cups. The cold goes out of her hands."), *REST] + KILLERS + [
     narrate("Objective: home to Shiro Akodo, and Toturi.")]
 HOME_LION3 = [narrate("The long road home, down the pass and east through the thaw."), DARK[0]] + DARK[1:] + \
-    [go("M265", 12, 3, padded=False)]
+    [go(LION["top"], 22, 18, padded=False)]
 
 
 def hermitage():
@@ -11068,8 +11643,6 @@ def river_road():
     m.rect(0, 13, 110, 5, ROAD, 3)
     for x in range(0, 110, 12):
         fill(m, x + 2, 3, 22, 8, 1, 6, GRASS3)                              # paddies, greener toward Kudo
-    for x in range(5, 110, 8):
-        m.tree(x, 10 + x % 2, TREE_S)                                       # reeds
     ev = Events(m)
     ev.portal(1, 15, "M349", 2, d=1)                                        # event 1: Shutai
     ev.portal(108, 15, "M351", 1, d=3)                                      # event 2: Kudo
@@ -11108,6 +11681,8 @@ def kudo():
     m.rect(0, 0, 10, 48, WATER, 1)                                          # the River of Gold (west)
     for z in (6, 28):
         m.rect(2, z, 8, 4, PLANK, 3)                                        # the river port's docks
+    # The raised west approach meets the river road between the working docks.
+    m.rect(0, 10, 15, 6, ROAD, 3)
     m.rect(10, 14, 102, 6, ROAD, 3)                                         # the main street
     m.rect(52, 0, 4, 14, WATER, 2)                                          # the stream between the districts
     m.rect(51, 14, 6, 6, PLANK, 4)                                          # the bridge nobody likes
@@ -11118,16 +11693,10 @@ def kudo():
     building(m, 60, 22, 16, 8, wall=WOOD)                                   # the Kitsune Hall (Fox street)
     building(m, 80, 22, 10, 6, wall=WOOD)                                   # the Dreaming Carp
     shrine(m, 96, 23)                                                       # Inari
-    for x, z in ((60, 6), (66, 3), (80, 4), (88, 8), (100, 4), (106, 9)):
-        m.tree(x, z, TREE_S)                                                # the Fox district: trees run riot
-    for x, z in ((106, 30), (102, 40), (78, 40), (64, 42), (90, 44), (58, 34), (86, 34)):
-        m.tree(x, z, (TREE_L, TREE_M)[(x + z) % 2])
     for x in range(14, 50, 6):
         m.rect(x, 4, 4, 3, GRASS2, 3)                                       # Sparrow kitchen gardens, swept
-    for x in (12, 26, 40, 60, 74, 88, 104):
-        fb(m, x, 20, 2, LAMP_STREET)
     ev = Events(m)
-    ev.portal(110, 16, "M350", 2, d=3)                                      # event 1: the road north (Shutai)
+    ev.portal(1, 12, "M350", 2, d=3)                                        # event 1: the road north (Shutai)
     ev.portal(68, 21, "M352", 1, d=0)                                       # event 2: the Kitsune Hall
     ev.portal(46, 21, "M353", 1, d=0)                                       # event 3: the Mantis guest house
     ev.portal(85, 21, "M354", 1, d=0)                                       # event 4: the Dreaming Carp
@@ -11135,7 +11704,7 @@ def kudo():
     ev.ev["#%d#" % west]["reqs0"] = [flag("G853")]
     ev.talk(13, 16, "CE000", [(None, [narrate("The docks, and the dark far bank. No reason to cross. Yet."),
                                       step_back(2.0, 0)]), ([flag("G853")], [])], trigger=5)
-    ev.scene(104, 16, "G845", S04_SCP1, after=[flag("G840")])
+    ev.scene(15, 15, "G845", S04_SCP1, after=[flag("G840")])
     ev.scene(84, 17, "G853", S05_SCP1 + S05_JOIN,
              after=[flag("G849"), {"lvar": "G851", "op": ">=", "rvar": 2}, flag("G876")])
     ev.prop(36, 20, SC["mbushi"], d=2)                                      # the quarantine guard
@@ -17021,7 +17590,7 @@ CH4_DONE = {"P100": "G286", "P101": "G434", "P102": "G830", "P103": "G573", "P10
             "P106": "G1031", "P107": "G1154"}
 FINALE_ALL_EIGHT = False
 # each path's last map (where its Ch4 leaves the traveler): (x, z, that path's Ch4 flag, indoors)
-FINALE_GATES = {"M151": (58, 40, "G286", False), "M229": (24, 5, "G434", True), "M273": (54, 16, "G573", False),
+FINALE_GATES = {"M151": (58, 40, "G286", False), "M509": (56, 46, "G434", True), "M273": (54, 16, "G573", False),
                 "M297": (58, 13, "G698", False), "M344": (9, 4, "G830", True), "M379": (104, 15, "G953", False),
                 "M413": (14, 14, "G1031", False), "M438": (14, 13, "G1154", False)}
 
@@ -18000,7 +18569,8 @@ MAPS_LION.update({"M453": glade_heart, "M806": battle_glade, "M807": battle_star
 
 
 MAPS_CRANE.update({"M217": sanae_rooms, "M214": border_camp_night, "M215": border_ridge})
-MAPS_CRANE.update({"M212": land_bridge, "M213": yasuki_yashiki, "M219": yasuki_hall})
+MAPS_CRANE.update({"M212": land_bridge, "M213": yasuki_yashiki, "M219": yasuki_hall,
+                   "M236": tide_submerged})
 INTERIORS.update({"M208": goroso_cells})
 MAPS_CRANE.update({"M208": goroso_cells, "M209": castle_yard, "M823": battle_yard, "M824": battle_cells})
 
@@ -18322,11 +18892,10 @@ def wall_shinomen_gate():
     m = MapSpec("M457", "Kaiu Wall - the Shinomen gate", 72, 40, base=T(0, 5), y=2)
     m.rect(0, 0, 72, 6, GRASS, 2)
     kaiu_wall(m, 30, 40, 16, crenel_z=30)
-    fill(m, 52, 3, 30, 7, 9, 1, VOID)                                       # the gate, open
+    m.rect(52, 30, 7, 10, ROAD, 2)
+    fill(m, 52, 12, 30, 7, 5, 10, KAIU)                                       # the gate, open
     building(m, 8, 18, 12, 7, wall=WOOD)                                    # the Kaiu forge
     building(m, 26, 18, 14, 7)                                              # the scouts' barracks
-    for x in (6, 46, 64):
-        fb(m, x, 15, 2, LAMP_STREET)
     ev = Events(m)
     ev.talk(1, 15, "CE000", [(None, [narrate("North, back to the Shrine of Osano-Wo."),
                                      choices(("Ride north. (Three days)", DARK + [go("M445", 86, 15)]),
@@ -18336,9 +18905,10 @@ def wall_shinomen_gate():
                                     "Bring back yourselves.")
     ev.npc(46, 13, EP["veteran"], "Forty years on the Wall and I've never seen this gate open. Twice in one year, now.")
     waystone(m, ev, 40, 12)
-    ev.talk(55, 28, "CE000", [(None, [narrate("The Shinomen gate stands open. Beyond it the ground goes black."),
+    gate_event = ev.talk(55, 34, "CE000", [(None, [narrate("The Shinomen gate stands open. Beyond it the ground goes black."),
                                       choices(("Go through.", [go("M458", 5, 16)]), ("Not yet.", [step_back(0, -2.0)]))])],
             trigger=5)
+    ev.ev[f"#{gate_event}#"]["pos"][1] = 3
     return m, ev
 
 
@@ -18360,6 +18930,44 @@ def deep_road(mid, name, seed, base, tiles, nxt, prev, chests, extra=None, pre=(
     if extra:
         extra(m, ev)
     return m, ev
+
+
+FALLEN_TRAIL = (
+    (0,16),(12,16),(21,12),(30,12),(38,27),(47,39),(62,38),
+    (69,25),(79,12),(92,10),(102,16),(111,16),
+)
+FALLEN_SPURS = (
+    ((13,16),(14,13)),
+    ((36,24),(30,24)),
+    ((79,12),(74,6)),
+)
+
+
+def rebuild_fallen_road(m):
+    m.d = 52
+    z,x = np.indices((m.d,m.w))
+    rough = np.sin(x*.209-z*.371)+.43*np.sin(z*.67+x*.152)+.31*np.cos(x*.59+z*.31)
+    m.hgt = np.asarray(3+(rough>.86)-(rough<-.96),dtype=np.int32)
+    m.blk = np.asarray(np.where(rough>.38,SL_ASH,SL_GROUND),dtype=np.int32)
+    m.objs.clear()
+    d = np.full_like(rough,2000.0)
+    for route in (FALLEN_TRAIL,*FALLEN_SPURS):
+        for (ax,az),(bx,bz) in zip(route,route[1:]):
+            dx,dz=bx-ax,bz-az
+            t=np.clip(((x-ax)*dx+(z-az)*dz)/(dx*dx+dz*dz),0.0,1.0)
+            d=np.minimum(d,(x-ax-dx*t)**2+(z-az-dz*t)**2)
+    for bx,bz,sx,sz in ((17,31,12,8),(50,18,10,7),(66,9,8,7),(87,29,9,10),(101,41,7,8)):
+        seep=((x-bx)/sx)**2+((z-bz)/sz)**2<1+.15*rough
+        m.blk[seep & (d>14)]=TARSTAIN
+    for bx,bz,sx,sz,high in ((27,37,6,10,5),(49,28,9,4,5),(63,32,7,6,6),
+                             (76,34,4,10,5),(97,24,7,5,6)):
+        ridge=((x-bx)/sx)**2+((z-bz)/sz)**2<1+.18*rough
+        ridge &= d>10
+        m.hgt[ridge]+=high
+        m.blk[ridge]=STONE
+    m.hgt[d<14]=3
+    m.blk[d<8]=ROAD
+    m.hgt[:5,:5]=3
 
 
 def deep_road_1():
@@ -18403,6 +19011,107 @@ def maze_move(k, d):
     return normal
 
 
+SHADOWLANDS_MARCH_ROUTES = {
+    "M171": ((0,16),(13,16),(22,13),(33,18),(44,16),(63,16),(75,12),(87,15),(99,16),(111,16)),
+    "M172": ((0,16),(12,16),(22,15),(36,20),(47,17),(58,16),(65,19),(80,15),(96,16),(111,16)),
+    "M173": ((0,16),(13,16),(25,14),(38,15),(50,14),(57,16),(68,14),(81,16),(94,16),(111,16)),
+    "M174": ((0,16),(13,16),(24,17),(32,17),(37,25),(45,17),(58,16),(69,13),(79,16)),
+    "M175": ((0,20),(12,20),(24,19),(31,20),(42,21),(54,20),(63,19),(72,16),(83,20)),
+    "M176": ((0,16),(14,16),(23,12),(37,17),(49,20),(56,16),(69,16),(80,12),(95,14),(108,17),(121,16)),
+    "M177": ((0,16),(13,16),(25,13),(37,19),(48,22),(59,17),(71,13),(83,17),(96,16),(105,16),(111,16)),
+}
+
+
+def rebuild_shadowlands_march(m, ev):
+    m.objs = [o for o in m.objs if not (
+        (o["t"]=="fb" and o["fbtype"]==20)
+        or (m.mid=="M173" and o["t"]=="blk" and o["blk"]==FLOWER_R)
+    )]
+    route = SHADOWLANDS_MARCH_ROUTES[m.mid]
+    z,x = np.indices((m.d,m.w))
+    distance = np.full((m.d,m.w),4000.)
+    segments=list(zip(route,route[1:]))
+    for event in ev.ev.values():
+        pos=event.get("pos")
+        if not pos or event["role"] not in ("custom","itemchest","portal"):
+            continue
+        ex, _, ez, _ = pos
+        if ez<4 or (event.get("mdlid")=="CE000" and event["role"]=="custom" and ex<7):
+            continue
+        end=min(route,key=lambda pt:(pt[0]-ex)**2+(pt[1]-ez)**2)
+        if end!=(ex,ez):
+            segments.append((end,(ex,ez)))
+    for (ax,az),(bx,bz) in segments:
+        dx,dz=bx-ax,bz-az
+        t=np.clip(((x-ax)*dx+(z-az)*dz)/(dx*dx+dz*dz),0.,1.)
+        distance=np.minimum(distance,(x-ax-dx*t)**2+(z-az-dz*t)**2)
+
+    ground = (m.blk==SL_GROUND) | (m.blk==SL_ASH)
+    m.blk[ground & (distance<=5.7)] = ROAD
+    fingers = {
+        "M171": ((20,24,7,4),(37,25,5,5),(71,24,6,4),(89,25,7,4)),
+        "M172": ((18,10,5,5),(39,25,6,4),(71,10,5,4),(93,27,6,4)),
+        "M173": ((27,18,6,5),(40,24,5,4),(57,10,5,5),(77,24,6,5)),
+        "M174": ((15,21,6,5),(53,22,7,4),(63,8,5,4)),
+        "M175": ((16,29,6,4),(63,28,7,4),(75,9,5,4)),
+        "M176": ((25,22,6,4),(39,10,7,4),(72,23,6,5),(105,27,7,5)),
+        "M177": ((16,24,6,5),(31,25,6,4),(56,26,6,4),(82,24,6,4)),
+    }
+    rough=1+.12*np.sin(x*.65+z*.51)+.10*np.cos(x*.37-z*.57)
+    for rx,rz,sx,sz in fingers[m.mid]:
+        ridge=(((x-rx)/sx)**2+((z-rz)/sz)**2<rough)&ground&(distance>15.)
+        if m.mid=="M175":
+            ridge&=(abs(x-42)>18)
+        m.hgt[ridge]+=3+(np.sin(x[ridge]*.76+z[ridge]*.52)>.2)
+        m.blk[ridge]=STONE
+
+
+def shifting_waste_paths(k):
+    dx = (-2,2,0,3,-3,1)[k-1]
+    dz = (1,-1,3,-2,0,2)[k-1]
+    meet = (38+dx,24+dz)
+    paths = [
+        ((1,24),(8,24),(16,31+dz),(24,34+dz),(31+dx,32+dz),meet),
+        ((70,24),(63,24),(55,19+dz),(47,16+dz),(42+dx,18+dz),meet),
+        ((36,1),(36,7),(31+dx,12),(30+dx,20),(35+dx,23),meet),
+        ((36,46),(36,40),(43+dx,37),(47+dx,32+dz),(44+dx,26+dz),meet),
+    ]
+    if k==3:
+        paths.append(((47+dx,32+dz),(52,32),(54,34)))
+    if k==5:
+        paths.append(((31+dx,12),(25,10),(18,12)))
+    return paths
+
+
+def rebuild_shifting_waste(m,k):
+    z,x = np.indices((m.d,m.w))
+    rough = np.sin(x*.35+z*.21+k)+.57*np.cos(z*.47-x*.16+k*.84)+.29*np.sin(x*.78+z*.66)
+    m.blk[:] = np.where(rough>.33,SL_ASH,SL_GROUND)
+    m.hgt[:] = 3 + (rough>.89) - (rough<-1.03)
+    m.objs.clear()
+    approach = np.full((m.d,m.w),3000.,dtype=float)
+    for path in shifting_waste_paths(k):
+        for (ax,az),(bx,bz) in zip(path,path[1:]):
+            dx,dz = bx-ax,bz-az
+            t = np.clip(((x-ax)*dx+(z-az)*dz)/(dx*dx+dz*dz),0.,1.)
+            approach = np.minimum(approach,(x-ax-dx*t)**2+(z-az-dz*t)**2)
+    corruption = (TARSTAIN,EMBER,POPPYF)[k%3]
+    for bx,bz,sx,sz in ((12,10,8,6),(19,40,8,5),(34,34,9,7),(55,12,8,7),(57,37,8,8)):
+        ground = ((x-bx)/sx)**2+((z-bz)/sz)**2<1+.17*rough
+        m.blk[ground & (approach>13)] = corruption
+    for bx,bz,sx,sz,high in (
+        (23,22,7,6,5),(36,29,5.6,4.5,6),(45,12,5.7,4.6,5),
+        (53,27,6.8,5.7,7),(28,41,5.9,4.2,5),(64,36,3.8,7.7,5),
+    ):
+        bank = ((x-bx)/sx)**2+((z-bz)/sz)**2<1+.13*rough
+        bank &= approach>10
+        m.hgt[bank] += high+(k%2)
+        m.blk[bank] = STONE
+    m.hgt[approach<14] = 3
+    m.blk[approach<8] = ROAD
+    m.hgt[:5,:5] = 3
+
+
 def shifting_waste(k):
     mid = MAZE[k - 1]
     m = MapSpec(mid, "Shadowlands deep - the shifting waste", 72, 48, base=SL_GROUND, y=3)
@@ -18432,18 +19141,73 @@ def shifting_waste(k):
     return m, ev
 
 
+HIRUMA_TRAIL = ((0,16,3),(11,16,3),(21,9,3),(34,10,3),(42,31,4),
+                (57,44,4),(68,33,5),(76,15,5),(88,15,6),(95,28,7),
+                (99,38,8),(112,43,9))
+HIRUMA_SPURS = (((25,10,3),(26,6,3)),((71,26,5),(70,24,5)),
+                ((98,35,8),(94,34,8)))
+
+
+def hiruma_road_terrain(m):
+    z,x = np.indices((m.d,m.w))
+    ridge = 3 + (x>=84) + (x>=96) + (z>=43)
+    ridge = ridge.astype(np.int32)
+    rough = np.sin(x*.18 + z*.27)+.61*np.cos(z*.49-x*.34)+.31*np.sin(x*.77+z*.65)
+    m.hgt[:] = ridge + (rough>.73) - (rough<-.89)
+    m.blk[:] = np.where(rough>.28,SL_ASH,SL_GROUND)
+    dist = np.full((m.d,m.w),999.,dtype=float)
+    slope = np.zeros_like(dist)
+    for path in (HIRUMA_TRAIL,*HIRUMA_SPURS):
+        for (ax,az,ah),(bx,bz,bh) in zip(path,path[1:]):
+            dx,dz = bx-ax,bz-az
+            t = np.clip(((x-ax)*dx+(z-az)*dz)/(dx*dx+dz*dz),0.,1.)
+            gap = (x-ax-t*dx)**2+(z-az-t*dz)**2
+            closer = gap<dist
+            slope[closer] = (ah+t*(bh-ah))[closer]
+            dist[closer] = gap[closer]
+    for bx,bz,sx,sz,tile in (
+        (16,33,12,13,TARSTAIN),(37,23,5,9,POPPYF),(61,13,10,8,POPPYF),
+        (78,39,10,11,TARSTAIN),(97,8,8,7,POPPYF),
+    ):
+        spot = ((x-bx)/sx)**2+((z-bz)/sz)**2<1+.13*rough
+        m.blk[spot & (dist>13)] = tile
+    # The high banks make the bends real, with room to explore on the low side.
+    ridges = ((32,26,5.5,12,5),(53,21,7,9,5),(64,47,6,6,5),
+              (75,34,4,11,5),(86,27,5,12,6),(106,28,4,9,5))
+    for bx,bz,sx,sz,height in ridges:
+        mask = ((x-bx)/sx)**2+((z-bz)/sz)**2<1+.14*rough
+        mask &= dist>11
+        m.hgt[mask] += height
+        m.blk[mask] = STONE
+    near = dist<22
+    runway = dist<=8
+    shoulder = np.rint(slope + np.clip((np.sqrt(dist)-2.8)*.55,0.,1.0))
+    m.hgt[near] = shoulder[near]
+    m.hgt[runway] = np.rint(slope[runway])
+    m.blk[runway] = ROAD
+    m.blk[near & ~runway] = SL_ASH
+    m.hgt[0:5,0:5] = 3
+
+
 def deep_road_3():
-    def extra(m, ev):
-        waystone(m, ev, 96, 12)
-        ev.talk(110, 16, "CE000", [                                         # (on the east edge: the whole edge leads on)
-            (None, [narrate("The road goes on east, into hills the colour of old blood. On the highest of them, "
-                            "something with walls."),
-                    say("Natsuko", "(very quietly) ...That's on Father's map."), setf("G1215"),
-                    choices(("Go on, to the castle.", DARK + [go("M461", 5, 16)]), ("Not yet.", [step_back(-2.0, 0)]))]),
-            ([flag("G1215")], [choices(("On to Shiro Hiruma.", [go("M461", 5, 16)]),
-                                       ("Not yet.", [step_back(-2.0, 0)]))])], trigger=5)
-    return deep_road("M460", "Shadowlands deep - the Hiruma road", 460, SL_GROUND, POPPYF, None, ("M458", 106, 16),
-                     [(26, 6, "I130", 3), (70, 24, "I131", 3)], extra)
+    m = MapSpec("M460","Shadowlands deep - the Hiruma road",112,54,base=SL_GROUND,y=3)
+    hiruma_road_terrain(m)
+    ev = Events(m)
+    ev.talk(1,16,"CE000",[(None,[go("M458",106,16)])],trigger=5)
+    ev.chest(26,6,"I130",3)
+    ev.chest(70,24,"I131",3)
+    waystone(m,ev,94,34)
+    ev.talk(108,42,"CE000",[
+        (None,[narrate("The trail rises into a wall of thorns. Natsuko pushes the branches apart."),
+               setf("G1215"),
+               narrate("Beyond the brush, a narrow climb. On the crest, the broken walls of a castle."),
+               say("Natsuko","(very quietly) ...That's on Father's map."),
+               choices(("Go on, to the castle.",DARK+[go("M461",5,16)]),
+                       ("Not yet.",[step_back(-2.0,0)]))]),
+        ([flag("G1215")],[choices(("On to Shiro Hiruma.",[go("M461",5,16)]),
+                                  ("Not yet.",[step_back(-2.0,0)]))]),
+    ],trigger=5)
+    return m,ev
 
 
 def shrine_pg_marker(builder):
@@ -18515,7 +19279,7 @@ def hiruma_bailey():
     for (x, z, w, d) in ((28, 18, 8, 4), (76, 9, 7, 4)):
         m.rect(x, z, w, d, TARSTAIN)
     ev = Events(m)
-    ev.talk(1, 16, "CE000", [(None, [go("M460", 104, 16)])], trigger=5)
+    ev.talk(1, 16, "CE000", [(None, [go("M460", 104, 41)])], trigger=5)
     ev.scene(10, 16, "G1216", BAILEY)
     ev.talk(108, 16, "CE000", [(None, [narrate("The keep's gate, a black mouth."),
                                        choices(("In.", [go("M462", 5, 16)]), ("Not yet.", [step_back(-2.0, 0)]))])],
@@ -18532,7 +19296,8 @@ def hiruma_keep():
         fill(m, x, 4, 24, 2, 8, 2, DARKWOOD)                                # charred pillars
     for (x, z, w, d) in ((18, 6, 6, 4), (60, 18, 8, 4)):
         m.rect(x, z, w, d, TARSTAIN)
-    shrine(m, 44, 18)
+    # The fitted timber altar replaces the former freestanding shrine.
+    m.walls.extend((x, z) for x in range(44, 50) for z in range(20, 22))
     ev = Events(m)
     ev.talk(1, 16, "CE000", [(None, [go("M461", 104, 16)])], trigger=5)
     ev.talk(47, 17, "CE000", [(None, KEEP_ANCESTORS + [setf("G1219")]),
@@ -19517,6 +20282,49 @@ for _mid, _rows in _nfoes.PLACE.items():
         ENCOUNTER_MAPS.add(_k)
 
 
+_NEGATE = {"==": "!=", "!=": "==", ">=": "<", "<": ">=", ">": "<=", "<=": ">"}
+
+
+def _first_flag_set(block, conds):
+    """The first story flag a talk sets (cmd_compute G... = true), with the story-flag conditions of every cmd_if it
+    sits inside. (user 2026-11-21, the Scorpion road's marker ran to the Ojatara road: the Iuchi soldier's talk sets
+    G922 only inside "if G967 / if G990", and the beat, which ignored them, was due from the very start.)"""
+    for c in block:
+        if not isinstance(c, dict):
+            continue
+        if (c.get("cmd") == "cmd_compute" and c.get("op") == "=" and c.get("rvar") is True
+                and re.fullmatch(r"G\d+", str(c.get("lvar")))):
+            return c["lvar"], conds
+        if c.get("cmd") == "cmd_if":
+            blocks, reqs = c.get("cmdblocks") or [], [r for r in (c.get("reqs") or []) if isinstance(r, dict)]
+            story = [r for r in reqs if re.fullmatch(r"G\d+", str(r.get("lvar")))]
+            if blocks:
+                hit = _first_flag_set(blocks[0], conds + story)
+                if hit:
+                    return hit
+            if len(blocks) > 1:                    # the else branch: one plain condition, negated
+                neg = []
+                if len(reqs) == 1 and reqs[0] in story and reqs[0].get("op") in _NEGATE:
+                    neg = [dict(reqs[0], op=_NEGATE[reqs[0]["op"]])]
+                hit = _first_flag_set(blocks[1], conds + neg)
+                if hit:
+                    return hit
+            continue
+        for k, v in c.items():                     # choices and other nested command lists
+            if not isinstance(v, list):
+                continue
+            for sub in v:
+                if isinstance(sub, list):
+                    hit = _first_flag_set(sub, conds)
+                elif isinstance(sub, dict) and isinstance(sub.get("cmdblock"), list):
+                    hit = _first_flag_set(sub["cmdblock"], conds)
+                else:
+                    hit = None
+                if hit:
+                    return hit
+    return None
+
+
 def marker_pass(mp):
     """(user 2026-11-14: "a floating quest marker ... that shows you where to go next according to your currently
     selected quest, edge of screen taking the player to the next map over, to a door, etc.") Writes
@@ -19565,14 +20373,14 @@ def marker_pass(mp):
             for pg in pages:
                 if pg.get("trigger") not in (1, 2) or "Objective:" not in json.dumps(pg.get("cmdblock") or []):
                     continue
-                sets = re.search(r'\{"cmd": "cmd_compute", "lvar": "(G\d+)", "op": "=", "rvar": true\}',
-                                 json.dumps(pg.get("cmdblock") or []))
-                if not sets:
+                found = _first_flag_set(pg.get("cmdblock") or [], [])
+                if not found:
                     continue
-                reqs = list(e.get("reqs0") or []) + list(pg.get("reqs") or [])
+                setflag, nested = found
+                reqs = list(e.get("reqs0") or []) + list(pg.get("reqs") or []) + nested
                 beats.append([mid, round(x, 2), round(z, 2),
-                              [[sets.group(1), "==", False]] + [[r_.get("lvar"), r_.get("op"), r_.get("rvar")]
-                                                                 for r_ in reqs]])
+                              [[setflag, "==", False]] + [[r_.get("lvar"), r_.get("op"), r_.get("rvar")]
+                                                          for r_ in reqs if r_.get("lvar") != setflag]])
             for pg in pages:
                 if pg.get("trigger") not in (5, 6):
                     continue
@@ -19636,6 +20444,51 @@ def marker_pass(mp):
         if spot is None:
             raise RuntimeError("Missing Kudo investigation conversation: %s" % done)
         beats.append(spot + [[[done, "==", False]] + investigating + extra])
+    # (user 2026-11-21: "scorpion path breaks after the guy explains the elemental masks. quest marker heads to a pond
+    # where you cant do anything") the mask gate (G882) sends Mitsue to buy masks in the Merchant District, but buying
+    # them is a talk, not a once-scene, so no marker led there: point at the mask-sellers' row until she has two
+    # (G883 >= 2 then starts the collapse scene there).
+    if "M364" in mp:
+        spot = find("M364", '"lvar": "G885", "op": "=", "rvar": true')
+        if spot is None:
+            raise RuntimeError("Missing the Merchant District mask seller (G885)")
+        beats.append(spot + [[["G883", "<", 2], ["G882", "==", True]]])
+    # (2026-11-22, Kyuden Hida in the roamable castle) the four court threads S01 sends you to are required; the
+    # optional talks nearer the gate (the Sumai ring) must not win: each thread is due from S01 (G201) until done
+    # (2026-11-22, Crab Ch4's siege night in the real keep) the stalk's encounters are talks, not once-scenes: point at
+    # each in climbing order - the maid (1F), the guard and Akiko (2F), the servant with the cold lantern (3F)
+    stalk = [["G275", "==", True], ["G280", "==", False]]
+    for mid, done, before in ((HIDA["hall"], "G276", []), ("M502", "G277", [["G276", "==", True]]),
+                              ("M502", "G278", [["G276", "==", True]]),
+                              ("M503", "G279", [["G277", "==", True], ["G278", "==", True]])):
+        if mid in mp:
+            spot = find(mid, '"lvar": "%s", "op": "=", "rvar": true' % done)
+            if spot is None:
+                raise RuntimeError("Missing the Ch4 stalk encounter %s on %s" % (done, mid))
+            beats.append(spot + [[[done, "==", False]] + stalk + before])
+    # (2026-11-22, Lion Ch2 in the roamable Shiro Akodo) the court's events are the hostess's talks, Atsuko's cell and
+    # Benjiro's offer are talks too: point at each when it is due (the flag it sets, and what must come first)
+    for mid, done, need in ((LION["hall"], "G491", "G489"), (LION["hall"], "G495", "G493"),
+                            (LION["hall"], "G498", "G497"), (LION["hall"], "G503", "G501"),
+                            (LION["barracks"], "G506", "G504"), (LION["stables"], "G507", "G506"),
+                            ("M255", "G500", "G498")):
+        if mid in mp:
+            spot = find(mid, '"lvar": "%s", "op": "=", "rvar": true' % done)
+            if spot is None:
+                raise RuntimeError("Missing the Lion Ch2 talk that sets %s on %s" % (done, mid))
+            beats.append(spot + [[[done, "==", False], [need, "==", True]]])
+    if DOJI["stacks"] in mp:                                # (Crane Ch4 in the roamable Kyuden Doji) the
+        spot = find(DOJI["stacks"], '"lvar": "G418", "op": "=", "rvar": true')   # censor-monk opens the way down
+        if spot is None:
+            raise RuntimeError("Missing the Kyuden Doji censor-monk (G418)")
+        beats.append(spot + [[["G418", "==", False], ["G417", "==", True]]])
+    for mid, done in ((HIDA["garden"], "G202"), (HIDA["garden"], "G203"), (HIDA["garden"], "G204"),
+                      (HIDA["training"], "G205")):
+        if mid in mp:
+            spot = find(mid, '"lvar": "%s", "op": "=", "rvar": true' % done)
+            if spot is None:
+                raise RuntimeError("Missing the Kyuden Hida court thread %s on %s" % (done, mid))
+            beats.append(spot + [[[done, "==", False], ["G201", "==", True], ["G209", "==", False]]])
 
     for k, q_ in enumerate(SIDE_QUESTS):
         key, road, title, gmap, x, z, spr, gname, opens, hmap, gids, *_ = q_
@@ -19960,6 +20813,22 @@ def route_pass():
 ENC_RATE = 5.0
 
 
+def fit_walk_in_doorways(events):
+    """Keep compact portals active regardless of camera angle and give their threshold room to catch a step."""
+    for event in events.values():
+        if event.get("role") != "portal":
+            continue
+        bounds = (event.get("mdl") or {}).get("r")
+        if not (bounds and len(bounds) == 6 and bounds[:3] == [0, 1.0, 0] and
+                0 < bounds[3] <= 1.5 and 0 < bounds[4] <= 3.0 and 0 < bounds[5] <= 1.0):
+            continue
+        bounds[3] = max(bounds[3], 1.4)
+        bounds[4] = max(bounds[4], 1.5)
+        bounds[5] = max(bounds[5], 0.8)
+        if event.get("spawndist", 1) == 1:
+            event["spawndist"] = 5
+
+
 def register(specs, events):
     mpath = os.path.join(PROJ, "data", "map.json")
     mp = json.load(open(mpath, encoding="utf-8"))
@@ -20021,6 +20890,8 @@ def register(specs, events):
     quest_marker_pass(mp)
     gesture_pass(mp)
     scene_pre_pass(mp)
+    for row in mp.values():
+        fit_walk_in_doorways(row.get("event") or {})
     json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="	")
     _register_expansion_gvars()
 
@@ -20669,13 +21540,13 @@ def cave_mounds(m, ev):
 
 
 CLAN_CASTLES = (
-    {"town": "M141", "anchor": "M142", "ids": ("M500", "M501", "M502", "M503", "M504"),
+    {"town": "M141", "anchor": None, "gate": True, "siege": True, "ids": ("M500", "M501", "M502", "M503", "M504"),
      "name": "Kyuden Hida", "ground": SNOW, "stone": STONEW, "wall": PLASTER, "roof": ROOF,
      "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": False},
-    {"town": "M228", "anchor": "M229", "ids": ("M505", "M506", "M507", "M508", "M509"),
+    {"town": "M228", "anchor": None, "gate": True, "ids": ("M505", "M506", "M507", "M508", "M509"),
      "name": "Kyuden Doji", "ground": GRASS, "stone": STONE, "wall": PLASTER, "roof": ROOF,
      "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": True},
-    {"town": "M255", "anchor": "M256", "ids": ("M510", "M511", "M512", "M513", "M514"),
+    {"town": "M255", "anchor": None, "gate": True, "ids": ("M510", "M511", "M512", "M513", "M514"),
      "name": "Shiro Akodo", "ground": SNOW, "stone": STONEW, "wall": PLASTER, "roof": ROOF,
      "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": False},
     {"town": "M285", "anchor": "M288", "ids": ("M515", "M516", "M517", "M518", "M519"),
@@ -20723,6 +21594,8 @@ CLAN_CASTLES += (
      "indoor_wall": WOOD, "pond": False, "access_point": (36, 5), "opens": ["G947"]},
 )
 CLAN_CASTLE_BY_TOWN = {castle["town"]: castle for castle in CLAN_CASTLES}
+for _castle in CLAN_CASTLES:                                               # keep floors: go() / world() offsets
+    ROOM_DIMS.update({_mid: (94, 61) for _mid in _castle["ids"][1:]})
 for _k, (_castle, _theme) in enumerate(zip(CLAN_CASTLES, CASTLE_THEMES)):
     _castle.update(zip(("clan", "families", "motif", "description", "seal", "incense", "supplies", "records"), _theme))
     _extra_ids = iter("M%d" % (535 + 11 * _k + n) for n in range(11))
@@ -20778,7 +21651,7 @@ def _dilate_event_trigger(ev, event_id, extent=1.5, depth=1.0):
 
 def _castle_town_access(mid, m, ev):
     castle = CLAN_CASTLE_BY_TOWN.get(mid)
-    if castle is None:
+    if castle is None or castle.get("gate"):                              # (the town's own castle gate leads in)
         return
     anchor_entry = _castle_anchor_event(ev, castle["anchor"]) if castle["anchor"] else None
     if anchor_entry is None and castle["anchor"]:
@@ -20897,6 +21770,9 @@ def clan_castle_yard(castle, col=1, row=0):
         trigger=1)
     for x, z in ((39, 8), (57, 8), (39, 56), (57, 56)):
         fb(m, x, z, 2, LAMP_STREET)
+    if mid in CASTLE_STORY:                                                # the chapter's story, staged here
+        CASTLE_STORY[mid](m, ev)
+    siege_hook(castle, m, ev)                                              # (Crab Ch4: Kyuden Hida's siege night)
     return m, ev
 
 
@@ -20958,6 +21834,9 @@ def clan_castle_floor(castle, level):
             trigger=1)
         ev.talk(16, 8, "CE000", [(None, [narrate(
             "Exit to the keep approach." if level == 0 else "Stairs down to %dF." % level)])], trigger=1)
+        if m.mid in CASTLE_STORY:                                          # the chapter's story, staged here
+            CASTLE_STORY[m.mid](m, ev)
+        siege_hook(castle, m, ev)                                          # (Crab Ch4: Kyuden Hida's siege night)
 
     return castle_floor(ids[level + 1], "%s - %s" % (castle["name"], labels[level]), 94, 61,
                         layout, up=up, down=down, wall=castle["indoor_wall"], extra=extra)
@@ -21015,7 +21894,7 @@ TOWN_WARDS = [
     {"sources": ("M103",), "name": "Hoshi-no-Ichi", "district": "Harbor Ward", "clan": "Crab", "prop": "jewel",
      "quest": ("The Salt Measure", "the harbor's brass salt measure", "Tomo", "merchant")},
     {"sources": ("M202",), "name": "Pleasant Eaves", "district": "Lantern Lane", "clan": "Crane", "prop": "candle",
-     "quest": ("A Lantern for the Inn", "the inn's blue paper lantern", "Sanae", "servant")},
+     "quest": ("A Lantern for the Inn", "the inn's blue paper lantern", "Sanami", "servant")},
     {"sources": ("M205",), "name": "The Green Ronin's Village", "district": "Bamboo Row", "clan": "Ronin",
      "prop": "sword",
      "quest": ("The Missing Sickle", "the shared rice sickle", "Matsu", "merchant")},
@@ -21024,7 +21903,7 @@ TOWN_WARDS = [
      "quest": ("The Sealed Dispatch", "the harbor-master's sealed dispatch", "Nami", "servant")},
     {"sources": ("M220",), "name": "The Crane Port", "district": "Sailmaker's Row", "clan": "Crane",
      "prop": "book",
-     "quest": ("A Sailmaker's Pattern", "a sailmaker's missing paper pattern", "Kiyo", "merchant")},
+     "quest": ("A Sailmaker's Pattern", "a sailmaker's missing paper pattern", "Kiyoe", "merchant")},
     {"sources": ("M241",), "name": "Hiruto's Castle Town", "district": "Banner Square", "clan": "Lion",
      "prop": "book",
      "quest": ("The Muster Roll", "the Lion guard's muster roll", "Tadashi", "servant")},
@@ -21037,13 +21916,13 @@ TOWN_WARDS = [
      "quest": ("Candles for the Shrine", "the shrine's bundle of white candles", "Mie", "priest")},
     {"sources": ("M349",), "name": "Shutai", "district": "River Gate", "clan": "Scorpion", "prop": "book",
      "quest": ("The River Toll Ledger", "the ferryman's toll ledger", "Sada", "merchant")},
-    {"sources": ("M351",), "name": "Kudo", "district": "Caravan Market", "clan": "Scorpion", "prop": "bottle",
+    {"sources": ("M351",), "name": "Kudo", "district": "Caravan Market", "clan": "Scorpion", "prop": "bottle", "preferred_edge": "b",
      "quest": ("A Fox's Medicine", "the apothecary's foxglove packet", "Yori", "merchant")},
     {"sources": ("M360",), "name": "Hisatu Kensu", "district": "Maskmakers' Lane", "clan": "Scorpion", "prop": "jewel",
      "quest": ("The Unpainted Mask", "a plain mask for the festival", "Aya", "servant")},
     {"sources": ("M369", "M387"), "name": "The Town of Buried Leaves", "district": "Autumn Market",
      "clan": "Unicorn", "prop": "dish",
-     "quest": ("The Persimmon Basket", "the innkeeper's basket of persimmons", "Hana", "merchant")},
+     "quest": ("The Persimmon Basket", "the innkeeper's basket of persimmons", "Haneko", "merchant")},
     {"sources": ("M372",), "name": "Shioden", "district": "Bellmaker's Walk", "clan": "Dragon", "prop": "barrel",
      "quest": ("A Bell for Shioden", "the temple bell's wooden clapper", "Toru", "priest")},
     {"sources": ("M375",), "name": "Perfume Petal Blossom", "district": "Perfumer's Row", "clan": "Unicorn",
@@ -21055,7 +21934,7 @@ TOWN_WARDS = [
     {"sources": ("M396",), "name": "Yotomo", "district": "Horsefair", "clan": "Unicorn", "prop": "shield",
      "quest": ("A Bridle for Yotomo", "the stable's braided bridle", "Taro", "merchant")},
     {"sources": ("M416",), "name": "Cakon", "district": "River Market", "clan": "Ronin", "prop": "bottle",
-     "quest": ("The Market's Blue Dye", "the dyer's jar of blue pigment", "Rin", "merchant")},
+     "quest": ("The Market's Blue Dye", "the dyer's jar of blue pigment", "Rinka", "merchant")},
     {"sources": ("M418",), "name": "The Eta Village", "district": "Willow Row", "clan": "Ronin", "prop": "bucket",
      "quest": ("A Clean Bandage", "the village healer's clean bandage roll", "Suzu", "servant")},
     {"sources": ("M424",), "name": "The Village of Floating Flowers", "district": "Lotus Landing", "clan": "Ronin",
@@ -21063,12 +21942,12 @@ TOWN_WARDS = [
      "quest": ("The Soapmaker's Lye", "the soapmaker's covered lye jar", "Tami", "merchant")},
     {"sources": ("M430",), "name": "The Village of the Wounded Lion", "district": "Snowmelt Row", "clan": "Lion",
      "prop": "dish",
-     "quest": ("Rice for the Elders", "the elders' sack of winter rice", "Mosuke", "servant")},
+     "quest": ("Rice for the Elders", "the elders' sack of winter rice", "Mosaku", "servant")},
     {"sources": ("M438",), "name": "The Oracle's Shrine Town", "district": "Pilgrim's Landing", "clan": "Ronin",
      "prop": "crates",
-     "quest": ("The Oracle's Offering", "a small cedar offering box", "Akari", "priest")},
+     "quest": ("The Oracle's Offering", "a small cedar offering box", "Akane", "priest")},
     {"sources": ("M439",), "name": "The Eta Quarter", "district": "Hearth Lane", "clan": "Ronin", "prop": "dish",
-     "quest": ("A Bowl for the Potter", "the potter's wrapped lunch bowl", "Hiro", "merchant")},
+     "quest": ("A Bowl for the Potter", "the potter's wrapped lunch bowl", "Hiroe", "merchant")},  # (not Hiro the undertaker)
 ]
 
 ISLAND_WARDS = [
@@ -21085,14 +21964,14 @@ ISLAND_WARDS = [
      "quest": ("The Silk Merchant's Seal", "the silk merchant's lacquer seal", "Yori", "merchant")},
     {"sources": ("M315",), "name": "Tortoise Island", "district": "South Beach", "clan": "Tortoise",
      "prop": "candle",
-     "quest": ("The Tortoise Ferry Bell", "the ferryman's brass bell", "Goro", "merchant")},
+     "quest": ("The Tortoise Ferry Bell", "the ferryman's brass bell", "Genzo", "merchant")},
 ]
 
 SEA_ISLETS = [
     {"mid": "M755", "sea": "M493", "name": "Kiku Shoal", "clan": "Crane", "prop": "book",
      "quest": ("The Shoal's Tide Notes", "the fisher's tide notes", "Mori", "merchant")},
     {"mid": "M756", "sea": "M493", "name": "Gulls' Shelf", "clan": "Crane", "prop": "doc",
-     "quest": ("A Gull's Message", "a message tube from the watch", "Sayo", "servant")},
+     "quest": ("A Gull's Message", "a message tube from the watch", "Sayu", "servant")},  # (not Sayo the traveler)
     {"mid": "M757", "sea": "M493", "name": "White Gull Islet", "clan": "Crane", "prop": "jewel",
      "quest": ("The White Gull's Feather", "a feather for the shrine keeper", "Riku", "priest")},
     {"mid": "M758", "sea": "M494", "name": "Paper Lantern Islet", "clan": "Crane", "prop": "candle",
@@ -21150,8 +22029,8 @@ def _append_expansion_quests():
                             "You found %s. The whole ward is grateful." % item, 120 + 10 * (i % 6)))
         FQ_FLAGS[key] = tuple("G%d" % (base + i * 3 + n) for n in range(3))
         FQ_SETTINGS[key] = {"who": None, "open": [], "prop": region["prop"]}
-        FQ_PRE[key] = "%s's resident waits in the %s, with a small local errand." % (
-            giver, region.get("district", region["name"]))
+        FQ_PRE[key] = "%s, who lives in the %s, has a small local errand." % (            # ("X's resident" read as
+            giver, re.sub(r"^The ", "", region.get("district", region["name"])))    # (no "in the The Fisher's Cove")
         if i < len(_EXPANSION_QUESTS):
             _EXPANSION_QUESTS[i] = (region, (key, title, item, giver, sprite))
 
@@ -21162,12 +22041,12 @@ FQ_ITEM_IDS = {q[0]: "I%d" % (500 + i) for i, q in enumerate(FETCH_QUESTS)}
 FQ_ITEM_NAMES = {q[0]: q[1] for q in FETCH_QUESTS}
 
 JOURNAL_SIDE_MARKERS = {
-    1: {"map": "M142", "model": "EP1165", "taken": "G1610", "choice": "Ride with him."},
-    2: {"map": "M142", "model": "EP1166", "taken": "G1611", "choice": "Sit in."},
-    3: {"map": "M144", "model": "EP1167", "taken": "G1612", "choice": "Play his card game."},
-    4: {"map": "M143", "model": "EP1168", "taken": "G1613", "choice": "Stand with her."},
-    5: {"map": "M142", "model": "EP376", "taken": "G1614", "choice": "Shoot to win."},
-    6: {"map": "M142", "model": "EP382", "taken": "G1615", "choice": "Race the yard again."},
+    1: {"map": "M536", "model": "EP1165", "taken": "G1610", "choice": "Ride with him."},
+    2: {"map": "M541", "model": "EP1166", "taken": "G1611", "choice": "Sit in."},
+    3: {"map": "M539", "model": "EP1167", "taken": "G1612", "choice": "Play his card game."},
+    4: {"map": "M538", "model": "EP1168", "taken": "G1613", "choice": "Stand with her."},
+    5: {"map": "M537", "model": "EP376", "taken": "G1614", "choice": "Shoot to win."},
+    6: {"map": "M536", "model": "EP382", "taken": "G1615", "choice": "Race the yard again."},
     7: {"map": "M101", "model": "EP1169", "taken": "G1616", "choice": "Go up with Goro."},
     8: {"map": "M101", "model": "EP1170", "taken": "G1617", "choice": "Go down with Michio and Goro."},
     9: {"map": "M444", "model": "EP1171", "taken": "G1618", "choice": "Ride out with him."},
@@ -21382,19 +22261,146 @@ def migrate_fetch_quest_items(mp):
     migrate_journal_quest_acceptance(mp)
 
 
+_OPPOSITE_SIDE = {"w": "e", "e": "w", "f": "b", "b": "f"}
+
+
+def _exit_side(m, x, z):
+    return "w" if x <= 2 else "e" if x >= m.w - 3 else "f" if z <= 2 else "b" if z >= m.d - 3 else None
+
+
+def _ward_edge_tile(m, ev, preferred=None):
+    """(user 2026-11-22, two sketches: the extra wards sat ON their towns - entered from a portal in the middle of the
+    town, arriving at the ward's south edge - "they need to be re organzied" side by side, each joined at an edge.)
+    The town edge the ward opens from: a free edge first (front, east, west, back), else the stretch of a used edge
+    farthest from its exits; the tile must be open level ground reachable from the town's own ways in, with room to
+    arrive. Returns (x, z, side) in builder coordinates, or None (an island with sea on every side)."""
+    moving, used = [], {}
+    for e in ev.ev.values():
+        if "pos" not in e:
+            continue
+        pages = e.get("page") or []
+        if e.get("role") == "portal" or (e.get("role") == "custom" and "cmd_mapmove" in str(pages)):
+            x, z = int(e["pos"][0]), int(e["pos"][2])
+            moving.append((x, z))
+            side = _exit_side(m, x, z)
+            if side:
+                used.setdefault(side, []).append((x, z))
+    seen = _reach(m, ev, moving)
+
+    def fits(x, z, side):                                                    # the way in, 4 wide and 5 deep
+        inw = {"w": (1, 0), "e": (-1, 0), "f": (0, 1), "b": (0, -1)}[side]
+        acr = (0, 1) if side in ("w", "e") else (1, 0)
+        return all((x + k * inw[0] + a * acr[0], z + k * inw[1] + a * acr[1]) in seen
+                   for k in range(5) for a in (-1, 0, 1))
+    best = None
+    order = sorted("fewb", key=lambda side: (side != preferred, side in used, "fewb".index(side)))
+    for rank, side in enumerate(order):
+        if side in ("f", "b"):
+            z = 1 if side == "f" else m.d - 2
+            cells = [(x, z) for x in range(8, m.w - 8)]
+            middle = (m.w // 2, z)
+        else:
+            x = 1 if side == "w" else m.w - 2
+            cells = [(x, z) for z in range(6, m.d - 6)]
+            middle = (x, m.d // 2)
+        for x, z in cells:
+            near = min([abs(x - a) + abs(z - b) for a, b in used.get(side, [])] or [99])
+            if near < 16 or not fits(x, z, side):
+                continue
+            score = (rank, -near if side in used else abs(x - middle[0]) + abs(z - middle[1]))
+            if best is None or score < best[0]:
+                best = (score, x, z, side)
+        if best and best[0][0] == rank:
+            break
+    return best[1:] if best else None
+
+
+def _reach(m, ev, seeds=None):
+    """The open ground (no water, walls, solid blocks or props) a walker reaches from `seeds` (default: every event),
+    stepping at most one block up or down."""
+    moving = seeds or []
+    blocked = np.zeros(m.blk.shape, bool)
+    blocked[(m.blk & 31) == 8] = True
+    for x, z in m.walls:
+        if 0 <= z < m.d and 0 <= x < m.w:
+            blocked[z, x] = True
+    for o in m.objs:
+        if o["t"] == "fill" and o["blk"] != 0:
+            z0, x0 = max(o["z"], 0), max(o["x"], 0)
+            sub = blocked[z0:o["z"] + o["d"], x0:o["x"] + o["w"]]
+            if o["h"] > 1 or o["y"] > int(m.hgt[min(z0, m.d - 1), min(x0, m.w - 1)]) + 1:
+                sub[...] = True
+        elif o["t"] in ("fb", "asset", "blk") and 0 <= o["z"] < m.d and 0 <= o["x"] < m.w and \
+                not (o["t"] == "fb" and o.get("fbtype") == 20):              # (pave_exit clears trees)
+            blocked[o["z"], o["x"]] = True
+    seeds = [(x, z) for x, z in moving if 0 <= x < m.w and 0 <= z < m.d] or \
+        [(int(e["pos"][0]), int(e["pos"][2])) for e in ev.ev.values() if e.get("pos")]
+    seen, todo = set(), []
+    for x, z in seeds:                                                       # a way in may stand on its own step:
+        for dx in range(-3, 4):                                              # start from open ground beside it
+            for dz in range(-3, 4):
+                cx, cz = x + dx, z + dz
+                if 0 <= cx < m.w and 0 <= cz < m.d and not blocked[cz, cx] and (cx, cz) not in seen:
+                    seen.add((cx, cz))
+                    todo.append((cx, cz))
+    while todo:
+        x, z = todo.pop()
+        for nx, nz in ((x - 1, z), (x + 1, z), (x, z - 1), (x, z + 1)):
+            if 0 <= nx < m.w and 0 <= nz < m.d and (nx, nz) not in seen and not blocked[nz, nx] \
+                    and abs(int(m.hgt[nz, nx]) - int(m.hgt[z, x])) <= 1:
+                seen.add((nx, nz))
+                todo.append((nx, nz))
+    return seen
+
+
 def _region_access(mid, m, ev):
     if mid not in _REGION_BY_SOURCE:
         return
     region, source_index = _REGION_BY_SOURCE[mid]
-    x, z = _castle_access_tile(m, ev, {"pos": [m.w // 2, 1, m.d // 2, 0]})
-    _dilate_event_trigger(ev, ev.portal(x, z, region["mid"], source_index + 1, d=0))
+    spot = _ward_edge_tile(m, ev, region.get("preferred_edge"))
+    if spot is None:                                                         # (no open edge: the old way in)
+        x, z = _castle_access_tile(m, ev, {"pos": [m.w // 2, 1, m.d // 2, 0]})
+        side = None
+    else:
+        x, z, side = spot
+    n = ev.portal(x, z, region["mid"], source_index + 1, d=0)
+    _dilate_event_trigger(ev, n)
+    # (the edge copy does the moving later; this one stays as the landing) Its id: the map's last but the travel post,
+    # as in the shipped maps the wards were appended to - every other event keeps its id (saves, markers, interiors)
+    ev.ev["#ward#"] = ev.ev.pop("#%d#" % n)
+    ev.n -= 1
+    region.setdefault("town_side", {})[source_index] = side
+
+
+def _region_access_number(mid, ev):
+    """End of make(): the parked ward landing takes the next id."""
+    if mid not in _REGION_BY_SOURCE or "#ward#" not in ev.ev:
+        return
+    region, source_index = _REGION_BY_SOURCE[mid]
+    ev.n += 1
+    e = ev.ev.pop("#ward#")
+    e["name"] = "*%s-%d" % (e["role"], ev.n)
+    ev.ev["#%d#" % ev.n] = e
+    region.setdefault("entry", {})[source_index] = ev.n
 
 
 def _region_source_entry(region, source_index):
-    source = region["sources"][source_index]
-    _, ev = make(source)
-    return next((int(key[1:-1]) for key, event in ev.ev.items()
-                 if event.get("role") == "portal" and event.get("dest", {}).get("mapid") == region["mid"]), None)
+    make(region["sources"][source_index])
+    return region.get("entry", {}).get(source_index)
+
+
+def _ward_return_sides(region, spots):
+    """The ward edge each source town's way back sits on: opposite the town edge it was entered from (east of the
+    town = the ward's west edge), else the next free one of `spots` (sides the ward map has a road end on)."""
+    taken, out = set(), []
+    for i in range(len(region["sources"])):
+        _region_source_entry(region, i)
+        want = _OPPOSITE_SIDE.get(region["town_side"].get(i))
+        order = ([want] if want in spots else []) + [s for s in ("f", "b", "w", "e") if s in spots]
+        side = next(s for s in order if s not in taken)
+        taken.add(side)
+        out.append(side)
+    return out
 
 
 def _region_quest_npc(ev, region, x, z, sprite, text):
@@ -21425,12 +22431,13 @@ def settlement_ward(region):
     for x, z in ((4, 53), (31, 55), (64, 54), (92, 54), (3, 10), (94, 10)):
         m.tree(x, z, (TREE_L, TREE_M, TREE_S)[(x + z) % 3])
     ev = Events(m)
-    for i, source in enumerate(region["sources"]):
+    ends = {"f": (48, 1, 2), "b": (48, 62, 0), "w": (1, 32, 3), "e": (94, 32, 1)}     # the two roads' ends
+    for i, (source, side) in enumerate(zip(region["sources"], _ward_return_sides(region, ends))):
         source_entry = _region_source_entry(region, i)
         if source_entry is None:
             raise RuntimeError("Missing new ward route on %s" % source)
-        z, direction = (1, 2) if i == 0 else (62, 0)
-        _dilate_event_trigger(ev, ev.portal(48, z, source, source_entry, d=direction),
+        x, z, direction = ends[side]
+        _dilate_event_trigger(ev, ev.portal(x, z, source, source_entry, d=direction),
                               extent=2.0, depth=1.5)
     door_x, door_z = door_of(8, 41, 22)
     room_event = ev.portal(door_x, door_z, region["room"], 1, d=0)
@@ -21481,12 +22488,13 @@ def island_quarter(region):
     for x, z in ((35, 19), (61, 19), (34, 50), (63, 51), (10, 28), (86, 28)):
         fb(m, x, z, 2, LAMP_STREET)
     ev = Events(m)
-    for i, source in enumerate(region["sources"]):
+    ends = {"b": (48, 62, 0), "w": (1, 34, 3), "e": (94, 34, 1)}            # (the south is the sea)
+    for i, (source, side) in enumerate(zip(region["sources"], _ward_return_sides(region, ends))):
         source_entry = _region_source_entry(region, i)
         if source_entry is None:
             raise RuntimeError("Missing islandward route on %s" % source)
-        z, direction = (62, 0) if i == 0 else (60, 0)
-        _dilate_event_trigger(ev, ev.portal(48, z, source, source_entry, d=direction),
+        x, z, direction = ends[side]
+        _dilate_event_trigger(ev, ev.portal(x, z, source, source_entry, d=direction),
                               extent=2.0, depth=1.5)
     source_entry = _region_source_entry(region, 0)
     if source_entry is None:
@@ -21554,6 +22562,300 @@ def _register_expansion_maps():
 _register_expansion_maps()
 
 
+KUDO_ROOM_LAYOUTS = {
+    "M352": (3,30,8,26,6,("#8#","#9#","#10#","#11#")),
+    "M353": (4,28,8,26,7,("#8#","#9#","#10#")),
+    "M354": (4,28,8,26,7,("#6#","#7#")),
+}
+
+
+def rebuild_kudo_room(m, ev):
+    left,right,front,back,entry,old_decor=KUDO_ROOM_LAYOUTS[m.mid]
+    m.blk.fill(0)
+    m.hgt.fill(0)
+    m.objs.clear()
+    m.walls.clear()
+    m.rect(left,front,right-left+1,back-front+1,PLANK,1)
+    m.rect(left,front,1,back-front+1,STONEW,5)
+    m.rect(right,front,1,back-front+1,STONEW,5)
+    m.rect(left,back,right-left+1,1,STONEW,5)
+    m.rect(left,front,entry-left-1,1,STONEW,2)
+    m.rect(entry+2,front,right-entry-1,1,STONEW,2)
+    m.rect(entry-1,front-1,3,2,STONEW,1)
+    for key in old_decor:
+        node=ev.ev.get(key)
+        if node and (node["role"]=="light" or
+                     all(page["trigger"]==0 and not page["cmdblock"] for page in node["page"])):
+            del ev.ev[key]
+
+
+def rebuild_kudo_marsh(m):
+    # The new placed willows and reeds replace the stock vegetation. Keep
+    # the old barge's block deck as a footprint under its new timber hull.
+    removed = {(63+PAD_X,2+PAD_BOTTOM),(66+PAD_X,3+PAD_BOTTOM)}
+    m.objs = [item for item in m.objs if not (
+        item["t"]=="fb" and item["fbtype"]==20 or
+        m.mid=="M356" and item["t"]=="fill" and (item["x"],item["z"]) in removed
+    )]
+    if m.mid in ("M358","M864"):
+        # Round the ritual pool inside its existing footprint while keeping
+        # every actor mark outside the reshaped shoreline.
+        pz,px = np.where(m.blk==EMBER)
+        if len(px):
+            cx,cz = px.mean(),pz.mean()
+            rx,rz = (np.ptp(px)+1)*.50,(np.ptp(pz)+1)*.51
+            silhouette = ((px-cx)/rx)**2+((pz-cz)/rz)**2
+            rim=1+.10*np.sin(px*.77+pz*.62)+.06*np.cos(pz*.71)
+            z,x=pz[silhouette>rim],px[silhouette>rim]
+            m.blk[z,x]=TARSTAIN
+            m.hgt[z,x]=3 if m.mid=="M358" else 0
+
+
+def rebuild_kensu_approach(m):
+    # Replace the catalog trees and street lamps with the new environment placements.
+    old_fixtures = {(2,LAMP_STREET),(20,TREE_S),(20,TREE_M),(20,TREE_L)}
+    m.objs = [item for item in m.objs
+              if item["t"] != "fb" or (item["fbtype"],item["fbparam"]) not in old_fixtures]
+
+
+def rebuild_kamen_market(m):
+    # The new timber stalls leave the old merchant footpaths and shop events intact.
+    stall_blocks = {(x + PAD_X, z + PAD_BOTTOM, y)
+                    for x in range(40, 92, 9) for y, z in ((4, 24), (7, 23))}
+    m.objs = [item for item in m.objs if not (
+        item["t"] == "fb" and (item["fbtype"] == 20 and item["fbparam"] in (TREE_S,TREE_M,TREE_L)
+                                or (item["fbtype"],item["fbparam"]) == (2,LAMP_STREET))
+        or m.mid == "M364" and item["t"] == "fill"
+        and (item["x"],item["z"],item["y"]) in stall_blocks
+    )]
+
+
+KAMEN_ROOM_LAYOUTS = {'M363': (3, 28, 8, 26, 6, ('#9#', '#10#', '#11#', '#12#')), 'M367': (3, 34, 8, 26, 6, ('#5#', '#6#', '#7#', '#8#'))}
+
+
+def rebuild_kamen_room(m, ev):
+    left,right,front,back,entry,old_decor=KAMEN_ROOM_LAYOUTS[m.mid]
+    m.blk.fill(0)
+    m.hgt.fill(0)
+    m.objs.clear()
+    m.walls.clear()
+    m.rect(left,front,right-left+1,back-front+1,PLANK,1)
+    m.rect(left,front,1,back-front+1,STONEW,5)
+    m.rect(right,front,1,back-front+1,STONEW,5)
+    m.rect(left,back,right-left+1,1,STONEW,8 if m.mid == "M367" else 5)
+    m.rect(left,front,entry-left-1,1,STONEW,2)
+    m.rect(entry+2,front,right-entry-1,1,STONEW,2)
+    m.rect(entry-1,front-1,3,2,STONEW,1)
+    for key in old_decor:
+        node=ev.ev.get(key)
+        if node and (node["role"]=="light" or
+                     all(page["trigger"]==0 and not page["cmdblock"] for page in node["page"])):
+            del ev.ev[key]
+
+
+def rebuild_ojatara(m):
+    tents = {
+        "M368": ((66,20,6,5),(76,21,6,5)),
+        "M369": ((86,6,5,4),(94,9,5,4),(102,5,5,4),(12,6,5,4),(30,8,5,4)),
+        "M371": ((8,21,6,5),(18,22,6,5),(84,21,6,5),(94,22,6,5),(60,20,8,6)),
+    }
+    legacy = {(2,LAMP_STREET),(20,TREE_S),(20,TREE_M),(20,TREE_L)}
+    removed_builders = set()
+    for x,z,w,d in tents.get(m.mid,()):
+        # The old straw tent is made of stepped roof slices, one doorway
+        # carve and two ridge tips. These coordinates name those pieces.
+        removed_builders.update((x,z+k,MATTING) for k in range((d+1)//2))
+        removed_builders.add((x+w//2-1,z,VOID))
+        for tip in (x-1,x+w):
+            removed_builders.add((tip,z+(d-1)//2,DARKWOOD))
+    if m.mid == "M368":
+        removed_builders.update(((14,21,WOOD),(24,22,WOOD)))
+    if m.mid == "M374":
+        removed_builders.update(((45,23,DARKWOOD),(50,23,DARKWOOD)))
+    m.objs = [item for item in m.objs if not (
+        item["t"] == "fb" and (item["fbtype"],item["fbparam"]) in legacy
+        or item["t"] == "fill"
+        and (item["x"]-PAD_X,item["z"]-PAD_BOTTOM,item["blk"]) in removed_builders
+    )]
+
+
+OJATARA_ROOM_LAYOUTS = {'M370': (3, 37, 8, 27, 6, ('#13#', '#14#', '#15#', '#16#', '#17#')), 'M376': (3, 28, 8, 25, 7, ('#6#', '#7#', '#8#', '#9#'))}
+
+
+def rebuild_ojatara_room(m, ev):
+    left,right,front,back,entry,old_decor=OJATARA_ROOM_LAYOUTS[m.mid]
+    m.blk.fill(0)
+    m.hgt.fill(0)
+    m.objs.clear()
+    m.walls.clear()
+    m.rect(left,front,right-left+1,back-front+1,PLANK,1)
+    m.rect(left,front,1,back-front+1,STONEW,5)
+    m.rect(right,front,1,back-front+1,STONEW,5)
+    m.rect(left,back,right-left+1,1,STONEW,5)
+    m.rect(left,front,entry-left-1,1,STONEW,2)
+    m.rect(entry+2,front,right-entry-1,1,STONEW,2)
+    m.rect(entry-1,front-1,3,2,STONEW,1)
+    for key in old_decor:
+        node=ev.ev.get(key)
+        if node and (node["role"]=="light" or
+                     all(page["trigger"]==0 and not page["cmdblock"] for page in node["page"])):
+            del ev.ev[key]
+
+
+def rebuild_scorpion_road(m):
+    legacy={(2,LAMP_STREET),(20,TREE_L),(20,TREE_M),(20,TREE_S)}
+    if m.mid == "M345":
+        legacy.add((2,LAMP_CANDLE))
+    m.objs=[item for item in m.objs if item["t"]!="fb"
+            or (item["fbtype"],item["fbparam"]) not in legacy]
+
+
+WILLOW_ROOM_LAYOUTS = {'M346': (3, 28, 8, 25, 7, ('#5#', '#6#', '#7#', '#8#'))}
+
+
+def rebuild_willow_room(m, ev):
+    left,right,front,back,entry,old_decor=WILLOW_ROOM_LAYOUTS[m.mid]
+    m.blk.fill(0)
+    m.hgt.fill(0)
+    m.objs.clear()
+    m.walls.clear()
+    m.rect(left,front,right-left+1,back-front+1,PLANK,1)
+    m.rect(left,front,1,back-front+1,STONEW,5)
+    m.rect(right,front,1,back-front+1,STONEW,5)
+    m.rect(left,back,right-left+1,1,STONEW,5)
+    m.rect(left,front,entry-left-1,1,STONEW,2)
+    m.rect(entry+2,front,right-entry-1,1,STONEW,2)
+    m.rect(entry-1,front-1,3,2,STONEW,1)
+    for key in old_decor:
+        node=ev.ev.get(key)
+        if node and (node["role"]=="light" or
+                     all(page["trigger"]==0 and not page["cmdblock"] for page in node["page"])):
+            del ev.ev[key]
+
+
+def rebuild_mountain_inn_road(m):
+    old_fixtures = {(2, LAMP_STREET), (20, TREE_S), (20, TREE_M), (20, TREE_L)}
+    m.objs = [obj for obj in m.objs if obj["t"] != "fb" or
+              (obj["fbtype"], obj["fbparam"]) not in old_fixtures]
+
+
+DRAGON_ROOM_LAYOUTS = {'M381': (3, 30, 8, 26, 6, ('#8#', '#9#', '#10#', '#11#'))}
+
+
+def rebuild_dragon_room(m, ev):
+    left,right,front,back,entry,old_decor=DRAGON_ROOM_LAYOUTS[m.mid]
+    m.blk.fill(0)
+    m.hgt.fill(0)
+    m.objs.clear()
+    m.walls.clear()
+    m.rect(left,front,right-left+1,back-front+1,PLANK,1)
+    m.rect(left,front,1,back-front+1,STONEW,5)
+    m.rect(right,front,1,back-front+1,STONEW,5)
+    m.rect(left,back,right-left+1,1,STONEW,5)
+    m.rect(left,front,entry-left-1,1,STONEW,2)
+    m.rect(entry+2,front,right-entry-1,1,STONEW,2)
+    m.rect(entry-1,front-1,3,2,STONEW,1)
+    for key in old_decor:
+        node=ev.ev.get(key)
+        if node and (node["role"]=="light" or
+                     all(page["trigger"]==0 and not page["cmdblock"] for page in node["page"])):
+            del ev.ev[key]
+
+
+def rebuild_dragon_approach(m):
+    forest = (TREE_S, TREE_M, TREE_L)
+    if m.mid == "M383":
+        forest += (ROCK_S, ROCK_M)
+    m.objs = [obj for obj in m.objs if obj["t"] != "fb" or not (
+        obj["fbtype"] == 20 and obj["fbparam"] in forest
+        or obj["fbtype"] == 2 and obj["fbparam"] == LAMP_STREET
+    )]
+    if m.mid == "M379":
+        # The incense seller uses the new open counter at this footprint.
+        m.objs = [obj for obj in m.objs if obj["t"] != "fill" or not (
+            41 + PAD_X <= obj["x"] <= 48 + PAD_X
+            and 21 + PAD_BOTTOM <= obj["z"] <= 23 + PAD_BOTTOM
+        )]
+
+
+def rebuild_autumn_valley(m):
+    tents = {
+        "M387": tuple((x,z,5,4) for x,z in ((88,6),(96,9),(102,5),(12,6),(30,8),(44,5))),
+        "M389": tuple((x + (z % 3),z,5,4) for x in range(4,96,9) for z in (4,22,28)),
+        "M392": ((62,15,6,4),),
+    }
+    removed = set()
+    for x,z,w,d in tents.get(m.mid,()):
+        removed.update((x,z+k,MATTING) for k in range((d+1)//2))
+        removed.add((x+w//2-1,z,VOID))
+        removed.update((tip,z+(d-1)//2,DARKWOOD) for tip in (x-1,x+w))
+    if m.mid == "M390":
+        removed.update((x,z,WOOD) for x,z in ((20,22),(70,23),(100,22)))
+    legacy = {(2,LAMP_STREET), (20,TREE_S), (20,TREE_M), (20,TREE_L)}
+    if m.mid == "M393":
+        legacy.update(((20,ROCK_S), (20,ROCK_M)))
+    m.objs = [obj for obj in m.objs if not (
+        obj["t"] == "fb" and (obj["fbtype"],obj["fbparam"]) in legacy
+        or obj["t"] == "fill" and (obj["x"]-PAD_X,obj["z"]-PAD_BOTTOM,obj["blk"]) in removed
+    )]
+
+
+AUTUMN_ROOM_LAYOUTS = {'M388': (3, 35, 8, 26, 6, ('#14#', '#15#', '#16#', '#17#')), 'M394': (3, 35, 8, 26, 6, ('#9#', '#10#', '#11#', '#12#'))}
+
+
+def rebuild_autumn_room(m, ev):
+    left,right,front,back,entry,old_decor=AUTUMN_ROOM_LAYOUTS[m.mid]
+    m.blk.fill(0)
+    m.hgt.fill(0)
+    m.objs.clear()
+    m.walls.clear()
+    m.rect(left,front,right-left+1,back-front+1,PLANK,1)
+    m.rect(left,front,1,back-front+1,STONEW,5)
+    m.rect(right,front,1,back-front+1,STONEW,5)
+    m.rect(left,back,right-left+1,1,STONEW,5)
+    m.rect(left,front,entry-left-1,1,STONEW,2)
+    m.rect(entry+2,front,right-entry-1,1,STONEW,2)
+    m.rect(entry-1,front-1,3,2,STONEW,1)
+    for key in old_decor:
+        node=ev.ev.get(key)
+        if node and (node["role"]=="light" or
+                     all(page["trigger"]==0 and not page["cmdblock"] for page in node["page"])):
+            del ev.ev[key]
+
+
+YOTOMO_POSITIONS = {'M396': {'#2#': [125, 4, 24, 3]}, 'M397': {'#1#': [38, 3, 7, 2], '#84#': [38, 3, 4, 2], '#85#': [84, 3, 48, 0]}, 'M398': {'#1#': [61, 3, 7, 2], '#85#': [61, 3, 4, 2]}}
+
+
+def rebuild_yotomo_route(m, ev):
+    for event, pos in YOTOMO_POSITIONS.get(m.mid, {}).items():
+        x, y, z, _ = pos
+        assert int(m.hgt[z,x]) + 1 == y, (m.mid, event, pos)
+        ev.ev[event]["pos"] = list(pos)
+    if m.mid in ("M396", "M397", "M398"):
+        fixtures = {(20,obj["fbparam"]) for obj in m.objs if obj["t"] == "fb" and obj["fbtype"] == 20}
+        if m.mid == "M398":
+            fixtures.add((4,IN["barrel"]))
+        m.objs = [obj for obj in m.objs
+                  if obj["t"] != "fb" or (obj["fbtype"],obj["fbparam"]) not in fixtures]
+    if m.mid != "M396":
+        return
+    center = 24
+    start = m.w - 15
+    for x in range(start, m.w):
+        depth = x - start
+        for side in (-1, 1):
+            for offset, extra in ((3, 0), (4, 1), (5, 3), (6, 4)):
+                height = min(10, 2 + depth) - extra + (x + offset * side) % 3
+                if height > 0:
+                    fill(m, x, 4, center + side * offset, 1, height, 1, STONE)
+        if depth < 4:
+            continue
+        for dz in range(-2, 3):
+            bottom = 9 if abs(dz) == 2 else 10
+            top = 11 + min(4, depth // 3) - (dz + x) % 2
+            fill(m, x, bottom, center + dz, 1, top - bottom + 1, 1, STONE)
+
+
 def make(i):
     if not DOOR_EV or ("M141", "castle") not in DOOR_EV:   # portals reference other maps' door ids
         wall_garrison()
@@ -21568,6 +22870,12 @@ def make(i):
     else:
         r = MAPS[i]()
     m, ev = r if isinstance(r, tuple) else (r, None)
+    if i == "M458":
+        rebuild_fallen_road(m)
+    if i in MAZE:
+        rebuild_shifting_waste(m, MAZE.index(i)+1)
+    if i in SHADOWLANDS_MARCH_ROUTES:
+        rebuild_shadowlands_march(m, ev)
     if ev is not None:
         _castle_town_access(i, m, ev)
         _region_access(i, m, ev)
@@ -21656,7 +22964,295 @@ def make(i):
         if i not in INTERIORS and i not in ROOM_OFS:
             x, z = x + PAD_X, z + PAD_BOTTOM
         ev.chest(x, z, item)
+    if ev is not None:
+        _region_access_number(i, ev)
+    if ev is not None and i in TRAVEL_AUTO_MAP:                            # fast travel on every road (appended
+        _auto_signpost(i, m, ev)                                           # last: no other event id moves)
+    if i in {"M102", "M105", "M811"}:
+        # The period Coast kit owns the visible props. Keep a no-entry footprint
+        # at the old plants, stones and lights while preserving route markers.
+        m.environment_replaced = [o for o in m.objs if o["t"] == "fb" and (
+            o["fbtype"] == 20 or (o["fbtype"], o["fbparam"]) in ((3, 10), (3, 21), (2, 5)))]
+        m.objs = [o for o in m.objs if o not in m.environment_replaced]
+        m.walls.extend((o["x"],o["z"]) for o in m.environment_replaced if o["fbtype"] in (20,2))
+    if i in ("M102", "M105", "M437"):
+        carve_environment_cave(m)
+    if i in ("M102", "M105"):
+        entry = m.environment_tunnel
+        x, z = entry["x"], entry["z"] + 5
+        key = "#%d#" % ev.egg_cave_entry
+        configure_egg_cave_portal(ev.ev, key, ev.pos(x, z, d=0))
+        ev.n = max(int(k.strip("#")) for k in ev.ev if k.strip("#").isdigit())
+    if i == "M103":
+        ev.n = configure_hoshi_storehouse(ev.ev)
+    if i == "M124":
+        rebuild_hoshi_magistrate(m, ev)
+    if i == "M121":
+        rebuild_hoshi_arms(m, ev)
+    if i == "M122":
+        rebuild_hoshi_goods(m, ev)
+    if i == "M120":
+        rebuild_hoshi_inn(m, ev)
+    if i in ("M104", "M812"):
+        m.quarry_replaced = [o for o in m.objs if o["t"] == "fb" and o["fbtype"] == 20]
+        m.objs = [o for o in m.objs if o not in m.quarry_replaced]
+        m.walls.extend((o["x"], o["z"]) for o in m.quarry_replaced)
+    if i == "M123":
+        rebuild_hoshi_teahouse(m, ev)
+    if i in ("M100", "M101", "M810"):
+        m.kaiu_replaced = [o for o in m.objs if o["t"] == "fb" and
+                           (o["fbtype"], o["fbparam"]) in ((2, 5), (2, 6), (30, 2))]
+        m.objs = [o for o in m.objs if o not in m.kaiu_replaced]
+        m.walls.extend((o["x"], o["z"]) for o in m.kaiu_replaced if o["fbtype"] == 30)
+    if i in KUDO_ROOM_LAYOUTS:
+        rebuild_kudo_room(m, ev)
+    if i in ("M355", "M356", "M357", "M358", "M862", "M863", "M864"):
+        rebuild_kudo_marsh(m)
+    if i in ("M359", "M360", "M361", "M865"):
+        rebuild_kensu_approach(m)
+    if i in ('M362', 'M364', 'M866'):
+        rebuild_kamen_market(m)
+    if i in KAMEN_ROOM_LAYOUTS:
+        rebuild_kamen_room(m, ev)
+    if i in ("M365", "M366"):
+        m.objs = [o for o in m.objs if o["t"] != "fb" or o["fbtype"] != 20]
+    if i == "M868":
+        m.objs = [o for o in m.objs if o.get("blk") != DARKWOOD or o["z"] != 93]
+    if i in ('M368', 'M369', 'M371', 'M372', 'M374', 'M375', 'M377', 'M378', 'M869', 'M870', 'M871'):
+        rebuild_ojatara(m)
+    if i in OJATARA_ROOM_LAYOUTS:
+        rebuild_ojatara_room(m, ev)
+    if i in ('M345', 'M347', 'M348', 'M349', 'M861'):
+        rebuild_scorpion_road(m)
+    if i in WILLOW_ROOM_LAYOUTS:
+        rebuild_willow_room(m, ev)
+    if i in ('M380',):
+        rebuild_mountain_inn_road(m)
+    if i in DRAGON_ROOM_LAYOUTS:
+        rebuild_dragon_room(m, ev)
+    if i in ('M379', 'M382', 'M383', 'M872'):
+        rebuild_dragon_approach(m)
+    if i in ('M387', 'M389', 'M390', 'M391', 'M392', 'M393', 'M395', 'M875'):
+        rebuild_autumn_valley(m)
+    if i in AUTUMN_ROOM_LAYOUTS:
+        rebuild_autumn_room(m, ev)
+    if i in ('M396', 'M397', 'M398', 'M876', 'M877'):
+        rebuild_yotomo_route(m, ev)
     return m, ev
+
+
+def rebuild_hoshi_teahouse(m, ev):
+    ox, oz = ROOM_OFS[m.mid]
+    # Keep the door, Satomi and the story scene at their existing positions.
+    m.w, m.d = 42, 38
+    m.blk = np.zeros((m.d, m.w), dtype=np.int32)
+    m.hgt = np.zeros((m.d, m.w), dtype=np.int32)
+    m.rect(ox, oz, 34, 23, DARKWOOD, 0)
+    m.rect(ox + 1, oz + 1, 32, 21, PLANK, 1)
+    m.rect(15, oz + 1, 9, 3, STONEW, 1)
+    m.objs.clear()
+    m.walls.clear()
+    fill(m, ox, 2, oz + 22, 34, 5, 1, PLASTER)
+    for x in (ox, ox + 33):
+        fill(m, x, 2, oz, 1, 5, 23, PLASTER)
+    fill(m, ox + 1, 2, oz, 12, 1, 1, DARKWOOD)
+    fill(m, ox + 21, 2, oz, 12, 1, 1, DARKWOOD)
+    # Furniture occupies the sides. The street-to-Satomi approach stays open.
+    for left, front, width, depth in ((9, 16, 4, 2), (27, 16, 4, 2), (29, 23, 4, 3)):
+        m.walls.extend((x, z) for x in range(left, left+width) for z in range(front, front+depth))
+    for number in range(4, 9):
+        stock = ev.ev.pop("#%d#" % number)
+        assert stock["role"] in ("custom", "light")
+
+
+def rebuild_hoshi_inn(m, ev):
+    ox, oz = ROOM_OFS[m.mid]
+    m.w, m.d = 44, 40
+    m.blk = np.zeros((m.d,m.w),dtype=np.int32)
+    m.hgt = np.zeros((m.d,m.w),dtype=np.int32)
+    m.rect(ox,oz,36,26,DARKWOOD,0)
+    m.rect(ox+1,oz+1,34,24,PLANK,1)
+    m.rect(17,oz+1,10,4,STONEW,1)
+    m.objs.clear()
+    m.walls.clear()
+    fill(m,ox,2,oz+25,36,5,1,PLASTER)
+    for x in (ox,ox+35):
+        fill(m,x,2,oz,1,5,26,PLASTER)
+    fill(m,ox+1,2,oz,12,1,1,DARKWOOD)
+    fill(m,ox+23,2,oz,12,1,1,DARKWOOD)
+    for left,front,width,depth in ((9,14,5,2),(8,21,5,3),(25,25,1,6),(31,25,1,6)):
+        m.walls.extend((x,z) for x in range(left,left+width) for z in range(front,front+depth))
+    for number in (3,4,5):
+        stock=ev.ev.pop("#%d#" % number)
+        assert stock["role"] in ("custom","light")
+
+
+def rebuild_hoshi_goods(m, ev):
+    ox, oz = ROOM_OFS[m.mid]
+    m.w, m.d = 36, 36
+    m.blk = np.zeros((m.d, m.w), dtype=np.int32)
+    m.hgt = np.zeros((m.d, m.w), dtype=np.int32)
+    m.rect(ox, oz, 28, 21, DARKWOOD, 0)
+    m.rect(ox+1, oz+1, 26, 19, PLANK, 1)
+    m.objs.clear()
+    m.walls.clear()
+    fill(m, ox, 2, oz+20, 28, 5, 1, PLASTER)
+    for x in (ox, ox+27):
+        fill(m, x, 2, oz, 1, 5, 21, PLASTER)
+    door = ev.ev["#1#"]["pos"][0]
+    fill(m, ox+1, 2, oz, door-ox-3, 1, 1, DARKWOOD)
+    fill(m, door+2, 2, oz, ox+25-door, 1, 1, DARKWOOD)
+    # Counter and the two stock shelves. Retain a side passage to the clerk.
+    for left, front, width, depth in ((16,13,5,1),(7,24,14,3),(24,21,5,6),(7,12,4,4)):
+        m.walls.extend((x,z) for x in range(left,left+width) for z in range(front,front+depth))
+    for number in (3,4,5):
+        old = ev.ev.pop("#%d#" % number)
+        assert old["role"] == "custom"
+
+
+def rebuild_hoshi_arms(m, ev):
+    ox, oz = ROOM_OFS[m.mid]
+    m.w, m.d = 36, 36
+    m.blk = np.zeros((m.d, m.w), dtype=np.int32)
+    m.hgt = np.zeros((m.d, m.w), dtype=np.int32)
+    m.rect(ox, oz, 27, 19, DARKWOOD, 0)
+    m.rect(ox+1, oz+1, 25, 17, PLANK, 1)
+    m.objs.clear()
+    m.walls.clear()
+    fill(m, ox, 2, oz+18, 27, 5, 1, PLASTER)
+    for x in (ox, ox+26):
+        fill(m, x, 2, oz, 1, 5, 19, PLASTER)
+    door = ev.ev["#1#"]["pos"][0]
+    fill(m, ox+1, 2, oz, door-ox-3, 1, 1, DARKWOOD)
+    fill(m, door+2, 2, oz, ox+24-door, 1, 1, DARKWOOD)
+    for left,front,width,depth in ((14,13,6,1),(8,22,9,2),(23,22,5,2),(25,16,4,5)):
+        m.walls.extend((x,z) for x in range(left,left+width) for z in range(front,front+depth))
+    for number in (3,4,5,6):
+        old = ev.ev.pop("#%d#" % number)
+        assert old["role"] == "custom"
+
+
+def rebuild_hoshi_magistrate(m, ev):
+    ox, oz = ROOM_OFS[m.mid]
+    m.w, m.d = 44, 40
+    m.blk = np.zeros((m.d,m.w),dtype=np.int32)
+    m.hgt = np.zeros((m.d,m.w),dtype=np.int32)
+    m.rect(ox,oz,36,26,DARKWOOD,0)
+    m.rect(ox+1,oz+1,34,24,PLANK,1)
+    m.objs.clear()
+    m.walls.clear()
+    fill(m,ox,2,oz+25,36,5,1,PLASTER)
+    for x in (ox,ox+35):
+        fill(m,x,2,oz,1,5,26,PLASTER)
+    door = ev.ev["#1#"]["pos"][0]
+    fill(m,ox+1,2,oz,door-ox-3,1,1,DARKWOOD)
+    fill(m,door+2,2,oz,ox+33-door,1,1,DARKWOOD)
+    for left,front,width,depth in ((19,15,5,1),(7,26,10,3),(30,26,7,3),(7,16,5,2),(31,17,4,3)):
+        m.walls.extend((x,z) for x in range(left,left+width) for z in range(front,front+depth))
+    for number in (3,4,5):
+        old = ev.ev.pop("#%d#" % number)
+        assert old["role"] in ("custom","light")
+
+
+def configure_hoshi_storehouse(events):
+    """The key in Kanbe's released lacquer box opens the optional storehouse."""
+    (gate,) = (event for event in events.values()
+               if event.get("role") == "portal" and event["dest"]["mapid"] == "M125")
+    (box,) = (event for event in events.values() if event.get("role") == "custom"
+              and any(page.get("cmdblock", []) and page["cmdblock"][0].get("text", "").startswith(
+                      "A lacquer box on the storehouse step") for page in event.get("page", [])))
+    key = {"lvar": "NUM_I573", "op": ">=", "rvar": 1}
+    missing = {"lvar": "NUM_I573", "op": "<", "rvar": 1}
+    gate["reqs0"] = [*(gate.get("reqs0") or []), key]
+    release = box["page"][1]["cmdblock"]
+    set_released = next(i for i, cmd in enumerate(release) if cmd.get("lvar") == "G297")
+    release[set_released:set_released] = got("I573", "the Storehouse Key")
+    # A player who opened the box in an older save can still claim the key.
+    box["page"].append({**box["page"][-1], "reqs": [flag("G297"), missing],
+                        "cmdblock": [narrate("A small key lies under the magistrate's note.")] +
+                                    got("I573", "the Storehouse Key")})
+    hint = {**box, "name": "Locked storehouse", "pos": list(gate["pos"]), "reqs0": [missing],
+            "mdl": {"r": [0, 1.0, 0, .46, 1.0, .42]},
+            "page": [{**box["page"][0], "cmdblock": [
+                narrate("The storehouse is locked. The lacquer box beside it bears the magistrate's seal.")]}]}
+    number = max(int(k.strip("#")) for k in events if k.strip("#").isdigit()) + 1
+    events["#%d#" % number] = hint
+    return number
+
+
+def configure_egg_cave_portal(events, key, threshold):
+    """Keep the story lock and put the open tunnel's trigger underneath the roof."""
+    event = events[key]
+    if event.get("role") == "portal":
+        return
+    open_page = event["page"][-1]
+    (move,) = open_page["cmdblock"]
+    assert move["cmd"] == "cmd_mapmove" and move["dest"]["mapid"] == "M130"
+    if len(event["page"]) > 1:
+        # The daytime description is still available at the mouth while locked.
+        hint_id = max(int(k.strip("#")) for k in events if k.strip("#").isdigit()) + 1
+        events["#%d#" % hint_id] = {**event, "page": event["page"][:-1], "name": "Egg Caves (closed)",
+                                   "reqs0": [*(event.get("reqs0") or []), flag("G024", False)]}
+    # Real portals ignore stale saved event positions, so existing saves also use the new threshold.
+    events[key] = {"role": "portal", "name": "Egg Caves entrance", "pos": threshold,
+                   "back": False, "dest": move["dest"], "wipe": move["wipe"], "remap": move["remap"],
+                   "reqs0": [*(event.get("reqs0") or []), *open_page["reqs"]],
+                   "mdl": {"r": [0, 1.0, 0, 2.1, 1.5, 0.9]}, "spawndist": 5}
+
+
+def carve_environment_cave(m):
+    """Cut a walkable tunnel and build a solid roof over the inner passage."""
+    coast = m.mid in ("M102", "M105")
+    x = (70 if coast else 84) + PAD_X
+    z = (23 if coast else 22) + PAD_BOTTOM
+    roof_start = 3 if coast else 2
+    floor_blk = T(4) if coast else SL_GROUND
+    rock_blk = STONE if coast else SL_GROUND
+    old_rock = m.hgt.copy()
+    removed = []
+    if not coast:
+        removed = [o for o in m.objs if (
+            o["t"]=="fill" and o.get("blk")==VOID and o["x"]==x-1 and o["z"]==z+2
+        ) or (
+            o["t"]=="fb" and o.get("fbtype")==20
+            and abs(o["x"]-x)<=5 and z<=o["z"]<z+5
+        )]
+        m.objs = [o for o in m.objs if o not in removed]
+
+    shell = []
+    path = []
+    widths = (3,3,3,3,3,3,2,2,2,2,2,2,2,2)
+    for dz, half in enumerate(widths):
+        pz = z+dz
+        grade = 3 if dz<8 else 2
+        left,right = x-half,x+half+1
+        path.append((left,right,pz,grade))
+        m.rect(left,pz,right-left,1,floor_blk,grade)
+
+        # The ribs gradually merge with the hillside. The ledges on either
+        # side keep the opening continuous with the cliff at both ends.
+        for dx, offset in ((half+1,0),(half+2,1),(half+3,3),(half+4,4)):
+            for side in (-1,1):
+                px=x+dx*side
+                cheek = 7 + min(4,dz) - offset - ((px+dz)%5==0)
+                if int(m.hgt[pz,px])<cheek:
+                    m.rect(px,pz,1,1,rock_blk,cheek)
+
+        if dz<roof_start:
+            continue
+        for px in range(left,right):
+            distance = abs(px-x)
+            # Tall central headroom. Inner corners step down by half a block.
+            ceiling = 9 if distance<half else 8
+            if dz>8:
+                ceiling-=1
+            crown = max(ceiling, int(old_rock[pz,px]),
+                        10+min(3,(dz-2)//2)-(1 if distance==half else 0))
+            row=(px,ceiling,pz,1,crown-ceiling+1,1,rock_blk)
+            fill(m,*row)
+            shell.append(row)
+
+    m.environment_tunnel = dict(x=x,z=z,reach=len(widths),path=path,roof=shell,removed=removed)
 
 
 DEBUG_MAPS = {"M090", "M091", "M092", "M094"}                             # probes and catalogs: build by name only
@@ -21672,6 +23268,7 @@ def register_all():
         events[m.mid] = ev
     add_auto_interiors(specs, events)
     register(specs, events)
+    write_travel_data()
 
 
 def add_auto_interiors(specs, events):
@@ -21706,6 +23303,7 @@ def main():
     add_auto_interiors(specs, events)
     register(specs, events)
     register_quest_items()
+    write_travel_data()
     build(specs)
 
 

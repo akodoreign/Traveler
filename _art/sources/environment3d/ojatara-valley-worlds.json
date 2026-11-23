@@ -1,0 +1,57 @@
+{
+  "M368": {
+    "removed_stock_fixtures": 92,
+    "events_preserved": 83,
+    "sha256": "e7cccbc88c40587d5094e91e977a1b495919fcef417d3ec00c19ae4641165b0d"
+  },
+  "M369": {
+    "removed_stock_fixtures": 31,
+    "events_preserved": 143,
+    "sha256": "ce45e88ed02da3579ff5135da5ea692e626059c229cdf8345221f717a40dd5ac"
+  },
+  "M371": {
+    "removed_stock_fixtures": 30,
+    "events_preserved": 82,
+    "sha256": "db210cd3bf4ef2a7f6f6c68945dfdc0a469ff30d7f1499024011240dfb105bfb"
+  },
+  "M372": {
+    "removed_stock_fixtures": 81,
+    "events_preserved": 80,
+    "sha256": "3cc51025fa57e4020c12663854104027af261826b429746ea54636467a467bf4"
+  },
+  "M374": {
+    "removed_stock_fixtures": 70,
+    "events_preserved": 113,
+    "sha256": "efd6fe79e20b89dd37a3ec47a5537e69b92df2834e62ca229f1fda4af811529c"
+  },
+  "M375": {
+    "removed_stock_fixtures": 77,
+    "events_preserved": 128,
+    "sha256": "7e75a24b76cb49a938dd2df4cb91f03277969778484b1a173db46a55fb40710e"
+  },
+  "M377": {
+    "removed_stock_fixtures": 0,
+    "events_preserved": 78,
+    "sha256": "e74faf9289f5d4e820d195f4e870832082b37454093931c37f3910230d59ef2c"
+  },
+  "M378": {
+    "removed_stock_fixtures": 86,
+    "events_preserved": 75,
+    "sha256": "8a716a4d48f51ecdf60a4b0e42f8ab1c0d1cba78984c97a781c52df01c4cdc18"
+  },
+  "M869": {
+    "removed_stock_fixtures": 8,
+    "events_preserved": 0,
+    "sha256": "245a01dc961b58651d3b4bba6bb832e2d1f180fa88ea7bc34a60304d2dd1a9a5"
+  },
+  "M870": {
+    "removed_stock_fixtures": 0,
+    "events_preserved": 0,
+    "sha256": "8bfc03cce19ab2aa10077cd55137ee39099d819ef21d2b1d10ba14d0b7a3777d"
+  },
+  "M871": {
+    "removed_stock_fixtures": 0,
+    "events_preserved": 0,
+    "sha256": "53b0f51bc19b1ca6aca99ef344b596a3810f8ef80c606633c534bfe141f835f6"
+  }
+}

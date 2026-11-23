@@ -1,0 +1,315 @@
+// Stage marks, closed-screen set changes and the shared native score cursor.
+local ENV = "/resource/native_environment/";
+local MOT = "/resource/native_chara/kabuki_stage/";
+local STAGE_BLADE = "/resource/native_chara/trav_rensei_weapon";
+local wardrobeModule = dirname( callee().getSourceName()) .. "/RokuganKabukiWardrobe.sk";
+if( ::getResource( wardrobeModule)) runsk( wardrobeModule);
+local sets = [null, "kabuki_act_komatsu", "kabuki_act_mirror", "kabuki_act_blade", "kabuki_act_title"];
+local roles = { trav_rensei = "guard", side_actor_a = "steward", side_actor_b = "bride", side_actor_c = "komatsu" };
+local state = { stage = null, origin = null, dir = 0.0, principal = null, cast = null,
+	scenery = null, setNumber = 0, panels = null, change = null, entrance = null, act = 0, deadline = 0.0,
+	frame = 0.0, song = 0.0, clock = 0.0, now = 0.0 };
+local SCREEN_TIME = 680.0, COVER_TIME = 150.0;
+
+local retire = function( object){
+	if( !object) return;
+	object.setVisible( false);
+	object.kill();
+};
+
+local stageNode = function( file, offsetX, offsetZ){
+	local asset = ::getResource( ENV .. file .. ".pm");
+	if( !asset || !state.stage || !state.origin) return null;
+	local node = SK3DObject( asset), p = state.origin;
+	node.pos( p.x + offsetX, p.y, p.z + offsetZ);
+	node.matdirty = true;
+	state.stage.scn.addObject( node);
+	return node;
+};
+
+local installSet = function( n){
+	if( state.setNumber == n && state.scenery) return true;
+	try{
+		local newSet = stageNode( sets[n], 0.0, 0.0);
+		if( !newSet) return false;
+		retire( state.scenery);
+		state.scenery = newSet;
+		state.setNumber = n;
+		printf( "[RT] kabuki set %d %S\n", n, state.change ? "under full cover" : "preset");
+		return true;
+	}catch( ex){ printexception( ex); }
+	return false;
+};
+
+local placePanels = function( covered){
+	local offset = Math.lerp( 13.80, 4.50, covered), p = state.origin;
+	foreach( i, panel in state.panels){
+		panel.pos( p.x + (i == 0 ? -offset : offset), p.y, p.z - 2.05);
+		panel.matdirty = true;
+	}
+};
+
+local showPanels = function( visible){
+	if( state.panels) foreach( panel in state.panels) panel.setVisible( visible);
+};
+
+local poseJointBank = function( actor, layer, frame){
+	local model = actor.nativeBody;
+	if( actor.animlayers.layers[0] != layer) actor.setAnimeLayer( layer);
+	layer.animating = false;
+	layer.frametime = frame;
+	actor.animlayers.integrateBonePoses( model.bones, model.gmat, true);
+	actor.updateTravelerWidth();
+	if( actor.widthPose){
+		// The field width setting should widen the actor around the pelvis while
+		// keeping the authored deck and hanamichi marks at their physical positions.
+		local pelvis = model.findBone( "pelvis").mat.getTranslation( Vector3D());
+		local shift = Vector3D( pelvis.x, 0.0, pelvis.z).scale( 1.0 - actor.travelerWidth);
+		local position = Vector3D();
+		foreach( entry in actor.widthPose){
+			entry.output.mat.getTranslation( position).add( shift);
+			entry.output.mat.setTranslation( position);
+		}
+	}
+	actor.animating = model.animating = true;
+	if( actor.nativeOutfit) actor.nativeOutfit.animating = true;
+	if( actor.nativeFace) actor.nativeFace.animating = true;
+};
+
+local KabukiPoseUpdate = class extends SK3DObject
+{
+	sample = null;
+	constructor( fn){ super( null); sample = fn; }
+	function update( dt, pmatdirty = true){
+		if( !alive) return false;
+		sample();
+		animating = true;
+		return true;
+	}
+};
+
+local poseMember = function( member){
+	poseJointBank( member.actor, member.layer, state.frame);
+	if( member.pebble){
+		member.pebble.setVisible( state.song >= 21850.0);
+		member.pebble.animating = true;
+	}
+	if( member.blade) member.blade.animating = true;
+	if( member.wardrobe && ("kabukiWardrobePose" in ::Rokugan)) ::Rokugan.kabukiWardrobePose( member.wardrobe, state.frame);
+};
+
+local collectCast = function(){
+	local cast = [];
+	local seen = {};
+	local candidates = [state.principal];
+	foreach( event in state.stage.events) if( event["rp3d"]) candidates.append( event.rp3d);
+	foreach( actor in candidates){
+		if( !actor || !actor["nativeBody"] || !(actor["nativeKey"] in roles) || (actor.nativeKey in seen)) continue;
+		if( actor.nativeKey == "trav_rensei" && actor != state.principal) continue;
+		seen[actor.nativeKey] <- true;
+		cast.append( { actor = actor, role = roles[actor.nativeKey], initial = Vector3D( actor.pos),
+			dir = actor.dir, visible = actor.visible, fieldScale = actor.fieldNpcScale, oldBody = actor.nativeBody.animlayers,
+			oldLayer = actor.animlayers.layers[0], oldFade = actor.animlayers.layers[1], driver = null, layer = null,
+			wardrobe = null, pebble = null, blade = null, formerBlade = null, formerBladeVisible = false });
+	}
+	return cast;
+};
+
+local breakSightline = function(){
+	// The hanamichi starts in front of the screens. Set its entry pose under
+	// cover, then reveal it with the opening so the Guard never jumps into view.
+	local queue = [state.principal];
+	state.entrance = [];
+	for( local i = 0; i < queue.len(); i++){
+		local node = queue[i];
+		if( node.visible){ state.entrance.append( node); node.visible = false; }
+		if( node.children) foreach( child in node.children) queue.append( child);
+	}
+};
+
+local revealEntrance = function(){
+	if( !state.entrance) return;
+	foreach( node in state.entrance) if( node.alive) node.visible = true;
+	state.entrance = null;
+};
+
+local clearProps = function( member){
+	retire( member.pebble);
+	retire( member.blade);
+	if( member.formerBlade && member.formerBlade.alive) member.formerBlade.setVisible( member.formerBladeVisible);
+	member.pebble = member.blade = member.formerBlade = null;
+};
+
+local disableMember = function( member){
+	local actor = member.actor;
+	if( member.driver) retire( member.driver);
+	clearProps( member);
+	if( member.wardrobe && ("kabukiWardrobeRelease" in ::Rokugan)) ::Rokugan.kabukiWardrobeRelease( member.wardrobe);
+	member.wardrobe = null;
+	if( !member.layer || !actor.alive) return;
+	member.layer.locked = 0;
+	actor.nativeBody.animlayers = member.oldBody;
+	actor.animlayers.layers[0] = member.oldLayer;
+	actor.animlayers.layers[1] = member.oldFade;
+	actor.pos( member.initial);
+	actor.setDir( member.dir);
+	actor.setFieldNpcScale( member.fieldScale);
+	actor.visible = member.visible;
+	actor.matdirty = true;
+	member.driver = member.layer = null;
+};
+
+::Rokugan.kabukiScoreRelease <- function(){
+	revealEntrance();
+	if( state.change && state.panels){ state.change = null; placePanels( 0.0); }
+	showPanels( false);
+	if( state.cast) foreach( member in state.cast) disableMember( member);
+	state.act = 0;
+	state.cast = null;
+};
+
+::Rokugan.kabukiBowRelease <- function(){
+	local guard = state.principal;
+	local knee = guard && state.cast ? guard.nativeBody.findBone( "pelvis") : null;
+	local p = knee ? knee.mat.getTranslation( Vector3D()) : null;
+	if( p){ p.y = 0.0; p.transform( guard.nativeBody.gmat); }
+	::Rokugan.kabukiScoreRelease();
+	if( p && guard.alive){ guard.pos( p); guard.matdirty = true; }
+};
+
+local switchScore = function( act){
+	if( act == state.act && state.cast) return true;
+	local first = ::getResource( MOT .. "guard_" .. act .. ".mot");
+	if( !first || !state.principal || !state.stage) return false;
+	if( !state.cast) state.cast = collectCast();
+	local count = 0, dressed = 0;
+	state.frame = state.song = state.clock = 0.0;
+	state.now = skGetTime();
+	foreach( member in state.cast){
+		local actor = member.actor;
+		local path = MOT .. member.role .. "_" .. act .. ".mot";
+		local data = ::getMotionData( ::getResource( path));
+		if( !data || !data.partsmap){ disableMember( member); continue; }
+		local layer = AnimationLayer();
+		layer.id = "kabuki_staged_score";
+		layer.partsmap = data.partsmap;
+		layer.locked = 1;
+		local stop = data.parts[0].transline.end;
+		layer.setAnime( 0.0, stop, 30.0, false);
+		layer.animating = false;
+		member.layer = layer;
+		actor.nativeBody.animlayers = null;
+		actor.animlayers.layers[1] = null;
+		local base = Vector3D( state.origin);
+		if( act == 1 && member.role == "komatsu") base.y += 0.20;
+		actor.pos( base);
+		actor.setDir( state.dir);
+		actor.setFieldNpcScale( 1.0);
+		actor.matdirty = true;
+		clearProps( member);
+		if( "kabukiWardrobeSet" in ::Rokugan){
+			member.wardrobe = ::Rokugan.kabukiWardrobeSet( actor, member.role, act, member.wardrobe);
+			if( member.wardrobe) dressed++;
+		}
+		if( act == 2 && member.role == "guard" && ::getResource( MOT .. "gray_pebble.pm")){
+			member.pebble = actor.addNativePart( MOT .. "gray_pebble");
+			actor.bindTravelerWidth( member.pebble, true);
+			member.pebble.setVisible( false);
+		}
+		if( act == 3 && member.role == "guard" && ::getResource( STAGE_BLADE .. ".pm")){
+			// Use the sword this sightline was fitted to, then restore field gear at the next cover.
+			member.blade = actor.addNativePart( STAGE_BLADE);
+			actor.bindTravelerWidth( member.blade, true);
+			member.formerBlade = actor.nativeWeapon;
+			if( member.formerBlade){
+				member.formerBladeVisible = member.formerBlade.visible;
+				member.formerBlade.setVisible( false);
+			}
+		}
+		if( !member.driver){
+			local m = member;
+			member.driver = KabukiPoseUpdate( @() poseMember( m));
+			actor.addChild( member.driver);
+		}
+		if( member.role == "guard") state.deadline = stop;
+		count++;
+	}
+	state.act = act;
+	printf( "[RT] kabuki stage score act=%d cast=%d wardrobe=%d\n", act, count, dressed);
+	return count > 0;
+};
+
+::Rokugan.kabukiPrepareSet <- function( act){
+	if( state.stage != ::rpgstage || !state.origin || act < 1 || act > 4) return false;
+	if( state.setNumber == act){ switchScore( act); return false; }
+	if( !state.panels){
+		try{
+			local left = stageNode( "kabuki_screen_panel", -13.8, -2.05);
+			local right = stageNode( "kabuki_screen_panel", 13.8, -2.05);
+			if( left && right) state.panels = [left, right];
+			else{ retire( left); retire( right); }
+		}catch( ex){ printexception( ex); }
+	}
+	if( !state.panels){ installSet( act); switchScore( act); return false; }
+	showPanels( true);
+	state.change = { set = act, ms = 0.0, switched = false };
+	return true;
+};
+
+::Rokugan.kabukiAdvanceSet <- function( dt){
+	local change = state.change;
+	if( !change || state.stage != ::rpgstage) return false;
+	change.ms = Math.min( SCREEN_TIME * 2.0 + COVER_TIME, change.ms + Math.clamp( dt, 0.0, 44.0));
+	local openTime = SCREEN_TIME + COVER_TIME;
+	local fraction = change.ms < SCREEN_TIME ? change.ms / SCREEN_TIME : 1.0 - Math.saturate( (change.ms - openTime) / SCREEN_TIME);
+	placePanels( fraction * fraction * (3.0 - 2.0 * fraction));
+	if( !change.switched && change.ms >= SCREEN_TIME){
+		change.switched = true;
+		installSet( change.set);
+		if( switchScore( change.set) && change.set == 3) breakSightline();
+	}
+	if( change.ms < SCREEN_TIME * 2.0 + COVER_TIME) return true;
+	revealEntrance();
+	showPanels( false);
+	state.change = null;
+	return false;
+};
+
+::Rokugan.kabukiPerform <- function( act, songMs){
+	if( state.stage != ::rpgstage || !switchScore( act)) return false;
+	local now = skGetTime(), elapsed = Math.max( 0.0, now - state.now);
+	if( elapsed > 90.0) elapsed = Math.clamp( songMs - state.clock, 0.0, 40.0);
+	if( state.clock <= 0.0) state.song = songMs;
+	else state.song += elapsed * Math.clamp( 1.0 + (songMs - state.song - elapsed) * 0.0045, 0.72, 1.28);
+	state.now = now;
+	state.clock = songMs;
+	state.frame = Math.clamp( state.song * 0.03, 0.0, state.deadline);
+	return true;
+};
+
+local clearStage = function(){
+	::Rokugan.kabukiScoreRelease();
+	retire( state.scenery);
+	if( state.panels) foreach( panel in state.panels) retire( panel);
+	state.stage = state.origin = state.scenery = state.panels = state.change = state.principal = null;
+	state.setNumber = 0;
+};
+
+local stage = ::Rokugan.kabukiStage.bindenv( ::Rokugan);
+::Rokugan.kabukiStage = function( x, z, dir){
+	clearStage();
+	if( !stage( x, z, dir)) return false;
+	local principal = ::rpgstage["player3d"];
+	if( !principal || ::rpgstage["mapid"] != "M555" || principal["nativeKey"] != "trav_rensei") return true;
+	state.stage = ::rpgstage;
+	state.origin = Vector3D( principal.pos);
+	state.dir = dir;
+	state.principal = principal;
+	return true;
+};
+
+local stageEnd = ::Rokugan.kabukiStageEnd.bindenv( ::Rokugan);
+::Rokugan.kabukiStageEnd = function( x, z, dir){
+	clearStage();
+	stageEnd( x, z, dir);
+};

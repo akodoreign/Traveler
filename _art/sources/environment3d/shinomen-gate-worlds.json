@@ -1,0 +1,19 @@
+{
+  "worlds": {
+    "M457": "210ef1b9d4add48a13c4db64f840d00d790f7eca00e78037d2094b1d1bcc7e90",
+    "M817": "b2cfd9fa34ad211397bcfef6a7ad3fd86d1b1a7bda6144939c400db743a8312b",
+    "M991": "ff3714ed3d680e3d1a6ad60a81d89648d3752cbe3ab77cc3ed8275165b9bfd0b"
+  },
+  "spec": "01c5df347cf0d7e37568a5699d8c433f3177da61c21941c651cafcda5ca64e70",
+  "gate_positions": {
+    "M457": [
+      "#6#",
+      [
+        81,
+        3,
+        38,
+        2
+      ]
+    ]
+  }
+}

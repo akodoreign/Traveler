@@ -1,0 +1,265 @@
+local environmentRoot = "/resource/native_environment/";
+local environmentResource = ::getResource(environmentRoot .. "index.json");
+local environmentMaps = environmentResource ? decodeJSON(environmentResource.loadData()) : {};
+
+class RokuganEnvironmentKit {
+    stage = null;
+    water = null;
+    vegetation = null;
+    pondFish = null;
+    seconds = 0.0;
+    accumulator = 0.0;
+    waterFrame = -1;
+    waterTextures = null;
+    waterSeconds = 7.6;
+    patronSeats = null;
+    poolLighting = null;
+    magmaSpatter = null;
+    townDoors = null;
+    watchfires = null;
+    storageLids = null;
+    brushReveal = null;
+
+    constructor(target, def) {
+        stage = target;
+        vegetation = [];
+        pondFish = [];
+        foreach(row in def["pondFish"] || []){
+            local fish=add(row[0],row[1],row[2],row[3],row[4],row[8]);
+            pondFish.append([fish,row]);
+        }
+        waterTextures = [];
+        patronSeats = [];
+        poolLighting = [];
+        magmaSpatter = [];
+        townDoors = [];
+        watchfires = [];
+        storageLids = [];
+        brushReveal = [];
+        foreach(key in [def["terrain"], def["water"]]){
+            if(!key) continue;
+            local part = add(key,0.0,0.0,0.0,1.0,0.0);
+            if(key==def["water"]) water = part;
+        }
+        if(water){
+            local storm=def["waterMode"]=="storm";
+            local count=storm ? 16 : 32;
+            local prefix=storm ? "storm" : "surf";
+            waterSeconds=storm ? 1.45 : 7.6;
+            if(def["waterMode"]=="lava"){
+                count=24;
+                prefix="magma";
+                waterSeconds=10.8;
+            }
+            local sequence=def["waterSequence"];
+            if(sequence){
+                count=sequence.frames;
+                prefix=sequence.prefix;
+                waterSeconds=sequence.seconds;
+            }
+            for(local frame=0; frame<count; ++frame){
+                local ref = ::getResource(environmentRoot .. "tex/" .. prefix .. ("%02d" % frame) .. ".png");
+                waterTextures.append(::getTexture(ref));
+            }
+        }
+        foreach(row in def.placements){
+            local obj = add(row[0],row[1],row[2],row[3],row[4],row[5]);
+            if(length(row)>6 && row[6]>0.0)
+                vegetation.append([obj,row[5],row[1],row[3],row[6]]);
+            else if(row[0]=="wind_grass" || row[0]=="coast_flowers")
+                vegetation.append([obj,row[5],row[1],row[3],row[0]=="wind_grass" ? .14 : .09]);
+            if(row[0]=="quarry_tent_flap")
+                vegetation.append([obj,row[5],row[1],row[3],.083]);
+        }
+        foreach(seat in def["seats"] || []){
+            local ref = ::getResource(environmentRoot .. seat.motion .. ".mot");
+            patronSeats.append([seat.event,::getMotionData(ref),null]);
+        }
+        foreach(row in def["poolLights"] || []){
+            local light=Light();
+            light.ch=1;
+            light.type=2;
+            light.k1=row[3];
+            light.color=0xff963fff;
+            light.power=row[4];
+            light.spotout=-1.0;
+            light.spotsharp=1.0;
+            light.setMatrix(Matrix().translate(row[0],row[1],row[2]));
+            stage.scn.addLight(light);
+            poolLighting.append([light,row[4],row[0]+row[2]]);
+        }
+        foreach(row in def["magmaSpatter"] || []){
+            local obj=add("magma_spatter",row[0],row[1],row[2],.001,row[4]);
+            magmaSpatter.append([obj,row]);
+        }
+        foreach(door in def["doors"] || []){
+            if(door["stoop"])
+                add(door.stoop,door.x,door.grade,door.z,1.0,0.0);
+            local models=door["models"] || ["town_door_frame","town_door_leaf"];
+            add(models[0],door.x,door.y,door.z,1.0,0.0);
+            local leaf=add(models[1],door.x+.073,door.y,door.z+.076,1.0,0.0);
+            if(door.event!=null) townDoors.append([door.event,leaf,null]);
+        }
+        foreach(fire in def["watchfires"] || []){
+            local flame=add("kaiu_brazier_flame",fire[0],fire[1],fire[2],fire[3],0.0);
+            watchfires.append([flame,fire[3],fire[0]*.71+fire[2]]);
+        }
+        foreach(chest in def["chests"] || []){
+            local lid=add("hoshi_storehouse_lid",chest.x,chest.y,chest.z,1.0,0.0);
+            storageLids.append([chest.event,lid,null]);
+        }
+        foreach(row in def["brushReveal"] || []){
+            local bush = add("shadowlands_thorns",row.x,row.y,row.z,row.size,row.yaw);
+            brushReveal.append([bush,row,null]);
+        }
+        syncDoors(0.0);
+        syncStorageLids(0.0);
+        syncHirumaBrush(0.0);
+        printf("[ENV] %S installed %d detail props, %d animated plants, %d liquid frames.\n",
+            stage.mapid,length(def.placements)-length(vegetation),length(vegetation),length(waterTextures));
+    }
+
+    function add(key,x,y,z,size,yaw) {
+        local path = environmentRoot .. key .. ".pm";
+        local obj = SK3DObject(path);
+        obj.pos(x,y,z);
+        obj.scale(size);
+        obj.rot.setHPB(yaw,0,0);
+        stage.scn.addObject(obj);
+        return obj;
+    }
+
+    function syncDoors(ms) {
+        foreach(row in townDoors){
+            local portal=stage.getEvent(row[0]);
+            local open=!!(portal && ::reqchk(portal.data["reqs0"],portal));
+            local target=open ? 52.0*Math.DTOR : 0.0;
+            local angle=row[2];
+            if(angle==target) continue;
+            angle=hingeAngle(angle,target,ms);
+            row[1].rot.setHPB(angle,0,0);
+            row[1].matdirty=true;
+            row[2]=angle;
+        }
+    }
+
+    function hingeAngle(angle,target,ms) {
+        if(angle==null || Math.abs(angle-target)<.01) return target;
+        return angle+(target-angle)*Math.min(ms*.012,1.0);
+    }
+
+    function syncStorageLids(ms) {
+        foreach(row in storageLids){
+            local event=stage.getEvent(row[0]);
+            local target=event && event.evar["A"] ? 67.0*Math.DTOR : 0.0;
+            if(row[2]==target) continue;
+            row[2]=hingeAngle(row[2],target,ms);
+            row[1].rot.setHPB(0.0,row[2],0.0);
+            row[1].matdirty=true;
+        }
+    }
+
+    function syncHirumaBrush(ms) {
+        if(!length(brushReveal)) return;
+        local target=::rpgvar["G1215"] ? 1.0 : 0.0;
+        foreach(entry in brushReveal){
+            if(entry[2]==target) continue;
+            local row=entry[1];
+            entry[2]=hingeAngle(entry[2],target,ms*.35);
+            local eased=entry[2]*entry[2]*(3.0-2.0*entry[2]);
+            entry[0].pos(row.x+.20*eased,row.y,row.z+row.side*.82*eased);
+            entry[0].rot.setHPB(row.yaw+row.side*1.05*eased,0.0,row.side*.24*eased);
+            entry[0].matdirty=true;
+        }
+    }
+
+    function update(dt) {
+        foreach(seat in patronSeats){
+            local event=stage.getEvent(seat[0]);
+            local actor=event ? event["rp3d"] : null;
+            if(!actor || !actor["nativeBody"]) continue;
+            local pose="rt_town_seat";
+            local layer=actor.animlayers.layers[0];
+            if(!actor.animemap[pose])
+                actor.animemap[pose] <- {st=0,en=7,spd=8.,loop=true,replay=false};
+            if(!layer || layer.id!=pose) layer=actor.anime2({id=pose});
+            if(layer){
+                layer.partsmap=seat[1].partsmap;
+                if(actor.nativeWeapon && actor.nativeWeapon.visible)
+                    actor.nativeWeapon.setVisible(false);
+                if(seat[2]!=actor){
+                    printf("[ENV] Applied seated idle to %S, M103 event %d.\n",actor.nativeKey,seat[0]);
+                    seat[2]=actor;
+                }
+            }
+        }
+        seconds += dt * .001;
+        foreach(pair in pondFish){
+            local fish=pair[0], row=pair[1];
+            local a=seconds*row[7]+row[8], sway=Math.sin(a*8.0);
+            fish.pos(row[1]+Math.cos(a)*row[5],row[2]+.012*sway,row[3]+Math.sin(a)*row[6]);
+            fish.rot.setHPB(a+.09*sway,0.,.025*sway);
+            fish.matdirty=true;
+        }
+        accumulator += dt;
+        if(accumulator<38) return;
+        syncDoors(accumulator);
+        syncStorageLids(accumulator);
+        syncHirumaBrush(accumulator);
+        accumulator = 0;
+        if(water){
+            local frame = int(seconds*length(waterTextures)/waterSeconds) % length(waterTextures);
+            if(frame!=waterFrame){
+                water.mesh.face[0].m.tex0 = waterTextures[frame];
+                waterFrame = frame;
+            }
+        }
+        foreach(row in poolLighting)
+            row[0].power=row[1]*(.91+.09*Math.sin(seconds*1.45+row[2]));
+        foreach(row in watchfires){
+            local phase=seconds*5.4+row[2];
+            row[0].scale(row[1]*(.93+.12*Math.sin(phase)+.055*Math.sin(phase*2.13)));
+            row[0].rot.setHPB(.38*Math.sin(phase*.61),.08*Math.sin(phase),0.0);
+            row[0].matdirty=true;
+        }
+        foreach(pair in magmaSpatter){
+            local obj=pair[0], row=pair[1];
+            local age=(seconds*(.74+row[3]*.31)+row[4])%3.1;
+            if(age>.60){
+                obj.scale(.001);
+                continue;
+            }
+            local t=age/.60;
+            local arc=4*t*(1-t);
+            obj.pos(row[0]+Math.sin(row[4])*t*.20,row[1]+arc*row[5],row[2]+.19*t);
+            obj.scale(row[3]*(1.0-t*.89));
+            obj.rot.setHPB(row[4]+t*.96,.6*t,.2*t);
+            obj.matdirty=true;
+        }
+        local viewer = stage["player3d"];
+        foreach(row in vegetation){
+            local dx = viewer ? viewer.pos.x-row[2] : 0.0;
+            local dz = viewer ? viewer.pos.z-row[3] : 0.0;
+            if(dx*dx+dz*dz > 225.0) continue;
+            local gust = Math.sin(seconds*2.05 + row[2]*.37 + row[3]*.21);
+            local flutter = Math.sin(seconds*3.1 + row[1]);
+            row[0].rot.setHPB(row[1],row[4]*(gust*.72+flutter*.28),row[4]*.46*flutter);
+            row[0].matdirty = true;
+        }
+    }
+}
+
+local EnvironmentKit = RokuganEnvironmentKit;
+::RPGStage.rtEnvironmentKit <- null;
+::RPGStage._rt_environment_launch <- ::RPGStage.launch;
+::RPGStage.launch <- function(opt=null){
+    local out = this._rt_environment_launch(opt);
+    local def = this["mapid"] ? environmentMaps[this.mapid] : null;
+    rtEnvironmentKit = def && this["scn"] ? EnvironmentKit(this,def) : null;
+    return out;
+};
+::RPGStage._rt_environment_update <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function(dt){
+    this._rt_environment_update(dt);
+    if(rtEnvironmentKit) rtEnvironmentKit.update(dt);
+};

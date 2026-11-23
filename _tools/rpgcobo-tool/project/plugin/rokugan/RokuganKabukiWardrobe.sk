@@ -1,0 +1,110 @@
+// The live play grants temporary clothes only to its four fitted cast members.
+local SILK = "/resource/native_tailoring/";
+local BANKS = "/resource/native_chara/kabuki_wardrobe/";
+local STAGE_BLADE = "/resource/native_weapons/W100";
+local CAST = { guard = "trav_rensei", steward = "side_actor_a",
+	bride = "side_actor_b", komatsu = "side_actor_c" };
+
+local hidePart = function( parts, node){
+	if( !node) return;
+	parts.append( { node = node, visible = node.visible } );
+	node.setVisible( false);
+};
+
+::Rokugan.kabukiWardrobeRelease <- function( slot){
+	if( !slot) return;
+	foreach( node in [slot.clothes, slot.mask, slot.streamers, slot.blade]){
+		if( node && node.alive){
+			node.setVisible( false);
+			node.kill();
+		}
+	}
+	local a = slot.actor;
+	if( !a.alive) return;
+	foreach( entry in slot.hidden)
+		if( entry.node.alive) entry.node.setVisible( entry.visible);
+	foreach( entry in slot.surfaceMasks) entry.material.visiblemask = entry.before;
+	if( a.nativeOutfit == slot.clothes) a.nativeOutfit = slot.originalOutfit;
+	if( a.nativeMask == slot.mask) a.nativeMask = slot.originalMask;
+	if( slot.blade && a.nativeWeapon == slot.blade) a.nativeWeapon = slot.originalWeapon;
+};
+
+local switchStreamers = function( slot, motion){
+	if( !motion || !motion.partsmap) return;
+	if( !slot.streamers){
+		slot.streamers = SK3DObject( ::getResource( slot.stem .. "_streamers.pm"));
+		foreach( m in slot.streamers.getMaterials()) if( m.mtype == 0) m.mtype = 3;
+		slot.actor.nativeBody.addChild( slot.streamers);
+	}
+	slot.streamers.setMotion( motion);
+	local layer = AnimationLayer();
+	layer.id = "kabuki_obi_pose";
+	layer.partsmap = motion.partsmap;
+	layer.setAnime( 0.0, motion.parts[0].transline.end, 30.0, false);
+	layer.animating = false;
+	layer.locked = 1;
+	slot.streamers.animlayers.layers[0] = layer;
+	slot.layer = layer;
+};
+
+::Rokugan.kabukiWardrobeSet <- function( actor, role, act, previous){
+	if( !actor || !actor.nativeBody || !(role in CAST) || CAST[role] != actor.nativeKey ||
+		act < 1 || act > 4) return previous;
+	local stem = SILK .. CAST[role] .. "_kabuki";
+	local motion = ::getResource( BANKS .. role .. "_streamers_" .. act .. ".mot");
+	if( !::getResource( stem .. ".pm") || !::getResource( stem .. "_mask.pm") ||
+		!::getResource( stem .. "_streamers.pm") || !motion) return previous;
+	local layerData = ::getMotionData( motion);
+	if( !layerData || !layerData.partsmap) return previous;
+	if( previous){
+		try{ switchStreamers( previous, layerData); }
+		catch( ex){ printexception( ex); }
+		return previous;
+	}
+	local slot = { actor = actor, stem = stem, clothes = null, mask = null,
+		streamers = null, layer = null, blade = null, hidden = [], surfaceMasks = [],
+		originalOutfit = actor.nativeOutfit, originalMask = actor.nativeMask, originalWeapon = actor.nativeWeapon };
+	try{
+		slot.clothes = actor.addNativePart( stem);
+		slot.mask = actor.addNativePart( stem .. "_mask");
+		actor.bindTravelerWidth( slot.mask, true);
+		switchStreamers( slot, layerData);
+		foreach( node in [actor.nativeOutfit, actor.nativeMask, actor.nativeHead, actor.nativeHeadband, actor.nativeCape])
+			hidePart( slot.hidden, node);
+		if( role != "guard") hidePart( slot.hidden, actor.nativeWeapon);
+		else if( (!actor.nativeWeapon || (actor.nativeWeaponKind != "katana" && actor.nativeWeaponKind != "kakita")) &&
+			::getResource( STAGE_BLADE .. ".pm")){
+			hidePart( slot.hidden, actor.nativeWeapon);
+			slot.blade = actor.addNativePart( STAGE_BLADE);
+			actor.bindTravelerWidth( slot.blade, true);
+			actor.nativeWeapon = slot.blade;
+		}
+		if( actor.nativeDecals) foreach( node in actor.nativeDecals) hidePart( slot.hidden, node);
+		if( actor.nativeOrnaments) foreach( node in actor.nativeOrnaments) hidePart( slot.hidden, node);
+		foreach( group in actor.nativeBody.mesh.face){
+			local surface = group.m;
+			if( surface.name == "c807060_core" || surface.name == "cece8de_wrap"){
+				slot.surfaceMasks.append( { material = surface, before = surface.visiblemask } );
+				surface.visiblemask = 0;
+			}
+		}
+		actor.nativeOutfit = slot.clothes;
+		actor.nativeMask = slot.mask;
+		return slot;
+	}catch( ex){
+		::Rokugan.kabukiWardrobeRelease( slot);
+		printexception( ex);
+		return null;
+	}
+};
+
+::Rokugan.kabukiWardrobePose <- function( slot, frame){
+	if( !slot) return;
+	slot.clothes.animating = slot.mask.animating = true;
+	if( slot.blade) slot.blade.animating = true;
+	if( !slot.layer) return;
+	slot.layer.animating = false;
+	slot.layer.frametime = frame;
+	slot.streamers.calcBonePoses();
+	slot.streamers.animating = true;
+};

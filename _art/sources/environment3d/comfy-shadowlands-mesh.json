@@ -1,0 +1,38 @@
+{
+  "shadowlands_thorns": {
+    "prompt_id": "b37e4b8d-bf08-42f3-8cde-ab156d2379c1",
+    "history": "http://127.0.0.1:8189/history/b37e4b8d-bf08-42f3-8cde-ab156d2379c1"
+  },
+  "shadowlands_shards": {
+    "prompt_id": "6eca302f-eaff-43c2-ab5b-9206583c8e23",
+    "history": "http://127.0.0.1:8189/history/6eca302f-eaff-43c2-ab5b-9206583c8e23"
+  },
+  "shadowlands_waymarker": {
+    "prompt_id": "d8e54c74-275c-40a0-8891-4a4223e3767a",
+    "history": "http://127.0.0.1:8189/history/d8e54c74-275c-40a0-8891-4a4223e3767a"
+  },
+  "shadowlands_broken_cart": {
+    "prompt_id": "2820c8ee-0acc-42c1-8c9a-20110d32f6c6",
+    "history": "http://127.0.0.1:8189/history/2820c8ee-0acc-42c1-8c9a-20110d32f6c6"
+  },
+  "shadowlands_dead_cedar": {
+    "prompt_id": "51f4858f-5bea-4404-beb0-e5b795e5fb3e",
+    "history": "http://127.0.0.1:8189/history/51f4858f-5bea-4404-beb0-e5b795e5fb3e"
+  },
+  "shadowlands_ruined_shrine": {
+    "prompt_id": "2185acd1-34d2-4d33-9906-1741978b9532",
+    "history": "http://127.0.0.1:8189/history/2185acd1-34d2-4d33-9906-1741978b9532"
+  },
+  "hiruma_gate_ruin": {
+    "prompt_id": "1f06ad37-b722-447f-9c79-103e0cee0ceb",
+    "history": "http://127.0.0.1:8189/history/1f06ad37-b722-447f-9c79-103e0cee0ceb"
+  },
+  "hiruma_ancestor_tablets": {
+    "prompt_id": "fac513ac-5b51-48e7-a795-1fb9cef1dc0b",
+    "history": "http://127.0.0.1:8189/history/fac513ac-5b51-48e7-a795-1fb9cef1dc0b"
+  },
+  "hiruma_fallen_standard": {
+    "prompt_id": "96f84f0f-7272-4f04-a53a-358d6d9c835d",
+    "history": "http://127.0.0.1:8189/history/96f84f0f-7272-4f04-a53a-358d6d9c835d"
+  }
+}

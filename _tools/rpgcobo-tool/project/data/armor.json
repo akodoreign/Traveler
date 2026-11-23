@@ -2305,5 +2305,119 @@
 		"opttype": "opt_equip",
 		"price": 0,
 		"rt_costume": "pilgrim"
+	},
+	"A175": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A hairpin of red lacquer carved as a crab's claw. Yasuki Kurako pulled it from her own hair. (Defence +5%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Red Claw Kanzashi",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 5,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A176": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A war fan from the Kaiu forges: iron ribs under paper painted with a crab on a wave. Kaiu Takakana doesn't give gifts. He gave this. (Speed +6%, Evasion +6)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Kaiu Iron Fan",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 6,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PEVA",
+				"val": 6,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A177": {
+		"MDEF": 5,
+		"PDEF": 2,
+		"desc": "A crab's claw cut from Hida jade, on a red cord: the Champion's gift, carried down from the dais by his son. Hida Kisada said nothing. (Defence +8%, Speed +6%, E.Def +8%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Jade Claw of the Wall",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PDEF",
+				"val": 8,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 6,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 8,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A209": {
+		"MDEF": 0,
+		"PDEF": 32,
+		"desc": "The white kosode and crimson hakama Natsuko wears for the blessing dance. Fitted for Hiruma Natsuko alone.",
+		"eqflag": -1,
+		"eqtype": 15,
+		"icon": "",
+		"mdlid": null,
+		"name": "Hiruma's Miko Attire",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 0,
+		"rt_only_player": "P100",
+		"rt_unsellable": true
+	},
+	"A210": {
+		"MDEF": 0,
+		"PDEF": 8,
+		"desc": "The guard's stage costume from The Empress of Nothing. Fitted for Kakita Rensei alone.",
+		"eqflag": -1,
+		"eqtype": 13,
+		"icon": "",
+		"mdlid": null,
+		"name": "Rensei's Kabuki Costume",
+		"option": [],
+		"opttype": "opt_equip",
+		"price": 0,
+		"rt_only_player": "P101",
+		"rt_unsellable": true
 	}
 }
