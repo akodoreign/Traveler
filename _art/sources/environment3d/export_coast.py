@@ -29,36 +29,69 @@ class Geometry:
         self.materials.append(material)
 
 
-def export(name, geom, maps):
+def export(name, geom, maps, *, normal_maps=None, smooth_materials=()):
     points = np.asarray(geom.vertices, dtype=np.float32)
     native = points[:, [0, 2, 1]]
     sculpt = points.reshape(-1, 4, 3)
     normals = np.cross(sculpt[:, 1] - sculpt[:, 0], sculpt[:, 2] - sculpt[:, 0])
     normals /= np.linalg.norm(normals, axis=1)[:, None]
-    normals = np.repeat(np.rint(normals[:, [0,2,1]] * 32767), 4, axis=0)
+    face_normals = np.rint(normals[:, [0,2,1]] * 32767)
+    normals = np.repeat(face_normals, 4, axis=0)
     uv = np.asarray(geom.uvs, dtype=np.float32).reshape(-1, 2)
     uv[:, 1] = 1. - uv[:, 1]
     materials = np.asarray(geom.materials)
+    if smooth_materials:
+        selected = np.repeat(np.isin(materials, smooth_materials), 4)
+        _, weld = np.unique(np.round(native[selected], 5), axis=0, return_inverse=True)
+        if len(weld):
+            summed = np.zeros((weld.max()+1, 3))
+            np.add.at(summed, weld, normals[selected])
+            smooth = summed[weld]
+            magnitude = np.linalg.norm(smooth, axis=1, keepdims=True)
+            smooth = np.divide(smooth*32767., magnitude, out=normals[selected].copy(), where=magnitude>1e-8)
+            normals[selected] = np.rint(smooth)
     groups = {}
     for key in dict.fromkeys(geom.materials):
         # Swap winding with the Blender-to-native depth/up coordinate swap.
         first = 4 * np.flatnonzero(materials == key)
         groups[key] = (first[:, None] + [0, 2, 1, 0, 3, 2]).reshape(-1)
-    write_model(name, native, normals, uv, groups, maps)
+    tangents = quad_tangents(native.reshape(-1, 4, 3), uv.reshape(-1, 4, 2), face_normals) if normal_maps else None
+    write_model(name, native, normals, uv, groups, maps, tangents=tangents, normal_maps=normal_maps)
     print(f"COAST {name}: {len(geom.faces)} quads, {list(groups)}")
 
 
-def write_model(name, native, normals, uv, groups, maps):
+def quad_tangents(points, uv, normals):
+    edge_a, edge_b = points[:, 1]-points[:, 0], points[:, 2]-points[:, 0]
+    uv_a, uv_b = uv[:, 1]-uv[:, 0], uv[:, 2]-uv[:, 0]
+    determinant = uv_a[:, 0]*uv_b[:, 1]-uv_a[:, 1]*uv_b[:, 0]
+    usable = np.abs(determinant)>1e-8
+    sign = np.where(determinant < 0., -1., 1.)[:, None]
+    tangent = (edge_a*uv_b[:, 1, None]-edge_b*uv_a[:, 1, None])*sign
+    bitangent = (edge_b*uv_a[:, 0, None]-edge_a*uv_b[:, 0, None])*sign
+    n = normals.astype(float)/32767.
+    tangent -= n*np.sum(n*tangent,axis=1,keepdims=True)
+    bitangent_sign = np.where(np.sum(np.cross(n,tangent)*bitangent,axis=1)<0.,-1.,1.)
+    tangent[~usable] = np.cross(n[~usable],np.eye(3)[np.argmin(np.abs(n[~usable]),axis=1)])
+    magnitude = np.linalg.norm(tangent,axis=1,keepdims=True)
+    tangent /= np.maximum(magnitude,1e-8)
+    packed = np.rint(np.column_stack((tangent,bitangent_sign))*32767.)
+    return np.repeat(packed,4,axis=0)
+
+
+def write_model(name, native, normals, uv, groups, maps, *, tangents=None, normal_maps=None):
     """Write native geometry from positions, packed normals, UVs, and triangle groups."""
     # SMDL v1 vertex streams are planar on disk. Offsets and stride describe
     # the engine's interleaved position, packed normal and float UV buffers.
-    stride = 32
-    data = bytearray(b"SMDL\x00\x01\x00\x00\x00\x03")
-    data += struct.pack(">I", len(native) * stride)
-    for role, kind, normalize, width, offset, values, dtype in (
+    stride = 40 if tangents is not None else 32
+    channels = [
         (0, 1, 0, 3, 0, native, ">f4"), (1, 4, 1, 3, 12, normals, ">i2"),
         (4, 1, 0, 2, 24, uv, ">f4"),
-    ):
+    ]
+    if tangents is not None:
+        channels.append((8, 4, 1, 4, 32, tangents, ">i2"))
+    data = bytearray(b"SMDL\x00\x01\x00\x00\x00")
+    data += bytes([len(channels)]) + struct.pack(">I", len(native) * stride)
+    for role, kind, normalize, width, offset, values, dtype in channels:
         data += struct.pack(">6BII", role, kind, normalize, width, stride, 0, offset, len(native))
         data += values.astype(dtype).tobytes()
     data += bytes(4) + bytes([len(groups)])
@@ -70,6 +103,10 @@ def write_model(name, native, normals, uv, groups, maps):
         texture, roughness = maps[key]
         params = {"glow": "0xff160000", "lava": "0xff600000"}.get(key, "0xff000000")
         assert (STAGE / "tex" / texture).is_file()
+        normal = (normal_maps or {}).get(key)
+        if normal:
+            assert tangents is not None and (STAGE / "tex" / normal).is_file()
+        normal_ref = f'"tex/{normal}"' if normal else "null"
         declarations.append(f"""  {{
     name = "{key}"
     tec = "pbr.basic"
@@ -80,7 +117,7 @@ def write_model(name, native, normals, uv, groups, maps):
     mparam = {params}
     texmap = 0
     texture0 = "tex/{texture}"
-    texture1 = null
+    texture1 = {normal_ref}
     texture2 = null
   }}""")
     data += bytes(14)

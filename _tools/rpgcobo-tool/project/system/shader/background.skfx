@@ -19,6 +19,7 @@ param def
 	varying mediump vec4 v_uv;
 	varying highp vec3 v_wn;
 	varying highp vec3 v_wvpp;
+	varying highp vec3 v_vd;	//	(tex_pano) the view-space direction
 
 	const highp float PI = 3.14159265358979;
 }
@@ -30,6 +31,7 @@ vs def
 		v_wvpp = in_pos;
 		highp vec4 wvp = invpmat * vec4( v_wvpp, 1.0);// wvp.xyz /= wvp.w;
 		v_wn = invvmat3 * normalize( wvp.xyz * vec3( 1.0, -1.0, 1.0));
+		v_vd = wvp.xyz * vec3( 1.0, -1.0, 1.0);
 		gl_Position = vec4( in_pos, 1.0);
 	}
 }
@@ -62,6 +64,26 @@ fs tex_srgb
 		highp vec2 uv = vec2( (th+PI) / (2.0*PI), 1.0-ph / PI);
 		mediump vec4 pix = textureLod( coltex1, uv, 0.0);// * vec4( dirlit[2].yyy, 1.0);
 		pix.xyz = toLinear( pix.xyz);	//	texture = sRGB
+		FRAGOUT
+	}
+}
+
+//	Rokugan: a painted backdrop behind the map (tools/gen_map_backgrounds.py), like the title screen's. Its height always
+//	fills the screen top to bottom (the view-space direction: the painting's horizon stays where the painter put it, and
+//	the picture stays sharp under the narrow HD-2D lens); across, it follows the camera's turn - 60 degrees per picture
+//	width, tiled mirror-wise all the way round (no seam). Lit as the sky is (night maps get darker), a little hazed.
+fs tex_pano
+{
+	void main(){
+		highp vec3 wn = normalize( v_wn);
+		highp float th = atan( wn.z, wn.x);
+		highp float pano_s = th / (PI / 3.0);
+		highp float pano_u = 1.0 - abs( fract( pano_s * 0.5) * 2.0 - 1.0);
+		highp float pano_t = v_vd.y / max( length( v_vd.xz), 0.0001);
+		highp float pano_v = clamp( 0.5 - pano_t / 0.62, 0.002, 0.998);	//	(v = 0 is the picture's top row)
+		mediump vec4 pix = textureLod( coltex1, vec2( pano_u, pano_v), 0.0);
+		pix.xyz = toLinear( mix( pix.xyz, vec3( 0.80, 0.84, 0.88), 0.06)) * dirlit[2].y * dirlit[3].xyz;
+		pix.w = 1.0;
 		FRAGOUT
 	}
 }
@@ -259,5 +281,56 @@ technique tex_srgb
 		param = def;
 		vs = def;
 		fs = tex_srgb;
+	}
+}
+
+/////////////////////////////////////////////////////////////////
+
+technique tex_pano
+{
+	apilevel = 20;
+	tag = "bg";
+	
+	//	legacy pass
+	pass {
+		using colorspace, tonemapping, fragout_forward, decalout_legacy;
+		
+		passfilter = 255;
+		param = def;
+		vs = def;
+		fs = tex_pano;
+	}
+	
+	//	forward+tonemap pass = direct pass (default)
+	pass {
+		apilevel = 30;
+		using colorspace, tonemapping, fragout_forward, pbrout_legacy;
+		
+		passfilter = 256;
+		param = def;
+		vs = def;
+		fs = tex_pano;
+	}
+
+	//	pbr forward pass
+	pass {
+		apilevel = 30;
+		using colorspace, tonemapping, fragout_forward, pbrout_pbrforward;
+		
+		passfilter = 512;
+		param = def;
+		vs = def;
+		fs = tex_pano;
+	}
+	
+	//	pbr deferred pass
+	pass {
+		apilevel = 30;
+		using g, colorspace, tonemapping, fragout_deferred, pbrout_deferred;
+		
+		passfilter = 1024;
+		param = def;
+		vs = def;
+		fs = tex_pano;
 	}
 }

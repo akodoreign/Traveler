@@ -1,0 +1,14 @@
+{
+  "yasuki_cave_tide_scored_rocks": {
+    "prompt_id": "ec743b13-f3d8-45d3-b385-333891cb951c",
+    "history": "http://127.0.0.1:8189/history/ec743b13-f3d8-45d3-b385-333891cb951c"
+  },
+  "yasuki_cave_boat_landing": {
+    "prompt_id": "7fa9d763-b9cf-48f6-b8d9-609854624bb4",
+    "history": "http://127.0.0.1:8189/history/7fa9d763-b9cf-48f6-b8d9-609854624bb4"
+  },
+  "yasuki_cave_covered_supply_bales": {
+    "prompt_id": "2ba65fe8-edfb-4c55-8a26-a3bcbb89dfa4",
+    "history": "http://127.0.0.1:8189/history/2ba65fe8-edfb-4c55-8a26-a3bcbb89dfa4"
+  }
+}

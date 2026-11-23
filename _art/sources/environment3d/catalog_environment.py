@@ -10,7 +10,9 @@ HERE = Path(__file__).resolve().parent
 repo = Path(sys.argv[1])
 project = repo / "_tools/rpgcobo-tool/project"
 source = project / "resource"
-published = set(json.loads((source / "native_environment/index.json").read_bytes()))
+native_index = json.loads((source / "native_environment/index.json").read_bytes())
+prop_only = {mid for mid, row in native_index.items() if row.get("propOnly")}
+published = set(native_index) - prop_only
 out = HERE / "inventory"
 out.mkdir(exist_ok=True)
 sys.path.insert(0, str(repo / "tools"))
@@ -18,6 +20,59 @@ import gen_maps as gm
 import voxfile
 
 REBUILD = {
+    "M153": ("Hida siege cellars", "Follow the usable cellar path to the servants stair and reachable save shrine."),
+    "M501": ("Hida reception and service hall", "Fit the cellar arrival and first siege stair gate into the live keep."),
+    "M502": ("Hida guest and council chambers", "Gate the upper stair on both original siege checks."),
+    "M503": ("Hida archives and strategy halls", "Keep the false-servant encounter and original deep-tunnel handoff."),
+    "M816": ("Hida castle hall arena", "Frame the registered keep combats in cedar and indigo."),
+    "M148": ("Hida donjon cells", "Fit cell fronts, warm lanterns and walkable shored bores around the original route."),
+    "M149": ("Hida trap catacombs", "Follow the original winding path past the roller and jade traps."),
+    "M150": ("Hida deepest cell", "Keep the troll staging and original entry in the dark slate cell."),
+    "M157": ("Deep Hida trap tunnels", "Retain the flare scene and true passage to the Wall."),
+    "M158": ("Kaiu Wall tunnel mouth", "Fit the arrival into a full vaulted battlement passage."),
+    "M170": ("Kaiu trap tunnels", "Keep both original story exits on the winding cave route."),
+    "M815": ("Hida donjon arena", "Preserve the puppet and troll formations in the matching gaol terrain."),
+    "M442": ("Oracle switchback stair", "Frame the original switchback with fractured indigo basalt and incandescent lava."),
+    "M443": ("Oracle crater shrine", "Retain the shrine approach beside a recessed irregular crater pool."),
+    "M896": ("Oracle lava crossing arena", "Fit a walkable dry causeway between the champion formations."),
+    "M450": ("Shinomen lava glade", "Frame the road with diorama pines, charred trees, and active lava pools."),
+    "M476": ("Dragon mountain road", "Keep both story gates and the ridge bridge passable beside the recessed cave mouth."),
+    "M488": ("Dragon mountain cave", "Use a walkable mountain passage with the original loot and a return to the same mouth."),
+    "M798": ("Dragon cavern arena", "Stage the actual cave encounter in an underground arena."),
+    "M477": ("Beiden hill road", "Fit the timber-shored bandit entrance into the hillside and preserve the two story gates."),
+    "M489": ("Beiden bandit hideout", "Fit cots and provision racks to the gallery floor around the original chests."),
+    "M821": ("Beiden hill-road arena", "Keep outdoor combat on its own hillside arena."),
+    "M797": ("Beiden bandit cave arena", "Use a dedicated underground arena for the hideout encounter."),
+    "M475": ("Northern Phoenix road", "Keep both story gates accessible from the main road and place the real fox-cave entry on a wooded side path."),
+    "M487": ("Phoenix fox cave", "Follow mineral springs to original loot and the fox offering shrine."),
+    "M799": ("Fox shrine arena", "Put the votive shrine behind the fighting lane and keep the forest for outdoor battles."),
+    "M846": ("Isawa Mori arena", "Frame outdoor encounters with miniature pines and maples, a visible torii and a gentle breeze."),
+    "M474": ("Doji tide road", "Follow the Crane coast between the cedar causeway, recessed tide-cave entry, and story gates."),
+    "M486": ("Doji tide cave", "Cross a timber footbridge between tide pools, down to the original loot and cache branches."),
+    "M828": ("Doji cove arena", "Keep the original formations on the sand with miniature shore defenses and a skiff behind them."),
+    "M473": ("Zumiki snow road", "Place the recessed ice cave off the snowy ridge road and keep both northern gates clear."),
+    "M485": ("Zumiki ice cave", "Run powdery footpaths around cobalt pools and crystalline pillars with warm Japanese lanterns."),
+    "M844": ("Snowbound cavern arena", "Frame the cave encounters in a sheltered blue ice cutaway without blocking either formation."),
+    "M471": ("River of Gold east bank", "Frame the river with stepped banks, a continuous boardwalk and a shallow cliff passage."),
+    "M472": ("Lion hills road", "Give the two canyon mouths distinct rocky silhouettes and preserve the gated cross-country routes."),
+    "M482": ("River Cave", "Run an animated stream below a fitted footbridge and connect the original caches."),
+    "M483": ("Lion hill cave", "Give the standing stone a dais and lion-colored votive cloths along the warm mineral chambers."),
+    "M484": ("Lion old mine", "Tie the smelter galleries together with continuous tracks, three switch stands and buffered terminals."),
+    "M819": ("Lion cavern arena", "Keep ochre rock, timber supports and the rail turnout behind active combat formations."),
+    "M470": ("Yasuki coastal road", "Set both cave mouths into the coast ridge and leave the Hoshi and Yasuki approaches open when their story gates permit."),
+    "M480": ("Yasuki tidal cave", "Keep the return passage on the same mouth and give the tidal chambers an inset shore landing."),
+    "M481": ("Yasuki smuggler cave", "Put the original caches along separate galleries and a concealed landing."),
+    "M829": ("Yasuki coastal cave arena", "Keep animated tide pools and standing stones behind both combat formations."),
+    "M422": ("Winter River of Gold", "Frame the Fox Shrine and snow-covered road with a sapphire river and clear shoreline."),
+    "M423": ("Winter rice barge", "Give the party a walkable fitted deck during the medicine voyage."),
+    "M424": ("Floating Flowers", "Fit the market stalls, moorings and warehouse door to the winter waterfront."),
+    "M425": ("Snake Den archive", "Lead from the harbor stair through curved limestone archive chambers."),
+    "M426": ("Snake Den ritual chamber", "Set the serpent character into warm ritual sand beside carved stone niches."),
+    "M427": ("Snake Den serpent doorway", "Carve a deep central jade passage with solid rock flanks and test both directions."),
+    "M428": ("Snake Den exit chamber", "Keep the enforcer arena and boathouse ladder on connected ground."),
+    "M888": ("Winter river battle", "Frame the Wako ambush by the animated winter river."),
+    "M889": ("Floating Flowers storm battle", "Use a distinct storm current behind the jetty fight."),
+    "M890": ("Snake Den battle", "Frame the enforcer fight with jade details, Japanese lanterns and cave pools."),
     "M100": ("Fortifications", "Watchtower flagstones, parapet masonry and hut timbers."),
     "M101": ("Fortifications", "Connect the sealed Kaiu gate, armoury, watch posts and training yard."),
     "M102": ("Coastal trade road", "Keep the cart lane open, with an exposed tidal shelf and rest points on the cliff-side verge."),
@@ -159,6 +214,8 @@ REBUILD = {
 
 
 def rebuild_status(mid):
+    if mid in prop_only:
+        return "Props installed, terrain pending"
     if mid == "M555" and mid in published:
         return "Native Kabuki stage pass"
     if mid in published:
@@ -246,6 +303,7 @@ stats={"map_entries":len(maps),"registered_maps":sum(row["registered"] for row i
        "maps_with_worlds":sum(row["world_on_disk"] for row in maps),
        "traveler_generator_maps":sum(row["source"]=="Traveler generator" for row in maps),
        "published_map_passes":sum(row["map"] in published for row in maps),
+       "prop_only_map_updates":len(prop_only),
        "map_passes_remaining":sum(row["map"] not in published for row in maps),
        "map_voxel_models":len(voxels),"voxel_packs":len(set(row["pack"] for row in voxels))}
 (out/"summary.json").write_text(json.dumps(stats,indent=2),encoding="utf-8")

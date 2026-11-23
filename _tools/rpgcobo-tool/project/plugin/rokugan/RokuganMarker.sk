@@ -31,6 +31,13 @@
 		if( !(cur in this.MK_LINKS)) continue;
 		foreach( nx in this.MK_LINKS[cur]){
 			if( nx in dist) continue;
+			local gk = cur .. ">" .. nx;										//	(user: "they are being directed down
+			if( ("MK_GATES" in this) && (gk in this.MK_GATES)){			//	closed routes") a shut door is no road;
+				local open = false;												//	(every way between two maps is listed:
+				foreach( alt in this.MK_GATES[gk]) if( this.mkReqs( alt)){ open = true; break; }	//	open if any is)
+				if( !open) continue;
+			}
+																			//	routes") a shut door is no road
 			dist[nx] <- dist[cur] + 1;
 			first[nx] <- cur == from ? nx : first[cur];
 			q.append( nx);
@@ -59,7 +66,10 @@
 	local pid = ("journalLead" in this) ? this.journalLead() : null;
 	if( !pid){ local lead = ::rpgstat.members.find( @( v) v); pid = lead ? lead.dataid : null; }
 	local best = null, bs = -1, bd = 9999;
+	foreach( pass in [0, 1]){											//	(an "opener" - what opens a shut door on
+	if( best) break;													//	the way - only when no story beat is due)
 	foreach( b in this.MK_BEATS){
+		if( (length( b) > 4 && b[4] == "opener") != (pass == 1)) continue;
 		local mp = b[0];
 		if( pid && (mp in this.MK_PATH) && this.MK_PATH[mp] != pid
 			&& (!(mp in this.MK_SHARED_PATH) || this.MK_SHARED_PATH[mp].indexOf( pid) < 0)) continue;
@@ -70,6 +80,7 @@
 		foreach( i, r in b[3]) if( i > 0 && ((r[1] == "==" && r[2] == true) || r[1] == ">" || r[1] == ">="	//	flags it
 			|| (r[1] == "!=" && (r[2] == false || r[2] == 0)))) spec++;		//	needs set), then the nearest
 		if( spec > bs || (spec == bs && d < bd)){ best = b; bs = spec; bd = d; }
+	}
 	}
 	return best ? [best[0], best[1], best[2]] : null;
 };

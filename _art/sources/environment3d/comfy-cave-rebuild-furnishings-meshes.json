@@ -1,0 +1,14 @@
+{
+  "snake_den_coiled_guardian": {
+    "prompt_id": "87ca94a7-2857-49f7-b717-dff1308b0b91",
+    "history": "http://127.0.0.1:8189/history/87ca94a7-2857-49f7-b717-dff1308b0b91"
+  },
+  "snake_den_calcite_cluster": {
+    "prompt_id": "859b7fcd-af91-4622-b956-8f29a5b92c87",
+    "history": "http://127.0.0.1:8189/history/859b7fcd-af91-4622-b956-8f29a5b92c87"
+  },
+  "volcano_red_crust_rock": {
+    "prompt_id": "75240a02-501a-4294-864d-e034115dc7e8",
+    "history": "http://127.0.0.1:8189/history/75240a02-501a-4294-864d-e034115dc7e8"
+  }
+}

@@ -1,10 +1,11 @@
 {
-  "map_entries": 698,
-  "registered_maps": 697,
-  "maps_with_worlds": 698,
-  "traveler_generator_maps": 617,
-  "published_map_passes": 146,
-  "map_passes_remaining": 552,
+  "map_entries": 702,
+  "registered_maps": 701,
+  "maps_with_worlds": 702,
+  "traveler_generator_maps": 621,
+  "published_map_passes": 328,
+  "prop_only_map_updates": 6,
+  "map_passes_remaining": 374,
   "map_voxel_models": 620,
   "voxel_packs": 28
 }

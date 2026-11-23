@@ -1,0 +1,307 @@
+{
+  "maps": {
+    "M442": {
+      "catalog_hash": "9861c5e8db5bbb4edb48301bced599a1b241d97142643dc35c3de7112419dd21",
+      "world_hash": "75fe4715ca85032498c1889ca0d72c60303cdb0765fd94cac554258c123465ca",
+      "shape": [
+        168,
+        56
+      ],
+      "lava_cells": 345,
+      "quads": 1164,
+      "liquid_quads": 40,
+      "story_anchors": {
+        "#1#": [
+          28,
+          4,
+          19,
+          2
+        ],
+        "#3#": [
+          62,
+          5,
+          18,
+          1
+        ],
+        "#4#": [
+          64,
+          5,
+          20,
+          1
+        ],
+        "#5#": [
+          56,
+          5,
+          19,
+          2
+        ],
+        "#6#": [
+          78,
+          6,
+          19,
+          2
+        ],
+        "#7#": [
+          100,
+          7,
+          19,
+          2
+        ],
+        "#8#": [
+          106,
+          7,
+          19,
+          2
+        ],
+        "#9#": [
+          120,
+          7,
+          19,
+          2
+        ],
+        "#10#": [
+          122,
+          10,
+          22,
+          2
+        ],
+        "#11#": [
+          130,
+          8,
+          19,
+          2
+        ]
+      },
+      "placements": 25,
+      "pop_emitters": 11
+    },
+    "M443": {
+      "catalog_hash": "32fce3c61c5834ce9c47d989f4d2765e775683b2e029ed4430d837ba64385827",
+      "world_hash": "843fe439d9e7deae8a09adbc7c8f07519c66c22c86d35af714598bbc7fc96dfb",
+      "shape": [
+        124,
+        50
+      ],
+      "lava_cells": 215,
+      "quads": 1241,
+      "liquid_quads": 44,
+      "story_anchors": {
+        "#1#": [
+          64,
+          7,
+          20,
+          3
+        ],
+        "#2#": [
+          60,
+          7,
+          19,
+          3
+        ],
+        "#3#": [
+          40,
+          7,
+          14,
+          1
+        ],
+        "#4#": [
+          44,
+          7,
+          13,
+          1
+        ],
+        "#5#": [
+          48,
+          7,
+          14,
+          1
+        ],
+        "#6#": [
+          38,
+          7,
+          19,
+          2
+        ],
+        "#7#": [
+          78,
+          6,
+          22,
+          2
+        ]
+      },
+      "placements": 14,
+      "pop_emitters": 12
+    },
+    "M896": {
+      "catalog_hash": "c3b951f10bc46f90e1af19ed77aa4938a639ff63c4b31a9d20fb2057f6545279",
+      "world_hash": "a2c301582df8b614ef0ad05fead193c71e0f287d9ef4e1b1091bc755e7778df0",
+      "shape": [
+        128,
+        128
+      ],
+      "lava_cells": 86,
+      "quads": 1047,
+      "liquid_quads": 84,
+      "story_anchors": {
+        "#101#": [
+          52,
+          5,
+          66,
+          2
+        ]
+      },
+      "placements": 12,
+      "pop_emitters": 12,
+      "formations": {
+        "groups": [
+          149,
+          150,
+          151,
+          153
+        ],
+        "enemy_cells": [
+          [
+            55,
+            64
+          ],
+          [
+            51,
+            62
+          ],
+          [
+            53,
+            69
+          ],
+          [
+            55,
+            64
+          ],
+          [
+            51,
+            62
+          ],
+          [
+            55,
+            64
+          ],
+          [
+            51,
+            62
+          ],
+          [
+            51,
+            66
+          ]
+        ],
+        "party_marker": [
+          75,
+          1,
+          64,
+          2
+        ],
+        "bridge_cells": [
+          59,
+          68
+        ],
+        "retains_full_native_collision": true
+      }
+    }
+  },
+  "props": {
+    "volcano_cave_rope_waymarker": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_volcano_cave_rope_waymarker_00001_.glb",
+      "triangles": 19975,
+      "world_size": [
+        0.72,
+        1.52,
+        0.64
+      ]
+    },
+    "volcano_cave_crusted_lava_bank": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_volcano_cave_crusted_lava_bank_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        2.4,
+        0.64,
+        1.2
+      ]
+    },
+    "volcano_cave_bronze_lantern": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_volcano_cave_bronze_lantern_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        0.61,
+        1.24,
+        0.62
+      ]
+    }
+  },
+  "files": {
+    "m442_oracle_volcanic.mdl": "94918c1cde02b617ef4d9b9aab871003c847ac676f8368a89695534238adbf12",
+    "m442_oracle_volcanic.pm": "bc51f255b8effbb279e7d4d4331aee9bb8bedeed7ce9b667ff3825f15d81bbb2",
+    "m442_oracle_volcanic_melt.mdl": "4521eb70df61e858cf860c78f5df475de1184682579da54060f5e6f2521f0cec",
+    "m442_oracle_volcanic_melt.pm": "69c0951816bc4612b8e30ecaf762bc578898d4faaf9de9636a60148c28644659",
+    "m443_oracle_volcanic.mdl": "28ed294e34cc09936d9ff37db0d0961c29b10f68d8822c93d02c69e63cceef43",
+    "m443_oracle_volcanic.pm": "a553d66115c1e35c9848a1f0c8603a38bbdeb002bcc3b015de81e4d32c63998b",
+    "m443_oracle_volcanic_melt.mdl": "1d41ee605dc32ea8ad168402a3981f99aa4305fe98a15dbed45b688a3f089b36",
+    "m443_oracle_volcanic_melt.pm": "a49d434d24bf30eb106fb10b3c9650f24ff52339deb8f1a966f5cf9a1d3801b0",
+    "m896_oracle_volcanic.mdl": "a1377ca6587043e49914ed27eb9962f24f70ce0a7283e296531056ea1d235f2d",
+    "m896_oracle_volcanic.pm": "4e71b6a0ef99192d177c53f84186f04a6b71f04e00fc1f72933e1e91cc7d07ee",
+    "m896_oracle_volcanic_melt.mdl": "e42c116e63d18c2edcf7c737ec0c666014cf1e6a2094ef59d9ee53e8cbed8c7a",
+    "m896_oracle_volcanic_melt.pm": "4c2d96ba84c80337ac86824e4a89754e507dfe32ec0dec0a04d2b645288feea6",
+    "magma_spatter.mdl": "1eaffb138b0b1e31e4bb3e27b4d010f2e1ffeaa23aaa247bc2099ff10be18033",
+    "magma_spatter.pm": "d6b23d9b2d864fe48bde80537e8454ea57e6a89e8a99d388828a7049826ba23d",
+    "tex/magma_spatter.png": "592d0aa37a966b457180da64bc8c93d94274b4ba8d6c1b87b766d6847b718d7a",
+    "tex/oracle_volcanic_basalt.png": "97eb34fd2241adfa21d78eb9389b367f63106cba0b523f0957d89c7f61553c18",
+    "tex/oracle_volcanic_basalt_normal.png": "114a819dadb25a89ee869f1438458893dd560e4047adab3f68c2626eb8557e3c",
+    "tex/oracle_volcanic_cinder.png": "5635adb0b57926583fcdccfe077f72d6373018004a3f4a0f4e59fe2eebc7912c",
+    "tex/oracle_volcanic_copper_roof.png": "e4de7a7b40f6041dfcc90e1693e1bb85691349f8e67c45f8d961920f2e28f816",
+    "tex/oracle_volcanic_crags.png": "a013a7faa8ec6c16c81f896807a9aee5fef338dbac8d4b2cb121b21438c576d5",
+    "tex/oracle_volcanic_foundation.png": "8af54e1ec76af073a778805bfecaff38a5558d074b2149d22e9a3b83593fe51c",
+    "tex/oracle_volcanic_inkwood.png": "9e05c43c43f06af2659cd874afe8bd42719f0cc5af30239fe8fec29c0b08f6ce",
+    "tex/oracle_volcanic_lacquer.png": "c33425175741fe495e77937fed5175c8dc8d00e43e5fe7584e7e1330d7cededd",
+    "tex/oracle_volcanic_melt00.png": "9f4950815dbcb70f2aa90e4b53a54103679a5b49d366f232e5f14914c7a4176a",
+    "tex/oracle_volcanic_melt01.png": "679523ce6496fcfae0a4d2d9caa1c59ae993e9156dea9a19f22ce3498fc7d048",
+    "tex/oracle_volcanic_melt02.png": "108b6142d4364cefc547b89bfec18c14a7bbc7fd42e5689bd980936db01ec721",
+    "tex/oracle_volcanic_melt03.png": "6470b272e63c47dc44216d36a118d275db69ba2487779c770c15ed656b65d391",
+    "tex/oracle_volcanic_melt04.png": "b46c2ede0f2a7b633e81b54c2a79c12452846993fe31353a2dddf29c6638ec62",
+    "tex/oracle_volcanic_melt05.png": "48debb3ef62f63e0aa22e1980221f450040630b3eb7065249701b5a709a018f4",
+    "tex/oracle_volcanic_melt06.png": "9decc59a708922dd4d2e52c082b6b7ceb3783e4472fde2a30dff98d181b7732a",
+    "tex/oracle_volcanic_melt07.png": "f9dca8de8d37db04686ca624d03044ddd9b360f9db13177b3a348b824af9596b",
+    "tex/oracle_volcanic_melt08.png": "dbcbaa158f9c80b084232bd513d736c17a5d63c95fba7e8fe6e4d4e0734da2c7",
+    "tex/oracle_volcanic_melt09.png": "4ab2cd630e05a40e61e3a8344546a282b9bd4a1c883e2b55a56e4c994e66833d",
+    "tex/oracle_volcanic_melt10.png": "0bf0488b224838247e72c78ae271333d310d2f52018105ebfc57e4ecc865eff9",
+    "tex/oracle_volcanic_melt11.png": "30c921ddb124b143aed88648638c53085249c0f38cfa93182faf2684de7bbab1",
+    "tex/oracle_volcanic_melt12.png": "10cd4185f8253b895111530c8e8a01bc613bc6b8f98a4e4a1c9f600a8262069d",
+    "tex/oracle_volcanic_melt13.png": "43051e55c65bf2bb00e0982b635f396c3dac6c1db53666180df265440c742ff2",
+    "tex/oracle_volcanic_melt14.png": "c1f84154e3dc52ea60d8de919d0f22f9a4c4e2d3d73af5ced0dad57a7c44378d",
+    "tex/oracle_volcanic_melt15.png": "2d693326f785a5cec201103d20bb5d1f4ab561176cf04e9422b5a749232b6838",
+    "tex/oracle_volcanic_melt16.png": "85249a449b34e4183021c7bf90e734e8410815f2c47eb6861cc17b57e8c6f885",
+    "tex/oracle_volcanic_melt17.png": "0ce8571eb661fce356b0a19818e5d7a3a46c02477b9671fa4546b42de8175f24",
+    "tex/oracle_volcanic_melt18.png": "974832fef7cbcb3411b74593cd9fbbf309a50757aca1c23f8db5a7a55c15f04e",
+    "tex/oracle_volcanic_melt19.png": "31d489fbf0402fc60dfc48dc973d7bc21f0fe6907252048cb81f61abddf17d18",
+    "tex/oracle_volcanic_melt20.png": "ea1eb8709a9c5ba2f4ee8d8f5c6492a27a340084cfd3839a71306b84948e6a86",
+    "tex/oracle_volcanic_melt21.png": "a76ce9fec16346394176e6ae58dc04d81aec179158a51ab6e0f2517a00659d24",
+    "tex/oracle_volcanic_melt22.png": "68812355c54ea7bd758245d6d6268e7e05076fc3526a26c0f87b5ea6c57e41ff",
+    "tex/oracle_volcanic_melt23.png": "cac99320edb90995389a6bd1a38ef6ff374c95748919cfefbc6dd133f80e4ab2",
+    "tex/oracle_volcanic_melt24.png": "5912c3081afdee8976a30008fb86cdf9f3ae9debcdad7d8d44d5cc042c90fa93",
+    "tex/oracle_volcanic_melt25.png": "fe1d2629f486d8a676bc5a461659bcf9768109ee6a672fce1166d2fbc09ac77b",
+    "tex/oracle_volcanic_melt26.png": "214c556057a317ecafbd8298d8204abe6f392747865a64d9ad295c0fadb94476",
+    "tex/oracle_volcanic_melt27.png": "7660a60ea0a0fc9faf745a577185577f8938e7c1794c78cbd47fddfbf48565df",
+    "tex/oracle_volcanic_melt28.png": "41aed774c10870848f851dd6a4e9114b4ec1420f8d48ac2c835eb75721dd6fc4",
+    "tex/oracle_volcanic_melt29.png": "233d7f1328237be58292f13fe4309c4b5cc2edfa904eba4dfd560ffcb7317a14",
+    "tex/oracle_volcanic_melt30.png": "576b5e16fa941f0ec20fea2376f1838514fdd3f6c7cc0f6d423494d6c11317db",
+    "tex/oracle_volcanic_melt31.png": "01e5c807b1a246352fcfc4ddf8468feb7ae7610c8df77521d853f0b6e8878258",
+    "tex/oracle_volcanic_russet.png": "1812d45a36d667da8363c8bc2dc5a9225f01e02beb19b05f499a1302fdc8884e",
+    "tex/oracle_volcanic_stair.png": "4c6d0353a4434b3e77e940d2dc7584a86b87b8b470800d58657e421cd6fd92b7",
+    "tex/volcano_cave_bronze_lantern.png": "e3cc57720f4bdb30405925762511d6ab7e079d94c305f74173ba48cde45f84d4",
+    "tex/volcano_cave_crusted_lava_bank.png": "d1b3a38d79280d12d9a019a8df9666cc4222ac62d8b55bf959f67feeb4e7e5bc",
+    "tex/volcano_cave_rope_waymarker.png": "e674132b1cec3773ebf5d6ad96f19d675311e4ceef764ac65c9e9d7993b8a203",
+    "volcano_cave_bronze_lantern.mdl": "59cfa145a06895dd59010d8d1fdf2706e68a91be4389963ed7bbd40d5c23aefc",
+    "volcano_cave_bronze_lantern.pm": "2824526740fe562abfd2b83fd3028bfda86ae91371ae088983f1edbe1a9eae74",
+    "volcano_cave_crusted_lava_bank.mdl": "ce0cd8a0fcca21060627083ed6d819da5ff0f7469a034c149aa36d81b1eacd7c",
+    "volcano_cave_crusted_lava_bank.pm": "dc3ed037265cc3544d71ef3096c2daeba20384a2a1f9f1bb7eb3a97b4f609ad8",
+    "volcano_cave_rope_waymarker.mdl": "c9558a7e3a5517dd9b93dc537e117c37a7651046d156a5dfe2e32c324a84e268",
+    "volcano_cave_rope_waymarker.pm": "311b8e47f80afa512d2a9ad3362b373d445a822567dabb476bee5e4e97fb8b6f"
+  }
+}

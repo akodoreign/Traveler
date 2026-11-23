@@ -1,0 +1,7582 @@
+{
+  "registered_builder_candidates": 708,
+  "generated_maps_checked": 109,
+  "filtered_by_stock_tent_call": true,
+  "failures": {},
+  "counts": {
+    "already_removed": 115
+  },
+  "maps": {
+    "M214": {
+      "name": "The border conference - the Crane lines",
+      "registered": true,
+      "native_terrain": null,
+      "existing_tent_keys": [
+        "quarry_tent",
+        "quarry_tent_flap"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            34,
+            4,
+            27
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              18.5,
+              2.0,
+              14.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              18.37,
+              3.43,
+              13.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              34,
+              27
+            ],
+            [
+              39,
+              27
+            ],
+            [
+              34,
+              31
+            ],
+            [
+              35,
+              31
+            ],
+            [
+              36,
+              31
+            ],
+            [
+              37,
+              31
+            ],
+            [
+              38,
+              31
+            ],
+            [
+              39,
+              31
+            ]
+          ]
+        },
+        {
+          "base": [
+            38,
+            4,
+            9
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              20.5,
+              2.0,
+              5.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              20.37,
+              3.43,
+              4.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              38,
+              9
+            ],
+            [
+              43,
+              9
+            ],
+            [
+              38,
+              13
+            ],
+            [
+              39,
+              13
+            ],
+            [
+              40,
+              13
+            ],
+            [
+              41,
+              13
+            ],
+            [
+              42,
+              13
+            ],
+            [
+              43,
+              13
+            ]
+          ]
+        },
+        {
+          "base": [
+            46,
+            4,
+            32
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              24.5,
+              2.0,
+              17.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              24.37,
+              3.43,
+              16.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              46,
+              32
+            ],
+            [
+              51,
+              32
+            ],
+            [
+              46,
+              36
+            ],
+            [
+              47,
+              36
+            ],
+            [
+              48,
+              36
+            ],
+            [
+              49,
+              36
+            ],
+            [
+              50,
+              36
+            ],
+            [
+              51,
+              36
+            ]
+          ]
+        },
+        {
+          "base": [
+            50,
+            4,
+            12
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              26.5,
+              2.0,
+              7.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              26.37,
+              3.43,
+              6.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              50,
+              12
+            ],
+            [
+              55,
+              12
+            ],
+            [
+              50,
+              16
+            ],
+            [
+              51,
+              16
+            ],
+            [
+              52,
+              16
+            ],
+            [
+              53,
+              16
+            ],
+            [
+              54,
+              16
+            ],
+            [
+              55,
+              16
+            ]
+          ]
+        },
+        {
+          "base": [
+            58,
+            4,
+            27
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              30.5,
+              2.0,
+              14.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              30.37,
+              3.43,
+              13.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              58,
+              27
+            ],
+            [
+              63,
+              27
+            ],
+            [
+              58,
+              31
+            ],
+            [
+              59,
+              31
+            ],
+            [
+              60,
+              31
+            ],
+            [
+              61,
+              31
+            ],
+            [
+              62,
+              31
+            ],
+            [
+              63,
+              31
+            ]
+          ]
+        },
+        {
+          "base": [
+            62,
+            4,
+            9
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              32.5,
+              2.0,
+              5.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              32.37,
+              3.43,
+              4.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              62,
+              9
+            ],
+            [
+              67,
+              9
+            ],
+            [
+              62,
+              13
+            ],
+            [
+              63,
+              13
+            ],
+            [
+              64,
+              13
+            ],
+            [
+              65,
+              13
+            ],
+            [
+              66,
+              13
+            ],
+            [
+              67,
+              13
+            ]
+          ]
+        },
+        {
+          "base": [
+            70,
+            4,
+            32
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              36.5,
+              2.0,
+              17.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              36.37,
+              3.43,
+              16.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              70,
+              32
+            ],
+            [
+              75,
+              32
+            ],
+            [
+              70,
+              36
+            ],
+            [
+              71,
+              36
+            ],
+            [
+              72,
+              36
+            ],
+            [
+              73,
+              36
+            ],
+            [
+              74,
+              36
+            ],
+            [
+              75,
+              36
+            ]
+          ]
+        },
+        {
+          "base": [
+            74,
+            4,
+            12
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              38.5,
+              2.0,
+              7.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              38.37,
+              3.43,
+              6.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              74,
+              12
+            ],
+            [
+              79,
+              12
+            ],
+            [
+              74,
+              16
+            ],
+            [
+              75,
+              16
+            ],
+            [
+              76,
+              16
+            ],
+            [
+              77,
+              16
+            ],
+            [
+              78,
+              16
+            ],
+            [
+              79,
+              16
+            ]
+          ]
+        },
+        {
+          "base": [
+            82,
+            4,
+            27
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              42.5,
+              2.0,
+              14.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              42.37,
+              3.43,
+              13.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              82,
+              27
+            ],
+            [
+              87,
+              27
+            ],
+            [
+              82,
+              31
+            ],
+            [
+              83,
+              31
+            ],
+            [
+              84,
+              31
+            ],
+            [
+              85,
+              31
+            ],
+            [
+              86,
+              31
+            ],
+            [
+              87,
+              31
+            ]
+          ]
+        },
+        {
+          "base": [
+            86,
+            4,
+            9
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              44.5,
+              2.0,
+              5.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              44.37,
+              3.43,
+              4.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              86,
+              9
+            ],
+            [
+              91,
+              9
+            ],
+            [
+              86,
+              13
+            ],
+            [
+              87,
+              13
+            ],
+            [
+              88,
+              13
+            ],
+            [
+              89,
+              13
+            ],
+            [
+              90,
+              13
+            ],
+            [
+              91,
+              13
+            ]
+          ]
+        },
+        {
+          "base": [
+            94,
+            4,
+            32
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.5,
+              2.0,
+              17.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              48.37,
+              3.43,
+              16.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              94,
+              32
+            ],
+            [
+              99,
+              32
+            ],
+            [
+              94,
+              36
+            ],
+            [
+              95,
+              36
+            ],
+            [
+              96,
+              36
+            ],
+            [
+              97,
+              36
+            ],
+            [
+              98,
+              36
+            ],
+            [
+              99,
+              36
+            ]
+          ]
+        },
+        {
+          "base": [
+            98,
+            4,
+            12
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              50.5,
+              2.0,
+              7.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              50.37,
+              3.43,
+              6.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              98,
+              12
+            ],
+            [
+              103,
+              12
+            ],
+            [
+              98,
+              16
+            ],
+            [
+              99,
+              16
+            ],
+            [
+              100,
+              16
+            ],
+            [
+              101,
+              16
+            ],
+            [
+              102,
+              16
+            ],
+            [
+              103,
+              16
+            ]
+          ]
+        },
+        {
+          "base": [
+            106,
+            4,
+            27
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              54.5,
+              2.0,
+              14.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              54.37,
+              3.43,
+              13.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              106,
+              27
+            ],
+            [
+              111,
+              27
+            ],
+            [
+              106,
+              31
+            ],
+            [
+              107,
+              31
+            ],
+            [
+              108,
+              31
+            ],
+            [
+              109,
+              31
+            ],
+            [
+              110,
+              31
+            ],
+            [
+              111,
+              31
+            ]
+          ]
+        },
+        {
+          "base": [
+            110,
+            4,
+            9
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              56.5,
+              2.0,
+              5.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              56.37,
+              3.43,
+              4.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              110,
+              9
+            ],
+            [
+              115,
+              9
+            ],
+            [
+              110,
+              13
+            ],
+            [
+              111,
+              13
+            ],
+            [
+              112,
+              13
+            ],
+            [
+              113,
+              13
+            ],
+            [
+              114,
+              13
+            ],
+            [
+              115,
+              13
+            ]
+          ]
+        },
+        {
+          "base": [
+            118,
+            4,
+            32
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              60.5,
+              2.0,
+              17.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              60.37,
+              3.43,
+              16.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              118,
+              32
+            ],
+            [
+              123,
+              32
+            ],
+            [
+              118,
+              36
+            ],
+            [
+              119,
+              36
+            ],
+            [
+              120,
+              36
+            ],
+            [
+              121,
+              36
+            ],
+            [
+              122,
+              36
+            ],
+            [
+              123,
+              36
+            ]
+          ]
+        },
+        {
+          "base": [
+            122,
+            4,
+            12
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              62.5,
+              2.0,
+              7.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              62.37,
+              3.43,
+              6.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              122,
+              12
+            ],
+            [
+              127,
+              12
+            ],
+            [
+              122,
+              16
+            ],
+            [
+              123,
+              16
+            ],
+            [
+              124,
+              16
+            ],
+            [
+              125,
+              16
+            ],
+            [
+              126,
+              16
+            ],
+            [
+              127,
+              16
+            ]
+          ]
+        },
+        {
+          "base": [
+            110,
+            4,
+            28
+          ],
+          "footprint": [
+            9,
+            6
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              57.25,
+              2.0,
+              15.5,
+              1.2,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              57.094,
+              3.716,
+              14.0384,
+              1.2,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              110,
+              28
+            ],
+            [
+              118,
+              28
+            ],
+            [
+              110,
+              33
+            ],
+            [
+              111,
+              33
+            ],
+            [
+              112,
+              33
+            ],
+            [
+              113,
+              33
+            ],
+            [
+              114,
+              33
+            ],
+            [
+              115,
+              33
+            ],
+            [
+              116,
+              33
+            ],
+            [
+              117,
+              33
+            ],
+            [
+              118,
+              33
+            ]
+          ]
+        }
+      ]
+    },
+    "M215": {
+      "name": "The border conference - the ridge at dawn",
+      "registered": true,
+      "native_terrain": null,
+      "existing_tent_keys": [
+        "quarry_tent",
+        "quarry_tent_flap"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            32,
+            4,
+            8
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              17.5,
+              2.0,
+              5.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              17.37,
+              3.43,
+              4.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              32,
+              8
+            ],
+            [
+              37,
+              8
+            ],
+            [
+              32,
+              12
+            ],
+            [
+              33,
+              12
+            ],
+            [
+              34,
+              12
+            ],
+            [
+              35,
+              12
+            ],
+            [
+              36,
+              12
+            ],
+            [
+              37,
+              12
+            ]
+          ]
+        },
+        {
+          "base": [
+            96,
+            4,
+            8
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              49.5,
+              2.0,
+              5.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              49.37,
+              3.43,
+              4.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              96,
+              8
+            ],
+            [
+              101,
+              8
+            ],
+            [
+              96,
+              12
+            ],
+            [
+              97,
+              12
+            ],
+            [
+              98,
+              12
+            ],
+            [
+              99,
+              12
+            ],
+            [
+              100,
+              12
+            ],
+            [
+              101,
+              12
+            ]
+          ]
+        },
+        {
+          "base": [
+            108,
+            4,
+            8
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              55.5,
+              2.0,
+              5.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              55.37,
+              3.43,
+              4.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              108,
+              8
+            ],
+            [
+              113,
+              8
+            ],
+            [
+              108,
+              12
+            ],
+            [
+              109,
+              12
+            ],
+            [
+              110,
+              12
+            ],
+            [
+              111,
+              12
+            ],
+            [
+              112,
+              12
+            ],
+            [
+              113,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    "M323": {
+      "name": "Otosan Uchi - the south gate (the year 400)",
+      "registered": true,
+      "native_terrain": null,
+      "existing_tent_keys": [
+        "quarry_tent",
+        "quarry_tent_flap"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            98,
+            4,
+            24
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              50.5,
+              2.0,
+              13.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              50.37,
+              3.43,
+              12.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              98,
+              24
+            ],
+            [
+              103,
+              24
+            ],
+            [
+              98,
+              28
+            ],
+            [
+              99,
+              28
+            ],
+            [
+              100,
+              28
+            ],
+            [
+              101,
+              28
+            ],
+            [
+              102,
+              28
+            ],
+            [
+              103,
+              28
+            ]
+          ]
+        },
+        {
+          "base": [
+            110,
+            4,
+            24
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              56.5,
+              2.0,
+              13.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              56.37,
+              3.43,
+              12.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              110,
+              24
+            ],
+            [
+              115,
+              24
+            ],
+            [
+              110,
+              28
+            ],
+            [
+              111,
+              28
+            ],
+            [
+              112,
+              28
+            ],
+            [
+              113,
+              28
+            ],
+            [
+              114,
+              28
+            ],
+            [
+              115,
+              28
+            ]
+          ]
+        }
+      ]
+    },
+    "M325": {
+      "name": "Otosan Uchi - the streets (the year 400)",
+      "registered": true,
+      "native_terrain": null,
+      "existing_tent_keys": [
+        "quarry_tent",
+        "quarry_tent_flap"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            54,
+            4,
+            7
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              28.5,
+              2.0,
+              4.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              28.37,
+              3.43,
+              3.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              54,
+              7
+            ],
+            [
+              59,
+              7
+            ],
+            [
+              54,
+              11
+            ],
+            [
+              55,
+              11
+            ],
+            [
+              56,
+              11
+            ],
+            [
+              57,
+              11
+            ],
+            [
+              58,
+              11
+            ],
+            [
+              59,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            92,
+            4,
+            7
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              47.5,
+              2.0,
+              4.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              47.37,
+              3.43,
+              3.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              92,
+              7
+            ],
+            [
+              97,
+              7
+            ],
+            [
+              92,
+              11
+            ],
+            [
+              93,
+              11
+            ],
+            [
+              94,
+              11
+            ],
+            [
+              95,
+              11
+            ],
+            [
+              96,
+              11
+            ],
+            [
+              97,
+              11
+            ]
+          ]
+        }
+      ]
+    },
+    "M337": {
+      "name": "The war camp (the year 400)",
+      "registered": true,
+      "native_terrain": null,
+      "existing_tent_keys": [
+        "quarry_tent",
+        "quarry_tent_flap"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            70,
+            4,
+            28
+          ],
+          "footprint": [
+            10,
+            7
+          ],
+          "stock_pieces": 7,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              37.5,
+              2.0,
+              15.75,
+              1.4,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              37.318,
+              4.002,
+              14.0448,
+              1.4,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              70,
+              28
+            ],
+            [
+              79,
+              28
+            ],
+            [
+              70,
+              34
+            ],
+            [
+              71,
+              34
+            ],
+            [
+              72,
+              34
+            ],
+            [
+              73,
+              34
+            ],
+            [
+              74,
+              34
+            ],
+            [
+              75,
+              34
+            ],
+            [
+              76,
+              34
+            ],
+            [
+              77,
+              34
+            ],
+            [
+              78,
+              34
+            ],
+            [
+              79,
+              34
+            ]
+          ]
+        },
+        {
+          "base": [
+            36,
+            4,
+            26
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              19.5,
+              2.0,
+              14.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              19.37,
+              3.43,
+              13.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              36,
+              26
+            ],
+            [
+              41,
+              26
+            ],
+            [
+              36,
+              30
+            ],
+            [
+              37,
+              30
+            ],
+            [
+              38,
+              30
+            ],
+            [
+              39,
+              30
+            ],
+            [
+              40,
+              30
+            ],
+            [
+              41,
+              30
+            ]
+          ]
+        },
+        {
+          "base": [
+            48,
+            4,
+            30
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              25.5,
+              2.0,
+              16.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              25.37,
+              3.43,
+              15.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              48,
+              30
+            ],
+            [
+              53,
+              30
+            ],
+            [
+              48,
+              34
+            ],
+            [
+              49,
+              34
+            ],
+            [
+              50,
+              34
+            ],
+            [
+              51,
+              34
+            ],
+            [
+              52,
+              34
+            ],
+            [
+              53,
+              34
+            ]
+          ]
+        },
+        {
+          "base": [
+            88,
+            4,
+            26
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              45.5,
+              2.0,
+              14.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              45.37,
+              3.43,
+              13.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              88,
+              26
+            ],
+            [
+              93,
+              26
+            ],
+            [
+              88,
+              30
+            ],
+            [
+              89,
+              30
+            ],
+            [
+              90,
+              30
+            ],
+            [
+              91,
+              30
+            ],
+            [
+              92,
+              30
+            ],
+            [
+              93,
+              30
+            ]
+          ]
+        },
+        {
+          "base": [
+            102,
+            4,
+            30
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              52.5,
+              2.0,
+              16.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              52.37,
+              3.43,
+              15.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              102,
+              30
+            ],
+            [
+              107,
+              30
+            ],
+            [
+              102,
+              34
+            ],
+            [
+              103,
+              34
+            ],
+            [
+              104,
+              34
+            ],
+            [
+              105,
+              34
+            ],
+            [
+              106,
+              34
+            ],
+            [
+              107,
+              34
+            ]
+          ]
+        },
+        {
+          "base": [
+            114,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              58.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              58.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              114,
+              25
+            ],
+            [
+              119,
+              25
+            ],
+            [
+              114,
+              29
+            ],
+            [
+              115,
+              29
+            ],
+            [
+              116,
+              29
+            ],
+            [
+              117,
+              29
+            ],
+            [
+              118,
+              29
+            ],
+            [
+              119,
+              29
+            ]
+          ]
+        }
+      ]
+    },
+    "M368": {
+      "name": "The Ojatara road",
+      "registered": true,
+      "native_terrain": "m368_ojatara",
+      "existing_tent_keys": [
+        "ojatara_refugee_shelter_indigo",
+        "ojatara_refugee_shelter_oxide"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            92,
+            4,
+            24
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              47.5,
+              2.0,
+              13.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              47.37,
+              3.43,
+              12.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              92,
+              24
+            ],
+            [
+              97,
+              24
+            ],
+            [
+              92,
+              28
+            ],
+            [
+              93,
+              28
+            ],
+            [
+              94,
+              28
+            ],
+            [
+              95,
+              28
+            ],
+            [
+              96,
+              28
+            ],
+            [
+              97,
+              28
+            ]
+          ]
+        },
+        {
+          "base": [
+            102,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              52.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              52.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              102,
+              25
+            ],
+            [
+              107,
+              25
+            ],
+            [
+              102,
+              29
+            ],
+            [
+              103,
+              29
+            ],
+            [
+              104,
+              29
+            ],
+            [
+              105,
+              29
+            ],
+            [
+              106,
+              29
+            ],
+            [
+              107,
+              29
+            ]
+          ]
+        }
+      ]
+    },
+    "M369": {
+      "name": "The Town of Buried Leaves",
+      "registered": true,
+      "native_terrain": "m369_ojatara",
+      "existing_tent_keys": [
+        "ojatara_refugee_shelter_indigo",
+        "ojatara_refugee_shelter_oxide"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            112,
+            4,
+            10
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              57.25,
+              2.0,
+              6.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              57.146,
+              3.144,
+              5.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              112,
+              10
+            ],
+            [
+              116,
+              10
+            ],
+            [
+              112,
+              13
+            ],
+            [
+              113,
+              13
+            ],
+            [
+              114,
+              13
+            ],
+            [
+              115,
+              13
+            ],
+            [
+              116,
+              13
+            ]
+          ]
+        },
+        {
+          "base": [
+            120,
+            4,
+            13
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              61.25,
+              2.0,
+              7.5,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              61.146,
+              3.144,
+              6.5256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              120,
+              13
+            ],
+            [
+              124,
+              13
+            ],
+            [
+              120,
+              16
+            ],
+            [
+              121,
+              16
+            ],
+            [
+              122,
+              16
+            ],
+            [
+              123,
+              16
+            ],
+            [
+              124,
+              16
+            ]
+          ]
+        },
+        {
+          "base": [
+            128,
+            4,
+            9
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              65.25,
+              2.0,
+              5.5,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              65.146,
+              3.144,
+              4.5256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              128,
+              9
+            ],
+            [
+              132,
+              9
+            ],
+            [
+              128,
+              12
+            ],
+            [
+              129,
+              12
+            ],
+            [
+              130,
+              12
+            ],
+            [
+              131,
+              12
+            ],
+            [
+              132,
+              12
+            ]
+          ]
+        },
+        {
+          "base": [
+            38,
+            4,
+            10
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              20.25,
+              2.0,
+              6.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              20.146,
+              3.144,
+              5.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              38,
+              10
+            ],
+            [
+              42,
+              10
+            ],
+            [
+              38,
+              13
+            ],
+            [
+              39,
+              13
+            ],
+            [
+              40,
+              13
+            ],
+            [
+              41,
+              13
+            ],
+            [
+              42,
+              13
+            ]
+          ]
+        },
+        {
+          "base": [
+            56,
+            4,
+            12
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              29.25,
+              2.0,
+              7.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              29.146,
+              3.144,
+              6.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              56,
+              12
+            ],
+            [
+              60,
+              12
+            ],
+            [
+              56,
+              15
+            ],
+            [
+              57,
+              15
+            ],
+            [
+              58,
+              15
+            ],
+            [
+              59,
+              15
+            ],
+            [
+              60,
+              15
+            ]
+          ]
+        }
+      ]
+    },
+    "M371": {
+      "name": "The Soshi camp before Shiro no Soshi",
+      "registered": true,
+      "native_terrain": "m371_ojatara",
+      "existing_tent_keys": [
+        "ojatara_command_shelter",
+        "ojatara_refugee_shelter_indigo",
+        "ojatara_refugee_shelter_oxide"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            34,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              18.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              18.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              34,
+              25
+            ],
+            [
+              39,
+              25
+            ],
+            [
+              34,
+              29
+            ],
+            [
+              35,
+              29
+            ],
+            [
+              36,
+              29
+            ],
+            [
+              37,
+              29
+            ],
+            [
+              38,
+              29
+            ],
+            [
+              39,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            44,
+            4,
+            26
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              23.5,
+              2.0,
+              14.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              23.37,
+              3.43,
+              13.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              44,
+              26
+            ],
+            [
+              49,
+              26
+            ],
+            [
+              44,
+              30
+            ],
+            [
+              45,
+              30
+            ],
+            [
+              46,
+              30
+            ],
+            [
+              47,
+              30
+            ],
+            [
+              48,
+              30
+            ],
+            [
+              49,
+              30
+            ]
+          ]
+        },
+        {
+          "base": [
+            110,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              56.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              56.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              110,
+              25
+            ],
+            [
+              115,
+              25
+            ],
+            [
+              110,
+              29
+            ],
+            [
+              111,
+              29
+            ],
+            [
+              112,
+              29
+            ],
+            [
+              113,
+              29
+            ],
+            [
+              114,
+              29
+            ],
+            [
+              115,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            120,
+            4,
+            26
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              61.5,
+              2.0,
+              14.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              61.37,
+              3.43,
+              13.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              120,
+              26
+            ],
+            [
+              125,
+              26
+            ],
+            [
+              120,
+              30
+            ],
+            [
+              121,
+              30
+            ],
+            [
+              122,
+              30
+            ],
+            [
+              123,
+              30
+            ],
+            [
+              124,
+              30
+            ],
+            [
+              125,
+              30
+            ]
+          ]
+        },
+        {
+          "base": [
+            86,
+            4,
+            24
+          ],
+          "footprint": [
+            8,
+            6
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              45.0,
+              2.0,
+              13.5,
+              1.2,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              44.844,
+              3.716,
+              12.0384,
+              1.2,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              86,
+              24
+            ],
+            [
+              93,
+              24
+            ],
+            [
+              86,
+              29
+            ],
+            [
+              87,
+              29
+            ],
+            [
+              88,
+              29
+            ],
+            [
+              89,
+              29
+            ],
+            [
+              90,
+              29
+            ],
+            [
+              91,
+              29
+            ],
+            [
+              92,
+              29
+            ],
+            [
+              93,
+              29
+            ]
+          ]
+        }
+      ]
+    },
+    "M389": {
+      "name": "The refugee camps",
+      "registered": true,
+      "native_terrain": "m389_autumn_valley",
+      "existing_tent_keys": [],
+      "stock_sites": [
+        {
+          "base": [
+            31,
+            4,
+            8
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              16.75,
+              2.0,
+              5.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              16.646,
+              3.144,
+              4.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              31,
+              8
+            ],
+            [
+              35,
+              8
+            ],
+            [
+              31,
+              11
+            ],
+            [
+              32,
+              11
+            ],
+            [
+              33,
+              11
+            ],
+            [
+              34,
+              11
+            ],
+            [
+              35,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            31,
+            4,
+            26
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              16.75,
+              2.0,
+              14.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              16.646,
+              3.144,
+              13.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              31,
+              26
+            ],
+            [
+              35,
+              26
+            ],
+            [
+              31,
+              29
+            ],
+            [
+              32,
+              29
+            ],
+            [
+              33,
+              29
+            ],
+            [
+              34,
+              29
+            ],
+            [
+              35,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            31,
+            4,
+            32
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              16.75,
+              2.0,
+              17.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              16.646,
+              3.144,
+              16.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              31,
+              32
+            ],
+            [
+              35,
+              32
+            ],
+            [
+              31,
+              35
+            ],
+            [
+              32,
+              35
+            ],
+            [
+              33,
+              35
+            ],
+            [
+              34,
+              35
+            ],
+            [
+              35,
+              35
+            ]
+          ]
+        },
+        {
+          "base": [
+            40,
+            4,
+            8
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              21.25,
+              2.0,
+              5.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.146,
+              3.144,
+              4.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              40,
+              8
+            ],
+            [
+              44,
+              8
+            ],
+            [
+              40,
+              11
+            ],
+            [
+              41,
+              11
+            ],
+            [
+              42,
+              11
+            ],
+            [
+              43,
+              11
+            ],
+            [
+              44,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            40,
+            4,
+            26
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              21.25,
+              2.0,
+              14.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.146,
+              3.144,
+              13.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              40,
+              26
+            ],
+            [
+              44,
+              26
+            ],
+            [
+              40,
+              29
+            ],
+            [
+              41,
+              29
+            ],
+            [
+              42,
+              29
+            ],
+            [
+              43,
+              29
+            ],
+            [
+              44,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            40,
+            4,
+            32
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              21.25,
+              2.0,
+              17.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.146,
+              3.144,
+              16.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              40,
+              32
+            ],
+            [
+              44,
+              32
+            ],
+            [
+              40,
+              35
+            ],
+            [
+              41,
+              35
+            ],
+            [
+              42,
+              35
+            ],
+            [
+              43,
+              35
+            ],
+            [
+              44,
+              35
+            ]
+          ]
+        },
+        {
+          "base": [
+            49,
+            4,
+            8
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              25.75,
+              2.0,
+              5.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              25.646,
+              3.144,
+              4.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              49,
+              8
+            ],
+            [
+              53,
+              8
+            ],
+            [
+              49,
+              11
+            ],
+            [
+              50,
+              11
+            ],
+            [
+              51,
+              11
+            ],
+            [
+              52,
+              11
+            ],
+            [
+              53,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            49,
+            4,
+            26
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              25.75,
+              2.0,
+              14.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              25.646,
+              3.144,
+              13.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              49,
+              26
+            ],
+            [
+              53,
+              26
+            ],
+            [
+              49,
+              29
+            ],
+            [
+              50,
+              29
+            ],
+            [
+              51,
+              29
+            ],
+            [
+              52,
+              29
+            ],
+            [
+              53,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            49,
+            4,
+            32
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              25.75,
+              2.0,
+              17.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              25.646,
+              3.144,
+              16.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              49,
+              32
+            ],
+            [
+              53,
+              32
+            ],
+            [
+              49,
+              35
+            ],
+            [
+              50,
+              35
+            ],
+            [
+              51,
+              35
+            ],
+            [
+              52,
+              35
+            ],
+            [
+              53,
+              35
+            ]
+          ]
+        },
+        {
+          "base": [
+            58,
+            4,
+            8
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              30.25,
+              2.0,
+              5.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              30.146,
+              3.144,
+              4.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              58,
+              8
+            ],
+            [
+              62,
+              8
+            ],
+            [
+              58,
+              11
+            ],
+            [
+              59,
+              11
+            ],
+            [
+              60,
+              11
+            ],
+            [
+              61,
+              11
+            ],
+            [
+              62,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            58,
+            4,
+            26
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              30.25,
+              2.0,
+              14.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              30.146,
+              3.144,
+              13.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              58,
+              26
+            ],
+            [
+              62,
+              26
+            ],
+            [
+              58,
+              29
+            ],
+            [
+              59,
+              29
+            ],
+            [
+              60,
+              29
+            ],
+            [
+              61,
+              29
+            ],
+            [
+              62,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            58,
+            4,
+            32
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              30.25,
+              2.0,
+              17.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              30.146,
+              3.144,
+              16.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              58,
+              32
+            ],
+            [
+              62,
+              32
+            ],
+            [
+              58,
+              35
+            ],
+            [
+              59,
+              35
+            ],
+            [
+              60,
+              35
+            ],
+            [
+              61,
+              35
+            ],
+            [
+              62,
+              35
+            ]
+          ]
+        },
+        {
+          "base": [
+            67,
+            4,
+            8
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              34.75,
+              2.0,
+              5.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              34.646,
+              3.144,
+              4.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              67,
+              8
+            ],
+            [
+              71,
+              8
+            ],
+            [
+              67,
+              11
+            ],
+            [
+              68,
+              11
+            ],
+            [
+              69,
+              11
+            ],
+            [
+              70,
+              11
+            ],
+            [
+              71,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            67,
+            4,
+            26
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              34.75,
+              2.0,
+              14.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              34.646,
+              3.144,
+              13.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              67,
+              26
+            ],
+            [
+              71,
+              26
+            ],
+            [
+              67,
+              29
+            ],
+            [
+              68,
+              29
+            ],
+            [
+              69,
+              29
+            ],
+            [
+              70,
+              29
+            ],
+            [
+              71,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            67,
+            4,
+            32
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              34.75,
+              2.0,
+              17.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              34.646,
+              3.144,
+              16.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              67,
+              32
+            ],
+            [
+              71,
+              32
+            ],
+            [
+              67,
+              35
+            ],
+            [
+              68,
+              35
+            ],
+            [
+              69,
+              35
+            ],
+            [
+              70,
+              35
+            ],
+            [
+              71,
+              35
+            ]
+          ]
+        },
+        {
+          "base": [
+            76,
+            4,
+            8
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              39.25,
+              2.0,
+              5.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              39.146,
+              3.144,
+              4.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              76,
+              8
+            ],
+            [
+              80,
+              8
+            ],
+            [
+              76,
+              11
+            ],
+            [
+              77,
+              11
+            ],
+            [
+              78,
+              11
+            ],
+            [
+              79,
+              11
+            ],
+            [
+              80,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            76,
+            4,
+            26
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              39.25,
+              2.0,
+              14.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              39.146,
+              3.144,
+              13.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              76,
+              26
+            ],
+            [
+              80,
+              26
+            ],
+            [
+              76,
+              29
+            ],
+            [
+              77,
+              29
+            ],
+            [
+              78,
+              29
+            ],
+            [
+              79,
+              29
+            ],
+            [
+              80,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            76,
+            4,
+            32
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              39.25,
+              2.0,
+              17.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              39.146,
+              3.144,
+              16.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              76,
+              32
+            ],
+            [
+              80,
+              32
+            ],
+            [
+              76,
+              35
+            ],
+            [
+              77,
+              35
+            ],
+            [
+              78,
+              35
+            ],
+            [
+              79,
+              35
+            ],
+            [
+              80,
+              35
+            ]
+          ]
+        },
+        {
+          "base": [
+            85,
+            4,
+            8
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              43.75,
+              2.0,
+              5.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              43.646,
+              3.144,
+              4.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              85,
+              8
+            ],
+            [
+              89,
+              8
+            ],
+            [
+              85,
+              11
+            ],
+            [
+              86,
+              11
+            ],
+            [
+              87,
+              11
+            ],
+            [
+              88,
+              11
+            ],
+            [
+              89,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            85,
+            4,
+            26
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              43.75,
+              2.0,
+              14.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              43.646,
+              3.144,
+              13.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              85,
+              26
+            ],
+            [
+              89,
+              26
+            ],
+            [
+              85,
+              29
+            ],
+            [
+              86,
+              29
+            ],
+            [
+              87,
+              29
+            ],
+            [
+              88,
+              29
+            ],
+            [
+              89,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            85,
+            4,
+            32
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              43.75,
+              2.0,
+              17.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              43.646,
+              3.144,
+              16.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              85,
+              32
+            ],
+            [
+              89,
+              32
+            ],
+            [
+              85,
+              35
+            ],
+            [
+              86,
+              35
+            ],
+            [
+              87,
+              35
+            ],
+            [
+              88,
+              35
+            ],
+            [
+              89,
+              35
+            ]
+          ]
+        },
+        {
+          "base": [
+            94,
+            4,
+            8
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.25,
+              2.0,
+              5.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              48.146,
+              3.144,
+              4.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              94,
+              8
+            ],
+            [
+              98,
+              8
+            ],
+            [
+              94,
+              11
+            ],
+            [
+              95,
+              11
+            ],
+            [
+              96,
+              11
+            ],
+            [
+              97,
+              11
+            ],
+            [
+              98,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            94,
+            4,
+            26
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.25,
+              2.0,
+              14.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              48.146,
+              3.144,
+              13.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              94,
+              26
+            ],
+            [
+              98,
+              26
+            ],
+            [
+              94,
+              29
+            ],
+            [
+              95,
+              29
+            ],
+            [
+              96,
+              29
+            ],
+            [
+              97,
+              29
+            ],
+            [
+              98,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            94,
+            4,
+            32
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.25,
+              2.0,
+              17.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              48.146,
+              3.144,
+              16.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              94,
+              32
+            ],
+            [
+              98,
+              32
+            ],
+            [
+              94,
+              35
+            ],
+            [
+              95,
+              35
+            ],
+            [
+              96,
+              35
+            ],
+            [
+              97,
+              35
+            ],
+            [
+              98,
+              35
+            ]
+          ]
+        },
+        {
+          "base": [
+            103,
+            4,
+            8
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              52.75,
+              2.0,
+              5.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              52.646,
+              3.144,
+              4.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              103,
+              8
+            ],
+            [
+              107,
+              8
+            ],
+            [
+              103,
+              11
+            ],
+            [
+              104,
+              11
+            ],
+            [
+              105,
+              11
+            ],
+            [
+              106,
+              11
+            ],
+            [
+              107,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            103,
+            4,
+            26
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              52.75,
+              2.0,
+              14.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              52.646,
+              3.144,
+              13.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              103,
+              26
+            ],
+            [
+              107,
+              26
+            ],
+            [
+              103,
+              29
+            ],
+            [
+              104,
+              29
+            ],
+            [
+              105,
+              29
+            ],
+            [
+              106,
+              29
+            ],
+            [
+              107,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            103,
+            4,
+            32
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              52.75,
+              2.0,
+              17.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              52.646,
+              3.144,
+              16.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              103,
+              32
+            ],
+            [
+              107,
+              32
+            ],
+            [
+              103,
+              35
+            ],
+            [
+              104,
+              35
+            ],
+            [
+              105,
+              35
+            ],
+            [
+              106,
+              35
+            ],
+            [
+              107,
+              35
+            ]
+          ]
+        },
+        {
+          "base": [
+            112,
+            4,
+            8
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              57.25,
+              2.0,
+              5.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              57.146,
+              3.144,
+              4.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              112,
+              8
+            ],
+            [
+              116,
+              8
+            ],
+            [
+              112,
+              11
+            ],
+            [
+              113,
+              11
+            ],
+            [
+              114,
+              11
+            ],
+            [
+              115,
+              11
+            ],
+            [
+              116,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            112,
+            4,
+            26
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              57.25,
+              2.0,
+              14.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              57.146,
+              3.144,
+              13.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              112,
+              26
+            ],
+            [
+              116,
+              26
+            ],
+            [
+              112,
+              29
+            ],
+            [
+              113,
+              29
+            ],
+            [
+              114,
+              29
+            ],
+            [
+              115,
+              29
+            ],
+            [
+              116,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            112,
+            4,
+            32
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              57.25,
+              2.0,
+              17.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              57.146,
+              3.144,
+              16.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              112,
+              32
+            ],
+            [
+              116,
+              32
+            ],
+            [
+              112,
+              35
+            ],
+            [
+              113,
+              35
+            ],
+            [
+              114,
+              35
+            ],
+            [
+              115,
+              35
+            ],
+            [
+              116,
+              35
+            ]
+          ]
+        },
+        {
+          "base": [
+            121,
+            4,
+            8
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              61.75,
+              2.0,
+              5.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              61.646,
+              3.144,
+              4.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              121,
+              8
+            ],
+            [
+              125,
+              8
+            ],
+            [
+              121,
+              11
+            ],
+            [
+              122,
+              11
+            ],
+            [
+              123,
+              11
+            ],
+            [
+              124,
+              11
+            ],
+            [
+              125,
+              11
+            ]
+          ]
+        },
+        {
+          "base": [
+            121,
+            4,
+            26
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              61.75,
+              2.0,
+              14.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              61.646,
+              3.144,
+              13.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              121,
+              26
+            ],
+            [
+              125,
+              26
+            ],
+            [
+              121,
+              29
+            ],
+            [
+              122,
+              29
+            ],
+            [
+              123,
+              29
+            ],
+            [
+              124,
+              29
+            ],
+            [
+              125,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            121,
+            4,
+            32
+          ],
+          "footprint": [
+            5,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              61.75,
+              2.0,
+              17.0,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              61.646,
+              3.144,
+              16.0256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              121,
+              32
+            ],
+            [
+              125,
+              32
+            ],
+            [
+              121,
+              35
+            ],
+            [
+              122,
+              35
+            ],
+            [
+              123,
+              35
+            ],
+            [
+              124,
+              35
+            ],
+            [
+              125,
+              35
+            ]
+          ]
+        }
+      ]
+    },
+    "M392": {
+      "name": "The Hafuna fields",
+      "registered": true,
+      "native_terrain": "m392_autumn_valley",
+      "existing_tent_keys": [
+        "autumn_officer_tent"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            88,
+            4,
+            19
+          ],
+          "footprint": [
+            6,
+            4
+          ],
+          "stock_pieces": 5,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              45.5,
+              2.0,
+              10.5,
+              0.8,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              45.396,
+              3.144,
+              9.5256,
+              0.8,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              88,
+              19
+            ],
+            [
+              93,
+              19
+            ],
+            [
+              88,
+              22
+            ],
+            [
+              89,
+              22
+            ],
+            [
+              90,
+              22
+            ],
+            [
+              91,
+              22
+            ],
+            [
+              92,
+              22
+            ],
+            [
+              93,
+              22
+            ]
+          ]
+        }
+      ]
+    },
+    "M404": {
+      "name": "The Mirumoto war-camp",
+      "registered": true,
+      "native_terrain": "m404_iuchi",
+      "existing_tent_keys": [
+        "iuchi_dragon_shelter"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            32,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              17.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              17.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              32,
+              25
+            ],
+            [
+              37,
+              25
+            ],
+            [
+              32,
+              29
+            ],
+            [
+              33,
+              29
+            ],
+            [
+              34,
+              29
+            ],
+            [
+              35,
+              29
+            ],
+            [
+              36,
+              29
+            ],
+            [
+              37,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            42,
+            4,
+            26
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              22.5,
+              2.0,
+              14.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              22.37,
+              3.43,
+              13.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              42,
+              26
+            ],
+            [
+              47,
+              26
+            ],
+            [
+              42,
+              30
+            ],
+            [
+              43,
+              30
+            ],
+            [
+              44,
+              30
+            ],
+            [
+              45,
+              30
+            ],
+            [
+              46,
+              30
+            ],
+            [
+              47,
+              30
+            ]
+          ]
+        },
+        {
+          "base": [
+            96,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              49.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              49.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              96,
+              25
+            ],
+            [
+              101,
+              25
+            ],
+            [
+              96,
+              29
+            ],
+            [
+              97,
+              29
+            ],
+            [
+              98,
+              29
+            ],
+            [
+              99,
+              29
+            ],
+            [
+              100,
+              29
+            ],
+            [
+              101,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            108,
+            4,
+            26
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              55.5,
+              2.0,
+              14.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              55.37,
+              3.43,
+              13.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              108,
+              26
+            ],
+            [
+              113,
+              26
+            ],
+            [
+              108,
+              30
+            ],
+            [
+              109,
+              30
+            ],
+            [
+              110,
+              30
+            ],
+            [
+              111,
+              30
+            ],
+            [
+              112,
+              30
+            ],
+            [
+              113,
+              30
+            ]
+          ]
+        },
+        {
+          "base": [
+            120,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              61.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              61.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              120,
+              25
+            ],
+            [
+              125,
+              25
+            ],
+            [
+              120,
+              29
+            ],
+            [
+              121,
+              29
+            ],
+            [
+              122,
+              29
+            ],
+            [
+              123,
+              29
+            ],
+            [
+              124,
+              29
+            ],
+            [
+              125,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            34,
+            4,
+            9
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              18.5,
+              2.0,
+              5.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              18.37,
+              3.43,
+              4.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              34,
+              9
+            ],
+            [
+              39,
+              9
+            ],
+            [
+              34,
+              13
+            ],
+            [
+              35,
+              13
+            ],
+            [
+              36,
+              13
+            ],
+            [
+              37,
+              13
+            ],
+            [
+              38,
+              13
+            ],
+            [
+              39,
+              13
+            ]
+          ]
+        },
+        {
+          "base": [
+            46,
+            4,
+            8
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              24.5,
+              2.0,
+              5.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              24.37,
+              3.43,
+              4.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              46,
+              8
+            ],
+            [
+              51,
+              8
+            ],
+            [
+              46,
+              12
+            ],
+            [
+              47,
+              12
+            ],
+            [
+              48,
+              12
+            ],
+            [
+              49,
+              12
+            ],
+            [
+              50,
+              12
+            ],
+            [
+              51,
+              12
+            ]
+          ]
+        },
+        {
+          "base": [
+            114,
+            4,
+            9
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              58.5,
+              2.0,
+              5.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              58.37,
+              3.43,
+              4.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              114,
+              9
+            ],
+            [
+              119,
+              9
+            ],
+            [
+              114,
+              13
+            ],
+            [
+              115,
+              13
+            ],
+            [
+              116,
+              13
+            ],
+            [
+              117,
+              13
+            ],
+            [
+              118,
+              13
+            ],
+            [
+              119,
+              13
+            ]
+          ]
+        },
+        {
+          "base": [
+            70,
+            4,
+            25
+          ],
+          "footprint": [
+            12,
+            7
+          ],
+          "stock_pieces": 7,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              38.0,
+              2.0,
+              14.25,
+              1.4,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              37.818,
+              4.002,
+              12.5448,
+              1.4,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              71,
+              25
+            ],
+            [
+              80,
+              25
+            ],
+            [
+              71,
+              31
+            ],
+            [
+              72,
+              31
+            ],
+            [
+              73,
+              31
+            ],
+            [
+              74,
+              31
+            ],
+            [
+              75,
+              31
+            ],
+            [
+              76,
+              31
+            ],
+            [
+              77,
+              31
+            ],
+            [
+              78,
+              31
+            ],
+            [
+              79,
+              31
+            ],
+            [
+              80,
+              31
+            ]
+          ]
+        }
+      ]
+    },
+    "M408": {
+      "name": "The siege camp before Shiro Iuchi",
+      "registered": true,
+      "native_terrain": "m408_iuchi",
+      "existing_tent_keys": [],
+      "stock_sites": [
+        {
+          "base": [
+            30,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              16.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              16.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              30,
+              25
+            ],
+            [
+              35,
+              25
+            ],
+            [
+              30,
+              29
+            ],
+            [
+              31,
+              29
+            ],
+            [
+              32,
+              29
+            ],
+            [
+              33,
+              29
+            ],
+            [
+              34,
+              29
+            ],
+            [
+              35,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            40,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              21.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              40,
+              25
+            ],
+            [
+              45,
+              25
+            ],
+            [
+              40,
+              29
+            ],
+            [
+              41,
+              29
+            ],
+            [
+              42,
+              29
+            ],
+            [
+              43,
+              29
+            ],
+            [
+              44,
+              29
+            ],
+            [
+              45,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            50,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              26.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              26.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              50,
+              25
+            ],
+            [
+              55,
+              25
+            ],
+            [
+              50,
+              29
+            ],
+            [
+              51,
+              29
+            ],
+            [
+              52,
+              29
+            ],
+            [
+              53,
+              29
+            ],
+            [
+              54,
+              29
+            ],
+            [
+              55,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            60,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              31.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              31.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              60,
+              25
+            ],
+            [
+              65,
+              25
+            ],
+            [
+              60,
+              29
+            ],
+            [
+              61,
+              29
+            ],
+            [
+              62,
+              29
+            ],
+            [
+              63,
+              29
+            ],
+            [
+              64,
+              29
+            ],
+            [
+              65,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            70,
+            4,
+            25
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              36.5,
+              2.0,
+              13.75,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              36.37,
+              3.43,
+              12.532,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              70,
+              25
+            ],
+            [
+              75,
+              25
+            ],
+            [
+              70,
+              29
+            ],
+            [
+              71,
+              29
+            ],
+            [
+              72,
+              29
+            ],
+            [
+              73,
+              29
+            ],
+            [
+              74,
+              29
+            ],
+            [
+              75,
+              29
+            ]
+          ]
+        },
+        {
+          "base": [
+            88,
+            4,
+            25
+          ],
+          "footprint": [
+            8,
+            6
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              46.0,
+              2.0,
+              14.0,
+              1.2,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              45.844,
+              3.716,
+              12.5384,
+              1.2,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              88,
+              25
+            ],
+            [
+              95,
+              25
+            ],
+            [
+              88,
+              30
+            ],
+            [
+              89,
+              30
+            ],
+            [
+              90,
+              30
+            ],
+            [
+              91,
+              30
+            ],
+            [
+              92,
+              30
+            ],
+            [
+              93,
+              30
+            ],
+            [
+              94,
+              30
+            ],
+            [
+              95,
+              30
+            ]
+          ]
+        },
+        {
+          "base": [
+            100,
+            4,
+            26
+          ],
+          "footprint": [
+            8,
+            6
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              52.0,
+              2.0,
+              14.5,
+              1.2,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              51.844,
+              3.716,
+              13.0384,
+              1.2,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              100,
+              26
+            ],
+            [
+              107,
+              26
+            ],
+            [
+              100,
+              31
+            ],
+            [
+              101,
+              31
+            ],
+            [
+              102,
+              31
+            ],
+            [
+              103,
+              31
+            ],
+            [
+              104,
+              31
+            ],
+            [
+              105,
+              31
+            ],
+            [
+              106,
+              31
+            ],
+            [
+              107,
+              31
+            ]
+          ]
+        }
+      ]
+    },
+    "M603": {
+      "name": "Shiro Iuchi - Training court",
+      "registered": true,
+      "native_terrain": "m603_iuchi_castle_quarry_tents",
+      "existing_tent_keys": [
+        "quarry_tent",
+        "quarry_tent_flap"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            41,
+            4,
+            20
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              22.0,
+              2.0,
+              11.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.87,
+              3.43,
+              10.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              41,
+              20
+            ],
+            [
+              46,
+              20
+            ],
+            [
+              41,
+              24
+            ],
+            [
+              42,
+              24
+            ],
+            [
+              43,
+              24
+            ],
+            [
+              44,
+              24
+            ],
+            [
+              45,
+              24
+            ],
+            [
+              46,
+              24
+            ]
+          ]
+        },
+        {
+          "base": [
+            93,
+            4,
+            20
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.0,
+              2.0,
+              11.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              47.87,
+              3.43,
+              10.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              93,
+              20
+            ],
+            [
+              98,
+              20
+            ],
+            [
+              93,
+              24
+            ],
+            [
+              94,
+              24
+            ],
+            [
+              95,
+              24
+            ],
+            [
+              96,
+              24
+            ],
+            [
+              97,
+              24
+            ],
+            [
+              98,
+              24
+            ]
+          ]
+        },
+        {
+          "base": [
+            41,
+            4,
+            46
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              22.0,
+              2.0,
+              24.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.87,
+              3.43,
+              23.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              41,
+              46
+            ],
+            [
+              46,
+              46
+            ],
+            [
+              41,
+              50
+            ],
+            [
+              42,
+              50
+            ],
+            [
+              43,
+              50
+            ],
+            [
+              44,
+              50
+            ],
+            [
+              45,
+              50
+            ],
+            [
+              46,
+              50
+            ]
+          ]
+        },
+        {
+          "base": [
+            93,
+            4,
+            46
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.0,
+              2.0,
+              24.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              47.87,
+              3.43,
+              23.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              93,
+              46
+            ],
+            [
+              98,
+              46
+            ],
+            [
+              93,
+              50
+            ],
+            [
+              94,
+              50
+            ],
+            [
+              95,
+              50
+            ],
+            [
+              96,
+              50
+            ],
+            [
+              97,
+              50
+            ],
+            [
+              98,
+              50
+            ]
+          ]
+        }
+      ]
+    },
+    "M604": {
+      "name": "Shiro Iuchi - Courtyard garden",
+      "registered": true,
+      "native_terrain": "m604_iuchi_castle_quarry_tents",
+      "existing_tent_keys": [
+        "quarry_tent",
+        "quarry_tent_flap"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            41,
+            4,
+            20
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              22.0,
+              2.0,
+              11.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.87,
+              3.43,
+              10.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              41,
+              20
+            ],
+            [
+              46,
+              20
+            ],
+            [
+              41,
+              24
+            ],
+            [
+              42,
+              24
+            ],
+            [
+              43,
+              24
+            ],
+            [
+              44,
+              24
+            ],
+            [
+              45,
+              24
+            ],
+            [
+              46,
+              24
+            ]
+          ]
+        },
+        {
+          "base": [
+            93,
+            4,
+            20
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.0,
+              2.0,
+              11.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              47.87,
+              3.43,
+              10.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              93,
+              20
+            ],
+            [
+              98,
+              20
+            ],
+            [
+              93,
+              24
+            ],
+            [
+              94,
+              24
+            ],
+            [
+              95,
+              24
+            ],
+            [
+              96,
+              24
+            ],
+            [
+              97,
+              24
+            ],
+            [
+              98,
+              24
+            ]
+          ]
+        },
+        {
+          "base": [
+            41,
+            4,
+            46
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              22.0,
+              2.0,
+              24.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.87,
+              3.43,
+              23.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              41,
+              46
+            ],
+            [
+              46,
+              46
+            ],
+            [
+              41,
+              50
+            ],
+            [
+              42,
+              50
+            ],
+            [
+              43,
+              50
+            ],
+            [
+              44,
+              50
+            ],
+            [
+              45,
+              50
+            ],
+            [
+              46,
+              50
+            ]
+          ]
+        },
+        {
+          "base": [
+            93,
+            4,
+            46
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.0,
+              2.0,
+              24.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              47.87,
+              3.43,
+              23.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              93,
+              46
+            ],
+            [
+              98,
+              46
+            ],
+            [
+              93,
+              50
+            ],
+            [
+              94,
+              50
+            ],
+            [
+              95,
+              50
+            ],
+            [
+              96,
+              50
+            ],
+            [
+              97,
+              50
+            ],
+            [
+              98,
+              50
+            ]
+          ]
+        }
+      ]
+    },
+    "M605": {
+      "name": "Shiro Iuchi - Guest pavilion",
+      "registered": true,
+      "native_terrain": "m605_iuchi_castle_quarry_tents",
+      "existing_tent_keys": [
+        "quarry_tent",
+        "quarry_tent_flap"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            41,
+            4,
+            20
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              22.0,
+              2.0,
+              11.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.87,
+              3.43,
+              10.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              41,
+              20
+            ],
+            [
+              46,
+              20
+            ],
+            [
+              41,
+              24
+            ],
+            [
+              42,
+              24
+            ],
+            [
+              43,
+              24
+            ],
+            [
+              44,
+              24
+            ],
+            [
+              45,
+              24
+            ],
+            [
+              46,
+              24
+            ]
+          ]
+        },
+        {
+          "base": [
+            93,
+            4,
+            20
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.0,
+              2.0,
+              11.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              47.87,
+              3.43,
+              10.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              93,
+              20
+            ],
+            [
+              98,
+              20
+            ],
+            [
+              93,
+              24
+            ],
+            [
+              94,
+              24
+            ],
+            [
+              95,
+              24
+            ],
+            [
+              96,
+              24
+            ],
+            [
+              97,
+              24
+            ],
+            [
+              98,
+              24
+            ]
+          ]
+        },
+        {
+          "base": [
+            41,
+            4,
+            46
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              22.0,
+              2.0,
+              24.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.87,
+              3.43,
+              23.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              41,
+              46
+            ],
+            [
+              46,
+              46
+            ],
+            [
+              41,
+              50
+            ],
+            [
+              42,
+              50
+            ],
+            [
+              43,
+              50
+            ],
+            [
+              44,
+              50
+            ],
+            [
+              45,
+              50
+            ],
+            [
+              46,
+              50
+            ]
+          ]
+        },
+        {
+          "base": [
+            93,
+            4,
+            46
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.0,
+              2.0,
+              24.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              47.87,
+              3.43,
+              23.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              93,
+              46
+            ],
+            [
+              98,
+              46
+            ],
+            [
+              93,
+              50
+            ],
+            [
+              94,
+              50
+            ],
+            [
+              95,
+              50
+            ],
+            [
+              96,
+              50
+            ],
+            [
+              97,
+              50
+            ],
+            [
+              98,
+              50
+            ]
+          ]
+        }
+      ]
+    },
+    "M610": {
+      "name": "Shiro Iuchi - North garden",
+      "registered": true,
+      "native_terrain": "m610_iuchi_castle_quarry_tents",
+      "existing_tent_keys": [
+        "quarry_tent",
+        "quarry_tent_flap"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            41,
+            4,
+            20
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              22.0,
+              2.0,
+              11.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.87,
+              3.43,
+              10.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              41,
+              20
+            ],
+            [
+              46,
+              20
+            ],
+            [
+              41,
+              24
+            ],
+            [
+              42,
+              24
+            ],
+            [
+              43,
+              24
+            ],
+            [
+              44,
+              24
+            ],
+            [
+              45,
+              24
+            ],
+            [
+              46,
+              24
+            ]
+          ]
+        },
+        {
+          "base": [
+            93,
+            4,
+            20
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.0,
+              2.0,
+              11.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              47.87,
+              3.43,
+              10.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              93,
+              20
+            ],
+            [
+              98,
+              20
+            ],
+            [
+              93,
+              24
+            ],
+            [
+              94,
+              24
+            ],
+            [
+              95,
+              24
+            ],
+            [
+              96,
+              24
+            ],
+            [
+              97,
+              24
+            ],
+            [
+              98,
+              24
+            ]
+          ]
+        },
+        {
+          "base": [
+            41,
+            4,
+            46
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              22.0,
+              2.0,
+              24.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              21.87,
+              3.43,
+              23.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              41,
+              46
+            ],
+            [
+              46,
+              46
+            ],
+            [
+              41,
+              50
+            ],
+            [
+              42,
+              50
+            ],
+            [
+              43,
+              50
+            ],
+            [
+              44,
+              50
+            ],
+            [
+              45,
+              50
+            ],
+            [
+              46,
+              50
+            ]
+          ]
+        },
+        {
+          "base": [
+            93,
+            4,
+            46
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              48.0,
+              2.0,
+              24.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              47.87,
+              3.43,
+              23.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              93,
+              46
+            ],
+            [
+              98,
+              46
+            ],
+            [
+              93,
+              50
+            ],
+            [
+              94,
+              50
+            ],
+            [
+              95,
+              50
+            ],
+            [
+              96,
+              50
+            ],
+            [
+              97,
+              50
+            ],
+            [
+              98,
+              50
+            ]
+          ]
+        }
+      ]
+    },
+    "M825": {
+      "name": "Battle: the border meadow",
+      "registered": true,
+      "native_terrain": null,
+      "existing_tent_keys": [
+        "quarry_tent",
+        "quarry_tent_flap"
+      ],
+      "stock_sites": [
+        {
+          "base": [
+            8,
+            1,
+            84
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              5.5,
+              0.5,
+              43.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              5.37,
+              1.93,
+              42.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              8,
+              84
+            ],
+            [
+              13,
+              84
+            ],
+            [
+              8,
+              88
+            ],
+            [
+              9,
+              88
+            ],
+            [
+              10,
+              88
+            ],
+            [
+              11,
+              88
+            ],
+            [
+              12,
+              88
+            ],
+            [
+              13,
+              88
+            ]
+          ]
+        },
+        {
+          "base": [
+            26,
+            1,
+            84
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              14.5,
+              0.5,
+              43.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              14.37,
+              1.93,
+              42.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              26,
+              84
+            ],
+            [
+              31,
+              84
+            ],
+            [
+              26,
+              88
+            ],
+            [
+              27,
+              88
+            ],
+            [
+              28,
+              88
+            ],
+            [
+              29,
+              88
+            ],
+            [
+              30,
+              88
+            ],
+            [
+              31,
+              88
+            ]
+          ]
+        },
+        {
+          "base": [
+            44,
+            1,
+            84
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              23.5,
+              0.5,
+              43.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              23.37,
+              1.93,
+              42.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              44,
+              84
+            ],
+            [
+              49,
+              84
+            ],
+            [
+              44,
+              88
+            ],
+            [
+              45,
+              88
+            ],
+            [
+              46,
+              88
+            ],
+            [
+              47,
+              88
+            ],
+            [
+              48,
+              88
+            ],
+            [
+              49,
+              88
+            ]
+          ]
+        },
+        {
+          "base": [
+            62,
+            1,
+            84
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              32.5,
+              0.5,
+              43.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              32.37,
+              1.93,
+              42.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              62,
+              84
+            ],
+            [
+              67,
+              84
+            ],
+            [
+              62,
+              88
+            ],
+            [
+              63,
+              88
+            ],
+            [
+              64,
+              88
+            ],
+            [
+              65,
+              88
+            ],
+            [
+              66,
+              88
+            ],
+            [
+              67,
+              88
+            ]
+          ]
+        },
+        {
+          "base": [
+            80,
+            1,
+            84
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              41.5,
+              0.5,
+              43.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              41.37,
+              1.93,
+              42.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              80,
+              84
+            ],
+            [
+              85,
+              84
+            ],
+            [
+              80,
+              88
+            ],
+            [
+              81,
+              88
+            ],
+            [
+              82,
+              88
+            ],
+            [
+              83,
+              88
+            ],
+            [
+              84,
+              88
+            ],
+            [
+              85,
+              88
+            ]
+          ]
+        },
+        {
+          "base": [
+            98,
+            1,
+            84
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              50.5,
+              0.5,
+              43.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              50.37,
+              1.93,
+              42.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              98,
+              84
+            ],
+            [
+              103,
+              84
+            ],
+            [
+              98,
+              88
+            ],
+            [
+              99,
+              88
+            ],
+            [
+              100,
+              88
+            ],
+            [
+              101,
+              88
+            ],
+            [
+              102,
+              88
+            ],
+            [
+              103,
+              88
+            ]
+          ]
+        },
+        {
+          "base": [
+            116,
+            1,
+            84
+          ],
+          "footprint": [
+            6,
+            5
+          ],
+          "stock_pieces": 6,
+          "surviving_stock_pieces": 0,
+          "staged_native": [
+            [
+              "quarry_tent",
+              59.5,
+              0.5,
+              43.25,
+              1.0,
+              0.0
+            ],
+            [
+              "quarry_tent_flap",
+              59.37,
+              1.93,
+              42.032,
+              1.0,
+              0.055
+            ]
+          ],
+          "rear_and_poles": [
+            [
+              116,
+              84
+            ],
+            [
+              121,
+              84
+            ],
+            [
+              116,
+              88
+            ],
+            [
+              117,
+              88
+            ],
+            [
+              118,
+              88
+            ],
+            [
+              119,
+              88
+            ],
+            [
+              120,
+              88
+            ],
+            [
+              121,
+              88
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}

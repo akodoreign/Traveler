@@ -1,0 +1,52 @@
+{
+  "status": "Reserved, inactive",
+  "provenance": "Snake Den first daylight study, M425–M428 and M890",
+  "intended_use": "Reference for genuinely desaturated settings such as the Kuni Blighted Lands. Reassess in scene before use.",
+  "swatch_srgb": {
+    "stone": [
+      54,
+      68,
+      77
+    ],
+    "floor": [
+      58,
+      68,
+      66
+    ],
+    "path": [
+      101,
+      83,
+      61
+    ],
+    "ritual_sand": [
+      182,
+      166,
+      129
+    ],
+    "black_sand": [
+      36,
+      38,
+      35
+    ],
+    "jade": [
+      33,
+      79,
+      65
+    ],
+    "cedar": [
+      64,
+      44,
+      36
+    ],
+    "eye_inlay": [
+      85,
+      157,
+      121
+    ],
+    "water": [
+      14,
+      45,
+      42
+    ]
+  }
+}

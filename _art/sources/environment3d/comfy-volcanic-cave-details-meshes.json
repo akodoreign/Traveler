@@ -1,0 +1,14 @@
+{
+  "volcano_cave_rope_waymarker": {
+    "prompt_id": "60bc6b1b-0107-45aa-b03a-298475236e8c",
+    "history": "http://127.0.0.1:8189/history/60bc6b1b-0107-45aa-b03a-298475236e8c"
+  },
+  "volcano_cave_crusted_lava_bank": {
+    "prompt_id": "3b92e334-6917-4ecd-9628-fe63d79980c5",
+    "history": "http://127.0.0.1:8189/history/3b92e334-6917-4ecd-9628-fe63d79980c5"
+  },
+  "volcano_cave_bronze_lantern": {
+    "prompt_id": "91483201-4125-4151-9cd8-dec7e68a2320",
+    "history": "http://127.0.0.1:8189/history/91483201-4125-4151-9cd8-dec7e68a2320"
+  }
+}

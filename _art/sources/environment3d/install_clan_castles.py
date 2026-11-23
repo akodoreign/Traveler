@@ -32,6 +32,8 @@ def rebuild_clan_castle_art(m, ev):
         cell = tuple(point)
         if cell not in m.walls:
             m.walls.append(cell)
+    if ev is None:
+        return
     for key, (previous, updated) in plan.get("positions", {}).items():
         event = ev.ev.get(key)
         if event and event.get("role") == "portal" and event["pos"] == previous:
@@ -185,7 +187,7 @@ def publish(repo,profile,group,plans,rows):
         source=source.replace(head,SOURCE_PATCH.encode().replace(b"\n",eol).lstrip()+head,1)
         start=source.index(head)
         before_ret=source.index(eol+b"    return m, ev",start)
-        call=eol+b"    if ev is not None:"+eol+b"        rebuild_clan_castle_art(m, ev)"
+        call=eol+b"    rebuild_clan_castle_art(m, ev)"
         source=source[:before_ret]+call+source[before_ret:]
     asset_plan=repo/"tools"/PLAN
     saved=read(asset_plan) if asset_plan.exists() else {}
@@ -206,7 +208,9 @@ def publish(repo,profile,group,plans,rows):
             else:
                 set_file(p,before[p])
         raise
-    print(f"Installed {len(plans)} castle maps. The world index now covers {len(set(index)|set(rows))} maps.")
+    full=sum(not entry.get("propOnly") for entry in {**index,**rows}.values())
+    count=sum(bool(entry.get("propOnly")) for entry in rows.values())
+    print(f"Installed art on {len(plans)} maps ({count} props-only). Full terrain passes: {full}.")
 
 
 if __name__=="__main__":

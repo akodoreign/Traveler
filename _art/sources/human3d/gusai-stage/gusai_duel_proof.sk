@@ -1,0 +1,34 @@
+// Evaluate from M245 or M274 to start the corresponding duel, then evaluate again.
+// Starting on any other field map uses M811 for a daylight E351 portrait check.
+local stage = ::rpgstage, battle = stage["battle"];
+if( !battle){
+	local id = stage.mapid == "M274" ? "E389" : "E351";
+	local arena = stage.mapid == "M274" ? "M833" : stage.mapid == "M245" ? "M834" : "M811";
+	::RPGMain.enterBattle( {mapid=arena, escape=true, enemies=[{id=id, x=-.40, z=0.0}]});
+	return;
+}
+local expected = stage.mapid == "M833" ? "E389" : "E351";
+local enemy = battle.enemies.find( @( entry) entry.dataid == expected);
+if( !enemy || enemy.data.mdlid != "EP834") throw Exception( "Expected Gusai's original duel foe");
+local actor = battle.getChara3D( enemy);
+if( !actor || actor["nativeKey"] != "EP834" || actor.nativeBodyTemplate != "shared_male" ||
+    length( actor.nativeBody.bones) != 50 || !actor.nativeBody.motion ||
+    !actor.nativeBody.findBone( "neck") || !actor.nativeBody.findBone( "head") ||
+    !actor.nativeFace || actor.nativeFace.mesh.res.name != "side_gusai_portrait_face.pm" ||
+    !actor.nativeFace.mesh.face[0].m.tex0 || !actor.nativeOutfit || actor.nativeTailoring != "A135_lion_takeo" ||
+    !actor.nativeWeapon || actor.nativeWeapon.mesh.res.name != "W100.pm" ||
+    !actor.nativeWeapon.mesh.face[0].m.tex0 || !actor.nativeWeapon.mesh.bones[0] ||
+    actor.nativeHead || actor.nativeMask || Math.abs( actor.travelerWidth - 1.055) > .0001 ||
+    !actor.tgtview || !actor.b3body)
+	throw Exception( "Gusai's duel body, portrait, outfit, blade or battle target did not resolve");
+foreach( material in ["core", "hands", "neck", "throat"]){
+	local skin = actor.nativeBody.mesh.face.find( @( face) face.m.name == "c807060_" .. material);
+	if( !skin || skin.m.basecol != 0x8f4727ff)
+		throw Exception( "Gusai's sampled skin tone did not apply to " .. material);
+}
+local sash = actor.nativeBody.children.find( @( child) child["mesh"] && child.mesh.res.name == "EP834_sash.pm");
+if( !sash) throw Exception( "Gusai's separately rigged sash did not load");
+if( !actor.anime2( #{id="slash1"})) throw Exception( "Gusai's duel attack bank did not load");
+actor.anime2( #{id="fight"});
+printf( "[GUSAI DUEL FIT] %S %S %S portrait %S outfit %S weapon %S\n",
+	stage.mapid, enemy.dataid, actor.nativeKey, actor.nativeFace.mesh.res.name, actor.nativeTailoring, actor.nativeWeapon.mesh.res.name);

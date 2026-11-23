@@ -5462,3 +5462,73 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
     menus, battles), snapshots/ + snapshots.md. Learning: knowledge.json (menus answered before a stall get another
     answer next run; menus on a clean run are kept).
   - l5r.fandom.com refused automated reads (402). Model on NPU: first load 52 s (compile), ~11 s for 40 tokens.
+  - **Asking, local first (2026-11-23; user: "if they can't find something after retrying 5 times, save state and ask
+    you what to do or if its broke"; "it should be doing this on local and just reporting back to you
+    occasionally").** Five failed tries at one goal (an exit that didn't take and brought her no closer, an event that
+    wouldn't run, a talk that left the goal unchanged, no point shown) -> chaseAsk: a save state + screenshot, an ASK
+    line, the chaser waits for tmp/chase/<job>/answer.txt (retry | goto X Z | use NAME | broken [why] | close). The
+    orchestrator gives the question to the local model first (task "answer": the question, the last log lines, the
+    map's usable events from map.json) - two answers per goal, logged in _art/preview/chase/local_answers.md; only then
+    ASK/<job>.md + "ASK <job>" on stdout for Claude (answer in ANSWERS/<job>.txt). "PROGRESS" every 30 minutes.
+  - Chaser fixes found by the pilots: villager lines (showUI path) now count as "something was said"; exits are
+    walked to their box centre (raw arrow keys don't follow an interior's camera); blocked on the way out (the escort
+    cart on the Coast Road) -> a 4 m side-step and on; an exit try that got closer isn't a failure. NOREACT (prompt
+    shown, Z ran nothing) vs NOPROMPT (never offered).
+  - Two windows: the engine is one instance per folder (code 7 for a second) - window 2 runs from
+    _tools/rpgcobo-tool-w2 (its own exe + dll, project/ tools/ util/ ... as junctions, its own tmp / savedata / log).
+  - The full run is launched detached (cmd /c ... > _art/preview/chase/orchestrator.txt) so it outlives a session.
+
+- 2026-11-23 chaser find (story_2_lion): the marker beat on Akodo Ozaki (M245 15,7.5) waited on G609 (YOSAI_STEP temp flag) so it never cleared. gen_maps `_TEMP_FLAGS` now skips G609 in `_first_flag_set`; RokuganMarkerData.sk line patched to G460 by hand (a bare marker_pass rerun also moves M471-M487/M512 exits, so not applied wholesale). Rerun story_2_lion after the run.
+- Every party member has jobs ["J000","J105"]: J105 "Strike First" (demo leftover) = K020 ATK Up +30% on turn 1 of every battle. Intended: the user says it is the free starting trait everyone gets (keep it).
+- 2026-11-23 chaser find (story_4_dragon): the Tortoise Island new-house arrival beat (M316 4,7, G768) had no gate, so the marker pulled Gendo to the Ferryman on M304 from the chapter start (ferry needs G727 + I179 token). gen_maps `BEAT_GATES` adds G727==true; RokuganMarkerData.sk line patched by hand. Also: the chaser treats the Ferryman (MK_EXITS M304->M492 at 22.5,7.5) as an exit box, not a talk. Rerun story_4_dragon after the run.
+- 2026-11-23 chaser (story_5_scorpion): stuck in Kudo (M351) east of the stream - the straight line from the Dreaming Carp door to the west exit strip centre (0.5,16) grazes the south edge of the bridge (x~38-41, z 9.3-13.3). Answered goto 41 11.3. Chaser idea for later: for a long exit strip aim at the strip point level with the road, and try the nearest bridge/road tile when blocked by water.
+
+## 2026-11-23 squirrels report, Claude fixes; map backdrops
+
+- **Squirrels (marker chasers)** - user: "they need a time out after being on a screen for so long ... squirrels get
+  bored being stuck" / "after it reports back you fix". RokuganChase.sk: five minutes on one map with the goal not
+  moving on -> TIMEOUT + save state + BROKEN "bored on ..." and the job ends; the BROKEN line wakes Claude, who finds out
+  why and fixes the game or the chaser. (Earlier code-0 exits were the user closing looping windows.)
+  - Chaser fixes: a long edge exit is aimed at the point level with her (Kudo: the middle's line missed the bridge); a
+    small "exit" that is a person/sign (the Ferryman, the Cakon road sign) is talked to (EXITTALK); the sweep skips
+    anything that leaves the map (cmd_mapmove / ::Rokugan.travel - the Ronin squirrel's sweep took "Go back").
+  - w2 lacked tmp/rt_shot (no screenshots from window 2): created. w3 = a third engine folder for Claude's own tests
+    (same junctions as w2) so tests never touch the chasers' or the user's windows.
+  - Game fixes from the squirrels: Ozaki's marker beat (G609 -> G460, gen_maps _TEMP_FLAGS) and the Tortoise Island
+    new-house beat (BEAT_GATES G727); both RokuganMarkerData lines patched by hand. Rerun story_2_lion, story_4_dragon.
+- **Map backdrops** - user: "use comfyui to generate some backgrounds for each of the maps (like behind the map itself)
+  similar to opening screen background. should be relevant and display the terrain around it."
+  - Engine: the editor offered bg type "tex" but RPGStage.createBackground never drew it. RokuganBackdrop.sk draws it
+    with a new background.skfx technique `tex_pano`: height pinned to the screen (the painting's horizon stays put and
+    sharp under the 30-degree lens), across follows the camera's turn (60 deg per width, mirror-tiled, no seam), lit
+    like the sky (dirlit), 6% haze. Texture v = 0 is the TOP row (checked with a test card). `-rtbackdrop PATH` forces
+    a picture on any map for tests.
+  - tools/gen_map_backgrounds.py: list / paint / apply. Z-Image Turbo (tools/comfy/map_bg_api.json, 1536x640, 8 steps,
+    ~31 s warm). Prompt = map name + gen_maps builder comment + terrain words + clan land (MK_PATH, else names) +
+    night / cave / Shadowlands. 596 paintings (424 field, 25 night, 7 shadow, 40 cave, 100 battle); 95 interiors use
+    their outdoor map's painting (33 found no outdoor door: they keep the sky). resource/mapbg/<map>.webp ~150 KB.
+  - gen_maps' final write calls gen_map_backgrounds.apply(mp), so rebuilds keep the backdrops.
+- **Story first** (user 2026-11-23: "should wait for subquests, and sidequest till after each complete path is tested
+  and working" / "keep working the story quests till you can go from start to finish, you can use savestates"):
+  run 2 = `markerchase.py story --minutes 120 --windows 2` (run 1's log: _art/preview/chase/orchestrator_run1.txt).
+  When a squirrel quits: fix, then `markerchase.py story --only N --resume` starts it from its latest save state
+  (snapshots/snap_*.bin -> savedata slot -> -rt loadsave). Quests/side quests only after all 8 paths go start to end.
+- Run-1 fixes besides the above: marker road search skips shut doors (MK_GATES from portal reqs0, 117 gates;
+  RokuganMarker.mkRoad); boredom = 8 min on one goal wherever she is (bouncing between maps no longer resets it);
+  ten edge doors faced out of their maps (arrival outside the door, first step back out): d flipped in gen_maps;
+  "Painted Men on the Pass" opens on G613 (the pass) not G612 (optional Hisae blessing, before the gate opens).
+- Run 3 fixes: marker beats - a walk-on barrier that never sets its guard flag (Hida road "rest, not wander") is no
+  beat; every gated door's opener (the event that sets its flag) is an "opener" beat, used only when no story beat is
+  due (Dragon: the chant's fourth step opens the Gusai ruins' hidden path - "no goal" before). Squirrel: a door
+  taken by mistake is remembered and walked round (Crab bounced office <-> Wall forever); learned answers are first
+  tries only, closed windows are not stalls; --resume / "restart" answer; DONE/ASK read from this run's lines only.
+- Backdrops: grouped (197 paintings for 659 maps); Crane prompts painted literal cranes -> "the X clan's provinces",
+  no animals; Crane group repainted.
+- Run 5 fixes (marker): story moves (walk-on/talk mapmoves) are gated by the page that holds them (the Wall's way into
+  the Shadowlands needs G240/not G255 - Crab looped office <-> Wall); every flag a beat or gate needs gets its setter
+  as a fallback "opener" beat, down the chain (Phoenix "no goal" in the Kamatori inner garden; 143 opener beats).
+  Run 1's Phoenix "goal" M289 was bogus: 5 shut doors on its route. Squirrel: boredom 5 min; EXITTALK only talks to
+  events that move her; no sweep in a room entered by mistake. Test a save in w3: copy snap to w3 savedata/save095.bin,
+  `rpgcobo.exe -testplay -map M099 "[19,1.5,5,0]" -rtvar G000 -rtfast -rtloadsave 95`, read "[RT] marker:".
+- gen_maps builds now run in _tools/rpgcobo-tool-build and free_engine() only stops instances from that folder. (Before, every rebuild force-closed all test games incl. both squirrel windows: the code-1 exits.)
+- Gates keep every way between two maps (open if any alternative holds): Garden Under Shadow castle before/after the fete.

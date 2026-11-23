@@ -27711,6 +27711,9 @@
   "human": true
  },
  "EP742": {
+  "castForName": {
+   "Gonta": "side_gonta"
+  },
   "animap": [
    {
     "id": "stand",
@@ -37798,5 +37801,6 @@
   "scale": 0.018,
   "height": 1.5,
   "radius": 0.8
- }
+ },
+  "EP172": {"animap":[{"id":"stand","st":0,"en":8,"spd":4,"loop":true,"replay":false},{"id":"walk","st":13,"en":21,"spd":12,"loop":true,"replay":false}],"scale":0.018,"height":1.69,"radius":0.49}
 }

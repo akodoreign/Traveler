@@ -1,0 +1,321 @@
+{
+  "maps": {
+    "M157": {
+      "catalog_hash": "3cac14c965cea5e2a68b7cac55ebb34f11622cf14e951f10feab9d8acf8b82c0",
+      "world_hash": "c763c03b1fbf352b81b2c74dc08fb79b06bb07ed3bd71f7df6cc07cf139b28fe",
+      "native_shape": [
+        164,
+        56
+      ],
+      "terrain_quads": 8918,
+      "set_dressing": 9,
+      "preserved_route_blocks": 91,
+      "route_waypoints": [
+        [
+          61,
+          5
+        ],
+        [
+          61,
+          12
+        ],
+        [
+          61,
+          19
+        ],
+        [
+          65,
+          22
+        ],
+        [
+          73,
+          22
+        ],
+        [
+          78,
+          25
+        ],
+        [
+          78,
+          33
+        ],
+        [
+          73,
+          36
+        ],
+        [
+          66,
+          37
+        ],
+        [
+          61,
+          34
+        ],
+        [
+          62,
+          32
+        ],
+        [
+          66,
+          36
+        ]
+      ],
+      "roofed_bores": [
+        {
+          "center": [
+            61,
+            3
+          ],
+          "native_bore_cells": [
+            59,
+            63
+          ],
+          "half_width_m": 1.14,
+          "roof_depth_m": 1.73,
+          "axis": "z"
+        },
+        {
+          "center": [
+            61,
+            44
+          ],
+          "native_bore_cells": [
+            59,
+            62
+          ],
+          "half_width_m": 1.035,
+          "roof_depth_m": 2.12,
+          "axis": "z"
+        }
+      ],
+      "portal_events": {}
+    },
+    "M158": {
+      "catalog_hash": "75c8747cbde7138b116105e3c4cad31d56906d113c07ff718c8e704f1605c7d2",
+      "world_hash": "81aa202e4507a3b832fce1ef6224386c33f2c64097d747494c843bf8175161f8",
+      "native_shape": [
+        122,
+        46
+      ],
+      "terrain_quads": 4795,
+      "set_dressing": 10,
+      "preserved_route_blocks": 0,
+      "route_waypoints": [],
+      "roofed_bores": [
+        {
+          "center": [
+            56,
+            10
+          ],
+          "roof_depth_m": 3.24,
+          "axis": "z",
+          "arrival_only": true,
+          "parapet_blocks": 36
+        }
+      ],
+      "portal_events": {}
+    },
+    "M170": {
+      "catalog_hash": "3084386a15ef43d84fc16aa9f42e12e33a861aabb91be3b1d0af5856a6927d4e",
+      "world_hash": "cbd9022bca64d85ab84ec1124fd06d9373614986193ca7962d65e10b54e50b2c",
+      "native_shape": [
+        199,
+        61
+      ],
+      "terrain_quads": 11633,
+      "set_dressing": 11,
+      "preserved_route_blocks": 190,
+      "route_waypoints": [
+        [
+          1,
+          19
+        ],
+        [
+          9,
+          19
+        ],
+        [
+          17,
+          19
+        ],
+        [
+          25,
+          19
+        ],
+        [
+          32,
+          19
+        ],
+        [
+          40,
+          19
+        ],
+        [
+          47,
+          19
+        ],
+        [
+          55,
+          19
+        ],
+        [
+          63,
+          19
+        ],
+        [
+          71,
+          19
+        ],
+        [
+          73,
+          25
+        ],
+        [
+          73,
+          33
+        ],
+        [
+          77,
+          37
+        ],
+        [
+          84,
+          38
+        ],
+        [
+          92,
+          38
+        ],
+        [
+          99,
+          37
+        ],
+        [
+          105,
+          35
+        ],
+        [
+          111,
+          33
+        ],
+        [
+          118,
+          32
+        ],
+        [
+          117,
+          25
+        ],
+        [
+          113,
+          21
+        ],
+        [
+          105,
+          21
+        ],
+        [
+          100,
+          19
+        ],
+        [
+          108,
+          19
+        ]
+      ],
+      "roofed_bores": [
+        {
+          "center": [
+            19,
+            19
+          ],
+          "native_bore_cells": [
+            17,
+            20
+          ],
+          "half_width_m": 1.035,
+          "roof_depth_m": 1.9,
+          "axis": "x"
+        },
+        {
+          "center": [
+            109,
+            19
+          ],
+          "native_bore_cells": [
+            15,
+            23
+          ],
+          "half_width_m": 0.88,
+          "roof_depth_m": 1.28,
+          "axis": "x"
+        }
+      ],
+      "portal_events": {}
+    }
+  },
+  "files": {
+    "castle_kaiu_lantern.mdl": "e32987d06d3a59e09a9c0345cf0656b1b256ba6e7d4e1eea6878d17ed39f00be",
+    "castle_kaiu_lantern.pm": "89def9c997451f8c83447b3a25c012863dee053c1910bbce0d83f1a38b77d60a",
+    "castle_tamori_stones.mdl": "ab4680b8d6b6f36922651e6f29f347509d250a2f1960007f66a5b18c56b09931",
+    "castle_tamori_stones.pm": "de569483eb71a9173e9760eacda641ce9ce04a1f0eb023e26b2b9ef187e15382",
+    "hida_catacomb_basalt_drains.mdl": "670711acc35afb3d3162e82cae871461cd14480cc6401805bfd01bf9cf2247eb",
+    "hida_catacomb_basalt_drains.pm": "2dfad4d1fda83ee4481cf657e62eccd8910bdefb1aec96d6953a8d128f07a9bd",
+    "hida_cell_cedar_bench.mdl": "49f1a332e7da6e0d60e1183be921ca32135e654548a18ecdccb2de436b48cffa",
+    "hida_cell_cedar_bench.pm": "56c0f8ff462c0b6b6039b191053b14ac7d7bbced73f7ec906ed8b4c555143db5",
+    "hida_cell_iron_lamp.mdl": "7ccd860ba12fa647ce2005caed49adfd354f002e92d000c68571dd4f9210e0e1",
+    "hida_cell_iron_lamp.pm": "4732feeef5c337474ad88cbb4f3bdc1f5ef7964453ef62ff0b537b664c14298c",
+    "m157_hida_caves_relief.mdl": "79c87dd786930c7106909f86af5bf922b8e4ac807e6f98d6749c12af18dbf4d9",
+    "m157_hida_caves_relief.pm": "551d1f7c4d79cc86c548a3580d3ee3f91acb0dc648e3777830b979a47123599b",
+    "m158_hida_caves_relief.mdl": "95137a8de114a9b66ff6a43d544b8c1c36861bd720314576ede7e1fb910b4a1a",
+    "m158_hida_caves_relief.pm": "ab7104bd1fe0645acc832d82483c8d02ba5141b7e80479f961446d48d4c852d6",
+    "m170_hida_caves_relief.mdl": "902b16702c101070b1e1b12000e6e257a9dd18b7beb2da91872d2abe44df6d39",
+    "m170_hida_caves_relief.pm": "4b18f15869f197c698592013002e37c8bd9b5e44262cd15ce87343198e4b9e6d",
+    "tex/castle_kaiu_lantern.png": "0eab48b449ce2c69359a38526944a7276591746caf15e716ebf9d302928eef08",
+    "tex/castle_tamori_stones.png": "73fb227a4e069c0bd478e7b1f1b5bf5af41407a289df307359d24c93f53cecb2",
+    "tex/hida_catacomb_basalt_drains.png": "64c261b6ed2141ee9b26005aea67401e1cb7039fed72861dd52f91f9a539f5a8",
+    "tex/hida_cave_relief_normal.png": "c09f1ff571e0011e9a565739b4f1b691ac5fd60dee5a75385c673c281d2fb0dc",
+    "tex/hida_caves_cobalt_relief.png": "eb1ef1ed9dc48bff0acf17d988182affcb31674067d484176fa4f405cf5d3b2a",
+    "tex/hida_caves_dressed_stone_relief.png": "76cfcdd7f8a522091ed21c6bb1d7f98e9652e1417a67448a6716442c9dc11dc2",
+    "tex/hida_caves_mortar_relief.png": "01e80ae3488d2e8797e52d5214abd979a5d5da17e3e3d7028c31427899782401",
+    "tex/hida_caves_navy_relief.png": "2deab1bfb9266745238496d9458be0f93fac036b8bdb02a7cfa7b15aaeeb3fc0",
+    "tex/hida_caves_recess_relief.png": "c97fe1c2b3d0c313a4388868f0905cf3fbfce2b35539379927f33ee081a7f6d3",
+    "tex/hida_caves_red_oxide_relief.png": "423d59819b6221cb14ac1bda71c98066ce9e85a4ef04a3434dd0db68df21fe98",
+    "tex/hida_caves_scree_relief.png": "17dba1bfde9bb091c8250bfcbe589bc63d9e362917567d8cedd6416fc56d86aa",
+    "tex/hida_caves_smoked_cedar_relief.png": "430b1f6164eade2a323d86370180bff45d9a4e19cdb04c1c26c0f4ceb6d9ff3d",
+    "tex/hida_cell_cedar_bench.png": "3358468a83bcd1ebd0ad9b0b55eade5da855dad53295e820181c24564d7b6099",
+    "tex/hida_cell_iron_lamp.png": "b00390eff0571a15bde8ebb4727ae37dd1afcb78bb9cf50bdd835ee0b6f98678",
+    "tex/hida_wall_relief_paving.png": "885d7d082b75a43a48ab02327c4f73779638b88712a472fb8df51b2cb2e1c9e7",
+    "tex/m157_hida_floor_relief.png": "1ae631d930decaa381a887ca09b5b1ddd41b73bb189b20c2252b135247fad593",
+    "tex/m170_hida_floor_relief.png": "f6de3aef125b8e68bc3c9a1848184def89cb05e697fdb1970071715c3cf9ed42"
+  },
+  "sources": {
+    "hida_cell_cedar_bench": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hida_cell_cedar_bench_00001_.glb",
+      "triangles": 15873,
+      "world_size": [
+        1.19,
+        0.52,
+        0.39
+      ]
+    },
+    "hida_cell_iron_lamp": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hida_cell_iron_lamp_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        0.42,
+        0.76,
+        0.43
+      ]
+    },
+    "hida_catacomb_basalt_drains": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hida_catacomb_basalt_drains_00001_.glb",
+      "triangles": 19913,
+      "world_size": [
+        1.44,
+        0.47,
+        0.58
+      ]
+    }
+  }
+}

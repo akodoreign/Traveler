@@ -1,0 +1,145 @@
+{
+  "maps": {
+    "M442": {
+      "catalog_hash": "9861c5e8db5bbb4edb48301bced599a1b241d97142643dc35c3de7112419dd21",
+      "world_hash": "75fe4715ca85032498c1889ca0d72c60303cdb0765fd94cac554258c123465ca",
+      "terrain_quads": 5409,
+      "liquid_quads": 239,
+      "effects": 14
+    },
+    "M443": {
+      "catalog_hash": "32fce3c61c5834ce9c47d989f4d2765e775683b2e029ed4430d837ba64385827",
+      "world_hash": "843fe439d9e7deae8a09adbc7c8f07519c66c22c86d35af714598bbc7fc96dfb",
+      "terrain_quads": 3602,
+      "liquid_quads": 196,
+      "effects": 10
+    },
+    "M896": {
+      "catalog_hash": "c3b951f10bc46f90e1af19ed77aa4938a639ff63c4b31a9d20fb2057f6545279",
+      "world_hash": "a2c301582df8b614ef0ad05fead193c71e0f287d9ef4e1b1091bc755e7778df0",
+      "terrain_quads": 4255,
+      "liquid_quads": 90,
+      "effects": 9,
+      "formations": {
+        "groups": [
+          149,
+          150,
+          151,
+          153
+        ],
+        "enemy_cells": [
+          [
+            55,
+            64
+          ],
+          [
+            51,
+            62
+          ],
+          [
+            53,
+            69
+          ],
+          [
+            55,
+            64
+          ],
+          [
+            51,
+            62
+          ],
+          [
+            55,
+            64
+          ],
+          [
+            51,
+            62
+          ],
+          [
+            51,
+            66
+          ]
+        ],
+        "party_marker": [
+          75,
+          1,
+          64,
+          2
+        ],
+        "bridge_cells": [
+          59,
+          68
+        ],
+        "retains_full_native_collision": true
+      }
+    }
+  },
+  "files": {
+    "m442_layered_basalt.mdl": "88eb2ef69ec5f713be2c8acbd488d1bea99c453ed5e4b2f1236169cde32de17a",
+    "m442_layered_basalt.pm": "ab7bd5fcaa56ba96bcfd10c547472bcd6d91feba5513f45457590946ad9bdec3",
+    "m442_layered_basalt_melt.mdl": "596f83edb8c524d541a97d4b1b596aceaf74055de50f117ed5bbf153436900e5",
+    "m442_layered_basalt_melt.pm": "17e4e1cdb6cc16388ee7b40d23d8cc67fbe5fcf07184570e78a1509fe6dfbdc8",
+    "m443_layered_basalt.mdl": "24eb9c537717f254abc642fa8b59fe07861c38ef60c51b572fc1279d20c21035",
+    "m443_layered_basalt.pm": "74d462cb80baa890114beed041b794e8833eb64de40fd1745d51d9a3b56c3be2",
+    "m443_layered_basalt_melt.mdl": "d7f9fa03caaf29f4946ef7215508c5e57022a3d95f241a9bf7e85403d71338e0",
+    "m443_layered_basalt_melt.pm": "edd8205f88a1c44c95df1b77db579beac47bf711f306d01aeca18db770c9c98c",
+    "m896_layered_basalt.mdl": "06188f59c88fa368978424f5b06db84c4ea86c72e58a84a5fff084c15caa9dca",
+    "m896_layered_basalt.pm": "ac88dd815d3b7e1a6103e8f069db11428b2fa8c4e6928aa399969fb274c26186",
+    "m896_layered_basalt_melt.mdl": "b1c3b4cbdc61904e9c4086a4bb432d8bcd115726b90cb03c223aca1d40f75f03",
+    "m896_layered_basalt_melt.pm": "9a787eeb8f109e296e69aeefa162ead07948c33d147bdefd58f15c3653384ed4",
+    "magma_spatter.mdl": "1eaffb138b0b1e31e4bb3e27b4d010f2e1ffeaa23aaa247bc2099ff10be18033",
+    "magma_spatter.pm": "d6b23d9b2d864fe48bde80537e8454ea57e6a89e8a99d388828a7049826ba23d",
+    "tex/basalt_revision_ash.png": "ecd2f6e3e5cda59a96fe4fb25bc665177a637d5f1b568befb05fac84f3199c1d",
+    "tex/basalt_revision_glass.png": "c22b95b7360b13320d49ec760d67b59199f0ca5262c0bf0217fea4112d8699c1",
+    "tex/basalt_revision_indigo.png": "261f89194d1d7bdebc49e168d25a8833b83bc72c42a48e4308589e1e780b17e8",
+    "tex/basalt_revision_normal.png": "aa537cddfad314b955803f44257b2ebab2c8d325a3cc3e374409cd1a8702644d",
+    "tex/basalt_revision_oxide.png": "21971428fd2b54a08102b7f44ce92e44c2fbb27bd7a89920d06eed6740eda438",
+    "tex/basalt_revision_scree.png": "e4e87e9bf31076e1a69e471cbd08962aa0d17929b7bb958ff8c7feea0524c99e",
+    "tex/basalt_revision_shrine_cedar.png": "ec3c9d23d1ebb046a1809b167a31368470236f8464644cd9f4c564859cb58826",
+    "tex/basalt_revision_shrine_foot.png": "eb933606ffc5754977947a0d0e6f1811a24b22e076e5c1e197260f07fe9a9c96",
+    "tex/basalt_revision_shrine_lacquer.png": "ff7cf8b3c0342c3614f96aaea85287d9c1f5531bfd90c1d57cf03c7c48b12e6a",
+    "tex/basalt_revision_shrine_roof.png": "5dde9547b71130bc7d6cc202a063f79699009f11a402ffa01b758704ad8b3a6e",
+    "tex/basalt_revision_stone.png": "c4d6269555bc5d08a2191aa05e42d7867190011dc7adba2365a36d2b0684cb39",
+    "tex/basalt_revision_tread.png": "dc9b56e041a062feaa1856b2224fd32db970d609239788df3847aab32373ee9e",
+    "tex/magma_spatter.png": "592d0aa37a966b457180da64bc8c93d94274b4ba8d6c1b87b766d6847b718d7a",
+    "tex/oracle_volcanic_melt00.png": "9f4950815dbcb70f2aa90e4b53a54103679a5b49d366f232e5f14914c7a4176a",
+    "tex/oracle_volcanic_melt01.png": "679523ce6496fcfae0a4d2d9caa1c59ae993e9156dea9a19f22ce3498fc7d048",
+    "tex/oracle_volcanic_melt02.png": "108b6142d4364cefc547b89bfec18c14a7bbc7fd42e5689bd980936db01ec721",
+    "tex/oracle_volcanic_melt03.png": "6470b272e63c47dc44216d36a118d275db69ba2487779c770c15ed656b65d391",
+    "tex/oracle_volcanic_melt04.png": "b46c2ede0f2a7b633e81b54c2a79c12452846993fe31353a2dddf29c6638ec62",
+    "tex/oracle_volcanic_melt05.png": "48debb3ef62f63e0aa22e1980221f450040630b3eb7065249701b5a709a018f4",
+    "tex/oracle_volcanic_melt06.png": "9decc59a708922dd4d2e52c082b6b7ceb3783e4472fde2a30dff98d181b7732a",
+    "tex/oracle_volcanic_melt07.png": "f9dca8de8d37db04686ca624d03044ddd9b360f9db13177b3a348b824af9596b",
+    "tex/oracle_volcanic_melt08.png": "dbcbaa158f9c80b084232bd513d736c17a5d63c95fba7e8fe6e4d4e0734da2c7",
+    "tex/oracle_volcanic_melt09.png": "4ab2cd630e05a40e61e3a8344546a282b9bd4a1c883e2b55a56e4c994e66833d",
+    "tex/oracle_volcanic_melt10.png": "0bf0488b224838247e72c78ae271333d310d2f52018105ebfc57e4ecc865eff9",
+    "tex/oracle_volcanic_melt11.png": "30c921ddb124b143aed88648638c53085249c0f38cfa93182faf2684de7bbab1",
+    "tex/oracle_volcanic_melt12.png": "10cd4185f8253b895111530c8e8a01bc613bc6b8f98a4e4a1c9f600a8262069d",
+    "tex/oracle_volcanic_melt13.png": "43051e55c65bf2bb00e0982b635f396c3dac6c1db53666180df265440c742ff2",
+    "tex/oracle_volcanic_melt14.png": "c1f84154e3dc52ea60d8de919d0f22f9a4c4e2d3d73af5ced0dad57a7c44378d",
+    "tex/oracle_volcanic_melt15.png": "2d693326f785a5cec201103d20bb5d1f4ab561176cf04e9422b5a749232b6838",
+    "tex/oracle_volcanic_melt16.png": "85249a449b34e4183021c7bf90e734e8410815f2c47eb6861cc17b57e8c6f885",
+    "tex/oracle_volcanic_melt17.png": "0ce8571eb661fce356b0a19818e5d7a3a46c02477b9671fa4546b42de8175f24",
+    "tex/oracle_volcanic_melt18.png": "974832fef7cbcb3411b74593cd9fbbf309a50757aca1c23f8db5a7a55c15f04e",
+    "tex/oracle_volcanic_melt19.png": "31d489fbf0402fc60dfc48dc973d7bc21f0fe6907252048cb81f61abddf17d18",
+    "tex/oracle_volcanic_melt20.png": "ea1eb8709a9c5ba2f4ee8d8f5c6492a27a340084cfd3839a71306b84948e6a86",
+    "tex/oracle_volcanic_melt21.png": "a76ce9fec16346394176e6ae58dc04d81aec179158a51ab6e0f2517a00659d24",
+    "tex/oracle_volcanic_melt22.png": "68812355c54ea7bd758245d6d6268e7e05076fc3526a26c0f87b5ea6c57e41ff",
+    "tex/oracle_volcanic_melt23.png": "cac99320edb90995389a6bd1a38ef6ff374c95748919cfefbc6dd133f80e4ab2",
+    "tex/oracle_volcanic_melt24.png": "5912c3081afdee8976a30008fb86cdf9f3ae9debcdad7d8d44d5cc042c90fa93",
+    "tex/oracle_volcanic_melt25.png": "fe1d2629f486d8a676bc5a461659bcf9768109ee6a672fce1166d2fbc09ac77b",
+    "tex/oracle_volcanic_melt26.png": "214c556057a317ecafbd8298d8204abe6f392747865a64d9ad295c0fadb94476",
+    "tex/oracle_volcanic_melt27.png": "7660a60ea0a0fc9faf745a577185577f8938e7c1794c78cbd47fddfbf48565df",
+    "tex/oracle_volcanic_melt28.png": "41aed774c10870848f851dd6a4e9114b4ec1420f8d48ac2c835eb75721dd6fc4",
+    "tex/oracle_volcanic_melt29.png": "233d7f1328237be58292f13fe4309c4b5cc2edfa904eba4dfd560ffcb7317a14",
+    "tex/oracle_volcanic_melt30.png": "576b5e16fa941f0ec20fea2376f1838514fdd3f6c7cc0f6d423494d6c11317db",
+    "tex/oracle_volcanic_melt31.png": "01e5c807b1a246352fcfc4ddf8468feb7ae7610c8df77521d853f0b6e8878258",
+    "tex/volcano_cave_bronze_lantern.png": "e3cc57720f4bdb30405925762511d6ab7e079d94c305f74173ba48cde45f84d4",
+    "tex/volcano_cave_rope_waymarker.png": "e674132b1cec3773ebf5d6ad96f19d675311e4ceef764ac65c9e9d7993b8a203",
+    "volcano_cave_bronze_lantern.mdl": "59cfa145a06895dd59010d8d1fdf2706e68a91be4389963ed7bbd40d5c23aefc",
+    "volcano_cave_bronze_lantern.pm": "2824526740fe562abfd2b83fd3028bfda86ae91371ae088983f1edbe1a9eae74",
+    "volcano_cave_rope_waymarker.mdl": "c9558a7e3a5517dd9b93dc537e117c37a7651046d156a5dfe2e32c324a84e268",
+    "volcano_cave_rope_waymarker.pm": "311b8e47f80afa512d2a9ad3362b373d445a822567dabb476bee5e4e97fb8b6f"
+  }
+}

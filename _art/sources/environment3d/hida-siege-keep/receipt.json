@@ -1,0 +1,103 @@
+{
+  "maps": {
+    "M501": {
+      "catalog_hash": "38117fcbce63a4ff82fe1b603856dd61a5bc70e6cfb3e2d3c3be6a15ff28353d",
+      "world_hash": "806c8d6a62ee06cd55a6b04259a7516e5c8f99ed9b56ee4dcdf8d42614e622ef"
+    },
+    "M502": {
+      "catalog_hash": "6d40b9823a6b3b19bf1bab02bdf7c164229fd9f4d357b2a14ac4364bfb20c39d",
+      "world_hash": "44e458338234f3571d2594b457d12e5174ed128f5b8b1771545986a203994f2f"
+    },
+    "M503": {
+      "catalog_hash": "c3e2017c980d5c2ecd444588f9240d4bfb9388c2b65d254c2085e9182226d48f",
+      "world_hash": "27739a6d01781b03fdf3c0bbe5e6eacd6981e1c6cd68d59c0991d6071d3ca8fd"
+    },
+    "M816": {
+      "catalog_hash": "463e7de083a78cc61efb1c7a9041574f440abe3d59c15c94b7c44d467ad40185",
+      "world_hash": "51c9bc3baa73dd3cd0356df9c1f4fbb90738bbc7410b717a07d0fa1ad7e7a5aa"
+    }
+  },
+  "files": {
+    "castle_council_table.mdl": "f010aea84c146c658b966a9ea49cfc5502ec6d6f1b867378f681d84814240094",
+    "castle_council_table.pm": "b7b24ed4b4bfc5d32c2d2cf245c3d5135033d9dbbdc00bffb90da171a634dd41",
+    "castle_kaiu_lantern.mdl": "e32987d06d3a59e09a9c0345cf0656b1b256ba6e7d4e1eea6878d17ed39f00be",
+    "castle_kaiu_lantern.pm": "89def9c997451f8c83447b3a25c012863dee053c1910bbce0d83f1a38b77d60a",
+    "castle_lacquer_supply_chest.mdl": "57f8582e3f6f1b0ed1554fddd48418c000617baf8ab617c981ad240257188506",
+    "castle_lacquer_supply_chest.pm": "e3431c72ec3ef9754e4c8d5fd140720b33d15e4a05352805948afbec12a356b1",
+    "castle_paper_andon.mdl": "37aa569d02927d976ca01d64134615b2a5cb79587702662a9746c1f8f8248cd8",
+    "castle_paper_andon.pm": "1ac862af751871ca7a701ded75c8147241d4bcae2b063fe289fe22a595c57e9b",
+    "castle_scroll_stack.mdl": "e9b8e4af9af3efe2d3ccaf3cf7c628c1ba663ff6831db496e4c31049a4574be2",
+    "castle_scroll_stack.pm": "fdc9a228a8cf579f3fb3a241d270cd95db92b3845cc01d49fa6b1e4e2db9359c",
+    "hida_cell_cedar_bench.mdl": "49f1a332e7da6e0d60e1183be921ca32135e654548a18ecdccb2de436b48cffa",
+    "hida_cell_cedar_bench.pm": "56c0f8ff462c0b6b6039b191053b14ac7d7bbced73f7ec906ed8b4c555143db5",
+    "hida_siege_archive_cabinet.mdl": "d21274cabbe25be6b3709cfe41c8c2217cfa0d8e599316822a64996bcf583fb3",
+    "hida_siege_archive_cabinet.pm": "9e73b86755dd3355b5f1e220587642c1c1c1ee3c9d48418aa44ff301707e9597",
+    "hida_siege_serving_tray.mdl": "5db077d8e32fe0008e67481983cb8634b767ed87778d2903a5fddae6ee357b31",
+    "hida_siege_serving_tray.pm": "2ba20bd826060020950b5978d52e92bf2bcbfb1aba65f2882736de525a34eb4c",
+    "hida_siege_stair_frame.mdl": "0b1c81e1c82283d22eac2b4410773bc338e477c075469129632839c528e7a378",
+    "hida_siege_stair_frame.pm": "c726b27e824ae0234fafb76dada20a65a94a9bd240803d5f6baadd5b2ed29b3e",
+    "hida_siege_stair_leaf.mdl": "d47a3014cb09224df3d3bd5d2880e2bd4bc1c4ef88b8fa291552bc3570c42244",
+    "hida_siege_stair_leaf.pm": "27055c099475483d2090ea10806a36188f66324369fc39a6caf0945e9efc453b",
+    "m501_hida_castle.mdl": "258bb2ffd2c574d2b7d71a102a8c1371c64fb1ccff38f85a0fb13601af4043c3",
+    "m501_hida_castle.pm": "4060e0a85e2d483671807b0260a5890ed733de5d54493e499cb9852fef437334",
+    "m501_hida_siege_rooms.mdl": "3a0cf8b2caa0fed7929884dea1cba067b86343287023b1a2b8977287b7421d50",
+    "m501_hida_siege_rooms.pm": "7058752a366149463b788577563d86fd6c5b35094e30f21492a16044bb39442d",
+    "m502_hida_castle.mdl": "f79eb8c9c5338501b48c9f81ed286c5446860a5191d97d5e2675f0e642d34380",
+    "m502_hida_castle.pm": "4448d2cf59be20fe1588df02e5d663fc99a45d5c2470175e1acb4191fd841d96",
+    "m502_hida_siege_rooms.mdl": "c6cc93a92cdce4243132d6b8833ce3e7c0a2d8ec7f5b59390b32fb96dbd6584e",
+    "m502_hida_siege_rooms.pm": "f4be7a69e9705419ed4d30188a58efb05519cb982de54f3981ea5e5025273f1e",
+    "m503_hida_castle.mdl": "452c7ca552cdc1ac4a20366f5eca709eac3555010edf35d9b9110c7cba4944f0",
+    "m503_hida_castle.pm": "d93c27fa8674fd4bf46bdf0448fde919f2e2d832cf698c942b2c7e4fce603e01",
+    "m503_hida_siege_rooms.mdl": "e445cf90ff556e95b99230780bd72ba9d628b2a00d81db667ee6ada6ca4a131b",
+    "m503_hida_siege_rooms.pm": "7b33901276b7ec2fad0ed5b4b75ce4aa5f5c7acd612860236bc33ed74f8f98da",
+    "m816_hida_castle_hall.mdl": "a1f40deabc1ea5a9d2943696fbc2111dccfed20552ff17c1d3061b468b8ec272",
+    "m816_hida_castle_hall.pm": "ba1e02d7742ba88d836330c2822bccfaafd7a977e6950686c15a0d32990fe3aa",
+    "tex/castle_bayushi_accent.png": "3d5662cbe03ae129fbee9cd0cc4d2a31c14a6c2b25cc78df8e606af306974be9",
+    "tex/castle_council_table.png": "6b0df01ec04506982175db8172c62c94212455cbb28f5afb54636a988e653a7e",
+    "tex/castle_hida_accent_daylight_palette.png": "362f770e39f00fd756884d5f3c0a9ce694dd5d61b2fc1bf588cff5057998d077",
+    "tex/castle_hida_floor_daylight_palette.png": "9d77c978fd07f03f899e4cdeb5cf82f043aa194b012682ea13999c10074caeb3",
+    "tex/castle_hida_linen.png": "55060f6c4df10bb8b948bb13a483085379dd8d93063201a37c4831f2155a0219",
+    "tex/castle_hida_paper.png": "79a7532ea56fe9ae92f3bea44d0617491eabcfbd2058a6d9870e69f234d337ba",
+    "tex/castle_hida_plaster.png": "9392efa0a2314e51bca04d90cdaec809345b5669b3e581fe3401fac78655f5b7",
+    "tex/castle_hida_wood.png": "8dcc6e588feb1067a19bea79ce65b3bc502201a03c1adc057e9a55a30215d942",
+    "tex/castle_kaiu_lantern.png": "0eab48b449ce2c69359a38526944a7276591746caf15e716ebf9d302928eef08",
+    "tex/castle_lacquer_supply_chest.png": "5df3f526570d89006529af96be8990b56235cea1c00b414fb9e6a75c0fac0ab9",
+    "tex/hida_cell_cedar_bench.png": "3358468a83bcd1ebd0ad9b0b55eade5da855dad53295e820181c24564d7b6099",
+    "tex/hida_siege_archive_cabinet.png": "50ea9a86b2671cdc6781a2d0e993ddd0623fe0c18bf34046b7b33916567ea186",
+    "tex/hida_siege_cedar.png": "c2324b2eed1d87192dece90770291919ce9861531aee7a426f2cf73de92edca3",
+    "tex/hida_siege_cut_slate_normal.png": "d11cd60225d62db425d4ae65b28091f306fe026db17b2306c7149bd7ca582aae",
+    "tex/hida_siege_gold.png": "537b59c39e2e0dd0caa499fab0921a0d8025048d091de2f250e02fd831439c4b",
+    "tex/hida_siege_indigo.png": "c435c236d88d0360c1c3bcd3c7ece2546ddbff8d70ccf7cc441092b7a266b3ec",
+    "tex/hida_siege_iron.png": "b1dea3263b8c10a8b4b86c3d6f37a31e5d25ab15c96b04505e0b1e1bc7f591e7",
+    "tex/hida_siege_linen.png": "e15b14acca238932a4d634574a877f0170d3cc78eeb768c780a131ee63593bbe",
+    "tex/hida_siege_paper.png": "b05853b187b375bc2200de96fe820aef96c5be951af2303c2553f3c9517ee90f",
+    "tex/hida_siege_plank.png": "93f0df4d56e831ffd1fe08bf6e24ec90ac71a4294e0125456e012fadc77a7c46",
+    "tex/hida_siege_plaster.png": "bb1a3bd53d32911587e9e5701f1f4b5ce2fef9b9e566a7196b6123a6981b5d25",
+    "tex/hida_siege_red.png": "dbd62851b72f2412447e8d5f32ebc8314540c2687482e8d2c9acd4a145f30c51",
+    "tex/hida_siege_serving_tray.png": "fed45140eee45de7c22fcf8d9dc4159a3cf6485694870789f2b209e3d124bd65",
+    "tex/hida_siege_stone.png": "d6d00116e106be8c1d3a4c36112c090307ee069aa5d0f0108b94461e01e5802e",
+    "tex/hida_siege_weave.png": "9469cd2e31a7aed848356263d1af632624e3bdc0020eb4df6a898a02057a8116",
+    "tex/kaiu_shoji.png": "288892f7cad5b2585a10751aa41692583eadf7d1bad1fa16b7962520ebbb9cd4",
+    "tex/tea_tatami.png": "dce400919fd35aefd371ee9750d6b80477c3aacd5031262865e9ff8bfc233cf4"
+  },
+  "sources": {
+    "hida_siege_serving_tray": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hida_siege_serving_tray_00001_.glb",
+      "triangles": 17474,
+      "world_size": [
+        0.63,
+        0.25,
+        0.44
+      ]
+    },
+    "hida_siege_archive_cabinet": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_hida_siege_archive_cabinet_00001_.glb",
+      "triangles": 19793,
+      "world_size": [
+        1.26,
+        0.93,
+        0.57
+      ]
+    }
+  }
+}

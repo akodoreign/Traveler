@@ -1,0 +1,90 @@
+{
+  "mesh_sources": {
+    "cakon_paddy_sluice": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_paddy_sluice_00001_.glb",
+      "triangles": 16123,
+      "world_size": [
+        1.22,
+        0.52,
+        0.88
+      ]
+    },
+    "cakon_paddy_cedar_mesh": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_cedar_diorama_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        2.52,
+        4.36,
+        2.48
+      ]
+    },
+    "cakon_kakashi_indigo": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_indigo_kakashi_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        1.3,
+        1.79,
+        0.48
+      ]
+    },
+    "cakon_wayside_jizo": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_paddy_jizo_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        0.63,
+        1.19,
+        0.59
+      ]
+    },
+    "cakon_tomie_drying_rack": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_tomie_herb_rack_00001_.glb",
+      "triangles": 19512,
+      "world_size": [
+        1.62,
+        1.31,
+        0.6
+      ]
+    },
+    "cakon_tomie_mortar": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_herb_bowl_00001_.glb",
+      "triangles": 19651,
+      "world_size": [
+        0.48,
+        0.36,
+        0.44
+      ]
+    }
+  },
+  "maps": {
+    "M420": {
+      "terrain_quads": 1037,
+      "events": 96,
+      "placements": 133,
+      "water": true
+    },
+    "M421": {
+      "terrain_quads": 78,
+      "events": 78,
+      "placements": 17,
+      "water": false
+    },
+    "M885": {
+      "terrain_quads": 84,
+      "events": 0,
+      "placements": 168,
+      "water": true
+    },
+    "M886": {
+      "terrain_quads": 322,
+      "events": 0,
+      "placements": 16,
+      "water": false
+    },
+    "M887": {
+      "terrain_quads": 3642,
+      "events": 0,
+      "placements": 15,
+      "water": false
+    }
+  }
+}

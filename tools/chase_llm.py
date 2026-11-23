@@ -40,6 +40,23 @@ Notes:
 Findings:"""
 
 
+ANSWER = """You are helping a test bot that plays a role-playing game by following the quest marker. It has tried five
+times to reach its goal and failed. Choose what it should do next. Reply with ONE line, exactly one of:
+retry
+goto X Z            (walk to that spot on this map and use what is there; X Z are numbers from the list below)
+use NAME            (use the event with that exact name from the list below)
+broken WHY          (the game itself is at fault: the marker points somewhere unreachable, an event never responds)
+
+Its question: {question}
+What it did last:
+{tail}
+Usable things on this map (name, x, z, trigger 1=touch 2=talk 5=walk-on, and what it says):
+{events}
+Answers already tried for this question: {tried}
+
+One line:"""
+
+
 def load():
     import openvino_genai as og
     os.makedirs(CACHE, exist_ok=True)
@@ -71,6 +88,13 @@ def main():
                 word = out.strip().split()[0].strip(".:,").upper() if out.strip() else "CONTINUE"
                 action = {"RESTART": "restart", "CLOSE": "close"}.get(word, "continue")
                 print(json.dumps({"action": action, "why": out.strip()[:300]}), flush=True)
+            elif req.get("task") == "answer":
+                prompt = ANSWER.format(question=req.get("question", ""), tail=req.get("tail", "")[-2500:],
+                                       events=req.get("events", "")[-2500:], tried=", ".join(req.get("tried", [])) or
+                                       "none")
+                out = pipe.generate(prompt, max_new_tokens=30) if pipe else "retry"
+                line = next((ln.strip() for ln in out.splitlines() if ln.strip()), "retry")
+                print(json.dumps({"answer": line[:160]}), flush=True)
             elif req.get("task") == "summarise":
                 prompt = SUMMARISE.format(job=req.get("job", ""), notes=req.get("notes", "")[-7000:])
                 out = pipe.generate(prompt, max_new_tokens=300) if pipe else ""

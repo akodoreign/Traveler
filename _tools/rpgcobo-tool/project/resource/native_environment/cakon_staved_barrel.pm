@@ -11,7 +11,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/cakon_hut_timber.png"
+    texture0 = "tex/cakon_hut_timber_daylight_palette.png"
     texture1 = null
     texture2 = null
   }

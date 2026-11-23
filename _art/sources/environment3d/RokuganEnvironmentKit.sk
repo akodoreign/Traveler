@@ -27,6 +27,8 @@ class RokuganEnvironmentKit {
 
     constructor(target, def) {
         stage = target;
+        if(def["hideStockScenery"] && stage.bw3d)
+            stage.bw3d.setVisible(false);
         vegetation = [];
         pondFish = [];
         foreach(row in def["pondFish"] || []){
@@ -112,7 +114,7 @@ class RokuganEnvironmentKit {
             light.ch=1;
             light.type=2;
             light.k1=row[3];
-            light.color=0xff963fff;
+            light.color=length(row)>5 ? row[5] : 0xff963fff;
             light.power=row[4];
             light.spotout=-1.0;
             light.spotsharp=1.0;
@@ -363,6 +365,8 @@ local EnvironmentKit = RokuganEnvironmentKit;
     local out = this._rt_environment_launch(opt);
     local def = this["mapid"] ? environmentMaps[this.mapid] : null;
     rtEnvironmentKit = def && this["scn"] ? EnvironmentKit(this,def) : null;
+    if(rtEnvironmentKit && def["renderPreset"])
+        this.changeRenderSetting(def["renderPreset"]);
     return out;
 };
 ::RPGStage._rt_environment_update <- ::RPGStage.updateStageBody;

@@ -1,0 +1,14 @@
+{
+  "hida_siege_serving_tray": {
+    "prompt_id": "750337cc-bc5d-4f55-b26b-889534908881",
+    "history": "http://127.0.0.1:8189/history/750337cc-bc5d-4f55-b26b-889534908881"
+  },
+  "hida_siege_archive_cabinet": {
+    "prompt_id": "b6a1beca-be79-4a7c-9b4e-ea9a640cfdcd",
+    "history": "http://127.0.0.1:8189/history/b6a1beca-be79-4a7c-9b4e-ea9a640cfdcd"
+  },
+  "hida_tethered_bay_pony": {
+    "prompt_id": "320df2bd-64ab-478c-9605-a8243b855e53",
+    "history": "http://127.0.0.1:8189/history/320df2bd-64ab-478c-9605-a8243b855e53"
+  }
+}

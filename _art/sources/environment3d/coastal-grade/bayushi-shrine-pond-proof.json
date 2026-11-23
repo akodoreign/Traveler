@@ -1,0 +1,717 @@
+{
+  "maps": {
+    "M586": {
+      "before": {
+        "placements": [
+          [
+            "castle_kaiu_lantern",
+            21.25,
+            2.0,
+            8.75,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_kaiu_lantern",
+            26.25,
+            2.0,
+            8.75,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_kaiu_lantern",
+            32.75,
+            2.0,
+            6.25,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_kaiu_lantern",
+            41.75,
+            2.0,
+            6.25,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_kaiu_lantern",
+            32.75,
+            2.0,
+            30.25,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_kaiu_lantern",
+            41.75,
+            2.0,
+            30.25,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_diorama_matsu",
+            14.25,
+            2.0,
+            8.25,
+            1.0,
+            2.3240000000000003,
+            0.015
+          ],
+          [
+            "castle_diorama_matsu",
+            21.25,
+            2.0,
+            15.25,
+            1.0,
+            3.486,
+            0.015
+          ],
+          [
+            "castle_diorama_matsu",
+            33.25,
+            2.0,
+            9.25,
+            1.0,
+            5.478000000000001,
+            0.015
+          ],
+          [
+            "castle_kaiu_lantern",
+            19.75,
+            2.0,
+            8.25,
+            0.94,
+            0.0
+          ],
+          [
+            "castle_tamori_stones",
+            20.25,
+            2.0,
+            6.75,
+            1.03,
+            0.57
+          ],
+          [
+            "castle_kaiu_lantern",
+            26.25,
+            2.0,
+            8.25,
+            0.94,
+            0.0
+          ],
+          [
+            "castle_tamori_stones",
+            26.75,
+            2.0,
+            6.75,
+            1.03,
+            0.57
+          ],
+          [
+            "castle_diorama_matsu",
+            29.25,
+            2.0,
+            12.75,
+            0.98,
+            6.08,
+            0.012
+          ],
+          [
+            "castle_diorama_matsu",
+            44.75,
+            2.0,
+            12.75,
+            0.98,
+            11.97,
+            0.012
+          ]
+        ],
+        "poolLights": [
+          [
+            21.25,
+            2.68,
+            8.75,
+            3.35,
+            1.04
+          ],
+          [
+            26.25,
+            2.68,
+            8.75,
+            3.35,
+            1.04
+          ],
+          [
+            32.75,
+            2.68,
+            6.25,
+            3.35,
+            1.04
+          ],
+          [
+            41.75,
+            2.68,
+            6.25,
+            3.35,
+            1.04
+          ],
+          [
+            32.75,
+            2.68,
+            30.25,
+            3.35,
+            1.04
+          ],
+          [
+            41.75,
+            2.68,
+            30.25,
+            3.35,
+            1.04
+          ]
+        ],
+        "leafDrift": [],
+        "terrain": "m586_bayushi_castle",
+        "water": "m586_bayushi_castle_pond",
+        "waterSequence": {
+          "prefix": "cakon_river",
+          "frames": 32,
+          "seconds": 17.8
+        }
+      },
+      "after": {
+        "placements": [
+          [
+            "castle_kaiu_lantern",
+            21.25,
+            2.0,
+            8.75,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_kaiu_lantern",
+            26.25,
+            2.0,
+            8.75,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_kaiu_lantern",
+            32.75,
+            2.0,
+            6.25,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_kaiu_lantern",
+            41.75,
+            2.0,
+            6.25,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_kaiu_lantern",
+            32.75,
+            2.0,
+            30.25,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_kaiu_lantern",
+            41.75,
+            2.0,
+            30.25,
+            0.83,
+            0.0
+          ],
+          [
+            "castle_diorama_matsu_shrine_court",
+            14.25,
+            2.0,
+            8.25,
+            1.0,
+            2.3240000000000003,
+            0.015
+          ],
+          [
+            "castle_diorama_matsu_shrine_court",
+            21.25,
+            2.0,
+            15.25,
+            1.0,
+            3.486,
+            0.015
+          ],
+          [
+            "castle_diorama_matsu_shrine_court",
+            33.25,
+            2.0,
+            9.25,
+            1.0,
+            5.478000000000001,
+            0.015
+          ],
+          [
+            "castle_kaiu_lantern",
+            19.75,
+            2.0,
+            8.25,
+            0.94,
+            0.0
+          ],
+          [
+            "castle_tamori_stones",
+            20.25,
+            2.0,
+            6.75,
+            1.03,
+            0.57
+          ],
+          [
+            "castle_kaiu_lantern",
+            26.25,
+            2.0,
+            8.25,
+            0.94,
+            0.0
+          ],
+          [
+            "castle_tamori_stones",
+            26.75,
+            2.0,
+            6.75,
+            1.03,
+            0.57
+          ],
+          [
+            "castle_diorama_matsu_shrine_court",
+            29.25,
+            2.0,
+            12.75,
+            0.98,
+            6.08,
+            0.012
+          ],
+          [
+            "castle_diorama_matsu_shrine_court",
+            44.75,
+            2.0,
+            12.75,
+            0.98,
+            11.97,
+            0.012
+          ]
+        ],
+        "poolLights": [
+          [
+            21.25,
+            2.68,
+            8.75,
+            3.35,
+            1.04
+          ],
+          [
+            26.25,
+            2.68,
+            8.75,
+            3.35,
+            1.04
+          ],
+          [
+            32.75,
+            2.68,
+            6.25,
+            3.35,
+            1.04
+          ],
+          [
+            41.75,
+            2.68,
+            6.25,
+            3.35,
+            1.04
+          ],
+          [
+            32.75,
+            2.68,
+            30.25,
+            3.35,
+            1.04
+          ],
+          [
+            41.75,
+            2.68,
+            30.25,
+            3.35,
+            1.04
+          ]
+        ],
+        "leafDrift": [],
+        "terrain": "m586_bayushi_castle_shrine_court",
+        "water": "m586_bayushi_castle_pond_shrine_court",
+        "waterSequence": {
+          "prefix": "m586_bayushi_jade_pond",
+          "frames": 32,
+          "seconds": 17.8
+        },
+        "pondFish": [
+          [
+            "bayushi_pond_koi",
+            15.75,
+            1.522,
+            12.5,
+            1.24,
+            0.69,
+            1.24,
+            0.46,
+            0.31
+          ],
+          [
+            "bayushi_pond_koi",
+            15.75,
+            1.522,
+            12.5,
+            1.02,
+            0.69,
+            1.24,
+            0.46,
+            3.45159
+          ],
+          [
+            "bayushi_pond_koi",
+            19.75,
+            1.522,
+            12.5,
+            1.2,
+            0.71,
+            1.27,
+            0.41,
+            1.55
+          ],
+          [
+            "bayushi_pond_koi",
+            19.75,
+            1.522,
+            12.5,
+            1.0,
+            0.71,
+            1.27,
+            0.41,
+            4.69159
+          ]
+        ],
+        "renderPreset": "rt_coastal_brilliance_road_horizon"
+      },
+      "story": "7f8617b7929bc7d9ccab49992cb28966e6d2f02f62604cb0f8d0a57b2ffb8aeb",
+      "world": "1219164ab3269efd8cb7b5f69dc0b0544cb7ac5d21868dade106ab9b740bb3a1"
+    }
+  },
+  "basePresets": {
+    "rt_coastal_brilliance_road_horizon": {
+      "envlights": [
+        {
+          "color": -993025,
+          "head": -42,
+          "pitch": 58,
+          "power": 2240,
+          "shadow": {
+            "shadowdens": 0.59,
+            "shadowfar": 100.0,
+            "shadowray": 100.0,
+            "shadowreso": 1024,
+            "shadowsoft": 0.16,
+            "shadowtype": 2
+          },
+          "type": 1,
+          "scolor": -993025
+        }
+      ],
+      "exposure": {
+        "autoexposure": false,
+        "ev100": 9.5,
+        "evrange": [
+          -4.0,
+          14.0
+        ]
+      },
+      "fog": {
+        "type": 3,
+        "color": -2068388429,
+        "density": 0.0027,
+        "zoffs": 35.0,
+        "yplane": 0.0,
+        "yfalloff": 0.12
+      },
+      "ibl": {
+        "iblcolor": -453836801,
+        "ibldiff": 370,
+        "ibldir": 0,
+        "iblspec": 170,
+        "ibltex": "/resource/ibltex/traveler_clear_coast_ibl.ktx"
+      },
+      "id": "rt_coastal_brilliance_road_horizon",
+      "lock": false,
+      "name": {
+        "en": "Clear Coastal Sun",
+        "ja": "Clear Coastal Sun"
+      },
+      "postfx": {
+        "bloomblur": 3.5,
+        "bloompow": 0.09,
+        "bloomthrs": 0.92,
+        "dofblur": 0.45,
+        "dofrange": 40.0,
+        "dofz": 34.0
+      },
+      "renderpass": 2,
+      "ss": {
+        "aobias": 0.5,
+        "aoexp": 1.1,
+        "aopow": 0.7,
+        "aoradius": 3.0,
+        "gipow": 1.0,
+        "gitype": 0
+      }
+    }
+  },
+  "presets": [
+    {
+      "envlights": [
+        {
+          "color": -993025,
+          "head": -42,
+          "pitch": 58,
+          "power": 2240,
+          "shadow": {
+            "shadowdens": 0.59,
+            "shadowfar": 100.0,
+            "shadowray": 100.0,
+            "shadowreso": 1024,
+            "shadowsoft": 0.16,
+            "shadowtype": 2
+          },
+          "type": 1,
+          "scolor": -993025
+        }
+      ],
+      "exposure": {
+        "autoexposure": false,
+        "ev100": 9.5,
+        "evrange": [
+          -4.0,
+          14.0
+        ]
+      },
+      "fog": {
+        "type": 3,
+        "color": -2068388429,
+        "density": 0.0027,
+        "zoffs": 35.0,
+        "yplane": 0.0,
+        "yfalloff": 0.12
+      },
+      "ibl": {
+        "iblcolor": -453836801,
+        "ibldiff": 370,
+        "ibldir": 0,
+        "iblspec": 170,
+        "ibltex": "/resource/ibltex/traveler_clear_coast_ibl.ktx"
+      },
+      "id": "rt_coastal_brilliance_road_horizon",
+      "lock": false,
+      "name": {
+        "en": "Clear Coastal Sun",
+        "ja": "Clear Coastal Sun"
+      },
+      "postfx": {
+        "bloomblur": 3.5,
+        "bloompow": 0.09,
+        "bloomthrs": 0.92,
+        "dofblur": 0.45,
+        "dofrange": 40.0,
+        "dofz": 34.0
+      },
+      "renderpass": 2,
+      "ss": {
+        "aobias": 0.5,
+        "aoexp": 1.1,
+        "aopow": 0.7,
+        "aoradius": 3.0,
+        "gipow": 1.0,
+        "gitype": 0
+      }
+    }
+  ],
+  "source": {
+    "castle_diorama_matsu.mdl": "5c6a1ac326318a00eef23f3ec48845f78b7310e89a2f7fefb5a3ba642466819c",
+    "castle_diorama_matsu.pm": "b1b69bd579db1533bca7df89542adfdeaacee422a2e1060c9bcaddcb8bc50ab4",
+    "castle_kaiu_lantern.mdl": "e32987d06d3a59e09a9c0345cf0656b1b256ba6e7d4e1eea6878d17ed39f00be",
+    "castle_kaiu_lantern.pm": "89def9c997451f8c83447b3a25c012863dee053c1910bbce0d83f1a38b77d60a",
+    "castle_tamori_stones.mdl": "ab4680b8d6b6f36922651e6f29f347509d250a2f1960007f66a5b18c56b09931",
+    "castle_tamori_stones.pm": "de569483eb71a9173e9760eacda641ce9ce04a1f0eb023e26b2b9ef187e15382",
+    "m586_bayushi_castle.mdl": "cb1257139aec379d459571a5d63ce9028dac53d4af3f41a23fb9e1dc62f86913",
+    "m586_bayushi_castle.pm": "4005f62d4f4d7be35283251d306635105b033aee4e4b98f25c4f8b0d40d6a91e",
+    "m586_bayushi_castle_pond.mdl": "5910f39704e7495c4d3e82205792853ccc0bd7d77cdc2df62741a8151d4663b2",
+    "m586_bayushi_castle_pond.pm": "39b025753c857ceb8e403765e589297014f761c904406973adfbbb0ef4d137e5",
+    "tex/cakon_river00.png": "91ec54d1d044b767539c37a54f04def26a56812ab13be52aa464abdfe01be480",
+    "tex/cakon_river01.png": "de2dad157c95c375af3b164748aa64bbfd527ddd3d7b82d3d6a023c441daf1f2",
+    "tex/cakon_river02.png": "b822c348ce11341457435c42d80d6f8403d5c4dd163ad4a4853591c2e531bdf1",
+    "tex/cakon_river03.png": "9d5ba96924d76568762519596db412d1c0b3fd93dab95716a1ecf64a5285fd99",
+    "tex/cakon_river04.png": "8dc2c76eb3f7353b6b6c2990d05cc512c9a14e298580562885a2b1d8b07735bb",
+    "tex/cakon_river05.png": "c1dd2406ed90af9c06377e51cedcef19d05b2759dad9533fa28bb0450ba0acad",
+    "tex/cakon_river06.png": "8f966cdce8d57eb67c01244060c46dbef926d821326c8707dfc21450c59c9e19",
+    "tex/cakon_river07.png": "28bbdb0e3df618f603f0f6b277910b523f4aac829f103d6cf2e502842f94d2a6",
+    "tex/cakon_river08.png": "d753e2240c3d1e4ef19a9a61b2372d27c89d54ccabcaf0e89aedb17d3396b2bc",
+    "tex/cakon_river09.png": "2ba9c0df1169364bf3d875332b38b2aefde25ce69519d9f4900f2e6244c038ca",
+    "tex/cakon_river10.png": "f0db9192a63dec3b4c432e00b969e411d9981d53aded060f455c72b8ab3237ea",
+    "tex/cakon_river11.png": "7d28c1ee5f847aab7f60b5212320b5a999c8f64c1bac06fdb4ac0c86b51f9776",
+    "tex/cakon_river12.png": "b271991e7110f20c56ffff685ef4ca18862bb78218b3c013071555927d7d7a8d",
+    "tex/cakon_river13.png": "ad560fdc0cc1f28b56d46a8ad37445c6ee8b4dd68bca01d641c62d19489bf529",
+    "tex/cakon_river14.png": "c58652eeeb6d89f9670e4ee11ba89617f418e28323cf06088069848bb429673d",
+    "tex/cakon_river15.png": "33f92d621d045626161b1e1d6e0d5f6a40ebfc2bce508c77321d80d9c68ef2ce",
+    "tex/cakon_river16.png": "a3b87ffe36d22948254560a83ba44cfef377b941dabb1ee5edde8d5cbd8764f8",
+    "tex/cakon_river17.png": "8041d69b33d0a50f1389a1cb0593ee6b9966436b79621ff681be4ff959372632",
+    "tex/cakon_river18.png": "2b61b187ad75d751bf62877187810c92721782315944025ba196272a73f3d6f6",
+    "tex/cakon_river19.png": "bd0f52a3e45f8f545854e447f090e4e811f20745aacfe43c2c5522bb03bd1df6",
+    "tex/cakon_river20.png": "e6b7954aebb6eb24ff0f5aa4687cc61f5ed1dafc4f93b42442a2072cb7d5e8a1",
+    "tex/cakon_river21.png": "1f66062851190c013d961d5465584c175a9c4c940c119b35f030a4a740814b36",
+    "tex/cakon_river22.png": "1b9e3332cbd05fa978854d1be17e76bc1a0e0871c6a5b1077f5915a7f0125e4a",
+    "tex/cakon_river23.png": "01d10c95bd5513a08cc37b7628250b06789f2e0b339c3a6b1cadae5ddbb147c8",
+    "tex/cakon_river24.png": "5cd19b5b5861336c2866e69861c1ab2e9ddc43c896462553889f42ecefee60e0",
+    "tex/cakon_river25.png": "a4b423ebbcb6e13415fa06aad6cf7d780ba0f8dcc282151d5c25f02d79694d49",
+    "tex/cakon_river26.png": "3a068719250ec247df820422036f55a08dbe44109c322ca5b8095feeaa465b5f",
+    "tex/cakon_river27.png": "04e9aa0ba2eb2dba0f27590798b98463ace017f569d58188b4bdc258b43a7152",
+    "tex/cakon_river28.png": "b6fa2e32d0e6ea0c0764f667f028ab09719b46dcf5effd345d2541c4fa523ce5",
+    "tex/cakon_river29.png": "191aba063ee3d403a503a99b75eb9923ed73953a9773c6cf990ee8b7c7e8406d",
+    "tex/cakon_river30.png": "d31307d4707abf443f2104ab8e7a1b532185103ce337cd587156d67b0f696a2b",
+    "tex/cakon_river31.png": "e7cdba7c04454f8de447a2a690655c4630ad93092235bed5452f98b968452cc2",
+    "tex/cakon_silt.png": "c8bcdc1295c13f0f7d24b703840cc88320772ae26c1ee20992fd7a9d61cea4e3",
+    "tex/castle_bayushi_accent_daylight_palette.png": "f81954fc277ee4417661b3cb8844162c8e7fb8d127c0dfaec6249171cbcce8ba",
+    "tex/castle_bayushi_floor_daylight_palette.png": "9d77c978fd07f03f899e4cdeb5cf82f043aa194b012682ea13999c10074caeb3",
+    "tex/castle_bayushi_gravel_daylight_palette.png": "3a42eda4741b1f464fefb3426ead89902094b0a1d20566224ca612d397d6b526",
+    "tex/castle_bayushi_paper.png": "79a7532ea56fe9ae92f3bea44d0617491eabcfbd2058a6d9870e69f234d337ba",
+    "tex/castle_bayushi_roof_daylight_palette.png": "5c0e3fae9b3665671840cc098a33245e8a485b7d559080e8b889790042388911",
+    "tex/castle_bayushi_stone.png": "f7cba490e8992a5ded3a8dd61a199285811b35a7aea84b8e87fb07386f91a55d",
+    "tex/castle_bayushi_wood.png": "78cc00a742eb1fe7f1add1cac5e487416f65c8e63bc904d26fc0519c87e61915",
+    "tex/castle_diorama_matsu.png": "7219f625972f7e99601ce8b72e3d8e596077c5b4fe877dd1da9da90e975288c4",
+    "tex/castle_kaiu_lantern.png": "0eab48b449ce2c69359a38526944a7276591746caf15e716ebf9d302928eef08",
+    "tex/castle_tamori_stones.png": "73fb227a4e069c0bd478e7b1f1b5bf5af41407a289df307359d24c93f53cecb2",
+    "bayushi_pond_koi.pm": "982df3832e337d864e0800ef3b1c36adcbcece84ad8cad774b409e60377d8f24",
+    "bayushi_pond_koi.mdl": "80c32874e7734a5d24a75ac88fb796158627d6c5d9212af06275e65138d948a4",
+    "tex/bayushi_pond_koi.png": "291380ca8b6234e2cecb489a7c5df958082ab4dd1b015de47364d31b9167905d"
+  },
+  "files": {
+    "bayushi_pond_koi.pm": "982df3832e337d864e0800ef3b1c36adcbcece84ad8cad774b409e60377d8f24",
+    "bayushi_pond_koi.mdl": "80c32874e7734a5d24a75ac88fb796158627d6c5d9212af06275e65138d948a4",
+    "tex/bayushi_pond_koi.png": "291380ca8b6234e2cecb489a7c5df958082ab4dd1b015de47364d31b9167905d",
+    "tex/cakon_silt_shrine_court.png": "159fe69133f75b5eb5666788f598a73bab593daef39ad6ba521c2aadc55e12c4",
+    "tex/castle_bayushi_stone_shrine_court.png": "1f8430df1f053ff425e9c2b58fec94548a90a30e33ad4b6dace9a242bddcc443",
+    "tex/castle_bayushi_gravel_daylight_palette_shrine_court.png": "543b070524b3644252fd7438660c2e1fb952bac1ca1ffe6f14abd2f3d82b4c7d",
+    "tex/castle_bayushi_floor_daylight_palette_shrine_court.png": "8825d14694f383e04834aa0ff7b2d09ada71d5e8cbc7d23030c630e0e9726b8d",
+    "tex/castle_bayushi_wood_shrine_court.png": "312e477bd1a06fc583b1573a3de0eecd0a0ed2f63a36431574e6a12598793c39",
+    "tex/castle_bayushi_paper_shrine_court.png": "160f728bcba824d90a67dc6f8ee03b6a2cb528860ff71df2183b05f3c71045cc",
+    "tex/castle_bayushi_roof_daylight_palette_shrine_court.png": "f2e52d40aaa22540e584070dd762b86e7b3a7250e1876b2061695046e52659db",
+    "tex/castle_bayushi_accent_daylight_palette_shrine_court.png": "371eb4690d872f37289181bc712b86ee0efbbdd06b36767c9840112b6a87fa66",
+    "m586_bayushi_castle_shrine_court.pm": "fee8bac8ef5c95b754cc9bfc4fcb48adfec5715ec3ec34d1e22d1c348fe2127e",
+    "tex/castle_diorama_matsu_shrine_court.png": "ef61f69d2d2fcb0a706a6641cfc474df404269038c8875bc00c42a0ceedac9d6",
+    "castle_diorama_matsu_shrine_court.pm": "de6d088ef6b9345d30bbc15b0f9b4e2f65d8e780820e7f8bf8e7e091a928a39e",
+    "tex/m586_bayushi_jade_pond00.png": "e6688aa20cd33e5a18cc764069ddd85cb91b2f4109fa1d95f4630d043b5674c7",
+    "tex/m586_bayushi_jade_pond01.png": "80d1fd4deee04eead8434941aa8db31a42f3cd3da0855cf76d9e60ae5319397f",
+    "tex/m586_bayushi_jade_pond02.png": "77ce243dbb8cdda26e85d42e8a78b00a98228b9fac412bb3d043da98c3386ff4",
+    "tex/m586_bayushi_jade_pond03.png": "8c329643e700e009e2a46c245ba77407f31718822b3ae365ff51e25a030107ba",
+    "tex/m586_bayushi_jade_pond04.png": "c530b612c24db5725d3d119fe0a4c8d06548d3b4cd0a19a535bd3ec0ea749a01",
+    "tex/m586_bayushi_jade_pond05.png": "504f260a14a9f32f37966fab8dde869db72cb4dcda17a670d4d185c6ad660c48",
+    "tex/m586_bayushi_jade_pond06.png": "a4685f882f8a68b7677a0246b1b3d938867a34ea885b43b3810dd8dad3896a7e",
+    "tex/m586_bayushi_jade_pond07.png": "c5514307b9a0f03a0fd40d77ad647f4dfa90594cc98e9d1d369d6389f775b82c",
+    "tex/m586_bayushi_jade_pond08.png": "27e8c0a7c4a2419df40643730a5eeac2ed6c4b0ca9519d1800bb06b7aefb3978",
+    "tex/m586_bayushi_jade_pond09.png": "3407ce933ed90205f0fbed69a6d1c8961c3f4f697d653584e2f516022e4f2ff7",
+    "tex/m586_bayushi_jade_pond10.png": "02953b18af0284174519782816704786149d75a9c533a0e85b7858cb4116d5a3",
+    "tex/m586_bayushi_jade_pond11.png": "b186f775c00d5051ef890d323ceb68e7dae701df2f0aa2e55170b03d73b57c55",
+    "tex/m586_bayushi_jade_pond12.png": "ed07bd83a50e5c576fb49532956a55ceed3dee2719a81b0c0f941ce0d14d610b",
+    "tex/m586_bayushi_jade_pond13.png": "264e911de781385d24a0396b4689be766b06430aa1e7e59556b542661cdfbfb1",
+    "tex/m586_bayushi_jade_pond14.png": "019c009ccc017d485c0800dfd1644a422e1ff0752de2db6f8290b0a693fd7e21",
+    "tex/m586_bayushi_jade_pond15.png": "99ef7f798a983fd6169abb7e74a9c7e5a573a055109111eb1701442179f75e67",
+    "tex/m586_bayushi_jade_pond16.png": "0ce3e2226416ca49b6ccea0818cdf300d5d143fe1f0c89777b3028a1eb0b3f85",
+    "tex/m586_bayushi_jade_pond17.png": "1005600a9ac77322d18a9fda6aec19c4a622c39488ff98ac3bb206ea3165dcf8",
+    "tex/m586_bayushi_jade_pond18.png": "4952fe84ffe058c021b235f20789556100b4182bc47769d715531df9056d8f4a",
+    "tex/m586_bayushi_jade_pond19.png": "ea952804a4144fc1714cb1f20e09b4c67715610fd43aa491116874398e3228b6",
+    "tex/m586_bayushi_jade_pond20.png": "12be3481b954ca0814130f6e0f5b5704d89fb321bc7232e5856dcb581fc7e11a",
+    "tex/m586_bayushi_jade_pond21.png": "fc64dfd7b47bd64e4926a391181efebe4ef64a928a35fec4dcb84a02ab768dcf",
+    "tex/m586_bayushi_jade_pond22.png": "b36f97f7cb40898f1c75e01396dc9607f1bf9ecdf8f42d0d999b62cd63b0c835",
+    "tex/m586_bayushi_jade_pond23.png": "158725e7029bcb2f9f05c19f37f0515c4e4a67ea6138f4e928e196e5112304fe",
+    "tex/m586_bayushi_jade_pond24.png": "61b06532aaf5706f00280ee7880ab438766332923aa0585660760ff5363d0eb5",
+    "tex/m586_bayushi_jade_pond25.png": "2ec4d183992ea079fdf78b9d619258b9921a0852ebc4d2ce02c35e0d0eaf911f",
+    "tex/m586_bayushi_jade_pond26.png": "3046db2aa1840b863c01b9345118fe7351db6381a7d0625bcf5538ef8e6db04a",
+    "tex/m586_bayushi_jade_pond27.png": "2f406ade3274a3a0f66a89c77964930b92191ff3b0772d6c973a935f6f42a80a",
+    "tex/m586_bayushi_jade_pond28.png": "fdddc0e8699fcf4d8c682cd907ef6897ea615b2219b2a92943bdcfe98792f004",
+    "tex/m586_bayushi_jade_pond29.png": "9bbd2c0155fbf5d8c964ec3c089c39944570384fa662a4509224303b042fc471",
+    "tex/m586_bayushi_jade_pond30.png": "4f1d218e7bbf4d34ef2d4c5fba4932f810e1b44e8fe123507a7ae852814af37d",
+    "tex/m586_bayushi_jade_pond31.png": "e4386bb71969fcea81b1ff612bfa283b731df6c593b49a459df25523516bc4c6",
+    "m586_bayushi_castle_pond_shrine_court.pm": "17cd04b33fe55510f575833750fe69dfa7d7530fbf714931b2c3be3a9b8c407a"
+  },
+  "projectSource": {
+    "project/resource/ibltex/traveler_clear_coast_ibl.ktx": "d7d16327d3d759dd213d21ccb4d34e7ebfabdaf6c945da765f35282259c345a7"
+  },
+  "projectFiles": {
+    "project/resource/ibltex/traveler_clear_coast_ibl.ktx": "d7d16327d3d759dd213d21ccb4d34e7ebfabdaf6c945da765f35282259c345a7"
+  },
+  "koiFit": {
+    "wetCells": 80,
+    "height": 1.534000039100647,
+    "koiRadius": 0.34557923674583435,
+    "sweptBounds": [
+      {
+        "x": [
+          14.631481746435165,
+          16.868518253564837
+        ],
+        "z": [
+          10.831481746435164,
+          14.168518253564836
+        ],
+        "loopSeconds": 13.659098493868665
+      },
+      {
+        "x": [
+          14.707509178519249,
+          16.79249082148075
+        ],
+        "z": [
+          10.907509178519248,
+          14.092490821480752
+        ],
+        "loopSeconds": 13.659098493868665
+      },
+      {
+        "x": [
+          18.625304915904998,
+          20.874695084095002
+        ],
+        "z": [
+          10.815304915905,
+          14.184695084095
+        ],
+        "loopSeconds": 15.324842212633138
+      },
+      {
+        "x": [
+          18.694420763254165,
+          20.805579236745835
+        ],
+        "z": [
+          10.884420763254166,
+          14.115579236745834
+        ],
+        "loopSeconds": 15.324842212633138
+      }
+    ]
+  }
+}

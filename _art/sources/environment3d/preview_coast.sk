@@ -1,4 +1,12 @@
 local stage=::rpgstage;
+if(("@MAP@"=="M829" && stage.mapid=="M480") || ("@MAP@"=="M819" && stage.mapid=="M484")
+    || ("@MAP@"=="M844" && stage.mapid=="M485") || ("@MAP@"=="M828" && stage.mapid=="M474")
+    || ("@MAP@"=="M846" && stage.mapid=="M475") || ("@MAP@"=="M799" && stage.mapid=="M487")
+    || ("@MAP@"=="M798" && stage.mapid=="M488") || ("@MAP@"=="M797" && stage.mapid=="M489")
+    || ("@MAP@"=="M821" && stage.mapid=="M477")){
+    stage.raiseEncounter();
+    return;
+}
 local furnaceBattle=("@MAP@"=="M873" || "@MAP@"=="M874" || "@MAP@"=="M894");
 local shadowBattle=("@MAP@"=="M817" || "@MAP@"=="M818");
 local marshBattle=("@MAP@"=="M862" || "@MAP@"=="M863" || "@MAP@"=="M864");
@@ -11,8 +19,9 @@ local dragonBattle="@MAP@"=="M872";
 local autumnBattle="@MAP@"=="M875";
 local yotomoBattle=("@MAP@"=="M876" || "@MAP@"=="M877");
 local iuchiBattle=("@MAP@"=="M878" || "@MAP@"=="M879" || "@MAP@"=="M880" || "@MAP@"=="M881" || "@MAP@"=="M882");
-local cakonBattle="@MAP@"=="M883" || "@MAP@"=="M884";
-if(("@MAP@"=="M808" || "@MAP@"=="M811" || "@MAP@"=="M810" || "@MAP@"=="M812" || "@MAP@"=="M813" || furnaceBattle || shadowBattle || marshBattle || paddyBattle || cityBattle || templeBattle || ojataraBattle || groveBattle || dragonBattle || autumnBattle || yotomoBattle || iuchiBattle || cakonBattle) && !stage["battle"]){
+local winterRiverBattle="@MAP@"=="M888" || "@MAP@"=="M889" || "@MAP@"=="M890";
+local cakonBattle="@MAP@"=="M883" || "@MAP@"=="M884" || "@MAP@"=="M885" || "@MAP@"=="M886" || "@MAP@"=="M887";
+if(("@MAP@"=="M808" || "@MAP@"=="M811" || "@MAP@"=="M810" || "@MAP@"=="M812" || "@MAP@"=="M813" || furnaceBattle || shadowBattle || marshBattle || paddyBattle || cityBattle || templeBattle || ojataraBattle || groveBattle || dragonBattle || autumnBattle || yotomoBattle || iuchiBattle || cakonBattle || winterRiverBattle) && !stage["battle"]){
     local fire="@MAP@"=="M894" ? "E558" : "E484";
     local foes=furnaceBattle ? [{id=fire,x=1.5,z=-.4},{id=fire,x=.4,z=.65}] :
         [{id="@MAP@"=="M813" ? "E103" : ("@MAP@"=="M812" ? "E120" : ("@MAP@"=="M808" ? "E600" : "E430")),x=1.5,z=-.4}];
@@ -30,7 +39,13 @@ if(("@MAP@"=="M808" || "@MAP@"=="M811" || "@MAP@"=="M810" || "@MAP@"=="M812" || 
         if("@MAP@"=="M881") foes=[{id="E514",x=1.5,z=-.78},{id="E514",x=.48,z=.72},{id="E514",x=1.69,z=1.36}];
         if("@MAP@"=="M882") foes=[{id="E518",x=1.7,z=-.40},{id="E519",x=.54,z=.75}];
     }
+    if("@MAP@"=="M888") foes=[{id="E539",x=1.56,z=-.60},{id="E539",x=.54,z=.77}];
+    if("@MAP@"=="M890") foes=[{id="E536",x=1.56,z=-.61},{id="E538",x=.51,z=.75}];
+    if("@MAP@"=="M889") foes=[{id="E534",x=1.56,z=-.60},{id="E535",x=.54,z=.77},{id="E536",x=-.6,z=.12}];
     if(cakonBattle) foes=[{id="E521",x=1.58,z=-.50},{id="E522",x=.56,z=.76}];
+    if("@MAP@"=="M885") foes=[{id="E525",x=1.51,z=-.62},{id="E525",x=.54,z=.76}];
+    if("@MAP@"=="M886") foes=[{id="E527",x=1.49,z=-.42}];
+    if("@MAP@"=="M887") foes=[{id="E526",x=1.57,z=-.31}];
     if("@MAP@"=="M884") foes=[{id="E523",x=1.58,z=-.49},{id="E523",x=.56,z=.76}];
     if(templeBattle) foes="@MAP@"=="M867" ?
         [{id="E466",x=1.50,z=-.55},{id="E466",x=.50,z=.85}] : [{id="E471",x=1.50,z=-.55}];
@@ -78,6 +93,17 @@ local cam=CoastCamera({});
 stage.camwork.addMotion(cam);
 local battle=stage["battle"];
 if(battle) battle.battleui.setVisible(false);
+if(battle && (stage.mapid=="M828" || stage.mapid=="M885" || stage.mapid=="M886" || stage.mapid=="M887" ||
+              stage.mapid=="M799" || stage.mapid=="M846")){
+    foreach(member in battle.members){
+        local actor=battle.getChara3D(member);
+        if(actor) printf("[COAST BATTLE] party actor %.2f %.2f %.2f\n",actor.pos.x,actor.pos.y,actor.pos.z);
+    }
+    foreach(foe in battle.enemies){
+        local actor=battle.getChara3D(foe);
+        if(actor) printf("[COAST BATTLE] enemy actor %.2f %.2f %.2f\n",actor.pos.x,actor.pos.y,actor.pos.z);
+    }
+}
 local renderer=stage.view3d.renderer;
 if(@DAYLIGHT@ || stage.mapid=="M100" || stage.mapid=="M810") stage.changeRenderSetting("rt_hd2d_field");
 ::renderhint.set(ClientConfig.renderhints[4]);
@@ -501,8 +527,122 @@ if(@DOORS@){
 }else if(stage.mapid=="M418"){
     views=[["cakon-hamlet",[30.58,2.90,10.71],.21,.48,16.8,55.],
            ["cakon-hamlet-shrine",[36.66,3.13,12.98],.18,.34,10.6,54.]];
+}else if(stage.mapid=="M422"){
+    views=[["river-of-gold-winter",[48.14,2.95,8.90],.30,.48,20.4,55.],
+           ["winter-fox-shrine",[57.96,3.20,13.77],.19,.34,10.1,54.]];
+}else if(stage.mapid=="M423"){
+    views=[["rice-barge",[28.48,2.56,8.30],.25,.55,16.9,54.],
+           ["rice-barge-deck",[28.89,2.44,8.15],.55,.35,9.7,52.]];
+}else if(stage.mapid=="M424"){
+    views=[["floating-flowers-market",[36.65,2.92,12.94],.20,.44,18.5,54.],
+           ["floating-flowers-jetties",[42.0,2.71,4.94],.48,.43,15.2,53.],
+           ["floating-flowers-shrine",[61.86,3.07,14.10],.16,.36,10.3,54.]];
+}else if(stage.mapid=="M474"){
+    views=[["doji-tide-road",[44.0,3.01,8.67],.17,.55,27.9,56.],
+           ["doji-tide-cave-mouth",[45.25,3.10,13.37],.08,.34,11.4,53.]];
+}else if(stage.mapid=="M486"){
+    views=[["doji-tide-cave-crossing",[45.62,2.38,13.82],.18,.47,16.4,54.],
+           ["doji-tide-cave-pools",[56.09,2.41,15.91],.15,.50,16.9,54.]];
+}else if(stage.mapid=="M828"){
+    views=[["doji-beach-encounter",[31.78,1.47,34.02],.04,.47,20.4,53.]];
+}else if(stage.mapid=="M475"){
+    views=[["phoenix-northern-road",[41.55,3.08,11.7],.23,.53,26.1,56.],
+           ["phoenix-fox-cave-entrance",[35.26,3.24,13.28],.16,.31,11.28,52.]];
+}else if(stage.mapid=="M487"){
+    views=[["phoenix-fox-votive-chamber",[37.6,2.34,13.92],.13,.46,12.9,53.],
+           ["phoenix-fox-mineral-springs",[48.0,2.27,20.51],-.20,.52,16.1,54.]];
+}else if(stage.mapid=="M799"){
+    views=[["phoenix-fox-shrine-encounter",[31.9,1.64,34.34],.13,.44,20.3,54.]];
+}else if(stage.mapid=="M846"){
+    views=[["phoenix-isawa-mori-encounter",[32.32,2.09,35.67],.18,.45,19.8,54.]];
+}else if(stage.mapid=="M476"){
+    views=[["dragon-mountain-route",[50.90,3.04,12.06],.25,.51,26.4,56.],
+           ["dragon-mountain-cave-mouth",[45.25,3.08,13.53],-.13,.34,11.2,52.],
+           ["dragon-mountain-stream-bridge",[56.73,2.75,10.45],.42,.53,13.8,53.]];
+}else if(stage.mapid=="M488"){
+    views=[["dragon-mountain-cave-springs",[41.58,2.27,11.47],.15,.48,15.5,54.],
+           ["dragon-mountain-cave-shelves",[51.26,2.51,16.6],.23,.51,18.4,54.]];
+}else if(stage.mapid=="M798"){
+    views=[["dragon-mountain-cavern-arena",[32.09,1.49,34.23],.12,.46,20.7,54.]];
+}else if(stage.mapid=="M477"){
+    views=[["beiden-hill-road",[44.09,3.07,12.07],.18,.54,25.5,56.],
+           ["beiden-bandit-cave-mouth",[45.26,3.15,13.46],.13,.34,11.3,52.]];
+}else if(stage.mapid=="M489"){
+    views=[["beiden-bandit-cave-quarters",[27.65,2.29,15.8],.16,.48,13.2,54.],
+           ["beiden-bandit-cave-supplies",[55.54,2.34,18.74],.27,.50,15.7,54.]];
+}else if(stage.mapid=="M821"){
+    views=[["beiden-hill-road-arena",[31.89,1.56,34.27],.13,.45,20.8,54.]];
+}else if(stage.mapid=="M797"){
+    views=[["beiden-bandit-hideout-arena",[32.34,1.61,34.49],.14,.46,20.45,54.]];
+}else if(stage.mapid=="M473"){
+    views=[["zumiki-snow-road",[44.13,3.10,11.49],.19,.48,29.3,56.],
+           ["zumiki-ice-cave-mouth",[37.5,3.18,13.44],.22,.33,12.3,52.]];
+}else if(stage.mapid=="M485"){
+    views=[["zumiki-crystal-grotto",[34.08,2.3,13.03],.22,.50,14.0,54.],
+           ["zumiki-glacial-pool",[46.6,2.41,14.47],.19,.46,15.4,53.]];
+}else if(stage.mapid=="M844"){
+    views=[["zumiki-ice-cave-battle",[34.70,1.63,37.77],.15,.39,16.1,53.]];
+}else if(stage.mapid=="M471"){
+    views=[["river-gold-east-bank",[43.32,2.71,7.93],.20,.49,27.4,56.],
+           ["river-cave-mouth",[38.3,3.14,13.68],.20,.31,11.9,51.]];
+}else if(stage.mapid=="M472"){
+    views=[["lion-hills-road",[45.20,3.02,11.76],.22,.49,29.6,56.],
+           ["old-mine-mouth",[56.26,3.23,13.63],-.26,.32,11.4,52.]];
+}else if(stage.mapid=="M482"){
+    views=[["river-cave-bridge",[41.20,2.35,13.58],.24,.51,13.3,53.],
+           ["river-cave-stream",[43.09,2.13,17.11],.22,.45,16.8,55.]];
+}else if(stage.mapid=="M483"){
+    views=[["lion-standing-stone",[37.22,2.44,9.34],.21,.52,14.4,53.],
+           ["lion-inner-cavern",[58.43,2.43,14.87],.17,.47,17.2,54.]];
+}else if(stage.mapid=="M484"){
+    views=[["lion-mine-timber-gallery",[42.47,2.58,10.08],.21,.49,14.5,53.],
+           ["lion-mine-ore-rails",[54.88,2.32,19.8],.32,.52,16.9,54.],
+           ["lion-mine-switch-station",[42.94,1.92,8.85],.41,.41,10.65,52.]];
+}else if(stage.mapid=="M819"){
+    views=[["lion-cavern-battle",[33.8,1.79,37.47],.18,.38,16.65,54.]];
+}else if(stage.mapid=="M829"){
+    views=[["yasuki-coastal-cave-battle",[33.3,1.60,37.98],.20,.37,15.9,54.]];
+}else if(stage.mapid=="M470"){
+    views=[["yasuki-coast-road",[44.80,3.01,9.30],.19,.52,33.3,58.],
+           ["yasuki-sea-cave-mouth",[35.34,3.22,13.70],.23,.32,12.0,53.],
+           ["yasuki-smuggler-mouth",[56.47,3.20,13.69],-.30,.34,12.2,53.]];
+}else if(stage.mapid=="M480"){
+    views=[["yasuki-tidal-chamber",[38.8,2.12,15.75],.25,.57,18.15,55.],
+           ["yasuki-return-passage",[23.46,2.66,3.37],3.21,.33,9.6,51.]];
+}else if(stage.mapid=="M481"){
+    views=[["yasuki-hidden-landing",[51.88,2.34,18.95],.35,.57,19.15,55.],
+           ["yasuki-smuggler-caches",[37.6,2.12,12.76],.18,.54,13.1,54.]];
+}else if(stage.mapid=="M425"){
+    views=[["den-harbour-stair",[19.50,2.36,11.55],.28,.46,13.8,54.],
+           ["den-serpent-archive",[32.56,2.45,14.05],.28,.54,16.8,54.]];
+}else if(stage.mapid=="M426"){
+    views=[["den-ritual-sand",[35.3,2.12,10.89],.16,.58,14.5,55.]];
+}else if(stage.mapid=="M427"){
+    views=[["den-serpent-mouth",[36.63,3.24,13.46],.09,.36,10.6,53.],
+           ["den-serpent-passage-depth",[36.75,2.99,13.69],.51,.28,8.75,52.]];
+}else if(stage.mapid=="M428"){
+    views=[["den-enforcer-chamber",[42.70,2.30,12.86],.23,.43,15.5,55.],
+           ["den-boathouse-ladder",[53.36,2.45,10.89],.04,.34,8.11,51.]];
+}else if(stage.mapid=="M890"){
+    views=[["den-combat",[34.0,1.75,35.75],.16,.37,15.7,55.]];
+}else if(stage.mapid=="M888"){
+    views=[["winter-river-battle",[33.0,1.65,38.2],.13,.34,18.7,54.]];
+}else if(stage.mapid=="M889"){
+    views=[["storm-jetty-battle",[33.1,1.63,38.05],.13,.33,18.1,54.]];
+}else if(stage.mapid=="M420"){
+    views=[["paddy-rows",[32.3,2.84,10.3],.27,.47,18.7,53.],
+           ["cedar-and-scarecrow",[48.70,3.03,11.99],.22,.36,19.8,53.]];
+}else if(stage.mapid=="M421"){
+    views=[["tomie-clay-dome",[41.17,3.04,11.1],.28,.33,10.4,52.],
+           ["tomie-threshold",[42.49,3.13,11.20],-.15,.26,6.7,53.]];
 }else if(stage.mapid=="M419"){
     views=[["cakon-canal-bridge",[37.76,2.37,10.21],.30,.51,14.5,54.]];
+}else if(stage.mapid=="M885"){
+    views=[["paddy-battle",[33.3,1.56,37.0],.16,.36,16.3,54.]];
+}else if(stage.mapid=="M886"){
+    views=[["tomie-outdoor-battle",[33.2,1.84,38.1],.16,.33,16.4,55.]];
+}else if(stage.mapid=="M887"){
+    views=[["tomie-interior-battle",[33.0,1.82,36.3],.13,.31,14.7,54.]];
 }else if(cakonBattle){
     views=stage.mapid=="M883" ? [["cakon-street-combat",[31.80,1.35,40.86],.14,.35,17.1,53.]] :
         [["cakon-canal-combat",[31.68,1.46,42.38],.13,.38,18.4,53.]];
@@ -521,6 +661,7 @@ if(@DOORS@){
            [raised ? "dry-west-bank" : "flooded-west-bank",[16.6,2.32,10.6],.24,.41,12.8,58.]];
 }else if(stage.mapid=="M458"){
     views=[["fallen-road",[32.6,2.92,15.35],.27,.64,19.2,57.],
+           ["fallen-road-cart",[29.27,2.51,11.78],.24,.39,6.1,49.],
            ["scout-waymarker",[20.5,2.64,9.28],.14,.38,8.5,53.]];
 }else if(stage.mapid=="M457"){
     if(length(kit.watchfires)!=5) throw Exception("Shinomen watchfires did not load");

@@ -1,0 +1,59 @@
+{
+  "maps": {
+    "M425": {
+      "width": 144,
+      "depth": 76,
+      "placements": 17,
+      "terrain_quads": 34565,
+      "events": 85
+    },
+    "M426": {
+      "width": 126,
+      "depth": 63,
+      "placements": 10,
+      "terrain_quads": 24885,
+      "events": 85
+    },
+    "M427": {
+      "width": 116,
+      "depth": 68,
+      "placements": 10,
+      "terrain_quads": 26783,
+      "events": 76
+    },
+    "M428": {
+      "width": 136,
+      "depth": 76,
+      "placements": 11,
+      "terrain_quads": 33042,
+      "events": 85
+    },
+    "M890": {
+      "width": 128,
+      "depth": 128,
+      "placements": 11,
+      "terrain_quads": 43121,
+      "events": 1
+    }
+  },
+  "sources": {
+    "snake_den_coiled_guardian": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_snake_den_coiled_guardian_00001_.glb",
+      "triangles": 19997,
+      "world_size": [
+        1.14,
+        1.78,
+        1.11
+      ]
+    },
+    "snake_den_calcite_cluster": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_snake_den_calcite_cluster_00001_.glb",
+      "triangles": 19638,
+      "world_size": [
+        1.73,
+        1.7,
+        1.34
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "shape": [
+    64,
+    256,
+    1024,
+    3
+  ],
+  "deep_median_rgb": [
+    7,
+    18,
+    63
+  ],
+  "shallow_median_rgb": [
+    56,
+    123,
+    128
+  ],
+  "phase_luma_step_mean": 0.225,
+  "loop_luma_step": 0.226,
+  "length_luma_step_mean": 0.397,
+  "length_wrap_luma_step": 0.402
+}

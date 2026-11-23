@@ -1,0 +1,63 @@
+{
+  "maps": {
+    "M471": {
+      "terrain_quads": 2969,
+      "props": 34,
+      "animated_water": "m471_branch_water"
+    },
+    "M472": {
+      "terrain_quads": 3464,
+      "props": 38,
+      "animated_water": null
+    },
+    "M482": {
+      "terrain_quads": 18539,
+      "props": 13,
+      "animated_water": "m482_branch_water"
+    },
+    "M483": {
+      "terrain_quads": 18213,
+      "props": 10,
+      "animated_water": null
+    },
+    "M484": {
+      "terrain_quads": 26144,
+      "props": 12,
+      "animated_water": null
+    },
+    "M819": {
+      "terrain_quads": 11908,
+      "props": 12,
+      "animated_water": null
+    }
+  },
+  "sources": {
+    "river_cave_water_polished_boulder": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_river_cave_water_polished_boulder_00001_.glb",
+      "triangles": 19316,
+      "world_size": [
+        2.03,
+        1.04,
+        1.44
+      ]
+    },
+    "lion_cave_ocher_standing_stone": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_lion_cave_ocher_standing_stone_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        1.2,
+        2.19,
+        0.94
+      ]
+    },
+    "lion_cave_old_mine_ore_basket": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_lion_cave_old_mine_ore_basket_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        1.48,
+        0.84,
+        1.06
+      ]
+    }
+  }
+}

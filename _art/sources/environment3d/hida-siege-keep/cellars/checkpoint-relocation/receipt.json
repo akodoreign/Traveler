@@ -1,0 +1,210 @@
+{
+  "maps": {
+    "M153": {
+      "catalog_hash": "eafa233611bed9490ad152ece96d92d1552f68a6cfeb01be524a296cf41f6573",
+      "world_hash": "bb303e4cf866fa0280f60cf22a4bb4f111f357dc5f9d953bb8ecc2cff8062272",
+      "route_blocks": 107,
+      "route_waypoints": [
+        [
+          34,
+          18
+        ],
+        [
+          39,
+          18
+        ],
+        [
+          44,
+          18
+        ],
+        [
+          47,
+          19
+        ],
+        [
+          46,
+          23
+        ],
+        [
+          43,
+          25
+        ],
+        [
+          42,
+          29
+        ],
+        [
+          45,
+          31
+        ],
+        [
+          49,
+          32
+        ],
+        [
+          52,
+          34
+        ],
+        [
+          55,
+          36
+        ],
+        [
+          60,
+          36
+        ],
+        [
+          63,
+          34
+        ],
+        [
+          64,
+          30
+        ],
+        [
+          66,
+          27
+        ],
+        [
+          69,
+          25
+        ],
+        [
+          72,
+          23
+        ],
+        [
+          76,
+          22
+        ],
+        [
+          81,
+          22
+        ],
+        [
+          84,
+          20
+        ],
+        [
+          86,
+          18
+        ],
+        [
+          91,
+          18
+        ]
+      ],
+      "roofed_bores": [
+        {
+          "center": [
+            31,
+            18
+          ],
+          "native_bore_cells": [
+            15,
+            21
+          ],
+          "half_width_m": 1.13,
+          "roof_depth_m": 1.48,
+          "axis": "x"
+        },
+        {
+          "center": [
+            90,
+            18
+          ],
+          "native_bore_cells": [
+            17,
+            19
+          ],
+          "half_width_m": 0.785,
+          "roof_depth_m": 2.54,
+          "axis": "x"
+        }
+      ],
+      "main_quads": 7412,
+      "checkpoint_event": [
+        68,
+        3,
+        24
+      ],
+      "checkpoint_support_m": 1.5,
+      "dressing": 22,
+      "checkpoint_approach": [
+        [
+          66,
+          26
+        ],
+        [
+          67,
+          26
+        ],
+        [
+          67,
+          25
+        ],
+        [
+          68,
+          25
+        ],
+        [
+          69,
+          25
+        ],
+        [
+          69,
+          24
+        ],
+        [
+          69,
+          24
+        ],
+        [
+          68,
+          24
+        ]
+      ]
+    }
+  },
+  "files": {
+    "cakon_staved_barrel.mdl": "b592de62cd7b18f2c12d73aabc87e848132bdd2bbe373ed52a19b42c410cb3a2",
+    "cakon_staved_barrel.pm": "4072f00b2761b8dbf56b4ca9f7d55a0e9a388a29454b712ed3e65e4510083f3f",
+    "castle_kaiu_lantern.mdl": "e32987d06d3a59e09a9c0345cf0656b1b256ba6e7d4e1eea6878d17ed39f00be",
+    "castle_kaiu_lantern.pm": "89def9c997451f8c83447b3a25c012863dee053c1910bbce0d83f1a38b77d60a",
+    "hida_cell_cedar_bench.mdl": "49f1a332e7da6e0d60e1183be921ca32135e654548a18ecdccb2de436b48cffa",
+    "hida_cell_cedar_bench.pm": "56c0f8ff462c0b6b6039b191053b14ac7d7bbced73f7ec906ed8b4c555143db5",
+    "hida_cell_iron_lamp.mdl": "7ccd860ba12fa647ce2005caed49adfd354f002e92d000c68571dd4f9210e0e1",
+    "hida_cell_iron_lamp.pm": "4732feeef5c337474ad88cbb4f3bdc1f5ef7964453ef62ff0b537b664c14298c",
+    "m153_hida_siege_cellar_checkpoint.mdl": "b19b43cca21d7294d8d2a974a8eed8f07420c011083325e6993e34b53a0c71ab",
+    "m153_hida_siege_cellar_checkpoint.pm": "e153b1a4db64350687884264037279e3860a0a584289894688137ed0fa179d89",
+    "m153_hida_siege_cellar_door_frame.mdl": "2aaca9eb1fb7690139daab46bac9778619dd3ef3e8b1957f4a8a390aa4f3b3d8",
+    "m153_hida_siege_cellar_door_frame.pm": "6695eaa6b411d28cf32626319ad73802badd6b0c60e9f1bbf550e86ff9b26a25",
+    "m153_hida_siege_cellar_door_leaf.mdl": "fdd391832f74b006588cbd85ff95bd74241212746349aec10fb8d2c64f1b6b3b",
+    "m153_hida_siege_cellar_door_leaf.pm": "f791b2ebf7a997f76da49564b919433129683bc1c4c6a3f003b9bd767cf3be43",
+    "shadowlands_ruined_shrine.mdl": "5adfb803f4c1e6d817687c980a02fde1efef9005200c83cf25a1e4a2d13f3a64",
+    "shadowlands_ruined_shrine.pm": "f994b9779b176ca86642501be17221d4df2696340e7d84f2e640d85d3c42c1ef",
+    "tex/cakon_cooper_bound.png": "d3d9f991d31ba88b4560d1879c33ae2f36c7805e89957fe7e25a5afad21e31dc",
+    "tex/cakon_cooper_lid.png": "1fd0664923b19282d4ad562a9a8a3e81482e1c6755c5a65066603f69847c02c6",
+    "tex/cakon_cooper_stave_0.png": "b025eb3a41c264b1fec4827c7816aa2ea198cf6ef497f3208e8ae276dd242fc0",
+    "tex/cakon_cooper_stave_1.png": "9000e6b4ed327f3835a7c889a372901f3fe3ace947cdae9c52f539487015930c",
+    "tex/cakon_cooper_stave_2.png": "fedc5e06328375290911cce5f38bf15dfc4365c2f75c86b7dbd51e456b85e786",
+    "tex/cakon_hut_plank.png": "9e20503f4e53960e20cd82bd2f442cd791d4ee9f41a8f96cf48dec1f25827dbe",
+    "tex/cakon_hut_timber_daylight_palette.png": "16f892ed25b19bb8f6f41c2b2e4f9194f3d71659e07515744f031f2b91de71a3",
+    "tex/castle_kaiu_lantern.png": "0eab48b449ce2c69359a38526944a7276591746caf15e716ebf9d302928eef08",
+    "tex/hida_cave_relief_normal.png": "c09f1ff571e0011e9a565739b4f1b691ac5fd60dee5a75385c673c281d2fb0dc",
+    "tex/hida_caves_cobalt_relief.png": "eb1ef1ed9dc48bff0acf17d988182affcb31674067d484176fa4f405cf5d3b2a",
+    "tex/hida_caves_dressed_stone_relief.png": "76cfcdd7f8a522091ed21c6bb1d7f98e9652e1417a67448a6716442c9dc11dc2",
+    "tex/hida_caves_navy_relief.png": "2deab1bfb9266745238496d9458be0f93fac036b8bdb02a7cfa7b15aaeeb3fc0",
+    "tex/hida_caves_recess_relief.png": "c97fe1c2b3d0c313a4388868f0905cf3fbfce2b35539379927f33ee081a7f6d3",
+    "tex/hida_caves_scree_relief.png": "17dba1bfde9bb091c8250bfcbe589bc63d9e362917567d8cedd6416fc56d86aa",
+    "tex/hida_caves_wet_slate_relief.png": "289e6b6e839ef0575b383ba692530ac01af25dfaffc6d199b2cbeaa3ce3a1611",
+    "tex/hida_cell_cedar_bench.png": "3358468a83bcd1ebd0ad9b0b55eade5da855dad53295e820181c24564d7b6099",
+    "tex/hida_cell_iron_lamp.png": "b00390eff0571a15bde8ebb4727ae37dd1afcb78bb9cf50bdd835ee0b6f98678",
+    "tex/m153_hida_siege_cellar_amber.png": "aa8d5957bf5d941fe16898ca3b4b3ab8c72e8b4754f6c3fad12e023a1eb87bc5",
+    "tex/m153_hida_siege_cellar_cedar.png": "53b26961e9c6d1c5ea61b8292ae58ebe248eadd89ef00dd1d2cb1b7db7af87ac",
+    "tex/m153_hida_siege_cellar_flagstone.png": "deb1a13360852d7786d6bbeb97e17eb92bbc791102324ddd1bd986f1ce1290e1",
+    "tex/m153_hida_siege_cellar_iron.png": "0aba8efbd8bad583bd68f12dde288262e8f3e5a52fe9c9eec7d72a8a5b46b0e4",
+    "tex/m153_hida_siege_cellar_rust.png": "6b5e77cd0eedce90f9c557f7f377f81d352e382d97130a9510fb70585981c5d3",
+    "tex/shadowlands_ruined_shrine.png": "4aa2638ae9ccb714c3bb8ef7e6585004b8d67e600fc7baefadb6a4ab2b7680b8"
+  }
+}

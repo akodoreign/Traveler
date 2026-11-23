@@ -1,0 +1,40 @@
+{
+  "maps": {
+    "M477": {
+      "placements": 68,
+      "leaves": 14
+    },
+    "M489": {
+      "placements": 27,
+      "leaves": 0
+    },
+    "M821": {
+      "placements": 40,
+      "leaves": 14
+    },
+    "M797": {
+      "placements": 10,
+      "leaves": 0
+    }
+  },
+  "sources": {
+    "beiden_cave_bandit_folding_cot": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_beiden_cave_bandit_folding_cot_00001_.glb",
+      "triangles": 18916,
+      "world_size": [
+        1.82,
+        0.8,
+        1.13
+      ]
+    },
+    "beiden_cave_bandit_sack_rack": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_beiden_cave_bandit_sack_rack_00001_.glb",
+      "triangles": 19193,
+      "world_size": [
+        1.5,
+        1.64,
+        0.85
+      ]
+    }
+  }
+}

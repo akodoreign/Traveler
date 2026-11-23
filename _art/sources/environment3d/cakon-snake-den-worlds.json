@@ -1,0 +1,41 @@
+{
+  "M425": {
+    "width": 144,
+    "depth": 76,
+    "connected_floor_cells": 2419,
+    "unchanged_reachable_anchors": 6,
+    "source_depth": 64,
+    "sha256": "eb664c56af94ec6e9a6488f67c85670fedfe0b7469abb65c970bfb9c20b6251c"
+  },
+  "M426": {
+    "width": 126,
+    "depth": 63,
+    "connected_floor_cells": 1932,
+    "unchanged_reachable_anchors": 4,
+    "source_depth": 42,
+    "sha256": "352b888c21b07b1a7d36426eab1c4e5bb707492f9de1c6b5854b5557457ec223"
+  },
+  "M427": {
+    "width": 116,
+    "depth": 68,
+    "connected_floor_cells": 1208,
+    "unchanged_reachable_anchors": 3,
+    "source_depth": 48,
+    "sha256": "e7bb4cbfc2a0df5b91ae429d72b45aa0b3e9bcb3fdcf1a851c727410aee28bfa"
+  },
+  "M428": {
+    "width": 136,
+    "depth": 76,
+    "connected_floor_cells": 2142,
+    "unchanged_reachable_anchors": 3,
+    "source_depth": 61,
+    "sha256": "ec59f4ad2f984e030337279f080b94d961910d1919d38a491343bdd037358bc1"
+  },
+  "M890": {
+    "width": 128,
+    "depth": 128,
+    "battle_floor": 0,
+    "source_depth": 128,
+    "sha256": "b1a80cafbf036c2d5540091cad25e620644ba138e7b8915ea45ea2cc1d2963df"
+  }
+}

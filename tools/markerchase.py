@@ -47,6 +47,10 @@ def wtool():
     return getattr(SLOT, "tool", TOOL)
 OUT = os.path.join(HERE, "..", "_art", "preview", "chase")
 STUCKDIR = os.path.join(OUT, "STUCK")
+RESUME = False                                          # --resume (see chase())
+ASKDIR = os.path.join(OUT, "ASK")                       # a chaser's question (five tries at one goal): Claude answers
+ANSDIR = os.path.join(OUT, "ANSWERS")                   #  in ANSWERS/<job>.txt: retry | goto X Z | use NAME |
+                                                        #  broken [why] | close
 KNOW = os.path.join(OUT, "knowledge.json")
 NPU_PY = r"D:\RokuganTraveler\.venv-npu\Scripts\python.exe"
 PLUG = os.path.join(gm.PROJ, "plugin", "rokugan")
@@ -191,12 +195,26 @@ def chase(job, minutes, model, know):
     pack += job["extra"]
     if job.get("lead"):
         pack.append("lead %s" % job["lead"])
+    # (user 2026-11-23: "you can use savestates when you get stuck so you can keep going without completely starting
+    # from scratch") --resume: start from the job's latest save state (the one it took when it got bored or asked)
+    resumed = None
+    if RESUME:
+        old = sorted(glob.glob(os.path.join(out, "snapshots", "snap_*.bin")), key=os.path.getmtime)
+        if old:
+            slot = getattr(SLOT, "n", 90)
+            save = os.path.join(wtool(), "savedata", "save%03d.bin" % slot)
+            os.makedirs(os.path.dirname(save), exist_ok=True)
+            shutil.copy(old[-1], save)
+            shutil.copy(old[-1], os.path.join(out, "resumed_from.bin"))
+            pack.append("loadsave %d" % slot)
+            resumed = os.path.basename(old[-1])
     args = [os.path.join(wtool(), "rpgcobo.exe"), "-testplay", "-map", job["map"], job["pos"], "-rtvar", job["vars"],
             "-rtfast", "-rtauto", "-debuglv", "40", "-rt", ";".join(pack)]
     restarts, t_start = 0, time.time()
-    say("RUN %s (%s, %d learned answers)" % (name, job.get("title", "from New Game"), npol))
+    say("RUN %s (%s, %d learned answers)%s" % (name, job.get("title", "from New Game"), npol,
+                                               " - resumed from its save state " + resumed if resumed else ""))
     while True:
-        lf = open(log, "w")
+        lf = open(log, "a" if restarts or resumed else "w")            # (a resumed run keeps the earlier log)
         proc = subprocess.Popen(args, cwd=wtool(), stdout=lf, stderr=subprocess.STDOUT)
         t7 = time.time()
         while time.time() - t7 < 4 and proc.poll() is None:
@@ -206,8 +224,9 @@ def chase(job, minutes, model, know):
             say("WAIT %s: the engine in %s is busy (code 7), trying again" % (name, os.path.basename(wtool())))
             time.sleep(15)
             continue
-        t0, last_prog, seen, flagged = time.time(), time.time(), 0, set()
-        verdict = "done"
+        t0, last_prog, flagged = time.time(), time.time(), set()
+        seen = len(open(log, encoding="utf-8", errors="replace").read().splitlines()) if restarts or resumed else 0
+        verdict, waiting = "done", False
         while True:
             time.sleep(4)
             text = open(log, encoding="utf-8", errors="replace").read()
@@ -219,12 +238,38 @@ def chase(job, minutes, model, know):
             for ln in new:
                 if TROUBLE.search(ln) and ln not in flagged:
                     flagged.add(ln)
-                    report_stuck(name, ln, lines)
-            if "[RT] CHASE DONE" in text:
-                verdict = "done"
+                    report_stuck(name, ln, lines, loud=False)
+                if "[RT] CHASE ASK " in ln:
+                    waiting = True
+                    ask(name, ln, lines, model, snapdir)
+                if "[RT] CHASE ANSWER " in ln:
+                    waiting = False
+                    last_prog = time.time()
+                if "[RT] CHASE BROKEN " in ln:
+                    say("BROKEN %s: %s" % (name, ln.split("BROKEN ", 1)[1][:200]))
+            ans = os.path.join(ANSDIR, name + ".txt")
+            if os.path.exists(ans):                                      # Claude's answer -> the game
+                a = open(ans, encoding="utf-8").read().strip()
+                os.remove(ans)
+                with open(os.path.join(snapdir, "answer.txt"), "w", encoding="utf-8") as f:
+                    f.write(a + "\n")
+                say("ANSWERED %s: %s" % (name, a))
+                if a.strip() == "restart":                               # Claude fixed the cause: go on from
+                    verdict = "restart"                                  #  the latest save state with the new code
+                    break
+            if waiting:
+                last_prog = time.time()
+                if time.time() - t0 > minutes * 60 + 3000:                # (45 min for an answer, then it closes itself)
+                    verdict = "no answer"
+                    break
+                continue
+            if any("[RT] CHASE DONE" in ln for ln in new):                # (this run's own lines: a resumed log
+                verdict = "done"                                         #  holds the last run's DONE)
                 break
             if proc.poll() is not None:
                 verdict = "the game exited (code %s)" % proc.returncode
+                # (user 2026-11-23: code 0 here = the user closed a window that kept looping; the chaser now times
+                # out on its own - RokuganChase.sk, five minutes on one screen)
                 break
             idle = time.time() - last_prog
             if idle > 180:                                               # three minutes without progress: ask
@@ -246,7 +291,7 @@ def chase(job, minutes, model, know):
         lf.close()
         learn(name, open(log, encoding="utf-8", errors="replace").read(), verdict, know)
         keep_snaps(name, out)
-        if verdict == "restart" and restarts < 2:
+        if verdict == "restart" and restarts < 3:
             restarts += 1
             pol, npol = policy_for(name, know)
             snaps = sorted(glob.glob(os.path.join(snapdir, "snap_*.bin")))
@@ -272,7 +317,7 @@ def keep_snaps(name, out):
     sd = os.path.join(out, "snapshots")
     os.makedirs(sd, exist_ok=True)
     for f in glob.glob(os.path.join(wtool(), "tmp", "chase", name, "snap_*.bin")):
-        shutil.copy(f, sd)
+        shutil.copy2(f, sd)                                       # (keeps the time: --resume takes the newest)
     try:
         pb.convert_shots("chase_" + name, sd)
     except Exception:                                                    # noqa: BLE001 (no shots is fine)
@@ -289,19 +334,108 @@ def keep_snaps(name, out):
         f.write("\n".join(L) + "\n\n")
 
 
-def report_stuck(name, why, lines):
+def shots_now(name, dest):
+    """This window's raw screenshots for the job -> PNGs in dest (playbot.convert_shots, but from either window)."""
+    import numpy as np
+    from PIL import Image
+    shots = os.path.join(wtool(), "tmp", "rt_shot")
+    os.makedirs(dest, exist_ok=True)
+    out = []
+    for f in sorted(glob.glob(os.path.join(shots, "bot_chase_%s_*.raw" % name))):
+        b = open(f, "rb").read()
+        w, h = int.from_bytes(b[0:4], "little"), int.from_bytes(b[4:8], "little")
+        arr = np.frombuffer(b[8:8 + w * h * 4], np.uint8).reshape(h, w, 4)
+        png = os.path.join(dest, os.path.basename(f)[4:-4] + ".png")
+        Image.fromarray(arr[..., :3].copy(), "RGB").save(png)
+        out.append(png)
+    return out
+
+
+MAPDATA = {}
+LOCAL_TRIES = {}                                         # (job, goal) -> answers the local model already gave
+
+
+def map_events(mid):
+    """What the model is shown about the chaser's map: each usable event's name, place, trigger and first words."""
+    if not MAPDATA:
+        MAPDATA.update(json.load(open(os.path.join(gm.PROJ, "data", "map.json"), encoding="utf-8")))
+    out = []
+    for e in (MAPDATA.get(mid) or {}).get("event", {}).values():
+        if e.get("role") in ("portal", "light") or "pos" not in e:
+            continue
+        pages = e.get("page") or []
+        trig = max([p.get("trigger") or 0 for p in pages] or [2 if e.get("role") in ("villager", "clerk", "hotel")
+                                                                else 0])
+        if trig not in (1, 2, 5) and e.get("role") not in ("villager", "clerk", "hotel"):
+            continue
+        said = e.get("msg") or next(iter(re.findall(r'"text": "([^"]{4,60})', json.dumps(e))), "")
+        out.append("%s, %.1f, %.1f, %s, %s" % (e.get("name"), e["pos"][0] / 2.0, e["pos"][2] / 2.0, trig, said[:60]))
+    return "\n".join(out[:40])
+
+
+def ask(name, line, lines, model=None, snapdir=None):
+    """A chaser asks (five tries at one goal). (user: "it should be doing this on local and just reporting back to
+    you occasionally") The local model answers first - up to two answers per goal; only when those don't help does
+    the question go to Claude: the save state, its screenshot, what it tried."""
+    q = line.split("CHASE ASK ", 1)[1]
+    goal = q.split(" | ")[0]
+    mid = (re.search(r"on (M\d+) at", q) or [None, ""])[1]
+    tried = LOCAL_TRIES.setdefault((name, goal), [])
+    if model is not None and model.ok and len(tried) < 2 and snapdir:
+        tail = "\n".join(ln.split("CHASE ", 1)[1] for ln in lines[-120:] if "[RT] CHASE " in ln)[-2500:]
+        a = (model.ask({"task": "answer", "question": q, "tail": tail, "events": map_events(mid),
+                        "tried": tried}) or {}).get("answer", "retry")
+        a = a.strip().strip("`").strip()
+        if not re.match(r"^(retry|close|broken\b.*|goto -?[\d.]+ -?[\d.]+|use \S+)$", a):
+            a = "retry"
+        tried.append(a)
+        with open(os.path.join(snapdir, "answer.txt"), "w", encoding="utf-8") as f:
+            f.write(a + "\n")
+        with LOCK:
+            os.makedirs(OUT, exist_ok=True)
+            with open(os.path.join(OUT, "local_answers.md"), "a", encoding="utf-8") as f:
+                f.write("- %s %s | %s -> **%s**\n" % (time.strftime("%H:%M"), name, q[:160], a))
+        if a.startswith("broken"):
+            say("BROKEN %s (the local model): %s | %s" % (name, q[:160], a))
+        return
+    # the local model's answers didn't help: Claude
+    os.makedirs(ASKDIR, exist_ok=True)
+    os.makedirs(ANSDIR, exist_ok=True)
+    out = os.path.join(OUT, name, "snapshots")
+    pngs = shots_now(name, out)
+    for f in glob.glob(os.path.join(wtool(), "tmp", "chase", name, "snap_*.bin")):
+        shutil.copy(f, out)
+    q = line.split("CHASE ASK ", 1)[1]
+    tried = [ln.split("CHASE ", 1)[1] for ln in lines[-200:] if "[RT] CHASE " in ln][-40:]
+    with LOCK:
+        with open(os.path.join(ASKDIR, name + ".md"), "w", encoding="utf-8") as f:
+            f.write("# %s asks\n\n**%s**\n\nScreenshot: %s\nSave state: %s (window folder %s)\n\n"
+                    "Answer in _art/preview/chase/ANSWERS/%s.txt, one line: retry | goto X Z | use NAME | "
+                    "broken [why] | close\n\n## The last things it did\n\n```\n%s\n```\n"
+                    % (name, q, pngs[-1] if pngs else "-", os.path.join(out, "snap_*.bin"), wtool(), name,
+                       "\n".join(tried)))
+    say("ASK %s: %s" % (name, q[:220]))
+
+
+def report_stuck(name, why, lines, loud=True):
     os.makedirs(STUCKDIR, exist_ok=True)
     tail = "\n".join(ln for ln in lines[-80:] if "[RT]" in ln)
     with LOCK:
         with open(os.path.join(STUCKDIR, name + ".md"), "a", encoding="utf-8") as f:
             f.write("## %s - %s\n\n```\n%s\n```\n\n" % (time.strftime("%H:%M:%S"), why.strip(), tail[-4000:]))
-    say("STUCK %s: %s" % (name, why.strip()[:200]))
+    if loud:
+        say("STUCK %s: %s" % (name, why.strip()[:200]))
 
 
 def learn(name, text, verdict, know):
     rec = know.setdefault(name, {"runs": 0, "menus": {}, "stalls": []})
     rec["runs"] += 1
     menus = re.findall(r"\[RT\] CHASE CHOICE (.+?) => (\d+) \((.*)\)", text)
+    # (2026-11-23) a window closed from outside (code 0: the user closing a looping run) or a restart is no evidence
+    # against the menus answered before it
+    if verdict.startswith("the game exited") or verdict == "restart":
+        know_save(know)
+        return
     stalled = verdict not in ("done",) or "CHASE STUCK" in text or "gave up" in text
     for key, v, opts in menus:
         m = rec["menus"].setdefault(key, {"tried": [], "n": opts.count(" / ")})
@@ -387,6 +521,8 @@ def main():
     def opt(k, d):
         return a[a.index(k) + 1] if k in a else d
     only = set(opt("--only", "").split(",")) - {""}
+    global RESUME
+    RESUME = "--resume" in a
     minutes, windows = int(opt("--minutes", "60")), int(opt("--windows", "2"))
     model = Model("--no-llm" not in a)
     know = know_load()
@@ -414,16 +550,29 @@ def main():
                 kind, j = q.pop(0)
             try:
                 if kind == "chase":
-                    chase(j, minutes, model, know)
+                    chase(j, minutes if j["job"].startswith("story") else min(minutes, 20), model, know)
                 else:
                     game_run(*j)
             except Exception as e:                                       # noqa: BLE001 (keep the other window going)
                 say("STUCK %s: the orchestrator failed: %s" % (j["job"] if kind == "chase" else j[0], e))
     # (the mini-game tests launch through engine_lock / playbot, one at a time on their own)
+    total = len(q)
+
+    def heartbeat():
+        while any(t.is_alive() for t in ts):
+            time.sleep(1800)
+            with LOCK:
+                left = len(q)
+            asks = len(glob.glob(os.path.join(ASKDIR, "*.md")))
+            local = sum(1 for _ in open(os.path.join(OUT, "local_answers.md"), encoding="utf-8")) \
+                if os.path.exists(os.path.join(OUT, "local_answers.md")) else 0
+            say("PROGRESS %d of %d jobs started, %d questions answered locally, %d sent to Claude" %
+                (total - left, total, local, asks))
     ts = [threading.Thread(target=worker) for _ in range(max(1, windows))]
     for t in ts:
         t.start()
         time.sleep(8)                                                    # (stagger the two windows' starts)
+    threading.Thread(target=heartbeat, daemon=True).start()
     for t in ts:
         t.join()
     model.close()

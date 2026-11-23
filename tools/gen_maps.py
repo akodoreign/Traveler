@@ -23,7 +23,10 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 TOOL = os.path.normpath(os.path.join(HERE, "..", "_tools", "rpgcobo-tool"))
 PROJ = os.path.join(TOOL, "project")
-JOBDIR = os.path.join(TOOL, "tmp", "rt_mapgen")
+# (2026-11-23) builds run in their own engine folder (same junctions as the -w2/-w3 windows), so a build never has to
+# close the user's game or the marker chasers' windows - it only ever stops its own earlier build instances
+BUILD_TOOL = TOOL + "-build" if os.path.exists(os.path.join(TOOL + "-build", "rpgcobo.exe")) else TOOL
+JOBDIR = os.path.join(BUILD_TOOL, "tmp", "rt_mapgen")
 PAD_X, PAD_TOP, PAD_BOTTOM = 26, 12, 4
 QUEST_MARKER_YELLOW_MODEL = "EP2651"
 QUEST_MARKER_BLUE_MODEL = "EP2652"
@@ -4980,7 +4983,7 @@ def mountains_cloak_1():
         fb(m, x, 20, 2, LAMP_STREET)                                       # paper lanterns on their lines
     ev = Events(m)
     ev.portal(2, 16, "M202", 2, d=1)                                       # event 1: back to Pleasant Eaves
-    east = ev.portal(106, 16, "M204", 1, d=3)                              # event 2: deeper (after the bandits)
+    east = ev.portal(106, 16, "M204", 1, d=1)                              # event 2: deeper (after the bandits)
     ev.ev["#%d#" % east]["reqs0"] = [flag("G310")]
     ev.talk(104, 16, "CE000", [(None, [narrate("Bandits in the dark ahead, behind the lanterns. Not this way. "
                                                 "Not yet."), step_back(-2.0, 0)]), ([flag("G310")], [])], trigger=5)
@@ -10427,7 +10430,7 @@ def cove_2():
             fill(m, 36 + gx, 4, 18 + gz, 2, 1, 2, roof)
     ev = Events(m)
     ev.portal(3, 18, "M318", 2, d=1)                                        # event 1: back
-    ev.portal(75, 22, "M320", 1, d=3)                                       # event 2: the portal
+    ev.portal(75, 22, "M320", 1, d=1)                                       # event 2: the portal
     ev.scene(22, 18, "G767", CITY_DGN2)
     ev.talk(35, 21, "CE000", [(None, [narrate("The clay city: tile roofs at the edge, thatch at the centre."),
                                       choices(discern("Each ring is a century. The centre is the year four hundred. "
@@ -11875,7 +11878,7 @@ def kudo():
     ev.portal(68, 21, "M352", 1, d=0)                                       # event 2: the Kitsune Hall
     ev.portal(46, 21, "M353", 1, d=0)                                       # event 3: the Mantis guest house
     ev.portal(85, 21, "M354", 1, d=0)                                       # event 4: the Dreaming Carp
-    west = ev.portal(11, 16, "M355", 1, d=1)                                # event 5: the river crossing (S05)
+    west = ev.portal(11, 16, "M355", 1, d=3)                                # event 5: the river crossing (S05)
     ev.ev["#%d#" % west]["reqs0"] = [flag("G853")]
     ev.talk(13, 16, "CE000", [(None, [narrate("The docks, and the dark far bank. No reason to cross. Yet."),
                                       step_back(2.0, 0)]), ([flag("G853")], [])], trigger=5)
@@ -12812,7 +12815,7 @@ def temple_1():
                         [(14, 18, 24, 16, 4), (40, 18, 51, 22, 4), (64, 20, 70, 15, 4)])
     building(m, 32, 22, 8, 5, wall=WOOD, wall_h=3)                          # the temple to the Fortunes (cracked)
     ev = Events(m)
-    ev.portal(3, 18, "M362", 4, d=1)                                        # event 1: the west gate
+    ev.portal(3, 18, "M362", 4, d=3)                                        # event 1: the west gate
     ev.portal(79, 14, "M366", 1, d=3)                                       # event 2: deeper
     ev.scene(26, 17, "G903", MONKS_A, touch=True, after=[flag("G893")])
     for x in (28, 30):
@@ -14185,7 +14188,7 @@ def buried_leaves_autumn():
     ev.portal(108, 16, "M389", 1, d=3)                                      # event 2: east, the refugee camps
     ev.portal(1, 16, "M390", 1, d=1)                                        # event 3: west, the valley road
     ev.portal(80, 1, "M395", 1, d=2)                                        # event 4: south, the hills (Miyahana)
-    ev.prop(29, 20, "EP172", msg="Persimmon glares at you. Persimmon glares at everyone.", d=1)
+    ev.prop(35, 19, "EP172", msg="Persimmon glares at you. Persimmon glares at everyone.", d=1)
     ev.clerk(61, 20, SC["merchant"], "R156")
     ev.npc(40, 13, SC["censorclerk"], "A Crane clerk keeps the tribunal's ledgers. Every ledger in this valley has two "
                                       "sets of numbers.")
@@ -16535,7 +16538,7 @@ def sand_room():
     for x in range(16, 66, 12):
         fill(m, x, 3, 20, 2, 7, 1, STONEW)                                  # carved serpents
     ev = Events(m)
-    ev.portal(3, 12, "M425", 1, d=1)                                        # event 1: back to the den
+    ev.portal(3, 12, "M425", 1, d=3)                                        # event 1: back to the den
     out = ev.portal(71, 12, "M427", 1, d=3)                                 # event 2: on (after the crossing)
     ev.ev["#%d#" % out]["reqs0"] = [flag("G1072")]
     ev.scene(11, 12, "G1072", SAND_ROOM, touch=True, after=[flag("G1071")])
@@ -16557,6 +16560,10 @@ VOICE = [narrate("A great stone serpent, carved out of the cave itself, its mout
          narrate("Objective: through the serpent's mouth. The only way on is the way out.")]
 
 
+# (2026-11-23, the Ronin squirrel bounced M426 <-> M427 for an hour) An edge door's d is the side its arrivals land
+# on (d=0 north, 1 west, 2 south, 3 east, measured from 972 arrivals): it must face INTO the map - a west-edge door
+# d=3, an east-edge door d=1 - or the arrival stands outside it and the first step into the room goes back out.
+# Ten doors were the wrong way round (M203, M319, M351, M365, M426, M427, M434 x2, M435, M436).
 def serpent_mouth():
     m = MapSpec("M427", "The snake den - the serpent's mouth", 64, 32, base=STONEW, y=4)   # low front rim (see M426)
     m.rect(0, 24, 64, 8, STONEW, 14)
@@ -16568,7 +16575,7 @@ def serpent_mouth():
     for x in range(8, 36, 9):
         fill(m, x, 3, 22, 2, 6, 1, STONEW)
     ev = Events(m)
-    ev.portal(3, 15, "M426", 2, d=1)                                        # event 1: back to the sand room
+    ev.portal(3, 15, "M426", 2, d=3)                                        # event 1: back to the sand room
     mouth = ev.portal(47, 22, "M428", 1, d=2)                               # event 2: into the mouth
     ev.ev["#%d#" % mouth]["reqs0"] = [flag("G1074")]
     ev.scene(28, 15, "G1074", VOICE, touch=True, after=[flag("G1072")])
@@ -17037,8 +17044,8 @@ def fortress_court():
         m.tree(x, 8 + (x * 5) % 18, ROCK_S)                                 # frozen dead under the snow
     fill(m, 70, 3, 26, 14, 9, 2, DARKWOOD)                                  # the pagoda beyond
     ev = Events(m)
-    ev.portal(4, 16, "M433", 1, d=1)                                        # event 1: back out of the gate
-    ev.portal(96, 16, "M435", 1, d=3)                                       # event 2: into the pagoda
+    ev.portal(4, 16, "M433", 1, d=3)                                        # event 1: back out of the gate
+    ev.portal(96, 16, "M435", 1, d=1)                                       # event 2: into the pagoda
     ev.scene(8, 16, "G1130", FORT_IN, after=[flag("G1102")])
     ev.talk(30, 20, EP_HE["ghost_guard"], [(None, REPLAY1), ([flag("G1103")], [narrate("The ghost-guard turns, and "
                                                                                       "says it again, and again.")])])
@@ -17083,7 +17090,7 @@ def pagoda_halls():
         fill(m, x, 3, 21, 2, 8, 1, DARKWOOD)                                # posts
     fill(m, 66, 3, 20, 4, 1, 2, WOOD)                                       # the cradle
     ev = Events(m)
-    ev.portal(3, 15, "M434", 2, d=1)                                        # event 1: back to the courtyard
+    ev.portal(3, 15, "M434", 2, d=3)                                        # event 1: back to the courtyard
     door = ev.portal(89, 15, "M436", 1, d=3)                                # event 2: the basin hall
     ev.ev["#%d#" % door]["reqs0"] = [flag("G1109")]
     ev.talk(20, 14, EP_HE["ghost_guard"], [(None, REPLAY3), ([flag("G1105")], [narrate("The fuse burns, and burns, and "
@@ -17152,7 +17159,7 @@ def basin_hall():
     m.rect(2, 7, 56, 14, PLANK, 2)
     m.rect(0, 21, 60, 7, DARKWOOD, 14)
     ev = Events(m)
-    ev.portal(3, 14, "M435", 2, d=1)                                        # event 1: back to the pagoda
+    ev.portal(3, 14, "M435", 2, d=3)                                        # event 1: back to the pagoda
     ev.prop(36, 17, "EP181", reqs=[flag("G1110", False)], d=1)              # the basin
     for x, z in ((30, 12), (30, 17)):
         ev.prop(x, z, EP_HE["ghost_guard"], reqs=[flag("G1110", False)], d=1)
@@ -18774,8 +18781,8 @@ RSET.update({"M421": "rt_hd2d_night", "M886": "rt_hd2d_night", "M887": "rt_hd2d_
 RSET.update({"M423": "rt_hd2d_night", "M425": "rt_hd2d_cave", "M426": "rt_hd2d_cave", "M427": "rt_hd2d_cave",
              "M428": "rt_hd2d_cave", "M889": "rt_hd2d_night", "M890": "rt_hd2d_battle"})   # Ronin Ch2 (no fog on bosses)
 RSET.update({"M893": "rt_hd2d_battle"})                                                                 # Ronin Ch3
-RSET.update({"M440": "rt_hd2d_night", "M441": "rt_hd2d_night", "M442": "rt_hd2d_night", "M895": "rt_hd2d_night",
-             "M896": "rt_hd2d_battle"})                                         # Ronin Ch4 (no fog on the boss)
+RSET.update({"M440": "rt_hd2d_night", "M441": "rt_hd2d_night", "M442": "rt_hd2d_oracle_dawn", "M443": "rt_hd2d_oracle_day", "M895": "rt_hd2d_night",
+             "M896": "rt_hd2d_oracle_arena"})                                         # Ronin Ch4 (no fog on the boss)
 RSET.update({"M898": "rt_hd2d_battle"})
 RSET.update({"M451": "rt_hd2d_night", "M453": "rt_hd2d_night", "M806": "rt_hd2d_battle", "M807": "rt_hd2d_night"})                                     # Mamoru's fire                                     # the finale's waves (two wave leaders)
 # ---- The finale, F10 "Flight" and F11 "Death" (production F10/F11; script ACT 4's end): they follow phase 3 in the
@@ -20462,6 +20469,16 @@ for _mid, _rows in _nfoes.PLACE.items():
 _NEGATE = {"==": "!=", "!=": "==", ">=": "<", "<": ">=", ">": "<=", "<=": ">"}
 
 
+# flags set and cleared again inside one scene: never what a marker beat waits for. (2026-11-23, the marker chaser on
+# the Lion road: YOSAI_STEP's G609 came first in Ozaki's duel, so his beat waited on G609 and never cleared)
+_TEMP_FLAGS = {"G609"}
+
+# (map, the beat's own flag) -> extra conditions. (2026-11-23, the marker chaser on the Dragon road: the new house's
+# arrival scene on Tortoise Island (M316, G768) was due from the chapter's start, so the marker sent Gendo to the
+# Ferryman long before he has the Tortoise token; the ferry runs only once the guest house gives it, G727)
+BEAT_GATES = {("M316", "G768"): [["G727", "==", True]]}
+
+
 def _first_flag_set(block, conds):
     """The first story flag a talk sets (cmd_compute G... = true), with the story-flag conditions of every cmd_if it
     sits inside. (user 2026-11-21, the Scorpion road's marker ran to the Ojatara road: the Iuchi soldier's talk sets
@@ -20470,7 +20487,7 @@ def _first_flag_set(block, conds):
         if not isinstance(c, dict):
             continue
         if (c.get("cmd") == "cmd_compute" and c.get("op") == "=" and c.get("rvar") is True
-                and re.fullmatch(r"G\d+", str(c.get("lvar")))):
+                and re.fullmatch(r"G\d+", str(c.get("lvar"))) and c["lvar"] not in _TEMP_FLAGS):
             return c["lvar"], conds
         if c.get("cmd") == "cmd_if":
             blocks, reqs = c.get("cmdblocks") or [], [r for r in (c.get("reqs") or []) if isinstance(r, dict)]
@@ -20515,6 +20532,8 @@ def marker_pass(mp):
     exits, links, beats = {}, {}, []
     route_ids = {r[0] for r in ROUTES} | {c[0] for r in ROUTES for c in r[6]}
 
+    gates = {}
+
     def dests(e):
         out = set()
         if e.get("role") == "portal" and (e.get("dest") or {}).get("mapid"):
@@ -20537,6 +20556,32 @@ def marker_pass(mp):
             ds = dests(e) - {mid}
             if ds and "pathBegin" not in js and "pathFinale" not in js:
                 links.setdefault(mid, set()).update(ds)
+                # (user 2026-11-23: "they are being directed down closed routes") a door that only opens on a flag:
+                # the road search skips it while it is shut. A pair with any open way stays open.
+                rq = [r_ for r_ in (e.get("reqs0") or []) if isinstance(r_, dict) and re.fullmatch(r"G\d+",
+                                                                                               str(r_.get("lvar")))]
+                for d_ in ds:
+                    k_ = mid + ">" + d_
+                    rq_ = rq
+                    if e.get("role") != "portal":
+                        # (2026-11-23, the Crab squirrel looped office <-> Wall: the Wall's way into the Shadowlands
+                        # is a walk-on whose page needs G240 / not G255 - a story move is open only when the page
+                        # holding it can run) the conditions of the page that makes the move
+                        rq_ = list(rq)
+                        for pg_ in pages:
+                            pj = json.dumps(pg_.get("cmdblock") or [])
+                            if '"cmd_mapmove"' in pj and '"%s"' % d_ in pj:
+                                rq_ += [r_ for r_ in (pg_.get("reqs") or []) if isinstance(r_, dict) and
+                                        re.fullmatch(r"G\d+", str(r_.get("lvar")))]
+                                break
+                    if rq_:                                   # (2026-11-23, Crane: Garden Under Shadow's castle has
+                        if gates.get(k_, 0) is not None:      #  two ways in, before and after the fete - every way
+                            alt = [[r_["lvar"], r_.get("op", "=="), r_.get("rvar")] for r_ in rq_]   # is kept: the
+                            gates.setdefault(k_, [])          #  pair is open when any of them is)
+                            if alt not in gates[k_]:
+                                gates[k_].append(alt)
+                    else:
+                        gates[k_] = None
                 if e.get("role") == "portal" or trig & {1, 2, 5}:              # (2: talk to - a ship's master,
                                                                                  # a gate guard: tester 2026-11-14)
                     r = (e.get("mdl") or {}).get("r") or [0, 1.0, 0, 1.0, 1.0, 0.5]
@@ -20564,9 +20609,72 @@ def marker_pass(mp):
                 cb = pg.get("cmdblock") or []
                 if cb and cb[0].get("cmd") == "cmd_if":
                     reqs = cb[0].get("reqs") or []
-                    if reqs and reqs[0].get("op") == "==" and reqs[0].get("rvar") is False:
+                    # (2026-11-23, the Crab squirrel: the marker sat on the Hida road block "Tomoe-sama said rest,
+                    # not wander", which pushes her back while G054 is unset and never sets it) a once-scene sets
+                    # its own guard flag; a barrier that doesn't is no beat
+                    sets_guard = bool(reqs) and any(
+                        c_.get("cmd") == "cmd_compute" and c_.get("lvar") == reqs[0].get("lvar") and c_.get("op") == "="
+                        and c_.get("rvar") not in (False, 0, None)
+                        for blk in (cb[0].get("cmdblocks") or [])[:1] for c_ in blk if isinstance(c_, dict))
+                    if reqs and reqs[0].get("op") == "==" and reqs[0].get("rvar") is False and sets_guard:
                         beats.append([mid, round(x, 2), round(z, 2),
                                       [[r_.get("lvar"), r_.get("op"), r_.get("rvar")] for r_ in reqs]])
+    for b in beats:                                # arrival scenes behind a gate the map data can't see
+        for extra in BEAT_GATES.get((b[0], b[3][0][0]) if b[3] else None, ()):
+            if extra not in b[3]:
+                b[3].append(list(extra))
+    # (2026-11-23, the Dragon squirrel: "no goal" below the Gusai ruins - the hidden footpath opens on G716, set by
+    # examining the chant's fourth step, which has no "Objective:" line and so was no beat) whatever opens a shut door
+    # is a beat: while the door is shut and the opener can run, the marker points at it
+    # (2026-11-23, the Phoenix squirrel: "no goal" in the Kamatori inner garden - Chapter 1 runs through the garden
+    # shrine and candle hall talks, G593 -> G590 -> ..., no "Objective:" line in them) the same for every flag a beat
+    # or a shut door needs: the event that sets it is a fallback beat, and so on down the chain it needs in turn
+    have_flags = {b[3][0][0] for b in beats if b[3]}
+    work = []
+    for gk, alts in sorted(gates.items()):
+        for conds in alts or []:
+            for c in conds:
+                if c[1] == "==" and c[2] is True:
+                    work.append((c[0], gk.split(">")[0]))
+    for b in list(beats):
+        for c in b[3][1:]:
+            if c[1] == "==" and c[2] is True and re.fullmatch(r"G\d+", str(c[0])):
+                work.append((c[0], b[0]))
+    order = sorted(k for k in mp if re.fullmatch(r"M\d{3}", k) and not ("M800" <= k < "M900"))
+    steps = 0
+    while work and steps < 3000:
+        steps += 1
+        fl, near = work.pop(0)
+        if fl in have_flags:
+            continue
+        have_flags.add(fl)
+        needle = '"lvar": "%s", "op": "=", "rvar": true' % fl
+        found = None
+        for omid in [near] + [k for k in order if k != near]:
+            if omid not in mp:
+                continue
+            for e in (mp[omid].get("event") or {}).values():
+                if not isinstance(e, dict) or "pos" not in e or e.get("role") == "portal":
+                    continue
+                ej = json.dumps(e)
+                if needle not in ej or "pathBegin" in ej or "pathFinale" in ej:   # (a road's start: the prologue)
+                    continue
+                for pg in e.get("page") or []:
+                    if pg.get("trigger") in (1, 2, 5, 6) and needle in json.dumps(pg.get("cmdblock") or []):
+                        rq = list(e.get("reqs0") or []) + list(pg.get("reqs") or [])
+                        found = (omid, e["pos"][0] / 2.0, e["pos"][2] / 2.0,
+                                 [[fl, "==", False]] + [[r_.get("lvar"), r_.get("op"), r_.get("rvar")]
+                                                        for r_ in rq if isinstance(r_, dict) and r_.get("lvar") != fl])
+                        break
+                if found:
+                    break
+            if found:
+                break
+        if found:
+            beats.append([found[0], round(found[1], 2), round(found[2], 2), found[3], "opener"])
+            for c in found[3][1:]:
+                if c[1] == "==" and c[2] is True and re.fullmatch(r"G\d+", str(c[0])):
+                    work.append((c[0], found[0]))
     path_of = MAP_PATH
     path_of.clear()
     # (tester 2026-11-14: one road after another let the Crab road flood every map its story links reach - the Crane
@@ -20714,6 +20822,8 @@ def marker_pass(mp):
         f.write("::Rokugan.MK_EXITS <- {\n%s\n};\n" % ",\n".join('\t%s = %s' % (k, sq(v)) for k, v in sorted(exits.items())))
         f.write("::Rokugan.MK_LINKS <- {\n%s\n};\n" % ",\n".join('\t%s = %s' % (k, sq(sorted(v)))
                                                               for k, v in sorted(links.items())))
+        f.write("::Rokugan.MK_GATES <- {\n%s\n};\n" % ",\n".join('\t["%s"] = %s' % (k, sq(v))
+                                                              for k, v in sorted(gates.items()) if v))
         f.write("::Rokugan.MK_BEATS <- [\n%s\n];\n" % ",\n".join("\t" + sq(b) for b in beats))
         f.write("::Rokugan.MK_PATH <- {\n%s\n};\n" % ",\n".join('\t%s = "%s"' % (k, v) for k, v in sorted(path_of.items())))
         f.write("::Rokugan.MK_SHARED_PATH <- {\n%s\n};\n" % ",\n".join(
@@ -21077,6 +21187,8 @@ def register(specs, events):
     scene_pre_pass(mp)
     for row in mp.values():
         fit_walk_in_doorways(row.get("event") or {})
+    import gen_map_backgrounds                              # painted backdrops behind the maps (tools/
+    gen_map_backgrounds.apply(mp, quiet=True)               #  gen_map_backgrounds.py: bg tex -> resource/mapbg)
     save_json_locked(mpath, mp)
     _register_expansion_gvars()
 
@@ -21205,7 +21317,9 @@ SIDE_QUESTS = [
      "Two bands of deserters, one behind the other.",
      "The shrine road again: the last two bands of deserters.",
      "First in, last out. The drill is yours.", 700, "J022"),
-    ("sq_painted", "P104", "Painted Men on the Pass", "M282", 40, 17, "h_bomonk", "A bo-staff monk", ["G612"],
+    # (2026-11-23, the quest-107 squirrel: the monk sent it to a shut gate) opens when the pass does (G613, the
+    # magistrates' scene) - not on G612 "Hisae blessed", which is optional and comes before the gate opens
+    ("sq_painted", "P104", "Painted Men on the Pass", "M282", 40, 17, "h_bomonk", "A bo-staff monk", ["G613"],
      "M283", [1], "Men with painted-on tattoos rob travellers on the pass and call it the Togashi way. It is not "
      "the Togashi way. Help me show them.",
      "Painted men step out of the snow on the pass, ink running on their arms.",
@@ -21563,6 +21677,10 @@ def free_engine(wait_s=3600):
         procs = [ln.split("\t", 1) for ln in out.splitlines() if "\t" in ln]
         if not procs:
             return
+        exe = os.path.normcase(os.path.join(BUILD_TOOL, "rpgcobo.exe"))
+        procs = [(p, c) for p, c in procs if os.path.normcase(c).replace('"', "").startswith(exe)]   # this folder only
+        if not procs:
+            return
         users = [p for p, c in procs if not any(f in c for f in (" -map", " -battle", " -event", " -rt"))]
         for pid, cmd in procs:
             if pid not in users:
@@ -21586,8 +21704,8 @@ def build(specs):
     logp = os.path.join(JOBDIR, "build.log")
     import time
     with open(logp, "w", encoding="utf-8", errors="replace") as lf:
-        proc = subprocess.Popen([os.path.join(TOOL, "rpgcobo.exe"), "-testplay", "-map", specs[0].mid, "[1,3,1,0]"],
-                                cwd=TOOL, stdout=lf, stderr=subprocess.STDOUT)
+        proc = subprocess.Popen([os.path.join(BUILD_TOOL, "rpgcobo.exe"), "-testplay", "-map", specs[0].mid, "[1,3,1,0]"],
+                                cwd=BUILD_TOOL, stdout=lf, stderr=subprocess.STDOUT)
         t0 = time.time()
         while time.time() - t0 < 180:
             time.sleep(1.0)
@@ -23547,6 +23665,8 @@ def rebuild_clan_castle_art(m, ev):
         cell = tuple(point)
         if cell not in m.walls:
             m.walls.append(cell)
+    if ev is None:
+        return
     for key, (previous, updated) in plan.get("positions", {}).items():
         event = ev.ev.get(key)
         if event and event.get("role") == "portal" and event["pos"] == previous:
@@ -23557,6 +23677,890 @@ def rebuild_clan_castle_art(m, ev):
             page = event["page"][0]
             if not (page.get("cmdblock") or page.get("reqs") or page.get("trigger") or event.get("reqs0")):
                 event["mdlid"] = replacement
+
+
+def rebuild_cakon_paddies_and_hut(m):
+    if m.mid == "M420":
+        red_stones = {(x+PAD_X,4,19+PAD_BOTTOM) for x in (74,79)}
+        m.objs = [obj for obj in m.objs if not (
+            obj["t"]=="fb" and (obj["fbtype"]==20 or (obj["fbtype"],obj["fbparam"])==(3,14))
+            or obj["t"]=="fill" and obj["blk"]==STONEW
+            and (obj["x"],obj["y"],obj["z"]) in red_stones)]
+    elif m.mid == "M421":
+        m.objs = [obj for obj in m.objs if not (
+            obj["t"]=="fb" and obj["fbtype"]==20
+            or obj["t"]=="fill" and (obj["blk"]==TAMPERED and obj["x"]-PAD_X in (54,55,56)
+               or obj["blk"]==VOID and obj["x"]==57+PAD_X and obj["z"]==17+PAD_BOTTOM))]
+        # The round footprint follows the clay wall and leaves its front recess clear.
+        for z in range(21,30):
+            for x in range(80,90):
+                a,b = (x+.5-85.)/5.0, (z+.5-25.5)/4.95
+                distance = a*a+b*b
+                if .41 < distance < 1.18 and not (z <= 23 and 83 <= x <= 86):
+                    m.walls.append((x,z))
+    else:
+        m.objs = [obj for obj in m.objs if not (
+            obj["t"]=="fb" and (obj["fbtype"]==20 or obj["fbtype"]==2 and m.mid in ("M886","M887"))
+            or m.mid=="M886" and obj["t"]=="fill" and obj["blk"]==TAMPERED)]
+
+
+def rebuild_winter_river_and_quay(m):
+    if m.mid in ("M422","M424","M888","M889"):
+        m.river_fixtures = [
+            o for o in m.objs if o["t"]=="fb" and (o["fbtype"]==20 or (o["fbtype"],o["fbparam"])==(2,LAMP_STREET))
+        ]
+        m.objs = [o for o in m.objs if o not in m.river_fixtures]
+    if m.mid in ("M422","M424","M889"):
+        courses = []
+        for o in m.objs:
+            if o["t"]!="fill" or o["blk"]!=ROOF:
+                continue
+            if m.mid=="M424" and o["x"]==112+PAD_X:
+                continue
+            if courses and (o["x"],o["w"])==(courses[-1][-1]["x"],courses[-1][-1]["w"]) and o["y"]==courses[-1][-1]["y"]+1:
+                courses[-1].append(o)
+            else:
+                courses.append([o])
+        m.river_roofs = courses
+        removed = [o for course in courses for o in course]
+        for course in courses:
+            last=course[-1]
+            removed.extend(o for o in m.objs if o["t"]=="fill" and o["blk"]==DARKWOOD and o["x"]==last["x"]-1
+                and o["y"]==last["y"]+1 and o["z"]==last["z"] and o["w"]==last["w"]+2)
+        m.objs = [o for o in m.objs if o not in removed]
+    if m.mid=="M423":
+        # Preserve the deck surface and the original rice and cabin barrier footprints.
+        for o in m.objs:
+            if o["t"]=="fill":
+                m.walls.extend((x,z) for x in range(o["x"],o["x"]+o["w"]) for z in range(o["z"],o["z"]+o["d"]))
+        m.objs = []
+    elif m.mid=="M424":
+        m.objs = [o for o in m.objs if not (o["t"]=="fill" and (
+            o["x"]==100+PAD_X and o["w"]==12 and o["blk"]==WOOD
+            or o["x"] in (40+PAD_X,48+PAD_X) and o["z"]==21+PAD_BOTTOM and o["w"]==5 and o["blk"]==WOOD
+            or o["x"]==112+PAD_X and o["z"]==26+PAD_BOTTOM and o["blk"] in (MATTING,ROOF)
+            or o["x"]==5+PAD_X and o["z"]==10+PAD_BOTTOM and o["blk"]==DARKWOOD
+        ))]
+        # The separately fitted unenterable hut remains solid. The market stays open.
+        m.walls.extend((x,z) for x in range(112+PAD_X,117+PAD_X) for z in range(26+PAD_BOTTOM,30+PAD_BOTTOM))
+
+
+_ORDER_CAVE_PLANS = {
+    # (expanded depth, walk routes, chambers: center x/z and horizontal/depth radii)
+    "M425": (
+        76,
+        (((26,19),(38,19),(49,20),(56,24),(65,23),(73,19),(86,23),(97,24),(108,19),(115,19),
+          (125,23),(135,29),(143,32)), ((58,22),(58,32),(62,40)), ((87,23),(94,32),(103,39))),
+        ((38,20,11,9),(60,25,17,11),(86,25,15,12),(110,20,14,9),(63,40,10,7),(105,40,12,8))),
+    "M426": (
+        63,
+        (((26,16),(38,16),(58,19),(82,21),(97,16),(108,17),(117,21),(125,21)),),
+        ((41,16,14,9),(73,21,32,13),(106,21,15,9))),
+    "M427": (
+        68,
+        (((25,19),(34,19),(46,22),(54,19),(65,21),(73,24),(73,34)),),
+        ((38,21,14,11),(58,23,16,13),(73,27,13,11),(89,30,13,10))),
+    "M428": (
+        76,
+        (((28,19),(39,19),(49,16),(59,19),(69,25),(82,19),(93,19),(106,19),(110,19)),
+         ((80,22),(88,31),(97,39)), ((60,22),(58,32),(52,39))),
+        ((37,19,10,8),(58,23,16,12),(85,23,18,13),(103,21,10,9),(97,40,11,8),(50,39,10,9))),
+    "M890": (
+        128,
+        (((9,68),(48,65),(65,65),(96,69),(121,72)), ((61,66),(66,85),(73,99))),
+        ((62,66,38,28),(89,75,27,19),(33,78,22,20),(66,98,26,17))),
+}
+
+
+def order_cave_route(xx, zz, points, radius):
+    mask=np.zeros(xx.shape,dtype=bool)
+    for (ax,az),(bx,bz) in zip(points,points[1:]):
+        dx,dz=bx-ax,bz-az
+        t=np.clip(((xx-ax)*dx+(zz-az)*dz)/(dx*dx+dz*dz),0.,1.)
+        mask |= (xx-ax-t*dx)**2+(zz-az-t*dz)**2 <= radius*radius
+    return mask
+
+
+def rebuild_order_caves(m, ev):
+    depth, paths, rooms = _ORDER_CAVE_PLANS[m.mid]
+    xx,zz=np.meshgrid(np.arange(m.w),np.arange(depth))
+    arena=m.mid=="M890"
+    floor=0 if arena else 2
+    path=np.zeros(xx.shape,dtype=bool)
+    for points in paths:
+        path |= order_cave_route(xx,zz,points,6.0 if arena else 4.2)
+    open_floor=path.copy()
+    for x,z,rx,rz in rooms:
+        ripple=.053*np.sin(xx*.91+zz*.46)+.034*np.cos(zz*.69-xx*.22)
+        open_floor |= ((xx-x)/rx)**2+((zz-z)/rz)**2 <= 1.+ripple
+
+    # Reserve the unchanged interaction anchors within the rebuilt floor plan.
+    if ev is not None:
+        for key, event in ev.ev.items():
+            if event.get("role")=="light" or "pos" not in event or int(key.strip("#"))>12 and event.get("role")!="portal":
+                continue
+            x,y,z,_=event["pos"]
+            if event.get("role") in ("portal","itemchest") or event.get("mdlid")=="CE000":
+                open_floor |= ((xx-x)**2+(zz-z)**2 <= 9)&(y==floor+1)
+
+    wall_top=np.where(zz<(39 if arena else 16),floor+2,
+                      floor+7+np.floor(1.7*np.sin(xx*.20+zz*.15)+1.5*np.cos(zz*.29)).astype(int))
+    m.d=depth
+    m.hgt=np.where(open_floor,floor,wall_top).astype(np.int32)
+    m.blk=np.where(open_floor,CAVE_FLOOR,STONE).astype(np.int32)
+    m.blk[path]=ROAD
+    m.objs=[]
+    m.walls=[]
+    if m.mid=="M426":
+        sand=((xx-73)/32)**2+((zz-21)/12)**2 < 1.
+        m.blk[open_floor & sand]=SAND
+    for x,z,rx,rz in {
+        "M425":((106,41,8.1,4.4),),
+        "M427":((94,33,5.4,4.2),),
+        "M428":((49,39,7.1,4.6),),
+        "M890":((38,84,10.8,3.55),(103,88,13.5,3.62)),
+    }.get(m.mid,()):
+        pond=(((xx-x)/rx)**2+((zz-z)/rz)**2<1.) & open_floor & ~path
+        m.blk[pond]=WATER
+        m.hgt[pond]=max(0,floor-1)
+    if m.mid=="M427":
+        # Tie both jambs into the chamber walls. The ridge has one
+        # opening, centered on the original portal at (73, 26).
+        across=np.abs(xx-73)
+        threshold=28.+.93*np.sin(xx*.14)
+        ridge=(across>3)&(np.abs(zz-threshold)<2.28+.60*np.sin(xx*.35))
+        rubble=3+np.minimum(5,(across//4)).astype(np.int32)
+        m.hgt[ridge]=np.maximum(m.hgt[ridge],floor+rubble[ridge])
+        m.blk[ridge]=STONE
+    if m.mid=="M428":
+        # The back of the exit platform is the boathouse ladder.
+        for z in range(22,25):
+            for x in range(103,109):
+                if m.hgt[z,x]==floor:
+                    m.walls.append((x,z))
+
+
+YASUKI_CAVE_POSITIONS = {'M480': {'#1#': [46, 3, 8, 2], '#84#': [46, 3, 4, 2]}, 'M481': {'#1#': [46, 3, 8, 2], '#85#': [46, 3, 4, 2]}}
+
+_YASUKI_CAVE_PLANS = {
+    "M480": (
+        94,
+        (((46,3),(46,11),(51,17),(63,18),(76,23),(84,32),(91,36),(104,35),(114,27),(126,27),(139,31)),
+         ((61,18),(56,27),(51,35),(48,45),(48,54),(47,62)),
+         ((48,45),(39,49)),((84,31),(93,21),(95,10)),((122,27),(129,20),(138,14))),
+        ((51,15,13,8),(76,23,16,12),(53,36,12,13),(89,36,17,12),(112,29,15,12),
+         (140,31,12,10),(46,57,13,13),(96,10,7,6),(138,14,8,6)),
+        ((69,33,9,6),(99,48,12,7),(115,37,7,4),(143,36,8,4)),
+    ),
+    "M481": (
+        98,
+        (((46,3),(46,13),(53,20),(63,19),(74,22),(85,31),(88,37),(105,41),(115,37),(111,28),
+          (122,21),(136,23),(149,29),(164,30),(166,15)),
+         ((55,19),(46,24),(36,24)),((69,19),(69,35),(62,48),(60,57),(68,62),(79,60)),
+         ((64,45),(53,43),(42,46)),((140,25),(145,37),(155,48))),
+        ((47,16,13,9),(74,21,14,11),(90,37,16,12),(111,34,17,13),(74,58,17,12),
+         (49,45,13,10),(148,30,16,14),(165,20,8,10),(154,48,10,8),(36,24,7,6)),
+        ((90,46,8,6),(113,49,12,7),(135,32,8,5),(154,40,7,6),(66,46,6,7)),
+    ),
+}
+
+
+def yasuki_tube_mask(xx, zz, points, radius):
+    mask=np.zeros(xx.shape,dtype=bool)
+    for (ax,az),(bx,bz) in zip(points,points[1:]):
+        dx,dz=bx-ax,bz-az
+        t=np.clip(((xx-ax)*dx+(zz-az)*dz)/(dx*dx+dz*dz),0.,1.)
+        mask |= (xx-ax-t*dx)**2+(zz-az-t*dz)**2 <= radius**2
+    return mask
+
+
+for _yasuki_mid in ("M480","M481"):
+    ENCOUNTERS[_yasuki_mid] = ("M829",ENCOUNTERS[_yasuki_mid][1])
+
+
+def rebuild_yasuki_caves(m, ev):
+    if m.mid=="M829":
+        zz,xx=np.indices(m.hgt.shape)
+        wall=(zz>86.+2.6*np.sin(xx*.13)+2.2*np.sin(xx*.29)) | (zz<31)
+        route=(zz>=59)&(zz<=74)&(xx>19)&(xx<111)
+        pools=((xx-44.)/15.)**2+((zz-80.)/5.8)**2<1.
+        pools|=((xx-87.)/13.5)**2+((zz-80.)/5.3)**2<1.
+        pools &= ~(wall|route)
+        m.blk=np.where(wall,STONE,np.where(pools,WATER,CAVE_FLOOR)).astype(np.int32)
+        m.blk[route]=DIRT
+        m.hgt=np.where(wall,np.where(zz<31,1,8+np.rint(2.*np.sin(xx*.14)).astype(int)),0).astype(np.int32)
+        m.objs=[]
+        return
+    if m.mid=="M470":
+        zz,xx=np.indices(m.hgt.shape)
+        shore=6.+1.3*np.sin(xx*.091)+.8*np.sin(xx*.227)
+        tide=(zz<shore)&((xx<24)|(xx>35))
+        mud=(zz>=shore)&(zz<shore+4.)&((xx<24)|(xx>35))
+        m.blk[tide]=WATER
+        m.hgt[tide]=1
+        m.blk[mud]=SAND
+        m.objs=[]
+        m.yasuki_mouths=[]
+        for center in (70,112):
+            flank=((xx-center)/19.)**2+((zz-36.)/10.3)**2
+            bank=(flank<1.) & (zz>=31) & (np.abs(xx-91)>4)
+            bank &= ~((zz>=39)&(xx>=118))
+            m.hgt[bank]=np.maximum(m.hgt[bank],8+np.rint(5.*(1.-flank[bank])).astype(int))
+            m.blk[bank]=STONE
+        for cx in (70,112):
+            dx=np.abs(xx-cx)
+            # Reserve the sign and the main road in front. The mass
+            # closes behind the story threshold and ties into the roof.
+            belly=((xx-cx)/15.)**2+((zz-35.)/8.)**2
+            rock=(belly<1.)&(zz>=28)
+            throat=(dx<=3)&(zz>=25)&(zz<=33)
+            rock &= ~throat
+            for key in ("#7#","#8#"):
+                x,y,z,d=ev.ev[key]["pos"]
+                rock[z,x]=False
+            m.hgt[rock]=np.maximum(7,11-np.floor(belly[rock]*4).astype(int))
+            m.blk[rock]=STONE
+            m.hgt[throat]=3
+            m.blk[throat]=DIRT
+            fill(m,cx-3,9,27,7,3,8,STONE)
+            m.yasuki_mouths.append((cx,27,34))
+        return
+
+    for key,pos in YASUKI_CAVE_POSITIONS[m.mid].items():
+        ev.ev[key]["pos"]=list(pos)
+    depth, corridors, chambers, pools = _YASUKI_CAVE_PLANS[m.mid]
+    zz,xx=np.indices((depth,m.w))
+    path=np.zeros(xx.shape,dtype=bool)
+    for points in corridors:
+        path |= yasuki_tube_mask(xx,zz,points,3.5)
+    open_floor=path.copy()
+    for x,z,rx,rz in chambers:
+        rough=.062*np.sin(.61*xx+.94*zz)+.038*np.cos(.47*xx-.32*zz)
+        open_floor |= ((xx-x)/rx)**2+((zz-z)/rz)**2 < 1.+rough
+    important=np.zeros_like(path)
+    for event in ev.ev.values():
+        if event.get("role") in ("portal","custom","itemchest") and "pos" in event:
+            x,y,z,_=event["pos"]
+            if y==3:
+                important |= (xx-x)**2+(zz-z)**2 <= 9
+    open_floor |= important
+    # Keep the narrow entry passage square to the threshold; south is the coast.
+    open_floor[:8,:] &= (np.abs(xx[:8]-46)<=3)
+    floor=2
+    tall=9+np.rint(1.34*np.sin(xx*.15+zz*.18)+1.11*np.cos(zz*.29)).astype(int)
+    # Match the roof cuts in the normal camera foreground.
+    tall=np.where(zz<20,5,tall)
+    m.d=depth
+    m.hgt=np.where(open_floor,floor,tall).astype(np.int32)
+    m.blk=np.where(open_floor,CAVE_FLOOR,STONE).astype(np.int32)
+    m.blk[path & open_floor]=DIRT
+    m.objs=[]
+    m.walls=[]
+    for x,z,rx,rz in pools:
+        water=(((xx-x)/rx)**2+((zz-z)/rz)**2<1.)&open_floor&~(path|important)
+        m.blk[water]=WATER
+        m.hgt[water]=1
+    fill(m,43,8,2,7,2,6,STONE)
+
+
+BRANCH_CAVE_POSITIONS = {'M471': {'#3#': [76, 4, 29, 0], '#6#': [79, 4, 28, 2]}, 'M482': {'#1#': [46, 3, 8, 2], '#84#': [46, 3, 4, 2]}, 'M483': {'#1#': [46, 3, 8, 2], '#83#': [46, 3, 4, 2]}, 'M484': {'#1#': [46, 3, 8, 2], '#83#': [46, 3, 4, 2]}}
+BRANCH_CAVE_ARENAS = {'M482': 'M829', 'M483': 'M819', 'M484': 'M819'}
+_BRANCH_CAVE_PLANS = {
+    "M482": (
+        100,
+        (((46,3),(46,12),(52,18),(62,22),(72,25),(79,27),(87,27),(95,30),(106,28),(114,26),(124,19),(126,15)),
+         ((60,21),(55,27),(51,33),(56,41),(63,49),(66,62)),
+         ((63,49),(53,54),(44,57),(36,62)),
+         ((95,30),(90,38),(93,46),(100,48),(113,49),(122,52),(129,53)),
+         ((93,44),(89,57)),((108,49),(109,41)),),
+        ((51,15,13,8),(69,24,16,11),(100,29,19,12),(117,24,16,10),(125,16,8,7),
+         (52,36,13,11),(61,54,13,13),(37,62,10,8),(92,50,15,14),(117,51,17,10)),
+    ),
+    "M483": (
+        99,
+        (((46,3),(46,13),(58,17),(72,16),(83,18),(92,19),(102,23),(112,24),(129,26),(145,37),(155,38),(171,47)),
+         ((58,17),(54,27),(52,33),(57,43),(67,52)),((102,23),(94,30),(89,37)),
+         ((145,37),(158,30),(165,24),(172,17))),
+        ((52,15,13,9),(73,16,14,9),(97,22,15,11),(116,26,17,11),(52,36,12,13),
+         (62,49,12,10),(92,37,13,11),(141,34,16,12),(158,43,16,10),(171,18,9,8)),
+    ),
+    "M484": (
+        105,
+        (((46,3),(46,12),(56,16),(77,16),(91,16),(109,22),(125,18),(138,13)),
+         ((54,16),(55,29),(56,38),(51,49),(51,56),(45,61),(35,65)),
+         ((56,38),(70,37),(87,40),(106,41),(120,36),(134,40),(154,36)),
+         ((109,22),(109,30),(120,36)),((76,16),(87,24),(87,40))),
+        ((49,15,13,9),(77,18,17,9),(111,23,16,11),(138,14,11,8),
+         (58,38,14,12),(50,56,13,11),(35,65,10,8),(89,39,13,12),(120,40,20,11),(151,37,14,11)),
+    ),
+}
+
+
+def branch_lion_cave_battle():
+    return MapSpec("M819","Battle: the Lion hill caverns",128,128,base=CAVE_FLOOR,y=0)
+
+
+MAPS["M819"]=BATTLE_SPECS["M819"]=branch_lion_cave_battle
+RSET["M819"]="rt_hd2d_cave"
+for _branch_cave,_branch_arena in BRANCH_CAVE_ARENAS.items():
+    ENCOUNTERS[_branch_cave]=(_branch_arena,ENCOUNTERS[_branch_cave][1])
+
+
+def rebuild_branch_caves(m, ev):
+    for key,pos in BRANCH_CAVE_POSITIONS.get(m.mid,{}).items():
+        ev.ev[key]["pos"]=list(pos)
+    if m.mid=="M819":
+        zz,xx=np.indices(m.hgt.shape)
+        ridge=86.+2.4*np.sin(xx*.19)+2.*np.cos(xx*.21)
+        stone=(zz>ridge)|(zz<29)
+        lane=(zz>=56)&(zz<=75)
+        m.hgt=np.where(stone,np.where(zz<29,1,8+np.rint(1.6*np.sin(xx*.17)).astype(int)),0).astype(np.int32)
+        m.blk=np.where(stone,STONE,np.where(lane,DIRT,CAVE_FLOOR)).astype(np.int32)
+        m.objs=[]
+        return
+
+    if m.mid in ("M471","M472"):
+        zz,xx=np.indices(m.hgt.shape)
+        river=m.mid=="M471"
+        mouths=(76,) if river else (70,112)
+        keep_road=m.blk==ROAD
+        old_mounds=(m.hgt>3)&np.isin(m.blk,(T(2,0),T(2,1)))
+        m.hgt[old_mounds]=3
+        m.blk[old_mounds]=GRASS2 if river else GRASS
+        m.objs=[]
+        m.branch_mouths=[]
+        if river:
+            shore=8.1+1.6*np.sin(xx*.103)+.8*np.cos(xx*.166)
+            # The south portal is on the dry causeway between the two reaches.
+            reaches=((xx>=5)&(xx<=86)) | ((xx>=96)&(xx<=136))
+            water=(zz<shore)&reaches&~keep_road
+            bank=(zz<shore+4.)&reaches&~keep_road&~water
+            m.blk[bank]=SAND
+            m.blk[water]=WATER
+            m.hgt[water]=1
+            xx_lane=(abs(xx-91)<=4)&(zz<13)
+            m.blk[xx_lane]=PLANK
+        else:
+            light_dry=(np.sin(xx*.10+zz*.18)+.7*np.sin(xx*.29-zz*.26))>.4
+            m.blk[(m.blk==GRASS)&light_dry]=GRASS2
+        protected=np.zeros(xx.shape,dtype=bool)
+        for e in ev.ev.values():
+            if e.get("role") in ("portal","itemchest") or (e.get("role")=="custom" and e.get("mdlid")=="CE000"):
+                x,y,z,_=e["pos"]
+                if y==4:
+                    protected|=(xx-x)**2+(zz-z)**2<=7
+        occupied=np.zeros_like(protected)
+        for e in ev.ev.values():
+            if e.get("pos") and e["pos"][1]==4:
+                x,_,z,_=e["pos"]
+                occupied|=(xx-x)**2+(zz-z)**2<=4
+        # Raised woodland and ochre scarps break the back edge without
+        # crossing the dry valley or either of the story-gated approaches.
+        knolls=((24,44,17,10),(52,47,17,11),(129,49,17,9),(164,44,14,11))
+        for x,z,rx,rz in knolls:
+            shape=((xx-x)/rx)**2+((zz-z)/rz)**2
+            hillside=(shape<1.)&(zz>=35)&~(keep_road|occupied|protected)&(abs(xx-91)>7)
+            m.hgt[hillside]=np.maximum(m.hgt[hillside],6+np.rint((1.-shape[hillside])*5.4).astype(int))
+            m.blk[hillside]=STONE
+        for cx in mouths:
+            body=((xx-cx)/14.6)**2+((zz-35.8)/9.)**2
+            ridge=(body<1.)&(zz>=28)&(abs(xx-91)>5)&~keep_road
+            throat=(abs(xx-cx)<=3)&(zz>=25)&(zz<=33)
+            ridge &= ~(throat|protected)
+            m.hgt[ridge]=np.maximum(7,12-np.floor(4.*body[ridge]).astype(int))
+            m.blk[ridge]=STONE
+            m.hgt[throat]=3
+            m.blk[throat]=DIRT
+            fill(m,cx-3,9,27,7,3,7,STONE)
+            m.branch_mouths.append((cx,27,33))
+        return
+
+    width=m.w
+    depth,lanes,galleries=_BRANCH_CAVE_PLANS[m.mid]
+    zz,xx=np.indices((depth,width))
+    path=np.zeros(xx.shape,dtype=bool)
+    for line in lanes:
+        path |= order_cave_route(xx,zz,line,3.5)
+    floors=path.copy()
+    for x,z,rx,rz in galleries:
+        ripple=.056*np.sin(xx*.53+zz*.32)+.036*np.cos(xx*.74-zz*.63)
+        floors |= ((xx-x)/rx)**2+((zz-z)/rz)**2 < 1.+ripple
+    anchors=np.zeros_like(path)
+    for event in ev.ev.values():
+        if event.get("role") in ("portal","custom","itemchest") and "pos" in event:
+            x,y,z,_=event["pos"]
+            if y==3:
+                anchors|=(xx-x)**2+(zz-z)**2<=9
+    floors |= anchors
+    floors[:8,:] &= abs(xx[:8]-46)<=3
+    ridge=9+np.rint(1.3*np.sin(xx*.14+zz*.23)+1.3*np.cos(xx*.19-zz*.12)).astype(int)
+    ridge=np.where(zz<20,5,ridge)
+    m.d=depth
+    m.blk=np.where(floors,CAVE_FLOOR,STONE).astype(np.int32)
+    m.blk[path&floors]=DIRT
+    m.hgt=np.where(floors,2,ridge).astype(np.int32)
+    m.objs=[]
+    m.walls=[]
+    fill(m,43,8,2,7,2,6,STONE)
+    if m.mid=="M482":
+        channel=82.3+2.8*np.sin(zz*.094)
+        ribbon=(abs(xx-channel)<2.25+.63*np.cos(zz*.21))&(zz>13)&(zz<57)
+        cross=(abs(zz-27)<=2)&(xx>=75)&(xx<=91)&floors
+        wet=ribbon&~cross&~anchors
+        m.blk[wet]=WATER
+        m.hgt[wet]=1
+        bridge=(abs(zz-27)<=2)&(xx>=76)&(xx<=88)&floors
+        m.blk[bridge]=PLANK
+        m.branch_bridge=(76,89,25,30)
+
+
+ZUMIKI_ICE_POSITIONS = {'M473': {'#3#': [74, 4, 29, 0], '#6#': [77, 4, 28, 2]}, 'M485': {'#1#': [46, 3, 8, 2], '#83#': [46, 3, 4, 2]}}
+ENCOUNTERS["M485"]=("M844",ENCOUNTERS["M485"][1])
+
+
+def rebuild_zumiki_ice_route(m,ev):
+    for key,pos in ZUMIKI_ICE_POSITIONS.get(m.mid,{}).items():
+        ev.ev[key]["pos"]=list(pos)
+    if m.mid=="M473":
+        zz,xx=np.indices(m.hgt.shape)
+        route=m.blk==ROAD
+        snowy=(m.hgt>3)&np.isin(m.blk,(T(2,0),T(2,1)))
+        m.hgt[snowy]=3
+        m.blk[snowy]=SNOW
+        m.objs=[]
+        cx=74
+        hill=((xx-cx)/17.)**2+((zz-36.)/10.)**2
+        throat=(abs(xx-cx)<=3)&(zz>=25)&(zz<=34)
+        occupied=np.zeros(hill.shape,dtype=bool)
+        for e in ev.ev.values():
+            if e.get("pos") and e["pos"][1]==4 and e["role"]!="villager":
+                x,y,z,d=e["pos"]
+                occupied|=(xx-x)**2+(zz-z)**2<=5
+        rock=(hill<1.)&(zz>=28)&~(throat|occupied|route)
+        for x,z,w,h in ((24,44,17,9),(111,47,14,8),(161,43,15,8)):
+            mound=((xx-x)/w)**2+((zz-z)/h)**2
+            flank=(mound<1.)&(abs(xx-91)>9)&(zz>35)&~(route|occupied)
+            m.hgt[flank]=np.maximum(m.hgt[flank],6+np.rint(4.*(1.-mound[flank])).astype(int))
+            m.blk[flank]=STONE
+        m.blk[rock]=STONE
+        m.hgt[rock]=np.maximum(m.hgt[rock],8+np.rint(5.2*(1.-hill[rock])).astype(int))
+        m.hgt[throat]=3
+        m.blk[throat]=ROAD
+        fill(m,cx-3,9,27,7,4,8,STONE)
+        pool=((xx-117.)/17.1)**2+((zz-8.)/5.8)**2<1.
+        pool &= ~occupied&~route
+        m.hgt[pool]=1
+        m.blk[pool]=WATER
+        return
+    if m.mid=="M844":
+        zz,xx=np.indices(m.hgt.shape)
+        rock=(zz>86.+2.6*np.sin(xx*.10)+1.7*np.sin(xx*.21)) | (zz<29)
+        m.hgt=np.where(rock,np.where(zz<29,1,8+np.rint(2.*np.sin(xx*.13)).astype(int)),0).astype(np.int32)
+        m.blk=np.where(rock,STONE,SNOW).astype(np.int32)
+        m.objs=[]
+        return
+
+    m.d=104
+    zz,xx=np.indices((m.d,m.w))
+    passes=(
+        ((46,3),(46,13),(54,17),(69,20),(77,19),(86,23),(103,22),(114,25),(127,26),
+         (142,25),(149,28),(163,28),(173,29)),
+        ((54,17),(52,28),(52,33),(49,42),(44,50)),
+        ((69,20),(68,31),(72,42),(78,54)), ((103,22),(95,31),(87,38),(77,43),(72,42)),
+        ((142,25),(147,18),(153,13)),
+    )
+    path=np.zeros(xx.shape,dtype=bool)
+    for line in passes:
+        path |= order_cave_route(xx,zz,line,3.9)
+    walk=path.copy()
+    for x,z,rx,rz in ((50,15,13,9),(73,22,17,12),(53,34,13,10),(49,47,14,10),
+                      (76,49,16,12),(102,27,18,13),(123,27,16,11),(147,27,16,11),
+                      (154,13,10,7),(171,29,11,8)):
+        fold=.055*np.sin(.79*xx+.39*zz)+.035*np.cos(.29*xx-.41*zz)
+        walk|=((xx-x)/rx)**2+((zz-z)/rz)**2<1.+fold
+    important=np.zeros_like(path)
+    for e in ev.ev.values():
+        if e.get("pos") and e.get("role") in ("portal","custom","itemchest"):
+            x,y,z,_=e["pos"]
+            if y==3:
+                important|=(xx-x)**2+(zz-z)**2<=8
+    walk|=important
+    walk[:8,:] &= abs(xx[:8]-46)<=3
+    ridge=10+np.rint(1.7*np.sin(.13*xx+.30*zz)+1.3*np.cos(.22*xx-.13*zz)).astype(int)
+    m.hgt=np.where(walk,2,np.where(zz<19,5,ridge)).astype(np.int32)
+    m.blk=np.where(walk,np.where(path,ROAD,CAVE_FLOOR),STONE).astype(np.int32)
+    m.objs=[]
+    m.walls=[]
+    for x,z,rx,rz in ((63,36,12,9),(107,37,8,6),(138,34,8,5)):
+        pool=(((xx-x)/rx)**2+((zz-z)/rz)**2<1.)&walk&~(path|important)
+        m.blk[pool]=WATER
+        m.hgt[pool]=1
+    fill(m,43,8,2,7,2,6,STONE)
+
+
+DOJI_TIDE_POSITIONS = {'M486': {'#1#': [46, 3, 8, 2], '#85#': [46, 3, 4, 2]}}
+DOJI_BATTLE_SCENES = {'M474': 'M828', 'M486': 'M829'}
+for _doji_route,_doji_arena in DOJI_BATTLE_SCENES.items():
+    ENCOUNTERS[_doji_route]=(_doji_arena,ENCOUNTERS[_doji_route][1])
+
+
+def rebuild_doji_tide_caves(m,ev):
+    for key,pos in DOJI_TIDE_POSITIONS.get(m.mid,{}).items():
+        ev.ev[key]["pos"]=list(pos)
+    if m.mid=="M828":
+        zz,xx=np.indices(m.hgt.shape)
+        outer=86.+5.3*np.sin(xx*.069)+1.7*np.cos(xx*.25)
+        beach=(zz>=74)&(zz<=outer)
+        water=(zz>outer)&~((xx<23)&(zz<102))&~((xx>110)&(zz<98))
+        ridge=((zz>84)&(xx<24)&~water)|((zz>82)&(xx>111)&~water)
+        m.hgt=np.where(ridge,4+np.rint(1.8*np.sin(xx*.17+zz*.09)).astype(int),0)
+        m.blk=np.where(water,WATER,np.where(ridge,STONE,np.where(beach,SAND,DIRT))).astype(np.int32)
+        m.objs=[]
+        return
+
+    zz,xx=np.indices(m.hgt.shape)
+    if m.mid=="M474":
+        routes=m.blk==ROAD
+        old=(m.hgt>3)&np.isin(m.blk,(T(2,0),T(2,1)))
+        m.hgt[old]=3
+        m.blk[old]=GRASS
+        m.objs=[]
+        reserve=np.zeros_like(routes)
+        for e in ev.ev.values():
+            if e.get("pos") and e["pos"][1]==4 and e["role"]!="villager":
+                x,y,z,d=e["pos"]
+                reserve|=(xx-x)**2+(zz-z)**2<=5
+        coast=8.5+1.7*np.sin(xx*.087)+1.5*np.sin(xx*.16-.71)
+        causeway=(abs(xx-91)<=4)&(zz<=12)
+        foreshore=(zz<coast+3.7)&(xx>=4)&(xx<153)&~(reserve|routes)
+        surf=(zz<coast)&foreshore&~causeway
+        m.blk[foreshore]=SAND
+        m.blk[surf]=WATER
+        m.hgt[surf]=1
+        m.blk[causeway]=PLANK
+        cx=90
+        neck=(abs(xx-cx)<=3)&(zz>=25)&(zz<=33)
+        for px,pz,rx,rz in ((90,36,18,10),(58,45,19,12),(120,43,17,10),(160,45,14,9)):
+            lump=((xx-px)/rx)**2+((zz-pz)/rz)**2
+            hill=(lump<1.)&(zz>=28)&~(neck|routes|reserve)
+            m.hgt[hill]=np.maximum(m.hgt[hill],7+np.rint(6.0*(1.-lump[hill])).astype(int))
+            m.blk[hill]=STONE
+        m.hgt[neck]=3
+        m.blk[neck]=DIRT
+        fill(m,cx-3,9,27,7,3,7,STONE)
+        return
+
+    m.d=108
+    zz,xx=np.indices((m.d,m.w))
+    paths=(
+        ((46,3),(46,13),(55,18),(66,20),(74,22),(82,26),(93,27),(101,26),(112,26),
+         (124,30),(135,37),(147,42),(162,43)),
+        ((60,19),(54,26),(53,37),(50,46),(44,52),(40,58),(37,65)),
+        ((73,22),(79,29),(83,34),(86,44),(91,48)),
+        ((109,27),(111,34),(120,40)),((86,44),(86,52),(81,57)),
+        ((144,41),(151,33),(158,29),(166,22),(170,14)),
+    )
+    lanes=np.zeros(xx.shape,dtype=bool)
+    for line in paths:
+        lanes|=order_cave_route(xx,zz,line,3.8)
+    walk=lanes.copy()
+    for x,z,rx,rz in ((52,16,14,10),(71,24,16,12),(56,36,14,10),(47,52,11,13),
+                     (37,64,10,8),(86,42,15,13),(80,58,13,9),(109,29,20,12),
+                     (120,39,14,10),(140,37,16,11),(156,43,16,12),(168,17,10,10)):
+        flake=.055*np.sin(xx*.71+zz*.31)+.032*np.cos(xx*.44-zz*.24)
+        walk|=((xx-x)/rx)**2+((zz-z)/rz)**2<1.+flake
+    keep=np.zeros_like(walk)
+    for e in ev.ev.values():
+        if e.get("pos") and e.get("role") in ("portal","custom","itemchest"):
+            x,y,z,_=e["pos"]
+            if y==3:
+                keep|=(xx-x)**2+(zz-z)**2<=9
+    walk|=keep
+    walk[:8,:] &= abs(xx[:8]-46)<=3
+    wall=9+np.rint(1.8*np.sin(xx*.17+zz*.19)+1.1*np.cos(zz*.27)).astype(int)
+    m.hgt=np.where(walk,2,np.where(zz<21,5,wall)).astype(np.int32)
+    m.blk=np.where(walk,np.where(lanes,DIRT,CAVE_FLOOR),STONE).astype(np.int32)
+    m.objs=[]
+    m.walls=[]
+    flow=90.1+2.7*np.sin(zz*.19)
+    tidal=(abs(xx-flow)<2.75+.45*np.cos(zz*.4))&(zz>=16)&(zz<=58)
+    decking=(xx>=83)&(xx<=98)&(zz>=24)&(zz<=29)&walk
+    water=tidal&~(decking|keep)
+    for x,z,rx,rz in ((67,32,10,6),(103,36,9,6),(128,45,11,6),(151,47,9,6),(42,57,6,5)):
+        water|=(((xx-x)/rx)**2+((zz-z)/rz)**2<1.)&walk&~(lanes|keep|decking)
+    m.blk[water]=WATER
+    m.hgt[water]=1
+    m.blk[decking]=PLANK
+    fill(m,43,8,2,7,2,6,STONE)
+
+
+FOX_POSITIONS = {'M475': {'#3#': [70, 4, 29, 0], '#6#': [73, 4, 28, 2]}, 'M487': {'#1#': [46, 3, 9, 2], '#83#': [46, 3, 4, 2]}}
+FOX_EXIT_BOUNDS = [0, 1.0, 0, 1.55, 1.64, 0.75]
+
+
+def phoenix_fox_shrine_arena():
+    return MapSpec("M799","Battle: the fox shrine cave",128,128,base=CAVE_FLOOR,y=0)
+
+
+MAPS["M799"]=phoenix_fox_shrine_arena
+BATTLE_SPECS["M799"]=phoenix_fox_shrine_arena
+RSET["M799"]="rt_hd2d_cave"
+for _fox_route,_fox_arena in (("M475","M846"),("M487","M799")):
+    ENCOUNTERS[_fox_route]=(_fox_arena,ENCOUNTERS[_fox_route][1])
+
+
+def rebuild_phoenix_fox_cave(m,ev):
+    for key,pos in FOX_POSITIONS.get(m.mid,{}).items():
+        ev.ev[key]["pos"]=list(pos)
+    if m.mid=="M487":
+        ev.ev["#83#"]["mdl"]["r"]=FOX_EXIT_BOUNDS
+    if m.mid=="M475":
+        zz,xx=np.indices(m.hgt.shape)
+        exclude=np.zeros_like(m.hgt,dtype=bool)
+        for event in ev.ev.values():
+            x,y,z,_=event.get("pos",(0,0,0,0))
+            if y==4:
+                exclude|=(xx-x)**2+(zz-z)**2<9
+        m.objs=[o for o in m.objs if not (o["t"]=="fb" and o["fbtype"] in (20,21))]
+        underway=(abs(xx-91)<=6)&(zz>=19)
+        original=m.blk==ROAD
+        path_to_cave=(abs(xx-70)<=3)&(zz>=17)&(zz<=34)
+        keep=exclude|original|underway|path_to_cave
+        m.hgt[underway|path_to_cave]=3
+        m.blk[underway]=ROAD
+        m.blk[path_to_cave]=DIRT
+        for x,z,rx,rz,h in ((35,42,22,13,5),(66,39,16,10,6),(115,46,14,9,5),(160,44,18,13,6),(18,9,14,8,4)):
+            rise=((xx-x)/rx)**2+((zz-z)/rz)**2+.06*np.sin(xx*.28+zz*.53)
+            selection=(rise<1.)&~keep
+            m.blk[selection]=STONE
+            m.hgt[selection]=np.maximum(m.hgt[selection],6+np.rint(h*(1.-rise[selection])).astype(int))
+        fill(m,67,9,27,7,3,7,STONE)
+        return
+
+    if m.mid in ("M846","M799"):
+        zz,xx=np.indices(m.hgt.shape)
+        forest=m.mid=="M846"
+        toes=86+5*np.sin(xx*.082)+3*np.cos(xx*.24)
+        rocks=(zz>toes) if not forest else ((zz>toes-7)&((xx<26)|(xx>99)))|(zz>=108)
+        cliff=5+np.rint(3.2*np.cos(xx*.14+zz*.22)+1.3*np.sin(zz*.19)).astype(int)
+        m.hgt=np.where(rocks,cliff,0)
+        m.blk=np.where(rocks,STONE,np.where(zz>80,GRASS3 if forest else CAVE_FLOOR,DIRT))
+        m.objs=[]
+        return
+
+    m.d=102
+    zz,xx=np.indices((m.d,m.w))
+    paths=(
+        ((46,3),(46,13),(53,19),(66,22),(77,23),(86,28),(99,30),(113,24),(127,23),
+         (139,13)),
+        ((62,22),(54,30),(53,34),(56,43),(66,52)),
+        ((79,24),(82,34),(86,40),(97,47),(109,54),(109,66)),
+        ((98,30),(112,39),(118,45),(133,47),(150,48),(160,48)),
+    )
+    lanes=np.zeros(xx.shape,dtype=bool)
+    for route in paths:
+        lanes|=order_cave_route(xx,zz,route,3.7)
+    walk=lanes.copy()
+    for x,z,rx,rz in ((51,16,15,9),(75,24,18,11),(54,35,12,11),(64,51,11,9),
+                     (92,39,16,14),(110,58,14,13),(117,25,16,12),(140,14,13,9),
+                     (132,47,18,13),(156,48,16,10)):
+        rim=.062*np.sin(xx*.37+zz*.49)+.044*np.cos(xx*.72-zz*.62)
+        walk|=((xx-x)/rx)**2+((zz-z)/rz)**2<1.+rim
+    protect=np.zeros_like(walk)
+    for event in ev.ev.values():
+        x,y,z,_=event.get("pos",(0,0,0,0))
+        if y==3 and event["role"] in ("portal","custom","itemchest"):
+            protect|=(xx-x)**2+(zz-z)**2<=9
+    walk|=protect
+    walk[:8]&=abs(xx[:8]-46)<=3
+    spring=np.zeros_like(walk)
+    for x,z,rx,rz in ((74,35,8,5),(93,38,5,7),(104,61,3,8),(129,53,15,4)):
+        spring|=((xx-x)/rx)**2+((zz-z)/rz)**2<1.
+    water=spring&walk&~(lanes|protect)
+    rock=9+np.rint(2.2*np.sin(xx*.12+zz*.19)+1.2*np.cos(zz*.23)).astype(int)
+    m.blk=np.where(water,WATER,np.where(walk,np.where(lanes,DIRT,CAVE_FLOOR),STONE))
+    m.hgt=np.where(water,1,np.where(walk,2,np.where(zz<22,6,rock)))
+    m.objs=[]
+    m.walls=[]
+    fill(m,43,8,2,7,2,6,STONE)
+
+
+DRAGON_SPRING_POSITIONS = {'M488': {'#1#': [46, 3, 9, 2], '#84#': [46, 3, 4, 2]}}
+DRAGON_SPRING_EXIT = [0, 1.0, 0, 1.55, 1.64, 0.75]
+
+def dragon_spring_battle():
+    return MapSpec("M798","Battle: the Dragon mountain cave",128,128,base=CAVE_FLOOR,y=0)
+
+
+MAPS["M798"]=dragon_spring_battle
+BATTLE_SPECS["M798"]=dragon_spring_battle
+RSET["M798"]="rt_hd2d_cave"
+for _dragon_route,_dragon_arena in (("M476","M872"),("M488","M798")):
+    ENCOUNTERS[_dragon_route]=(_dragon_arena,ENCOUNTERS[_dragon_route][1])
+
+
+def rebuild_dragon_spring(m,ev):
+    for key,pos in DRAGON_SPRING_POSITIONS.get(m.mid,{}).items():
+        ev.ev[key]["pos"]=list(pos)
+    if m.mid=="M488":
+        ev.ev["#84#"]["mdl"]["r"]=DRAGON_SPRING_EXIT
+    if m.mid=="M798":
+        zz,xx=np.indices(m.hgt.shape)
+        ledge=87+4.2*np.sin(xx*.143)+2.2*np.cos(xx*.173)
+        outer=zz>ledge+3
+        stream=(zz>=ledge-4)&(zz<=ledge+1)&(xx>=22)&(xx<=104)
+        m.hgt=np.where(outer,4+np.rint(3*np.sin(xx*.09+zz*.14)+1.2*np.cos(zz*.23)),0).astype(int)
+        m.blk=np.where(outer,STONE,np.where(stream,WATER,np.where(zz<74,DIRT,CAVE_FLOOR)))
+        m.objs=[]
+        return
+
+    zz,xx=np.indices(m.hgt.shape)
+    if m.mid=="M476":
+        approaches=(m.blk==ROAD)
+        reserve=np.zeros_like(approaches)
+        for row in ev.ev.values():
+            x,y,z,d=row.get("pos",(0,0,0,0))
+            if y==4 and row["role"]!="villager":
+                reserve|=(xx-x)**2+(zz-z)**2<9
+        neck=(abs(xx-90)<=3)&(zz>=21)&(zz<34)
+        protect=approaches|reserve|neck
+        m.objs=[o for o in m.objs if not (o["t"]=="fb" and o["fbtype"] in (20,21))]
+        m.hgt[neck]=3
+        m.blk[neck]=DIRT
+        for x,z,rx,rz,rise in ((18,36,22,14,5),(46,41,18,13,8),(89,37,19,11,7),
+                              (128,43,16,14,5),(161,40,21,12,6)):
+            profile=((xx-x)/rx)**2+((zz-z)/rz)**2+.07*np.sin(xx*.35+zz*.48)
+            rock=(profile<1.)&~protect
+            m.blk[rock]=STONE
+            m.hgt[rock]=np.maximum(m.hgt[rock],7+np.rint(rise*(1.-profile[rock])).astype(int))
+        stream=abs(xx-(115+3.9*np.sin(zz*.135+.61)))<3.0+1.4*np.sin(zz*.235)**2
+        stream&=(zz>4)&(zz<46)&~reserve
+        bridge=(xx>=104)&(xx<=122)&(zz>=18)&(zz<=24)&~reserve
+        m.hgt[stream&~bridge]=1
+        m.blk[stream&~bridge]=WATER
+        m.hgt[bridge]=3
+        m.blk[bridge]=PLANK
+        fill(m,87,9,27,7,3,7,STONE)
+        return
+
+    m.d=108
+    zz,xx=np.indices((m.d,m.w))
+    corridors=(
+        ((46,3),(46,11),(53,17),(68,19),(78,16),(91,21),(106,23),(116,23),
+         (126,20),(138,16),(147,18)),
+        ((63,20),(58,26),(54,31),(51,39),(40,41),(36,40),(37,52),(40,63)),
+        ((75,19),(76,30),(84,40),(93,46),(105,43),(116,38),(117,27)),
+        ((84,39),(72,45),(67,50),(61,62),(54,68),(43,65)),
+    )
+    main=np.zeros_like(xx,dtype=bool)
+    for corridor in corridors:
+        main|=order_cave_route(xx,zz,corridor,3.7)
+    walk=main.copy()
+    for x,z,rx,rz in ((54,15,14,9),(78,22,18,12),(57,34,14,9),(38,41,10,11),
+                      (41,62,13,12),(68,54,14,11),(90,42,19,13),(118,34,15,14),(142,18,16,9)):
+        boundary=1.+.054*np.cos(xx*.47+zz*.53)+.028*np.sin(xx*.58-zz*.34)
+        walk|=((xx-x)/rx)**2+((zz-z)/rz)**2<boundary
+    proof=np.zeros_like(walk)
+    for row in ev.ev.values():
+        x,y,z,d=row.get("pos",(0,0,0,0))
+        if y==3 and row["role"] in ("portal","itemchest","custom"):
+            proof|=(xx-x)**2+(zz-z)**2<=9
+    walk|=proof
+    walk[:8,:]&=abs(xx[:8,:]-46)<=3
+    walls=9+np.rint(2.1*np.sin(xx*.14+zz*.17)+1.2*np.cos(zz*.23)).astype(int)
+    pond=np.zeros_like(walk)
+    for x,z,rx,rz in ((72,28,10,6),(94,32,11,7),(63,57,10,5),(112,35,6,4),(42,54,4,8)):
+        pond|=((xx-x)/rx)**2+((zz-z)/rz)**2<1.
+    water=pond&walk&~(main|proof)
+    m.hgt=np.where(water,1,np.where(walk,2,np.where(zz<21,6,walls)))
+    m.blk=np.where(water,WATER,np.where(walk,np.where(main,DIRT,CAVE_FLOOR),STONE))
+    m.objs=[]
+    m.walls=[]
+    fill(m,43,8,2,7,2,6,STONE)
+
+
+BEIDEN_HIDEOUT_POSITIONS = {'M489': {'#1#': [46, 3, 9, 2], '#86#': [46, 3, 4, 2]}}
+BEIDEN_HIDEOUT_BOUNDS = [0, 1.0, 0, 1.54, 1.63, 0.78]
+
+def battle_beiden_bandit_hideout():
+    return MapSpec("M797","Battle: the Beiden hideout",128,128,base=CAVE_FLOOR,y=0)
+
+
+MAPS["M797"]=battle_beiden_bandit_hideout
+BATTLE_SPECS["M797"]=battle_beiden_bandit_hideout
+RSET["M797"]="rt_hd2d_cave"
+ENCOUNTERS["M489"]=("M797",ENCOUNTERS["M489"][1])
+
+
+def rebuild_beiden_bandit_hideout(m,ev):
+    for key,pos in BEIDEN_HIDEOUT_POSITIONS.get(m.mid,{}).items():
+        ev.ev[key]["pos"]=list(pos)
+    if m.mid=="M489":
+        ev.ev["#86#"]["mdl"]["r"]=BEIDEN_HIDEOUT_BOUNDS
+    zz,xx=np.indices(m.hgt.shape)
+    if m.mid=="M477":
+        clean=m.blk==ROAD
+        for event in ev.ev.values():
+            x,y,z,_=event.get("pos",(0,0,0,0))
+            if y==4 and event["role"]!="villager":
+                clean|=(xx-x)**2+(zz-z)**2<10
+        branch=(abs(xx-90)<=3)&(zz>=21)&(zz<34)
+        clean|=branch
+        m.hgt[branch]=3
+        m.blk[branch]=DIRT
+        for x,z,rx,rz,rise in ((19,41,20,13,4),(66,46,16,11,4),(92,39,18,11,6),
+                              (115,38,13,8,4),(161,42,18,14,5)):
+            border=((xx-x)/rx)**2+((zz-z)/rz)**2+.05*np.cos(xx*.47+zz*.38)
+            hill=(border<1.)&~clean
+            m.hgt[hill]=np.maximum(m.hgt[hill],6+np.rint(rise*(1.-border[hill])).astype(int))
+            m.blk[hill]=STONE
+        m.objs=[o for o in m.objs if not (o["t"]=="fb" and o["fbtype"] in (20,21))]
+        fill(m,87,9,27,7,3,7,STONE)
+        return
+
+    if m.mid in ("M821","M797"):
+        fields=m.mid=="M821"
+        limit=83+4.4*np.sin(xx*.097)+2.8*np.cos(xx*.235)
+        sides=(zz>limit-3)&((xx<25)|(xx>103))
+        recess=(zz>limit+1)&~((abs(xx-70)<8)&(zz<92))
+        rock=sides|((zz>=106) if fields else recess)
+        clean=np.where(zz>76,GRASS3 if fields else CAVE_FLOOR,DIRT)
+        m.blk=np.where(rock,STONE,clean)
+        m.hgt=np.where(rock,(7+np.rint(3.*np.sin(xx*.17+zz*.27)+.66*np.cos(zz*.31))).astype(int),0)
+        m.objs=[]
+        return
+
+    m.d=115
+    zz,xx=np.indices((m.d,m.w))
+    tunnels=(
+        ((46,3),(46,11),(54,17),(67,22),(78,20),(85,27),(95,24),(107,23),
+         (121,21),(131,17),(142,21),(154,25),(160,29),(168,43)),
+        ((63,23),(57,32),(55,36),(49,48),(41,55),(34,59)),
+        ((76,21),(78,31),(85,38),(93,43),(107,44),(119,43)),
+        ((85,36),(77,46),(69,53),(78,59),(91,63),(100,66),(115,66),(127,61)),
+        ((141,22),(134,31),(127,41),(118,43),(112,51),(127,61)),
+    )
+    route=np.zeros_like(xx,dtype=bool)
+    for tunnel in tunnels:
+        route|=order_cave_route(xx,zz,tunnel,3.75)
+    ground=route.copy()
+    for x,z,rx,rz in ((50,14,12,10),(68,22,15,10),(87,30,15,11),(58,36,14,10),
+                      (43,55,13,10),(69,53,13,11),(101,65,15,12),(123,58,15,12),
+                      (122,43,18,12),(108,24,16,10),(140,20,15,10),(161,32,14,10),
+                      (167,44,13,10)):
+        lobe=1.+.049*np.sin(xx*.56+zz*.39)+.037*np.cos(xx*.63-zz*.22)
+        ground|=((xx-x)/rx)**2+((zz-z)/rz)**2<lobe
+    for event in ev.ev.values():
+        x,y,z,_=event.get("pos",(0,0,0,0))
+        if y==3 and event["role"] in ("portal","itemchest","custom"):
+            ground|=(xx-x)**2+(zz-z)**2<=10
+    ground[:8]&=abs(xx[:8]-46)<=3
+    walls=9+np.rint(2.3*np.sin(xx*.133+zz*.159)+1.3*np.cos(zz*.24)).astype(int)
+    m.hgt=np.where(ground,2,np.where(zz<20,6,walls))
+    m.blk=np.where(ground,np.where(route,DIRT,CAVE_FLOOR),STONE)
+    m.objs=[]
+    m.walls=[]
+    fill(m,43,8,2,7,2,6,STONE)
 
 
 def make(i):
@@ -23657,6 +24661,12 @@ def make(i):
         n = _walk.widen(m, ev)
         if n:
             print("   %s: widened %d cells (a full block to every object)" % (i, n))
+    if i == "M153":
+        # The original save shrine was left on the roof after the cellar widened.
+        # Keep its interaction and move it to the existing floor alcove.
+        sx, sz = 68, 24
+        assert m.hgt[sz, sx] == 2
+        ev.ev["#12#"]["pos"][:3] = [sx, int(m.hgt[sz, sx]) + 1, sz]
     if ev is not None:                                                     # a big walk-in box whose centre can be
         for e in ev.ev.values():                                           # off screen while the player is in it
             r = (e.get("mdl") or {}).get("r") or []                        # would not exist there (spawndist 1)
@@ -23767,8 +24777,27 @@ def make(i):
         keep_cakon_hut_footprints(m)
     if i in ('M360', 'M375', 'M380', 'M387'):
         align_building_door_portals(m, ev)
-    if ev is not None:
-        rebuild_clan_castle_art(m, ev)
+    rebuild_clan_castle_art(m, ev)
+    if i in ('M420', 'M421', 'M885', 'M886', 'M887'):
+        rebuild_cakon_paddies_and_hut(m)
+    if i in ('M422', 'M423', 'M424', 'M888', 'M889'):
+        rebuild_winter_river_and_quay(m)
+    if i in ('M425', 'M426', 'M427', 'M428', 'M890'):
+        rebuild_order_caves(m, ev)
+    if i in ('M470', 'M480', 'M481', 'M829'):
+        rebuild_yasuki_caves(m, ev)
+    if i in ('M471', 'M472', 'M482', 'M483', 'M484', 'M819'):
+        rebuild_branch_caves(m, ev)
+    if i in ('M473', 'M485', 'M844'):
+        rebuild_zumiki_ice_route(m, ev)
+    if i in ('M474', 'M486', 'M828'):
+        rebuild_doji_tide_caves(m, ev)
+    if i in ('M475', 'M487', 'M846', 'M799'):
+        rebuild_phoenix_fox_cave(m, ev)
+    if i in ('M476', 'M488', 'M798'):
+        rebuild_dragon_spring(m, ev)
+    if i in ('M477', 'M489', 'M821', 'M797'):
+        rebuild_beiden_bandit_hideout(m, ev)
     return m, ev
 
 

@@ -1,0 +1,14 @@
+{
+  "floating_flowers_work_skiff": {
+    "prompt_id": "03afa43d-4219-4250-bc2f-b4f85666cd6e",
+    "history": "http://127.0.0.1:8189/history/03afa43d-4219-4250-bc2f-b4f85666cd6e"
+  },
+  "floating_flowers_ribbon_wares": {
+    "prompt_id": "1eea8bf0-9eed-4d77-b788-647788dbe1e5",
+    "history": "http://127.0.0.1:8189/history/1eea8bf0-9eed-4d77-b788-647788dbe1e5"
+  },
+  "floating_flowers_paper_fish": {
+    "prompt_id": "5c2e146d-bfab-47e2-a358-a8d0617a840b",
+    "history": "http://127.0.0.1:8189/history/5c2e146d-bfab-47e2-a358-a8d0617a840b"
+  }
+}

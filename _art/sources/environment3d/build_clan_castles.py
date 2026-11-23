@@ -258,11 +258,12 @@ def yard_features(geom, gm, w, col, row, theme, put):
                 item(ROCK,x+6,z-3,1.06,k*.71)
             elif motif=="horses":
                 item("castle_unicorn_saddle",x,z+4,1.02,.25*k)
-                for j in (-3, 3):
+                # Keep the hitching rail to one side of the tent entrance.
+                for j in (6, 10):
                     a,b,y=mx(x+j,z-3)
                     box(geom,(a-.08,b-.08,y),(.16,.16,.93),wood)
-                a,b,y=mx(x-3,z-3)
-                box(geom,(a,b-.065,y+.68),(3.0,.13,.13),wood,.95)
+                a,b,y=mx(x+6,z-3)
+                box(geom,(a,b-.065,y+.68),(2.0,.13,.13),wood,.95)
             elif motif=="masks":
                 a,b,y=mx(x-4,z+2)
                 arts_booth(geom,a,b,y,slug,3.45,1.75)

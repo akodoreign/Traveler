@@ -1,0 +1,19 @@
+return {
+modeldata = "m423_winter_river_water.mdl"
+bnd = [29.0, 1.6440000534057617, 10.0, 44.0, 0.014999999664723873, 22.0]
+material = [
+  {
+    name = "winter_river_water"
+    tec = "pbr.basic"
+    mtype = 0
+    basecol = 0xffffffff
+    rough = 0.3300
+    metal = 0.0
+    mparam = 0xff000000
+    texmap = 0
+    texture0 = "tex/winter_sapphire_flow00.png"
+    texture1 = null
+    texture2 = null
+  }
+]
+}

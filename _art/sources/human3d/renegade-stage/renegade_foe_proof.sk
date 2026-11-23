@@ -1,0 +1,43 @@
+// Evaluate from the field, then evaluate again after combat loads.
+local stage = ::rpgstage, battle = stage["battle"];
+if( !battle){
+	local active = stage.mapid == "M437";
+	local fights = [{id="E561", x=1.45, z=-.62}, {id="E951", x=.40, z=.52}];
+	if( !active) fights.append( {id="E227", x=-.70, z=-.22});
+	::RPGMain.enterBattle( {mapid=active ? "M894" : "M811", escape=true, enemies=fights});
+	return;
+}
+local seen = {};
+local dye = ::getTexture( ::getResource( "/resource/native_tailoring/tex/scorpion/A120_renegade_crimson.png"));
+if( !dye) throw Exception( "The Renegade's new dye atlas is missing");
+foreach( foe in battle.enemies){
+	local actor = battle.getChara3D( foe);
+	if( foe.data.mdlid != "EP427" || !actor || actor["nativeKey"] != "EP427" ||
+	    actor.nativeBodyTemplate != "shared_female" || length( actor.nativeBody.bones) != 50 ||
+	    !actor.nativeBody.motion || !actor.nativeBody.findBone( "neck") || !actor.nativeBody.findBone( "head") ||
+	    !actor.nativeFace || actor.nativeFace.mesh.res.name != "side_shiko_portrait_face.pm" ||
+	    !actor.nativeFace.mesh.face[0].m.tex0 ||
+	    Math.abs( actor.travelerWidth - 1.10) > .0001)
+		throw Exception( "The Renegade's regenerated female body or Shiko portrait did not load");
+	if( !actor.nativeMask || actor.nativeMask.mesh.res.name != "ep427_renegade_noh.pm" ||
+	    !actor.nativeMask.mesh.face[0].m.tex0 || length( actor.nativeMask.mesh.wmapname) != 1 ||
+	    actor.nativeMask.mesh.wmapname[0] != "head" || !actor.nativeMask.mesh.bones[0])
+		throw Exception( "The Renegade's separate textured Noh mask did not follow the head");
+	if( !actor.nativeOutfit || actor.nativeTailoring != "A120" || actor.nativeOutfit.mesh.face[0].m.tex0 != dye ||
+	    !actor.nativeWeapon || actor.nativeWeapon.mesh.res.name != "W124.pm" || !actor.nativeWeapon.mesh.face[0].m.tex0 ||
+	    !actor.nativeWeapon.mesh.bones[0] || !actor.tgtview || !actor.b3body)
+		throw Exception( "The Renegade's crimson silk, fitted tanto or battle target did not resolve");
+	foreach( name in ["core", "hands", "neck", "throat"]){
+		local skin = actor.nativeBody.mesh.face.find( @( face) face.m.name == "c807060_" .. name);
+		if( !skin || skin.m.basecol != 0xe79474ff)
+			throw Exception( "The Renegade's skin differs from the sampled portrait material");
+	}
+	if( !actor.anime2( #{id="slash1"})) throw Exception( "The original tanto attack bank did not load");
+	actor.anime2( #{id="fight"});
+	seen[foe.dataid] <- true;
+	printf( "[RENEGADE FIT] %S %S %S %S %S\n", stage.mapid, foe.dataid,
+		actor.nativeFace.mesh.res.name, actor.nativeMask.mesh.res.name, actor.nativeWeapon.mesh.res.name);
+}
+if( !seen["E561"] || !seen["E951"] || (stage.mapid == "M811" && !seen["E227"]))
+	throw Exception( "The test did not exercise all expected Renegade aliases");
+printf( "[RENEGADE FIT] %S passed\n", stage.mapid);

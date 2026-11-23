@@ -1,0 +1,14 @@
+{
+  "hida_cell_cedar_bench": {
+    "prompt_id": "021c5027-24a3-4f73-ae56-2d08749534ee",
+    "history": "http://127.0.0.1:8189/history/021c5027-24a3-4f73-ae56-2d08749534ee"
+  },
+  "hida_cell_iron_lamp": {
+    "prompt_id": "6d3b0beb-d859-4da5-b07d-d2643c570c9e",
+    "history": "http://127.0.0.1:8189/history/6d3b0beb-d859-4da5-b07d-d2643c570c9e"
+  },
+  "hida_catacomb_basalt_drains": {
+    "prompt_id": "d3e682fd-4574-49c0-a9a6-525043795ffd",
+    "history": "http://127.0.0.1:8189/history/d3e682fd-4574-49c0-a9a6-525043795ffd"
+  }
+}

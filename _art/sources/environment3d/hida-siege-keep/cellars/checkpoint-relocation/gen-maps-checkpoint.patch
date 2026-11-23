@@ -1,0 +1,15 @@
+--- a/tools/gen_maps.py
++++ b/tools/gen_maps.py
+@@ -24661,6 +24661,12 @@
+         n = _walk.widen(m, ev)
+         if n:
+             print("   %s: widened %d cells (a full block to every object)" % (i, n))
++    if i == "M153":
++        # The original save shrine was left on the roof after the cellar widened.
++        # Keep its interaction and move it to the existing floor alcove.
++        sx, sz = 68, 24
++        assert m.hgt[sz, sx] == 2
++        ev.ev["#12#"]["pos"][:3] = [sx, int(m.hgt[sz, sx]) + 1, sz]
+     if ev is not None:                                                     # a big walk-in box whose centre can be
+         for e in ev.ev.values():                                           # off screen while the player is in it
+             r = (e.get("mdl") or {}).get("r") or []                        # would not exist there (spawndist 1)

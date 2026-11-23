@@ -103,6 +103,7 @@ function loadPlugin( args, opt){
 	runsk( srcdir .. "/RokuganCastleGames.sk");
 	runsk( srcdir .. "/RokuganChase.sk");		//	the marker chaser (only with -rtchase: tools/markerchase.py)	//	the castles' clan games: ink, kitsuki, rings, yabusame (needs RTMini)		//	the Game of Masks at Kyuden Bayushi (needs RTMini, RokuganCloseup)
 	runsk( srcdir .. "/RokuganUpdate.sk");		//	the title screen's Update / Verify (against GitHub)
+	runsk( srcdir .. "/RokuganBackdrop.sk");		//	painted panoramas behind the maps (bg type tex)
 	runsk( srcdir .. "/RokuganEnvironmentKit.sk");
 	runsk( srcdir .. "/RokuganBot.sk");			//	test player for tools/playbot.py (only with -rtbot)
 	return true;

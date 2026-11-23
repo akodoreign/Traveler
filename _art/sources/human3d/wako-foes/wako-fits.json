@@ -1,0 +1,131 @@
+{
+  "EP417": {
+    "donor": "side_sailor",
+    "body_skin_srgb": [
+      238,
+      186,
+      150
+    ],
+    "body_skin_basecol": "0xdb7f4fff",
+    "human": {
+      "base": "shared_male",
+      "face": "side_sailor_portrait_face",
+      "outfit": "EP417_outfit",
+      "hat": "side_sailor_hachimaki",
+      "weapon": "ep417_wako_nodachi",
+      "width": 1.15,
+      "heightScale": 1.018
+    },
+    "tailoring": {
+      "mesh": "A127",
+      "dyed": true,
+      "coverCore": true,
+      "clan": "ronin",
+      "palette": "wako_slate"
+    }
+  },
+  "EP404": {
+    "donor": "side_h_sparrow",
+    "body_skin_srgb": [
+      203,
+      146,
+      105
+    ],
+    "body_skin_basecol": "0x9a4b24ff",
+    "human": {
+      "base": "shared_male",
+      "face": "side_h_sparrow_portrait_face",
+      "outfit": "EP404_outfit",
+      "hat": "EP404_hat",
+      "weapon": "EP404_weapon",
+      "width": 1.03,
+      "heightScale": 0.982,
+      "hatItem": "A102",
+      "weaponItem": "W100"
+    },
+    "tailoring": {
+      "mesh": "A100",
+      "dyed": true,
+      "decal": "A100",
+      "coverCore": true,
+      "clan": "ronin"
+    }
+  },
+  "EP1300": {
+    "donor": "side_lionsergeant",
+    "body_skin_srgb": [
+      237,
+      185,
+      147
+    ],
+    "body_skin_basecol": "0xd97e4cff",
+    "human": {
+      "base": "shared_male",
+      "face": "side_lionsergeant_portrait_face",
+      "outfit": "EP1300_outfit",
+      "hat": "EP1300_hat",
+      "weapon": "EP1300_weapon",
+      "width": 1.09,
+      "heightScale": 1.0,
+      "hatItem": "A102",
+      "weaponItem": "W101"
+    },
+    "tailoring": {
+      "mesh": "A135",
+      "dyed": true,
+      "decal": "A135",
+      "coverCore": true,
+      "clan": "lion"
+    }
+  },
+  "EP1301": {
+    "donor": "side_seppunguard",
+    "body_skin_srgb": [
+      242,
+      177,
+      128
+    ],
+    "body_skin_basecol": "0xe37238ff",
+    "human": {
+      "base": "shared_male",
+      "face": "side_seppunguard_portrait_face",
+      "outfit": "EP1301_outfit",
+      "weapon": "EP1301_weapon",
+      "width": 1.17,
+      "heightScale": 1.031,
+      "weaponItem": "W110"
+    },
+    "tailoring": {
+      "mesh": "A109",
+      "dyed": true,
+      "decal": "A109",
+      "coverCore": true,
+      "clan": "lion"
+    }
+  },
+  "EP1302": {
+    "donor": "side_bayushiguard",
+    "body_skin_srgb": [
+      244,
+      190,
+      147
+    ],
+    "body_skin_basecol": "0xe7854cff",
+    "human": {
+      "base": "shared_male",
+      "face": "side_bayushiguard_portrait_face",
+      "outfit": "EP1302_outfit",
+      "mask": "side_bayushiguard_portrait_charcoal_cloth",
+      "weapon": "EP1302_weapon",
+      "width": 1.08,
+      "heightScale": 1.0,
+      "weaponItem": "W100"
+    },
+    "tailoring": {
+      "mesh": "A120",
+      "dyed": true,
+      "coverCore": true,
+      "clan": "dragon"
+    }
+  }
+}

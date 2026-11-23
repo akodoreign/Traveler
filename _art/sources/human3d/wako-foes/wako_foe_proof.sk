@@ -1,0 +1,54 @@
+// Eval this fixture once to enter combat and again after the new battle starts.
+local stage = ::rpgstage, battle = stage["battle"];
+if( !battle){
+	local jetty = stage.mapid == "M424";
+	::RPGMain.enterBattle( { mapid=jetty ? "M889" : "M888", escape=true,
+		enemies=jetty ? [{id="E534", x=1.6, z=-.55}, {id="E535", x=.45, z=.46},
+			{id="E536", x=-.6, z=.12}] : [{id="E539", x=1.5, z=-.68},
+			{id="E539", x=.63, z=.40}, {id="E533", x=-.43, z=.06}, {id="E531", x=-1.3, z=.86}] });
+	return;
+}
+local fits = {
+	EP417 = ["side_sailor_portrait_face.pm", "A127", "ep417_wako_nodachi.pm", 1.15, 0xdb7f4fff],
+	EP404 = ["side_h_sparrow_portrait_face.pm", "A100", "W100.pm", 1.03, 0x9a4b24ff],
+	EP1300 = ["side_lionsergeant_portrait_face.pm", "A135", "W101.pm", 1.09, 0xd97e4cff],
+	EP1301 = ["side_seppunguard_portrait_face.pm", "A109", "W110.pm", 1.17, 0xe37238ff],
+	EP1302 = ["side_bayushiguard_portrait_face.pm", "A120", "W100.pm", 1.08, 0xe7854cff]
+};
+local counts = {};
+foreach( e in battle.enemies){
+	local actor = battle.getChara3D( e), id = e.data.mdlid;
+	local fit = fits[id];
+	if( !fit) continue;
+	if( actor["nativeKey"] != id || actor.nativeBodyTemplate != "shared_male" ||
+	    length( actor.nativeBody.bones) != 50 || !actor.nativeBody.motion ||
+	    !actor.nativeBody.findBone("neck") || !actor.nativeBody.findBone("handN"))
+		throw Exception( "Missing shared body or motion on " .. id);
+	if( !actor.nativeFace || actor.nativeFace.mesh.res.name != fit[0] ||
+	    !actor.nativeOutfit || actor.nativeTailoring != fit[1] ||
+	    Math.abs( actor.travelerWidth - fit[3]) > .0001)
+		throw Exception( "Wrong instantiated face, outfit or breadth on " .. id);
+	local skin = actor.nativeBody.mesh.face.find( @( face) face.m.name == "c807060_neck");
+	if( !skin || (fit[4] != null && skin.m.basecol != fit[4]))
+		throw Exception( "Shared-body neck did not use the calibrated skin tone for " .. id);
+	if( !actor.nativeWeapon || actor.nativeWeapon.mesh.res.name != fit[2] ||
+	    !actor.nativeWeapon.mesh.bones[0] || !actor.nativeWeapon.mesh.face[0].m.tex0 ||
+	    !actor.tgtview || !actor.b3body)
+		throw Exception( "Missing fitted, textured weapon or target on " .. id);
+	if( ClientConfig.showHeadwear() && id == "EP417" &&
+	    (!actor.nativeHead || actor.nativeHead.mesh.res.name != "side_sailor_hachimaki.pm"))
+		throw Exception( "The Wako head wrap used the wrong fit");
+	if( id == "EP1302" && (!actor.nativeMask ||
+	    actor.nativeMask.mesh.res.name != "side_bayushiguard_portrait_charcoal_cloth.pm"))
+		throw Exception( "The enforcer's fitted facecloth did not load");
+	if( !actor.anime2( #{id="slash1"})) throw Exception( "Foe cannot play its attack bank: " .. id);
+	actor.anime2( #{id="fight"});
+	counts[id] <- (counts[id] || 0) + 1;
+	printf( "[FOE FIT] %S %S %S %S width %.2f weapon %S\n",
+		stage.mapid, e.dataid, id, actor.nativeTailoring, actor.travelerWidth, actor.nativeWeapon.mesh.res.name);
+}
+if( stage.mapid == "M888" && (counts["EP417"] != 2 || counts["EP1300"] != 1 || counts["EP404"] != 1))
+	throw Exception( "The winter river road fixture missed expected foes");
+if( stage.mapid == "M889" && (counts["EP1300"] != 1 || counts["EP1301"] != 1 || counts["EP1302"] != 1))
+	throw Exception( "The jetty fixture missed expected foes");
+printf( "[FOE FIT] %S fixture passed\n", stage.mapid);

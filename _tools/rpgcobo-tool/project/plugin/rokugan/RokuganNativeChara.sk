@@ -18,6 +18,7 @@ local ornamentRoot = "/resource/native_ornament/";
 local ornamentFile = ::getResource( ornamentRoot .. "index.json");
 local ornaments = ornamentFile ? decodeJSON( ornamentFile.loadData()) : {};
 local HUMAN = "/resource/native_human/";
+local humanScale = .015 * .75;
 local humanFile = ::getResource( HUMAN .. "index.json");
 local humans = humanFile ? decodeJSON( humanFile.loadData()) : {};
 local modularPerson = function( key){
@@ -218,7 +219,7 @@ class RokuganNativePicture extends RPG3DPicture
 			nativeBody.setMotion( ::getMotionData( ::getResource( ROOT .. "motion_" .. spec.motion .. ".mot")));
 			nativeBodyTemplate = person.base;
 		}
-		local baseScale = 0.015 * 0.75 * fieldNpcScale;
+		local baseScale = humanScale * fieldNpcScale;
 		local proportions = spec["proportions"] || [1.0, 1.0, 1.0];
 		nativeBody.scale << Vector3D( proportions[0], proportions[1], proportions[2]).scale( baseScale);
 		nativeBody.rot.setHPB( Math.HPI, 0.0, 0.0);
@@ -679,14 +680,17 @@ local nativePicture = RokuganNativePicture;
 
 class RokuganNativeFoe extends RokuganNativePicture
 {
-	function setFoe( pc, key, spec, path){
+	function setFoe( pc, key, spec, path, castKey=null){
 		battleIdleClip = spec["human"] ? "fight" : "stand";
 		creatureReady = !spec["human"];
 		local view = clone pc;
 		view.animap = spec.animap;
 		setPicture( view);
 		local person = spec["human"] ? modularPerson( key) : null;
-		nativeBody = celNative( SK3DObject( person ? HUMAN .. key .. ".pm" : path));
+		local cast = person && castKey && roster[castKey] ? modularPerson( castKey) : null;
+		if( cast && cast.base != person.base) cast = null;
+		local bodyKey = cast ? castKey : key;
+		nativeBody = celNative( SK3DObject( person ? HUMAN .. bodyKey .. ".pm" : path));
 		nativeBody.animlayers = null;
 		local family = foeFidgetFamilies[key];
 		if( spec["human"]){
@@ -706,15 +710,22 @@ class RokuganNativeFoe extends RokuganNativePicture
 			local costume = tailored( "defaults", key);
 			if( costume) setTailoredOutfit( costume, costume["clan"] || "ronin");
 			else if( person["outfit"]) nativeOutfit = addNativePart( HUMAN .. person.outfit);
-			if( person["hat"] && ClientConfig.showHeadwear()) nativeHead = addNativePart( HUMAN .. person.hat);
-			local face = HUMAN .. person.face;
+			if( ClientConfig.showHeadwear()){
+				local fittedHat = tailored( "items", person["hatItem"]);
+				if( fittedHat) nativeHead = addTailoredPart( fittedHat, costume ? costume["clan"] || "ronin" : "ronin");
+				else if( person["hat"]) nativeHead = addNativePart( HUMAN .. person.hat);
+			}
+			local face = HUMAN .. (cast ? cast.face : person.face);
 			if( nativeHead && person["hatFace"]){
 				local fitted = HUMAN .. person.hatFace;
 				if( ::getResource( fitted .. ".pm") && ::getResource( fitted .. ".mdl")) face = fitted;
 			}
 			nativeFace = addNativePart( face);
 			if( person["mask"]) nativeMask = addNativePart( HUMAN .. person.mask);
-			if( person["weapon"]) nativeWeapon = addNativePart( HUMAN .. person.weapon);
+			local fittedWeapon = person["weaponItem"];
+			if( fittedWeapon && ::getResource( ARMS .. fittedWeapon .. ".pm") && ::getResource( ARMS .. fittedWeapon .. ".mdl"))
+				nativeWeapon = addNativePart( ARMS .. fittedWeapon);
+			else if( person["weapon"]) nativeWeapon = addNativePart( HUMAN .. person.weapon);
 		}
 		foreach( role in (ornaments[key] || [])){
 			if( role == "flower_comb" && !ClientConfig.showHeadwear()) continue;
@@ -723,8 +734,11 @@ class RokuganNativeFoe extends RokuganNativePicture
 			nativeBody.addChild( part);
 		}
 		nativeCombatMotion = nativeBody.motion;
-		local size = spec.scale;
-		nativeBody.scale << Vector3D( size, size, size);
+		local size = spec.scale * (person ? person["heightScale"] || 1.0 : 1.0);
+		local proportions = cast ? roster[castKey]["proportions"] : null;
+		if( proportions) nativeBody.scale << Vector3D( proportions[0], proportions[1], proportions[2]).scale( humanScale);
+		else nativeBody.scale << Vector3D( size, size, size);
+		if( person && person["width"]) setTravelerWidth( person.width);
 		nativeBody.rot.setHPB( Math.HPI, 0.0, 0.0);
 		addChild( nativeBody);
 		nativeKey = key;
@@ -777,8 +791,10 @@ local nativeFoe = RokuganNativeFoe;
 		printf( "[RT] Native foe %S is incomplete; using the original picture\n", key);
 		return null;
 	}
+	// A shared opponent can keep its own model unless the encounter names the cast member.
+	local castKey = spec["castForName"] && data["name"] ? spec.castForName[data.name] : null;
 	local model = nativeFoe();
-	model.setFoe( pic, key, spec, path .. ".pm");
+	model.setFoe( pic, key, spec, path .. ".pm", castKey);
 	return model;
 };
 

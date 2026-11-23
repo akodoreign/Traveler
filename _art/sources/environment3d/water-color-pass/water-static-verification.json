@@ -1,0 +1,50 @@
+{
+  "winter_sapphire_flow": {
+    "old_median_rgb": [
+      26,
+      70,
+      87
+    ],
+    "new_median_rgb": [
+      12,
+      64,
+      163
+    ],
+    "mean_luma_step": 1.937,
+    "loop_luma_step": 1.973,
+    "seconds": 17.8,
+    "frames": 64
+  },
+  "winter_sapphire_storm": {
+    "old_median_rgb": [
+      24,
+      52,
+      66
+    ],
+    "new_median_rgb": [
+      19,
+      52,
+      115
+    ],
+    "mean_luma_step": 2.386,
+    "loop_luma_step": 2.429,
+    "seconds": 9.6,
+    "frames": 64
+  },
+  "iuchi_clear_brook": {
+    "old_median_rgb": [
+      46,
+      114,
+      111
+    ],
+    "new_median_rgb": [
+      15,
+      100,
+      141
+    ],
+    "mean_luma_step": 3.761,
+    "loop_luma_step": 3.764,
+    "seconds": 13.0,
+    "frames": 32
+  }
+}

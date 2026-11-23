@@ -1,0 +1,57 @@
+{
+  "M214": {
+    "stock_removed": 102,
+    "reserved_edges": 139,
+    "affected_footprint_cells": 522,
+    "reachable_before": 8379,
+    "reachable_after": 8133,
+    "pre_existing_access_issues": []
+  },
+  "M215": {
+    "stock_removed": 18,
+    "reserved_edges": 24,
+    "affected_footprint_cells": 90,
+    "reachable_before": 3925,
+    "reachable_after": 3883,
+    "pre_existing_access_issues": [
+      [
+        "*custom-2",
+        "custom",
+        71,
+        34
+      ]
+    ]
+  },
+  "M323": {
+    "stock_removed": 12,
+    "reserved_edges": 16,
+    "affected_footprint_cells": 60,
+    "reachable_before": 7446,
+    "reachable_after": 7418,
+    "pre_existing_access_issues": []
+  },
+  "M325": {
+    "stock_removed": 12,
+    "reserved_edges": 16,
+    "affected_footprint_cells": 60,
+    "reachable_before": 8318,
+    "reachable_after": 8290,
+    "pre_existing_access_issues": []
+  },
+  "M337": {
+    "stock_removed": 37,
+    "reserved_edges": 52,
+    "affected_footprint_cells": 220,
+    "reachable_before": 6383,
+    "reachable_after": 6296,
+    "pre_existing_access_issues": []
+  },
+  "M825": {
+    "stock_removed": 42,
+    "reserved_edges": 56,
+    "affected_footprint_cells": 210,
+    "reachable_before": null,
+    "reachable_after": null,
+    "pre_existing_access_issues": null
+  }
+}

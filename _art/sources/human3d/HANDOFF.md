@@ -182,3 +182,12 @@ The regenerated Oracle of Fire is live on the shared male body with Phoenix A140
 ## Bulk cast rollout
 
 Continue internally reviewed batches without individual approval. 261 new heads passed the recorded live checks, and 297 of 349 catalog entries have regenerated portraits bound. The [bulk report](bulk-cast-heads.md) tracks the installed routes, remaining sources, wardrobe fixes, and current Hunyuan receipts. [Full cast inventory](cast-head-progress.csv) · [Current holds](cast-head-holds.csv)
+
+
+## Adult Gonta's quarry bout
+
+The named EP742 opponent now uses Gonta’s approved side_gonta body, portrait and proportions on the shared 50-joint rig. The native check covered the original M812 E120 bout, M104 event 4, P125, named Sumai and the separate Wrestler. The bout uses the original A108 and bare hands. The companion keeps its own equipment. See [Gonta’s appearance routes and daylight proofs](gonta-stage/README.md).
+
+## Maho Puppet
+
+E235 uses the approved servant fit on EP429 in M150 and M815. The source appearance is the kitchen servant with adjusted skin tone and fitted headcloth. The actual field scene and group 14 fight verified the servant fit, casting, and separate troll. See [the native appearance proof](maho-puppet-stage/README.md).

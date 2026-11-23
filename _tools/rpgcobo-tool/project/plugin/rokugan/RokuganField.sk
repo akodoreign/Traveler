@@ -418,7 +418,10 @@ local rtShowChoices = function( cmd){
 		local v = (c["text0"] == "Buy" || c["text0"] == "Sell") ? n : k % (n + 1);
 		if( c["text0"] == "Rest and save.") v = 0;					//	(a save shrine: the bot came to rest)
 		if( ("chasePolicy" in ::Rokugan) && (key in ::Rokugan.chasePolicy)){	//	the marker chaser's learned answer
-			v = int( ::Rokugan.chasePolicy[key]); if( v > n) v = n;			//	(RokuganChase.sk, tools/markerchase.py)
+			v = (int( ::Rokugan.chasePolicy[key]) + k) % (n + 1);			//	(RokuganChase.sk, tools/markerchase.py) - a
+																			//	first try only: seen again, the next option
+																			//	(2026-11-23: a pinned "Not yet." at the inn
+																			//	held the Crab squirrel forever)
 		}
 		if( ("botpin" in ::Rokugan) && ::Rokugan.botpin >= 0 && !(c["text0"] == "Buy" || c["text0"] == "Sell")){
 			v = ::Rokugan.botpin > n ? n : ::Rokugan.botpin;		//	(passing through: "Wait for low tide", not a puzzle)

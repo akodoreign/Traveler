@@ -1,0 +1,66 @@
+// Evaluate on M104 or M170 for adult Gonta's active event, or on the real M812 bout.
+local stage = ::rpgstage, battle = stage["battle"];
+local verify = function( actor, key, outfit, scale){
+	if( !actor || actor["nativeKey"] != key || actor.nativeBodyTemplate != "shared_male" ||
+	    !actor.nativeBody.motion || length( actor.nativeBody.bones) != 50 ||
+	    !actor.nativeBody.findBone( "neck") || !actor.nativeBody.findBone( "head") ||
+	    !actor.nativeBody.findBone( "handN") || !actor.nativeFace ||
+	    actor.nativeBody.mesh.res.name != "side_gonta.pm" ||
+	    actor.nativeFace.mesh.res.name != "side_gonta_portrait_face.pm" ||
+	    !actor.nativeFace.mesh.face[0].m.tex0 || !actor.nativeOutfit || actor.nativeTailoring != outfit)
+		throw Exception( "Adult Gonta's exact skinned body, approved head and wardrobe did not attach");
+	local s = actor.nativeBody.scale;
+	if( Math.abs( s.x - 1.355 * scale) > .0001 || Math.abs( s.y - 1.09 * scale) > .0001 ||
+	    Math.abs( s.z - 1.37 * scale) > .0001)
+		throw Exception( "Gonta's approved broad adult build did not reach the runtime model");
+	foreach( name in ["core", "hands", "neck", "throat"]){
+		local skin = actor.nativeBody.mesh.face.find( @( face) face.m.name == "c807060_" .. name);
+		if( !skin || skin.m.basecol != 0xd95b24ff)
+			throw Exception( "Adult Gonta's body skin did not use the sampled portrait color");
+	}
+};
+local player = ::rpgstat.playermap["P125"];
+if( player){
+	local actor = ::Rokugan.createNativeChara( player.data, player);
+	if( !actor || actor["nativeKey"] != "side_gonta")
+		throw Exception( "Playable Gonta did not resolve his approved cast rig");
+	local worn = player.getWeapon();
+	if( worn && worn.dataid == "W113" && actor.nativeTailoring == "A100"){
+		verify( actor, "side_gonta", "A100", .01125);
+		if( !actor.nativeWeapon || actor.nativeWeapon.mesh.res.name != "W113.pm")
+			throw Exception( "Playable Gonta lost his starter tetsubo");
+	}
+	printf( "[GONTA FIT] P125 approved party route, current outfit %S\n", actor.nativeTailoring);
+}
+if( battle){
+	if( stage.mapid != "M812") throw Exception( "Start the original Gonta contest at -battle M001 6");
+	local gonta = battle.enemies.find( @( foe) foe.dataid == "E120" && foe.data.mdlid == "EP742");
+	if( !gonta) throw Exception( "The registered E120 bout did not load");
+	local actor = battle.getChara3D( gonta);
+	verify( actor, "EP742", "A108", .01125);
+	if( actor.nativeWeapon || actor.nativeHead || actor.nativeMask || !actor.b3body || !actor.tgtview ||
+	    !actor.anime2( #{id="punch1"}))
+		throw Exception( "The original bare-handed bout lost its appearance, action or targeting");
+	actor.anime2( #{id="fight"});
+
+	local mapped = ::Rokugan.sumaiFoe["EP342"];
+	verify( ::Rokugan.createNativeFoe( #{mdlid=mapped, name="Gonta"}), "EP742", "A108", .01125);
+	local wrestler = ::Rokugan.createNativeFoe( #{mdlid=mapped, name="Wrestler"});
+	if( !wrestler || wrestler.nativeFace.mesh.res.name != "EP742_face.pm")
+		throw Exception( "The unrelated default Wrestler inherited Gonta's named portrait");
+	printf( "[GONTA FIT] M812 E120, named Sumai alias and default Wrestler routing passed\n");
+	return;
+}
+local field = { M104 = [4, 15, 22], M170 = [6, 17] };
+local indices = field[stage.mapid], count = 0;
+if( !indices) throw Exception( "Start on M104 at the quarry fire or M170 at the tunnel crossing");
+foreach( evid in indices){
+	local runner = stage.getEvent( evid), actor = runner ? runner["rp3d"] : null;
+	if( !actor) continue;
+	verify( actor, "side_gonta", "A108", .01125 * actor.fieldNpcScale);
+	if( actor.event != runner || !actor["animemap"]["sit"] || !actor["animemap"]["walk"])
+		throw Exception( "Gonta's original field interaction or seated and walking clips are missing");
+	count++;
+	printf( "[GONTA FIT] %S adult field event %d passed\n", stage.mapid, evid);
+}
+if( !count) throw Exception( "Move near the active adult Gonta event or check its story flags");

@@ -1,0 +1,22 @@
+{
+  "M603": {
+    "world": "2490fc415fa7b279134926ce7371dad183933044de26a3b85416195148eb9d3e",
+    "art": "m603_iuchi_castle_quarry_tents_v2",
+    "catalog": "525fae781fd9b8bbd50342da92a4a7ab4890240349bc5239def7eceadc9657e8"
+  },
+  "M604": {
+    "world": "a0ac2595890f959a73757ae8121a93eb92357b168e8351198c9c12cef973dff3",
+    "art": "m604_iuchi_castle_quarry_tents_v2",
+    "catalog": "5c03d0fa04c50b9c84f770be6eb0b6ba3fe407d6c83f9468b25be60304960bb7"
+  },
+  "M605": {
+    "world": "10a626f56a3a6b2a6e01d9c3c3ff80b1b8ff8a015b37f4e3b10cf5fe5624342d",
+    "art": "m605_iuchi_castle_quarry_tents_v2",
+    "catalog": "bee581de5146234cdf4a171612520e4b766ca8909e4c386b7099fa717ebd855c"
+  },
+  "M610": {
+    "world": "edd41ca0582f475e776b2aa55b5fe99668ff269f02b68c2bd0288ca127cc9f7d",
+    "art": "m610_iuchi_castle_quarry_tents_v2",
+    "catalog": "4b1b8e7d2769d02b048b05351f97c12f2d72f2400c52f998b4ec35b38422f026"
+  }
+}

@@ -1,0 +1,28 @@
+local stage=::rpgstage, battle=stage["battle"];
+if(stage.mapid!="M896" || !battle || !battle.enemies.find(@(foe) foe.dataid=="E559"))
+    throw Exception("Run the real M001 group 153 champion encounter");
+local actor=battle.getChara3D(battle.members[0]);
+local mid=::Rokugan.floorAt(actor,28.5,32.5,2.0,-2.0);
+if(mid==null || !::Rokugan.openGround(28.5,32.5,mid))
+    throw Exception("The crossing start must be on native arena ground");
+foreach(z in [30.21,31.8,32.5,33.9]){
+    for(local x=28.5; x<=35.5; x+=.25){
+        local ground=::Rokugan.floorAt(actor,x,z,2.0,-2.0);
+        if(ground==null || Math.abs(ground-mid)>.09 || !::Rokugan.openGround(x,z,ground))
+            throw Exception("No solid crossing at " .. x .. "," .. z);
+    }
+}
+local start=Vector3D(28.5,mid,32.5), finish=Vector3D(35.5,mid,32.5);
+actor.pos(start.x,start.y,start.z);
+actor.dir=::aimdir(start,finish);
+actor.anime2(#{id="walk"});
+local step=actor.walkTo(#{target=finish,spd=4.0}), clock=skGetTime(), deadline=clock+4500;
+while(step && skGetTime()<deadline){
+    sleep(16);
+    local now=skGetTime();
+    step=step(now-clock);
+    clock=now;
+}
+if(Math.abs(actor.pos.x-finish.x)>.25 || Math.abs(actor.pos.z-finish.z)>.25)
+    throw Exception("The native actor stopped on the causeway");
+printf("[ORACLE CROSSING] 116 supported points and walked %.2f %.2f %.2f\n",actor.pos.x,actor.pos.y,actor.pos.z);

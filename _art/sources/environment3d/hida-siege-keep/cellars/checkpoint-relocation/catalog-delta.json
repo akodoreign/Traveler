@@ -1,0 +1,134 @@
+{
+  "map": "M153",
+  "event": "#12#",
+  "field": "pos",
+  "original": [
+    66,
+    10,
+    23,
+    2
+  ],
+  "candidate": [
+    68,
+    3,
+    24,
+    2
+  ],
+  "original_catalog_sha256": "7bbaf3034fa816f08fabf06dca9b9bcace644cb0e24d1a664ae8495d834aeb47",
+  "candidate_catalog_sha256": "0743c2a6f4216083d7884c4263af664f609767ae48d7a6057d251eecc54e01cc",
+  "original_m153_row_sha256": "d611c4803b33ad3bbb8197814098db07e53a77cbe4f55393bc02bba97bc21069",
+  "candidate_m153_row_sha256": "eafa233611bed9490ad152ece96d92d1552f68a6cfeb01be524a296cf41f6573",
+  "unchanged_original_event": {
+    "role": "custom",
+    "mdlid": "CE000",
+    "page": [
+      {
+        "ani": {
+          "id": "stand"
+        },
+        "trigger": 1,
+        "memo": "",
+        "moveaction": "stop",
+        "movespd": 4,
+        "pararun": false,
+        "reqs": null,
+        "standani": null,
+        "cmdblock": [
+          {
+            "cmd": "cmd_showmsg",
+            "key": "message_talk",
+            "text": "A small stone shrine to the Fortunes, half buried in the rock. Someone left it a rice ball.",
+            "name": "",
+            "uiclose": 2
+          },
+          {
+            "cmd": "cmd_choices",
+            "backenable": false,
+            "cmdblocks": [
+              [
+                {
+                  "charaid": "P000",
+                  "cmd": "cmd_condop",
+                  "cmdtgt": 11,
+                  "condbits": 1,
+                  "ignoredead": true,
+                  "op": 2,
+                  "showpop": false
+                },
+                {
+                  "charaid": "P000",
+                  "cmd": "cmd_hpmp",
+                  "cmdtgt": 11,
+                  "hp1": true,
+                  "op": 1,
+                  "pid": "HP",
+                  "val": 100
+                },
+                {
+                  "charaid": "P000",
+                  "cmd": "cmd_hpmp",
+                  "cmdtgt": 11,
+                  "hp1": true,
+                  "op": 1,
+                  "pid": "MP",
+                  "val": 100
+                },
+                {
+                  "cmd": "cmd_script",
+                  "desc": "SCRIPT",
+                  "code": "::Rokugan.shrineCure();"
+                },
+                {
+                  "cmd": "cmd_showmsg",
+                  "key": "message_talk",
+                  "text": "(Rested. HP and MP restored, ailments eased.)",
+                  "name": "",
+                  "uiclose": 2
+                },
+                {
+                  "cmd": "cmd_showui",
+                  "key": "menu_save",
+                  "op": null,
+                  "uiclose": 2
+                }
+              ],
+              []
+            ],
+            "pos": {
+              "left": 430,
+              "right": 430,
+              "y": 380
+            },
+            "text0": "Rest and save.",
+            "text1": "Leave it be."
+          }
+        ]
+      }
+    ],
+    "reqs0": null,
+    "mdl": {
+      "r": [
+        0,
+        1.0,
+        0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "col": 0,
+    "flags": 1,
+    "spawndist": 1,
+    "name": "*custom-12"
+  },
+  "proof": {
+    "approach": [
+      69,
+      24
+    ],
+    "interaction_distance_m": 0.5,
+    "floor_grade_m": 1.5,
+    "positions_to_approach": 78,
+    "generated_world_unchanged": true
+  }
+}

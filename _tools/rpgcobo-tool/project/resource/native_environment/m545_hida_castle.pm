@@ -37,7 +37,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/castle_hida_gravel.png"
+    texture0 = "tex/castle_hida_gravel_daylight_palette.png"
     texture1 = null
     texture2 = null
   }
@@ -76,7 +76,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/castle_hida_roof.png"
+    texture0 = "tex/castle_hida_roof_daylight_palette.png"
     texture1 = null
     texture2 = null
   }
@@ -89,7 +89,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/castle_hida_accent.png"
+    texture0 = "tex/castle_hida_accent_daylight_palette.png"
     texture1 = null
     texture2 = null
   }

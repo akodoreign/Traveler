@@ -1,0 +1,28 @@
+{
+  "maps": {
+    "M476": {
+      "quads": 5073,
+      "placements": 53,
+      "water": "m476_dragon_mountain_stream"
+    },
+    "M488": {
+      "quads": 19828,
+      "placements": 19,
+      "water": "m488_dragon_mountain_stream"
+    },
+    "M798": {
+      "quads": 9863,
+      "placements": 15,
+      "water": "m798_dragon_mountain_stream"
+    }
+  },
+  "source": {
+    "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_dragon_cave_mountain_shale_00001_.glb",
+    "triangles": 19999,
+    "world_size": [
+      1.88,
+      1.44,
+      1.76
+    ]
+  }
+}

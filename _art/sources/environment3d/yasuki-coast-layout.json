@@ -1,0 +1,53 @@
+{
+  "maps": {
+    "M470": {
+      "terrain_quads": 1766,
+      "placements": 32,
+      "decks": 0
+    },
+    "M480": {
+      "terrain_quads": 17427,
+      "placements": 14,
+      "decks": 1
+    },
+    "M481": {
+      "terrain_quads": 17756,
+      "placements": 18,
+      "decks": 1
+    },
+    "M829": {
+      "terrain_quads": 9388,
+      "placements": 11,
+      "decks": 1
+    }
+  },
+  "sources": {
+    "yasuki_cave_tide_scored_rocks": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_yasuki_cave_tide_scored_rocks_00001_.glb",
+      "triangles": 19990,
+      "world_size": [
+        2.6,
+        1.62,
+        1.76
+      ]
+    },
+    "yasuki_cave_boat_landing": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_yasuki_cave_boat_landing_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        3.21,
+        0.83,
+        2.29
+      ]
+    },
+    "yasuki_cave_covered_supply_bales": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_yasuki_cave_covered_supply_bales_00001_.glb",
+      "triangles": 19745,
+      "world_size": [
+        1.32,
+        0.91,
+        1.12
+      ]
+    }
+  }
+}

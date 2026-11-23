@@ -1,0 +1,114 @@
+{
+  "M471": {
+    "width": 182,
+    "depth": 56,
+    "water_tiles": 1073,
+    "connected_floor_cells": 7118,
+    "reachable_events": [
+      "#1#",
+      "#2#",
+      "#3#",
+      "#4#",
+      "#5#",
+      "#6#",
+      "#7#",
+      "#8#",
+      "#157#",
+      "#158#"
+    ],
+    "original_depth": 56,
+    "sha256": "0625928a55f4774415cd106f06926693b98441aacdc709a78c4e01c5d05ad13a"
+  },
+  "M472": {
+    "width": 182,
+    "depth": 56,
+    "water_tiles": 0,
+    "connected_floor_cells": 7725,
+    "reachable_events": [
+      "#1#",
+      "#2#",
+      "#3#",
+      "#4#",
+      "#5#",
+      "#6#",
+      "#7#",
+      "#8#",
+      "#9#",
+      "#10#",
+      "#159#",
+      "#160#"
+    ],
+    "original_depth": 56,
+    "sha256": "5f4361f601ee810a5b4a15f7a0b417ed350c13624c7e34965977b22dd3da153a"
+  },
+  "M482": {
+    "width": 212,
+    "depth": 100,
+    "water_tiles": 155,
+    "connected_floor_cells": 4118,
+    "reachable_events": [
+      "#1#",
+      "#2#",
+      "#3#",
+      "#4#",
+      "#5#",
+      "#78#",
+      "#79#",
+      "#80#",
+      "#81#",
+      "#82#",
+      "#83#",
+      "#84#"
+    ],
+    "original_depth": 85,
+    "sha256": "9b488258d3b818bfb617ec59b83356ffff171202ed85126498a67e175cc08e85"
+  },
+  "M483": {
+    "width": 212,
+    "depth": 99,
+    "water_tiles": 0,
+    "connected_floor_cells": 4083,
+    "reachable_events": [
+      "#1#",
+      "#2#",
+      "#3#",
+      "#4#",
+      "#5#",
+      "#78#",
+      "#79#",
+      "#80#",
+      "#81#",
+      "#82#",
+      "#83#"
+    ],
+    "original_depth": 85,
+    "sha256": "7d17c4cb63f90c40dfe8e614d7beb263fb7825c331b2e0923afc5e380141d29d"
+  },
+  "M484": {
+    "width": 212,
+    "depth": 105,
+    "water_tiles": 0,
+    "connected_floor_cells": 4557,
+    "reachable_events": [
+      "#1#",
+      "#2#",
+      "#3#",
+      "#4#",
+      "#5#",
+      "#78#",
+      "#79#",
+      "#80#",
+      "#81#",
+      "#82#",
+      "#83#"
+    ],
+    "original_depth": 85,
+    "sha256": "bb19cd3e258c210ebd43a609e740f3703b398ad6ad83a4ff5e9414a1780bc505"
+  },
+  "M819": {
+    "width": 128,
+    "depth": 128,
+    "water_tiles": 0,
+    "sha256": "f436f594d7c4eb12bee9c76151f47b32c06d6f3cb598c941f03366e095aa2f03"
+  }
+}

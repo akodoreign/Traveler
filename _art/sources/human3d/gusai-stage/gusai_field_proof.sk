@@ -1,0 +1,18 @@
+// Evaluate after the existing field event loads. No story state is changed.
+local stage = ::rpgstage;
+local events = { M240 = 1, M245 = 6, M273 = 14, M274 = 21 };
+local evid = events[stage.mapid];
+if( !evid) throw Exception( "Start the Gusai field proof on M240, M245, M273 or M274");
+local runner = stage.getEvent( evid), actor = runner ? runner["rp3d"] : null;
+if( !actor) throw Exception( "The original Gusai event is hidden. Check story flags or use M245.");
+if( actor["nativeKey"] != "side_gusai" || actor.nativeBodyTemplate != "shared_male" ||
+    length( actor.nativeBody.bones) != 50 || actor.event != runner ||
+    !actor.nativeBody.findBone( "neck") || !actor.nativeBody.findBone( "head") ||
+    !actor.nativeFace || actor.nativeFace.mesh.res.name != "side_gusai_portrait_face.pm" ||
+    !actor.nativeFace.mesh.face[0].m.tex0 || !actor.nativeOutfit || actor.nativeTailoring != "A135_lion_takeo")
+	throw Exception( "Gusai field event failed its shared body, fitted portrait or Lion armor check");
+local skin = actor.nativeBody.mesh.face.find( @( face) face.m.name == "c807060_neck");
+if( !skin || skin.m.basecol != 0x8f4727ff)
+	throw Exception( "Gusai's field body did not load the sampled portrait skin tone");
+printf( "[GUSAI FIELD FIT] %S event %d portrait %S outfit %S\n",
+	stage.mapid, evid, actor.nativeFace.mesh.res.name, actor.nativeTailoring);

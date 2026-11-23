@@ -1,0 +1,68 @@
+// Eval from M480, M482, M483, or M484, then eval again once combat loads.
+local stage = ::rpgstage, battle = stage["battle"];
+if( !battle){
+	local quarry = stage.mapid == "M480" || stage.mapid == "M482";
+	local sword = stage.mapid == "M483";
+	local enemies;
+	if( quarry){
+		local patrol = stage.mapid == "M480" ? "E651" : "E855";
+		enemies = [{id=patrol, x=1.4, z=-.58}];
+	}else if( sword){
+		enemies = [{id="E728", x=1.35, z=-.57}, {id="E728", x=.40, z=.36}];
+	}else if( stage.mapid == "M484"){
+		enemies = [{id="E738", x=1.50, z=-.65}, {id="E741", x=.58, z=.38},
+			{id="E737", x=-.36, z=-.43}, {id="E949", x=-1.28, z=.72}];
+	}else throw Exception( "Start cave-foe fixture on M480, M482, M483 or M484");
+	::RPGMain.enterBattle( {mapid=quarry ? "M829" : "M819", escape=true, enemies=enemies});
+	return;
+}
+local fits = {
+	EP413 = ["side_seppunguard_portrait_face.pm", "A116", "W104.pm", 1.07, 0xe37238ff, "A102.pm", null],
+	EP414 = ["side_h_yari_portrait_face.pm", "A141", "W101.pm", 1.09, 0xf4925eff, "EP414_hunyuan_kabuto_cords.pm", null],
+	EP411 = ["side_lionsergeant_portrait_face.pm", "A109", "W110.pm", 1.14, 0xd97e4cff, "EP411_hunyuan_kabuto_cords.pm", null],
+	EP405 = ["side_h_yojimbo_portrait_face.pm", "A111", "W100.pm", 1.05, 0xf08244ff, null, null],
+	EP426 = ["side_bayushiguard_portrait_face.pm", "A127", "W102.pm", 1.02, 0xe7854cff, null, "side_bayushiguard_portrait_charcoal_cloth.pm"],
+	EP415 = ["side_sergeant_portrait_face.pm", "A112", "W103.pm", 1.20, 0xe38453ff, "EP415_hunyuan_kabuto_cords.pm", "EP415_mask.pm"]
+};
+local counts = {};
+foreach( enemy in battle.enemies){
+	local actor = battle.getChara3D( enemy), id = enemy.data.mdlid;
+	local fit = fits[id];
+	if( !fit) throw Exception( "Cave fixture spawned an unexpected foe: " .. id);
+	if( actor["nativeKey"] != id || actor.nativeBodyTemplate != "shared_male" ||
+	    length( actor.nativeBody.bones) != 50 || !actor.nativeBody.motion ||
+	    !actor.nativeBody.findBone( "neck") || !actor.nativeBody.findBone( "handN"))
+		throw Exception( "Missing shared body or motion on " .. id);
+	if( !actor.nativeFace || actor.nativeFace.mesh.res.name != fit[0] ||
+	    !actor.nativeFace.mesh.face[0].m.tex0 || !actor.nativeOutfit ||
+	    actor.nativeTailoring != fit[1] || Math.abs( actor.travelerWidth - fit[3]) > .0001)
+		throw Exception( "Wrong instantiated face, outfit or width on " .. id);
+	foreach( material in ["core", "hands", "neck", "throat"]){
+		local skin = actor.nativeBody.mesh.face.find( @( face) face.m.name == "c807060_" .. material);
+		if( !skin || skin.m.basecol != fit[4])
+			throw Exception( "Body skin did not use the calibrated face tone for " .. id .. " at " .. material);
+	}
+	if( !actor.nativeWeapon || actor.nativeWeapon.mesh.res.name != fit[2] ||
+	    !actor.nativeWeapon.mesh.bones[0] || !actor.tgtview || !actor.b3body)
+		throw Exception( "Missing fitted weapon or battle target on " .. id);
+	if( id != "EP415" && !actor.nativeWeapon.mesh.face[0].m.tex0)
+		throw Exception( "Missing surface texture on " .. id);
+	if( ClientConfig.showHeadwear() && fit[5] &&
+	    (!actor.nativeHead || actor.nativeHead.mesh.res.name != fit[5]))
+		throw Exception( "Wrong helmet or hat on " .. id);
+	if( fit[6] && (!actor.nativeMask || actor.nativeMask.mesh.res.name != fit[6]))
+		throw Exception( "Wrong fitted mask on " .. id);
+	if( !actor.anime2( #{id="slash1"})) throw Exception( "Missing attack bank on " .. id);
+	actor.anime2( #{id="fight"});
+	counts[id] <- (counts[id] || 0) + 1;
+	printf( "[CAVE FOE FIT] %S %S %S %S width %.2f weapon %S\n",
+		stage.mapid, enemy.dataid, id, actor.nativeTailoring, actor.travelerWidth, actor.nativeWeapon.mesh.res.name);
+}
+if( stage.mapid == "M829" && counts["EP413"] != 1)
+	throw Exception( "The cave fixture missed the Border Patrol");
+if( stage.mapid == "M819" && counts["EP405"] && counts["EP405"] != 2)
+	throw Exception( "The arena fixture missed a Sword-for-Hire");
+if( stage.mapid == "M819" && !counts["EP405"] &&
+    (counts["EP411"] != 1 || counts["EP414"] != 1 || counts["EP415"] != 1 || counts["EP426"] != 1))
+	throw Exception( "The arena fixture missed a champion, sergeant, infantry or Kolat fit");
+printf( "[CAVE FOE FIT] %S fixture passed\n", stage.mapid);

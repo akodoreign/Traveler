@@ -1,0 +1,95 @@
+{
+  "maps": {
+    "M422": {
+      "events": 114,
+      "placements": 77,
+      "terrain_quads": 704,
+      "water": "winter_river_water",
+      "doors": 1
+    },
+    "M423": {
+      "events": 75,
+      "placements": 8,
+      "terrain_quads": 612,
+      "water": "winter_river_water",
+      "doors": 0
+    },
+    "M424": {
+      "events": 104,
+      "placements": 51,
+      "terrain_quads": 3200,
+      "water": "winter_river_water",
+      "doors": 5
+    },
+    "M888": {
+      "events": 0,
+      "placements": 41,
+      "terrain_quads": 20,
+      "water": "winter_river_water",
+      "doors": 0
+    },
+    "M889": {
+      "events": 0,
+      "placements": 9,
+      "terrain_quads": 2053,
+      "water": "winter_jetty_storm_water",
+      "doors": 0
+    }
+  },
+  "sources": {
+    "winter_river_frost_reed": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_rokugan_frosted_river_reeds_00001_.glb",
+      "triangles": 19459,
+      "world_size": [
+        0.61,
+        0.73,
+        0.46
+      ]
+    },
+    "winter_river_fox_offering": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_rokugan_winter_fox_offering_00001_.glb",
+      "triangles": 18612,
+      "world_size": [
+        0.56,
+        0.97,
+        0.65
+      ]
+    },
+    "winter_river_rice_bales": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_rokugan_barge_rice_bales_00001_.glb",
+      "triangles": 18946,
+      "world_size": [
+        1.43,
+        0.87,
+        0.88
+      ]
+    },
+    "floating_flowers_work_skiff": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_floating_flowers_work_skiff_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        4.92,
+        0.99,
+        1.71
+      ]
+    },
+    "floating_flowers_ribbon_wares": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_floating_flowers_ribbon_wares_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        0.96,
+        0.38,
+        0.64
+      ]
+    },
+    "floating_flowers_paper_fish": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_floating_flowers_paper_fish_00001_.glb",
+      "triangles": 19427,
+      "world_size": [
+        0.37,
+        0.38,
+        0.22
+      ]
+    }
+  }
+}

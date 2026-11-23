@@ -4,9 +4,15 @@ from pathlib import Path
 import sys
 
 from kensu_worlds import stage_worlds, with_world_patch
+from cakon_paddy_worlds import MAPS as PADDY_MAPS, stage as stage_paddy
+from winter_river_worlds import MAPS as WINTER_MAPS, stage as stage_winter
+from snake_den_worlds import MAPS as SNAKE_MAPS, stage as stage_snake
 
 
 GROUPS = {
+    "paddy-hut": PADDY_MAPS,
+    "winter-river": WINTER_MAPS,
+    "snake-den": SNAKE_MAPS,
     "caravan": ("M413",),
     "river": ("M414", "M415"),
     "city": ("M416", "M417", "M883"),
@@ -88,6 +94,12 @@ def variant(repo, group):
 
 
 def stage(repo, profile, group, publish):
+    if group=="snake-den":
+        return stage_snake(repo,profile,publish)
+    if group=="winter-river":
+        return stage_winter(repo,profile,publish)
+    if group=="paddy-hut":
+        return stage_paddy(repo,profile,publish)
     maps=GROUPS[group]
     stage_worlds(repo,profile,publish,maps,"cakon-"+group,variant(repo,group),("M417",))
 

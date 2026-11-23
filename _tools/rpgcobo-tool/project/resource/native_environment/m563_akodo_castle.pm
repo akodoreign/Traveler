@@ -37,7 +37,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/castle_akodo_gravel.png"
+    texture0 = "tex/castle_akodo_gravel_daylight_palette.png"
     texture1 = null
     texture2 = null
   }
@@ -89,7 +89,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/castle_akodo_roof.png"
+    texture0 = "tex/castle_akodo_roof_daylight_palette.png"
     texture1 = null
     texture2 = null
   }
@@ -102,7 +102,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/castle_akodo_accent.png"
+    texture0 = "tex/castle_akodo_accent_daylight_palette.png"
     texture1 = null
     texture2 = null
   }
@@ -115,7 +115,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/castle_akodo_floor.png"
+    texture0 = "tex/castle_akodo_floor_daylight_palette.png"
     texture1 = null
     texture2 = null
   }

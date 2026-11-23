@@ -1,0 +1,147 @@
+{
+  "maps": {
+    "M442": {
+      "catalog_hash": "d754410505ead431baca30b601b2ef42d32d9bb08e3d795ee47c5d1b4266850a",
+      "world_hash": "75fe4715ca85032498c1889ca0d72c60303cdb0765fd94cac554258c123465ca",
+      "terrain_quads": 4706,
+      "liquid_quads": 239
+    },
+    "M443": {
+      "catalog_hash": "5bda5a9e8c23ec2f32d37a9f69255a282cc806c2beeeb12b42c5df37943d5040",
+      "world_hash": "843fe439d9e7deae8a09adbc7c8f07519c66c22c86d35af714598bbc7fc96dfb",
+      "terrain_quads": 2958,
+      "liquid_quads": 196
+    },
+    "M896": {
+      "catalog_hash": "08a26d1eaeec25af9382f422dc563508a9c53cbcf6e032f228ed20f2093c7821",
+      "world_hash": "a2c301582df8b614ef0ad05fead193c71e0f287d9ef4e1b1091bc755e7778df0",
+      "terrain_quads": 3753,
+      "liquid_quads": 90,
+      "formations": {
+        "groups": [
+          149,
+          150,
+          151,
+          153
+        ],
+        "enemy_cells": [
+          [
+            55,
+            64
+          ],
+          [
+            51,
+            62
+          ],
+          [
+            53,
+            69
+          ],
+          [
+            55,
+            64
+          ],
+          [
+            51,
+            62
+          ],
+          [
+            55,
+            64
+          ],
+          [
+            51,
+            62
+          ],
+          [
+            51,
+            66
+          ]
+        ],
+        "party_marker": [
+          75,
+          1,
+          64,
+          2
+        ],
+        "bridge_cells": [
+          59,
+          68
+        ],
+        "retains_full_native_collision": true
+      }
+    }
+  },
+  "files": {
+    "m442_oracle_cooling_banks.mdl": "7105212198d24e2f9ee5c36c36cf83b710421ddf6e6e1521524b3d89d19c93dd",
+    "m442_oracle_cooling_banks.pm": "62ad019875602f323eafe8959dc5da0f382f413a4c0fc661f5a2c14d72b24c2c",
+    "m442_oracle_cooling_banks_melt.mdl": "596f83edb8c524d541a97d4b1b596aceaf74055de50f117ed5bbf153436900e5",
+    "m442_oracle_cooling_banks_melt.pm": "7e13f5e5220ef218d222510f1555441699f662ab7744532f93053e1ff4404deb",
+    "m443_oracle_cooling_banks.mdl": "bf2e2fd3e0e39f632093531de2ed71ae8897c920c435320940375d231c3498c4",
+    "m443_oracle_cooling_banks.pm": "ecfbf986e81e13932b80adc03a975cfdb655b00ede57044d11e48b8c0f081fda",
+    "m443_oracle_cooling_banks_melt.mdl": "f891c85857e3b614e31e096a579621d548041d2058e42566b63168ee23c1b244",
+    "m443_oracle_cooling_banks_melt.pm": "05181e53d7eb964066f4f3f5ebb9730c6dfe3a86f06bb1efe94574c95d343fb7",
+    "m896_oracle_cooling_banks.mdl": "955a01186a4f6375625c795083e589956059266328d2608d4efb4bc749336d69",
+    "m896_oracle_cooling_banks.pm": "fe59914bb58233c5aaae41bb40d9f938d8636e2daf90a3f29e8c4fcd9540bb80",
+    "m896_oracle_cooling_banks_melt.mdl": "b1c3b4cbdc61904e9c4086a4bb432d8bcd115726b90cb03c223aca1d40f75f03",
+    "m896_oracle_cooling_banks_melt.pm": "b0386a7bd4082f9f42927023647221a7070b2a5068417de37fb92522df97818f",
+    "magma_spatter.mdl": "1eaffb138b0b1e31e4bb3e27b4d010f2e1ffeaa23aaa247bc2099ff10be18033",
+    "magma_spatter.pm": "d6b23d9b2d864fe48bde80537e8454ea57e6a89e8a99d388828a7049826ba23d",
+    "tex/basalt_revision_ash.png": "6772fabe676057d07208835f2b31987e4efdbb88a1c6af109bbd8dc91d011036",
+    "tex/basalt_revision_glass.png": "a06f87e13083f5e6c881a304aa34748629dcbc59a0823122a74230601eb99f36",
+    "tex/basalt_revision_indigo.png": "7b6a86fab6780b20f47ba0b5eb9b94f860f50a14e6b834a79cfaee93bde1dd10",
+    "tex/basalt_revision_oxide.png": "c1406eebf242fd01b041481d9771d05abe498b2d0c0cf58ffb2e232cf4b4f4a3",
+    "tex/basalt_revision_scree.png": "e0b548e3474cd00c7fb24d7fdcf01e363f3bb6ad0cc4a27e3f55c061a04e212a",
+    "tex/basalt_revision_shrine_cedar.png": "b0700e0bb6e6537353b72eb772810090282bf6bcf632ab7c04aaf701dcd90962",
+    "tex/basalt_revision_shrine_foot.png": "5cabbdecf5f50d04a47f4cbce68bbba5d78960e8572660664ad27bd5a4800418",
+    "tex/basalt_revision_shrine_lacquer.png": "ea5bfbd26309d2aabb404d7ff52d707b42e0981a62f1dd922180ce2bccaa81dc",
+    "tex/basalt_revision_shrine_roof.png": "5f3a32b066ca2dd03ba32e1b9341894c069550b53923954fbfa83a12302d3065",
+    "tex/basalt_revision_stone.png": "e8504e1b28e3dbc8d9354586545d9e092c21676d3c94e787bf11212d8a54ee94",
+    "tex/basalt_revision_tread.png": "1b9a636521b9f770b0ef3b5a6dbb112c7bdc66f68d52d97c2b05c71c45323e9e",
+    "tex/magma_spatter.png": "592d0aa37a966b457180da64bc8c93d94274b4ba8d6c1b87b766d6847b718d7a",
+    "tex/oracle_blue_break.png": "6e1d6246dd8bfefc0b0e8bf375e6ca6fe6065d59d5e3d0d0fb3bc69f055f3361",
+    "tex/oracle_cooling_joints.png": "fb25615500f09d9e90a1167d04011c034ee21eb5866668596e35fda29bdd176c",
+    "tex/oracle_cooling_joints_normal.png": "736bf09a46ed5f9fe97048b1af40a1ececb8c4f1c73237b10038d21c40edaf48",
+    "tex/oracle_cut_paver.png": "7e5ecebd7b96a7f57b191aa3cec1a5078419cdbbc391605acc83cce103ef2529",
+    "tex/oracle_ember_current00.png": "79af6bc1a98d26b57928c152cc54ee280166ecfc54747668d544764654c0f25d",
+    "tex/oracle_ember_current01.png": "2a7ed4f323259ea7a2d009b535fe5327657556c2bfb71531275d3db66a68dff1",
+    "tex/oracle_ember_current02.png": "ad4e0a4652d75b23238142aa1de6fea3f15ea2b5e4a667726d78dc1fab277481",
+    "tex/oracle_ember_current03.png": "5df765046f3523a7069e0dada80390b0a432d45a8f6dc5c459928b2512d16207",
+    "tex/oracle_ember_current04.png": "3048b88e8b63ae3e11e285958dd7a7e8883b2583f4f61a788610547ece8e08e2",
+    "tex/oracle_ember_current05.png": "38082569c4d7832c66aa00507cb9bce21d3e41944ab05fc44c0db4de8ac6dd0b",
+    "tex/oracle_ember_current06.png": "9f3637a1a06bba2240524853bf549142a94932fca0a91413e9fad90c8d52e802",
+    "tex/oracle_ember_current07.png": "6e2268fc1b5f46c137043a8eede475d26f6b4acf9ffecec29b705dbd48ca0b5f",
+    "tex/oracle_ember_current08.png": "a16f4352be0a6c8fee2d02db7fa7bfc06edd537acffd8412c48777254c582e6d",
+    "tex/oracle_ember_current09.png": "37990ec409cdd2b6d6a5d5df4bb17292432961a3d4b62649c975677e48f6f1cf",
+    "tex/oracle_ember_current10.png": "d1a13820442a3291e82e08a4e83a1e8a766ad92aeb1baa0cb7a6b9b0a854a5e5",
+    "tex/oracle_ember_current11.png": "ad3669c9869fccad7c4a7eafad56daf89e9f21385f179fb70f80fd8a892433d5",
+    "tex/oracle_ember_current12.png": "e6ce6be843d385b772306121bff72e6e22243d4c93f290a2df2be0fe61da938e",
+    "tex/oracle_ember_current13.png": "d1f3cd4c5e517b7df90b87f160c0e8d0b152cbca5b8e8ec7869ff65c648d6085",
+    "tex/oracle_ember_current14.png": "0990efa0b0cf1e4f523686a455e0203bc31ed621e6256da768af82e367f6f20f",
+    "tex/oracle_ember_current15.png": "431888da7b9d0c38d00d8f166f7c404fc97669f23cdbb48adf787873f7e020f3",
+    "tex/oracle_ember_current16.png": "9518ac41c3d884ad47ccbf6f3697c5375a02b5e7035429bf9ff78ba06e31b6b6",
+    "tex/oracle_ember_current17.png": "cc0019facf5989df02e7063a70030939f9cc98703d13911d5153f399a4ea3d39",
+    "tex/oracle_ember_current18.png": "d7c4d6ad7f55c9bf80d3492891c6504fce0937ee129e2ed4a863f2c4be39bcd5",
+    "tex/oracle_ember_current19.png": "42f9eb56490809fd60d137e947699447d0370b51f10c34a20b3e038c7b0a990b",
+    "tex/oracle_ember_current20.png": "e1b6ab1b34fbc00ea4845809cc29a27f6134f2969424bc1632dbcc6cb3ca6b8e",
+    "tex/oracle_ember_current21.png": "81f4c1834eb01ed02c3bff858b1c93037947192a035f8a53d94a887bd7683bcc",
+    "tex/oracle_ember_current22.png": "70b3ee37cc5365ade50c28503ab495bf4365adf4ba08773e0f7d1560c1bac05d",
+    "tex/oracle_ember_current23.png": "7bae012186709ae5cbe48439b64bfa788bf48724be8998a3ed21057b03926f52",
+    "tex/oracle_ember_current24.png": "270d69d55926eb370b0a2079ed738927acade9d077ed04ec11d51017900d99b9",
+    "tex/oracle_ember_current25.png": "e909cb0b353ce9e5dae67f6e32571b0d01b422f11d6e46957200dd5eaecbcb3a",
+    "tex/oracle_ember_current26.png": "7b76adcfcf052cc4275468ed5c9ef8982268f2195eab0e9d22f4bd6124f2179d",
+    "tex/oracle_ember_current27.png": "5d6573d5d91138fd3e9ce0fa12c8ca213f7f4d8736247c81b1fca54a94da298f",
+    "tex/oracle_ember_current28.png": "e3c25ff42073ee5b1b6103919907c171b5ac1cdaa36bc5348d669586cee70dca",
+    "tex/oracle_ember_current29.png": "49962149a8125c033ca26f475cc446448f70aabdbb005f322496a0b6e8bbc49c",
+    "tex/oracle_ember_current30.png": "2ab49ad9ad2baf7bb240df24815e592cf56046b94cce3a2321d9a3d15d7e5952",
+    "tex/oracle_ember_current31.png": "26e658a413f1a3e5fa0316e78f5d93062612c6109bc929d88818a469de3886af",
+    "tex/oracle_indigo_obsidian.png": "e0216bd9427a4a179fdccd24ed7be499d14661136bd24ab7980049a3498112b9",
+    "tex/oracle_pavers_shadow.png": "52a337e1551375fa3e7a2a7cb75e3bd4c7564cb3627bbdb34eae0edee27c8bb4",
+    "tex/volcano_cave_bronze_lantern.png": "e3cc57720f4bdb30405925762511d6ab7e079d94c305f74173ba48cde45f84d4",
+    "tex/volcano_cave_rope_waymarker.png": "e674132b1cec3773ebf5d6ad96f19d675311e4ceef764ac65c9e9d7993b8a203",
+    "volcano_cave_bronze_lantern.mdl": "59cfa145a06895dd59010d8d1fdf2706e68a91be4389963ed7bbd40d5c23aefc",
+    "volcano_cave_bronze_lantern.pm": "2824526740fe562abfd2b83fd3028bfda86ae91371ae088983f1edbe1a9eae74",
+    "volcano_cave_rope_waymarker.mdl": "c9558a7e3a5517dd9b93dc537e117c37a7651046d156a5dfe2e32c324a84e268",
+    "volcano_cave_rope_waymarker.pm": "311b8e47f80afa512d2a9ad3362b373d445a822567dabb476bee5e4e97fb8b6f"
+  }
+}

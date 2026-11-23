@@ -1,0 +1,53 @@
+{
+  "maps": {
+    "M475": {
+      "quads": 3507,
+      "props": 51,
+      "drifting_leaves": 10
+    },
+    "M487": {
+      "quads": 18299,
+      "props": 17,
+      "drifting_leaves": 0
+    },
+    "M846": {
+      "quads": 4070,
+      "props": 45,
+      "drifting_leaves": 8
+    },
+    "M799": {
+      "quads": 10607,
+      "props": 8,
+      "drifting_leaves": 0
+    }
+  },
+  "sources": {
+    "phoenix_fox_cave_votive_pair": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_phoenix_fox_cave_votive_pair_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        2.35,
+        1.39,
+        1.05
+      ]
+    },
+    "phoenix_cave_fox_offering_table": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_phoenix_cave_fox_offering_table_00001_.glb",
+      "triangles": 11040,
+      "world_size": [
+        1.38,
+        0.88,
+        0.81
+      ]
+    },
+    "phoenix_north_road_trail_stele": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_phoenix_north_road_trail_stele_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        0.88,
+        1.53,
+        0.84
+      ]
+    }
+  }
+}

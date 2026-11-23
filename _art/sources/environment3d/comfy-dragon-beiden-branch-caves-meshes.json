@@ -1,0 +1,14 @@
+{
+  "dragon_cave_mountain_shale": {
+    "prompt_id": "8a807dda-4b0a-4b31-82ea-6509f4b194da",
+    "history": "http://127.0.0.1:8189/history/8a807dda-4b0a-4b31-82ea-6509f4b194da"
+  },
+  "beiden_cave_bandit_folding_cot": {
+    "prompt_id": "39815b58-d53a-4df8-9465-75b0b6e568c9",
+    "history": "http://127.0.0.1:8189/history/39815b58-d53a-4df8-9465-75b0b6e568c9"
+  },
+  "beiden_cave_bandit_sack_rack": {
+    "prompt_id": "9b4c674c-89cf-4404-8fe6-7e8c90b2ca15",
+    "history": "http://127.0.0.1:8189/history/9b4c674c-89cf-4404-8fe6-7e8c90b2ca15"
+  }
+}

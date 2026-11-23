@@ -1,0 +1,50 @@
+// Run on M150 by event 3, or after launching the real battle with -battle M001 14.
+local stage = ::rpgstage, battle = stage["battle"];
+local dye = ::getTexture( ::getResource( "/resource/native_tailoring/tex/peasant/A100_crab_3.png"));
+local verify = function( actor){
+	if( !actor || actor["nativeKey"] != "EP429" || actor.nativeBodyTemplate != "shared_male" ||
+	    length( actor.nativeBody.bones) != 50 || !actor.nativeBody.motion ||
+	    !actor.nativeBody.findBone( "neck") || !actor.nativeBody.findBone( "head") ||
+	    !actor.nativeBody.findBone( "handN") || !actor.nativeFace ||
+	    actor.nativeFace.mesh.res.name != "ep429_puppet_portrait_face.pm" ||
+	    actor.nativeFace.mesh.face[0].m.basecol != 0xc7f4f8ff || !actor.nativeFace.mesh.face[0].m.tex0)
+		throw Exception( "The Maho Puppet lost its generated servant face or the shared body");
+	if( !dye || !actor.nativeOutfit || actor.nativeTailoring != "A100" ||
+	    actor.nativeOutfit.mesh.face[0].m.tex0 != dye || Math.abs( actor.travelerWidth - 1.035) > .0001 ||
+	    actor.nativeWeapon || actor.nativeMask)
+		throw Exception( "The Maho Puppet's kitchen cloth or unarmed silhouette did not resolve");
+	if( ClientConfig.showHeadwear() && (!actor.nativeHead ||
+	    actor.nativeHead.mesh.res.name != "side_servant_headcloth.pm" || !actor.nativeHead.mesh.face[0].m.tex0 ||
+	    actor.nativeHead.mesh.wmapname[0] != "head"))
+		throw Exception( "The Maho Puppet's separately bound linen headcloth did not resolve");
+	local cloth = actor.nativeBody.children.find( @( piece) piece["mesh"] && piece.mesh.res.name == "EP429_sash.pm");
+	if( !cloth) throw Exception( "The Maho Puppet lost the existing red sash");
+	foreach( name in ["core", "hands", "neck", "throat"]){
+		local skin = actor.nativeBody.mesh.face.find( @( face) face.m.name == "c807060_" .. name);
+		if( !skin || skin.m.basecol != 0xb18b5eff)
+			throw Exception( "The Maho Puppet's body skin did not match the servant portrait tint");
+	}
+};
+if( battle){
+	if( stage.mapid != "M815") throw Exception( "Start the real puppet and troll encounter at -battle M001 14");
+	local puppet = battle.enemies.find( @( foe) foe.dataid == "E235" && foe.data.mdlid == "EP429");
+	local troll = battle.enemies.find( @( foe) foe.dataid == "E234" && foe.data.mdlid == "EP121");
+	if( !puppet || !troll || ::Rokugan.hazardMaster( troll) != puppet)
+		throw Exception( "The registered puppet, troll or linked hazard was missing");
+	local actor = battle.getChara3D( puppet), beast = battle.getChara3D( troll);
+	verify( actor);
+	if( !beast || beast["nativeKey"] != "EP121" || !beast.creatureReady || beast.nativeBodyTemplate || !beast.nativeBody.motion)
+		throw Exception( "The separate troll did not retain its creature model and motion");
+	if( !actor.b3body || !actor.tgtview || !actor.anime2( #{id="spell"}))
+		throw Exception( "The Puppet's original casting animation or targeting did not resolve");
+	actor.anime2( #{id="fight"});
+	printf( "[MAHO PUPPET FIT] M815 E235 servant and E234 troll hazard passed\n");
+	return;
+}
+if( stage.mapid != "M150") throw Exception( "Start on M150 near the original Puppet field event");
+local runner = stage.getEvent( 3), actor = runner ? runner["rp3d"] : null;
+if( !actor) throw Exception( "Move near M150 event 3 before the boss is defeated");
+verify( actor);
+if( actor.event != runner || !actor.animemap["stand"] || !actor.animemap["walk"])
+	throw Exception( "The real field event lost its interaction or original motion");
+printf( "[MAHO PUPPET FIT] M150 event 3 uses the regenerated servant\n");

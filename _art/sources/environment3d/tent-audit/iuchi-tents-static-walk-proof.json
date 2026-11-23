@@ -1,0 +1,30 @@
+{
+  "M603": {
+    "reachable_before": 11374,
+    "reachable_after": 11318,
+    "new_unreachable": [],
+    "affected_footprint_cells": 120,
+    "terrain_grids_equal": true
+  },
+  "M604": {
+    "reachable_before": 11553,
+    "reachable_after": 11497,
+    "new_unreachable": [],
+    "affected_footprint_cells": 120,
+    "terrain_grids_equal": true
+  },
+  "M605": {
+    "reachable_before": 11378,
+    "reachable_after": 11322,
+    "new_unreachable": [],
+    "affected_footprint_cells": 120,
+    "terrain_grids_equal": true
+  },
+  "M610": {
+    "reachable_before": 11282,
+    "reachable_after": 11226,
+    "new_unreachable": [],
+    "affected_footprint_cells": 120,
+    "terrain_grids_equal": true
+  }
+}

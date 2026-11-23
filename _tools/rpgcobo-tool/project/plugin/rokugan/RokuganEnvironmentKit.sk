@@ -27,6 +27,8 @@ class RokuganEnvironmentKit {
 
     constructor(target, def) {
         stage = target;
+        if(def["hideStockScenery"] && stage.bw3d)
+            stage.bw3d.setVisible(false);
         vegetation = [];
         pondFish = [];
         foreach(row in def["pondFish"] || []){
@@ -112,7 +114,7 @@ class RokuganEnvironmentKit {
             light.ch=1;
             light.type=2;
             light.k1=row[3];
-            light.color=0xff963fff;
+            light.color=length(row)>5 ? row[5] : 0xff963fff;
             light.power=row[4];
             light.spotout=-1.0;
             light.spotsharp=1.0;
@@ -130,7 +132,7 @@ class RokuganEnvironmentKit {
             local models=door["models"] || ["town_door_frame","town_door_leaf"];
             add(models[0],door.x,door.y,door.z,1.0,0.0);
             local leaf=add(models[1],door.x+.073,door.y,door.z+.076,1.0,0.0);
-            if(door.event!=null) townDoors.append([door.event,leaf,null,door["alternateOpen"]]);
+            if(door.event!=null) townDoors.append([door.event,leaf,null,door["alternateOpen"],door["swing"] || 52.0]);
         }
         foreach(fire in def["watchfires"] || []){
             local flame=add("kaiu_brazier_flame",fire[0],fire[1],fire[2],fire[3],0.0);
@@ -168,7 +170,7 @@ class RokuganEnvironmentKit {
             local portal=stage.getEvent(row[0]);
             local open=!!(portal && ::reqchk(portal.data["reqs0"],portal));
             if(!open && row[3]) open=!!::reqchk(row[3]);
-            local target=open ? 52.0*Math.DTOR : 0.0;
+            local target=open ? row[4]*Math.DTOR : 0.0;
             local angle=row[2];
             if(angle==target) continue;
             angle=hingeAngle(angle,target,ms);
@@ -362,7 +364,10 @@ local EnvironmentKit = RokuganEnvironmentKit;
 ::RPGStage.launch <- function(opt=null){
     local out = this._rt_environment_launch(opt);
     local def = this["mapid"] ? environmentMaps[this.mapid] : null;
+    if(def && def["siege"] && ::rpgvar["G1644"]) def=def["siege"];
     rtEnvironmentKit = def && this["scn"] ? EnvironmentKit(this,def) : null;
+    if(rtEnvironmentKit && def["renderPreset"])
+        this.changeRenderSetting(def["renderPreset"]);
     return out;
 };
 ::RPGStage._rt_environment_update <- ::RPGStage.updateStageBody;

@@ -1,0 +1,19 @@
+{
+  "head": "side_shiko_portrait_face",
+  "head_sha256": "4c322b94c6b3d6e9e1325ed2ff89689089fb692952fd376eb2d09fac956b8943",
+  "mask_vertices": 18446,
+  "mask_triangles": 36896,
+  "minimum_clearance": 0.1349999999999998,
+  "median_clearance": 0.4220427213948632,
+  "eye_centers_native_y_z": [
+    [
+      108.07,
+      -2.205
+    ],
+    [
+      108.07,
+      2.205
+    ]
+  ],
+  "asset_recipe": "Noh shell fitted to the regenerated Shiko surface, using the project's porcelain shell exporter"
+}

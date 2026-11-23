@@ -1,0 +1,34 @@
+{
+  "mouth_tide_cut_basalts": {
+    "prompt_id": "7cbdf9c2-6f49-4ec6-99f0-f7ec5431b005",
+    "history": "http://127.0.0.1:8189/history/7cbdf9c2-6f49-4ec6-99f0-f7ec5431b005"
+  },
+  "mouth_blue_ice_fissure": {
+    "prompt_id": "c747f735-7237-4bf1-a5a4-d3d47b0991b8",
+    "history": "http://127.0.0.1:8189/history/c747f735-7237-4bf1-a5a4-d3d47b0991b8"
+  },
+  "mouth_lava_tube_vesicular": {
+    "prompt_id": "7c7306f5-35fd-472c-a575-1cb26695430c",
+    "history": "http://127.0.0.1:8189/history/7c7306f5-35fd-472c-a575-1cb26695430c"
+  },
+  "mouth_carved_jade_monolith": {
+    "prompt_id": "87e2e0a8-7f20-42cc-a813-f1a9a66050c9",
+    "history": "http://127.0.0.1:8189/history/87e2e0a8-7f20-42cc-a813-f1a9a66050c9"
+  },
+  "mouth_shale_ravine_split": {
+    "prompt_id": "a60dae23-2e75-4459-94d3-dea26a6540b0",
+    "history": "http://127.0.0.1:8189/history/a60dae23-2e75-4459-94d3-dea26a6540b0"
+  },
+  "mouth_moss_limestone_cove": {
+    "prompt_id": "52d80865-dfaf-4fe0-aec4-288b50d704c7",
+    "history": "http://127.0.0.1:8189/history/52d80865-dfaf-4fe0-aec4-288b50d704c7"
+  },
+  "mouth_limestone_karst_teeth": {
+    "prompt_id": "209bb3a0-e515-4e28-a49c-c29397681463",
+    "history": "http://127.0.0.1:8189/history/209bb3a0-e515-4e28-a49c-c29397681463"
+  },
+  "mouth_stepped_ruin_hall": {
+    "prompt_id": "b0a85916-9918-4ce3-b7f5-b10b31c53812",
+    "history": "http://127.0.0.1:8189/history/b0a85916-9918-4ce3-b7f5-b10b31c53812"
+  }
+}

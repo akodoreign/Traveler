@@ -24,7 +24,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/cakon_deck.png"
+    texture0 = "tex/cakon_deck_daylight_palette.png"
     texture1 = null
     texture2 = null
   }
@@ -50,7 +50,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/cakon_crane_blue.png"
+    texture0 = "tex/cakon_crane_blue_daylight_palette.png"
     texture1 = null
     texture2 = null
   }

@@ -1,0 +1,18 @@
+{
+  "smooth_iuchi_storm_shoji": {
+    "prompt_id": "3cff054e-443e-4b1a-94df-3b0473cb7a96",
+    "history": "http://127.0.0.1:8189/history/3cff054e-443e-4b1a-94df-3b0473cb7a96"
+  },
+  "smooth_hoshi_trade_chest": {
+    "prompt_id": "6ac945cd-b313-4d2f-8e6d-965525d6ccfe",
+    "history": "http://127.0.0.1:8189/history/6ac945cd-b313-4d2f-8e6d-965525d6ccfe"
+  },
+  "smooth_hoshi_storage_jar": {
+    "prompt_id": "54faf79e-5772-4c57-a492-0d22a522cdb8",
+    "history": "http://127.0.0.1:8189/history/54faf79e-5772-4c57-a492-0d22a522cdb8"
+  },
+  "smooth_coast_salt_crate": {
+    "prompt_id": "531bd323-fd2b-412e-b68f-88f2bfdde401",
+    "history": "http://127.0.0.1:8189/history/531bd323-fd2b-412e-b68f-88f2bfdde401"
+  }
+}

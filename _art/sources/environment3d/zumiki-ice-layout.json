@@ -1,0 +1,28 @@
+{
+  "maps": {
+    "M473": {
+      "quads": 2351,
+      "props": 24,
+      "water": "m473_zumiki_water"
+    },
+    "M485": {
+      "quads": 18842,
+      "props": 17,
+      "water": "m485_zumiki_water"
+    },
+    "M844": {
+      "quads": 9083,
+      "props": 10,
+      "water": null
+    }
+  },
+  "source": {
+    "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_zumiki_ice_cave_crystal_curtain_00001_.glb",
+    "triangles": 19481,
+    "world_size": [
+      2.12,
+      2.48,
+      1.7
+    ]
+  }
+}

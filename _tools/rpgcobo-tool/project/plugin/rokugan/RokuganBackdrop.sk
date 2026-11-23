@@ -1,0 +1,48 @@
+//	RokuganBackdrop.sk : a painted panorama behind each map (user 2026-11-23: "use comfyui to generate some backgrounds for
+//	each of the maps (like behind the map itself) similar to opening screen background. should be relevant and display
+//	the terrain around it").
+//	tools/gen_map_backgrounds.py paints resource/mapbg/<map>.png (ComfyUI) and sets the map's bg to
+//	{ type = "tex", tex = "/resource/mapbg/<map>.png" }. The engine lists "tex" as a background type but never drew it
+//	(RPGStage.createBackground fell back to the sky); this draws it with system/shader/background.skfx "tex_pano": the
+//	picture wraps round the camera, tiled mirror-wise, its rows spread over the angles the HD-2D camera looks into.
+
+local Reg = SK3DRenderer.PassRegistory;
+local cache = {};														//	path -> Texture (maps share pictures)
+
+class RTPanoBackgroundPass extends Reg.SkyboxBackgroundPass
+{
+	constructor( tex){
+		super();
+		m = createMaterial( "background.tex_pano");
+		m.cullface = SK_OFF;
+		m.depthmask = 0;
+		m.depthtest = SK_LEQUAL;
+		m.misccol0 = 0xffffffff;
+		m.tex0 = tex;
+	}
+}
+::RTPanoBackgroundPass <- RTPanoBackgroundPass;
+
+::Rokugan.backdropTexture <- function( path){
+	if( path in cache) return cache[path];
+	local img = ::getResource( path).getContent();
+	local t = Texture();
+	t.load( img, 0);
+	if( length( cache) > 24) cache.clear();							//	(a long session doesn't hoard them)
+	cache[path] <- t;
+	return t;
+};
+
+::RPGStage._rt_createBackground <- ::RPGStage.createBackground;
+::RPGStage.createBackground <- function( bg){
+	local force = ::arguments.indexOf( "-rtbackdrop");				//	-rtbackdrop /resource/...png: test a picture on
+	if( force >= 0) bg = { type = "tex", tex = ::arguments[force + 1] };	//	any map
+	if( bg && bg["type"] == "tex" && bg["tex"] && ::arguments.indexOf( "-rtnobackdrop") < 0){
+		try{
+			return ::RTPanoBackgroundPass( ::Rokugan.backdropTexture( bg["tex"]));
+		}catch( ex){
+			printf( "[RT] backdrop %S failed: %S\n", "" .. bg["tex"], "" .. ex);
+		}
+	}
+	return ::RPGStage._rt_createBackground( bg);
+};

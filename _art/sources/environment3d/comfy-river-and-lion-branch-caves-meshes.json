@@ -1,0 +1,14 @@
+{
+  "river_cave_water_polished_boulder": {
+    "prompt_id": "d1b7e29f-aab8-4884-9e5e-c19271d243e0",
+    "history": "http://127.0.0.1:8189/history/d1b7e29f-aab8-4884-9e5e-c19271d243e0"
+  },
+  "lion_cave_ocher_standing_stone": {
+    "prompt_id": "683fbe56-7182-4a54-900a-807d052c5a7e",
+    "history": "http://127.0.0.1:8189/history/683fbe56-7182-4a54-900a-807d052c5a7e"
+  },
+  "lion_cave_old_mine_ore_basket": {
+    "prompt_id": "1d7374df-d210-4c14-bbc6-81b38158435b",
+    "history": "http://127.0.0.1:8189/history/1d7374df-d210-4c14-bbc6-81b38158435b"
+  }
+}
