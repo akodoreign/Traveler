@@ -1,0 +1,14 @@
+{
+  "cakon_rice_scarecrow": {
+    "prompt_id": "becd8d8f-abb5-4075-9080-0f7879dd3331",
+    "history": "http://127.0.0.1:8189/history/becd8d8f-abb5-4075-9080-0f7879dd3331"
+  },
+  "cakon_paddy_sluice": {
+    "prompt_id": "a56ce3d1-643e-4d1c-bfc4-df55391f6605",
+    "history": "http://127.0.0.1:8189/history/a56ce3d1-643e-4d1c-bfc4-df55391f6605"
+  },
+  "cakon_tomie_clay_dome": {
+    "prompt_id": "bacc0b1f-c7f4-4a18-9889-5766b71a7647",
+    "history": "http://127.0.0.1:8189/history/bacc0b1f-c7f4-4a18-9889-5766b71a7647"
+  }
+}

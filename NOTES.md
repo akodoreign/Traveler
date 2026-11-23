@@ -5312,3 +5312,153 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
     on close); tools/test_padicons.sk (bot evalf: every pad type x setting -> glyph; Options entries). All five
     mini-games pass; glyph shots _art/preview/bot/mini_*/, pad_race_*_xbox.png. Not tested: real hardware, and the
     Options screen itself (the bot can't open it from a thread; the entry is registered and reads Auto).
+
+- **The Game of Masks at Kyuden Bayushi (user 2026-11-22: "move the whole masks into the Bayushi castle ... a battle
+  creature type theme ... the masks represent the combat monsters ... level them up with random fights in the castle
+  ... if a player in the castle sees you they run up and challenge you to a sadane match ... each mask will have
+  different sadane subtle pokes ... grows as it levels up ... water > fire etc like the instructions say ... 3/4 view
+  from behind the Shosuro ... swap (masks) attack (list of insults)").** Picks: optional side game on Mitsue's path
+  after Ch1 (G861); masks from the City of Masks story + beaten rivals + the castle-town mask-maker; prizes gear,
+  zeni, Honor; all 7 materials (the chart M362 already teaches: wood<metal<fire<water<earth<wood, stone<->silk).
+  - Content: tools/gen_sadane.py (one source) -> resource/sadane/sadane.json + docs/rules/game-of-masks.md. 21 masks
+    x 5 barbs (learned Lv 1/1/6/11/16; damage or poise-/timing-/wit+/heal), 16 rivals (gift masks, gear A193-A197,
+    Honor +1 from the keep's 2F-4F champions, cap 3), the shop list, random-duel tiers per castle map.
+  - Plugin RokuganSadane.sk: state in G1650 (an "any" table; round-trips the save serializer, test_sadane_state.sk),
+    G1651 open, G1652 a stranger steps out (hidden event k), G1653 a rival saw her. The duel: RTSadane (an RTMini,
+    clear backdrop: pads work) draws; SadaneDuel runs in the event's thread (Barb / Swap / Withdraw for strangers;
+    Timing order, x2 / x0.5, composure, XP to the masks that played, level-ups teach barbs). Camera RTSadaneCam: to =
+    the midpoint, heading Mitsue->rival -0.42 rad, pitch 27 deg (her left shoulder, both left of the panels). Emotes
+    via closeupPlay (point / crossarms / shrug / laugh / nod; surprise on x2, facepalm on losing face). Field: unseen
+    rivals glance about every 3.2 s; seen = 7 m, 60 deg cone -> G1653 -> their autorun page walks them up. A walk roll
+    (22 m, 16%) -> G1652. Lost duel: every mask restored, nothing else lost.
+  - gen_maps: sadane_keeper (Soshi Kagero, M520: the opening scene by the exposition rules, tea, the stand, a recap),
+    sadane_pavilion (M583 tea + stand), sadane_rivals (each castle map: its rivals with "sadane": index, 3 hidden
+    strangers), the mask-maker's "Masks for the game" (M347). _say_d keeps an all-"(acting)" line (say() strips cues).
+    gen_data: G1650-G1653, A193-A197 (merged by a temp-copy gen_data run, not a full one).
+  - Engine-checked (tools/test_sadane.py, shots _art/preview/bot/sadane_*): a stranger (win, zeni), Bayushi Karyu
+    (walk-up, win, Oni Mask), Bayushi Kyoko 4F with a Lv 20 sleeve (natural sighting, win, Red Mask, Honor +1), Soshi
+    Rieko 2F (lose path), Kagero's opening (G1651), the mask-maker (300 zeni -> Fire-Lacquer). Not run: the mask
+    stand menu (runner.showChoices) and Swap by hand (auto play only swaps on a lost face).
+  - Known: a rival may stop across a stair rail (standAt checks the floor, not railings); Mitsue's model doesn't
+    change mask on swap (no per-mask 3D mask yet); the new rivals have no busts. Scorpion Ch1's story rooms (M345 /
+    M346) are still separate maps - not yet moved into the castle districts (castles-roamable).
+  - SK met: a class field named like a file-level local ("data") won't compile (outer variables can't be
+    assigned); no <=> operator; super( ... ) not base.constructor; classes must be exported (::X <- X) to be called
+    from functions at runtime; -rt flags keep one value ("sadane rival:3").
+
+- **Late read: the maps the path-by-path read missed (user 2026-11-23: "did we do all the conversations earlier or
+  only a couple of them? if not all paths pick up where we left off").** The path read covered every story chapter;
+  139 maps (~1000 lines) never got a reading copy: post-game, Prologue, roads / caves, Crane sea, the dueling ground,
+  town wards + islands, castle districts, the common macros. All read now (_art/preview/dialog/full_rest1, _postgame,
+  _roads, _wards, _islands, _castles). Fixes (apply_dialog_fixes section "LATE READ", gen_maps):
+  - Kakita dueling ground (Crane Ch4 S05): the stakes said in the scene (G429 branch), the script's lost win line
+    ("It's waiting for me to decide."), what becomes of the play on a win.
+  - Shiro Hiruma: Gendo glosses Oni no Okura's name; Natsuko's beats directed (emotes / close-ups).
+  - Road-stones and caves: "Danger 2-6 (scales with goals)" sat inside the stone's quote -> "(Foes around level 2-6,
+    stronger as the story goes on.)" (gen_maps route_danger + REGEX).
+  - Ward / island errands: a reason each resident can't fetch it (ERRAND_REASONS), the sign ("Hoshi-no-Ichi, Harbor
+    Ward: homes, ..."), no "Crane resident:" baked into villager text, "Thanks again, ronin." -> "traveler" for every
+    odd job (a Hiruma isn't a ronin), "Back to the Tomo" -> "Back to Tomo" (_the keeps names bare; journal too).
+  - Castle errand-givers: each castle its own names (CASTLE_GIVEN; Kyuden Hida keeps Harunori / Chihiro / Sumiko /
+    Teruko).
+  - Chapter-end "Word on the road" notice played twice, once BEFORE the scene (the scene guard sets the flag too):
+    only after the last set now (gen_maps ladder hint pass).
+- **BUG FOUND + FIXED: apply_dialog_fixes duplicated multi-line inserts on every run.** The "already applied" test
+  compared one neighbour with the first new line; for a "before" insert that neighbour is the last inserted line, and
+  an insert starting with an IF never matched. Since the exposition pass, each run added a copy: the Crab hearing
+  debrief (M504) had 25, the Crane Ch1-3 inserts (M205 M208 M211 M212 M217 M220) ~24. Now: the whole block is
+  compared (ignoring emo / act / zoom / uiclose), and inserted commands carry a hidden "rtfx" tag. The damaged maps
+  were rebuilt by gen_maps and fixed once; two more runs leave map.json byte-identical. Duplicate scanner:
+  scratchpad dups.py (same text twice in one command list) - only deliberate repeats left (Rensei's / Gendo's double
+  "Yes", a template). If the user played Crab Ch2's hearing or Crane Ch1-3 since 2026-11-22, they saw repeats.
+- gen_maps and apply_bust_emotions now write map.json through a temp file + retries (save_json_locked): writes were
+  failing with "Invalid argument" while another process held the file.
+
+- **CASTLES CHECKLIST (user 2026-11-23: "get on it then make a list check it twice. give it the same treatment as the
+  other ones ... mini games ... check the clans on the l5rwiki").** l5r.fandom.com refuses automated reads (HTTP 402),
+  so the clan picks come from L5R lore + docs/research. Per castle: [scenes moved into districts/keep] [old rooms ->
+  castle_stub] [every go()/portal/PATH_START re-pointed] [apply_dialog_fixes "where" re-pointed] [room-polish passes
+  (WILLOW/DRAGON/AUTUMN_ROOM_LAYOUTS, rebuild_*) skip stubs] [marker beats for required talks] [engine test cases in
+  test_castle_story.py: start, mid, end, old save] [screenshots read] [clan mini-game + its NPC + test]. Check twice.
+  1. Kyuden Bayushi (Scorpion Ch1) - DONE 2026-11-23: S01 memorial -> Shrine court M586 (koi pond, dinner pavilion,
+     the yard shrine = Fukurokujin), S02 -> North garden M588 (willow teahouse on a peninsula at the north wall);
+     M345 / M346 stubs; PATH_START -> M586; WILLOW_ROOM_LAYOUTS emptied; marker beats G834-G836. Tests: bayushi_start
+     (marker -> Soshi pair), bayushi_heard (M586 -> M588 -> M347), bayushi_teahouse, bayushi_oldsave (M345 -> M586).
+     Mini-game: the Game of Masks (already there).
+  2. Kyuden Togashi - TODO: the garden M383 (12 lines). Mini-game: "The Ise Zumi's Ink" (Togashi tattoo monks):
+     repeat the tattooist's brush-stroke sequence (a growing Simon sequence on the four directions).
+  3. Shiro Kitsuki - TODO: Lord Kitsuki Yasu's hall M344 (45), Gendo's office M454 (12, after the finale). Mini-game:
+     "The Kitsuki Method" (evidence over testimony): a witness's statements vs the objects in a room; pick the evidence
+     that contradicts each claim.
+  4. Kyuden Isawa - TODO: M288 (70 lines; the castle scenes), the sealed library M296 stays a set piece. Mini-game:
+     "The Five Rings" (Isawa elemental study): a pentagon of the five elements, each touch turns a ring and its
+     neighbours; balance all five.
+  5. Shiro Iuchi - TODO: the garden M391 (25); the tower M400-M402, great stair / storm room M411-M412, siege camp
+     M408 and star field M399 stay set pieces. Mini-game: yabusame (Unicorn horse archery): gallop (left / right) and
+     loose at the targets as they pass.
+  (Shiro Akodo has no clan mini-game yet; Nishi's go in the North Dojo is a choice, not a game - optional extra.)
+- **CASTLES CHECKLIST - all five DONE and checked twice (2026-11-23).**
+  2. Kyuden Togashi: Scorpion Ch4's audience (S04) in the Courtyard garden M615 (Togashi / Shoju on the avenue between
+     the sand gardens, servants and guards kneeling); PROCESSION -> M615; M383 stub; the Togashi road M382 is the
+     castle's town (gate at (86, 20), opens G947); rebuild_dragon_approach skips M383. Tests togashi_*.
+  3. Shiro Kitsuki: Lord Yasu's hall -> keep 4F M529 (Dragon Ch4 S06; FINALE_GATES M529 letter), Gendo's office -> keep
+     3F M528 (desk, the E01 coda; CODA_GO G1200); M344 / M454 stubs; the town's hall door is the castle gate (gate
+     True). Tests kitsuki_*.
+  4. Kyuden Isawa: the city M288 is the castle's town (the Council hall door is the gate; M285's side door gone); the
+     Council of Elemental Masters (S03) -> keep 4F M519; the sealed library's door -> the Archive court M573 (west
+     hall; isawa_door; the fever's end returns there; M296's exit leads back); LEAVE gives the Council's objective.
+     Hayato's lodging, the shrine, the refugees stay in the city. Tests isawa_*.
+  5. Shiro Iuchi: Daiyu's garden (Unicorn Ch2 case 1) -> the Courtyard garden M604; M391 stub; the valley road M390's
+     door is the castle gate. Tests iuchi_*.
+  Path-end choosers / codas / Gendo's homecoming that still pointed at retired rooms: M151 M200 M273 M297 M320 M379
+  M413 M438 M509 rebuilt (no link to a retired room is left: checked).
+  Clan games (plugin RokuganCastleGames.sk; gen_maps CLAN_GAMES / clan_game; ::Rokugan.MINI_CLASSES registry in
+  ::Rokugan.miniGame): ink (Togashi Kaito, Togashi Shrine court M619, A198 Ise Zumi Ink Charm, G1654), kitsuki
+  (Kitsuki Ohana, Kitsuki Archive court M595, A199 Kitsuki Examiner's Lens, G1655), rings (Isawa Tsumari, Isawa Shrine
+  court M575, A200 Five Rings Pendant, G1656), yabusame (Iuchi Batu, Iuchi Training court M603, A201 Yabusame Glove,
+  G1657); rematch 100 zeni. tools/test_clan_games.py all: each loses, retries, wins, prize + flag (twice).
+  GOTCHA: an RTMini subclass field named like a native SKImageView slot ("pos", "right", ...) fails at class load
+  ("attempt to modify a private/native slot"): the clan games' fields are g-prefixed.
+  Not done / next: Shiro Akodo has no clan game yet (Nishi's go could become one); generated Japanese furniture
+  (memory comfyui-hunyuan-furniture) for the teahouse, Gendo's desk, the memorial.
+- **Go with Nishi (user 2026-11-23: "yeah full game of go is fine").** Shiro Akodo's clan game: a whole 9x9 game in the
+  North Dojo (keep 2F, M512). Plugin RokuganCastleGames.sk RTGo ("go"): captures, no suicide, simple ko, passing, two
+  passes end it, area scoring (stones + surrounded empty points; groups left in atari count dead), komi 6.5; the
+  player is Black. Nishi (goChoose) reads every legal move: captures x12, rescues of groups in atari, ataris, never her
+  own eye, no self-atari, liberties, the 3rd/4th lines early, open ground; passes when nothing is worth a stone.
+  gen_maps go_full_game(): Nishi's "A full game. Nine lines, to the end." beside the story's "A game of go?" (and
+  after G510); first win A202 Nishi's Black Stone (G1658), a rematch 100 zeni. Test: tools/test_clan_games.py go
+  (-rtmini lose = the player passes all game; win = the player reads the board vs a random-move Nishi): lost 0 to
+  87.5, then won 81 to 6.5; prize and flag set. Not tested: real Nishi against a person - her strength is a guess.
+  Every castle now has a clan game.
+
+- **The marker chasers (user 2026-11-23: "squirl scripts whos job is just to chase the objective marker to each goal
+  for each story/quest/sidequest. let them take notes ... local llm ... intel npu ... 2 game windows ... check every
+  quest and game (let it self learn, do not let it change any code its job is read only)"; "let the local llm be able
+  to launch and close its instance incase it gets stuck"; "if it gets stuck let it let you know"; "have it do all the
+  triggers and conversations as well. all the notes"; "it needs to know how to find and use triggers"; "log the
+  event"; "let it use save states so you can see what happened").** READ ONLY: no code or data is touched; output
+  only under _art/preview/chase/ and the engine's tmp/chase/ + savedata slots 90/91 (the worktree's own savedata,
+  not the user's game folder).
+  - In game: plugin RokuganChase.sk (-rtchase MIN; needs -rtbot for the virtual keys). Each moment: the marker's own
+    goal and point (mkGoal / mkPoint) -> botGoto. Using an event like a player (chaseUse): stand at the engine's
+    trigger distance (0.45 m contact / 0.95 m talk; RPGStage.updateSearchTarget), face it, wait until
+    rpgstage.searchdst names it (the "A: Talk" prompt), press Z; other angles; success = a scene runs or anything is
+    said (::Rokugan.msgn - under -rtfast a villager's event ends inside a frame). Walk-on pages: step on. Exits: nudge
+    each way (inside an exit strip the marker's point is the player's own spot). Sweep: every map (again per new
+    objective, max 3) - every talk / examine event and every walk-on page without a map move, nearest first.
+    Snapshots (chaseSnap): ObjectOutput of ::rpgstat as saveGame writes it, to tmp/chase/<job>/snap_NN.bin, at the
+    start, each goal reached, a stall, every 10 min; + a screenshot + a SNAP summary line. Log lines "[RT] CHASE ..."
+    (START GOAL REACHED OBJECTIVE MAP SWEEP EVENT PROMPT SWEPT TALK NOEVENT NOPROMPT NOPOINT STUCK SNAP CHOICE BATTLE
+    END DONE). Learned menu answers: -rtchasepolicy JSON, read in RokuganField's bot choice code.
+  - tools/markerchase.py [story|quests|games|all] [--only ..] [--minutes 60] [--windows 2] [--no-llm]: 8 story jobs
+    (New Game, the prologue's choice), 90 quest jobs (Journal quests + side stories: started at the giver with the
+    open flags, G1244 tracking), 6 mini-game suites (the existing self-play tests). Two windows. No progress for
+    3 min -> the local model (tools/chase_llm.py, Phi-3.5-mini int4-cw on the NPU, D:\RokuganTraveler\.venv-npu,
+    models\phi35-mini-int4-cw-ov, NPU compile cache models\npu_cache) answers continue / restart / close; a restart
+    resumes from the latest snapshot through the window's slot (-rtloadsave 90/91). Every STUCK / NOPROMPT / NOPOINT /
+    error -> _art/preview/chase/STUCK/<job>.md + "STUCK <job>: ..." on stdout (Claude's Monitor wakes on it).
+    Notes per job: notes.md (the model's findings, goals + timings, trouble, every event and the lines said per map,
+    menus, battles), snapshots/ + snapshots.md. Learning: knowledge.json (menus answered before a stall get another
+    answer next run; menus on a clean run are kept).
+  - l5r.fandom.com refused automated reads (402). Model on NPU: first load 52 s (compile), ~11 s for 40 tokens.

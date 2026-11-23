@@ -121,9 +121,9 @@ def dress(gm, world, mid):
             x = (gm.PAD_X + center) * .5
             placements.extend([
                 ["kudo_shut_door", x, 2.5, front, 1., 0.],
-                ["town_door_stoop_half", x, 2., front, 1., 0.],
+                ["town_door_stoop_half", x - .5, 2., front, 1., 0.],
             ])
-        doors.append({"x": 20., "y": 2.5, "z": front, "grade": 2., "event": 2,
+        doors.append({"x": 19.5, "y": 2.5, "z": front, "grade": 2., "event": 2,
                       "stoop": "town_door_stoop_half"})
     elif mid == "M364":
         for x in range(43, 91, 9):
@@ -143,7 +143,7 @@ def dress(gm, world, mid):
             x = (gm.PAD_X + center) * .5
             placements.extend([
                 ["kudo_shut_door", x, 2.5, front, 1., 0.],
-                ["town_door_stoop_half", x, 2., front, 1., 0.],
+                ["town_door_stoop_half", x - .5, 2., front, 1., 0.],
             ])
     else:
         for x in range(10, 122, 15):

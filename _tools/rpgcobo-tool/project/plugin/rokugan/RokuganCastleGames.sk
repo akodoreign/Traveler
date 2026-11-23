@@ -1,0 +1,786 @@
+//	RokuganCastleGames.sk - one clan game in each castle moved into the roamable castles (user 2026-11-23: "give it the
+//	same treatment as the other ones. (I am not sure what mini games will fit for each, but ... check the clans")).
+//	l5r.fandom.com refuses automated reads, so the picks come from the clans' lore (NOTES "CASTLES CHECKLIST"):
+//	    "ink"       Kyuden Togashi  The Ise Zumi's Ink - repeat the tattooist's brush strokes (a growing sequence)
+//	    "kitsuki"   Shiro Kitsuki   The Kitsuki Method - evidence over testimony: which object makes the witness a liar
+//	    "rings"     Kyuden Isawa    The Five Rings - a pentagon of the elements; a touch turns a ring and its neighbours
+//	    "yabusame"  Shiro Iuchi     Unicorn horse archery - loose as each target passes the bow
+//	    "go"        Shiro Akodo     a full 9x9 game of go with Nishi (the North Dojo)
+//	All run on RTMini (RokuganMini.sk): pads, prompts, the "Try again?" panel, -rtmini win/lose self-play, -rtminishot.
+//	::Rokugan.miniGame( kind) finds them in ::Rokugan.MINI_CLASSES. Each returns 1 won, 2 lost and declined.
+import VirtualKeyCode;
+import GamepadButtonCode;
+
+local log( s){ printf( "[RT] %S\n", s); }
+local sfx = function( id){ try{ ::playSound( id); }catch( ex){} };
+local frand = @( a, b) ::rnd.nextf( a, b);
+local irand = @( n) int( ::rnd.nextf( 0.0, n * 1.0)) % n;
+local DIRS = ["up", "right", "down", "left"];
+local fabs = @( v) v < 0 ? -v : v;
+
+///////////////////////////////////////////////////////////////////////////////
+//	The Ise Zumi's Ink (Kyuden Togashi): the tattooist draws a sequence of strokes; repeat it. Six designs, three to
+//	eight strokes; three slips of the brush allowed.
+//	(test) one shot per round, 1.5 s into play: -rtminishot (tools/test_clan_games.py)
+local playShot = function( g, dt){
+	if( g.shotname && g.state == "play" && g.st >= 1500.0 && g.st - dt < 1500.0) g.shot( "play");
+};
+
+class RTInk extends ::RTMini
+{
+	gTiles = null; gTileLbl = null; gSeq = null; gPos = 0; gLives = 3; gDesign = 0; gShowT = 0.0; gShowI = 0; gMsg = null; gTop = null;
+	gAiT = 0.0;
+	static LENS = [3, 4, 5, 6, 7, 8];
+	static NAMES = ["the crane's wing", "the river", "the tiger's stripe", "the coiled dragon", "the burning phoenix",
+		"Togashi's own mon"];
+
+	constructor( r){
+		super( r, 0x141820ff);
+		game = "ink";
+		rect( 0, 0, W, 48, 0x0c0f14ff); rect( 0, 48, W, 2, 0xc9a45cff);
+		label( 30, 6, 700, 40, 28, 0xf4e2b0ff).setText( "The Ise Zumi's Ink");
+		gTop = label( W - 420, 10, 390, 34, 20, 0xd9c9a0ff, 2);
+		rect( 0, H - 50, W, 50, 0x0c0f14ff); rect( 0, H - 50, W, 2, 0xc9a45cff);
+		gMsg = label( 30, H - 44, W - 60, 40, 20, 0xf4f0e6ff, 1);
+		local cx = W / 2, cy = H / 2 - 10, s = 120.0;
+		local at = [[cx - s / 2, cy - s * 1.6], [cx + s * 0.6, cy - s / 2], [cx - s / 2, cy + s * 0.6], [cx - s * 1.6, cy - s / 2]];
+		gTiles = []; gTileLbl = [];
+		foreach( i, p in at){
+			gTiles.append( rect( p[0], p[1], s, s, 0x2a2e3aff));
+			local l = label( p[0], p[1] + s / 2 - 18, s, 36, 22, 0xd9d2c0ff, 1);
+			l.setText( ["Up", "Right", "Down", "Left"][i]);
+			gTileLbl.append( l);
+		}
+		buildPanel();
+		intro();
+	}
+	function intro(){
+		state = "intro";
+		showPanel( true, "The Ise Zumi's Ink", [
+			"\"Every tattoo is a lesson the skin keeps. Watch my brush.\"",
+			"The tattooist draws the strokes; repeat them in order. (" .. ctl( "move") .. ")",
+			"Six designs, each one longer. Three slips and the ink dries.", ""], ["Take up the brush"]);
+		shot( "intro");
+	}
+	function newRound(){
+		gSeq = [];
+		for( local i = 0; i < LENS[gDesign]; i++) gSeq.append( irand( 4));
+		gPos = 0; gShowI = 0; gShowT = 700.0; state = "show";
+		gMsg.setText( "The tattooist draws " .. NAMES[gDesign] .. "...");
+		draw();
+	}
+	function draw( lit = -1){
+		foreach( i, t in gTiles) t.setColor( i == lit ? 0xe8d8a8ff : 0x2a2e3aff);
+		foreach( i, l in gTileLbl) l.setColor( i == lit ? 0x1a1a20ff : 0xd9d2c0ff);		//	(dark ink on a lit tile)
+		gTop.setText( "Design %d / %d     Slips %d" % [gDesign + 1, length( LENS), 3 - gLives]);
+	}
+	function step( dt){
+		playShot( this, dt);
+		if( state == "pause"){ if( st > 900.0) newRound(); return; }		//	(st counts up in RTMini.tick)
+		if( state == "show"){
+			gShowT -= dt;
+			local phase = gShowT;
+			if( phase <= 0.0){
+				if( gShowI >= length( gSeq)){ state = "play"; st = 0.0; gPos = 0; gMsg.setText( "Your brush. (" .. ctl( "move") .. ")"); draw(); return; }
+				draw( gSeq[gShowI]); sfx( "SE001");
+				gShowI++; gShowT = 560.0;
+			}else if( phase < 140.0) draw();
+			return;
+		}
+		if( state != "play") return;
+		if( hit.back){ finish( false); return; }
+		local k = -1;
+		local m = aiMode();
+		if( m){
+			gAiT -= dt;
+			if( gAiT <= 0.0){ gAiT = 300.0; k = m == "win" ? gSeq[gPos] : (gSeq[gPos] + 1) % 4; }
+		}else foreach( i, d in DIRS) if( hit[d]) k = i;
+		if( k < 0) return;
+		draw( k);
+		if( k == gSeq[gPos]){
+			sfx( "SE000"); gPos++;
+			if( gPos >= length( gSeq)){
+				gDesign++;
+				if( gDesign >= length( LENS)){ finish( true); return; }
+				gMsg.setText( "\"Good. Again, longer.\""); sfx( "SE003");
+				state = "pause"; st = 0.0;
+			}
+		}else{
+			gLives--; sfx( "SE004");
+			if( gLives <= 0){ finish( false); return; }
+			gMsg.setText( "The brush slips. \"Again. From the first stroke.\""); state = "pause"; st = 0.0;
+		}
+	}
+	function finish( won){
+		log( "ink: round %d over, %S (design %d, %d slips)" % [round + 1, won ? "won" : "lost", gDesign + 1, 3 - gLives]);
+		draw();
+		state = won ? "won" : "lost"; sfx( won ? "SE018" : "SE012");
+		if( won) showPanel( true, "The ink takes.", ["\"Six designs. Your hand didn't argue with mine once.\"",
+			"The tattooist bows over the last stroke.", "", ""], ["Done"]);
+		else showPanel( true, "The ink dries.", ["\"The skin remembers mistakes too. That's what makes it honest.\"", "",
+			"", "Try again?"], ["Yes", "No"]);
+		shot( state);
+	}
+	function chosen( i){
+		if( state == "intro"){ gDesign = 0; gLives = 3; newRound(); return; }
+		if( state == "won"){ result = 1; done = true; return; }
+		if( state == "lost"){ if( i == 0){ round++; gDesign = 0; gLives = 3; newRound(); } else{ result = 2; done = true; } }
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//	The Kitsuki Method (Shiro Kitsuki): a witness says one thing; four pieces of evidence lie on the table. Which one
+//	makes the statement false? Five of six to pass.
+local CASES = [
+	["A sake-seller", "\"I shut my stall at dusk and went straight home. I never went out again.\"",
+		["his ledger, the day's takings totalled", "a wet umbrella by his door", "his sandals, dry and neat",
+			"a cold brazier"], 1, "It only rained after midnight. Somebody carried that umbrella out in it."],
+	["A groom", "\"The black horse never left its stall all night, magistrate.\"",
+		["a full water trough", "the bridle on its peg", "fresh red mud packed in its hooves", "hay in the manger"], 2,
+		"There's no red clay in the stables. There is on the shrine road."],
+	["A lady-in-waiting", "\"I have never seen that letter in my life.\"",
+		["the letter's plain wax seal", "a closed fan", "a poem pinned above her desk",
+			"her brush, wet with the same blue ink"], 3, "Blue ink is rare. Hers is still wet, and it matches."],
+	["A gate guard", "\"Nobody came through this gate on my watch.\"",
+		["the gate bar, set", "footprints in the frost, leading in", "his spear", "an empty tea cup"], 1,
+		"Frost only takes a print after it forms. Someone walked in on his watch."],
+	["A temple monk", "\"I sat in meditation from the evening bell until dawn.\"",
+		["his meditation mat", "incense burned down to ash", "snow melting on his sandals", "the sutra scroll"], 2,
+		"Snow doesn't fall in the meditation hall. He came in from outside, and recently."],
+	["A jade merchant", "\"The stone was true jade when it left my hands.\"",
+		["the bill of sale", "the box it came in", "the buyer's chop", "the stone on the scales: half the weight of jade"],
+		3, "Jade is heavy. That stone was never jade."],
+];
+
+class RTKitsuki extends ::RTMini
+{
+	gOrder = null; gIdx = 0; gSel = 0; gRight = 0; gWrong = 0; gWho = null; gSays = null; gOpts = null; gMsg = null; gTop = null;
+	gAiT = 0.0; gAnswered = false;
+
+	constructor( r){
+		super( r, 0x1a1a14ff);
+		game = "kitsuki";
+		rect( 0, 0, W, 48, 0x10100cff); rect( 0, 48, W, 2, 0xc9a45cff);
+		label( 30, 6, 700, 40, 28, 0xf4e2b0ff).setText( "The Kitsuki Method");
+		gTop = label( W - 420, 10, 390, 34, 20, 0xd9c9a0ff, 2);
+		gWho = label( 60, 90, W - 120, 34, 24, 0xffe08aff);
+		gSays = label( 60, 130, W - 120, 34, 24, 0xf4f0e6ff);
+		rect( 60, 186, W - 120, 2, 0x5a5040ff);
+		gOpts = [];
+		for( local i = 0; i < 4; i++) gOpts.append( label( 100, 214 + i * 54, W - 200, 40, 24, 0xf4f0e6ff));
+		rect( 0, H - 90, W, 90, 0x10100cff); rect( 0, H - 90, W, 2, 0xc9a45cff);
+		gMsg = label( 30, H - 80, W - 60, 70, 21, 0xf4f0e6ff, 1);
+		buildPanel();
+		intro();
+	}
+	function intro(){
+		state = "intro";
+		showPanel( true, "The Kitsuki Method", [
+			"\"Witnesses lie. Even honest ones. Evidence only lies if someone made it.\"",
+			"Read what the witness says; choose the evidence that proves it false.",
+			"Six cases. Get five right and the magistrates will want your name.", ""], ["Open the first case"]);
+		shot( "intro");
+	}
+	function begin(){
+		gOrder = [0, 1, 2, 3, 4, 5];
+		for( local i = 5; i > 0; i--){ local j = irand( i + 1); local t = gOrder[i]; gOrder[i] = gOrder[j]; gOrder[j] = t; }
+		gIdx = 0; gRight = 0; gWrong = 0; showCase();
+	}
+	function showCase(){
+		local c = CASES[gOrder[gIdx]];
+		gSel = 0; gAnswered = false; state = "play"; st = 0.0;
+		gWho.setText( c[0] .. ":");
+		gSays.setText( c[1]);
+		gMsg.setText( "Which evidence makes that false? (" .. ctl( "move") .. ", " .. ctl( "fire") .. ")");
+		draw();
+	}
+	function draw(){
+		local c = CASES[gOrder[gIdx]];
+		foreach( i, l in gOpts){
+			l.setText( (i == gSel ? "> " : "   ") .. c[2][i]);
+			l.setColor( i == gSel ? 0xffe08aff : 0xd9d2c0ff);
+		}
+		gTop.setText( "Case %d / 6     Right %d  Wrong %d" % [gIdx + 1, gRight, gWrong]);
+	}
+	function step( dt){
+		playShot( this, dt);
+		if( state == "next"){ if( st > 2600.0 || (st > 600.0 && hit.fire)){ gIdx++; if( gIdx >= 6) finish(); else showCase(); } return; }
+		if( state != "play") return;
+		if( hit.back){ gWrong = 6; finish(); return; }
+		local m = aiMode();
+		if( m){
+			gAiT -= dt;
+			if( gAiT > 0.0) return;
+			gAiT = 500.0;
+			local want = m == "win" ? CASES[gOrder[gIdx]][3] : (CASES[gOrder[gIdx]][3] + 1) % 4;
+			if( gSel != want){ gSel = (gSel + 1) % 4; draw(); return; }
+			answer(); return;
+		}
+		if( hit.up){ gSel = (gSel + 3) % 4; sfx( "SE001"); draw(); }
+		if( hit.down){ gSel = (gSel + 1) % 4; sfx( "SE001"); draw(); }
+		if( hit.fire) answer();
+	}
+	function answer(){
+		local c = CASES[gOrder[gIdx]];
+		if( gSel == c[3]){ gRight++; sfx( "SE003"); gMsg.setText( "Yes. " .. c[4]); }
+		else{ gWrong++; sfx( "SE004"); gMsg.setText( "No - " .. c[2][gSel] .. " proves nothing. " .. c[4]); }
+		state = "next"; st = 0.0;
+		gTop.setText( "Case %d / 6     Right %d  Wrong %d" % [gIdx + 1, gRight, gWrong]);
+	}
+	function finish(){
+		local won = gRight >= 5;
+		log( "kitsuki: round %d over, %S (%d right, %d wrong)" % [round + 1, won ? "won" : "lost", gRight, gWrong]);
+		state = won ? "won" : "lost"; sfx( won ? "SE018" : "SE012");
+		if( won) showPanel( true, "Case closed.", ["\"Evidence over testimony. You'd make a Kitsuki yet.\"",
+			"Right " .. gRight .. " of 6.", "", ""], ["Done"]);
+		else showPanel( true, "The witnesses walk free.", ["\"You believed people. It's a kind fault.\"",
+			"Right " .. gRight .. " of 6. Five are needed.", "", "Try again?"], ["Yes", "No"]);
+		shot( state);
+	}
+	function chosen( i){
+		if( state == "intro"){ begin(); return; }
+		if( state == "won"){ result = 1; done = true; return; }
+		if( state == "lost"){ if( i == 0){ round++; begin(); } else{ result = 2; done = true; } }
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//	The Five Rings (Kyuden Isawa): the elements stand in a pentagon. Touching one turns it and its two neighbours
+//	(balanced <-> unbalanced). Bring all five into balance within the moves the Master allows. Three trials.
+class RTRings extends ::RTMini
+{
+	gOn = null; gSel = 0; gMoves = 0; gLimit = 0; gTrial = 0; gRings = null; gRingLbl = null; gMsg = null; gTop = null; gAiT = 0.0;
+	gAiPlan = null;
+	static NAMES = ["Earth", "Water", "Fire", "Air", "Void"];
+	static COLS = [0xb08a4aff, 0x4a8fd6ff, 0xe0572aff, 0xbfe3f0ff, 0x8a6ad6ff];
+	static PRESS = [2, 3, 4];
+
+	constructor( r){
+		super( r, 0x14101cff);
+		game = "rings";
+		rect( 0, 0, W, 48, 0x0c0a12ff); rect( 0, 48, W, 2, 0xc9a45cff);
+		label( 30, 6, 700, 40, 28, 0xf4e2b0ff).setText( "The Five Rings");
+		gTop = label( W - 420, 10, 390, 34, 20, 0xd9c9a0ff, 2);
+		rect( 0, H - 50, W, 50, 0x0c0a12ff); rect( 0, H - 50, W, 2, 0xc9a45cff);
+		gMsg = label( 30, H - 44, W - 60, 40, 20, 0xf4f0e6ff, 1);
+		gRings = []; gRingLbl = [];
+		local cx = W / 2, cy = H / 2 + 10, R = 200.0, s = 110.0;
+		for( local i = 0; i < 5; i++){
+			local a = -1.5708 + i * 1.2566;
+			local x = cx + Math.cos( a) * R - s / 2, y = cy + Math.sin( a) * R - s / 2;
+			gRings.append( [rect( x - 6, y - 6, s + 12, s + 12, 0x00000000), rect( x, y, s, s, 0x303040ff)]);
+			local l = label( x, y + s / 2 - 16, s, 32, 22, 0xf4f0e6ff, 1);
+			l.setText( NAMES[i]);
+			gRingLbl.append( l);
+		}
+		buildPanel();
+		intro();
+	}
+	function intro(){
+		state = "intro";
+		showPanel( true, "The Five Rings", [
+			"\"The elements lean on each other. Touch one, and its neighbours move.\"",
+			"Choose a ring (" .. ctl( "move") .. ") and touch it (" .. ctl( "fire") .. "): it and the two beside it turn.",
+			"Bring all five into balance within the moves allowed. Three trials.", ""], ["Begin"]);
+		shot( "intro");
+	}
+	function press( i, arr){ foreach( d in [-1, 0, 1]){ local k = (i + d + 5) % 5; arr[k] = !arr[k]; } }
+	function newTrial(){
+		gOn = [true, true, true, true, true];
+		local used = [];
+		while( true){
+			gOn = [true, true, true, true, true]; used = [];
+			for( local n = 0; n < PRESS[gTrial]; n++){ local k = irand( 5); used.append( k); press( k, gOn); }
+			local any = false;
+			foreach( v in gOn) if( !v) any = true;
+			if( any) break;
+		}
+		gAiPlan = used;
+		gMoves = 0; gLimit = PRESS[gTrial] + 3; gSel = 0; state = "play";
+		gMsg.setText( "\"Balance them.\"  (a lit ring is balanced)");
+		draw();
+	}
+	function draw(){
+		foreach( i, r in gRings){
+			r[1].setColor( gOn[i] ? COLS[i] : 0x303040ff);
+			r[0].setColor( i == gSel ? 0xffe08aff : 0x00000000);
+			gRingLbl[i].setColor( gOn[i] ? 0x101010ff : 0x9a968cff);
+		}
+		gTop.setText( "Trial %d / 3     Moves %d / %d" % [gTrial + 1, gMoves, gLimit]);
+	}
+	function step( dt){
+		playShot( this, dt);
+		if( state == "pause"){ if( st > 1100.0){ gTrial++; if( gTrial >= 3) finish( true); else newTrial(); } return; }
+		if( state != "play") return;
+		if( hit.back){ finish( false); return; }
+		local m = aiMode(), k = -1;
+		if( m){
+			gAiT -= dt;
+			if( gAiT > 0.0) return;
+			gAiT = 450.0;
+			if( m == "win" && gAiPlan && length( gAiPlan)){ k = gAiPlan[length( gAiPlan) - 1]; gAiPlan = gAiPlan.slice( 0, length( gAiPlan) - 1); }
+			else k = 0;
+			gSel = k;
+		}else{
+			if( hit.right || hit.down){ gSel = (gSel + 1) % 5; sfx( "SE001"); draw(); }
+			if( hit.left || hit.up){ gSel = (gSel + 4) % 5; sfx( "SE001"); draw(); }
+			if( hit.fire) k = gSel;
+		}
+		if( k < 0) return;
+		press( k, gOn); gMoves++; sfx( "SE000");
+		draw();
+		local all = true;
+		foreach( v in gOn) if( !v) all = false;
+		if( all){ sfx( "SE003"); gMsg.setText( "\"Balanced.\""); state = "pause"; st = 0.0; return; }
+		if( gMoves >= gLimit) finish( false);
+	}
+	function finish( won){
+		log( "rings: round %d over, %S (trial %d, %d moves)" % [round + 1, won ? "won" : "lost", gTrial + 1, gMoves]);
+		state = won ? "won" : "lost"; sfx( won ? "SE018" : "SE012");
+		if( won) showPanel( true, "The rings are still.", ["\"Earth holds Water, Water calms Fire, Fire lifts Air...\"",
+			"\"...and the Void holds all of them. You felt it.\"", "", ""], ["Done"]);
+		else showPanel( true, "The rings tremble.", ["\"Too many hands on the elements. Start again from stillness.\"",
+			"", "", "Try again?"], ["Yes", "No"]);
+		shot( state);
+	}
+	function chosen( i){
+		if( state == "intro"){ gTrial = 0; newTrial(); return; }
+		if( state == "won"){ result = 1; done = true; return; }
+		if( state == "lost"){ if( i == 0){ round++; gTrial = 0; newTrial(); } else{ result = 2; done = true; } }
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//	Yabusame (Shiro Iuchi): the horse gallops the course; loose as each target passes the bow. Three runs, three
+//	targets each: centre 2, the board 1. Twelve points of eighteen to win.
+local HORSE = [		//	(as RokuganMini.sk's race) [dx, dy, w, h, part]: 0 body, 1 rider, 2 head, 3 helmet, 4-7 legs, 8 tail, 9 mane
+	[-46, -16, 92, 32, 0], [36, -40, 18, 30, 0], [46, -46, 26, 16, 0], [-58, -12, 14, 26, 8], [32, -40, 8, 20, 9],
+	[-38, 12, 9, 34, 4], [-24, 12, 9, 34, 5], [24, 12, 9, 34, 6], [36, 12, 9, 34, 7],
+	[-14, -56, 22, 40, 1], [-10, -76, 16, 18, 2], [-13, -82, 22, 8, 3]];
+
+class RTYabusame extends ::RTMini
+{
+	gParts = null; gBow = null; gPh = 0.0;
+	gRun = 0; gHx = 0.0; gTargets = null; gScore = 0; gShots = 0; gHorse = null; gRider = null; gTgt = null; gMsg = null;
+	gTop = null; gFlash = 0.0; gAiDone = null;
+	static TRACK_Y = 430.0;
+	static SPEED = 0.30;
+
+	constructor( r){
+		super( r, 0x2a3a2aff);
+		game = "yabusame";
+		rect( 0, 0, W, 48, 0x182418ff); rect( 0, 48, W, 2, 0xc9a45cff);
+		label( 30, 6, 700, 40, 28, 0xf4e2b0ff).setText( "Yabusame at Shiro Iuchi");
+		gTop = label( W - 420, 10, 390, 34, 20, 0xd9c9a0ff, 2);
+		rect( 0, TRACK_Y + 40, W, 60, 0x6b5434ff);								//	the course
+		rect( 0, TRACK_Y + 36, W, 4, 0x8a7048ff);
+		gTgt = [];
+		for( local i = 0; i < 3; i++){
+			gTgt.append( [rect( 0, 0, 2, 120, 0x4a3420ff), rect( 0, 0, 60, 60, 0xf2eee0ff), rect( 0, 0, 30, 30, 0xc0392bff),
+				rect( 0, 0, 10, 10, 0xf1c40fff)]);
+		}
+		gParts = [];											//	a Unicorn rider in purple on a dun horse
+		foreach( q in HORSE){
+			local c = q[4] == 1 ? 0x6a2a8aff : q[4] == 2 ? 0xe8c9a0ff : q[4] == 3 ? 0x3a1a4aff
+				: q[4] == 8 || q[4] == 9 ? 0x2a1c12ff : 0xa07a4aff;
+			gParts.append( rect( 0, 0, q[2], q[3], c));
+		}
+		gBow = [rect( 0, 0, 4, 52, 0x4a2a14ff), rect( 0, 0, 1, 52, 0xe8e0c8ff)];
+		rect( 0, H - 50, W, 50, 0x182418ff); rect( 0, H - 50, W, 2, 0xc9a45cff);
+		gMsg = label( 30, H - 44, W - 60, 40, 20, 0xf4f0e6ff, 1);
+		buildPanel();
+		intro();
+	}
+	function intro(){
+		state = "intro";
+		showPanel( true, "Yabusame", [
+			"\"The Unicorn rode across the world. Show me you can ride past a target.\"",
+			"The horse gallops on its own. Loose (" .. ctl( "fire") .. ") as each target passes the bow.",
+			"Three runs, three targets each. Centre 2, the board 1. Twelve to win.", ""], ["Mount up"]);
+		shot( "intro");
+	}
+	function newRun(){
+		gHx = -100.0; state = "play"; st = 0.0;
+		gTargets = [];
+		local xs = [260.0 + frand( 0.0, 80.0), 600.0 + frand( 0.0, 80.0), 940.0 + frand( 0.0, 80.0)];
+		foreach( x in xs) gTargets.append( { x = x, done = false });
+		gAiDone = {};
+		gMsg.setText( "Run " .. (gRun + 1) .. " of 3. Loose as each target passes.");
+		draw();
+	}
+	function draw(){
+		local x = gHx + 46.0, y = TRACK_Y - 6.0, bob = Math.sin( gPh * 2.0) * 4.0;
+		foreach( i, q in HORSE){
+			local dx = q[0], dy = q[1] + bob, h = q[3];
+			if( q[4] >= 4 && q[4] <= 7){
+				local sw = Math.sin( gPh + (q[4] == 4 || q[4] == 7 ? 0.0 : 3.1416));
+				dx += sw * 10.0; h = q[3] - fabs( sw) * 8.0; dy = q[1];
+			}
+			if( q[4] == 8) dy += Math.sin( gPh) * 3.0;
+			gParts[i].setRect( x + dx, y + dy, q[2], h);
+		}
+		gParts[9].setColor( gFlash > 0.0 ? 0xffe08aff : 0x6a2a8aff);			//	(the rider flashes as she looses)
+		gBow[0].setRect( x + 10.0, y - 84.0 + bob, 4, 52); gBow[1].setRect( x + 6.0, y - 84.0 + bob, 1, 52);
+		foreach( i, t in gTargets){
+			local g = gTgt[i], ty = TRACK_Y - 200.0;
+			g[0].setRect( t.x - 1, ty + 60, 2, 120);
+			g[1].setRect( t.x - 30, ty, 60, 60); g[2].setRect( t.x - 15, ty + 15, 30, 30); g[3].setRect( t.x - 5, ty + 25, 10, 10);
+			foreach( p in g) p.setVisible( !t.done);
+		}
+		gTop.setText( "Run %d / 3     Points %d" % [gRun + 1, gScore]);
+	}
+	function loose(){
+		gShots++; gFlash = 180.0; sfx( "SE010");
+		local bow = gHx + 52.0, best = null, bd = 99999.0;
+		foreach( t in gTargets) if( !t.done){ local d = fabs( t.x - bow); if( d < bd){ bd = d; best = t; } }
+		if( best && bd <= 14.0){ gScore += 2; best.done = true; gMsg.setText( "Centre! The crowd roars."); sfx( "SE003"); }
+		else if( best && bd <= 36.0){ gScore += 1; best.done = true; gMsg.setText( "On the board."); sfx( "SE000"); }
+		else gMsg.setText( "The arrow sails past.");
+	}
+	function step( dt){
+		playShot( this, dt);
+		if( gFlash > 0.0) gFlash -= dt;
+		if( state != "play"){ return; }
+		if( hit.back){ finish(); return; }
+		gHx += SPEED * dt; gPh += dt * 0.014;
+		local m = aiMode();
+		if( m){
+			foreach( i, t in gTargets){
+				local bow = gHx + 52.0;
+				if( !(i in gAiDone) && (m == "win" ? fabs( t.x - bow) < 4.0 : t.x - bow < -60.0)){ gAiDone[i] <- true; loose(); }
+			}
+		}else if( hit.fire) loose();
+		foreach( t in gTargets) if( !t.done && gHx + 52.0 > t.x + 40.0){ t.done = true; }	//	(passed: the chance is gone)
+		draw();
+		if( gHx > W + 20.0){
+			gRun++;
+			if( gRun >= 3){ finish(); return; }
+			newRun();
+		}
+	}
+	function finish(){
+		local won = gScore >= 12;
+		log( "yabusame: round %d over, %S (%d points, %d shots)" % [round + 1, won ? "won" : "lost", gScore, gShots]);
+		state = won ? "won" : "lost"; sfx( won ? "SE018" : "SE012");
+		if( won) showPanel( true, "The Iuchi stand and cheer.", ["Points " .. gScore .. " of 18.",
+			"\"You ride like you were born on the Sands.\"", "", ""], ["Done"]);
+		else showPanel( true, "The targets stand.", ["Points " .. gScore .. " of 18. Twelve are needed.",
+			"\"Let the horse carry you. You only have to aim.\"", "", "Try again?"], ["Yes", "No"]);
+		shot( state);
+	}
+	function chosen( i){
+		if( state == "intro"){ gRun = 0; gScore = 0; gShots = 0; newRun(); return; }
+		if( state == "won"){ result = 1; done = true; return; }
+		if( state == "lost"){ if( i == 0){ round++; gRun = 0; gScore = 0; gShots = 0; newRun(); } else{ result = 2; done = true; } }
+	}
+}
+
+::RTInk <- RTInk; ::RTKitsuki <- RTKitsuki; ::RTRings <- RTRings; ::RTYabusame <- RTYabusame;
+if( !("MINI_CLASSES" in ::Rokugan)) ::Rokugan.MINI_CLASSES <- {};
+::Rokugan.MINI_CLASSES.ink <- @( r) ::RTInk( r);
+::Rokugan.MINI_CLASSES.kitsuki <- @( r) ::RTKitsuki( r);
+::Rokugan.MINI_CLASSES.rings <- @( r) ::RTRings( r);
+::Rokugan.MINI_CLASSES.yabusame <- @( r) ::RTYabusame( r);
+
+///////////////////////////////////////////////////////////////////////////////
+//	Go with Nishi (Shiro Akodo, the North Dojo; user 2026-11-23: "yeah full game of go is fine"). A full game on the
+//	9x9 board: captures, no suicide, ko, passing; two passes end it; area scoring (stones + surrounded empty points),
+//	komi 6.5 to White. Groups left in atari when the game ends count as dead. The player is Black ("Black, as
+//	always?"); Nishi is White and reads the board: captures, saves stones in atari, attacks weak groups, never fills
+//	her own eyes, avoids self-atari, likes the third and fourth lines early; she passes when nothing is worth a stone.
+local GO_N = 9, GO_KOMI = 6.5;
+local GO_NB = [];
+for( local i = 0; i < GO_N * GO_N; i++){
+	local x = i % GO_N, y = i / GO_N, l = [];
+	if( x > 0) l.append( i - 1);
+	if( x < GO_N - 1) l.append( i + 1);
+	if( y > 0) l.append( i - GO_N);
+	if( y < GO_N - 1) l.append( i + GO_N);
+	GO_NB.append( l);
+}
+//	the group at i: { stones = [...], libs = count }
+local goGroup = function( b, i){
+	local c = b[i], seen = {}, libs = {}, nlib = 0, stones = [], todo = [i];
+	seen[i] <- true;
+	while( length( todo)){
+		local k = todo.pop();
+		stones.append( k);
+		foreach( n in GO_NB[k]){
+			if( b[n] == 0){ if( !(n in libs)){ libs[n] <- true; nlib++; } }
+			else if( b[n] == c && !(n in seen)){ seen[n] <- true; todo.append( n); }
+		}
+	}
+	return { stones = stones, libs = nlib };
+};
+//	a legal move: { board, captured, ko } or null (occupied, ko, suicide)
+local goPlay = function( b, i, c, ko){
+	if( b[i] != 0 || i == ko) return null;
+	local nb = clone( b), opp = 3 - c, cap = [];
+	nb[i] = c;
+	foreach( n in GO_NB[i]){
+		if( nb[n] == opp){
+			local g = goGroup( nb, n);
+			if( g.libs == 0) foreach( s in g.stones){ nb[s] = 0; cap.append( s); }
+		}
+	}
+	local me = goGroup( nb, i);
+	if( me.libs == 0) return null;
+	local nko = (length( cap) == 1 && length( me.stones) == 1 && me.libs == 1) ? cap[0] : -1;
+	return { board = nb, captured = length( cap), ko = nko };
+};
+//	area score after removing groups in atari: [black, white]
+local goScore = function( b0){
+	local b = clone( b0), changed = true;
+	while( changed){
+		changed = false;
+		for( local i = 0; i < GO_N * GO_N; i++){
+			if( b[i] == 0) continue;
+			local g = goGroup( b, i);
+			if( g.libs <= 1){ foreach( s in g.stones) b[s] = 0; changed = true; }
+		}
+	}
+	local sc = [0, 0], seen = {};
+	for( local i = 0; i < GO_N * GO_N; i++){
+		if( b[i] == 1) sc[0]++;
+		else if( b[i] == 2) sc[1]++;
+		else if( !(i in seen)){
+			local todo = [i], region = 0, border = {};
+			seen[i] <- true;
+			while( length( todo)){
+				local k = todo.pop();
+				region++;
+				foreach( n in GO_NB[k]){
+					if( b[n] == 0){ if( !(n in seen)){ seen[n] <- true; todo.append( n); } }
+					else border[b[n]] <- true;
+				}
+			}
+			if( (1 in border) && !(2 in border)) sc[0] += region;
+			else if( (2 in border) && !(1 in border)) sc[1] += region;
+		}
+	}
+	return [sc[0], sc[1] + GO_KOMI];
+};
+//	Nishi's (and the test player's) move: an index, or -1 to pass. weak = a random legal move (test "win" mode).
+local goChoose = function( b, c, ko, moveNo, oppPassed, weak){
+	local best = -1, bestS = -999.0, opp = 3 - c;
+	for( local i = 0; i < GO_N * GO_N; i++){
+		if( b[i] != 0) continue;
+		local own = 0, edge = 4 - length( GO_NB[i]), foes = 0;
+		foreach( n in GO_NB[i]){ if( b[n] == c) own++; else if( b[n] == opp) foes++; }
+		if( own + edge == 4){												//	her own eye: never fill it unless it
+			local safe = true;												//	saves a group in atari
+			foreach( n in GO_NB[i]) if( goGroup( b, n).libs == 1) safe = false;
+			if( safe) continue;
+		}
+		local r = goPlay( b, i, c, ko);
+		if( !r) continue;
+		local s = weak ? ::rnd.nextf( 0.0, 10.0) : 0.0;
+		if( !weak){
+			s += 12.0 * r.captured;
+			foreach( n in GO_NB[i]){
+				if( b[n] == c && goGroup( b, n).libs == 1) s += 10.0 * length( goGroup( b, n).stones);	//	a rescue
+				if( r.board[n] == opp){
+					local g = goGroup( r.board, n);
+					if( g.libs == 1) s += 4.0 + length( g.stones);					//	atari
+					else if( g.libs == 2) s += 1.0;
+				}
+			}
+			local me = goGroup( r.board, i);
+			if( me.libs == 1 && r.captured == 0) s -= 15.0;							//	self-atari
+			s += 0.5 * Math.min( me.libs, 4);
+			if( foes + edge == 4 && r.captured == 0) s -= 6.0;						//	alone inside her wall
+			local x = i % GO_N, y = i / GO_N, line = Math.min( Math.min( x, y), Math.min( GO_N - 1 - x, GO_N - 1 - y));
+			if( moveNo < 24) s += [-3.0, 0.0, 2.5, 2.0, 1.5][line];
+			else s += [-1.0, 0.5, 0.5, 0.5, 0.5][line];
+			if( own == 0 && foes == 0){											//	open ground: worth it while unclaimed
+				local nearOwn = 0, nearOpp = 0;
+				for( local dy = -2; dy <= 2; dy++) for( local dx = -2; dx <= 2; dx++){
+					local xx = x + dx, yy = y + dy;
+					if( xx < 0 || yy < 0 || xx >= GO_N || yy >= GO_N) continue;
+					local v = b[yy * GO_N + xx];
+					if( v == c) nearOwn++; else if( v == opp) nearOpp++;
+				}
+				if( nearOwn >= 2 && nearOpp == 0) s -= 2.5;						//	already hers
+				if( nearOpp >= 2 && nearOwn == 0) s -= 1.5;						//	deep in theirs
+				if( nearOwn == 0 && nearOpp == 0) s += 1.0;
+			}
+			s += ::rnd.nextf( 0.0, 1.2);
+		}
+		if( s > bestS){ bestS = s; best = i; }
+	}
+	if( best < 0) return -1;
+	if( !weak && moveNo > 30 && bestS < (oppPassed ? 3.0 : 1.0)) return -1;	//	nothing worth a stone
+	if( moveNo > 160) return -1;
+	return best;
+};
+
+class RTGo extends ::RTMini
+{
+	gBoard = null; gKo = -1; gTurn = 1; gMoveNo = 0; gCur = 40; gLast = -1; gPassed = 0; gCapB = 0; gCapW = 0;
+	gStones = null; gCurs = null; gLastMk = null; gMsg = null; gTop = null; gSide = null; gOx = 0.0; gOy = 0.0;
+	gAiT = 0.0; gResult = null;
+	static CELL = 60.0;
+
+	constructor( r){
+		super( r, 0x1a1410ff);
+		game = "go";
+		rect( 0, 0, W, 48, 0x100c08ff); rect( 0, 48, W, 2, 0xc9a45cff);
+		label( 30, 6, 700, 40, 28, 0xf4e2b0ff).setText( "Go with Nishi");
+		gTop = label( W - 460, 10, 430, 34, 20, 0xd9c9a0ff, 2);
+		rect( 0, H - 50, W, 50, 0x100c08ff); rect( 0, H - 50, W, 2, 0xc9a45cff);
+		gMsg = label( 30, H - 44, W - 60, 40, 20, 0xf4f0e6ff, 1);
+		local span = CELL * (GO_N - 1);
+		gOx = W / 2 - span / 2 - 120.0; gOy = 98.0;
+		rect( gOx - 36, gOy - 36, span + 72, span + 72, 0xc89a56ff);				//	the kaya board
+		for( local k = 0; k < GO_N; k++){
+			rect( gOx + k * CELL - 1, gOy, 2, span, 0x3a2614ff);
+			rect( gOx, gOy + k * CELL - 1, span, 2, 0x3a2614ff);
+		}
+		foreach( p in [[2, 2], [6, 2], [2, 6], [6, 6], [4, 4]]) rect( gOx + p[0] * CELL - 4, gOy + p[1] * CELL - 4, 8, 8, 0x3a2614ff);
+		gStones = [];
+		for( local i = 0; i < GO_N * GO_N; i++){
+			local x = gOx + (i % GO_N) * CELL, y = gOy + (i / GO_N) * CELL;
+			gStones.append( [rect( x - 24, y - 14, 48, 28, 0), rect( x - 14, y - 24, 28, 48, 0), rect( x - 20, y - 20, 40, 40, 0)]);
+		}
+		gLastMk = rect( 0, 0, 10, 10, 0xd8443cff);
+		gCurs = [rect( 0, 0, 52, 3, 0xffe08aff), rect( 0, 0, 52, 3, 0xffe08aff), rect( 0, 0, 3, 52, 0xffe08aff),
+			rect( 0, 0, 3, 52, 0xffe08aff)];
+		gSide = [];
+		for( local i = 0; i < 6; i++) gSide.append( label( gOx + span + 80, gOy + i * 40, 380, 36, 21, 0xf4f0e6ff));
+		buildPanel();
+		intro();
+	}
+	function intro(){
+		state = "intro";
+		showPanel( true, "Go with Nishi", [
+			"\"Sit. Black, as always? Nine lines. A short game, but a whole one.\"",
+			"Place a stone (" .. ctl( "move") .. ", " .. ctl( "fire") .. "). " .. ctl( "back") .. ": pass.",
+			"Surround territory; take stones with no liberties. Two passes end it.",
+			"Area scoring: stones + surrounded points. White gets 6.5 komi."], ["Take Black"]);
+		shot( "intro");
+	}
+	function newGame(){
+		gBoard = [];
+		for( local k = 0; k < GO_N * GO_N; k++) gBoard.append( 0);
+		gKo = -1; gTurn = 1; gMoveNo = 0; gCur = 40; gLast = -1; gPassed = 0;
+		gCapB = 0; gCapW = 0; state = "play"; st = 0.0;
+		gMsg.setText( "Your move. Black.");
+		draw();
+	}
+	function draw(){
+		foreach( i, parts in gStones){
+			local v = gBoard[i], col = v == 1 ? 0x16161cff : v == 2 ? 0xf0ece0ff : 0;
+			foreach( p in parts){ p.setVisible( v != 0); if( v) p.setColor( col); }
+		}
+		if( gLast >= 0){
+			gLastMk.setVisible( true);
+			gLastMk.setRect( gOx + (gLast % GO_N) * CELL - 5, gOy + (gLast / GO_N) * CELL - 5, 10, 10);
+		}else gLastMk.setVisible( false);
+		local cx = gOx + (gCur % GO_N) * CELL - 26, cy = gOy + (gCur / GO_N) * CELL - 26;
+		gCurs[0].setRect( cx, cy, 52, 3); gCurs[1].setRect( cx, cy + 49, 52, 3);
+		gCurs[2].setRect( cx, cy, 3, 52); gCurs[3].setRect( cx + 49, cy, 3, 52);
+		foreach( c in gCurs) c.setVisible( state == "play");
+		gTop.setText( "Move %d" % [gMoveNo + 1]);
+		gSide[0].setText( "Black (you)");
+		gSide[1].setText( "   captured " .. gCapB);
+		gSide[2].setText( "White (Nishi)");
+		gSide[3].setText( "   captured " .. gCapW .. "  +6.5 komi");
+		gSide[4].setText( gTurn == 1 ? "Your move." : "Nishi is thinking...");
+		gSide[5].setText( gPassed ? "(the last move was a pass)" : "");
+	}
+	function move( i, c){
+		if( i < 0){
+			gPassed++; gLast = -1; gKo = -1;
+			gMsg.setText( (c == 1 ? "You pass." : "Nishi passes.") .. (gPassed >= 2 ? "" : ""));
+			sfx( "SE001");
+		}else{
+			local r = goPlay( gBoard, i, c, gKo);
+			gBoard = r.board; gKo = r.ko; gLast = i; gPassed = 0;
+			if( c == 1) gCapB += r.captured; else gCapW += r.captured;
+			sfx( r.captured ? "SE003" : "SE000");
+			if( c == 2 && r.captured) gMsg.setText( ["\"Mine.\"", "\"You left that one alone too long.\"",
+				"\"Kafu always forgets those.\""][irand( 3)]);
+			else if( c == 1 && r.captured) gMsg.setText( ["\"Hm. I saw that.\"", "\"...Fine.\"",
+				"\"Four summers, and that still works on me.\""][irand( 3)]);
+		}
+		gMoveNo++;
+		gTurn = 3 - c;
+		if( gMoveNo == 30){ draw(); shot( "play"); }				//	(test: the board mid-game)
+		if( gPassed >= 2){ finish(); return; }
+		draw();
+	}
+	function step( dt){
+		playShot( this, dt);
+		if( state == "nishi"){
+			gAiT -= dt;
+			if( gAiT > 0.0) return;
+			local m = aiMode();
+			move( goChoose( gBoard, 2, gKo, gMoveNo, gPassed > 0, m == "win"), 2);
+			if( state == "nishi"){ state = "play"; st = 0.0; if( !gPassed) gMsg.setText( "Your move."); draw(); }
+			return;
+		}
+		if( state != "play") return;
+		local m = aiMode();
+		if( m){														//	self-play (tests): "win" reads the board,
+			gAiT -= dt;												//	"lose" passes
+			if( gAiT > 0.0) return;
+			gAiT = 120.0;
+			local k = m == "win" ? goChoose( gBoard, 1, gKo, gMoveNo, gPassed > 0, false) : -1;
+			move( k, 1);
+			if( state == "play"){ state = "nishi"; gAiT = 120.0; draw(); }
+			return;
+		}
+		local x = gCur % GO_N, y = gCur / GO_N;
+		if( hit.left){ x = (x + GO_N - 1) % GO_N; sfx( "SE001"); }
+		if( hit.right){ x = (x + 1) % GO_N; sfx( "SE001"); }
+		if( hit.up){ y = (y + GO_N - 1) % GO_N; sfx( "SE001"); }
+		if( hit.down){ y = (y + 1) % GO_N; sfx( "SE001"); }
+		gCur = y * GO_N + x;
+		if( hit.back){
+			state = "askpass";
+			showPanel( true, "Pass?", ["\"Passing is a move too. Two in a row and we count.\"", "", "", ""],
+				["Pass", "Keep playing"]);
+			return;
+		}
+		if( hit.fire){
+			if( !goPlay( gBoard, gCur, 1, gKo)){
+				sfx( "SE004");
+				gMsg.setText( gBoard[gCur] ? "There's a stone there." : gCur == gKo ? "Ko: you can't take back at once. Play elsewhere first." : "That stone would have no liberties.");
+				draw(); return;
+			}
+			move( gCur, 1);
+			if( state == "play"){ state = "nishi"; gAiT = 650.0; draw(); }
+			return;
+		}
+		draw();
+	}
+	function finish(){
+		local sc = goScore( gBoard), won = sc[0] > sc[1];
+		gResult = sc;
+		log( "go: round %d over, %S (black %d, white %.1f, %d moves, captures %d / %d)" % [round + 1,
+			won ? "won" : "lost", sc[0], sc[1], gMoveNo, gCapB, gCapW]);
+		state = won ? "won" : "lost"; sfx( won ? "SE018" : "SE012");
+		draw();
+		local line = "Black " .. sc[0] .. ", White " .. sc[1] .. " (with komi).";
+		if( won) showPanel( true, "Black wins.", [line, "\"...Again. No - not again. I'd lose again.\"",
+			"Nishi sweeps the stones into their bowls, smiling.", ""], ["Done"]);
+		else showPanel( true, "White wins.", [line, "\"You played the left edge like Kafu does. Don't.\"", "",
+			"Another game?"], ["Yes", "No"]);
+		shot( state);
+	}
+	function chosen( i){
+		if( state == "intro"){ newGame(); return; }
+		if( state == "askpass"){
+			state = "play";
+			if( i == 0){ move( -1, 1); if( state == "play"){ state = "nishi"; gAiT = 650.0; draw(); } }
+			else draw();
+			return;
+		}
+		if( state == "won"){ result = 1; done = true; return; }
+		if( state == "lost"){ if( i == 0){ round++; newGame(); } else{ result = 2; done = true; } }
+	}
+}
+::RTGo <- RTGo;
+::Rokugan.MINI_CLASSES.go <- @( r) ::RTGo( r);
+
+printf( "Rokugan castle clan games loaded\n");

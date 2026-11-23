@@ -1,0 +1,23 @@
+{
+  "state": "published",
+  "maps": {
+    "M416": {
+      "world_sha256": "f989af08358fb70c9e1fa018555d2289c10b5953d3342b19479f53a9784b4ab9",
+      "row_sha256": "e35aa1b58274ab290cd9c1c2275903fc5d3b975020ca4ffe65bda14280064c06",
+      "catalog_sha256": "7cd1eab673552e13deba484cd0d884f8ad72dfbd47b01f6e18ef1ba32dadc700"
+    },
+    "M417": {
+      "world_sha256": "7e4b11f5a1fdf0ba9e55552472a9d35a58b04814692aef94647eda18b2b5b10c",
+      "row_sha256": "f61f380817437278388c347e0d708c3aa90bea35e60d6eefe58a43040bf2955b",
+      "catalog_sha256": "03a92cdf067420efb4a7d901372c6d0aabb8255105f0c20010bdb8ce0ca2ea9b"
+    },
+    "M883": {
+      "world_sha256": "a44b79848100f6441f90c18b546c50d411a8f08159ab2d3d534b4426dd49127f",
+      "row_sha256": "915d6222946fb4a6640abbb9558f76dd49683990020188abcc3886a073efaa2c",
+      "catalog_sha256": "b03e867e04e9360ad40e9e11ea17e168b2e021582470b7ffd730d96460e2f0c1"
+    }
+  },
+  "runtime_sha256": "93d32a99874bea3d6eba4327d55a8459ca8863537070ea02454e348551881c31",
+  "resource_count": 55,
+  "resource_package_sha256": "4ed1d7bdd748148a77357e76a04ad4b44d8da3870ac1e2a5d61d464c02144035"
+}

@@ -1,0 +1,67 @@
+{
+  "recipe": "castle_gate_candidates",
+  "group": "hiruma",
+  "maps": [
+    "M461",
+    "M462"
+  ],
+  "catalog": {
+    "M461": "9a1493cb9fba25190d43a70efc0dd040d7c1a1aa9ab93f78d59ae20f214963f3",
+    "M462": "1c8545dff5b77f27de515a3e110049241c56c2ab9e6d2e94e10df2764b039ad9"
+  },
+  "baseline": {
+    "tools\\gen_maps.py": "279b61dffbba270922a33696a4abb44c2b4a0c76761d137ec9236696ad1ef7f5",
+    "_tools\\rpgcobo-tool\\project\\resource\\native_environment\\index.json": "9ba956645a243d695fc777556cb75581f699184a257bfee448dd0ef553249103",
+    "_tools\\rpgcobo-tool\\project\\data\\mapdata\\M461.bw": "c94a6a5a1c0375c5e8c2b2d23cb4668aaadb21ab7332cbf98e3cbfd99350eff4",
+    "_tools\\rpgcobo-tool\\project\\data\\mapdata\\M462.bw": "cfc89dbd4e702d7ec8ad69ad4db1dfa5ce95fef3c5781923a5d618eba98ae42a",
+    "_tools\\rpgcobo-tool\\project\\plugin\\rokugan\\RokuganEnvironmentKit.sk": "93d32a99874bea3d6eba4327d55a8459ca8863537070ea02454e348551881c31"
+  },
+  "candidate": {
+    "tools\\gen_maps.py": "5a90c454c1d9696eb1a2864f84ccdb11127dbede83bb2acc9104248f0135e76f",
+    "_tools\\rpgcobo-tool\\project\\data\\mapdata\\M461.bw": "03ad539a455acd6b7df2c57b5ad8ff9a810eb4a35c1a7769aa539ce80c1a0c6a",
+    "_tools\\rpgcobo-tool\\project\\data\\mapdata\\M462.bw": "6fc7ca5041d814aef2d883da07aa13224c8ba1afc38110dcb9a0d8caad08eec4",
+    "_tools\\rpgcobo-tool\\project\\plugin\\rokugan\\RokuganEnvironmentKit.sk": "93d32a99874bea3d6eba4327d55a8459ca8863537070ea02454e348551881c31",
+    "_tools\\rpgcobo-tool\\project\\resource\\native_environment\\index.json": "cf46c197eb2fcb8a782c44c40fe0b0b4c334aba264d9b9895e1042fe695bc995"
+  },
+  "resources": {
+    "hiruma_ancestor_altar.mdl": "b6fb2548881b4aa5c56197d0b44e07e1b33b225fc2749377eafa427091c45274",
+    "hiruma_ancestor_altar.pm": "703f5d1bae0e46cb9665159f5795f15fad7c64e23c781d7e96bdae5dadc25fa3",
+    "hiruma_ancestor_tablets.mdl": "8b2d2b5a8a423632f9c82957608b3ea0232f452f914ace4b86fc26fafbf5d500",
+    "hiruma_ancestor_tablets.pm": "60fc614a64f3044ab8d63dfe9a66a094e85624e106f75b89e39f30108d87f6d1",
+    "hiruma_fallen_standard.mdl": "600f68716cbaa3405786375f555899a6a68c6baecbf383ffe8b8b1548cc40a4d",
+    "hiruma_fallen_standard.pm": "cf42ad183d4b962cc7078e43ae8b4e7b7745eb461e217806aba0cb02e315a328",
+    "hiruma_gate_ruin.mdl": "041ed801ad5a8bd6e7901d6c7c607f7a3e4454a281dd0e9f87d56b5d60aedcfd",
+    "hiruma_gate_ruin.pm": "d45a1cc2afeed2e84787a044aad4df9685861288349744e7b2079f4af02c191c",
+    "hiruma_gate_structure.mdl": "61c0f5f225d706f7fb596a102d59b05dff3e0505beaef3fc32c5f1bbbf78600e",
+    "hiruma_gate_structure.pm": "62b570637a78625e72f5e9cb962626e9d26313e4175367cf304775e56497b024",
+    "hiruma_hall_screen.mdl": "a51f4544fdbd2322bd952c78dff118c19f7d23ef05370aeb4da5c9d2c8332c7b",
+    "hiruma_hall_screen.pm": "040f1af7c7af079a5bb6a5fc4baa827b13de820b6bf0ef17348a6542cfa66bd6",
+    "hoshi_andon.mdl": "c26ebffef5fdfffa33360f6fb66cd913a7f0e6585695fad1c9401a87fba6049e",
+    "hoshi_andon.pm": "e94ce873dc99caa346ab9bdf167b862bc35abb23903ff838ee8f0deef592129f",
+    "m461_curtain_gate_skin.mdl": "f6723b6e7a16d58464352b9a0d8183b0b00616f5bd739378559a4d43f34f974c",
+    "m461_curtain_gate_skin.pm": "eb3e4c13134cefca76046389331ec390eed020a8a9655842e9b076ae0b4cfc7c",
+    "m461_hiruma_ruin.mdl": "24af6e9660dc987f767d13201ce0a5b730a328a7e0ebb20e5d3e48db37120262",
+    "m461_hiruma_ruin.pm": "f5650e797c46e2166bccacee95359da5ccb79211e643407b02e88c55f5eea684",
+    "m462_curtain_gate_skin.mdl": "c54db82b4d52602add103556fb0a370395d0678872e1a60b9970511c408b047f",
+    "m462_curtain_gate_skin.pm": "04e06a8372a19d3eb496aeb16bf2e2bd3921aea2359fd14984badb81bcecc136",
+    "m462_hiruma_ruin.mdl": "18b216a62dcf189b689c22ae86e647268455b5912c276e17b62454e9ec8c7ad7",
+    "m462_hiruma_ruin.pm": "e433184bf84cdcfbe5e57477486e7f4ff8e22cc62d00991305daf60ba5457f4f",
+    "shadowlands_dead_cedar.mdl": "19d7664f8d6a813e325bd83bc22968ac5b27d7324bf09650febacda766984713",
+    "shadowlands_dead_cedar.pm": "51bff3f674b2cf5bb34764f8add2ee57b61794034d4762665cc6d046c97d4e45",
+    "shadowlands_shards.mdl": "a0499e271185bffa23491a2ab404c97849fb958c8f24ee3a1993368510c482ff",
+    "shadowlands_shards.pm": "e8239dab0e90bf62fd00a724c829026e6b24b7f591642b04adc9f3a6b11485b6",
+    "tex/andon_paper.png": "95cb4b3b215ff0b3bcca9d86324127d77982ec12d7fa37cc56d7ce0da1f47f44",
+    "tex/hiruma_ancestor_tablets.png": "24a957e11465d0cb64419e6545ff3782733dbb4131bcba08f5b307736171529e",
+    "tex/hiruma_ash.png": "8e7548e1362070617a03f313c03716ea6ec5e84a7f83a41f3b3760cc3d54e449",
+    "tex/hiruma_courtyard.png": "131d4254824b0c7af15b938570926a12b5f4ce4bae766ea8843749181d328131",
+    "tex/hiruma_fallen_standard.png": "ef443c6638e2eeae7d7789e74521fea2316f1fb4b572ae99ecca35d9ef6de12b",
+    "tex/hiruma_gate_ruin.png": "0c051a3a765dc8cd5724d9d96690b51a10ef1de63777b853d0d073df6b2c6641",
+    "tex/hiruma_ishi.png": "5aaed2b1ff916b22161f6921e7b59dd0cda627fcecfd2248c2864ab6a9077255",
+    "tex/hiruma_scorched_cedar.png": "0f42e54777ec781eec3c04059b230e26f88ec77a12c84315619920c4c8f49d43",
+    "tex/hiruma_stained_plaster.png": "19bb3dc69bc1afa6d88c58e13bdea9027416ed329f0446af6732e2e7cc547327",
+    "tex/shadowlands_dead_cedar.png": "18b89e106b5f388fee5c8656e74cc55ee3fcf4f8ba300262120958e23e985e30",
+    "tex/shadowlands_shards.png": "8e7c2e5fe4de84eab39fd6fb179a9a2203838f003dfd07fd3ee2724ca8d331b5",
+    "tex/storehouse_frame.png": "8bc23f6d2c788fa71ad2e455746a13d67a638efc2e6c2d7ecd484884d794b7a8",
+    "tex/waste_taint.png": "12e1d8dd05bab40a9facf7a56fecc2942bfb1b22a1aa445d12b223b9e0064d6c"
+  }
+}

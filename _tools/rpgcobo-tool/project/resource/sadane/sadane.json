@@ -1,0 +1,1716 @@
+{
+ "types": [
+  "Metal",
+  "Wood",
+  "Fire",
+  "Water",
+  "Earth",
+  "Stone",
+  "Silk"
+ ],
+ "colour": {
+  "Metal": [
+   200,
+   204,
+   212
+  ],
+  "Wood": [
+   127,
+   176,
+   105
+  ],
+  "Fire": [
+   224,
+   87,
+   42
+  ],
+  "Water": [
+   74,
+   143,
+   214
+  ],
+  "Earth": [
+   176,
+   138,
+   74
+  ],
+  "Stone": [
+   142,
+   142,
+   150
+  ],
+  "Silk": [
+   228,
+   166,
+   200
+  ]
+ },
+ "fears": {
+  "Wood": [
+   "Metal"
+  ],
+  "Metal": [
+   "Fire"
+  ],
+  "Fire": [
+   "Water"
+  ],
+  "Water": [
+   "Earth"
+  ],
+  "Earth": [
+   "Wood"
+  ],
+  "Stone": [
+   "Silk"
+  ],
+  "Silk": [
+   "Stone"
+  ]
+ },
+ "masks": {
+  "iron": {
+   "name": "Iron Mask",
+   "type": "Metal",
+   "base": [
+    55,
+    55,
+    60,
+    35
+   ],
+   "src": "story A145",
+   "item": "A145",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Plain Speaking",
+     "power": 35,
+     "acc": 100,
+     "fx": null,
+     "line": "I'll say it plainly, since no one else will: your poem was long."
+    },
+    {
+     "lv": 1,
+     "name": "Hammered Smile",
+     "power": 0,
+     "acc": 100,
+     "fx": "poise-",
+     "line": "What a brave choice of colours. Truly. Brave."
+    },
+    {
+     "lv": 6,
+     "name": "Cold Quench",
+     "power": 55,
+     "acc": 95,
+     "fx": null,
+     "line": "You've cooled since winter court, I hear. So has every room you walk into."
+    },
+    {
+     "lv": 11,
+     "name": "Anvil Silence",
+     "power": 70,
+     "acc": 95,
+     "fx": null,
+     "line": "(a long, ringing silence, exactly where the compliment should be)"
+    },
+    {
+     "lv": 16,
+     "name": "Kaiu Fire",
+     "power": 90,
+     "acc": 90,
+     "fx": null,
+     "line": "The Kaiu test a blade by striking it. Yours bent on the first word."
+    }
+   ]
+  },
+  "bronze": {
+   "name": "Bronze Mask",
+   "type": "Metal",
+   "base": [
+    50,
+    50,
+    55,
+    40
+   ],
+   "src": "common",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Polished Remark",
+     "power": 30,
+     "acc": 100,
+     "fx": null,
+     "line": "Your fan is lovely. It must be the one your mother carried."
+    },
+    {
+     "lv": 1,
+     "name": "Green with Age",
+     "power": 0,
+     "acc": 100,
+     "fx": "timing-",
+     "line": "Is that the new style? It was new when my grandfather wore it."
+    },
+    {
+     "lv": 6,
+     "name": "Bell Tone",
+     "power": 50,
+     "acc": 95,
+     "fx": null,
+     "line": "Everyone heard what you said to the Crane. Everyone. Even the Crane."
+    },
+    {
+     "lv": 11,
+     "name": "Tarnish",
+     "power": 70,
+     "acc": 95,
+     "fx": null,
+     "line": "I polished my opinion of you for an hour. It still came out dull."
+    },
+    {
+     "lv": 16,
+     "name": "Temple Bell at Dawn",
+     "power": 85,
+     "acc": 90,
+     "fx": null,
+     "line": "Like the temple bell, you are loud, early, and nobody asked."
+    }
+   ]
+  },
+  "oni": {
+   "name": "Oni Mask",
+   "type": "Metal",
+   "base": [
+    60,
+    65,
+    50,
+    40
+   ],
+   "src": "rival",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Horned Grin",
+     "power": 40,
+     "acc": 100,
+     "fx": null,
+     "line": "Smile wider. It helps hide the rest of your face."
+    },
+    {
+     "lv": 1,
+     "name": "Iron Club",
+     "power": 0,
+     "acc": 100,
+     "fx": "wit+",
+     "line": "(the mask laughs, once, like a club on a drum)"
+    },
+    {
+     "lv": 6,
+     "name": "Demon's Courtesy",
+     "power": 60,
+     "acc": 95,
+     "fx": null,
+     "line": "Even an oni says please before it eats. You didn't, at dinner."
+    },
+    {
+     "lv": 11,
+     "name": "Torn Gate",
+     "power": 75,
+     "acc": 90,
+     "fx": null,
+     "line": "I came through your defences like rice paper. Because they were."
+    },
+    {
+     "lv": 16,
+     "name": "Ogre's Table Manners",
+     "power": 95,
+     "acc": 85,
+     "fx": null,
+     "line": "My lord the oni sends his regards. He says your manners remind him of home."
+    }
+   ]
+  },
+  "cedar": {
+   "name": "Cedar Mask",
+   "type": "Wood",
+   "base": [
+    55,
+    50,
+    55,
+    40
+   ],
+   "src": "story A146",
+   "item": "A146",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Sap and Splinter",
+     "power": 35,
+     "acc": 100,
+     "fx": null,
+     "line": "Your verse had such a strong root. Pity about everything that grew from it."
+    },
+    {
+     "lv": 1,
+     "name": "Fragrant Pause",
+     "power": 0,
+     "acc": 100,
+     "fx": "heal",
+     "line": "(she breathes in the cedar and lets the insult pass through her)"
+    },
+    {
+     "lv": 6,
+     "name": "Deep Roots",
+     "power": 55,
+     "acc": 95,
+     "fx": null,
+     "line": "My family has sat in these halls for six hundred years. Remind me how long yours has?"
+    },
+    {
+     "lv": 11,
+     "name": "Knot in the Grain",
+     "power": 0,
+     "acc": 100,
+     "fx": "poise-",
+     "line": "Something's caught in your story. Just there. A knot. Shall I pull it?"
+    },
+    {
+     "lv": 16,
+     "name": "Felled Cedar",
+     "power": 90,
+     "acc": 90,
+     "fx": null,
+     "line": "The tallest cedar falls loudest. Do keep standing. We're all listening."
+    }
+   ]
+  },
+  "willow": {
+   "name": "Willow Mask",
+   "type": "Wood",
+   "base": [
+    50,
+    45,
+    50,
+    50
+   ],
+   "src": "common",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Bending Agreement",
+     "power": 30,
+     "acc": 100,
+     "fx": null,
+     "line": "Oh, you're quite right. Quite right. Everyone says so, behind you."
+    },
+    {
+     "lv": 1,
+     "name": "Weeping Branch",
+     "power": 0,
+     "acc": 100,
+     "fx": "timing-",
+     "line": "(she sighs, very gently, at nothing in particular)"
+    },
+    {
+     "lv": 6,
+     "name": "River-Bank Gossip",
+     "power": 50,
+     "acc": 95,
+     "fx": null,
+     "line": "The ferrymen talk about you. They say you tip like a Crab."
+    },
+    {
+     "lv": 11,
+     "name": "Supple Retort",
+     "power": 70,
+     "acc": 95,
+     "fx": null,
+     "line": "I bend. You break. That is the whole difference between us."
+    },
+    {
+     "lv": 16,
+     "name": "Willow in the Storm",
+     "power": 85,
+     "acc": 90,
+     "fx": null,
+     "line": "I've weathered worse winds than you. Hotter ones, too."
+    }
+   ]
+  },
+  "tengu": {
+   "name": "Tengu Mask",
+   "type": "Wood",
+   "base": [
+    50,
+    60,
+    45,
+    60
+   ],
+   "src": "rival",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Long Nose",
+     "power": 40,
+     "acc": 100,
+     "fx": null,
+     "line": "I'd look down on you, but first I'd have to find you."
+    },
+    {
+     "lv": 1,
+     "name": "Feather Flick",
+     "power": 0,
+     "acc": 100,
+     "fx": "wit+",
+     "line": "(she flicks an imaginary feather from her sleeve, unhurried)"
+    },
+    {
+     "lv": 6,
+     "name": "Mountain Lesson",
+     "power": 60,
+     "acc": 95,
+     "fx": null,
+     "line": "The tengu taught the first swordsmen. Someone should teach you to sit."
+    },
+    {
+     "lv": 11,
+     "name": "Crow's Cackle",
+     "power": 75,
+     "acc": 90,
+     "fx": null,
+     "line": "Ha! You thought that was clever. How sweet. How mortal."
+    },
+    {
+     "lv": 16,
+     "name": "Sermon from the Peak",
+     "power": 95,
+     "acc": 85,
+     "fx": null,
+     "line": "From up here your ambitions look like ants. Very busy ants."
+    }
+   ]
+  },
+  "munashii": {
+   "name": "Munashii's Mask",
+   "type": "Wood",
+   "base": [
+    65,
+    45,
+    65,
+    35
+   ],
+   "src": "story A151",
+   "item": "A151",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Empty Bowl",
+     "power": 35,
+     "acc": 100,
+     "fx": null,
+     "line": "You've filled your speech with so much. Was any of it yours?"
+    },
+    {
+     "lv": 1,
+     "name": "Still Breath",
+     "power": 0,
+     "acc": 100,
+     "fx": "heal",
+     "line": "(the plain mask says nothing, and the nothing steadies her)"
+    },
+    {
+     "lv": 6,
+     "name": "Whose Face?",
+     "power": 55,
+     "acc": 95,
+     "fx": null,
+     "line": "Forgive me. Which of your faces am I speaking to today?"
+    },
+    {
+     "lv": 11,
+     "name": "Unchosen",
+     "power": 0,
+     "acc": 100,
+     "fx": "poise-",
+     "line": "You don't have to choose, you know. You can simply stop pretending."
+    },
+    {
+     "lv": 16,
+     "name": "Silent Self",
+     "power": 90,
+     "acc": 90,
+     "fx": null,
+     "line": "(the plain wooden face regards them, and they hear every unkind thing they ever thought of themselves)"
+    }
+   ]
+  },
+  "lacquer": {
+   "name": "Fire-Lacquer Mask",
+   "type": "Fire",
+   "base": [
+    45,
+    60,
+    40,
+    55
+   ],
+   "src": "common",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Hot Lacquer",
+     "power": 35,
+     "acc": 100,
+     "fx": null,
+     "line": "Red suits you. It hides the blushing."
+    },
+    {
+     "lv": 1,
+     "name": "Gloss",
+     "power": 0,
+     "acc": 100,
+     "fx": "wit+",
+     "line": "(her laugh is bright and sticky as fresh lacquer)"
+    },
+    {
+     "lv": 6,
+     "name": "Burnt Offering",
+     "power": 55,
+     "acc": 95,
+     "fx": null,
+     "line": "A gift for the Champion? How thoughtful. He'll give it to his servants."
+    },
+    {
+     "lv": 11,
+     "name": "Seven Coats",
+     "power": 70,
+     "acc": 95,
+     "fx": null,
+     "line": "Seven coats of lacquer, and I can still see straight through you."
+    },
+    {
+     "lv": 16,
+     "name": "Crack in the Kiln",
+     "power": 88,
+     "acc": 90,
+     "fx": null,
+     "line": "Some pots crack in the kiln. It isn't shameful. It's only what they were."
+    }
+   ]
+  },
+  "hannya": {
+   "name": "Hannya Mask",
+   "type": "Fire",
+   "base": [
+    50,
+    70,
+    40,
+    55
+   ],
+   "src": "rival",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Jealous Glance",
+     "power": 40,
+     "acc": 100,
+     "fx": null,
+     "line": "What a handsome escort. Does he know he's yours yet?"
+    },
+    {
+     "lv": 1,
+     "name": "Smouldering",
+     "power": 0,
+     "acc": 100,
+     "fx": "timing-",
+     "line": "(the painted eyes follow them, slow and patient)"
+    },
+    {
+     "lv": 6,
+     "name": "Letters",
+     "power": 60,
+     "acc": 95,
+     "fx": null,
+     "line": "Your husband writes beautiful letters. To several people."
+    },
+    {
+     "lv": 11,
+     "name": "Horns Behind the Smile",
+     "power": 75,
+     "acc": 90,
+     "fx": null,
+     "line": "Smile, darling. The horns only come out when you frown."
+    },
+    {
+     "lv": 16,
+     "name": "The Bell at Dojo-ji",
+     "power": 95,
+     "acc": 85,
+     "fx": null,
+     "line": "The bell at Dojo-ji is still warm, they say. Someone should have kept his promises."
+    }
+   ]
+  },
+  "giseiki": {
+   "name": "Giseiki's Mask",
+   "type": "Fire",
+   "base": [
+    55,
+    65,
+    50,
+    50
+   ],
+   "src": "story A150",
+   "item": "A150",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Apologetic Truth",
+     "power": 40,
+     "acc": 100,
+     "fx": null,
+     "line": "I'm so sorry. Someone should have told you, and it seems it has to be me."
+    },
+    {
+     "lv": 1,
+     "name": "Warm Like Skin",
+     "power": 0,
+     "acc": 100,
+     "fx": "heal",
+     "line": "(Giseiki murmurs something kind inside the mask, and she steadies)"
+    },
+    {
+     "lv": 6,
+     "name": "The Maker's Regret",
+     "power": 60,
+     "acc": 95,
+     "fx": null,
+     "line": "I made a mask like your face once. I broke it. I hope you don't mind my saying."
+    },
+    {
+     "lv": 11,
+     "name": "Hungry",
+     "power": 0,
+     "acc": 100,
+     "fx": "poise-",
+     "line": "Some masks are fuller than others. Yours seems... hungry."
+    },
+    {
+     "lv": 16,
+     "name": "Red and Black",
+     "power": 95,
+     "acc": 85,
+     "fx": null,
+     "line": "Three hundred years in a mask teaches patience. You, sama, have exhausted it."
+    }
+   ]
+  },
+  "ink": {
+   "name": "Ink Mask",
+   "type": "Water",
+   "base": [
+    50,
+    55,
+    45,
+    50
+   ],
+   "src": "story A147",
+   "item": "A147",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Blotted Line",
+     "power": 35,
+     "acc": 100,
+     "fx": null,
+     "line": "Lovely brushwork in your letter. Was the blot on purpose? It's the best part."
+    },
+    {
+     "lv": 1,
+     "name": "Washes Off",
+     "power": 0,
+     "acc": 100,
+     "fx": "heal",
+     "line": "(the ink runs a little, then sets again)"
+    },
+    {
+     "lv": 6,
+     "name": "Ink Stone",
+     "power": 55,
+     "acc": 95,
+     "fx": null,
+     "line": "Your name will be in the histories. In a footnote. In a small brush."
+    },
+    {
+     "lv": 11,
+     "name": "Tattooed Wall",
+     "power": 0,
+     "acc": 100,
+     "fx": "poise-",
+     "line": "A Togashi drew a wall on his face. You would need a castle."
+    },
+    {
+     "lv": 16,
+     "name": "Last Stroke",
+     "power": 90,
+     "acc": 90,
+     "fx": null,
+     "line": "Every scroll ends somewhere. I think we've reached yours."
+    }
+   ]
+  },
+  "rain": {
+   "name": "Rain Mask",
+   "type": "Water",
+   "base": [
+    50,
+    45,
+    50,
+    50
+   ],
+   "src": "common",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Drizzle",
+     "power": 30,
+     "acc": 100,
+     "fx": null,
+     "line": "Ah. You've arrived. Like the rainy season: expected, endured."
+    },
+    {
+     "lv": 1,
+     "name": "Grey Sky",
+     "power": 0,
+     "acc": 100,
+     "fx": "timing-",
+     "line": "(she says nothing at all, and the conversation clouds over)"
+    },
+    {
+     "lv": 6,
+     "name": "Puddle Deep",
+     "power": 50,
+     "acc": 95,
+     "fx": null,
+     "line": "Such depth. Ankle-deep, I'd say. Perhaps shin."
+    },
+    {
+     "lv": 11,
+     "name": "Leaking Roof",
+     "power": 70,
+     "acc": 95,
+     "fx": null,
+     "line": "Your secrets drip, my lord. We can all hear them in the night."
+    },
+    {
+     "lv": 16,
+     "name": "Monsoon",
+     "power": 85,
+     "acc": 90,
+     "fx": null,
+     "line": "I'd hoped you would pass, like weather. Yet here you remain."
+    }
+   ]
+  },
+  "noh": {
+   "name": "Noh Ghost Mask",
+   "type": "Water",
+   "base": [
+    55,
+    60,
+    50,
+    50
+   ],
+   "src": "rival",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Ghost's Whisper",
+     "power": 40,
+     "acc": 100,
+     "fx": null,
+     "line": "Your grandfather sat in that seat. He said it fit him better."
+    },
+    {
+     "lv": 1,
+     "name": "Pale Stare",
+     "power": 0,
+     "acc": 100,
+     "fx": "wit+",
+     "line": "(the white face turns, slowly, and does not blink, because it cannot)"
+    },
+    {
+     "lv": 6,
+     "name": "Lingering",
+     "power": 60,
+     "acc": 95,
+     "fx": null,
+     "line": "Some guests stay long after the party. Most of them are dead. You're the exception."
+    },
+    {
+     "lv": 11,
+     "name": "Restless Water",
+     "power": 75,
+     "acc": 90,
+     "fx": null,
+     "line": "I can't rest while your verse goes unanswered. No one can. It's that bad."
+    },
+    {
+     "lv": 16,
+     "name": "The Drowned Act",
+     "power": 95,
+     "acc": 85,
+     "fx": null,
+     "line": "In the last act, the ghost gets the best lines. Here are mine."
+    }
+   ]
+  },
+  "clay": {
+   "name": "Clay Mask",
+   "type": "Earth",
+   "base": [
+    60,
+    45,
+    55,
+    40
+   ],
+   "src": "common",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Unfired",
+     "power": 35,
+     "acc": 100,
+     "fx": null,
+     "line": "So soft. You'll set, in time. Most do."
+    },
+    {
+     "lv": 1,
+     "name": "Wet Hands",
+     "power": 0,
+     "acc": 100,
+     "fx": "poise-",
+     "line": "(she smooths her sleeve slowly, as if shaping something that isn't her sleeve)"
+    },
+    {
+     "lv": 6,
+     "name": "Potter's Wheel",
+     "power": 55,
+     "acc": 95,
+     "fx": null,
+     "line": "You keep turning and turning, and nothing takes shape."
+    },
+    {
+     "lv": 11,
+     "name": "Cracked Glaze",
+     "power": 70,
+     "acc": 95,
+     "fx": null,
+     "line": "Beautiful outside. One knock, and we'll know what's inside."
+    },
+    {
+     "lv": 16,
+     "name": "Return to Earth",
+     "power": 88,
+     "acc": 90,
+     "fx": null,
+     "line": "We all go back to the earth eventually. You seem keen to start early."
+    }
+   ]
+  },
+  "jade": {
+   "name": "Jade Mask",
+   "type": "Earth",
+   "base": [
+    60,
+    55,
+    60,
+    40
+   ],
+   "src": "story A149",
+   "item": "A149",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Clear Green",
+     "power": 40,
+     "acc": 100,
+     "fx": null,
+     "line": "How pure your intentions are. I can see right through them."
+    },
+    {
+     "lv": 1,
+     "name": "Untainted",
+     "power": 0,
+     "acc": 100,
+     "fx": "heal",
+     "line": "(the jade cools against her skin; nothing they say can stick)"
+    },
+    {
+     "lv": 6,
+     "name": "Remember Your Name",
+     "power": 60,
+     "acc": 95,
+     "fx": null,
+     "line": "I remember my name. Do you remember what yours used to mean?"
+    },
+    {
+     "lv": 11,
+     "name": "Clean Finger",
+     "power": 0,
+     "acc": 100,
+     "fx": "poise-",
+     "line": "(she points, once, with one clean finger, at the stain on their sleeve)"
+    },
+    {
+     "lv": 16,
+     "name": "Weighed in Jade",
+     "power": 95,
+     "acc": 85,
+     "fx": null,
+     "line": "Jade weighs a soul. Yours tipped the scale the wrong way, I'm afraid."
+    }
+   ]
+  },
+  "fox": {
+   "name": "Fox Mask",
+   "type": "Earth",
+   "base": [
+    50,
+    60,
+    45,
+    60
+   ],
+   "src": "rival",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Rice-Field Wink",
+     "power": 40,
+     "acc": 100,
+     "fx": null,
+     "line": "A fine harvest of compliments you brought. All chaff, but a fine harvest."
+    },
+    {
+     "lv": 1,
+     "name": "Nine Tails",
+     "power": 0,
+     "acc": 100,
+     "fx": "timing-",
+     "line": "(a fox's yip of laughter, from somewhere just behind her)"
+    },
+    {
+     "lv": 6,
+     "name": "Kitsune's Bargain",
+     "power": 60,
+     "acc": 95,
+     "fx": null,
+     "line": "I'll trade you a better poem for your worse one. No? Pity."
+    },
+    {
+     "lv": 11,
+     "name": "Borrowed Shape",
+     "power": 75,
+     "acc": 90,
+     "fx": null,
+     "line": "I've worn many faces. None as forgettable as yours."
+    },
+    {
+     "lv": 16,
+     "name": "Inari's Rice",
+     "power": 95,
+     "acc": 85,
+     "fx": null,
+     "line": "The fox steals only from the proud. Look how fat I've grown tonight."
+    }
+   ]
+  },
+  "stone": {
+   "name": "Stone Mask",
+   "type": "Stone",
+   "base": [
+    65,
+    45,
+    70,
+    25
+   ],
+   "src": "common",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Stone Face",
+     "power": 35,
+     "acc": 100,
+     "fx": null,
+     "line": "(an expression of perfect, carved disinterest)"
+    },
+    {
+     "lv": 1,
+     "name": "Weathered",
+     "power": 0,
+     "acc": 100,
+     "fx": "wit+",
+     "line": "(she simply waits, the way a stone waits for the rain to finish)"
+    },
+    {
+     "lv": 6,
+     "name": "Millstone",
+     "power": 55,
+     "acc": 95,
+     "fx": null,
+     "line": "You grind on, my lord. Grind, grind, grind. And the flour is always grey."
+    },
+    {
+     "lv": 11,
+     "name": "Garden Rock",
+     "power": 0,
+     "acc": 100,
+     "fx": "poise-",
+     "line": "Raked gravel goes round a stone. Everyone goes round you, too."
+    },
+    {
+     "lv": 16,
+     "name": "Kaiu Wall",
+     "power": 88,
+     "acc": 90,
+     "fx": null,
+     "line": "Shout at a wall all you like. The Wall has heard worse. From the Shadowlands."
+    }
+   ]
+  },
+  "komainu": {
+   "name": "Komainu Mask",
+   "type": "Stone",
+   "base": [
+    65,
+    55,
+    65,
+    35
+   ],
+   "src": "rival",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Open Mouth",
+     "power": 40,
+     "acc": 100,
+     "fx": null,
+     "line": "Ah. You may enter. The servants' door is to the left."
+    },
+    {
+     "lv": 1,
+     "name": "Closed Mouth",
+     "power": 0,
+     "acc": 100,
+     "fx": "wit+",
+     "line": "(the guardian's stone mouth shuts with a satisfied click)"
+    },
+    {
+     "lv": 6,
+     "name": "Guardian's Ledger",
+     "power": 60,
+     "acc": 95,
+     "fx": null,
+     "line": "Your name isn't on the list. It isn't on any list, is it?"
+    },
+    {
+     "lv": 11,
+     "name": "Paw on the Ball",
+     "power": 75,
+     "acc": 90,
+     "fx": null,
+     "line": "I keep the world under one paw. You I keep under a claw."
+    },
+    {
+     "lv": 16,
+     "name": "Temple Gate",
+     "power": 95,
+     "acc": 85,
+     "fx": null,
+     "line": "Every shrine has two guardians: one to welcome, one to judge. I'm not the one who welcomes."
+    }
+   ]
+  },
+  "shosuro": {
+   "name": "Shosuro Half-Mask",
+   "type": "Silk",
+   "base": [
+    50,
+    55,
+    45,
+    55
+   ],
+   "src": "start",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Silk Whisper",
+     "power": 35,
+     "acc": 100,
+     "fx": null,
+     "line": "Your secret is safe with me. With me, and the eleven people I've told."
+    },
+    {
+     "lv": 1,
+     "name": "Half a Smile",
+     "power": 0,
+     "acc": 100,
+     "fx": "poise-",
+     "line": "(she smiles with exactly half her face; the other half is listening)"
+    },
+    {
+     "lv": 6,
+     "name": "Rehearsal",
+     "power": 55,
+     "acc": 95,
+     "fx": null,
+     "line": "I rehearsed this conversation last night. You were wittier in rehearsal."
+    },
+    {
+     "lv": 11,
+     "name": "Untied Cord",
+     "power": 0,
+     "acc": 100,
+     "fx": "timing-",
+     "line": "Your obi has come loose. No, don't look. It's far too late to look."
+    },
+    {
+     "lv": 16,
+     "name": "The Many Faces",
+     "power": 90,
+     "acc": 90,
+     "fx": null,
+     "line": "I could be anyone. Tonight I'm the one who remembers everything you said."
+    }
+   ]
+  },
+  "silk": {
+   "name": "Silk Mask",
+   "type": "Silk",
+   "base": [
+    45,
+    55,
+    40,
+    65
+   ],
+   "src": "story A148",
+   "item": "A148",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Soft as Breath",
+     "power": 35,
+     "acc": 100,
+     "fx": null,
+     "line": "How brave, to wear cotton to court. It must be so... breathable."
+    },
+    {
+     "lv": 1,
+     "name": "Smooth Fold",
+     "power": 0,
+     "acc": 100,
+     "fx": "wit+",
+     "line": "(her sleeve falls into a perfect fold, as if it had rehearsed)"
+    },
+    {
+     "lv": 6,
+     "name": "Weaver's Count",
+     "power": 55,
+     "acc": 95,
+     "fx": null,
+     "line": "My robe has nine hundred threads to the inch. Your argument has three."
+    },
+    {
+     "lv": 11,
+     "name": "Silk over Steel",
+     "power": 70,
+     "acc": 95,
+     "fx": null,
+     "line": "Silk wraps a blade, my lord. Wouldn't you like to know whose?"
+    },
+    {
+     "lv": 16,
+     "name": "Imperial Bolt",
+     "power": 90,
+     "acc": 90,
+     "fx": null,
+     "line": "This silk was a gift from the Empress. Yours was a gift too, I'm sure. From someone."
+    }
+   ]
+  },
+  "koomote": {
+   "name": "Ko-omote Mask",
+   "type": "Silk",
+   "base": [
+    50,
+    60,
+    45,
+    60
+   ],
+   "src": "rival",
+   "barbs": [
+    {
+     "lv": 1,
+     "name": "Innocent Question",
+     "power": 40,
+     "acc": 100,
+     "fx": null,
+     "line": "Forgive me, I'm new to court. Is it the custom to say that out loud?"
+    },
+    {
+     "lv": 1,
+     "name": "Downcast Eyes",
+     "power": 0,
+     "acc": 100,
+     "fx": "heal",
+     "line": "(the young girl's face tilts down, and the room forgives her everything)"
+    },
+    {
+     "lv": 6,
+     "name": "Blossom Fall",
+     "power": 60,
+     "acc": 95,
+     "fx": null,
+     "line": "Blossoms are lovely because they don't stay. You've stayed quite a while."
+    },
+    {
+     "lv": 11,
+     "name": "Maiden's Fan",
+     "power": 0,
+     "acc": 100,
+     "fx": "poise-",
+     "line": "(a giggle behind her fan, and the giggle is entirely about them)"
+    },
+    {
+     "lv": 16,
+     "name": "Moon on the Water",
+     "power": 95,
+     "acc": 85,
+     "fx": null,
+     "line": "You reach for me like the moon in a pond. Mind your sleeves. It's deep."
+    }
+   ]
+  }
+ },
+ "shop": [
+  [
+   "lacquer",
+   300
+  ],
+  [
+   "clay",
+   300
+  ],
+  [
+   "stone",
+   300
+  ],
+  [
+   "bronze",
+   400
+  ],
+  [
+   "willow",
+   400
+  ],
+  [
+   "rain",
+   400
+  ]
+ ],
+ "commons": [
+  "bronze",
+  "willow",
+  "lacquer",
+  "rain",
+  "clay",
+  "stone"
+ ],
+ "tiers": {
+  "M520": [
+   2,
+   4,
+   1
+  ],
+  "M579": [
+   3,
+   6,
+   1
+  ],
+  "M580": [
+   3,
+   6,
+   1
+  ],
+  "M581": [
+   5,
+   8,
+   1
+  ],
+  "M582": [
+   5,
+   8,
+   1
+  ],
+  "M583": [
+   5,
+   8,
+   2
+  ],
+  "M584": [
+   8,
+   11,
+   2
+  ],
+  "M585": [
+   8,
+   11,
+   2
+  ],
+  "M586": [
+   9,
+   12,
+   2
+  ],
+  "M587": [
+   11,
+   14,
+   2
+  ],
+  "M588": [
+   12,
+   15,
+   2
+  ],
+  "M589": [
+   12,
+   15,
+   2
+  ],
+  "M521": [
+   14,
+   16,
+   2
+  ],
+  "M522": [
+   15,
+   17,
+   2
+  ],
+  "M523": [
+   16,
+   18,
+   3
+  ],
+  "M524": [
+   17,
+   19,
+   3
+  ]
+ },
+ "duellists": [
+  "EP620",
+  "EP621",
+  "EP640"
+ ],
+ "drop_pct": 20,
+ "rivals": [
+  {
+   "id": "tsuyu",
+   "name": "Shosuro Tsuyu",
+   "mdl": "EP635",
+   "map": "M520",
+   "masks": [
+    [
+     "willow",
+     3
+    ]
+   ],
+   "zeni": 60,
+   "who": "a page of the house, twelve and very serious",
+   "hello": "Shosuro-sama! You wear a mask. That means you play. That means you play me.",
+   "win": "(bowing very low) I'll practise. I'll practise until my face hurts.",
+   "lose": "You need to practise, Shosuro-sama. I'll wait.",
+   "after": "Your barbs are better than mine. For now."
+  },
+  {
+   "id": "gentaro",
+   "name": "Bayushi Gentaro",
+   "mdl": "EP623",
+   "map": "M579",
+   "masks": [
+    [
+     "bronze",
+     4
+    ],
+    [
+     "stone",
+     5
+    ]
+   ],
+   "zeni": 120,
+   "who": "a gate guard who has been insulted by experts",
+   "hello": "Halt. Nobody passes the barracks without a word. A sharp one.",
+   "win": "...That one stung. Pass, then.",
+   "lose": "Back to the gate with you. Come back with a sharper tongue.",
+   "after": "I'll be thinking about that one on watch tonight."
+  },
+  {
+   "id": "heishiro",
+   "name": "Heishiro the groom",
+   "mdl": "EP640",
+   "map": "M580",
+   "masks": [
+    [
+     "bronze",
+     6
+    ]
+   ],
+   "zeni": 90,
+   "who": "a groom in a borrowed courtier's mask",
+   "hello": "My lady! The horses don't talk back. Would you?",
+   "win": "(laughing) The horses never said anything that bad about me.",
+   "lose": "Even the horses were laughing, my lady.",
+   "after": "I'll tell the horses. They'll be pleased for you."
+  },
+  {
+   "id": "karyu",
+   "name": "Bayushi Karyu",
+   "mdl": "EP620",
+   "map": "M581",
+   "masks": [
+    [
+     "lacquer",
+     7
+    ],
+    [
+     "oni",
+     9
+    ]
+   ],
+   "zeni": 200,
+   "gift": "oni",
+   "who": "a duellist who prefers words because they leave no blood on the mats",
+   "hello": "Shosuro. A blade takes a second. A word takes a whole winter to heal. Draw.",
+   "win": "Hm. Take the oni. He's wasted on a man you've just made blush.",
+   "lose": "Words leave no marks. You'll feel this one anyway.",
+   "after": "The oni likes you better. He always did prefer women."
+  },
+  {
+   "id": "sumie",
+   "name": "Yogo Sumie",
+   "mdl": "EP621",
+   "map": "M582",
+   "masks": [
+    [
+     "rain",
+     7
+    ],
+    [
+     "koomote",
+     8
+    ]
+   ],
+   "zeni": 200,
+   "gift": "koomote",
+   "who": "a poetess who writes verses about her guests, afterwards",
+   "hello": "A Shosuro in the garden. How fortunate. I've been short of a subject.",
+   "win": "(fanning herself) Take the girl's face. She never did suit me.",
+   "lose": "I shall write about you. Not kindly.",
+   "after": "I've started the poem. It's about you. It's very flattering. Mostly."
+  },
+  {
+   "id": "kaneko",
+   "name": "Ide Kaneko",
+   "mdl": "EP640",
+   "map": "M583",
+   "masks": [
+    [
+     "clay",
+     8
+    ],
+    [
+     "fox",
+     9
+    ]
+   ],
+   "zeni": 220,
+   "gift": "fox",
+   "who": "a Unicorn guest who learned the game from losing at it",
+   "hello": "They told me the Scorpion play this for fun. I'm here to see if it's fun yet.",
+   "win": "It is fun! For one of us. Here, the fox is yours.",
+   "lose": "Oh. Oh, that IS fun.",
+   "after": "I'm writing home about you. They won't believe a word."
+  },
+  {
+   "id": "nobuo",
+   "name": "Soshi Nobuo",
+   "mdl": "EP620",
+   "map": "M584",
+   "masks": [
+    [
+     "stone",
+     10
+    ],
+    [
+     "noh",
+     11
+    ]
+   ],
+   "zeni": 260,
+   "gift": "noh",
+   "who": "an archivist who has catalogued every insult since the Second Day of Thunder",
+   "hello": "Shosuro. Your file is thin. Let us add to it.",
+   "win": "Filed under: defeats, regrettable. The ghost is yours.",
+   "lose": "Filed under: Shosuro, adequate. For now.",
+   "after": "I've updated your file. It's thicker now. Congratulations."
+  },
+  {
+   "id": "masaru",
+   "name": "Bayushi Masaru",
+   "mdl": "EP620",
+   "map": "M585",
+   "masks": [
+    [
+     "lacquer",
+     10
+    ],
+    [
+     "bronze",
+     11
+    ],
+    [
+     "clay",
+     11
+    ]
+   ],
+   "zeni": 300,
+   "gear": "A193",
+   "who": "the officer who keeps the keep's door and its gossip",
+   "hello": "Nobody climbs the keep who can't hold their face at the door. Hold yours.",
+   "win": "Take my fan. You'll need something to hide behind up there.",
+   "lose": "The keep is closed to you. Not literally. Socially.",
+   "after": "They're talking about you on the second floor. Good things. Mostly."
+  },
+  {
+   "id": "asami",
+   "name": "Shosuro Asami",
+   "mdl": "EP635",
+   "map": "M586",
+   "masks": [
+    [
+     "rain",
+     12
+    ],
+    [
+     "hannya",
+     13
+    ]
+   ],
+   "zeni": 300,
+   "gift": "hannya",
+   "who": "an actress who plays the jealous wife in every shrine play",
+   "hello": "Every play needs a jealous woman, Mitsue. Tonight it's me. Tomorrow, you.",
+   "win": "Take her. She's better at being angry than I am.",
+   "lose": "You'll make a lovely jealous wife one day. Practise.",
+   "after": "I'm playing a forgiving woman next week. It's my hardest role."
+  },
+  {
+   "id": "ochika",
+   "name": "Ochika",
+   "mdl": "EP640",
+   "map": "M587",
+   "masks": [
+    [
+     "clay",
+     12
+    ],
+    [
+     "willow",
+     13
+    ]
+   ],
+   "zeni": 180,
+   "who": "a kitchen girl who has heard everything said over every tray",
+   "hello": "Begging your pardon, lady. I've carried trays for every lord in this castle. I know what they say.",
+   "win": "(curtsying, grinning) I'll save you the good dumplings.",
+   "lose": "Pardon, lady. Even the cook heard that.",
+   "after": "The cook says you'll do. That's the highest praise there is."
+  },
+  {
+   "id": "shiramu",
+   "name": "Bayushi Shiramu",
+   "mdl": "EP620",
+   "map": "M588",
+   "masks": [
+    [
+     "willow",
+     14
+    ],
+    [
+     "tengu",
+     15
+    ]
+   ],
+   "zeni": 340,
+   "gift": "tengu",
+   "who": "an old master who has played since before the Champion was born",
+   "hello": "Ah. The young Shosuro. Sit. Lose slowly; I'm old and I enjoy it.",
+   "win": "(a dry laugh) Take the tengu. He's been bored with me for years.",
+   "lose": "You'll improve. I won't. That's the beauty of it.",
+   "after": "Come back when I'm dead. I'll still win."
+  },
+  {
+   "id": "tetsue",
+   "name": "Yogo Tetsue",
+   "mdl": "EP621",
+   "map": "M589",
+   "masks": [
+    [
+     "stone",
+     13
+    ],
+    [
+     "komainu",
+     15
+    ]
+   ],
+   "zeni": 340,
+   "gift": "komainu",
+   "who": "a watch-officer who guards the terrace and its view of everyone",
+   "hello": "From up here I see everyone who comes in. I saw you. I have notes.",
+   "win": "Take the lion-dog. He's tired of watching.",
+   "lose": "Noted.",
+   "after": "I've moved you to the other list. The short one."
+  },
+  {
+   "id": "kaname",
+   "name": "Shosuro Kaname",
+   "mdl": "EP635",
+   "map": "M521",
+   "masks": [
+    [
+     "lacquer",
+     15
+    ],
+    [
+     "noh",
+     15
+    ],
+    [
+     "willow",
+     16
+    ]
+   ],
+   "zeni": 500,
+   "gear": "A194",
+   "who": "the stage-master of the house theatre",
+   "hello": "The house theatre needs a lead. Audition. Here. Now.",
+   "win": "The part is yours. And the cord: every lead ties her mask with it.",
+   "lose": "Understudy. Come back when you've learned your lines.",
+   "after": "Opening night is whenever you say."
+  },
+  {
+   "id": "rieko",
+   "name": "Soshi Rieko",
+   "mdl": "EP621",
+   "map": "M522",
+   "masks": [
+    [
+     "rain",
+     16
+    ],
+    [
+     "fox",
+     17
+    ],
+    [
+     "stone",
+     17
+    ]
+   ],
+   "zeni": 600,
+   "gear": "A195",
+   "honor": 1,
+   "who": "secretary of the council, who writes down what the council didn't say",
+   "hello": "The council sits in silence. I write the silence down. Let us see what you leave unsaid.",
+   "win": "Take the seal. When you say nothing now, it will be official.",
+   "lose": "Minuted: the Shosuro had nothing to say.",
+   "after": "I wrote down your silence. It was very eloquent."
+  },
+  {
+   "id": "saburo",
+   "name": "Yogo Saburo",
+   "mdl": "EP620",
+   "map": "M523",
+   "masks": [
+    [
+     "hannya",
+     17
+    ],
+    [
+     "komainu",
+     18
+    ],
+    [
+     "clay",
+     18
+    ]
+   ],
+   "zeni": 700,
+   "gear": "A196",
+   "honor": 1,
+   "who": "keeper of the Yogo curse-ledgers",
+   "hello": "Every insult is a small curse, Shosuro. I keep the ledger. Let's see what you owe.",
+   "win": "Your account is settled. Take the charm; it balances the books.",
+   "lose": "Entered in the ledger. Interest accrues.",
+   "after": "Your page is blank again. Enjoy it."
+  },
+  {
+   "id": "kyoko",
+   "name": "Bayushi Kyoko",
+   "mdl": "EP621",
+   "map": "M524",
+   "masks": [
+    [
+     "koomote",
+     18
+    ],
+    [
+     "oni",
+     19
+    ],
+    [
+     "tengu",
+     19
+    ],
+    [
+     "noh",
+     20
+    ]
+   ],
+   "zeni": 1000,
+   "gear": "A197",
+   "honor": 1,
+   "who": "Mistress of Masks of Kyuden Bayushi, who has never lost in this castle",
+   "hello": "So you're the one climbing my stairs. Every face in this castle is mine, Shosuro. Let's see yours.",
+   "win": "(she takes off her own mask, and smiles with her real face) ...Wear the red one. You've earned it.",
+   "lose": "(she doesn't even lower her fan) Again, when you're ready. I'll still be here.",
+   "after": "Every face in this castle is mine. Except yours, it seems."
+  }
+ ],
+ "gear": {
+  "A193": "Courtier's Fan",
+  "A194": "Lead Actor's Mask Cord",
+  "A195": "Council Seal of Silence",
+  "A196": "Curse-Ledger Charm",
+  "A197": "Mistress's Red Mask"
+ },
+ "rules": {
+  "sleeve": 4,
+  "maxlevel": 20,
+  "see_range": 7.0,
+  "see_cone": 60,
+  "walk_per_roll": 22.0,
+  "random_pct": 16,
+  "honor_cap": 3
+ }
+}

@@ -1,0 +1,18 @@
+{
+  "castle_kaiu_lantern": {
+    "prompt_id": "06e896ee-89cb-456e-8245-4b494341f1b6",
+    "history": "http://127.0.0.1:8189/history/06e896ee-89cb-456e-8245-4b494341f1b6"
+  },
+  "castle_lacquer_supply_chest": {
+    "prompt_id": "b3fe3412-ceda-4057-9866-43863d1b0ad1",
+    "history": "http://127.0.0.1:8189/history/b3fe3412-ceda-4057-9866-43863d1b0ad1"
+  },
+  "castle_council_table": {
+    "prompt_id": "3bb1e905-650a-4e5a-ac90-0d48af93a513",
+    "history": "http://127.0.0.1:8189/history/3bb1e905-650a-4e5a-ac90-0d48af93a513"
+  },
+  "castle_diorama_matsu": {
+    "prompt_id": "2778553f-f7f4-4b40-934f-266ef50d4fca",
+    "history": "http://127.0.0.1:8189/history/2778553f-f7f4-4b40-934f-266ef50d4fca"
+  }
+}

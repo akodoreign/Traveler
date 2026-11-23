@@ -1,0 +1,55 @@
+{
+  "map": "M413",
+  "events": 84,
+  "placements": 53,
+  "sources": {
+    "iuchi_valley_pack_basket": {
+      "name": "iuchi_valley_pack_basket",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iuchi_valley_pack_basket_00001_.glb",
+      "grid": [
+        53,
+        31,
+        59
+      ],
+      "occupied": 10044,
+      "world_size": [
+        0.69,
+        0.54,
+        0.87
+      ]
+    },
+    "iuchi_valley_wayside_stone": {
+      "name": "iuchi_valley_wayside_stone",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iuchi_valley_wayside_stone_00001_.glb",
+      "grid": [
+        23,
+        56,
+        55
+      ],
+      "occupied": 7745,
+      "world_size": [
+        0.59,
+        0.79,
+        0.67
+      ]
+    },
+    "traveler_diorama_maple": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_maple_miniature_00001_.glb",
+      "triangles": 16990,
+      "world_size": [
+        2.55,
+        3.05,
+        2.15
+      ]
+    },
+    "traveler_diorama_pine": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_coast_pine_v2_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        2.38,
+        3.15,
+        2.29
+      ]
+    }
+  }
+}

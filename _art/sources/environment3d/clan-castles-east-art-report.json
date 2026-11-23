@@ -1,0 +1,432 @@
+{
+  "maps": {
+    "M557": {
+      "name": "Shiro Akodo - Guard barracks",
+      "places": 10,
+      "quads": 1342,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M510": {
+      "name": "Shiro Akodo - Entrance reception",
+      "places": 6,
+      "quads": 1652,
+      "removed": 19,
+      "prop_models_replaced": 0
+    },
+    "M558": {
+      "name": "Shiro Akodo - Stables and stores",
+      "places": 10,
+      "quads": 1892,
+      "removed": 14,
+      "prop_models_replaced": 0
+    },
+    "M559": {
+      "name": "Shiro Akodo - Training court",
+      "places": 28,
+      "quads": 88,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M560": {
+      "name": "Shiro Akodo - Courtyard garden",
+      "places": 28,
+      "quads": 86,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M561": {
+      "name": "Shiro Akodo - Guest pavilion",
+      "places": 29,
+      "quads": 384,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M562": {
+      "name": "Shiro Akodo - Archive court",
+      "places": 18,
+      "quads": 1244,
+      "removed": 14,
+      "prop_models_replaced": 4
+    },
+    "M563": {
+      "name": "Shiro Akodo - Keep approach",
+      "places": 8,
+      "quads": 3094,
+      "removed": 11,
+      "prop_models_replaced": 0
+    },
+    "M564": {
+      "name": "Shiro Akodo - Shrine court",
+      "places": 12,
+      "quads": 1565,
+      "removed": 21,
+      "prop_models_replaced": 0
+    },
+    "M565": {
+      "name": "Shiro Akodo - Kitchen garden",
+      "places": 16,
+      "quads": 1274,
+      "removed": 14,
+      "prop_models_replaced": 0
+    },
+    "M566": {
+      "name": "Shiro Akodo - North garden",
+      "places": 28,
+      "quads": 152,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M567": {
+      "name": "Shiro Akodo - Watch terrace",
+      "places": 10,
+      "quads": 1306,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M511": {
+      "name": "Shiro Akodo - 1F - reception and service halls",
+      "places": 16,
+      "quads": 891,
+      "removed": 12,
+      "prop_models_replaced": 4
+    },
+    "M512": {
+      "name": "Shiro Akodo - 2F - guest and council chambers",
+      "places": 8,
+      "quads": 1016,
+      "removed": 4,
+      "prop_models_replaced": 4
+    },
+    "M513": {
+      "name": "Shiro Akodo - 3F - archives and strategy halls",
+      "places": 20,
+      "quads": 921,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M514": {
+      "name": "Shiro Akodo - 4F - audience and watch halls",
+      "places": 16,
+      "quads": 836,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M568": {
+      "name": "Kyuden Isawa - Guard barracks",
+      "places": 10,
+      "quads": 1306,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M515": {
+      "name": "Kyuden Isawa - Entrance reception",
+      "places": 6,
+      "quads": 1652,
+      "removed": 19,
+      "prop_models_replaced": 0
+    },
+    "M569": {
+      "name": "Kyuden Isawa - Stables and stores",
+      "places": 10,
+      "quads": 1892,
+      "removed": 14,
+      "prop_models_replaced": 0
+    },
+    "M570": {
+      "name": "Kyuden Isawa - Training court",
+      "places": 22,
+      "quads": 129,
+      "removed": 8,
+      "prop_models_replaced": 0
+    },
+    "M571": {
+      "name": "Kyuden Isawa - Courtyard garden",
+      "places": 22,
+      "quads": 127,
+      "removed": 8,
+      "prop_models_replaced": 0
+    },
+    "M572": {
+      "name": "Kyuden Isawa - Guest pavilion",
+      "places": 23,
+      "quads": 425,
+      "removed": 8,
+      "prop_models_replaced": 0
+    },
+    "M573": {
+      "name": "Kyuden Isawa - Archive court",
+      "places": 18,
+      "quads": 1255,
+      "removed": 14,
+      "prop_models_replaced": 4
+    },
+    "M574": {
+      "name": "Kyuden Isawa - Keep approach",
+      "places": 8,
+      "quads": 3094,
+      "removed": 11,
+      "prop_models_replaced": 0
+    },
+    "M575": {
+      "name": "Kyuden Isawa - Shrine court",
+      "places": 17,
+      "quads": 1565,
+      "removed": 21,
+      "prop_models_replaced": 0
+    },
+    "M576": {
+      "name": "Kyuden Isawa - Kitchen garden",
+      "places": 16,
+      "quads": 1274,
+      "removed": 14,
+      "prop_models_replaced": 0
+    },
+    "M577": {
+      "name": "Kyuden Isawa - North garden",
+      "places": 22,
+      "quads": 193,
+      "removed": 8,
+      "prop_models_replaced": 0
+    },
+    "M578": {
+      "name": "Kyuden Isawa - Watch terrace",
+      "places": 10,
+      "quads": 1306,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M516": {
+      "name": "Kyuden Isawa - 1F - reception and service halls",
+      "places": 16,
+      "quads": 891,
+      "removed": 12,
+      "prop_models_replaced": 4
+    },
+    "M517": {
+      "name": "Kyuden Isawa - 2F - guest and council chambers",
+      "places": 8,
+      "quads": 1016,
+      "removed": 4,
+      "prop_models_replaced": 4
+    },
+    "M518": {
+      "name": "Kyuden Isawa - 3F - archives and strategy halls",
+      "places": 20,
+      "quads": 864,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M519": {
+      "name": "Kyuden Isawa - 4F - audience and watch halls",
+      "places": 20,
+      "quads": 836,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M590": {
+      "name": "Shiro Kitsuki - Guard barracks",
+      "places": 101,
+      "quads": 1238,
+      "removed": 107,
+      "prop_models_replaced": 0
+    },
+    "M525": {
+      "name": "Shiro Kitsuki - Entrance reception",
+      "places": 80,
+      "quads": 1584,
+      "removed": 93,
+      "prop_models_replaced": 0
+    },
+    "M591": {
+      "name": "Shiro Kitsuki - Stables and stores",
+      "places": 105,
+      "quads": 1824,
+      "removed": 109,
+      "prop_models_replaced": 0
+    },
+    "M592": {
+      "name": "Shiro Kitsuki - Training court",
+      "places": 112,
+      "quads": 88,
+      "removed": 104,
+      "prop_models_replaced": 0
+    },
+    "M593": {
+      "name": "Shiro Kitsuki - Courtyard garden",
+      "places": 110,
+      "quads": 86,
+      "removed": 102,
+      "prop_models_replaced": 0
+    },
+    "M594": {
+      "name": "Shiro Kitsuki - Guest pavilion",
+      "places": 115,
+      "quads": 384,
+      "removed": 106,
+      "prop_models_replaced": 0
+    },
+    "M595": {
+      "name": "Shiro Kitsuki - Archive court",
+      "places": 97,
+      "quads": 1176,
+      "removed": 93,
+      "prop_models_replaced": 4
+    },
+    "M596": {
+      "name": "Shiro Kitsuki - Keep approach",
+      "places": 103,
+      "quads": 3052,
+      "removed": 106,
+      "prop_models_replaced": 0
+    },
+    "M597": {
+      "name": "Shiro Kitsuki - Shrine court",
+      "places": 106,
+      "quads": 1497,
+      "removed": 115,
+      "prop_models_replaced": 0
+    },
+    "M598": {
+      "name": "Shiro Kitsuki - Kitchen garden",
+      "places": 107,
+      "quads": 1178,
+      "removed": 105,
+      "prop_models_replaced": 0
+    },
+    "M599": {
+      "name": "Shiro Kitsuki - North garden",
+      "places": 112,
+      "quads": 152,
+      "removed": 104,
+      "prop_models_replaced": 0
+    },
+    "M600": {
+      "name": "Shiro Kitsuki - Watch terrace",
+      "places": 107,
+      "quads": 1238,
+      "removed": 113,
+      "prop_models_replaced": 0
+    },
+    "M526": {
+      "name": "Shiro Kitsuki - 1F - reception and service halls",
+      "places": 16,
+      "quads": 891,
+      "removed": 12,
+      "prop_models_replaced": 4
+    },
+    "M527": {
+      "name": "Shiro Kitsuki - 2F - guest and council chambers",
+      "places": 8,
+      "quads": 1016,
+      "removed": 4,
+      "prop_models_replaced": 4
+    },
+    "M528": {
+      "name": "Shiro Kitsuki - 3F - archives and strategy halls",
+      "places": 21,
+      "quads": 909,
+      "removed": 4,
+      "prop_models_replaced": 13
+    },
+    "M529": {
+      "name": "Shiro Kitsuki - 4F - audience and watch halls",
+      "places": 16,
+      "quads": 884,
+      "removed": 4,
+      "prop_models_replaced": 12
+    }
+  },
+  "sources": {
+    "castle_kaiu_lantern": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_kaiu_lantern_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        0.54,
+        1.03,
+        0.54
+      ]
+    },
+    "castle_lacquer_supply_chest": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_lacquer_supply_chest_00001_.glb",
+      "triangles": 19998,
+      "world_size": [
+        0.93,
+        0.56,
+        0.48
+      ]
+    },
+    "castle_council_table": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_council_table_00001_.glb",
+      "triangles": 18922,
+      "world_size": [
+        1.07,
+        0.5,
+        0.55
+      ]
+    },
+    "castle_diorama_matsu": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_diorama_matsu_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        2.76,
+        3.13,
+        2.43
+      ]
+    },
+    "castle_iris_clump": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_iris_clump_00001_.glb",
+      "triangles": 18070,
+      "world_size": [
+        0.44,
+        0.61,
+        0.43
+      ]
+    },
+    "castle_tamori_stones": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_tamori_stones_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        1.85,
+        0.93,
+        1.18
+      ]
+    },
+    "castle_snow_pine": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_snow_pine_00001_.glb",
+      "triangles": 13342,
+      "world_size": [
+        3.14,
+        3.7,
+        2.68
+      ]
+    },
+    "castle_lion_makiwara": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_lion_makiwara_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        1.14,
+        1.5,
+        0.66
+      ]
+    },
+    "castle_isawa_incense": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_isawa_incense_00001_.glb",
+      "triangles": 19998,
+      "world_size": [
+        0.58,
+        0.54,
+        0.58
+      ]
+    },
+    "castle_kitsuki_archive": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_kitsuki_archive_00001_.glb",
+      "triangles": 19996,
+      "world_size": [
+        1.34,
+        0.97,
+        0.49
+      ]
+    }
+  }
+}

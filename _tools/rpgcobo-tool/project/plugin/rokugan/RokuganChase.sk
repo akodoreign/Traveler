@@ -1,0 +1,257 @@
+//	RokuganChase.sk - the marker chaser (user 2026-11-23: "squirl scripts whos job is just to chase the objective marker
+//	to each goal for each story/quest/sidequest. let them take notes ... check every quest and game (let it self learn,
+//	do not let it change any code its job is read only)").
+//
+//	Active only with -rtchase (and -rtbot, whose virtual keys it drives: RokuganBot.sk). It plays like a player who only
+//	follows the floating marker: every moment it asks the marker for this map's point (::Rokugan.mkGoal / mkPoint,
+//	exactly what the player is shown), walks there (::Rokugan.botGoto), and on arrival talks / searches. Battles run on
+//	Auto (-rtauto), mini-games play themselves (-rtmini win), messages advance (-rtfast), save menus are skipped. It
+//	writes nothing but its log lines; tools/markerchase.py turns them into notes and the learned knowledge.
+//	Log lines (all "[RT] CHASE <kind> ..."): START, GOAL (a new marker goal + the objective text), ARRIVE, TALK,
+//	MAP (map change), BATTLE / BATTLE_END, STUCK (no progress), NOPOINT (a goal with no way shown from here), NOGOAL,
+//	END (why it stopped). The run's options:
+//	    -rtchase MINUTES         stop after this long (the orchestrator also kills a run that outlives it)
+//	    -rtchasequest ID         track this Journal quest (G1244) - the marker leads to the quest, not the story
+//	    -rtchasepolicy PATH      learned answers for menus: JSON { "first option|count": index } (RokuganField choices)
+if( ::arguments.indexOf( "-rtchase") >= 0) {
+
+local fabs = @( v) v < 0 ? -v : v;
+local log = function( kind, s){ printf( "[RT] CHASE %s %s\n", kind, s); };
+local argv = function( flag, dflt){
+	local i = ::arguments.indexOf( flag);
+	return (i >= 0 && i + 1 < length( ::arguments)) ? ::arguments[i + 1] : dflt;
+};
+
+local objText = function(){
+	local oi = int( ::rpgvar["G1227"] || 0) - 1, objs = ::Rokugan["OBJECTIVES"] || [];
+	return (oi >= 0 && oi < length( objs)) ? objs[oi] : "";
+};
+
+::Rokugan.chasePolicy <- {};
+try{
+	local p = argv( "-rtchasepolicy", null);
+	if( p){
+		::Rokugan.chasePolicy = decodeJSON( FileRef( p).load().asText());
+		local n = 0;
+		foreach( k, v in ::Rokugan.chasePolicy) n++;
+		log( "POLICY", "%d learned answers" % [n]);
+	}
+}catch( ex){ log( "POLICY", "none (" .. ex .. ")"); }
+
+
+//	A save state (user: "let it use save states so you can see what happened besides the log"): exactly what
+//	RPGMain.saveGame writes (the stage snapshot + ::rpgstat through ObjectOutput), but to the chaser's own folder -
+//	tmp/chase/<job>/snap_NN.bin - never a save slot. tools/markerchase.py copies it out (and can load it into the
+//	chaser's reserved slot to resume a stuck run). With it: a screenshot and a one-line summary in the log.
+::Rokugan.chaseSnapN <- 0;
+::Rokugan.chaseSnap <- function( tag){
+	local st = ::rpgstage, job = argv( "-rtchasejob", "chase");
+	if( !st || !st["player3d"]) return;
+	::Rokugan.chaseSnapN = ::Rokugan.chaseSnapN + 1;
+	local n = ::Rokugan.chaseSnapN, base = "tmp/chase/" .. job .. ("/snap_%02d" % [n]);
+	try{
+		::rpgstat.stagemap[st.mapid] <- st.getSnapshot();
+		::rpgstat.mapid = st.mapid;
+		::rpgstat.savetime = Date.currentTime();
+		FileRef( base .. ".bin").save( ObjectOutput.encode( ::rpgstat));
+	}catch( ex){ log( "ERROR", "snapshot %d: %s" % [n, "" .. ex]); return; }
+	local kit = "";
+	try{ kit = ::Rokugan.botKit(); }catch( ex){}
+	local p = st.player3d.pos;
+	log( "SNAP", "%02d %s | %s %.1f %.1f | objective: %s | %s" % [n, tag, st.mapid, p.x, p.z, objText(), kit]);
+	try{ ::Rokugan.rtshot( "tmp/rt_shot/bot_chase_" .. job .. ("_%02d.raw" % [n])); }catch( ex){}
+};
+
+//	Use an event the way a player does (user: "it don't know how to click z key to trigger, it needs to know how to find
+//	and use triggers"): the engine only takes Z when the event is in the small zone in front of the player (0.4 m for a
+//	contact page, 1.4 m for a talk page; RPGStage.updateSearchTarget) - then it sets rpgstage.searchdst, the same
+//	target the on-screen "A: Talk" prompt shows. So: stand at the right distance, face it, wait for the game's own
+//	prompt to name this event, then press Z. Other angles if not. Walk-on pages (5): step onto it. Returns true if it ran.
+::Rokugan.chaseUse <- function( ev){
+	local st = ::rpgstage, e3 = ev.rp3d;
+	if( !st || !e3) return false;
+	local trig = ev.page ? int( ev.page["trigger"] || 0) : 0, name = "" .. (ev.data["name"] || "?");
+	//	(user: "have it log the event") what it is about to use: the lines it says follow as MSG lines
+	log( "EVENT", "%s on %s at %.1f %.1f, trigger %d, model %s" % [name, st.mapid, e3.pos.x, e3.pos.z, trig,
+		"" .. (ev.data["mdlid"] || "-")]);
+	//	under -rtfast a villager's line prints and its event ends inside a frame: success = anything was said or asked
+	//	(::Rokugan.msgn counts messages and menus) or a scene is running
+	local said = @() ("msgn" in ::Rokugan) ? ::Rokugan.msgn : 0;
+	local m0 = said();
+	if( trig == 5 || trig == 6){
+		::Rokugan.botGoto( e3.pos.x * 2.0, e3.pos.z * 2.0, 8000, 0.5);
+		local tw = 0;
+		while( tw < 1200 && !::rpgstage.mainevent && said() == m0){ sleep( 100); tw += 100; }
+		return !!::rpgstage.mainevent || said() != m0;
+	}
+	local r = trig == 1 ? 0.45 : 0.95, offered = 0;
+	foreach( attempt, ang in [0.0, 0.7, -0.7, 1.5, -1.5, 3.1]){
+		local me = st.player3d, p = e3.pos, a = me.pos;
+		local dx = a.x - p.x, dz = a.z - p.z, d = Math.sqrt( dx * dx + dz * dz);
+		if( d < 0.01){ dx = 0.0; dz = -1.0; d = 1.0; }
+		local ux = dx / d, uz = dz / d, c = Math.cos( ang), s = Math.sin( ang);
+		local vx = ux * c - uz * s, vz = ux * s + uz * c;
+		::Rokugan.botGoto( (p.x + vx * r) * 2.0, (p.z + vz * r) * 2.0, 6000, 0.35);
+		if( ::rpgstage != st || st.mainevent) return !!st.mainevent;
+		me.dir = ::aimdir( me.pos, p); me.matdirty = true;				//	face it
+		local tw = 0;
+		while( tw < 800 && st.searchdst != e3){ sleep( 100); tw += 100; }
+		if( st.searchdst == e3){
+			local lbl = "";
+			try{ lbl = "" .. e3.getSearchButtonLabel(); }catch( ex){}
+			offered++;
+			log( "PROMPT", "%s: \"%s\" (attempt %d)" % [name, lbl, attempt + 1]);
+			::Rokugan.botSet( "z", true); sleep( 160); ::Rokugan.botSet( "z", false);
+			tw = 0;
+			while( tw < 1500 && !st.mainevent && said() == m0){ sleep( 100); tw += 100; }
+			if( st.mainevent || said() != m0) return true;
+		}
+	}
+	if( offered) log( "NOREACT", "%s on %s: the prompt showed %d times, Z ran nothing (trigger %d) - an empty page?" %
+		[name, st.mapid, offered, trig]);
+	else log( "NOPROMPT", "%s on %s: the game never offered it (trigger %d) - unreachable or blocked?" % [name, st.mapid, trig]);
+	return false;
+};
+
+//	The sweep: every spawned event a player can use on this map - talk / examine pages (trigger 1, 2), and walk-on pages
+//	(trigger 5) that don't move the player off the map - nearest first, at most 30 or four minutes. A scene that
+//	changes the map ends the sweep (the next map gets its own). Each one is logged; the lines said are the MSG lines.
+::Rokugan.chaseSweep <- function( st){
+	local mp = st.mapid, t0 = skGetTime(), done = {}, n = 0;
+	log( "SWEEP", "begin %s" % [mp]);
+	while( n < 30 && skGetTime() - t0 < 240000){
+		local cur = ::rpgstage;
+		if( !cur || cur.mapid != mp) break;
+		if( cur.mainevent || cur["battle"]){ sleep( 300); continue; }
+		local w = ::Rokugan.botWhere();
+		if( !w) break;
+		local pick = null, pd = 999999.0, pk = null, pt = 0;
+		foreach( k, e in cur.events){
+			if( !e.rp3d || !e.data || (k in done)) continue;
+			local pg = e.page, trig = pg ? int( pg["trigger"] || 0) : 0, role = e.data["role"];
+			if( role == "portal" || role == "light") continue;
+			local talkish = role == "villager" || role == "clerk" || role == "hotel" || trig == 1 || trig == 2;
+			if( !talkish && trig != 5) continue;
+			if( trig == 5){
+				local js = "";
+				try{ js = encodeJSON( pg); }catch( ex){}
+				if( js.indexOf( "cmd_mapmove") >= 0) continue;					//	(a gate: it would leave the map)
+			}
+			local p = e.rp3d.pos, dx = p.x * 2.0 - w.x, dz = p.z * 2.0 - w.z, d = dx * dx + dz * dz;
+			if( d < pd){ pd = d; pick = e; pk = k; pt = trig; }
+		}
+		if( !pick) break;
+		done[pk] <- true; n++;
+		local name = "" .. (pick.data["name"] || pk);
+		local was = ::Rokugan.chaseUse( pick), tw = 0;
+		while( ::rpgstage && ::rpgstage.mainevent && tw < 90000){ sleep( 250); tw += 250; }
+		log( "SWEPT", "%s %s %s (%s)" % [mp, name, pt == 5 ? "walk-on" : "talk", was ? "it played" : "nothing happened"]);
+		if( tw >= 90000) log( "STUCK", "a scene on %s (%s) ran 90 s" % [mp, name]);
+	}
+	log( "SWEEP", "end %s: %d used in %.0f s" % [mp, n, (skGetTime() - t0) / 1000.0]);
+};
+
+::Rokugan.chaseRun <- function(){
+	local minutes = int( argv( "-rtchase", "60")) * 1.0, quest = int( argv( "-rtchasequest", "0"));
+	local t0 = skGetTime(), limit = minutes * 60000.0;
+	while( !::rpgstage || !::rpgstage["player3d"]) sleep( 300);
+	sleep( 2500);
+	if( quest > 0){ ::rpgvar["G1244"] = quest; log( "QUEST", "tracking %d" % [quest]); }
+	log( "START", "map %s, %.0f minutes" % [::rpgstage.mapid, minutes]);
+	::Rokugan.chaseSnap( "start");
+	local snapT = skGetTime();
+	local lastKey = "", keyT = skGetTime(), lastMap = "", lastObj = -1, inBattle = false, noGoalT = 0, tries = 0;
+	local lastPos = null, stuckLogged = 0, swept = {}, sweepsOn = {}, sweep = ::arguments.indexOf( "-rtchasenosweep") < 0;
+	while( skGetTime() - t0 < limit){
+		sleep( 250);
+		local st = ::rpgstage;
+		if( !st || !st["player3d"]) continue;
+		local mp = st.mapid;
+		if( st["battle"] || mp.slice( 0, 2) == "M8"){
+			if( !inBattle){ inBattle = true; log( "BATTLE", "on %s" % [lastMap]); }
+			continue;
+		}
+		if( inBattle){ inBattle = false; log( "BATTLE_END", "back on %s" % [mp]); }
+		if( st.mainevent) continue;
+		if( mp != lastMap){ log( "MAP", "%s %s" % [mp, "" .. st["mapname"]]); lastMap = mp; }
+		if( skGetTime() - snapT > 600000){ snapT = skGetTime(); ::Rokugan.chaseSnap( "ten minutes"); }
+		local oi = int( ::rpgvar["G1227"] || 0);
+		if( oi != lastObj){ lastObj = oi; local tx = objText(); if( tx != "") log( "OBJECTIVE", tx); }
+		//	(user: "have it do all the triggers and conversations as well") every map, again whenever the objective
+		//	moves on (up to three times a map): talk to everyone, examine everything, step on the walk-on triggers
+		local sk = mp .. "#" .. oi;
+		if( sweep && !(sk in swept) && (!(mp in sweepsOn) || sweepsOn[mp] < 3)){
+			swept[sk] <- true;
+			sweepsOn[mp] <- (mp in sweepsOn ? sweepsOn[mp] : 0) + 1;
+			::Rokugan.chaseSweep( st);
+			continue;
+		}
+		local road = null, goal = null, at = null;
+		try{
+			road = ::Rokugan.mkRoad( mp);
+			goal = ::Rokugan.mkGoal( mp, road);
+			at = goal ? ::Rokugan.mkPoint( st, goal, road) : null;
+		}catch( ex){ log( "ERROR", "marker: " .. ex); }
+		if( !goal){
+			if( !noGoalT) noGoalT = skGetTime();
+			if( skGetTime() - noGoalT > 45000){ log( "END", "no goal for 45 s on %s (the road is done, or the marker lost it)" % [mp]); break; }
+			continue;
+		}
+		noGoalT = 0;
+		local key = "%s %.1f %.1f" % [goal[0], goal[1], goal[2]];
+		if( key != lastKey){
+			if( lastKey != ""){
+				log( "REACHED", "%s after %.0f s" % [lastKey, (skGetTime() - keyT) / 1000.0]);
+				::Rokugan.chaseSnap( "reached " .. lastKey);
+			}
+			lastKey = key; keyT = skGetTime(); tries = 0; stuckLogged = 0;
+			log( "GOAL", "%s (from %s)" % [key, mp]);
+		}
+		if( !at){
+			if( skGetTime() - keyT > 30000 && !stuckLogged){ stuckLogged = 1; log( "NOPOINT", "goal %s, nothing shown on %s" % [key, mp]); }
+			continue;
+		}
+		//	walk to the point the marker floats over (bot coordinates are world x 2)
+		local ok = ::Rokugan.botGoto( at[0] * 2.0, at[1] * 2.0, 9000, 1.4);
+		local now = ::rpgstage;
+		if( !now || now.mapid != mp || now.mainevent) continue;			//	an exit or a scene took over: fine
+		if( goal[0] == mp){												//	the goal itself: talk / search / step on it
+			log( "ARRIVE", "%s (%s)" % [key, ok ? "there" : "close"]);
+			local best = null, bd = 9.0;									//	the usable event nearest the point
+			foreach( k, e in now.events){										//	(within 3 m)
+				if( !e.rp3d || !e.page || !e.data || e.data["role"] == "portal") continue;
+				local tg = int( e.page["trigger"] || 0);
+				if( tg != 1 && tg != 2 && tg != 5) continue;
+				local ddx = e.rp3d.pos.x - goal[1], ddz = e.rp3d.pos.z - goal[2], dd = ddx * ddx + ddz * ddz;
+				if( dd < bd){ bd = dd; best = e; }
+			}
+			if( best && ::Rokugan.chaseUse( best)) log( "TALK", "%s (%s)" % [key, "" .. (best.data["name"] || "?")]);
+			else if( !best) log( "NOEVENT", "nothing usable within 3 m of the marker's point %s" % [key]);
+		}else{																//	an exit: inside its strip the marker's
+			foreach( d in ["up", "right", "down", "left", "up", "right", "down", "left"]){	//	point is wherever she
+				::Rokugan.botSet( d, true); sleep( 700); ::Rokugan.botSet( d, false);	//	stands: nudge each way
+				sleep( 300);													//	until the map changes
+				if( !::rpgstage || ::rpgstage.mapid != mp || ::rpgstage.mainevent) break;
+			}
+		}
+		tries++;
+		local w = ::Rokugan.botWhere();
+		if( lastPos && w && fabs( w.x - lastPos[0]) + fabs( w.z - lastPos[1]) < 0.5) tries++;
+		if( w) lastPos = [w.x, w.z];
+		if( skGetTime() - keyT > 120000 && stuckLogged < 2){
+			stuckLogged = 2;
+			log( "STUCK", "goal %s for %.0f s, on %s at %.1f %.1f, %d tries" % [key, (skGetTime() - keyT) / 1000.0, mp,
+				w ? w.x / 2.0 : 0.0, w ? w.z / 2.0 : 0.0, tries]);
+			::Rokugan.chaseSnap( "stuck on " .. key);
+			::Rokugan.botSet( "space", true); sleep( 100); ::Rokugan.botSet( "space", false);	//	a jump, a wander
+			::Rokugan.botGoto( (w ? w.x : 0.0) + ::rnd.nextf( -8.0, 8.0), (w ? w.z : 0.0) + ::rnd.nextf( -8.0, 8.0), 3000, 1.0);
+		}
+		if( skGetTime() - keyT > 300000){ log( "END", "gave up on %s after 300 s" % [key]); break; }
+	}
+	if( skGetTime() - t0 >= limit) log( "END", "time limit (%.0f min)" % [minutes]);
+	log( "DONE", "%.0f s" % [(skGetTime() - t0) / 1000.0]);
+};
+newthread().start( @() ::Rokugan.chaseRun());
+printf( "Rokugan marker chaser armed\n");
+
+}

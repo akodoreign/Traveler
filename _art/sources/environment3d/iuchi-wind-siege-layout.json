@@ -1,0 +1,52 @@
+{
+  "maps": {
+    "M408": {
+      "events": 95,
+      "placements": 28
+    },
+    "M409": {
+      "events": 82,
+      "placements": 29
+    },
+    "M410": {
+      "events": 82,
+      "placements": 27
+    },
+    "M881": {
+      "events": 0,
+      "placements": 17
+    }
+  },
+  "sources": {
+    "iuchi_siege_field_hearth": {
+      "name": "iuchi_siege_field_hearth",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iuchi_siege_field_hearth_00001_.glb",
+      "grid": [
+        45,
+        45,
+        25
+      ],
+      "occupied": 6343,
+      "world_size": [
+        1.15,
+        0.88,
+        1.02
+      ]
+    },
+    "iuchi_wind_buttress": {
+      "name": "iuchi_wind_buttress",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iuchi_wind_buttress_00001_.glb",
+      "grid": [
+        36,
+        20,
+        58
+      ],
+      "occupied": 5522,
+      "world_size": [
+        2.1,
+        1.22,
+        1.24
+      ]
+    }
+  }
+}

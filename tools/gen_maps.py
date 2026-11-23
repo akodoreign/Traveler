@@ -4616,7 +4616,7 @@ PATH_WALKED = {"P100": "G1234", "P101": "G1235", "P102": "G1236", "P103": "G1237
 PATH_START = [("P100", None, {"cmd": "cmd_mapmove", "dest": START_NATSUKO, "wipe": 1, "remap": True}),
               ("P101", "G300", go("M200", 32, 6)), ("P103", "G441", go("M240", 44, 6)),
               ("P104", "G585", go("M253", 12, 5, padded=False)), ("P102", "G706", go("M303", 30, 15)),
-              ("P105", "G831", go("M345", 36, 9)), ("P106", "G967", go("M388", 14, 6, padded=False)),
+              ("P105", "G831", go("M586", 24, 7)), ("P106", "G967", go("M388", 14, 6, padded=False)),
               ("P107", "G1038", go("M414", 8, 12))]
 
 
@@ -7662,6 +7662,20 @@ GO_GAME = [say("Nishi", "Sit. Black, as always?"), narrate("A go game in the Nor
                                                                     "play."), setf("G517")]))]
 
 
+def go_full_game():
+    """(user 2026-11-23: "yeah full game of go is fine") a whole 9x9 game with Nishi (plugin RokuganCastleGames.sk
+    "go"); the first win gives her black stone (A202, G1658), a rematch a little zeni."""
+    first = got("A202", "Nishi's Black Stone") + [setf("G1658"),
+                                                  say("Nishi", "Keep it. Every time you look at it you'll remember "
+                                                               "that I let you have the left edge.")]
+    again = [{"cmd": "cmd_moneyop", "op": 0, "amount": 100}, narrate("Got 100 zeni."),
+             say("Nishi", "Twice. Don't tell Kafu.")]
+    return mini_game("go", [if_([flag("G1658")], again, first)], [say("Nishi", "Again whenever you like. I'm "
+                                                                                  "not going anywhere for eleven "
+                                                                                  "weeks.")],
+                     [narrate("(Nishi plays out a game for you, explaining every stone. White wins by seven.)")])
+
+
 def north_dojo():
     return castle_stub("M259", "Shiro Akodo - the North Dojo", LION["dojos"], 72, 26, padded=False)
 
@@ -7805,8 +7819,12 @@ def lion_dojos(m, ev):
                               ([flag("G493")], [narrate("The bushido paintings, in order like a scroll. One is "
                                                         "missing: \"Duty\".")])], trigger=1)
     ev.talk(72, 22, SC["nishi"], [(None, [say("Nishi", "My wedding is in eleven weeks. Everyone keeps telling me."),
-                                          choices(("A game of go?", GO_GAME), ("Leave.", []))]),
-                                  ([flag("G510")], [say("Nishi", "...Black, as always.")])])
+                                          choices(("A game of go?", GO_GAME),
+                                                  ("A full game. Nine lines, to the end.", go_full_game()),
+                                                  ("Leave.", []))]),
+                                  ([flag("G510")], [say("Nishi", "...Black, as always."),
+                                                    choices(("A full game. Nine lines, to the end.", go_full_game()),
+                                                            ("Leave.", []))])])
     ev.talk(78, 24, "CE000", [(None, [narrate("The painting \"Honor\", Nishi's favourite.")])], trigger=1)
 
 
@@ -9224,6 +9242,13 @@ REMEDY = ("Remedy (another traveler's art)", [narrate("Only a remedy will help h
 
 
 # ---- M288 Kyuden Isawa (S01; S03 the Council; S04 Hayato's circle; the sealed library after S06)
+# (2026-11-23, castles-roamable: Kyuden Isawa) the city M288 is the castle's town: the Council hall's door is the castle
+# gate; the Council of Elemental Masters sits in the keep's 4F audience hall (S03); the sealed library's door is the
+# Archive court's west hall (the library M296 itself stays a set piece). Hayato's lodging, the shrine of the five rings
+# and the refugees stay in the city.
+ISAWA = {"reception": "M515", "archive": "M573", "court": "M519"}
+ISAWA_COUNCIL = (48, 44)                                     # before the Masters on the dais (4F)
+ISAWA_LIBRARY = (21, 41)                                     # the sealed library's door (Archive court, west hall)
 S03_PHX3 = cp3("S03") + [narrate("Objective: Doji Hayato's lodging, by the avenue.")]
 S04_PHX3 = cp3("S04", stop_at="[SAVE]") + [
     say("Haruki", "Kuzushi. The unbalancing. The old records say it knocks people off their feet."),
@@ -9251,13 +9276,10 @@ def kyuden_isawa():
     ev.portal(1, 16, "M285", DOOR_EV.get(("M285", "isawa"), 62), d=1)      # event 1: the treaty road
     south = ev.portal(108, 16, "M289", 1, d=3)                              # event 2: the fever road
     ev.ev["#%d#" % south]["reqs0"] = [flag("G651")]
-    lib = ev.portal(93, 29, "M296", 1, d=0)                                 # event 3: the sealed library (after S06)
-    ev.ev["#%d#" % lib]["reqs0"] = [flag("G671")]
-    ev.talk(93, 28, "CE000", [(None, [narrate("The sealed library. Bound shut; no one has opened it in a century.")]),
-                              ([flag("G671")], [])], trigger=1)
+    ev.portal(77, 29, ISAWA["reception"], 1, d=0)                           # event 3: the castle gate (the old
+    ev.talk(80, 28, "CE000", [(None, [narrate("The gate of Kyuden Isawa proper: the Council's halls, the keep, "  # Council
+                                              "the archive courts.")])], trigger=1)                              # hall door)
     ev.scene(54, 16, "G651", S01_PHX3, after=[flag("G630")])
-    ev.scene(76, 16, "G662", S03_PHX3, after=[flag("G660")])
-    ev.prop(76, 28, SC["rujo"], reqs=[flag("G662", False)], d=2)
     ev.prop(72, 18, SC["hayato"], reqs=[flag("G662")], d=2)
     ev.talk(50, 19, "CE000", [(None, [narrate("Doji Hayato's lodging.")]),
                               ([flag("G662"), flag("G664", False)], S04_PHX3),
@@ -9302,7 +9324,9 @@ LEAVE = [narrate("The road out of the fever villages. The village elder runs aft
                                          narrate("Another day of treatments. Two more of the sick live. (The thing at "
                                                  "the centre grows while Haruki is kind.)")] + DARK + REST),
                  ("Go now.", [narrate("Every hour he stays, it spreads further. I'm sorry. I'm so sorry.")])),
-         setf("G660")]
+         setf("G660"),
+         narrate("Objective: the Council of Elemental Masters, in the audience hall at the top of Kyuden Isawa's "
+                 "keep.")]
 
 
 def fever_road_1():
@@ -9416,7 +9440,8 @@ KUZUSHI = cp3("S06", stop_at="[BATTLE") + [
     say("Oni no Kuzushi", "You'll do this again, little Void. You'll break something else. You always will."),
     say("Haruki", "Maybe. But not today."),
     narrate("The oni collapses inward, tumbling down into nothing. The cellar seal glows, then goes dark and whole."),
-    setf("G671"), narrate("The fever ends in a week.")] + DARK + [go("M288", 93, 26)]
+    setf("G671"), narrate("The fever ends in a week.")] + DARK + [go(ISAWA["archive"], ISAWA_LIBRARY[0],
+                                                                     ISAWA_LIBRARY[1] - 3)]
 
 
 def isawa_mori_1():
@@ -9507,6 +9532,32 @@ S07_PHX3 = cp3("S07", stop_at="[SPELL") + got("I174", "a Scroll: Dreamwalker") +
     setf("G673"), narrate("Next: Howl. The coast road leaves Kyuden Isawa to the north. (Recommended level 41)")]
 
 
+def isawa_door(key):
+    """A story doorway on a Kyuden Isawa district (event id), building that district if it has not been yet."""
+    mid = {"library": ISAWA["archive"]}[key]
+    if (mid, key) not in DOOR_EV:
+        make(mid)
+    return DOOR_EV[(mid, key)]
+
+
+def isawa_council(m, ev):
+    """4F, the audience hall: the Council of Elemental Masters in the masks of the five elements; S03."""
+    ev.prop(48, 50, SC["rujo"], reqs=[flag("G662", False)], d=0)
+    for x in (38, 43, 53, 58):
+        ev.prop(x, 50, SC["acolyte"], reqs=[flag("G662", False)], d=0)
+    ev.prop(40, 42, SC["clerk"], d=0)
+    ev.scene(ISAWA_COUNCIL[0], ISAWA_COUNCIL[1], "G662", S03_PHX3, after=[flag("G660")])
+
+
+def isawa_archive(m, ev):
+    """Archive court: the west hall is the sealed library, bound shut until the fever is broken (G671)."""
+    lib = DOOR_EV[(m.mid, "library")] = ev.portal(ISAWA_LIBRARY[0], ISAWA_LIBRARY[1], "M296", 1, d=2)
+    ev.ev["#%d#" % lib]["reqs0"] = [flag("G671")]
+    ev.talk(ISAWA_LIBRARY[0] + 3, ISAWA_LIBRARY[1] - 1, "CE000", [
+        (None, [narrate("The sealed library. Bound shut; no one has opened it in a century.")]),
+        ([flag("G671")], [narrate("The sealed library. The bindings hang loose.")])], trigger=1)
+
+
 def sealed_library():
     def extra(m, ev):
         ev.prop(14, 8, SC["uona"], reqs=[flag("G673", False)], d=0)
@@ -9514,10 +9565,11 @@ def sealed_library():
     return castle_floor("M296", "Kyuden Isawa - the sealed library", 22, 9, [("book", 4, 8), ("book", 8, 8),
                                                                             ("book", 12, 8), ("book", 16, 8),
                                                                             ("candle", 2, 4), ("candle", 20, 4)],
-                        down=("M288", 3), extra=extra)
+                        down=(ISAWA["archive"], isawa_door("library")), extra=extra)
 
 
 BATTLE_SPECS.update({"M846": battle_forest, "M847": battle_cellar})
+CASTLE_STORY.update({ISAWA["court"]: isawa_council, ISAWA["archive"]: isawa_archive})
 INTERIORS.update({"M290": temple_hospital, "M295": estate_cellar, "M296": sealed_library})
 MAPS_LION.update({"M288": kyuden_isawa, "M289": fever_road_1, "M290": temple_hospital, "M291": fever_road_2,
                   "M292": isawa_mori_1, "M293": isawa_mori_2, "M294": mieko_estate, "M295": estate_cellar,
@@ -11200,8 +11252,14 @@ S05_DGN4 = dp4("S05", stop_at="> CHOICE") + [choices(
      [narrate("(Honor +5, told to no one.)")]))] + [
     setf("G817"), narrate("Kumpei paints the way home: the orchard dissolving into a grey sea-cave, the light exactly "
                           "right.")] + DARK + [go("M320", 29, 15)]
+# (2026-11-23, castles-roamable: Shiro Kitsuki) Lord Kitsuki Yasu receives Gendo in the keep's 4F audience hall; the
+# town's door to the hall is the castle's front gate; Gendo's office (the epilogue coda) is in the 3F archives. The old
+# rooms M344 / M454 are stubs.
+KITSUKI = {"reception": "M525", "office": "M528", "court": "M529"}
+KITSUKI_COURT = (48, 44)                                     # before Lord Yasu's seat on the dais (4F)
+KITSUKI_OFFICE = (20, 20)                                    # Gendo's desk in the west archive aisle (3F)
 HOME_DGN4 = dp4("S06", stop_at="(The hall of Lord KITSUKI YASU") + [setf("G830")] + DARK + [
-    go("M344", 6, 5, padded=False)]
+    go(KITSUKI["court"], *KITSUKI_COURT, padded=False)]
 YASU_DGN4 = dp4("S06", start_at="(The hall of Lord KITSUKI YASU", stop_at="### Akuro's prophecy") + \
     dp4("S06", start_at="GENDO: (alone, writing", stop_at="[CHAPTER COMPLETE]") + \
     got("A142", "a Pressed Cherry Blossom") + [
@@ -11238,7 +11296,7 @@ def shiro_kitsuki():
     for x in (4, 24, 44, 64, 84):
         fb(m, x, 17, 2, LAMP_STREET)
     ev = Events(m)
-    ev.portal(50, 29, "M344", 1, d=0)                                       # event 1: Kitsuki Yasu's hall
+    ev.portal(50, 29, KITSUKI["reception"], 1, d=0)                         # event 1: the castle gate (2026-11-23)
     ev.inn(12, 18, EP_SERVICE["innkeeper"], 150)
     ev.clerk(84, 18, EP_SERVICE["merchant"], "R143")
     ev.talk(2, 14, "CE000", [(None, [narrate("The coast road, and a ferry to Tortoise Island."),
@@ -11258,6 +11316,30 @@ def shiro_kitsuki():
 
 
 def kitsuki_hall():
+    return castle_stub("M344", "Shiro Kitsuki - Lord Kitsuki Yasu's hall", KITSUKI["court"], *KITSUKI_COURT,
+                       padded=False)
+
+
+def kitsuki_court(m, ev):
+    """4F, the audience hall: Lord Kitsuki Yasu on the dais; Dragon Ch4's homecoming (S06) once Gendo is home."""
+    ev.prop(48, 50, SC["yasu"], d=0)
+    for x, z in ((40, 42), (56, 42)):
+        ev.prop(x, z, SC["clerk"], d=0)
+    ev.scene(KITSUKI_COURT[0], KITSUKI_COURT[1], "G821", YASU_DGN4, after=[flag("G830")])
+
+
+def kitsuki_office(m, ev):
+    """3F, the west archive aisle: Gendo's desk, his evidence case; the epilogue coda (E01) sits here."""
+    for x, z, kind in ((19, 23, "lowchest"), (21, 23, "doc"), (17, 23, "box"), (14, 24, "shelf"), (25, 24, "shelf")):
+        fb(m, x, z, 4, IN[kind])
+    fb(m, 23, 24, 2, LAMP_CANDLE)
+    ev.talk(20, 22, "CE000", [(None, [narrate("Kitsuki Gendo's desk. An evidence case, a notebook, a persimmon "
+                                              "going soft.")])], trigger=1)
+    ev.scene(KITSUKI_OFFICE[0], KITSUKI_OFFICE[1], "G1200", UNDARK + CODA["G1200"] + coda_next("G1201"),
+             after=[flag("G1197"), flag("G1199")])
+
+
+def kitsuki_hall_room():                                     # (the retired room, kept for reference)
     def extra(m, ev):
         ev.prop(12, 7, SC["yasu"], d=0)
         ev.scene(5, 4, "G821", YASU_DGN4, after=[flag("G830")])
@@ -11305,6 +11387,7 @@ def battle_flagship():
 BATTLE_SPECS.update({"M857": battle_land_front, "M858": battle_lighthouse, "M859": battle_tunnels,
                      "M860": battle_flagship})
 INTERIORS.update({"M339": mantis_cabin, "M342": palace_audience, "M344": kitsuki_hall})
+CASTLE_STORY.update({KITSUKI["court"]: kitsuki_court, KITSUKI["office"]: kitsuki_office})
 MAPS_LION.update({"M337": war_camp, "M339": mantis_cabin, "M340": harbour_tunnels, "M341": flagship,
                   "M342": palace_audience, "M343": shiro_kitsuki, "M344": kitsuki_hall, "M857": battle_land_front,
                   "M858": battle_lighthouse, "M859": battle_tunnels, "M860": battle_flagship})
@@ -11345,6 +11428,11 @@ def sp1(sid, **kw):
     return script_scene("scorpion-ch1", sid, **kw)
 
 
+BAYUSHI = {"reception": "M520", "shrine": "M586", "north": "M588"}
+BAYUSHI_MEMORIAL = (24, 8)                                   # before the Shrine of Fukurokujin (Shrine court)
+BAYUSHI_TEAHOUSE = (75, 48)                                  # the peninsula's landward end (North garden)
+
+
 # ---- M345 the memorial garden (S01: the Eavesdrop tutorial; three rumours before the incense burns down)
 S01_SCP1 = [narrate("CHAPTER 1 - Blood and Iron."),
             narrate("Kyuden Bayushi. Its gardens are beautiful. Its walls hide three times as many passages as rooms."),
@@ -11370,10 +11458,84 @@ S01_END = [narrate("The incense burns down. Mitsue, now a minor cousin in a diff
                                   "to be, and you'll learn it.")]),
                 say("Mitsue", "Nobody is very easy to be, sensei.")]),
            say("Norie", "Be careful. Some of us forget how to stop."),
-           SAVE_CHOICE, setf("G837")] + DARK + [go("M346", 8, 4, padded=False)]
+           SAVE_CHOICE, setf("G837")] + DARK + [go(BAYUSHI["north"], *BAYUSHI_TEAHOUSE)]
+
+
+# (2026-11-23, castles-roamable: Kyuden Bayushi) Scorpion Ch1's two rooms move into the roamable castle: the memorial
+# (S01) is held in the Shrine court before the Shrine of Fukurokujin (research blood-and-iron.md), with a koi pond and
+# the dinner pavilion; Norie's orders (S02) in a willow teahouse on a pond peninsula in the North garden. The old rooms
+# M345 / M346 are stubs that move an old save to the same place.
+
+
+def bayushi_memorial(m, ev):
+    """Shrine court: S01 A Memorial in Red. The yard's shrine (18, 12) is the Shrine of Fukurokujin; a koi pond west
+    of it, the dinner pavilion east, the three marked conversations."""
+    m.rect(3, 17, 13, 8, WATER, 2)                                          # the koi pond
+    m.rect(8, 17, 3, 8, PLANK, 3)                                           # a plank bridge over it
+    building(m, 28, 9, 12, 7, wall=WOOD)                                    # the dinner pavilion (its guests
+                                                                            #  sit out front, camera side)
+    fb(m, 21, 10, 2, LAMP_CANDLE)                                           # the incense burner
+    for x, z in ((2, 12), (16, 26), (40, 14)):
+        m.tree(x, z, TREE_M)
+    ev.scene(BAYUSHI_MEMORIAL[0], BAYUSHI_MEMORIAL[1], "G832", S01_SCP1, after=[flag("G831")])
+    ev.prop(23, 10, SC["norie"], reqs=[flag("G837", False)], d=0)
+    ev.prop(6, 15, SC["soshi"], reqs=[flag("G837", False)], d=3)
+    ev.talk(9, 15, SC["soshi"], MEMORIAL_SOSHI, d=3)
+    ev.talk(31, 6, SC["mantisenvoy"], MEMORIAL_MANTIS)
+    ev.talk(36, 6, SC["palecourtier"], MEMORIAL_PALE)
+    ev.talk(21, 11, "CE000", [(None, [narrate("The incense sticks before the Shrine of Fukurokujin, Fortune of "
+                                              "Wisdom. Half burned.")])], trigger=1)
+    ev.npc(12, 6, SC["courtier"], "(a Crane, to a Phoenix) I'm certain the Champion dyes his hair.",
+           reqs=[flag("G837", False)])
+    ev.scene(24, 9, "G837", S01_END, after=[flag("G834"), flag("G835"), flag("G836")])
+
+
+def bayushi_teahouse(m, ev):
+    """North garden: S02 The Willow Teahouse. A pond against the north wall (far from the camera), a peninsula running
+    out into it, the teahouse at its tip: the player watches Mitsue walk out to it."""
+    m.objs = [o for o in m.objs if not (o["t"] == "fb" and o["fbtype"] == 20 and o["z"] == 52  # (the garden's two
+                                        and o["x"] in (64, 86))]                         #  trees stood in it)
+    m.rect(55, 50, 39, 11, WATER, 2)                                        # the still pond along the north wall
+    m.rect(71, 46, 9, 13, GRASS2, 3)                                        # the peninsula, from the south bank
+    building(m, 72, 54, 7, 5, wall=WOOD)                                    # the teahouse at its tip
+    for x, z in ((58, 48), (64, 48), (86, 48), (92, 48)):                   # weeping willows on the bank
+        m.tree(x, z, TREE_L)
+    fb(m, 71, 47, 2, LAMP_STREET)
+    fb(m, 79, 47, 2, LAMP_STREET)
+    ev.prop(75, 52, SC["norie"], reqs=[flag("G837"), flag("G839", False)], d=0)
+    ev.prop(77, 52, SC["servant"], d=0)
+    ev.scene(BAYUSHI_TEAHOUSE[0], BAYUSHI_TEAHOUSE[1], "G838", S02_SCP1, after="G837")
+
+
+MEMORIAL_SOSHI = [
+    (None, [narrate("Two Soshi courtiers by the koi pond, fans up, whispering a little too loudly."),
+            choices(eavesdrop("Soshi courtier", 100, "They want to be overheard: they are practising. \"The Crab "
+                              "were scandalous.\" And, carelessly: \"A Miya caravan of relics from the ruins of the "
+                              "old capital stopped here. Two nights. It went south.\" (Rumour 1)", "G834",
+                              [setf("G833", 1, "+=")]), ("Leave them.", []))]),
+    ([flag("G834")], [say("Soshi courtier", "(to the other, delighted) She was listening. Good. Now it will "
+                                            "travel.")])]
+MEMORIAL_MANTIS = [
+    (None, [narrate("A Mantis envoy at the dinner pavilion, explaining to a Yogo why he missed the caravan."),
+            choices(eavesdrop("Mantis envoy", 80, "\"Bandits on the River of Gold, worse every month. And "
+                              "another band, fighting them. Nobody knows whose.\" (Rumour 2)", "G835",
+                              [setf("G833", 1, "+=")]), ("Leave him.", []))]),
+    ([flag("G835")], [say("Mantis envoy", "More tea. And less of the girl who brings it.")])]
+MEMORIAL_PALE = [
+    (None, [narrate("A pale Bayushi courtier who hasn't touched her food, talking low to her cousin."),
+            choices(eavesdrop("Bayushi courtier", 65, "\"Two nights I dreamed of blood. A heart beating. Both "
+                              "nights the caravan stayed here.\" Her cousin goes still: \"...So did I. The same "
+                              "two nights.\" (Rumour 3)", "G836", [setf("G833", 1, "+=")],
+                              fail="(she sets down her chopsticks) Some of us are in mourning, girl."),
+                    ("Leave her.", []))]),
+    ([flag("G836")], [say("Bayushi courtier", "I'm not hungry. I haven't been hungry since the caravan.")])]
 
 
 def memorial_garden():
+    return castle_stub("M345", "Kyuden Bayushi - the memorial garden", BAYUSHI["shrine"], *BAYUSHI_MEMORIAL)
+
+
+def memorial_garden_room():                                  # (the retired room, kept for reference)
     m = MapSpec("M345", "Kyuden Bayushi - the memorial garden", 76, 38, base=GRASS, y=3)
     m.rect(0, 30, 76, 8, GRASS2, 3)
     fill(m, 0, 4, 34, 76, 8, 4, STONEW)                                     # the charcoal-grey keep wall behind
@@ -11462,6 +11624,10 @@ S02_SCP1 = [narrate("A teahouse among weeping willows, on a peninsula in a still
 
 
 def willow_teahouse():
+    return castle_stub("M346", "Kyuden Bayushi - the willow teahouse", BAYUSHI["north"], *BAYUSHI_TEAHOUSE)
+
+
+def willow_teahouse_room():                                  # (the retired room, kept for reference)
     def extra(m, ev):
         ev.prop(10, 7, SC["norie"], reqs=[flag("G839", False)], d=0)
         ev.prop(14, 6, SC["servant"], d=0)
@@ -11512,7 +11678,16 @@ def bayushi_town():
                          [if_([{"lvar": "MONEY", "op": ">=", "rvar": 150}],
                               [{"cmd": "cmd_moneyop", "op": 1, "amount": 150}] + got("I185", "Actor's Mask"),
                               [say("Mask-maker", "A face costs money, child. Even a borrowed one.")])]),
-                        ("Leave.", []))])])
+                        ("Leave.", []))]),
+        # the Game of Masks (RokuganSadane): once Kagero has opened it, she sells the common masks to a player
+        ([flag("G1651")], [say("Mask-maker", "Ah, a player. Kagero sends me all her strays. Something to play in?"),
+                           choices(("Masks for the game.", [sadane_shop()]),
+                                   ("Buy an Actor's Mask (150 zeni).",
+                                    [if_([{"lvar": "MONEY", "op": ">=", "rvar": 150}],
+                                         [{"cmd": "cmd_moneyop", "op": 1, "amount": 150}] +
+                                         got("I185", "Actor's Mask"),
+                                         [say("Mask-maker", "A face costs money, child. Even a borrowed one.")])]),
+                                   ("Leave.", []))])])
     ev.npc(56, 18, SC["actor_a"], "(declaiming at nobody) \"I am the Emperor's shadow!\" ...Too much? Not enough. "
                                   "Never enough.")
     ev.talk(30, 17, SC["beggar"], [
@@ -12081,6 +12256,7 @@ ROOM_DIMS.update({"M346": (20, 8), "M352": (24, 9), "M353": (20, 8), "M354": (20
 BATTLE_SPECS.update({"M861": battle_grove_road, "M862": battle_river_night, "M863": battle_marsh,
                      "M864": battle_heart})
 INTERIORS.update({"M346": willow_teahouse, "M352": kitsune_hall, "M353": mantis_guest_house, "M354": dreaming_carp})
+CASTLE_STORY.update({BAYUSHI["shrine"]: bayushi_memorial, BAYUSHI["north"]: bayushi_teahouse})
 MAPS_LION.update({"M345": memorial_garden, "M346": willow_teahouse, "M347": bayushi_town, "M348": traitors_grove,
                   "M349": shutai, "M350": river_road, "M351": kudo, "M352": kitsune_hall, "M353": mantis_guest_house,
                   "M354": dreaming_carp, "M355": river_crossing, "M356": west_marsh_1, "M357": west_marsh_2,
@@ -13685,7 +13861,12 @@ def mountain_inn():
                          ("table", 8, 4)], down=("M380", 2), wall=WOOD, extra=extra)
 
 
-# ---- M382 the Togashi road (S04 the procession; S05 duty's knife, at night) and M383 the garden of Kyuden Togashi
+# ---- M382 the Togashi road (S04 the procession; S05 duty's knife, at night) and the garden of Kyuden Togashi
+# (2026-11-23, castles-roamable: Kyuden Togashi) the audience (S04, fated) is held in the roamable castle's Courtyard
+# garden (the Dragon motif: raked sand and stones); the old garden room M383 is a stub. The road is the castle's
+# town now: its gate opens on the reception once the audience is over (G947), as the old garden's did.
+TOGASHI = {"reception": "M623", "garden": "M615"}
+TOGASHI_AUDIENCE_EDGE = (38, 40)                             # where the servant train kneels (edge of the garden)
 PROCESSION = [narrate("On the road ahead: the Scorpion Champion's procession. Red lacquer, silent servants, banners."),
               narrate("At its centre, masked, unmistakable: Bayushi Shoju, going up to the High House of Light."),
               if_([flag("G956")], [think("The clerk was right. Tomorrow came early.")]),
@@ -13695,7 +13876,7 @@ PROCESSION = [narrate("On the road ahead: the Scorpion Champion's procession. Re
               think("...Keep walking, she said."),
               script('::Rokugan.takeDisguise("A181", "A185");'),
               narrate("Many Faces: Mitsue steps into the procession's servant train in a new face, carrying a tray, "
-                      "eyes down.")] + DARK + [go("M383", 6, 14)]
+                      "eyes down.")] + DARK + [go(TOGASHI["garden"], *TOGASHI_AUDIENCE_EDGE)]
 DUTY_REASONS = [("Tell the party.", "They'd be killed for knowing."),
                 ("Warn the Emperor.", "Who would believe a nobody?"),
                 ("Tell Norie.", "She'd have to report me. She'd do it.")]
@@ -13773,25 +13954,17 @@ GARDEN = [narrate("A garden of raked sand and old pines at the top of the world.
 
 
 def togashi_garden():
-    m = MapSpec("M383", "Kyuden Togashi - the garden", 64, 30, base=CAVE_FLOOR, y=3)   # pale raked gravel
-    for x in range(64):                                                     # the garden wall, the peaks above it
-        m.rect(x, 25, 1, 5, STONEW, 9)
-    for z in range(0, 25):
-        m.rect(0, z, 1, 1, STONEW, 9)
-        m.rect(63, z, 1, 1, STONEW, 9)
-    for x, z in ((14, 20), (26, 22), (50, 21), (58, 18)):
-        m.tree(x, z, TREE_M)
-    for x, z in ((20, 8), (46, 9), (33, 6)):
-        m.tree(x, z, ROCK_M)
-    ev = Events(m)
-    ev.talk(1, 14, "CE000", [(None, [narrate("The gate back to the road."), choices(
-        ("Go back to the road.", DARK + [go("M382", 72, 13)]), ("Stay.", []))])], trigger=5)
-    ev.prop(36, 18, SC["togashi"], reqs=[flag("G947", False)], d=2)
-    ev.prop(36, 14, SC["shoju"], reqs=[flag("G947", False)], d=0)
-    for x in (24, 28, 44, 48):
-        ev.prop(x, 11, (SC["servant"], SC["bayushiguard"])[x % 8 == 0], reqs=[flag("G947", False)], d=0)
-    ev.scene(6, 14, "G947", GARDEN)
-    return m, ev
+    return castle_stub("M383", "Kyuden Togashi - the garden", TOGASHI["garden"], *TOGASHI_AUDIENCE_EDGE)
+
+
+def togashi_audience(m, ev):
+    """Courtyard garden: S04 the Kami Togashi receives Bayushi Shoju on the avenue between the sand gardens; the
+    procession kneels along it. Only after the procession scene (G959): another road's visit doesn't set it off."""
+    ev.prop(48, 47, SC["togashi"], reqs=[flag("G947", False)], d=0)
+    ev.prop(48, 43, SC["shoju"], reqs=[flag("G947", False)], d=2)
+    for x, z in ((40, 44), (40, 47), (56, 44), (56, 47)):
+        ev.prop(x, z, (SC["servant"], SC["bayushiguard"])[x > 48], reqs=[flag("G947", False)], d=(1, 3)[x < 48])
+    ev.scene(TOGASHI_AUDIENCE_EDGE[0], TOGASHI_AUDIENCE_EDGE[1], "G947", GARDEN, after=[flag("G959")])
 
 
 # ---- M384-M385 Tamori's Furnace (S06), M386 the crater's mouth (S07 the boss; S08 the ending)
@@ -14201,7 +14374,7 @@ def valley_road_autumn():
         fill(m, x, 4, z, 4, 2, 3, WOOD)                                     # shacks of sticks
     ev = Events(m)
     ev.portal(122, 15, "M387", 3, d=3)                                      # event 1: east, the town
-    ev.portal(96, 21, "M391", 1, d=0)                                       # event 2: north, Shiro Iuchi
+    ev.portal(96, 21, IUCHI["reception"], 1, d=0)                           # event 2: north, the gate of Shiro Iuchi
     ev.portal(76, 12, "M392", 1, d=2)                                       # event 3: south, the Hafuna fields
     yo = ev.portal(56, 21, "M396", 1, d=0)                                  # event 4: north, Yotomo (after S05)
     ev.ev["#%d#" % yo]["reqs0"] = [flag("G978")]
@@ -14254,33 +14427,30 @@ TELESCOPE = [say("Hiroichi", "My telescope? Gaijin glass, from the Burning Sands
                      ("Leave it.", []))]
 
 
+# (2026-11-23, castles-roamable: Shiro Iuchi) Daiyu's garden is the roamable castle's Courtyard garden (the Unicorn
+# motif: riding-court tents); the valley road's door is the castle gate; the old garden room M391 is a stub.
+IUCHI = {"reception": "M530", "garden": "M604"}
+IUCHI_GARDEN = (24, 26)                                      # before Lord Daiyu and his woodchuck
+
+
 def shiro_iuchi_garden():
-    m = MapSpec("M391", "Shiro Iuchi - the garden", 84, 34, base=GRASS, y=3)
-    for x in range(84):                                                     # the crags of the wind tunnel
-        h = 10 + int(4 * abs(np.sin(x * 0.19)))
-        if x < 14 or x > 70:
-            m.rect(x, 0, 1, 34, STONE, h)
-    fill(m, 18, 4, 26, 48, 8, 6, PLASTER)                                   # the castle, its triangle above
-    for x in range(18, 66, 4):
-        fill(m, x, 4, 26, 1, 8, 1, DARKWOOD)
-    fill(m, 18, 12, 26, 48, 1, 6, ROOF)
-    fill(m, 30, 13, 28, 24, 3, 3, ROOF)
-    for x, z in ((20, 18), (28, 10), (56, 9), (62, 18), (48, 20)):
-        m.tree(x, z, (TREE_M, TREE_L)[x % 2])
-    ev = Events(m)
-    ev.portal(40, 1, "M390", 2, d=2)                                        # event 1: back to the valley road
-    ev.prop(42, 17, "EP173", msg="The woodchuck regards you. It has opinions.", d=1)
-    ev.talk(40, 17, SC["daiyu"], [(None, CASE1),
+    return castle_stub("M391", "Shiro Iuchi - the garden", IUCHI["garden"], *IUCHI_GARDEN)
+
+
+def iuchi_garden(m, ev):
+    """Courtyard garden: Iuchi Daiyu in his garden with a woodchuck (Unicorn Ch2 case 1), Karasu behind him, the karo
+    Hiroichi with his gaijin telescope; a soldier on the wind."""
+    ev.prop(26, 22, "EP173", msg="The woodchuck regards you. It has opinions.", d=1)
+    ev.talk(24, 22, SC["daiyu"], [(None, CASE1),
                                   ([flag("G972")], [say("Daiyu", "The woodchuck says you smell of rice cakes. He "
-                                                                 "approves.")])], d=2)
-    ev.npc(46, 19, SC["karasu"], "I have seen worse than this war. (pause) Not much worse.", d=2)
-    ev.talk(30, 18, SC["hiroichi"], [(None, [say("Hiroichi", "The tribunal's emissary. Welcome to Shiro Iuchi. My lord "
+                                                                 "approves.")])], d=0)
+    ev.npc(30, 21, SC["karasu"], "I have seen worse than this war. (pause) Not much worse.", d=0)
+    ev.talk(16, 23, SC["hiroichi"], [(None, [say("Hiroichi", "The tribunal's emissary. Welcome to Shiro Iuchi. My lord "
                                                              "is... occupied.")]),
                                      ([flag("G972")], TELESCOPE), ([flag("G985")], [
                                          say("Hiroichi", "Look after the glass. Look after him, if you can.")])])
-    ev.npc(52, 13, SC["iuchisoldier"], "The wind never stops here. My grandfather said the castle was built to catch "
+    ev.npc(60, 22, SC["iuchisoldier"], "The wind never stops here. My grandfather said the castle was built to catch "
                                        "things. Spirits. Luck. Trouble.")
-    return m, ev
 
 
 # ---- M392 the Hafuna fields (case 2, the salted fields)
@@ -17591,7 +17761,7 @@ CH4_DONE = {"P100": "G286", "P101": "G434", "P102": "G830", "P103": "G573", "P10
 FINALE_ALL_EIGHT = False
 # each path's last map (where its Ch4 leaves the traveler): (x, z, that path's Ch4 flag, indoors)
 FINALE_GATES = {"M151": (58, 40, "G286", False), "M509": (56, 46, "G434", True), "M273": (54, 16, "G573", False),
-                "M297": (58, 13, "G698", False), "M344": (9, 4, "G830", True), "M379": (104, 15, "G953", False),
+                "M297": (58, 13, "G698", False), "M529": (56, 46, "G830", True), "M379": (104, 15, "G953", False),
                 "M413": (14, 14, "G1031", False), "M438": (14, 13, "G1154", False)}
 
 
@@ -18673,7 +18843,7 @@ F09_FINAL[-1:] = F10_FLIGHT + F11_DEATH                         # (the "not buil
 # then the screen goes dark and the next coda's traveler leads. Props show only between that coda and the next.
 CODA_FLAGS = ["G1198", "G1199", "G1200", "G1201", "G1202", "G1203", "G1204", "G1205"]   # Natsuko ... Mitsue
 CODA_GO = {"G1198": ("P100", "M140", 27, 15, True), "G1199": ("P101", "M200", 31, 16, True),
-           "G1200": ("P102", "M454", 9, 5, False), "G1201": ("P103", "M242", 30, 12, True),
+           "G1200": ("P102", "M528", 20, 20, False), "G1201": ("P103", "M242", 30, 12, True),
            "G1202": ("P104", "M281", 17, 10, True), "G1203": ("P106", "M413", 17, 14, True),
            "G1204": ("P107", "M455", 11, 7, False), "G1205": ("P105", "M382", 30, 15, True),
            "G1206": ("P105", "M456", 20, 12, True)}
@@ -18786,6 +18956,10 @@ def with_coda(builder, f):
 
 
 def gendo_office():
+    return castle_stub("M454", "Shiro Kitsuki - Gendo's office", "M528", 20, 20, padded=False)
+
+
+def gendo_office_room():                                     # (the retired room, kept for reference)
     return interior("M454", "Shiro Kitsuki - Gendo's office", 18, 7, [
         ("lowchest", 9, 7), ("doc", 11, 7), ("box", 7, 7), ("candle", 13, 7), ("shelf", 2, 8), ("book", 4, 8),
         ("shelf", 15, 8), ("doc", 17, 8), ("tatami", 8, 3)],
@@ -19791,7 +19965,9 @@ MUSIC_OVERRIDE = {"M154": "shadow", "M155": "shadow", "M156": "shadow", "M301": 
 MUSIC_OVERRIDE.update({"M345": "court", "M346": "court", "M348": "shadow", "M351": "town", "M355": "night",
                        "M356": "shadow", "M357": "shadow", "M358": "shadow"})             # Scorpion Ch1
 MUSIC_OVERRIDE.update({"M370": "court", "M371": "road", "M376": "court", "M377": "shadow", "M378": "night"})  # Sc. Ch3
+CASTLE_STORY[TOGASHI["garden"]] = togashi_audience
 MUSIC_OVERRIDE.update({"M383": "shrine", "M384": "cave", "M385": "cave", "M386": "shadow"})  # Sc. Ch4 ("Tamori" has "mori")
+CASTLE_STORY[IUCHI["garden"]] = iuchi_garden
 MUSIC_OVERRIDE.update({"M388": "town", "M389": "road", "M391": "court", "M392": "road", "M393": "shadow", "M394": "court",
                        "M395": "town", "M396": "town"})                                    # Unicorn Ch1
 MUSIC_OVERRIDE.update({"M399": "shadow", "M400": "shadow", "M401": "shadow", "M402": "shadow", "M403": "shrine",
@@ -20053,7 +20229,8 @@ ROUTE_START_LEVELS = {1: "2-6", 2: "22-29", 3: "28-40", 4: "44-50"}
 
 
 def route_danger(tier):
-    return "Danger %s (scales with goals)" % ROUTE_START_LEVELS[min(tier, 4)]
+    # (2026-11-23 read: was "Danger 2-6 (scales with goals)" inside the road-stone's quote)
+    return "Foes around level %s, stronger as the story goes on." % ROUTE_START_LEVELS[min(tier, 4)]
 
 
 def _edge_spot(m, ev, side):
@@ -20159,7 +20336,7 @@ def route_map(r):
         ev.portal(cave_x[i], 25, cid, 1, d=0)
     for k, (hub, pids, pos) in enumerate(ends):
         sx = min(max(pos[0] + (4 if k == 0 else -4), 3), W - 4)
-        ev.talk(sx, 14, "CE000", [(None, [narrate("A road-stone: \"This way: %s. Back: %s. %s.\"" % (
+        ev.talk(sx, 14, "CE000", [(None, [narrate("A road-stone: \"This way: %s. Back: %s.\" (%s)" % (
             MAP_TITLE.get(ends[1 - k][0], "the next lands"), MAP_TITLE.get(ends[k][0], "the last lands"),
             route_danger(tier)))])], trigger=1)
     for i, cx in enumerate(cave_x):
@@ -20477,6 +20654,14 @@ def marker_pass(mp):
             if spot is None:
                 raise RuntimeError("Missing the Lion Ch2 talk that sets %s on %s" % (done, mid))
             beats.append(spot + [[[done, "==", False], [need, "==", True]]])
+    # (2026-11-23, Scorpion Ch1 in the roamable Kyuden Bayushi) the memorial's three marked conversations are talks:
+    # point at each until heard (S01 G832 started, the incense not yet out G837)
+    for done in ("G834", "G835", "G836"):
+        if BAYUSHI["shrine"] in mp:
+            spot = find(BAYUSHI["shrine"], '"lvar": "%s", "op": "=", "rvar": true' % done)
+            if spot is None:
+                raise RuntimeError("Missing the Kyuden Bayushi memorial eavesdrop %s" % done)
+            beats.append(spot + [[[done, "==", False], ["G832", "==", True], ["G837", "==", False]]])
     if DOJI["stacks"] in mp:                                # (Crane Ch4 in the roamable Kyuden Doji) the
         spot = find(DOJI["stacks"], '"lvar": "G418", "op": "=", "rvar": true')   # censor-monk opens the way down
         if spot is None:
@@ -20892,7 +21077,7 @@ def register(specs, events):
     scene_pre_pass(mp)
     for row in mp.values():
         fit_walk_in_doorways(row.get("event") or {})
-    json.dump(mp, open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent="	")
+    save_json_locked(mpath, mp)
     _register_expansion_gvars()
 
 
@@ -20922,7 +21107,7 @@ def journal_pass(mp):
                       'job = %s, offer = %s, hunt = %s, back = %s }' % (
                           100 + k, road, json.dumps(title), json.dumps(opens_f), taken, hunted, done,
                           json.dumps(job), json.dumps("%s: %s has work." % (gplace, _the(gname))),
-                          json.dumps(remind), json.dumps("Back to %s in %s." % (_the(gname), gplace))))
+                          json.dumps(remind), json.dumps("Back to %s in %s." % (_the(gname), re.sub(r"^The ", "the ", gplace)))))
     for k, q in enumerate(FETCH_QUESTS):                                   # the Cakon odd jobs: "hunted" = found
         key, title, gmap, gx, gz, spr, gname, imap, ix, iz, offer, found, thanks, zeni = q
         taken, got_, done = FQ_FLAGS[key]
@@ -20935,7 +21120,7 @@ def journal_pass(mp):
                           json.dumps(settings.get("open", [FQ_OPEN])), taken, got_, done,
                           json.dumps("%s: %s has an odd job." % (gplace, _the(gname))),
                           json.dumps("Find it: %s." % iplace),
-                          json.dumps("Back to %s in %s." % (_the(gname), gplace))))
+                          json.dumps("Back to %s in %s." % (_the(gname), re.sub(r"^The ", "the ", gplace)))))
     with open(out, "w", encoding="utf-8") as f:
         f.write("//\tGenerated by tools/gen_maps.py journal_pass: the Journal's Training entries (tools/ladders.py)\n"
                 "//\tand side quests (SIDE_QUESTS).\n")
@@ -21131,8 +21316,7 @@ def fetch_events(ev, mid):
                   narrate("Handed over %s." % itemname), setf(done),
                   {"cmd": "cmd_moneyop", "op": 0, "amount": zeni},
                   narrate("Got %d zeni." % zeni)] + reward + [narrate("Odd job done: %s." % title)]),
-                ([flag(done)], [say(gname, "Thanks again, traveler." if settings.get("castle")
-                                   else "Thanks again, ronin.")])], d=2)
+                ([flag(done)], [say(gname, "Thanks again, traveler.")])], d=2)    # (was "ronin" to a Hiruma)
         if mid == imap:
             if settings.get("prop"):
                 ev.prop(ix, iz, "CE000", d=0,
@@ -21146,8 +21330,17 @@ def fetch_events(ev, mid):
             _dilate_event_trigger(ev, pickup)
 
 
+GIVER_ROLES = {"Chandler", "Net-mender"}        # single-word givers that are jobs, not names
+
+
 def _the(g):
-    return "the " + (g[2:] if g.startswith("A ") else g)        # "Hida yojimbo" -> "the Hida yojimbo"
+    """"Hida yojimbo" -> "the Hida yojimbo"; a person's name stays bare ("Back to Tomo.", not "the Tomo"; was fixed
+    afterwards by apply_dialog_fixes REGEX until 2026-11-23)."""
+    g = g[2:] if g.startswith("A ") else g
+    words = g.split()
+    if g not in GIVER_ROLES and len(words) <= 2 and all(w[:1].isupper() for w in words):
+        return g
+    return "the " + g
 
 
 def side_quest_events(m, ev, mid):
@@ -21248,15 +21441,22 @@ def ladder_hint_pass(mp):
             return
         if not isinstance(x, list):
             return
+        def sets_done(c):
+            return (isinstance(c, dict) and c.get("cmd") == "cmd_compute" and c.get("lvar") in hints
+                    and c.get("op") == "=" and c.get("rvar") is True)
+        # (2026-11-23 read) a scene sets its flag twice - the guard at the top, the scene again at the end - so the
+        # notice played twice, the first time before the scene had even started: only after the LAST set now
+        last = {c["lvar"]: k for k, c in enumerate(x) if sets_done(c)}
         i = 0
         while i < len(x):
             c = x[i]
-            if (isinstance(c, dict) and c.get("cmd") == "cmd_compute" and c.get("lvar") in hints
-                    and c.get("op") == "=" and c.get("rvar") is True):
+            if sets_done(c):
                 j = i + 1
                 while j < len(x) and isinstance(x[j], dict) and x[j].get("desc") == "RT ladder hint":
                     j += 1
-                x[i + 1:j] = [dict(narrate(hints[c["lvar"]]), desc="RT ladder hint")]
+                keep = last.get(c["lvar"]) == i
+                x[i + 1:j] = [dict(narrate(hints[c["lvar"]]), desc="RT ladder hint")] if keep else []
+                last = {cc["lvar"]: k for k, cc in enumerate(x) if sets_done(cc)}
                 i += 1
             else:
                 walk(c)
@@ -21549,17 +21749,17 @@ CLAN_CASTLES = (
     {"town": "M255", "anchor": None, "gate": True, "ids": ("M510", "M511", "M512", "M513", "M514"),
      "name": "Shiro Akodo", "ground": SNOW, "stone": STONEW, "wall": PLASTER, "roof": ROOF,
      "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": False},
-    {"town": "M285", "anchor": "M288", "ids": ("M515", "M516", "M517", "M518", "M519"),
+    {"town": "M288", "anchor": None, "gate": True, "ids": ("M515", "M516", "M517", "M518", "M519"),  # (2026-11-23)
      "name": "Kyuden Isawa", "ground": SAND, "stone": STONE, "wall": PLASTER, "roof": ROOF,
      "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": True},
     {"town": "M347", "anchor": "M348", "ids": ("M520", "M521", "M522", "M523", "M524"),
      "name": "Kyuden Bayushi", "ground": DIRT, "stone": STONEW, "wall": DARKWOOD, "roof": ROOF,
      "indoor_wall": DARKWOOD, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": False,
      "access_point": (50, 17)},
-    {"town": "M343", "anchor": "M344", "ids": ("M525", "M526", "M527", "M528", "M529"),
+    {"town": "M343", "anchor": None, "gate": True, "ids": ("M525", "M526", "M527", "M528", "M529"),
      "name": "Shiro Kitsuki", "ground": GRASS2, "stone": STONE, "wall": WOOD, "roof": ROOF,
      "indoor_wall": WOOD, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": True},
-    {"town": "M391", "anchor": "M390", "ids": ("M530", "M531", "M532", "M533", "M534"),
+    {"town": "M390", "anchor": None, "gate": True, "ids": ("M530", "M531", "M532", "M533", "M534"),  # (2026-11-23)
      "name": "Shiro Iuchi", "ground": GRASS, "stone": STONE, "wall": PLASTER, "roof": ROOF,
      "indoor_wall": PLASTER, "garden": ((38, 34), (42, 45), (68, 34), (72, 45)), "pond": False,
      "access_point": (40, 8)},
@@ -21589,9 +21789,10 @@ CASTLE_THEMES = (
      "Togashi Pilgrim Seal", "cedar incense", "pilgrim bandages", "the pilgrim register"),
 )
 CLAN_CASTLES += (
-    {"town": "M383", "anchor": None, "ids": ("M623", "M624", "M625", "M626", "M627"),
+    {"town": "M382", "anchor": None, "ids": ("M623", "M624", "M625", "M626", "M627"),     # (the road since 2026-11-23)
      "name": "Kyuden Togashi", "ground": SAND, "stone": STONE, "wall": WOOD, "roof": ROOF,
-     "indoor_wall": WOOD, "pond": False, "access_point": (36, 5), "opens": ["G947"]},
+     "indoor_wall": WOOD, "pond": False, "access_point": (86, 20), "opens": ["G947"]},   # (the gate
+     # up the mountainside, north of the road)
 )
 CLAN_CASTLE_BY_TOWN = {castle["town"]: castle for castle in CLAN_CASTLES}
 for _castle in CLAN_CASTLES:                                               # keep floors: go() / world() offsets
@@ -21846,6 +22047,227 @@ def _clan_castle_floor_builder(castle, level):
     return lambda: clan_castle_floor(castle, level)
 
 
+# ============================================================================ the Game of Masks at Kyuden Bayushi
+# (user 2026-11-22; plugin RokuganSadane.sk, content tools/gen_sadane.py -> resource/sadane/sadane.json, rules
+# docs/rules/game-of-masks.md). Soshi Kagero opens it in the Entrance reception (Mitsue, after Scorpion Ch1, G861);
+# every castle map gets its rivals (an event with "sadane": index: the plugin sees who sees her) and three hidden
+# masked strangers (spawn on G1652 == k, step out in front of her); the guest pavilion has the tea tray and the stand.
+SADANE = json.load(open(os.path.join(PROJ, "resource", "sadane", "sadane.json"), encoding="utf-8"))
+SADANE_KEEPER = "Soshi Kagero"
+
+
+def _sadane_spot(m, ev, x, z):
+    try:
+        return _castle_access_tile(m, ev, {"pos": [int(x), 0, int(z)]})
+    except RuntimeError:
+        return int(x), int(z)
+
+
+def _sadane_autorun(reqs, cmds):
+    return {"ani": {"id": "stand"}, "trigger": 6, "memo": "", "moveaction": "stop", "movespd": 4, "pararun": False,
+            "reqs": reqs, "standani": None, "cmdblock": cmds}
+
+
+def _say_d(name, text, emo=None, act=None, zoom=None):
+    c = say(name, text)
+    if not c.get("text", "").strip():               # a line that is all "(acting)": say() strips cues, keep it
+        c["text"] = text
+    for k, v in (("emo", emo), ("act", act), ("zoom", zoom)):
+        if v is not None:
+            c[k] = v
+    return c
+
+
+MITSUE = "Shosuro Mitsue"
+SADANE_TEA = [script("::Rokugan.sadaneRest();"),
+              narrate("(Tea. Every mask's composure is restored.)")]
+SADANE_HOW = [   # the short version, for asking again (each beat a question she'd ask)
+    _say_d(MITSUE, "Remind me. What fears what?", "neutral", "think"),
+    _say_d(SADANE_KEEPER, "Wood fears metal. Metal fears fire. Fire, water. Water, earth. Earth, wood."),
+    _say_d(SADANE_KEEPER, "Stone and silk fear only each other. A barb of the material a mask fears cuts twice as "
+                          "deep. One it overcomes, half."),
+    _say_d(MITSUE, "And when a mask has had enough?", "neutral"),
+    _say_d(SADANE_KEEPER, "It loses face, and sits out until it's had tea. Swap to another; that costs you the "
+                          "moment. Four ride in your sleeve; the rest wait on the stand in the guest pavilion."),
+    _say_d(SADANE_KEEPER, "Win and they learn. Every mask has five barbs in it. The good ones come out with "
+                          "practice."),
+]
+SADANE_OPEN = [   # Kagero's table: why the game exists, drawn out of her by her own questions
+    narrate("By the reception screens a Soshi in a plain grey mask sits at a low table covered in other masks, laid "
+            "face-down like cards."),
+    _say_d(SADANE_KEEPER, "Shosuro Mitsue. You've walked past my table three times this week and never once looked "
+                          "at it."),
+    _say_d(MITSUE, "I assumed it was for the actors.", "neutral"),
+    _say_d(SADANE_KEEPER, "Everyone in this castle is an actor. The table is for players."),
+    _say_d(MITSUE, "Players of what?", "surprised", "think"),
+    _say_d(SADANE_KEEPER, "Sadane. The insult game. Except here nobody insults anyone with their own face. The masks "
+                          "do it."),
+    _say_d(MITSUE, "Why? A Bayushi doesn't need a mask to be rude.", "neutral", "shrug"),
+    _say_d(SADANE_KEEPER, "A Bayushi who insults a guest to his face starts a war. A mask that insults a mask starts a "
+                          "game. The court needs somewhere to bleed that isn't the floor."),
+    _say_d(MITSUE, "...And the masks have opinions about each other.", "neutral", "think"),
+    _say_d(SADANE_KEEPER, "Materials. Iron, cedar, lacquer, ink, clay, stone, silk. Each one fears another. Wood "
+                          "fears metal."),
+    _say_d(MITSUE, "Metal fears fire. Fire, water. Water, earth. Earth, wood. The City of Masks has the same rhyme.",
+           "neutral"),
+    _say_d(SADANE_KEEPER, "Where do you think we got it? And stone and silk fear only each other. Like old lovers."),
+    _say_d(MITSUE, "Why are you offering me a seat?", "neutral"),
+    _say_d(SADANE_KEEPER, "Because Lady Norie asked me who you were, and I didn't know. I'd like to."),
+    _say_d(SADANE_KEEPER, "Your own half-mask will do to start. It already knows how you lie."),
+    script("::Rokugan.sadaneOpen( this);"),
+    narrate("(The Game of Masks is open. Her Shosuro Half-Mask (Silk) can play. Anyone masked in Kyuden Bayushi may "
+            "challenge her when they see her, and strangers step out now and then. Win, and the mask that played "
+            "learns. Barb: the mask's insults. Swap: another mask from the sleeve.)"),
+    narrate("(Kagero's tea restores every mask; so does the tray in the guest pavilion, beside the mask stand. The "
+            "castle town's mask-maker sells common masks; beaten rivals give theirs; the masks of Kamen no Toshi "
+            "join her sleeve when she has them.)"),
+    _say_d(SADANE_KEEPER, "Go on. Somebody's already looking at you."),
+]
+
+
+def sadane_keeper(m, ev):
+    x, z = _sadane_spot(m, ev, 48, 32)
+    talkp = [script("W = ::Rokugan.sadanePlaying();"),
+             if_([flag("W")], [_say_d(SADANE_KEEPER, "Shosuro. Your masks look tired. Or you do."),
+                               choices(("Tea. (Restore every mask.)", SADANE_TEA),
+                                       ("The mask stand.", [script("::Rokugan.sadaneStand( this);")]),
+                                       ("How does the game go again?", SADANE_HOW),
+                                       ("Leave.", []))],
+                 [_say_d(SADANE_KEEPER, "(she turns a mask over on her table, looks at you, and turns it back)")])]
+    ev.talk(x, z, SC["soshiofficer"], [
+        (None, [narrate("A Soshi in a plain grey mask, at a low table of face-down masks."),
+                _say_d(SADANE_KEEPER, "Only players sit at this table. You don't have the face for it. Yet.")]),
+        # Mitsue, once her first chapter is done: the game opens (the script itself checks she's there)
+        ([flag("G861")], [script("W = !!::rpgstat.members.find( @( v) v && v.dataid == \"P105\");"),
+                          if_([flag("W")], SADANE_OPEN,
+                              [_say_d(SADANE_KEEPER, "Only players sit at this table. You don't have the face for "
+                                                     "it.")])]),
+        ([flag("G1651")], talkp)])
+
+
+def sadane_pavilion(m, ev):
+    x, z = _sadane_spot(m, ev, 44, 30)
+    ev.talk(x, z, "CE000", [(None, [narrate("A lacquered mask stand and a tea tray, kept warm by somebody.")]),
+                            ([flag("G1651")], [narrate("A lacquered mask stand and a tea tray, kept warm by "
+                                                       "somebody."),
+                                               choices(("Tea. (Restore every mask.)", SADANE_TEA),
+                                                       ("The mask stand.", [script("::Rokugan.sadaneStand( this);")]),
+                                                       ("Leave.", []))])], trigger=1)
+
+
+def sadane_rivals(m, ev):
+    here = [(i, r) for i, r in enumerate(SADANE["rivals"]) if r["map"] == m.mid]
+    spots = ((0.30, 0.42), (0.70, 0.55), (0.50, 0.70))
+    for n, (i, r) in enumerate(here):
+        fx, fz = spots[n % len(spots)]
+        x, z = _sadane_spot(m, ev, m.w * fx, m.d * fz)
+        name = r["name"]
+        page = [narrate("%s, %s." % (name, r["who"])),
+                script("W = ::Rokugan.sadaneBeaten( %d);" % i), if_([flag("W")], [_say_d(name, r["after"])]),
+                script("W = ::Rokugan.sadanePlaying();"),
+                if_([flag("W")], [choices(("Play.", [script("::Rokugan.sadaneRival( this, %d, false);" % i)]),
+                                          ("Not now.", []))],
+                    [_say_d(name, "(a polite nod, and nothing more)")])]
+        k = ev.talk(x, z, r["mdl"], [(None, page)])
+        e = ev.ev["#%d#" % k]
+        e["sadane"] = i
+        e["page"].append(_sadane_autorun([flag("G1653", i + 1)],
+                                         [script("::Rokugan.sadaneRival( this, %d, true);" % i)]))
+    for k in (1, 2, 3):                                                    # the hidden strangers
+        x, z = _sadane_spot(m, ev, m.w * (0.2 + 0.3 * k) % m.w, m.d * 0.5)
+        ev.talk(x, z, SADANE["duellists"][k - 1],
+                [([flag("G1652", k)], [script("::Rokugan.sadaneStranger( this, %d);" % k)])],
+                reqs=[flag("G1652", k)], trigger=6)
+
+
+def _sadane_map(mid):
+    old = CASTLE_STORY.get(mid)
+
+    def f(m, ev):
+        if old:
+            old(m, ev)
+        if mid == "M520":
+            sadane_keeper(m, ev)
+        if mid == "M583":
+            sadane_pavilion(m, ev)
+        sadane_rivals(m, ev)
+    return f
+
+
+for _mid in SADANE["tiers"]:
+    CASTLE_STORY[_mid] = _sadane_map(_mid)
+
+
+# ============================================================================ the castles' clan games
+# (2026-11-23, "give it the same treatment as the other ones ... mini games"; plugin RokuganCastleGames.sk). Each
+# castle moved into the roamable grounds gets a game that belongs to its family: the first win gives an accessory and
+# sets the flag, a rematch pays a little. (Kyuden Bayushi's is the Game of Masks.)
+CLAN_GAMES = [   # map, x, z, side-cast key, name, kind, flag, item, item name, why (said first, the reason to play)
+    ("M619", 30, 20, "tamorimonk", "Togashi Kaito", "ink", "G1654", "A198", "an Ise Zumi Ink Charm",
+     ["A tattooed monk sits beside the shrine with an inkstone and a brush that has seen a great many backs.",
+      ("Togashi Kaito", "Every tattoo is a lesson the skin keeps. Most people want the picture and skip the lesson."),
+      ("Togashi Kaito", "Watch my brush, then do what it did. If your hand remembers six designs, I'll give you a "
+                        "drop of the ink.")]),
+    ("M595", 30, 20, "kitsukiclerk", "Kitsuki Ohana", "kitsuki", "G1655", "A199", "a Kitsuki Examiner's Lens",
+     ["A Kitsuki magistrate at a table of labelled boxes, each with a witness statement pinned to the lid.",
+      ("Kitsuki Ohana", "Six old cases. Six witnesses who lied, and the one object on each table that says so."),
+      ("Kitsuki Ohana", "Find five and you'll have learned the Kitsuki Method faster than my nephew did. Find six and "
+                        "I'll stop telling people about him.")]),
+    ("M575", 30, 20, "acolyte", "Isawa Tsumari", "rings", "G1656", "A200", "a Five Rings Pendant",
+     ["An Isawa master sits inside a ring of five stones, nudging them with a fan.",
+      ("Isawa Tsumari", "The elements lean on one another. Move Fire and Water and Air move with it."),
+      ("Isawa Tsumari", "The Council thinks the Five Rings are a lecture. They're a balance. Balance them for me.")]),
+    ("M603", 30, 20, "h_moto", "Iuchi Batu", "yabusame", "G1657", "A201", "a Yabusame Glove",
+     ["A Unicorn riding master in furs, a bow across her saddle, watching the targets go up along the course.",
+      ("Iuchi Batu", "The Unicorn rode across the whole world and came home. Every Rokugani thinks horses are for "
+                     "messengers."),
+      ("Iuchi Batu", "Ride the course. Loose as each target passes. Twelve points and the glove is yours.")]),
+]
+
+
+def clan_game(ev, x, z, mdl, name, kind, gflag, item, item_name, why):
+    intro = [narrate(w) if isinstance(w, str) else say(*w) for w in why]
+    won_first = got(item, item_name) + [setf(gflag), say(name, "Well played. That one's yours to keep.")]
+    won_again = [{"cmd": "cmd_moneyop", "op": 0, "amount": 100}, narrate("Got 100 zeni."),
+                 say(name, "Again? You're making it look easy. Stop that.")]
+    play = mini_game(kind, [if_([flag(gflag)], won_again, won_first)],
+                     [say(name, "Come back when your hands have rested.")],
+                     [narrate("(%s shows you how it's played, and you watch.)" % name)])
+    ev.talk(x, z, SC[mdl], [(None, intro + [choices(("Play.", play), ("Not now.", []))]),
+                        ([flag(gflag)], [say(name, "Another round?"), choices(("Play.", play), ("Not now.", []))])])
+
+
+def _clan_game_map(mid, game):
+    old = CASTLE_STORY.get(mid)
+
+    def f(m, ev):
+        if old:
+            old(m, ev)
+        x, z = _sadane_spot(m, ev, game[1], game[2])
+        clan_game(ev, x, z, *game[3:])
+    return f
+
+
+for _g in CLAN_GAMES:
+    CASTLE_STORY[_g[0]] = _clan_game_map(_g[0], _g)
+
+
+def sadane_shop():
+    """The castle town's mask-maker, for a player of the game: the common masks (sadane.json shop)."""
+    opts = []
+    for key, zeni in SADANE["shop"]:
+        mk = SADANE["masks"][key]
+        opts.append(("%s, %s (%d zeni)." % (mk["name"], mk["type"], zeni), [
+            script("::Rokugan.sadaneBuy( this, \"%s\", %d);" % (key, zeni)),
+            if_([{"lvar": "W", "op": "==", "rvar": 1}],
+                [say("Mask-maker", "There. Don't let it lose face too often; it sulks."),
+                 narrate("(Got the %s. It plays %s.)" % (mk["name"], mk["type"]))],
+                [if_([{"lvar": "W", "op": "==", "rvar": 2}],
+                     [say("Mask-maker", "You've got one already. A second would only argue with the first.")],
+                     [say("Mask-maker", "A face costs money, child. Even a borrowed one.")])])]))
+    return choices(*(opts + [("Leave.", [])]))
+
+
 for _castle in CLAN_CASTLES:
     for (_col, _row), _mid in _castle["grounds"].items():
         if _mid in MAPS and _mid not in _castle["ids"]:
@@ -21854,28 +22276,35 @@ for _castle in CLAN_CASTLES:
     for _level in range(4):
         MAPS[_castle["ids"][_level + 1]] = _clan_castle_floor_builder(_castle, _level)
 
+# The castle errand-givers' given names, one set per castle (2026-11-23 read: every castle had a Harunori, a
+# Chihiro, a Sumiko and a Teruko; Kyuden Hida keeps the originals): reception clerk, priest, quartermaster, courtier.
+CASTLE_GIVEN = [("Harunori", "Chihiro", "Sumiko", "Teruko"), ("Tadaie", "Hisako", "Rumiko", "Kosuke"),
+                ("Hanbei", "Yoriko", "Shinzo", "Mitsuko"), ("Kagetora", "Fumiko", "Isoroku", "Chiharu"),
+                ("Takenori", "Sayoko", "Morihiro", "Kaede"), ("Shigeharu", "Kanako", "Yasunobu", "Michiyo"),
+                ("Kiyomasa", "Natsue", "Masahide", "Hatsune"), ("Yoshitada", "Umeko", "Moritaka", "Kayo")]
+
 for _k, _castle in enumerate(CLAN_CASTLES):
     for _n, (_title, _gmap, _gx, _gz, _spr, _giver, _imap, _ix, _iz, _offer, _found, _thanks, _prop) in enumerate((
             ("The " + _castle["seal"], _castle["grounds"][1, 0], 32, 18, "clerk",
-             _castle["families"][0] + " Harunori", _castle["grounds"][0, 2], 30, 18,
+             _castle["families"][0] + " " + CASTLE_GIVEN[_k % len(CASTLE_GIVEN)][0], _castle["grounds"][0, 2], 30, 18,
              "The archive clerks borrowed our reception seal. Please fetch it from the west archive court, "
              "two districts north and one west of here. Look beside the book shelves.",
              "A small lacquered case holds the %s. You wrap it carefully." % _castle["seal"],
              "The seal! Now the guests can be admitted before the tea goes cold.", "doc"),
             ("Incense for " + _castle["name"], _castle["ids"][3], 70, 18, "priest",
-             _castle["families"][2] + " Chihiro", _castle["grounds"][2, 2], 30, 18,
+             _castle["families"][2] + " " + CASTLE_GIVEN[_k % len(CASTLE_GIVEN)][1], _castle["grounds"][2, 2], 30, 18,
              "Please bring %s from the shrine court, east of the keep approach. The bundle waits by the shrine."
              % _castle["incense"],
              "A paper bundle of %s waits on the shrine step. You pick it up." % _castle["incense"],
              "Thank you. The evening rite will have its proper fragrance.", "bottle"),
             ("Supplies for the " + _castle["clan"] + " court", _castle["grounds"][0, 1], 30, 18, "gatekeeper",
-             _castle["families"][1] + " Sumiko", _castle["grounds"][2, 0], 30, 18,
+             _castle["families"][1] + " " + CASTLE_GIVEN[_k % len(CASTLE_GIVEN)][2], _castle["grounds"][2, 0], 30, 18,
              "We are short of %s. The delivery was left in stables and stores, east of reception. "
              "Please collect the marked crate and bring it back to this training court." % _castle["supplies"],
              "The marked crate contains %s. You gather the supplies." % _castle["supplies"],
              "Just in time. A well-kept court begins with small duties done properly.", "crates"),
             ("Records for " + _castle["name"], _castle["ids"][2], 70, 18, "courtier",
-             _castle["families"][0] + " Teruko", _castle["ids"][4], 40, 20,
+             _castle["families"][0] + " " + CASTLE_GIVEN[_k % len(CASTLE_GIVEN)][3], _castle["ids"][4], 40, 20,
              "The council needs %s. Someone left them in the fourth-floor audience and watch hall, "
              "beside the central passage. Could you fetch them and return here to the second floor?"
              % _castle["records"],
@@ -22015,6 +22444,18 @@ for _islet in SEA_ISLETS:
     MAPS[_islet["mid"]] = lambda islet=_islet: sea_islet(islet)
 
 
+# Why a resident can't run the errand themselves (2026-11-23 read: "a real reason to tell"); one per errand in turn.
+ERRAND_REASONS = [
+    "My stall can't be left; the headman fines anyone who shuts before dusk.",
+    "My knees won't take the shrine steps twice in one day.",
+    "The shrine-keeper and I aren't speaking. He started it.",
+    "My mother-in-law is visiting, and she counts how long I'm gone.",
+    "The little ones are sick, and I can't leave them.",
+    "I'm due at the magistrate's at noon, and he doesn't wait.",
+    "I went back once already. A dog has decided it's his shrine now.",
+]
+
+
 def _append_expansion_quests():
     base = 1508
     entries = _EXPANSION_QUESTS + [(islet, islet["quest"]) for islet in SEA_ISLETS]
@@ -22023,8 +22464,8 @@ def _append_expansion_quests():
         key = "fq_expansion_%d" % i
         mid = region["mid"]
         FETCH_QUESTS.append((key, title, mid, 34, 24, sprite, giver, mid, 63, 43,
-                            "I left %s near the ward's roadside shrine. Would you bring it back here? I can pay."
-                            % item,
+                            "I left %s near the ward's roadside shrine. %s Would you bring it back here? I can "
+                            "pay." % (item, ERRAND_REASONS[i % len(ERRAND_REASONS)]),
                             "By the roadside shrine, you find %s and take it." % item,
                             "You found %s. The whole ward is grateful." % item, 120 + 10 * (i % 6)))
         FQ_FLAGS[key] = tuple("G%d" % (base + i * 3 + n) for n in range(3))
@@ -22444,12 +22885,12 @@ def settlement_ward(region):
     _dilate_event_trigger(ev, room_event)
     doorway(m, door_x, door_z)
     region["room_event"] = room_event
-    ev.npc(30, 20, SC["servant"], "%s resident: the %s is where everyone meets." % (
-        region["clan"], region["district"].lower()))
+    ev.npc(30, 20, SC["servant"], "Everyone in the ward passes this corner sooner or later. Stand here long enough "
+                                  "and you'll hear all of it.")
     ev.npc(64, 20, SC["merchant"], "The market stalls close at dusk; the roadside shrine stays open.")
     ev.talk(56, 27, "CE000", [(None, [narrate(
-        "%s: a full outer ward of the %s, with homes, a market lane, and a public shrine." %
-        (region["name"], region["district"].lower()))])], trigger=1)
+        "%s, %s: homes, a market lane, and a public shrine." %            # (2026-11-23: was "a full outer ward
+        (region["name"], region["district"]))])], trigger=1)                   #  of the harbor ward")
     return m, ev
 
 
@@ -22503,7 +22944,8 @@ def island_quarter(region):
                           extent=2.0, depth=1.5)
     ev.talk(55, 13, "CE000", [(None, [narrate("The harbor path leads back to the island's main landing.")])],
             trigger=1)
-    ev.npc(31, 20, SC["servant"], "%s resident: the tide brings a different story every morning." % region["clan"])
+    ev.npc(31, 20, SC["servant"], "The tide brings a different story every morning. Most of them are about the "
+                                  "Mantis.")
     ev.npc(65, 20, SC["merchant"], "The best goods on this shore are the ones nobody claims.")
     ev.talk(56, 29, "CE000", [(None, [narrate(
         "%s: a shore ward with a landing pier, a small market and homes above the beach." %
@@ -22710,7 +23152,7 @@ def rebuild_scorpion_road(m):
             or (item["fbtype"],item["fbparam"]) not in legacy]
 
 
-WILLOW_ROOM_LAYOUTS = {'M346': (3, 28, 8, 25, 7, ('#5#', '#6#', '#7#', '#8#'))}
+WILLOW_ROOM_LAYOUTS = {}      # (M346 retired 2026-11-23: the teahouse is in Kyuden Bayushi's North garden)
 
 
 def rebuild_willow_room(m, ev):
@@ -22854,6 +23296,267 @@ def rebuild_yotomo_route(m, ev):
             bottom = 9 if abs(dz) == 2 else 10
             top = 11 + min(4, depth // 3) - (dz + x) % 2
             fill(m, x, bottom, center + dz, 1, top - bottom + 1, 1, STONE)
+
+
+IUCHI_TOWER_POSITIONS = {'M399': {'#4#': [81, 4, 33, 2]}}
+
+
+def rebuild_iuchi_tower(m, ev):
+    for key, pos in IUCHI_TOWER_POSITIONS.get(m.mid, {}).items():
+        x,y,z,_ = pos
+        assert int(m.hgt[z,x]) + 1 == y, (m.mid, key, pos)
+        ev.ev[key]["pos"] = list(pos)
+    if m.mid in ("M399", "M878"):
+        m.objs = [obj for obj in m.objs if obj["t"] != "fb" or obj["fbtype"] not in (2,20)]
+
+
+IUCHI_MINE_POSITIONS = {'M403': {'#85#': [1, 4, 25, 3]}, 'M404': {'#2#': [143, 4, 28, 3]}, 'M405': {'#1#': [36, 3, 7, 2], '#98#': [36, 3, 4, 2], '#99#': [86, 3, 48, 0]}, 'M406': {'#1#': [62, 3, 7, 2], '#112#': [62, 3, 4, 2], '#113#': [86, 3, 48, 0]}, 'M407': {'#1#': [56, 3, 7, 2], '#80#': [56, 3, 4, 2]}}
+
+
+def rebuild_iuchi_mines(m, ev):
+    for key, pos in IUCHI_MINE_POSITIONS.get(m.mid, {}).items():
+        x,y,z,_ = pos
+        assert int(m.hgt[z,x]) + 1 == y, (m.mid, key, pos)
+        ev.ev[key]["pos"] = list(pos)
+    obsolete = {(2,LAMP_TORCH), (2,LAMP_CANDLE), (4,IN["jewel"]), (4,IN["box"]), (4,IN["sword"])}
+    camp = m.mid == "M404"
+    if camp or m.mid == "M403":
+        obsolete.update((20,p) for p in (TREE_S,TREE_M,TREE_L))
+    if m.mid in ("M405","M406","M407"):
+        obsolete.update((20,p) for p in (ROCK_S,ROCK_M))
+    cuts = set()
+    if camp:
+        tents = [(x,z,6,5) for x,z in ((6,21),(16,22),(70,21),(82,22),(94,21),(8,5),(20,4),(88,5))]
+        tents.append((44,21,12,7))
+        for x,z,w,d in tents:
+            cuts.update((x,z+k,MATTING) for k in range((d+1)//2))
+            cuts.add((x+w//2-1,z,VOID))
+            cuts.update((tip,z+(d-1)//2,DARKWOOD) for tip in (x-1,x+w))
+        for x in (40,58):
+            cuts.update(((x,21,DARKWOOD),(x+1,21,PLASTER)))
+    m.objs = [obj for obj in m.objs if not (
+        obj["t"] == "fb" and (obj["fbtype"],obj["fbparam"]) in obsolete
+        or obj["t"] == "fill" and (obj["x"]-PAD_X,obj["z"]-PAD_BOTTOM,obj["blk"]) in cuts
+    )]
+    if not camp:
+        return
+    # Build the two sides separately so the former wall has no collider in the passage.
+    wall, = (o for o in m.objs if o["t"] == "fill" and o["blk"] == STONE and
+             (o["x"],o["y"],o["z"],o["w"],o["h"],o["d"]) == (26,4,36,108,8,4))
+    m.objs.remove(wall)
+    fill(m,26,4,36,51,8,4,STONE)
+    fill(m,84,4,36,50,8,4,STONE)
+    fill(m,77,10,36,7,2,4,STONE)
+    # Keep the actual eastern transition at block 158 under a solid roof.
+    center, start = 28, m.w - 15
+    for x in range(start,m.w):
+        depth = x - start
+        for side in (-1,1):
+            for offset, taper in ((3,0),(4,1),(5,3),(6,4)):
+                height = min(10,2+depth) - taper + (x+offset*side)%3
+                if height > 0:
+                    fill(m,x,4,center+side*offset,1,height,1,STONE)
+        if depth >= 4:
+            for dz in range(-2,3):
+                bottom = 9 if abs(dz) == 2 else 10
+                top = 11 + min(4,depth//3) - (x+dz)%2
+                fill(m,x,bottom,center+dz,1,top-bottom+1,1,STONE)
+
+
+IUCHI_NARROWS_POSITIONS = {'M410': {'#2#': [126, 4, 20, 0]}}
+
+
+def rebuild_iuchi_wind_approach(m, ev):
+    if m.mid == "M410":
+        for key, pos in IUCHI_NARROWS_POSITIONS[m.mid].items():
+            x,y,z,_ = pos
+            assert int(m.hgt[z,x]) + 1 == y, (m.mid, key, pos)
+            ev.ev[key]["pos"] = list(pos)
+        # Replace the solid gatehouse with jambs and a true through opening.
+        gate = {(122,4,18,8,10,4,STONEW), (124,4,17,4,6,1,VOID)}
+        m.objs = [o for o in m.objs if o["t"] != "fill" or
+                  tuple(o[k] for k in ("x","y","z","w","h","d","blk")) not in gate]
+        fill(m,122,4,18,2,10,4,STONEW)
+        fill(m,128,4,18,2,10,4,STONEW)
+        fill(m,124,10,18,4,4,4,STONEW)
+        return
+    if m.mid != "M408":
+        return
+    tents = [(x,21,6,5) for x in range(4,50,10)] + [(62,21,8,6),(74,22,8,6)]
+    old = set()
+    for x,z,w,d in tents:
+        old.update((x,z+k,MATTING) for k in range((d+1)//2))
+        old.add((x+w//2-1,z,VOID))
+        old.update((tip,z+(d-1)//2,DARKWOOD) for tip in (x-1,x+w))
+    m.objs = [o for o in m.objs if not (
+        o["t"] == "fb" and (o["fbtype"],o["fbparam"]) == (2,LAMP_TORCH)
+        or o["t"] == "fill" and (o["x"]-PAD_X,o["z"]-PAD_BOTTOM,o["blk"]) in old
+    )]
+    # The chapter's touch event stays at x134 in this east-facing passage.
+    for x in range(131,146):
+        advance = x-131
+        for offset, slope in ((3,0),(4,2),(5,3)):
+            for side in (-1,1):
+                h = min(10,3+advance)-slope + (x+offset*side)%2
+                if h > 0:
+                    fill(m,x,4,20+side*offset,1,h,1,STONE)
+        if advance >= 2:
+            fill(m,x,9,18,1,min(5,2+advance//4),5,STONE)
+
+
+def rebuild_iuchi_storm_room(m):
+    if m.mid == "M882":
+        m.objs = [o for o in m.objs if o["t"] != "fb" or (o["fbtype"],o["fbparam"]) != (2,LAMP_CANDLE)]
+    if m.mid != "M412":
+        return
+    # Keep a continuous sill and expose the actual wall plane, in front of the old void cuts.
+    m.objs = [o for o in m.objs if not (o["t"] == "fill" and o["d"] == 1 and
+               (o["z"] == 21 or (o["z"] == 22 and o["blk"] == VOID)))]
+    fill(m,4,2,21,32,2,1,STONEW)
+    fill(m,4,7,21,32,1,1,DARKWOOD)
+    for x,w in ((4,4),(12,2),(18,2),(24,2),(30,2),(35,1)):
+        fill(m,x,4,21,w,3,1,STONEW)
+
+
+def rebuild_iuchi_caravan(m):
+    shelters = set()
+    for x in range(20,100,14):
+        shelters.update((x,18+k,MATTING) for k in (0,1))
+        shelters.add((x+1,18,VOID))
+        shelters.update((p,19,DARKWOOD) for p in (x-1,x+4))
+    m.objs = [o for o in m.objs if not (
+        o["t"] == "fb" and o["fbtype"] == 20 and o["fbparam"] in (TREE_S,TREE_M,TREE_L)
+        or o["t"] == "fill" and (o["x"]-PAD_X,o["z"]-PAD_BOTTOM,o["blk"]) in shelters
+    )]
+
+
+def rebuild_cakon_city(m):
+    if m.mid == "M417":
+        # Carve the city wall in the compiler so that the visible gate has a true travel lane.
+        blocks = {(110,4,8,4,14,16,STONEW), (110,4,17,4,6,4,VOID)}
+        m.objs = [o for o in m.objs if o["t"] != "fill" or
+                  tuple(o[k] for k in ("x","y","z","w","h","d","blk")) not in blocks]
+        fill(m,110,4,8,4,14,9,STONEW)
+        fill(m,110,4,21,4,14,3,STONEW)
+        fill(m,110,10,17,4,8,4,STONEW)
+        fill(m,110,4,0,4,8,8,STONEW)
+        fill(m,110,4,24,4,8,m.d-24,STONEW)
+        fill(m,110,12,0,4,1,8,ROOF)
+        fill(m,110,12,24,4,1,m.d-24,ROOF)
+        return
+    stands = {(x+PAD_X,8+PAD_BOTTOM) for x in range(30,90,12)}
+    m.objs = [o for o in m.objs if not (
+        o["t"] == "fb" and (o["fbtype"],o["fbparam"]) == (2,LAMP_STREET)
+        or m.mid == "M416" and o["t"] == "fill" and (
+            (o["x"],o["z"]) in stands and (o["blk"],o["h"]) == (WOOD,1)
+            or (o["x"],o["z"],o["w"],o["h"],o["blk"]) == (90+PAD_X,5+PAD_BOTTOM,6,2,PLASTER)
+        )
+    )]
+
+
+def rebuild_cakon_river(m):
+    m.objs = [o for o in m.objs if not (
+        o["t"] == "fb" and ((m.mid == "M414" and o["fbtype"] == 20 and o["fbparam"] in (TREE_S,TREE_M,TREE_L))
+                        or (m.mid == "M415" and (o["fbtype"],o["fbparam"]) == (2,LAMP_STREET)))
+        or m.mid == "M414" and o["t"] == "fill" and o["blk"] == WOOD and (o["w"],o["h"],o["d"]) == (4,2,3)
+    )]
+
+
+def rebuild_cakon_hamlet(m):
+    if m.mid == "M418":
+        fixtures = {(x+PAD_X,z+PAD_BOTTOM) for x,z in ((8,22),(20,24),(64,22),(76,23),(88,21),
+                    (10,4),(30,5),(70,4),(84,6),(34,22),(44,21),(43,20))}
+        m.objs = [o for o in m.objs if not (o["t"]=="fill" and
+                  (o["x"],o["z"]) in fixtures and o["blk"] in (MATTING,WOOD,ROOF))]
+    else:
+        m.objs = [o for o in m.objs if not (o["t"]=="fb" and o["fbtype"]==20 and
+                  o["fbparam"] in (TREE_S,TREE_M,TREE_L))]
+        if m.mid == "M419":
+            # Leave the raised log deck and open the water below it.
+            fill(m,70,0,18,12,3,3,0)
+            fill(m,70,0,18,12,1,3,WATER)
+
+
+REBUILD_NARROWS_GATE_CURTAINS = {'M410': ((122, 4, 22, 2, 10, 2, 'STONEW'), (128, 4, 22, 2, 10, 2, 'STONEW'), (120, 4, 19, 2, 8, 4, 'STONEW'), (130, 4, 19, 2, 8, 4, 'STONEW'), (124, 14, 18, 4, 3, 2, 'STONEW'), (123, 17, 18, 6, 1, 3, 'ROOF'))}
+
+
+def rebuild_narrows_gate_curtains(m):
+    for x, y, z, w, h, d, material in REBUILD_NARROWS_GATE_CURTAINS[m.mid]:
+        assert 0 <= x < x+w <= m.w and 0 <= z < z+d <= m.d, (m.mid, x, z)
+        tile = STONEW if material == "STONEW" else ROOF
+        fill(m, x, y, z, w, h, d, tile)
+
+
+REBUILD_HIRUMA_GATE_CURTAINS = {'M461': ((156, 4, 0, 2, 7, 26, 'STONEW'), (156, 4, 31, 2, 7, 25, 'STONEW'), (156, 11, 0, 2, 1, 3, 'STONEW'), (156, 11, 4, 2, 3, 3, 'STONEW'), (156, 11, 8, 2, 2, 3, 'STONEW'), (156, 11, 12, 2, 1, 3, 'STONEW'), (156, 11, 16, 2, 3, 3, 'STONEW'), (156, 11, 20, 2, 2, 3, 'STONEW'), (156, 11, 24, 2, 1, 2, 'STONEW'), (156, 11, 31, 2, 3, 3, 'STONEW'), (156, 11, 35, 2, 2, 3, 'STONEW'), (156, 11, 39, 2, 1, 3, 'STONEW'), (156, 11, 43, 2, 3, 3, 'STONEW'), (156, 11, 47, 2, 2, 3, 'STONEW'), (156, 11, 51, 2, 1, 3, 'STONEW'), (156, 11, 55, 2, 3, 1, 'STONEW')), 'M462': ((142, 4, 0, 2, 7, 24, 'STONEW'), (142, 4, 29, 2, 7, 23, 'STONEW'), (142, 11, 0, 2, 2, 3, 'STONEW'), (142, 11, 4, 2, 1, 3, 'STONEW'), (142, 11, 8, 2, 3, 3, 'STONEW'), (142, 11, 12, 2, 2, 3, 'STONEW'), (142, 11, 16, 2, 1, 3, 'STONEW'), (142, 11, 20, 2, 3, 3, 'STONEW'), (142, 11, 29, 2, 3, 3, 'STONEW'), (142, 11, 33, 2, 2, 3, 'STONEW'), (142, 11, 37, 2, 1, 3, 'STONEW'), (142, 11, 41, 2, 3, 3, 'STONEW'), (142, 11, 45, 2, 2, 3, 'STONEW'), (142, 11, 49, 2, 1, 3, 'STONEW'))}
+
+
+def rebuild_hiruma_gate_curtains(m):
+    for x, y, z, w, h, d, material in REBUILD_HIRUMA_GATE_CURTAINS[m.mid]:
+        assert 0 <= x < x+w <= m.w and 0 <= z < z+d <= m.d, (m.mid, x, z)
+        tile = STONEW if material == "STONEW" else ROOF
+        fill(m, x, y, z, w, h, d, tile)
+
+
+REBUILD_KAMEN_GATE_CURTAINS = {'M362': ((132, 4, 0, 2, 7, 19, 'STONEW'), (132, 4, 24, 2, 7, 36, 'STONEW'), (132, 11, 0, 2, 1, 19, 'ROOF'), (132, 11, 24, 2, 1, 36, 'ROOF'), (133, 10, 19, 1, 5, 5, 'STONEW'), (133, 15, 18, 2, 1, 7, 'ROOF'))}
+
+
+def rebuild_kamen_gate_curtains(m):
+    for x, y, z, w, h, d, material in REBUILD_KAMEN_GATE_CURTAINS[m.mid]:
+        assert 0 <= x < x+w <= m.w and 0 <= z < z+d <= m.d, (m.mid, x, z)
+        tile = STONEW if material == "STONEW" else ROOF
+        fill(m, x, y, z, w, h, d, tile)
+
+
+def keep_cakon_hut_footprints(m):
+    if m.mid=="M414":
+        footprints=[(x,24,4,3) for x in (66,74,82)]
+    else:
+        footprints=[(x+PAD_X,z+PAD_BOTTOM,5,4) for x,z in ((8,22),(20,24),(64,22),(76,23),
+                    (88,21),(10,4),(30,5),(70,4),(84,6),(34,22))]
+        footprints.append((70,25,8,5))
+    m.walls.extend((bx,bz) for x,z,w,d in footprints
+                   for bx in range(x,x+w) for bz in range(z,z+d) if (bx,bz) not in m.walls)
+
+
+CENTRED_BUILDING_PORTALS = {'M360': {'#85#': ([39, 4, 24, 0], [40, 4, 24, 0], {'mapid': 'M955', 'evid': 1})}, 'M375': {'#2#': ([71, 4, 25, 0], [72, 4, 25, 0], {'mapid': 'M376', 'evid': 1})}, 'M380': {'#2#': ([86, 7, 24, 0], [87, 7, 24, 0], {'mapid': 'M381', 'evid': 1})}, 'M387': {'#1#': ([39, 4, 25, 0], [40, 4, 25, 0], {'mapid': 'M388', 'evid': 1})}}
+
+
+def align_building_door_portals(m, ev):
+    for key, (before, after, destination) in CENTRED_BUILDING_PORTALS[m.mid].items():
+        event = ev.ev[key]
+        assert event["role"] == "portal" and event["dest"] == destination, (m.mid, key)
+        assert event["pos"] in (before, after), (m.mid, key, event["pos"])
+        event["pos"] = after.copy()
+
+
+with open(os.path.join(HERE, "clan_castle_art.json"), encoding="utf-8") as _castle_art_source:
+    _CLAN_CASTLE_ART = json.load(_castle_art_source)
+
+
+def rebuild_clan_castle_art(m, ev):
+    plan = _CLAN_CASTLE_ART.get(m.mid)
+    if not plan:
+        return
+    for obj in plan["remove"]:
+        if obj in m.objs:
+            m.objs.remove(obj)
+    for obj in plan.get("add", ()):
+        if obj not in m.objs:
+            m.objs.append(obj)
+    for point in plan.get("walls", ()):
+        cell = tuple(point)
+        if cell not in m.walls:
+            m.walls.append(cell)
+    for key, (previous, updated) in plan.get("positions", {}).items():
+        event = ev.ev.get(key)
+        if event and event.get("role") == "portal" and event["pos"] == previous:
+            event["pos"] = updated.copy()
+    for key, (previous, replacement) in plan["decor"].items():
+        event = ev.ev.get(key)
+        if event and event.get("mdlid") == previous and event.get("role") == "custom" and len(event["page"]) == 1:
+            page = event["page"][0]
+            if not (page.get("cmdblock") or page.get("reqs") or page.get("trigger") or event.get("reqs0")):
+                event["mdlid"] = replacement
 
 
 def make(i):
@@ -23022,7 +23725,7 @@ def make(i):
         rebuild_ojatara(m)
     if i in OJATARA_ROOM_LAYOUTS:
         rebuild_ojatara_room(m, ev)
-    if i in ('M345', 'M347', 'M348', 'M349', 'M861'):
+    if i in ('M347', 'M348', 'M349', 'M861'):           # (M345 is a stub since 2026-11-23)
         rebuild_scorpion_road(m)
     if i in WILLOW_ROOM_LAYOUTS:
         rebuild_willow_room(m, ev)
@@ -23030,7 +23733,7 @@ def make(i):
         rebuild_mountain_inn_road(m)
     if i in DRAGON_ROOM_LAYOUTS:
         rebuild_dragon_room(m, ev)
-    if i in ('M379', 'M382', 'M383', 'M872'):
+    if i in ('M379', 'M382', 'M872'):                 # (M383 is a stub since 2026-11-23)
         rebuild_dragon_approach(m)
     if i in ('M387', 'M389', 'M390', 'M391', 'M392', 'M393', 'M395', 'M875'):
         rebuild_autumn_valley(m)
@@ -23038,6 +23741,34 @@ def make(i):
         rebuild_autumn_room(m, ev)
     if i in ('M396', 'M397', 'M398', 'M876', 'M877'):
         rebuild_yotomo_route(m, ev)
+    if i in ('M399', 'M400', 'M401', 'M402', 'M878'):
+        rebuild_iuchi_tower(m, ev)
+    if i in ('M403', 'M404', 'M405', 'M406', 'M407', 'M879', 'M880'):
+        rebuild_iuchi_mines(m, ev)
+    if i in ('M408', 'M409', 'M410', 'M881'):
+        rebuild_iuchi_wind_approach(m, ev)
+    if i in ('M411', 'M412', 'M882'):
+        rebuild_iuchi_storm_room(m)
+    if i in ('M413',):
+        rebuild_iuchi_caravan(m)
+    if i in ('M416', 'M417', 'M883'):
+        rebuild_cakon_city(m)
+    if i in ('M414', 'M415'):
+        rebuild_cakon_river(m)
+    if i in ('M418', 'M419', 'M884'):
+        rebuild_cakon_hamlet(m)
+    if i in ('M410',):
+        rebuild_narrows_gate_curtains(m)
+    if i in ('M461', 'M462'):
+        rebuild_hiruma_gate_curtains(m)
+    if i in ('M362',):
+        rebuild_kamen_gate_curtains(m)
+    if i in ('M414', 'M418'):
+        keep_cakon_hut_footprints(m)
+    if i in ('M360', 'M375', 'M380', 'M387'):
+        align_building_door_portals(m, ev)
+    if ev is not None:
+        rebuild_clan_castle_art(m, ev)
     return m, ev
 
 
@@ -23280,6 +24011,22 @@ def add_auto_interiors(specs, events):
         specs.append(m)
         if ev:
             events[m.mid] = ev
+
+
+def save_json_locked(path, data):
+    """Write JSON through a temp file and swap it in, retrying while another process holds the file (2026-11-23:
+    "Invalid argument" on map.json / RokuganMarkerData.sk mid-build; the same fix as apply_dialog_fixes)."""
+    import time
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent="	")
+    for _ in range(60):
+        try:
+            os.replace(tmp, path)
+            return
+        except OSError:
+            time.sleep(1)
+    raise SystemExit("%s stayed locked; the new copy is %s" % (path, tmp))
 
 
 def main():

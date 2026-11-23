@@ -119,7 +119,7 @@ def dress(gm, world, map_id):
             center = (gm.PAD_X + x) * .5
             front = (gm.PAD_BOTTOM + 22) * .5 - .118
             props.append(["kudo_shut_door", center, 2.5, front, 1., 0.])
-            props.append(["town_door_stoop_half", center, 2., front, 1., 0.])
+            props.append(["town_door_stoop_half", center - .5, 2., front, 1., 0.])
     elif map_id == "M361":
         for i, x in enumerate(range(4, 103, 8)):
             put("coast_pine", x, 5 + (i % 5), .72 + (i % 5) * .11, .33 * i)
@@ -177,7 +177,7 @@ def main(repo):
         if mid == "M360":
             front = (gm.PAD_BOTTOM + 22) * .5 - .118
             row["doors"] = [
-                {"x": (gm.PAD_X + x) * .5, "y": 2.5, "z": front, "grade": 2.,
+                {"x": (gm.PAD_X + x - 1) * .5, "y": 2.5, "z": front, "grade": 2.,
                  "event": event, "stoop": "town_door_stoop_half"}
                 for x, event in ((14, 85), (69, 86))
             ]

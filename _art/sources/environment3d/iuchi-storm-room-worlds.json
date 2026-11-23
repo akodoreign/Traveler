@@ -1,0 +1,17 @@
+{
+  "M411": {
+    "removed_stock_fixtures": 0,
+    "events_preserved": 85,
+    "sha256": "f4e7c932cbad295a7afb8f61a0682ca5fba9de832e664a061a905b5a7099f2c5"
+  },
+  "M412": {
+    "removed_stock_fixtures": 15,
+    "events_preserved": 80,
+    "sha256": "544ad335fd08975e9f87a3604f57fa5bfda4715a4d67afe2b6b319e12d9a0c0e"
+  },
+  "M882": {
+    "removed_stock_fixtures": 2,
+    "events_preserved": 0,
+    "sha256": "1205271716b042d7aa0931891430f8be043e76d19c61fa18b7b82b0012b56d05"
+  }
+}

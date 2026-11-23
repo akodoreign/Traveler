@@ -1,0 +1,80 @@
+{
+  "cakon_riverside_hut": {
+    "nativeSpan": [
+      2.34,
+      1.68,
+      1.84
+    ],
+    "quads": 252,
+    "materials": [
+      "cakon_cooper_bound",
+      "cakon_hut_plank",
+      "cakon_hut_stone",
+      "cakon_hut_thatch",
+      "cakon_hut_timber",
+      "cakon_hut_wicker"
+    ]
+  },
+  "cakon_hamlet_hut": {
+    "nativeSpan": [
+      2.86,
+      2.17,
+      2.36
+    ],
+    "quads": 252,
+    "materials": [
+      "cakon_cooper_bound",
+      "cakon_hut_plank",
+      "cakon_hut_stone",
+      "cakon_hut_thatch",
+      "cakon_hut_timber",
+      "cakon_hut_wicker"
+    ]
+  },
+  "cakon_hamlet_shrine": {
+    "nativeSpan": [
+      4.84,
+      3.0,
+      3.28
+    ],
+    "quads": 324,
+    "materials": [
+      "cakon_cooper_bound",
+      "cakon_hut_altar",
+      "cakon_hut_earth",
+      "cakon_hut_plank",
+      "cakon_hut_stone",
+      "cakon_hut_thatch",
+      "cakon_hut_timber"
+    ]
+  },
+  "cakon_staved_barrel": {
+    "nativeSpan": [
+      0.65,
+      0.82,
+      0.65
+    ],
+    "quads": 588,
+    "materials": [
+      "cakon_cooper_bound",
+      "cakon_cooper_lid",
+      "cakon_cooper_stave_0",
+      "cakon_cooper_stave_1",
+      "cakon_cooper_stave_2",
+      "cakon_hut_plank",
+      "cakon_hut_timber"
+    ]
+  },
+  "cakon_staved_barrel_lid": {
+    "nativeSpan": [
+      0.532,
+      0.065,
+      0.532
+    ],
+    "quads": 84,
+    "materials": [
+      "cakon_cooper_lid",
+      "cakon_hut_plank"
+    ]
+  }
+}

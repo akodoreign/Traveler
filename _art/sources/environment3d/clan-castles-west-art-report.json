@@ -1,0 +1,526 @@
+{
+  "maps": {
+    "M546": {
+      "name": "Kyuden Doji - Guard barracks",
+      "places": 105,
+      "quads": 1306,
+      "removed": 111,
+      "prop_models_replaced": 0
+    },
+    "M505": {
+      "name": "Kyuden Doji - Entrance reception",
+      "places": 100,
+      "quads": 1652,
+      "removed": 113,
+      "prop_models_replaced": 0
+    },
+    "M547": {
+      "name": "Kyuden Doji - Stables and stores",
+      "places": 95,
+      "quads": 1892,
+      "removed": 99,
+      "prop_models_replaced": 0
+    },
+    "M548": {
+      "name": "Kyuden Doji - Training court",
+      "places": 122,
+      "quads": 104,
+      "removed": 102,
+      "prop_models_replaced": 0
+    },
+    "M549": {
+      "name": "Kyuden Doji - Courtyard garden",
+      "places": 121,
+      "quads": 102,
+      "removed": 101,
+      "prop_models_replaced": 0
+    },
+    "M550": {
+      "name": "Kyuden Doji - Guest pavilion",
+      "places": 123,
+      "quads": 416,
+      "removed": 102,
+      "prop_models_replaced": 0
+    },
+    "M551": {
+      "name": "Kyuden Doji - Archive court",
+      "places": 86,
+      "quads": 1244,
+      "removed": 82,
+      "prop_models_replaced": 4
+    },
+    "M552": {
+      "name": "Kyuden Doji - Keep approach",
+      "places": 101,
+      "quads": 3094,
+      "removed": 104,
+      "prop_models_replaced": 0
+    },
+    "M553": {
+      "name": "Kyuden Doji - Shrine court",
+      "places": 100,
+      "quads": 1565,
+      "removed": 109,
+      "prop_models_replaced": 0
+    },
+    "M554": {
+      "name": "Kyuden Doji - Kitchen garden",
+      "places": 102,
+      "quads": 1246,
+      "removed": 100,
+      "prop_models_replaced": 0
+    },
+    "M555": {
+      "name": "Kyuden Doji - North garden",
+      "places": 119,
+      "quads": 206,
+      "removed": 98,
+      "prop_models_replaced": 0
+    },
+    "M556": {
+      "name": "Kyuden Doji - Watch terrace",
+      "places": 86,
+      "quads": 1306,
+      "removed": 92,
+      "prop_models_replaced": 0
+    },
+    "M506": {
+      "name": "Kyuden Doji - 1F - reception and service halls",
+      "places": 16,
+      "quads": 891,
+      "removed": 12,
+      "prop_models_replaced": 4
+    },
+    "M507": {
+      "name": "Kyuden Doji - 2F - guest and council chambers",
+      "places": 8,
+      "quads": 1029,
+      "removed": 4,
+      "prop_models_replaced": 4
+    },
+    "M508": {
+      "name": "Kyuden Doji - 3F - archives and strategy halls",
+      "places": 20,
+      "quads": 1008,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M509": {
+      "name": "Kyuden Doji - 4F - audience and watch halls",
+      "places": 16,
+      "quads": 884,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M579": {
+      "name": "Kyuden Bayushi - Guard barracks",
+      "places": 10,
+      "quads": 1238,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M520": {
+      "name": "Kyuden Bayushi - Entrance reception",
+      "places": 6,
+      "quads": 1584,
+      "removed": 19,
+      "prop_models_replaced": 0
+    },
+    "M580": {
+      "name": "Kyuden Bayushi - Stables and stores",
+      "places": 10,
+      "quads": 1824,
+      "removed": 14,
+      "prop_models_replaced": 0
+    },
+    "M581": {
+      "name": "Kyuden Bayushi - Training court",
+      "places": 24,
+      "quads": 1304,
+      "removed": 12,
+      "prop_models_replaced": 0
+    },
+    "M582": {
+      "name": "Kyuden Bayushi - Courtyard garden",
+      "places": 24,
+      "quads": 1302,
+      "removed": 12,
+      "prop_models_replaced": 0
+    },
+    "M583": {
+      "name": "Kyuden Bayushi - Guest pavilion",
+      "places": 25,
+      "quads": 1600,
+      "removed": 12,
+      "prop_models_replaced": 0
+    },
+    "M584": {
+      "name": "Kyuden Bayushi - Archive court",
+      "places": 18,
+      "quads": 1176,
+      "removed": 14,
+      "prop_models_replaced": 4
+    },
+    "M585": {
+      "name": "Kyuden Bayushi - Keep approach",
+      "places": 8,
+      "quads": 3052,
+      "removed": 11,
+      "prop_models_replaced": 0
+    },
+    "M586": {
+      "name": "Kyuden Bayushi - Shrine court",
+      "places": 15,
+      "quads": 1882,
+      "removed": 28,
+      "prop_models_replaced": 0
+    },
+    "M587": {
+      "name": "Kyuden Bayushi - Kitchen garden",
+      "places": 16,
+      "quads": 1206,
+      "removed": 14,
+      "prop_models_replaced": 0
+    },
+    "M588": {
+      "name": "Kyuden Bayushi - North garden",
+      "places": 27,
+      "quads": 1683,
+      "removed": 21,
+      "prop_models_replaced": 0
+    },
+    "M589": {
+      "name": "Kyuden Bayushi - Watch terrace",
+      "places": 10,
+      "quads": 1238,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M521": {
+      "name": "Kyuden Bayushi - 1F - reception and service halls",
+      "places": 16,
+      "quads": 434,
+      "removed": 12,
+      "prop_models_replaced": 4
+    },
+    "M522": {
+      "name": "Kyuden Bayushi - 2F - guest and council chambers",
+      "places": 8,
+      "quads": 559,
+      "removed": 4,
+      "prop_models_replaced": 4
+    },
+    "M523": {
+      "name": "Kyuden Bayushi - 3F - archives and strategy halls",
+      "places": 20,
+      "quads": 407,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M524": {
+      "name": "Kyuden Bayushi - 4F - audience and watch halls",
+      "places": 20,
+      "quads": 379,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M601": {
+      "name": "Shiro Iuchi - Guard barracks",
+      "places": 99,
+      "quads": 1306,
+      "removed": 105,
+      "prop_models_replaced": 0
+    },
+    "M530": {
+      "name": "Shiro Iuchi - Entrance reception",
+      "places": 97,
+      "quads": 1652,
+      "removed": 110,
+      "prop_models_replaced": 0
+    },
+    "M602": {
+      "name": "Shiro Iuchi - Stables and stores",
+      "places": 91,
+      "quads": 1892,
+      "removed": 95,
+      "prop_models_replaced": 0
+    },
+    "M603": {
+      "name": "Shiro Iuchi - Training court",
+      "places": 97,
+      "quads": 264,
+      "removed": 89,
+      "prop_models_replaced": 0
+    },
+    "M604": {
+      "name": "Shiro Iuchi - Courtyard garden",
+      "places": 98,
+      "quads": 262,
+      "removed": 90,
+      "prop_models_replaced": 0
+    },
+    "M605": {
+      "name": "Shiro Iuchi - Guest pavilion",
+      "places": 111,
+      "quads": 560,
+      "removed": 102,
+      "prop_models_replaced": 0
+    },
+    "M606": {
+      "name": "Shiro Iuchi - Archive court",
+      "places": 94,
+      "quads": 1244,
+      "removed": 90,
+      "prop_models_replaced": 4
+    },
+    "M607": {
+      "name": "Shiro Iuchi - Keep approach",
+      "places": 93,
+      "quads": 3094,
+      "removed": 96,
+      "prop_models_replaced": 0
+    },
+    "M608": {
+      "name": "Shiro Iuchi - Shrine court",
+      "places": 102,
+      "quads": 1565,
+      "removed": 111,
+      "prop_models_replaced": 0
+    },
+    "M609": {
+      "name": "Shiro Iuchi - Kitchen garden",
+      "places": 115,
+      "quads": 1246,
+      "removed": 113,
+      "prop_models_replaced": 0
+    },
+    "M610": {
+      "name": "Shiro Iuchi - North garden",
+      "places": 109,
+      "quads": 328,
+      "removed": 101,
+      "prop_models_replaced": 0
+    },
+    "M611": {
+      "name": "Shiro Iuchi - Watch terrace",
+      "places": 94,
+      "quads": 1306,
+      "removed": 100,
+      "prop_models_replaced": 0
+    },
+    "M531": {
+      "name": "Shiro Iuchi - 1F - reception and service halls",
+      "places": 16,
+      "quads": 891,
+      "removed": 12,
+      "prop_models_replaced": 4
+    },
+    "M532": {
+      "name": "Shiro Iuchi - 2F - guest and council chambers",
+      "places": 8,
+      "quads": 1016,
+      "removed": 4,
+      "prop_models_replaced": 4
+    },
+    "M533": {
+      "name": "Shiro Iuchi - 3F - archives and strategy halls",
+      "places": 20,
+      "quads": 864,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M534": {
+      "name": "Shiro Iuchi - 4F - audience and watch halls",
+      "places": 16,
+      "quads": 836,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M612": {
+      "name": "Kyuden Togashi - Guard barracks",
+      "places": 10,
+      "quads": 1238,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M623": {
+      "name": "Kyuden Togashi - Entrance reception",
+      "places": 6,
+      "quads": 1584,
+      "removed": 19,
+      "prop_models_replaced": 0
+    },
+    "M613": {
+      "name": "Kyuden Togashi - Stables and stores",
+      "places": 10,
+      "quads": 1824,
+      "removed": 14,
+      "prop_models_replaced": 0
+    },
+    "M614": {
+      "name": "Kyuden Togashi - Training court",
+      "places": 24,
+      "quads": 56,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M615": {
+      "name": "Kyuden Togashi - Courtyard garden",
+      "places": 24,
+      "quads": 54,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M616": {
+      "name": "Kyuden Togashi - Guest pavilion",
+      "places": 25,
+      "quads": 352,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M617": {
+      "name": "Kyuden Togashi - Archive court",
+      "places": 18,
+      "quads": 1176,
+      "removed": 14,
+      "prop_models_replaced": 4
+    },
+    "M618": {
+      "name": "Kyuden Togashi - Keep approach",
+      "places": 8,
+      "quads": 3052,
+      "removed": 11,
+      "prop_models_replaced": 0
+    },
+    "M619": {
+      "name": "Kyuden Togashi - Shrine court",
+      "places": 12,
+      "quads": 1497,
+      "removed": 21,
+      "prop_models_replaced": 0
+    },
+    "M620": {
+      "name": "Kyuden Togashi - Kitchen garden",
+      "places": 16,
+      "quads": 1206,
+      "removed": 14,
+      "prop_models_replaced": 0
+    },
+    "M621": {
+      "name": "Kyuden Togashi - North garden",
+      "places": 24,
+      "quads": 120,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M622": {
+      "name": "Kyuden Togashi - Watch terrace",
+      "places": 10,
+      "quads": 1238,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M624": {
+      "name": "Kyuden Togashi - 1F - reception and service halls",
+      "places": 16,
+      "quads": 891,
+      "removed": 12,
+      "prop_models_replaced": 4
+    },
+    "M625": {
+      "name": "Kyuden Togashi - 2F - guest and council chambers",
+      "places": 8,
+      "quads": 1016,
+      "removed": 4,
+      "prop_models_replaced": 4
+    },
+    "M626": {
+      "name": "Kyuden Togashi - 3F - archives and strategy halls",
+      "places": 20,
+      "quads": 864,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M627": {
+      "name": "Kyuden Togashi - 4F - audience and watch halls",
+      "places": 16,
+      "quads": 836,
+      "removed": 4,
+      "prop_models_replaced": 12
+    }
+  },
+  "sources": {
+    "castle_kaiu_lantern": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_kaiu_lantern_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        0.54,
+        1.03,
+        0.54
+      ]
+    },
+    "castle_lacquer_supply_chest": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_lacquer_supply_chest_00001_.glb",
+      "triangles": 19998,
+      "world_size": [
+        0.93,
+        0.56,
+        0.48
+      ]
+    },
+    "castle_council_table": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_council_table_00001_.glb",
+      "triangles": 18922,
+      "world_size": [
+        1.07,
+        0.5,
+        0.55
+      ]
+    },
+    "castle_diorama_matsu": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_diorama_matsu_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        2.76,
+        3.13,
+        2.43
+      ]
+    },
+    "castle_iris_clump": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_iris_clump_00001_.glb",
+      "triangles": 18070,
+      "world_size": [
+        0.44,
+        0.61,
+        0.43
+      ]
+    },
+    "castle_tamori_stones": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_tamori_stones_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        1.85,
+        0.93,
+        1.18
+      ]
+    },
+    "castle_unicorn_saddle": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_unicorn_saddle_00001_.glb",
+      "triangles": 19996,
+      "world_size": [
+        0.68,
+        0.85,
+        0.48
+      ]
+    },
+    "castle_bayushi_mask_stand": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_bayushi_mask_stand_00001_.glb",
+      "triangles": 19982,
+      "world_size": [
+        0.77,
+        0.49,
+        0.33
+      ]
+    }
+  }
+}

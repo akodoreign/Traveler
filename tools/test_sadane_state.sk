@@ -1,0 +1,10 @@
+//	tools/test_sadane.py / bot evalf: the Game of Masks state survives the save serializer (ObjectOutput, as
+//	RPGMain.saveGame encodes ::rpgstat) - round-trips G1650 without touching a save slot.
+::Rokugan.sadaneGive( "iron", 7);
+local st = ::Rokugan.sadaneState();
+st.beaten["karyu"] <- true;
+::rpgvar["G1650"] = st;
+local back = ObjectInput.decode( ObjectOutput.encode( { g = ::rpgvar["G1650"] }));
+printf( "[RT] STATE before %S\n", encodeJSON( st));
+printf( "[RT] STATE after  %S\n", encodeJSON( back.g));
+printf( "[RT] STATE same %S\n", encodeJSON( st) == encodeJSON( back.g) ? "yes" : "NO");

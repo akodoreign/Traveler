@@ -1,0 +1,45 @@
+{
+  "maps": {
+    "M418": {
+      "events": 125,
+      "placements": 44
+    },
+    "M419": {
+      "events": 113,
+      "placements": 31
+    },
+    "M884": {
+      "events": 0,
+      "placements": 22
+    }
+  },
+  "sources": {
+    "cakon_canal_maple_log": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_canal_maple_log_00001_.glb",
+      "triangles": 18177,
+      "world_size": [
+        6.4,
+        0.76,
+        1.85
+      ]
+    },
+    "cakon_thatch_bundle": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_thatch_bundle_00001_.glb",
+      "triangles": 19961,
+      "world_size": [
+        0.72,
+        0.43,
+        0.59
+      ]
+    },
+    "cakon_paddy_red_stone": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_paddy_red_stone_00001_.glb",
+      "triangles": 19999,
+      "world_size": [
+        0.91,
+        0.71,
+        0.68
+      ]
+    }
+  }
+}

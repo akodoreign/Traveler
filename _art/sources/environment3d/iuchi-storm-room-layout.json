@@ -1,0 +1,33 @@
+{
+  "maps": {
+    "M411": {
+      "events": 85,
+      "placements": 7
+    },
+    "M412": {
+      "events": 80,
+      "placements": 12
+    },
+    "M882": {
+      "events": 0,
+      "placements": 18
+    }
+  },
+  "sources": {
+    "iuchi_storm_broken_frame": {
+      "name": "iuchi_storm_broken_frame",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iuchi_storm_broken_frame_00001_.glb",
+      "grid": [
+        26,
+        23,
+        42
+      ],
+      "occupied": 6163,
+      "world_size": [
+        1.42,
+        0.4,
+        1.35
+      ]
+    }
+  }
+}

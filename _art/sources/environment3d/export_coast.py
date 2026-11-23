@@ -38,24 +38,32 @@ def export(name, geom, maps):
     normals = np.repeat(np.rint(normals[:, [0,2,1]] * 32767), 4, axis=0)
     uv = np.asarray(geom.uvs, dtype=np.float32).reshape(-1, 2)
     uv[:, 1] = 1. - uv[:, 1]
-    mats = dict.fromkeys(geom.materials)
+    materials = np.asarray(geom.materials)
+    groups = {}
+    for key in dict.fromkeys(geom.materials):
+        # Swap winding with the Blender-to-native depth/up coordinate swap.
+        first = 4 * np.flatnonzero(materials == key)
+        groups[key] = (first[:, None] + [0, 2, 1, 0, 3, 2]).reshape(-1)
+    write_model(name, native, normals, uv, groups, maps)
+    print(f"COAST {name}: {len(geom.faces)} quads, {list(groups)}")
+
+
+def write_model(name, native, normals, uv, groups, maps):
+    """Write native geometry from positions, packed normals, UVs, and triangle groups."""
     # SMDL v1 vertex streams are planar on disk. Offsets and stride describe
     # the engine's interleaved position, packed normal and float UV buffers.
     stride = 32
     data = bytearray(b"SMDL\x00\x01\x00\x00\x00\x03")
-    data += struct.pack(">I", len(points) * stride)
+    data += struct.pack(">I", len(native) * stride)
     for role, kind, normalize, width, offset, values, dtype in (
         (0, 1, 0, 3, 0, native, ">f4"), (1, 4, 1, 3, 12, normals, ">i2"),
         (4, 1, 0, 2, 24, uv, ">f4"),
     ):
-        data += struct.pack(">6BII", role, kind, normalize, width, stride, 0, offset, len(points))
+        data += struct.pack(">6BII", role, kind, normalize, width, stride, 0, offset, len(native))
         data += values.astype(dtype).tobytes()
-    data += bytes(4) + bytes([len(mats)])
+    data += bytes(4) + bytes([len(groups)])
     declarations = []
-    for key in mats:
-        # Swap winding with the Blender-to-native depth/up coordinate swap.
-        first = 4 * np.flatnonzero(np.asarray(geom.materials) == key)
-        ix = (first[:, None] + [0, 2, 1, 0, 3, 2]).reshape(-1)
+    for key, ix in groups.items():
         kind, dtype = (7, ">u4") if ix.max() > 65535 or len(ix) > 65535 else (3, ">u2")
         raw = ix.astype(dtype).tobytes()
         data += struct.pack(">4BII", 4, 0, 0, kind, len(raw), len(ix)) + raw + bytes(4)
@@ -83,7 +91,6 @@ def export(name, geom, maps):
     (STAGE / f"{name}.pm").write_text(
         f'return {{\nmodeldata = "{name}.mdl"\nbnd = {bound.tolist()}\nmaterial = [\n{desc}\n]\n}}\n',
         encoding="utf-8", newline="\n")
-    print(f"COAST {name}: {len(geom.faces)} quads, {list(mats)}")
 
 
 def terrain(id_, data):

@@ -138,9 +138,9 @@ def layout(gm,world):
         px,pz=(x+gm.PAD_X)*.5,(z+gm.PAD_BOTTOM)*.5-.118
         if event is None:
             props.extend([["kudo_shut_door",px,2.5,pz,1.,0.],
-                          ["town_door_stoop_half",px,2.,pz,1.,0.]])
+                          ["town_door_stoop_half",px-.5,2.,pz,1.,0.]])
         else:
-            doors.append({"x":px,"y":2.5,"z":pz,"grade":2.,"event":event,"stoop":"town_door_stoop_half"})
+            doors.append({"x":px-.5,"y":2.5,"z":pz,"grade":2.,"event":event,"stoop":"town_door_stoop_half"})
 
     if mid=="M345":
         props.append(["bayushi_pond_bridge",21.,2.,13.,1.,0.])

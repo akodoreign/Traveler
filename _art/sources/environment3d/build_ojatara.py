@@ -205,9 +205,9 @@ def layout(gm,m):
         b=(gm.PAD_BOTTOM+z)*.5-.118
         if event is None:
             placements.extend([["kudo_shut_door",a,2.5,b,1.,0.],
-                               ["town_door_stoop_half",a,2.,b,1.,0.]])
+                               ["town_door_stoop_half",a-.5,2.,b,1.,0.]])
         else:
-            doors.append({"x":a,"y":2.5,"z":b,"grade":2.,"event":event,
+            doors.append({"x":a-.5,"y":2.5,"z":b,"grade":2.,"event":event,
                           "stoop":"town_door_stoop_half"})
 
     for n,(x,z,size) in enumerate(CAMP_TENTS.get(mid,())):
@@ -261,7 +261,7 @@ def layout(gm,m):
             put("coast_pine",x,z,.86+.08*(x%4),x*.23)
         lamp(44,19)
         lamp(51,20)
-        for x in (11.5,23.5,73.5,83.5):
+        for x in (11,23,73,83):
             house(x,22)
     elif mid=="M375":
         put("ojatara_petal_sign",20,11,.98)

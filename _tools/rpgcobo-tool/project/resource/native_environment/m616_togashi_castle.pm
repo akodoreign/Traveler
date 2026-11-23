@@ -1,0 +1,84 @@
+return {
+modeldata = "m616_togashi_castle.mdl"
+bnd = [37.0, 2.75, 20.0, 37.01899719238281, 2.7690000534057617, 20.019001007080078]
+material = [
+  {
+    name = "castle_togashi_gravel"
+    tec = "pbr.basic"
+    mtype = 0
+    basecol = 0xffffffff
+    rough = 0.9400
+    metal = 0.0
+    mparam = 0xff000000
+    texmap = 0
+    texture0 = "tex/castle_togashi_gravel.png"
+    texture1 = null
+    texture2 = null
+  }
+  {
+    name = "castle_togashi_stone"
+    tec = "pbr.basic"
+    mtype = 0
+    basecol = 0xffffffff
+    rough = 0.9400
+    metal = 0.0
+    mparam = 0xff000000
+    texmap = 0
+    texture0 = "tex/castle_togashi_stone.png"
+    texture1 = null
+    texture2 = null
+  }
+  {
+    name = "castle_togashi_wood"
+    tec = "pbr.basic"
+    mtype = 0
+    basecol = 0xffffffff
+    rough = 0.8700
+    metal = 0.0
+    mparam = 0xff000000
+    texmap = 0
+    texture0 = "tex/castle_togashi_wood.png"
+    texture1 = null
+    texture2 = null
+  }
+  {
+    name = "castle_togashi_paper"
+    tec = "pbr.basic"
+    mtype = 0
+    basecol = 0xffffffff
+    rough = 0.9400
+    metal = 0.0
+    mparam = 0xff000000
+    texmap = 0
+    texture0 = "tex/castle_togashi_paper.png"
+    texture1 = null
+    texture2 = null
+  }
+  {
+    name = "castle_togashi_floor"
+    tec = "pbr.basic"
+    mtype = 0
+    basecol = 0xffffffff
+    rough = 0.9400
+    metal = 0.0
+    mparam = 0xff000000
+    texmap = 0
+    texture0 = "tex/castle_togashi_floor.png"
+    texture1 = null
+    texture2 = null
+  }
+  {
+    name = "castle_togashi_roof"
+    tec = "pbr.basic"
+    mtype = 0
+    basecol = 0xffffffff
+    rough = 0.8700
+    metal = 0.0
+    mparam = 0xff000000
+    texmap = 0
+    texture0 = "tex/castle_togashi_roof.png"
+    texture1 = null
+    texture2 = null
+  }
+]
+}

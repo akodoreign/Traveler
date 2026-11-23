@@ -1,0 +1,53 @@
+{
+  "maps": {
+    "M414": {
+      "events": 75,
+      "placements": 43
+    },
+    "M415": {
+      "events": 94,
+      "placements": 20
+    }
+  },
+  "sources": {
+    "cakon_herb_cluster": {
+      "name": "cakon_herb_cluster",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_herb_cluster_00001_.glb",
+      "grid": [
+        33,
+        11,
+        39
+      ],
+      "occupied": 794,
+      "world_size": [
+        0.48,
+        0.41999999999999993,
+        0.42
+      ]
+    },
+    "cakon_mooring_gear": {
+      "name": "cakon_mooring_gear",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_mooring_gear_00001_.glb",
+      "grid": [
+        47,
+        47,
+        26
+      ],
+      "occupied": 5517,
+      "world_size": [
+        0.96,
+        0.77,
+        0.83
+      ]
+    },
+    "cakon_river_barge": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_river_barge_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        7.55,
+        1.04,
+        2.64
+      ]
+    }
+  }
+}

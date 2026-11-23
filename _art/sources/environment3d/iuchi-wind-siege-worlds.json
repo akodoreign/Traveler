@@ -1,0 +1,30 @@
+{
+  "M408": {
+    "net_new_fixtures": 56,
+    "events_preserved": 95,
+    "sha256": "7ef98e8fefe25d1a093aba3359c6db0ea66a020df410cd5661d5697c8ed7b77c"
+  },
+  "M409": {
+    "removed_stock_fixtures": 0,
+    "events_preserved": 82,
+    "sha256": "5fd7b8a7b35274b6d298cc41f4acfb35055560c43cd1a42770f7ee8dd1f5a32d"
+  },
+  "M410": {
+    "net_new_fixtures": 1,
+    "events_preserved": 82,
+    "event_positions_updated": {
+      "#2#": [
+        126,
+        4,
+        20,
+        0
+      ]
+    },
+    "sha256": "7133df7bbf4ba1c993f814e533c0c969ca34b6892fbb0f2a7eabfb423c475c98"
+  },
+  "M881": {
+    "removed_stock_fixtures": 0,
+    "events_preserved": 0,
+    "sha256": "fcd585e1b14b0e3dfd3aeceb7b8366f73a6e4b78dbdb850da404457a0262f3c9"
+  }
+}

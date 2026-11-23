@@ -99,6 +99,9 @@ function loadPlugin( args, opt){
 	if( ::getResource( srcdir .. "/RokuganDanceChart_kabuki_4.sk"))
 		runsk( srcdir .. "/RokuganDanceChart_kabuki_4.sk");
 	runsk( srcdir .. "/RokuganKabuki.sk");		//	the kabuki rehearsal (Crane Ch4 S03; needs RokuganMini.sk's RTMini)
+	runsk( srcdir .. "/RokuganSadane.sk");
+	runsk( srcdir .. "/RokuganCastleGames.sk");
+	runsk( srcdir .. "/RokuganChase.sk");		//	the marker chaser (only with -rtchase: tools/markerchase.py)	//	the castles' clan games: ink, kitsuki, rings, yabusame (needs RTMini)		//	the Game of Masks at Kyuden Bayushi (needs RTMini, RokuganCloseup)
 	runsk( srcdir .. "/RokuganUpdate.sk");		//	the title screen's Update / Verify (against GitHub)
 	runsk( srcdir .. "/RokuganEnvironmentKit.sk");
 	runsk( srcdir .. "/RokuganBot.sk");			//	test player for tools/playbot.py (only with -rtbot)

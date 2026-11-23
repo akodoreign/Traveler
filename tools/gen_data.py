@@ -1141,6 +1141,40 @@ def crab_armor(ar):
         body(aid, "A055", name, 1, 0)
         ar[aid]["desc"] = desc
         opt(aid, opttype="opt_status", propid=prop, val=val, valtype="totalrate")
+    # The Game of Masks at Kyuden Bayushi (tools/gen_sadane.py GEAR): the keep's players give these on a first win.
+    for aid, name, desc, opts in (
+            ("A193", "Courtier's Fan", "Bayushi Masaru's fan, for hiding a smile at court. (Speed +6)",
+             [("AGI", 6, "supply")]),
+            ("A194", "Lead Actor's Mask Cord", "The house theatre's lead ties her mask with this red cord. "
+                                               "(Magic DEF +12%)", [("MDEF", 12, "totalrate")]),
+            ("A195", "Council Seal of Silence", "A small seal for minuting what no one said. (Magic ATK +10%)",
+             [("MATK", 10, "totalrate")]),
+            ("A196", "Curse-Ledger Charm", "A Yogo ledger-charm: every account settled. (Critical +8%)",
+             [("CRI", 8, "supply")]),
+            ("A197", "Mistress's Red Mask", "Bayushi Kyoko's red mask, given to the only player who ever beat her in "
+                                            "her castle. (Attack +10%, Speed +6)",
+             [("PATK", 10, "totalrate"), ("AGI", 6, "supply")])):
+        body(aid, "A055", name, 1, 0)
+        ar[aid]["desc"] = desc
+        for prop, val, vt in opts:
+            opt(aid, opttype="opt_status", propid=prop, val=val, valtype=vt)
+    # the castles' clan games (gen_maps clan_game): the first win's prize
+    for aid, name, desc, opts in (
+            ("A198", "Ise Zumi Ink Charm", "A drop of a Togashi tattooist's ink, sealed in a bead of wax. The skin "
+                                           "remembers. (Magic DEF +10%)", [("MDEF", 10, "totalrate")]),
+            ("A199", "Kitsuki Examiner's Lens", "A magistrate's reading glass, for looking at what people would rather "
+                                                "you didn't. (Critical +6%)", [("CRI", 6, "supply")]),
+            ("A200", "Five Rings Pendant", "Five small stones on a cord: earth, water, fire, air and a clear one for "
+                                           "the Void. (Magic ATK +8%)", [("MATK", 8, "totalrate")]),
+            ("A202", "Nishi's Black Stone", "A slate go stone from Nishi's bowl, warm from her hand. She says she "
+                                            "let you have the left edge. (Speed +4, Magic DEF +6%)",
+             [("AGI", 4, "supply"), ("MDEF", 6, "totalrate")]),
+            ("A201", "Yabusame Glove", "A Unicorn archer's glove, worn smooth at the thumb. (Speed +5, Critical +4%)",
+             [("AGI", 5, "supply"), ("CRI", 4, "supply")])):
+        body(aid, "A055", name, 1, 0)
+        ar[aid]["desc"] = desc
+        for prop, val, vt in opts:
+            opt(aid, opttype="opt_status", propid=prop, val=val, valtype=vt)
     # Unicorn Ch3: the mine guardian's lantern (bosses.md steal: "Guardian's Lantern (Fire accessory)")
     body("A156", "A055", "Guardian's Lantern", 1, 0)
     ar["A156"]["desc"] = "An iron mine-lantern three hundred years old. Its flame never goes out. (Fire resist 30%)"
@@ -2203,6 +2237,18 @@ def main():
     # guests 18+ count from G1648 (G1382 onward belong to the odd jobs; RokuganAI guestVar)
     gv["G1648"] = {"defval": 0, "name": "guest 18 (Doji Sanae): calls spent (lifetime)", "type": 2}
     gv["G1649"] = {"defval": False, "name": "Doji Sanae waits (not with Rensei: RokuganBattle guestPresent)", "type": 1}
+    # The Game of Masks at Kyuden Bayushi (plugin RokuganSadane.sk, tools/gen_sadane.py): one "any" var holds the
+    # whole game (masks owned, levels, the sleeve, rivals seen / beaten, Honor given), so a save carries it.
+    gv["G1650"] = {"defval": None, "name": "Game of Masks: state table (RokuganSadane)", "type": 6}
+    gv["G1651"] = {"defval": False, "name": "Game of Masks: open (Soshi Kagero, Kyuden Bayushi reception)", "type": 1}
+    gv["G1652"] = {"defval": 0, "name": "Game of Masks: a masked stranger steps out (hidden duellist 1-3)", "type": 2}
+    gv["G1653"] = {"defval": 0, "name": "Game of Masks: a rival saw her (rival index + 1)", "type": 2}
+    # the castles' clan games (plugin RokuganCastleGames.sk; gen_maps clan_game): first win per game
+    for n, (g, what) in enumerate((("G1654", "the Ise Zumi's Ink (Kyuden Togashi)"),
+                                   ("G1655", "the Kitsuki Method (Shiro Kitsuki)"),
+                                   ("G1656", "the Five Rings (Kyuden Isawa)"), ("G1657", "Yabusame (Shiro Iuchi)"),
+                                   ("G1658", "a full game of go with Nishi (Shiro Akodo)"))):
+        gv[g] = {"defval": False, "name": "Clan game won once: " + what, "type": 1}
     gv["G1244"] = {"defval": 0,"name": "Journal: the tracked entry (0 = the main story; RokuganJournal.sk)", "type": 2}
     gv["G1189"] = {"defval": 0, "name": "finale: Nashiko's shields broken in the debate (0-8)", "type": 2}
     gv["G1092"] = {"defval": 0, "name": "ronin_technique_second (Ronin Ch2 Rank 2: 1-3 another school's R1, 4 Punish "

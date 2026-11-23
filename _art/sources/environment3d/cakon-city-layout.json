@@ -1,0 +1,48 @@
+{
+  "maps": {
+    "M416": {
+      "events": 102,
+      "placements": 25
+    },
+    "M417": {
+      "events": 113,
+      "placements": 15
+    },
+    "M883": {
+      "events": 0,
+      "placements": 14
+    }
+  },
+  "sources": {
+    "cakon_fish_basket": {
+      "name": "cakon_fish_basket",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_fish_basket_00001_.glb",
+      "grid": [
+        41,
+        44,
+        41
+      ],
+      "occupied": 8131,
+      "world_size": [
+        0.81,
+        0.56,
+        0.47
+      ]
+    },
+    "cakon_market_crock": {
+      "name": "cakon_market_crock",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_cakon_market_crock_00001_.glb",
+      "grid": [
+        43,
+        40,
+        41
+      ],
+      "occupied": 7031,
+      "world_size": [
+        0.5,
+        0.49,
+        0.66
+      ]
+    }
+  }
+}

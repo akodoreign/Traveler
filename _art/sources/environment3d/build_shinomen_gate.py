@@ -182,8 +182,8 @@ def main(repo):
         index[mid]={"terrain":terrain,"placements":props,"watchfires":watchfires,"poolLights":lights}
         if mid=="M457":
             index[mid]["doors"]=[
-                {"event":79,"x":20.0,"y":2.0,"z":10.882,"stoop":"town_door_stoop_half","grade":1.5},
-                {"event":None,"x":29.5,"y":2.0,"z":10.882,"stoop":"town_door_stoop_half","grade":1.5},
+                {"event":79,"x":19.5,"y":2.0,"z":10.882,"stoop":"town_door_stoop_half","grade":1.5},
+                {"event":None,"x":29.0,"y":2.0,"z":10.882,"stoop":"town_door_stoop_half","grade":1.5},
             ]
 
     props=[

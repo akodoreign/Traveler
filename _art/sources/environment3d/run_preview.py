@@ -11,7 +11,7 @@ HERE = Path(__file__).resolve().parent
 repo = Path(sys.argv[1])
 target = sys.argv[2]
 battle_maps = ("M808", "M810", "M811", "M812", "M813", "M817", "M818", "M862", "M863", "M864", "M865", "M866", "M867", "M868",
-               "M861", "M869", "M870", "M871", "M872", "M873", "M874", "M875", "M876", "M877", "M894")
+               "M861", "M869", "M870", "M871", "M872", "M873", "M874", "M875", "M876", "M877", "M878", "M879", "M880", "M881", "M882", "M883", "M884", "M894")
 shifting_waste = ("M459", "M465", "M466", "M467", "M468", "M469")
 hiruma_castle = ("M461", "M462", "M463")
 march = ("M171","M172","M173","M174","M175","M176","M177")
@@ -24,16 +24,19 @@ scorpion = ("M345","M346","M347","M348","M349")
 dragon = ("M379","M380","M381","M382","M383")
 autumn = ("M387","M388","M389","M390","M391","M392","M393","M394","M395")
 yotomo = ("M396","M397","M398")
+iuchi = tuple(f"M{i}" for i in range(399,414))
+cakon = ("M414","M415","M416","M417","M418","M419","M883","M884")
 assert target in ("M100", "M101", "M102", "M103", "M104", "M105", "M120", "M121", "M122", "M123", "M124", "M125", "M130", "M131", "M132", "M133",
                   "M212", "M236", "M350", "M351", "M384", "M385", "M386", "M437", "M457", "M458", "M460", "M555", "M991",
                   *battle_maps, *shifting_waste, *hiruma_castle, *march, *kudo_rooms, *kudo_marsh, *kensu, *city, *ojatara,
-                  *scorpion,*dragon,*autumn,*yotomo)
+                  *scorpion,*dragon,*autumn,*yotomo,*iuchi,*cakon)
 wave_clip="--waves" in sys.argv[3:]
 entrance="--entrance" in sys.argv[3:]
 cave_entry="--cave-entry" in sys.argv[3:]
 doors="--doors" in sys.argv[3:]
 hiruma_open="--hiruma-open" in sys.argv[3:]
 daylight="--daylight" in sys.argv[3:]
+locked_gate="--locked-gate" in sys.argv[3:]
 isolated = "--profile" in sys.argv[3:]
 assert not cave_entry or target in ("M102","M105")
 assert not doors or target=="M103"
@@ -52,6 +55,7 @@ stage.write_text((HERE / "preview_coast.sk").read_text(encoding="utf-8")
                  .replace("@ENTRANCE@","true" if entrance else "false")
                  .replace("@DOORS@","true" if doors else "false")
                  .replace("@DAYLIGHT@","true" if daylight else "false")
+                 .replace("@GATE_LOCKED@","true" if locked_gate else "false")
                  .replace("@WAVE_CLIP@","true" if wave_clip else "false"), encoding="utf-8")
 start = "M202" if target in battle_maps else "M101" if target=="M100" else target
 coords={"M100": (34,12),"M101": (14,36),"M102": (24,18), "M103": (84,23), "M104": (39,18),
@@ -78,6 +82,10 @@ coords.update({"M379":(43,15),"M380":(61,16),"M382":(65,15),"M383":(34,12)})
 coords.update({"M387":(57,17),"M389":(53,16),"M390":(82,14),"M391":(40,12),
                "M392":(51,21),"M393":(34,19),"M395":(30,8)})
 coords.update({"M396":(82,17),"M397":(28,15),"M398":(35,15)})
+coords.update({"M399":(31,22),"M403":(51,12),"M404":(55,15),"M405":(22,17),"M406":(36,20),"M407":(30,21)})
+coords.update({"M408":(25,14),"M409":(26,8),"M410":(57,8),"M411":(4,7),"M412":(4,7)})
+coords.update({"M413":(26,15),"M414":(25,11),"M415":(28,13),"M416":(59,15),"M417":(68,15)})
+coords.update({"M418":(40,16),"M419":(37,15)})
 coords.update({"M171":(42,16),"M172":(37,15),"M173":(35,15),"M174":(35,18),
                "M175":(36,20),"M176":(53,16),"M177":(73,16)})
 if entrance or cave_entry:
@@ -86,7 +94,8 @@ if doors:
     coords[target]=(41,25)
 location = {"M120":(21,12),"M121":(16,11),"M122":(16,11),"M123":(19,13),"M124":(19,11),
             "M125":(16,13),"M346":(13,13),"M363":(11,13),"M367":(12,12),"M370":(16,14),"M376":(13,14),
-            "M381":(15,13),"M388":(16,13),"M394":(16,13)}.get(start)
+            "M381":(15,13),"M388":(16,13),"M394":(16,13),"M400":(18,14),"M401":(19,15),"M402":(17,14),
+            "M408":(46,28),"M409":(49,17),"M410":(120,15),"M411":(7,14),"M412":(7,14)}.get(start)
 if start=="M991":
     spawn="[8.5,1.0,5.4,0.0]"
 else:
@@ -107,8 +116,10 @@ if target in battle_maps:
     steps += f"|wait,2200|evalf,{script}"
 lead="P105" if target in ("M350","M351","M861","M862","M863","M864","M865","M866","M867","M868","M869","M870","M871","M872",
                          *kudo_rooms,*kudo_marsh,*kensu,*city,*ojatara,*scorpion,*dragon) else "P102"
-if target in (*autumn,*yotomo,"M875","M876","M877"):
+if target in (*autumn,*yotomo,*iuchi,"M875","M876","M877","M878","M879","M880","M881","M882"):
     lead="P106"
+if target in cakon:
+    lead="P107"
 args = [str(tool/"rpgcobo.exe"),"-testplay","-map",start,spawn,
         "-rtfast","-rtlead",lead,"-rtparty","P101"]
 if cave_entry:
@@ -134,7 +145,8 @@ elif target in kudo_marsh:
 elif target in kensu:
     args+=["-rtvar","G861,G879,G880,G881"]
 elif target in city:
-    args+=["-rtvar","G879,G880,G881,G882,G891,G893,G898,G899,G903,G904,G917"]
+    flags="G879,G880,G881,G882,G898,G899,G903,G904,G917"
+    args+=["-rtvar",flags if locked_gate else flags+",G891,G893"]
 elif target in ojatara:
     args+=["-rtvar","G909,G918,G919,G924,G925,G926,G927,G929,G932,G933,G943"]
 elif target=="M346":
@@ -148,6 +160,18 @@ elif target in autumn:
 elif target in yotomo:
     completed = ",G981" if target == "M398" else ""
     args+=["-rtvar","G967,G968,G969,G972,G973,G974,G977,G978,G979,G980" + completed]
+elif target in cakon:
+    flags="G1062,G1040,G1041,G1061,G1055,G1045,G1047"
+    args+=["-rtvar",flags if locked_gate else flags+",G1043"]
+elif target in iuchi:
+    flags = "G994,G998,G999,G1001,G1002,G1004,G1006,G1007,G1008,G1009,G1010,G1021"
+    if target in ("M408","M409","M410","M411","M412"):
+        flags+=",G1022,G1025,G1027"
+        if not locked_gate:
+            flags+=",G1026"
+    if target=="M413":
+        flags="G1029,G1030,G1031,G1203"
+    args+=["-rtvar",flags if target == "M399" else flags + ",G1000"]
 else:
     args+=["-debuglv","20"]
 args+=["-rtbot",steps]

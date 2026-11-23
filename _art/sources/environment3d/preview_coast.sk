@@ -10,7 +10,9 @@ local groveBattle="@MAP@"=="M861";
 local dragonBattle="@MAP@"=="M872";
 local autumnBattle="@MAP@"=="M875";
 local yotomoBattle=("@MAP@"=="M876" || "@MAP@"=="M877");
-if(("@MAP@"=="M808" || "@MAP@"=="M811" || "@MAP@"=="M810" || "@MAP@"=="M812" || "@MAP@"=="M813" || furnaceBattle || shadowBattle || marshBattle || paddyBattle || cityBattle || templeBattle || ojataraBattle || groveBattle || dragonBattle || autumnBattle || yotomoBattle) && !stage["battle"]){
+local iuchiBattle=("@MAP@"=="M878" || "@MAP@"=="M879" || "@MAP@"=="M880" || "@MAP@"=="M881" || "@MAP@"=="M882");
+local cakonBattle="@MAP@"=="M883" || "@MAP@"=="M884";
+if(("@MAP@"=="M808" || "@MAP@"=="M811" || "@MAP@"=="M810" || "@MAP@"=="M812" || "@MAP@"=="M813" || furnaceBattle || shadowBattle || marshBattle || paddyBattle || cityBattle || templeBattle || ojataraBattle || groveBattle || dragonBattle || autumnBattle || yotomoBattle || iuchiBattle || cakonBattle) && !stage["battle"]){
     local fire="@MAP@"=="M894" ? "E558" : "E484";
     local foes=furnaceBattle ? [{id=fire,x=1.5,z=-.4},{id=fire,x=.4,z=.65}] :
         [{id="@MAP@"=="M813" ? "E103" : ("@MAP@"=="M812" ? "E120" : ("@MAP@"=="M808" ? "E600" : "E430")),x=1.5,z=-.4}];
@@ -21,6 +23,15 @@ if(("@MAP@"=="M808" || "@MAP@"=="M811" || "@MAP@"=="M810" || "@MAP@"=="M812" || 
     if(dragonBattle) foes=[{id="E479",x=1.6,z=-.74},{id="E479",x=.52,z=.53},{id="E479",x=1.72,z=1.14}];
     if(autumnBattle) foes=[{id="E493",x=1.65,z=-.48},{id="E493",x=.55,z=.78}];
     if(yotomoBattle) foes=[{id="E497",x=1.58,z=-.48},{id="E497",x=.52,z=.72}];
+    if(iuchiBattle){
+        local foe="@MAP@"=="M878" ? "E507" : "E509";
+        foes=[{id=foe,x=1.56,z=-.46},{id=foe,x=.57,z=.75}];
+        if("@MAP@"=="M880") foes=[{id="E513",x=1.4,z=.12}];
+        if("@MAP@"=="M881") foes=[{id="E514",x=1.5,z=-.78},{id="E514",x=.48,z=.72},{id="E514",x=1.69,z=1.36}];
+        if("@MAP@"=="M882") foes=[{id="E518",x=1.7,z=-.40},{id="E519",x=.54,z=.75}];
+    }
+    if(cakonBattle) foes=[{id="E521",x=1.58,z=-.50},{id="E522",x=.56,z=.76}];
+    if("@MAP@"=="M884") foes=[{id="E523",x=1.58,z=-.49},{id="E523",x=.56,z=.76}];
     if(templeBattle) foes="@MAP@"=="M867" ?
         [{id="E466",x=1.50,z=-.55},{id="E466",x=.50,z=.85}] : [{id="E471",x=1.50,z=-.55}];
     if(ojataraBattle){
@@ -256,7 +267,8 @@ if(@DOORS@){
     if(kit.townDoors[0][0]!=85 || kit.townDoors[0][2]<.7)
         throw Exception("The available inn door did not open");
     views=[["hisatu-kensu",[28.8,2.6,9.1],.27,.56,24.8,57.],
-           ["bathhouse-spring",[29.4,2.1,6.4],.30,.48,10.1,54.]];
+           ["bathhouse-spring",[29.4,2.1,6.4],.30,.48,10.1,54.],
+           ["kensu-centred-door",[20.,2.94,11.78],.08,.31,6.15,49.]];
 }else if(stage.mapid=="M361"){
     views=[["city-approach",[53.2,2.62,12.2],.33,.50,22.1,56.]];
 }else if(paddyBattle){
@@ -269,6 +281,9 @@ if(@DOORS@){
     views=[["hospitality-district",[25.65,3.15,12.32],.29,.49,18.0,55.],
            ["the-sweet-cup",[20.45,3.21,12.92],.14,.26,7.4,50.],
            ["city-gateway",[14.4,3.12,10.4],.62,.27,8.0,51.]];
+    if(length(kit.portcullises))
+        views.append([@GATE_LOCKED@ ? "kamen-temple-gate-closed" : "kamen-temple-gate",
+                      [66.0,3.94,10.67],1.41,.32,11.3,53.]);
 }else if(stage.mapid=="M364"){
     if(length(kit.poolLighting)!=11) throw Exception("The merchant row is missing its lanterns");
     views=[["mask-market",[42.3,3.11,13.35],.25,.45,19.1,56.],
@@ -312,7 +327,8 @@ if(@DOORS@){
     if(length(kit.vegetation)!=66 || length(kit.townDoors)!=1)
         throw Exception("The flower fields or Nihime's door did not load");
     views=[["perfume-petal-blossom",[35.8,2.60,9.1],.24,.58,25.2,55.],
-           ["perfume-petal-flowers",[35.0,2.25,5.62],.12,.40,9.8,55.]];
+           ["perfume-petal-flowers",[35.0,2.25,5.62],.12,.40,9.8,55.],
+           ["nihime-centred-door",[36.,2.99,13.40],.15,.33,6.65,50.]];
 }else if(stage.mapid=="M376"){
     if(length(kit.poolLighting)!=3 || !stage.getEvent(3))
         throw Exception("Nihime or her sitting room lanterns did not load");
@@ -354,7 +370,8 @@ if(@DOORS@){
 }else if(stage.mapid=="M379"){
     if(length(kit.townDoors)!=2) throw Exception("The mountain town shop entrances did not load");
     views=[["dragon-town",[32.5,3.52,13.33],.23,.47,18.6,55.],
-           ["dragon-incense",[35.8,2.94,12.45],.16,.31,8.8,51.]];
+           ["dragon-incense",[35.8,2.94,12.45],.16,.31,8.8,51.],
+           ["dragon-town-waystation",[51.22,2.86,11.68],-.64,.37,6.95,51.]];
 }else if(stage.mapid=="M380"){
     if(length(kit.townDoors)!=1) throw Exception("The mountain inn door did not load");
     views=[["dragon-mountain-road",[42.9,4.29,11.69],.59,.37,18.4,55.],
@@ -366,7 +383,8 @@ if(@DOORS@){
            ["dragon-inn-shelves",[2.46,1.94,10.64],-1.17,.24,3.25,46.]];
 }else if(stage.mapid=="M382"){
     views=[["dragon-procession-road",[45.80,4.47,10.75],.39,.45,20.2,55.],
-           ["dragon-road-gate",[62.90,4.77,10.32],.45,.31,9.4,53.]];
+           ["dragon-road-gate",[62.90,4.77,10.32],.45,.31,9.4,53.],
+           ["dragon-road-waystation",[49.72,4.33,12.71],.21,.38,7.15,51.]];
 }else if(stage.mapid=="M383"){
     views=[["kyuden-togashi-garden",[29.6,3.02,10.25],.16,.54,19.9,56.],
            ["togashi-raked-gravel",[29.64,2.61,6.55],.24,.38,11.5,52.]];
@@ -409,6 +427,90 @@ if(@DOORS@){
     views=[["yotomo-vat-room",[30.40,1.87,13.33],.15,.46,15.0,53.]];
 }else if(yotomoBattle){
     views=[[(stage.mapid=="M876" ? "yotomo-cave-combat" : "yotomo-vat-combat"),[31.60,1.27,40.70],.12,.31,17.1,55.]];
+}else if(stage.mapid=="M399"){
+    if(length(kit.townDoors)!=1 || kit.townDoors[0][2]<.8) throw Exception("The tower gate is closed in the unlocked state");
+    views=[["shiro-iuchi-star-field",[33.55,3.00,14.48],.29,.44,21.2,53.],
+           ["shiro-iuchi-scorched-star",[28.39,2.25,14.72],.14,.59,11.3,50.],
+           ["shiro-iuchi-gate",[40.46,3.83,16.70],.24,.28,8.8,48.]];
+}else if(stage.mapid=="M400"){
+    views=[["shiro-iuchi-tower-hall",[10.27,2.22,7.46],.17,.47,15.5,53.]];
+}else if(stage.mapid=="M401"){
+    views=[["shiro-iuchi-tower-stair",[10.45,2.22,7.46],.22,.46,15.5,53.],
+           ["shiro-iuchi-stair-landing",[15.2,2.15,9.0],.08,.33,7.8,51.]];
+}else if(stage.mapid=="M402"){
+    views=[["shiro-iuchi-upper-room",[10.23,2.20,7.60],.12,.46,15.3,53.]];
+}else if(stage.mapid=="M403"){
+    if(!kit.water || length(kit.waterTextures)!=32) throw Exception("The Iuchi brook animation is missing");
+    views=[["shiro-iuchi-woodland-clearing",[39.0,3.01,6.91],.13,.40,13.4,54.],
+           ["shiro-iuchi-brook",[43.10,2.44,15.35],.29,.48,11.3,53.]];
+}else if(stage.mapid=="M404"){
+    views=[["mirumoto-mine-road",[39.65,3.11,13.07],.22,.42,19.5,54.],
+           ["mirumoto-north-pass",[40.28,3.15,18.57],.06,.34,13.7,53.],
+           ["iuchi-jade-mine-mouth",[74.44,3.12,14.24],1.37,.28,10.7,52.]];
+}else if(stage.mapid=="M405"){
+    views=[["iuchi-jade-entrance",[21.0,2.00,5.22],.24,.48,12.3,52.]];
+}else if(stage.mapid=="M406"){
+    views=[["iuchi-jade-galleries",[31.3,2.08,12.72],.15,.46,15.1,53.],
+           ["iuchi-foremans-ledger",[19.32,1.95,17.82],.45,.40,9.4,51.]];
+}else if(stage.mapid=="M407"){
+    views=[["iuchi-jade-deep-shrine",[28.02,2.13,13.62],.10,.38,14.7,53.]];
+}else if(stage.mapid=="M408"){
+    views=[["iuchi-siege-camp",[24.5,2.91,16.35],.22,.39,16.1,55.],
+           ["iuchi-tunnel-mouth",[66.59,3.19,10.25],1.48,.24,8.9,53.]];
+}else if(stage.mapid=="M409"){
+    if(!length(kit.windStreaks)) throw Exception("The wind cues did not load");
+    views=[["iuchi-wind-tunnel",[28.5,3.13,9.72],.54,.55,15.0,56.]];
+}else if(stage.mapid=="M410"){
+    if(length(kit.townDoors)+length(kit.portcullises)!=1 || !length(kit.windStreaks))
+        throw Exception("The narrows lost its gate or wind cues");
+    views=[[@GATE_LOCKED@ ? "iuchi-narrows-closed" : "iuchi-tunnel-narrows",[62.07,3.07,10.04],.20,.54,11.9,54.]];
+}else if(stage.mapid=="M411"){
+    views=[["iuchi-great-stair",[9.88,1.80,8.44],.12,.29,10.1,51.]];
+}else if(stage.mapid=="M412"){
+    views=[["iuchi-storm-room",[10.06,1.97,8.80],.13,.32,10.2,53.]];
+}else if(stage.mapid=="M413"){
+    if(!length(kit.leafDrift)) throw Exception("The autumn trees have no falling leaves");
+    local moving=null;
+    foreach(pair in kit.leafDrift)
+        if(pair[0].visible){ moving=pair[0]; break; }
+    if(!moving) throw Exception("No falling leaf is visible");
+    local before=moving.pos.y;
+    sleep(130);
+    if(Math.abs(moving.pos.y-before)<.001) throw Exception("A falling leaf stayed still");
+    printf("[ENV] Falling leaves are moving on M413.\n");
+    views=[["iuchi-caravan-road",[25.32,2.81,10.59],.21,.46,15.6,54.],
+           ["iuchi-caravan-packs",[23.16,2.66,10.94],.55,.47,5.95,51.],
+           ["iuchi-wayside-stone",[15.75,2.45,10.35],-.65,.45,4.65,49.],
+           ["iuchi-caravan-maple-and-pine",[26.2,3.61,5.70],.15,.32,11.3,53.]];
+}else if(stage.mapid=="M414"){
+    views=[["cakon-memory-bank",[24.38,2.56,6.44],.12,.52,13.1,54.],
+           ["cakon-riverside-huts",[36.5,2.82,12.40],.23,.37,9.7,54.]];
+}else if(stage.mapid=="M415"){
+    views=[["cakon-harbour",[24.90,2.80,11.75],.14,.43,21.1,55.],
+           ["cakon-barge",[21.20,2.68,6.01],-.32,.50,12.9,51.]];
+}else if(stage.mapid=="M416"){
+    views=[["cakon-market",[38.68,2.92,11.90],.25,.45,17.5,54.],
+           ["cakon-musicians",[58.87,2.77,6.28],.13,.42,11.6,54.]];
+}else if(stage.mapid=="M417"){
+    local passable=kit.portcullises[0][3];
+    if(passable==@GATE_LOCKED@ || !!stage.bw.bmp.get(111,19)!=@GATE_LOCKED@)
+        throw Exception("The preview gate is in the wrong collision state");
+    views=@GATE_LOCKED@ ? [["cakon-portcullis-closed",[55.28,3.24,9.60],-1.57,.30,8.9,51.]] :
+        [["cakon-alley",[28.38,2.72,8.36],1.54,.33,16.0,54.],
+         ["cakon-river-gate",[55.53,3.60,10.25],-1.31,.41,15.3,54.]];
+}else if(stage.mapid=="M418"){
+    views=[["cakon-hamlet",[30.58,2.90,10.71],.21,.48,16.8,55.],
+           ["cakon-hamlet-shrine",[36.66,3.13,12.98],.18,.34,10.6,54.]];
+}else if(stage.mapid=="M419"){
+    views=[["cakon-canal-bridge",[37.76,2.37,10.21],.30,.51,14.5,54.]];
+}else if(cakonBattle){
+    views=stage.mapid=="M883" ? [["cakon-street-combat",[31.80,1.35,40.86],.14,.35,17.1,53.]] :
+        [["cakon-canal-combat",[31.68,1.46,42.38],.13,.38,18.4,53.]];
+}else if(iuchiBattle){
+    local name=stage.mapid=="M878" ? "iuchi-tower-combat" : (stage.mapid=="M879" ? "iuchi-mine-combat" : "iuchi-deep-gallery-combat");
+    if(stage.mapid=="M881") name="iuchi-wind-tunnel-combat";
+    if(stage.mapid=="M882") name="iuchi-storm-room-combat";
+    views=[[name,[31.63,1.30,41.22],.12,.32,17.3,53.]];
 }else if(groveBattle){
     views=[["grove-road-combat",[31.3,1.54,40.1],.18,.43,24.2,56.]];
 }else if(stage.mapid=="M212" || stage.mapid=="M236"){
@@ -468,7 +570,8 @@ if(@DOORS@){
            ["keep-gate",[75.7,3.26,13.8],.43,.36,11.6,53.]];
 }else if(stage.mapid=="M462"){
     views=[["ancestral-keep",[36.6,3.30,11.30],.16,.44,20.5,54.],
-           ["tablets",[35.4,2.92,12.03],.05,.29,7.7,51.]];
+           ["tablets",[35.4,2.92,12.03],.05,.29,7.7,51.],
+           ["hiruma-hall-gate",[70.96,3.33,13.07],1.43,.38,12.0,54.]];
 }else if(stage.mapid=="M463"){
     views=[["lords-hall",[25.33,3.20,10.20],.12,.39,13.5,55.]];
 }else if(stage.mapid=="M808"){
@@ -514,6 +617,11 @@ foreach(view in views){
     cam.level=view[4];
     cam.lens=length(view)>5 ? view[5] : 30.;
     sleep(480);
+    if(stage.mapid=="M409" || stage.mapid=="M410"){
+        local start=skGetTime();
+        while(skGetTime()-start<1900 && (!kit.gustActive || skGetTime()%900<280 || skGetTime()%900>720))
+            suspend();
+    }
     screenshot(renderer,"tmp/rt_shot/bot_@STAMP@_"..view[0]..".raw");
 }
 foreach(obj in previewProps){ obj.setVisible(false); obj.kill(); }

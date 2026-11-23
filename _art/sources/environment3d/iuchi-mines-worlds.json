@@ -1,0 +1,107 @@
+{
+  "M403": {
+    "removed_stock_fixtures": 112,
+    "events_preserved": 85,
+    "event_positions_updated": {
+      "#85#": [
+        1,
+        4,
+        25,
+        3
+      ]
+    },
+    "sha256": "782929a3c97ac178438d7e02f934b7f0c13861b5e03faa6c6d9e05d1c6fb1ab4"
+  },
+  "M404": {
+    "net_new_fixtures": 109,
+    "events_preserved": 136,
+    "event_positions_updated": {
+      "#2#": [
+        143,
+        4,
+        28,
+        3
+      ]
+    },
+    "sha256": "0d04c36621c4c3d1728d099cb4aa636f24eab8009b259a0b94cf960dac51bc03"
+  },
+  "M405": {
+    "removed_stock_fixtures": 3,
+    "events_preserved": 99,
+    "event_positions_updated": {
+      "#1#": [
+        36,
+        3,
+        7,
+        2
+      ],
+      "#98#": [
+        36,
+        3,
+        4,
+        2
+      ],
+      "#99#": [
+        86,
+        3,
+        48,
+        0
+      ]
+    },
+    "sha256": "82e698cf307fba449a442cd663069d2ebbfc8e6a2d8d2b1f92f202facd2bc351"
+  },
+  "M406": {
+    "removed_stock_fixtures": 4,
+    "events_preserved": 113,
+    "event_positions_updated": {
+      "#1#": [
+        62,
+        3,
+        7,
+        2
+      ],
+      "#112#": [
+        62,
+        3,
+        4,
+        2
+      ],
+      "#113#": [
+        86,
+        3,
+        48,
+        0
+      ]
+    },
+    "sha256": "3925b1175380aae253eb82d8ae18323a10ddae6195303ededeab4d045811a153"
+  },
+  "M407": {
+    "removed_stock_fixtures": 3,
+    "events_preserved": 80,
+    "event_positions_updated": {
+      "#1#": [
+        56,
+        3,
+        7,
+        2
+      ],
+      "#80#": [
+        56,
+        3,
+        4,
+        2
+      ]
+    },
+    "sha256": "a5331d2e725250c3cebe1afb61269d70fbb52821b9d4a7586c38977724eabe33"
+  },
+  "M879": {
+    "removed_stock_fixtures": 11,
+    "events_preserved": 0,
+    "sha256": "8a344f09e628a3853b1c2e2b57bd6c8f6bb7818c10c781dddb14f31ee0875dfd"
+  },
+  "M880": {
+    "removed_stock_fixtures": 2,
+    "events_preserved": 0,
+    "sha256": "3a0482d1919c50ffcdff46f079cc3d6925ff6dc399622b513e89a39bc0f4c8be"
+  }
+}

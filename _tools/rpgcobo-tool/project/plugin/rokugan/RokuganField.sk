@@ -417,11 +417,19 @@ local rtShowChoices = function( cmd){
 		::Rokugan.botseen[key] <- k + 1;
 		local v = (c["text0"] == "Buy" || c["text0"] == "Sell") ? n : k % (n + 1);
 		if( c["text0"] == "Rest and save.") v = 0;					//	(a save shrine: the bot came to rest)
+		if( ("chasePolicy" in ::Rokugan) && (key in ::Rokugan.chasePolicy)){	//	the marker chaser's learned answer
+			v = int( ::Rokugan.chasePolicy[key]); if( v > n) v = n;			//	(RokuganChase.sk, tools/markerchase.py)
+		}
 		if( ("botpin" in ::Rokugan) && ::Rokugan.botpin >= 0 && !(c["text0"] == "Buy" || c["text0"] == "Sell")){
 			v = ::Rokugan.botpin > n ? n : ::Rokugan.botpin;		//	(passing through: "Wait for low tide", not a puzzle)
 			::Rokugan.botseen[key] <- k;						//	(an answer given in passing doesn't use up a turn)
 		}
 		printf( "[RT] CHOICE %d (auto): %S\n", v, c["text" .. v]);
+		if( "chasePolicy" in ::Rokugan){								//	(the marker chaser learns from these)
+			local opts = "";
+			for( local i = 0; i <= n; i++) opts += (i ? " / " : "") .. c["text" .. i];
+			printf( "[RT] CHASE CHOICE %S => %d (%S)\n", key, v, opts);
+		}
 		return v;
 	}
 	return this._rt_showChoices( cmd);
@@ -474,6 +482,7 @@ foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]
 	}
 	if( ::Rokugan.rtfast && t.key == "message_talk"){				//	a villager's line (macro X012 shows it as a UI,
 		printf( "[RT] MSG %S: %S\n", t["name"] || "", t["text"] || "");	//	not a message): logged, not waited on
+		::Rokugan.msgn <- ("msgn" in ::Rokugan ? ::Rokugan.msgn : 0) + 1;	//	(the marker chaser: something was said)
 		return null;
 	}
 	if( (t.key == "menu_save" || t.key == "menu_load" || t.key == "menu_config") && ::arguments.indexOf( "-rtbot") >= 0){

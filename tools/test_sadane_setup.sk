@@ -1,0 +1,15 @@
+//	tools/test_sadane.py: open the Game of Masks with a test sleeve, then set the trigger named by -rtsadane
+//	("rival N" = rival index N saw her; "stranger K" = hidden stranger K steps out).
+::rpgvar["G1651"] = true;
+::rpgvar["G1231"] = 0;
+local i = ::arguments.indexOf( "-rtsadane");
+local a = (i >= 0 && i + 1 < length( ::arguments)) ? ::arguments[i + 1].split( ":") : ["stranger", "1"];
+local lv = length( a) > 2 ? int( a[2]) : 10;					//	("rival:15:20" = a Lv 20 sleeve)
+::Rokugan.sadaneGive( "shosuro", lv);
+::Rokugan.sadaneGive( "lacquer", lv + 2);
+::Rokugan.sadaneGive( "rain", lv + 2);
+::Rokugan.sadaneGive( "clay", lv + 1);
+//	(-rt flags keep one value each: "sadane rival:3")
+printf( "[RT] SADANETEST %S %S sleeve %S\n", a[0], a[1], encodeJSON( ::Rokugan.sadaneState().sleeve));
+if( a[0] == "rival") ::rpgvar["G1653"] = int( a[1]) + 1;
+else ::rpgvar["G1652"] = int( a[1]);

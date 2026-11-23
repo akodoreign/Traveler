@@ -1,0 +1,813 @@
+//	RokuganSadane.sk - the Game of Masks at Kyuden Bayushi (user 2026-11-22: "move the whole masks into the Bayushi
+//	castle ... like a battle creature type theme ... the masks represent the combat monsters ... swap between them,
+//	level them up with random fights in the castle ... if a player in the castle sees you they run up and challenge you
+//	to a sadane match. each mask will have different sadane subtle pokes, and the list each one has grows as it levels
+//	up ... 3/4 view from behind the Shosuro ... commands such as swap (masks) attack (list of insults)").
+//
+//	Content: resource/sadane/sadane.json, written by tools/gen_sadane.py (masks, barbs, the material chart, rivals,
+//	the castle's duel tiers); the rules for reading: docs/rules/game-of-masks.md. Castle events: gen_maps (sadane_*).
+//	Save state:  G1650 (any) { owned = { key = { lv, xp, comp } }, sleeve = [keys], seen = {rival}, beaten = {rival},
+//	                           honor = n }
+//	             G1651 the game is open (Soshi Kagero, Entrance reception)   G1652 a stranger steps out (1-3)
+//	             G1653 a rival saw her (rival index + 1)
+//	Entry points (cmd_script, `this` = the event runner):
+//	    ::Rokugan.sadaneOpen( this)            the keeper: open the game, the first mask
+//	    ::Rokugan.sadaneRival( this, i, seen)  a rival's duel (seen: walked up on his own; else asked to play)
+//	    ::Rokugan.sadaneStranger( this, k)     a masked stranger's duel (hidden event k on this map)
+//	    ::Rokugan.sadaneRest()                 tea: every mask's composure back
+//	    ::Rokugan.sadaneStand( this)           the mask stand: which masks ride in the sleeve
+//	    ::Rokugan.sadaneBuy( this, key, zeni)  the castle town's mask-maker
+//	Test hooks: -rtmini win|lose plays the duel itself (menus answer on their own); -rtminishot NAME saves shots.
+import VirtualKeyCode;
+import GamepadButtonCode;
+
+local log( s){ printf( "[RT] %S\n", s); }
+local sfx = function( id){ try{ ::playSound( id); }catch( ex){} };
+local SD = { data = null };
+local sdata = function(){
+	if( !SD.data){
+		local r = ::getResource( "/resource/sadane/sadane.json");
+		SD.data = decodeJSON( r.loadData());
+	}
+	return SD.data;
+};
+::Rokugan.sadaneData <- sdata;
+
+///////////////////////////////////////////////////////////////////////////////
+//	state
+
+::Rokugan.sadaneState <- function(){
+	local st = ::rpgvar["G1650"];
+	if( typeof( st) != SS_TABLE) st = {};
+	foreach( k in ["owned", "seen", "beaten"]) if( !(k in st) || typeof( st[k]) != SS_TABLE) st[k] <- {};
+	if( !("sleeve" in st) || typeof( st.sleeve) != SS_ARRAY) st.sleeve <- [];
+	if( !("honor" in st)) st.honor <- 0;
+	return st;
+};
+local save = function( st){ ::rpgvar["G1650"] = st; };
+
+local stepMul = @( s) s >= 0 ? 1.0 + 0.25 * s : 1.0 / (1.0 + 0.25 * (-s));
+local maxComp = @( key, lv) int( sdata().masks[key].base[0] * (0.8 + 0.12 * lv));
+local stat = @( key, i, lv) sdata().masks[key].base[i] * (0.6 + 0.07 * lv);
+local xpNext = @( lv) 8 * lv + 2 * lv * lv;
+local known = function( key, lv){
+	local out = [];
+	foreach( b in sdata().masks[key].barbs) if( b.lv <= lv) out.append( b);
+	return out;
+};
+local mult = function( atk, dfn){
+	local f = sdata().fears;
+	if( f[dfn].indexOf( atk) >= 0) return 2.0;
+	if( f[atk].indexOf( dfn) >= 0) return 0.5;
+	return 1.0;
+};
+::Rokugan.sadaneMult <- mult;
+
+//	Give a mask (a key in sadane.json) at a level; false if she already has it.
+::Rokugan.sadaneGive <- function( key, lv){
+	local st = this.sadaneState();
+	if( key in st.owned) return false;
+	lv = Math.max( 1, Math.min( sdata().rules.maxlevel, lv));
+	st.owned[key] <- { lv = lv, xp = 0, comp = maxComp( key, lv) };
+	if( length( st.sleeve) < sdata().rules.sleeve) st.sleeve.append( key);
+	save( st);
+	log( "sadane: got %S Lv%d" % [key, lv]);
+	return true;
+};
+local topLevel = function( st){
+	local t = 1;
+	foreach( k, m in st.owned) t = Math.max( t, m.lv);
+	return t;
+};
+//	The City of Masks' masks join the game when she has them (in the bag or worn). Returns the names that joined.
+::Rokugan.sadaneSync <- function(){
+	local st = this.sadaneState(), got = [];
+	foreach( k, m in sdata().masks){
+		if( !("item" in m) || (k in st.owned)) continue;
+		if( ::rpgstat.countItems( m.item) > 0 && this.sadaneGive( k, Math.max( 3, topLevel( st) - 2))) got.append( m.name);
+	}
+	return got;
+};
+::Rokugan.sadaneRest <- function(){
+	local st = this.sadaneState();
+	foreach( k, m in st.owned) m.comp = maxComp( k, m.lv);
+	save( st);
+};
+::Rokugan.sadaneBeaten <- function( idx){
+	return sdata().rivals[idx].id in this.sadaneState().beaten;
+};
+::Rokugan.sadanePlaying <- function(){
+	if( !::rpgvar["G1651"]) return false;
+	foreach( p in ::rpgstat.members) if( p && p.dataid == "P105") return true;
+	return false;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	the duel camera: over Mitsue's shoulder, 3/4 on the rival (a camerawork of its own; lookat every frame)
+
+class RTSadaneCam extends ::RPGCamerawork
+{
+	me = null; foe = null;
+	constructor( cur, a, b){
+		data = {};
+		me = a; foe = b;
+		fovy = 36.0; znear = cur.znear; zfar = cur.zfar;
+		zoom = 10.0;
+	}
+	function updateBody( stage, dt){
+		if( !me || !foe) return;
+		local a = me.pos, b = foe.pos;
+		local dx = b.x - a.x, dz = b.z - a.z, d = Math.sqrt( dx * dx + dz * dz);
+		if( d < 0.01) d = 0.01;
+		//	As the map's own camera: `to` is the focus, hpb in radians (heading 0 looks along +z, pitch + looks
+		//	down) and the eye sits focaldist behind it. The heading is the line Mitsue -> rival turned ~20 degrees, so
+		//	the eye lands behind her shoulder and the two read 3/4 on.
+		local foc = Vector3D( a.x + dx * 0.5, a.y + 0.55 + (b.y - a.y) * 0.5, a.z + dz * 0.5);
+		local fd = d * 0.5 + 5.6;
+		to( foc);
+		hpb( ::aimdir( a, b) - 0.42, 27.0 * Math.DTOR, 0.0);	//	(her left shoulder: she stands left of the panels)
+		zoom = focaldistToZoom( fd);
+	}
+	function recover( stage){ update( stage, 1); }
+}
+::RTSadaneCam <- RTSadaneCam;
+
+///////////////////////////////////////////////////////////////////////////////
+//	the duel UI (draws; the logic runs in the event's thread and reads the queued presses)
+
+local MSG_W = 64;		//	characters a caption line holds
+local wrap = function( s, n){
+	local out = [], cur = "";
+	foreach( w in s.split( " ")){
+		if( cur != "" && length( cur) + 1 + length( w) > n){ out.append( cur); cur = w; }
+		else cur = cur == "" ? w : cur .. " " .. w;
+	}
+	if( cur != "") out.append( cur);
+	return out;
+};
+local hexcol = function( c){ return (c[0] << 24) | (c[1] << 16) | (c[2] << 8) | 0xff; };	//	[r, g, b] (sadane.json)
+
+class RTSadane extends ::RTMini
+{
+	presses = null;
+	foeCard = null; meCard = null; capBox = null; cmdBox = null;
+	lFoeName = null; lFoeMask = null; foeBarBg = null; foeBar = null; foeChip = null;
+	lMeMask = null; lMeComp = null; meBarBg = null; meBar = null; meChip = null; meXpBar = null;
+	lSpk = null; lCap = null; lCmd = null; lHint = null; lDesc = null;
+	foeShown = 1.0; foeWant = 1.0; meShown = 1.0; meWant = 1.0;
+	BARW = 380.0;
+
+	constructor( r){
+		super( r, 0x00000000);					//	(a clear backdrop: the castle shows through)
+		game = "sadane";
+		presses = [];
+		local W0 = W, H0 = H;
+		foeCard = rect( 36, 36, 452, 96, 0x0b0a12d8);
+		rect( 36, 36, 452, 3, 0xc9a45cff);
+		lFoeName = label( 56, 44, 420, 30, 22, 0xf4e2b0ff);
+		lFoeMask = label( 56, 70, 420, 26, 18, 0xd9d2c0ff);
+		foeChip = rect( 56, 104, 14, 14, 0xffffffff);
+		foeBarBg = rect( 80, 106, BARW, 10, 0x2a2430ff);
+		foeBar = rect( 80, 106, BARW, 10, 0x7fd08aff);
+		meCard = rect( W0 - 488, H0 - 330, 452, 112, 0x0b0a12d8);
+		rect( W0 - 488, H0 - 330, 452, 3, 0xc9a45cff);
+		lMeMask = label( W0 - 468, H0 - 322, 420, 30, 22, 0xf4e2b0ff);
+		lMeComp = label( W0 - 468, H0 - 296, 420, 26, 18, 0xd9d2c0ff);
+		meChip = rect( W0 - 468, H0 - 262, 14, 14, 0xffffffff);
+		meBarBg = rect( W0 - 444, H0 - 260, BARW, 10, 0x2a2430ff);
+		meBar = rect( W0 - 444, H0 - 260, BARW, 10, 0x7fd08aff);
+		meXpBar = rect( W0 - 444, H0 - 244, 0, 4, 0x8fb8e8ff);
+		capBox = rect( 36, H0 - 150, W0 - 560, 122, 0x0b0a12b8);
+		rect( 36, H0 - 150, W0 - 560, 3, 0xc9a45cff);
+		lSpk = label( 56, H0 - 142, W0 - 600, 28, 20, 0xffe08aff);
+		lCap = [];
+		for( local i = 0; i < 3; i++) lCap.append( label( 56, H0 - 112 + i * 28, W0 - 600, 28, 21, 0xf4f0e6ff));
+		cmdBox = rect( W0 - 488, H0 - 206, 452, 170, 0x0b0a12e0);
+		rect( W0 - 488, H0 - 206, 452, 3, 0xc9a45cff);
+		lCmd = [];
+		for( local i = 0; i < 5; i++) lCmd.append( label( W0 - 468, H0 - 196 + i * 28, 420, 28, 20, 0xf4f0e6ff));
+		lDesc = label( 56, H0 - 178, W0 - 600, 24, 16, 0xd8d0c0ff);
+		lHint = label( W0 - 468, H0 - 50, 420, 24, 16, 0xb8b0a0ff);
+		refreshHints();
+	}
+	function refreshHints(){
+		if( lHint) lHint.setText( ctl( "fire") .. " choose    " .. ctl( "back") .. " back");
+	}
+	function step( dt){
+		foreach( k in ["up", "down", "left", "right", "fire", "back"]) if( hit[k]) presses.append( k);
+		local k = Math.min( 1.0, dt / 260.0);
+		foeShown += (foeWant - foeShown) * k; meShown += (meWant - meShown) * k;
+		foeBar.setRect( 80, 106, BARW * Math.max( 0.0, foeShown), 10);
+		foeBar.setColor( foeShown > 0.5 ? 0x7fd08aff : foeShown > 0.2 ? 0xe8c25aff : 0xd8443cff);
+		meBar.setRect( W - 444, H - 260, BARW * Math.max( 0.0, meShown), 10);
+		meBar.setColor( meShown > 0.5 ? 0x7fd08aff : meShown > 0.2 ? 0xe8c25aff : 0xd8443cff);
+	}
+	function caption( who, text){
+		lSpk.setText( who);
+		local ls = wrap( text, MSG_W);
+		foreach( i, v in lCap) v.setText( i < length( ls) ? ls[i] : "");
+	}
+	function menu( items, sel){
+		foreach( i, v in lCmd){
+			if( i >= length( items)){ v.setText( ""); continue; }
+			local it = items[i];
+			v.setText( (i == sel ? "> " : "  ") .. it.text);
+			v.setColor( it["off"] ? 0x6a665eff : i == sel ? 0xffe08aff : 0xf4f0e6ff);
+		}
+	}
+}
+::RTSadane <- RTSadane;
+
+///////////////////////////////////////////////////////////////////////////////
+//	the duel
+
+local Side = function( name, masks, mine){
+	//	masks: [{ key, lv, comp, xp? }]
+	return { name = name, masks = masks, cur = 0, mine = mine, wit = 0, poise = 0, timing = 0, played = {} };
+};
+local curMask = @( s) s.masks[s.cur];
+local alive = function( s){
+	local n = 0;
+	foreach( m in s.masks) if( m.comp > 0) n++;
+	return n;
+};
+
+class SadaneDuel
+{
+	runner = null; ui = null; me = null; foe = null; meActor = null; foeActor = null;
+	auto = null; kind = "stranger"; withdrawn = false;
+
+	constructor( r, a, b, ma, fa, k){
+		runner = r; me = a; foe = b; meActor = ma; foeActor = fa; kind = k;
+	}
+	function wait( ms){
+		local t0 = skGetTime();
+		while( skGetTime() - t0 < ms){
+			sleep( 16);
+			if( length( ui.presses) && ui.presses.find( @( p) p == "fire")){ ui.presses = []; return; }
+		}
+	}
+	function say( who, text, ms = 2200){
+		ui.caption( who, text);
+		ui.presses = [];
+		wait( auto ? 500 : ms);
+	}
+	function act( actor, id){ if( actor) try{ ::Rokugan.closeupPlay( actor, id); }catch( ex){} }
+	function draw(){
+		local d = sdata(), fm = curMask( foe), mm = curMask( me), fk = d.masks[fm.key], mk = d.masks[mm.key];
+		ui.lFoeName.setText( foe.name);
+		ui.lFoeMask.setText( "%s  -  %s  -  Lv %d     (%d mask%s)" % [fk.name, fk.type, fm.lv, alive( foe),
+			alive( foe) == 1 ? "" : "s"]);
+		ui.foeChip.setColor( hexcol( d.colour[fk.type]));
+		ui.foeWant = fm.comp * 1.0 / maxComp( fm.key, fm.lv);
+		ui.lMeMask.setText( "%s  -  %s  -  Lv %d" % [mk.name, mk.type, mm.lv]);
+		ui.lMeComp.setText( "Composure %d / %d" % [mm.comp, maxComp( mm.key, mm.lv)]);
+		ui.meChip.setColor( hexcol( d.colour[mk.type]));
+		ui.meWant = mm.comp * 1.0 / maxComp( mm.key, mm.lv);
+		ui.meXpBar.setRect( ui.W - 444, ui.H - 244, ui.BARW * Math.min( 1.0, mm.xp * 1.0 / xpNext( mm.lv)), 4);
+	}
+	//	A list menu; returns the index chosen, or -1 on back (if cancel is allowed).
+	function choose( items, cancel, autopick = 0){
+		local sel = 0;
+		while( sel < length( items) - 1 && items[sel]["off"]) sel++;
+		ui.menu( items, sel);
+		if( "desc" in items[sel]) ui.lDesc.setText( items[sel].desc); else ui.lDesc.setText( "");
+		ui.presses = [];
+		local t0 = skGetTime();
+		while( true){
+			sleep( 16);
+			if( auto && skGetTime() - t0 > 350) return autopick;
+			if( !length( ui.presses)) continue;
+			local p = ui.presses[0];
+			ui.presses = ui.presses.slice( 1);
+			local n = length( items);
+			if( p == "up" || p == "left"){ sel = (sel + n - 1) % n; sfx( "SE001"); }
+			else if( p == "down" || p == "right"){ sel = (sel + 1) % n; sfx( "SE001"); }
+			else if( p == "fire"){
+				if( items[sel]["off"]){ sfx( "SE004"); continue; }
+				sfx( "SE003"); return sel;
+			}else if( p == "back" && cancel){ sfx( "SE002"); return -1; }
+			ui.menu( items, sel);
+			ui.lDesc.setText( ("desc" in items[sel]) ? items[sel].desc : "");
+		}
+	}
+	function barbItems( side){
+		local d = sdata(), m = curMask( side), out = [], ft = d.masks[curMask( side == me ? foe : me).key].type;
+		foreach( b in known( m.key, m.lv)){
+			local t = d.masks[m.key].type;
+			out.append( { text = b.name .. (b.power ? "   " .. b.power : "   (" .. b.fx .. ")"),
+				desc = "\"" .. (length( b.line) > 90 ? b.line.substring( 0, 87) .. "..." : b.line) .. "\"", barb = b } );
+		}
+		return out;
+	}
+	//	the barb the auto player / the rival picks
+	function pickBarb( side, best){
+		local d = sdata(), m = curMask( side), other = side == me ? foe : me, om = curMask( other);
+		local t = d.masks[m.key].type, ot = d.masks[om.key].type;
+		local bs = known( m.key, m.lv), pick = 0, score = -1.0;
+		foreach( i, b in bs){
+			local s = b.power * mult( t, ot) * b.acc / 100.0;
+			if( b.fx == "heal") s = m.comp < maxComp( m.key, m.lv) * 0.4 ? 60.0 : 0.0;
+			else if( b.fx == "poise-") s = other.poise > -2 ? 24.0 : 0.0;
+			else if( b.fx == "timing-") s = other.timing > -2 ? 18.0 : 0.0;
+			else if( b.fx == "wit+") s = side.wit < 2 ? 22.0 : 0.0;
+			if( !best) s *= ::rnd.nextf( 0.55, 1.45);
+			if( s > score){ score = s; pick = i; }
+		}
+		return bs[pick];
+	}
+	function nameOf( side){ return side == me ? "Shosuro Mitsue" : foe.name; }
+	function actorOf( side){ return side == me ? meActor : foeActor; }
+	function barb( side, b){
+		local d = sdata(), other = side == me ? foe : me, m = curMask( side), om = curMask( other);
+		local t = d.masks[m.key].type, mk = d.masks[m.key];
+		act( actorOf( side), b.fx == "heal" ? "nod" : b.fx == "wit+" ? "laugh" : b.fx == "timing-" ? "shrug" :
+			b.fx == "poise-" ? "crossarms" : "point");
+		say( nameOf( side) .. " (" .. mk.name .. ") - " .. b.name, b.line, 2600);
+		if( ::rnd.nextf( 0.0, 100.0) >= b.acc){
+			act( actorOf( other), "laugh");
+			say( "", "The barb falls flat. Somebody coughs.", 1400);
+			return;
+		}
+		if( b.fx == "heal"){
+			local mx = maxComp( m.key, m.lv);
+			m.comp = Math.min( mx, m.comp + mx / 3);
+			draw();
+			say( "", mk.name .. " gathers itself. (composure restored)", 1400);
+		}else if( b.fx == "wit+"){
+			side.wit = Math.min( 3, side.wit + 1);
+			say( "", "The room leans in. " .. mk.name .. "'s wit sharpens.", 1400);
+		}else if( b.fx == "poise-"){
+			other.poise = Math.max( -3, other.poise - 1);
+			act( actorOf( other), "scratch");
+			say( "", d.masks[om.key].name .. " loses a little poise.", 1400);
+		}else if( b.fx == "timing-"){
+			other.timing = Math.max( -3, other.timing - 1);
+			say( "", d.masks[om.key].name .. " misses a beat.", 1400);
+		}
+		if( b.power <= 0) return;
+		local mu = mult( t, d.masks[om.key].type);
+		local wit = stat( m.key, 1, m.lv) * stepMul( side.wit), poi = stat( om.key, 2, om.lv) * stepMul( other.poise);
+		local dmg = b.power * wit / poi * (0.3 + 0.022 * m.lv) * mu * ::rnd.nextf( 0.88, 1.0);
+		dmg = Math.max( 1, int( dmg + 0.5));
+		om.comp = Math.max( 0, om.comp - dmg);
+		draw();
+		if( mu > 1.0){ act( actorOf( other), "surprise"); say( "", "It cuts deep. Fans flutter all down the hall. (x2)", 1600); }
+		else if( mu < 1.0){ act( actorOf( other), "laugh"); say( "", "It glances off. " .. d.masks[om.key].name .. " barely notices. (x0.5)", 1600); }
+		else act( actorOf( other), "scratch");
+		if( om.comp <= 0){
+			act( actorOf( other), "facepalm");
+			say( "", (other == me ? "Your " : foe.name .. "'s ") .. d.masks[om.key].name .. " loses face.", 1800);
+			if( other == foe) gainXp( om);
+		}
+	}
+	function gainXp( fallen){
+		local d = sdata(), gain = 6 + 5 * fallen.lv;
+		foreach( i, m in me.masks){
+			if( !(i in me.played) || m.comp <= 0) continue;
+			local g = i == me.cur ? gain : gain / 2;
+			if( m.lv >= d.rules.maxlevel) continue;
+			m.xp += g;
+			while( m.lv < d.rules.maxlevel && m.xp >= xpNext( m.lv)){
+				m.xp -= xpNext( m.lv);
+				local old = maxComp( m.key, m.lv);
+				m.lv++;
+				m.comp += maxComp( m.key, m.lv) - old;
+				sfx( "SE011");
+				local learned = "";
+				foreach( b in d.masks[m.key].barbs) if( b.lv == m.lv) learned = " It learns " .. b.name .. ".";
+				say( "", d.masks[m.key].name .. " rises to Lv " .. m.lv .. "." .. learned, 2000);
+			}
+		}
+		draw();
+	}
+	function swapIn( side, i, quiet = false){
+		side.cur = i; side.played[i] <- true;
+		side.wit = side.poise = side.timing = 0;
+		local m = curMask( side), mk = sdata().masks[m.key];
+		act( actorOf( side), "think");
+		draw();
+		if( !quiet) say( "", (side == me ? "Mitsue" : foe.name) .. " turns away, and turns back in the " .. mk.name ..
+			" (" .. mk.type .. ").", 1600);
+	}
+	function swapItems( forced){
+		local d = sdata(), out = [];
+		foreach( i, m in me.masks){
+			local mk = d.masks[m.key];
+			out.append( { text = "%s  Lv%d  %s  %d/%d" % [mk.name, m.lv, mk.type, m.comp, maxComp( m.key, m.lv)],
+				off = m.comp <= 0 || (i == me.cur && !forced) || (i == me.cur && m.comp <= 0),
+				desc = mk.type .. ". Fears " .. (length( d.fears[mk.type]) ? d.fears[mk.type][0] : "nothing") .. "." });
+		}
+		return out;
+	}
+	function autoSwap( forced){
+		foreach( i, m in me.masks) if( m.comp > 0 && i != me.cur) return i;
+		return me.cur;
+	}
+	//	returns 1 won, 2 lost, 3 withdrew
+	function run(){
+		draw();
+		local turn = 0;
+		while( true){
+			//	Mitsue's command
+			local mine = null;
+			while( !mine){
+				ui.caption( "", "What does Mitsue do?");
+				local cmds = [{ text = "Barb" }, { text = "Swap masks", off = alive( me) < 2 }];
+				if( kind == "stranger") cmds.append( { text = "Withdraw" });
+				local c = choose( cmds, false, 0);
+				if( c == 0){
+					local items = barbItems( me);
+					local b = choose( items, true, 0);
+					if( auto){
+						local pb = pickBarb( me, auto == "win");
+						if( auto == "lose") pb = known( curMask( me).key, curMask( me).lv)[0];
+						mine = { barb = pb };
+					}else if( b >= 0) mine = { barb = items[b].barb };
+				}else if( c == 1){
+					local s = choose( swapItems( false), true, autoSwap( false));
+					if( s >= 0 && s != me.cur) mine = { swap = s };
+				}else if( c == 2){
+					withdrawn = true;
+					act( meActor, "rei");
+					say( "Shosuro Mitsue", "Forgive me. I've just remembered I'm wanted elsewhere.", 1800);
+					return 3;
+				}
+			}
+			ui.menu( [], 0); ui.lDesc.setText( "");
+			local theirs = { barb = pickBarb( foe, kind != "stranger") };
+			//	order: a swap goes first; else Timing
+			local mt = stat( curMask( me).key, 3, curMask( me).lv) * stepMul( me.timing);
+			local ft = stat( curMask( foe).key, 3, curMask( foe).lv) * stepMul( foe.timing);
+			local meFirst = ("swap" in mine) || mt > ft || (mt == ft && ::rnd.nextf( 0.0, 1.0) < 0.5);
+			local order = meFirst ? [[me, mine], [foe, theirs]] : [[foe, theirs], [me, mine]];
+			foreach( o in order){
+				local side = o[0], a = o[1];
+				if( curMask( side).comp <= 0) continue;			//	lost face before its turn
+				if( "swap" in a) swapIn( side, a.swap);
+				else barb( side, a.barb);
+				if( !alive( foe) || !alive( me)) break;
+				if( curMask( side == me ? foe : me).comp <= 0) break;
+			}
+			if( !alive( foe)) return 1;
+			if( !alive( me)) return 2;
+			//	a mask that lost face is replaced
+			if( curMask( foe).comp <= 0){
+				local nx = 0;
+				foreach( i, m in foe.masks) if( m.comp > 0){ nx = i; break; }
+				swapIn( foe, nx);
+			}
+			if( curMask( me).comp <= 0){
+				ui.caption( "", "Which mask now?");
+				local s = choose( swapItems( true), false, autoSwap( true));
+				swapIn( me, s);
+			}
+			if( ui.shotname && turn == 0) shotNow( "turn");
+			turn++;
+		}
+	}
+	function shotNow( tag){
+		ui.shot( tag);
+		if( ui.shotreq){ local s = ui.shotreq; ui.shotreq = null; sleep( 250); try{ ::Rokugan.rtshot( s); }catch( ex){} }
+	}
+}
+
+::SadaneDuel <- SadaneDuel;
+
+///////////////////////////////////////////////////////////////////////////////
+//	staging: the two stand three metres apart, the camera goes over her shoulder
+
+local standAt = function( actor, base, ang, dist){
+	foreach( a in [0.0, 0.6, -0.6, 1.2, -1.2, 1.9, -1.9, 3.1416]){
+		local x = base.x + Math.sin( ang + a) * dist, z = base.z + Math.cos( ang + a) * dist;
+		local gy = null;
+		try{ gy = ::Rokugan.floorAt( actor, x, z, base.y + 0.6, -1.4); }catch( ex){}
+		if( gy != null && gy >= base.y - 0.6) return Vector3D( x, gy, z);
+	}
+	return null;
+};
+local faceEach = function( a, b){
+	a.dir = ::aimdir( a.pos, b.pos); a.matdirty = true;
+	b.dir = ::aimdir( b.pos, a.pos); b.matdirty = true;
+};
+local camOn = function( me, foe){
+	local stg = ::rpgstage, cw = ::RTSadaneCam( stg.camwork, me, foe), cf = ::RPGCameraFade();
+	cf.set( { fade = 700, easing = 0 }, stg.camwork);
+	stg.camfade = cf; stg.camwork = cw;
+	stg.updateCamerawork( 1);
+};
+local camOff = function(){
+	try{ ::rpgstage.setCamerawork( { type = 1, target = 0, fade = 600, easing = 0 }); }catch( ex){ printexception( ex); }
+};
+//	Walk an event's model to a spot (blocking, in the event thread).
+local walkTo = function( actor, p){
+	local f = null;
+	try{ ::Rokugan.closeupPlay( actor, "walk"); }catch( ex){}
+	actor.dir = ::aimdir( actor.pos, p);
+	try{ f = actor.walkTo( { target = p, spd = 5.0 }); }catch( ex){ printexception( ex); }
+	local t = skGetTime(), t0 = t;
+	while( f && skGetTime() - t0 < 4000){
+		sleep( 16);
+		local n = skGetTime(), dt = n - t; t = n;
+		f = f( dt);
+	}
+	if( actor.pos.hypot( p) > 0.4) actor.pos( p.x, p.y, p.z);			//	(blocked by scenery: there anyway)
+	actor.matdirty = true;
+	try{ ::Rokugan.closeupPlay( actor, "stand"); }catch( ex){}
+};
+
+local sleeveSide = function( st){
+	local masks = [];
+	foreach( k in st.sleeve) if( k in st.owned){
+		local o = st.owned[k];
+		masks.append( { key = k, lv = o.lv, xp = o.xp, comp = o.comp });
+	}
+	return Side( "Shosuro Mitsue", masks, true);
+};
+local writeBack = function( st, side){
+	foreach( m in side.masks) if( m.key in st.owned){
+		local o = st.owned[m.key];
+		o.lv = m.lv; o.xp = m.xp; o.comp = m.comp;
+	}
+};
+
+//	The duel itself: runner = the calling event; foeActor = the rival's model. Returns 1 won, 2 lost, 3 withdrew, 0 not
+//	played (no UI / no mask).
+::Rokugan.sadaneDuel <- function( runner, foeSide, foeActor, kind){
+	local st = this.sadaneState();
+	foreach( n in this.sadaneSync()) runner.showMessage( { key = "message_talk", name = "", uiclose = 2,
+		text = "(The " .. n .. " joins Mitsue's sleeve. Masks from Kamen no Toshi remember how to play.)" });
+	st = this.sadaneState();
+	local me = sleeveSide( st);
+	if( !length( me.masks)){
+		runner.showMessage( { key = "message_talk", name = "", uiclose = 2,
+			text = "(Mitsue has no mask in her sleeve to play with. The mask stand is in the guest pavilion.)" });
+		return 0;
+	}
+	if( !alive( me)){
+		runner.showMessage( { key = "message_talk", name = "Shosuro Mitsue", uiclose = 2,
+			text = "(Every mask in her sleeve has lost face. Tea first. Soshi Kagero keeps a pot by the reception.)" });
+		return 0;
+	}
+	local root = ::rootview ? ::rootview.findChild( "stageui") : null;
+	if( !root) return 0;
+	local meActor = ::rpgstage.player3d;
+	foreach( i, m in me.masks) if( m.comp > 0){ me.cur = i; break; }
+	me.played[me.cur] <- true; foeSide.played[0] <- true;
+	try{ runner.setManualAction( meActor); }catch( ex){}
+	faceEach( meActor, foeActor);
+	local ui = null, r = 0;
+	try{
+		camOn( meActor, foeActor);
+		ui = ::RTSadane( root);
+		local du = ::SadaneDuel( runner, me, foeSide, meActor, foeActor, kind);
+		du.ui = ui; du.auto = ui.aiMode();
+		sleep( 500);
+		du.draw();
+		du.say( "", "Sadane. " .. foeSide.name .. " in the " .. sdata().masks[curMask( foeSide).key].name ..
+			" (" .. sdata().masks[curMask( foeSide).key].type .. "). Mitsue in the " ..
+			sdata().masks[curMask( me).key].name .. " (" .. sdata().masks[curMask( me).key].type .. ").", 2200);
+		if( ui.shotname) du.shotNow( "open");
+		r = du.run();
+		if( ui.shotname) du.shotNow( r == 1 ? "won" : "lost");
+		if( r == 1){ du.act( meActor, "rei"); du.say( "", "The hall murmurs. Mitsue's mask has the last word.", 1800); }
+		else if( r == 2){ du.act( meActor, "rei"); du.say( "", "Mitsue bows. The last word is theirs, tonight.", 1800); }
+	}catch( ex){
+		printexception( ex);
+		log( "sadane: duel error");
+		r = 0;
+	}
+	try{ if( ui) ui.close(); }catch( ex){}
+	try{ ::Rokugan.closeupPlay( meActor, "stand"); ::Rokugan.closeupPlay( foeActor, "stand"); }catch( ex){}
+	camOff();
+	st = this.sadaneState();
+	writeBack( st, me);
+	if( r == 2) foreach( k, o in st.owned) o.comp = maxComp( k, o.lv);	//	a lost duel: everyone composes themselves
+	save( st);
+	log( "sadane: %S duel vs %S -> %d" % [kind, foeSide.name, r]);
+	if( ::arguments.indexOf( "-rtmini") >= 0) ::rpgvar["G1231"] = r;		//	(tools/test_sadane.py waits on it)
+	local t = 0;
+	while( t < 1200 && (skIsKeyPressed( VK_Z) || skIsKeyPressed( VK_SPACE) || skIsKeyPressed( VK_ENTER))){ sleep( 30); t += 30; }
+	return r;
+};
+
+local talk = function( runner, name, text){
+	runner.showMessage( { key = "message_talk", name = name, uiclose = 2, text = text });
+};
+local money = function( n){
+	::rpgstat.money = int( ::rpgstat.money) + n;
+};
+
+//	A rival. seen = he saw her and walked up (once); else she asked him to play.
+::Rokugan.sadaneRival <- function( runner, idx, seen){
+	local rv = sdata().rivals[idx], st = this.sadaneState(), actor = runner.rp3d;
+	if( seen) ::rpgvar["G1653"] = 0;
+	if( !this.sadanePlaying()){
+		talk( runner, rv.name, "(looks at the faces in front of them, and finds none worth playing)");
+		return;
+	}
+	local me = ::rpgstage.player3d;
+	if( seen && actor){
+		try{ runner.setManualAction( actor); }catch( ex){}
+		try{ ::Rokugan.closeupPlay( actor, "surprise"); }catch( ex){}
+		sleep( 700);
+		local p = standAt( actor, me.pos, ::aimdir( me.pos, actor.pos), 3.0);
+		if( p) walkTo( actor, p);
+	}else if( actor){
+		try{ runner.setManualAction( actor); }catch( ex){}
+		local p = standAt( actor, me.pos, ::aimdir( me.pos, actor.pos), 3.0);
+		if( p && actor.pos.hypot( p) > 0.5) walkTo( actor, p);
+	}
+	if( actor) faceEach( me, actor);
+	local first = !(rv.id in st.beaten);
+	if( seen || first){ talk( runner, rv.name, rv.hello); }
+	local masks = [];
+	foreach( m in rv.masks) masks.append( { key = m[0], lv = m[1], xp = 0, comp = maxComp( m[0], m[1]) });
+	if( !first) foreach( m in masks){ m.lv = Math.min( 20, m.lv + 1); m.comp = maxComp( m.key, m.lv); }	//	rematch
+	local r = this.sadaneDuel( runner, Side( rv.name, masks, false), actor, "rival");
+	runner.wvar.W = r;
+	if( r){ st = this.sadaneState(); st.seen[rv.id] <- true; save( st); }	//	(walks up once: only once a duel is played)
+	if( r == 1){
+		talk( runner, rv.name, rv.win);
+		st = this.sadaneState();
+		local z = first ? rv.zeni : rv.zeni / 2;
+		money( z);
+		talk( runner, "", "(Won %d zeni.)" % [z]);
+		if( first){
+			st.beaten[rv.id] <- true; save( st);
+			if( ("gift" in rv) && rv.gift && this.sadaneGive( rv.gift, Math.max( 1, rv.masks[length( rv.masks) - 1][1] - 1)))
+				talk( runner, "", "(Got the " .. sdata().masks[rv.gift].name .. ": " .. sdata().masks[rv.gift].type ..
+					". It goes into her sleeve, or onto the stand in the guest pavilion.)");
+			if( ("gear" in rv) && rv.gear){
+				::rpgstat.addItemID( rv.gear, 1);
+				talk( runner, "", "(Got " .. sdata().gear[rv.gear] .. ".)");
+			}
+			st = this.sadaneState();
+			if( ("honor" in rv) && rv.honor && st.honor < sdata().rules.honor_cap){
+				st.honor++; save( st);
+				::rpgvar["G060"] = int( ::rpgvar["G060"] || 0) + 1;
+				talk( runner, "", "(Honor +1. The court will remember who had the last word.)");
+			}
+		}
+	}else if( r == 2){
+		talk( runner, rv.name, rv.lose);
+	}
+};
+
+//	A masked stranger (hidden event k: it steps out in front of her).
+::Rokugan.sadaneStranger <- function( runner, k){
+	::rpgvar["G1652"] = 0;
+	local d = sdata(), mp = ::rpgstage.mapid, tier = (mp in d.tiers) ? d.tiers[mp] : [3, 5, 1];
+	local actor = runner.rp3d, me = ::rpgstage.player3d;
+	if( !actor || !this.sadanePlaying()) return;
+	try{ runner.setManualAction( actor); }catch( ex){}
+	local p = standAt( actor, me.pos, me.dir, 3.0);
+	if( !p){ log( "sadane: no room for a stranger here"); return; }
+	actor.pos( p.x, p.y, p.z); actor.matdirty = true;
+	faceEach( me, actor);
+	local n = 1 + int( ::rnd.nextf( 0.0, tier[2] * 1.0)) % tier[2];
+	local masks = [];
+	for( local i = 0; i < n; i++){
+		local key = d.commons[int( ::rnd.nextf( 0.0, length( d.commons) * 1.0)) % length( d.commons)];
+		local lv = tier[0] + int( ::rnd.nextf( 0.0, (tier[1] - tier[0] + 1) * 1.0)) % (tier[1] - tier[0] + 1);
+		masks.append( { key = key, lv = lv, xp = 0, comp = maxComp( key, lv) });
+	}
+	talk( runner, "", "A masked stranger steps out from behind a screen and bows, a little too low.");
+	talk( runner, "Masked stranger", ["A word, Shosuro-san?", "Your mask is crooked. Shall we discuss it?",
+		"You have the look of someone who thinks she's clever.", "Play, or pass. Passing is also a move."][
+		int( ::rnd.nextf( 0.0, 3.99))]);
+	local r = this.sadaneDuel( runner, Side( "Masked stranger", masks, false), actor, "stranger");
+	if( r == 1){
+		local z = 10 + 6 * masks[0].lv;
+		money( z);
+		talk( runner, "", "(Won %d zeni.)" % [z]);
+		local drop = masks[0].key;
+		if( ::rnd.nextf( 0.0, 100.0) < d.drop_pct && this.sadaneGive( drop, masks[0].lv))
+			talk( runner, "", "The stranger leaves the " .. d.masks[drop].name .. " on a bench as they go. (Got it: " ..
+				d.masks[drop].type .. ".)");
+		else talk( runner, "", "The stranger bows, and is gone behind the screens.");
+	}else if( r == 2){
+		talk( runner, "Masked stranger", "Thank you, Shosuro-san. That was instructive. For one of us.");
+	}
+	try{ actor.pos( actor.pos.x, actor.pos.y - 60.0, actor.pos.z); }catch( ex){}	//	(gone until it spawns again)
+	::Rokugan.sadaneCool = skGetTime() + 9000;
+};
+
+//	The keeper opens the game: the first mask is her own half-mask.
+::Rokugan.sadaneOpen <- function( runner){
+	if( ::rpgvar["G1651"]) return;
+	::rpgvar["G1651"] = true;
+	this.sadaneGive( "shosuro", 3);
+	foreach( n in this.sadaneSync()) talk( runner, "", "(The " .. n .. " joins her sleeve.)");
+};
+
+//	The mask stand: up to four masks ride in the sleeve.
+::Rokugan.sadaneStand <- function( runner){
+	local st = this.sadaneState(), d = sdata();
+	foreach( n in this.sadaneSync()) talk( runner, "", "(The " .. n .. " joins the stand.)");
+	st = this.sadaneState();
+	while( true){
+		local keys = [];
+		foreach( k, m in st.owned) keys.append( k);
+		keys.sort( @( a, b) st.owned[b].lv - st.owned[a].lv);	//	(no <=> in SK) highest level first
+		local cmd = { backenable = true, cmdblocks = [] };
+		local n = 0;
+		foreach( k in keys){
+			local o = st.owned[k], m = d.masks[k];
+			cmd["text" .. n] <- (st.sleeve.indexOf( k) >= 0 ? "[sleeve] " : "") .. m.name .. "  Lv" .. o.lv .. "  " ..
+				m.type .. "  " .. o.comp .. "/" .. maxComp( k, o.lv);
+			cmd.cmdblocks.append( []); n++;
+			if( n >= 9) break;
+		}
+		cmd["text" .. n] <- "Done.";
+		cmd.cmdblocks.append( []);
+		local r = runner.showChoices( cmd);
+		if( r == null || r < 0 || r >= length( keys) || r >= 9) break;
+		local k = keys[r], i = st.sleeve.indexOf( k);
+		if( i >= 0){
+			if( length( st.sleeve) > 1) st.sleeve = st.sleeve.filter( @( v) v != k);	//	(arrays here have no remove())
+		}else if( length( st.sleeve) < d.rules.sleeve) st.sleeve.append( k);
+		else talk( runner, "", "(The sleeve holds four masks. Take one out first.)");
+		save( st);
+	}
+};
+
+//	The castle town's mask-maker. W: 1 bought, 2 already has it, 0 not enough zeni.
+::Rokugan.sadaneBuy <- function( runner, key, zeni){
+	local st = this.sadaneState();
+	if( key in st.owned){ runner.wvar.W = 2; return; }
+	if( int( ::rpgstat.money) < zeni){ runner.wvar.W = 0; return; }
+	money( -zeni);
+	this.sadaneGive( key, Math.max( 2, topLevel( st) - 3));
+	runner.wvar.W = 1;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//	the field: rivals who see her, strangers who step out
+
+::Rokugan.sadaneCool <- 0;
+::Rokugan.sadaneLook <- 0;
+::Rokugan.sadaneWalk <- { x = 0.0, z = 0.0, acc = 0.0, ok = false };
+local angDiff = function( a, b){
+	local d = a - b;
+	while( d > 3.1416) d -= 6.2832;
+	while( d < -3.1416) d += 6.2832;
+	return d < 0 ? -d : d;
+};
+::Rokugan.sadaneField <- function( stg){
+	local d = sdata();
+	if( !(stg.mapid in d.tiers) || !this.sadanePlaying()) return;
+	if( stg["mainevent"] || stg["battle"] || ::RPGMain.isPaused()) return;
+	if( skGetTime() < this.sadaneCool) return;
+	if( ::rpgvar["G1652"] || ::rpgvar["G1653"]) return;
+	local me = stg.player3d;
+	if( !me) return;
+	local st = this.sadaneState(), rule = d.rules;
+	//	rivals: seen = in front of them, close, about her height. Unseen rivals glance about every few seconds, so
+	//	whichever way they were placed, walking near one is a risk.
+	local look = skGetTime() > this.sadaneLook;
+	if( look) this.sadaneLook = skGetTime() + 3200;
+	foreach( e in stg.events){
+		local i = e.data ? e.data["sadane"] : null;
+		if( typeof( i) != SS_INTEGER || !e.rp3d) continue;		//	(a missing field reads as undefined)
+		local rv = d.rivals[i];
+		if( rv.id in st.seen) continue;
+		local a = e.rp3d;
+		if( look){ a.dir = a.dir + (::rnd.nextf( 0.0, 1.0) < 0.5 ? 1.5708 : -1.5708); a.matdirty = true; }
+		if( a.pos.hypot( me.pos) > rule.see_range || (a.pos.y - me.pos.y) * (a.pos.y - me.pos.y) > 2.25) continue;
+		if( angDiff( a.dir, ::aimdir( a.pos, me.pos)) > rule.see_cone * 0.01745) continue;
+		log( "sadane: %S sees her" % [rv.name]);
+		::rpgvar["G1653"] = i + 1;
+		return;
+	}
+	//	strangers: a roll every so many metres walked
+	local w = this.sadaneWalk;
+	if( !w.ok){ w.x = me.pos.x; w.z = me.pos.z; w.ok = true; return; }
+	local dx = me.pos.x - w.x, dz = me.pos.z - w.z, step = Math.sqrt( dx * dx + dz * dz);
+	w.x = me.pos.x; w.z = me.pos.z;
+	if( step > 3.0) return;						//	(a warp, not a walk)
+	w.acc += step;
+	if( w.acc < rule.walk_per_roll) return;
+	w.acc = 0.0;
+	if( ::rnd.nextf( 0.0, 100.0) >= rule.random_pct) return;
+	local k = 1 + int( ::rnd.nextf( 0.0, 2.99));
+	log( "sadane: a stranger steps out (%d)" % [k]);
+	::rpgvar["G1652"] = k;
+};
+::RPGStage._rt_body_sadane <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	this._rt_body_sadane( dt);
+	try{ ::Rokugan.sadaneField( this); }catch( ex){
+		if( !::Rokugan["sadaneerr"]){ ::Rokugan.sadaneerr <- true; printexception( ex); }
+	}
+};
+::RPGStage._rt_launch_sadane <- ::RPGStage.launch;
+::RPGStage.launch <- function( opt = null){
+	::Rokugan.sadaneWalk.ok = false;
+	::Rokugan.sadaneCool = skGetTime() + 4000;			//	(a breath on arrival before anyone pounces)
+	if( ::rpgvar["G1652"]) ::rpgvar["G1652"] = 0;
+	if( ::rpgvar["G1653"]) ::rpgvar["G1653"] = 0;
+	return this._rt_launch_sadane( opt);
+};
+
+printf( "Rokugan Game of Masks loaded\n");

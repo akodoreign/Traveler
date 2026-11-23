@@ -1,0 +1,1708 @@
+{
+  "doors": {
+    "M457": [
+      {
+        "before": {
+          "event": 79,
+          "x": 20.0,
+          "y": 2.0,
+          "z": 10.882,
+          "stoop": "town_door_stoop_half",
+          "grade": 1.5
+        },
+        "after": {
+          "event": 79,
+          "x": 19.5,
+          "y": 2.0,
+          "z": 10.882,
+          "stoop": "town_door_stoop_half",
+          "grade": 1.5
+        },
+        "cutBlocks": [
+          39,
+          4,
+          22,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 20.0,
+        "expectedPortalPosition": [
+          40,
+          3,
+          20,
+          0
+        ]
+      },
+      {
+        "before": {
+          "event": null,
+          "x": 29.5,
+          "y": 2.0,
+          "z": 10.882,
+          "stoop": "town_door_stoop_half",
+          "grade": 1.5
+        },
+        "after": {
+          "event": null,
+          "x": 29.0,
+          "y": 2.0,
+          "z": 10.882,
+          "stoop": "town_door_stoop_half",
+          "grade": 1.5
+        },
+        "cutBlocks": [
+          58,
+          4,
+          22,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 29.5,
+        "expectedPortalPosition": null
+      }
+    ],
+    "M351": [
+      {
+        "before": {
+          "x": 36.0,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 3,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 35.5,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 3,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          71,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 36.0,
+        "expectedPortalPosition": [
+          72,
+          4,
+          25,
+          0
+        ]
+      },
+      {
+        "before": {
+          "x": 47.0,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 2,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 46.5,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 2,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          93,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 47.0,
+        "expectedPortalPosition": [
+          94,
+          4,
+          25,
+          0
+        ]
+      },
+      {
+        "before": {
+          "x": 55.5,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 4,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 55.0,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 4,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          110,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 55.5,
+        "expectedPortalPosition": [
+          111,
+          4,
+          25,
+          0
+        ]
+      }
+    ],
+    "M360": [
+      {
+        "before": {
+          "x": 20.0,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 85,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 19.5,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 85,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          39,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 20.0,
+        "expectedPortalPosition": [
+          40,
+          4,
+          24,
+          0
+        ]
+      },
+      {
+        "before": {
+          "x": 47.5,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 86,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 47.0,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 86,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          94,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 47.5,
+        "expectedPortalPosition": [
+          95,
+          4,
+          24,
+          0
+        ]
+      }
+    ],
+    "M362": [
+      {
+        "before": {
+          "x": 20.0,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 2,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 19.5,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 2,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          39,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 20.0,
+        "expectedPortalPosition": [
+          40,
+          4,
+          25,
+          0
+        ]
+      }
+    ],
+    "M369": [
+      {
+        "before": {
+          "x": 20.0,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 97,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 19.5,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 97,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          39,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 20.0,
+        "expectedPortalPosition": [
+          40,
+          4,
+          24,
+          0
+        ]
+      },
+      {
+        "before": {
+          "x": 32.5,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 2,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 32.0,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 2,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          64,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 32.5,
+        "expectedPortalPosition": [
+          65,
+          4,
+          25,
+          0
+        ]
+      },
+      {
+        "before": {
+          "x": 43.5,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 98,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 43.0,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 98,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          86,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 43.5,
+        "expectedPortalPosition": [
+          87,
+          4,
+          24,
+          0
+        ]
+      },
+      {
+        "before": {
+          "x": 50.5,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 99,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 50.0,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 99,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          100,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 50.5,
+        "expectedPortalPosition": [
+          101,
+          4,
+          24,
+          0
+        ]
+      }
+    ],
+    "M375": [
+      {
+        "before": {
+          "x": 36.0,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 2,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 35.5,
+          "y": 2.5,
+          "z": 12.882,
+          "grade": 2.0,
+          "event": 2,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          71,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 36.0,
+        "expectedPortalPosition": [
+          72,
+          4,
+          25,
+          0
+        ]
+      }
+    ],
+    "M347": [
+      {
+        "before": {
+          "x": 25.0,
+          "y": 2.5,
+          "z": 13.382,
+          "grade": 2.0,
+          "event": 94,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 24.5,
+          "y": 2.5,
+          "z": 13.382,
+          "grade": 2.0,
+          "event": 94,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          49,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 25.0,
+        "expectedPortalPosition": [
+          50,
+          4,
+          25,
+          0
+        ]
+      },
+      {
+        "before": {
+          "x": 32.5,
+          "y": 2.5,
+          "z": 13.382,
+          "grade": 2.0,
+          "event": 95,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 32.0,
+          "y": 2.5,
+          "z": 13.382,
+          "grade": 2.0,
+          "event": 95,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          64,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 32.5,
+        "expectedPortalPosition": [
+          65,
+          4,
+          25,
+          0
+        ]
+      },
+      {
+        "before": {
+          "x": 49.0,
+          "y": 2.5,
+          "z": 13.382,
+          "grade": 2.0,
+          "event": 96,
+          "stoop": "town_door_stoop_half"
+        },
+        "after": {
+          "x": 48.5,
+          "y": 2.5,
+          "z": 13.382,
+          "grade": 2.0,
+          "event": 96,
+          "stoop": "town_door_stoop_half"
+        },
+        "cutBlocks": [
+          97,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 49.0,
+        "expectedPortalPosition": [
+          98,
+          4,
+          25,
+          0
+        ]
+      }
+    ]
+  },
+  "placements": {
+    "M351": [
+      {
+        "before": [
+          "town_door_stoop_half",
+          23.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          22.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          45,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 23.0
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          30.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          29.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          59,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 30.0
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          62.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          62.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          124,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 62.5
+      }
+    ],
+    "M360": [
+      {
+        "before": [
+          "town_door_stoop_half",
+          30.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          29.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          59,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 30.0
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          39.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          38.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          77,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 39.0
+      }
+    ],
+    "M362": [
+      {
+        "before": [
+          "town_door_stoop_half",
+          29.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          28.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          57,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 29.0
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          37.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          37.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          74,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 37.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          46.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          45.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          91,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 46.0
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          54.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          54.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          108,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 54.5
+      }
+    ],
+    "M364": [
+      {
+        "before": [
+          "town_door_stoop_half",
+          18.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          18.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          36,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 18.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          27.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          26.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          53,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 27.0
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          65.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          65.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          130,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 65.5
+      }
+    ],
+    "M372": [
+      {
+        "before": [
+          "town_door_stoop_half",
+          19.5,
+          2.0,
+          11.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          19.0,
+          2.0,
+          11.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          38,
+          5,
+          24,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 19.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          32.0,
+          2.0,
+          11.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          31.5,
+          2.0,
+          11.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          63,
+          5,
+          24,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 32.0
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          43.5,
+          2.0,
+          11.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          43.0,
+          2.0,
+          11.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          86,
+          5,
+          24,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 43.5
+      }
+    ],
+    "M374": [
+      {
+        "before": [
+          "town_door_stoop_half",
+          18.75,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          18.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          36,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 18.5
+      },
+      {
+        "before": [
+          "kudo_shut_door",
+          18.75,
+          2.5,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "kudo_shut_door",
+          18.5,
+          2.5,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          36,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 18.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          24.75,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          24.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          48,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 24.5
+      },
+      {
+        "before": [
+          "kudo_shut_door",
+          24.75,
+          2.5,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "kudo_shut_door",
+          24.5,
+          2.5,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          48,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 24.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          49.75,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          49.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          98,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 49.5
+      },
+      {
+        "before": [
+          "kudo_shut_door",
+          49.75,
+          2.5,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "kudo_shut_door",
+          49.5,
+          2.5,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          98,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 49.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          54.75,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          54.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          108,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 54.5
+      },
+      {
+        "before": [
+          "kudo_shut_door",
+          54.75,
+          2.5,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "kudo_shut_door",
+          54.5,
+          2.5,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          108,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 54.5
+      }
+    ],
+    "M375": [
+      {
+        "before": [
+          "town_door_stoop_half",
+          18.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          18.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          36,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 18.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          26.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          26.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          52,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 26.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          45.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          45.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          90,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 45.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          53.5,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          53.0,
+          2.0,
+          12.882,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          106,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 53.5
+      }
+    ],
+    "M347": [
+      {
+        "before": [
+          "town_door_stoop_half",
+          17.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          17.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          34,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 17.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          40.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          40.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          80,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 40.5
+      }
+    ],
+    "M349": [
+      {
+        "before": [
+          "town_door_stoop_half",
+          17.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          17.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          34,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 17.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          25.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          24.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          49,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 25.0
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          32.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          32.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          64,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 32.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          40.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          39.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          79,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 40.0
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          47.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          47.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          94,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 47.5
+      },
+      {
+        "before": [
+          "town_door_stoop_half",
+          55.0,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "after": [
+          "town_door_stoop_half",
+          54.5,
+          2.0,
+          13.382,
+          1.0,
+          0.0
+        ],
+        "cutBlocks": [
+          109,
+          5,
+          27,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 55.0
+      }
+    ]
+  },
+  "events": {
+    "M360": {
+      "#85#": {
+        "before": [
+          39,
+          4,
+          24,
+          0
+        ],
+        "after": [
+          40,
+          4,
+          24,
+          0
+        ],
+        "destination": {
+          "mapid": "M955",
+          "evid": 1
+        },
+        "cutBlocks": [
+          39,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 20.0,
+        "destinationEntryPos": [
+          21,
+          2,
+          8,
+          2
+        ],
+        "returnExits": [
+          {
+            "key": "#1#",
+            "pos": [
+              21,
+              2,
+              8,
+              2
+            ],
+            "dest": {
+              "mapid": "M360",
+              "evid": 85
+            }
+          }
+        ]
+      }
+    },
+    "M375": {
+      "#2#": {
+        "before": [
+          71,
+          4,
+          25,
+          0
+        ],
+        "after": [
+          72,
+          4,
+          25,
+          0
+        ],
+        "destination": {
+          "mapid": "M376",
+          "evid": 1
+        },
+        "cutBlocks": [
+          71,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 36.0,
+        "destinationEntryPos": [
+          7,
+          2,
+          12,
+          2
+        ],
+        "returnExits": [
+          {
+            "key": "#1#",
+            "pos": [
+              7,
+              2,
+              12,
+              2
+            ],
+            "dest": {
+              "mapid": "M375",
+              "evid": 2
+            }
+          }
+        ]
+      }
+    },
+    "M380": {
+      "#2#": {
+        "before": [
+          86,
+          7,
+          24,
+          0
+        ],
+        "after": [
+          87,
+          7,
+          24,
+          0
+        ],
+        "destination": {
+          "mapid": "M381",
+          "evid": 1
+        },
+        "cutBlocks": [
+          86,
+          9,
+          25,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 43.5,
+        "destinationEntryPos": [
+          6,
+          2,
+          12,
+          2
+        ],
+        "returnExits": [
+          {
+            "key": "#1#",
+            "pos": [
+              6,
+              2,
+              12,
+              2
+            ],
+            "dest": {
+              "mapid": "M380",
+              "evid": 2
+            }
+          }
+        ]
+      }
+    },
+    "M387": {
+      "#1#": {
+        "before": [
+          39,
+          4,
+          25,
+          0
+        ],
+        "after": [
+          40,
+          4,
+          25,
+          0
+        ],
+        "destination": {
+          "mapid": "M388",
+          "evid": 1
+        },
+        "cutBlocks": [
+          39,
+          5,
+          26,
+          2,
+          4,
+          1
+        ],
+        "centreMetres": 20.0,
+        "destinationEntryPos": [
+          6,
+          2,
+          11,
+          2
+        ],
+        "returnExits": [
+          {
+            "key": "#1#",
+            "pos": [
+              6,
+              2,
+              11,
+              2
+            ],
+            "dest": {
+              "mapid": "M387",
+              "evid": 1
+            }
+          }
+        ]
+      }
+    }
+  }
+}

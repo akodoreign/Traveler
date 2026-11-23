@@ -1,0 +1,14 @@
+{
+  "iuchi_tower_screen": {
+    "prompt_id": "7901c363-a75d-4453-bbdf-3f825b3e5371",
+    "history": "http://127.0.0.1:8189/history/7901c363-a75d-4453-bbdf-3f825b3e5371"
+  },
+  "iuchi_mine_cart": {
+    "prompt_id": "5dfe3cb8-2074-4e83-8a19-e9080c141d11",
+    "history": "http://127.0.0.1:8189/history/5dfe3cb8-2074-4e83-8a19-e9080c141d11"
+  },
+  "iuchi_mine_memorial": {
+    "prompt_id": "8e3a084a-b036-4f48-9fd8-15017a8dc0ed",
+    "history": "http://127.0.0.1:8189/history/8e3a084a-b036-4f48-9fd8-15017a8dc0ed"
+  }
+}

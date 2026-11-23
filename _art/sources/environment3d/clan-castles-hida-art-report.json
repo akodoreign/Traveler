@@ -1,0 +1,181 @@
+{
+  "maps": {
+    "M535": {
+      "name": "Kyuden Hida - Guard barracks",
+      "places": 12,
+      "quads": 1314,
+      "removed": 18,
+      "prop_models_replaced": 0
+    },
+    "M500": {
+      "name": "Kyuden Hida - Entrance reception",
+      "places": 6,
+      "quads": 1674,
+      "removed": 19,
+      "prop_models_replaced": 0
+    },
+    "M536": {
+      "name": "Kyuden Hida - Stables and stores",
+      "places": 10,
+      "quads": 1892,
+      "removed": 14,
+      "prop_models_replaced": 0
+    },
+    "M537": {
+      "name": "Kyuden Hida - Training court",
+      "places": 24,
+      "quads": 88,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M538": {
+      "name": "Kyuden Hida - Courtyard garden",
+      "places": 22,
+      "quads": 90,
+      "removed": 14,
+      "prop_models_replaced": 0
+    },
+    "M539": {
+      "name": "Kyuden Hida - Guest pavilion",
+      "places": 25,
+      "quads": 414,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M540": {
+      "name": "Kyuden Hida - Archive court",
+      "places": 18,
+      "quads": 1244,
+      "removed": 14,
+      "prop_models_replaced": 4
+    },
+    "M541": {
+      "name": "Kyuden Hida - Keep approach",
+      "places": 8,
+      "quads": 3537,
+      "removed": 15,
+      "prop_models_replaced": 0
+    },
+    "M542": {
+      "name": "Kyuden Hida - Shrine court",
+      "places": 12,
+      "quads": 1598,
+      "removed": 21,
+      "prop_models_replaced": 0
+    },
+    "M543": {
+      "name": "Kyuden Hida - Kitchen garden",
+      "places": 16,
+      "quads": 1274,
+      "removed": 14,
+      "prop_models_replaced": 0
+    },
+    "M544": {
+      "name": "Kyuden Hida - North garden",
+      "places": 24,
+      "quads": 152,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M545": {
+      "name": "Kyuden Hida - Watch terrace",
+      "places": 10,
+      "quads": 1306,
+      "removed": 16,
+      "prop_models_replaced": 0
+    },
+    "M501": {
+      "name": "Kyuden Hida - 1F - reception and service halls",
+      "places": 20,
+      "quads": 978,
+      "removed": 16,
+      "prop_models_replaced": 4
+    },
+    "M502": {
+      "name": "Kyuden Hida - 2F - guest and council chambers",
+      "places": 8,
+      "quads": 1016,
+      "removed": 4,
+      "prop_models_replaced": 4
+    },
+    "M503": {
+      "name": "Kyuden Hida - 3F - archives and strategy halls",
+      "places": 20,
+      "quads": 864,
+      "removed": 4,
+      "prop_models_replaced": 12
+    },
+    "M504": {
+      "name": "Kyuden Hida - 4F - audience and watch halls",
+      "places": 16,
+      "quads": 842,
+      "removed": 4,
+      "prop_models_replaced": 12
+    }
+  },
+  "sources": {
+    "castle_kaiu_lantern": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_kaiu_lantern_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        0.54,
+        1.03,
+        0.54
+      ]
+    },
+    "castle_lacquer_supply_chest": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_lacquer_supply_chest_00001_.glb",
+      "triangles": 19998,
+      "world_size": [
+        0.93,
+        0.56,
+        0.48
+      ]
+    },
+    "castle_council_table": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_council_table_00001_.glb",
+      "triangles": 18922,
+      "world_size": [
+        1.07,
+        0.5,
+        0.55
+      ]
+    },
+    "castle_diorama_matsu": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_diorama_matsu_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        2.76,
+        3.13,
+        2.43
+      ]
+    },
+    "castle_iris_clump": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_iris_clump_00001_.glb",
+      "triangles": 18070,
+      "world_size": [
+        0.44,
+        0.61,
+        0.43
+      ]
+    },
+    "castle_tamori_stones": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_tamori_stones_00001_.glb",
+      "triangles": 20000,
+      "world_size": [
+        1.85,
+        0.93,
+        1.18
+      ]
+    },
+    "castle_snow_pine": {
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_castle_snow_pine_00001_.glb",
+      "triangles": 13342,
+      "world_size": [
+        3.14,
+        3.7,
+        2.68
+      ]
+    }
+  }
+}

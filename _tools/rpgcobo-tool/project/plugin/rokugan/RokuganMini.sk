@@ -997,7 +997,9 @@ class RTMemory extends RTMini
 		local root = ::rootview ? ::rootview.findChild( "stageui") : null;
 		if( !root){ log( "mini-game " .. kind .. ": no stage UI, narrated outcome"); return 0; }
 		if( ::arguments.indexOf( "-rtminifail") >= 0) throw "test: -rtminifail";		//	(tests the fallback)
-		g = kind == "yumi" ? ::RTYumi( root) : kind == "memory" ? ::RTMemory( root) :
+		local reg = ("MINI_CLASSES" in ::Rokugan) ? ::Rokugan.MINI_CLASSES : {};		//	(RokuganCastleGames.sk: the
+		if( kind in reg) g = reg[kind]( root);										//	 castles' clan games)
+		else g = kind == "yumi" ? ::RTYumi( root) : kind == "memory" ? ::RTMemory( root) :
 			kind.indexOf( "dance") == 0 ? ::RTDance( root, kind) : kind.indexOf( "kabuki") == 0 ? ::RTKabuki( root, kind) : ::RTRace( root);	//	(RokuganDance.sk)
 	}catch( ex){
 		printexception( ex);

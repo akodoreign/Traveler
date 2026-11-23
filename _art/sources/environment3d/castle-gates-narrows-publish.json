@@ -1,0 +1,54 @@
+{
+  "recipe": "castle_gate_candidates",
+  "group": "narrows",
+  "maps": [
+    "M410"
+  ],
+  "catalog": {
+    "M410": "ef7bda2baa63eaced59ae541b9f2083222df374f46ca7e5d8461dfac976eefb0"
+  },
+  "baseline": {
+    "tools\\gen_maps.py": "4c7859c61d61a85af45b847b48352cbd99e2e49a8bfedb6fff1bc3ec1d40e0ac",
+    "_tools\\rpgcobo-tool\\project\\resource\\native_environment\\index.json": "8d6229a866a0d1157ff7bbb6dc9a2799c325664542c3e788308951ff9e0659b6",
+    "_tools\\rpgcobo-tool\\project\\data\\mapdata\\M410.bw": "7133df7bbf4ba1c993f814e533c0c969ca34b6892fbb0f2a7eabfb423c475c98",
+    "_tools\\rpgcobo-tool\\project\\plugin\\rokugan\\RokuganEnvironmentKit.sk": "93d32a99874bea3d6eba4327d55a8459ca8863537070ea02454e348551881c31"
+  },
+  "candidate": {
+    "tools\\gen_maps.py": "279b61dffbba270922a33696a4abb44c2b4a0c76761d137ec9236696ad1ef7f5",
+    "_tools\\rpgcobo-tool\\project\\data\\mapdata\\M410.bw": "52095fa3778a84c2d3ced11da8578f508f4d1fa00038354d41382578d6952657",
+    "_tools\\rpgcobo-tool\\project\\plugin\\rokugan\\RokuganEnvironmentKit.sk": "93d32a99874bea3d6eba4327d55a8459ca8863537070ea02454e348551881c31",
+    "_tools\\rpgcobo-tool\\project\\resource\\native_environment\\index.json": "9ba956645a243d695fc777556cb75581f699184a257bfee448dd0ef553249103"
+  },
+  "resources": {
+    "iuchi_fitted_andon.mdl": "a37be73761f9183194abb2d807c08df36964b0dd98eac6006f7faa0128886f85",
+    "iuchi_fitted_andon.pm": "8d44233203aacd3197a6acf3b21730347e36fd03b05c72b064f46e4e07f90897",
+    "iuchi_wind_buttress.mdl": "e15a0d6d95e19ec9daf4011990aa2f8a4fcb655cdb448b679a380bd46ccba84b",
+    "iuchi_wind_buttress.pm": "789c0b3737c7b95fef43329ab8f794242c50553674b6467f89f1d4fd4053820e",
+    "iuchi_wind_dust.mdl": "a0b2470615fb8cfffcf6979dcc83864934a6a10c2a401b473354e66f100f2c5e",
+    "iuchi_wind_dust.pm": "7bc5a36ff06122e5c338e3ab2d93439aef22606f131616d13a4acfcf5cecc8d3",
+    "iuchi_wind_gate_frame.mdl": "82869102a5d3cb5ba7cf108114848d6e23f7ab77da07c0090046e4ae989fbd3c",
+    "iuchi_wind_gate_frame.pm": "9f0b45f1de4247fa5592f3e7aaa28aaf68ccb15d2b8a5301ead106294a10ecaf",
+    "m410_curtain_gate_skin.mdl": "4f2cae391c15ee73075465e46042f8e061cb0f9512ed72a97f9328bb57f8678e",
+    "m410_curtain_gate_skin.pm": "a2fcc303f105f885a97138164b0402b1a21ddf7ef2afa9c3039f5c6d885ac544",
+    "m410_iuchi.mdl": "34c1d0987ac80751a1b297bf01e97c6fb2814fd809bd5cd70838761a68423c0f",
+    "m410_iuchi.pm": "276e387721a19baa7f2c5b85b8dfe17e1425f788168fd5a8bb881326c80e8572",
+    "m410_lifting_portcullis.mdl": "e2864cf1f665124d88d568a25b32e5d6363678f3111a20bc721187b176720f1b",
+    "m410_lifting_portcullis.pm": "73dfd5a269fc48b8237848894e306e3bcad1cc86e23d2f78c2347a100e03bd66",
+    "tex/iuchi_beam.png": "2e4ad5267f37f7a1984de8f26085db0376a39a7a2a29166f4a7f3d2151a4939d",
+    "tex/iuchi_gale_dust.png": "e3defd520fbdfecb972ef41e005a56fadc64e8e187a6582b6d4e18b6c13faf8e",
+    "tex/iuchi_gale_ridge.png": "c7c73579b2023f8799684b0c058c45c4a8b7f22d6f7d97e3419926b6dc8a73ae",
+    "tex/iuchi_gale_scoured.png": "43f401fbc75079abe0e5e45b292fa9cffa6e24da7ae4d6810d73fcb5d8ae625d",
+    "tex/iuchi_gale_shale.png": "d1a1a3b1a09021ca6d7b788221ac3b9490657fddfa3b9aa3e3ac7eb28aac982c",
+    "tex/iuchi_gale_slate.png": "198ff16016f664d84c652c2f65067270f45f2541bf2a15283faf9998fe1a7467",
+    "tex/iuchi_indigo.png": "7f47b7092bb4c55ac9fdeee91d19f2ae9780cd3dcb2d53066102c39376bc4b11",
+    "tex/iuchi_iron.png": "93a72de8d38290f486959d171c7c53e5953ec367da02c5ceca19a077c247ecf7",
+    "tex/iuchi_light_stone.png": "f599a5c2256277acd4078dbc41c210b4c6f64bb6c8b5e8a08d23f544328c8255",
+    "tex/iuchi_paper.png": "c7b29a13a92436c9ac2454b78798f421fc91186bf5071220372ad5a501b0b812",
+    "tex/iuchi_path.png": "b92a1021fe589767bbadc0a1e54577dc509ad18a48c5d4920ca70628d6f8c8ef",
+    "tex/iuchi_siege_earth.png": "7cace35775bc82ab059e1d55622897003be91ef2fdbbe192fa7032074368b17c",
+    "tex/iuchi_wind_buttress.png": "0c2601414d2bbeed5ac34485449519f54e448ab508811d3b3a772d7ae2a9a726",
+    "tex/wind_grass.png": "077ac5f1a5e3c2ac796dd9326bf028ff5337ac57f23313e37eff433c38f5e53d",
+    "wind_grass.mdl": "6df6463eb35472c2666b06f2a43d1e34113a7d042cbb5a34940ee82bc7ba5f0d",
+    "wind_grass.pm": "2984676a870fe06854625ef1901cec49a14a877bf1cc4cb96f41b82b605ad35f"
+  }
+}

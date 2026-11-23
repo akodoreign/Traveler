@@ -19,6 +19,11 @@ class RokuganEnvironmentKit {
     watchfires = null;
     storageLids = null;
     brushReveal = null;
+    windStreaks = null;
+    gustActive = false;
+    windCalmed = false;
+    leafDrift = null;
+    portcullises = null;
 
     constructor(target, def) {
         stage = target;
@@ -36,6 +41,33 @@ class RokuganEnvironmentKit {
         watchfires = [];
         storageLids = [];
         brushReveal = [];
+        windStreaks = [];
+        leafDrift = [];
+        portcullises = [];
+        local gateRows=def["portcullises"] || [];
+        local gateBitmap=length(gateRows) ? stage.bw.bmp : null;
+        if(length(gateRows) && !gateBitmap)
+            gateBitmap=Bitmap(stage.bw.w,stage.bw.d);
+        foreach(row in gateRows){
+            local gate=add(row.model,row.x,row.y,row.z,1.0,row["yaw"] || 0.0);
+            local alongX=row["axis"]=="x";
+            local cells=[];
+            for(local i=0;i<row.width;++i){
+                local x=row.blockX+(alongX ? i : 0), z=row.blockZ+(alongX ? 0 : i);
+                cells.append([x,z,gateBitmap.get(x,z)]);
+            }
+            portcullises.append([gate,row,null,null,cells,gateBitmap]);
+        }
+        foreach(row in def["leafDrift"] || []){
+            local leaf=add(row[0],row[1],row[2],row[3],row[4],row[6]);
+            leaf.setVisible(false);
+            leafDrift.append([leaf,row]);
+        }
+        windCalmed = (stage.mapid=="M412" && ::rpgvar["G1029"]);
+        foreach(row in def["windStreaks"] || []){
+            local streak=add(row[0],row[1],row[2],row[3],row[4],row[5]);
+            windStreaks.append([streak,row]);
+        }
         foreach(key in [def["terrain"], def["water"]]){
             if(!key) continue;
             local part = add(key,0.0,0.0,0.0,1.0,0.0);
@@ -98,7 +130,7 @@ class RokuganEnvironmentKit {
             local models=door["models"] || ["town_door_frame","town_door_leaf"];
             add(models[0],door.x,door.y,door.z,1.0,0.0);
             local leaf=add(models[1],door.x+.073,door.y,door.z+.076,1.0,0.0);
-            if(door.event!=null) townDoors.append([door.event,leaf,null]);
+            if(door.event!=null) townDoors.append([door.event,leaf,null,door["alternateOpen"]]);
         }
         foreach(fire in def["watchfires"] || []){
             local flame=add("kaiu_brazier_flame",fire[0],fire[1],fire[2],fire[3],0.0);
@@ -115,6 +147,8 @@ class RokuganEnvironmentKit {
         syncDoors(0.0);
         syncStorageLids(0.0);
         syncHirumaBrush(0.0);
+        syncWind();
+        syncPortcullises(0.0);
         printf("[ENV] %S installed %d detail props, %d animated plants, %d liquid frames.\n",
             stage.mapid,length(def.placements)-length(vegetation),length(vegetation),length(waterTextures));
     }
@@ -133,6 +167,7 @@ class RokuganEnvironmentKit {
         foreach(row in townDoors){
             local portal=stage.getEvent(row[0]);
             local open=!!(portal && ::reqchk(portal.data["reqs0"],portal));
+            if(!open && row[3]) open=!!::reqchk(row[3]);
             local target=open ? 52.0*Math.DTOR : 0.0;
             local angle=row[2];
             if(angle==target) continue;
@@ -173,6 +208,63 @@ class RokuganEnvironmentKit {
         }
     }
 
+    function syncWind() {
+        if(!length(windStreaks)) return;
+        local now=skGetTime();
+        local forced=::arguments.indexOf("-rtgale100")>=0;
+        gustActive=!windCalmed && (forced || (now/900)%2==0);
+        foreach(entry in windStreaks){
+            local streak=entry[0], row=entry[1];
+            local hazard=row[6];
+            local show=!windCalmed && (!hazard || gustActive);
+            if(streak.visible!=show) streak.setVisible(show);
+            if(!show) continue;
+            local run=hazard ? (now%900)/900.0 : seconds*.39;
+            run+=row[7];
+            run-=Math.floor(run);
+            streak.pos(row[1]+row[8]*run,row[2]+.10*Math.sin(run*3.14),row[3]+row[9]*run);
+            streak.scale(row[4]*(.10+.90*Math.sin(run*3.14)));
+            streak.matdirty=true;
+        }
+    }
+
+    function updateLeaves() {
+        foreach(entry in leafDrift){
+            local leaf=entry[0], row=entry[1];
+            local phase=seconds*.128+row[5];
+            phase-=Math.floor(phase);
+            local t=phase/.58;
+            local show=t<1.0;
+            if(leaf.visible!=show) leaf.setVisible(show);
+            if(!show) continue;
+            local flutter=t*14.0+row[6];
+            leaf.pos(row[1]+t*.58+Math.sin(flutter)*.16, row[2]-t*1.90,
+                     row[3]+t*.28+Math.sin(flutter*.63)*.14);
+            leaf.rot.setHPB(row[6]+t*3.8,Math.sin(flutter)*.86,Math.cos(flutter*.78)*.54);
+            leaf.matdirty=true;
+        }
+    }
+
+    function syncPortcullises(ms) {
+        foreach(entry in portcullises){
+            local row=entry[1], portal=stage.getEvent(row.event);
+            local opening=!!(portal && ::reqchk(portal.data["reqs0"],portal));
+            local target=opening ? row.lift : 0.0;
+            if(entry[2]!=target){
+                entry[2]=hingeAngle(entry[2],target,ms);
+                entry[0].pos(row.x,row.y+entry[2],row.z);
+                entry[0].matdirty=true;
+            }
+            local passable=opening && entry[2]>=2.32;
+            if(entry[3]==passable) continue;
+            local bitmap=entry[5];
+            foreach(cell in entry[4]) bitmap.set(cell[0],cell[1],passable ? cell[2] : 1);
+            stage.bw.bmp=bitmap;
+            stage.bwcol.ref.setBarriorMap(bitmap);
+            entry[3]=passable;
+        }
+    }
+
     function update(dt) {
         foreach(seat in patronSeats){
             local event=stage.getEvent(seat[0]);
@@ -206,6 +298,9 @@ class RokuganEnvironmentKit {
         syncDoors(accumulator);
         syncStorageLids(accumulator);
         syncHirumaBrush(accumulator);
+        syncWind();
+        updateLeaves();
+        syncPortcullises(accumulator);
         accumulator = 0;
         if(water){
             local frame = int(seconds*length(waterTextures)/waterSeconds) % length(waterTextures);
@@ -243,13 +338,25 @@ class RokuganEnvironmentKit {
             if(dx*dx+dz*dz > 225.0) continue;
             local gust = Math.sin(seconds*2.05 + row[2]*.37 + row[3]*.21);
             local flutter = Math.sin(seconds*3.1 + row[1]);
-            row[0].rot.setHPB(row[1],row[4]*(gust*.72+flutter*.28),row[4]*.46*flutter);
+            local sway=windCalmed ? 0.0 : row[4];
+            row[0].rot.setHPB(row[1],sway*(gust*.72+flutter*.28),sway*.46*flutter);
             row[0].matdirty = true;
         }
     }
 }
 
 local EnvironmentKit = RokuganEnvironmentKit;
+::RPGMain._rt_environment_return <- ::RPGMain.returnMap;
+::RPGMain.returnMap <- function(cmd){
+    if(::rpgstage.mapid=="M882" && cmd.stage.mapid=="M412" &&
+       cmd.stage.rtEnvironmentKit && ::rpgvar.RESULT==1){
+        local kit=cmd.stage.rtEnvironmentKit;
+        kit.windCalmed=true;
+        kit.syncWind();
+        printf("[ENV] M412 wind settled after the storm encounter.\n");
+    }
+    return this._rt_environment_return(cmd);
+};
 ::RPGStage.rtEnvironmentKit <- null;
 ::RPGStage._rt_environment_launch <- ::RPGStage.launch;
 ::RPGStage.launch <- function(opt=null){

@@ -185,9 +185,9 @@ def main(repo):
                 z=(gm.PAD_BOTTOM+(23 if local_x==99 else 22))*.5-.118
                 if event is None:
                     props.append(["kudo_shut_door",x,2.50,z,1.,0.])
-                    props.append(["town_door_stoop_half",x,2.,z,1.,0.])
+                    props.append(["town_door_stoop_half",x-.5,2.,z,1.,0.])
                 else:
-                    doors.append({"x":x,"y":2.5,"z":z,"grade":2.0,"event":event,
+                    doors.append({"x":x-.5,"y":2.5,"z":z,"grade":2.0,"event":event,
                                   "stoop":"town_door_stoop_half"})
         index[mid]={"terrain":asset,"water":asset+"_water","placements":props,"doors":doors,
                     "waterSequence":{"prefix":"kudo_river","frames":32,"seconds":9.20}}

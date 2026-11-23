@@ -9,7 +9,7 @@
 	{code="CP", name="The Crane Port", flag=null, bit=3, mapid="M220", pos=[50.0, null, 12.0, 0.0], pids=["P101"]},
 	{code="KD", name="Kyuden Doji", flag=null, bit=4, mapid="M228", pos=[39.5, null, 13.5, 0.0], pids=["P101"]},
 	{code="IS", name="The Isle of Silk", flag=null, bit=5, mapid="M304", pos=[59.5, null, 10.0, 0.0], pids=["P102"]},
-	{code="SK", name="Shiro Kitsuki", flag=null, bit=6, mapid="M343", pos=[38.0, null, 10.5, 0.0], pids=["P102"]},
+	{code="SK", name="Shiro Kitsuki", flag=null, bit=6, mapid="M343", pos=[38.0, null, 11.0, 0.0], pids=["P102"]},
 	{code="HT", name="Hiruto's Castle Town", flag=null, bit=7, mapid="M241", pos=[38.0, null, 8.5, 0.0], pids=["P103", "P104"]},
 	{code="SA", name="Shiro Akodo", flag=null, bit=8, mapid="M255", pos=[46.5, null, 5.5, 0.0], pids=["P103"]},
 	{code="BB", name="The Village of the Burned Bridge", flag=null, bit=9, mapid="M267", pos=[21.0, null, 10.5, 0.0], pids=["P103"]},

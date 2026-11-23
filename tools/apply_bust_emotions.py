@@ -6,6 +6,7 @@ import collections
 import json
 import os
 import sys
+import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.normpath(os.path.join(HERE, "..", "_tools", "rpgcobo-tool", "project", "data"))
@@ -37,7 +38,19 @@ def main():
         p = os.path.join(DATA, name + ".json")
         d = json.load(open(p, encoding="utf-8"))
         walk(d)
-        json.dump(d, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent="\t")
+        # (2026-11-22: "Invalid argument" when another process held map.json) write a temp file, then swap it in,
+        # retrying while the file is held, as apply_dialog_fixes does
+        tmp = p + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(d, f, ensure_ascii=False, indent="\t")
+        for _ in range(60):
+            try:
+                os.replace(tmp, p)
+                break
+            except OSError:
+                time.sleep(1)
+        else:
+            raise SystemExit("%s stayed locked; the new copy is %s" % (p, tmp))
     print("expressions set:", dict(count))
     if missing:
         print(len(missing), "traveler lines have no hand-read expression (keyword guess used), e.g.", missing[:5])

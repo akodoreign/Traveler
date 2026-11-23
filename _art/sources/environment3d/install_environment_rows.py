@@ -16,12 +16,12 @@ EXTRA_MODELS = {
 }
 
 
-def install(engine, ids, *, preserve_existing=False):
+def install(engine, ids, *, preserve_existing=False, replace_existing=False):
     destination = engine / "project/resource/native_environment"
     manifest = destination / "index.json"
     raw = manifest.read_bytes()
     live = json.loads(raw)
-    if preserve_existing and set(ids).intersection(live):
+    if preserve_existing and not replace_existing and set(ids).intersection(live):
         raise ValueError("A selected map already has an installed environment")
     staged = json.loads((STAGE / "index.json").read_bytes())
     names = set()
@@ -31,6 +31,9 @@ def install(engine, ids, *, preserve_existing=False):
         names.update(name for name in (row.get("terrain"), row.get("water")) if name)
         names.update(entry[0] for entry in row["placements"])
         names.update(entry[0] for entry in row.get("pondFish", []))
+        names.update(entry[0] for entry in row.get("windStreaks", []))
+        names.update(entry[0] for entry in row.get("leafDrift", []))
+        names.update(entry["model"] for entry in row.get("portcullises", []))
         for field, dependencies in EXTRA_MODELS.items():
             if row.get(field):
                 names.update(dependencies)

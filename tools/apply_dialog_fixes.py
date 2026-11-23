@@ -6,6 +6,7 @@ longer matches anything is listed as STALE (the source text changed: update or d
   python -E tools/apply_dialog_fixes.py            apply
   python -E tools/apply_dialog_fixes.py --check    report only, write nothing
 Reading copies of the whole script (branches, flags, busts): _art/preview/agents/dialog/ (see NOTES.md)."""
+import hashlib
 import json
 import os
 import re
@@ -100,7 +101,7 @@ FIXES = [
     ("sub", "M326", "Ushimo? He lives by the south gate", "Seppun Ushimo? He lives by the south gate"),
     ("sub", PAST, "Coin first, Kitsuki-sama.", "Coin first, sir."),
     ("sub", "M328", "Three thousand, magistrate.", "Three thousand, stranger."),
-    ("before", "M344", "The son will become the dark brother.", [("", "Later, alone, Gendo opens his notebook and writes down Akuro's prophecy.")]),
+    ("before", "M529", "The son will become the dark brother.", [("", "Later, alone, Gendo opens his notebook and writes down Akuro's prophecy.")]),
     ("del", "M352", "Kitsune Hana: older, in dark green with gold leaves. She bows and makes to leave, the way she leaves every room he is in."),
     ("before", "M352", "The governor hasn't been himself since spring.", [
         ("", "A Fox lady in dark green with gold leaves: Kitsune Hana. She bows, and makes to leave, the way she leaves every room the governor is in.")]),
@@ -499,7 +500,7 @@ FIXES = [
     ("dir", "M287", "Isawa Haruki|It isn't a prophecy. It's a warning.", {"emo": "determined", "zoom": True}),
     ("dir", "M287", "Isawa Haruki|Because you wanted it.", {"emo": "determined", "zoom": True}),
     # ---- Ch3
-    ("dir", "M288", "Isawa Haruki|It spreads in a circle, Master.", {"emo": "worried", "act": "think", "zoom": True}),
+    ("dir", "M519", "Isawa Haruki|It spreads in a circle, Master.", {"emo": "worried", "act": "think", "zoom": True}),
     ("dir", "M288", "Isawa Haruki|It's where I broke her.", {"emo": "sad", "zoom": True}),
     ("dir", "M288", "Isawa Haruki|My Void lashed out. It split her soul.", {"emo": "worried"}),
     ("dir", "M294", "Isawa Haruki|She remembers you. She was afraid for you.", {"emo": "determined", "zoom": True}),
@@ -574,11 +575,11 @@ FIXES = [
     ("dir", "M341", "Kitsuki Gendo|Then paint me the year 1122, Kumpei.", {"emo": "determined", "zoom": True}),
     ("dir", "M342", "Kitsuki Gendo|I know exactly how little being remembered is worth.", {"emo": "happy", "zoom": True}),
     ("dir", "M342", "Kitsuki Gendo|That's the only kind that matters, Majesty.", {"emo": "happy", "act": "rei"}),
-    ("dir", "M344", "Kitsuki Gendo|Seven. There are eight of us.", {"emo": "surprised", "act": "think", "zoom": True}),
+    ("dir", "M529", "Kitsuki Gendo|Seven. There are eight of us.", {"emo": "surprised", "act": "think", "zoom": True}),
 ] + [
     # =============================================================== SCORPION (Shosuro Mitsue), read in full 2026-11-22
     # ---- Ch1. Norie's orders: one beat from Mitsue between the town and the job
-    ("after", "M346", "The Fox and the Sparrow govern it together and hate it together.", [
+    ("after", "M588", "The Fox and the Sparrow govern it together and hate it together.", [
         ("Shosuro Mitsue", "Which one is lying, sensei?", "neutral", A("think")),
         ("Shosuro Norie", "Both. That is what makes it a town."),
     ]),
@@ -592,9 +593,9 @@ FIXES = [
         ("Shosuro Mitsue", "Nobody robs a caravan to keep a box. Unless the box was the caravan.", "determined",
          A("think", True)),
     ]),
-    ("dir", "M345", "Shosuro Mitsue|Yes, my lady. More tea?", {"emo": "neutral", "act": "rei"}),
-    ("dir", "M345", "Shosuro Mitsue|Nobody, sensei. Nobody is very easy to be.", {"emo": "happy", "zoom": True}),
-    ("dir", "M346", "Shosuro Mitsue|Evening, sir. Mind the step.", {"emo": "happy", "act": "rei"}),
+    ("dir", "M586", "Shosuro Mitsue|Yes, my lady. More tea?", {"emo": "neutral", "act": "rei"}),
+    ("dir", "M586", "Shosuro Mitsue|Nobody, sensei. Nobody is very easy to be.", {"emo": "happy", "zoom": True}),
+    ("dir", "M588", "Shosuro Mitsue|Evening, sir. Mind the step.", {"emo": "happy", "act": "rei"}),
     ("dir", "M348", "Shosuro Mitsue|...Nineteen.", {"emo": "worried", "zoom": True}),
     ("dir", "M349", "Shosuro Mitsue|Lines. Circles. A summoning.", {"emo": "worried", "act": "think", "zoom": True}),
     ("dir", "M352", "Shosuro Mitsue|...That isn't a governor. That isn't a person.", {"emo": "worried", "zoom": True}),
@@ -625,8 +626,8 @@ FIXES = [
     ("dir", "M379", "Shosuro Mitsue|Everyone is exactly the problem.", {"emo": "determined", "act": "crossarms", "zoom": True}),
     ("dir", "M379", "Shosuro Mitsue|...That's an odd thing to write, sensei.", {"emo": "worried", "act": "think"}),
     ("dir", "M381", "Shosuro Mitsue|Rest now. I'll tell them.", {"emo": "sad", "zoom": True}),
-    ("dir", "M383", "Shosuro Mitsue|...A family's line will end.", {"emo": "worried", "zoom": True}),
-    ("dir", "M383", "Shosuro Mitsue|The Emperor's. He's going to kill the Emperor.", {"emo": "surprised", "act": "surprise", "zoom": True}),
+    ("dir", "M615", "Shosuro Mitsue|...A family's line will end.", {"emo": "worried", "zoom": True}),
+    ("dir", "M615", "Shosuro Mitsue|The Emperor's. He's going to kill the Emperor.", {"emo": "surprised", "act": "surprise", "zoom": True}),
     ("dir", "M385", "Shosuro Mitsue|You'll be ash.", {"emo": "angry", "zoom": True}),
     # the Bloodspeaker "who has hunted the Box since Kudo" had never been seen: it says so itself
     ("after", "M386", "You and I are the same, Shosuro.", [
@@ -656,7 +657,7 @@ FIXES = [
     ("dir", "M388", "Ide Tamotsu|I sold him rice cakes for a copper when we were nine.", {"emo": "sad", "zoom": True}),
     ("dir", "M389", "Ide Tamotsu|Hate me, grandmother. I'm the one who's late.", {"emo": "sad", "act": "seiza", "zoom": True}),
     ("dir", "M389", "Ide Tamotsu|Go with the Fortunes, my friend.", {"emo": "happy", "act": "rei"}),
-    ("dir", "M391", "Ide Tamotsu|My lord is talking to woodchucks so he won't have to", {"emo": "determined", "zoom": True}),
+    ("dir", "M604", "Ide Tamotsu|My lord is talking to woodchucks so he won't have to", {"emo": "determined", "zoom": True}),
     ("dir", "M392", "Ide Tamotsu|And when the war is over, general, what grows here?", {"emo": "determined", "act": "point"}),
     ("dir", "M393", "Ide Tamotsu|Both sides made a temple a weapon.", {"emo": "worried", "act": "think", "zoom": True}),
     ("dir", "M395", "Ide Tamotsu|I didn't like them either, sensei.", {"emo": "worried"}),
@@ -788,8 +789,41 @@ FIXES = [
     ("dir", "M453", "Kitsuki Gendo|I've filed a thousand of those.", {"emo": "happy", "act": "shrug"}),
     ("dir", "M453", "Sayo|...Is anyone hungry?", {"emo": "happy", "act": "laugh"}),
     ("dir", "M453", "Hiruma Natsuko|Starving.", {"emo": "happy", "act": "laugh"}),
-    ("dir", "M454", "Kitsuki Gendo|Akuro never could count.", {"emo": "happy", "zoom": True}),
+    ("dir", "M528", "Kitsuki Gendo|Akuro never could count.", {"emo": "happy", "zoom": True}),
     ("dir", "M455", "Sayo|Biggest mistake she ever made.", {"emo": "determined", "zoom": True}),
+] + [
+    # =============================================================== LATE READ (maps the path read missed), 2026-11-23
+    # ---- Crane Ch4 S05, the Kakita dueling ground (M235). The stakes were only in the letter the night before; the
+    # win never said what became of the play (the loss did), and the script's win line was lost.
+    # (each insert starts with a plain line: the "already applied" check compares that first line on a re-run)
+    ("after", "M235", "Your left foot still hesitates.", [
+        ("Kakita Masanori", "First blood."),
+        IF("G429", [("Kakita Masanori", "You gave me the play. This is for the rest of it. Show me what they taught "
+                                        "you.")],
+           [("Kakita Masanori", "Mine, and the play goes in the brazier tonight. Yours, and I will not ask for it "
+                                "again.")])]),
+    ("dir", "M235", "Kakita Rensei|Yes, Father.", {"emo": "determined", "act": "rei", "zoom": True}),
+    ("before", "M235", "A thin red line on his father's sleeve.", [
+        ("Kakita Rensei", "Yes, Father. It's waiting for me to decide.", "determined", A("point", zoom=True))]),
+    ("dir", "M235", "Kakita Rensei|It's waiting for me to decide.", {"emo": "determined", "act": "point",
+                                                                      "zoom": True}),   # (after the bow, which also
+                                                                                        #  matches "Yes, Father.")
+    # ---- the post-game: Shiro Hiruma (M461-M463), the Orochi (M464). Okura was a name with no gloss; the
+    # investigator in the party gives it one aside.
+    ("after", "M463", "He took a road a day too far.", [
+        ("Kitsuki Gendo", "(quietly) An oni wears the name of the fool who called it up. Somebody called Okura opened "
+                          "a door here, once. That's who its 'father' is.", "worried", A("think"))]),
+    ("dir", "M463", "Hiruma Natsuko|...You met him.", {"emo": "angry", "zoom": True}),
+    ("dir", "M463", "Hiruma Natsuko|Then this is the last day of the road.", {"emo": "determined", "act": "point",
+                                                                             "zoom": True}),
+    ("dir", "M463", "Hiruma Natsuko|A Usagi sword.", {"emo": "surprised", "act": "think"}),
+    ("dir", "M463", "Hiruma Natsuko|There, Father. It leads home.", {"emo": "sad", "act": "seiza", "zoom": True}),
+    ("dir", "M461", "Hiruma Natsuko|...He was right. All of it.", {"emo": "worried", "act": "think", "zoom": True}),
+    ("dir", "M462", "Hiruma Natsuko|We're back. Not for good.", {"emo": "determined", "act": "rei", "zoom": True}),
+    ("dir", "M464", "Sayo|It talks. Nobody said it talks.", {"emo": "surprised", "act": "surprise"}),
+    ("after", "M235", "...The foot didn't hesitate.", [
+        ("", "He sheathes his sword."),
+        IF("G429", [], [("", "The play stays in Rensei's sleeve. Kakita Masanori does not hold out his hand.")])]),
 ] + [x for old, new, mid in (("Sanae", "Sanami", "M631"), ("Kiyo", "Kiyoe", "M634"), ("Hana", "Haneko", "M642"),
                               ("Rin", "Rinka", "M647"), ("Mosuke", "Mosaku", "M650"), ("Akari", "Akane", "M651"),
                               ("Goro", "Genzo", "M754"))
@@ -801,6 +835,12 @@ REGEX = [                                                          # (where, pat
     # ward errands (gen_maps FQ_PRE): "Aki's resident waits in the X" read as if Aki owned the resident
     (None, r"^(.+?)'s resident waits in the (.+?), with a small local errand\.$", r"\1, who lives in the \2, has a small local errand."),
     (None, r", who lives in the The ", ", who lives in the "),       # districts named "The Fisher's Cove"
+    (None, r"^Thanks again, ronin\.$", "Thanks again, traveler."),   # odd jobs: not every traveler is a ronin
+    # road-stones and caves (gen_maps route_danger, 2026-11-23): the level note sat inside the stone's quote
+    (None, r'^A road-stone: "This way: (.+?)\. Back: (.+?)\. Danger (\d+-\d+) \(scales with goals\)\."$',
+     r'A road-stone: "This way: \1. Back: \2." (Foes around level \3, stronger as the story goes on.)'),
+    (None, r'^(A cave mouth\. Cold air, and old bones by the entrance\.) \(Danger (\d+-\d+) \(scales with goals\)\)$',
+     r'\1 (Foes around level \2, stronger as the story goes on.)'),
     (None, r"the third brother to die like this this year\.$", "the third brother this year to die like this."),  # ("this this")
     (None, r"^Back to the ([A-Z][a-z]+ [A-Z][a-z]+)\.$", r"Back to \1."),            # "Back to the Hida Teruko."
     (None, r"^Back to the (?!Chandler\.)([A-Z][a-z]+)\.$", r"Back to \1."),            # "Back to the Aki." (a name)
@@ -812,7 +852,7 @@ REGEX = [                                                          # (where, pat
     ("M220", r"^\(.+ thinks a little less of the stiff young Crane\.\)$", "(The Crane port thinks a little less of the stiff young Crane.)"),
     ("M228", r"^\(.+ thinks a little less of the stiff young Crane\.\)$", "(Kyuden Doji thinks a little less of the stiff young Crane.)"),
 ]
-NOT_SERVANT = "M345"                                               # only at the memorial is Mitsue a tea-pouring maid
+NOT_SERVANT = "M586"            # only at the memorial is Mitsue a tea-pouring maid (Kyuden Bayushi's Shrine court since 2026-11-23)
 EAVES = [("Eyes turn to the servant who is standing much too close.", "Eyes turn to the stranger who is standing much too close."),
          ("...Do you mind? Go and pour tea somewhere else.", "...Do you mind? This is a private conversation.")]
 
@@ -833,6 +873,19 @@ def blocks(o):
 
 def is_msg(c):
     return isinstance(c, dict) and c.get("cmd") == "cmd_showmsg" and isinstance(c.get("text"), str)
+
+
+def _strip_dir(o):
+    """A command without the fields later passes rewrite (bust moods, emotes, close-ups), for comparing."""
+    if isinstance(o, dict):
+        return {k: _strip_dir(v) for k, v in o.items() if k not in ("emo", "act", "zoom", "uiclose")}
+    if isinstance(o, list):
+        return [_strip_dir(v) for v in o]
+    return o
+
+
+def _sig(c):
+    return json.dumps(_strip_dir(c), sort_keys=True, ensure_ascii=False)
 
 
 def main():
@@ -900,11 +953,19 @@ def main():
                     elif kind in ("before", "after") and fx[2] in c["text"]:
                         new = [x if isinstance(x, dict) else msg(*x) for x in fx[3]]
                         at = i if kind == "before" else i + 1
-                        near = b[at - 1] if kind == "before" and at else b[at] if at < len(b) else None
-                        if is_msg(near) and near["text"] == new[0]["text"]:     # already applied (run twice)
+                        # Already applied (run twice)? Compare the WHOLE block where it would go, ignoring the
+                        # direction fields later passes change. (2026-11-23: the old test compared one neighbour
+                        # with the first new line - for a multi-line "before" that neighbour is the LAST inserted
+                        # line, so every run added another copy: the Crab hearing had 25.)
+                        got = b[max(0, at - len(new)):at] if kind == "before" else b[at:at + len(new)]
+                        tag = hashlib.md5(_sig([kind, fx[2], new]).encode("utf-8")).hexdigest()[:12]
+                        if any(isinstance(c, dict) and c.get("rtfx") == tag for c in b) or \
+                                [_sig(x) for x in got] == [_sig(x) for x in new]:
                             n += 1
                             i += 1
                             continue
+                        for x in new:                                   # (a hidden id: later text rewrites can't
+                            x["rtfx"] = tag                             #  hide that this block is already in)
                         b[at:at] = new
                         n += 1
                         i += len(new)

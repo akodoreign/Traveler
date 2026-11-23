@@ -1,0 +1,12 @@
+{
+  "M414": {
+    "removed_stock_fixtures": 0,
+    "events_preserved": 75,
+    "sha256": "ed44c7db4b957626b17aefb83bc2a031d5f3790a17fcd55ab8fc12aa4f45f25e"
+  },
+  "M418": {
+    "removed_stock_fixtures": 0,
+    "events_preserved": 125,
+    "sha256": "d3e4b827bbffbb6010a530db7a30675322591e623088b6e48e0b2b1a310a2c09"
+  }
+}

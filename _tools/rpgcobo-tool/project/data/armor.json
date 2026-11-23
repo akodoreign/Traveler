@@ -2419,5 +2419,236 @@
 		"price": 0,
 		"rt_only_player": "P101",
 		"rt_unsellable": true
+	},
+	"A193": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Bayushi Masaru's fan, for hiding a smile at court. (Speed +6)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Courtier's Fan",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 6,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A194": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "The house theatre's lead ties her mask with this red cord. (Magic DEF +12%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Lead Actor's Mask Cord",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 12,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A195": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A small seal for minuting what no one said. (Magic ATK +10%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Council Seal of Silence",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MATK",
+				"val": 10,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A196": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A Yogo ledger-charm: every account settled. (Critical +8%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Curse-Ledger Charm",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 8,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A197": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Bayushi Kyoko's red mask, given to the only player who ever beat her in her castle. (Attack +10%, Speed +6)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Mistress's Red Mask",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "PATK",
+				"val": 10,
+				"valtype": "totalrate"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 6,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A198": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A drop of a Togashi tattooist's ink, sealed in a bead of wax. The skin remembers. (Magic DEF +10%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Ise Zumi Ink Charm",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 10,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A199": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A magistrate's reading glass, for looking at what people would rather you didn't. (Critical +6%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Kitsuki Examiner's Lens",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 6,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A200": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "Five small stones on a cord: earth, water, fire, air and a clear one for the Void. (Magic ATK +8%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Five Rings Pendant",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MATK",
+				"val": 8,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A201": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A Unicorn archer's glove, worn smooth at the thumb. (Speed +5, Critical +4%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Yabusame Glove",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 5,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "CRI",
+				"val": 4,
+				"valtype": "supply"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
+	},
+	"A202": {
+		"MDEF": 5,
+		"PDEF": 1,
+		"desc": "A slate go stone from Nishi's bowl, warm from her hand. She says she let you have the left edge. (Speed +4, Magic DEF +6%)",
+		"eqflag": -1,
+		"eqtype": 16,
+		"icon": "",
+		"mdlid": null,
+		"name": "Nishi's Black Stone",
+		"option": [
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "AGI",
+				"val": 4,
+				"valtype": "supply"
+			},
+			{
+				"LV": 1,
+				"opttype": "opt_status",
+				"propid": "MDEF",
+				"val": 6,
+				"valtype": "totalrate"
+			}
+		],
+		"opttype": "opt_equip",
+		"price": 0
 	}
 }

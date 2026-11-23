@@ -1,0 +1,56 @@
+{
+  "maps": {
+    "M399": {
+      "events": 173,
+      "placements": 18
+    },
+    "M400": {
+      "events": 84,
+      "placements": 5
+    },
+    "M401": {
+      "events": 82,
+      "placements": 6
+    },
+    "M402": {
+      "events": 80,
+      "placements": 6
+    },
+    "M878": {
+      "events": 0,
+      "placements": 12
+    }
+  },
+  "sources": {
+    "iuchi_mountain_birch": {
+      "name": "iuchi_mountain_birch",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iuchi_mountain_birch_00001_.glb",
+      "grid": [
+        33,
+        26,
+        46
+      ],
+      "occupied": 3945,
+      "world_size": [
+        2.24,
+        1.8999999999999997,
+        3.4000000000000004
+      ]
+    },
+    "iuchi_tower_screen": {
+      "name": "iuchi_tower_screen",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iuchi_tower_screen_00001_.glb",
+      "grid": [
+        35,
+        13,
+        41
+      ],
+      "occupied": 2893,
+      "world_size": [
+        1.35,
+        0.35,
+        1.7200000000000002
+      ]
+    }
+  }
+}

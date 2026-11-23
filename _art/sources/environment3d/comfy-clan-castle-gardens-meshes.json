@@ -1,0 +1,18 @@
+{
+  "castle_iris_clump": {
+    "prompt_id": "241272a0-fa33-4f2d-91f1-a89d66ca2166",
+    "history": "http://127.0.0.1:8189/history/241272a0-fa33-4f2d-91f1-a89d66ca2166"
+  },
+  "castle_tamori_stones": {
+    "prompt_id": "7185e2b6-6d03-4dd8-aaa8-30beb098f7a6",
+    "history": "http://127.0.0.1:8189/history/7185e2b6-6d03-4dd8-aaa8-30beb098f7a6"
+  },
+  "castle_unicorn_saddle": {
+    "prompt_id": "cb6496b4-7441-4d5b-a87a-5b195e75702c",
+    "history": "http://127.0.0.1:8189/history/cb6496b4-7441-4d5b-a87a-5b195e75702c"
+  },
+  "castle_bayushi_mask_stand": {
+    "prompt_id": "23871eba-5e3a-4403-a4e0-9068a42c62bc",
+    "history": "http://127.0.0.1:8189/history/23871eba-5e3a-4403-a4e0-9068a42c62bc"
+  }
+}

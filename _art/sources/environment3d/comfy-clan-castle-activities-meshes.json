@@ -1,0 +1,18 @@
+{
+  "castle_snow_pine": {
+    "prompt_id": "35243ca3-9007-4caf-8cc7-b034e948673f",
+    "history": "http://127.0.0.1:8189/history/35243ca3-9007-4caf-8cc7-b034e948673f"
+  },
+  "castle_lion_makiwara": {
+    "prompt_id": "09fefbdf-ec96-4f08-b8dc-cb9862b25173",
+    "history": "http://127.0.0.1:8189/history/09fefbdf-ec96-4f08-b8dc-cb9862b25173"
+  },
+  "castle_isawa_incense": {
+    "prompt_id": "1d82cc83-9bfe-4620-873f-8ad90c6188e3",
+    "history": "http://127.0.0.1:8189/history/1d82cc83-9bfe-4620-873f-8ad90c6188e3"
+  },
+  "castle_kitsuki_archive": {
+    "prompt_id": "158db155-d3e1-41d2-863a-bbc218db3c65",
+    "history": "http://127.0.0.1:8189/history/158db155-d3e1-41d2-863a-bbc218db3c65"
+  }
+}

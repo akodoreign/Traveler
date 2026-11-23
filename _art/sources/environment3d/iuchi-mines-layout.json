@@ -1,0 +1,94 @@
+{
+  "maps": {
+    "M403": {
+      "events": 85,
+      "placements": 75
+    },
+    "M404": {
+      "events": 136,
+      "placements": 25
+    },
+    "M405": {
+      "events": 99,
+      "placements": 15
+    },
+    "M406": {
+      "events": 113,
+      "placements": 15
+    },
+    "M407": {
+      "events": 80,
+      "placements": 11
+    },
+    "M879": {
+      "events": 0,
+      "placements": 14
+    },
+    "M880": {
+      "events": 0,
+      "placements": 12
+    }
+  },
+  "sources": {
+    "iuchi_mine_cart": {
+      "name": "iuchi_mine_cart",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iuchi_mine_cart_00001_.glb",
+      "grid": [
+        28,
+        30,
+        34
+      ],
+      "occupied": 5978,
+      "world_size": [
+        1.49,
+        0.92,
+        0.87
+      ]
+    },
+    "iuchi_brook_reeds": {
+      "name": "iuchi_brook_reeds",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iuchi_brook_reeds_00001_.glb",
+      "grid": [
+        37,
+        30,
+        27
+      ],
+      "occupied": 2916,
+      "world_size": [
+        0.45,
+        0.4,
+        0.54
+      ]
+    },
+    "iuchi_jade_seam": {
+      "name": "iuchi_jade_seam",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iuchi_jade_seam_00001_.glb",
+      "grid": [
+        43,
+        44,
+        37
+      ],
+      "occupied": 5697,
+      "world_size": [
+        1.48,
+        0.93,
+        0.89
+      ]
+    },
+    "iuchi_brook_pebbles": {
+      "name": "iuchi_brook_pebbles",
+      "source": "C:\\AI\\comfy-3d\\app\\output\\nonhumans\\traveler_env_coast_iuchi_brook_pebbles_00001_.glb",
+      "grid": [
+        42,
+        41,
+        34
+      ],
+      "occupied": 5811,
+      "world_size": [
+        1.37,
+        0.8600000000000001,
+        0.44
+      ]
+    }
+  }
+}
