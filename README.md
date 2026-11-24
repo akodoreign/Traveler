@@ -14,6 +14,8 @@ finale and post-game, and still being tested and polished.
 | ![Travelers face a straw-hat fighter in a turn-based battle](docs/screenshots/battle.png) | ![A traveler stops at a roadside noodle stall](docs/screenshots/roadside.png) |
 | **A kabuki performance** | **Faces of the Court** |
 | ![A kabuki performance in progress](docs/screenshots/kabuki.png) | ![A portrait-matching game featuring faces of the court](docs/screenshots/memory.png) |
+| **Miko dance** | |
+| ![A shrine maiden performs a dance before an audience](docs/screenshots/miko-dance.png) | |
 
 ---
 
