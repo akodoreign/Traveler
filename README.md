@@ -7,6 +7,14 @@ Plains of Thunder, where the travelers finally meet.
 Built with the RPG-Cobo engine. **Alpha** — playable from the first chapter of every road to the
 finale and post-game, and still being tested and polished.
 
+## Screenshots
+
+| Turn-based battles | Life on the road |
+|---|---|
+| ![Travelers face a straw-hat fighter in a turn-based battle](docs/screenshots/battle.png) | ![A traveler stops at a roadside noodle stall](docs/screenshots/roadside.png) |
+| **A kabuki performance** | **Faces of the Court** |
+| ![A kabuki performance in progress](docs/screenshots/kabuki.png) | ![A portrait-matching game featuring faces of the court](docs/screenshots/memory.png) |
+
 ---
 
 ## The eight travelers
