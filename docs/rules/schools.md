@@ -76,7 +76,7 @@ Deficiency; any Affinity***
 | R1 (1) | Isawa's Art; **Ishiken-do** advantage; Mastery-1 spells of **all five elements** (Void spells cost VP, `haruki-spells.md`); Affinity **Water + Void** |
 | R2 (21) | Mastery-2/3 spells; Attune can be changed for free once per battle |
 | R3 (41) | Mastery-4 spells; Void spells cost **−1 VP** (min 1) while Void is Attuned |
-| R4 (51) | Mastery-5 spells; Affinity spells cost half SP when Boosted |
+| R4 (51) | Mastery-5 spells; Affinity spells cost half MP when Boosted |
 | R5 (61) | Mastery-6 spells; once per battle a spell hits all enemies |
 - Spell lists to be drawn from *Masters of Magic* (OCR done) and Book of Water/Fire/Air/Earth/Void.
 

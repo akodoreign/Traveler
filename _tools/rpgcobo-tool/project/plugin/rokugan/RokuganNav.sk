@@ -1,0 +1,198 @@
+//	RokuganNav.sk : walking round things (user 2026-11-23: "so put it in" - the marker chasers walked in straight lines
+//	and stuck on cave walls, river bends and buildings). A walk grid of the map's own blocks: a cell is ground when the
+//	top block of its column is solid (not water, not a no-entry cell). A* over it; the path is cut to its turning
+//	points. Used by the marker chaser (RokuganChase.sk chaseWalk); the game itself doesn't need it. Coordinates: world
+//	metres.
+//	Two grids: `top`, 1 m cells (one block column sampled per metre: the chaser's picture, its jump check), and `ftop`,
+//	the blocks themselves (0.5 m) - the path finder plans on that one (2026-11-24, Dragon at the Tortoise cove: a wall
+//	half a metre thick along a ledge fell between the 1 m samples, and she walked into it for 20+ reloads).
+//	Moves: up half a metre (1 block) walking, 1 m (2 blocks) with a jump (setting jumph; straight on only), down off a
+//	ledge up to 4 m; a gap narrower than a body (one block between two walls) is shut; no squeezing past corners.
+
+::Rokugan.nav <- { map = null, w = 0, d = 0, top = null, fw = 0, fd = 0, ftop = null };
+
+//	the grids for the current map (built once per map; a few seconds on the largest maps)
+::Rokugan.navGrid <- function(){
+	local st = ::rpgstage;
+	if( !st || !st["bw"]) return null;
+	if( this.nav.map == st.mapid && this.nav.top) return this.nav;
+	local bw = st.bw, FW = bw.w, FD = bw.d, ftop = array( FW * FD, -1);
+	for( local bz = 0; bz < FD; bz++){
+		for( local bx = 0; bx < FW; bx++){
+			if( bw.bmp && bw.bmp.get( bx, bz)) continue;						//	a no-entry cell
+			for( local y = bw.h - 1; y >= 0; y--){
+				local b = bw.blockat( bx, y, bz);
+				if( !(b & 0xffff)) continue;
+				if( !(::Block.getFlags( b) & 4)) ftop[bz * FW + bx] = y;		//	(4: BLK_LIQUID, VoxelConstants.sk)	//	water is no ground
+				break;
+			}
+		}
+	}
+	local W = FW / 2, D = FD / 2, top = array( W * D, -1);
+	for( local cz = 0; cz < D; cz++) for( local cx = 0; cx < W; cx++){
+		local bx = cx * 2 + 1, bz = cz * 2 + 1;
+		if( bx < FW && bz < FD) top[cz * W + cx] = ftop[bz * FW + bx];
+	}
+	this.nav = { map = st.mapid, w = W, d = D, top = top, fw = FW, fd = FD, ftop = ftop };
+	return this.nav;
+};
+
+//	the walkable cell nearest (cx, cz), within r cells, or -1 (1 m grid)
+::Rokugan.navSnap <- function( g, cx, cz, r = 4){
+	local best = -1, bd = 999999;
+	for( local dz = -r; dz <= r; dz++) for( local dx = -r; dx <= r; dx++){
+		local x = cx + dx, z = cz + dz;
+		if( x < 0 || z < 0 || x >= g.w || z >= g.d) continue;
+		if( g.top[z * g.w + x] < 0) continue;
+		local dd = dx * dx + dz * dz;
+		if( dd < bd){ bd = dd; best = z * g.w + x; }
+	}
+	return best;
+};
+
+//	A* from (x0, z0) to (x1, z1), world metres -> [[x, z], ...] turning points (metres), or null
+::Rokugan.navPath <- function( x0, z0, x1, z1){
+	local g = this.navGrid();
+	if( !g) return null;
+	local W = g.fw, D = g.fd, top = g.ftop;
+	//	a body fits: not one block between two walls (either way), and the cell itself is ground
+	local wallish = function( c, h){ local t = top[c]; return t - h > 1; };
+	local fits = function( c){
+		local h = top[c];
+		if( h < 0) return false;
+		local x = c % W, z = c / W;
+		if( x > 0 && x < W - 1 && wallish( c - 1, h) && wallish( c + 1, h)) return false;
+		if( z > 0 && z < D - 1 && wallish( c - W, h) && wallish( c + W, h)) return false;
+		return true;
+	};
+	local snap = function( fx, fz, r){
+		local best = -1, bd = 999999;
+		for( local dz = -r; dz <= r; dz++) for( local dx = -r; dx <= r; dx++){
+			local x = fx + dx, z = fz + dz;
+			if( x < 0 || z < 0 || x >= W || z >= D) continue;
+			local c = z * W + x;
+			if( !fits( c)) continue;
+			local dd = dx * dx + dz * dz;
+			if( dd < bd){ bd = dd; best = c; }
+		}
+		return best;
+	};
+	local s = snap( int( x0 * 2.0), int( z0 * 2.0), 6), t = snap( int( x1 * 2.0), int( z1 * 2.0), 12);
+	if( s < 0 || t < 0) return null;
+	if( s == t) return [[x1, z1]];
+	local n = W * D, cost = array( n, 999999.0), from = array( n, -1), shut = array( n, false);
+	local sx = s % W, sz = s / W, blocked = {};
+	local smx = sx / 2, smz = sz / 2, tmx = int( x1), tmz = int( z1);	//	(start and goal, in 1 m cells)
+	local block = function( fx, fz){ if( fx >= 0 && fz >= 0 && fx < W && fz < D) blocked[fz * W + fx] <- true; };
+	if( "navAvoid" in ::Rokugan) foreach( a in ::Rokugan.navAvoid){	//	doors to keep away from (the marker chaser's
+		if( length( a) >= 5 && a[2] < 0){								//	wrong turns, every door but the marker's) and
+			if( Math.abs( a[0] - x1) <= a[3] + 1.0 && Math.abs( a[1] - z1) <= a[4] + 1.0) continue;	//	solid things
+			local bx = a[3], bz = a[4];
+			if( Math.abs( (sx + 0.5) / 2.0 - a[0]) <= bx && Math.abs( (sz + 0.5) / 2.0 - a[1]) <= bz){ bx -= 0.6; bz -= 0.6; }	//	(standing
+			for( local fz = int( (a[1] - bz) * 2.0) - 1; fz <= int( (a[1] + bz) * 2.0) + 1; fz++)	//	in its margin:
+				for( local fx = int( (a[0] - bx) * 2.0) - 1; fx <= int( (a[0] + bx) * 2.0) + 1; fx++)	//	just the box)
+					if( Math.abs( (fx + 0.5) / 2.0 - a[0]) <= bx && Math.abs( (fz + 0.5) / 2.0 - a[1]) <= bz) block( fx, fz);
+			continue;
+		}
+		local ax = int( a[0]), az = int( a[1]);							//	(not where she is going)
+		if( Math.abs( ax - tmx) <= 1 && Math.abs( az - tmz) <= 1) continue;
+		local rr = length( a) > 2 ? a[2] : 1;							//	(a prop: radius 0, its own 1 m cell)
+		//	(user's screenshot, Phoenix in and out of a shop door 126 times in Hiruto's town) standing in the square:
+		//	only its own cell
+		if( Math.abs( ax - smx) <= rr && Math.abs( az - smz) <= rr) rr = 0;
+		for( local mz = az - rr; mz <= az + rr; mz++) for( local mx = ax - rr; mx <= ax + rr; mx++)
+			for( local k = 0; k < 4; k++) block( mx * 2 + k % 2, mz * 2 + k / 2);
+	}
+	local tx = t % W, tz = t / W;
+	local heap = [], hv = [];											//	a binary heap of cells by estimate
+	local push = function( c, v){
+		heap.append( c); hv.append( v);
+		local i = length( heap) - 1;
+		while( i > 0){
+			local p = (i - 1) / 2;
+			if( hv[p] <= hv[i]) break;
+			local a = heap[p]; heap[p] = heap[i]; heap[i] = a;
+			local b = hv[p]; hv[p] = hv[i]; hv[i] = b;
+			i = p;
+		}
+	};
+	local pop = function(){
+		local c = heap[0], last = length( heap) - 1;
+		heap[0] = heap[last]; hv[0] = hv[last]; heap.pop(); hv.pop();
+		local i = 0, L = length( heap);
+		while( true){
+			local l = i * 2 + 1, r = l + 1, m = i;
+			if( l < L && hv[l] < hv[m]) m = l;
+			if( r < L && hv[r] < hv[m]) m = r;
+			if( m == i) break;
+			local a = heap[m]; heap[m] = heap[i]; heap[i] = a;
+			local b = hv[m]; hv[m] = hv[i]; hv[i] = b;
+			i = m;
+		}
+		return c;
+	};
+	cost[s] = 0.0;
+	push( s, 0.0);
+	local dirs = [[1, 0, 1.0], [-1, 0, 1.0], [0, 1, 1.0], [0, -1, 1.0], [1, 1, 1.414], [1, -1, 1.414], [-1, 1, 1.414],
+		[-1, -1, 1.414]], steps = 0, found = false;
+	while( length( heap) && steps < 400000){
+		steps++;
+		local c = pop();
+		if( shut[c]) continue;
+		shut[c] = true;
+		if( c == t){ found = true; break; }
+		local cx = c % W, cz = c / W, h = top[c];
+		foreach( dv in dirs){
+			local x = cx + dv[0], z = cz + dv[1];
+			if( x < 0 || z < 0 || x >= W || z >= D) continue;
+			local nc = z * W + x, nh = top[nc];
+			if( nh < 0 || shut[nc] || ((nc in blocked) && nc != s) || !fits( nc)) continue;	//	(a door beside her start is still shut)
+			//	up: half a metre walking, 1 m with a jump (straight on); down: off a ledge, as a player does, up to 4 m
+			//	(user's screenshot 2026-11-24: Dragon on the Tortoise cove's clay ledge, the shore lane 2.5 m below)
+			if( nh - h > 2 || h - nh > 8) continue;
+			if( nh - h == 2 && dv[0] && dv[1]) continue;
+			if( dv[0] && dv[1]){											//	no squeezing past a corner
+				local a = top[cz * W + x], b = top[z * W + cx];
+				if( a < 0 || b < 0 || a - h > 1 || b - h > 1 || h - a > 8 || h - b > 8) continue;
+			}
+			local nv = cost[c] + dv[2] + (nh != h ? 0.3 : 0.0) + (h - nh > 1 ? 1.5 : 0.0) + (nh - h == 2 ? 2.0 : 0.0);	//	(stairs
+																			//	before a drop or a jump)
+			if( nv < cost[nc]){
+				cost[nc] = nv; from[nc] = c;
+				local ex = (x - tx), ez = (z - tz);
+				push( nc, nv + Math.sqrt( ex * ex + ez * ez));
+			}
+		}
+	}
+	if( !found) return null;
+	local back = [], cells = [];
+	for( local c = t; c >= 0; c = from[c]) back.append( c);
+	for( local i = length( back) - 1; i >= 0; i--) cells.append( back[i]);
+	local out = [], pdx = 0, pdz = 0, run = 0;					//	turning points, and at least every 6 m
+	for( local i = 1; i < length( cells); i++){
+		local a = cells[i - 1], b = cells[i];
+		local dx = (b % W) - (a % W), dz = (b / W) - (a / W);
+		run++;
+		if( i > 1 && (dx != pdx || dz != pdz || run >= 12)){
+			out.append( [((a % W) + 0.5) / 2.0, ((a / W) + 0.5) / 2.0]);
+			run = 0;
+		}
+		pdx = dx; pdz = dz;
+	}
+	out.append( [x1, z1]);
+	return out;
+};
+
+//	-rtnavtest x0,z0,x1,z1 : print the path once the map is up (tests)
+if( ::arguments.indexOf( "-rtnavtest") >= 0){
+	local a = ::arguments[::arguments.indexOf( "-rtnavtest") + 1].split( ",");
+	newthread().start( @(){
+		while( !::rpgstage || !::rpgstage["bw"] || !::rpgstage["player3d"]) sleep( 200);
+		sleep( 1500);
+		if( length( a) >= 6) ::Rokugan.navAvoid <- [[int( a[4]) * 1.0, int( a[5]) * 1.0]];	//	(,ax,az: a door to avoid)
+		local t0 = skGetTime(), g = ::Rokugan.navGrid(), t1 = skGetTime();
+		local p = ::Rokugan.navPath( int( a[0]) * 1.0, int( a[1]) * 1.0, int( a[2]) * 1.0, int( a[3]) * 1.0);
+		printf( "[RT] NAVTEST %s grid %dx%d (fine %dx%d) in %d ms, path in %d ms: %s\n", ::rpgstage.mapid, g.w, g.d,
+			g.fw, g.fd, t1 - t0, skGetTime() - t1, p ? encodeJSON( p) : "none");
+	});
+}

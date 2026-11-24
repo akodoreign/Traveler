@@ -499,7 +499,7 @@
 			},
 			{
 				"cmd": "cmd_script",
-				"code": "W = tmpl(::T[X>1?\"gotitem_n\":\"gotitem\"],{v=dataname(W,Y), n=commanum(X)})"
+				"code": "W = (W == \"N000\") ? (\"Got \" .. commanum(X) .. ::T.money .. \"!\") : tmpl(::T[X>1?\"gotitem_n\":\"gotitem\"],{v=dataname(W,Y), n=commanum(X)})"
 			},
 			{
 				"_var": {
@@ -760,6 +760,13 @@
 	"X014": {
 		"cmdblock": [
 			{
+				"cmd": "cmd_compute",
+				"desc": "RT free inn",
+				"lvar": "W",
+				"op": "=",
+				"rvar": 0
+			},
+			{
 				"cmd": "cmd_facetoface",
 				"who": 4
 			},
@@ -781,7 +788,7 @@
 				"cmd": "cmd_showmsg",
 				"key": "message_talk",
 				"name": "",
-				"text": "Welcome, traveler. A night's rest is [b]$W$T.money[n]. Will you stay?",
+				"text": "Welcome, traveler. A room for the night - no charge for those on the road. Will you stay?",
 				"uiclose": 1
 			},
 			{
@@ -937,6 +944,11 @@
 							"cmd": "cmd_script",
 							"desc": "RT reserve rest",
 							"code": "foreach( p in ::Rokugan.fReserve()){ p.removeCondition( \"K000\"); p.HP = p.MAXHP; p.MP = p.MAXMP; }"
+						},
+						{
+							"cmd": "cmd_script",
+							"desc": "RT rest quest",
+							"code": "::Rokugan.innRestQuest();"
 						}
 					],
 					[]

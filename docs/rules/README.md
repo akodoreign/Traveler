@@ -7,7 +7,7 @@ All files are drafts. Sources: the OCR'd 3e *Core Book Revised* and *Masters of 
 - **Levels → Insight Rank:** R1 Lv 1–20 · R2 21–40 · R3 41–50 · R4 51–60 · R5 61+ (cap 99).
   - Each Rank threshold → the next **school technique** (`schools.md`).
 - **Every level:** stats grow from L5R **Traits**, on a per-traveler schedule (`stats.md`).
-  - Earth→HP, Water/Strength→ATK, Fire/Intelligence→E.Atk, Air/Reflexes→Speed and Evasion, Void→SP and Crit.
+  - Earth→HP, Water/Strength→ATK, Fire/Intelligence→E.Atk, Air/Reflexes→Speed and Evasion, Void→MP and Crit.
 - **Every 2 levels:** +1 **skill rank** (`skills.md`).
   - Skills are capped by Rank: 3 / 5 / 7 / 9 / 10, so each Rank opens the next 3e mastery tier.
   - **Path actions use skills** (Duel = Iaijutsu, Charm = Etiquette, Pilfer = Sleight of Hand …).
@@ -38,7 +38,7 @@ All files are drafts. Sources: the OCR'd 3e *Core Book Revised* and *Masters of 
 2. ✅ **Haruki = Water + Void Affinity, with Ishiken-do from the start.** **Void Points are his AP:** Void spells cost
    VP and scale with the VP he holds; *Drawing the Void* fuels it. Ch4 costs him 1 Void (the "Whole" passive is
    proposed in haruki-spells §5).
-3. ✅ **Mass Path to Inner Peace** (VP 3 heals the party). Rejuvenating Vapors' SP restore stays a small invention.
+3. ✅ **Mass Path to Inner Peace** (VP 3 heals the party). Rejuvenating Vapors' MP restore stays a small invention.
 4. **Gendo** gets no kata until his Mirumoto secondary school at R2.
 5. **Tamotsu** gets no kata; he relies on courtier and trader battle skills. ✅ He starts at **Status 3–4**: the
    Ide are personable and loved by everyone.

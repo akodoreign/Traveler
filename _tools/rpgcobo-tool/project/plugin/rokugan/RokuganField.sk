@@ -246,9 +246,8 @@ class RTFollowAction extends EventMoveAction
 	//	-rtparty P123,P124,P120: those join the party (as companions do in a chapter) at Natsuko's level, so a -battle
 	//	test fights with the chapter's real party.
 	i = args.indexOf( "-rtlv");							//	-rtlv 20: the party starts at that level
-	if( i >= 0 && i + 1 < length( args) && !("rtlv_done" in ::Rokugan)){
-		::Rokugan.rtlv_done <- true;
-		local lv = int( args[i+1]);
+	if( i >= 0 && i + 1 < length( args)){				//	(every launch: a loaded save comes back at its own level;
+		local lv = int( args[i+1]);						//	this only ever raises - user: "rensei needs a big level boost")
 		foreach( p in ::rpgstat.members) if( p && p.LV < lv){ p.setLV( lv); p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP; }
 	}
 	i = args.indexOf( "-rtequip");						//	-rtequip P100+4+A115 (slot 4 = accessory)
@@ -1134,7 +1133,27 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 		local slot = int( ::arguments[li + 1]);
 		newthread().start( @(){
 			sleep( 1500);
+			//	(2026-11-24: the Lion squirrel's resume save on M513 came up on M240) the New Game intro answered by
+			//	-rtchoice / -rtfast moves to that road's first map; a load raced it and lost. Load once it has settled:
+			//	off the start map, no scene running, steady for 2 s (30 s at most)
+			local calm = 0, tw = 0;
+			while( calm < 2000 && tw < 30000){
+				sleep( 250); tw += 250;
+				local s_ = ::rpgstage;
+				calm = (s_ && s_["player3d"] && !s_.mainevent && !s_["battle"] && s_.mapid != "M099" &&
+					s_.mapid.slice( 0, 2) != "M8") ? calm + 250 : 0;
+			}
 			::RPGMain.loadGame( slot);
+			{	//	(the marker chaser waits for this: RokuganChase.chaseRun)
+				local t2 = 0;
+				while( t2 < 30000){
+					sleep( 250); t2 += 250;
+					local s2 = ::rpgstage;
+					if( s2 && s2["player3d"] && !s2.mainevent && t2 >= 1500) break;
+				}
+				::Rokugan.saveLoaded <- true;
+				printf( "[RT] LOADSAVE done on %S\n", ::rpgstage ? ::rpgstage.mapid : "-");
+			}
 			for( local k = 0; k < 3; k++){
 				sleep( 2500);
 				::Rokugan.rtshot( "tmp/rt_shot/bot_usersave_%d_%d.raw" % [slot, k]);
@@ -1150,8 +1169,8 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 };
 
 //	Scorpion Ch2 "City of Masks" (production: the mask gate). In the city's districts every masked traveler loses 5%
-//	of max SP each time a new district is entered (the masks drink the soul a little at a time). A district shrine
-//	takes the masks off (gen_maps mask_shrine: back to the bag, SP restored).
+//	of max MP each time a new district is entered (the masks drink the soul a little at a time). A district shrine
+//	takes the masks off (gen_maps mask_shrine: back to the bag, MP restored).
 ::Rokugan.MASK_MAPS <- { M362 = 1, M364 = 1, M365 = 1, M366 = 1, M367 = 1 };
 ::Rokugan.MASKS <- { A145 = 1, A146 = 1, A147 = 1, A148 = 1, A149 = 1, A150 = 1 };
 ::Rokugan.maskmap <- null;
@@ -1168,8 +1187,8 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 		if( !eq || !(eq.dataid in this.MASKS)) continue;
 		local n = Math.max( 1, int( m.MAXMP * 0.05));
 		m.MP = Math.max( 0, m.MP - n);
-		printf( "[RT] MASK %S: SP -%d (%d/%d)\n", m.name, n, m.MP, m.MAXMP);
-		if( st["player3d"]) st.player3d.popupDamage( "%S's mask drinks: SP -%d" % (this.given( m.name), n), 0xd0a0ffff, 0);
+		printf( "[RT] MASK %S: MP -%d (%d/%d)\n", m.name, n, m.MP, m.MAXMP);
+		if( st["player3d"]) st.player3d.popupDamage( "%S's mask drinks: MP -%d" % (this.given( m.name), n), 0xd0a0ffff, 0);
 	}
 };
 ::Rokugan.removeMasks <- function( keepGiseiki = false){

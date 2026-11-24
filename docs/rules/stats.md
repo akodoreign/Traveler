@@ -22,7 +22,7 @@ Sources:
 | Octopath stat | Driven by | Why (3e) |
 |---|---|---|
 | **Max HP** | **Earth** ring (+ Stamina) | Wound ranks are Earth-based |
-| **Max SP** | **Void** + Willpower (+ Rank for shugenja) | Void Points and spell slots (Ring + School Rank) |
+| **Max MP** | **Void** + Willpower (+ Rank for shugenja) | Void Points and spell slots (Ring + School Rank) |
 | **P.Atk** | **Strength** | Damage rolls Strength + the weapon's DR |
 | **P.Def** | **Stamina** (+ armour) | Resilience |
 | **E.Atk** | **Intelligence**; per-element potency × (that **Ring** / 3) for shugenja | Spells roll the element's Ring |

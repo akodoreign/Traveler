@@ -13,7 +13,7 @@ total) and a **trait**.
 | **Bo** (0k2) | Gendo, Haruki | Low (50) | **Guarding staff:** Evasion **+10%** while equipped (3e: +5 TN with the Bo emphasis). Weak vs. armoured foes until Staves 5. Nonlethal option ("subdue" for magistrate arrests in Gendo's arc). |
 | **Yumi** (bow, Str 3; damage by arrow) | Natsuko, Mitsue, Tamotsu, Sayo | Medium (by arrow) | Ranged; hits any row; **kata are suppressed**; −accuracy when mounted. **Arrow types** → shot variants (below). |
 
-**Arrow types → Yumi shot skills** (any Yumi user; costs a little SP; no ammo tracking):
+**Arrow types → Yumi shot skills** (any Yumi user; costs a little MP; no ammo tracking):
 | Arrow (3e) | Shot skill |
 |---|---|
 | Willow Leaf (2k2) | Normal shot (the basic Yumi attack) |

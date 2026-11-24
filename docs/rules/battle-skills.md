@@ -9,10 +9,10 @@ Battle skills are **gated by skill rank** (`skills.md`), not level. So "Spears 3
 pick list once Spears reaches 3, and a player's skill choices shape which picks they get.
 
 ## 1. Universal maneuvers (3e "Raises in combat", core OCR ≈ lines 18032–18118)
-Every bushi can pick these. In 3e a maneuver costs Raises (raising your own TN), so in Octopath each costs **SP and
+Every bushi can pick these. In 3e a maneuver costs Raises (raising your own TN), so in Octopath each costs **MP and
 some accuracy**, and gains from Boost.
 
-| Maneuver (3e Raises) | Skill | Gate | SP | Effect | Boost |
+| Maneuver (3e Raises) | Skill | Gate | MP | Effect | Boost |
 |---|---|---|---|---|---|
 | **Feint** (1) | Feint | any weapon 2 | 4 | No damage; **your next attack within 2 turns gets +20% damage and +10% crit** (3e: 2 Free Raises per Raise) | +20% per VP |
 | **Increased Damage** (1+) | Heavy Blow | any weapon 2 | 6 | One hit at +40%, Accuracy −10% | +40% per VP |

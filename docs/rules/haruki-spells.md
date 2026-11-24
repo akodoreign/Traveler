@@ -9,12 +9,12 @@ Effects are paraphrased. Every number is a **first-pass proposal** for balancing
 ## 1. Translation rules (shugenja → Octopath)
 | 3e | Octopath / RPG-Cobo |
 |---|---|
-| Spell slots per element per day | One **SP** pool. Cost by Mastery Level: **ML1 6 · ML2 10 · ML3 16 · ML4 24 · ML5 34 · ML6 48**. |
+| Spell slots per element per day | One **MP** pool. Cost by Mastery Level: **ML1 6 · ML2 10 · ML3 16 · ML4 24 · ML5 34 · ML6 48**. |
 | Rings (Air/Earth/Fire/Water/Void) | Ring weighting feeds **E.Atk / E.Def** (DESIGN §4c). The spell's element sets which enemy shields it hits. |
 | Raises / "Special Raises" | **Boost (VP 1–3).** Each spell's own Special Raise *is* its Boost effect wherever one exists: extra target, more damage, longer duration. That keeps the translation faithful. |
 | Affinity (Isawa: any) | ✅ **Water + Void** (user decision). Boosting a Water or Void spell counts **one level higher** (VP 1 = Boost 2). Talent **Attune** adds a per-turn element on top. |
 | **Ishiken-do** advantage (3e: 10 points, **5 for Phoenix**; needed to cast Void; +1 free Raise whenever Void Points enhance a spell; gives an **Obligation to the Isawa**) | Haruki **starts with Ishiken-do**. **Any Boosted spell gets one free Boost effect on top** (the free Raise). Story: the Obligation is why the Isawa keep him close after the childhood accident. |
-| Void spells (3e: cast with *current Void Points* as the Ring) | ✅ **Void Points are the fuel (AP-style, user decision).** Void spells **cost VP, not SP**: ML1–2 = 1 VP · ML3–4 = 2 VP · ML5 = 3 VP. Their power scales with the **VP he still holds after paying**. *Drawing the Void* generates VP, so managing the Void economy is his play pattern. Available **from R1** on the normal tier schedule. |
+| Void spells (3e: cast with *current Void Points* as the Ring) | ✅ **Void Points are the fuel (AP-style, user decision).** Void spells **cost VP, not MP**: ML1–2 = 1 VP · ML3–4 = 2 VP · ML5 = 3 VP. Their power scales with the **VP he still holds after paying**. *Drawing the Void* generates VP, so managing the Void economy is his play pattern. Available **from R1** on the normal tier schedule. |
 | Durations: 5 rounds / 1 minute / 1 hour+ | **3 turns / 5 turns / the whole battle.** |
 | "Full Concentration" spells | **Concentration:** the effect lasts until Haruki **takes damage** or casts another Concentration spell. Shields him; synergy with Natsuko's taunt. |
 | Radius or cone area | **All enemies.** "Self" stays self; touch/target = single. |
@@ -32,7 +32,7 @@ Effects are paraphrased. Every number is a **first-pass proposal** for balancing
 - **Phoenix First Tier secrets** come from the **Elemental Masters** as story rewards.
 
 ## 2. Starting kit (Lv 1)
-| Spell | Skill | Target | SP | Boost |
+| Spell | Skill | Target | MP | Boost |
 |---|---|---|---|---|
 | **Path to Inner Peace** (Water 1) | Heal HP (the core heal) | 1 ally | 6 | Heal more per VP. ✅ **VP 3: heals all allies** ("mass Path to Inner Peace", approved by the user). |
 | **Bo of Water** (Water 1) | Kami Weapon: **Water + Bo** hit, then his attack stays Water/Bo | 1 enemy | 6 | +1 hit per VP (3e: +1k0 once) |
@@ -40,19 +40,19 @@ Effects are paraphrased. Every number is a **first-pass proposal** for balancing
 | **The Fury of Osano-wo** (Fire 1) | Fire (thunder) bolt; nearby enemies may be **Silenced** 1 turn. **Stronger in storm weather** (rain/storm map states). | 1 enemy | 6 | +damage |
 | **Tempest of Air** (Air 1) | Air gust: light damage, **Accuracy −** 2 turns; more damage vs. low-Earth (frail) enemies | all enemies | 8 | +1 turn, +damage |
 | **Earth's Touch** (Earth 1) | Def or E.Def + for 3 turns | 1 ally | 6 | +1 target (1 VP), larger bonus (2 VP) |
-| Counterspell | **Counter-prayer:** a reaction set this turn; the next enemy spell is cancelled (the SP cost scales with that spell's tier) | — | 6+ | Fortified: can't be countered back |
+| Counterspell | **Counter-prayer:** a reaction set this turn; the next enemy spell is cancelled (the MP cost scales with that spell's tier) | — | 6+ | Fortified: can't be countered back |
 | Sense · Commune · Summon | **Field:** detect hidden spirits, people and items · ask the local kami (hint system) · conjure a small amount of an element (light, water, stone) for puzzles | — | 2–4 | — |
 
 ## 3. Battle spell list (picks), by element
 Rank = earliest tier. Utility marked **F** = field skill (scroll or story).
 
 ### Water — healer core (Affinity)
-| Spell (ML) | Skill | Target | SP | Boost |
+| Spell (ML) | Skill | Target | MP | Boost |
 |---|---|---|---|---|
 | Sympathetic Energies (1) | **Take a debuff off an ally onto himself**, or pass one of his buffs to an ally. *His guilt as a mechanic.* | 1 ally | 6 | — |
 | Reversal of Fortunes (1) | **Fortune:** the ally's low damage rolls are re-rolled (raises the damage floor), 5 turns | 1 ally | 6 | +2 turns |
 | Castle of Water (1) | **Water ring:** melee attacks on Haruki may fail (Earth contest), and attackers take light damage | self | 6 | wider / higher (stronger) |
-| Rejuvenating Vapors (2) | Restore **50% SP** to an ally and cure fatigue debuffs. Once per inn rest. | 1 ally | 10 | — |
+| Rejuvenating Vapors (2) | Restore **50% MP** to an ally and cure fatigue debuffs. Once per inn rest. | 1 ally | 10 | — |
 | Heart of Mortality (2) | **Bond** one ally for the whole game: his spells on that ally can't miss and reach them anywhere. Swappable at an inn. | 1 ally | 10 | — |
 | Regrow the Wound (3) | **Concentration HoT:** heals the target every turn | 1 ally | 16 | +heal |
 | Near to Ice (3) | Ally ignores **Shaken** and HP-threshold penalties | 1 ally | 16 | +2 turns |
@@ -65,7 +65,7 @@ Rank = earliest tier. Utility marked **F** = field skill (scroll or story).
 | F: Purify Water (1) · Reflections of Pan Ku (1, identify nemuranai) · Reflective Pool (2, scry a known place → map reveal) · The Ties that Bind (2, quest-item tracker) · Wave-Borne Speed (2, dash) · Wisdom and Clarity (2, read lore books for extra info) · Way of Still Waters / Walking upon the Waves (3, swim / water-walk paths) · **Sacred Ground** (4, return to a consecrated shrine = fast travel) · Symbol / Wall of Water (4) · Part Water · Power of the Ocean · Waves Are Ever-Changing (5, animal form → small passages) | | | | |
 
 ### Fire — damage
-| Spell (ML) | Skill | Target | SP | Boost |
+| Spell (ML) | Skill | Target | MP | Boost |
 |---|---|---|---|---|
 | Katana of Fire (1) | Kami Weapon: **Fire + Katana** | 1 enemy | 6 | +1 hit |
 | The Fires that Cleanse (1) | Fire burst — **Haruki takes half the damage too** | all enemies | 8 | +damage |
@@ -74,7 +74,7 @@ Rank = earliest tier. Utility marked **F** = field skill (scroll or story).
 | Fires of Purity (1) | **Fire sheath:** whoever the ally hits, or is hit by, takes Fire damage | 1 ally | 6 | +damage |
 | The Fires from Within (2) | Fire orb | 1 enemy | 10 | **+1 extra target per VP** (3e Raise) |
 | Speed of Flame (2) | Ally **acts first** next turn (Speed ++) | 1 ally | 10 | +1 target |
-| Hurried Steps (2) | **Haruki acts again at once, but only to cast**; a Fire spell costs −25% SP | self | 10 | — |
+| Hurried Steps (2) | **Haruki acts again at once, but only to cast**; a Fire spell costs −25% MP | self | 10 | — |
 | Aura of Flame (2) | Fire thorns on himself | self | 10 | — |
 | Inferno's Tooth (2) | Heat an enemy's weapon or armour: damage each turn and ATK −. Only vs. metal-armoured/armed foes. | 1 enemy | 10 | +turns |
 | Tail of the Fire Dragon (2) | For 3 turns his attack is a **Fire whip** (ranged, hits back rows) | self | 10 | — |
@@ -90,11 +90,11 @@ Rank = earliest tier. Utility marked **F** = field skill (scroll or story).
 | Everburning Rage (5) | Target treated as "Down": **skips 1 turn** and takes more damage. Not on bosses. | 1 enemy | 34 | +1 target |
 | Strike of Osano-wo (5) | Fire cyclone + knockdown. Cost: a scroll item, or Haruki takes damage. | all enemies | 34 | — |
 | Burn the Soul (5) | **Escalating Concentration DoT** (tiny → huge). **Using it costs party Honor** — "an unspeakable horror". | 1 enemy | 34 | — |
-| Hochiu's Call of Heaven (6) · Rise, Flame (6) · Tempest of Fire (6) | Self fire aura (big AoE every turn, immune to ranged) · summon a Fire kami · **ultimate AoE**: afterwards his non-Fire spells cost +50% SP until an inn | — | 48 | — |
+| Hochiu's Call of Heaven (6) · Rise, Flame (6) · Tempest of Fire (6) | Self fire aura (big AoE every turn, immune to ranged) · summon a Fire kami · **ultimate AoE**: afterwards his non-Fire spells cost +50% MP until an inn | — | 48 | — |
 | F: Extinguish (1, put out fires; dampens Fire for 1 turn) · Ignite (1) · Waiting Flame (3, **set a fire trap on the map** → bonus damage on battle start) · Symbol of Fire (4) | | | | |
 
 ### Air — debuffs, illusion, utility
-| Spell (ML) | Skill | Target | SP | Boost |
+| Spell (ML) | Skill | Target | MP | Boost |
 |---|---|---|---|---|
 | Yari of Air (1) | Kami Weapon: **Air + Yari** | 1 enemy | 6 | +1 hit |
 | Wind-Borne Slumbers (1) | **Sleep** (bosses: drowsy, Accuracy −) | 1 enemy | 6 | **+1 target per VP** |
@@ -112,7 +112,7 @@ Rank = earliest tier. Utility marked **F** = field skill (scroll or story).
 | F: By the Light of Lady Moon (1, reveal hidden items/traps) · **Quiescence of Air** (1, silence bubble → Mitsue's Eavesdrop/Stealth bonus) · Cloak of Night (1) · Nature's Touch (1, speak to animals) · Benten's Touch (2, **Charm/Barter +**) · Hidden Visage (2) · Secrets on the Wind (2, long-range eavesdrop) · **Whispering Wind** (2, lie detector — pairs with Gendo) · Echoes of a Breeze (2, send a message) · Call upon the Wind (2, float over gaps) · Essence of Air (3, walk through walls → secret rooms) · **Forgotten Murmurs** (3, make an NPC forget → **retry a failed chance path action** and erase the reputation penalty) · Mask of Wind (3) · Wisdom of the Kami (3, +path-action skill) · False Realm · Lady Moon's Legion (4, party invisible → no encounters for N steps) · Command the Clouds (5, change map weather) | | | | |
 
 ### Earth — wards, debuffs, anti-Taint
-| Spell (ML) | Skill | Target | SP | Boost |
+| Spell (ML) | Skill | Target | MP | Boost |
 |---|---|---|---|---|
 | Tetsubo of Earth (1) | Kami Weapon: **Earth + Tetsubo** | 1 enemy | 6 | +1 hit |
 | Jade Strike (1) | **Jade** bolt: only damages Tainted. Wasted on the untainted, *and they are insulted* (an NPC reaction in the field). | 1 enemy | 6 | +damage; **VP 2: +1 target** |
@@ -137,7 +137,7 @@ Rank = earliest tier. Utility marked **F** = field skill (scroll or story).
 | Kami's Strength (6) · Fraying of Ningen-do (6) · Rise, Earth (6) | Ally immune to physical, magic halved, 3 turns, once per battle · huge AoE (sacrifice an item, or Earth spells weakened afterwards) · summon an Earth kami | — | 48 | — |
 | F: **Fires from the Forge** (1, repair bridges and objects → traversal) · Speed Growth (1, grow vines) · Hands of Clay (2, climb) · Walk Without Passing (2, no tracks → fewer outdoor encounters) · Immortal Steel (3, *ritual*: +ATK to one weapon for good — story item) · Shatter (4, break obstacles) · Wall of Earth (4, make a bridge or wall) · Symbol of Earth (4) · Divide into Ash (5, dig) | | | | |
 
-### Void — Affinity element (Ishiken-do, from R1). **Costs VP, not SP**; power scales with the VP still held.
+### Void — Affinity element (Ishiken-do, from R1). **Costs VP, not MP**; power scales with the VP still held.
 | Spell (ML) | Skill | Target | VP cost | Effect of VP held |
 |---|---|---|---|---|
 | Drawing the Void (1) | +1 VP (+2 with Void Attuned), once per battle (starting kit) | self | 0 | — |
@@ -181,7 +181,7 @@ Rank = earliest tier. Utility marked **F** = field skill (scroll or story).
 
 ### Water — Rank 5 ultimates (post-game; user request 2026-11-05: a raise, a party heal, a party heal-over-time)
 *Invented, in the spirit of the 3e list (3e has no resurrection; Path to Inner Peace and Regrow the Wound scaled up).*
-| Spell (ML) | Skill | Target | SP | Boost |
+| Spell (ML) | Skill | Target | MP | Boost |
 |---|---|---|---|---|
 | Mass Path to Inner Peace (5) | Heal HP: Path to Inner Peace on the whole party, with no VP needed | all allies | 30 | +heal |
 | Rain of Regrowth (6) | Regrow the Wound on the whole party: heals every turn | all allies | 40 | +heal |
@@ -220,7 +220,7 @@ Rank = earliest tier. Utility marked **F** = field skill (scroll or story).
    (lower Void-spell power), but he gains the passive **"Whole"** (Mieko's half returned): Water heals also cleanse 1
    debuff, and *Drawing the Void* becomes usable twice per battle. The loss stings, but the reward is better.
    ✅ **Approved by the user** ("something a water shugenja might do").
-3. ✅ The party heal (Path to Inner Peace at VP 3) is approved. Rejuvenating Vapors' SP restore is still a minor
+3. ✅ The party heal (Path to Inner Peace at VP 3) is approved. Rejuvenating Vapors' MP restore is still a minor
    invented convenience.
 4. Kokujin-cult enemies and **Togashi Akuro** use *Unattunement* (kiho.md) to seal Haruki's Attune element. Design
    the counterplay: Elemental Ward, Harmony skills.

@@ -187,7 +187,7 @@ the engine prototype.
 **b_boss_otamai** (Lion Ch1 / Phoenix Ch1, shared) — L 9 · HPx 8 · Resolve 8
 - Foes: **O-Tamai** (in a borrowed body) + **red-shadow oni**.
 - Weak: Jade, Fire, Katana.
-- Oni: **soul damage** (drains SP/VP instead of HP).
+- Oni: **soul damage** (drains MP/VP instead of HP).
 - **Gimmick: the jade chains.** Each Suki on O-Tamai unlocks the *Jade Chain* command; **3 chains = victory**.
 - Map: the spirit-wasteland debuff ends on victory.
 - Drop: Jade Chain Fragment (Jade-element weapon mod). Steal: Bloodspeaker's Ring (key lore).

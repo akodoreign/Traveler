@@ -122,7 +122,7 @@ It is **not** a big spell list. File: `L5R - 3E - Masters of Magic.ocr.clean.txt
   - Earth+Water ML2 — water wall: pushes foes back; −5 to Air and Fire attacks against you.
   - Fire+Water ML3 — 2k2 fire blast that heals you 1k1 (capped at the damage dealt).
   → In Octopath these become **"Harmony" skills** for Haruki: they need **two elements Attuned**, or one Attuned
-  plus a higher SP cost, and **can't be Boosted**.
+  plus a higher MP cost, and **can't be Boosted**.
 - **Phoenix First Tier secret spells** (≈ lines 8718–9000). Each is given only by an **Elemental Master** → perfect
   **story rewards in Haruki's arc** (the Council has to trust the half-souled boy).
   - Air: *Dreamwalker* ML4 (control a sleeper's dreams — Mieko scenes!) · *Vision of Comfort* ML2 (crowds see you
@@ -146,4 +146,4 @@ It is **not** a big spell list. File: `L5R - 3E - Masters of Magic.ocr.clean.txt
 
 ## Next
 1. Recover the "name lost" spells from page images.
-2. Turn each spell into an Octopath skill (SP cost, target, element, Boost effect) → `haruki-spells.md`.
+2. Turn each spell into an Octopath skill (MP cost, target, element, Boost effect) → `haruki-spells.md`.

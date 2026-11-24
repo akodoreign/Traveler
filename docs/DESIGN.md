@@ -87,7 +87,7 @@ gameplay and skills. Draft mapping to refine once the rulebooks are consulted:
 | Roll & Keep, Raises (call extra difficulty for better effect) | Boost spending; also a "Raise" choice on some skills (lower accuracy, bigger effect). |
 | Schools & Techniques (Rank 1–5) | Base job per traveler; techniques unlock as job skills by Insight Rank (level). |
 | Kata, Kiho, stances (Attack, Full Attack, Defense, Full Defense, Center) | Kata = passive "support skills"; stances = a per-turn stance command (Octopath 2 "latent power"-like). |
-| Shugenja spells by element + spell slots per Ring | Spell skills by element using SP; Phoenix/Unicorn/other shugenja jobs. |
+| Shugenja spells by element + spell slots per Ring | Spell skills by element using MP; Phoenix/Unicorn/other shugenja jobs. |
 | Iaijutsu duel (assess, focus, strike) | **Duel path action** minigame (Lion) and a Kakita-style "focus then strike" skill. |
 | Wound ranks / penalties | HP; low-HP penalty status. |
 | Fear / Fear rank | Status effect (skip turn chance / no Boost). |
@@ -114,7 +114,7 @@ rings/traits) instead of Octopath's JP shop. Draft pattern, to tune once the 3e 
 
 | When | Gain | Octopath equivalent | Notes |
 |---|---|---|---|
-| **Every level** | Stat growth from the character's Rings/Traits curve (Earth→HP/DEF, Water→ATK/healing, Fire→elemental ATK, Air→SPD/EVA, Void→max Void Points & SP) | Stat growth | Each school weights the rings differently (Hida = Earth, Isawa = their element, Kakita = Fire/Air). |
+| **Every level** | Stat growth from the character's Rings/Traits curve (Earth→HP/DEF, Water→ATK/healing, Fire→elemental ATK, Air→SPD/EVA, Void→max Void Points & MP) | Stat growth | Each school weights the rings differently (Hida = Earth, Isawa = their element, Kakita = Fire/Air). |
 | **Every 2 levels** | **+1 Skill rank** chosen from the school's skill list (Kenjutsu, Iaijutsu, Kyujutsu, Courtier, Investigation, Sincerity, Medicine…) | (new) passive growth | Skill ranks are small passives (e.g. Kenjutsu → katana damage; Iaijutsu → Focus stacks; Medicine → healing). **Path Actions are gated by Skill rank, not just level** (Duel ← Iaijutsu, Charm ← Courtier/Etiquette, Discern ← Investigation, Barter ← Commerce, Eavesdrop/Pilfer success ← Stealth/Sleight of Hand, Sumai ← Jiujutsu, Bless ← Theology). |
 | **Every 5 levels** (5, 10, 15 …) | **One new technique** from the character's pool: a **battle skill**, a **kata** (support skill / stance, e.g. Striking as Earth = guard stance, Striking as Fire = power stance), a **kiho** (Void-fuelled ki technique; Togashi/monk-flavoured, available to Void-heavy characters), or **spells** (shugenja learn 1–2 per pick, by element) | Learning battle skills / support skills | Bushi lean to kata, shugenja to spells, Dragon/Phoenix/Ronin can take kiho. |
 | **Rank threshold** (levels 1, 21, 41, 51, 61) | **New School Technique** (the L5R Rank 1–5 technique) = a major passive or an upgrade to the traveler's **Talent** | Job "divine skill"/latent power | E.g. Kakita R1 = Iaijutsu Focus/Strike; R3 = Strike ignores defence; R5 = act first every round. |
@@ -134,7 +134,7 @@ Sources to confirm numbers: 3e Core Book Revised and 4e/5e core (in the user's D
 - `docs/rules/schools.md`: each traveler's school, R1–R5.
 - `docs/rules/kata.md`: the Kata Stance system and the **3e→Octopath conversion table**.
 - `docs/rules/kiho.md`: kiho for Haruki and enemies.
-- `docs/rules/haruki-spells.md`: spells → skills, SP by Mastery Level, Kami Weapons, Concentration.
+- `docs/rules/haruki-spells.md`: spells → skills, MP by Mastery Level, Kami Weapons, Concentration.
 - `docs/rules/skills.md`: the skill-rank track and mastery unlocks.
 
 Correction to the row above: in 3e, kiho are for **monks and shugenja only**, not Dragon/Ronin bushi. Bushi take

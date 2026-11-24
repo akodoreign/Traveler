@@ -1,0 +1,116 @@
+//	RokuganCompass.sk - the field compass (user 2026-11-24: "compas should be up north, south down, east right, and west
+//	left, otherwise it confuses the players" / "if you need the game to have a compas make one for it" / "then you can
+//	have the squirrels and the local llm actually use it").
+//
+//	The world's compass: north is +z, east is +x. With the field camera at heading 0 (699 of 701 maps) that is up and
+//	right on the screen; on a map whose camera is turned (camwork hpb[0], two maps at 45 degrees) the rose turns with
+//	it, so N always points where walking north takes you.
+//	Shared with the marker chaser (RokuganChase.chaseDrive, its picture for the local model):
+//	    ::Rokugan.COMPASS_DIRS      name -> world [dx, dz] (unit), N NE E SE S SW W NW
+//	    ::Rokugan.compassName( dx, dz)   the nearest of the eight for a world offset
+//	    ::Rokugan.compassScreen( dx, dz) the same offset as the player sees it ("up-left", ...), for the turned maps
+//	HUD: a small rose at the top right of the field screen, hidden in battle, in scenes and under menus (-rtcompass0: off).
+
+::Rokugan.COMPASS_DIRS <- { N = [0.0, 1.0], NE = [0.7071, 0.7071], E = [1.0, 0.0], SE = [0.7071, -0.7071],
+	S = [0.0, -1.0], SW = [-0.7071, -0.7071], W = [-1.0, 0.0], NW = [-0.7071, 0.7071] };
+
+::Rokugan.compassName <- function( dx, dz){
+	local ax = dx < 0 ? -dx : dx, az = dz < 0 ? -dz : dz, ns = dz > 0 ? "N" : "S", ew = dx < 0 ? "W" : "E";
+	if( ax < az * 0.41) return ns;
+	if( az < ax * 0.41) return ew;
+	return ns .. ew;
+};
+
+//	where a world offset points on the screen: screen right = world (cos a, sin a) - pressing "up" walks the world
+//	heading a (RokuganBot.BOTDIRS), so screen up = (sin a, cos a) and screen right = (cos a, -sin a)
+::Rokugan.compassToScreen <- function( dx, dz){
+	local a = ::rpgstage ? ::rpgstage.camdir : 0.0, c = Math.cos( a), s = Math.sin( a);
+	return [dx * c - dz * s, dx * s + dz * c];								//	[right, up]
+};
+::Rokugan.compassScreen <- function( dx, dz){
+	local p = this.compassToScreen( dx, dz), ax = p[0] < 0 ? -p[0] : p[0], ay = p[1] < 0 ? -p[1] : p[1];
+	local ud = p[1] > 0 ? "up" : "down", lr = p[0] > 0 ? "right" : "left";
+	if( ax < ay * 0.41) return ud;
+	if( ay < ax * 0.41) return lr;
+	return ud .. "-" .. lr;
+};
+
+::Rokugan.compass <- { views = [], letters = {}, needle = [], root = null, cam = -999.0, on = false, tex = null };
+
+local cSprite = function(){
+	local C = ::Rokugan.compass;
+	if( !C.tex){
+		local img = ::getResource( "/resource/efx/battleui/white.png").getContent();
+		img.premultAlpha();
+		C.tex = Texture();
+		C.tex.load( img, 0);
+	}
+	local sp = Sprite( C.tex);
+	sp.blend = SK_PMAMIX;
+	return sp;
+};
+
+local SIZE = 92, R = 31, MARGIN = 18;
+
+::Rokugan.compassBuild <- function( root){
+	local C = this.compass;
+	foreach( v in C.views) if( v) v.removeFromParent();
+	C.views = []; C.letters = {}; C.needle = [];
+	local x0 = root.bnd.w - MARGIN - SIZE, y0 = MARGIN;
+	local rect = function( x, y, w, h, col){
+		local v = ::SKImageView( cSprite());
+		v.enabled = false; v.setRect( x, y, w, h); v.setColor( col);
+		root.addChild( v); C.views .. v;
+		return v;
+	};
+	rect( x0, y0, SIZE, SIZE, 0x0b0a12c8);										//	the plate, like the Story box
+	rect( x0, y0, SIZE, 2, 0xc9a45cff); rect( x0, y0 + SIZE - 2, SIZE, 2, 0xc9a45cff);
+	for( local i = 0; i < 9; i++) C.needle .. rect( 0, 0, 4, 4, i < 5 ? 0xd04030ff : 0x9a9488ff);	//	N red, S grey
+	foreach( n in ["N", "E", "S", "W"]){
+		local v = SKLabelView( "", FontAttribute( Fonts.get( "ui"), n == "N" ? 20 : 16, n == "N" ? 0xe05040ff : 0xf0e0b0ff,
+			SK_FONT_BOLD));
+		v.enabled = false; v.bnd.set( 0, 0, 20, 22); v.setText( n);
+		root.addChild( v); C.views .. v; C.letters[n] <- v;
+	}
+	C.root = root; C.cam = -999.0;
+};
+
+::Rokugan.compassPlace <- function(){
+	local C = this.compass, root = C.root;
+	local cx = root.bnd.w - MARGIN - SIZE / 2, cy = MARGIN + SIZE / 2;
+	foreach( n, v in C.letters){
+		local d = this.COMPASS_DIRS[n], p = this.compassToScreen( d[0], d[1]);
+		v.bnd.set( int( cx + p[0] * R) - (n == "N" ? 7 : 5), int( cy - p[1] * R) - 11, 20, 22);
+	}
+	local p = this.compassToScreen( 0.0, 1.0);									//	the needle: north, through the middle
+	foreach( i, v in C.needle){
+		local t = i < 5 ? (i + 1) * 3.4 : -(i - 3) * 3.4;
+		v.setRect( int( cx + p[0] * t) - 2, int( cy - p[1] * t) - 2, 4, 4);
+	}
+};
+
+::Rokugan.compassTick <- function( st){
+	if( !::rootview || ::arguments.indexOf( "-rtcompass0") >= 0) return;
+	local root = ::rootview.findChild( "stageui");
+	if( !root) return;
+	local C = this.compass;
+	local mid = "" .. (st["mapid"] || "");
+	local on = !st["battle"] && !st["mainevent"] && !!st["map"] && !::rootview.findChild( "menu_main")
+		&& !::rootview.findChild( "menu_sub") && mid.len() > 2 && mid.slice( 0, 2) != "M8";
+	if( !on){
+		if( C.on) foreach( v in C.views) v.setVisible( false);
+		C.on = false;
+		return;
+	}
+	if( C.root != root) this.compassBuild( root);
+	if( C.cam != st.camdir){ C.cam = st.camdir; this.compassPlace(); }
+	if( !C.on) foreach( v in C.views) v.setVisible( true);
+	C.on = true;
+};
+
+::RPGStage._rt_body_compass <- ::RPGStage.updateStageBody;
+::RPGStage.updateStageBody <- function( dt){
+	local r = this._rt_body_compass( dt);
+	try{ ::Rokugan.compassTick( this); }catch( ex){ if( !::Rokugan.compass["err"]){ ::Rokugan.compass.err <- true; printexception( ex); } }
+	return r;
+};

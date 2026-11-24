@@ -438,7 +438,12 @@ class RPGStage
 		}else{
 			pc ??= rpgstat.members.find( @( v) v && !v.isDead());
 		}
-		if( pc == old["rpgobj"]) return;	//	同じキャラなら何もしない
+		//	(Rokugan 2026-11-23: the whole party down - a lost fight that lets you go on, or an old save - left pc null,
+		//	this returned with no player model, and the next stage's setPlayerPosition threw: a black screen) anyone in
+		//	the party will do
+		pc ??= rpgstat.members.find( @( v) v);
+		if( !pc) return;
+		if( old && pc == old["rpgobj"]) return;	//	同じキャラなら何もしない
 		//
 		local vis = stat.statmap["playervisible"] ?? true;
 		old?.kill();
@@ -482,7 +487,7 @@ class RPGStage
 		//
 		local newcw = RPGCamerawork.createCamerawork( d);
 		newcw.recover( this);
-		if( data["fade"]){
+		if( data["fade"] && camwork){	//	(a save taken mid-fade, loaded on a fresh stage: nothing to fade from)
 			camfade = RPGCameraFade();	//	camworkをフェードアウトさせる
 			camfade.set( data, camwork);
 		}else{
@@ -761,6 +766,7 @@ class RPGCameraFade
 	}
 
 	function update( stage, fincw, dt){
+		if( !foutcw || !fincw) return null;	//	(nothing to fade from or to: just cut - a save loaded mid-fade crashed here)
 		time += dt;
 		w = Math.min( time/fade, 1.0);
 		if( w < 1.0){

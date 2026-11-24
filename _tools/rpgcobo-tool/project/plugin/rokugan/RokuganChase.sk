@@ -85,6 +85,12 @@ try{
 		return !!::rpgstage.mainevent || said() != m0;
 	}
 	local r = trig == 1 ? 0.45 : 0.95, offered = 0;
+	{
+		local w0 = ::Rokugan.botWhere();
+		if( w0 && Math.sqrt( Math.pow( w0.x / 2.0 - e3.pos.x, 2) + Math.pow( w0.z / 2.0 - e3.pos.z, 2)) > 3.0)
+			::Rokugan.chaseWalk( e3.pos.x, e3.pos.z, 2.0);
+		if( ::rpgstage != st || st.mainevent) return !!st.mainevent;
+	}
 	foreach( attempt, ang in [0.0, 0.7, -0.7, 1.5, -1.5, 3.1]){
 		local me = st.player3d, p = e3.pos, a = me.pos;
 		local dx = a.x - p.x, dz = a.z - p.z, d = Math.sqrt( dx * dx + dz * dz);
@@ -119,7 +125,9 @@ try{
 ::Rokugan.chaseSweep <- function( st){
 	local mp = st.mapid, t0 = skGetTime(), done = {}, n = 0;
 	log( "SWEEP", "begin %s" % [mp]);
-	while( n < 30 && skGetTime() - t0 < 240000){
+	local w00 = ::Rokugan.botWhere();								//	(user: "hiruma's compass is broke, all she had
+	while( n < 30 && skGetTime() - t0 < 90000){						//	to do was go straight north") only what is
+																	//	near (10 m), for 90 s at most: the story first
 		local cur = ::rpgstage;
 		if( !cur || cur.mapid != mp) break;
 		if( cur.mainevent || cur["battle"]){ sleep( 300); continue; }
@@ -130,6 +138,7 @@ try{
 			if( !e.rp3d || !e.data || (k in done)) continue;
 			local pg = e.page, trig = pg ? int( pg["trigger"] || 0) : 0, role = e.data["role"];
 			if( role == "portal" || role == "light") continue;
+			if( e.page && e.page["moveaction"] == "rt_follow") continue;	//	(a follower: Phoenix's escort on a door)
 			local talkish = role == "villager" || role == "clerk" || role == "hotel" || trig == 1 || trig == 2;
 			if( !talkish && trig != 5) continue;
 			local js = "";													//	anything that would leave the map: a
@@ -145,11 +154,17 @@ try{
 				continue;
 			}
 			local p = e.rp3d.pos, dx = p.x * 2.0 - w.x, dz = p.z * 2.0 - w.z, d = dx * dx + dz * dz;
+			if( w00 && Math.pow( p.x * 2.0 - w00.x, 2) + Math.pow( p.z * 2.0 - w00.z, 2) > 400.0) continue;	//	> 10 m
 			if( d < pd){ pd = d; pick = e; pk = k; pt = trig; }
 		}
 		if( !pick) break;
 		done[pk] <- true; n++;
 		local name = "" .. (pick.data["name"] || pk);
+		{																//	(user's screenshot: 5 m away past a cliff,
+			local wp = ::Rokugan.botWhere(), pp = null;					//	a 21-turn walk) near by path, not as the
+			try{ if( wp) pp = ::Rokugan.navPath( wp.x / 2.0, wp.z / 2.0, pick.rp3d.pos.x, pick.rp3d.pos.z); }catch( ex){}	//	crow flies
+			if( pp && length( pp) > 5){ log( "SWEPT", "%s %s skipped (a long way round: %d turns)" % [mp, name, length( pp)]); continue; }
+		}
 		local was = ::Rokugan.chaseUse( pick), tw = 0;
 		while( ::rpgstage && ::rpgstage.mainevent && tw < 90000){ sleep( 250); tw += 250; }
 		log( "SWEPT", "%s %s %s (%s)" % [mp, name, pt == 5 ? "walk-on" : "talk", was ? "it played" : "nothing happened"]);
@@ -198,6 +213,169 @@ local join = function( a, from){
 	return out;
 };
 
+//	(user 2026-11-24: "why don't you let the local LLM move the chars if the script fails after a min" / "yeah just
+//	like let it move all of them") the local model takes the stick: when the script has made no headway toward the
+//	marker for a minute, it is shown a top-down picture of where she stands (VIEW lines, north up, a metre a letter)
+//	and picks one move at a time - walk a direction, go to a point, use something, or hand back ("back") - up to
+//	fifteen moves a turn. tools/markerchase.py reads the VIEW block, asks tools/chase_llm.py, writes answer.txt.
+//	(user 2026-11-24: "compas should be up north, south down, east right, and west left") the screen's own compass:
+//	with the field camera (camdir 0) up the screen is +z and right is +x - so north is +z, east +x
+//	(user 2026-11-24: "after you make the compass then you can have the squirrels and the local llm actually use it")
+//	directions are the game's compass (RokuganCompass.sk): the same N/E/S/W the player sees on the HUD rose
+local compass = @( dx, dz) ::Rokugan.compassName( dx, dz);
+local DRIVEDIR = ::Rokugan.COMPASS_DIRS;
+local LETTERS = "abcdefghijklmnopqrstuvwxyz";
+
+::Rokugan.chaseDrive <- function( key, goal, at, avoidl, session){
+	local job = argv( "-rtchasejob", "chase"), path = "tmp/chase/" .. job .. "/answer.txt";
+	local mp0 = ::rpgstage ? ::rpgstage.mapid : "", hist = [];
+	try{ FileRef( path).deleteFile(); }catch( ex){}
+	::Rokugan.navAvoid <- avoidl;										//	(its goto walks round the wrong doors too)
+	for( local n = 1; n <= 15; n++){
+		local st = ::rpgstage;
+		if( !st || st.mapid != mp0) return "left the map";
+		if( st.mainevent) return "a scene started";
+		local g = ::Rokugan.navGrid(), w = ::Rokugan.botWhere();
+		if( !g || !w) return "no map grid";
+		local wx = w.x / 2.0, wz = w.z / 2.0, px = int( wx), pz = int( wz), W = g.w, D = g.d;
+		local th = (px >= 0 && pz >= 0 && px < W && pz < D) ? g.top[pz * W + px] : -1;
+		if( th < 0){ local c_ = ::Rokugan.navSnap( g, px, pz, 3); th = c_ >= 0 ? g.top[c_] : 0; }
+		//	the things on the picture: doors (digits) and people / chests / spots (letters)
+		local marks = {}, legend = [], evs = [], badc = {}, exl = [], exw = [];
+		if( mp0 in ::Rokugan.MK_EXITS) foreach( i, e in ::Rokugan.MK_EXITS[mp0]){
+			if( i >= 9) break;
+			local c = "" .. (i + 1), wrong = false, way = false;
+			foreach( a_ in avoidl) if( fabs( a_[0] - e[1]) <= e[3] + 1.0 && fabs( a_[1] - e[2]) <= e[4] + 1.0) wrong = true;
+			if( at && fabs( at[0] - e[1]) <= e[3] + 1.5 && fabs( at[1] - e[2]) <= e[4] + 1.5) way = true;
+			exl.append( e); exw.append( wrong);
+			for( local z = int( e[2] - e[4]); z <= int( e[2] + e[4]); z++)
+				for( local x = int( e[1] - e[3]); x <= int( e[1] + e[3]); x++)
+					if( fabs( x - px) <= 12 && fabs( z - pz) <= 8 && fabs( x + 0.5 - e[1]) <= Math.max( e[3] - 0.38, 0.12) &&
+						fabs( z + 0.5 - e[2]) <= Math.max( e[4] - 0.38, 0.12)){	//	(where it fires: her middle 0.38 m in)
+						marks[z * W + x] <- c;
+						if( wrong) badc[z * W + x] <- true;
+					}
+			local dx = e[1] - wx, dz = e[2] - wz;
+			legend.append( "%s = way out to %s, %.0f m %s%s" % [c, e[0], Math.sqrt( dx * dx + dz * dz), compass( dx, dz),
+				wrong ? " - WRONG DOOR, she came back out of it: do not step on it" : (way ? " - THE MARKER'S WAY" : "")]);
+		}
+		foreach( k, e in st.events){
+			if( length( evs) >= 20) break;
+			if( !e.rp3d || !e.page || !e.data) continue;
+			local role = "" .. (e.data["role"] || ""), tg = int( e.page["trigger"] || 0), mdl = "" .. (e.data["mdlid"] || "");
+			if( role == "portal" || role == "light" || tg == 0 || tg >= 5) continue;
+			local ex = e.rp3d.pos.x, ez = e.rp3d.pos.z;
+			if( fabs( ex - wx) > 12.5 || fabs( ez - wz) > 8.5) continue;
+			local c = LETTERS.slice( length( evs), length( evs) + 1);
+			evs.append( e);
+			marks[int( ez) * W + int( ex)] <- c;
+			local what = role == "itemchest" ? "chest" : (mdl == "" || mdl == "CE000" ? "a spot to examine" : "a person");
+			legend.append( "%s = %s (%s), %.1f m %s" % [c, what, "" .. (e.data["name"] || "?"),
+				Math.sqrt( Math.pow( ex - wx, 2) + Math.pow( ez - wz, 2)), compass( ex - wx, ez - wz)]);
+		}
+		local mk = -1;
+		if( at){
+			local ax = int( at[0]), az = int( at[1]);
+			if( fabs( ax - px) <= 12 && fabs( az - pz) <= 8) mk = az * W + ax;
+		}
+		local dxm = at ? at[0] - wx : 0.0, dzm = at ? at[1] - wz : 0.0;
+		local turned = fabs( st.camdir) > 0.05;								//	(the HUD compass is turned here)
+		log( "DRIVE", "%s | move %d of 15, turn %d | on %s at %.1f %.1f | objective: %s | marker: %s | compass: %s" % [key,
+			n, session, mp0, wx, wz, objText(), at ? "%.1f %.1f, %.0f m %s" % [at[0], at[1], Math.sqrt( dxm * dxm + dzm * dzm),
+			compass( dxm, dzm)] : "none shown on this map", turned ? "the camera is turned here - north is " ..
+			::Rokugan.compassScreen( 0.0, 1.0) .. " on the screen" : "north is up the screen, east is right"]);
+		for( local z = pz + 8; z >= pz - 8; z--){						//	(north - up the screen - on top)
+			local row = "";
+			for( local x = px - 12; x <= px + 12; x++){
+				local c = " ";
+				if( x == px && z == pz) c = "@";
+				else if( x < 0 || z < 0 || x >= W || z >= D) c = " ";
+				else if( (z * W + x) == mk) c = "*";
+				else if( (z * W + x) in marks) c = marks[z * W + x];
+				else{
+					local t = g.top[z * W + x];
+					c = t < 0 ? "~" : (t - th > 2 ? "#" : (t - th == 2 ? "^" : (t - th < -1 ? "_" : ".")));
+				}
+				row = row .. c;
+			}
+			log( "VIEW", "|" .. row .. "|");
+		}
+		local open = {}, ol = "", c0 = pz * W + px;
+		foreach( dn in ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]){		//	(25 cm steps: a door fires on a band under
+			local v = DRIVEDIR[dn], m = 0.0, stop = "", hh = th, dropped = false;	//	a metre deep, finer than the picture)
+			for( local k = 1; k <= 48 && stop == ""; k++){
+				local fx = wx + v[0] * k * 0.25, fz = wz + v[1] * k * 0.25, x = int( fx), z = int( fz);
+				if( x < 0 || z < 0 || x >= W || z >= D){ stop = "map edge"; break; }
+				local c = z * W + x, t = g.top[c];
+				if( c != c0){
+					if( t < 0){ stop = "water"; break; }
+					if( t - hh > 2){ stop = "wall"; break; }						//	(step by step: down a ledge is fine -
+					if( t - hh < -8){ stop = "a cliff"; break; }				//	one way - a step up of more than half
+					if( t - hh < -1) dropped = true;							//	a metre is a wall)
+					hh = t;
+				}
+				foreach( i, e in exl){											//	(where it fires: her middle 0.38 m
+					if( fabs( fx - e[1]) > Math.max( e[3] - 0.38, 0.1) + 0.3) continue;	//	inside, and 30 cm to spare)
+					if( fabs( fz - e[2]) > Math.max( e[4] - 0.38, 0.1) + 0.3) continue;
+					if( exw[i]){ stop = "the WRONG door " .. (i + 1); m = Math.max( m - 0.25, 0.0); }
+					else{ stop = "door " .. (i + 1); m = k * 0.25; }
+					break;
+				}
+				if( stop == "") m = k * 0.25;
+			}
+			open[dn] <- m;
+			ol += (ol == "" ? "" : ", ") .. "%s %d m%s%s" % [dn, int( m + 0.01), dropped ? " (down a ledge: no way back up)" : "",
+				stop != "" ? " (then " .. stop .. ")" : ""];
+		}
+		log( "VIEWKEY", "open ground from @: " .. ol);
+		foreach( l_ in legend) log( "VIEWKEY", l_);
+		foreach( h_ in hist) log( "VIEWKEY", "earlier: " .. h_);
+		log( "VIEWEND", "move %d" % [n]);
+		//	the answer
+		local a = "", t = 0;
+		while( t < 120000){
+			sleep( 500); t += 500;
+			local f = FileRef( path);
+			if( !f.exists()) continue;
+			try{ a = f.load().asText(); }catch( ex){ continue; }
+			try{ f.deleteFile(); }catch( ex){}
+			break;
+		}
+		a = a.split( "\n")[0].split( "\r")[0];
+		local words = a.split( " ").filter( @( v) v != "");
+		if( !length( words)) return "no answer";
+		local cmd = words[0], res = "";
+		if( cmd == "back") return "handed back";
+		if( cmd == "broken"){ log( "DRIVEBROKEN", join( words, 1)); return "the model calls it broken"; }
+		local cur = ::rpgstage;
+		if( cmd == "walk" && length( words) >= 3 && (words[1] in DRIVEDIR)){
+			local v = DRIVEDIR[words[1]], m = Math.clamp( num( words[2]), 1.0, 12.0);
+			if( m > open[words[1]]){ m = open[words[1]]; res = " (cut to %.1f m: that's where it stops)" % [m]; }
+			if( m >= 0.5) ::Rokugan.botGoto( (wx + v[0] * m) * 2.0, (wz + v[1] * m) * 2.0, int( 1500 + m * 900), 0.7);
+			else res = " (blocked right there: pick another way)";
+		}else if( cmd == "goto" && length( words) >= 3){
+			::Rokugan.chaseWalk( num( words[1]), num( words[2]), 1.0);
+		}else if( cmd == "use" && length( words) >= 2 && cur){
+			local e = null, nm = words[1];
+			local li = LETTERS.indexOf( nm);
+			if( length( nm) == 1 && li >= 0 && li < length( evs)) e = evs[li];
+			if( !e) e = ::Rokugan.chaseNearest( cur, 0.0, 0.0, nm);
+			if( e){
+				local d_ = Math.sqrt( Math.pow( e.rp3d.pos.x - wx, 2) + Math.pow( e.rp3d.pos.z - wz, 2));
+				if( d_ > 1.8) ::Rokugan.chaseWalk( e.rp3d.pos.x, e.rp3d.pos.z, 1.2);
+				res = ::Rokugan.chaseUse( e) ? " (it ran)" : " (nothing happened)";
+			}else res = " (no such thing here)";
+		}else res = " (not a move)";
+		local w2 = ::Rokugan.botWhere(), now = ::rpgstage;
+		local moved = w2 ? Math.sqrt( Math.pow( w2.x / 2.0 - wx, 2) + Math.pow( w2.z / 2.0 - wz, 2)) : 0.0;
+		local h = "%s -> moved %.1f m%s%s" % [a, moved, res, (now && now.mapid != mp0) ? ", now on " .. now.mapid : ""];
+		log( "DROVE", h);
+		hist.append( h);
+		if( length( hist) > 6){ local nh_ = []; for( local i_ = 1; i_ < length( hist); i_++) nh_.append( hist[i_]); hist = nh_; }
+	}
+	return "fifteen moves";
+};
+
 //	the usable event nearest a point (within 3 m), or the one whose name contains NAME
 ::Rokugan.chaseNearest <- function( st, x, z, name = null){
 	local best = null, bd = 9.0;
@@ -217,12 +395,116 @@ local join = function( a, from){
 	return best;
 };
 
+//	Walk to (x, z) round walls, water and buildings (RokuganNav.sk navPath: A* over the map's blocks), one turning point
+//	at a time; straight there when no path is found. Returns true when she ends within tol metres.
+::Rokugan.chaseWalk <- function( x, z, tol = 1.4){
+	local st = ::rpgstage, mp = st ? st.mapid : "";
+	local w = ::Rokugan.botWhere();
+	local path = null;
+	if( w && ("navPath" in ::Rokugan)){
+		//	(user's screenshots: the Lion squirrel wedged between a street lantern and the crates of a closed road in
+		//	Hiruto's town) the map's own obstacles, not only its blocks: a closed road's walk-on that pushes her back,
+		//	and standing props (lanterns, crates) - kept off the path for this walk
+		local keep = ("navAvoid" in ::Rokugan) ? ::Rokugan.navAvoid : [], extra = [];
+		foreach( a_ in keep) extra.append( a_);
+		if( st) foreach( k, e in st.events){
+			if( !e.rp3d || !e.page || !e.data || e.data["role"] == "portal") continue;
+			local pg = e.page, tg = int( pg["trigger"] || 0), js = "";
+			if( tg == 5){
+				try{ js = encodeJSON( pg); }catch( ex){}
+				if( js.indexOf( "cmd_move") >= 0 && js.indexOf( "cmd_mapmove") < 0) extra.append( [e.rp3d.pos.x, e.rp3d.pos.z]);
+			}else if( tg == 0 && ("" .. (pg["memo"] || "")) == "prop")
+				extra.append( [e.rp3d.pos.x, e.rp3d.pos.z, 0]);			//	(a prop: its own cell only)
+			//	(user's screenshot: Hiruma boxed into a cave nook behind a treasure chest) chests and anything else
+			//	standing there with a model are solid: their own cell (unless it is where she is going)
+			else if( e.data["role"] == "itemchest" || (e.data["role"] != "light" && e.data["mdlid"] &&
+				e.data["mdlid"] != "CE000"))
+				extra.append( [e.rp3d.pos.x, e.rp3d.pos.z, 0]);
+		}
+		if( mp in ::Rokugan.MK_EXITS) foreach( e in ::Rokugan.MK_EXITS[mp]){	//	every door but the marker's: a wall
+			if( ::Rokugan.botDoorOK && e[0] == ::Rokugan.botDoorOK) continue;
+			local oa = ::Rokugan.botDoorAt;
+			if( oa && fabs( oa[0] - e[1]) <= e[3] + 1.5 && fabs( oa[1] - e[2]) <= e[4] + 1.5) continue;
+			if( e.len() > 5 && !::Rokugan.mkReqs( e[5])) continue;
+			extra.append( [e[1], e[2], -1, Math.max( e[3] - 0.38, 0.1) + 0.6, Math.max( e[4] - 0.38, 0.1) + 0.6]);	//	(0.6 m:
+																		//	wider than the guard's 0.3, so a path
+																		//	round a door in a lane doesn't trip it;
+																		//	narrow enough for the Tortoise cove's
+																		//	M320 way, 0.63 m from its trigger)
+		}
+		::Rokugan.navAvoid <- extra;
+		try{ path = ::Rokugan.navPath( w.x / 2.0, w.z / 2.0, x, z); }catch( ex){ log( "ERROR", "nav: " .. ex); }
+		::Rokugan.navAvoid <- keep;
+	}
+	if( !path && w && ("navAvoid" in ::Rokugan)){						//	no path, beside a door taken by mistake:
+		local nd = null, nl = 2.5;										//	step straight away from that door first,
+		foreach( a_ in ::Rokugan.navAvoid){								//	never a straight line back through it
+			if( fabs( a_[0] - x) <= 2.0 && fabs( a_[1] - z) <= 2.0) continue;	//	(not the door she is going to)
+			local l_ = Math.sqrt( Math.pow( w.x / 2.0 - a_[0], 2) + Math.pow( w.z / 2.0 - a_[1], 2));
+			if( l_ < nl){ nl = l_; nd = a_; }
+		}
+		if( nd){
+			local vx = w.x / 2.0 - nd[0], vz = w.z / 2.0 - nd[1], vl = Math.sqrt( vx * vx + vz * vz);
+			if( vl < 0.1){ vx = 0.0; vz = -1.0; vl = 1.0; }
+			log( "DOORSTEP", "no path from beside the door at %.1f %.1f: stepping away first" % [nd[0], nd[1]]);
+			::Rokugan.botGoto( (w.x / 2.0 + vx / vl * 2.0) * 2.0, (w.z / 2.0 + vz / vl * 2.0) * 2.0, 2500, 0.8);
+			return false;
+		}
+	}
+	if( !path) return ::Rokugan.botGoto( x * 2.0, z * 2.0, 9000, tol);	//	(straight: the door guard still holds)
+	if( length( path) > 1) log( "PATH", "%d turns to %.1f %.1f on %s" % [length( path), x, z, mp]);
+	foreach( i, p in path){
+		local cur = ::rpgstage;
+		if( !cur || cur.mapid != mp || cur.mainevent) return true;		//	an exit or a scene took over
+		local last = i == length( path) - 1;
+		local w2 = ::Rokugan.botWhere(), dist = w2 ? Math.sqrt( Math.pow( w2.x / 2.0 - p[0], 2) + Math.pow( w2.z / 2.0 - p[1], 2)) : 6.0;
+		::Rokugan.botGoto( p[0] * 2.0, p[1] * 2.0, int( 1500 + dist * 900), last ? tol : 1.0);
+	}
+	local w3 = ::Rokugan.botWhere();
+	return w3 ? Math.sqrt( Math.pow( w3.x / 2.0 - x, 2) + Math.pow( w3.z / 2.0 - z, 2)) <= tol + 0.5 : false;
+};
+
 ::Rokugan.chaseRun <- function(){
 	local minutes = int( argv( "-rtchase", "60")) * 1.0, quest = int( argv( "-rtchasequest", "0"));
 	local t0 = skGetTime(), limit = minutes * 60000.0;
 	while( !::rpgstage || !::rpgstage["player3d"]) sleep( 300);
+	if( ::arguments.indexOf( "-rtloadsave") >= 0){						//	(a resumed run: the save first - it
+		local tl = 0;													//	used to start on the New Game's map)
+		while( !("saveLoaded" in ::Rokugan) && tl < 60000){ sleep( 250); tl += 250; }
+	}
 	sleep( 2500);
 	if( quest > 0){ ::rpgvar["G1244"] = quest; log( "QUEST", "tracking %d" % [quest]); }
+	//	(user 2026-11-23: "crane is done, crane should go through their side quests now") a chain of quests, tracked in
+	//	the journal one after another: when one is done (the marker has no goal) or she is stuck on it, the next
+	local qlist = [], qi = 0;
+	foreach( t in argv( "-rtchasequests", "").split( ",")) if( t != "") qlist.append( int( t));
+	local nextQuest = function(){
+		if( qi + 1 >= length( qlist)) return false;
+		qi++;
+		::rpgvar["G1244"] = qlist[qi];
+		log( "QUEST", "tracking %d (%d of %d)" % [qlist[qi], qi + 1, length( qlist)]);
+		return true;
+	};
+	if( length( qlist)){ ::rpgvar["G1244"] = qlist[0]; log( "QUEST", "tracking %d (1 of %d)" % [qlist[0], length( qlist)]); }
+	::Rokugan.botDoorGuard <- true;										//	(solid doors: RokuganBot.botGoto)
+	::Rokugan.botDoorOK <- null; ::Rokugan.botDoorAt <- null;			//	(no door open until the marker names one)
+	//	her last moments on a map (every 100 ms, the last ten), printed when the map changes: what took her through
+	//	a door - a walk, a slide off someone, an event - is in the trail (TRAIL lines)
+	newthread().start( @(){
+		local ring = [], m0 = "";
+		while( true){
+			sleep( 100);
+			local st = ::rpgstage;
+			if( !st || !st["player3d"]) continue;
+			if( st.mapid != m0){
+				if( m0 != "" && length( ring)) log( "TRAIL", "left %s: %s" % [m0, join( ring, 0)]);
+				ring = []; m0 = st.mapid;
+			}
+			local p = st.player3d.pos;
+			ring.append( "%.2f,%.2f%s" % [p.x, p.z, st.mainevent ? "e" : ""]);
+			if( length( ring) > 10){ local r_ = []; for( local i = 1; i < length( ring); i++) r_.append( ring[i]); ring = r_; }
+		}
+	});
 	log( "START", "map %s, %.0f minutes" % [::rpgstage.mapid, minutes]);
 	::Rokugan.chaseSnap( "start");
 	local snapT = skGetTime();
@@ -230,6 +512,7 @@ local join = function( a, from){
 	local lastPos = null, stuckLogged = 0, swept = {}, sweepsOn = {}, sweep = ::arguments.indexOf( "-rtchasenosweep") < 0;
 	local fails = 0, why = "", ended = false, bestD = 999999.0, detourSide = 1.0;
 	local screenT = skGetTime(), timeouts = 0;
+	local progT = skGetTime(), progBest = {}, drives = 0, driveMs = int( argv( "-rtchasedrive", "0")) * 1000, driveOn = driveMs > 0;
 	local lastW = null, meant = null, avoid = {};					//	(2026-11-23, the Crab squirrel: out of the
 																	//	office, the way on was behind the building;
 																	//	walking straight she went back in, for ever)						//	(user: "they need a time out after being on a
@@ -244,12 +527,23 @@ local join = function( a, from){
 			if( !inBattle){ inBattle = true; log( "BATTLE", "on %s" % [lastMap]); }
 			continue;
 		}
-		if( inBattle){ inBattle = false; log( "BATTLE_END", "back on %s" % [mp]); }
+		if( inBattle){
+			inBattle = false; log( "BATTLE_END", "back on %s" % [mp]);
+			//	(user: "hiruma got confused and is almost dead") the squirrels test roads, not survival: after each
+			//	fight the party is patched up - HP, MP, TP and ailments - so a run of fights can't end the run
+			foreach( p in ::rpgstat.members) if( p){
+				try{ p.HP = p.MAXHP; p.MP = p.MAXMP; p.TP = p.MAXTP; }catch( ex){}
+				try{ p.clearConditions(); }catch( ex){}
+			}
+		}
 		if( st.mainevent) continue;
 		if( mp != lastMap){
 			if( lastMap != "" && meant && mp != meant && lastW){
 				if( !(lastMap in avoid)) avoid[lastMap] <- [];
-				avoid[lastMap].append( [lastW.x / 2.0, lastW.z / 2.0]);
+				local dx_ = lastW.x / 2.0, dz_ = lastW.z / 2.0;			//	the door's own place (MK_EXITS), else
+				if( lastMap in ::Rokugan.MK_EXITS) foreach( e_ in ::Rokugan.MK_EXITS[lastMap])	//	where she stood
+					if( e_[0] == mp && e_[3] <= 3.0 && e_[4] <= 3.0){ dx_ = e_[1]; dz_ = e_[2]; break; }
+				avoid[lastMap].append( [dx_, dz_]);
 				log( "WRONGDOOR", "%s -> %s (meant %s): walking round %.1f %.1f from now on" % [lastMap, mp, meant,
 					lastW.x / 2.0, lastW.z / 2.0]);
 				if( !(mp in sweepsOn)) sweepsOn[mp] <- 0;					//	(no sweep in a room she walked into by
@@ -257,6 +551,7 @@ local join = function( a, from){
 																			//	pressed to a wall in M902)
 			}
 			log( "MAP", "%s %s" % [mp, "" .. st["mapname"]]); lastMap = mp; lastW = null;
+			::Rokugan.botDoorOK = null; ::Rokugan.botDoorAt = null;		//	(a new map: every door shut again)
 		}
 		{ local w_ = ::Rokugan.botWhere(); if( w_) lastW = w_; }
 		if( skGetTime() - snapT > 600000){ snapT = skGetTime(); ::Rokugan.chaseSnap( "ten minutes"); }
@@ -280,7 +575,13 @@ local join = function( a, from){
 		}catch( ex){ log( "ERROR", "marker: " .. ex); }
 		if( !goal){
 			if( !noGoalT) noGoalT = skGetTime();
-			if( skGetTime() - noGoalT > 45000){ log( "END", "no goal for 45 s on %s (the road is done, or the marker lost it)" % [mp]); break; }
+			if( skGetTime() - noGoalT > 45000){
+				if( length( qlist)){
+					log( "QUESTDONE", "%d (no goal left for it)" % [qlist[qi]]);
+					if( nextQuest()){ noGoalT = 0; lastKey = ""; screenT = skGetTime(); continue; }
+				}
+				log( "END", "no goal for 45 s on %s (the road is done, or the marker lost it)" % [mp]); break;
+			}
 			continue;
 		}
 		noGoalT = 0;
@@ -295,7 +596,10 @@ local join = function( a, from){
 																			//	use the land bridge": the way back
 																			//	picked "Not now." - menus cycle only
 																			//	while she is stuck on one goal)
-			screenT = skGetTime(); timeouts = 0;
+			screenT = skGetTime(); timeouts = 0; progT = skGetTime(); progBest = {}; drives = 0;
+			avoid = {};													//	(a door wrong for the last goal can be
+																			//	right for this one: Phoenix up the
+																			//	west tower, then back down it)
 			log( "GOAL", "%s (from %s)" % [key, mp]);
 		}
 		if( !at){
@@ -308,13 +612,44 @@ local join = function( a, from){
 			::Rokugan.chaseSnap( "bored " .. key);						//	minutes on one screen -> it quits with a
 			log( "BROKEN", "bored on %s, goal %s, at %s (%s)" % [mp, key, lastPos ? "%.1f %.1f" % [lastPos[0] / 2.0,	//	save
 				lastPos[1] / 2.0] : "?", why != "" ? why : "no reason logged"]);	//	state, and Claude finds out why)
+			if( length( qlist)){										//	(a quest chain: report it, go on to the next)
+				log( "QUESTBROKEN", "%d" % [qlist[qi]]);
+				if( nextQuest()){ lastKey = ""; screenT = skGetTime(); fails = 0; continue; }
+			}
 			ended = true; break;
 		}
+		//	headway: closer to the marker by a metre than ever on this map (bouncing in and out of a door is none)
+		if( at){
+			local wp = ::Rokugan.botWhere();
+			if( wp && wp.map == mp){
+				local dp = Math.sqrt( Math.pow( wp.x / 2.0 - at[0], 2) + Math.pow( wp.z / 2.0 - at[1], 2));
+				if( !(mp in progBest) || dp < progBest[mp] - 1.0){ progBest[mp] <- dp; progT = skGetTime(); }
+			}
+		}
+		if( driveOn && drives < 3 && skGetTime() - progT > driveMs){		//	a minute without headway: the model drives
+			drives++;
+			local tD = skGetTime();
+			local r = ::Rokugan.chaseDrive( key, goal, at, (mp in avoid) ? avoid[mp] : [], drives);
+			log( "DRIVEEND", "%s: %s (turn %d of 3, %.0f s)" % [key, r, drives, (skGetTime() - tD) / 1000.0]);
+			screenT += skGetTime() - tD;									//	(its time isn't the script's boredom)
+			progT = skGetTime(); progBest = {};
+			continue;
+		}
 		if( fails >= 5){												//	five tries at this goal: ask Claude
+			local tA = skGetTime();
 			local a = ::Rokugan.chaseAsk( key, why != "" ? why : "five tries, the goal never changed");
-			fails = 0; screenT = skGetTime();								//	(nor waiting for the answer)
+			fails = 0; screenT += skGetTime() - tA;						//	(nor waiting for the answer - but asking
+																			//	again and again is no excuse: user's
+																			//	Phoenix, 126 times through one door)
 			if( a[0] == "close" || a[0] == "noanswer"){ log( "END", "closed on the answer to %s" % [key]); ended = true; break; }
-			if( a[0] == "broken"){ log( "BROKEN", "%s: %s" % [key, join( a, 1)]); ended = true; break; }
+			if( a[0] == "broken"){
+				log( "BROKEN", "%s: %s" % [key, join( a, 1)]);
+				if( length( qlist)){										//	(a quest chain: on to the next one)
+					log( "QUESTBROKEN", "%d" % [qlist[qi]]);
+					if( nextQuest()){ lastKey = ""; screenT = skGetTime(); fails = 0; continue; }
+				}
+				ended = true; break;
+			}
 			local cur = ::rpgstage;
 			if( a[0] == "goto" && length( a) >= 3 && cur){
 				::Rokugan.botGoto( num( a[1]) * 2.0, num( a[2]) * 2.0, 15000, 1.0);
@@ -328,26 +663,14 @@ local join = function( a, from){
 		}
 		if( !at) continue;
 		meant = goal[0] == mp ? null : ((goal[0] in road.first) ? road.first[goal[0]] : null);
-		if( mp in avoid){												//	a door she went through by mistake on the
-			local w = ::Rokugan.botWhere();								//	way: if the straight line passes within
-			if( w) foreach( a in avoid[mp]){							//	2 m of it, step round it first
-				local px = w.x / 2.0, pz = w.z / 2.0, dx = at[0] - px, dz = at[1] - pz, L = Math.sqrt( dx * dx + dz * dz);
-				if( L < 0.5) continue;
-				local t = ((a[0] - px) * dx + (a[1] - pz) * dz) / (L * L);
-				if( t < 0.0 || t > 1.0) continue;
-				local cx = px + dx * t - a[0], cz = pz + dz * t - a[1];
-				if( cx * cx + cz * cz > 4.0) continue;
-				local nx = -dz / L, nz = dx / L;						//	the side of the line away from the door
-				if( cx * nx + cz * nz < 0.0){ nx = -nx; nz = -nz; }
-				log( "DETOUR", "round the door at %.1f %.1f" % [a[0], a[1]]);
-				::Rokugan.botGoto( (a[0] + nx * 5.0) * 2.0, (a[1] + nz * 5.0) * 2.0, 5000, 1.0);
-				::Rokugan.botGoto( (a[0] + nx * 5.0 + dx / L * 7.0) * 2.0, (a[1] + nz * 5.0 + dz / L * 7.0) * 2.0, 5000, 1.0);
-				break;
-			}
-			if( !::rpgstage || ::rpgstage.mapid != mp) continue;
-		}
+		::Rokugan.botDoorOK = meant || (goal[0] == mp ? null : (goal[0] in road.first ? road.first[goal[0]] : null));
+		::Rokugan.botDoorAt = at;										//	(the marker's door is the open one - and a
+																		//	goal here that is itself a way out, the Egg
+																		//	Caves encounter whose scene moves her on)
+		::Rokugan.navAvoid <- (mp in avoid) ? avoid[mp] : [];			//	doors taken by mistake: the path finder
+																		//	walks round them (RokuganNav)
 		//	walk to the point the marker floats over (bot coordinates are world x 2)
-		local ok = ::Rokugan.botGoto( at[0] * 2.0, at[1] * 2.0, 9000, 1.4);
+		local ok = ::Rokugan.chaseWalk( at[0], at[1], 1.4);
 		local now = ::rpgstage;
 		if( !now || now.mapid != mp || now.mainevent) continue;			//	an exit or a scene took over: fine
 		if( goal[0] == mp){												//	the goal itself: talk / search / step on it
@@ -374,7 +697,7 @@ local join = function( a, from){
 				if( ex[4] > 3.0) gz = Math.max( ex[2] - ex[4] + 1.0, Math.min( ex[2] + ex[4] - 1.0, w0.z / 2.0));	//	its middle
 			}																//	(2026-11-23 Kudo: the middle's line missed the bridge)
 			if( ex){
-				::Rokugan.botGoto( gx * 2.0, gz * 2.0, 5000, 0.3);				//	(camera-aware walking, as anywhere)
+				::Rokugan.chaseWalk( gx, gz, 0.3);								//	(round walls and water: RokuganNav)
 				sleep( 400);
 			}
 			if( ex && ex[3] <= 1.5 && ex[4] <= 1.5 && ::rpgstage && ::rpgstage.mapid == mp && !::rpgstage.mainevent){
@@ -429,10 +752,16 @@ local join = function( a, from){
 					if( !::rpgstage || ::rpgstage.mapid != mp) continue;
 				}
 			}
-			if( ::rpgstage && ::rpgstage.mapid == mp && !::rpgstage.mainevent)		//	still here: nudge each way
-			foreach( d in ["up", "right", "down", "left", "up", "right", "down", "left"]){	//	point is wherever she
-				::Rokugan.botSet( d, true); sleep( 700); ::Rokugan.botSet( d, false);	//	stands: nudge each way
-				sleep( 300);													//	until the map changes
+			//	still here, AT the exit: nudge each way until the map changes - short walks the door guard watches (raw
+			//	key presses 7 m short of it walked Phoenix into the inn door beside her: user, "solid door logic")
+			local wn = ::Rokugan.botWhere(), nx = ex ? gx : at[0], nz = ex ? gz : at[1];
+			if( wn && ::rpgstage && ::rpgstage.mapid == mp && !::rpgstage.mainevent &&
+				Math.sqrt( Math.pow( wn.x / 2.0 - nx, 2) + Math.pow( wn.z / 2.0 - nz, 2)) <= 2.5)
+			foreach( d in [[0.0, -1.5], [1.5, 0.0], [0.0, 1.5], [-1.5, 0.0], [0.0, -1.5], [1.5, 0.0], [0.0, 1.5], [-1.5, 0.0]]){
+				local wq = ::Rokugan.botWhere();
+				if( !wq) break;
+				::Rokugan.botGoto( wq.x + d[0] * 2.0, wq.z + d[1] * 2.0, 900, 0.3);
+				sleep( 300);
 				if( !::rpgstage || ::rpgstage.mapid != mp || ::rpgstage.mainevent) break;
 			}
 			if( ::rpgstage && ::rpgstage.mapid == mp && !::rpgstage.mainevent){
@@ -470,6 +799,10 @@ local join = function( a, from){
 
 	}
 	if( !ended && skGetTime() - t0 >= limit) log( "END", "time limit (%.0f min)" % [minutes]);
+	try{																//	(tools/squirrel_loop.py: has this road been
+		local ld = ::Rokugan.journalLead();								//	walked to its end? then its side quests)
+		log( "WALKED", "%s %s" % ["" .. ld, (ld && ::Rokugan.pathWalked( ld)) ? "yes" : "no"]);
+	}catch( ex){}
 	log( "DONE", "%.0f s" % [(skGetTime() - t0) / 1000.0]);
 };
 newthread().start( @() ::Rokugan.chaseRun());

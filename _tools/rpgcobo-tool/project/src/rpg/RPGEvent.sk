@@ -1089,7 +1089,10 @@ class RPGStageEventRunner extends RPGEventRunner
 	function setEventSnapshot( es){
 		mode = es["mode"] ? 1 : 0;	//	mode=2は並列実行中。イベント実行を途中から再開は出来ないのでscout状態から再開するように。。。
 		// spawnandran = !!es["spawnandran"];
-		if( es["spawnpos"] && data["role"] != "portal") spawnpos = es.spawnpos;	//	旧セーブのポータル位置は復元しない。
+		//	(Rokugan 2026-11-24: an invisible trigger - a walk-on, an examine spot - moved in the map data stayed where an
+		//	old save had it, e.g. the Egg Caves encounter) nothing moves those but the map data: not from the save either
+		local trig_ = (data["mdlid"] || "CE000") == "CE000" && data["role"] == "custom";
+		if( es["spawnpos"] && data["role"] != "portal" && !trig_) spawnpos = es.spawnpos;	//	旧セーブのポータル位置は復元しない。
 		//	移動アクションの復元を最低限できるようにする。。。主にManualPlayActionの移動ルートを途中から再生したい。
 		local act = es["act"];
 		if( act){	//	これ入ってる時点で

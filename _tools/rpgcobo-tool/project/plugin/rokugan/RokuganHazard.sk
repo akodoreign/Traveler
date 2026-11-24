@@ -891,7 +891,7 @@ local WARDS = { ["Oni no Tsukakoro"] = 11 };			//	boss name -> ELEMS bit (11 = J
 //	O-Tamai (Lion Ch1 / Phoenix Ch1 b_boss_otamai; production S08). Enemy field rt_chains = the chains needed: each
 //	Suki on him binds one jade chain; the last one binds him (he leaves the fight, defeated; his red shadow goes with
 //	him, rt_captain). Until then he cannot die: a killing blow leaves him at 1 HP. Skills with rt_soul are the red
-//	shadow's "soul damage": they drain SP and 1 VP from the target as well as a little HP.
+//	shadow's "soul damage": they drain MP and 1 VP from the target as well as a little HP.
 ::Rokugan.chains <- { battle = null, n = 0 };
 ::Rokugan.CHAIN_BARKS <- ["Cold! Cold!", "Not again - not AGAIN-", "(a scream that becomes silence)"];
 ::Rokugan.chainState <- function(){
@@ -949,7 +949,7 @@ local WARDS = { ["Oni no Tsukakoro"] = 11 };			//	boss name -> ELEMS bit (11 = J
 		d.MP -= mp;
 		local st = this.state( d);
 		if( st.bp > 0) st.bp--;
-		this.pop( d, "-%d SP  -1 VP" % mp, 0xc080ffff);
+		this.pop( d, "-%d MP  -1 VP" % mp, 0xc080ffff);
 	}
 	this.bark( "breath", this.member( "Ijako") || cmd.src, "Ijako: It's eating our breath, not our blood!");
 };
@@ -1773,7 +1773,7 @@ local WARDS = { ["Oni no Tsukakoro"] = 11 };			//	boss name -> ELEMS bit (11 = J
 };
 
 //	b_boss_iuchi_hit_squad (Scorpion Ch3 = Unicorn Ch2; enemy field rt_bubble on the amulet-bearer). Every other round
-//	the squad's silence bubble seals spells and spell-like skills (anything that costs SP): the round before, the air
+//	the squad's silence bubble seals spells and spell-like skills (anything that costs MP): the round before, the air
 //	goes still (a warning). Breaking the amulet-bearer (Suki) or killing him pops the bubble for good (G942).
 ::Rokugan.bubble <- { battle = null, round = -1, popped = false };
 ::Rokugan.bubbleOn <- function(){

@@ -35,13 +35,13 @@ tiers. Weapon traits are from `weapons.md`; armour tags from `kata.md` / `weapon
 | Hikaru's Kata Scroll | kata scroll | Ronin Ch3 | post-game: Gendo learns *Endless Strike* (taste) |
 
 ## B. ARMOUR (Light / Heavy / Robe tags)
-| Tier | Light (Eva+, no Spd penalty) | Heavy (Def++, Spd −5%, Eva −5%; Shell of Stone / Hida kit) | Robe (E.Def+, SP+) |
+| Tier | Light (Eva+, no Spd penalty) | Heavy (Def++, Spd −5%, Eva −5%; Shell of Stone / Hida kit) | Robe (E.Def+, MP+) |
 |---|---|---|---|
-| T1 | Travelling Clothes Def 8 | Ashigaru Lamellar Def 14 | Acolyte Robe E.Def 10 · SP+5 |
-| T2 | Lacquered Do-maru Def 20 | Crab Plate Def 32 | Shugenja's Haori E.Def 22 · SP+10 |
-| T3 | Scorpion Silk Armour Def 32 · Eva+5% | Hida Heavy Plate Def 50 | Isawa Robe E.Def 36 · SP+15 |
-| T4 | Shadow Cloth Def 46 · Eva+8% | Kaiu Iron Mountain Def 70 | Elemental Master's Mantle E.Def 52 · SP+20 |
-| T5 | Mist-silk Def 60 · Eva+10% | Crab Champion Plate Def 92 | Robe of the Five Rings E.Def 70 · SP+30 |
+| T1 | Travelling Clothes Def 8 | Ashigaru Lamellar Def 14 | Acolyte Robe E.Def 10 · MP+5 |
+| T2 | Lacquered Do-maru Def 20 | Crab Plate Def 32 | Shugenja's Haori E.Def 22 · MP+10 |
+| T3 | Scorpion Silk Armour Def 32 · Eva+5% | Hida Heavy Plate Def 50 | Isawa Robe E.Def 36 · MP+15 |
+| T4 | Shadow Cloth Def 46 · Eva+8% | Kaiu Iron Mountain Def 70 | Elemental Master's Mantle E.Def 52 · MP+20 |
+| T5 | Mist-silk Def 60 · Eva+10% | Crab Champion Plate Def 92 | Robe of the Five Rings E.Def 70 · MP+30 |
 - **Riding Armour** (Unicorn shops, T2–T4) counts as Heavy, but has no Speed penalty for Tamotsu while mounted
   (story/outdoor).
 - **Helms / headgear slot:** Jingasa (T1, Def+3) · Kabuto (T2–T4) · **Lacquered Jingasa** (Sergeant drop).
@@ -96,8 +96,8 @@ tiers. Weapon traits are from `weapons.md`; armour tags from `kata.md` / `weapon
 | Hornet Honey | HP +30%, cure Poison | drop |
 | Cucumber (kappa) | HP +25% (kappa joke item) | drop |
 | Salt Herring · Fish Stew · Boar Meat · Eel | HP +15–35% (food) | town / drops |
-| Sake / Fine Sake | SP +15% / +30%; Confuse chance 5% | shops |
-| Rejuvenating Tea | SP +50% | Phoenix temples |
+| Sake / Fine Sake | MP +15% / +30%; Confuse chance 5% | shops |
+| Rejuvenating Tea | MP +50% | Phoenix temples |
 | Incense Stick | +1 VP now | temples |
 | Kami-ichor Drop | full VP (one-time) | Dragon Ch4 steal |
 | Antidote · Eye Drops · Bell of Waking · Calming Tea | cure Poison / Blind / Sleep / Terror | shops |
@@ -145,7 +145,7 @@ Bloodspeaker Sigil · Ninja-to Shard · Poison Kit · Actor's Mask · Shosuro Po
 | Crane (Cakon, Kyuden Doji, ports) | T1–T5 | Katana, Light armour, fine accessories (expensive) |
 | Dragon (mountains, Kitsuki lands) | T2–T5 | Bo, Robes, Incense, *Togashi Bo* (T4) |
 | Lion (Shiro Akodo, border towns) | T1–T4 | Yari, Heavy armour, war fans |
-| Phoenix (Kamatori, Kyuden Isawa) | T1–T5 | Robes, SP items, Jade weapons (temple-smith) |
+| Phoenix (Kamatori, Kyuden Isawa) | T1–T5 | Robes, MP items, Jade weapons (temple-smith) |
 | Scorpion (Kyuden Bayushi, Kudo, Ryoko Owari) | T1–T4 | Tanto, poisons, smoke pellets, Shosuro silk; **black market** (Underworld 3: Powder Bombs, Obsidian) |
 | Unicorn (Ojatara, Buried Leaves) | T1–T4 | Yumi, Riding Armour, **gaijin goods** (Spyglass; Remedy pepper-leaf via Barter) |
 | Mantis isles | T1–T3 | Water items, kama, sea gear |
@@ -188,7 +188,7 @@ Bloodspeaker Sigil · Ninja-to Shard · Poison Kit · Actor's Mask · Shosuro Po
 | "The Ballad of Matsu Joruri" | lore | Lion Ch2, Barter with the Ikoma bard | a second strong line for the Beat 2 history |
 | Benjiro's White Paint | sell / return | Lion Ch2, Pilfer the stable girl | return it to Benjiro after S08 → *Death Trance* +1 use this chapter |
 | Miya Coin | lore | Lion Ch3, Pilfer the smuggler | Yachiko's pay to her hirelings |
-| Shogen's Plum Wine | consumable (joke) | Lion Ch3, the hermitage woodpile | SP +40%; taking it: Honor −1 |
+| Shogen's Plum Wine | consumable (joke) | Lion Ch3, the hermitage woodpile | MP +40%; taking it: Honor −1 |
 | "Sorrow's Path Chronicle" | lore | Lion Ch4, Barter with the Ikoma herald | where the oni stole the banner |
 | Miya Seal Wax | lore | Lion Ch4, Yachiko's baggage (lacquer box; Low Skill) | — |
 | Scroll: Tremor | Haruki field-spell scroll | Phoenix Ch2, Treaty City sub-story "The Archive at Night" | teaches *Tremor* (collapses cracked walls: Crab Ch1 cave 2, among others) |

@@ -54,9 +54,45 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 	::Rokugan.botGoto <- function( tx, tz, ms, tol = 0.9){
 		if( this.botleg && ::rpgstage && ::rpgstage.mapid != this.botleg) return false;	//	the exit already fired
 		local t = 0, last = null, still = 0, held = null, side = 0, sidet = 0, map0 = ::rpgstage.mapid, best = 999999.0;
+		//	(user 2026-11-24: "lol you need solid door logic") while the marker chaser runs (botDoorGuard), every door
+		//	on the map is a wall except the one this walk is going to: a step that would take her deeper into another
+		//	door's box (where it fires: her middle 0.38 m in, plus 0.6 m to spare) stops the walk short of it
+		local guards = [];
+		if( ("botDoorGuard" in this) && this.botDoorGuard && ("MK_EXITS" in this) && (map0 in this.MK_EXITS))
+			foreach( e in this.MK_EXITS[map0]){
+				//	the one open door: where the marker leads (a walk up to someone beside another door - Phoenix's
+				//	inn guests by the M921 door - used to count that door as its own and walked through it)
+				if( ("botDoorOK" in this) && this.botDoorOK && e[0] == this.botDoorOK) continue;
+				if( ("botDoorAt" in this) && this.botDoorAt && Math.abs( this.botDoorAt[0] - e[1]) <= e[3] + 1.5 &&
+					Math.abs( this.botDoorAt[1] - e[2]) <= e[4] + 1.5) continue;
+				if( e.len() > 5 && !this.mkReqs( e[5])) continue;					//	(a story move that can't run now)
+				guards.append( [e[1], e[2], Math.max( e[3] - 0.38, 0.1) + 0.3, Math.max( e[4] - 0.38, 0.1) + 0.3]);	//	(0.3 m:
+																					//	it predicts her motion now)
+			}
+		local depth = function( px, pz){
+			local dd = 0.0;
+			foreach( g in guards){
+				local ix = g[2] - Math.abs( px - g[0]), iz = g[3] - Math.abs( pz - g[1]);
+				if( ix > 0.0 && iz > 0.0 && Math.min( ix, iz) > dd) dd = Math.min( ix, iz);
+			}
+			return dd;
+		};
 		while( t < ms){
 			local st = ::rpgstage, w = this.botWhere();
 			if( !w){ sleep( 100); t += 100; continue; }
+			if( guards.len() && w.map == map0 && !w.ev && !w.battle){
+				local dp = depth( w.x / 2.0, w.z / 2.0);
+				//	(where her actual motion takes her next tick: pushing into a street lantern beside the M921 door
+				//	slid Phoenix sideways into it at 0.5 m a tick, whatever key was held)
+				//	the rule: inside a door's margin she may go sideways or out, never deeper
+				local dn = last ? depth( (w.x * 2.0 - last[0]) / 2.0, (w.z * 2.0 - last[1]) / 2.0) : dp;
+				if( dn > 0.05 && dn > dp + 0.02){
+					if( held) this.botSet( held, false);
+					printf( "[RT] BOT doorguard: stopped at %.1f %.1f, short of a door that isn't this walk's\n",
+						w.x / 2.0, w.z / 2.0);
+					return false;
+				}
+			}
 			if( w.battle || w.map.slice( 0, 2) == "M8"){				//	a random battle: wait it out, the clock stopped
 				if( held){ this.botSet( held, false); held = null; }
 				sleep( 300); last = null; continue;
@@ -66,7 +102,7 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 			local dx = tx - w.x, dz = tz - w.z, d = Math.sqrt( dx * dx + dz * dz);
 			if( d < tol){ if( held) this.botSet( held, false); this.botPos( "at"); return true; }
 			best = Math.min( best, d);
-			local pick = null, bd = -2.0;
+			local pick = null, bd = -2.0, pickv = null;
 			foreach( c in this.BOTDIRS){
 				local yaw = (c[1] - 1) * (Math.PI2 / 16.0) + st.camdir, v = Vector3D( 0, 0, 1).rotate( yaw, 0, 0);
 				local dot = (v.x * dx + v.z * dz) / d;
@@ -74,9 +110,32 @@ if( ::arguments.indexOf( "-rtbot") >= 0){
 					local s = (v.x * -dz + v.z * dx) / d * side;
 					dot = s * 0.9 + dot * 0.3;
 				}
-				if( dot > bd){ bd = dot; pick = c[0]; }
+				if( dot > bd){ bd = dot; pick = c[0]; pickv = v; }
+			}
+			if( guards.len() && pickv){										//	(she runs ~0.4 m a tick: look a
+				local ax = w.x / 2.0 + pickv.x * 0.8, az = w.z / 2.0 + pickv.z * 0.8;	//	step ahead, not behind)
+				local da = depth( ax, az);
+				if( da > 0.05 && da > depth( w.x / 2.0, w.z / 2.0) + 0.02){
+					if( held) this.botSet( held, false);
+					printf( "[RT] BOT doorguard: won't step toward a door that isn't this walk's (at %.1f %.1f)\n",
+						w.x / 2.0, w.z / 2.0);
+					return false;
+				}
 			}
 			if( pick != held){ if( held) this.botSet( held, false); this.botSet( pick, true); held = pick; }
+			//	a 1 m step just ahead (the player's jump clears 2 blocks, setting jumph): jump as she reaches it, as a
+			//	player would, not after standing blocked (user's screenshot: Dragon at the Tortoise cove's clay blocks)
+			if( pickv && ("navGrid" in this)){
+				local g_ = null;
+				try{ g_ = this.navGrid(); }catch( ex){}
+				if( g_){
+					local cx_ = int( w.x / 2.0), cz_ = int( w.z / 2.0), ax_ = int( w.x / 2.0 + pickv.x * 0.7), az_ = int( w.z / 2.0 + pickv.z * 0.7);
+					if( cx_ >= 0 && cz_ >= 0 && ax_ >= 0 && az_ >= 0 && cx_ < g_.w && ax_ < g_.w && cz_ < g_.d && az_ < g_.d &&
+						(ax_ != cx_ || az_ != cz_) && g_.top[az_ * g_.w + ax_] - g_.top[cz_ * g_.w + cx_] == 2){
+						this.botSet( "space", true); sleep( 80); this.botSet( "space", false);
+					}
+				}
+			}
 			sleep( 100); t += 100;
 			if( side && (sidet += 100) > 900){ side = 0; sidet = 0; }
 			if( last){

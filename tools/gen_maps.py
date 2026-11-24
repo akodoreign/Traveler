@@ -1611,9 +1611,13 @@ def egg_altar():
     ev.npc(29, 14, EP["squeak"], "Big-man there. Scout talk. Talk-talk.", reqs=altar)
     ev.npc(40, 30, EP["shaman"], "Shiny-man ours.", reqs=[flag("G045"), flag("G049", False)])
     # (user 2026-11-12: "Seppun encounter in cave only triggers on bottom tile, should trigger where you enter his area")
-    # a strip across the whole tunnel mouth where it opens into the altar cave, not one tile in the middle
-    k = ev.scene(32, 11, "G045", S07_TO_S09, touch=True)
-    ev.ev["#%d#" % k]["mdl"] = {"r": [0, 1.0, 0, 2.5, 4.0, 1.5]}       # (the tunnel slopes: a tall box)
+    # a strip across the whole passage mouth, not one tile in the middle. (user 2026-11-24, screenshot: "its in a non
+    # logical spot move it to the line where my arrow is") not the tunnel she comes in by but the passage out of the
+    # altar cave past the camp, the way the player heads on (map blocks 65-69 x 37 after the cave rebuild: +26, +4)
+    k = ev.scene(41, 33, "G045", S07_TO_S09, touch=True)
+    ev.ev["#%d#" % k]["mdl"] = {"r": [0, 1.0, 0, 2.5, 4.0, 1.0]}       # (a tall box: the floor slopes)
+    ev.ev["#%d#" % k]["pos"][1] = 3                                     # (the passage floor, 2 blocks: the cave's
+                                                                        #  walls are reshaped after events are placed)
     return m, ev
 
 
@@ -2980,6 +2984,38 @@ def floor_arrows(m, ev, walkon_only=False):
         m.arrows = painted
 
 
+def configure_silk_dock_exits(events):
+    """Align the Isle of Silk's three east exits with their separate paved roads."""
+    routes = {
+        "M309": ("#2#", "G713", "The silk hill path"),
+        "M314": ("#7#", "G723", "The lane to Tortoise Beach"),
+        "M753": ("#167#", None, "The road to Mulberry Quay"),
+    }
+    gates = {}
+    for destination, (landing_key, gate, label) in routes.items():
+        landing = events[landing_key]
+        assert any(page.get("memo") == "landing" for page in landing["page"])
+        _, y, z, _ = landing["pos"]
+        (portal,) = (event for event in events.values() if event.get("role") == "portal"
+                     and event["dest"].get("mapid") == destination)
+        portal["pos"][1:3] = [y, z]
+        portal["mdl"]["r"][3] = 0.75
+        if gate:
+            gates[gate] = (z, label)
+    for key, event in list(events.items()):
+        conditions = event.get("reqs0") or []
+        if event.get("memo") != "barricade" or len(conditions) != 1:
+            continue
+        condition = conditions[0]
+        if condition.get("rvar") is not False or condition.get("lvar") not in gates:
+            continue
+        row, label = gates[condition["lvar"]]
+        if event["role"] == "villager":
+            event["msg"] = f"{label} is closed for now. Orders. When it opens, you'll hear of it."
+        elif not row - 2 <= event["pos"][2] <= row + 1:
+            del events[key]
+
+
 def mark_exits(m, ev):
     """Map edges (user, 2026-11-07: "last edge of any map if it connects to another map should transition to that
     next map, going both ways ... if you need to block a map use things like stacks of barrels and boxes and a samurai
@@ -3539,8 +3575,9 @@ def night_road_start():
     return [(134 + PAD_X) / 2.0, None, (18 + PAD_BOTTOM) / 2.0, 0.0]
 
 
-S05_INN = [say("Innkeeper", "Back again? A room's ten zeni. Quiet tonight, at least."),
-           choices(("Stay the night.", [{"cmd": "cmd_moneyop", "op": 1, "amount": 10}, setf("G022")] + DARK +
+# (user 2026-11-24: "set his price to always be 0") inns are free: the night's scene, no coin taken
+S05_INN = [say("Innkeeper", "Back again? Your room's waiting - no charge for the Wall's own. Quiet tonight, at least."),
+           choices(("Stay the night.", [setf("G022")] + DARK +
                     REST + S05_NIGHT + [
                         narrate("Objective: follow the nezumi."),
                         {"cmd": "cmd_screenfxoff", "sfxbits": 7, "time": 600},
@@ -6653,7 +6690,7 @@ def doji_stacks(m, ev):
             if z % 7 != 6:
                 fill(m, x, y, z, 1, 4, 1, DARKWOOD)
     ev.talk(10, 26, SC["censormonk"], CENSOR, d=3)
-    DOOR_EV[(m.mid, "stacks")] = n = ev.portal(5, 50, "M232", 1, d=2)      # the shelf on no catalogue
+    DOOR_EV[(m.mid, "stacks")] = n = ev.portal(5, 50, "M232", 1, d=0)      # the shelf on no catalogue (d=0: arrive in the room - the Crane squirrel stepped out and fell back down the stair)
     ev.ev["#%d#" % n]["reqs0"] = [flag("G418")]
     ev.talk(5, 49, "CE000", [(None, [narrate("A shelf at the end of the aisle that is on no catalogue. A draught "
                                              "behind it.")]),
@@ -7414,7 +7451,7 @@ ROUTE_C = [narrate("A red shadow crawls across the courtyard wall, toward Lord H
            say("Shizue", "Uncle! Don't move!"), say("Hiruto", "I wasn't going to."), setf("G483")]
 YARD = [flag("G482")]
 BOSS_BATTLE = [narrate("Each time O-Tamai's guard breaks (Suki), a jade chain goes round him. Three chains hold him. "
-                       "(The red shadow eats SP and VP, not HP.)"),
+                       "(The red shadow eats MP and VP, not HP.)"),
                if_(YARD, [if_([flag("G469")], [battle("M001", 57)], [battle("M001", 55)])],
                    [if_([flag("G469")], [battle("M001", 56)], [battle("M001", 54)])]), setf("G484")]
 S07_CL1 = cl1("S07", stop_at="> CHOICE") + [choices(
@@ -8685,7 +8722,7 @@ S05_PHX1 = cp1("S05", stop_at="> CHOICE") + [choices(
     ("Keep a stamped lid.", got("I165", "a Stamped Crate Lid") + [setf("G571")]),
     ("Let it go.", [narrate("Haruki lets the lid go into the river with the rest.")])),
     narrate("Objective: on west. The lock grows colder.")]
-VOID_TUTORIAL = [narrate("Haruki's Affinity is Water and Void. Void spells cost VP, not SP, and grow stronger the "
+VOID_TUTORIAL = [narrate("Haruki's Affinity is Water and Void. Void spells cost VP, not MP, and grow stronger the "
                          "more VP he holds."),
                  narrate("Drawing the Void gains VP at once. And Void Path to Inner Peace with 3 VP to heal the "
                          "whole party.")]
@@ -8784,7 +8821,7 @@ S08_PHX1 = [narrate("Night. Lord Hiruto's hall. Everyone gathers: Lord Hiruto, K
     say("Haruki", "Yes. We did. And I know exactly what that costs."),
     say("Haruki", "That's why I won't let you make anyone pay it again."),
     narrate("Each time O-Tamai's guard breaks (Suki), a jade chain goes round him. Three chains hold him. (The red "
-            "shadow eats SP and VP, not HP.)"),
+            "shadow eats MP and VP, not HP.)"),
     battle("M001", 79), setf("G484"), setf("G588", False)] + cl1("S08", start_at="(The spirit-wasteland") + [
     narrate("Morning. The skull, wrapped in new jade, goes east with the Phoenix. Haruki rides at the back, carrying "
             "the papers.")] + DARK + [go("M253", 12, 5, padded=False)]
@@ -9198,7 +9235,7 @@ MAPS_LION.update({"M282": zumiki, "M283": snow_pass_1, "M284": snow_pass_2, "M28
 # Ashimita as his yojimbo (user rule). Kyuden Isawa M288, the fever road M289 (village 1, the temple hospital M290,
 # village 2) and M291 (the ferry, village 3, the forest gate), the Isawa Mori M292-M293, the Mieko estate M294, the
 # cellar M295, the sealed library M296; backdrops M846 (forest), M847 (the cellar). Triage (F-1): the villages have
-# no inn; the temple hospital lets Haruki rest once; treatments cost his SP.
+# no inn; the temple hospital lets Haruki rest once; treatments cost his MP.
 def cp3(sid, **kw):
     return script_scene("phoenix-ch3", sid, **kw)
 
@@ -9213,9 +9250,9 @@ S01_PHX3 = [narrate("CHAPTER 3 - The Darkfever. (Recommended level 30)")] + cp3(
 
 
 def sp_cost(n, ok):
-    """Haruki spends SP on a treatment (the fever villages have no inn)."""
+    """Haruki spends MP on a treatment (the fever villages have no inn)."""
     return [script('local h = ::rpgstat.playermap["P104"]; W = !!h && h.MP >= %d; if( W) h.MP -= %d;' % (n, n)),
-            if_([flag("W")], ok, [narrate("Not enough SP. (Rejuvenating Tea restores it; the fever villages have no "
+            if_([flag("W")], ok, [narrate("Not enough MP. (Rejuvenating Tea restores it; the fever villages have no "
                                           "inn.)")])]
 
 
@@ -9230,14 +9267,14 @@ def sick(ev, x, z, mdl, f, who, line, after, opts):
     """One of the sick (production S02 table): treatments are path actions and spells. Hand of Jurojin (G656) is
     cheaper than Path to Inner Peace once the dying healer has taught it."""
     base = [say(who, line), choices(*(opts + [("Not now.", [])]))]
-    jur = [say(who, line), choices(*([("Hand of Jurojin (4 SP)", sp_cost(4, treated(f, "Hand of Jurojin: the fever "
+    jur = [say(who, line), choices(*([("Hand of Jurojin (4 MP)", sp_cost(4, treated(f, "Hand of Jurojin: the fever "
                                                                                         "breaks, for now.")))] +
                                      opts + [("Not now.", [])]))]
     ev.talk(x, z, mdl, [(None, base), ([flag("G656"), flag(f, False)], jur), ([flag(f)], [say(who, after)])])
 
 
-PTIP = lambda f: ("Path to Inner Peace (6 SP)", sp_cost(6, treated(f, "Water and quiet. The dark veins fade.")))  # noqa
-MASS = lambda f: ("Path to Inner Peace, with Void (12 SP)", sp_cost(12, treated(f, "Path to Inner Peace, with Void: the "  # noqa
+PTIP = lambda f: ("Path to Inner Peace (6 MP)", sp_cost(6, treated(f, "Water and quiet. The dark veins fade.")))  # noqa
+MASS = lambda f: ("Path to Inner Peace, with Void (12 MP)", sp_cost(12, treated(f, "Path to Inner Peace, with Void: the "  # noqa
                                                                                "whole family breathes easier.")))
 BLESS = lambda f, t: ("Bless (lead them to the temple hospital)", [narrate("Bless (Haruki's path action): " + t)] +  # noqa
                       treated(f, "At the temple hospital, they rest."))
@@ -9319,7 +9356,7 @@ def kyuden_isawa():
 
 # ---- M289 / M291 the fever road; M290 the temple hospital (S02 triage)
 HEALER = cp3("S02", start_at="DYING HEALER:", stop_at="[SPELL") + got("I173", "a Scroll: Hand of Jurojin") + [
-    setf("G656"), setf("G681"), narrate("Haruki learns Hand of Jurojin: it eases the sick for 4 SP.")]
+    setf("G656"), setf("G681"), narrate("Haruki learns Hand of Jurojin: it eases the sick for 4 MP.")]
 LEAVE = [narrate("The road out of the fever villages. The village elder runs after Haruki."),
          say("Village elder", "Isawa-sama, stay. One more day. Please."),
          choices(("Stay one more day.", [setf("G661"), setf("G650", 2, "+="), say("Village elder", "Bless you. Bless "
@@ -10393,7 +10430,9 @@ PORTAL_DGN2 = dp2("S03", start_at="(The centre. A frame", stop_at="> CHOICE") + 
                          narrate("Kitsuki Momo jumps too. She answers the Guest call in the past."), setf("G232", 11)])] + \
     dp2("S03", start_at="(The silk burns away", stop_at="### Party note") + LEFT_BEHIND + [
     leave("P132"), setf("G608", False), setf("G759"), setf("G745"),
-    narrate("Only Gendo crosses. Togashi Yosai is lost in the ink.")] + DARK + [go("M321", 15, 8)]
+    # (2026-11-24, read in a Dragon run: "Kitsuki Momo jumps too" then "Only Gendo crosses") Momo crosses when she jumped
+    if_([flag("G715")], [narrate("Only Gendo and Momo cross. Togashi Yosai is lost in the ink.")],
+        [narrate("Only Gendo crosses. Togashi Yosai is lost in the ink.")])] + DARK + [go("M321", 15, 8)]
 
 
 def cove_1():
@@ -12330,13 +12369,13 @@ def tailor_menu():
 
 
 def mask_shrine(ev, x, z, mid):
-    """A district shrine (production S03 [SAVE]): take the masks off (SP restored), rest and save."""
+    """A district shrine (production S03 [SAVE]): take the masks off (MP restored), rest and save."""
     fb(ev.m, x, z + 1, 3, 14)
     ev.talk(x, z - 1, "CE000", [(None, [
         narrate("A district shrine. Masked citizens bow to it on the way past, and never stop."),
         choices(("Speak to the Scorpion tailor.", [tailor_menu()]),
                 ("Remove masks, rest and save.", [script("W = ::Rokugan.removeMasks();")] + REST + [
-            narrate("(Masks off. Mitsue's own face, cold in the air. HP and SP restored.)"),
+            narrate("(Masks off. Mitsue's own face, cold in the air. HP and MP restored.)"),
             {"cmd": "cmd_showui", "key": "menu_save", "op": None, "uiclose": 2}]),
                 ("Rest and save, masks on.", REST + [narrate("(Rested.)"),
                                                      {"cmd": "cmd_showui", "key": "menu_save", "op": None,
@@ -12517,7 +12556,7 @@ S03_SCP2 = [narrate("A city that isn't on any map. Its gates are open. Its peopl
             say("Mitsue", "(unmasked) Good morning."),
             say("Masked sake-seller", "(looking straight through her) I have nothing to say to the faceless."),
             narrate("The city's people ignore the unmasked. Masks: the Merchant District, north. Worn in the city, a "
-                    "mask drinks a little of you (SP) each time you enter a district. A district shrine takes it off."),
+                    "mask drinks a little of you (MP) each time you enter a district. A district shrine takes it off."),
             narrate("Each mask has a material, and the citizens care: wood fears metal, metal fears fire, fire fears "
                     "water, water fears earth, earth fears wood, stone fears silk. They welcome the mask they fear, "
                     "and scorn the one they overcome."),
@@ -12567,12 +12606,11 @@ def hospitality_district():
         done="G888", done_line="Drink, drink. Three hundred years."))
     ev.talk(32, 20, EP_SERVICE["innkeeper"], [
         (None, [masked(), if_([flag("W")],
-                              [say("Crimson Blossom maid", "A room, honored guest? Thirty zeni. We never sleep, but "
-                                                           "the beds are very good."),
-                               choices(("Rest. (30 zeni)", [if_([{"lvar": "MONEY", "op": ">=", "rvar": 30}],
-                                                                [{"cmd": "cmd_moneyop", "op": 1, "amount": 30}] +
-                                                                REST + [narrate("(Rested.)")],
-                                                                [say("Crimson Blossom maid", "Thirty zeni.")])]),
+                              [say("Crimson Blossom maid", "A room, honored guest? It costs nothing here. We never "
+                                                           "sleep, but the beds are very good."),
+                               choices(("Rest.", REST + [narrate("(Rested.)"),
+                                                         {"cmd": "cmd_script", "desc": "RT rest quest",
+                                                          "code": "::Rokugan.innRestQuest();"}]),
                                        ("Not now.", []))],
                               [narrate("(looking straight through her)"), say("Crimson Blossom maid", FACELESS)])])])
     ev.talk(50, 20, SC["zhang"], [(None, [masked(), if_([flag("W")],
@@ -13609,7 +13647,7 @@ def grave_path():
 S04_SCP3 = [narrate("Dusk on the mountain road out of the village. The ground ripples."),
             narrate("Iuchi shugenja rise out of the earth around them, basket hats and masks, amulets twisting in their "
                     "fingers. One makes an adjustment, and the world goes utterly silent."),
-            narrate("The silence bubble: every other round, spells and spell-like skills (anything that costs SP) make "
+            narrate("The silence bubble: every other round, spells and spell-like skills (anything that costs MP) make "
                     "no sound. The round before, the air goes still. Break the amulet-bearer to pop it for good."),
             if_([flag("G967")], [battle("M001", 125)], [battle("M001", 118)]),
             say("Amulet-bearer", "(dying) The old master needs her! He needs royal blood! You don't understand what's "
@@ -20519,6 +20557,24 @@ def _first_flag_set(block, conds):
     return None
 
 
+def _move_ifs(cmds, dest):
+    """The conditions of the cmd_if "then" branches wrapped round the first map move to DEST in a command list (an
+    "else" branch can't be written as plain conditions: its ifs are left out)."""
+    for c in cmds or []:
+        if not isinstance(c, dict):
+            continue
+        if c.get("cmd") == "cmd_mapmove" and (c.get("dest") or {}).get("mapid") == dest:
+            return []
+        blocks = c.get("cmdblocks") or []
+        for i, b in enumerate(blocks):
+            if '"cmd_mapmove"' in json.dumps(b) and '"%s"' % dest in json.dumps(b):
+                inner = _move_ifs(b, dest)
+                if inner is None:
+                    continue
+                return (list(c.get("reqs") or []) if c.get("cmd") == "cmd_if" and i == 0 else []) + inner
+    return None
+
+
 def marker_pass(mp):
     """(user 2026-11-14: "a floating quest marker ... that shows you where to go next according to your currently
     selected quest, edge of screen taking the player to the next map over, to a door, etc.") Writes
@@ -20560,6 +20616,7 @@ def marker_pass(mp):
                 # the road search skips it while it is shut. A pair with any open way stays open.
                 rq = [r_ for r_ in (e.get("reqs0") or []) if isinstance(r_, dict) and re.fullmatch(r"G\d+",
                                                                                                str(r_.get("lvar")))]
+                own = {}                                      # (a story move's own page conditions, per exit)
                 for d_ in ds:
                     k_ = mid + ">" + d_
                     rq_ = rq
@@ -20573,7 +20630,13 @@ def marker_pass(mp):
                             if '"cmd_mapmove"' in pj and '"%s"' % d_ in pj:
                                 rq_ += [r_ for r_ in (pg_.get("reqs") or []) if isinstance(r_, dict) and
                                         re.fullmatch(r"G\d+", str(r_.get("lvar")))]
+                                # (2026-11-24, the Lion squirrel on Shiro Akodo 3F: the Oni no Ianwa walk-on moves to
+                                # the courtyard only inside "if G507 and not G514" - the marker sent her onto it
+                                # before G507, where it does nothing) the ifs wrapped round the move count too
+                                rq_ += [r_ for r_ in _move_ifs(pg_.get("cmdblock") or [], d_) if isinstance(r_, dict)
+                                        and re.fullmatch(r"G\d+", str(r_.get("lvar")))]
                                 break
+                        own[d_] = [[r_["lvar"], r_.get("op", "=="), r_.get("rvar")] for r_ in rq_]
                     if rq_:                                   # (2026-11-23, Crane: Garden Under Shadow's castle has
                         if gates.get(k_, 0) is not None:      #  two ways in, before and after the fete - every way
                             alt = [[r_["lvar"], r_.get("op", "=="), r_.get("rvar")] for r_ in rq_]   # is kept: the
@@ -20588,7 +20651,11 @@ def marker_pass(mp):
                     long_z = len(e["pos"]) > 3 and e["pos"][3] in (1, 3)
                     hx, hz = (r[5], r[3]) if long_z else (r[3], r[5])
                     for dm in sorted(ds):
-                        exits.setdefault(mid, []).append([dm, round(x, 2), round(z, 2), round(hx, 2), round(hz, 2)])
+                        # (2026-11-24, the Phoenix squirrel examined a futon in Hoju's study over and over: its late
+                        # page's scene moves to M252, so it was listed as a way out all the time - the pair had a
+                        # plain door too, so no gate) a story move's exit carries its page's conditions (6th item)
+                        exits.setdefault(mid, []).append([dm, round(x, 2), round(z, 2), round(hx, 2), round(hz, 2)] +
+                                                         ([own[dm]] if own.get(dm) else []))
             # (user 2026-11-14: "the quest marker should move over to the NPC you have to talk to about tagging along,
             # then back to the ship guy") a talk that hands out the next objective is a beat too: due while its page's
             # conditions hold and the first flag it sets is still unset
@@ -20704,7 +20771,14 @@ def marker_pass(mp):
         if len(inside) == 1:
             path_of[m_] = inside[0]
     # Phoenix's Chapter 1 route returns to Hiruto through the Lion's shrine road and castle.
-    shared_path = {m_: sorted({path_of[m_], "P104"}) for m_ in ("M241", "M242", "M250") if m_ in path_of}
+    # (user's screenshots 2026-11-24: the Phoenix squirrel stood in Hiruto's courtyard with "The west tower" and no
+    # marker) the west tower M278-M280 is Phoenix Ch1's own dungeon, reached first from the Lion's courtyard
+    for m_ in ("M278", "M279", "M280"):
+        if m_ in path_of:
+            path_of[m_] = "P104"
+    shared_path = {m_: sorted({path_of[m_], "P104"}) for m_ in ("M241", "M242", "M248", "M250") if m_ in path_of}
+    # The Lion visits Kamatori and Hoju's study during Chapter 1.
+    shared_path.update({m_: sorted({path_of[m_], "P103"}) for m_ in ("M252", "M253") if m_ in path_of})
     # the end-of-road objective (scene "G1230", shown once) stays due until that road is walked
     for b in beats:
         if b[3] and b[3][0][0] == "G1230" and path_of.get(b[0]) in PATH_WALKED:
@@ -20820,6 +20894,19 @@ def marker_pass(mp):
     with open(out, "w", encoding="utf-8") as f:
         f.write("//\tgenerated by tools/gen_maps.py marker_pass (the floating quest marker, RokuganMarker.sk)\n")
         f.write("::Rokugan.MK_EXITS <- {\n%s\n};\n" % ",\n".join('\t%s = %s' % (k, sq(v)) for k, v in sorted(exits.items())))
+        # (user 2026-11-24: rest objectives lead to the nearest innkeeper - RokuganMarker.mkRestGoal) every map's
+        # innkeeper who is always there
+        inns = {}
+        for mid_, m_ in sorted(mp.items()):
+            if not re.fullmatch(r"M\d{3}", mid_) or "M800" <= mid_ < "M900":
+                continue
+            for e_ in (m_.get("event") or {}).values():
+                if isinstance(e_, dict) and "pos" in e_ and not e_.get("reqs0") and (e_.get("role") == "hotel" or (
+                        e_.get("role") == "custom" and '"X014"' in json.dumps(e_.get("page") or []))):   # (a scripted
+                                                                                    # innkeeper: Hoshi-no-Ichi's)
+                    inns[mid_] = [round(e_["pos"][0] / 2.0, 2), round(e_["pos"][2] / 2.0, 2)]
+                    break
+        f.write("::Rokugan.MK_INNS <- {\n%s\n};\n" % ",\n".join('\t%s = %s' % (k, sq(v)) for k, v in sorted(inns.items())))
         f.write("::Rokugan.MK_LINKS <- {\n%s\n};\n" % ",\n".join('\t%s = %s' % (k, sq(sorted(v)))
                                                               for k, v in sorted(links.items())))
         f.write("::Rokugan.MK_GATES <- {\n%s\n};\n" % ",\n".join('\t["%s"] = %s' % (k, sq(v))
@@ -21124,7 +21211,90 @@ def fit_walk_in_doorways(events):
             event["spawndist"] = 5
 
 
+def clear_doorways(specs, events):
+    """(user 2026-11-24, screenshots: "more door shinanagens from the scorpion save" - Hisatu Kensu's "Stay the night"
+    innkeeper stood half a metre from the inn's door, inside its trigger: walking up to talk to him took you through
+    it; a villager stood on the door itself) the town rebuilds add interior doors after the people are placed. Every
+    visible person within 1.5 m of a door's trigger moves to the nearest spot on the same ground where a body fits,
+    2 m clear of every door, of buildings and of the others. Runs on every register (after all rebuilds)."""
+    moved = []
+    byid = {sp.mid: sp for sp in specs}
+    for mid, ev in events.items():
+        m = byid.get(mid)
+        if ev is None or m is None or getattr(m, "hgt", None) is None or mid in BATTLE_SPECS:
+            continue
+        H = m.hgt.astype(int)
+        D, W = H.shape
+        solid = np.zeros((D, W), bool)
+        for o in m.objs:
+            if o.get("t") == "fill":
+                z0, z1 = max(0, o["z"]), min(D, o["z"] + o["d"])
+                x0, x1 = max(0, o["x"]), min(W, o["x"] + o["w"])
+                if z0 < z1 and x0 < x1:
+                    solid[z0:z1, x0:x1] |= (o["y"] + o["h"]) > H[z0:z1, x0:x1] + 1
+            elif o.get("t") == "fb" and 0 <= o["z"] < D and 0 <= o["x"] < W:
+                solid[o["z"], o["x"]] = True
+        doors = []
+        for e in ev.ev.values():
+            if isinstance(e, dict) and e.get("role") == "portal" and "pos" in e:
+                r = (e.get("mdl") or {}).get("r") or [0, 1.0, 0, 1.0, 1.0, 0.5]
+                long_z = len(e["pos"]) > 3 and e["pos"][3] in (1, 3)
+                hx, hz = (r[5], r[3]) if long_z else (r[3], r[5])
+                doors.append((e["pos"][0], e["pos"][2], hx * 2, hz * 2))       # (blocks)
+        if not doors:
+            continue
+
+        def near_door(x, z, pad):
+            return any(abs(x - dx) <= hx + pad and abs(z - dz) <= hz + pad for dx, dz, hx, hz in doors)
+
+        taken = {(e["pos"][0], e["pos"][2]) for e in ev.ev.values() if isinstance(e, dict) and "pos" in e}
+        for k, e in ev.ev.items():
+            if not isinstance(e, dict) or "pos" not in e:
+                continue
+            if e.get("role") not in ("custom", "villager", "clerk", "hotel", "doctor"):
+                continue
+            if (e.get("mdlid") or "CE000") == "CE000":
+                continue
+            if e.get("moveaction") == "rt_follow" or any(isinstance(pg, dict) and pg.get("moveaction") == "rt_follow"
+                                                         for pg in e.get("page") or []):
+                continue                                                # (hirelings: they snap behind the leader)
+            x, z = e["pos"][0], e["pos"][2]
+            if not (0 <= x < W and 0 <= z < D) or not near_door(x, z, 3):
+                continue
+            h0 = H[z, x]
+            best = None
+            for rad in range(4, 25):
+                cands = []
+                for dz in range(-rad, rad + 1):
+                    for dx in ((-rad, rad) if abs(dz) != rad else range(-rad, rad + 1)):
+                        nx, nz = x + dx, z + dz
+                        if not (2 <= nx < W - 2 and 2 <= nz < D - 2):
+                            continue
+                        if solid[nz, nx] or abs(H[nz, nx] - h0) > 1:
+                            continue
+                        box = H[nz - 1:nz + 2, nx - 1:nx + 2]
+                        if solid[nz - 1:nz + 2, nx - 1:nx + 2].any() or (abs(box - H[nz, nx]) > 1).any():
+                            continue
+                        if near_door(nx, nz, 4):
+                            continue
+                        if any(abs(nx - tx) <= 2 and abs(nz - tz) <= 2 for tx, tz in taken if (tx, tz) != (x, z)):
+                            continue
+                        cands.append((dx * dx + dz * dz, nx, nz))
+                if cands:
+                    best = min(cands)
+                    break
+            if best:
+                taken.discard((x, z))
+                taken.add((best[1], best[2]))
+                y0 = e["pos"][1] - h0
+                e["pos"][0], e["pos"][2] = int(best[1]), int(best[2])
+                e["pos"][1] = int(H[best[2], best[1]] + y0)
+                moved.append("%s %s" % (mid, k))
+    print("doorways: %d people moved off doors (%s)" % (len(moved), ", ".join(moved[:12]) + (" ..." if len(moved) > 12 else "")))
+
+
 def register(specs, events):
+    clear_doorways(specs, events)
     mpath = os.path.join(PROJ, "data", "map.json")
     mp = json.load(open(mpath, encoding="utf-8"))
     base = mp["M001"]
@@ -21333,7 +21503,7 @@ SIDE_QUESTS = [
      "The mountain stays up there; the village stays down here. That's all a sohei does.", 1200, "J023"),
     # (user 2026-11-14: "Sounds like a lion job to me") the template's Champion, the Lion sergeant's last task (kept at
     # the END of the list: a quest's flags are G1250 + 3 x its place, so this one is G1274-G1276)
-    ("sq_champion", "P103", "The Champion's Challenge", "M241", 22, 15, "lionsergeant", "Lion sergeant", ["sq_drill"],
+    ("sq_champion", "P103", "The Champion's Challenge", "M241", 22, 15, "lionsergeant", "Lion sergeant", ["sq_drill", "G519"],
      "M266", [4, 1], "A glory-hound on the west road calls out every Akodo he meets - and his band backs him. A clan "
      "champion answers for the clan. Answer him, and come back a champion.",
      "A bushi in borrowed gold steps into the road and draws: \"Akodo! Face me!\" His friends close in behind him.",
@@ -21462,11 +21632,12 @@ def side_quest_events(m, ev, mid):
     givers = {}
     for k, q in enumerate(SIDE_QUESTS):
         if q[3] == mid:
-            givers.setdefault((q[4], q[5]), []).append(q)
+            givers.setdefault((q[4], q[5]), []).append((100 + k, q))
     for (x, z), chain in givers.items():
-        spr, gname = chain[0][6], chain[0][7]
+        _, first = chain[0]
+        spr, gname = first[6], first[7]
         pages = [(None, [say(gname, "Busy road. Busy, busy road.")])]
-        for q in chain:
+        for journal_id, q in chain:
             key, road, title, gmap, _x, _z, _s, _g, opens, hmap, gids, offer, hunt, remind, thanks, zeni, job = q
             taken, hunted, done = SQ_FLAGS[key]
             opens_f = [flag(SQ_FLAGS[o][2] if o in SQ_FLAGS else o) for o in opens]
@@ -21479,7 +21650,8 @@ def side_quest_events(m, ev, mid):
                 (opens_f + [flag(taken, False)],
                  [narrate("Side quest: %s" % title)] + ([narrate(SQ_PRE[key])] if key in SQ_PRE else []) +
                  [say(gname, offer),
-                  choices(("\"I'll do it.\"", [setf(taken), narrate("Side quest taken: %s. (%s) The Journal "
+                  choices(("\"I'll do it.\"", [setf(taken), setf("G1244", journal_id),
+                                     narrate("Side quest taken: %s. (%s) The Journal "
                                                                    "tracks it." % (title, remind))]),
                           ("\"Not now.\"", []))]),
                 ([flag(taken), flag(hunted, False)], [say(gname, remind)]),
@@ -23391,6 +23563,9 @@ def rebuild_yotomo_route(m, ev):
         x, y, z, _ = pos
         assert int(m.hgt[z,x]) + 1 == y, (m.mid, event, pos)
         ev.ev[event]["pos"] = list(pos)
+    if m.mid == "M397":
+        # The north passage into the vat chamber is five cells wide.
+        ev.ev["#85#"]["mdl"]["r"][3] = 1.0
     if m.mid in ("M396", "M397", "M398"):
         fixtures = {(20,obj["fbparam"]) for obj in m.objs if obj["t"] == "fb" and obj["fbtype"] == 20}
         if m.mid == "M398":
@@ -24679,6 +24854,8 @@ def make(i):
         ev.chest(x, z, item)
     if ev is not None:
         _region_access_number(i, ev)
+    if i == "M304":
+        configure_silk_dock_exits(ev.ev)
     if ev is not None and i in TRAVEL_AUTO_MAP:                            # fast travel on every road (appended
         _auto_signpost(i, m, ev)                                           # last: no other event id moves)
     if i in {"M102", "M105", "M811"}:

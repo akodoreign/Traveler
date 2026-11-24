@@ -1960,7 +1960,7 @@
 		"atkform": "dst.MAXMP*30/100",
 		"cmdtgt": 8,
 		"consume": 1,
-		"desc": "Restores SP.",
+		"desc": "Restores MP.",
 		"dmgform": 5,
 		"dmgtype": 4,
 		"endact": {
@@ -2131,7 +2131,7 @@
 		"atkform": "dst.MAXMP*25/100",
 		"cmdtgt": 8,
 		"consume": 1,
-		"desc": "A Phoenix temple tea. Restores some SP.",
+		"desc": "A Phoenix temple tea. Restores some MP.",
 		"dmgform": 5,
 		"dmgtype": 4,
 		"endact": {

@@ -38,7 +38,7 @@ school rank. if you have other dojos for other members do the same. that way its
 | Rensei | Duelist | Strike First / Measure the Foe (+crit vs a lone enemy) / Ready Blade (Iaijutsu starts with 1 Focus) |
 | Gendo | Magistrate | Read the Foe (one weakness shown at battle start) / Honest Eyes (resist charm, confuse) / Bounty (+money) |
 | Shizue | Tactician | Vanguard (party speed up on turn 1) / Rally (+1 VP at battle start) / Banner (party ATK up while she is under 50% HP) |
-| Haruki | Scholar | Learned (+max SP) / Meditation (SP regen each turn) / Ward (status resist) |
+| Haruki | Scholar | Learned (+max MP) / Meditation (MP regen each turn) / Ward (status resist) |
 | Mitsue | Shinobi | Sneak / Light Fingers (steal up) / Ambush (surprise round; back-attack crit) |
 | Tamotsu | Merchant | Haggle (shop prices -10%) / Golden Purse (+money) / Connections (hirelings +1 charge) |
 | Sayo | Herbalist | Forager (items after battle) / Strong Brew (Remedy stronger) / Wave-woman (escape always works) |

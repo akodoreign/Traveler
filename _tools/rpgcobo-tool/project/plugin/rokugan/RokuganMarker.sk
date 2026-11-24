@@ -54,13 +54,14 @@
 		local t = this.MK_QUEST[tid];
 		if( length( q)){
 			q = q[0];
-			if( ::rpgvar[q.done]) return null;
-			if( ::rpgvar[q.taken] && !::rpgvar[q.hunted]) return [t[3], t[4], t[5]];
-			return [t[0], t[1], t[2]];
+			if( !::rpgvar[q.done]){
+				local ix = (::rpgvar[q.taken] && !::rpgvar[q.hunted]) ? 3 : 0;
+				if( t[ix] in road.dist) return [t[ix], t[ix+1], t[ix+2]];
+			}
 		}
 		//	(tester 2026-11-14) the hand-written side stories, ids 1-10 (JOURNAL_SIDE): the place that finishes them
 		local s = ("JOURNAL_SIDE" in ::Rokugan) ? this.JOURNAL_SIDE.filter( @( v) v.id == tid) : [];
-		if( length( s)) return ::rpgvar[s[0].done] ? null : [t[0], t[1], t[2]];
+		if( length( s) && !::rpgvar[s[0].done]) return [t[0], t[1], t[2]];
 	}
 	//	(whose road: the first traveler in the party - Formation can put a companion in slot 1)
 	local pid = ("journalLead" in this) ? this.journalLead() : null;
@@ -82,8 +83,83 @@
 		if( spec > bs || (spec == bs && d < bd)){ best = b; bs = spec; bd = d; }
 	}
 	}
-	return best ? [best[0], best[1], best[2]] : null;
+	if( !best) return null;
+	local g = [best[0], best[1], best[2]];
+	local rg = this.mkRestGoal( cur, g, road);							//	(a rest: the nearest innkeeper)
+	return rg ? rg : g;
 };
+
+//	(user 2026-11-24: "move quest markers like rest to the nearest inkeeper, set his price to always be 0 and trigger the
+//	quests rest. i saw several times where the marker was in front of a place or just in the middle of the street")
+//	A rest objective ("Rest at the inn tonight", "Haruki should sleep", ...): the marker goes to the nearest innkeeper
+//	(MK_INNS, by road from where the night's scene is, at most 3 maps from it) instead of the scene's spot; resting
+//	there (free: macro X014) runs that scene (innRestQuest).
+::Rokugan.mkRestBeat <- null;
+::Rokugan.mkRestCache <- { key = "", val = null, beat = null };
+::Rokugan.mkIsRest <- function(){
+	local oi = int( ::rpgvar["G1227"] || 0) - 1, objs = this["OBJECTIVES"] || [];
+	if( oi < 0 || oi >= length( objs)) return false;
+	local t = objs[oi];
+	if( t.indexOf( "place to rest") >= 0) return false;
+	foreach( w in ["Rest ", "Rest.", " rest ", " rest.", "sleep"]) if( t.indexOf( w) >= 0) return true;
+	return false;
+};
+::Rokugan.mkRestGoal <- function( cur, g, road){
+	if( !this.mkIsRest() || !("MK_INNS" in this)){ this.mkRestBeat = null; return null; }
+	local C = this.mkRestCache, key = "%s|%s|%.1f|%.1f|%d" % [cur, g[0], g[1], g[2], int( ::rpgvar["G1227"] || 0)];
+	if( C.key == key){ this.mkRestBeat = C.beat; return C.val; }
+	local r = this.mkRoad( g[0]), best = null, bd = 4, br = 9999;
+	foreach( im, p in this.MK_INNS){
+		if( !(im in road.dist)) continue;								//	(one she can get to from here)
+		local d = im == g[0] ? 0 : ((im in r.dist) ? r.dist[im] : 99);
+		if( d < bd || (d == bd && road.dist[im] < br)){ bd = d; br = road.dist[im]; best = [im, p[0], p[1]]; }
+	}
+	C.key = key; C.val = best; C.beat = best ? g : null;
+	this.mkRestBeat = C.beat;
+	return best;
+};
+
+//	after a night at an inn (macro X014): the rest objective's own scene - on its map (moving there first), the event at
+//	the beat's spot is run
+::Rokugan.innRestQuest <- function(){
+	if( !this.mkIsRest()) return;
+	local st = ::rpgstage;
+	if( !st) return;
+	local keep = ::rpgvar["G1244"];
+	::rpgvar["G1244"] = 0;												//	(the story's beat, not a tracked quest's)
+	try{ this.mkGoal( st.mapid, this.mkRoad( st.mapid)); }catch( ex){ printexception( ex); }
+	::rpgvar["G1244"] = keep;
+	local beat = this.mkRestBeat;
+	if( !beat){ printf( "[RT] inn rest: no scene due for this rest\n"); return; }
+	printf( "[RT] inn rest: the night's scene at %S %.1f %.1f\n", beat[0], beat[1], beat[2]);
+	newthread().start( @() ::Rokugan.innRestRun( beat));
+};
+::Rokugan.innRestRun <- function( beat){
+	local t = 0;
+	while( ::rpgstage && ::rpgstage.mainevent && t < 30000){ sleep( 100); t += 100; }
+	sleep( 300);
+	if( !::rpgstage || ::rpgstage.mainevent) return;
+	if( ::rpgstage.mapid != beat[0]){
+		::RPGMain.moveMap( { dest = { mapid = beat[0], pos = (beat[1], null, beat[2], 0.0) }, wipe = 1, remap = true });
+		t = 0;
+		while( t < 20000 && (!::rpgstage || ::rpgstage.mapid != beat[0] || !::rpgstage["player3d"])){ sleep( 200); t += 200; }
+		sleep( 1000);
+	}
+	local st = ::rpgstage;
+	if( !st || st.mainevent || st.mapid != beat[0]) return;				//	(arriving on it already ran it)
+	local best = null, bd = 9.0;
+	foreach( k, e in st.events){
+		if( !e.rp3d || !e.page || !e.data || e.data["role"] == "portal") continue;
+		if( int( e.page["trigger"] || 0) == 0) continue;
+		local d = Math.pow( e.rp3d.pos.x - beat[1], 2) + Math.pow( e.rp3d.pos.z - beat[2], 2);
+		if( d < bd){ bd = d; best = e; }
+	}
+	if( !best){ printf( "[RT] inn rest: nothing to run at %S %.1f %.1f\n", beat[0], beat[1], beat[2]); return; }
+	local pi = best.pagelist.indexOf( best.page);
+	printf( "[RT] inn rest: running %S\n", "" .. (best.data["name"] || "?"));
+	if( pi >= 0) best.forceTrigger( pi);
+};
+
 
 //	where to float: the goal itself, or the way out toward its map
 ::Rokugan.mkPoint <- function( st, goal, road){
@@ -95,14 +171,16 @@
 	local p = st.player3d.pos, best = null, bd = 999999.0;			//	(no 1e9 literals in this dialect)
 	//	(user: "on screens where there is no objectives the star should float at the edge ... where you are supposed
 	//	to go") the hop may be a story move with no door on this map: then the walkable exit whose map is nearest the goal
-	local ways = this.MK_EXITS[cur].filter( @( e) e[0] == hop);
+	//	(a story move's exit - a futon whose late page has a scene - only while that page can run: 6th item)
+	local open = this.MK_EXITS[cur].filter( @( e) length( e) < 6 || ::Rokugan.mkReqs( e[5]));
+	local ways = open.filter( @( e) e[0] == hop);
 	if( !length( ways)){
 		local bestd = 9999;
-		foreach( e in this.MK_EXITS[cur]){
+		foreach( e in open){
 			local r = this.mkRoad( e[0]), d = (goal[0] in r.dist) ? r.dist[goal[0]] : 9999;
 			if( d < bestd){ bestd = d; hop = e[0]; }
 		}
-		ways = this.MK_EXITS[cur].filter( @( e) e[0] == hop);
+		ways = open.filter( @( e) e[0] == hop);
 	}
 	foreach( e in ways){
 		//	the nearest point of the exit's box (an edge strip is long: float where the player would cross it)

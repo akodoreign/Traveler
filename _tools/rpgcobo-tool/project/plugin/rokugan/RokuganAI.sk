@@ -206,6 +206,25 @@ local log( s){ printf( "[RT] %S\n", s); }
 			return SkillCommand( pc, shard, dsts);
 		}
 	}
+	//	(squirrels 2026-11-24: Phoenix's Auto Battle hit O-Tamai at 1 HP for 94 turns) a foe held at 1 HP only falls
+	//	to its weakness (O-Tamai: a jade chain each time his guard breaks). When the weakness spell needs MP this one
+	//	hasn't got, drink an MP restorative (Rejuvenating Tea) first - and plain hits on it are wasted (below)
+	local pinned = foes.filter( @( e) e.HP <= 1 && e.MAXHP > 20);
+	if( length( pinned)){
+		local wantsSp = false;
+		foreach( sid, sk in ::conf.skill){
+			if( typeof( sid) != SS_STRING || sid[0] != 'S' || !sk || sk["skilltype"] != "attack" || !pc.hasSkill( sid)) continue;
+			if( ((sk["elembits"] | 0) & this.weakbits( pinned[0])) && !pc.canConsumeForSkill( sk)){ wantsSp = true; break; }
+		}
+		if( wantsSp && !cands.find( @( sk) (sk["elembits"] | 0) & this.weakbits( pinned[0])))
+			foreach( iid, it in ::conf.item){
+				if( !it || it["skilltype"] != "heal" || (it["dmgtype"] | 0) != 4 || !pc.canConsumeForSkill( it)) continue;
+				local dsts = b.getCommandTargets( pc, pc, it.cmdtgt, false);
+				if( !length( dsts)) continue;
+				log( "auto: %S drinks %S for MP (%S only falls to its weakness)" % (pc.name, it.name, pinned[0].name));
+				return SkillCommand( pc, it, dsts);
+			}
+	}
 	local best = null, bt = null, bs = -1.0;
 	foreach( sk in cands){
 		local bits = sk["elembits"] | 0, jade = bits & (1 << 11);
@@ -215,7 +234,9 @@ local log( s){ printf( "[RT] %S\n", s); }
 			if( bits & this.weakbits( e)) sc *= 2.0;
 			if( this.state( e).broken) sc *= 1.5;
 			if( jade) sc *= 1.08;									//	jade burns the Tainted: prefer it on a tie
-			sc *= 1.0 + 0.2 * (1.0 - float( e.HP) / Math.max( 1, e.MAXHP));		//	finish the wounded
+			if( e.HP <= 1 && e.MAXHP > 20){								//	held at 1 HP: only its weakness counts
+				if( !(bits & this.weakbits( e))) sc *= 0.05;					//	(so the Red-shadow Oni, eating MP,
+			}else sc *= 1.0 + 0.2 * (1.0 - float( e.HP) / Math.max( 1, e.MAXHP));	//	goes first) - finish the wounded
 			if( sk.cmdtgt == 7) sc *= 0.8 + 0.2 * length( foes);
 			if( sc > bs){ bs = sc; best = sk; bt = e; }
 		}

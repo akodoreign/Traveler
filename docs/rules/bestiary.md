@@ -164,7 +164,7 @@ Challenge). Sparing them gives Honor +; killing surrendered foes gives Honor −
 | I | Will-o'-wisp (*hitodama*) | 3–8 | 0.5 | 1 | Water, Bo | physical half | *Lure* (Confuse) | Spirit Flame (Fire item) / — |
 | II | Yurei (restless ghost) | 19–25 | 1.1 | 3 | Water, Void, Crystal | physical half | *Grief Wail* (Terror 1) | Ghost Lock of Hair / — |
 | II | Fear Shade (Ianwa's spawn; Shiro Akodo) | 19–24 | 0.8 | 3 | Jade, Fire | physical half | *Dread Touch* (Terror 1) | Ghost Lock of Hair / — |
-| II | Gaki (hungry ghost) | 20–25 | 1.2 | 4 | Water, Jade, Crystal | physical half | *Devour* (steals SP) | Rice Offering / — |
+| II | Gaki (hungry ghost) | 20–25 | 1.2 | 4 | Water, Jade, Crystal | physical half | *Devour* (steals MP) | Rice Offering / — |
 | III | Fever Spirit (Phoenix Darkfever) | 30–35 | 0.9 | 3 | Water, Jade | physical half | *Darkfever Breath* (Poison) | Fever Ash / — |
 | III | Ghost-Guard (White Snow) | 30–35 | 1.0 | 4 | Fire, Katana | physical half | rises again near a basin | Frozen Badge / — |
 | III | Paper-spirit (*tsukumogami*, archives) | 30–44 | 0.6 | 2 | Fire, Tanto | — | *Paper Cut* (bleed) | Old Paper / — |

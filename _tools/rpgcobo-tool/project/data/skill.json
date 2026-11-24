@@ -6154,7 +6154,7 @@
 			0,
 			0
 		],
-		"desc": "Counterspell (Void 1). Counter-prayer: a reaction set this turn; the next enemy spell is cancelled (the SP cost scales with that spell's tier)",
+		"desc": "Counterspell (Void 1). Counter-prayer: a reaction set this turn; the next enemy spell is cancelled (the MP cost scales with that spell's tier)",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"flags": 126,
@@ -6354,7 +6354,7 @@
 			0,
 			10
 		],
-		"desc": "Rejuvenating Vapors (Water 2). Restore 50% SP to an ally and cure fatigue debuffs. Once per inn rest.",
+		"desc": "Rejuvenating Vapors (Water 2). Restore 50% MP to an ally and cure fatigue debuffs. Once per inn rest.",
 		"dmgform": 7,
 		"dmgtype": 2,
 		"endact": {
@@ -7443,7 +7443,7 @@
 			0,
 			10
 		],
-		"desc": "Hurried Steps (Fire 2). Haruki acts again at once, but only to cast; a Fire spell costs −25% SP",
+		"desc": "Hurried Steps (Fire 2). Haruki acts again at once, but only to cast; a Fire spell costs −25% MP",
 		"enemyuse": false,
 		"eqtypebits": 2047,
 		"flags": 126,
@@ -8508,7 +8508,7 @@
 			0,
 			48
 		],
-		"desc": "Tempest of Fire (Fire 6). ultimate AoE: afterwards his non-Fire spells cost +50% SP until an inn",
+		"desc": "Tempest of Fire (Fire 6). ultimate AoE: afterwards his non-Fire spells cost +50% MP until an inn",
 		"dmgform": 1,
 		"dmgrate": [
 			0.9,
@@ -23020,7 +23020,7 @@
 			0,
 			0
 		],
-		"desc": "The red shadow crawls over you and drinks. (Drains SP and VP: soul damage)",
+		"desc": "The red shadow crawls over you and drinks. (Drains MP and VP: soul damage)",
 		"dmgform": 0,
 		"dmgrate": [
 			0.4,
@@ -23094,7 +23094,7 @@
 			0,
 			0
 		],
-		"desc": "\"Your Void tastes like mine. We're made of the same night.\" (drains SP and 1 VP)",
+		"desc": "\"Your Void tastes like mine. We're made of the same night.\" (drains MP and 1 VP)",
 		"dmgform": 0,
 		"dmgrate": [
 			0.4,

@@ -266,53 +266,60 @@
       "clan": "dragon"
     },
     "side_ijako": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_nishi": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_seoko": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_tatanko": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_hojato": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_hojiki": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_kafu": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_kafu_nosword": {
       "mesh": "A100",
@@ -322,25 +329,28 @@
       "clan": "lion"
     },
     "side_ryuzoji": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_shogen": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_toturi": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_asahina": {
       "mesh": "A124",
@@ -505,18 +515,20 @@
       "clan": "unicorn"
     },
     "side_ikomabard": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_tadaka": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_shahai": {
       "mesh": "A155",
@@ -540,11 +552,12 @@
       "clan": "unicorn"
     },
     "side_iuchifarmer": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_karasu": {
       "mesh": "A155",
@@ -561,32 +574,36 @@
       "clan": "unicorn"
     },
     "side_mami": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_gesshin": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_h_engineer": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_h_sapper": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_kyumi": {
       "mesh": "A124_sono_kagemaro",
@@ -651,11 +668,12 @@
       "palette": "A124"
     },
     "side_morishu": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "ronin"
+      "clan": "ronin",
+      "was": "A100"
     },
     "side_yasurugi": {
       "mesh": "A124_sono_kagemaro",
@@ -666,18 +684,20 @@
       "palette": "A124"
     },
     "side_kenshai": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_togawa": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_oharu": {
       "mesh": "A153",
@@ -708,11 +728,12 @@
       "clan": "dragon"
     },
     "side_h_kuni": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_miyubi": {
       "mesh": "A100",
@@ -722,32 +743,36 @@
       "clan": "crab"
     },
     "side_akuja": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_h_witch": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_taira": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_kiku": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_drummer": {
       "mesh": "A153",
@@ -771,11 +796,12 @@
       "clan": "dragon"
     },
     "side_h_moshi": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "ronin"
+      "clan": "ronin",
+      "was": "A100"
     },
     "side_miyahana": {
       "mesh": "A155",
@@ -834,18 +860,20 @@
       "clan": "scorpion"
     },
     "side_noburo": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_nihime": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_shinobu": {
       "mesh": "A127",
@@ -932,11 +960,12 @@
       "clan": "dragon"
     },
     "side_h_tsuruchi": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "ronin"
+      "clan": "ronin",
+      "was": "A100"
     },
     "side_actor_b": {
       "mesh": "A124_sono_kagemaro",
@@ -947,39 +976,44 @@
       "palette": "A124"
     },
     "side_akari": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_campfollower": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_fishseller": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_fishwife": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_fumi": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_grandmother": {
       "mesh": "A100_grandmother",
@@ -990,25 +1024,28 @@
       "clan": "peasant"
     },
     "side_h_herbalist": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_h_jadeseller": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_h_kitsune": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_hagi": {
       "mesh": "A127",
@@ -1018,11 +1055,12 @@
       "clan": "scorpion"
     },
     "side_hana": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_herald": {
       "mesh": "A127",
@@ -1032,53 +1070,60 @@
       "clan": "scorpion"
     },
     "side_herbseller": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_hostess": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_incense": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_innkeeper": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_jadeclerk": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_kitchengirl": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_kiyo": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_makeup": {
       "mesh": "A124_miyoshi",
@@ -1096,11 +1141,11 @@
       "clan": "peasant"
     },
     "side_miko": {
-      "mesh": "A100",
-      "dyed": true,
-      "decal": "A100",
+      "mesh": "trav_natsuko_miko",
       "coverCore": true,
-      "clan": "peasant"
+      "showThroat": true,
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_mitsue_maid": {
       "mesh": "A127",
@@ -1124,11 +1169,12 @@
       "clan": "scorpion"
     },
     "side_netmender": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_oldwoman": {
       "mesh": "A100",
@@ -1145,67 +1191,75 @@
       "clan": "eta"
     },
     "side_pilgrimgirl": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_rika": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_sariko": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_shrinekeeper": {
-      "mesh": "A100",
-      "dyed": true,
-      "decal": "A100",
+      "mesh": "trav_natsuko_miko",
       "coverCore": true,
-      "clan": "peasant"
+      "showThroat": true,
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_twin": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_umebaa": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "eta"
+      "clan": "eta",
+      "was": "A100"
     },
     "side_widow": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_youngsayo": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "ronin"
+      "clan": "ronin",
+      "was": "A100"
     },
     "side_abbot": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_actor_a": {
       "mesh": "A124_sono_kagemaro",
@@ -1224,39 +1278,44 @@
       "palette": "A124"
     },
     "side_akuro": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_bargeman": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_beggar": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "eta"
+      "clan": "eta",
+      "was": "A100"
     },
     "side_beggarmonk": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_cartdriver": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_censorclerk": {
       "mesh": "A124_sono_kagemaro",
@@ -1267,25 +1326,28 @@
       "palette": "A124"
     },
     "side_charmseller": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_citizen": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_crabboy": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_diver": {
       "mesh": "A100",
@@ -1295,81 +1357,92 @@
       "clan": "peasant"
     },
     "side_doorman": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_drunkactor": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_drunksailor": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_ebisu": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "eta"
+      "clan": "eta",
+      "was": "A100"
     },
     "side_ferryman": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_ff_boatman": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_ff_fisherman": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_gaijintrader": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_gatekeeper": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_gochu": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_gonbei": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_gonta": {
       "mesh": "A108",
@@ -1386,25 +1459,28 @@
       "clan": "peasant"
     },
     "side_h_fisherman": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_h_goatherd": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_h_hanabi": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_h_hunter": {
       "mesh": "A127",
@@ -1414,25 +1490,28 @@
       "clan": "scorpion"
     },
     "side_h_lamplighter": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_h_suzume": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_h_thundermonk": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_h_windpriest": {
       "mesh": "A100",
@@ -1442,60 +1521,68 @@
       "clan": "ronin"
     },
     "side_h_yojimbo": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "ronin"
+      "clan": "ronin",
+      "was": "A100"
     },
     "side_hidden1": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "ronin"
+      "clan": "ronin",
+      "was": "A100"
     },
     "side_hidden2": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "ronin"
+      "clan": "ronin",
+      "was": "A100"
     },
     "side_hiro": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "eta"
+      "clan": "eta",
+      "was": "A100"
     },
     "side_hitoro": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_imuro": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_itami": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_jinnai": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "ronin"
+      "clan": "ronin",
+      "was": "A100"
     },
     "side_kagemaro": {
       "mesh": "A124_sono_kagemaro",
@@ -1506,39 +1593,44 @@
       "palette": "A124"
     },
     "side_karo": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "lion"
+      "clan": "lion",
+      "was": "A100"
     },
     "side_katsuo": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "ronin"
+      "clan": "ronin",
+      "was": "A100"
     },
     "side_kitechild": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_kitsuneboy": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_kosai": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "mantis"
+      "clan": "mantis",
+      "was": "A100"
     },
     "side_koshi": {
       "mesh": "A153",
@@ -1548,32 +1640,36 @@
       "clan": "dragon"
     },
     "side_mamoru": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_mantisenvoy": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "mantis"
+      "clan": "mantis",
+      "was": "A100"
     },
     "side_maskmaker": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_mcaptain": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "mantis"
+      "clan": "mantis",
+      "was": "A100"
     },
     "side_merchant": {
       "mesh": "A100",
@@ -1583,11 +1679,12 @@
       "clan": "peasant"
     },
     "side_mobleader": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_mosuke": {
       "mesh": "A100",
@@ -1597,11 +1694,12 @@
       "clan": "peasant"
     },
     "side_muledriver": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_munashii": {
       "mesh": "A100",
@@ -1611,11 +1709,12 @@
       "clan": "peasant"
     },
     "side_musician": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_naohida": {
       "mesh": "A100",
@@ -1625,81 +1724,92 @@
       "clan": "ronin"
     },
     "side_oldpilgrim": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_pedlar": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_pigeonkeeper": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_pilgrim": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_pilgrimagent": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_porter": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_riichi": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_roninchef": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "ronin"
+      "clan": "ronin",
+      "was": "A100"
     },
     "side_rteacher": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_sabu": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_sakeseller": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_senior_student": {
       "mesh": "A124_sono_kagemaro",
@@ -1710,11 +1820,12 @@
       "palette": "A124"
     },
     "side_servant": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_shipmaster": {
       "mesh": "A124_sono_kagemaro",
@@ -1725,25 +1836,28 @@
       "palette": "A124"
     },
     "side_shrinepeasant": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_smithboy": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_snakeelder": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_sonoservant": {
       "mesh": "A124_sono_kagemaro",
@@ -1754,46 +1868,52 @@
       "palette": "A124"
     },
     "side_swordsmith": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_tbeggar": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "eta"
+      "clan": "eta",
+      "was": "A100"
     },
     "side_thundermonk": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_tokubei": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_torishigawa": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_veteran": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_yodo": {
       "mesh": "A100",
@@ -1803,11 +1923,12 @@
       "clan": "peasant"
     },
     "side_youth": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "peasant"
+      "clan": "peasant",
+      "was": "A100"
     },
     "side_kurako": {
       "mesh": "A100",
@@ -1817,32 +1938,36 @@
       "clan": "crab"
     },
     "side_kanbe": {
-      "mesh": "A100",
+      "mesh": "A153",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A153",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_kanemori": {
-      "mesh": "A100",
+      "mesh": "A127",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A127",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_kasamashi": {
-      "mesh": "A100",
+      "mesh": "A124",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A124",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_tessai": {
-      "mesh": "A100",
+      "mesh": "A140",
       "dyed": true,
-      "decal": "A100",
+      "decal": "A140",
       "coverCore": true,
-      "clan": "crab"
+      "clan": "crab",
+      "was": "A100"
     },
     "side_meyako": {
       "mesh": "A127",

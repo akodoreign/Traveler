@@ -14,7 +14,7 @@ Setting basis (facts only, used as flavour):
   (a Low Skill) is a late unlock.
 
 ## 1. Mechanic
-- **Remedy** (battle command, no SP): pick **1 base + 1 catalyst**. A **2nd catalyst slot** opens at **Medicine 5**.
+- **Remedy** (battle command, no MP): pick **1 base + 1 catalyst**. A **2nd catalyst slot** opens at **Medicine 5**.
   Ingredients are consumed.
 - Ingredients come from **foraging** (field: Herbalism, from rustling plants in wild maps), shops, enemy drops,
   **Pilfer**, and Tamotsu's **Barter**.

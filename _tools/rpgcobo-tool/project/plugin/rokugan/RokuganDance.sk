@@ -104,6 +104,7 @@ local restoreDanceStage = function( exit = null){
 		rp.matdirty = true;
 	}catch( ex){ printexception( ex); }
 	try{ lease.field.setVisible( lease.visible); }catch( ex){ printexception( ex); }
+	if( "hidden" in lease) foreach( o in lease.hidden) try{ o.setVisible( true); }catch( ex){}	//	the party back
 	try{
 		if( lease.stage == ::rpgstage) lease.stage.setCamerawork( { fade = 600 });
 	}catch( ex){ printexception( ex); }
@@ -135,6 +136,13 @@ local restoreDanceStage = function( exit = null){
 		actor.matdirty = true;
 		stage.scn.addObject( actor);
 		rp.setVisible( false);
+		lease.hidden <- [];										//	(user: "the companions, guests and hirelings all
+		foreach( o in ::Rokugan.pfol.objs)						//	stand on the stage instead of just being hidden
+			if( o && o.visible){ o.setVisible( false); lease.hidden.append( o); }	//	during the miko dance")
+		foreach( k, e in stage.events){
+			if( !e.rp3d || !e.page || e.page["moveaction"] != "rt_follow" || !e.rp3d.visible) continue;
+			e.rp3d.setVisible( false); lease.hidden.append( e.rp3d);
+		}
 		rp.pos( s.x, s.y, s.z);
 		rp.setDir( dir);
 		rp.matdirty = true;

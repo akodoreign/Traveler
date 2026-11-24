@@ -918,7 +918,7 @@
 	"A111": {
 		"MDEF": 3,
 		"PDEF": 10,
-		"desc": "A priest's over-robe, ofuda sewn into the lining. E.Def and SP up.",
+		"desc": "A priest's over-robe, ofuda sewn into the lining. E.Def and MP up.",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
@@ -1157,7 +1157,7 @@
 	"A124": {
 		"MDEF": 3,
 		"PDEF": 22,
-		"desc": "White and gold temple robes, ofuda in the hems. E.Def and SP up.",
+		"desc": "White and gold temple robes, ofuda in the hems. E.Def and MP up.",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
@@ -1223,7 +1223,7 @@
 	"A128": {
 		"MDEF": 3,
 		"PDEF": 30,
-		"desc": "A shugenja's mantle, misfiled in the sealed stacks. E.Def and SP up.",
+		"desc": "A shugenja's mantle, misfiled in the sealed stacks. E.Def and MP up.",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",
@@ -1407,7 +1407,7 @@
 	"A140": {
 		"MDEF": 3,
 		"PDEF": 24,
-		"desc": "An Isawa robe from Shiba Katsutoshi's storeroom, the kind the page Sanro will grow into. (SP +15)",
+		"desc": "An Isawa robe from Shiba Katsutoshi's storeroom, the kind the page Sanro will grow into. (MP +15)",
 		"eqflag": -1,
 		"eqtype": 13,
 		"icon": "",

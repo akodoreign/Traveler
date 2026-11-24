@@ -351,7 +351,7 @@ def spell_skills(s):
             k["option"] = [o for o in (k.get("option") or []) if o.get("opttype") != "opt_putcond"] + [
                 {"condid": by_id, "efx_start": None, "opttype": "opt_putcond", "rate": 1.0, "showmiss": False,
                  "when": 0, "whom": 0}]
-        if sp["elem"] == "Void":                       # Void spells cost VP, not SP (haruki-spells.md §1)
+        if sp["elem"] == "Void":                       # Void spells cost VP, not MP (haruki-spells.md §1)
             k["consume"] = [0, 0]
             k["rt_vp"] = 0 if sp["name"] == "Drawing the Void" else (1 if sp["ml"] <= 2 else 2 if sp["ml"] <= 4 else 3)
         if "cure poison" in en or "cleanse" in en:
@@ -647,16 +647,16 @@ def crab_items(it):
         k = copy.deepcopy(it["I000"])
         k.update({"name": name, "desc": desc, "itemtype": 1, "price": 1500 if iid == "I124" else 0, "occasion": 0})
         it[iid] = k
-    for iid, name, pct, price, desc in (("I125", "Fine Sake", 30, 120, "Restores SP. (Confuse chance 5%)"),
+    for iid, name, pct, price, desc in (("I125", "Fine Sake", 30, 120, "Restores MP. (Confuse chance 5%)"),
                                         ("I126", "Incense Stick", 0, 90, "A temple stick. +1 VP now."),
                                         ("I127", "Calming Tea", 0, 40, "Cures Terror.")):
         k = copy.deepcopy(it["I018"])
         k.update({"name": name, "desc": desc, "price": price})
         it[iid] = k
     it["I127"]["remconds"] = 1 << 7
-    for iid, name, pct, price, desc in (("I125", "Fine Sake", 30, 120, "Restores SP."),
-                                        ("I168", "Rejuvenating Tea", 25, 50, "A Phoenix temple tea. Restores some SP.")):
-        k = copy.deepcopy(it["I001"])                   # heal template, dmgtype 4: SP (engine DamageTypePID)
+    for iid, name, pct, price, desc in (("I125", "Fine Sake", 30, 120, "Restores MP."),
+                                        ("I168", "Rejuvenating Tea", 25, 50, "A Phoenix temple tea. Restores some MP.")):
+        k = copy.deepcopy(it["I001"])                   # heal template, dmgtype 4: MP (engine DamageTypePID)
         k.update({"name": name, "desc": desc, "price": price, "atkform": "dst.MAXMP*%d/100" % pct, "dmgtype": 4})
         it[iid] = k
     caltrop = copy.deepcopy(it["I104"])
@@ -1018,7 +1018,7 @@ def crab_armor(ar):
     body("A110", "A041", "Kabuto", 6, 360)
     ar["A110"]["desc"] = "A ridged iron helmet with a neck guard. Def +6."
     body("A111", "A021", "Shugenja's Haori", 10, 520)
-    ar["A111"]["desc"] = "A priest's over-robe, ofuda sewn into the lining. E.Def and SP up."
+    ar["A111"]["desc"] = "A priest's over-robe, ofuda sewn into the lining. E.Def and MP up."
     ar["A108"]["desc"] = "Heavy laced plate of the Hida. Built for the Wall, not for court."
     ar["A209"] = copy.deepcopy(ar["A108"])
     ar["A209"].update({"name": "Hiruma's Miko Attire", "desc": "The white kosode and crimson hakama Natsuko wears for the blessing dance. Fitted for Hiruma Natsuko alone.",
@@ -1063,7 +1063,7 @@ def crab_armor(ar):
     ar["A123"]["desc"] = "Katsuo's brush. The bristles are stiff and brown. (E.Atk +15%)"
     opt("A123", opttype="opt_status", propid="MATK", val=15, valtype="totalrate")
     body("A124", "A021", "Asahina Robes", 22, 1300)
-    ar["A124"]["desc"] = "White and gold temple robes, ofuda in the hems. E.Def and SP up."
+    ar["A124"]["desc"] = "White and gold temple robes, ofuda in the hems. E.Def and MP up."
     body("A125", "A055", "Sailor's Oilskin", 2, 600)
     ar["A125"]["desc"] = "A ship's master's oiled cape. The sea gets in less. (Water damage -25%)"
     opt("A125", opttype="opt_elemdef", **{"EDR.%d" % ELEMS.index("Water"): 25})
@@ -1076,7 +1076,7 @@ def crab_armor(ar):
     body("A127", "A025", "Shadow Cloth", 44, 2600)
     ar["A127"]["desc"] = "Dark silk over thin lacquered plates. A courtier's armour that looks like a robe."
     body("A128", "A021", "Elemental Master's Mantle", 30, 0)
-    ar["A128"]["desc"] = "A shugenja's mantle, misfiled in the sealed stacks. E.Def and SP up."
+    ar["A128"]["desc"] = "A shugenja's mantle, misfiled in the sealed stacks. E.Def and MP up."
     body("A129", "A055", "Hiruto's Go Stones", 1, 0)                     # Lion Ch1 reward (production: +1 Command use;
     ar["A129"]["desc"] = "Lord Hiruto's own go stones, worn smooth. The black ones. You see the whole board. (Speed " \
                          "+10%)"                                         # Command is unlimited here, so: speed)
@@ -1105,7 +1105,7 @@ def crab_armor(ar):
     body("A139", "A055", "Orochi Scale", 3, 0)
     body("A140", "A021", "Isawa Robe", 24, 0)                           # Dragon Ch3: the Shiba storeroom
     ar["A140"]["desc"] = "An Isawa robe from Shiba Katsutoshi's storeroom, the kind the page Sanro will grow into. " \
-        "(SP +15)"
+        "(MP +15)"
     opt("A140", opttype="opt_status", propid="MAXMP", val=15, valtype="supply")
     body("A141", "A025", "Antique Do-maru", 36, 1800)                   # Dragon Ch3: year-400 T3
     body("A142", "A055", "Pressed Cherry Blossom", 2, 0)                # Dragon Ch4 reward (equipment.md)
@@ -1122,7 +1122,7 @@ def crab_armor(ar):
         "the unseen. (Magic DEF +15%)"
     opt("A144", opttype="opt_status", propid="MDEF", val=15, valtype="totalrate")
     # Scorpion Ch2: the City of Masks. The citizens only answer the masked; each mask's material matters (research
-    # Appendix A). Worn in the city they drain SP (plugin RokuganField MASK_MAPS); a district shrine takes them off.
+    # Appendix A). Worn in the city they drain MP (plugin RokuganField MASK_MAPS); a district shrine takes them off.
     for aid, name, desc, prop, val in (
             ("A145", "Iron Mask", "Kaiu Naname's mask, beaten from a hot sheet while you waited. Metal: wood fears "
                                   "it, fire melts it.", "PDEF", 10),
@@ -1411,7 +1411,7 @@ MACRO_TEXT = [  # (macro id, path in the macro, English line)
     ("X004", "cmdblock.0.cmdblocks.1.0.text", "Couldn't get away!"),
     ("X013", "cmdblock.3.text", "Welcome, welcome! Take a look - honest goods at honest prices."),
     ("X013", "cmdblock.6.text", "Come again! May the Fortunes smile on your road."),
-    ("X014", "cmdblock.3.text", "Welcome, traveler. A night's rest is [b]$W$T.money[n]. Will you stay?"),
+    ("X014", "cmdblock.3.text", "Welcome, traveler. A room for the night - no charge for those on the road. Will you stay?"),
     ("X014", "cmdblock.4.cmdblocks.0.1.text", "Then rest well. The bath is hot and the futon is clean."),
     ("X014", "cmdblock.4.cmdblocks.0.15.text", "Good morning! Safe travels - and do come back."),
     ("X015", "cmdblock.1.text", "Next, please.\nNow then, let me have a look at you."),
@@ -1704,6 +1704,8 @@ def main():
                "gotitem_n": {"en": "Got ${v} x${n}!", "ja": "Got ${v} x${n}!"}})
     save("dict", dc)
     mc = load("macro")                                    # English for the template's service scripts
+    mc["X014"]["cmdblock"][:] = [c for c in mc["X014"]["cmdblock"] if c.get("desc") != "RT free inn"]   # (re-added
+                                                          # below: the paths in MACRO_TEXT count without it)
     for mid, path, text in MACRO_TEXT:
         node = mc[mid]
         keys = path.replace("]", "").replace("[", ".").split(".")
@@ -1715,6 +1717,18 @@ def main():
             "p.MP = p.MAXMP; }")                          # (the fallen get up too: tester 2026-11-11)
     stay[:] = [c for c in stay if c.get("desc") != "RT reserve rest"]             # (G1160; empty outside the finale)
     stay.append({"cmd": "cmd_script", "desc": "RT reserve rest", "code": code})
+    # (user 2026-11-24: "set his price to always be 0 and trigger the quests rest") every inn is free (W = 0 before
+    # anything reads it), and a night there runs the rest objective's own scene (RokuganMarker.innRestQuest)
+    # (2026-11-24, read in a Dragon run: "Got  zeni x200!") a chest of money says "Got 200 zeni!" - dataname(N000)
+    # is the currency's " zeni", not an item name
+    x11 = mc["X011"]["cmdblock"][1]
+    if x11.get("code") == 'W = tmpl(::T[X>1?"gotitem_n":"gotitem"],{v=dataname(W,Y), n=commanum(X)})':
+        x11["code"] = 'W = (W == "N000") ? ("Got " .. commanum(X) .. ::T.money .. "!") : tmpl(::T[X>1?"gotitem_n":"gotitem"],{v=dataname(W,Y), n=commanum(X)})'
+    blk = mc["X014"]["cmdblock"]
+    blk[:] = [c for c in blk if c.get("desc") != "RT free inn"]
+    blk.insert(0, {"cmd": "cmd_compute", "desc": "RT free inn", "lvar": "W", "op": "=", "rvar": 0})
+    stay[:] = [c for c in stay if c.get("desc") != "RT rest quest"]
+    stay.append({"cmd": "cmd_script", "desc": "RT rest quest", "code": "::Rokugan.innRestQuest();"})
     # Flee (X004): the Herbalist's Wave-woman trait (G1226, set by RokuganJobs.sk) skips the 50% roll where fleeing
     # is allowed (jobs_data.py J132)
     fl = mc["X004"]["cmdblock"]
@@ -3100,11 +3114,11 @@ def main():
                   dmgrate=[1.05, 1.05], elembits=0, consume=[0, 0])
     putcond_skill("S438", src_pc, "Dread Touch", "K007", "Cold fingers on the back of the neck. (Terror)", rate=0.4,
                   dmgrate=[0.8, 0.8], elembits=0, consume=[0, 0])
-    blow("S436", "Breath-eater", "The red shadow crawls over you and drinks. (Drains SP and VP: soul damage)",
+    blow("S436", "Breath-eater", "The red shadow crawls over you and drinks. (Drains MP and VP: soul damage)",
          dmgrate=[0.4, 0.4], hitrate=0.95, rt_soul=True)
-    vd = copy.deepcopy(s["S436"])                       # the red oni's Breath-eater: SP and VP drained (rt_soul)
+    vd = copy.deepcopy(s["S436"])                       # the red oni's Breath-eater: MP and VP drained (rt_soul)
     vd.update({"name": "Void Drain", "desc": "\"Your Void tastes like mine. We're made of the same night.\" (drains "
-               "SP and 1 VP)", "elembits": B["Void"]})
+               "MP and 1 VP)", "elembits": B["Void"]})
     s["S473"] = vd
     hire_skill(H[22], TPL_PUTCOND, "Jade discs, blessed and thrown: they burn what feeds on fear. (Jade, all enemies)",
                act="Jade Prayer", option=[], cmdtgt=7, elembits=B["Jade"], dmgrate=[1.0, 1.0],

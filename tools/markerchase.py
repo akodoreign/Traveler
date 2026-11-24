@@ -1,29 +1,15 @@
-"""The marker chasers (user 2026-11-23: "squirl scripts whos job is just to chase the objective marker to each goal for
-each story/quest/sidequest. let them take notes, you can use local llm ... a small model ... the intel npu. you can have
-2 game windows open. have it check every quest and game (let it self learn, do not let it change any code its job is
-read only)"; "let the local llm be able to launch and close its instance incase it gets stuck"; "if it gets stuck let
-it let you know so you can fix the stuck"; "have it do all the triggers and conversations as well. all the notes").
+"""Run the Squirrels through Traveler's story using its ordinary player mechanics.
 
-READ ONLY: this script and the in-game chaser (plugin RokuganChase.sk, -rtchase) change no code and no game data. They
-play test launches (never a save slot: the bot skips save menus) and write only under _art/preview/chase/ and the
-engine's tmp/chase/. They never close a game they didn't start.
+    python -E tools/markerchase.py story [--only 0,3] [--minutes 60] [--windows 2] [--profiles DIR] [--no-llm]
 
-    python -E tools/markerchase.py [story|quests|games|all] [--only 0,3 | --only 100,101] [--minutes 60]
-                                   [--windows 2] [--no-llm]
-
-Jobs:  story  - each of the eight roads from New Game (the prologue's choice), following the marker to the end.
-       quests - each Journal quest (RokuganJournalData.sk) and side story: started at the giver with the quest's
-                opening flags set, the quest tracked (G1244), followed until the marker says it's done.
-       games  - every mini-game, through the existing self-play tests (minitest, dance, kabuki, Game of Masks, the
-                castles' clan games and go).
-Each run: the chaser follows the marker, sweeps every map (talks to everyone, examines everything, walk-on triggers
-that stay on the map), and logs it all. Notes: _art/preview/chase/<job>/notes.md (goals + timings, every event used,
-the whole conversation per map, menus, battles, errors, the model's findings). A stuck run (no progress, a STUCK /
-NOPROMPT / NOPOINT line) writes _art/preview/chase/STUCK/<job>.md and prints "STUCK <job>: ..." - the line Claude's
-watcher waits for. The local model (tools/chase_llm.py, NPU) decides on a stuck window: continue, restart or close.
-Learning: _art/preview/chase/knowledge.json - for each job, the menus answered before a stall; the next run of that
-job gets a different answer for them (the in-game policy file tmp/chase/policy_<job>.json)."""
+Start at the configured New Game entry. Player-visible menu choices and Auto Battle are allowed.
+Story runs start with a level-40 party and use minigame win-mode self-play on the hardest offered difficulty.
+Follow objectives without grinding. Do not seed quest state or edit game code or data. Keep story-run
+logs and snapshots separate from older fixture runs. The adviser and the human handoff share the
+same checked action vocabulary. Unresolved findings go to _art/preview/chase/STUCK and ASK.
+"""
 import json
+import math
 import os
 import re
 import subprocess
@@ -33,12 +19,10 @@ import shutil
 import threading
 import time
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE)
-import playbot as pb  # noqa: E402
-import gen_maps as gm  # noqa: E402
+from squirrels_navigation import ASK_POSITION, observed_waypoints, walking_hint
 
-TOOL = gm.TOOL
+HERE = os.path.dirname(os.path.abspath(__file__))
+TOOL = os.path.normpath(os.path.join(HERE, "..", "_tools", "rpgcobo-tool"))
 TOOL2 = TOOL + "-w2"                   # window 2: a copy of the exe with project/ etc. linked (one per folder)
 
 
@@ -46,14 +30,18 @@ def wtool():
     """This window's engine folder."""
     return getattr(SLOT, "tool", TOOL)
 OUT = os.path.join(HERE, "..", "_art", "preview", "chase")
+PLAYER_RUNS = os.path.join(OUT, "player-runs")
 STUCKDIR = os.path.join(OUT, "STUCK")
 RESUME = False                                          # --resume (see chase())
 ASKDIR = os.path.join(OUT, "ASK")                       # a chaser's question (five tries at one goal): Claude answers
 ANSDIR = os.path.join(OUT, "ANSWERS")                   #  in ANSWERS/<job>.txt: retry | goto X Z | use NAME |
                                                         #  broken [why] | close
-KNOW = os.path.join(OUT, "knowledge.json")
-NPU_PY = r"D:\RokuganTraveler\.venv-npu\Scripts\python.exe"
-PLUG = os.path.join(gm.PROJ, "plugin", "rokugan")
+KNOW = os.path.join(PLAYER_RUNS, "knowledge.json")
+STORY_ASSISTS = ("Level 40", "Minigame self-play in win mode")
+# The initial selections for the three in-game Easy/Hard menus. The number after | is the last option index.
+HARD_MENUS = {"Dance. (Easy)|2": 1, "Perform it. (Easy)|1": 1}
+MENU_LOG = re.compile(r"\[RT\] CHASE CHOICE (.+?) => (\d+) \((.*)\)")
+DIFFICULTY = {"easy": 0, "normal": 1, "medium": 1, "hard": 2, "expert": 3, "master": 4}
 PATHS = ["Crab", "Crane", "Lion", "Phoenix", "Dragon", "Scorpion", "Unicorn", "Ronin"]
 LOCK = threading.Lock()
 SLOT = threading.local()                                                 # each window's reserved save slot (90, 91...)
@@ -69,14 +57,14 @@ def say(s):
 class Model:
     def __init__(self, use):
         self.p, self.ok, self.lock = None, False, threading.Lock()
-        if not use or not os.path.exists(NPU_PY):
+        if not use:
             say("model: off")
             return
-        self.p = subprocess.Popen([NPU_PY, os.path.join(HERE, "chase_llm.py")], stdin=subprocess.PIPE,
+        self.p = subprocess.Popen([sys.executable, "-B", os.path.join(HERE, "chase_llm.py")], stdin=subprocess.PIPE,
                                   stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, encoding="utf-8")
         hello = json.loads(self.p.stdout.readline() or "{}")
         self.ok = bool(hello.get("ready"))
-        say("model: %s" % (("ready on " + str(hello.get("device"))) if self.ok else "failed to load (rules only)"))
+        say("model: %s" % (("ready on " + str(hello.get("device"))) if self.ok else "failed to load"))
 
     def ask(self, req):
         if not self.ok:
@@ -109,20 +97,35 @@ def know_load():
 
 def know_save(k):
     with LOCK:
-        os.makedirs(OUT, exist_ok=True)
+        os.makedirs(PLAYER_RUNS, exist_ok=True)
         json.dump(k, open(KNOW, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+
+
+def hardest_option(options):
+    """Return the highest difficulty index for a menu with recognized labeled difficulties."""
+    labeled = {}
+    for index, label in enumerate(options.split(" / ")):
+        match = re.fullmatch(r"(?:.*\s\()?([a-z]+)\)?", label.strip().lower())
+        if match and match[1] in DIFFICULTY:
+            labeled[index] = DIFFICULTY[match[1]]
+    return max(labeled, key=labeled.get) if len(set(labeled.values())) >= 2 else None
 
 
 def policy_for(job, know):
     """The answers to try this time: a menu answered just before a stall gets the next option it hasn't tried."""
     pol = {}
     for key, rec in know.get(job, {}).get("menus", {}).items():
+        hardest = hardest_option(rec.get("options", ""))
+        if hardest is not None:
+            pol[key] = hardest
+            continue
         tried, n = rec.get("tried", []), rec.get("n", 1)
         if rec.get("stalled"):
             left = [i for i in range(n + 1) if i not in tried]
             pol[key] = left[0] if left else 0
         elif "good" in rec:
             pol[key] = rec["good"]
+    pol.update(HARD_MENUS)
     path = os.path.join(wtool(), "tmp", "chase", "policy_%s.json" % job)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     json.dump(pol, open(path, "w", encoding="utf-8"))
@@ -131,85 +134,108 @@ def policy_for(job, know):
 
 # ------------------------------------------------------------------ jobs
 def story_jobs(only):
+    with open(os.path.join(TOOL, "project", "data", "setting.json"), encoding="utf-8") as source:
+        start = json.load(source)["inimap"]
     jobs = []
     for i, name in enumerate(PATHS):
         if only and str(i) not in only:
             continue
-        bx, bz = pb.block("M099", 12, 6)
-        jobs.append({"job": "story_%d_%s" % (i, name.lower()), "map": "M099", "pos": pb.start_pos("M099", bx, bz),
-                     "vars": "G000", "extra": ["choice %d" % i], "lead": None})
+        jobs.append({"job": "story_%d_%s" % (i, name.lower()), "map": start["mapid"],
+                     "pos": json.dumps(start["pos"]), "choice": i})
     return jobs
 
 
-def quest_jobs(only):
-    jd = open(os.path.join(PLUG, "RokuganJournalData.sk"), encoding="utf-8").read()
-    md = open(os.path.join(PLUG, "RokuganMarkerData.sk"), encoding="utf-8").read()
-    js = open(os.path.join(PLUG, "RokuganJournal.sk"), encoding="utf-8").read()
-    spots = {int(a): (b, float(c), float(d)) for a, b, c, d in
-             re.findall(r'\[(\d+)\] = \["(M\d+)", ([\d.]+), ([\d.]+),', md)}
+def path_quests(pid):
+    """(user 2026-11-23: "crane is done, crane should go through their side quests now") the quests a traveler can
+    take on their road: their own (journal who), and the open odd jobs whose giver stands on their road (MK_PATH)."""
+    rk = os.path.join(TOOL, "project", "plugin", "rokugan")
+    s = open(os.path.join(rk, "RokuganMarkerData.sk"), encoding="utf-8").read()
+    i = s.index("MK_PATH <- {")
+    path = dict(re.findall(r'(M\d+) = "(P\d+)"', s[i:s.index("};", i)]))
+    i = s.index("MK_QUEST <- {")
+    mq = {int(a): json.loads(b) for a, b in re.findall(r"\[(\d+)\] = (\[.*?\]),?\n", s[i:s.index("};", i)])}
+    j = open(os.path.join(rk, "RokuganJournalData.sk"), encoding="utf-8").read()
+    out = []
+    for qid, who in re.findall(r'id = (\d+), who = (null|"P\d+")', j):
+        qid, g = int(qid), mq.get(int(qid))
+        if who == '"%s"' % pid or (who == "null" and g and path.get(g[0]) == pid):
+            out.append(qid)
+    return sorted(set(out))
+
+
+def side_jobs(only):
     jobs = []
-    for txt in (jd, js):
-        for m in re.finditer(r'\{ id = (\d+), who = (null|"P\d+"), title = ("(?:[^"\\]|\\.)*")[^}]*?open = \[([^\]]*)\]',
-                             txt):
-            qid, who, title, opens = int(m.group(1)), m.group(2), json.loads(m.group(3)), m.group(4)
-            if only and str(qid) not in only:
-                continue
-            if qid not in spots:
-                continue
-            mp, x, z = spots[qid]
-            flags = re.findall(r'"(G\d+)"', opens)
-            lead = who.strip('"') if who != "null" else "P100"
-            try:
-                pos = pb.start_pos(mp, x * 2.0, z * 2.0 + 3.0)
-            except Exception:                                          # noqa: BLE001 (a map not buildable here)
-                continue
-            jobs.append({"job": "quest_%d" % qid, "title": title, "map": mp, "pos": pos,
-                         "vars": ",".join(["G000"] + flags), "extra": ["chasequest %d" % qid], "lead": lead})
+    for job in story_jobs(only):
+        i = job["choice"]
+        qs = path_quests("P1%02d" % i)
+        if qs:
+            jobs.append(dict(job, job="side_%d_%s" % (i, PATHS[i].lower()), quests=qs,
+                             resume_from="story_%d_%s" % (i, PATHS[i].lower()), title="%d side quests" % len(qs)))
     return jobs
-
-
-GAME_TESTS = [("games_winter_court", ["minitest.py", "both", "--plan", "lose,win"]),
-              ("games_memory", ["minitest.py", "memory", "--plan", "lose,win"]),
-              ("games_clan", ["test_clan_games.py", "all"]),
-              ("games_masks", ["test_sadane.py", "stranger", "1"]),
-              ("games_dance", ["test_dance.py"]),
-              ("games_kabuki", ["test_kabuki.py", "win"])]
 
 
 # ------------------------------------------------------------------ one chase run
-PROGRESS = re.compile(r"\[RT\] CHASE (GOAL|REACHED|MAP|TALK|SWEPT|OBJECTIVE|BATTLE_END|PROMPT)")
-TROUBLE = re.compile(r"\[RT\] CHASE (STUCK|NOPROMPT|NOREACT|NOPOINT|NOEVENT|ERROR)|xception in|compile error")
+PROGRESS = re.compile(r"\[RT\] CHASE (GOAL|REACHED|MAP|TALK|SWEPT|OBJECTIVE|BATTLE_END|PROMPT|DROVE)")
+MINIGAME_TICK = re.compile(r"\[RT\] mini-game \S+ (?:open|waiting|result)")
+TROUBLE = re.compile(r"\[RT\] CHASE (STUCK|NOPROMPT|NOREACT|NOPOINT|NOEVENT|ERROR|BROKEN)|xception in|compile error")
+
+
+def player_launch(job, minutes, policy, saved_slot=None, drive=False):
+    # (user 2026-11-23: "your rensei needs a big level boost before you try him again")
+    pack = ["bot wait,36000000", "lv %d" % {"story_1_crane": 70, "story_0_crab": 70, "side_0_crab": 70}.get(job["job"], 40), "mini win", "chase %d" % minutes, "chasepolicy %s" % policy,
+            "chasejob %s" % job["job"]]
+    start_map, start_pos = job["map"], job["pos"]
+    if saved_slot is not None:
+        # (2026-11-24: Lion's resume save on M513 came up on M240) a resumed run skips the New Game: no road choice
+        # (its opening scene - Lion's has a battle - raced the load), launched in a quiet shop with no scenes
+        pack.append("loadsave %d" % saved_slot)
+        start_map, start_pos = "M903", "[8.5, 1.5, 5.5, 0.0]"
+    else:
+        pack.append("choice %d" % job["choice"])
+    if job.get("quests"):
+        pack.append("chasequests %s" % ",".join(str(q) for q in job["quests"]))
+    if drive:                                                          # (the local model takes the stick when the
+        pack.append("chasedrive 60")                                   # script is stuck a minute: RokuganChase)
+    return [os.path.join(wtool(), "rpgcobo.exe"), "-testplay", "-map", start_map, start_pos,
+            "-rtfast", "-rtauto", "-debuglv", "40", "-rt", ";".join(pack)]
 
 
 def chase(job, minutes, model, know):
     name = job["job"]
-    out = os.path.join(OUT, name)
+    out = os.path.join(PLAYER_RUNS, name)
     os.makedirs(out, exist_ok=True)
     log = os.path.join(out, "log.txt")
     pol, npol = policy_for(name, know)
     snapdir = os.path.join(wtool(), "tmp", "chase", name)
-    shutil.rmtree(snapdir, ignore_errors=True)
     os.makedirs(snapdir, exist_ok=True)
-    pack = ["bot wait,36000000", "fast", "auto", "lv 40", "mini win", "chase %d" % minutes, "chasepolicy %s" % pol,
-            "chasejob %s" % name]
-    pack += job["extra"]
-    if job.get("lead"):
-        pack.append("lead %s" % job["lead"])
+    for path in glob.glob(os.path.join(snapdir, "snap_*.bin")) + [os.path.join(snapdir, "answer.txt")]:
+        if os.path.isfile(path):
+            os.remove(path)
     # (user 2026-11-23: "you can use savestates when you get stuck so you can keep going without completely starting
     # from scratch") --resume: start from the job's latest save state (the one it took when it got bored or asked)
-    resumed = None
+    resumed, resume_slot = None, None
     if RESUME:
-        old = sorted(glob.glob(os.path.join(out, "snapshots", "snap_*.bin")), key=os.path.getmtime)
+        def own(files):                                                # (only saves this traveler leads)
+            want = "P1%02d" % job["choice"]
+            keep = []
+            for f in files:
+                lf = f[:-4] + ".lead"
+                if not os.path.exists(lf) or open(lf, encoding="utf-8").read().strip() == want:
+                    keep.append(f)
+            return keep
+        old = own(sorted(glob.glob(os.path.join(out, "snapshots", "snap_*.bin")), key=os.path.getmtime))
+        if not old and job.get("resume_from"):                         # (side quests: from the story's end)
+            old = own(sorted(glob.glob(os.path.join(os.path.dirname(out), job["resume_from"], "snapshots",
+                                                    "snap_*.bin")), key=os.path.getmtime))
         if old:
             slot = getattr(SLOT, "n", 90)
             save = os.path.join(wtool(), "savedata", "save%03d.bin" % slot)
             os.makedirs(os.path.dirname(save), exist_ok=True)
             shutil.copy(old[-1], save)
             shutil.copy(old[-1], os.path.join(out, "resumed_from.bin"))
-            pack.append("loadsave %d" % slot)
+            resume_slot = slot
             resumed = os.path.basename(old[-1])
-    args = [os.path.join(wtool(), "rpgcobo.exe"), "-testplay", "-map", job["map"], job["pos"], "-rtvar", job["vars"],
-            "-rtfast", "-rtauto", "-debuglv", "40", "-rt", ";".join(pack)]
+    args = player_launch(job, minutes, pol, resume_slot, drive=bool(model is not None and model.ok))
     restarts, t_start = 0, time.time()
     say("RUN %s (%s, %d learned answers)%s" % (name, job.get("title", "from New Game"), npol,
                                                " - resumed from its save state " + resumed if resumed else ""))
@@ -226,36 +252,48 @@ def chase(job, minutes, model, know):
             continue
         t0, last_prog, flagged = time.time(), time.time(), set()
         seen = len(open(log, encoding="utf-8", errors="replace").read().splitlines()) if restarts or resumed else 0
-        verdict, waiting = "done", False
+        verdict, waiting, question, asked_at = "unverified end", False, "", 0.0
         while True:
             time.sleep(4)
             text = open(log, encoding="utf-8", errors="replace").read()
             lines = text.splitlines()
             new = lines[seen:]
             seen = len(lines)
-            if any(PROGRESS.search(ln) for ln in new):
+            if any(PROGRESS.search(ln) or MINIGAME_TICK.search(ln) for ln in new):
                 last_prog = time.time()
             for ln in new:
                 if TROUBLE.search(ln) and ln not in flagged:
                     flagged.add(ln)
                     report_stuck(name, ln, lines, loud=False)
+                if "[RT] CHASE VIEWEND" in ln:                         # the model's turn at the stick
+                    drive(name, lines, model, snapdir)
                 if "[RT] CHASE ASK " in ln:
-                    waiting = True
+                    # (user 2026-11-24: "squirrels must be hybernating") never wait on Claude: ask() always
+                    # answers at once - the local model's move, or "broken" with the question filed in ASK/
+                    waiting = False
+                    asked_at = time.time()
+                    question = ln.split("CHASE ASK ", 1)[1]
                     ask(name, ln, lines, model, snapdir)
                 if "[RT] CHASE ANSWER " in ln:
                     waiting = False
                     last_prog = time.time()
                 if "[RT] CHASE BROKEN " in ln:
                     say("BROKEN %s: %s" % (name, ln.split("BROKEN ", 1)[1][:200]))
+                    verdict = "blocked"
             ans = os.path.join(ANSDIR, name + ".txt")
-            if os.path.exists(ans):                                      # Claude's answer -> the game
+            if waiting and os.path.exists(ans) and os.path.getmtime(ans) >= asked_at:
                 a = open(ans, encoding="utf-8").read().strip()
                 os.remove(ans)
+                if a != "restart":
+                    a = checked_action(a, question, lines)
+                    if a is None:
+                        report_stuck(name, "Rejected an unsupported playtest action from the handoff", lines)
+                        continue
                 with open(os.path.join(snapdir, "answer.txt"), "w", encoding="utf-8") as f:
                     f.write(a + "\n")
                 say("ANSWERED %s: %s" % (name, a))
                 if a.strip() == "restart":                               # Claude fixed the cause: go on from
-                    verdict = "restart"                                  #  the latest save state with the new code
+                    verdict = "restart"
                     break
             if waiting:
                 last_prog = time.time()
@@ -263,8 +301,11 @@ def chase(job, minutes, model, know):
                     verdict = "no answer"
                     break
                 continue
-            if any("[RT] CHASE DONE" in ln for ln in new):                # (this run's own lines: a resumed log
-                verdict = "done"                                         #  holds the last run's DONE)
+            if any("[RT] CHASE DONE" in ln for ln in new):
+                if verdict == "unverified end":
+                    ending = next((ln.split("CHASE END ", 1)[1] for ln in reversed(lines)
+                                   if "[RT] CHASE END " in ln), "the chase stopped")
+                    report_stuck(name, "Unverified route ending: " + ending, lines)
                 break
             if proc.poll() is not None:
                 verdict = "the game exited (code %s)" % proc.returncode
@@ -300,12 +341,11 @@ def chase(job, minutes, model, know):
                 save = os.path.join(wtool(), "savedata", "save%03d.bin" % slot)
                 os.makedirs(os.path.dirname(save), exist_ok=True)
                 shutil.copy(snaps[-1], save)
-                rt = ";".join([x for x in args[args.index("-rt") + 1].split(";") if not x.startswith("loadsave")] +
-                              ["loadsave %d" % slot])
-                args[args.index("-rt") + 1] = rt
+                args = player_launch(job, minutes, pol, slot)
                 say("RESTART %s (%d) from %s via slot %d, %d learned answers" % (name, restarts,
                                                                               os.path.basename(snaps[-1]), slot, npol))
             else:
+                args = player_launch(job, minutes, pol)
                 say("RESTART %s (%d, from the start, %d learned answers)" % (name, restarts, npol))
             continue
         break
@@ -319,11 +359,24 @@ def keep_snaps(name, out):
     for f in glob.glob(os.path.join(wtool(), "tmp", "chase", name, "snap_*.bin")):
         shutil.copy2(f, sd)                                       # (keeps the time: --resume takes the newest)
     try:
-        pb.convert_shots("chase_" + name, sd)
+        shots_now(name, sd)
     except Exception:                                                    # noqa: BLE001 (no shots is fine)
         pass
     text = open(os.path.join(out, "log.txt"), encoding="utf-8", errors="replace").read()
     rows = re.findall(r"\[RT\] CHASE SNAP (\d+) (.+)", text)
+    # (2026-11-24: Crane's side quests were played as Hiruma - a road's end starts the next traveler's road, and the
+    # newest save was the Crab's) each save notes who leads its party (snap_NN.lead), and --resume only takes a save
+    # led by the job's own traveler
+    lead = {}
+    for n, rest in rows:                                          # (the last line for a number is this run's)
+        m = re.search(r"party=(P\d+)", rest)
+        if m:
+            lead[n] = m.group(1)
+    for f in glob.glob(os.path.join(sd, "snap_*.bin")):
+        n = os.path.basename(f)[5:-4]
+        if n in lead and os.path.getmtime(f) >= time.time() - 6 * 3600:
+            with open(f[:-4] + ".lead", "w", encoding="utf-8") as g:
+                g.write(lead[n] + "\n")
     L = ["# %s - save states" % name, "",
          "Each snap_NN.bin is a full save (what the game's own Save writes). To look at one in the game: copy it to",
          "_tools/rpgcobo-tool/savedata/save090.bin and launch with -rtloadsave 90 (or load slot 90). The screenshot",
@@ -351,26 +404,89 @@ def shots_now(name, dest):
     return out
 
 
-MAPDATA = {}
 LOCAL_TRIES = {}                                         # (job, goal) -> answers the local model already gave
 
 
-def map_events(mid):
-    """What the model is shown about the chaser's map: each usable event's name, place, trigger and first words."""
-    if not MAPDATA:
-        MAPDATA.update(json.load(open(os.path.join(gm.PROJ, "data", "map.json"), encoding="utf-8")))
-    out = []
-    for e in (MAPDATA.get(mid) or {}).get("event", {}).values():
-        if e.get("role") in ("portal", "light") or "pos" not in e:
-            continue
-        pages = e.get("page") or []
-        trig = max([p.get("trigger") or 0 for p in pages] or [2 if e.get("role") in ("villager", "clerk", "hotel")
-                                                                else 0])
-        if trig not in (1, 2, 5) and e.get("role") not in ("villager", "clerk", "hotel"):
-            continue
-        said = e.get("msg") or next(iter(re.findall(r'"text": "([^"]{4,60})', json.dumps(e))), "")
-        out.append("%s, %.1f, %.1f, %s, %s" % (e.get("name"), e["pos"][0] / 2.0, e["pos"][2] / 2.0, trig, said[:60]))
-    return "\n".join(out[:40])
+def observed_targets(question, lines):
+    """Find the current position, witnessed prompts, and marker projected on this map."""
+    number = r"-?\d+(?:\.\d+)?"
+    location = re.search(rf"\| on (M\d+) at ({number}) ({number})(?: |$)", question)
+    if not location:
+        return None, {}, None
+    mid, x, z = location.groups()
+    position = (float(x), float(z))
+    visit = []
+    for line in reversed(lines):
+        if "[RT] ARRIVE " in line and f"[RT] ARRIVE {mid} " not in line:
+            break
+        visit.append(line)
+    prompts = {p[1] for line in visit if (p := re.search(r'\[RT\] CHASE PROMPT (.+?): "', line))}
+    targets = {}
+    event_pattern = rf"\[RT\] CHASE EVENT (\S+) on {mid} at ({number}) ({number}), trigger (\d+)"
+    for line in reversed(visit):
+        event = re.search(event_pattern, line)
+        if event and event[1] in prompts:
+            x, z, trigger = event.groups()[1:]
+            reach = 0.45 if trigger == "1" else 1.4
+            targets[event[1]] = (x, z, reach)
+    marker_pattern = rf"\[RT\] marker: .*? \(on {mid}\) at ({number}) ({number}), player "
+    marker = next((match.groups() for line in visit if (match := re.search(marker_pattern, line))), None)
+    if marker is None:
+        goal = re.match(rf"{mid} ({number}) ({number}) \|", question)
+        marker = goal.groups() if goal else None
+    return position, targets, marker
+
+
+def in_range(position, target):
+    x, z, reach = target
+    return math.hypot(float(x) - position[0], float(z) - position[1]) <= reach
+
+
+def checked_action(answer, question, lines, hint=""):
+    answer = " ".join(str(answer).strip().strip("`").split())
+    if answer == "close":                                              # (2026-11-24: a local "close" ended Crane's
+        return "retry"                                                 #  23-quest run on its first quest)
+    if answer == "retry" or re.fullmatch(r"broken .{1,290}", answer):
+        return answer
+    position, targets, marker = observed_targets(question, lines)
+    if position is None:
+        return None
+    if match := re.fullmatch(r"use ([\w*#-]{1,70})", answer):
+        target = targets.get(match[1])
+        if target:
+            return answer if in_range(position, target) else f"goto {target[0]} {target[1]}"
+    if match := re.fullmatch(r"goto (-?\d+(?:\.\d+)?) (-?\d+(?:\.\d+)?)", answer):
+        if answer == hint:
+            return answer
+        wanted = tuple(map(float, match.groups()))
+        current = ASK_POSITION.search(question)
+        points = observed_waypoints(current[1], lines) if current else []
+        points.extend(target[:2] for target in targets.values())
+        if marker:
+            points.append(marker)
+        if any(wanted == tuple(map(float, point)) for point in points):
+            return answer
+    return None
+
+
+def drive(name, lines, model, snapdir):
+    """(user 2026-11-24: "why don't you let the local LLM move the chars if the script fails after a min" / "yeah just
+    like let it move all of them") the game shows the model where the squirrel stands (DRIVE + VIEW + VIEWKEY lines,
+    RokuganChase.chaseDrive); its one move goes back through answer.txt. Every move is kept in drive_log.md."""
+    starts = [k for k, ln in enumerate(lines) if "[RT] CHASE DRIVE " in ln]
+    if not starts:
+        return
+    block = [ln.split("[RT] CHASE ", 1)[1] for ln in lines[starts[-1]:]
+             if "[RT] CHASE " in ln and "[RT] CHASE VIEWEND" not in ln]
+    res = model.ask({"task": "drive", "job": name, "view": "\n".join(block)}) if model is not None and model.ok else {}
+    a = " ".join(str(res.get("answer") or "back").split())[:200]
+    with open(os.path.join(snapdir, "answer.txt"), "w", encoding="utf-8") as f:
+        f.write(a + "\n")
+    with LOCK:
+        os.makedirs(OUT, exist_ok=True)
+        with open(os.path.join(OUT, "drive_log.md"), "a", encoding="utf-8") as f:
+            f.write("- %s %s | %s -> **%s** (%s)\n" % (time.strftime("%H:%M:%S"), name, block[0][6:150], a,
+                                                         str(res.get("why", res.get("error", "")))[:160]))
 
 
 def ask(name, line, lines, model=None, snapdir=None):
@@ -379,14 +495,30 @@ def ask(name, line, lines, model=None, snapdir=None):
     the question go to Claude: the save state, its screenshot, what it tried."""
     q = line.split("CHASE ASK ", 1)[1]
     goal = q.split(" | ")[0]
-    mid = (re.search(r"on (M\d+) at", q) or [None, ""])[1]
     tried = LOCAL_TRIES.setdefault((name, goal), [])
+    finding = ""
     if model is not None and model.ok and len(tried) < 2 and snapdir:
-        tail = "\n".join(ln.split("CHASE ", 1)[1] for ln in lines[-120:] if "[RT] CHASE " in ln)[-2500:]
-        a = (model.ask({"task": "answer", "question": q, "tail": tail, "events": map_events(mid),
-                        "tried": tried}) or {}).get("answer", "retry")
-        a = a.strip().strip("`").strip()
-        if not re.match(r"^(retry|close|broken\b.*|goto -?[\d.]+ -?[\d.]+|use \S+)$", a):
+        evidence = ("[RT] CHASE ", "[RT] BOT at ", "[RT] BOT STUCK", "[RT] ARRIVE ", "[RT] marker:")
+        tail = "\n".join(line for line in lines[-150:] if line.startswith(evidence))[-3500:]
+        position, targets, marker = observed_targets(q, lines)
+        events = "\n".join(
+            f"{event}: {x} {z} ({'prompt in reach' if in_range(position, (x, z, reach)) else 'walk to this prompt first'})"
+            for event, (x, z, reach) in targets.items()
+        )
+        if marker:
+            events += "\nCurrent map's visible marker: " + " ".join(marker)
+        current = ASK_POSITION.search(q)
+        if current:
+            waypoints = observed_waypoints(current[1], lines)
+            if waypoints:
+                events += "\nPreviously walked waypoints on this map: " + "; ".join(f"{x:g} {z:g}" for x, z in waypoints[:8])
+        remembered = walking_hint(name, q, tried)
+        result = {"answer": remembered} if remembered else model.ask(
+            {"task": "answer", "question": q, "tail": tail, "events": events, "tried": tried}
+        ) or {}
+        a = checked_action(result.get("answer", ""), q, lines, hint=remembered)
+        if a is None:
+            finding = result.get("error", "No supported action in the model's answer")
             a = "retry"
         tried.append(a)
         with open(os.path.join(snapdir, "answer.txt"), "w", encoding="utf-8") as f:
@@ -395,13 +527,14 @@ def ask(name, line, lines, model=None, snapdir=None):
             os.makedirs(OUT, exist_ok=True)
             with open(os.path.join(OUT, "local_answers.md"), "a", encoding="utf-8") as f:
                 f.write("- %s %s | %s -> **%s**\n" % (time.strftime("%H:%M"), name, q[:160], a))
-        if a.startswith("broken"):
-            say("BROKEN %s (the local model): %s | %s" % (name, q[:160], a))
-        return
+        if not a.startswith("broken"):
+            return
+        finding = result.get("why", a[7:])
+        report_stuck(name, finding, lines)
     # the local model's answers didn't help: Claude
     os.makedirs(ASKDIR, exist_ok=True)
     os.makedirs(ANSDIR, exist_ok=True)
-    out = os.path.join(OUT, name, "snapshots")
+    out = os.path.join(PLAYER_RUNS, name, "snapshots")
     pngs = shots_now(name, out)
     for f in glob.glob(os.path.join(wtool(), "tmp", "chase", name, "snap_*.bin")):
         shutil.copy(f, out)
@@ -409,12 +542,16 @@ def ask(name, line, lines, model=None, snapdir=None):
     tried = [ln.split("CHASE ", 1)[1] for ln in lines[-200:] if "[RT] CHASE " in ln][-40:]
     with LOCK:
         with open(os.path.join(ASKDIR, name + ".md"), "w", encoding="utf-8") as f:
-            f.write("# %s asks\n\n**%s**\n\nScreenshot: %s\nSave state: %s (window folder %s)\n\n"
+            f.write("# %s asks\n\n**%s**\n\nLocal finding: %s\n\nScreenshot: %s\nSave state: %s (window folder %s)\n\n"
                     "Answer in _art/preview/chase/ANSWERS/%s.txt, one line: retry | goto X Z | use NAME | "
                     "broken [why] | close\n\n## The last things it did\n\n```\n%s\n```\n"
-                    % (name, q, pngs[-1] if pngs else "-", os.path.join(out, "snap_*.bin"), wtool(), name,
+                    % (name, q, finding or "No observed action advanced the quest.", pngs[-1] if pngs else "-",
+                       os.path.join(out, "snap_*.bin"), wtool(), name,
                        "\n".join(tried)))
     say("ASK %s: %s" % (name, q[:220]))
+    if snapdir:                                       # (filed for Claude; the squirrel saves, reports, goes on)
+        with open(os.path.join(snapdir, "answer.txt"), "w", encoding="utf-8") as f:
+            f.write("broken filed for Claude (ASK/%s.md): %s\n" % (name, " ".join(q.split())[:160]))
 
 
 def report_stuck(name, why, lines, loud=True):
@@ -430,22 +567,23 @@ def report_stuck(name, why, lines, loud=True):
 def learn(name, text, verdict, know):
     rec = know.setdefault(name, {"runs": 0, "menus": {}, "stalls": []})
     rec["runs"] += 1
-    menus = re.findall(r"\[RT\] CHASE CHOICE (.+?) => (\d+) \((.*)\)", text)
+    menus = MENU_LOG.findall(text)
     # (2026-11-23) a window closed from outside (code 0: the user closing a looping run) or a restart is no evidence
     # against the menus answered before it
     if verdict.startswith("the game exited") or verdict == "restart":
         know_save(know)
         return
-    stalled = verdict not in ("done",) or "CHASE STUCK" in text or "gave up" in text
+    stalled = verdict=="blocked" or any(marker in text for marker in ("CHASE STUCK", "CHASE BROKEN", "gave up"))
     for key, v, opts in menus:
         m = rec["menus"].setdefault(key, {"tried": [], "n": opts.count(" / ")})
+        m["options"] = opts
         if int(v) not in m["tried"]:
             m["tried"].append(int(v))
     if stalled and menus:                                                # the last menus before the stall are suspects
         for key, v, opts in menus[-3:]:
             rec["menus"][key]["stalled"] = True
         rec["stalls"].append({"verdict": verdict, "last": re.findall(r"\[RT\] CHASE GOAL (.+)", text)[-1:]})
-    elif not stalled:
+    elif verdict=="completed":
         for key, v, opts in menus:
             rec["menus"][key]["good"] = int(v)
             rec["menus"][key].pop("stalled", None)
@@ -456,7 +594,23 @@ def learn(name, text, verdict, know):
 def notes(job, out, model, verdict, secs):
     text = open(os.path.join(out, "log.txt"), encoding="utf-8", errors="replace").read()
     L = ["# %s" % job["job"], "", "%s. Ended: %s after %.0f min." % (job.get("title", "From New Game"), verdict, secs / 60),
-         ""]
+         "", "Story test assists: " + ", ".join(STORY_ASSISTS) + ".", ""]
+    minigame_results = re.findall(r"\[RT\].*?mini-game (\S+) result (\d+)", text)
+    difficulty_choices = [(options.split(" / ")[int(choice)], options.split(" / ")[hardest])
+                          for _, choice, options in MENU_LOG.findall(text)
+                          if (hardest := hardest_option(options)) is not None
+                          and int(choice) < len(options.split(" / "))]
+    L += ["## Minigames", ""]
+    for selected, hardest in difficulty_choices:
+        L.append(f"- Selected {selected}. Hardest offered: {hardest}.")
+    outcomes = {"0": "did not run", "1": "won", "2": "lost"}
+    for game, result in minigame_results:
+        L.append(f"- {game}: {outcomes.get(result, 'engine result ' + result)} (assisted).")
+    results = re.findall(r"\[RT\] ((?:dance|kabuki): (?:act \d+ )?over - .+)", text)
+    L.extend(f"- {result}" for result in results)
+    if not minigame_results:
+        L.append("- No minigame result observed.")
+    L.append("")
     goals = re.findall(r"\[RT\] CHASE (GOAL|REACHED|OBJECTIVE) (.+)", text)
     L += ["## Goals and objectives", ""] + ["- **%s** %s" % (k.lower(), v) for k, v in goals] + [""]
     trouble = [ln.split("CHASE ", 1)[1] for ln in text.splitlines() if TROUBLE.search(ln) and "CHASE " in ln]
@@ -496,27 +650,31 @@ def notes(job, out, model, verdict, secs):
     say("NOTES %s -> %s" % (job["job"], os.path.normpath(os.path.join(out, "notes.md"))))
 
 
-def game_run(name, cmd):
-    out = os.path.join(OUT, name)
-    os.makedirs(out, exist_ok=True)
-    say("RUN %s" % name)
-    r = subprocess.run([sys.executable, "-E", os.path.join(HERE, cmd[0])] + cmd[1:], capture_output=True, text=True,
-                       encoding="utf-8", errors="replace", timeout=3600)
-    text = r.stdout + r.stderr
-    open(os.path.join(out, "log.txt"), "w", encoding="utf-8").write(text)
-    lines = [ln for ln in text.splitlines() if re.search(r"round \d+ over|result \d|-> \d|BOT var|TIMED OUT|rror", ln)]
-    bad = [ln for ln in lines if "TIMED OUT" in ln or "rror" in ln]
-    open(os.path.join(out, "notes.md"), "w", encoding="utf-8").write(
-        "# %s\n\n`%s`\n\n" % (name, " ".join(cmd)) + "\n".join("- " + ln.strip() for ln in lines) + "\n")
-    if bad:
-        report_stuck(name, bad[0], text.splitlines())
-    say("NOTES %s (%d result lines%s)" % (name, len(lines), ", trouble" if bad else ""))
+def report_remaining_coverage(mode):
+    """Record standalone coverage the player-only runner cannot yet exercise."""
+    remaining = {
+        "quests": "Standalone quest fixtures start with pre-set quest flags. Exercise them from a legitimate story save.",
+        "games": "Story runs exercise minigames with assisted self-play. Standalone input and difficulty coverage still need verification.",
+    }
+    kinds = ("quests", "games") if mode == "all" else (mode,)
+    os.makedirs(PLAYER_RUNS, exist_ok=True)
+    path = os.path.join(PLAYER_RUNS, "coverage-pending.md")
+    with open(path, "a", encoding="utf-8") as target:
+        for kind in kinds:
+            target.write(f"- {remaining[kind]} Coverage is unverified.\n")
+    say("Unverified standalone coverage recorded at " + os.path.normpath(path))
 
 
 # ------------------------------------------------------------------ main
 def main():
     a = sys.argv[1:]
-    what = a[0] if a and not a[0].startswith("--") else "all"
+    what = a[0] if a and not a[0].startswith("--") else "story"
+    if what not in ("story", "sidequests", "quests", "games", "all"):
+        raise SystemExit("Choose story, sidequests, quests, games, or all.")
+    if what not in ("story", "sidequests"):
+        report_remaining_coverage(what)
+        if what != "all":
+            return
 
     def opt(k, d):
         return a[a.index(k) + 1] if k in a else d
@@ -524,38 +682,36 @@ def main():
     global RESUME
     RESUME = "--resume" in a
     minutes, windows = int(opt("--minutes", "60")), int(opt("--windows", "2"))
-    model = Model("--no-llm" not in a)
+    q = side_jobs(only) if what == "sidequests" else story_jobs(only)
+    profile_root = opt("--profiles", "")
+    candidates = [os.path.join(profile_root, slot) for slot in ("slot-a", "slot-b")] if profile_root else [TOOL, TOOL2]
+    engine_folders = [p for p in candidates if os.path.isfile(os.path.join(p, "rpgcobo.exe"))
+                      and os.path.isfile(os.path.join(p, "project", "plugin", "rokugan", "RokuganChase.sk"))]
+    if "--engine" in a:                                                 # (--engine -w2: this run only uses that
+        engine_folders = [TOOL + opt("--engine", "").replace("main", "")]   #  folder, so two runs can share the PC)
+    if not engine_folders:
+        raise SystemExit("Travelers' native game executable was not found.")
+    windows = min(max(1, windows), len(engine_folders))
+    say("JOBS %d (%d windows)" % (len(q), windows))
+    use_model = "--no-llm" not in a
+    model = Model(use_model)
+    if use_model and not model.ok:
+        model.close()
+        raise SystemExit("The Squirrels' Ollama model is unavailable. Start Ollama before running with the adviser.")
     know = know_load()
-    jobs = []
-    if what in ("story", "all"):
-        jobs += [("chase", j) for j in story_jobs(only)]
-    if what in ("quests", "all"):
-        jobs += [("chase", j) for j in quest_jobs(only)]
-    if what in ("games", "all"):
-        jobs += [("game", g) for g in GAME_TESTS if not only or g[0] in only]
-    say("JOBS %d (%d windows)" % (len(jobs), windows))
-    q = list(jobs)
 
-    slots = iter(range(90, 90 + max(1, windows)))
-
-    tools = iter([TOOL, TOOL2] + [TOOL] * 8)
-
-    def worker():
-        SLOT.n = next(slots)
-        SLOT.tool = next(tools)
+    def worker(window, engine):
+        SLOT.n = 90 + ([TOOL, TOOL2].index(engine) if engine in (TOOL, TOOL2) else window)   # (by folder: two runs never share a save slot)
+        SLOT.tool = engine
         while True:
             with LOCK:
                 if not q:
                     return
-                kind, j = q.pop(0)
+                job = q.pop(0)
             try:
-                if kind == "chase":
-                    chase(j, minutes if j["job"].startswith("story") else min(minutes, 20), model, know)
-                else:
-                    game_run(*j)
+                chase(job, minutes, model, know)
             except Exception as e:                                       # noqa: BLE001 (keep the other window going)
-                say("STUCK %s: the orchestrator failed: %s" % (j["job"] if kind == "chase" else j[0], e))
-    # (the mini-game tests launch through engine_lock / playbot, one at a time on their own)
+                report_stuck(job["job"], "Python runner failed: " + str(e), [])
     total = len(q)
 
     def heartbeat():
@@ -568,7 +724,7 @@ def main():
                 if os.path.exists(os.path.join(OUT, "local_answers.md")) else 0
             say("PROGRESS %d of %d jobs started, %d questions answered locally, %d sent to Claude" %
                 (total - left, total, local, asks))
-    ts = [threading.Thread(target=worker) for _ in range(max(1, windows))]
+    ts = [threading.Thread(target=worker, args=(i, engine)) for i, engine in enumerate(engine_folders[:windows])]
     for t in ts:
         t.start()
         time.sleep(8)                                                    # (stagger the two windows' starts)

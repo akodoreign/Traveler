@@ -16444,14 +16444,16 @@
 											"name": "Kakita Rensei",
 											"uiclose": 2,
 											"emo": "worried",
-											"act": "rei"
+											"act": "rei",
+											"rtfx": "b1d17281f289"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "You just did.",
 											"name": "Doji Sanae",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "b1d17281f289"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -16580,7 +16582,8 @@
 											"key": "message_talk",
 											"text": "Lady Doji Sanae rides with her yojimbo from here on. In battle she stands in the third row: Support, A Quiet Word, as often as you like.",
 											"name": "",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "df326e4dd3a6"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -20886,7 +20889,8 @@
 								"key": "message_talk",
 								"text": "The Lion's rice tax on Pleasant Eaves, in the headman's neat hand, year by year.",
 								"name": "",
-								"uiclose": 2
+								"uiclose": 2,
+								"rtfx": "3468ca19251a"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -20903,7 +20907,8 @@
 								"text": "No wonder half the village is living in the forest.",
 								"name": "Kakita Rensei",
 								"uiclose": 2,
-								"emo": "worried"
+								"emo": "worried",
+								"rtfx": "9874ee7c3ef5"
 							}
 						]
 					},
@@ -39289,7 +39294,8 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-2"
+				"name": "*portal-2",
+				"memo": "stairs"
 			},
 			"#3#": {
 				"role": "custom",
@@ -42635,7 +42641,8 @@
 								"text": "He would have to hold it steady, my lady.",
 								"name": "Kakita Rensei",
 								"uiclose": 2,
-								"emo": "worried"
+								"emo": "worried",
+								"rtfx": "1928b491e953"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -42658,7 +42665,8 @@
 								"name": "Kakita Rensei",
 								"uiclose": 2,
 								"emo": "worried",
-								"act": "crossarms"
+								"act": "crossarms",
+								"rtfx": "66902e44823a"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -50013,7 +50021,8 @@
 														"key": "message_talk",
 														"text": "She presses a folded scrap of oiled paper into his hand.",
 														"name": "",
-														"uiclose": 2
+														"uiclose": 2,
+														"rtfx": "ca51083d175a"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -50028,7 +50037,8 @@
 														"key": "message_talk",
 														"text": "He hands her a small porcelain cup, wrapped in white silk.",
 														"name": "",
-														"uiclose": 2
+														"uiclose": 2,
+														"rtfx": "4030ca76dfb6"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -53125,6 +53135,12 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_compute",
+											"lvar": "G1244",
+											"op": "=",
+											"rvar": 102
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Side quest taken: Lost Letters. (The coast road, between the academy and the town: the patrol.) The Journal tracks it.",
@@ -53330,6 +53346,12 @@
 											"lvar": "G1259",
 											"op": "=",
 											"rvar": true
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1244",
+											"op": "=",
+											"rvar": 103
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -61012,6 +61034,29 @@
 											"rtfx": "219382e9edd2"
 										},
 										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "I'll be in my quarters, Rensei-san. Ships and I disagree. Come and fetch me if you find you need me.",
+											"name": "Doji Sanae",
+											"uiclose": 2,
+											"rtfx": "c964849fcfba"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1649",
+											"op": "=",
+											"rvar": true,
+											"rtfx": "c964849fcfba"
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "(Lady Sanae waits at the Crane port. Talk to her there to bring her along.)",
+											"name": "",
+											"uiclose": 2,
+											"rtfx": "c964849fcfba"
+										},
+										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -61189,7 +61234,7 @@
 								"lvar": "G1649",
 								"op": "=",
 								"rvar": false,
-								"rtfx": "a5a3c4ab1ad5"
+								"rtfx": "c19cd11a2bf6"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -62898,6 +62943,21 @@
 											"lvar": "G415",
 											"op": "=",
 											"rvar": true
+										},
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Back at port. Lady Sanae is waiting on the pier, which she would deny.",
+											"name": "",
+											"uiclose": 2,
+											"rtfx": "c19cd11a2bf6"
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1649",
+											"op": "=",
+											"rvar": false,
+											"rtfx": "c19cd11a2bf6"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -83713,14 +83773,16 @@
 											"text": "Asahina Yajinden's ink. The Asahina still remember him.",
 											"name": "Kakita Rensei",
 											"uiclose": 2,
-											"emo": "angry"
+											"emo": "angry",
+											"rtfx": "e3447513276a"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "They remember to forget him. I remember for them.",
 											"name": "Katsuo the White Brother",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "e3447513276a"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -98483,7 +98545,8 @@
 											"name": "Kakita Rensei",
 											"uiclose": 2,
 											"emo": "surprised",
-											"act": "surprise"
+											"act": "surprise",
+											"rtfx": "860e1840eabe"
 										},
 										{
 											"cmd": "cmd_battle1",
@@ -106430,7 +106493,8 @@
 											"key": "message_talk",
 											"text": "First blood.",
 											"name": "Kakita Masanori",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "79d1d75d77b3"
 										},
 										{
 											"cmd": "cmd_if",
@@ -106460,7 +106524,8 @@
 														"uiclose": 2
 													}
 												]
-											]
+											],
+											"rtfx": "79d1d75d77b3"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -106569,7 +106634,8 @@
 														"uiclose": 2,
 														"emo": "determined",
 														"act": "point",
-														"zoom": true
+														"zoom": true,
+														"rtfx": "8d507decad41"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -106597,7 +106663,8 @@
 														"key": "message_talk",
 														"text": "He sheathes his sword.",
 														"name": "",
-														"uiclose": 2
+														"uiclose": 2,
+														"rtfx": "01e63f885199"
 													},
 													{
 														"cmd": "cmd_if",
@@ -106619,7 +106686,8 @@
 																	"uiclose": 2
 																}
 															]
-														]
+														],
+														"rtfx": "01e63f885199"
 													}
 												],
 												[
@@ -131520,7 +131588,12 @@
 		],
 		"vs": 23,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.04,
+			"size": 0.09,
+			"dens": 0.25,
+			"col1": -929009409,
+			"col2": -389508865
 		}
 	},
 	"M209": {
@@ -132269,559 +132342,8 @@
 																}
 															],
 															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
 														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
-													},
-													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "G319",
-																"op": "==",
-																"rvar": 3
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "His lord's letter. If Morishu won't open his own belly, Yasurugi will do it for him, here, before the Lion can.",
-																	"name": "Kakita Rensei",
-																	"uiclose": 2,
-																	"emo": "angry",
-																	"zoom": true
-																}
-															],
-															[]
-														]
+														"rtfx": "60d8d0c5f602"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -139669,7 +139191,55 @@
 														"key": "message_talk",
 														"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
 														"name": "",
+														"uiclose": 2,
+														"rtfx": "44b16d8c052d"
+													},
+													{
+														"cmd": "cmd_battle1",
+														"mapid": "M001",
+														"gid": 52,
+														"losefunc": 1,
+														"bgmid": null,
+														"keeprset": false,
+														"rtfx": "96e5d8625d34"
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+														"name": "",
 														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_script",
+														"desc": "SCRIPT",
+														"code": "local p = ::rpgstat.playermap[\"P132\"]; W = !!::rpgstat.members.find( @( v) v && v == p);"
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "W",
+																"op": "==",
+																"rvar": true
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_memberop",
+																	"playerid": "P132",
+																	"op": 0,
+																	"slot": null
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G609",
+																	"op": "=",
+																	"rvar": true
+																}
+															]
+														]
 													},
 													{
 														"cmd": "cmd_battle1",
@@ -139678,6 +139248,32 @@
 														"losefunc": 1,
 														"bgmid": null,
 														"keeprset": false
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G609",
+																"op": "==",
+																"rvar": true
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_memberop",
+																	"playerid": "P132",
+																	"op": 0,
+																	"slot": -1
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G609",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -139714,14 +139310,16 @@
 														"text": "Your grandfather?",
 														"name": "Akodo Shizue",
 														"uiclose": 2,
-														"emo": "surprised"
+														"emo": "surprised",
+														"rtfx": "2fc44ea007e5"
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "Dead before I was born. He didn't leave. Shiba blood keeps its dead close.",
 														"name": "Shiba Ashimita",
-														"uiclose": 2
+														"uiclose": 2,
+														"rtfx": "2fc44ea007e5"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -140409,7 +140007,72 @@
 																				"key": "message_talk",
 																				"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
 																				"name": "",
+																				"uiclose": 2,
+																				"rtfx": "44b16d8c052d"
+																			},
+																			{
+																				"cmd": "cmd_battle1",
+																				"mapid": "M001",
+																				"gid": 52,
+																				"losefunc": 1,
+																				"bgmid": null,
+																				"keeprset": false,
+																				"rtfx": "e172c1ae8815"
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+																				"name": "",
+																				"uiclose": 2,
+																				"rtfx": "07649655435a"
+																			},
+																			{
+																				"cmd": "cmd_battle1",
+																				"mapid": "M001",
+																				"gid": 52,
+																				"losefunc": 1,
+																				"bgmid": null,
+																				"keeprset": false,
+																				"rtfx": "96e5d8625d34"
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+																				"name": "",
 																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_script",
+																				"desc": "SCRIPT",
+																				"code": "local p = ::rpgstat.playermap[\"P132\"]; W = !!::rpgstat.members.find( @( v) v && v == p);"
+																			},
+																			{
+																				"cmd": "cmd_if",
+																				"reqs": [
+																					{
+																						"lvar": "W",
+																						"op": "==",
+																						"rvar": true
+																					}
+																				],
+																				"cmdblocks": [
+																					[
+																						{
+																							"cmd": "cmd_memberop",
+																							"playerid": "P132",
+																							"op": 0,
+																							"slot": null
+																						},
+																						{
+																							"cmd": "cmd_compute",
+																							"lvar": "G609",
+																							"op": "=",
+																							"rvar": true
+																						}
+																					]
+																				]
 																			},
 																			{
 																				"cmd": "cmd_battle1",
@@ -140418,6 +140081,32 @@
 																				"losefunc": 1,
 																				"bgmid": null,
 																				"keeprset": false
+																			},
+																			{
+																				"cmd": "cmd_if",
+																				"reqs": [
+																					{
+																						"lvar": "G609",
+																						"op": "==",
+																						"rvar": true
+																					}
+																				],
+																				"cmdblocks": [
+																					[
+																						{
+																							"cmd": "cmd_memberop",
+																							"playerid": "P132",
+																							"op": 0,
+																							"slot": -1
+																						},
+																						{
+																							"cmd": "cmd_compute",
+																							"lvar": "G609",
+																							"op": "=",
+																							"rvar": false
+																						}
+																					]
+																				]
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
@@ -140454,14 +140143,16 @@
 																				"text": "Your grandfather?",
 																				"name": "Akodo Shizue",
 																				"uiclose": 2,
-																				"emo": "surprised"
+																				"emo": "surprised",
+																				"rtfx": "2fc44ea007e5"
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
 																				"key": "message_talk",
 																				"text": "Dead before I was born. He didn't leave. Shiba blood keeps its dead close.",
 																				"name": "Shiba Ashimita",
-																				"uiclose": 2
+																				"uiclose": 2,
+																				"rtfx": "2fc44ea007e5"
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
@@ -140681,7 +140372,7 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					72,
+					41,
 					4,
 					30,
 					2
@@ -147243,6 +146934,12 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_compute",
+											"lvar": "G1244",
+											"op": "=",
+											"rvar": 104
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Side quest taken: Deserters on the Shrine Road. (The shrine road, east of town: the deserters.) The Journal tracks it.",
@@ -147450,6 +147147,12 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_compute",
+											"lvar": "G1244",
+											"op": "=",
+											"rvar": 105
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Side quest taken: The Sergeant's Drill. (The shrine road again: the last two bands of deserters.) The Journal tracks it.",
@@ -147629,6 +147332,11 @@
 								"rvar": true
 							},
 							{
+								"lvar": "G519",
+								"op": "==",
+								"rvar": true
+							},
+							{
 								"lvar": "G1274",
 								"op": "==",
 								"rvar": false
@@ -147667,6 +147375,12 @@
 											"lvar": "G1274",
 											"op": "=",
 											"rvar": true
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1244",
+											"op": "=",
+											"rvar": 108
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -149902,7 +149616,72 @@
 																	"key": "message_talk",
 																	"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
 																	"name": "",
+																	"uiclose": 2,
+																	"rtfx": "07649655435a"
+																},
+																{
+																	"cmd": "cmd_battle1",
+																	"mapid": "M001",
+																	"gid": 52,
+																	"losefunc": 1,
+																	"bgmid": null,
+																	"keeprset": false,
+																	"rtfx": "e172c1ae8815"
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+																	"name": "",
+																	"uiclose": 2,
+																	"rtfx": "88aca8329f73"
+																},
+																{
+																	"cmd": "cmd_battle1",
+																	"mapid": "M001",
+																	"gid": 52,
+																	"losefunc": 1,
+																	"bgmid": null,
+																	"keeprset": false,
+																	"rtfx": "96e5d8625d34"
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+																	"name": "",
 																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "local p = ::rpgstat.playermap[\"P132\"]; W = !!::rpgstat.members.find( @( v) v && v == p);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_memberop",
+																				"playerid": "P132",
+																				"op": 0,
+																				"slot": null
+																			},
+																			{
+																				"cmd": "cmd_compute",
+																				"lvar": "G609",
+																				"op": "=",
+																				"rvar": true
+																			}
+																		]
+																	]
 																},
 																{
 																	"cmd": "cmd_battle1",
@@ -149911,6 +149690,32 @@
 																	"losefunc": 1,
 																	"bgmid": null,
 																	"keeprset": false
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "G609",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_memberop",
+																				"playerid": "P132",
+																				"op": 0,
+																				"slot": -1
+																			},
+																			{
+																				"cmd": "cmd_compute",
+																				"lvar": "G609",
+																				"op": "=",
+																				"rvar": false
+																			}
+																		]
+																	]
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -149947,14 +149752,16 @@
 																	"text": "Your grandfather?",
 																	"name": "Akodo Shizue",
 																	"uiclose": 2,
-																	"emo": "surprised"
+																	"emo": "surprised",
+																	"rtfx": "2fc44ea007e5"
 																},
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
 																	"text": "Dead before I was born. He didn't leave. Shiba blood keeps its dead close.",
 																	"name": "Shiba Ashimita",
-																	"uiclose": 2
+																	"uiclose": 2,
+																	"rtfx": "2fc44ea007e5"
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -152769,7 +152576,8 @@
 								"name": "Akodo Shizue",
 								"uiclose": 2,
 								"emo": "worried",
-								"act": "point"
+								"act": "point",
+								"rtfx": "432a825da696"
 							},
 							{
 								"cmd": "cmd_if",
@@ -152988,7 +152796,72 @@
 														"key": "message_talk",
 														"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
 														"name": "",
+														"uiclose": 2,
+														"rtfx": "88aca8329f73"
+													},
+													{
+														"cmd": "cmd_battle1",
+														"mapid": "M001",
+														"gid": 52,
+														"losefunc": 1,
+														"bgmid": null,
+														"keeprset": false,
+														"rtfx": "e172c1ae8815"
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+														"name": "",
+														"uiclose": 2,
+														"rtfx": "20616407eeb7"
+													},
+													{
+														"cmd": "cmd_battle1",
+														"mapid": "M001",
+														"gid": 52,
+														"losefunc": 1,
+														"bgmid": null,
+														"keeprset": false,
+														"rtfx": "96e5d8625d34"
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+														"name": "",
 														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_script",
+														"desc": "SCRIPT",
+														"code": "local p = ::rpgstat.playermap[\"P132\"]; W = !!::rpgstat.members.find( @( v) v && v == p);"
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "W",
+																"op": "==",
+																"rvar": true
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_memberop",
+																	"playerid": "P132",
+																	"op": 0,
+																	"slot": null
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G609",
+																	"op": "=",
+																	"rvar": true
+																}
+															]
+														]
 													},
 													{
 														"cmd": "cmd_battle1",
@@ -152997,6 +152870,32 @@
 														"losefunc": 1,
 														"bgmid": null,
 														"keeprset": false
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G609",
+																"op": "==",
+																"rvar": true
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_memberop",
+																	"playerid": "P132",
+																	"op": 0,
+																	"slot": -1
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G609",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -153033,14 +152932,16 @@
 														"text": "Your grandfather?",
 														"name": "Akodo Shizue",
 														"uiclose": 2,
-														"emo": "surprised"
+														"emo": "surprised",
+														"rtfx": "2fc44ea007e5"
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "Dead before I was born. He didn't leave. Shiba blood keeps its dead close.",
 														"name": "Shiba Ashimita",
-														"uiclose": 2
+														"uiclose": 2,
+														"rtfx": "2fc44ea007e5"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -153574,7 +153475,8 @@
 														"uiclose": 2,
 														"emo": "angry",
 														"act": "point",
-														"zoom": true
+														"zoom": true,
+														"rtfx": "2306e19cf338"
 													},
 													{
 														"cmd": "cmd_if",
@@ -153793,7 +153695,72 @@
 																				"key": "message_talk",
 																				"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
 																				"name": "",
+																				"uiclose": 2,
+																				"rtfx": "20616407eeb7"
+																			},
+																			{
+																				"cmd": "cmd_battle1",
+																				"mapid": "M001",
+																				"gid": 52,
+																				"losefunc": 1,
+																				"bgmid": null,
+																				"keeprset": false,
+																				"rtfx": "e172c1ae8815"
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+																				"name": "",
+																				"uiclose": 2,
+																				"rtfx": "2867d50c2c58"
+																			},
+																			{
+																				"cmd": "cmd_battle1",
+																				"mapid": "M001",
+																				"gid": 52,
+																				"losefunc": 1,
+																				"bgmid": null,
+																				"keeprset": false,
+																				"rtfx": "96e5d8625d34"
+																			},
+																			{
+																				"cmd": "cmd_showmsg",
+																				"key": "message_talk",
+																				"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+																				"name": "",
 																				"uiclose": 2
+																			},
+																			{
+																				"cmd": "cmd_script",
+																				"desc": "SCRIPT",
+																				"code": "local p = ::rpgstat.playermap[\"P132\"]; W = !!::rpgstat.members.find( @( v) v && v == p);"
+																			},
+																			{
+																				"cmd": "cmd_if",
+																				"reqs": [
+																					{
+																						"lvar": "W",
+																						"op": "==",
+																						"rvar": true
+																					}
+																				],
+																				"cmdblocks": [
+																					[
+																						{
+																							"cmd": "cmd_memberop",
+																							"playerid": "P132",
+																							"op": 0,
+																							"slot": null
+																						},
+																						{
+																							"cmd": "cmd_compute",
+																							"lvar": "G609",
+																							"op": "=",
+																							"rvar": true
+																						}
+																					]
+																				]
 																			},
 																			{
 																				"cmd": "cmd_battle1",
@@ -153802,6 +153769,32 @@
 																				"losefunc": 1,
 																				"bgmid": null,
 																				"keeprset": false
+																			},
+																			{
+																				"cmd": "cmd_if",
+																				"reqs": [
+																					{
+																						"lvar": "G609",
+																						"op": "==",
+																						"rvar": true
+																					}
+																				],
+																				"cmdblocks": [
+																					[
+																						{
+																							"cmd": "cmd_memberop",
+																							"playerid": "P132",
+																							"op": 0,
+																							"slot": -1
+																						},
+																						{
+																							"cmd": "cmd_compute",
+																							"lvar": "G609",
+																							"op": "=",
+																							"rvar": false
+																						}
+																					]
+																				]
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
@@ -153838,14 +153831,16 @@
 																				"text": "Your grandfather?",
 																				"name": "Akodo Shizue",
 																				"uiclose": 2,
-																				"emo": "surprised"
+																				"emo": "surprised",
+																				"rtfx": "2fc44ea007e5"
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
 																				"key": "message_talk",
 																				"text": "Dead before I was born. He didn't leave. Shiba blood keeps its dead close.",
 																				"name": "Shiba Ashimita",
-																				"uiclose": 2
+																				"uiclose": 2,
+																				"rtfx": "2fc44ea007e5"
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
@@ -154040,7 +154035,8 @@
 											"uiclose": 2,
 											"emo": "angry",
 											"act": "think",
-											"zoom": true
+											"zoom": true,
+											"rtfx": "01d4aaddbcd2"
 										},
 										{
 											"cmd": "cmd_if",
@@ -154259,7 +154255,72 @@
 																	"key": "message_talk",
 																	"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
 																	"name": "",
+																	"uiclose": 2,
+																	"rtfx": "2867d50c2c58"
+																},
+																{
+																	"cmd": "cmd_battle1",
+																	"mapid": "M001",
+																	"gid": 52,
+																	"losefunc": 1,
+																	"bgmid": null,
+																	"keeprset": false,
+																	"rtfx": "e172c1ae8815"
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+																	"name": "",
+																	"uiclose": 2,
+																	"rtfx": "e172c1ae8815"
+																},
+																{
+																	"cmd": "cmd_battle1",
+																	"mapid": "M001",
+																	"gid": 52,
+																	"losefunc": 1,
+																	"bgmid": null,
+																	"keeprset": false,
+																	"rtfx": "96e5d8625d34"
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+																	"name": "",
 																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_script",
+																	"desc": "SCRIPT",
+																	"code": "local p = ::rpgstat.playermap[\"P132\"]; W = !!::rpgstat.members.find( @( v) v && v == p);"
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "W",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_memberop",
+																				"playerid": "P132",
+																				"op": 0,
+																				"slot": null
+																			},
+																			{
+																				"cmd": "cmd_compute",
+																				"lvar": "G609",
+																				"op": "=",
+																				"rvar": true
+																			}
+																		]
+																	]
 																},
 																{
 																	"cmd": "cmd_battle1",
@@ -154268,6 +154329,32 @@
 																	"losefunc": 1,
 																	"bgmid": null,
 																	"keeprset": false
+																},
+																{
+																	"cmd": "cmd_if",
+																	"reqs": [
+																		{
+																			"lvar": "G609",
+																			"op": "==",
+																			"rvar": true
+																		}
+																	],
+																	"cmdblocks": [
+																		[
+																			{
+																				"cmd": "cmd_memberop",
+																				"playerid": "P132",
+																				"op": 0,
+																				"slot": -1
+																			},
+																			{
+																				"cmd": "cmd_compute",
+																				"lvar": "G609",
+																				"op": "=",
+																				"rvar": false
+																			}
+																		]
+																	]
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -154304,14 +154391,16 @@
 																	"text": "Your grandfather?",
 																	"name": "Akodo Shizue",
 																	"uiclose": 2,
-																	"emo": "surprised"
+																	"emo": "surprised",
+																	"rtfx": "2fc44ea007e5"
 																},
 																{
 																	"cmd": "cmd_showmsg",
 																	"key": "message_talk",
 																	"text": "Dead before I was born. He didn't leave. Shiba blood keeps its dead close.",
 																	"name": "Shiba Ashimita",
-																	"uiclose": 2
+																	"uiclose": 2,
+																	"rtfx": "2fc44ea007e5"
 																},
 																{
 																	"cmd": "cmd_showmsg",
@@ -156988,7 +157077,72 @@
 														"key": "message_talk",
 														"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
 														"name": "",
+														"uiclose": 2,
+														"rtfx": "e172c1ae8815"
+													},
+													{
+														"cmd": "cmd_battle1",
+														"mapid": "M001",
+														"gid": 52,
+														"losefunc": 1,
+														"bgmid": null,
+														"keeprset": false,
+														"rtfx": "e172c1ae8815"
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+														"name": "",
+														"uiclose": 2,
+														"rtfx": "96e5d8625d34"
+													},
+													{
+														"cmd": "cmd_battle1",
+														"mapid": "M001",
+														"gid": 52,
+														"losefunc": 1,
+														"bgmid": null,
+														"keeprset": false,
+														"rtfx": "96e5d8625d34"
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "A duel: first blood, no seconds. (Win or lose, fight it honorably.)",
+														"name": "",
 														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_script",
+														"desc": "SCRIPT",
+														"code": "local p = ::rpgstat.playermap[\"P132\"]; W = !!::rpgstat.members.find( @( v) v && v == p);"
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "W",
+																"op": "==",
+																"rvar": true
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_memberop",
+																	"playerid": "P132",
+																	"op": 0,
+																	"slot": null
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G609",
+																	"op": "=",
+																	"rvar": true
+																}
+															]
+														]
 													},
 													{
 														"cmd": "cmd_battle1",
@@ -156997,6 +157151,32 @@
 														"losefunc": 1,
 														"bgmid": null,
 														"keeprset": false
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
+																"lvar": "G609",
+																"op": "==",
+																"rvar": true
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_memberop",
+																	"playerid": "P132",
+																	"op": 0,
+																	"slot": -1
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G609",
+																	"op": "=",
+																	"rvar": false
+																}
+															]
+														]
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -157033,14 +157213,16 @@
 														"text": "Your grandfather?",
 														"name": "Akodo Shizue",
 														"uiclose": 2,
-														"emo": "surprised"
+														"emo": "surprised",
+														"rtfx": "2fc44ea007e5"
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "Dead before I was born. He didn't leave. Shiba blood keeps its dead close.",
 														"name": "Shiba Ashimita",
-														"uiclose": 2
+														"uiclose": 2,
+														"rtfx": "2fc44ea007e5"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -159622,7 +159804,8 @@
 											"text": "Ijako. What is it? Say it plainly. The whole room is listening.",
 											"name": "Akodo Shizue",
 											"uiclose": 2,
-											"emo": "worried"
+											"emo": "worried",
+											"rtfx": "21ef22bc9154"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -159636,7 +159819,8 @@
 											"key": "message_talk",
 											"text": "The thing Isawa Hoju bound in that skull. A Bloodspeaker: O-Tamai, Iuchiban's beloved. Our raid broke his chain, and he has been wearing Hojiki in his sleep.",
 											"name": "Akodo Ijako",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "d48aefd6688e"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -159646,7 +159830,8 @@
 											"uiclose": 2,
 											"emo": "determined",
 											"act": "think",
-											"zoom": true
+											"zoom": true,
+											"rtfx": "d48aefd6688e"
 										},
 										{
 											"cmd": "cmd_choices",
@@ -175434,7 +175619,8 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-2"
+				"name": "*portal-2",
+				"memo": "stairs"
 			},
 			"#3#": {
 				"role": "custom",
@@ -176146,7 +176332,8 @@
 								"key": "message_talk",
 								"text": "Hoju's private notes, in his smallest hand, folded under the tea things.",
 								"name": "",
-								"uiclose": 2
+								"uiclose": 2,
+								"rtfx": "4fc2993cc1a8"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -176163,7 +176350,8 @@
 								"name": "Isawa Haruki",
 								"uiclose": 2,
 								"emo": "sad",
-								"zoom": true
+								"zoom": true,
+								"rtfx": "08448934289f"
 							},
 							{
 								"cmd": "cmd_itemop",
@@ -226926,11 +227114,11 @@
 													{
 														"cmd": "cmd_mapmove",
 														"dest": {
-															"mapid": "M265",
+															"mapid": "M514",
 															"pos": [
-																13.5,
+																18.5,
 																null,
-																8.5,
+																16.0,
 																0.0
 															]
 														},
@@ -229832,11 +230020,11 @@
 										{
 											"cmd": "cmd_mapmove",
 											"dest": {
-												"mapid": "M265",
+												"mapid": "M514",
 												"pos": [
-													13.5,
+													18.5,
 													null,
-													8.5,
+													16.0,
 													0.0
 												]
 											},
@@ -250811,7 +250999,8 @@
 											"text": "That isn't Rokuro. It's the thing riding him. A fear-eater.",
 											"name": "Akodo Shizue",
 											"uiclose": 2,
-											"emo": "worried"
+											"emo": "worried",
+											"rtfx": "b32f6044588f"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -250825,7 +251014,8 @@
 											"key": "message_talk",
 											"text": "Four hundred years this river has fed me. Every Lion who charges here charges for me.",
 											"name": "The Demon",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "419645a66d3b"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -255698,7 +255888,8 @@
 											"key": "message_talk",
 											"text": "Scratched into the back of the stone: an arrow, and the old character for the forest of Shinomen.",
 											"name": "",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "17a98d758fda"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -261214,9 +261405,9 @@
 						0,
 						1.0,
 						0,
-						1.4,
 						1.5,
-						0.8
+						3.0,
+						1.0
 					]
 				},
 				"col": 0,
@@ -261252,7 +261443,8 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-2"
+				"name": "*portal-2",
+				"memo": "stairs"
 			},
 			"#3#": {
 				"role": "itemchest",
@@ -263543,7 +263735,8 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-2"
+				"name": "*portal-2",
+				"memo": "stairs"
 			},
 			"#3#": {
 				"role": "custom",
@@ -266033,7 +266226,8 @@
 											"key": "message_talk",
 											"text": "That's him. Ashimoshi. My grandfather.",
 											"name": "Shiba Ashimita",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "34aa0093e219"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -272338,6 +272532,12 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_compute",
+											"lvar": "G1244",
+											"op": "=",
+											"rvar": 106
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Side quest taken: Painted Men on the Pass. (The snowbound pass, east of Zumiki: the painted men.) The Journal tracks it.",
@@ -272543,6 +272743,12 @@
 											"lvar": "G1271",
 											"op": "=",
 											"rvar": true
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1244",
+											"op": "=",
+											"rvar": 107
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -274235,7 +274441,7 @@
 				"wipe": 2,
 				"dest": {
 					"mapid": "M252",
-					"evid": 43
+					"evid": 21
 				},
 				"mdl": {
 					"r": [
@@ -277690,14 +277896,16 @@
 											"text": "Who is Kokujin?",
 											"name": "Isawa Haruki",
 											"uiclose": 2,
-											"emo": "worried"
+											"emo": "worried",
+											"rtfx": "0d6539ec9592"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "A madman who paints tattoos on peasants and calls it enlightenment. The Dragon want his head. So do I, now.",
 											"name": "Shiba Ashimita",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "0d6539ec9592"
 										},
 										{
 											"cmd": "cmd_if",
@@ -302013,6 +302221,20 @@
 								"lvar": "G660",
 								"op": "=",
 								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Objective: the Council of Elemental Masters, in the audience hall at the top of Kyuden Isawa's keep.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1227",
+								"op": "=",
+								"rvar": 240,
+								"desc": "RT objective"
 							}
 						]
 					}
@@ -306108,7 +306330,8 @@
 								"key": "message_talk",
 								"text": "On the last mat, a healer with dark veins to her jaw presses a scroll into Haruki's hands.",
 								"name": "",
-								"uiclose": 2
+								"uiclose": 2,
+								"rtfx": "38bd610376b6"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -321546,11 +321769,11 @@
 										{
 											"cmd": "cmd_mapmove",
 											"dest": {
-												"mapid": "M288",
+												"mapid": "M573",
 												"pos": [
-													59.5,
+													23.5,
 													null,
-													15.0,
+													21.0,
 													0.0
 												]
 											},
@@ -332955,7 +333178,7 @@
 				"wipe": 2,
 				"dest": {
 					"mapid": "M288",
-					"evid": 59
+					"evid": 18
 				},
 				"mdl": {
 					"r": [
@@ -353132,191 +353355,6 @@
 				"spawndist": 5,
 				"name": "*portal-93"
 			},
-			"#94#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					13,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-94",
-				"memo": "barricade"
-			},
-			"#95#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					14,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-95",
-				"memo": "barricade"
-			},
-			"#96#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					15,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-96",
-				"memo": "barricade"
-			},
-			"#97#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					16,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-97",
-				"memo": "barricade"
-			},
-			"#98#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					17,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-98",
-				"memo": "barricade"
-			},
 			"#99#": {
 				"role": "custom",
 				"mdlid": "EP212",
@@ -353465,861 +353503,10 @@
 				"name": "*custom-102",
 				"memo": "barricade"
 			},
-			"#103#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					22,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-103",
-				"memo": "barricade"
-			},
-			"#104#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					23,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-104",
-				"memo": "barricade"
-			},
-			"#105#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					24,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-105",
-				"memo": "barricade"
-			},
-			"#106#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					25,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-106",
-				"memo": "barricade"
-			},
-			"#107#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					26,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-107",
-				"memo": "barricade"
-			},
-			"#108#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					27,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-108",
-				"memo": "barricade"
-			},
-			"#109#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					28,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-109",
-				"memo": "barricade"
-			},
-			"#110#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					29,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-110",
-				"memo": "barricade"
-			},
-			"#111#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					30,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-111",
-				"memo": "barricade"
-			},
-			"#112#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					31,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-112",
-				"memo": "barricade"
-			},
-			"#113#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					32,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-113",
-				"memo": "barricade"
-			},
-			"#114#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					33,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-114",
-				"memo": "barricade"
-			},
-			"#115#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					34,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-115",
-				"memo": "barricade"
-			},
-			"#116#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					35,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-116",
-				"memo": "barricade"
-			},
-			"#117#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					36,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-117",
-				"memo": "barricade"
-			},
-			"#118#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					37,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-118",
-				"memo": "barricade"
-			},
-			"#119#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					38,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-119",
-				"memo": "barricade"
-			},
-			"#120#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					39,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-120",
-				"memo": "barricade"
-			},
-			"#121#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					40,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-121",
-				"memo": "barricade"
-			},
-			"#122#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					41,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-122",
-				"memo": "barricade"
-			},
-			"#123#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					42,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-123",
-				"memo": "barricade"
-			},
-			"#124#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					43,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-124",
-				"memo": "barricade"
-			},
-			"#125#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					44,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G713",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-125",
-				"memo": "barricade"
-			},
 			"#126#": {
 				"role": "villager",
 				"mdlid": "EP347",
-				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
+				"msg": "The silk hill path is closed for now. Orders. When it opens, you'll hear of it.",
 				"pos": [
 					131,
 					4,
@@ -354341,413 +353528,6 @@
 				"flags": 1,
 				"spawndist": 1,
 				"name": "*villager-126",
-				"memo": "barricade"
-			},
-			"#127#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					13,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-127",
-				"memo": "barricade"
-			},
-			"#128#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					14,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-128",
-				"memo": "barricade"
-			},
-			"#129#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					15,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-129",
-				"memo": "barricade"
-			},
-			"#130#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					16,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-130",
-				"memo": "barricade"
-			},
-			"#131#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					17,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-131",
-				"memo": "barricade"
-			},
-			"#132#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					18,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-132",
-				"memo": "barricade"
-			},
-			"#133#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					19,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-133",
-				"memo": "barricade"
-			},
-			"#134#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					20,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-134",
-				"memo": "barricade"
-			},
-			"#135#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					21,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-135",
-				"memo": "barricade"
-			},
-			"#136#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					22,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-136",
-				"memo": "barricade"
-			},
-			"#137#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					23,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-137",
 				"memo": "barricade"
 			},
 			"#138#": {
@@ -354898,750 +353678,10 @@
 				"name": "*custom-141",
 				"memo": "barricade"
 			},
-			"#142#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					28,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-142",
-				"memo": "barricade"
-			},
-			"#143#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					29,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-143",
-				"memo": "barricade"
-			},
-			"#144#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					30,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-144",
-				"memo": "barricade"
-			},
-			"#145#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					31,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-145",
-				"memo": "barricade"
-			},
-			"#146#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					32,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-146",
-				"memo": "barricade"
-			},
-			"#147#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					33,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-147",
-				"memo": "barricade"
-			},
-			"#148#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					34,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-148",
-				"memo": "barricade"
-			},
-			"#149#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					35,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-149",
-				"memo": "barricade"
-			},
-			"#150#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					36,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-150",
-				"memo": "barricade"
-			},
-			"#151#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					37,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-151",
-				"memo": "barricade"
-			},
-			"#152#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					38,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-152",
-				"memo": "barricade"
-			},
-			"#153#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					39,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-153",
-				"memo": "barricade"
-			},
-			"#154#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					40,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-154",
-				"memo": "barricade"
-			},
-			"#155#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					41,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-155",
-				"memo": "barricade"
-			},
-			"#156#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					42,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-156",
-				"memo": "barricade"
-			},
-			"#157#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					43,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-157",
-				"memo": "barricade"
-			},
-			"#158#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					44,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-158",
-				"memo": "barricade"
-			},
-			"#159#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					45,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-159",
-				"memo": "barricade"
-			},
-			"#160#": {
-				"role": "custom",
-				"mdlid": "EP212",
-				"pos": [
-					132,
-					4,
-					46,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-160",
-				"memo": "barricade"
-			},
-			"#161#": {
-				"role": "custom",
-				"mdlid": "EP221",
-				"pos": [
-					132,
-					4,
-					47,
-					0
-				],
-				"reqs0": [
-					{
-						"lvar": "G723",
-						"op": "==",
-						"rvar": false
-					}
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 0,
-						"memo": "prop",
-						"moveaction": "stop",
-						"movespd": 0,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": []
-					}
-				],
-				"name": "*custom-161",
-				"memo": "barricade"
-			},
 			"#162#": {
 				"role": "villager",
 				"mdlid": "EP347",
-				"msg": "The road's closed for now. Orders. When it opens, you'll hear of it.",
+				"msg": "The lane to Tortoise Beach is closed for now. Orders. When it opens, you'll hear of it.",
 				"pos": [
 					131,
 					4,
@@ -355699,8 +353739,8 @@
 				"role": "portal",
 				"pos": [
 					160,
-					2,
-					11,
+					4,
+					20,
 					1
 				],
 				"back": false,
@@ -355715,7 +353755,7 @@
 						0,
 						1.0,
 						0,
-						5.75,
+						0.75,
 						6.0,
 						0.5
 					]
@@ -355737,7 +353777,7 @@
 				"pos": [
 					160,
 					4,
-					28,
+					26,
 					1
 				],
 				"back": false,
@@ -355752,7 +353792,7 @@
 						0,
 						1.0,
 						0,
-						2.5,
+						0.75,
 						6.0,
 						0.5
 					]
@@ -355774,7 +353814,7 @@
 				"pos": [
 					160,
 					4,
-					46,
+					41,
 					1
 				],
 				"back": false,
@@ -355789,7 +353829,7 @@
 						0,
 						1.0,
 						0,
-						6.75,
+						0.75,
 						6.0,
 						0.5
 					]
@@ -388004,11 +386044,6 @@
 											"time": 1800
 										},
 										{
-											"cmd": "cmd_script",
-											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 8;"
-										},
-										{
 											"cmd": "cmd_choices",
 											"backenable": false,
 											"cmdblocks": [
@@ -388063,11 +386098,6 @@
 											},
 											"text0": "Rest and save.",
 											"text1": "Not yet."
-										},
-										{
-											"cmd": "cmd_script",
-											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 0;"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -398930,11 +396960,34 @@
 											"rvar": true
 										},
 										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "Only Gendo crosses. Togashi Yosai is lost in the ink.",
-											"name": "",
-											"uiclose": 2
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "G715",
+													"op": "==",
+													"rvar": true
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Only Gendo and Momo cross. Togashi Yosai is lost in the ink.",
+														"name": "",
+														"uiclose": 2
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Only Gendo crosses. Togashi Yosai is lost in the ink.",
+														"name": "",
+														"uiclose": 2
+													}
+												]
+											]
 										},
 										{
 											"cmd": "cmd_screenfxon",
@@ -436579,7 +434632,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 9;"
+											"code": "::rpgvar[\"G1398\"] = 8;"
 										},
 										{
 											"cmd": "cmd_choices",
@@ -447970,21 +446023,24 @@
 											"name": "Kitsuki Gendo",
 											"uiclose": 2,
 											"emo": "angry",
-											"zoom": true
+											"zoom": true,
+											"rtfx": "28c92f0bb1a1"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "My last tattoo showed me what comes, clerk. The son will become the dark brother. The jade clan goes black. The dead rule.",
 											"name": "Togashi Akuro",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "28c92f0bb1a1"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "So I walked back four hundred years to break the road before it gets there. One dead Crane is cheap.",
 											"name": "Togashi Akuro",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "28c92f0bb1a1"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -447993,14 +446049,16 @@
 											"name": "Kitsuki Gendo",
 											"uiclose": 2,
 											"emo": "determined",
-											"act": "think"
+											"act": "think",
+											"rtfx": "28c92f0bb1a1"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "\"Out of all hope, seven mortals will rise.\" I stopped believing in the seven. Kill him.",
 											"name": "Togashi Akuro",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "28c92f0bb1a1"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -494478,7 +492536,8 @@
 								"key": "message_talk",
 								"text": "A Fox lady in dark green with gold leaves: Kitsune Hana. She bows, and makes to leave, the way she leaves every room the governor is in.",
 								"name": "",
-								"uiclose": 2
+								"uiclose": 2,
+								"rtfx": "cf79620c2027"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -497127,21 +495186,24 @@
 											"text": "Sick with what?",
 											"name": "Shosuro Mitsue",
 											"uiclose": 2,
-											"emo": "neutral"
+											"emo": "neutral",
+											"rtfx": "185f0b542457"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Nobody knows. And the next morning, the Miya caravan was robbed in the middle of town.",
 											"name": "Yoritomo Rui",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "185f0b542457"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "A Crane banner, a broken sword, two stone Fortunes. All of it dumped on the riverbank by dawn. All but one little iron box.",
 											"name": "Yoritomo Rui",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "185f0b542457"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -497151,7 +495213,8 @@
 											"uiclose": 2,
 											"emo": "determined",
 											"act": "think",
-											"zoom": true
+											"zoom": true,
+											"rtfx": "185f0b542457"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -512514,7 +510577,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 10;"
+											"code": "::rpgvar[\"G1398\"] = 9;"
 										},
 										{
 											"cmd": "cmd_choices",
@@ -514710,14 +512773,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -514830,7 +512893,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -514841,8 +512904,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -514851,7 +512914,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -514865,7 +512928,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -514895,7 +512958,7 @@
 		},
 		"name": "Battle: the grove road",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -514903,7 +512966,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M862": {
@@ -514913,14 +512981,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -515033,7 +513101,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -515044,8 +513112,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -515054,7 +513122,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -515068,7 +513136,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -515106,7 +513174,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M863": {
@@ -515116,14 +513189,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -515236,7 +513309,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -515247,8 +513320,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -515257,7 +513330,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -515271,7 +513344,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -515301,7 +513374,7 @@
 		},
 		"name": "Battle: the west marsh",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -515309,7 +513382,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M864": {
@@ -515319,14 +513397,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -515439,7 +513517,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -515450,8 +513528,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -515460,7 +513538,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -515474,7 +513552,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -515504,7 +513582,7 @@
 		},
 		"name": "Battle: the heart clearing",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -515512,7 +513590,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M359": {
@@ -526619,7 +524702,7 @@
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
-											"text": "A room, honored guest? Thirty zeni. We never sleep, but the beds are very good.",
+											"text": "A room, honored guest? It costs nothing here. We never sleep, but the beds are very good.",
 											"name": "Crimson Blossom maid",
 											"uiclose": 2
 										},
@@ -526629,66 +524712,43 @@
 											"cmdblocks": [
 												[
 													{
-														"cmd": "cmd_if",
-														"reqs": [
-															{
-																"lvar": "MONEY",
-																"op": ">=",
-																"rvar": 30
-															}
-														],
-														"cmdblocks": [
-															[
-																{
-																	"cmd": "cmd_moneyop",
-																	"op": 1,
-																	"amount": 30
-																},
-																{
-																	"charaid": "P000",
-																	"cmd": "cmd_condop",
-																	"cmdtgt": 11,
-																	"condbits": 1,
-																	"ignoredead": true,
-																	"op": 2,
-																	"showpop": false
-																},
-																{
-																	"charaid": "P000",
-																	"cmd": "cmd_hpmp",
-																	"cmdtgt": 11,
-																	"hp1": true,
-																	"op": 1,
-																	"pid": "HP",
-																	"val": 100
-																},
-																{
-																	"charaid": "P000",
-																	"cmd": "cmd_hpmp",
-																	"cmdtgt": 11,
-																	"hp1": true,
-																	"op": 1,
-																	"pid": "MP",
-																	"val": 100
-																},
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "(Rested.)",
-																	"name": "",
-																	"uiclose": 2
-																}
-															],
-															[
-																{
-																	"cmd": "cmd_showmsg",
-																	"key": "message_talk",
-																	"text": "Thirty zeni.",
-																	"name": "Crimson Blossom maid",
-																	"uiclose": 2
-																}
-															]
-														]
+														"charaid": "P000",
+														"cmd": "cmd_condop",
+														"cmdtgt": 11,
+														"condbits": 1,
+														"ignoredead": true,
+														"op": 2,
+														"showpop": false
+													},
+													{
+														"charaid": "P000",
+														"cmd": "cmd_hpmp",
+														"cmdtgt": 11,
+														"hp1": true,
+														"op": 1,
+														"pid": "HP",
+														"val": 100
+													},
+													{
+														"charaid": "P000",
+														"cmd": "cmd_hpmp",
+														"cmdtgt": 11,
+														"hp1": true,
+														"op": 1,
+														"pid": "MP",
+														"val": 100
+													},
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "(Rested.)",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_script",
+														"desc": "RT rest quest",
+														"code": "::Rokugan.innRestQuest();"
 													}
 												],
 												[]
@@ -526698,7 +524758,7 @@
 												"right": 430,
 												"y": 380
 											},
-											"text0": "Rest. (30 zeni)",
+											"text0": "Rest.",
 											"text1": "Not now."
 										}
 									],
@@ -530391,14 +528451,16 @@
 											"name": "Shosuro Mitsue",
 											"uiclose": 2,
 											"emo": "surprised",
-											"act": "surprise"
+											"act": "surprise",
+											"rtfx": "c4c7f96b875a"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Then you're carrying the only man who can end it. Don't drop him.",
 											"name": "Shosuro Osuko",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "c4c7f96b875a"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -543338,7 +541400,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 11;"
+											"code": "::rpgvar[\"G1398\"] = 10;"
 										},
 										{
 											"cmd": "cmd_choices",
@@ -545498,14 +543560,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -545618,7 +543680,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -545629,8 +543691,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -545639,7 +543701,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -545653,7 +543715,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -545683,7 +543745,7 @@
 		},
 		"name": "Battle: the plains north of Shiro no Soshi",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -545691,7 +543753,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M866": {
@@ -545701,14 +543768,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -545821,7 +543888,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -545832,8 +543899,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -545842,7 +543909,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -545856,7 +543923,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -545886,7 +543953,7 @@
 		},
 		"name": "Battle: a street in the City of Masks",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -545894,7 +543961,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M867": {
@@ -545904,14 +543976,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -546024,7 +544096,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -546035,8 +544107,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -546045,7 +544117,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -546059,7 +544131,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -546089,7 +544161,7 @@
 		},
 		"name": "Battle: the temple paths",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -546097,7 +544169,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M868": {
@@ -546107,14 +544184,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -546227,7 +544304,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -546238,8 +544315,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -546248,7 +544325,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -546262,7 +544339,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -546292,7 +544369,7 @@
 		},
 		"name": "Battle: the Monastery of the Silent Self",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -546300,7 +544377,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M368": {
@@ -556410,12 +554492,26 @@
 														"uiclose": 2
 													},
 													{
+														"cmd": "cmd_anime",
+														"who": 1,
+														"ani": {
+															"id": "laugh"
+														}
+													},
+													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "I'd never. Nobody would believe me.",
 														"name": "Ide Tamotsu",
 														"uiclose": 2,
 														"emo": "happy"
+													},
+													{
+														"cmd": "cmd_anime",
+														"who": 1,
+														"ani": {
+															"id": "stand"
+														}
 													},
 													{
 														"cmd": "cmd_itemop",
@@ -581648,14 +579744,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -581768,7 +579864,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -581779,8 +579875,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -581789,7 +579885,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -581803,7 +579899,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -581833,7 +579929,7 @@
 		},
 		"name": "Battle: the Ojatara Valleys",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -581841,7 +579937,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M870": {
@@ -581851,14 +579952,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -581971,7 +580072,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -581982,8 +580083,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -581992,7 +580093,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -582006,7 +580107,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -582036,7 +580137,7 @@
 		},
 		"name": "Battle: the grave path",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -582044,7 +580145,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M871": {
@@ -582054,14 +580160,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -582174,7 +580280,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -582185,8 +580291,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -582195,7 +580301,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -582209,7 +580315,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -582239,7 +580345,7 @@
 		},
 		"name": "Battle: the mountain road at dusk",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -582247,7 +580353,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M379": {
@@ -586169,7 +584280,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 12;"
+											"code": "::rpgvar[\"G1398\"] = 11;"
 										},
 										{
 											"cmd": "cmd_showui",
@@ -608085,7 +606196,8 @@
 											"key": "message_talk",
 											"text": "I followed that box out of Kudo. Through Shutai, up three mountains, behind you the whole way.",
 											"name": "Bloodspeaker",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "094ca5fd54e9"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -610681,14 +608793,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -610801,7 +608913,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -610812,8 +608924,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -610822,7 +608934,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -610836,7 +608948,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -610866,7 +608978,7 @@
 		},
 		"name": "Battle: the Dragon mountains",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -610874,7 +608986,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M873": {
@@ -610884,14 +609001,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -611004,7 +609121,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -611015,8 +609132,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -611025,7 +609142,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -611039,7 +609156,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -611077,7 +609194,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M874": {
@@ -611087,14 +609209,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -611207,7 +609329,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -611218,8 +609340,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -611228,7 +609350,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -611242,7 +609364,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -611272,7 +609394,7 @@
 		},
 		"name": "Battle: the crater's mouth",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -611280,7 +609402,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M387": {
@@ -641742,7 +639869,7 @@
 						0,
 						1.0,
 						0,
-						41.0,
+						1.0,
 						6.0,
 						0.5
 					]
@@ -644474,14 +642601,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -644594,7 +642721,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -644605,8 +642732,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -644615,7 +642742,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -644629,7 +642756,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -644659,7 +642786,7 @@
 		},
 		"name": "Battle: the valley road in autumn",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -644667,7 +642794,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M876": {
@@ -644677,14 +642809,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -644797,7 +642929,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -644808,8 +642940,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -644818,7 +642950,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -644832,7 +642964,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -644870,7 +643002,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M877": {
@@ -644880,14 +643017,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -645000,7 +643137,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -645011,8 +643148,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -645021,7 +643158,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -645035,7 +643172,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -645073,7 +643210,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M399": {
@@ -651729,7 +649871,8 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-2"
+				"name": "*portal-2",
+				"memo": "stairs"
 			},
 			"#3#": {
 				"role": "custom",
@@ -654244,6 +652387,7 @@
 				"flags": 1,
 				"spawndist": 5,
 				"name": "*portal-2",
+				"memo": "stairs",
 				"reqs0": [
 					{
 						"lvar": "G1001",
@@ -662522,26 +660666,12 @@
 											"uiclose": 2
 										},
 										{
-											"cmd": "cmd_anime",
-											"who": 1,
-											"ani": {
-												"id": "laugh"
-											}
-										},
-										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Exactly.",
 											"name": "Ide Tamotsu",
 											"uiclose": 2,
 											"emo": "happy"
-										},
-										{
-											"cmd": "cmd_anime",
-											"who": 1,
-											"ani": {
-												"id": "stand"
-											}
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -677677,14 +675807,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -677797,7 +675927,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -677808,8 +675938,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -677818,7 +675948,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -677832,7 +675962,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -677870,7 +676000,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M879": {
@@ -677880,14 +676015,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -678000,7 +676135,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -678011,8 +676146,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -678021,7 +676156,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -678035,7 +676170,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -678073,7 +676208,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M880": {
@@ -678083,14 +676223,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -678203,7 +676343,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -678214,8 +676354,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -678224,7 +676364,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -678238,7 +676378,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -678276,7 +676416,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M408": {
@@ -687617,6 +685762,7 @@
 				"flags": 1,
 				"spawndist": 5,
 				"name": "*portal-2",
+				"memo": "stairs",
 				"reqs0": [
 					{
 						"lvar": "G1027",
@@ -690481,14 +688627,16 @@
 											"key": "message_talk",
 											"text": "Buy me? I sold a woman I loved to a geisha house to keep a war going, boy. I sold the miners to the dark when they saw too much.",
 											"name": "Iuchi Kurosho",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "681e475cda1b"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Twenty years of it. Regret is the only thing I ever kept. So I called it home.",
 											"name": "Iuchi Kurosho",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "681e475cda1b"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -690497,7 +688645,8 @@
 											"name": "Ide Tamotsu",
 											"uiclose": 2,
 											"emo": "determined",
-											"zoom": true
+											"zoom": true,
+											"rtfx": "681e475cda1b"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -695854,7 +694003,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 13;"
+											"code": "::rpgvar[\"G1398\"] = 12;"
 										},
 										{
 											"cmd": "cmd_showui",
@@ -697037,14 +695186,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -697157,7 +695306,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -697168,8 +695317,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -697178,7 +695327,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -697192,7 +695341,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -697222,7 +695371,7 @@
 		},
 		"name": "Battle: the wind tunnel",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -697230,7 +695379,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M882": {
@@ -697240,14 +695394,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -697360,7 +695514,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -697371,8 +695525,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -697381,7 +695535,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -697395,7 +695549,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -697433,7 +695587,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M414": {
@@ -703349,8 +701508,8 @@
 						0,
 						1.0,
 						0,
-						1.0,
-						1.0,
+						1.5,
+						3.0,
 						1.0
 					]
 				},
@@ -703688,8 +701847,8 @@
 						0,
 						1.0,
 						0,
-						1.0,
-						1.0,
+						1.5,
+						3.0,
 						1.0
 					]
 				},
@@ -703774,8 +701933,8 @@
 						0,
 						1.0,
 						0,
-						1.0,
-						1.0,
+						1.5,
+						3.0,
 						1.0
 					]
 				},
@@ -712797,7 +710956,8 @@
 								"key": "message_talk",
 								"text": "A thin girl sits by the shrine fire, wrapped in a quilt: Akari.",
 								"name": "",
-								"uiclose": 2
+								"uiclose": 2,
+								"rtfx": "197b4a43e1c3"
 							},
 							{
 								"cmd": "cmd_showmsg",
@@ -726284,14 +724444,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -726404,7 +724564,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -726415,8 +724575,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -726425,7 +724585,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -726439,7 +724599,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -726469,7 +724629,7 @@
 		},
 		"name": "Battle: Cakon",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -726477,7 +724637,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M884": {
@@ -726487,14 +724652,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -726607,7 +724772,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -726618,8 +724783,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -726628,7 +724793,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -726642,7 +724807,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -726672,7 +724837,7 @@
 		},
 		"name": "Battle: the canal log",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -726680,7 +724845,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M885": {
@@ -726690,14 +724860,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -726810,7 +724980,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -726821,8 +724991,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -726831,7 +725001,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -726845,7 +725015,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -726875,7 +725045,7 @@
 		},
 		"name": "Battle: the paddies",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -726883,7 +725053,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M886": {
@@ -726893,14 +725068,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -727013,7 +725188,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -727024,8 +725199,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -727034,7 +725209,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -727048,7 +725223,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -727086,7 +725261,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M887": {
@@ -727096,14 +725276,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -727216,7 +725396,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -727227,8 +725407,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -727237,7 +725417,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -727251,7 +725431,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -727289,7 +725469,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M422": {
@@ -742609,7 +740794,7 @@
 		"size": [
 			144,
 			64,
-			64
+			76
 		],
 		"vs": 23,
 		"weather": {
@@ -750658,7 +748843,7 @@
 		"size": [
 			136,
 			64,
-			61
+			76
 		],
 		"vs": 23,
 		"weather": {
@@ -750672,14 +748857,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -750792,7 +748977,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -750803,8 +748988,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -750813,7 +748998,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -750827,7 +749012,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -750857,7 +749042,7 @@
 		},
 		"name": "Battle: the river road in winter",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -750865,7 +749050,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M889": {
@@ -750875,14 +749065,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -750995,7 +749185,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -751006,8 +749196,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -751016,7 +749206,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -751030,7 +749220,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -751068,7 +749258,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M890": {
@@ -751078,14 +749273,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -751224,7 +749419,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -751235,8 +749430,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -751245,7 +749440,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -751259,7 +749454,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -751297,7 +749492,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M429": {
@@ -779968,14 +778168,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -780088,7 +778288,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -780099,8 +778299,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -780109,7 +778309,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -780123,7 +778323,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -780153,7 +778353,7 @@
 		},
 		"name": "Battle: the north road checkpoint",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -780161,7 +778361,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M892": {
@@ -780171,14 +778376,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -780291,7 +778496,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -780302,8 +778507,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -780312,7 +778517,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -780326,7 +778531,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -780356,7 +778561,7 @@
 		},
 		"name": "Battle: the mountain snow",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -780364,7 +778569,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M893": {
@@ -780374,14 +778584,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -780520,7 +778730,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -780531,8 +778741,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -780541,7 +778751,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -780555,7 +778765,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -780593,7 +778803,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M437": {
@@ -789212,7 +787427,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 14;"
+											"code": "::rpgvar[\"G1398\"] = 13;"
 										},
 										{
 											"cmd": "cmd_showui",
@@ -806177,14 +804392,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -806297,7 +804512,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -806308,8 +804523,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -806318,7 +804533,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -806332,7 +804547,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -806362,7 +804577,7 @@
 		},
 		"name": "Battle: the pilgrim road",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -806370,7 +804585,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M895": {
@@ -806380,14 +804600,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -806526,7 +804746,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -806537,8 +804757,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -806547,7 +804767,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -806561,7 +804781,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -806599,7 +804819,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M896": {
@@ -806609,14 +804834,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -806755,7 +804980,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -806766,8 +804991,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -806776,7 +805001,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -806790,7 +805015,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -806828,7 +805053,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M444": {
@@ -812792,7 +811022,7 @@
 					{
 						"cmd": "cmd_script",
 						"desc": "SCRIPT",
-						"code": "::rpgvar[\"G1398\"] = 15;"
+						"code": "::rpgvar[\"G1398\"] = 14;"
 					},
 					{
 						"ani": {
@@ -816484,14 +814714,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -816604,7 +814834,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -816615,8 +814845,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -816625,7 +814855,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -816639,7 +814869,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -816669,7 +814899,7 @@
 		},
 		"name": "Battle: the Plains of Thunder",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -816677,7 +814907,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M898": {
@@ -816687,14 +814922,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -816833,7 +815068,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -816844,8 +815079,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -816854,7 +815089,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -816868,7 +815103,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -816906,7 +815141,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M446": {
@@ -831035,7 +829275,8 @@
 											"key": "message_talk",
 											"text": "Mamoru. I was keeping this forest before it had trees.",
 											"name": "Mamoru",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "ca2a90f57d65"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -836218,14 +834459,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -836338,7 +834579,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -836349,8 +834590,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -836359,7 +834600,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -836373,7 +834614,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -836403,7 +834644,7 @@
 		},
 		"name": "Battle: the Shinomen Mori",
 		"reverbid": "plain",
-		"rsetid": "pbr_df-4-1-1",
+		"rsetid": "rt_hd2d_battle",
 		"size": [
 			128,
 			64,
@@ -836411,7 +834652,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M453": {
@@ -841979,14 +840225,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -842099,7 +840345,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -842110,8 +840356,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -842120,7 +840366,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -842134,7 +840380,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -842172,7 +840418,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M807": {
@@ -842182,14 +840433,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -842302,7 +840553,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -842313,8 +840564,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -842323,7 +840574,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -842337,7 +840588,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -842375,7 +840626,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M100": {
@@ -845844,7 +844100,8 @@
 											"key": "message_talk",
 											"text": "Inside the gate, Kage holds the map case out to Natsuko. Then he draws it back.",
 											"name": "",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "8507a015b7a6"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -861208,6 +859465,12 @@
 											"rvar": true
 										},
 										{
+											"cmd": "cmd_compute",
+											"lvar": "G1244",
+											"op": "=",
+											"rvar": 100
+										},
+										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Side quest taken: Salt and Goblins. (The Coast Road, west of town. The goblins come to you.) The Journal tracks it.",
@@ -861413,6 +859676,12 @@
 											"lvar": "G1253",
 											"op": "=",
 											"rvar": true
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1244",
+											"op": "=",
+											"rvar": 101
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -878157,9 +876426,9 @@
 			"#10#": {
 				"role": "custom",
 				"pos": [
-					58,
+					67,
 					3,
-					15,
+					37,
 					2
 				],
 				"mdl": {
@@ -878169,7 +876438,7 @@
 						0,
 						2.5,
 						4.0,
-						1.5
+						1.0
 					]
 				},
 				"mdlid": "CE000",
@@ -881156,9 +879425,9 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					72,
+					101,
 					3,
-					54,
+					23,
 					2
 				],
 				"page": [
@@ -881263,13 +879532,13 @@
 			},
 			"#84#": {
 				"role": "itemchest",
-				"itemid": "I445",
-				"num": 2,
+				"itemid": "N000",
+				"num": 120,
 				"mdlid": "CV036",
 				"pos": [
-					101,
+					71,
 					3,
-					25,
+					54,
 					2
 				],
 				"col": 0,
@@ -881278,22 +879547,6 @@
 				"name": "*itemchest-84"
 			},
 			"#85#": {
-				"role": "itemchest",
-				"itemid": "I446",
-				"num": 1,
-				"mdlid": "CV036",
-				"pos": [
-					87,
-					3,
-					27,
-					2
-				],
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"name": "*itemchest-85"
-			},
-			"#86#": {
 				"role": "portal",
 				"pos": [
 					77,
@@ -881321,7 +879574,7 @@
 				"col": 0,
 				"flags": 1,
 				"spawndist": 5,
-				"name": "*portal-86"
+				"name": "*portal-85"
 			}
 		},
 		"exitmap": {
@@ -890942,7 +889195,7 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "Back again? A room's ten zeni. Quiet tonight, at least.",
+								"text": "Back again? Your room's waiting - no charge for the Wall's own. Quiet tonight, at least.",
 								"name": "Innkeeper",
 								"uiclose": 2
 							},
@@ -890951,11 +889204,6 @@
 								"backenable": false,
 								"cmdblocks": [
 									[
-										{
-											"cmd": "cmd_moneyop",
-											"op": 1,
-											"amount": 10
-										},
 										{
 											"cmd": "cmd_compute",
 											"lvar": "G022",
@@ -973976,7 +972224,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 16;"
+											"code": "::rpgvar[\"G1398\"] = 15;"
 										},
 										{
 											"cmd": "cmd_showui",
@@ -979421,7 +977669,8 @@
 											"key": "message_talk",
 											"text": "Hiruma. Talk to me. Who's in the barrel?",
 											"name": "Hida Sachiko",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -979429,21 +977678,24 @@
 											"text": "Asako Kuhime. The real one. Whatever stood beside Kage today is wearing her face.",
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
-											"emo": "sad"
+											"emo": "sad",
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "A face-thief. In the Champion's own house. On his wedding day.",
 											"name": "Hiruma Goro",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "Then how do we find it? It could be anyone up there. It could be me.",
 											"name": "Hida Sachiko",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -979453,14 +977705,16 @@
 											"uiclose": 2,
 											"emo": "determined",
 											"act": "think",
-											"zoom": true
+											"zoom": true,
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "A small thing to hang a life on.",
 											"name": "Hiruma Goro",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -979468,7 +977722,8 @@
 											"text": "Then here's a bigger one. Jade burns anything the Shadowlands made.",
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
-											"emo": "determined"
+											"emo": "determined",
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -979477,14 +977732,16 @@
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
 											"emo": "determined",
-											"act": "point"
+											"act": "point",
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "And if it's careful? Keeps its sleeves down?",
 											"name": "Hida Sachiko",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -979492,14 +977749,16 @@
 											"text": "Then hand it a smooth river stone and call it jade. Something that's never touched jade won't know the difference.",
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
-											"emo": "neutral"
+											"emo": "neutral",
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "And if you grab the wrong one?",
 											"name": "Hiruma Goro",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -979507,7 +977766,8 @@
 											"text": "Then I've jumped a frightened servant in the dark, she's laughing at us, and she gets closer. So we test first.",
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
-											"emo": "worried"
+											"emo": "worried",
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -979516,14 +977776,16 @@
 											"name": "Hiruma Natsuko",
 											"uiclose": 2,
 											"emo": "determined",
-											"act": "crossarms"
+											"act": "crossarms",
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
 											"key": "message_talk",
 											"text": "...I hate this castle.",
 											"name": "Hida Sachiko",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "7b311bf08db0"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -1029306,7 +1027568,8 @@
 											"name": "Kitsuki Gendo",
 											"uiclose": 2,
 											"emo": "worried",
-											"act": "think"
+											"act": "think",
+											"rtfx": "4a52b901a815"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -1031696,14 +1029959,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -1031816,7 +1030079,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -1031827,8 +1030090,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -1031837,7 +1030100,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -1031851,7 +1030114,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -1031889,7 +1030152,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M464": {
@@ -1034525,14 +1032793,14 @@
 		},
 		"bgmid": null,
 		"camwork": {
-			"fovy": 40,
+			"fovy": 26,
 			"hpb": [
-				45,
-				45,
+				0,
+				16,
 				0
 			],
-			"viewport": 6.0,
-			"yoffs": 1.5
+			"viewport": 4.6,
+			"yoffs": 0.5
 		},
 		"encntrate": 0.0,
 		"encount": null,
@@ -1034645,7 +1032913,7 @@
 				"fovy": 25,
 				"hpb": [
 					0,
-					24,
+					20,
 					0
 				],
 				"name": "*maincam",
@@ -1034656,8 +1032924,8 @@
 					2
 				],
 				"type": "camera",
-				"viewport": 12.0,
-				"yoffs": -0.9
+				"viewport": 8.0,
+				"yoffs": -0.4
 			},
 			"#2000002#": {
 				"col": 0,
@@ -1034666,7 +1032934,7 @@
 				"icon": "",
 				"name": "*memberloc",
 				"pos": [
-					75,
+					71,
 					1,
 					64,
 					2
@@ -1034680,7 +1032948,7 @@
 				"icon": "",
 				"name": "*enemyloc",
 				"pos": [
-					56,
+					58,
 					1,
 					64,
 					2
@@ -1034718,7 +1032986,12 @@
 		],
 		"vs": 31,
 		"weather": {
-			"type": null
+			"type": "particle",
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M480": {
@@ -1037577,7 +1035850,7 @@
 		"size": [
 			212,
 			64,
-			85
+			94
 		],
 		"vs": 23,
 		"weather": {
@@ -1040307,7 +1038580,7 @@
 		"size": [
 			212,
 			64,
-			85
+			98
 		],
 		"vs": 23,
 		"weather": {
@@ -1049328,7 +1047601,7 @@
 		"size": [
 			212,
 			64,
-			85
+			100
 		],
 		"vs": 23,
 		"weather": {
@@ -1057955,7 +1056228,7 @@
 		"size": [
 			212,
 			64,
-			85
+			99
 		],
 		"vs": 23,
 		"weather": {
@@ -1060500,7 +1058773,7 @@
 		"size": [
 			212,
 			64,
-			85
+			105
 		],
 		"vs": 23,
 		"weather": {
@@ -1068944,7 +1067217,7 @@
 		"size": [
 			212,
 			64,
-			85
+			104
 		],
 		"vs": 23,
 		"weather": {
@@ -1077140,7 +1075413,7 @@
 		"size": [
 			212,
 			64,
-			85
+			108
 		],
 		"vs": 23,
 		"weather": {
@@ -1082564,7 +1080837,7 @@
 				"wipe": 2,
 				"dest": {
 					"mapid": "M228",
-					"evid": 26
+					"evid": 25
 				},
 				"mdl": {
 					"r": [
@@ -1085276,7 +1083549,7 @@
 		"size": [
 			212,
 			64,
-			85
+			102
 		],
 		"vs": 23,
 		"weather": {
@@ -1093461,7 +1091734,7 @@
 		"size": [
 			212,
 			64,
-			85
+			108
 		],
 		"vs": 23,
 		"weather": {
@@ -1101908,7 +1100181,7 @@
 		"size": [
 			212,
 			64,
-			85
+			115
 		],
 		"vs": 23,
 		"weather": {
@@ -1108011,7 +1106284,7 @@
 					56,
 					2,
 					75,
-					2
+					0
 				],
 				"page": [
 					{
@@ -1108094,14 +1106367,14 @@
 						0,
 						1.0,
 						0,
-						1.0,
+						2.5,
 						3.0,
 						1.0
 					]
 				},
 				"col": 0,
 				"flags": 1,
-				"spawndist": 1,
+				"spawndist": 5,
 				"name": "*custom-1"
 			},
 			"#2#": {
@@ -1108111,7 +1106384,7 @@
 					84,
 					2,
 					43,
-					2
+					0
 				],
 				"page": [
 					{
@@ -1108221,14 +1106494,14 @@
 						0,
 						1.0,
 						0,
-						1.0,
+						2.5,
 						3.0,
 						1.0
 					]
 				},
 				"col": 0,
 				"flags": 1,
-				"spawndist": 1,
+				"spawndist": 5,
 				"name": "*custom-2"
 			},
 			"#3#": {
@@ -1108238,7 +1106511,7 @@
 					135,
 					2,
 					62,
-					2
+					1
 				],
 				"page": [
 					{
@@ -1108348,14 +1106621,14 @@
 						0,
 						1.0,
 						0,
-						1.0,
+						2.5,
 						3.0,
 						1.0
 					]
 				},
 				"col": 0,
 				"flags": 1,
-				"spawndist": 1,
+				"spawndist": 5,
 				"name": "*custom-3"
 			},
 			"#4#": {
@@ -1108512,14 +1106785,14 @@
 						0,
 						1.0,
 						0,
-						1.0,
+						2.5,
 						3.0,
 						1.0
 					]
 				},
 				"col": 0,
 				"flags": 1,
-				"spawndist": 1,
+				"spawndist": 5,
 				"name": "*custom-4"
 			}
 		},
@@ -1108688,7 +1106961,7 @@
 					56,
 					2,
 					75,
-					2
+					0
 				],
 				"page": [
 					{
@@ -1108771,14 +1107044,14 @@
 						0,
 						1.0,
 						0,
-						1.0,
+						2.5,
 						3.0,
 						1.0
 					]
 				},
 				"col": 0,
 				"flags": 1,
-				"spawndist": 1,
+				"spawndist": 5,
 				"name": "*custom-1"
 			},
 			"#2#": {
@@ -1108788,7 +1107061,7 @@
 					84,
 					2,
 					43,
-					2
+					0
 				],
 				"page": [
 					{
@@ -1108898,14 +1107171,14 @@
 						0,
 						1.0,
 						0,
-						1.0,
+						2.5,
 						3.0,
 						1.0
 					]
 				},
 				"col": 0,
 				"flags": 1,
-				"spawndist": 1,
+				"spawndist": 5,
 				"name": "*custom-2"
 			},
 			"#3#": {
@@ -1108915,7 +1107188,7 @@
 					135,
 					2,
 					62,
-					2
+					1
 				],
 				"page": [
 					{
@@ -1109025,14 +1107298,14 @@
 						0,
 						1.0,
 						0,
-						1.0,
+						2.5,
 						3.0,
 						1.0
 					]
 				},
 				"col": 0,
 				"flags": 1,
-				"spawndist": 1,
+				"spawndist": 5,
 				"name": "*custom-3"
 			},
 			"#4#": {
@@ -1109189,14 +1107462,14 @@
 						0,
 						1.0,
 						0,
-						1.0,
+						2.5,
 						3.0,
 						1.0
 					]
 				},
 				"col": 0,
 				"flags": 1,
-				"spawndist": 1,
+				"spawndist": 5,
 				"name": "*custom-4"
 			},
 			"#5#": {
@@ -1109561,7 +1107834,7 @@
 					68,
 					2,
 					50,
-					2
+					3
 				],
 				"page": [
 					{
@@ -1109644,14 +1107917,14 @@
 						0,
 						1.0,
 						0,
-						1.0,
+						2.5,
 						3.0,
 						1.0
 					]
 				},
 				"col": 0,
 				"flags": 1,
-				"spawndist": 1,
+				"spawndist": 5,
 				"name": "*custom-1"
 			},
 			"#2#": {
@@ -1109661,7 +1107934,7 @@
 					104,
 					2,
 					26,
-					2
+					1
 				],
 				"page": [
 					{
@@ -1109744,14 +1108017,14 @@
 						0,
 						1.0,
 						0,
-						1.0,
+						2.5,
 						3.0,
 						1.0
 					]
 				},
 				"col": 0,
 				"flags": 1,
-				"spawndist": 1,
+				"spawndist": 5,
 				"name": "*custom-2"
 			}
 		},
@@ -1109900,162 +1108173,6 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					31,
-					2,
-					40,
-					2
-				],
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 5,
-						"memo": "",
-						"moveaction": "stop",
-						"movespd": 4,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": [
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
-								"text": "The route west leads back to the Crane port.",
-								"name": "",
-								"uiclose": 2
-							},
-							{
-								"cmd": "cmd_choices",
-								"backenable": false,
-								"cmdblocks": [
-									[
-										{
-											"cmd": "cmd_mapmove",
-											"dest": {
-												"mapid": "M491",
-												"pos": [
-													82.0,
-													null,
-													20.0,
-													0.0
-												]
-											},
-											"wipe": 1,
-											"remap": true
-										}
-									],
-									[]
-								],
-								"pos": {
-									"left": 430,
-									"right": 430,
-									"y": 380
-								},
-								"text0": "Sail through.",
-								"text1": "Stay in these waters."
-							}
-						]
-					}
-				],
-				"reqs0": null,
-				"mdl": {
-					"r": [
-						0,
-						1.0,
-						0,
-						1.0,
-						3.0,
-						1.0
-					]
-				},
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"name": "*custom-1"
-			},
-			"#2#": {
-				"role": "custom",
-				"mdlid": "CE000",
-				"pos": [
-					170,
-					2,
-					47,
-					2
-				],
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 5,
-						"memo": "",
-						"moveaction": "stop",
-						"movespd": 4,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": [
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
-								"text": "Beyond the last island, the coast turns north toward Kyuden Doji.",
-								"name": "",
-								"uiclose": 2
-							},
-							{
-								"cmd": "cmd_choices",
-								"backenable": false,
-								"cmdblocks": [
-									[
-										{
-											"cmd": "cmd_mapmove",
-											"dest": {
-												"mapid": "M494",
-												"pos": [
-													19.0,
-													null,
-													23.5,
-													0.0
-												]
-											},
-											"wipe": 1,
-											"remap": true
-										}
-									],
-									[]
-								],
-								"pos": {
-									"left": 430,
-									"right": 430,
-									"y": 380
-								},
-								"text0": "Sail through.",
-								"text1": "Stay in these waters."
-							}
-						]
-					}
-				],
-				"reqs0": null,
-				"mdl": {
-					"r": [
-						0,
-						1.0,
-						0,
-						1.0,
-						3.0,
-						1.0
-					]
-				},
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"name": "*custom-2"
-			},
-			"#3#": {
-				"role": "custom",
-				"mdlid": "CE000",
-				"pos": [
 					75,
 					2,
 					38,
@@ -1110152,7 +1108269,7 @@
 				"spawndist": 5,
 				"name": "*custom-1"
 			},
-			"#4#": {
+			"#2#": {
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
@@ -1110252,7 +1108369,7 @@
 				"spawndist": 5,
 				"name": "*custom-2"
 			},
-			"#5#": {
+			"#3#": {
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
@@ -1110351,6 +1108468,162 @@
 				"flags": 1,
 				"spawndist": 5,
 				"name": "*custom-3"
+			},
+			"#4#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					31,
+					2,
+					40,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The route west leads back to the Crane port.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M491",
+												"pos": [
+													82.0,
+													null,
+													20.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Sail through.",
+								"text1": "Stay in these waters."
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						3.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-4"
+			},
+			"#5#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					170,
+					2,
+					47,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Beyond the last island, the coast turns north toward Kyuden Doji.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M494",
+												"pos": [
+													19.0,
+													null,
+													23.5,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Sail through.",
+								"text1": "Stay in these waters."
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						3.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-5"
 			}
 		},
 		"exitmap": {
@@ -1110526,7 +1108799,7 @@
 					100,
 					2,
 					78,
-					2
+					0
 				],
 				"page": [
 					{
@@ -1110636,95 +1108909,17 @@
 						0,
 						1.0,
 						0,
-						1.0,
+						2.5,
 						3.0,
 						1.0
 					]
 				},
 				"col": 0,
 				"flags": 1,
-				"spawndist": 1,
+				"spawndist": 5,
 				"name": "*custom-1"
 			},
 			"#2#": {
-				"role": "custom",
-				"mdlid": "CE000",
-				"pos": [
-					31,
-					2,
-					47,
-					2
-				],
-				"page": [
-					{
-						"ani": {
-							"id": "stand"
-						},
-						"trigger": 5,
-						"memo": "",
-						"moveaction": "stop",
-						"movespd": 4,
-						"pararun": false,
-						"reqs": null,
-						"standani": null,
-						"cmdblock": [
-							{
-								"cmd": "cmd_showmsg",
-								"key": "message_talk",
-								"text": "The route west follows the Crane coast.",
-								"name": "",
-								"uiclose": 2
-							},
-							{
-								"cmd": "cmd_choices",
-								"backenable": false,
-								"cmdblocks": [
-									[
-										{
-											"cmd": "cmd_mapmove",
-											"dest": {
-												"mapid": "M493",
-												"pos": [
-													82.0,
-													null,
-													23.5,
-													0.0
-												]
-											},
-											"wipe": 1,
-											"remap": true
-										}
-									],
-									[]
-								],
-								"pos": {
-									"left": 430,
-									"right": 430,
-									"y": 380
-								},
-								"text0": "Sail through.",
-								"text1": "Stay in these waters."
-							}
-						]
-					}
-				],
-				"reqs0": null,
-				"mdl": {
-					"r": [
-						0,
-						1.0,
-						0,
-						1.0,
-						3.0,
-						1.0
-					]
-				},
-				"col": 0,
-				"flags": 1,
-				"spawndist": 1,
-				"name": "*custom-2"
-			},
-			"#3#": {
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
@@ -1110824,7 +1109019,7 @@
 				"spawndist": 5,
 				"name": "*custom-2"
 			},
-			"#4#": {
+			"#3#": {
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
@@ -1110924,7 +1109119,7 @@
 				"spawndist": 5,
 				"name": "*custom-3"
 			},
-			"#5#": {
+			"#4#": {
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
@@ -1111023,6 +1109218,84 @@
 				"flags": 1,
 				"spawndist": 5,
 				"name": "*custom-4"
+			},
+			"#5#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					31,
+					2,
+					47,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The route west follows the Crane coast.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M493",
+												"pos": [
+													82.0,
+													null,
+													23.5,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Sail through.",
+								"text1": "Stay in these waters."
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						3.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-5"
 			}
 		},
 		"exitmap": {
@@ -1119347,6 +1117620,66 @@
 				"flags": 1,
 				"spawndist": 1,
 				"name": "*clerk-2"
+			},
+			"#3#": {
+				"role": "custom",
+				"mdlid": "EP212",
+				"pos": [
+					24,
+					2,
+					12,
+					0
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-3"
+			},
+			"#4#": {
+				"role": "custom",
+				"mdlid": "EP210",
+				"pos": [
+					8,
+					2,
+					12,
+					0
+				],
+				"reqs0": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-4"
 			}
 		},
 		"exitmap": {
@@ -1125410,8 +1123743,7 @@
 																				"text": "(Well. The Wall doesn't dance either.)",
 																				"name": "Hiruma Natsuko",
 																				"uiclose": 2,
-																				"emo": "hurt",
-																				"act": "scratch"
+																				"emo": "hurt"
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
@@ -1125548,8 +1123880,7 @@
 																				"text": "(Well. The Wall doesn't dance either.)",
 																				"name": "Hiruma Natsuko",
 																				"uiclose": 2,
-																				"emo": "hurt",
-																				"act": "scratch"
+																				"emo": "hurt"
 																			},
 																			{
 																				"cmd": "cmd_showmsg",
@@ -1132596,7 +1130927,8 @@
 														"key": "message_talk",
 														"text": "The servant's face slides like wet paint. Under it: a woman in a white wedding kimono four centuries out of fashion, smiling with far too many teeth.",
 														"name": "",
-														"uiclose": 2
+														"uiclose": 2,
+														"rtfx": "913087fd90fa"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -1132610,7 +1130942,8 @@
 														"key": "message_talk",
 														"text": "Nashiko. Remember it, scout. Your Hiruma lord already said it to me once today. 'Wife.'",
 														"name": "Nashiko",
-														"uiclose": 2
+														"uiclose": 2,
+														"rtfx": "ba0ee61f47c9"
 													},
 													{
 														"cmd": "cmd_showmsg",
@@ -1132619,14 +1130952,16 @@
 														"name": "Hiruma Natsuko",
 														"uiclose": 2,
 														"emo": "angry",
-														"zoom": true
+														"zoom": true,
+														"rtfx": "ba0ee61f47c9"
 													},
 													{
 														"cmd": "cmd_showmsg",
 														"key": "message_talk",
 														"text": "I was a bride once. Nobody let me keep it. I'm only borrowing it back.",
 														"name": "Nashiko",
-														"uiclose": 2
+														"uiclose": 2,
+														"rtfx": "ba0ee61f47c9"
 													},
 													{
 														"cmd": "cmd_compute",
@@ -1149897,7 +1148232,7 @@
 					9,
 					10,
 					54,
-					2
+					0
 				],
 				"back": false,
 				"remap": true,
@@ -1156176,7 +1154511,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 17;"
+											"code": "::rpgvar[\"G1398\"] = 16;"
 										},
 										{
 											"cmd": "cmd_showui",
@@ -1162104,7 +1160439,8 @@
 											"key": "message_talk",
 											"text": "A Crab envoy, Kaiu Gesshin, has spent a week walking the Akodo's walls and drill yards at Toturi's own invitation. The hall waits for his verdict.",
 											"name": "",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "3358898ad14c"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -1162340,7 +1160676,8 @@
 											"key": "message_talk",
 											"text": "Every eye goes to the one Crane at the Lion's court: Daidoji Atsuko, a Daidoji envoy whom everyone knows is a spy and nobody can prove it.",
 											"name": "",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "4be340d4252a"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -1169175,7 +1167512,8 @@
 											"key": "message_talk",
 											"text": "The oni squeals - \"I will return! I will devour your souls!\" - and is gone through the floor.",
 											"name": "",
-											"uiclose": 2
+											"uiclose": 2,
+											"rtfx": "29d4d5d97494"
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -1221596,7 +1219934,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 18;"
+											"code": "::rpgvar[\"G1398\"] = 17;"
 										},
 										{
 											"cmd": "cmd_showui",
@@ -1374235,7 +1372573,7 @@
 										{
 											"cmd": "cmd_script",
 											"desc": "SCRIPT",
-											"code": "::rpgvar[\"G1398\"] = 19;"
+											"code": "::rpgvar[\"G1398\"] = 18;"
 										},
 										{
 											"cmd": "cmd_choices",
@@ -1523630,7 +1521968,7 @@
 				"wipe": 2,
 				"dest": {
 					"mapid": "M285",
-					"evid": 192
+					"evid": 190
 				},
 				"mdl": {
 					"r": [
@@ -1624046,11 +1622384,11 @@
 		"vs": 31,
 		"weather": {
 			"type": "particle",
-			"spd": 0.04,
-			"size": 0.09,
-			"dens": 0.25,
-			"col1": -929009409,
-			"col2": -389508865
+			"spd": 0.08,
+			"size": 0.12,
+			"dens": 0.35,
+			"col1": -1597185,
+			"col2": -601857
 		}
 	},
 	"M799": {
@@ -1624247,9 +1622585,9 @@
 		"reverbid": "plain",
 		"rsetid": "rt_hd2d_cave",
 		"size": [
-			128,
+			180,
 			64,
-			128
+			144
 		],
 		"vs": 31,
 		"weather": {
@@ -1624455,9 +1622793,9 @@
 		"reverbid": "plain",
 		"rsetid": "rt_hd2d_cave",
 		"size": [
-			128,
+			180,
 			64,
-			128
+			144
 		],
 		"vs": 31,
 		"weather": {
@@ -1624663,9 +1623001,9 @@
 		"reverbid": "plain",
 		"rsetid": "rt_hd2d_cave",
 		"size": [
-			128,
+			180,
 			64,
-			128
+			144
 		],
 		"vs": 31,
 		"weather": {

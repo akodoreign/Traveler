@@ -5532,3 +5532,64 @@ User's 2026-11-12 lists done (lead), pushed 514a03d, data regenerated 14:05 (spa
   `rpgcobo.exe -testplay -map M099 "[19,1.5,5,0]" -rtvar G000 -rtfast -rtloadsave 95`, read "[RT] marker:".
 - gen_maps builds now run in _tools/rpgcobo-tool-build and free_engine() only stops instances from that folder. (Before, every rebuild force-closed all test games incl. both squirrel windows: the code-1 exits.)
 - Gates keep every way between two maps (open if any alternative holds): Garden Under Shadow castle before/after the fete.
+- Pathfinding (user: 'so put it in'): RokuganNav.sk - walk grid from ::rpgstage.bw (1 m cells, top solid non-liquid block, no-entry bmp; neighbours within 1 m height; no diagonal squeeze), A* -> turning points. RokuganChase.chaseWalk follows it (marker point, exits, events > 3 m). Test: -rtnavtest x0,z0,x1,z1 prints the path (M397 cave, M471 river road OK). Note: BLK_LIQUID is a const - use 4 outside VoxelConstants; SK arrays have no insert.
+- Black screen fix (engine RPGStage.changePlayer3D): with every party member down (a lost continue-fight, or an old save) no player model was made and the next stage's setPlayerPosition threw -> black screen. Now falls back to any member. Squirrels also heal fully after every battle (routes, not survival).
+- tools/squirrel_loop.py (user 2026-11-24: "keep going and recycling ... till they all reach the end of all quests, main one first"): cycles story runs (resume from saves, 60 min) and, per road whose game logs WALKED yes, sidequests runs; parks a road after 3 cycles ending at the same goal; writes _art/preview/chase/STATUS.md + loop_state.json. Window 1 = story (with the local model), window 2 = side quests. Also: local answer "close" -> retry; nav steps <= 0.5 m; sweeps skip > 5-turn detours; save slot per engine folder (90 main, 91 w2).
+- 2026-11-24 squirrels, round 2 (user: "let the local LLM move the chars if the script fails after a min" / "let it
+  move all of them" / "you need solid door logic"):
+  - LLM drive (RokuganChase.chaseDrive, markerchase.drive, chase_llm "drive"): a minute without a metre of headway
+    toward the marker -> the model gets a top-down text picture (VIEW lines: 1 m/char, north up, # wall, _ drop,
+    ~ water, digits = exits with their destination + THE MARKER'S WAY / WRONG DOOR, letters = people/chests/spots,
+    "open ground from @" per direction at 25 cm resolution) and answers walk DIR M / goto X Z / use LETTER / back /
+    broken; up to 15 moves a turn, 3 turns a goal; walks are cut where the ground or a wrong door stops them.
+    Both windows run the model (squirrel_loop). Every move: _art/preview/chase/drive_log.md. -rtchasedrive SECONDS.
+  - Solid doors (RokuganBot.botGoto, botDoorGuard): while the chaser runs, every exit box except the marker's
+    (botDoorOK = the hop map, botDoorAt = the marker's point) is a wall: a tick whose actual motion (not the key held -
+    a street lantern slid Phoenix sideways) would take her deeper into another door's box stops the walk; she may go
+    sideways or out, never deeper. The path finder plans round the same boxes ([x, z, -1, hx, hz] in navAvoid). The
+    exit "nudge each way" (raw key presses, unguarded) only runs within 2.5 m of the exit and walks guarded steps.
+    Wrong-door memory resets with each new goal (the tower's stairs: wrong going up, right coming down).
+  - Marker data: MK_EXITS entries may carry a 6th item, the conditions of the page AND the cmd_ifs wrapped round a
+    story move (gen_maps _move_ifs); RokuganMarker.mkPoint skips the closed ones (a futon in Hoju's study, the Ianwa
+    walk-on on Shiro Akodo 3F). Hiruto's west tower M278-M280 is Phoenix's road (was Lion's: no marker), hall M248
+    shared Lion/Phoenix.
+  - Auto Battle: a foe held at 1 HP only falls to its weakness - plain hits on it are wasted (x0.05), and a caster
+    out of SP for the weakness drinks an SP restorative (O-Tamai: 94 turns before; now 3 jade chains).
+  - Resumes: launched in quiet shop M903 with no road choice (Lion's New Game opening raced the load and won: M240);
+    -rtloadsave waits until settled (no scene/battle); the chaser waits for "LOADSAVE done". Engine: RPGStage
+    setCamerawork no longer fades from a camera that doesn't exist (a save taken mid-fade failed to load at all).
+  - Nav: chests and every visible model (non-CE000) are solid cells; the sweep skips followers (rt_follow).
+  - Phoenix: Ch1 through to Ch2 (Zumiki, the pass) from the save that bounced 126 times. Lion: M513 -> castle town,
+    swordsmith's shed done. Lion's bad M240 resume save is in story_2_lion/snapshots/set_aside.
+- 2026-11-24 later (user: fade crash, rest -> innkeeper, squirrels hibernating, Egg Caves, compass):
+  - Fade crash: RPGCameraFade.update cuts when either camera is missing (plus the setCamerawork guard). Engine
+    RPGEvent.setEventSnapshot no longer restores an invisible trigger's (CE000 custom) position from a save - a moved
+    walk-on reaches old saves.
+  - Inns are free (X014 sets W = 0 first, new line; S05_INN and the Crimson Blossom maid too). A rest objective
+    (RokuganMarker.mkIsRest: "Rest ", " rest ", "sleep"...; 10 of 240) sends the marker to the nearest innkeeper
+    (MK_INNS, 40 maps, hotel role or a custom event calling X014; within 3 maps of the scene by road), and the night
+    there runs the objective's own scene (innRestQuest: moves to its map, runs the event at the beat). Tested: Crab
+    "Rest at the inn tonight" -> Hoshi-no-Ichi innkeeper -> the nezumi night -> "Follow the nezumi".
+  - Egg Caves (M133): the Seppun Ryozo encounter walk-on moved from the entry tunnel mouth to the passage out past the
+    camp (33.5, 18.5; user's arrow). Marker / door guard: the marker's own point is never a guarded door.
+  - Compass: RokuganCompass.sk, a HUD rose top right (N red, needle), turns with the camera (camdir; +z north, +x
+    east). The chaser's picture and the model's moves use it (COMPASS_DIRS / compassName / compassScreen). (Before,
+    my own "north" was -z = down the screen.)
+  - Squirrels: never wait on Claude (an ASK is filed and answered "broken" at once; a quest chain goes on to the next
+    quest); squirrel_loop runs each window on its own (no lock-step). Crab runs at level 70.
+- SP -> MP everywhere players read it (user 2026-11-24): gen_data, gen_maps, docs/rules (skill text source), plugin popups (mask drain, soul damage), built item/armor/skill desc. Also: two register_all runs today had skipped gen_render / apply_bust_emotions / apply_dialog_fixes - all three re-run (after ANY register_all, run them).
+- Townsfolk outfits (user 2026-11-24: "change out a lot of the a100 outfit ... Random for 90% of the current users of
+  a100 for one of the other outfits"; then "use hiruma's miko outfit on any ladies near a shrine"): new
+  tools/vary_npc_outfits.py patches resource/native_tailoring/index.json "defaults" (the side cast's field outfit; no
+  generator writes them). Seed 20261124: of the 141 side_* in A100 (not counting enemies EP*, travelers, party members
+  Ryoichi / Kage ch3 / Kafu-no-sword, or fitted "palette" records), 14 keep A100 and 127 changed: A124 Asahina robes 32,
+  A127 Shadow Cloth 31, A140 Isawa robe 31, A153 Tamori ward-robe 31, plus 2 shrine maidens in Natsuko's miko
+  (A209 trav_natsuko_miko, undyed): side_miko (M424 Floating Flowers, 5 m from the shrine step) and side_shrinekeeper
+  (Oracle's shrine town lower shrine; also a hireling). Shrine-maiden rule: women (native_human shared_female) within
+  10 m of a shrine_rites step or on a shrine's own map whose part is the shrine; visitors left out. A changed record
+  carries "was": "A100" so a rerun is idempotent. All defaults in A100: 179 -> 52 (35 of those are enemies).
+  Pool left out: armour, A167 (Imperial priests), A111 (no townsperson wears it), fitted aliases, signature costumes.
+  Regional dyes follow: gen_commoner_dyes MESHES = A100 + POOL (176 new textures tex/<peasant|eta|ronin>/<mesh>_<region>
+  _<k>.png); RokuganCommonerDyes.sk DYE_MESHES + pick by record.mesh (regenerated; DYE_REGION also refreshed from the
+  current maps: M278-M280 phoenix, M405-M410 scorpion, +M236/M798, -M234). No map rebuild needed. Engine-checked (w3):
+  _art/preview/npc_outfits/ (Floating Flowers miko, Hoshi-no-Ichi, Kamen no Toshi).
