@@ -1,0 +1,20 @@
+local stage = ::rpgstage;
+local shizue = ::rpgstat.playermap["P103"];
+if( !shizue || stage.player3d["nativeKey"] != "trav_shizue" ||
+    !stage.player3d.nativeBodyTemplate || !stage.player3d.nativeFace )
+	throw Exception( "Shizue's field leader is not using her modular portrait" );
+foreach( id in ["EP203", "EP2192", "EP2209", "EP2216"]){
+	local actor = RPG3DObject.create3DObject( #{ mdlid=id, rt_wearer=shizue });
+	if( !actor || actor["nativeKey"] != "trav_shizue" || !actor.nativeBodyTemplate || !actor.nativeFace )
+		throw Exception( "Shizue fell back to an old model: " .. id );
+}
+foreach( id in ["EP563", "EP843"]){
+	local actor = RPG3DObject.create3DObject( #{ mdlid=id });
+	if( !actor || actor["nativeKey"] != "side_ukita" || !actor.nativeBodyTemplate || !actor.nativeFace )
+		throw Exception( "Ukita fell back to an old model: " .. id );
+}
+local event = stage.getEvent( 14 );
+local actor = event ? event["rp3d"] : null;
+if( !actor || actor["nativeKey"] != "side_ukita" || !actor.nativeBodyTemplate || !actor.nativeFace )
+	throw Exception( "Ukita's castle event is not using his modular portrait" );
+printf( "[LION MODELS] Shizue and Ukita routes use modular portraits\n" );

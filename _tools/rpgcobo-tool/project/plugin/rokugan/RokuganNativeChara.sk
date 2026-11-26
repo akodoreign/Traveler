@@ -812,7 +812,7 @@ local nativeFoe = RokuganNativeFoe;
 	local names = file.slice( 0, file.len() - 4).split( "__"), key = names[0];
 	local spec = roster[key];
 	if( !spec) return null;
-	if( length( names) > 1 && names[1] != spec.weapon .. "_own") return null;
+	if( length( names) > 1 && names[1] != spec.weapon .. "_own" && !player) return null;
 	local actor = nativePicture();
 	local wear = this.clothingFor( player);
 	actor.setNative( pc, key, spec, wear);

@@ -574,6 +574,11 @@ function runsk( path){
 	skSetPermissionMap( p, { cdir=skGetCurrentDir(), bindir=skGetBinBaseDir(), datadir=skGetDataDir(), cachedir=skGetCacheDir(), docdir=skGetDocumentDir(), host=skGetHostName(), user=skGetUserName(), });
 }
 
+// Optional Traveler asset packs are used only by loose-file project installations.
+if (::resroot instanceof FileResource && FileRef(skGetCodebase() .. "/rtpacks/active.json").exists()){
+	try { runsk("/rt_pack.sk"); } catch (ex) { printexception(ex); }
+}
+
 {	//	load system
 	try{
 		local sys = getsk( "/system/load.sk");

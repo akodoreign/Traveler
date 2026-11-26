@@ -1,0 +1,117 @@
+// Optional read-only overlay for an explicitly installed Traveler pack set.
+local base = skGetCodebase() .. "/rtpacks/";
+local marker = FileRef(base .. "active.json");
+if (!marker.exists()) return;
+
+local spec;
+try {
+	spec = decodeJSON(marker.load());
+	if (spec["format"] != 1 || !spec["entries"] || !spec["packs"] || !spec["generation"])
+		throw "invalid pack index";
+	if (length(spec.generation) != 25 || spec.generation[0] != 'v') throw "invalid generation";
+	for (local i = 1; i < length(spec.generation); i++)
+		if ("0123456789abcdef".indexOf(spec.generation.substring(i, i + 1)) < 0)
+			throw "invalid generation";
+	foreach (name, info in spec.packs) {
+		if (length(name) != 13 || !name.startsWith("pack") || !name.endsWith(".pak"))
+			throw "invalid pack name";
+		for (local i = 4; i < 9; i++)
+			if ("0123456789".indexOf(name.substring(i, i + 1)) < 0) throw "invalid pack name";
+		local file = FileRef(base .. spec.generation .. "/" .. name);
+		if (length(info) != 2 || info[0] <= 0 || info[0] > 51380224 ||
+			!file.exists() || file.size != info[0]) throw "missing or truncated pack";
+	}
+} catch (ex) {
+	printf("[RT packs] Cannot read active index: %S\n", string(ex));
+	return;
+}
+
+local tree = { children = {} };
+try {
+	foreach (path, entry in spec.entries) {
+		local pieces = path.split("/");
+		if (length(pieces) < 3 || pieces[0] != "resource" ||
+			!pieces[1].startsWith("native_") || length(entry) != 5)
+			throw "invalid asset path";
+		if (!(entry[0] in spec.packs) || entry[1] < 0 || entry[2] <= 0 ||
+			entry[3] < 0 || entry[1] + entry[2] > spec.packs[entry[0]][0])
+			throw "invalid pack entry";
+		local node = tree;
+		foreach (i, piece in pieces) {
+			if (!length(piece) || piece == "." || piece == ".." || piece.indexOf("\\") >= 0)
+				throw "invalid path component";
+			if (!(piece in node.children)) node.children[piece] <- { children = {} };
+			node = node.children[piece];
+			if (i < length(pieces)-1 && node["entry"]) throw "path collision";
+		}
+		if (node["entry"] || length(node.children)) throw "path collision";
+		node.entry <- entry;
+	}
+} catch (ex) {
+	printf("[RT packs] Invalid index: %S\n", string(ex));
+	return;
+}
+
+local packdir = base .. spec.generation .. "/";
+class RTPackResource extends Resource {
+	node = null;
+	constructor(n, parent, item) {
+		name = n;
+		pres = parent;
+		node = item;
+		isdir = !item["entry"];
+	}
+	function loadList() {
+		list = [];
+		foreach (name, child in node.children)
+			list .. RTPackResource(name, this, child);
+	}
+	function refresh() {
+		return false;
+	}
+	function loadData() {
+		local e = node.entry;
+		local f = FileRef(packdir .. e[0]);
+		if (!f.exists() || e[1] + e[2] > f.size) throw "pack missing or truncated: " .. e[0];
+		local stream = f.open("rb"), compressed;
+		try {
+			stream.seek(e[1], 0);
+			compressed = stream.readfor(e[2]);
+		} catch (ex) {
+			stream.close();
+			throw ex;
+		}
+		stream.close();
+		compressed.pos = 0;
+		local output = uncompressZ(compressed, TempBuffer(e[3]));
+		output.pos = 0;
+		if (output.size != e[3] || ("" .. output.crc32(0)) != e[4])
+			throw "pack asset checksum mismatch: " .. path;
+		return output;
+	}
+}
+
+local nodeForPath = function(path) {
+	local node = tree;
+	foreach (part in path.split("/")) {
+		if (!length(part)) continue;
+		if (!(part in node.children)) return null;
+		node = node.children[part];
+	}
+	return node;
+};
+
+with FileResource {
+	function loadList() {
+		if (!isdir) return;
+		list = file.getList().map(@(f) checkAlias(::FileResource(f, this)));
+		local node = nodeForPath(path);
+		if (!node) return;
+		foreach (name, child in node.children) {
+			if (!list.find(@(r) r.name == name))
+				list .. RTPackResource(name, this, child);
+		}
+	}
+}
+::resroot.flush();
+printf("[RT packs] Mounted %d assets from %S\n", length(spec.entries), spec.generation);

@@ -60,6 +60,21 @@ local GAME = "_tools/rpgcobo-tool/";
 	return ("" .. bb.crc32( 0)) == ("" .. want);			//	(signed 32-bit, as a string: tools/release.py)
 };
 
+// A mounted asset can satisfy the existing per-file manifest without being
+// extracted. Loose files still win; changed remote files are downloaded normally.
+::Rokugan.updPackOk <- function( p, e, fast){
+	local prefix = GAME .. "project/resource/native_";
+	if( p.indexOf( prefix) != 0) return false;
+	try{
+		local r = ::getResource( p.substring( length( GAME .. "project")));
+		local node = r && r["node"], entry = node && node["entry"];
+		if( !entry || entry[3] != e[1] || entry[4] != ("" .. e[0])) return false;
+		if( fast) return true;
+		local data = r.loadData();
+		return data.size == e[1] && this.updCrcOk( data, e[0]);
+	}catch( ex){ return false; }
+};
+
 //	A one-line progress panel on top of everything (the title UI is darkened behind it).
 ::Rokugan.updShow <- function( s){
 	local U = this.upd;
@@ -124,6 +139,95 @@ local GAME = "_tools/rpgcobo-tool/";
 	f.refresh();
 };
 
+// Pack files and the active index must never be truncated in place: the
+// currently running game can still hold the previous generation open.
+::Rokugan.updWritePack <- function( full, bb){
+	local tmp = full .. ".pending";
+	this.updWrite( tmp, bb);
+	if( !FileRef( tmp).moveTo( FileRef( full), 1)){
+		FileRef( tmp).deleteFile();
+		throw "could not replace pack file";
+	}
+};
+
+// Incremental builds retain shard names. Reuse an identical installed shard
+// after checking its actual contents, not merely the saved manifest.
+::Rokugan.updReusePack <- function( p, expected){
+	local prefix = GAME .. "project/rtpacks/";
+	if( p.indexOf( prefix) != 0 || !p.endsWith( ".pak")) return null;
+	local parts = p.substring( length( prefix)).split("/");
+	if( length( parts) != 2 || length( parts[0]) != 25 || parts[0][0] != 'v' ||
+		length( parts[1]) != 13 || !parts[1].startsWith( "pack")) return null;
+	for( local i = 1; i < 25; i++)
+		if( "0123456789abcdef".indexOf( parts[0].substring( i, i+1)) < 0) return null;
+	for( local i = 4; i < 9; i++)
+		if( "0123456789".indexOf( parts[1].substring( i, i+1)) < 0) return null;
+	try{
+		local active = this.updReadJSON( this.updPath( prefix .. "active.json"));
+		if( !active || active["format"] != 1 || !active["generation"] ||
+			length( active.generation) != 25 || active.generation[0] != 'v' ||
+			!active["packs"] || !(parts[1] in active.packs)) return null;
+		for( local i = 1; i < 25; i++)
+			if( "0123456789abcdef".indexOf( active.generation.substring( i, i+1)) < 0) return null;
+		local info = active.packs[parts[1]];
+		if( length( info) != 2 || info[0] != expected[1] || info[0] <= 0 ||
+			info[0] > 51380224) return null;
+		local old = FileRef( this.updPath( prefix .. active.generation .. "/" .. parts[1]));
+		if( !old.exists() || old.size != expected[1]) return null;
+		local bb = old.load();
+		if( !this.updCrcOk( bb, expected[0])) return null;
+		bb.pos = 0;
+		return bb;
+	}catch( ex){ return null; }
+};
+
+::Rokugan.updInstallPackIndex <- function( remote, p){
+	local bb = this.updGet( p), expected = remote.files[p];
+	if( bb.size != expected[1] || !this.updCrcOk( bb, expected[0])) throw "pack index checksum mismatch";
+	local spec = decodeJSON( bb), generation = spec["generation"];
+	if( spec["format"] != 1 || !spec["entries"] || !spec["packs"] ||
+		!length( spec.entries) || !length( spec.packs) ||
+		!generation || length( generation) != 25 || generation[0] != 'v') throw "invalid pack index";
+	for( local i = 1; i < length( generation); i++)
+		if( "0123456789abcdef".indexOf( generation.substring( i, i+1)) < 0) throw "invalid pack generation";
+	local base = GAME .. "project/rtpacks/" .. generation .. "/";
+	foreach( name, info in spec.packs){
+		if( length( name) != 13 || !name.startsWith( "pack") || !name.endsWith( ".pak") ||
+			length( info) != 2 || info[0] <= 0 || info[0] > 51380224) throw "invalid pack metadata";
+		for( local i = 4; i < 9; i++)
+			if( "0123456789".indexOf( name.substring( i, i+1)) < 0) throw "invalid pack name";
+		local path = base .. name, e = remote.files[path];
+		if( !e || e[1] != info[0]) throw "pack absent from release manifest";
+		local f = FileRef( this.updPath( path));
+		if( !f.exists() || f.size != e[1] || !this.updCrcOk( f.load(), e[0]))
+			throw "pack not downloaded or checksum mismatch: " .. name;
+	}
+	local dirs = {}, files = {};
+	foreach( path, entry in spec.entries){
+		local pieces = path.split("/");
+		if( length( pieces) < 3 || pieces[0] != "resource" ||
+			!pieces[1].startsWith( "native_") || length( entry) != 5 ||
+			!(entry[0] in spec.packs) || entry[1] < 0 || entry[2] <= 0 || entry[3] < 0 ||
+			typeof( entry[4]) != SS_STRING ||
+			entry[1] + entry[2] > spec.packs[entry[0]][0]) throw "invalid pack entry";
+		local partial = "";
+		foreach( i, piece in pieces){
+			if( !length( piece) || piece == "." || piece == ".." ||
+				piece.indexOf( "\\") >= 0 || piece.indexOf( ":") >= 0) throw "invalid pack asset path";
+			partial = length( partial) ? partial .. "/" .. piece : piece;
+			if( i < length( pieces)-1){
+				if( partial in files) throw "pack path collision";
+				dirs[partial] <- true;
+			}else{
+				if( partial in dirs) throw "pack path collision";
+				files[partial] <- true;
+			}
+		}
+	}
+	bb.pos = 0;
+	this.updWritePack( this.updPath( p), bb);
+};
+
 //	Fast checks manifest changes, file sizes and the plugin entry point's CRC32. Verify checks all managed CRCs.
 ::Rokugan.updScan <- function( remote, local_, fast){
 	local need = [], n = 0, tot = length( remote.files);
@@ -132,6 +236,7 @@ local GAME = "_tools/rpgcobo-tool/";
 		n++;
 		local full = this.updPath( p);
 		if( !full) continue;
+		if( this.updPackOk( p, e, fast)) continue;
 		local f = FileRef( full);
 		if( !f.exists()){ need .. p; continue; }
 		//	boss / banner art: GitHub has placeholders (the wiki-derived originals never go there) - a copy that has the
@@ -139,7 +244,8 @@ local GAME = "_tools/rpgcobo-tool/";
 		local fn = p.substring( p.lastIndexOf( "/") + 1);
 		if( (fn.indexOf( "boss_") == 0 || fn.indexOf( "banner_") == 0)
 			&& (p.indexOf( "resource/enemy_pic/") >= 0 || p.indexOf( "resource/efx/portrait/") >= 0)) continue;
-		if( fast && p != (GAME .. "project/plugin/rokugan/plugin.sk")){
+		if( fast && p != (GAME .. "project/plugin/rokugan/plugin.sk") &&
+			p != (GAME .. "project/rtpacks/active.json")){
 			local o = (p in lf) ? lf[p] : null;
 			if( f.size != e[1] || (o && (o[0] != e[0] || o[1] != e[1]))) need .. p;
 			if( n % 400 == 0) this.updShow( "Comparing files... %d / %d" % (n, tot));
@@ -155,18 +261,28 @@ local GAME = "_tools/rpgcobo-tool/";
 //	landed, records the installed version in the game folder. Returns { ok = count, bad = [paths] }.
 ::Rokugan.updApply <- function( remote, need){
 	local ok = 0, bad = [];
+	local active = GAME .. "project/rtpacks/active.json";
+	local hasActive = need.indexOf( active) >= 0;
 	foreach( i, p in need){
+		if( p == active) continue;	// Activate only after every other download succeeds.
 		this.updShow( "Downloading %d / %d: %S" % (i + 1, length( need), p.substring( p.lastIndexOf( "/") + 1)));
 		try{
-			local bb = this.updGet( p), e = remote.files[p];
+			local e = remote.files[p], bb = this.updReusePack( p, e);
+			if( !bb) bb = this.updGet( p);
 			if( bb.size != e[1] || !this.updCrcOk( bb, e[0])) throw sprintf( "the download doesn't match the manifest"
 				.. " (size %d/%S, crc %d/%S %S)", bb.size, "" .. e[1], bb.crc32( 0), "" .. e[0], typeof( e[0]));
-			this.updWrite( this.updPath( p), bb);
+			if( p.indexOf( GAME .. "project/rtpacks/") == 0 && p.endsWith( ".pak"))
+				this.updWritePack( this.updPath( p), bb);
+			else this.updWrite( this.updPath( p), bb);
 			ok++;
 		}catch( ex){
 			log( "%S: %S" % (p, string( ex)));
 			bad .. p;
 		}
+	}
+	if( hasActive && !length( bad)){
+		try{ this.updInstallPackIndex( remote, active); ok++; }
+		catch( ex){ log( "%S: %S" % (active, string( ex))); bad .. active; }
 	}
 	if( !length( bad)){
 		this.updWrite( skGetCurrentDir() .. "/rt_manifest.json", this.updGet( "rt_manifest.json"));	//	(for the next fast update)

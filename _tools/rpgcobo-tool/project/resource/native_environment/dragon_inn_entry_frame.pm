@@ -24,7 +24,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/dragon_inn_slate.png"
+    texture0 = "tex/ambient_dragon_stone.png"
     texture1 = null
     texture2 = null
   }

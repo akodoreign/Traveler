@@ -21318,7 +21318,7 @@ def register(specs, events):
                 e["weather"] = previous["weather"]
             else:
                 e.pop("weather", None)
-        e["camwork"] = {"fovy": 30, "hpb": [0, 38, 0],
+        e["camwork"] = {"fovy": 30, "hpb": [0, 68 if sp.mid == "M261" else 38, 0],
                         "viewport": 8.0 if sp.mid in INTERIORS or sp.mid in ROOM_OFS else 15.0, "yoffs": 0.5}
         e.update({"name": sp.name, "size": [sp.w, 64, sp.d], "event": ev.ev if ev else {},
                   "encount": [], "encntrate": 0.0, "rsetid": RSET.get(sp.mid, "rt_hd2d_field"),
@@ -24738,6 +24738,126 @@ def rebuild_beiden_bandit_hideout(m,ev):
     fill(m,43,8,2,7,2,6,STONE)
 
 
+def rebuild_unicorn_route(m):
+    if m.mid != "M390":
+        return
+    # The autumn pass removed these shacks for open canopies. Restore their
+    # solid footprints underneath the fitted native huts, not the travel lane.
+    for x,z in ((20,22),(70,23),(100,22)):
+        m.walls.extend((x+PAD_X+dx,z+PAD_BOTTOM+dz) for dx in range(4) for dz in range(3))
+
+
+def rebuild_cakon_street(m):
+    old = {(26,22,60,6,6,PLASTER),(26,6,60,5,8,WOOD)}
+    m.objs = [o for o in m.objs if not (o["t"]=="fill" and
+        tuple(o[k] for k in ("x","z","w","h","d","blk")) in old)]
+    # Recess the camera-side houses. The street and ambush anchors stay intact.
+    for center in (33,43,53,63,73,83):
+        for start in (3,24):
+            m.walls.extend((x,z) for x in range(center-4,center+4) for z in range(start,start+6))
+
+
+def rebuild_white_squid_caves(m, ev):
+    old_water = (m.blk == WATER)
+    if m.mid == "M226":
+        ev.ev["#11#"]["pos"][1] = 3
+        tables = [o for o in m.objs if o["t"] == "fill" and o["blk"] == PLANK
+                  and (o["x"],o["z"]) == (56,29)]
+        if len(tables) != 1:
+            raise ValueError("The workshop table layout changed")
+        tables[0]["x"], tables[0]["z"] = 54, 34
+    m.d = 84
+    zz, xx = np.indices((m.d, m.w))
+    if m.mid == "M226":
+        paths = (
+            ((30,26),(40,26),(53,26),(66,23),(76,19),(89,21),(103,26),(130,30)),
+            ((62,23),(63,35),(68,43),(76,42),(80,42)),
+            ((68,43),(64,53),(53,60),(41,58),(38,48),(43,38),(53,32)),
+            ((89,21),(94,34),(103,42),(104,54),(94,60),(80,56),(70,49)),
+            ((94,60),(106,69),(119,64)),
+        )
+        chambers = ((41,26,10,8),(57,26,14,10),(77,20,12,10),
+                    (97,25,11,9),(75,42,11,9),(52,56,11,9),
+                    (98,52,10,9),(112,65,10,7))
+    else:
+        paths = (
+            ((30,24),(41,24),(55,22),(65,24),(74,24),(83,24),(91,24)),
+            ((44,24),(44,35),(50,45),(62,49),(72,43),(76,33)),
+            ((62,49),(69,60),(80,64),(92,58),(97,46),(91,35)),
+        )
+        chambers = ((40,24,10,8),(56,23,11,9),(80,24,14,10),
+                    (52,44,10,9),(69,51,11,9),(84,60,11,9),(97,47,9,8))
+    lanes = np.zeros_like(xx, dtype=bool)
+    for path in paths:
+        for (ax,az),(bx,bz) in zip(path,path[1:]):
+            dx,dz=bx-ax,bz-az
+            t=np.clip(((xx-ax)*dx+(zz-az)*dz)/(dx*dx+dz*dz),0.,1.)
+            lanes |= (xx-ax-t*dx)**2+(zz-az-t*dz)**2 <= 4.5**2
+    floor=lanes.copy()
+    for x,z,rx,rz in chambers:
+        wobble=.05*np.sin(xx*.4+zz*.6)+.035*np.cos(xx*.57-zz*.31)
+        floor |= ((xx-x)/rx)**2+((zz-z)/rz)**2 < 1.+wobble
+    for event in ev.ev.values():
+        if event.get("pos") and event["pos"][1] == 3 and event.get("role") != "villager":
+            x,_,z,_=event["pos"]
+            if x < 110:
+                floor |= (xx-x)**2+(zz-z)**2 <= 16
+    heights=np.maximum(9,9+np.rint(np.sin(xx*.15+zz*.13)+np.cos(zz*.22)).astype(int))
+    m.hgt=np.where(floor,2,heights).astype(np.int32)
+    m.blk=np.where(floor,np.where(lanes,DIRT,CAVE_FLOOR),STONE).astype(np.int32)
+    # Keep the original tide pools while rounding their shorelines away from interactions.
+    h,d=old_water.shape
+    m.blk[:h,:d][old_water]=WATER
+    m.hgt[:h,:d][old_water]=1
+    protect=np.zeros_like(floor)
+    for event in ev.ev.values():
+        if event.get("pos") and event["pos"][1] == 3 and event.get("role") != "villager":
+            x,_,z,_=event["pos"]
+            protect |= (xx-x)**2+(zz-z)**2 <= 9
+    for obj in m.objs:
+        if obj["t"] == "fb" or (obj["t"] == "fill" and obj["blk"] == PLANK):
+            x,z=obj["x"],obj["z"]
+            protect |= (xx-x)**2+(zz-z)**2 <= 4
+    pools = ((74.,14.5,4.,3.),(83.,20.,3.8,2.8),(77.,41.5,3.8,3.)) if m.mid == "M226" else ((87.,29.5,5.,3.),)
+    for x,z,rx,rz in pools:
+        shape=((xx-x)/rx)**2+((zz-z)/rz)**2 < 1.
+        wet=shape & floor & ~protect
+        m.blk[wet]=WATER
+        m.hgt[wet]=1
+    if m.mid == "M226":
+        m.blk[42,76]=CAVE_FLOOR
+        m.hgt[42,76]=2
+
+
+def rebuild_under_dojo(m, ev):
+    from scipy.ndimage import binary_dilation
+
+    old_height, old_blocks = m.hgt, m.blk
+    old_depth = m.d
+    m.d = 78
+    zz, xx = np.indices((m.d, m.w))
+    old_floor = np.zeros((m.d, m.w), dtype=bool)
+    old_floor[:old_depth] = old_height == 2
+    floor = binary_dilation(old_floor, iterations=2)
+    route = ((43,35),(49,47),(59,55),(76,55),(87,50),
+             (99,56),(112,56))
+    for (ax,az),(bx,bz) in zip(route,route[1:]):
+        dx,dz = bx-ax,bz-az
+        t = np.clip(((xx-ax)*dx+(zz-az)*dz)/(dx*dx+dz*dz),0.,1.)
+        floor |= (xx-ax-t*dx)**2+(zz-az-t*dz)**2 <= 4.**2
+    for x,z,rx,rz in ((55,51,9,7),(76,55,10,7),(99,56,10,7),(112,56,8,6)):
+        irregular = .04*np.sin(xx*.41+zz*.6)+.03*np.cos(xx*.57-zz*.31)
+        floor |= ((xx-x)/rx)**2+((zz-z)/rz)**2 < 1.+irregular
+    height = np.full((m.d,m.w),9,dtype=np.int32)
+    blocks = np.full((m.d,m.w),DARKWOOD,dtype=np.int32)
+    height[:old_depth] = old_height
+    blocks[:old_depth] = old_blocks
+    height[~floor] = 9
+    height[floor] = 2
+    blocks[floor & ~old_floor] = PLANK
+    m.hgt, m.blk = height, blocks
+
+
 def make(i):
     if not DOOR_EV or ("M141", "castle") not in DOOR_EV:   # portals reference other maps' door ids
         wall_garrison()
@@ -24975,6 +25095,14 @@ def make(i):
         rebuild_dragon_spring(m, ev)
     if i in ('M477', 'M489', 'M821', 'M797'):
         rebuild_beiden_bandit_hideout(m, ev)
+    if i in ('M390',):
+        rebuild_unicorn_route(m)
+    if i in ('M417',):
+        rebuild_cakon_street(m)
+    if i in ('M226', 'M227'):
+        rebuild_white_squid_caves(m, ev)
+    if i in ('M261',):
+        rebuild_under_dojo(m, ev)
     return m, ev
 
 

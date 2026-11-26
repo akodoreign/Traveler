@@ -11,7 +11,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/storehouse_board.png"
+    texture0 = "tex/ambient_hoshi_board.png"
     texture1 = null
     texture2 = null
   }
@@ -37,7 +37,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/storehouse_frame.png"
+    texture0 = "tex/ambient_hoshi_frame.png"
     texture1 = null
     texture2 = null
   }
@@ -50,7 +50,7 @@ material = [
     metal = 0.0
     mparam = 0xff000000
     texmap = 0
-    texture0 = "tex/storehouse_earth.png"
+    texture0 = "tex/ambient_hoshi_plaster.png"
     texture1 = null
     texture2 = null
   }

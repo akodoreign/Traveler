@@ -1320,7 +1320,7 @@
   },
   "side_ukita": {
     "base": "shared_male",
-    "face": "side_ukita_face"
+    "face": "side_h_guide_portrait_face"
   },
   "side_bayushiguard": {
     "base": "shared_male",
