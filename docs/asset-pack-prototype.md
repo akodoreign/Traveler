@@ -1,7 +1,7 @@
 # Asset pack prototype
 
-Pack use and cutover are **opt-in**. No production release or working-game
-cutover has been performed. `boot.sk` mounts an optional `project/rtpacks/active.json`
+The compatible pack bootstrap is published; loose-file cleanup remains
+**opt-in** and has not been performed on the working game. `boot.sk` mounts an optional `project/rtpacks/active.json`
 only when present; otherwise the existing loose-file loader is unchanged.
 Loose files take precedence, including local edits. Packed meshes, animations,
 materials and PNGs are decompressed on demand and checked against their CRC.
@@ -91,6 +91,11 @@ updater and must match every packed asset. The staging command does not edit
 the release candidate or publish anything. Apply the overlay only to an
 independently prepared release candidate and publish its files together in
 one commit (or publish the version file last if the host is not atomic).
+GitHub limits a single push to 2 GiB. If a generation exceeds that limit,
+publish its shards in smaller versioned commits without adding them to the
+release manifest, then publish the complete manifest and active index together.
+Verify every published shard before activation; never expose an incomplete
+generation as active. The release script does not split oversized pushes.
 Alternatively, after coordination, `release_here.py "message" --scoped
 --paths-file APPROVED_PATHS --pack-generation DIRECTORY` stages only the paths
 listed one per line in the UTF-8 file, stages the generated overlay, and

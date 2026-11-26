@@ -76,6 +76,10 @@ you when one is available.
 **Controls** (keyboard; a gamepad works too): arrow keys move, **Z** confirm / talk, **X** back / jump, **C** menu,
 **Esc** pause. Save at shrines, waystones and inns.
 
+The C menu uses RPG-Cobo's native menu and character selection, styled to match the ink-and-gold battle interface.
+Its menu-specific button layouts can be rebuilt with `python -E tools/style_main_menu.py`; they do not alter the
+shared character-selection layouts.
+
 See `HOW TO PLAY.txt` for more, and `NOTES.md` for the full development log.
 
 ---

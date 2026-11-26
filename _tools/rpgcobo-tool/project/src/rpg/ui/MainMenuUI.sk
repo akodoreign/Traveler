@@ -112,6 +112,21 @@ local showMainMenuUI( prms){
 		focus = ~menuptr
 		action = "show"
 	});
+	// Keep the engine's menu, focus and bindings; only replace its presentation.
+	// The panel matches the battle UI and is owned by the animated menu group.
+	if( ("Rokugan" in getroottable()) && ::Rokugan["ui"]){
+		local group = view.findChild( "g");
+		if( group) foreach( child in group.children){
+			if( child.name == "window"){
+				child.setSprite( ::Rokugan.ui.spr( "panel_wide"));
+				child.setColor( 0xffffffff);
+				child.setStretchRect( child.bnd.x, child.bnd.y - 12, child.bnd.w, child.bnd.h + 24);
+				child.updateLayout();
+			}else if( child.name == "frame" || child.name == "_white"){
+				child.setVisible( false);
+			}
+		}
+	}
 	//
 BACK_TO_MENUSEL:
 	grayptr << false;
