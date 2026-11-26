@@ -1,7 +1,8 @@
 # Asset pack prototype
 
 The compatible pack bootstrap is published; loose-file cleanup remains
-**opt-in** and has not been performed on the working game. `boot.sk` mounts an optional `project/rtpacks/active.json`
+**opt-in**. The working game has undergone a recoverable local cleanup, while
+the Git release retains loose assets for older clients. `boot.sk` mounts an optional `project/rtpacks/active.json`
 only when present; otherwise the existing loose-file loader is unchanged.
 Loose files take precedence, including local edits. Packed meshes, animations,
 materials and PNGs are decompressed on demand and checked against their CRC.
