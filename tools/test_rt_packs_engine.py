@@ -5,6 +5,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import unittest
 from unittest import mock
@@ -23,6 +24,29 @@ ENGINE = ROOT / "_tools" / "rpgcobo-tool"
 
 @unittest.skipUnless(os.name == "nt" and (ENGINE / "rpgcobo.exe").is_file(), "Windows runtime required")
 class EnginePackTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        names = ("deduce_brush.mdl", "deduce_brush.pm", "tex/head_checks_color.png",
+                 "tex/head_checks_normal.png")
+        temp = tempfile.TemporaryDirectory(prefix="traveler-pack-fixture-")
+        cls.addClassCleanup(temp.cleanup)
+        overlay = Path(temp.name)
+        cls.source_assets = overlay / "resource" / "native_chara"
+        loose = ENGINE / "project" / "resource" / "native_chara"
+        missing = []
+        for name in names:
+            source = loose / name
+            if source.is_file():
+                target = cls.source_assets / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(source, target)
+            else:
+                missing.append("resource/native_chara/" + name)
+        if missing:
+            pack_root = ENGINE / "project" / "rtpacks"
+            index = json.loads((pack_root / "active.json").read_bytes())
+            rt_packs.extract(pack_root / index["generation"], overlay, missing)
+
     def setUp(self):
         self.root = ROOT / (".rt-pack-engine-test-" + uuid.uuid4().hex)
         self.root.mkdir()
@@ -44,7 +68,7 @@ class EnginePackTests(unittest.TestCase):
         self.assets = self.project / "resource" / "native_chara"
         (self.assets / "tex").mkdir(parents=True)
         for name in ("deduce_brush.mdl", "deduce_brush.pm", "tex/head_checks_color.png"):
-            shutil.copyfile(ENGINE / "project" / "resource" / "native_chara" / name, self.assets / name)
+            shutil.copyfile(self.source_assets / name, self.assets / name)
         for name in ("os-temp", "roaming", "local"):
             (self.root / name).mkdir()
         rt_packs.enable_test_profile(self.root)
@@ -125,19 +149,19 @@ skExit(0);
         self.assertEqual(self.download_update(source, prune=True), 3)
         self.run_engine(packed_crc)
 
-        replacement = ENGINE / "project" / "resource" / "native_chara" / "tex" / "head_checks_normal.png"
+        replacement = self.source_assets / "tex" / "head_checks_normal.png"
         next_project = self.root / "next-project"
         next_assets = next_project / "resource" / "native_chara"
         (next_assets / "tex").mkdir(parents=True)
         for name in ("deduce_brush.mdl", "deduce_brush.pm"):
-            shutil.copyfile(ENGINE / "project" / "resource" / "native_chara" / name, next_assets / name)
+            shutil.copyfile(self.source_assets / name, next_assets / name)
         shutil.copyfile(replacement, next_assets / "tex" / "head_checks_color.png")
         update = rt_packs.build(next_project, self.root / "output")
         self.assertEqual(self.download_update(update, prune=True), 0)
         updated_index = json.loads((update / "active.json").read_bytes())
         self.run_engine(rt_packs.signed_crc(replacement.read_bytes()))
 
-        original = ENGINE / "project" / "resource" / "native_chara" / "tex" / "head_checks_color.png"
+        original = self.source_assets / "tex" / "head_checks_color.png"
         texture.write_bytes(original.read_bytes())
         self.run_engine(rt_packs.signed_crc(texture.read_bytes()))
 
@@ -193,8 +217,7 @@ skExit(0);
         name, count = rt_pack_cutover.prepare(self.root)
         self.assertEqual(count, 3)
         texture = self.assets / "tex" / "head_checks_color.png"
-        edited = (ENGINE / "project" / "resource" / "native_chara" /
-                  "tex" / "head_checks_normal.png").read_bytes()
+        edited = (self.source_assets / "tex" / "head_checks_normal.png").read_bytes()
         texture.write_bytes(edited)
         self.assertEqual(rt_pack_cutover.apply(self.root, name), 2)
         self.assertEqual(texture.read_bytes(), edited)
@@ -205,7 +228,7 @@ skExit(0);
         self.assertIn("resource/native_chara/tex/head_checks_color.png", conflicts)
         self.assertEqual(texture.read_bytes(), edited)
         self.assertEqual((self.assets / "deduce_brush.mdl").read_bytes(),
-                         (ENGINE / "project" / "resource" / "native_chara" / "deduce_brush.mdl").read_bytes())
+                         (self.source_assets / "deduce_brush.mdl").read_bytes())
 
     def test_cutover_restores_quarantine_when_pack_is_corrupt(self):
         source = rt_packs.build(self.project, self.root / "output")
@@ -270,8 +293,7 @@ skExit(0);
             result = run(op, str(self.root), ident)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(result.stdout.strip(), "3")
-        crc = rt_packs.signed_crc((ENGINE / "project" / "resource" / "native_chara" /
-                                   "tex" / "head_checks_color.png").read_bytes())
+        crc = rt_packs.signed_crc((self.source_assets / "tex" / "head_checks_color.png").read_bytes())
         self.run_engine(crc)
         result = run("restore", str(self.root), ident)
         self.assertEqual(result.returncode, 0, result.stderr)
@@ -423,8 +445,8 @@ skExit(0);
         next_assets = next_project / "resource" / "native_chara"
         (next_assets / "tex").mkdir(parents=True)
         for name in ("deduce_brush.mdl", "deduce_brush.pm"):
-            shutil.copyfile(ENGINE / "project" / "resource" / "native_chara" / name, next_assets / name)
-        new_texture = ENGINE / "project" / "resource" / "native_chara" / "tex" / "head_checks_normal.png"
+            shutil.copyfile(self.source_assets / name, next_assets / name)
+        new_texture = self.source_assets / "tex" / "head_checks_normal.png"
         shutil.copyfile(new_texture, next_assets / "tex" / "head_checks_color.png")
         second = rt_packs.build(next_project, self.root / "output", previous=first)
         index_bytes = (second / "active.json").read_bytes()
@@ -567,8 +589,7 @@ skExit(0);
         shutil.copyfile(ENGINE / "project" / "sakana.proj", self.project / "sakana.proj")
         texture = self.assets / "tex" / "head_checks_color.png"
         previous_texture = texture.read_bytes()
-        updated_texture = (ENGINE / "project" / "resource" / "native_chara" /
-                           "tex" / "head_checks_normal.png").read_bytes()
+        updated_texture = (self.source_assets / "tex" / "head_checks_normal.png").read_bytes()
         texture.write_bytes(updated_texture)
         source = rt_packs.build(self.project, self.root / "output")
         texture.write_bytes(previous_texture)
