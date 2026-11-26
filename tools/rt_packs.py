@@ -79,6 +79,19 @@ def no_links(root, path):
     return current
 
 
+def generation_index(generation):
+    """Read a build's index or the parent index of an installed active generation."""
+    generation = Path(generation)
+    index_file = no_links(generation, Path("active.json"))
+    if not index_file.exists():
+        index_file = no_links(generation.parent, Path("active.json"))
+    encoded = index_file.read_bytes()
+    index = json.loads(encoded)
+    if index.get("generation") != generation.name:
+        raise ValueError("Generation directory does not match index")
+    return index, encoded
+
+
 def build(project, output, limit=LIMIT, previous=None, overlay=False, remove=()):
     project, output = Path(project).resolve(), Path(output).resolve()
     if limit <= 0 or limit > LIMIT:
@@ -89,7 +102,7 @@ def build(project, output, limit=LIMIT, previous=None, overlay=False, remove=())
     previous = Path(previous).resolve() if previous else None
     old = None
     if previous:
-        old = json.loads((previous / "active.json").read_bytes())
+        old, _ = generation_index(previous)
         verify(previous, old)
     if overlay and not old:
         raise ValueError("Overlay builds require a previous generation")
@@ -263,7 +276,7 @@ def verify(folder, index, expected_hashes=None):
 def extract(generation, overlay, names):
     """Extract selected assets to a sparse overlay without overwriting files."""
     generation, overlay = Path(generation).resolve(), Path(overlay).resolve()
-    index = json.loads((generation / "active.json").read_bytes())
+    index, _ = generation_index(generation)
     verify(generation, index)
     if not names or len(set(names)) != len(names):
         raise ValueError("Supply unique asset paths")
@@ -300,7 +313,7 @@ def stage_compatible_release(manifest_path, generation, output, version, *,
         raise ValueError("Invalid source release manifest")
     if version <= manifest["version"]:
         raise ValueError("Release version must increase")
-    index = json.loads((generation / "active.json").read_bytes())
+    index, index_bytes = generation_index(generation)
     verify(generation, index, staged_hashes)
     if generation.name != index["generation"]:
         raise ValueError("Generation directory name does not match index")
@@ -357,7 +370,7 @@ def stage_compatible_release(manifest_path, generation, output, version, *,
         target.mkdir(parents=True)
         for name in index["packs"]:
             shutil.copyfile(generation / name, target / name)
-        shutil.copyfile(generation / "active.json", root / "active.json")
+        (root / "active.json").write_bytes(index_bytes)
         verify(target, index)
         tool_root = staging / "_tools" / "rpgcobo-tool" / "rtpack-tools"
         tool_root.mkdir()

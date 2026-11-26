@@ -218,6 +218,16 @@ skExit(0);
         restored, conflicts = rt_pack_cutover.restore(self.root, name)
         self.assertEqual(restored, count)
         self.assertEqual(conflicts, [])
+
+    def test_cutover_excludes_protected_matching_file(self):
+        source = rt_packs.build(self.project, self.root / "output")
+        rt_packs.install(self.root, source)
+        protected = "resource/native_chara/deduce_brush.mdl"
+        name, count = rt_pack_cutover.prepare(self.root, exclude=[protected])
+        self.assertEqual(count, 2)
+        self.assertEqual(rt_pack_cutover.apply(self.root, name), 2)
+        self.assertTrue((self.project / protected).is_file())
+        self.assertEqual(rt_pack_cutover.restore(self.root, name), (2, []))
         self.assertTrue((self.assets / "deduce_brush.mdl").exists())
 
     def test_sealed_cutover_reports_missing_backup_when_pack_is_corrupt(self):

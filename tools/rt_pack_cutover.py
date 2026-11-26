@@ -131,11 +131,16 @@ def transaction(profile, ident, verify_pack=True):
     return root, manifest, index, generation
 
 
-def prepare(profile):
+def prepare(profile, *, exclude=()):
+    excluded = set(exclude)
+    for name in excluded:
+        rt_packs.asset_path(name)
     with stopped(profile) as profile:
         index, encoded, generation = read_index(profile)
         files = {}
         for name, entry in sorted(index["entries"].items()):
+            if name in excluded:
+                continue
             target = rt_packs.no_links(profile / "project", rt_packs.asset_path(name))
             if not target.is_file():
                 continue

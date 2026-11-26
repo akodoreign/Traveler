@@ -178,6 +178,23 @@ class PackTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             rt_packs.extract(source, overlay, ["resource/native_test/../bad.mdl"])
 
+    def test_installed_generation_supports_extract_and_sparse_build(self):
+        source = rt_packs.build(self.project, self.output)
+        rt_packs.install(self.profile, source, _allow_fixture=True)
+        installed = self.project / "rtpacks" / source.name
+        overlay = self.root / "overlay"
+        name = "resource/native_test/a.mdl"
+        self.assertEqual(rt_packs.extract(installed, overlay, [name]), 1)
+        (overlay / name).write_bytes(b"edited geometry")
+        updated = rt_packs.build(overlay, self.output, previous=installed, overlay=True)
+        index = json.loads((updated / "active.json").read_bytes())
+        self.assertEqual(index["entries"][name][3], len(b"edited geometry"))
+        self.assertIn("resource/native_test/b.png", index["entries"])
+
+        rt_packs.install(self.profile, updated, _allow_fixture=True)
+        with self.assertRaisesRegex(ValueError, "does not match index"):
+            rt_packs.extract(installed, self.root / "old-overlay", [name])
+
     def test_build_rejects_source_changes(self):
         compress = rt_packs.zlib.compress
         touched = False

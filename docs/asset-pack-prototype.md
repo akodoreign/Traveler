@@ -68,6 +68,10 @@ line; absent paths are preserved by default. To edit an existing asset, first ru
 Extraction verifies the pack and never overwrites an existing file. Paths in both
 the overlay and removal list are rejected. Builds stop if the loose source changes
 while being read.
+For the currently installed generation, use the directory
+`_tools\rpgcobo-tool\project\rtpacks\GENERATION` as `GENERATION` for both
+`extract` and `build --previous`; the tools read its parent `active.json`.
+An inactive older installed generation needs its own matching `active.json`.
 Tests run with
 `python -m unittest discover -s tools -p "test_rt_packs*.py" -v`.
 

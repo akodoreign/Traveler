@@ -84,6 +84,19 @@ See `HOW TO PLAY.txt` for more, and `NOTES.md` for the full development log.
 
 ---
 
+## Packed native assets
+
+Native models, animations, materials and textures are stored in the active
+`_tools\rpgcobo-tool\project\rtpacks` generation. Loose files can remain as
+local overrides, including work in progress. To change a packed asset, extract
+it to a separate overlay with `tools\rt_packs.py extract`, edit it there, and
+build a new generation with `build --previous ... --overlay`. Put additions in
+that overlay; use `--remove-list` for deliberate removals. Never edit a pack
+in place. See [the pack guide](docs/asset-pack-prototype.md) for commands,
+verification, compatibility, and recoverable cleanup.
+
+---
+
 ## License and notices
 
 - The project's own code, tools and original assets are released under the **Apache License 2.0** (`LICENSE`).
