@@ -24858,6 +24858,39 @@ def rebuild_under_dojo(m, ev):
     m.hgt, m.blk = height, blocks
 
 
+def rebuild_nezumi_nests(m, ev):
+    if (m.w, m.d) != (164, 60) or m.hgt[30,130] != 2:
+        raise ValueError("The Egg Cave baseline changed; review its expansion")
+    old_width = m.w
+    m.w += 62
+    m.hgt = np.pad(m.hgt, ((0, 0), (0, m.w-old_width)), constant_values=16)
+    m.blk = np.pad(m.blk, ((0, 0), (0, m.w-old_width)), constant_values=CAVE_WALL)
+    # Keep the existing passages and gates, but make the rock unjumpable.
+    walls = (m.hgt > 3) & (m.blk == CAVE_WALL)
+    m.hgt[walls] = np.maximum(m.hgt[walls], 16)
+    zz, xx = np.indices(m.hgt.shape)
+    floor = np.zeros(m.hgt.shape, dtype=bool)
+    routes = (
+        ((130,30),(143,30),(154,25),(163,19),(177,18),(190,22),(197,29)),
+        ((197,29),(191,38),(180,43),(166,43),(155,37),(143,30)),
+        ((177,18),(182,10),(194,9),(204,14)),
+    )
+    for path in routes:
+        for (ax,az),(bx,bz) in zip(path,path[1:]):
+            dx,dz = bx-ax,bz-az
+            t = np.clip(((xx-ax)*dx+(zz-az)*dz)/(dx*dx+dz*dz), 0., 1.)
+            floor |= (xx-ax-t*dx)**2 + (zz-az-t*dz)**2 <= 4.5**2
+    lanes = floor.copy()
+    for x,z,rx,rz in ((153,27,9,7),(176,18,11,8),(196,29,10,8),
+                      (177,42,12,8),(201,13,9,7)):
+        wobble = .06*np.sin(xx*.29+zz*.48) + .04*np.cos(xx*.51-zz*.19)
+        floor |= ((xx-x)/rx)**2 + ((zz-z)/rz)**2 < 1.+wobble
+    # The gallery joins the existing cave only at its easternmost chamber.
+    floor &= (xx >= 130) & ~((xx < old_width) & (m.hgt <= 3))
+    m.hgt[floor] = 2
+    m.blk[floor] = np.where(lanes[floor], DIRT, CAVE_FLOOR)
+
+
 def make(i):
     if not DOOR_EV or ("M141", "castle") not in DOOR_EV:   # portals reference other maps' door ids
         wall_garrison()
@@ -25103,6 +25136,8 @@ def make(i):
         rebuild_white_squid_caves(m, ev)
     if i in ('M261',):
         rebuild_under_dojo(m, ev)
+    if i in ('M130',):
+        rebuild_nezumi_nests(m, ev)
     return m, ev
 
 
