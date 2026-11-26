@@ -302,8 +302,8 @@ def extract(generation, overlay, names):
 
 
 def stage_compatible_release(manifest_path, generation, output, version, *,
-                             staged_hashes=None, content_provider=None):
-    """Stage pack additions while keeping every loose file in the release manifest."""
+                             staged_hashes=None, content_provider=None, pack_only=False):
+    """Stage a verified pack generation and its release manifest."""
     manifest_path, generation, output = map(lambda p: Path(p).resolve(),
                                             (manifest_path, generation, output))
     if output.exists() or output == generation or generation in output.parents:
@@ -314,7 +314,7 @@ def stage_compatible_release(manifest_path, generation, output, version, *,
     if version <= manifest["version"]:
         raise ValueError("Release version must increase")
     index, index_bytes = generation_index(generation)
-    verify(generation, index, staged_hashes)
+    verify(generation, index, None if pack_only else staged_hashes)
     if generation.name != index["generation"]:
         raise ValueError("Generation directory name does not match index")
     files = dict(manifest["files"])
@@ -352,10 +352,13 @@ def stage_compatible_release(manifest_path, generation, output, version, *,
     mismatches = []
     for name, entry in index["entries"].items():
         existing = files.get(prefix + name)
-        if not existing or str(existing[0]) != entry[4] or existing[1] != entry[3]:
+        if (existing if pack_only else
+                not existing or str(existing[0]) != entry[4] or existing[1] != entry[3]):
             mismatches.append(name)
     if mismatches:
-        raise ValueError("Loose release asset differs from pack or is not staged: "
+        reason = ("Packed assets remain in the release manifest: " if pack_only else
+                  "Loose release asset differs from pack or is not staged: ")
+        raise ValueError(reason
                          + ", ".join(mismatches[:10]) + f" ({len(mismatches)} total)")
     pack_prefix = prefix + "rtpacks/"
     tool_prefix = "_tools/rpgcobo-tool/rtpack-tools/"
@@ -398,7 +401,7 @@ def stage_compatible_release(manifest_path, generation, output, version, *,
     return output
 
 
-def apply_compatible_overlay(stage, candidate, *, staged_hashes=None):
+def apply_compatible_overlay(stage, candidate, *, staged_hashes=None, pack_only=False):
     """Apply a prepared overlay to a release candidate, without deleting loose assets."""
     stage, candidate = extended_path(stage), extended_path(candidate)
     prefix = Path("_tools") / "rpgcobo-tool" / "project"
@@ -406,7 +409,7 @@ def apply_compatible_overlay(stage, candidate, *, staged_hashes=None):
     encoded = (pack_root / "active.json").read_bytes()
     index = json.loads(encoded)
     generation = pack_root / index["generation"]
-    verify(generation, index, staged_hashes)
+    verify(generation, index, None if pack_only else staged_hashes)
     manifest = json.loads((stage / "rt_manifest.json").read_bytes())
     version = json.loads((stage / "version.json").read_bytes())
     if manifest.get("version") != version.get("version"):
@@ -423,7 +426,7 @@ def apply_compatible_overlay(stage, candidate, *, staged_hashes=None):
             data = no_links(candidate, Path("tools") / name).read_bytes()
             if manifest["files"].get(relative) != [signed_crc(data), len(data)]:
                 raise ValueError(f"Candidate cutover tool changed: {name}")
-        for name, entry in index["entries"].items():
+        for name, entry in (() if pack_only else index["entries"].items()):
             path = no_links(candidate / prefix, asset_path(name))
             data = path.read_bytes()
             with (generation / entry[0]).open("rb") as stream:

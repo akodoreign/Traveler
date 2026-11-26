@@ -73,6 +73,9 @@ walked, the finale opens — and after it, a post-game in the deep Shadowlands.
 Use **Update / Verify** on the title screen to fetch the latest version later. A yellow notice on the title screen tells
 you when one is available.
 
+**Packaging change:** If you have an older copy with loose native assets, please download and extract a fresh ZIP.
+The new copy uses asset packs; updating the old copy does not remove its obsolete files.
+
 **Controls** (keyboard; a gamepad works too): arrow keys move, **Z** confirm / talk, **X** back / jump, **C** menu,
 **Esc** pause. Save at shrines, waystones and inns.
 
@@ -87,8 +90,8 @@ See `HOW TO PLAY.txt` for more, and `NOTES.md` for the full development log.
 ## Packed native assets
 
 Native models, animations, materials and textures are stored in the active
-`_tools\rpgcobo-tool\project\rtpacks` generation. Loose files can remain as
-local overrides, including work in progress. To change a packed asset, extract
+`_tools\rpgcobo-tool\project\rtpacks` generation. Packed assets take precedence
+over same-named loose files. To change a packed asset, extract
 it to a separate overlay with `tools\rt_packs.py extract`, edit it there, and
 build a new generation with `build --previous ... --overlay`. Put additions in
 that overlay; use `--remove-list` for deliberate removals. Never edit a pack

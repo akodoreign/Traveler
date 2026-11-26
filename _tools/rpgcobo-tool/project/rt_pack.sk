@@ -26,6 +26,8 @@ try {
 	return;
 }
 
+// A developer may temporarily retain loose work in an existing checkout.
+local looseWork = FileRef(skGetCurrentDir() .. "/rtpack-dev-loose").exists();
 local tree = { children = {} };
 try {
 	foreach (path, entry in spec.entries) {
@@ -104,8 +106,10 @@ local nodeForPath = function(path) {
 with FileResource {
 	function loadList() {
 		if (!isdir) return;
-		list = file.getList().map(@(f) checkAlias(::FileResource(f, this)));
 		local node = nodeForPath(path);
+		list = file.getList().map(@(f) !looseWork && node && node.children[f.name] && node.children[f.name]["entry"]
+			? RTPackResource(f.name, this, node.children[f.name])
+			: checkAlias(::FileResource(f, this)));
 		if (!node) return;
 		foreach (name, child in node.children) {
 			if (!list.find(@(r) r.name == name))

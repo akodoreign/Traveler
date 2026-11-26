@@ -275,6 +275,24 @@ class PackTests(unittest.TestCase):
             rt_packs.stage_compatible_release(manifest, source, self.root / "bad-stage", 5)
         self.assertFalse((self.root / "bad-stage").exists())
 
+        with self.assertRaisesRegex(ValueError, "Packed assets remain"):
+            rt_packs.stage_compatible_release(manifest, source, self.root / "duplicate-stage", 5,
+                                              pack_only=True)
+        for name in index["entries"]:
+            del files[game + "project/" + name]
+        files[game + "project/resource/native_test/unpacked.mdl"] = ["0", 1]
+        manifest.write_text(json.dumps({"version": 4, "files": files}))
+        stage = self.root / "pack-only-stage"
+        rt_packs.stage_compatible_release(manifest, source, stage, 5,
+                                          staged_hashes={}, pack_only=True)
+        staged = json.loads((stage / "rt_manifest.json").read_bytes())
+        self.assertIn(game + "project/resource/native_test/unpacked.mdl", staged["files"])
+        for name in index["entries"]:
+            self.assertNotIn(game + "project/" + name, staged["files"])
+        candidate_asset.write_bytes(b"local work in progress")
+        rt_packs.apply_compatible_overlay(stage, repo, staged_hashes={}, pack_only=True)
+        self.assertEqual(candidate_asset.read_bytes(), b"local work in progress")
+
     def test_release_script_stages_compatible_packs_without_deleting_loose(self):
         source = rt_packs.build(self.project, self.output)
         candidate = self.root / "candidate"

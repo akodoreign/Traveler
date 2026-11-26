@@ -7,4 +7,5 @@ _tools/rpgcobo-tool/backup/
 _tools/rpgcobo-tool/build/
 
 _tools/rpgcobo-tool/rt_version.json
+_tools/rpgcobo-tool/rtpack-dev-loose
 _tools/rpgcobo-tool/rt_manifest.json

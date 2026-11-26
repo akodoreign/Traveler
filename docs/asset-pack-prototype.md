@@ -1,13 +1,18 @@
 # Asset pack prototype
 
-The compatible pack bootstrap is published; loose-file cleanup remains
-**opt-in**. The working game has undergone a recoverable local cleanup, while
-the Git release retains loose assets for older clients. `boot.sk` mounts an optional `project/rtpacks/active.json`
+The Git release stores packed native assets in packs, not as duplicate loose
+files. Older clients should download a fresh ZIP. Local loose-file cleanup
+remains a separate recoverable operation. `boot.sk` mounts `project/rtpacks/active.json`
 only when present; otherwise the existing loose-file loader is unchanged.
-Loose files take precedence, including local edits. Packed meshes, animations,
+Packed files take precedence over same-named loose files. Packed meshes, animations,
 materials and PNGs are decompressed on demand and checked against their CRC.
 An incomplete pack set is not mounted. This does not accelerate rendering or
 reduce texture memory.
+
+For an existing development checkout with uncommitted loose edits, a local
+`rtpack-dev-loose` file in the game folder temporarily restores loose precedence.
+The marker is ignored by Git and must not be used for distributed builds. Move
+approved edits into a new generation and remove the marker after migration.
 
 `tools/rt_packs.py` builds deterministic, content-versioned sets with a 49 MiB
 maximum per pack and index (below GitHub's 50 MiB warning and 100 MiB block).
@@ -17,7 +22,8 @@ The installer requires a **stopped, independently copied** profile created by
 `tools/traveler_instances.py` and explicitly enabled for packs. It verifies all downloaded bytes and
 assets before atomically switching the active index, keeps the previous pack
 generation, and optionally removes only loose assets identical to the new or
-previous verified generation. It preserves other loose files as overrides.
+previous verified generation. It preserves other loose files, though packed
+assets take precedence at runtime.
 It rejects a running profile and coordinates with the instance launcher's slot
 lock. Do not start the executable directly while installing or updating.
 
@@ -115,16 +121,17 @@ folder, with instructions. Once packs are active,
 subsequent releases must supply a current generation. **This command commits
 and pushes immediately**; do not run it during concurrent asset edits. The
 compatible release keeps old clients functional but duplicates assets and is
-not a space-saving repository cutover.
+not used for pack-only releases.
 On the first pack release, explicitly stage the new loader and
 `tools\rt_packs.py` and `tools\rt_pack_cutover.py`, together with every approved
 new loose asset. The preflight reports packed assets missing from the manifest.
 
-For partially staged shared files, use `--from-index --pack-generation
-DIRECTORY` instead: review and stage the desired hunks first. This mode retains
-the reviewed index, derives release metadata and the cleanup bundle from staged
-blobs, checks every staged native asset against the generation with SHA-256, and
-does not require unstaged working files to match. Do not pre-stage generated
+For pack-only releases, review and stage the intended changes and remove the
+generation's packed asset paths from the Git index, without deleting local work.
+Use `release_here.py "message" --from-index --pack-only --pack-generation
+DIRECTORY`. This mode retains the reviewed index, verifies the full generation,
+and refuses a manifest that still contains its packed assets. It does not require
+unstaged working files to match. Do not pre-stage generated
 pack files, the runtime cleanup bundle, `version.json`, or `rt_manifest.json`.
 Stage the exact working versions of `tools\release_here.py` and
 `tools\rt_packs.py`, which execute the release. As with the other mode, this
@@ -144,7 +151,7 @@ python tools\rt_pack_cutover.py restore PATH_TO_GAME TRANSACTION_ID
 ```
 
 `prepare` records candidates; `apply` rechecks and moves them into quarantine.
-Changed or newly created loose files remain overrides. Quarantine consumes disk
+Changed or newly created loose files remain on disk. Quarantine consumes disk
 space until the separately invoked `seal` checks the quarantined bytes and
 discards duplicates; retain the transaction and its referenced pack generation
 for recovery. `restore` never overwrites existing loose files and reports
@@ -157,23 +164,12 @@ without coordinating with everyone editing it.
 The bundled tools require Windows and Python 3.12 or newer; they are delivered
 by the in-game updater, but Python itself is not included.
 
-The existing in-game updater still distributes individual files. It now accepts
-matching packed assets during Update and checks their contents during Verify;
-changed assets are downloaded as loose overrides, preserving the existing update
-behavior. If a release manifest contains a pack generation and active index, the
-updater writes pack files by replacement and activates the index last, after
-checking the pack files against the release manifest. Old clients do not have
-this behavior; a bootstrap release is mandatory before a pack-only release.
-The older mirror-based `release.py` does not publish or coordinate pack sets;
-use the pack-aware `release_here.py` path for compatible pack releases.
-A production pack-only rollout still requires a way to support old clients that
-skip the bootstrap: they fetch loose assets from the current release and cannot
-read packs. Retain the loose release files until that compatibility problem is
-resolved. Do not remove repository assets or publish pack-only releases before
-then. In particular, changed loose
-files still override packs, and the active environment assets are being edited
-concurrently. Versioning
-entire packs can make small updates much larger and Git history retains old blobs.
+The in-game updater checks the target index, skips packed loose assets, downloads
+unpacked assets normally, and activates the index only after checking all pack
+files against the manifest. Older clients may require a fresh download. The
+older mirror-based `release.py` does not coordinate packs; use the pack-aware
+`release_here.py` path. Versioning entire packs can make small updates larger,
+and Git history retains old blobs even after loose files leave the current tree.
 
 The engine's native `.sx` reader is present, but a direct keyless
 `SKPackageBuilder` probe produced an index that `SKPackage()` rejected with

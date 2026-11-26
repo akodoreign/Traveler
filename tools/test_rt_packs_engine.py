@@ -140,7 +140,84 @@ skExit(0);
         self.assertIn("[PACK TEST] updater scan OK", output, output)
         self.assertNotIn("Exception in thread", output)
 
-    def test_packed_model_texture_loose_override_and_bad_update(self):
+    def test_updater_downloads_target_packs_not_packed_loose_assets(self):
+        source = rt_packs.build(self.project, self.root / "output", limit=13000)
+        index_bytes = (source / "active.json").read_bytes()
+        index = json.loads(index_bytes)
+        game = "_tools/rpgcobo-tool/"
+        active = game + "project/rtpacks/active.json"
+        remote_dir = self.root / "test-remote"
+        files = {}
+
+        def publish(path, data):
+            target = remote_dir.joinpath(*path.split("/"))
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(data)
+            files[path] = [rt_packs.signed_crc(data), len(data)]
+
+        publish(active, index_bytes)
+        for name in index["packs"]:
+            publish(game + "project/rtpacks/" + index["generation"] + "/" + name,
+                    (source / name).read_bytes())
+        for path in index["entries"]:
+            publish(game + "project/" + path, self.project.joinpath(*path.split("/")).read_bytes())
+        extra = game + "project/resource/native_chara/unpacked.mdl"
+        publish(extra, b"unpacked asset")
+        remote = {"version": 1, "files": files}
+        (remote_dir / "rt_manifest.json").write_text(json.dumps(remote), encoding="utf-8")
+        (remote_dir / "version.json").write_text('{"version":1}', encoding="utf-8")
+        texture = self.assets / "tex" / "head_checks_color.png"
+        texture.write_bytes(b"old loose texture")
+        script = """
+::RPGStage <- { launch = function(opt=null) {} };
+::Rokugan <- {};
+runsk("/plugin/rokugan/RokuganUpdate.sk");
+local remote = decodeJSON(%s), active = %s, extra = %s;
+local index = FileRef("test-remote/" .. active).load();
+local spec = ::Rokugan.updPackSpec(remote, index, active);
+local bad = decodeJSON(%s);
+bad.files[%s][0] = "0";
+local rejected = false;
+try { ::Rokugan.updPackSpec(bad, FileRef("test-remote/" .. active).load(), active); }
+catch(ex) { rejected = true; }
+if (!rejected) throw "mismatched loose manifest accepted";
+local requested = [], state = { fail = true };
+::Rokugan.updShow = @(message) null;
+::Rokugan.updGet = function(path) {
+    requested .. path;
+    if (state.fail && path.endsWith(".pak")) throw "simulated interrupted download";
+    return FileRef("test-remote/" .. path).load();
+};
+local need = ::Rokugan.updScan(remote, null, false, spec);
+foreach (path in need) if (path.indexOf("/resource/native_chara/") >= 0 && path != extra)
+    throw "packed loose asset requested";
+local first = ::Rokugan.updApply(remote, need);
+if (!length(first.bad) || FileRef("project/rtpacks/active.json").exists())
+    throw "incomplete packs activated";
+state.fail = false;
+need = ::Rokugan.updScan(remote, null, false, spec);
+local second = ::Rokugan.updApply(remote, need);
+if (length(second.bad) || !FileRef("project/rtpacks/active.json").exists())
+    throw "pack update failed";
+foreach (path in requested) if (path.indexOf("/resource/native_chara/") >= 0 && path != extra)
+    throw "packed loose asset downloaded";
+if (!FileRef("project/resource/native_chara/unpacked.mdl").exists()) throw "unpacked asset missing";
+printf("[PACK TEST] target pack update OK\\n");
+skExit(0);
+""" % (json.dumps(json.dumps(remote)), json.dumps(active), json.dumps(extra),
+       json.dumps(json.dumps(remote)), json.dumps(game + "project/" + next(iter(index["entries"]))))
+        (self.project / "testplay.sk").write_text(script, encoding="utf-8")
+        env = os.environ.copy()
+        env.update(TEMP=str(self.root / "os-temp"), TMP=str(self.root / "os-temp"),
+                   APPDATA=str(self.root / "roaming"), LOCALAPPDATA=str(self.root / "local"))
+        proc = subprocess.run([str(self.root / "rpgcobo.exe"), "-testplay"], cwd=self.root, env=env,
+                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=30)
+        output = proc.stdout.decode("utf-8", errors="replace")
+        self.assertIn("[PACK TEST] target pack update OK", output, output)
+        self.run_engine(rt_packs.signed_crc(
+            (self.source_assets / "tex" / "head_checks_color.png").read_bytes()))
+
+    def test_packed_model_texture_takes_precedence_and_bad_update(self):
         source = rt_packs.build(self.project, self.root / "output", limit=13000)
         index = json.loads((source / "active.json").read_bytes())
         self.assertEqual(len(index["packs"]), 2)
@@ -163,7 +240,11 @@ skExit(0);
 
         original = self.source_assets / "tex" / "head_checks_color.png"
         texture.write_bytes(original.read_bytes())
+        self.run_engine(rt_packs.signed_crc(replacement.read_bytes()))
+        marker = self.root / "rtpack-dev-loose"
+        marker.touch()
         self.run_engine(rt_packs.signed_crc(texture.read_bytes()))
+        marker.unlink()
 
         shutil.copyfile(original, next_assets / "tex" / "head_checks_color.png")
         third = rt_packs.build(next_project, self.root / "output")
@@ -174,7 +255,7 @@ skExit(0);
         with self.assertRaises(ValueError):
             self.download_update(third, prune=True)
         self.assertEqual(json.loads((self.project / "rtpacks" / "active.json").read_bytes()), updated_index)
-        self.run_engine(rt_packs.signed_crc(texture.read_bytes()))
+        self.run_engine(rt_packs.signed_crc(replacement.read_bytes()))
 
     def test_incomplete_pack_set_falls_back_to_loose_files(self):
         source = rt_packs.build(self.project, self.root / "output")
@@ -221,7 +302,8 @@ skExit(0);
         texture.write_bytes(edited)
         self.assertEqual(rt_pack_cutover.apply(self.root, name), 2)
         self.assertEqual(texture.read_bytes(), edited)
-        self.run_engine(rt_packs.signed_crc(edited))
+        self.run_engine(rt_packs.signed_crc(
+            (self.source_assets / "tex" / "head_checks_color.png").read_bytes()))
         self.assertEqual(rt_pack_cutover.seal(self.root, name), 2)
         restored, conflicts = rt_pack_cutover.restore(self.root, name)
         self.assertEqual(restored, 2)
@@ -338,7 +420,7 @@ skExit(0);
         rt_pack_cutover.restore(self.root, name)
         self.assertEqual(self.project.joinpath(*first.split("/")).read_bytes(), b"concurrent edit")
 
-    def test_existing_updater_checks_pack_and_respects_loose_override(self):
+    def test_existing_updater_checks_pack_over_loose_copy(self):
         model = self.assets / "deduce_brush.mdl"
         raw = model.read_bytes()
         source = rt_packs.build(self.project, self.root / "output")
@@ -354,7 +436,7 @@ skExit(0);
         self.run_update_scan(1, rt_packs.signed_crc(raw), len(raw))
         pack.write_bytes(original)
         model.write_bytes(b"local edit")
-        self.run_update_scan(1, rt_packs.signed_crc(raw), len(raw))
+        self.run_update_scan(0, rt_packs.signed_crc(raw), len(raw))
 
     def test_existing_updater_still_checks_unpacked_assets(self):
         raw = (self.assets / "deduce_brush.mdl").read_bytes()

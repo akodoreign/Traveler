@@ -60,8 +60,7 @@ local GAME = "_tools/rpgcobo-tool/";
 	return ("" .. bb.crc32( 0)) == ("" .. want);			//	(signed 32-bit, as a string: tools/release.py)
 };
 
-// A mounted asset can satisfy the existing per-file manifest without being
-// extracted. Loose files still win; changed remote files are downloaded normally.
+// A mounted asset can satisfy the existing per-file manifest without being extracted.
 ::Rokugan.updPackOk <- function( p, e, fast){
 	local prefix = GAME .. "project/resource/native_";
 	if( p.indexOf( prefix) != 0) return false;
@@ -181,8 +180,10 @@ local GAME = "_tools/rpgcobo-tool/";
 	}catch( ex){ return null; }
 };
 
-::Rokugan.updInstallPackIndex <- function( remote, p){
-	local bb = this.updGet( p), expected = remote.files[p];
+// Read the target index before scanning: the installed generation may not yet
+// contain newly added assets. Never skip loose downloads based on an unverified index.
+::Rokugan.updPackSpec <- function( remote, bb, p){
+	local expected = remote.files[p];
 	if( bb.size != expected[1] || !this.updCrcOk( bb, expected[0])) throw "pack index checksum mismatch";
 	local spec = decodeJSON( bb), generation = spec["generation"];
 	if( spec["format"] != 1 || !spec["entries"] || !spec["packs"] ||
@@ -198,9 +199,6 @@ local GAME = "_tools/rpgcobo-tool/";
 			if( "0123456789".indexOf( name.substring( i, i+1)) < 0) throw "invalid pack name";
 		local path = base .. name, e = remote.files[path];
 		if( !e || e[1] != info[0]) throw "pack absent from release manifest";
-		local f = FileRef( this.updPath( path));
-		if( !f.exists() || f.size != e[1] || !this.updCrcOk( f.load(), e[0]))
-			throw "pack not downloaded or checksum mismatch: " .. name;
 	}
 	local dirs = {}, files = {};
 	foreach( path, entry in spec.entries){
@@ -210,6 +208,9 @@ local GAME = "_tools/rpgcobo-tool/";
 			!(entry[0] in spec.packs) || entry[1] < 0 || entry[2] <= 0 || entry[3] < 0 ||
 			typeof( entry[4]) != SS_STRING ||
 			entry[1] + entry[2] > spec.packs[entry[0]][0]) throw "invalid pack entry";
+		local loose = remote.files[GAME .. "project/" .. path];
+		if( loose && (loose[1] != entry[3] || ("" .. loose[0]) != entry[4]))
+			throw "pack asset differs from release manifest: " .. path;
 		local partial = "";
 		foreach( i, piece in pieces){
 			if( !length( piece) || piece == "." || piece == ".." ||
@@ -224,19 +225,34 @@ local GAME = "_tools/rpgcobo-tool/";
 			}
 		}
 	}
+	return spec;
+};
+
+::Rokugan.updInstallPackIndex <- function( remote, p){
+	local bb = this.updGet( p), spec = this.updPackSpec( remote, bb, p);
+	local base = GAME .. "project/rtpacks/" .. spec.generation .. "/";
+	foreach( name, info in spec.packs){
+		local path = base .. name, e = remote.files[path];
+		local f = FileRef( this.updPath( path));
+		if( !f.exists() || f.size != e[1] || !this.updCrcOk( f.load(), e[0]))
+			throw "pack not downloaded or checksum mismatch: " .. name;
+	}
 	bb.pos = 0;
 	this.updWritePack( this.updPath( p), bb);
 };
 
 //	Fast checks manifest changes, file sizes and the plugin entry point's CRC32. Verify checks all managed CRCs.
-::Rokugan.updScan <- function( remote, local_, fast){
+::Rokugan.updScan <- function( remote, local_, fast, packSpec = null){
 	local need = [], n = 0, tot = length( remote.files);
 	local lf = (local_ && local_["files"]) || {};
 	foreach( p, e in remote.files){
 		n++;
 		local full = this.updPath( p);
 		if( !full) continue;
-		if( this.updPackOk( p, e, fast)) continue;
+		local assetPrefix = GAME .. "project/";
+		if( packSpec && p.indexOf( assetPrefix) == 0 &&
+			(p.substring( length( assetPrefix)) in packSpec.entries)) continue;
+		if( !packSpec && this.updPackOk( p, e, fast)) continue;
 		local f = FileRef( full);
 		if( !f.exists()){ need .. p; continue; }
 		//	boss / banner art: GitHub has placeholders (the wiki-derived originals never go there) - a copy that has the
@@ -253,6 +269,14 @@ local GAME = "_tools/rpgcobo-tool/";
 		}
 		if( f.size != e[1] || !this.updCrcOk( f.load(), e[0])) need .. p;
 		if( n % 25 == 0) this.updShow( "Verifying files... %d / %d (%d to fix)" % (n, tot, length( need)));
+	}
+	local active = GAME .. "project/rtpacks/active.json";
+	if( packSpec && need.indexOf( active) < 0 ){
+		local base = GAME .. "project/rtpacks/" .. packSpec.generation .. "/";
+		foreach( p in need ) if( p.indexOf( base) == 0 && p.endsWith( ".pak" )){
+			need .. active;
+			break;
+		}
 	}
 	return need;
 };
@@ -294,7 +318,9 @@ local GAME = "_tools/rpgcobo-tool/";
 ::Rokugan.updRun <- function( runner, fast){
 	this.updShow( "Downloading the file list from GitHub...");
 	local remote = decodeJSON( this.updGet( "rt_manifest.json").asText());
-	local need = this.updScan( remote, this.updLocalJSON( "rt_manifest.json"), fast);
+	local active = GAME .. "project/rtpacks/active.json", spec = null;
+	if( active in remote.files ) spec = this.updPackSpec( remote, this.updGet( active), active);
+	local need = this.updScan( remote, this.updLocalJSON( "rt_manifest.json"), fast, spec);
 	log( "%S: %d files to fetch" % (fast ? "update" : "verify", length( need)));
 	local res = this.updApply( remote, need), ok = res.ok, bad = res.bad;
 	this.updHide();
@@ -412,7 +438,9 @@ local GAME = "_tools/rpgcobo-tool/";
 		local vbb = this.updGet( "version.json");
 		log( "remote version %S, %d files; version.json crc %d size %d; local version %S"
 			% (remote["version"], length( remote.files), vbb.crc32( 0), vbb.size, encodeJSON( this.updLocalJSON( "version.json"))));
-		local need = this.updScan( remote, this.updLocalJSON( "rt_manifest.json"), mode == "fast");
+		local active = GAME .. "project/rtpacks/active.json", spec = null;
+		if( active in remote.files ) spec = this.updPackSpec( remote, this.updGet( active), active);
+		local need = this.updScan( remote, this.updLocalJSON( "rt_manifest.json"), mode == "fast", spec);
 		log( "scan %S: %d to fetch in %d ms %S" % (mode, length( need), skGetTime( t0), encodeJSON( need.slice( 0, Math.min( 10, length( need))))));
 		if( mode == "fix"){
 			local res = this.updApply( remote, need);

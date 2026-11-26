@@ -1,7 +1,7 @@
 """Release this checkout as the next game version: the same steps as release.py, without the D: mirror.
 
     py -3 -E tools\\release_here.py "message" [path ...] [--pack-generation DIRECTORY]
-        [--scoped] [--paths-file FILE] [--from-index]
+        [--scoped] [--paths-file FILE] [--from-index] [--pack-only]
 
 Without --scoped, stages all tracked changes plus the given paths. With --scoped, stages only the specified
 paths and builds the manifest from staged Git blobs. Both modes commit and push HEAD to main immediately.
@@ -132,6 +132,11 @@ def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
     arguments = sys.argv[2:]
+    pack_only = "--pack-only" in arguments
+    if arguments.count("--pack-only") > 1:
+        sys.exit("Specify --pack-only at most once")
+    if pack_only:
+        arguments = [arg for arg in arguments if arg != "--pack-only"]
     from_index = "--from-index" in arguments
     if arguments.count("--from-index") > 1:
         sys.exit("Specify --from-index at most once")
@@ -162,6 +167,8 @@ def main():
         sys.exit("An active pack exists; supply a matching --pack-generation for this release")
     if from_index and (scoped or arguments or not generation):
         sys.exit("--from-index requires --pack-generation and no paths or --scoped")
+    if pack_only and not from_index:
+        sys.exit("--pack-only requires --from-index")
     if scoped and (not generation or not arguments):
         sys.exit("--scoped requires --pack-generation and explicit approved paths")
     git("fetch", "-q", "origin", "main")
@@ -216,10 +223,11 @@ def main():
                 json.dump({"version": version - 1, "files": files}, stream, separators=(",", ":"), sort_keys=True)
             rt_packs.stage_compatible_release(candidate_manifest, generation, overlay, version,
                                               staged_hashes=asset_hashes,
-                                              content_provider=indexed_bytes if from_index else None)
+                                              content_provider=indexed_bytes if from_index else None,
+                                              pack_only=pack_only)
             if from_index and (release_index_signature() != signature or staged_reserved_paths()):
                 sys.exit("Reviewed index changed while preparing packs; review and retry")
-            rt_packs.apply_compatible_overlay(overlay, ".", staged_hashes=asset_hashes)
+            rt_packs.apply_compatible_overlay(overlay, ".", staged_hashes=asset_hashes, pack_only=pack_only)
         finally:
             if candidate_manifest.exists():
                 candidate_manifest.unlink()
