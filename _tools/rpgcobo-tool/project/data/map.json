@@ -323937,9 +323937,9 @@
 		"reverbid": "plain",
 		"rsetid": "rt_hd2d_field",
 		"size": [
-			32,
+			112,
 			64,
-			32
+			64
 		],
 		"vs": 23,
 		"weather": {
