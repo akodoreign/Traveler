@@ -1488,6 +1488,425 @@
 				"gipow": 1.0,
 				"gitype": 0
 			}
+		},
+		{
+			"envlights": [
+				{
+					"color": -1804033,
+					"head": -25,
+					"pitch": 52,
+					"power": 1130,
+					"shadow": {
+						"shadowdens": 0.6,
+						"shadowfar": 100.0,
+						"shadowray": 100.0,
+						"shadowreso": 1024,
+						"shadowsoft": 0.2,
+						"shadowtype": 2
+					},
+					"type": 1,
+					"scolor": -1804033
+				}
+			],
+			"exposure": {
+				"autoexposure": false,
+				"ev100": 8.85,
+				"evrange": [
+					-4.0,
+					14.0
+				]
+			},
+			"fog": {
+				"type": 3,
+				"color": 270418876,
+				"density": 0.014,
+				"zoffs": 19.0,
+				"yplane": 0.0,
+				"yfalloff": 0.1
+			},
+			"ibl": {
+				"iblcolor": -1,
+				"ibldiff": 645,
+				"ibldir": 0,
+				"iblspec": 150,
+				"ibltex": "/resource/ibltex/blouberg_sunrise_2_2k_ibl.ktx"
+			},
+			"id": "rt_hd2d_snake_den",
+			"lock": false,
+			"name": {
+				"en": "Snake Den",
+				"ja": "Snake Den"
+			},
+			"postfx": {
+				"bloomblur": 4.0,
+				"bloompow": 0.2,
+				"bloomthrs": 0.68,
+				"dofblur": 0.45,
+				"dofrange": 40.0,
+				"dofz": 34.0
+			},
+			"renderpass": 2,
+			"ss": {
+				"aobias": 0.5,
+				"aoexp": 1.2,
+				"aopow": 0.74,
+				"aoradius": 3.0,
+				"gipow": 1.0,
+				"gitype": 0
+			}
+		},
+		{
+			"envlights": [
+				{
+					"color": -993025,
+					"head": -42,
+					"pitch": 58,
+					"power": 2240,
+					"shadow": {
+						"shadowdens": 0.59,
+						"shadowfar": 100.0,
+						"shadowray": 100.0,
+						"shadowreso": 1024,
+						"shadowsoft": 0.16,
+						"shadowtype": 2
+					},
+					"type": 1,
+					"scolor": -993025
+				}
+			],
+			"exposure": {
+				"autoexposure": false,
+				"ev100": 9.5,
+				"evrange": [
+					-4.0,
+					14.0
+				]
+			},
+			"fog": {
+				"type": 3,
+				"color": -2068388429,
+				"density": 0.0027,
+				"zoffs": 35.0,
+				"yplane": 0.0,
+				"yfalloff": 0.12
+			},
+			"ibl": {
+				"iblcolor": -453836801,
+				"ibldiff": 370,
+				"ibldir": 0,
+				"iblspec": 170,
+				"ibltex": "/resource/ibltex/traveler_clear_coast_ibl.ktx"
+			},
+			"id": "rt_coastal_brilliance_road_horizon",
+			"lock": false,
+			"name": {
+				"en": "Clear Coastal Sun",
+				"ja": "Clear Coastal Sun"
+			},
+			"postfx": {
+				"bloomblur": 3.5,
+				"bloompow": 0.09,
+				"bloomthrs": 0.92,
+				"dofblur": 0.45,
+				"dofrange": 40.0,
+				"dofz": 34.0
+			},
+			"renderpass": 2,
+			"ss": {
+				"aobias": 0.5,
+				"aoexp": 1.1,
+				"aopow": 0.7,
+				"aoradius": 3.0,
+				"gipow": 1.0,
+				"gitype": 0
+			}
+		},
+		{
+			"envlights": [
+				{
+					"color": -993793,
+					"head": -22,
+					"pitch": 59,
+					"power": 1230,
+					"shadow": {
+						"shadowdens": 0.6,
+						"shadowfar": 100.0,
+						"shadowray": 100.0,
+						"shadowreso": 1024,
+						"shadowsoft": 0.2,
+						"shadowtype": 2
+					},
+					"type": 1,
+					"scolor": -993793
+				}
+			],
+			"exposure": {
+				"autoexposure": false,
+				"ev100": 8.85,
+				"evrange": [
+					-4.0,
+					14.0
+				]
+			},
+			"fog": {
+				"type": 3,
+				"color": 674777784,
+				"density": 0.006,
+				"zoffs": 23.5,
+				"yplane": 0.0,
+				"yfalloff": 0.1
+			},
+			"ibl": {
+				"iblcolor": -689176577,
+				"ibldiff": 360,
+				"ibldir": 0,
+				"iblspec": 102,
+				"ibltex": "/resource/ibltex/blouberg_sunrise_2_2k_ibl.ktx"
+			},
+			"id": "rt_coastal_brilliance_cave",
+			"lock": false,
+			"name": {
+				"en": "Coastal Cave Lanterns",
+				"ja": "Coastal Cave Lanterns"
+			},
+			"postfx": {
+				"bloomblur": 4.0,
+				"bloompow": 0.2,
+				"bloomthrs": 0.7,
+				"dofblur": 0.45,
+				"dofrange": 40.0,
+				"dofz": 34.0
+			},
+			"renderpass": 2,
+			"ss": {
+				"aobias": 0.5,
+				"aoexp": 1.2,
+				"aopow": 0.74,
+				"aoradius": 3.0,
+				"gipow": 1.0,
+				"gitype": 0
+			}
+		},
+		{
+			"envlights": [
+				{
+					"color": -991233,
+					"head": -25,
+					"pitch": 64,
+					"power": 2190,
+					"shadow": {
+						"shadowdens": 0.59,
+						"shadowfar": 100.0,
+						"shadowray": 100.0,
+						"shadowreso": 1024,
+						"shadowsoft": 0.12,
+						"shadowtype": 2
+					},
+					"type": 1,
+					"scolor": -991233
+				}
+			],
+			"exposure": {
+				"autoexposure": false,
+				"ev100": 9.5,
+				"evrange": [
+					-4.0,
+					14.0
+				]
+			},
+			"fog": {
+				"type": 3,
+				"color": -2068388429,
+				"density": 0.0027,
+				"zoffs": 35.0,
+				"yplane": 0.0,
+				"yfalloff": 0.12
+			},
+			"ibl": {
+				"iblcolor": -386662401,
+				"ibldiff": 540,
+				"ibldir": 0,
+				"iblspec": 155,
+				"ibltex": "/resource/ibltex/traveler_clear_coast_ibl.ktx"
+			},
+			"id": "rt_coastal_brilliance_arena_horizon",
+			"lock": false,
+			"name": {
+				"en": "Clear Cove Sun",
+				"ja": "Clear Cove Sun"
+			},
+			"postfx": {
+				"bloomblur": 3.5,
+				"bloompow": 0.09,
+				"bloomthrs": 0.92,
+				"dofblur": 0.45,
+				"dofrange": 26.0,
+				"dofz": 22.0
+			},
+			"renderpass": 2,
+			"ss": {
+				"aobias": 0.5,
+				"aoexp": 1.1,
+				"aopow": 0.7,
+				"aoradius": 3.0,
+				"gipow": 1.0,
+				"gitype": 0
+			}
+		},
+		{
+			"envlights": [
+				{
+					"color": -991233,
+					"head": 156,
+					"pitch": 67,
+					"power": 2190,
+					"shadow": {
+						"shadowdens": 0.59,
+						"shadowfar": 100.0,
+						"shadowray": 100.0,
+						"shadowreso": 1024,
+						"shadowsoft": 0.12,
+						"shadowtype": 2
+					},
+					"type": 1,
+					"scolor": -991233
+				},
+				{
+					"type": 2,
+					"pos": [
+						27.8,
+						3.2,
+						31.3
+					],
+					"k1": 9.5,
+					"color": -470812417,
+					"power": 1230,
+					"shadow": {}
+				},
+				{
+					"type": 2,
+					"pos": [
+						35.5,
+						3.4,
+						29.9
+					],
+					"k1": 9.5,
+					"color": -470812417,
+					"power": 1290,
+					"shadow": {}
+				}
+			],
+			"exposure": {
+				"autoexposure": false,
+				"ev100": 9.5,
+				"evrange": [
+					-4.0,
+					14.0
+				]
+			},
+			"fog": {
+				"type": 3,
+				"color": -2068388429,
+				"density": 0.0027,
+				"zoffs": 35.0,
+				"yplane": 0.0,
+				"yfalloff": 0.12
+			},
+			"ibl": {
+				"iblcolor": -386662401,
+				"ibldiff": 540,
+				"ibldir": 0,
+				"iblspec": 155,
+				"ibltex": "/resource/ibltex/traveler_clear_coast_ibl.ktx"
+			},
+			"id": "rt_coastal_brilliance_arena_open_fill",
+			"lock": false,
+			"name": {
+				"en": "Clear Cove Sun",
+				"ja": "Clear Cove Sun"
+			},
+			"postfx": {
+				"bloomblur": 3.5,
+				"bloompow": 0.09,
+				"bloomthrs": 0.92,
+				"dofblur": 0.45,
+				"dofrange": 26.0,
+				"dofz": 22.0
+			},
+			"renderpass": 2,
+			"ss": {
+				"aobias": 0.5,
+				"aoexp": 1.1,
+				"aopow": 0.7,
+				"aoradius": 3.0,
+				"gipow": 1.0,
+				"gitype": 0
+			}
+		},
+		{
+			"envlights": [
+				{
+					"color": -1767451649,
+					"head": -42,
+					"pitch": 48,
+					"power": 490,
+					"shadow": {
+						"shadowdens": 0.44,
+						"shadowfar": 100.0,
+						"shadowray": 100.0,
+						"shadowreso": 1024,
+						"shadowsoft": 0.33,
+						"shadowtype": 2
+					},
+					"type": 1,
+					"scolor": -1767451649
+				}
+			],
+			"exposure": {
+				"autoexposure": false,
+				"ev100": 9.5,
+				"evrange": [
+					-4.0,
+					14.0
+				]
+			},
+			"fog": {
+				"type": 3,
+				"color": 910067542,
+				"density": 0.009,
+				"zoffs": 18.5,
+				"yplane": 0.0,
+				"yfalloff": 0.1
+			},
+			"ibl": {
+				"iblcolor": -1921188865,
+				"ibldiff": 415,
+				"ibldir": 0,
+				"iblspec": 92,
+				"ibltex": "/resource/ibltex/blouberg_sunrise_2_2k_ibl.ktx"
+			},
+			"id": "rt_hd2d_hida_siege_keep",
+			"lock": false,
+			"name": {
+				"en": "Hida siege keep"
+			},
+			"postfx": {
+				"bloomblur": 4.0,
+				"bloompow": 0.16,
+				"bloomthrs": 0.6,
+				"dofblur": 0.45,
+				"dofrange": 40.0,
+				"dofz": 34.0
+			},
+			"renderpass": 2,
+			"ss": {
+				"aobias": 0.5,
+				"aoexp": 1.1,
+				"aopow": 0.9,
+				"aoradius": 3.0,
+				"gipow": 1.0,
+				"gitype": 0
+			}
 		}
 	],
 	"voxmtls": {
