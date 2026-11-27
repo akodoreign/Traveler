@@ -62,6 +62,47 @@ local mult = function( atk, dfn){
 	return 1.0;
 };
 ::Rokugan.sadaneMult <- mult;
+// Mask mastery uses the existing Sadane save and applies to Mitsue's visible mask.
+local wardPercent = @( lv) 2 * Math.max(0, Math.min(sdata().rules.maxlevel, lv) - 1);
+local battleAffinity = {
+	Metal = ["Katana", "Yari", "Tanto"], Wood = ["Bo", "Yumi"],
+	Fire = ["Fire"], Water = ["Water"], Earth = ["Earth"], Silk = ["Air"]
+};
+local maskProgress = function( item){
+	local st = ::Rokugan.sadaneState();
+	foreach( key, mask in sdata().masks){
+		if( mask["item"] != item.dataid && !(item.dataid == "A188" && key == "shosuro")) continue;
+		local saved = st.owned[key];
+		local lv = Math.max(item.LV, saved ? saved.lv : 1);
+		return { name = mask.type, level = lv, ward = wardPercent(lv) };
+	}
+	return null;
+};
+::Rokugan.maskProgress <- maskProgress;
+
+local previousPlayerOptions = ::RPGPlayer.getBaseOptions;
+::RPGPlayer.getBaseOptions <- function(){
+	local opts = previousPlayerOptions();
+	if( dataid != "P105" || !::rpgvar || !equips) return opts;
+	local item = ::Rokugan.equippedAdventureMask(this) || equips[2];
+	local progress = item ? maskProgress(item) : null;
+	if( !progress || !progress.ward) return opts;
+	local affinity = battleAffinity[progress.name], ward = { opttype = "opt_elemdef" };
+	foreach( i, elem in ::conf.type.elem){
+		if( affinity && affinity.contains(elem.name)) ward["EDR." .. i] <- progress.ward;
+	}
+	opts .. ::RPGOption(ward);
+	local bonus = item.data.option.find(@( opt) opt["opttype"] == "opt_status");
+	if( bonus){
+		opts .. ::RPGOption({ opttype = "opt_status", propid = bonus.propid,
+		                       val = progress.ward / 2, valtype = bonus.valtype });
+	}else{
+		opts .. ::RPGOption({ opttype = "opt_status", propid = "MDEF",
+		                       val = progress.ward / 2, valtype = "supply" });
+	}
+	return opts;
+};
+
 
 //	Give a mask (a key in sadane.json) at a level; false if she already has it.
 ::Rokugan.sadaneGive <- function( key, lv){
@@ -348,7 +389,8 @@ class SadaneDuel
 		if( b.power <= 0) return;
 		local mu = mult( t, d.masks[om.key].type);
 		local wit = stat( m.key, 1, m.lv) * stepMul( side.wit), poi = stat( om.key, 2, om.lv) * stepMul( other.poise);
-		local dmg = b.power * wit / poi * (0.3 + 0.022 * m.lv) * mu * ::rnd.nextf( 0.88, 1.0);
+		local ward = other == me && t == d.masks[om.key].type ? wardPercent(om.lv) : 0;
+		local dmg = b.power * wit / poi * (0.3 + 0.022 * m.lv) * mu * (1.0 - ward * .01) * ::rnd.nextf( 0.88, 1.0);
 		dmg = Math.max( 1, int( dmg + 0.5));
 		om.comp = Math.max( 0, om.comp - dmg);
 		draw();
@@ -396,7 +438,7 @@ class SadaneDuel
 			local mk = d.masks[m.key];
 			out.append( { text = "%s  Lv%d  %s  %d/%d" % [mk.name, m.lv, mk.type, m.comp, maxComp( m.key, m.lv)],
 				off = m.comp <= 0 || (i == me.cur && !forced) || (i == me.cur && m.comp <= 0),
-				desc = mk.type .. ". Fears " .. (length( d.fears[mk.type]) ? d.fears[mk.type][0] : "nothing") .. "." });
+				desc = mk.type .. ". Fears " .. (length( d.fears[mk.type]) ? d.fears[mk.type][0] : "nothing") .. ". " .. mk.type .. " resistance " .. wardPercent(m.lv) .. "%." });
 		}
 		return out;
 	}
@@ -584,6 +626,8 @@ local writeBack = function( st, side){
 	writeBack( st, me);
 	if( r == 2) foreach( k, o in st.owned) o.comp = maxComp( k, o.lv);	//	a lost duel: everyone composes themselves
 	save( st);
+	local mitsue = ::rpgstat.playermap["P105"];
+	if( mitsue){ mitsue.updateOptions(); mitsue.updateScoreMap(); }
 	log( "sadane: %S duel vs %S -> %d" % [kind, foeSide.name, r]);
 	if( ::arguments.indexOf( "-rtmini") >= 0) ::rpgvar["G1231"] = r;		//	(tools/test_sadane.py waits on it)
 	local t = 0;

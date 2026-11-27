@@ -1644,7 +1644,8 @@
   },
   "trav_mitsue": {
     "base": "shared_female",
-    "face": "trav_mitsue_portrait_face"
+    "face": "trav_mitsue_portrait_face",
+    "portraitMask": "trav_mitsue_shinobi_mask_4k"
   },
   "side_mai": {
     "base": "shared_female",

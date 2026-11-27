@@ -39077,5 +39077,357 @@
 		"rt_guest": true,
 		"rt_gnum": 18,
 		"rt_gmdl": "EP305"
+	},
+	"S980": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "cast_area",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"id": "noop",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 7,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "Sticky volleys slow the whole party and weaken their attacks.",
+		"dmgform": 0,
+		"dmgrate": [
+			0.71,
+			0.8
+		],
+		"dmgtype": 1,
+		"elembits": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": true,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX418",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Amber Resin Volley",
+		"occasion": 1,
+		"option": [
+			{
+				"condid": "K051",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 0.82,
+				"showmiss": true,
+				"when": 0,
+				"whom": 0
+			},
+			{
+				"condid": "K021",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 0.42,
+				"showmiss": true,
+				"when": 0,
+				"whom": 0
+			}
+		],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"id": "use_charge",
+			"scp": null,
+			"eefx": "FX099",
+			"useefx": null,
+			"usesnd": "SE229",
+			"useani": {
+				"id": "cast_area",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			}
+		},
+		"rt_aoe": true,
+		"rt_pitch_resin": 1
+	},
+	"S981": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aimp",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "punch1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "A heavy snap roots one target and lowers their defense.",
+		"dmgform": 0,
+		"dmgrate": [
+			1.06,
+			1.17
+		],
+		"dmgtype": 1,
+		"elembits": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": true,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX023",
+			"hitsnd": "SE201",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Tar-Caked Mandibles",
+		"occasion": 1,
+		"option": [
+			{
+				"condid": "K162",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 0.72,
+				"showmiss": true,
+				"when": 0,
+				"whom": 0
+			},
+			{
+				"condid": "K023",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 0.67,
+				"showmiss": true,
+				"when": 0,
+				"whom": 0
+			}
+		],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		},
+		"rt_pitch_resin": 2
+	},
+	"S982": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "cast_area",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"id": "noop",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 7,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "A sheet of resin can net the whole party and weaken their defense.",
+		"dmgform": 0,
+		"dmgrate": [
+			0.48,
+			0.58
+		],
+		"dmgtype": 1,
+		"elembits": 0,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": true,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX418",
+			"hitsnd": "SE204",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Pitched Web",
+		"occasion": 1,
+		"option": [
+			{
+				"condid": "K028",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 0.36,
+				"showmiss": true,
+				"when": 0,
+				"whom": 0
+			},
+			{
+				"condid": "K023",
+				"efx_start": null,
+				"opttype": "opt_putcond",
+				"rate": 0.45,
+				"showmiss": true,
+				"when": 0,
+				"whom": 0
+			}
+		],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"id": "use_charge",
+			"scp": null,
+			"eefx": "FX099",
+			"useefx": null,
+			"usesnd": "SE229",
+			"useani": {
+				"id": "cast_area",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			}
+		},
+		"rt_aoe": true,
+		"rt_pitch_resin": 3
+	},
+	"S983": {
+		"H1": null,
+		"addlist": false,
+		"aimani": {
+			"id": "aimw",
+			"mdlid": "CV000",
+			"part": 0,
+			"spd": 1.0
+		},
+		"atkact": {
+			"atkani": {
+				"id": "slash1",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"atkdelay": 100,
+			"atkefx": null,
+			"atksnd": null,
+			"id": "atk_normal",
+			"scp": null
+		},
+		"atkform": "",
+		"atknum": [
+			1,
+			1
+		],
+		"cmdtgt": 1,
+		"consume": [
+			0,
+			0
+		],
+		"desc": "A clearing cut from a Lion yojimbo's naginata.",
+		"dmgform": 0,
+		"dmgrate": [
+			0.9,
+			1.1
+		],
+		"dmgtype": 1,
+		"elembits": 2,
+		"endact": {
+			"id": "noop",
+			"scp": null
+		},
+		"enemyuse": true,
+		"eqtypebits": 2047,
+		"flags": 255,
+		"hitact": {
+			"hitani": {
+				"id": "damage",
+				"mdlid": "CV000",
+				"part": 0,
+				"spd": 1.0
+			},
+			"hitdelay": 100,
+			"hitefx": "FX027",
+			"hitsnd": "SE205",
+			"id": "hit_normal",
+			"scp": null
+		},
+		"hitrate": 1.0,
+		"icon": "",
+		"name": "Naginata Cut",
+		"occasion": 1,
+		"option": [],
+		"skilltype": "attack",
+		"spdrate": 1.0,
+		"useact": {
+			"eefx": "FX099",
+			"id": "use_normal",
+			"scp": null
+		}
 	}
 }

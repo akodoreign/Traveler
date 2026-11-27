@@ -19,7 +19,10 @@
 		printf( "[RT] slot 1 was empty: %S leads\n", m[0].dataid);
 		break;
 	}
-	foreach( i, p in m) if( p) p.formation = i >= 4 ? 1 : 0;
+	foreach( i, p in m) if( p){
+		local row = i >= 4 ? 1 : 0;
+		if( p.formation != row ){ p.formation = row; p.updateScoreMap(); }
+	}
 };
 
 //	One flag per player character while they are in the party (G1320 + number - 100: P100 -> G1320 ... P141 -> G1361).
@@ -82,49 +85,352 @@ foreach( cls in [::RPGEventRunner, ::RPGStageEventRunner, ::RPGMacroEventRunner]
 	return (p.x, p.y, p.z, m.dir);
 };
 
-//	Main menu - Formation: pick a member, then any of the 8 slots (an empty slot: move; a taken one: swap). Slot 1 is
-//	the leader's and is never left empty.
-::Rokugan.slotName <- function( i){ return (i < 4 ? "Front row %d" : "Second row %d") % (i % 4 + 1); };
-local formationUI = function( prms){
-	::Rokugan.fitParty();
-	local p = ::rpgstat.playermap[prms.playerid];
-	local m = ::rpgstat.members, from = m.indexOf( p);
-	if( from < 0) return true;
-	local makelist = @() m.map( @( v, i)({ _name = "i" .. i, item = i,
-		lbl = (i == from ? "> " : "") .. ::Rokugan.slotName( i) .. ": " .. (v ? v.name : "(empty)"), rlbl = "" }));
-	local view = RPGMain.showView({
-		uipath = "menu_item.ui"
-		name = "menu_sub"
-		layer = "menu"
-		binds = {
-			tablist = [{ _name = "tab0", lbl = "Formation", tgl = 10 }],
-			itemlist = makelist(),
-			desclbl = ("Move %S to which place?\n\nFront row: hits and is hit as usual.\nSecond row: half as likely to be "
-				.. "targeted.\nHirelings stand behind, in the third row.") % p.name,
-		},
-		action = "show"
-		focus = "i" .. from
+//	Slot 1 is the field leader and must remain occupied.
+::Rokugan.slotName <- function( i){ return (i < 4 ? "Front column %d" : "Second column %d") % (i % 4 + 1); };
+::Rokugan.swapPartySlots <- function( from, to ){
+	local m = ::rpgstat.members;
+	if( from < 0 || from >= 8 || to < 0 || to >= 8 || !m[from] || from == to ) return false;
+	if( from == 0 && !m[to] ) return false;
+	local p = m[from];
+	m[from] = m[to]; m[to] = p;
+	this.fitParty();
+	this.partyFlags();
+	if( from == 0 || to == 0 ) ::rpgstage.changePlayer3D( ::rpgstage.stat.statmap.playermodel );
+	return true;
+};
+
+::Damage._rt_finish_formation <- ::Damage.finishDamage;
+::Damage.finishDamage <- function(){
+	this._rt_finish_formation();
+	if( val > 0 && (dst instanceof ::RPGPlayer) && ::rpgstage["battle"] ){
+		local slot = ::rpgstat.members.indexOf( dst );
+		if( slot >= 4 && slot < 8 ) val = Math.max( 1, int( val * 0.75 ) );
+	}
+};
+
+::Rokugan.secondColumn <- function( pc ){
+	if( !(pc instanceof ::RPGPlayer) || !::rpgstage || !::rpgstage["battle"] ) return false;
+	local slot = ::rpgstat.members.indexOf( pc );
+	return slot >= 4 && slot < 8;
+};
+::SkillCommand._rt_add_event_formation <- ::SkillCommand.addEvent;
+::SkillCommand.addEvent <- function( event ){
+	if( event.id == "pid" && event.val < 0 && ::Rokugan.secondColumn( event.chr ) ){
+		event = clone event;
+		event.val = -Math.max( 1, int( -event.val * 0.75 ));
+	}
+	return this._rt_add_event_formation( event );
+};
+::Rokugan.formationTurnDamage <- function( opd, id, pc ){
+	if( opd.when != id || !(opd.dmgtype & 1) || !this.secondColumn( pc )) return opd;
+	local amount = ::getvar( opd.dmgval, opd );
+	if( opd.relative ) amount *= pc.MAXHP * 0.01;
+	amount = int( amount );
+	if( amount <= 0 ) return opd;
+	local adjusted = clone opd;
+	adjusted.dmgval = Math.max( 1, int( amount * 0.75 ));
+	adjusted.relative = false;
+	return adjusted;
+};
+{
+	local opt = ::RPGSystem.option["opt_turndmg"], original = opt.action;
+	opt.action = @( opd, id, arg, pc ) original( ::Rokugan.formationTurnDamage( opd, id, pc ), id, arg, pc );
+}
+
+// Sayo joins the travelers who are trained to use a yari.
+::Rokugan.spearThrowUsers <- { P100=true, P103=true, P106=true, P107=true };
+::Rokugan.spearForLevel <- function( pc ){
+	return pc.LV >= 51 ? "W152" : pc.LV >= 41 ? "W138" : pc.LV >= 31 ? "W127" :
+		pc.LV >= 21 ? "W122" : pc.LV >= 11 ? "W111" : "W101";
+};
+::Rokugan.makeSpearThrow <- function( pc, base, temporary ){
+	local sk = clone base, act = clone sk.atkact;
+	sk.name <- "Spear Throw";
+	sk.desc <- "Throw a spear at one enemy; the original weapon is restored.";
+	sk.rt_spear_throw <- true;
+	sk.rt_spear_model <- temporary ? this.spearForLevel( pc ) : pc.getWeapon().dataid;
+	act.id <- "custom";
+	act.scp <- "::Rokugan.playFormationSpearThrow( rp3d, dst3d, dmg );";
+	sk.atkact <- act;
+	if( temporary ){
+		local current = pc.getWeapon(), power = ::conf.weapon[sk.rt_spear_model].PATK - (current ? (current.data["PATK"] || 0) : 0);
+		sk.atkform <- "Math.max(0, src.PATK + %d)*rnd(2.0,2.2)" % power;
+		sk.consume <- [1, 8];
+		sk.elembits <- 2;
+		sk.rt_school <- true;
+	}
+	return sk;
+};
+::RPGPlayer._rt_attack_formation <- ::RPGPlayer.getAttackSkill;
+::RPGPlayer.getAttackSkill <- function(){
+	local sk = this._rt_attack_formation(), w = this.getWeapon();
+	if( ::Rokugan.secondColumn( this ) && w && w.data.eqtype == 3 && w.data["rt_look"] != "naginata" )
+		return ::Rokugan.makeSpearThrow( this, sk, false );
+	return sk;
+};
+::Rokugan.formationSkillAllowed <- function( pc, sk ){
+	if( !this.secondColumn( pc ) || !sk ) return true;
+	if( sk["rt_spear_throw"] || sk["rt_guest"] || sk["rt_hire"] ) return true;
+	local weapon = pc.getWeapon(), basic = pc._rt_attack_formation();
+	if( sk["rt_kata"] && !sk["rt_knostrike"] ) return weapon && weapon.data.eqtype == 6;
+	if( sk == basic ){
+		return weapon && weapon.data.eqtype == 6;
+	}
+	if( sk["name"] == "Iaijutsu: Strike" ) return false;
+	if( sk["name"] == "Shuriken Fan" ) return true;
+	return !(sk["rt_school"] && sk["skilltype"] == "attack" && ((sk["elembits"] || 0) & 4143));
+};
+::RPGPlayer._rt_useable_formation <- ::RPGPlayer.isSkillUseable;
+::RPGPlayer.isSkillUseable <- function( id ){
+	return ::Rokugan.formationSkillAllowed( this, ::conf.skill[id] ) && this._rt_useable_formation( id );
+};
+{
+	local attack = ::RPGSystem.battlecmd["attack"];
+	attack.isDisabled = function( bcmd, pc ){
+		return !::Rokugan.formationSkillAllowed( pc, pc.getAttackSkill() );
+	};
+}
+::Rokugan._rt_school_formation <- ::Rokugan.schoolList;
+::Rokugan.schoolList <- function( pc, first ){
+	first = first.map( @( row ){
+		if( !row.val || ::Rokugan.formationSkillAllowed( pc, row.val )) return row;
+		local disabled = clone row;
+		disabled.disable = true;
+		disabled.grayout = "on";
+		return disabled;
 	});
-	local r = RPGMain.uiLoop( {
-		"action" : @( e){
-			local to = e.item ? e.item["item"] : null;
-			if( to == null || to == from){ ::playSound( "SE004"); return "back"; }
-			if( from == 0 && !m[to] && ::Rokugan.partyCount() > 1){ ::playSound( "SE002"); return; }	//	keep a leader
-			local other = m[to];
-			m[to] = p; m[from] = other;
-			if( !m[0]) for( local k = 1; k < length( m); k ++) if( m[k]){ m[0] = m[k]; m[k] = null; break; }
-			::Rokugan.fitParty();
-			::playSound( "SE003");
-			printf( "[RT] formation: %S -> %S\n", p.dataid, ::Rokugan.slotName( to));
-			return "moved";
+	if( pc.dataid in this.spearThrowUsers ){
+		local sk = this.makeSpearThrow( pc, ::conf.skill["S592"], true );
+		local disable = @() !pc.canConsumeForSkill( sk );
+		first = [ ...first, { idx="spear_throw", val=sk, disable=disable, lbl=sk.icon .. sk.name,
+			grayout=@() disable() ? "on" : "off", rlbl=::rtf( ::RPGSystem.getSkillListInfo( pc, sk )) } ];
+	}
+	return this._rt_school_formation( pc, first );
+};
+::Rokugan.playFormationSpearThrow <- function( actor, target, dmg ){
+	local stage = ::rpgstage, battle = stage.battle;
+	if( !actor || !actor["nativeBody"] || !target ) throw Exception( "Spear Throw requires a native actor and target" );
+	local body = actor.nativeBody, weapon = actor.nativeWeapon, visible = weapon ? weapon.visible : false;
+	local id = dmg.skill.rt_spear_model, path = "/resource/native_weapons/" .. id;
+	local fitted = "/resource/native_weapons/fitted/" .. actor.nativeKey .. "/" .. id;
+	local clip = "formation_spear_throw", motion = "/resource/native_chara/javelin_throw.mot";
+	local projectilePath = "/resource/native_weapons/javelin_projectile.pm";
+	if( ::getResource( fitted .. ".pm" ) && ::getResource( fitted .. ".mdl" )) path = fitted;
+	local missing = !::getResource( path .. ".pm" ) ? path .. ".pm" :
+		!::getResource( motion ) ? motion : !::getResource( projectilePath ) ? projectilePath : null;
+	if( missing ){
+		printf( "[RT] Spear throw animation unavailable; missing %S\n", missing );
+		::RPGMain.showUI({ key="info_top", time=1800, text="Spear animation unavailable: update game assets" });
+		return;
+	}
+	::Rokugan.HERO_SIGNATURE_BANKS[clip] <- motion;
+	actor.animemap[clip] <- { st=0, en=36, spd=30.0, loop=false, replay=true };
+	local spear = null, projectile = null, layer = null, err = null;
+	try{
+		if( weapon ) weapon.setVisible( false );
+		spear = actor.addNativePart( path );
+		layer = actor.anime2( { id=clip } );
+		if( !layer ) throw Exception( "Could not play spear throw motion" );
+		layer.locked = 1;
+		sleep( 680 );
+		local hand = body.findBone( "handN" );
+		local origin = hand ? hand.mat.getTranslation( Vector3D() ).transform( body.gmat ) : Vector3D( actor.pos ).add( 0, .8, 0 );
+		local goal = Vector3D( target.pos ).add( 0, Math.clamp( target.bnd.y, .37, 2.18 ), 0 );
+		local delta = Vector3D( goal ).sub( origin );
+		spear.setVisible( false );
+		projectile = SK3DObject( projectilePath );
+		projectile.pos( origin );
+		projectile.rot.setHPB( Math.atan2( delta.x, delta.z ) - Math.HPI, 0, 0 );
+		stage.scn.addObject( projectile );
+		local start = skGetTime();
+		while( ::rpgstage == stage && stage.battle == battle && actor.nativeBody == body && !actor.rpgobj.isDead() ){
+			local t = Math.clamp( (skGetTime() - start) / 400.0, 0.0, 1.0 );
+			projectile.pos( Vector3D( origin ).add( Vector3D( delta ).scale( t )).add( 0, .18 * Math.sin( Math.PI * t ), 0 ));
+			projectile.matdirty = true;
+			if( t >= 1.0 ) break;
+			sleep( 16 );
 		}
-		"select" : @( e){}
-		"back" : @( e){ ::playSound( "SE004"); return "back"; }
-		"cancel" : @( e){ return "cancel"; }
+	}catch( ex ){ err = ex; }
+	if( projectile && projectile.alive ) projectile.kill();
+	if( spear && spear.alive ) spear.kill();
+	if( weapon && weapon.alive ) weapon.setVisible( visible );
+	if( layer ) layer.locked = 0;
+	if( ::rpgstage == stage && stage.battle == battle && actor.nativeBody == body && !actor.rpgobj.isDead() )
+		actor.anime2( { id="stand" } );
+	if( err ) throw err;
+};
+::SkillCommand._rt_exec_formation <- ::SkillCommand.exec;
+::SkillCommand.exec <- function(){
+	if( !::Rokugan.formationSkillAllowed( src, skill )){
+		::RPGMain.showUI({ key="info_top", time=1000, text="Melee requires the front column" });
+		printf( "[RT] %S cannot use %S from the second column\n", src.name, skill.name );
+		skill = ::conf.skill["S000"];
+	}
+	return this._rt_exec_formation();
+};
+::TurnBattleRunner._rt_auto_formation <- ::TurnBattleRunner.chooseAutoCommands;
+::TurnBattleRunner.chooseAutoCommands <- function( pc ){
+	local cmds = this._rt_auto_formation( pc );
+	if( cmds && pc instanceof ::RPGPlayer ) foreach( cmd in cmds ){
+		if( !::Rokugan.formationSkillAllowed( pc, cmd.skill )){
+			printf( "[RT] %S guards instead of using melee from the second column\n", pc.name );
+			cmd.skill = ::conf.skill["S001"];
+			cmd.dsts = [pc];
+		}
+	}
+	return cmds;
+};
+
+::Rokugan.FormationDragSource <- class
+{
+	view = null;
+	index = 0;
+	onDrop = null;
+	ghost = null;
+
+	constructor( button, slot, drop ){
+		view = button; index = slot; onDrop = drop;
+		button.dragsource = this;
+		button.addEventListener( DROPTARGET_EVENT, dndevent, this );
+	};
+	function acceptDrag( e ){
+		if( !::rpgstat.members[index] ) return false;
+		view.gpui._cancelpress();
+		ghost = view.capture();
+		ghost.color = 0xaaaaaacc;
+		ghost.bnd.x = -view.bnd.w * 0.5;
+		ghost.bnd.y = -view.bnd.h * 0.5;
+		return true;
+	}
+	function dndrender( mouse ){
+		if( ghost ) skDrawSprite( ghost, mouse.mousex, mouse.mousey );
+	}
+	function acceptDrop( source, x, y ){
+		return source instanceof ::Rokugan.FormationDragSource && source != this;
+	}
+	function dndevent( e ){
+		if( e.id == TARGET_DROP ){
+			e.consume();
+			onDrop( e.dragsrc.index, index );
+		}
+	}
+}
+
+local formationLabel( parent, text, x, y, w, h, size, color=0xffffffff ){
+	local label = SKLabelView( text, FontAttribute( Fonts.get( "ui" ), size, color, 0 ) );
+	label.enabled = false;
+	label.setRect( x, y, w, h );
+	parent.addChild( label );
+	return label;
+}
+
+local formationUI = function( prms ){
+	::Rokugan.fitParty();
+	local m = ::rpgstat.members;
+	local view = RPGMain.showView({ uipath="menu_item.ui", name="menu_sub", layer="menu", action="show" });
+	local group = view.findChild( "g" );
+	foreach( child in group.children ) if( child.name != "window" ) child.setVisible( false );
+	formationLabel( group, "Front", 190, 38, 108, 26, 18, 0x99ffe5ff );
+	formationLabel( group, "Second", 310, 38, 108, 26, 18, 0x99ffe5ff );
+	formationLabel( group, "Drag a traveler to move or swap.", 500, 94, 390, 26, 18 );
+	formationLabel( group, "Keyboard / controller: select a traveler,", 500, 132, 390, 26, 18 );
+	formationLabel( group, "then select a destination.", 500, 156, 390, 26, 18 );
+	formationLabel( group, "Front: normal targeting.", 500, 200, 390, 26, 18 );
+	formationLabel( group, "Second: half as likely to be targeted.", 500, 224, 390, 26, 18 );
+	formationLabel( group, "Second takes 25% less damage.", 500, 248, 390, 26, 18 );
+	formationLabel( group, "Bows, spells and thrown spears work;", 500, 272, 390, 26, 18 );
+	formationLabel( group, "melee requires the front column.", 500, 296, 390, 26, 18 );
+	formationLabel( group, "The first front slot is the field leader", 500, 340, 390, 26, 18 );
+	formationLabel( group, "and cannot be left empty.", 500, 364, 390, 26, 18 );
+	formationLabel( group, "Hirelings stand behind the party.", 500, 408, 390, 26, 18 );
+	local status = formationLabel( group, "Select a traveler.", 500, 465, 390, 70, 18, 0x99ffe5ff );
+	local state = { from=null, focus=null, cells=[] };
+	local refresh = { run=null };
+	refresh.run = function(){
+		foreach( i, cell in state.cells ){
+			local p = m[i];
+			foreach( edge in cell.edges ){
+				edge.setVisible( state.from == i || state.focus == i );
+				edge.setColor( state.from == i ? 0x70e2ccff : 0xffe6a0ff );
+			}
+			cell.label.setText( p ? p.name : "Empty" );
+			if( cell.player != p ){
+				cell.player = p;
+				if( p ){
+					cell.model.setRPGPlayer( p );
+					cell.model.setVisible( true );
+				}else{
+					cell.model.setVisible( false );
+				}
+			}
+		}
+		status.setText( state.from == null ? "Select a traveler." : "Moving " .. m[state.from].name .. ": select a destination." );
+	};
+	local drop = function( from, to ){
+		state.from = null;
+		if( ::Rokugan.swapPartySlots( from, to ) ) ::playSound( "SE003" );
+		else ::playSound( "SE002" );
+		refresh.run();
+	};
+	for( local i = 0; i < 8; i++ ){
+		local button = GPUIButton();
+		button.name = "formation" .. i;
+		button.ref = { item=i };
+		button.setRect( 180 + (i / 4) * 120, 72 + (i % 4) * 120, 108, 108 );
+		group.addChild( button );
+		::Rokugan.ui.img( button, "panel_wide", 0, 0, 108, 108 );
+		local model = CharaPreview();
+		model.enabled = false;
+		model.renderer.bgpass.enabled = false;
+		model.setRect( 4, 2, 100, 84 );
+		model.camdata.to.set( 0, 0.8, 0 );
+		model.camdata.zoom = 2.4;
+		model.camdata.toCamera( model.renderer.camera );
+		button.addChild( model );
+		local label = formationLabel( button, "", 5, 85, 100, 20, 12 );
+		local edges = [
+			::Rokugan.ui.img( button, "white", 0, 0, 108, 3 ),
+			::Rokugan.ui.img( button, "white", 0, 105, 108, 3 ),
+			::Rokugan.ui.img( button, "white", 0, 3, 3, 102 ),
+			::Rokugan.ui.img( button, "white", 105, 3, 3, 102 )
+		];
+		state.cells.append({ edges=edges, model=model, label=label, player=null });
+		button.addEventListener( GPUI_EVENT, @( e ){
+			if( e.id == GPUI_SELECTED ) state.focus = e.src.ref.item;
+			else if( e.id == GPUI_DESELECTED && state.focus == e.src.ref.item ) state.focus = null;
+			else return;
+			refresh.run();
+		} );
+		::Rokugan.FormationDragSource( button, i, drop );
+	}
+	refresh.run();
+	view.waitAction();
+	view.focusTo( "formation0" );
+	local result = RPGMain.uiLoop({
+		"action" : @( e ){
+			local to = e.item ? e.item["item"] : null;
+			if( to == null ) return;
+			if( state.from == null ){
+				if( !m[to] ){ ::playSound( "SE002" ); return; }
+				state.from = to;
+				::playSound( "SE001" );
+			}else if( state.from == to ){
+				state.from = null;
+				::playSound( "SE004" );
+			}else{
+				drop( state.from, to );
+				return;
+			}
+			refresh.run();
+		}
+		"back" : @( e ){
+			if( state.from != null ){ state.from = null; refresh.run(); ::playSound( "SE004" ); return; }
+			::playSound( "SE004" ); return "back";
+		}
+		"cancel" : @( e ){ return "cancel"; }
 	});
-	view.actionAndDie( "hide");
-	try{ ::rpgstage.changePlayer3D( ::rpgstage.stat.statmap.playermodel); }catch( ex){}
-	return r != "cancel";
+	view.actionAndDie( "hide" );
+	return result != "cancel";
 };
 //	(RPGSystem.ui can't be walked with foreach - it yields nothing - but it answers by key)
 {
@@ -132,6 +438,7 @@ local formationUI = function( prms){
 	if( u){
 		u.uifunc = formationUI;
 		u.lbl = "Formation";
+		u.charasel = false;
 		if( "nochange_menuui" in u) u.nochange_menuui = false;
 		printf( "Rokugan party: Formation menu = 8 places\n");
 	}else printf( "Rokugan party: no menu_formation to replace\n");

@@ -3091,3 +3091,22 @@ local WARDS = { ["Oni no Tsukakoro"] = 11 };			//	boss name -> ELEMS bit (11 = J
 	}
 	this._rt_sc_esc( cmd);
 };
+
+
+// Chitosa's sworn escorts yield on a decisive blow and remain visible on the beach.
+::Rokugan._rt_cove_dying <- ::Rokugan.surrenderDying;
+::Rokugan.surrenderDying <- function(e,arg){
+    local b = ::rpgstage["battle"];
+    if( !b || !(e instanceof ::RPGEnemy) || !e.data["rt_cove_yojimbo"] || e.escaped)
+        return this._rt_cove_dying(e,arg);
+    e.HP = 1;
+    e.escaped = true;
+    this.state(e).surrendered <- true;
+    b.cancelCommand(e);
+    local actor = b.getChara3D(e);
+    if( actor) actor.yieldAtCove();
+    this.pop(e,"YIELDS",0xffffc0ff);
+    sleep(430);
+    log("%S kneels in surrender" % e.name);
+    return true;
+};

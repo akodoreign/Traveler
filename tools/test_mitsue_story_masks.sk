@@ -1,0 +1,16 @@
+// Run in a stopped test profile with the Mitsue wardrobe installed.
+local p = ::rpgstat.playermap.P105;
+foreach(i, member in ::rpgstat.members) ::rpgstat.members[i] = null;
+::rpgstat.members[0] = p;
+p.setEquip(2, RPGObject.create("A145"));
+if(!::Rokugan.wearsMask("P105", "A145") || !::Rokugan.wearsMask("P105", null))
+	throw Exception("Mitsue's head-slot story mask was not recognized");
+::Rokugan.removeMasks();
+if(p.equips[2]) throw Exception("The shrine did not remove Mitsue's mask");
+p.setEquip(2, RPGObject.create("A150"));
+::Rokugan.removeMasks(true);
+if(!p.equips[2] || p.equips[2].dataid != "A150")
+	throw Exception("The protected Giseiki mask was removed");
+::Rokugan.removeMasks();
+if(p.equips[2]) throw Exception("The Giseiki mask was not removed");
+printf("[MITSUE] Head-slot story mask detection and removal passed.\n");

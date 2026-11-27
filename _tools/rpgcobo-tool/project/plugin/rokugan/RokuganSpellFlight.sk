@@ -138,3 +138,51 @@ local onStage = function( stage, battle ){
 	if( active && arrived && !("hitefx" in dmg.ovctx) && (dmg.result == DMG_HIT || dmg.result == DMG_CRITICAL) )
 		dmg.ovctx.hitefx <- { efx=style.impact, place=0, pos=[0, aimHeight, 0], scale=1.0, waittime=style.impactWait };
 };
+
+local pitchResinPath = "/resource/native_foe/EP2690_resin.pm";
+
+// Launch a fan of amber resin before letting the normal hit apply its statuses.
+local throwPitch = function(stage, src, dst, style){
+	local from = Vector3D(src.pos).add(0,src.bnd.y+.08,0);
+	local at = Vector3D(dst.pos).add(0,dst.bnd.y+.19,0);
+	local across = Vector3D(at.z-from.z,0,from.x-at.x).normalize();
+	local flecks = [];
+	local duration = style == 2 ? 320.0 : 520.0;
+	try{
+		for(local k=0; k < (style == 2 ? 5 : 8); ++k){
+			local glob = SK3DObject(pitchResinPath);
+			glob.scale(.46+.16*(k%4));
+			glob.pos(from);
+			stage.scn.addObject(glob);
+			flecks .. glob;
+		}
+		local begin = skGetTime();
+		while(::rpgstage == stage && stage["battle"]){
+			local elapsed = skGetTime()-begin;
+			foreach(i,glob in flecks){
+				local t = Math.clamp((elapsed-16.0*i)/duration,0.0,1.0);
+				local swing = Math.sin(t*Math.PI);
+				local arc = (.73+.15*(i%3))*swing;
+				local spread = (i-(length(flecks)-1)*.5)*(.21*swing+.06*t);
+				local point = Vector3D(from).add(Vector3D(at).sub(from).scale(t))
+					.add(Vector3D(across).scale(spread)).add(0,arc,0);
+				glob.pos(point);
+				glob.matdirty = true;
+			}
+			if(elapsed >= duration+16.0*(length(flecks)-1)) break;
+			sleep(17);
+		}
+	}catch(ex){ printexception(ex); }
+	foreach(glob in flecks) if(glob.alive) glob.kill();
+};
+
+::SkillCommand._rt_pitch_attack <- ::SkillCommand.attackAction;
+::SkillCommand.attackAction <- function(dmg){
+	local style = dmg && dmg.skill["rt_pitch_resin"];
+	local stage = ::rpgstage;
+	if(style && stage && stage["battle"] && !dmg.skip && ::getResource(pitchResinPath)){
+		local src = stage.battle.getChara3D(dmg.src), dst = stage.battle.getChara3D(dmg.dst);
+		if(src && dst) throwPitch(stage,src,dst,style);
+	}
+	return _rt_pitch_attack(dmg);
+};

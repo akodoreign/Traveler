@@ -67677,5 +67677,605 @@
 		"rt_flee_pct": 45,
 		"rt_fleebark": "(a thin red line across her perfect cheek) My FACE - you cut my FACE -",
 		"rt_species": "G2047"
+	},
+	"E953": {
+		"AGI": 66,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 31,
+		"MATK": 10,
+		"MAXHP": 649,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 90,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 65,
+		"PDEF": 98,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 50,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "A Lion protection collector protected by three yojimbo.",
+		"exp": 190,
+		"item0": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": null,
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP1141",
+		"money": 125,
+		"name": "Matsu Chitosa",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.1": -50,
+				"EDR.7": -50
+			}
+		],
+		"tribebits": 0,
+		"RES": 4,
+		"rt_duel": true,
+		"rt_species": "G2137"
+	},
+	"E954": {
+		"AGI": 101,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 32,
+		"MATK": 88,
+		"MAXHP": 3340,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 129,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 104,
+		"PDEF": 151,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 41,
+						"rndwgt": 20,
+						"skillid": "S980",
+						"target": "random",
+						"turnbits": 4095
+					},
+					{
+						"affecttgr": true,
+						"rate": 31,
+						"rndwgt": 20,
+						"skillid": "S981",
+						"target": "random",
+						"turnbits": 4095
+					},
+					{
+						"affecttgr": true,
+						"rate": 28,
+						"rndwgt": 20,
+						"skillid": "S982",
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "A massive stag beetle lacquered with tree tar. Its resin flies in arcs. Fire and heavy blows crack its shell.",
+		"exp": 720,
+		"item0": {
+			"issteal": false,
+			"itemid": "I000",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": "I000",
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP2690",
+		"money": 260,
+		"name": "Pitchback Stag Beetle",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.3": -50,
+				"EDR.6": -50
+			}
+		],
+		"tribebits": 0,
+		"RES": 6,
+		"rt_species": "G2009"
+	},
+	"E955": {
+		"AGI": 71,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 28,
+		"MATK": 10,
+		"MAXHP": 430,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 70,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 76,
+		"PDEF": 120,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 50,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "Its shell turns spears. Crush it.",
+		"exp": 210,
+		"item0": {
+			"issteal": false,
+			"itemid": "I000",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": "I000",
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP102",
+		"money": 145,
+		"name": "Cedar Bark Beetle",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.3": -50,
+				"EDR.6": -50
+			}
+		],
+		"tribebits": 0,
+		"RES": 3,
+		"rt_species": "G2009"
+	},
+	"E956": {
+		"AGI": 131,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 29,
+		"MATK": 10,
+		"MAXHP": 305,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 84,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 82,
+		"PDEF": 86,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 57,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					},
+					{
+						"affecttgr": true,
+						"rate": 43,
+						"rndwgt": 20,
+						"skillid": "S515",
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "A hornet the size of a cat. There's never only one.",
+		"exp": 185,
+		"item0": {
+			"issteal": false,
+			"itemid": "I313",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": "I314",
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP165",
+		"money": 181,
+		"name": "Amber Hornet",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.6": -50,
+				"EDR.8": -50
+			}
+		],
+		"tribebits": 0,
+		"RES": 2,
+		"rt_species": "G2074"
+	},
+	"E957": {
+		"AGI": 89,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 30,
+		"MATK": 64,
+		"MAXHP": 720,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 111,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 90,
+		"PDEF": 121,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 57,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					},
+					{
+						"affecttgr": true,
+						"rate": 43,
+						"rndwgt": 20,
+						"skillid": "S622",
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S003",
+		"desc": "Pale violet spiders the size of dogs, out of the silk under the Shinomen's roots. They come in clutches.",
+		"exp": 250,
+		"item0": {
+			"issteal": false,
+			"itemid": "A169",
+			"rate": 8.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": null,
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP109",
+		"money": 514,
+		"name": "Pitchwood Web Hunter",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.6": -50
+			},
+			{
+				"opttype": "opt_elemdef",
+				"EDR.9": 50
+			}
+		],
+		"tribebits": 0,
+		"RES": 3,
+		"rt_species": "G2120"
+	},
+	"E958": {
+		"AGI": 92,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 31,
+		"MATK": 10,
+		"MAXHP": 1050,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 120,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 108,
+		"PDEF": 158,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 50,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S103",
+		"desc": "Chitosa's sworn guard. Once per round, they take a blow meant for her.",
+		"exp": 240,
+		"item0": {
+			"issteal": false,
+			"itemid": "I000",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": "I000",
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP413",
+		"money": 130,
+		"name": "Lion Tetsubo Yojimbo",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.2": -50,
+				"EDR.4": -50
+			}
+		],
+		"tribebits": 0,
+		"RES": 3,
+		"rt_species": "G2124",
+		"rt_cove_weapon": "W113",
+		"rt_cove_yojimbo": true
+	},
+	"E959": {
+		"AGI": 92,
+		"ATK": 100,
+		"DEF": 100,
+		"LV": 31,
+		"MATK": 10,
+		"MAXHP": 820,
+		"MAXMP": 100,
+		"MAXTP": 9999,
+		"MDEF": 120,
+		"MDF": 100,
+		"MEVA": 1.0,
+		"MHIT": 1.0,
+		"MTK": 100,
+		"PATK": 96,
+		"PDEF": 143,
+		"ai": [
+			{
+				"actnum": [
+					1,
+					1
+				],
+				"ailv": 1,
+				"cmds": [
+					{
+						"affecttgr": true,
+						"rate": 50,
+						"rndwgt": 20,
+						"skillid": null,
+						"target": "random",
+						"turnbits": 4095
+					}
+				],
+				"rate": 100,
+				"req0": "none",
+				"req1": "none",
+				"turn": [
+					1,
+					3
+				]
+			}
+		],
+		"defskillid": "S983",
+		"desc": "Chitosa's sworn guard. Once per round, they take a blow meant for her.",
+		"exp": 240,
+		"item0": {
+			"issteal": false,
+			"itemid": "I000",
+			"rate": 50.0
+		},
+		"item1": {
+			"issteal": true,
+			"itemid": "I000",
+			"rate": 100.0
+		},
+		"item2": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"item3": {
+			"issteal": false,
+			"itemid": null,
+			"rate": 50.0
+		},
+		"jxp": 2,
+		"mdlid": "EP413",
+		"money": 130,
+		"name": "Lion Naginata Yojimbo",
+		"option": [
+			{
+				"opttype": "opt_elemdef",
+				"EDR.2": -50,
+				"EDR.4": -50
+			}
+		],
+		"tribebits": 0,
+		"RES": 3,
+		"rt_species": "G2124",
+		"rt_cove_weapon": "W161",
+		"rt_cove_yojimbo": true
 	}
 }

@@ -25,7 +25,8 @@ local log( s){ printf( "[RT] %S\n", s); }
 		if( typeof( sid) != SS_STRING || sid[0] != 'S' || !sk || !sk["addlist"] || sk["rt_noauto"]) continue;
 		if( pc.dataid == "P105" && this.disguiseArts(this.disguise(pc)).contains(sid)) continue;
 		if( sk["rt_voice"] && ("covered" in ::Rokugan) && ::Rokugan.covered( pc)) continue;		//	wax in: no voice
-		if( this.wardrobeSkillAllowed( pc, sid) && pc.hasSkill( sid) && pc.canConsumeForSkill( sk)) out.append( sk);
+		if( this.wardrobeSkillAllowed( pc, sid) && pc.hasSkill( sid) && pc.canConsumeForSkill( sk) &&
+			(!("formationSkillAllowed" in this) || this.formationSkillAllowed( pc, sk ))) out.append( sk);
 	}
 	if( this.given( pc.name) == "Sayo" && ("RECIPES" in ::Rokugan))			//	auto: her healing Remedies, while
 		foreach( sid in ::Rokugan.RECIPES){									//	the bag holds the ingredients
@@ -47,6 +48,10 @@ local log( s){ printf( "[RT] %S\n", s); }
 		!v.data["rt_untouchable"]);															//	(Akuro: hits do nothing)
 	if( !length( foes)) return null;
 	local skills = this.knownSkills( pc);
+	if( "spearThrowUsers" in this && pc.dataid in this.spearThrowUsers ){
+		local spear = this.makeSpearThrow( pc, ::conf.skill["S592"], true );
+		if( pc.canConsumeForSkill( spear )) skills.append( spear );
+	}
 	//	auto battle uses the finale's exploits (phase 3, under Call) while they're there: once each
 	foreach( sk in this.exploitsFor( pc)){
 		if( this.usesLeft( pc, sk) > 0 && !(sk.rt_exploit == "bait" && this.state( foes[0]).broken)){
@@ -183,7 +188,8 @@ local log( s){ printf( "[RT] %S\n", s); }
 		}
 	}
 	//	attack: best (skill, target)
-	local cands = [ pc.getAttackSkill() ];
+	local basic = pc.getAttackSkill(), cands = [];
+	if( !("formationSkillAllowed" in this) || this.formationSkillAllowed( pc, basic )) cands.append( basic );
 	foreach( sk in skills) if( sk["skilltype"] == "attack" && (sk.cmdtgt == 1 || sk.cmdtgt == 7)) cands.append( sk);
 	//	a warded foe (Tsukakoro) with no jade in hand: one traveler a round throws Jade Dust to open the ward
 	local warded = foes.find( @( e) e in ::Rokugan.immune), dust = ::conf.item["I104"];
@@ -230,7 +236,7 @@ local log( s){ printf( "[RT] %S\n", s); }
 		local bits = sk["elembits"] | 0, jade = bits & (1 << 11);
 		foreach( e in foes){
 			if( (e in this.immune) && !jade) continue;
-			local sc = (sk == cands[0]) ? 1.0 : 1.3;
+			local sc = (sk == basic) ? 1.0 : 1.3;
 			if( bits & this.weakbits( e)) sc *= 2.0;
 			if( this.state( e).broken) sc *= 1.5;
 			if( jade) sc *= 1.08;									//	jade burns the Tainted: prefer it on a tie
@@ -244,7 +250,7 @@ local log( s){ printf( "[RT] %S\n", s); }
 	if( !best) return null;
 	local dsts = b.getCommandTargets( pc, bt, best.cmdtgt, false);
 	if( !length( dsts)) return null;
-	if( best != cands[0]) log( "auto: %S casts %S at %S" % (pc.name, best.name, bt.name));
+	if( best != basic) log( "auto: %S casts %S at %S" % (pc.name, best.name, bt.name));
 	return SkillCommand( pc, best, dsts);
 };
 

@@ -71,9 +71,11 @@ local arms = armIndex ? decodeJSON( armIndex.loadData()) : null;
 			if( !wear[slot]) wear[slot] = item.dataid;
 		}
 	}
-	if( wear.costume == "clerk") wear.head = "A171";
-	else if( wear.costume == "pilgrim") wear.head = "A170";
-	else if( !wear.head) wear.head = wear.headAccessory;
+	if( pc.dataid == "P105"){
+		wear.head = null;
+		local costumeMask = ::Rokugan.equippedAdventureMask( pc);
+		wear.mask = costumeMask ? costumeMask.dataid : null;
+	}else if( !wear.head) wear.head = wear.headAccessory;
 	return wear;
 };
 
@@ -86,6 +88,12 @@ local gearPalette = function( key, clan){
 local celNative = function( model){
 	foreach( material in model.getMaterials()){
 		if( material.mtype == 0) material.mtype = 3;
+	}
+	return model;
+};
+local nativeLighting = function( model, shade){
+	foreach( material in model.getMaterials()){
+		if( material.mtype == 0 || material.mtype == 3) material.mtype = shade;
 	}
 	return model;
 };
@@ -213,7 +221,8 @@ class RokuganNativePicture extends RPG3DPicture
 		view.animap = spec.animap;
 		setPicture( view);
 		local person = modularPerson( key);
-		nativeBody = celNative( SK3DObject( person ? HUMAN .. key .. ".pm" : ROOT .. key .. "_body.pm"));
+		local skinShade = (key == "trav_sayo" || key == "trav_mitsue") ? 0 : 3;
+		nativeBody = nativeLighting( SK3DObject( person ? HUMAN .. key .. ".pm" : ROOT .. key .. "_body.pm"), skinShade);
 		nativeBody.animlayers = null;
 		if( person){
 			nativeBody.setMotion( ::getMotionData( ::getResource( ROOT .. "motion_" .. spec.motion .. ".mot")));
@@ -288,19 +297,17 @@ class RokuganNativePicture extends RPG3DPicture
 			local head = ClientConfig.showHeadwear() ? wear.head : null;
 			local fittedHat = key == "side_yosai" && head;
 			local generatedHat = head ? (tailored( "headFits", key .. ":" .. head) || tailored( "items", head)) : null;
-			local generatedFacewear = wear.mask ? tailored( "items", wear.mask) : null;
+			local generatedFacewear = wear.mask ? (tailored( "maskFits", key .. ":" .. wear.mask) || tailored( "items", wear.mask)) : null;
 			local generatedCape = wear.cape ? tailored( "items", wear.cape) : null;
-			local costumeHat = key == "trav_mitsue" && ClientConfig.showHeadwear() ? tailored( "costumeHeads", wear.costume) : null;
-			if( costumeHat){
-				nativeHead = addNativePart( TAILOR .. costumeHat.mesh);
-				hatFace = costumeHat["face"];
+			local costumeHead = key == "trav_mitsue" && ClientConfig.showHeadwear() ?
+				tailored( "costumeHeads", wear.costume) : null;
+			if( costumeHead){
+				nativeHead = addTailoredPart( costumeHead, clan);
+				hatFace = costumeHead["face"];
 			}else if( generatedHat){
 				nativeHead = addTailoredPart( generatedHat, clan);
 				hatFace = generatedHat["face"];
-			}
-			else if( head) nativeHead = addNativePart( GEAR .. head .. (fittedHat ? "_yosai" : ""), palette);
-			else if( wear.costume && ClientConfig.showHeadwear() && personal.contains( wear.costume .. "_head"))
-				nativeHead = addNativePart( ornamentRoot .. key .. "_" .. wear.costume .. "_head");
+			}else if( head) nativeHead = addNativePart( GEAR .. head .. (fittedHat ? "_yosai" : ""), palette);
 			if( generatedFacewear) nativeMask = addTailoredPart( generatedFacewear, clan);
 			else if( wear.mask) nativeMask = shinobi && wear.mask == "A174"
 				? addNativePart( ornamentRoot .. key .. "_mask") : addNativePart( GEAR .. wear.mask, palette);
@@ -309,7 +316,7 @@ class RokuganNativePicture extends RPG3DPicture
 			if( gear["decals"]){
 				foreach( item in [wear.body, head, wear.mask, wear.cape]){
 					if( !item || ((costume || fitted) && item == wear.body) ||
-						((costumeHat || generatedHat) && item == head) || (generatedFacewear && item == wear.mask) ||
+						(generatedHat && item == head) || (generatedFacewear && item == wear.mask) ||
 						(generatedCape && item == wear.cape)) continue;
 					if( wear.costume && personal.contains(wear.costume) && item == wear.body) continue;
 					if( yosaishaori && item == "A111") continue;
@@ -329,7 +336,7 @@ class RokuganNativePicture extends RPG3DPicture
 				local variant = HUMAN .. hatFace;
 				if( ::getResource( variant .. ".pm") && ::getResource( variant .. ".mdl")) face = variant;
 			}
-			nativeFace = addNativePart( face);
+			nativeFace = addNativePart( face, null, skinShade);
 		}
 		local fittedHeadband = false;
 		if( person && person["portraitAccessories"] && person.face == key .. "_portrait_face"){
@@ -353,7 +360,7 @@ class RokuganNativePicture extends RPG3DPicture
 		if( key == "trav_mitsue" && wear && wear.costume){
 			local costumeExtra = tailored( "costumeAccessories", wear.costume);
 			if( costumeExtra) nativeOrnaments .. addNativePart( TAILOR .. costumeExtra.mesh);
-			if( wear.costume == "shinobi" && wear.shinobiHead && ClientConfig.showHeadwear()){
+			if( wear.costume == "shinobi" && wear.shinobiHead && !nativeMask && ClientConfig.showHeadwear()){
 				local customMask = tailored( "costumeAccessories", "shinobi_mask");
 				if( customMask) nativeMask = addNativePart( TAILOR .. customMask.mesh);
 			}
@@ -463,7 +470,7 @@ class RokuganNativePicture extends RPG3DPicture
 	function addTailoredPart( record, clan){
 		local dye = ("commonerDye" in ::Rokugan) ? ::Rokugan.commonerDye( record, clan) : null;	//	RokuganCommonerDyes.sk
 		local texture = record["dyed"] ? TAILOR .. "tex/" .. clan .. "/" .. (dye || record["palette"] || record.mesh) .. ".png" : null;
-		local part = addNativePart( TAILOR .. record.mesh, texture && ::getResource(texture) ? texture : null);
+		local part = addNativePart( TAILOR .. record.mesh, texture && ::getResource(texture) ? texture : null, record["lighting"] ?? 3);
 		local decalItem = record["decal"];
 		local sheet = record["sheet"] ? TAILOR .. record.sheet :
 			decalItem ? GEAR .. "decal/" .. clan .. "/" .. decalItem .. ".png" : null;
@@ -488,8 +495,8 @@ class RokuganNativePicture extends RPG3DPicture
 		return null;
 	}
 
-	function addNativePart( path, palette=null){
-		local part = celNative( SK3DObject( path .. ".pm"));
+	function addNativePart( path, palette=null, shade=3){
+		local part = nativeLighting( SK3DObject( path .. ".pm"), shade);
 		if( palette) part.mesh.face[0].m.tex0 = ::getTexture( ::getResource( palette));
 		nativeBody.assignBonesToPolygonMesh( part.mesh);
 		nativeBody.addChild( part);
@@ -549,7 +556,7 @@ class RokuganNativePicture extends RPG3DPicture
 		if( inBattleStance && previous && previous.weight > 0.0 &&
 			((request.id != "dead" && request.id != "die") || (request.id == "dead" && nativeDefeatMotion))){
 			local source = fading && fading.weight > 0.8 ? fading : previous;
-			source.wfunc = SK3DObject._fadeoutfunc( 0.12);
+			source.wfunc = SK3DObject._fadeoutfunc( request.id == "_cove_surrender" ? 0.40 : 0.12);
 			layers[1] = source;
 		}
 		return layer;
@@ -680,6 +687,14 @@ local nativePicture = RokuganNativePicture;
 
 class RokuganNativeFoe extends RokuganNativePicture
 {
+	coveYielded = false;
+
+	function yieldAtCove(){
+		if( coveYielded) return;
+		coveYielded = true;
+		animemap["_cove_surrender"] <- clone animemap.seiza;
+		anime2( {id="_cove_surrender"});
+	}
 	function startBattleStance(){
 		super.startBattleStance();
 		// These models face the party but show their backs to the battle camera.
@@ -687,19 +702,21 @@ class RokuganNativeFoe extends RokuganNativePicture
 			nativeBody.rot.setHPB( Math.HPI * 1.5, 0.0, 0.0);
 	}
 
-	function setFoe( pc, key, spec, path, castKey=null){
+	function setFoe( pc, key, spec, path, castKey=null, weaponId=null){
+		local weapon = weaponId && arms ? arms.items[weaponId] : null;
 		battleIdleClip = spec["human"] ? "fight" : "stand";
 		creatureReady = !spec["human"];
 		local view = clone pc;
-		view.animap = spec.animap;
+		view.animap = weapon ? roster[weapon.family == "club" ? "side_kage_ch3" : "trav_natsuko"].animap : spec.animap;
 		setPicture( view);
+		if( weapon) battleIdleClip = "aimw";
 		local person = spec["human"] ? modularPerson( key) : null;
 		local cast = person && castKey && roster[castKey] ? modularPerson( castKey) : null;
 		if( cast && cast.base != person.base) cast = null;
 		local bodyKey = cast ? castKey : key;
 		nativeBody = celNative( SK3DObject( person ? HUMAN .. bodyKey .. ".pm" : path));
 		nativeBody.animlayers = null;
-		local family = foeFidgetFamilies[key];
+		local family = weapon ? weapon.family : foeFidgetFamilies[key];
 		if( spec["human"]){
 			if( family && fidgetData){
 				fidgetSource = fidgetRoot .. family .. ".mot";
@@ -711,25 +728,31 @@ class RokuganNativeFoe extends RokuganNativePicture
 			for( local i=0; i<5; i++) fidgetChoices .. { st=i*31, en=i*31+30, spd=20 };
 		}
 		if( person){
-			nativeBody.setMotion( ::getMotionData( ::getResource( path.slice( 0, path.len() - 3) .. ".mot")));
+			local motionPath = weapon ? ROOT .. "motion_" .. weapon.family .. ".mot" : path.slice(0,path.len()-3) .. ".mot";
+			nativeBody.setMotion(::getMotionData(::getResource(motionPath)));
 			nativeBodyTemplate = person.base;
 			nativeDecals = [];
 			local costume = tailored( "defaults", key);
 			if( costume) setTailoredOutfit( costume, costume["clan"] || "ronin");
 			else if( person["outfit"]) nativeOutfit = addNativePart( HUMAN .. person.outfit);
+			local hatFace = person["hatFace"];
 			if( ClientConfig.showHeadwear()){
-				local fittedHat = tailored( "items", person["hatItem"]);
-				if( fittedHat) nativeHead = addTailoredPart( fittedHat, costume ? costume["clan"] || "ronin" : "ronin");
-				else if( person["hat"]) nativeHead = addNativePart( HUMAN .. person.hat);
+				local hatItem = person["hatItem"];
+				local fittedHat = hatItem ? tailored( "headFits", bodyKey .. ":" .. hatItem) || tailored( "items", hatItem) : null;
+				if( fittedHat){
+					nativeHead = addTailoredPart( fittedHat, costume ? costume["clan"] || "ronin" : "ronin");
+					hatFace = fittedHat["face"] || hatFace;
+				}else if( person["hat"]) nativeHead = addNativePart( HUMAN .. person.hat);
 			}
 			local face = HUMAN .. (cast ? cast.face : person.face);
-			if( nativeHead && person["hatFace"]){
-				local fitted = HUMAN .. person.hatFace;
+			if( nativeHead && hatFace){
+				local fitted = HUMAN .. hatFace;
 				if( ::getResource( fitted .. ".pm") && ::getResource( fitted .. ".mdl")) face = fitted;
 			}
 			nativeFace = addNativePart( face);
 			if( person["mask"]) nativeMask = addNativePart( HUMAN .. person.mask);
-			local fittedWeapon = person["weaponItem"];
+			local fittedWeapon = weapon ? weaponId : person["weaponItem"];
+			if( weapon) nativeWeaponKind = weapon.kind;
 			if( fittedWeapon && ::getResource( ARMS .. fittedWeapon .. ".pm") && ::getResource( ARMS .. fittedWeapon .. ".mdl"))
 				nativeWeapon = addNativePart( ARMS .. fittedWeapon);
 			else if( person["weapon"]) nativeWeapon = addNativePart( HUMAN .. person.weapon);
@@ -760,6 +783,12 @@ class RokuganNativeFoe extends RokuganNativePicture
 
 	function anime2( t){
 		local request = clone t;
+		if( coveYielded){
+			local current = animlayers.layers[0];
+			if( current && current.id == "_cove_surrender") return current;
+			request.id = "_cove_surrender";
+			return super.anime2(request);
+		}
 		switch( t.id){
 		case "die": request.id = "dead"; break;
 		case "stand":
@@ -801,7 +830,7 @@ local nativeFoe = RokuganNativeFoe;
 	// A shared opponent can keep its own model unless the encounter names the cast member.
 	local castKey = spec["castForName"] && data["name"] ? spec.castForName[data.name] : null;
 	local model = nativeFoe();
-	model.setFoe( pic, key, spec, path .. ".pm", castKey);
+	model.setFoe( pic, key, spec, path .. ".pm", castKey, data["rt_cove_weapon"]);
 	return model;
 };
 

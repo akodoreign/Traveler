@@ -1,0 +1,22 @@
+// Run in a stopped test profile with the formation plugin installed.
+::rpgvar["G1363"] = true;
+local ids = ["P100", "P101", "P102", "P103", "P104", "P105", "P106", "P107"];
+for( local i = 0; i < 8; i++ ) ::rpgstat.members[i] = ::rpgstat.playermap[ids[i]];
+::Rokugan.fitParty();
+if( ::Rokugan.partyCap() != 8 || ::Rokugan.partyCount() != 8 ) throw Exception( "Finale party does not hold eight travelers" );
+if( !::Rokugan.swapPartySlots( 1, 6 ) ) throw Exception( "Eight-person swap failed" );
+local saved = ObjectInput.decode( ObjectOutput.encode( ::rpgstat ) );
+foreach( i, pc in ::rpgstat.members ){
+	if( !saved.members[i] || saved.members[i].dataid != pc.dataid || saved.members[i].formation != pc.formation )
+		throw Exception( "Formation did not survive save serialization" );
+}
+newthread().start( @() ::RPGMain.showUI({key="menu_formation"}) );
+sleep( 4000 );
+local view = ::rootview.findChild( "menu_sub" );
+for( local i = 0; i < 8; i++ ){
+	local button = view.findChild( "formation" .. i );
+	if( !button || !button.children.find( @( child ) child instanceof CharaPreview && child.visible ) )
+		throw Exception( "Missing traveler preview in slot " .. i );
+}
+::Rokugan.rtshot( "tmp/rt_shot/formation_eight.raw" );
+printf( "[FORMATION EIGHT TEST] previews and save serialization passed\n" );

@@ -17,6 +17,17 @@ tiers. Weapon traits are from `weapons.md`; armour tags from `kata.md` / `weapon
 - **Jade variants** (Jade element added; +25% price) at Crab, Phoenix and Unicorn temple-smiths from T2.
 - **Jade upgrade:** Jade Chain Fragment (Lion/Phoenix Ch1) adds Jade to one weapon.
 
+### Formation and spear throws
+The formation menu has eight positions in two columns. The party is limited to four until the finale, when all
+eight can participate. The frontmost leader position must remain occupied; dragging onto an occupied position swaps
+the two characters.
+
+Characters in the second column take 25% less damage and cannot use melee attacks. Bows, spells and thrown spears
+remain usable. An equipped yari can be thrown as a normal attack from that column; a naginata cannot. Natsuko,
+Shizue, Tamotsu and Sayo also have a Spear Throw School technique that costs 8 TP and temporarily uses a
+level-appropriate spear without changing their equipment or inventory. Its spear changes at levels 11, 21, 31,
+41 and 51.
+
 ### A2. Named / unique weapons (story, drop, side story)
 | Item | Type | Source | Effect |
 |---|---|---|---|

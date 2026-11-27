@@ -6756,5 +6756,41 @@
 		"skilltype": "unusable",
 		"stacknum": 99,
 		"occasion": 0
+	},
+	"I575": {
+		"consume": 1,
+		"desc": "Cove Fort repair material for Kakita Rensei's ship.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Straight cedar wood",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 1,
+		"occasion": 0
+	},
+	"I576": {
+		"consume": 1,
+		"desc": "Cove Fort repair material for Kakita Rensei's ship.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Iron nails",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 1,
+		"occasion": 0
+	},
+	"I577": {
+		"consume": 1,
+		"desc": "Cove Fort repair material for Kakita Rensei's ship.",
+		"icon": "",
+		"itemtype": 1,
+		"name": "Tree tar",
+		"option": [],
+		"price": 0,
+		"skilltype": "unusable",
+		"stacknum": 1,
+		"occasion": 0
 	}
 }

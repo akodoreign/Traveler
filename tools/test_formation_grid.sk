@@ -1,0 +1,147 @@
+// Run in a stopped test profile with the formation plugin installed.
+import VirtualKeyCode;
+import GamepadButtonCode;
+::Rokugan.fitParty();
+local m = ::rpgstat.members;
+for( local i = 0; i < 8; i++ ) m[i] = null;
+m[0] = ::rpgstat.playermap["P100"];
+m[1] = ::rpgstat.playermap["P101"];
+m[2] = ::rpgstat.playermap["P102"];
+m[3] = ::rpgstat.playermap["P105"];
+::Rokugan.fitParty();
+local a = m[0], b = m[1];
+newthread().start( @() ::RPGMain.showUI({key="menu_formation"}) );
+sleep(2500);
+local v = ::rootview.findChild("menu_sub");
+if( !v.findChild("formation0") || !v.findChild("formation7") ) throw Exception("Formation grid missing");
+
+local mouse = function( id, x, y ){
+	::rootview.deliverMouseEvent( Event().setMouseEvent( 0, ::rootview, id, x, y, 64, 1, false ) );
+	sleep(150);
+};
+local drag = function( x, y, dx, dy ){
+	mouse( MOUSE_PRESSED, x, y );
+	mouse( MOUSE_DRAGGED, x + 12, y );
+	mouse( MOUSE_DRAGGED, dx, dy );
+	mouse( MOUSE_RELEASED, dx, dy );
+	sleep(300);
+};
+
+drag( 394, 226, 394, 346 );
+if( m[0] != b || m[1] != a ) throw Exception("Occupied drag did not swap");
+drag( 394, 346, 514, 346 );
+if( m[1] || m[5] != a || a.formation != 1 ) throw Exception("Drag to empty second row failed");
+drag( 394, 226, 394, 346 );
+if( m[0] != b || m[1] ) throw Exception("Leader moved to an empty slot");
+drag( 514, 346, 514, 346 );
+if( m[5] != a || m[1] ) throw Exception("Same-slot drag changed formation");
+drag( 514, 346, 800, 450 );
+if( m[5] != a || m[1] ) throw Exception("Outside drop changed formation");
+drag( 514, 346, 394, 346 );
+if( m[1] != a || m[5] || a.formation != 0 ) throw Exception("Return drag failed");
+::gpui.enableGPUI( true );
+local select = function( index ){
+	v.focusTo( "formation" .. index );
+	sleep(150);
+	local button = v.findChild( "formation" .. index );
+	::rootview.postEvent( Event().setGPUIEvent( button, GPUI_PRESSED, BTN_A ) );
+	sleep(150);
+	::rootview.postEvent( Event().setGPUIEvent( button, GPUI_RELEASED, BTN_A ) );
+	sleep(300);
+};
+select( 1 );
+select( 5 );
+if( m[1] || m[5] != a || a.formation != 1 ) throw Exception("Controller selection did not move traveler");
+select( 5 );
+local focused = v.findChild( "formation5" );
+::rootview.postEvent( Event().setGPUIEvent( focused, GPUI_PRESSED, BTN_B ) );
+sleep(300);
+select( 1 );
+if( m[1] || m[5] != a ) throw Exception("Back did not cancel selection");
+if( ::rpgstage.player3d.rpgobj != b ) throw Exception("Field leader was not refreshed");
+local oldbattle = ::rpgstage.battle;
+::rpgstage.battle = {};
+local frontDamage, secondDamage, secondHeal;
+try{
+	local cmd = SkillCommand( b, ::conf.skill["S100"], [a] );
+	cmd.addEvent( { chr=a, id="pid", pid="HP", val=-100 } );
+	cmd.addEvent( { chr=b, id="pid", pid="HP", val=-100 } );
+	cmd.addEvent( { chr=a, id="pid", pid="MP", val=30 } );
+	if( cmd.events[0].val != -75 || cmd.events[1].val != -100 || cmd.events[2].val != 30 )
+		throw Exception("Additional damage or healing was reduced incorrectly");
+	local tick = { when="postturn", dmgtype=1, dmgval=100, relative=false };
+	if( ::Rokugan.formationTurnDamage( tick, "postturn", a ).dmgval != 75 ||
+		::Rokugan.formationTurnDamage( tick, "postturn", b ).dmgval != 100 )
+		throw Exception("Condition damage was reduced incorrectly");
+	local tickHeal = { when="postturn", dmgtype=2, dmgval=100, relative=false };
+	if( ::Rokugan.formationTurnDamage( tickHeal, "postturn", a ).dmgval != 100 )
+		throw Exception("Condition healing was reduced");
+	local front = Damage( cmd, b ), second = Damage( cmd, a ), heal = Damage( cmd, a );
+	foreach( dmg in [front, second, heal] ){ dmg.atk = 1; dmg.cval = compval( 100 ); }
+	heal.heal = true;
+	front.finishDamage(); second.finishDamage(); heal.finishDamage();
+	frontDamage = front.val; secondDamage = second.val; secondHeal = heal.val;
+	local thrown = a.getAttackSkill();
+	if( !thrown["rt_spear_throw"] || !::Rokugan.formationSkillAllowed( a, thrown ))
+		throw Exception("Equipped spear cannot attack from second column");
+	if( ::Rokugan.formationSkillAllowed( a, ::conf.skill["S121"] ))
+		throw Exception("Melee technique allowed in second column");
+	if( !::Rokugan.formationSkillAllowed( a, ::conf.skill["S142"] ))
+		throw Exception("Ranged technique blocked in second column");
+	local temporary = ::Rokugan.makeSpearThrow( a, ::conf.skill["S592"], true );
+	if( !temporary["rt_spear_throw"] || temporary.consume[0] != 1 || temporary.rt_spear_model != ::Rokugan.spearForLevel( a ) )
+		throw Exception("Temporary spear skill has incorrect properties");
+	local spearDamage = Damage( SkillCommand( a, temporary, [b] ), b );
+	if( spearDamage.atk <= 0 ) throw Exception("Temporary spear damage formula failed");
+	local originalList = ::showSkillList, rows;
+	try{
+		::showSkillList = @( pc, items ) items;
+		rows = ::Rokugan.schoolList( a, [{ idx=0, val=::conf.skill["S121"], disable=false, grayout="off", lbl="Strike", rlbl="" }] );
+	}catch( ex ){
+		::showSkillList = originalList;
+		throw ex;
+	}
+	::showSkillList = originalList;
+	if( !rows.find( @( row ) row.val && row.val["rt_spear_throw"] ) || !rows[0].disable )
+		throw Exception("School menu did not add spear throw or disable melee");
+	foreach( pair in [[1,"W101"], [10,"W101"], [11,"W111"], [20,"W111"], [21,"W122"],
+		[30,"W122"], [31,"W127"], [40,"W127"], [41,"W138"], [50,"W138"], [51,"W152"]] )
+		if( ::Rokugan.spearForLevel({ LV=pair[0] }) != pair[1] ) throw Exception("Incorrect spear level tier");
+	local oldTP = a.TP;
+	a.TP = 7;
+	if( a.canConsumeForSkill( temporary ) || !rows.find( @( row ) row.val && row.val["rt_spear_throw"] ).disable() )
+		throw Exception("Spear Throw usable without enough TP");
+	a.TP = 8;
+	if( !a.consumeForSkill( temporary ) || a.TP != 0 ) throw Exception("Spear Throw did not consume TP");
+	a.TP = oldTP;
+	try{
+		::showSkillList = @( pc, items ) items;
+		foreach( id in ["P100", "P103", "P106", "P107"] ){
+			local list = ::Rokugan.schoolList( ::rpgstat.playermap[id], [] );
+			if( !list.find( @( row ) row.val && row.val["rt_spear_throw"] ) )
+				throw Exception("Spear Throw missing for " .. id);
+		}
+	}catch( ex ){
+		::showSkillList = originalList;
+		throw ex;
+	}
+	::showSkillList = originalList;
+	local oldWeapon = a.getWeapon();
+	a.setEquip( 0, ::RPGObject.create( "W100" ) );
+	if( ::Rokugan.formationSkillAllowed( a, a.getAttackSkill() ) )
+		throw Exception("Katana attack allowed in second column");
+	a.setEquip( 0, ::RPGObject.create( "W104" ) );
+	if( !::Rokugan.formationSkillAllowed( a, a.getAttackSkill() ) )
+		throw Exception("Bow attack blocked in second column");
+	a.setEquip( 0, ::RPGObject.create( "W161" ) );
+	if( ::Rokugan.formationSkillAllowed( a, a.getAttackSkill() ) )
+		throw Exception("Naginata incorrectly treated as a thrown spear");
+	a.setEquip( 0, oldWeapon );
+}catch( ex ){
+	::rpgstage.battle = oldbattle;
+	throw ex;
+}
+::rpgstage.battle = oldbattle;
+if( frontDamage != 100 || secondDamage != 75 || secondHeal != -100 ) throw Exception("Formation damage or healing incorrect");
+::Rokugan.rtshot("tmp/rt_shot/formation_grid.raw");
+printf("[FORMATION TEST] drag, controller and damage cases passed\n");

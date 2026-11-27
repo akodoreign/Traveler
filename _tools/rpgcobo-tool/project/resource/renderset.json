@@ -1907,6 +1907,72 @@
 				"gipow": 1.0,
 				"gitype": 0
 			}
+		},
+		{
+			"envlights": [
+				{
+					"color": -3890945,
+					"head": -11,
+					"pitch": 26,
+					"power": 1240,
+					"shadow": {
+						"shadowdens": 0.39,
+						"shadowfar": 100.0,
+						"shadowray": 100.0,
+						"shadowreso": 1024,
+						"shadowsoft": 0.28,
+						"shadowtype": 2
+					},
+					"type": 1,
+					"scolor": -5076225
+				}
+			],
+			"exposure": {
+				"autoexposure": false,
+				"ev100": 9.55,
+				"evrange": [
+					-4.0,
+					14.0
+				]
+			},
+			"fog": {
+				"type": 3,
+				"color": -999195485,
+				"density": 0.0018,
+				"zoffs": 35.0,
+				"yplane": 0.0,
+				"yfalloff": 0.12
+			},
+			"ibl": {
+				"iblcolor": -2897665,
+				"ibldiff": 765,
+				"ibldir": 0,
+				"iblspec": 197,
+				"ibltex": "/resource/ibltex/traveler_clear_coast_ibl.ktx"
+			},
+			"id": "rt_cove_chitosa_sunset",
+			"lock": false,
+			"name": {
+				"en": "Cove Fort Sunset",
+				"ja": "Cove Fort Sunset"
+			},
+			"postfx": {
+				"bloomblur": 3.0,
+				"bloompow": 0.18,
+				"bloomthrs": 0.96,
+				"dofblur": 0.16,
+				"dofrange": 26.0,
+				"dofz": 22.0
+			},
+			"renderpass": 2,
+			"ss": {
+				"aobias": 0.5,
+				"aoexp": 1.1,
+				"aopow": 0.7,
+				"aoradius": 3.0,
+				"gipow": 1.0,
+				"gitype": 0
+			}
 		}
 	],
 	"voxmtls": {

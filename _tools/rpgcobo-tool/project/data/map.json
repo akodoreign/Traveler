@@ -19354,7 +19354,7 @@
 		},
 		"name": "Battle: Beiden road",
 		"reverbid": "plain",
-		"rsetid": "rt_hd2d_battle",
+		"rsetid": "rt_coastal_brilliance_arena_horizon",
 		"size": [
 			128,
 			64,
@@ -66598,6 +66598,55 @@
 														"cmd": "cmd_if",
 														"reqs": [
 															{
+																"lvar": "G1760",
+																"op": "==",
+																"rvar": false
+															}
+														],
+														"cmdblocks": [
+															[
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Beyond the shoals, the first swell rises taller than the mast. The storm hits before the ship can turn.",
+																	"name": "",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "The hull has split a seam. Keep to the pale water. We can make Cove Fort if we stay in the shallows.",
+																	"name": "Ship's master",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G1760",
+																	"op": "=",
+																	"rvar": true
+																},
+																{
+																	"cmd": "cmd_showmsg",
+																	"key": "message_talk",
+																	"text": "Objective: land on the first island and speak to the Cove Fort shipwright.",
+																	"name": "",
+																	"uiclose": 2
+																},
+																{
+																	"cmd": "cmd_compute",
+																	"lvar": "G1227",
+																	"op": "=",
+																	"rvar": 241,
+																	"desc": "RT objective"
+																}
+															],
+															[]
+														]
+													},
+													{
+														"cmd": "cmd_if",
+														"reqs": [
+															{
 																"lvar": "G1399",
 																"op": "==",
 																"rvar": 2
@@ -69869,8 +69918,665 @@
 							{
 								"cmd": "cmd_showmsg",
 								"key": "message_talk",
-								"text": "The boat's here, captain. Back aboard?",
-								"name": "Ship's master",
+								"text": "Cove Fort can mend a ship or lend you a boat. Which brings you here?",
+								"name": "Shipwright",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M221",
+												"pos": [
+													28.0,
+													null,
+													8.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Go aboard.",
+								"text1": "Not yet."
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G392",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1761",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A storm-open seam. I need straight cedar wood, iron nails and tree tar. The path through the fort gate leads inland. Look for the loggers' clearing, the nail shed and the tapped pines.",
+								"name": "Shipwright",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1761",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Objective: head inland past Cove Fort and collect wood, nails, and tree tar.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1227",
+								"op": "=",
+								"rvar": 242,
+								"desc": "RT objective"
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G392",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1761",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The inland path is through the gate past town. Look for the cedar yard, the nail shed, and the tar pot by the tapped pines.",
+								"name": "Shipwright",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[],
+									[
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M221",
+												"pos": [
+													28.0,
+													null,
+													8.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Keep looking.",
+								"text1": "Go aboard."
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G392",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1761",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1762",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "NUM_I575",
+								"op": ">=",
+								"rvar": 1
+							},
+							{
+								"lvar": "G1763",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "NUM_I576",
+								"op": ">=",
+								"rvar": 1
+							},
+							{
+								"lvar": "G1764",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "NUM_I577",
+								"op": ">=",
+								"rvar": 1
+							},
+							{
+								"lvar": "G1765",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Three bundles of supplies. You owe tax on each one. My men will collect.",
+								"name": "Matsu Chitosa",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Then show me your seal. A road tax does not come with two hands on a sword.",
+								"name": "Kakita Rensei",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Protection money, if you prefer the plain word.",
+								"name": "Matsu Chitosa",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_battle2",
+								"mapid": "M793",
+								"enemies": [
+									{
+										"id": "E953",
+										"x": -2.0,
+										"z": 0.45
+									},
+									{
+										"id": "E958",
+										"x": 0.34,
+										"z": 0.18
+									},
+									{
+										"id": "E959",
+										"x": -0.62,
+										"z": -1.38
+									},
+									{
+										"id": "E959",
+										"x": -0.59,
+										"z": 1.75
+									}
+								],
+								"escape": false,
+								"losefunc": 0,
+								"keeprset": false,
+								"bgmid": "MU118"
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1765",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Chitosa and her retainers withdraw. The repair supplies are intact.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Objective: bring the cedar wood, iron nails, and tree tar to the shipwright.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1227",
+								"op": "=",
+								"rvar": 243,
+								"desc": "RT objective"
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Cedar for the seam, nails to draw it tight, tar to keep the sea out. Give me until the tide turns.",
+								"name": "Shipwright",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I575",
+								"op": 1,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I576",
+								"op": 1,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I577",
+								"op": 1,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_screenfxon",
+								"color": 657231871,
+								"num": 1,
+								"sfxid": "color0",
+								"time": 1200
+							},
+							{
+								"cmd": "cmd_wait",
+								"time": 1200
+							},
+							{
+								"cmd": "cmd_screenfxon",
+								"color": 255,
+								"num": 1,
+								"sfxid": "color0",
+								"time": 1600
+							},
+							{
+								"cmd": "cmd_wait",
+								"time": 1800
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The shipwright tests the last seam as the tide lifts the hull. It holds.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G392",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Take her out, Kakita-sama. The deep water is yours now.",
+								"name": "Shipwright",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G391",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the Temples of the Sun (take the helm).",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 228,
+											"desc": "RT objective"
+										}
+									],
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: investigate the white ship moored in Cove Fort.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 244,
+											"desc": "RT objective"
+										}
+									]
+								]
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M221",
+												"pos": [
+													28.0,
+													null,
+													8.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Go aboard.",
+								"text1": "Not yet."
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G392",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1761",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1762",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "NUM_I575",
+								"op": ">=",
+								"rvar": 1
+							},
+							{
+								"lvar": "G1763",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "NUM_I576",
+								"op": ">=",
+								"rvar": 1
+							},
+							{
+								"lvar": "G1764",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "NUM_I577",
+								"op": ">=",
+								"rvar": 1
+							},
+							{
+								"lvar": "G1765",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Cedar for the seam, nails to draw it tight, tar to keep the sea out. Give me until the tide turns.",
+								"name": "Shipwright",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I575",
+								"op": 1,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I576",
+								"op": 1,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I577",
+								"op": 1,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_screenfxon",
+								"color": 657231871,
+								"num": 1,
+								"sfxid": "color0",
+								"time": 1200
+							},
+							{
+								"cmd": "cmd_wait",
+								"time": 1200
+							},
+							{
+								"cmd": "cmd_screenfxon",
+								"color": 255,
+								"num": 1,
+								"sfxid": "color0",
+								"time": 1600
+							},
+							{
+								"cmd": "cmd_wait",
+								"time": 1800
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The shipwright tests the last seam as the tide lifts the hull. It holds.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G392",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Take her out, Kakita-sama. The deep water is yours now.",
+								"name": "Shipwright",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_if",
+								"reqs": [
+									{
+										"lvar": "G391",
+										"op": "==",
+										"rvar": true
+									}
+								],
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: the Temples of the Sun (take the helm).",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 228,
+											"desc": "RT objective"
+										}
+									],
+									[
+										{
+											"cmd": "cmd_showmsg",
+											"key": "message_talk",
+											"text": "Objective: investigate the white ship moored in Cove Fort.",
+											"name": "",
+											"uiclose": 2
+										},
+										{
+											"cmd": "cmd_compute",
+											"lvar": "G1227",
+											"op": "=",
+											"rvar": 244,
+											"desc": "RT objective"
+										}
+									]
+								]
+							},
+							{
+								"cmd": "cmd_choices",
+								"backenable": false,
+								"cmdblocks": [
+									[
+										{
+											"cmd": "cmd_mapmove",
+											"dest": {
+												"mapid": "M221",
+												"pos": [
+													28.0,
+													null,
+													8.0,
+													0.0
+												]
+											},
+											"wipe": 1,
+											"remap": true
+										}
+									],
+									[]
+								],
+								"pos": {
+									"left": 430,
+									"right": 430,
+									"y": 380
+								},
+								"text0": "Go aboard.",
+								"text1": "Not yet."
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 2,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G392",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The seam is sound. The boat's here whenever you're ready.",
+								"name": "Shipwright",
 								"uiclose": 2
 							},
 							{
@@ -70016,8 +70722,7 @@
 											"key": "message_talk",
 											"text": "I'm told the bits underneath are the problem.",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "happy"
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_showmsg",
@@ -70060,10 +70765,7 @@
 											"key": "message_talk",
 											"text": "\"...Matsu Tadanobu.\" A Lion. Paying pirates to bleed the Crane.",
 											"name": "Kakita Rensei",
-											"uiclose": 2,
-											"emo": "surprised",
-											"act": "surprise",
-											"zoom": true
+											"uiclose": 2
 										},
 										{
 											"cmd": "cmd_itemop",
@@ -70086,31 +70788,48 @@
 											"rvar": true
 										},
 										{
-											"cmd": "cmd_compute",
-											"lvar": "G392",
-											"op": "=",
-											"rvar": true
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "The crew strip the pirates' store for timber and pitch. By evening the ship's master pronounces the hull patched: \"Now she'll take deep water, captain. The dark blue. Mind it anyway.\"",
-											"name": "",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_showmsg",
-											"key": "message_talk",
-											"text": "Chihaya's charm is paper and ink, and it worked. The Asahina know charms. Objective: the Temples of the Sun (take the helm).",
-											"name": "",
-											"uiclose": 2
-										},
-										{
-											"cmd": "cmd_compute",
-											"lvar": "G1227",
-											"op": "=",
-											"rvar": 228,
-											"desc": "RT objective"
+											"cmd": "cmd_if",
+											"reqs": [
+												{
+													"lvar": "G392",
+													"op": "==",
+													"rvar": true
+												}
+											],
+											"cmdblocks": [
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "Chihaya's charm is paper and ink. The Asahina know charms. Objective: the Temples of the Sun (take the helm).",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1227",
+														"op": "=",
+														"rvar": 228,
+														"desc": "RT objective"
+													}
+												],
+												[
+													{
+														"cmd": "cmd_showmsg",
+														"key": "message_talk",
+														"text": "The hull still needs repair. Objective: speak to the Cove Fort shipwright.",
+														"name": "",
+														"uiclose": 2
+													},
+													{
+														"cmd": "cmd_compute",
+														"lvar": "G1227",
+														"op": "=",
+														"rvar": 245,
+														"desc": "RT objective"
+													}
+												]
+											]
 										}
 									]
 								]
@@ -72392,6 +73111,645 @@
 						"cmdblock": []
 					}
 				]
+			},
+			"#81#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					75,
+					4,
+					41,
+					0
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The track leads into the island's cedar woods.",
+								"name": "",
+								"uiclose": 2
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1761",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G392",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_mapmove",
+								"dest": {
+									"mapid": "M495",
+									"pos": [
+										21.0,
+										null,
+										7.0,
+										0.0
+									]
+								},
+								"wipe": 1,
+								"remap": true
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G392",
+								"op": "==",
+								"rvar": true
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_mapmove",
+								"dest": {
+									"mapid": "M495",
+									"pos": [
+										21.0,
+										null,
+										7.0,
+										0.0
+									]
+								},
+								"wipe": 1,
+								"remap": true
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"mdl": {
+					"r": [
+						0,
+						1,
+						0,
+						2.0,
+						2.25,
+						1.1
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 5,
+				"name": "*custom-81"
+			},
+			"#82#": {
+				"role": "custom",
+				"mdlid": "EP1141",
+				"pos": [
+					75,
+					4,
+					36,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G1761",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G392",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1762",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I575",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1763",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I576",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1764",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I577",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1765",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-82"
+			},
+			"#83#": {
+				"role": "custom",
+				"mdlid": "EP413",
+				"pos": [
+					71,
+					4,
+					36,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G1761",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G392",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1762",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I575",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1763",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I576",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1764",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I577",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1765",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-83",
+				"rt_cove_weapon": "W161"
+			},
+			"#84#": {
+				"role": "custom",
+				"mdlid": "EP413",
+				"pos": [
+					79,
+					4,
+					36,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G1761",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G392",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1762",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I575",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1763",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I576",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1764",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I577",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1765",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-84",
+				"rt_cove_weapon": "W161"
+			},
+			"#85#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					75,
+					4,
+					37,
+					0
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1761",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G392",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1762",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "NUM_I575",
+								"op": ">=",
+								"rvar": 1
+							},
+							{
+								"lvar": "G1763",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "NUM_I576",
+								"op": ">=",
+								"rvar": 1
+							},
+							{
+								"lvar": "G1764",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "NUM_I577",
+								"op": ">=",
+								"rvar": 1
+							},
+							{
+								"lvar": "G1765",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Three bundles of supplies. You owe tax on each one. My men will collect.",
+								"name": "Matsu Chitosa",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Then show me your seal. A road tax does not come with two hands on a sword.",
+								"name": "Kakita Rensei",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Protection money, if you prefer the plain word.",
+								"name": "Matsu Chitosa",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_battle2",
+								"mapid": "M793",
+								"enemies": [
+									{
+										"id": "E953",
+										"x": -2.0,
+										"z": 0.45
+									},
+									{
+										"id": "E958",
+										"x": 0.34,
+										"z": 0.18
+									},
+									{
+										"id": "E959",
+										"x": -0.62,
+										"z": -1.38
+									},
+									{
+										"id": "E959",
+										"x": -0.59,
+										"z": 1.75
+									}
+								],
+								"escape": false,
+								"losefunc": 0,
+								"keeprset": false,
+								"bgmid": "MU118"
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1765",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Chitosa and her retainers withdraw. The repair supplies are intact.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Objective: bring the cedar wood, iron nails, and tree tar to the shipwright.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1227",
+								"op": "=",
+								"rvar": 243,
+								"desc": "RT objective"
+							}
+						]
+					}
+				],
+				"reqs0": [
+					{
+						"lvar": "G1761",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G392",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1762",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I575",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1763",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I576",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1764",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I577",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1765",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"mdl": {
+					"r": [
+						0,
+						1,
+						0,
+						3.0,
+						2.25,
+						1.8
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 5,
+				"name": "*custom-85"
+			},
+			"#86#": {
+				"role": "custom",
+				"mdlid": "EP413",
+				"pos": [
+					82,
+					4,
+					35,
+					0
+				],
+				"reqs0": [
+					{
+						"lvar": "G1761",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G392",
+						"op": "==",
+						"rvar": false
+					},
+					{
+						"lvar": "G1762",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I575",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1763",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I576",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1764",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "NUM_I577",
+						"op": ">=",
+						"rvar": 1
+					},
+					{
+						"lvar": "G1765",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-86",
+				"rt_cove_weapon": "W113"
 			}
 		},
 		"exitmap": {
@@ -72620,7 +73978,7 @@
 		},
 		"name": "Battle: the cove",
 		"reverbid": "plain",
-		"rsetid": "rt_hd2d_battle",
+		"rsetid": "rt_coastal_brilliance_arena_open_fill",
 		"size": [
 			128,
 			64,
@@ -1623014,5 +1624372,2818 @@
 			"col1": -1597185,
 			"col2": -601857
 		}
+	},
+	"M495": {
+		"bg": {
+			"type": "tex",
+			"tex": "/resource/mapbg/M200.webp"
+		},
+		"bgmid": "MU101",
+		"camwork": {
+			"fovy": 30,
+			"hpb": [
+				0,
+				38,
+				0
+			],
+			"viewport": 15.0,
+			"yoffs": 0.5
+		},
+		"canenter_hole": false,
+		"canenter_water": false,
+		"encntrate": 3.85,
+		"encount": [
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E955",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E955",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 1,
+				"mapid": "M821",
+				"name": "Cedar bark beetles",
+				"rate": 45,
+				"rt_ifnot": "G403"
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E956",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E956",
+						"x": -1.6,
+						"z": -1.9
+					},
+					{
+						"id": "E956",
+						"x": 0.5,
+						"z": -0.3
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 2,
+				"mapid": "M821",
+				"name": "Amber hornets",
+				"rate": 30,
+				"rt_ifnot": "G403"
+			},
+			{
+				"area": "GgAIAAj/AAAA/wAAAP8AAAD/AAAA/QAAAP8AAAD/AAAA/wAAAA==",
+				"bgmid": "MU104",
+				"enemies": [
+					{
+						"id": "E957",
+						"x": -0.9,
+						"z": 1.5
+					},
+					{
+						"id": "E955",
+						"x": -1.6,
+						"z": -1.9
+					}
+				],
+				"escape": true,
+				"filterbits": 127,
+				"gid": 3,
+				"mapid": "M821",
+				"name": "Pitchwood web hunters",
+				"rate": 25,
+				"rt_ifnot": "G403"
+			}
+		],
+		"event": {
+			"#1#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					42,
+					4,
+					10,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 5,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_mapmove",
+								"dest": {
+									"mapid": "M222",
+									"pos": [
+										37.5,
+										null,
+										19.5,
+										0.0
+									]
+								},
+								"wipe": 1,
+								"remap": true
+							}
+						]
+					}
+				],
+				"reqs0": null,
+				"mdl": {
+					"r": [
+						0,
+						1,
+						0,
+						2.15,
+						2.25,
+						1.05
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 5,
+				"name": "*custom-1"
+			},
+			"#2#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					49,
+					4,
+					31,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1761",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1762",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "The loggers left straight cedar beside the chopping block.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I575",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Straight cedar wood.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1762",
+								"op": "=",
+								"rvar": true
+							}
+						]
+					}
+				],
+				"reqs0": [
+					{
+						"lvar": "G1761",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G1762",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-2",
+				"rt_repair_material": "I575"
+			},
+			"#3#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					77,
+					4,
+					23,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1761",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1763",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "A tray of iron nails sits on the abandoned workbench.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I576",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Iron nails.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1763",
+								"op": "=",
+								"rvar": true
+							}
+						]
+					}
+				],
+				"reqs0": [
+					{
+						"lvar": "G1761",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G1763",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-3",
+				"rt_repair_material": "I576"
+			},
+			"#4#": {
+				"role": "custom",
+				"mdlid": "CE000",
+				"pos": [
+					90,
+					4,
+					48,
+					2
+				],
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1761",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1764",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Dark tar has collected in the pot under this scored pine.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I577",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Tree tar.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1764",
+								"op": "=",
+								"rvar": true
+							}
+						]
+					},
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 1,
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": [
+							{
+								"lvar": "G1761",
+								"op": "==",
+								"rvar": true
+							},
+							{
+								"lvar": "G1764",
+								"op": "==",
+								"rvar": false
+							},
+							{
+								"lvar": "G1766",
+								"op": "==",
+								"rvar": false
+							}
+						],
+						"standani": null,
+						"cmdblock": [
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Two huge jaws close over the tar pot. The Pitchback lifts out of the cedar shadows, its shell streaked with amber.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_battle2",
+								"mapid": "M821",
+								"enemies": [
+									{
+										"id": "E954",
+										"x": -2.1,
+										"z": 0.42
+									}
+								],
+								"escape": false,
+								"losefunc": 0,
+								"keeprset": false,
+								"bgmid": "MU118"
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1766",
+								"op": "=",
+								"rvar": true
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Dark tar has collected in the pot under this scored pine.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_itemop",
+								"itemid": "I577",
+								"op": 0,
+								"num": 1,
+								"LV": 1
+							},
+							{
+								"cmd": "cmd_showmsg",
+								"key": "message_talk",
+								"text": "Got Tree tar.",
+								"name": "",
+								"uiclose": 2
+							},
+							{
+								"cmd": "cmd_compute",
+								"lvar": "G1764",
+								"op": "=",
+								"rvar": true
+							}
+						]
+					}
+				],
+				"reqs0": [
+					{
+						"lvar": "G1761",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G1764",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"mdl": {
+					"r": [
+						0,
+						1.0,
+						0,
+						1.0,
+						1.0,
+						1.0
+					]
+				},
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*custom-4",
+				"rt_repair_material": "I577"
+			},
+			"#5#": {
+				"role": "villager",
+				"mdlid": "EP488",
+				"msg": "The track forks beyond the cedar yard. Nails are down by the workshop. Follow the uphill track for tar.",
+				"pos": [
+					44,
+					4,
+					16,
+					2
+				],
+				"moveaction": "stop",
+				"movespd": 4,
+				"reqs0": null,
+				"pop": null,
+				"standani": null,
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"name": "*villager-5"
+			},
+			"#6#": {
+				"role": "custom",
+				"mdlid": "EP2690",
+				"pos": [
+					95,
+					4,
+					48,
+					1
+				],
+				"reqs0": [
+					{
+						"lvar": "G1761",
+						"op": "==",
+						"rvar": true
+					},
+					{
+						"lvar": "G1766",
+						"op": "==",
+						"rvar": false
+					}
+				],
+				"col": 0,
+				"flags": 1,
+				"spawndist": 1,
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"trigger": 0,
+						"memo": "prop",
+						"moveaction": "stop",
+						"movespd": 0,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"cmdblock": []
+					}
+				],
+				"name": "*custom-6"
+			},
+			"#7#": {
+				"role": "villager",
+				"mdlid": "EP387",
+				"msg": "Three quivers left. Two. Whatever. Point me at it.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 1
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-7"
+			},
+			"#8#": {
+				"role": "villager",
+				"mdlid": "EP388",
+				"msg": "(listening to the ground) ...The stones are counting.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 2
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-8"
+			},
+			"#9#": {
+				"role": "villager",
+				"mdlid": "EP389",
+				"msg": "That wall's leaning. Everything's leaning.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 3
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-9"
+			},
+			"#10#": {
+				"role": "villager",
+				"mdlid": "EP390",
+				"msg": "Drink your tea. No, all of it.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 4
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-10"
+			},
+			"#11#": {
+				"role": "villager",
+				"mdlid": "EP391",
+				"msg": "Smells like rain. Smells like goblin.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 5
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-11"
+			},
+			"#12#": {
+				"role": "villager",
+				"mdlid": "EP392",
+				"msg": "My knees say it'll snow.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 6
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-12"
+			},
+			"#13#": {
+				"role": "villager",
+				"mdlid": "EP342",
+				"msg": "Big sky. Good hills. Bad soup.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 7
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-13"
+			},
+			"#14#": {
+				"role": "villager",
+				"mdlid": "EP393",
+				"msg": "Smoke on the wind. Something big, east.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 8
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-14"
+			},
+			"#15#": {
+				"role": "villager",
+				"mdlid": "EP394",
+				"msg": "(writing on an ofuda) Hold still. No, the other arm.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 9
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-15"
+			},
+			"#16#": {
+				"role": "villager",
+				"mdlid": "EP395",
+				"msg": "Third stone's safe. All the others: squish.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 10
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-16"
+			},
+			"#17#": {
+				"role": "villager",
+				"mdlid": "EP462",
+				"msg": "(muttering a prayer for the Green Ronin, then one for you)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 11
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-17"
+			},
+			"#18#": {
+				"role": "villager",
+				"mdlid": "EP473",
+				"msg": "(watching the trees) ...Something's in there.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 12
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-18"
+			},
+			"#19#": {
+				"role": "villager",
+				"mdlid": "EP541",
+				"msg": "(two lanterns bobbing on a rope between them)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 13
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-19"
+			},
+			"#20#": {
+				"role": "villager",
+				"mdlid": "EP485",
+				"msg": "(watching the tide) ...Low water in an hour.",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 14
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-20"
+			},
+			"#21#": {
+				"role": "villager",
+				"mdlid": "EP486",
+				"msg": "(murmuring the tide prayers)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 15
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-21"
+			},
+			"#22#": {
+				"role": "villager",
+				"mdlid": "EP542",
+				"msg": "(testing the wind with a wet finger)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 16
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-22"
+			},
+			"#23#": {
+				"role": "villager",
+				"mdlid": "EP543",
+				"msg": "(murmuring to the breeze)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 17
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-23"
+			},
+			"#24#": {
+				"role": "villager",
+				"mdlid": "EP549",
+				"msg": "(composing under her breath)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 18
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-24"
+			},
+			"#25#": {
+				"role": "villager",
+				"mdlid": "EP553",
+				"msg": "(trimming a wick)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 19
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-25"
+			},
+			"#26#": {
+				"role": "villager",
+				"mdlid": "EP555",
+				"msg": "(leaning on the spear)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 20
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-26"
+			},
+			"#27#": {
+				"role": "villager",
+				"mdlid": "EP561",
+				"msg": "(whispering to ancestors who don't answer)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 21
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-27"
+			},
+			"#28#": {
+				"role": "villager",
+				"mdlid": "EP561",
+				"msg": "(polishing a jade disc)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 22
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-28"
+			},
+			"#29#": {
+				"role": "villager",
+				"mdlid": "EP573",
+				"msg": "(humming the Ballad of Matsu Joruri)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 23
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-29"
+			},
+			"#30#": {
+				"role": "villager",
+				"mdlid": "EP542",
+				"msg": "(stringing a hunting bow)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 24
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-30"
+			},
+			"#31#": {
+				"role": "villager",
+				"mdlid": "EP555",
+				"msg": "(watching the road for inspectors)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 25
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-31"
+			},
+			"#32#": {
+				"role": "villager",
+				"mdlid": "EP390",
+				"msg": "(grinding herbs in a bowl)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 26
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-32"
+			},
+			"#33#": {
+				"role": "villager",
+				"mdlid": "EP561",
+				"msg": "(murmuring to the river's dead)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 27
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-33"
+			},
+			"#34#": {
+				"role": "villager",
+				"mdlid": "EP573",
+				"msg": "(clearing a very loud throat)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 28
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-34"
+			},
+			"#35#": {
+				"role": "villager",
+				"mdlid": "EP574",
+				"msg": "(leaning on a long spear)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 29
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-35"
+			},
+			"#36#": {
+				"role": "villager",
+				"mdlid": "EP564",
+				"msg": "(cupping a small flame in both hands)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 30
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-36"
+			},
+			"#37#": {
+				"role": "villager",
+				"mdlid": "EP378",
+				"msg": "(leaning on a long oak staff)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 31
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-37"
+			},
+			"#38#": {
+				"role": "villager",
+				"mdlid": "EP495",
+				"msg": "(knocking snow off a long carrying-pole)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 32
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-38"
+			},
+			"#39#": {
+				"role": "villager",
+				"mdlid": "EP371",
+				"msg": "(reciting the names of the dead under her breath)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 33
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-39"
+			},
+			"#40#": {
+				"role": "villager",
+				"mdlid": "EP394",
+				"msg": "(spinning a long staff idly)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 34
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-40"
+			},
+			"#41#": {
+				"role": "villager",
+				"mdlid": "EP575",
+				"msg": "(praying under her breath for her village)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 35
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-41"
+			},
+			"#42#": {
+				"role": "villager",
+				"mdlid": "EP486",
+				"msg": "(praying into the wind)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 36
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-42"
+			},
+			"#43#": {
+				"role": "villager",
+				"mdlid": "EP378",
+				"msg": "(leaning on an oak staff against the wind)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 37
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-43"
+			},
+			"#44#": {
+				"role": "villager",
+				"mdlid": "EP463",
+				"msg": "(reciting a Tao verse slightly wrong)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 38
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-44"
+			},
+			"#45#": {
+				"role": "villager",
+				"mdlid": "EP390",
+				"msg": "(grinding something that smells of the sea)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 39
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-45"
+			},
+			"#46#": {
+				"role": "villager",
+				"mdlid": "EP614",
+				"msg": "(squinting at the water, counting breaths)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 40
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-46"
+			},
+			"#47#": {
+				"role": "villager",
+				"mdlid": "EP616",
+				"msg": "(humming to a kami who is very, very old)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 41
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-47"
+			},
+			"#48#": {
+				"role": "villager",
+				"mdlid": "EP551",
+				"msg": "(polishing a yari that is already very clean)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 42
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-48"
+			},
+			"#49#": {
+				"role": "villager",
+				"mdlid": "EP564",
+				"msg": "(practising a mudra, and getting it slightly wrong)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 43
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-49"
+			},
+			"#50#": {
+				"role": "villager",
+				"mdlid": "EP393",
+				"msg": "(watching the ridge, very still)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 44
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-50"
+			},
+			"#51#": {
+				"role": "villager",
+				"mdlid": "EP588",
+				"msg": "(rolling bandages, humming a court song)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 45
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-51"
+			},
+			"#52#": {
+				"role": "villager",
+				"mdlid": "EP635",
+				"msg": "(practising a bow nobody will ever see)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 46
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-52"
+			},
+			"#53#": {
+				"role": "villager",
+				"mdlid": "EP636",
+				"msg": "(sweeping the road as he walks, out of habit)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 47
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-53"
+			},
+			"#54#": {
+				"role": "villager",
+				"mdlid": "EP637",
+				"msg": "(sniffing the wind toward the river, frowning)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 48
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-54"
+			},
+			"#55#": {
+				"role": "villager",
+				"mdlid": "EP661",
+				"msg": "(not looking at the horizon where the city is)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 49
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-55"
+			},
+			"#56#": {
+				"role": "villager",
+				"mdlid": "EP662",
+				"msg": "(gone from where she was standing; back again)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 50
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-56"
+			},
+			"#57#": {
+				"role": "villager",
+				"mdlid": "EP673",
+				"msg": "(standing exactly between two things, out of habit)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 51
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-57"
+			},
+			"#58#": {
+				"role": "villager",
+				"mdlid": "EP390",
+				"msg": "(gathering roots from the roadside as she walks)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 52
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-58"
+			},
+			"#59#": {
+				"role": "villager",
+				"mdlid": "EP687",
+				"msg": "(sniffing the air for the smell of rain)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 53
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-59"
+			},
+			"#60#": {
+				"role": "villager",
+				"mdlid": "EP688",
+				"msg": "(checking both swords, then the path, then both swords)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 54
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-60"
+			},
+			"#61#": {
+				"role": "villager",
+				"mdlid": "EP699",
+				"msg": "(testing the air for damp, out of habit)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 55
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-61"
+			},
+			"#62#": {
+				"role": "villager",
+				"mdlid": "EP1100",
+				"msg": "(whistling to a horse that isn't there)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 56
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-62"
+			},
+			"#63#": {
+				"role": "villager",
+				"mdlid": "EP673",
+				"msg": "(standing exactly between two things, out of habit)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 57
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-63"
+			},
+			"#64#": {
+				"role": "villager",
+				"mdlid": "EP390",
+				"msg": "(gathering roots from the roadside as she walks)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 58
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-64"
+			},
+			"#65#": {
+				"role": "villager",
+				"mdlid": "EP1107",
+				"msg": "(humming a different song, on purpose)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 59
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-65"
+			},
+			"#66#": {
+				"role": "villager",
+				"mdlid": "EP1108",
+				"msg": "(warming her hands on nothing)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 60
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-66"
+			},
+			"#67#": {
+				"role": "villager",
+				"mdlid": "EP699",
+				"msg": "(testing the wind for rain)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 61
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-67"
+			},
+			"#68#": {
+				"role": "villager",
+				"mdlid": "EP1112",
+				"msg": "(checking the wax in his ears, again)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 62
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-68"
+			},
+			"#69#": {
+				"role": "villager",
+				"mdlid": "EP1127",
+				"msg": "(checking the fuses, one by one)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 63
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-69"
+			},
+			"#70#": {
+				"role": "villager",
+				"mdlid": "EP1128",
+				"msg": "(watching the sky for wings)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 64
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-70"
+			},
+			"#71#": {
+				"role": "villager",
+				"mdlid": "EP1139",
+				"msg": "(polishing a very old blade, very carefully)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 65
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-71"
+			},
+			"#72#": {
+				"role": "villager",
+				"mdlid": "EP1140",
+				"msg": "(sniffing the air, as if it were soup)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 66
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-72"
+			},
+			"#73#": {
+				"role": "villager",
+				"mdlid": "EP1149",
+				"msg": "(counting arrows, then goats, then arrows)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 67
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-73"
+			},
+			"#74#": {
+				"role": "villager",
+				"mdlid": "EP1150",
+				"msg": "(sifting green dust through her fingers)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 68
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-74"
+			},
+			"#75#": {
+				"role": "villager",
+				"mdlid": "EP1155",
+				"msg": "(squinting up at the smoke on the mountain)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 69
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-75"
+			},
+			"#76#": {
+				"role": "villager",
+				"mdlid": "EP1156",
+				"msg": "(holding up a wet finger, frowning at the smoke)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 70
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-76"
+			},
+			"#77#": {
+				"role": "villager",
+				"mdlid": "EP1161",
+				"msg": "(cracking his knuckles at the forest)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 71
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-77"
+			},
+			"#78#": {
+				"role": "villager",
+				"mdlid": "EP1162",
+				"msg": "(counting arrowheads, lips moving)",
+				"pos": [
+					28,
+					4,
+					6,
+					2
+				],
+				"moveaction": "rt_follow",
+				"movespd": 4,
+				"spawndist": 5,
+				"reqs0": [
+					{
+						"lvar": "G293",
+						"op": "==",
+						"rvar": 72
+					}
+				],
+				"pop": null,
+				"standani": null,
+				"lead": null,
+				"gap": 1.4,
+				"col": 0,
+				"flags": 1,
+				"name": "*villager-78"
+			}
+		},
+		"exitmap": null,
+		"mapshot": null,
+		"mapshotmode": 0,
+		"marker": null,
+		"name": "Cove Fort - the pitchwood",
+		"reverbid": "plain",
+		"rsetid": "rt_hd2d_field",
+		"size": [
+			140,
+			64,
+			74
+		],
+		"vs": 23,
+		"weather": {
+			"type": "cloud",
+			"spd": [
+				0.025,
+				0.015
+			],
+			"cloudcol": 1852471551,
+			"scale": 120,
+			"dens": 0.42,
+			"smooth": 0.22
+		}
+	},
+	"M793": {
+		"bg": {
+			"type": "tex",
+			"tex": "/resource/mapbg/cove_chitosa_sunset.webp"
+		},
+		"bgmid": null,
+		"camwork": {
+			"fovy": 26,
+			"hpb": [
+				0,
+				16,
+				0
+			],
+			"viewport": 4.6,
+			"yoffs": 0.5
+		},
+		"encntrate": 0.0,
+		"encount": null,
+		"event": {
+			"#1000005#": {
+				"col": 5,
+				"flags": 1,
+				"mdl": {
+					"r": [
+						0.0,
+						0.5,
+						0.0,
+						0.5,
+						0.5,
+						0.5
+					]
+				},
+				"mdlid": "CE000",
+				"name": "*autoexec",
+				"page": [
+					{
+						"ani": {
+							"id": "stand"
+						},
+						"cmdblock": [
+							{
+								"cmd": "cmd_camwork",
+								"hpb": [
+									0,
+									0,
+									0
+								],
+								"mkid": 2000001,
+								"motion": 0,
+								"pos": [
+									0,
+									0,
+									0
+								],
+								"restore": 0,
+								"target": 0,
+								"trans": 0,
+								"type": 2,
+								"zoom": 0
+							},
+							{
+								"cmd": "cmd_cammot",
+								"easing": 1,
+								"hpb": [
+									0,
+									0,
+									0
+								],
+								"playtype": 1,
+								"pos": [
+									0.0,
+									0.0,
+									0.0
+								],
+								"time": 1000,
+								"type": 2,
+								"zoom": -2.4
+							},
+							{
+								"cmd": "cmd_stageset",
+								"pid": "menuopenable",
+								"val": false
+							},
+							{
+								"cmd": "cmd_stageset",
+								"pid": "ctrmode",
+								"val": 0
+							}
+						],
+						"memo": "",
+						"moveaction": "stop",
+						"movespd": 4,
+						"pararun": false,
+						"reqs": null,
+						"standani": null,
+						"trigger": 6
+					}
+				],
+				"pos": [
+					64,
+					1,
+					49,
+					2
+				],
+				"role": "custom",
+				"spawndist": 5
+			}
+		},
+		"exitmap": {
+			"dest": null
+		},
+		"mapshot": {
+			"crop": [
+				0,
+				0,
+				0,
+				0
+			]
+		},
+		"mapshotmode": 0,
+		"marker": {
+			"#2000001#": {
+				"col": 1,
+				"flags": 1,
+				"fovy": 27.0,
+				"hpb": [
+					0,
+					7.4,
+					0
+				],
+				"name": "*maincam",
+				"pos": [
+					64,
+					1,
+					64,
+					2
+				],
+				"type": "camera",
+				"viewport": 8.5,
+				"yoffs": 1.25
+			},
+			"#2000002#": {
+				"col": 0,
+				"dir": -100,
+				"flags": 1,
+				"icon": "",
+				"name": "*memberloc",
+				"pos": [
+					71,
+					1,
+					64,
+					2
+				],
+				"type": "route"
+			},
+			"#2000003#": {
+				"col": 0,
+				"dir": 100,
+				"flags": 1,
+				"icon": "",
+				"name": "*enemyloc",
+				"pos": [
+					58,
+					1,
+					64,
+					2
+				],
+				"type": "route"
+			},
+			"#2000004#": {
+				"col": 0,
+				"flags": 1,
+				"fovy": 45,
+				"hpb": [
+					75,
+					12,
+					0
+				],
+				"name": "*victorycam",
+				"pos": [
+					73,
+					1,
+					63,
+					2
+				],
+				"type": "camera",
+				"viewport": 8.0,
+				"yoffs": 1.0
+			}
+		},
+		"name": "Battle: Cove Fort at sunset",
+		"reverbid": "plain",
+		"rsetid": "rt_cove_chitosa_sunset",
+		"size": [
+			128,
+			64,
+			128
+		],
+		"vs": 31,
+		"weather": null
 	}
 }

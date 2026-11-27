@@ -2641,3 +2641,12 @@
 	[269] = ["M759", 30.0, 14.0, "M759", 44.5, 23.5],
 	[270] = ["M760", 30.0, 14.0, "M760", 44.5, 23.5]
 };
+
+// Cove Fort's inland repair crossing. Positions come from the two walk-on events.
+::Rokugan.MK_EXITS.M222.append(["M495",37.5,20.5,2.0,1.1]);
+::Rokugan.MK_LINKS.M222.append("M495");
+::Rokugan.MK_EXITS.M495 <- [["M222",21.0,5.0,2.15,1.05]];
+::Rokugan.MK_LINKS.M495 <- ["M222"];
+::Rokugan.MK_GATES["M222>M495"] <- [[["G1761","==",true]],[["G392","==",true]]];
+::Rokugan.MK_PATH.M495 <- "P101";
+::Rokugan.MK_COVE_REPAIR <- [["M222",15.5,7.0],["M495",24.5,15.5],["M495",38.5,11.5],["M495",45.0,24.0],["M222",37.5,18.5]];

@@ -430,6 +430,10 @@ class RPGStage
 	//	操作キャラの表示を切り替える。位置等は元のもの。
 	//	dbのプレイヤーIDを指定する。未指定の場合は先頭の生きているキャラを表示する。
 	//	
+	function createPlayerObject( pc){
+		return RPG3DObject.create3DObject( pc.data);
+	}
+
 	function changePlayer3D( dataid){
 		local old = player3d;
 		local pc = rpgstat.members.find( @( v) v && !v.isDead());
@@ -447,7 +451,7 @@ class RPGStage
 		//
 		local vis = stat.statmap["playervisible"] ?? true;
 		old?.kill();
-		player3d = RPG3DObject.create3DObject( pc.data);
+		player3d = createPlayerObject( pc);
 		player3d.rpgobj = pc;
 		player3d.mainaction = PlayerMoveAction();
 		player3d.mainaction.setPlayer3D( player3d);

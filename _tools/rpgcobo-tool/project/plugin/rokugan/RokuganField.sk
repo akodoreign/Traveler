@@ -1183,8 +1183,7 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	if( !(mid in this.MASK_MAPS)) return;
 	foreach( m in ::rpgstat.members){
 		if( !m) continue;
-		local eq = m.equips[4];
-		if( !eq || !(eq.dataid in this.MASKS)) continue;
+		if( !this.wearsMask( m.dataid, null)) continue;
 		local n = Math.max( 1, int( m.MAXMP * 0.05));
 		m.MP = Math.max( 0, m.MP - n);
 		printf( "[RT] MASK %S: MP -%d (%d/%d)\n", m.name, n, m.MP, m.MAXMP);
@@ -1195,8 +1194,10 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	local n = 0;
 	foreach( m in ::rpgstat.members){
 		if( !m) continue;
-		local eq = m.equips[4];
-		if( eq && (eq.dataid in this.MASKS) && !(keepGiseiki && eq.dataid == "A150")){ ::rpgstat.addItem( eq); m.setEquip( 4, null); n++; }
+		foreach( slot in (m.dataid == "P105" ? [2, 4, 1] : [4, 1])){
+			local eq = m.equips[slot];
+			if( eq && (eq.dataid in this.MASKS) && !(keepGiseiki && eq.dataid == "A150")){ ::rpgstat.addItem( eq); m.setEquip( slot, null); n++; }
+		}
 	}
 	printf( "[RT] masks removed: %d\n", n);
 	return n;
@@ -1213,8 +1214,12 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 };
 ::Rokugan.wearsMask <- function( pid, aid){				//	gen_maps talk gates: is the leader wearing this mask?
 	local p = ::rpgstat.playermap[pid];
-	local eq = p ? p.equips[4] : null;
-	return eq ? (aid == null ? (eq.dataid in this.MASKS) : eq.dataid == aid) : false;
+	if( !p) return false;
+	foreach( slot in (p.dataid == "P105" ? [2, 4, 1] : [4, 1])){
+		local eq = p.equips[slot];
+		if( eq && (aid == null ? (eq.dataid in this.MASKS) : eq.dataid == aid)) return true;
+	}
+	return false;
 };
 ::RPGStage._rt_launch_mask <- ::RPGStage.launch;
 ::RPGStage.launch <- function( opt = null){
@@ -1371,37 +1376,42 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	else d.evid <- r.evid;
 	::RPGMain.moveMap( { dest = d, wipe = 1, remap = true });
 };
-//	The sea maps (tools/gen_maps.py sea_map; user 2026-11-14: "zoom out from the junk ... the little ship that you sail
-//	around"): on M490-M494 the field leader is drawn as the junk (EP2650), the party followers stay aboard (hidden),
-//	battles show the party as usual. Landing back on a port records where you boarded from (G1399) so the ship's helm
-//	puts you out at that place's pier.
+// Sea charts use one native junk for the field leader. The sea actor keeps
+// the existing ship collision and movement settings. Battles use party actors.
 ::Rokugan.SEA_MAPS <- { M490 = 1, M491 = 1, M492 = 1, M493 = 1, M494 = 1 };
 ::Rokugan.SEA_FROM <- { M220 = 1, M228 = 5, M222 = 2, M223 = 3, M225 = 4 };
-::Rokugan.SEA_SHIP <- "EP2650";
-::Rokugan.seaOn <- false;
-::Rokugan.seaMaking <- false;									//	true only while the leader is rebuilt below
-::RPG3DObject._rt_create_sea <- ::RPG3DObject.create3DObject;
-::RPG3DObject.create3DObject <- function( v){
-	if( ::Rokugan.seaMaking && v && !v["mdl"]) return ::RPG3DObject._rt_create_sea( { mdlid = ::Rokugan.SEA_SHIP });
-	return ::RPG3DObject._rt_create_sea( v);
+
+::Rokugan.SeaJunk <- class extends RPG3DPicture {
+	nativeJunk = null;
+
+	constructor(){
+		super();
+		setPicture( ::rpgres["EP2650"]);
+		setPivot( Vector3D( 0.0, 0.0, 0.0));
+		nativeJunk = SK3DObject( "/resource/native_environment/crane_sea_junk.pm");
+		// The RPG actor's forward axis is -Z. The built hull points along +Z.
+		nativeJunk.rot.setHPB( Math.PI, 0.0, 0.0);
+		addChild( nativeJunk);
+	}
+
+	// The child is the ship's only drawable. Never submit the legacy hull.
+	function render( cam, visiblemask){}
 };
+
+::RPGStage._rt_create_player_sea <- ::RPGStage.createPlayerObject;
+::RPGStage.createPlayerObject <- function( pc){
+	local mid = this["mapid"];
+	if( mid && (mid in ::Rokugan.SEA_MAPS) && !this["battle"]) return ::Rokugan.SeaJunk();
+	return this._rt_create_player_sea( pc);
+};
+
 ::RPGStage._rt_launch_sea <- ::RPGStage.launch;
 ::RPGStage.launch <- function( opt = null){
-	try{
-		local mid = this["mapid"];
-		::Rokugan.seaOn = mid && (mid in ::Rokugan.SEA_MAPS);
-		if( mid && (mid in ::Rokugan.SEA_FROM)) ::rpgvar["G1399"] = ::Rokugan.SEA_FROM[mid];
-	}catch( ex){ printexception( ex); }
-	local r = this._rt_launch_sea( opt);
-	if( ::Rokugan.seaOn){
-		::Rokugan.seaMaking = true;
-		try{ if( this["player3d"]) this.player3d.rpgobj = null; this.changePlayer3D( this.stat.statmap.playermodel); }
-		catch( ex){ printexception( ex); }
-		::Rokugan.seaMaking = false;
-		printf( "[RT] at sea on %S: the junk\n", this.mapid);
-	}
-	return r;
+	local mid = this["mapid"];
+	if( mid && (mid in ::Rokugan.SEA_FROM)) ::rpgvar["G1399"] = ::Rokugan.SEA_FROM[mid];
+	return this._rt_launch_sea( opt);
 };
+
 ::RPGStage._rt_body_resume <- ::RPGStage.updateStageBody;
 ::RPGStage.updateStageBody <- function( dt){
 	this._rt_body_resume( dt);
@@ -1520,8 +1530,7 @@ local CUE_UNIT = 1.0;										//	dt is in milliseconds (a 700 ms wait logs ~716
 	local f = this.pfol, pl = st["player3d"];
 	if( st["battle"] || !pl || !st["scn"]) return;
 	local mem = ::rpgstat.members.filter( @( v) v);
-	//	at sea: the crew stay aboard the junk. (user 2026-11-15: Yosai chased the boat "right after a fight ... while at
-	//	sea") - read the sea from THIS field stage's map: the battle stage's launch had set the global seaOn false)
+	// Keep the crew aboard the junk when returning from a battle.
 	local smid = st["mapid"];
 	if( smid && (smid in ::Rokugan.SEA_MAPS) && length( mem) > 1) mem = [mem[0]];
 	local sig = mem.map( @( v) ("lookSig" in ::Rokugan) ? ::Rokugan.lookSig( v) : v.dataid).join( ",");	//	(+ equipment looks)

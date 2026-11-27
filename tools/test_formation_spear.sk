@@ -1,0 +1,47 @@
+// Run in a stopped test profile with the formation plugin installed.
+import DamageResultType;
+local pc = ::rpgstat.members[0];
+pc.setEquip( 0, ::RPGObject.create( "W100" ) );
+local originalEquip = pc.getWeapon();
+::RPGMain.enterBattle({ mapid="M800", enemies=[{ id="E100", x=0.0, z=0.0 }], losefunc=2 });
+local b = null;
+for( local t=0; t<20000 && !b; t+=100 ){
+	sleep( 100 );
+	b = ::rpgstage["battle"];
+}
+if( !b ) throw Exception( "Battle did not start" );
+for( local t=0; t<10000 && !length( b.enemies ); t+=100 ) sleep( 100 );
+local actor = b.getChara3D( pc ), foe = b.enemies[0];
+if( !actor || !actor["nativeBody"] || !foe ) throw Exception( "Battle actors missing" );
+sleep( 2000 );
+local weapon = actor.nativeWeapon, visible = weapon ? weapon.visible : false;
+local sk = ::Rokugan.makeSpearThrow( pc, ::conf.skill["S592"], true );
+local cmd = SkillCommand( pc, sk, [foe] ), dmg = Damage( cmd, foe );
+dmg.val = 17;
+dmg.result = DMG_HIT;
+local hp = foe.HP;
+newthread().start( @(){
+	foreach( i in [0, 1, 2, 3, 4, 5, 6, 7] ){
+		sleep( 175 );
+		::Rokugan.rtshot( "tmp/rt_shot/formation_spear_%d.raw" % i );
+	}
+});
+cmd.attackAction( dmg );
+cmd.waitFor( pc, foe );
+if( foe.HP != hp - 17 ) throw Exception( "Spear damage was not applied exactly once" );
+if( weapon && weapon.visible != visible ) throw Exception( "Original weapon was not restored" );
+if( pc.getWeapon() != originalEquip ) throw Exception( "Temporary throw changed equipment" );
+::rpgstat.members[0] = ::rpgstat.playermap["P101"];
+::rpgstat.members[4] = pc;
+pc.setEquip( 0, ::RPGObject.create( "W101" ) );
+local equipped = pc.getWeapon(), normal = pc.getAttackSkill();
+if( !normal["rt_spear_throw"] ) throw Exception( "Second-column yari did not become a throw" );
+local normalCmd = SkillCommand( pc, normal, [foe] ), normalDmg = Damage( normalCmd, foe );
+normalDmg.val = 17;
+normalDmg.result = DMG_HIT;
+hp = foe.HP;
+normalCmd.attackAction( normalDmg );
+normalCmd.waitFor( pc, foe );
+if( foe.HP != hp - 17 || pc.getWeapon() != equipped ) throw Exception( "Equipped spear throw failed" );
+if( weapon && weapon.visible != visible ) throw Exception( "Weapon visibility not restored after equipped throw" );
+printf( "[FORMATION SPEAR TEST] combat throw completed and weapon restored\n" );

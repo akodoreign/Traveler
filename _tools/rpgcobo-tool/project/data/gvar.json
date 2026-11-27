@@ -8667,5 +8667,40 @@
 		"defval": false,
 		"name": "Clan game won once: a full game of go with Nishi (Shiro Akodo)",
 		"type": 1
+	},
+	"G1760": {
+		"defval": false,
+		"name": "Crane sea: the first storm damaged the hull",
+		"type": 1
+	},
+	"G1761": {
+		"defval": false,
+		"name": "Crane sea: accepted the shipwright's repair job",
+		"type": 1
+	},
+	"G1762": {
+		"defval": false,
+		"name": "Cove Fort: gathered Straight cedar wood",
+		"type": 1
+	},
+	"G1763": {
+		"defval": false,
+		"name": "Cove Fort: gathered Iron nails",
+		"type": 1
+	},
+	"G1764": {
+		"defval": false,
+		"name": "Cove Fort: gathered Tree tar",
+		"type": 1
+	},
+	"G1765": {
+		"defval": false,
+		"name": "Cove Fort: won Chitosa's protection-money ambush",
+		"type": 1
+	},
+	"G1766": {
+		"defval": false,
+		"name": "Cove Fort: defeated the Pitchback Stag Beetle by the sap trees",
+		"type": 1
 	}
 }

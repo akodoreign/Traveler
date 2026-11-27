@@ -4,9 +4,39 @@
     return body ? body.data["rt_costume"] : null;
 };
 ::Rokugan.canWearCostume <- function( p, d){
-    if( d["rt_costume_head"]) return p.dataid == "P105" && (!p.equips || !p.equips[3] || this.disguise(p) == d.rt_costume_head);
+    if( !p || !d) return false;
+    if( d["rt_costume_head"]) return p.dataid == "P105" && this.disguise(p) == d.rt_costume_head;
     if( d["rt_costume"]) return p.dataid == "P105";
-    return p.dataid != "P105" || !(::conf.type.eqslot[3].eqtypebits & (1 << d.eqtype));
+    if( p.dataid != "P105") return true;
+    local slots = ::conf.type.eqslot, bits = 1 << d.eqtype;
+    if( (slots[2].eqtypebits | slots[3].eqtypebits) & bits) return false;
+    // Two hats use the accessory slot because their effects work as charms.
+    return d != ::rpgdata["A143"] && d != ::rpgdata["A160"];
+};
+::Rokugan.isAdventureMask <- function( id){
+    return id && ((id in this.MASKS) || id == "A114" || id == "A151" || id == "A174" || id == "A197");
+};
+::Rokugan.equippedAdventureMask <- function( p){
+    foreach( slot in (p.dataid == "P105" ? [2, 4, 1] : [4, 1])){
+        local mask = p.equips[slot];
+        if( mask && this.isAdventureMask(mask.dataid)) return mask;
+    }
+    return null;
+};
+::Rokugan.migrateMitsueMasks <- function( p){
+    local stat = ::rpgstat;
+    foreach( slot in [4, 1]){
+        local mask = p.equips[slot];
+        if( !mask || !this.isAdventureMask(mask.dataid)) continue;
+        p.setEquip(slot,null);
+        local current = p.equips[2];
+        if( current && this.isAdventureMask(current.dataid)){
+            stat.addItem(mask);
+            continue;
+        }
+        if( current) stat.addItem(current);
+        foreach( displaced in p.setEquip(2,mask) || []) stat.addItem(displaced);
+    }
 };
 ::Rokugan.refreshDisguise <- function( p){
     local stage = ::rpgstage;
@@ -18,18 +48,18 @@
     }
 };
 ::Rokugan.fitDisguiseHead <- function( p, role){
-    local old = p.equips[2], stat = ::rpgstat;
+    local current = p.equips[2], stat = ::rpgstat;
     if( role != "shinobi"){
-        if( old){ stat.addItem(old); p.setEquip(2,null); }
+        if( current && current.dataid == "A188"){
+            stat.addItem(current);
+            p.setEquip(2,null);
+        }
         return;
     }
-    if( old && old.dataid == "A188") return;
-    local mask = stat.armors.find(@( a) a && a.dataid == "A188");
-    if( mask){ stat.swapItem(mask,old); p.setEquip(2,mask); }
-    else{
-        if( old) stat.addItem(old);
-        p.setEquip(2,RPGObject.create("A188"));
-    }
+    if( current) return;
+    local mask = stat.armors.find(@( item) item && item.dataid == "A188");
+    if( mask) stat.swapItem(mask,null);
+    p.setEquip(2,mask || RPGObject.create("A188"));
 };
 ::Rokugan.takeDisguise <- function( base, improved){
     local stat = ::rpgstat, p = stat.playermap["P105"];
@@ -62,11 +92,24 @@
 };
 ::Rokugan.restoreOldWardrobe <- function(){
     local stat = ::rpgstat, p = stat.playermap["P105"];
-    if( !p || !stat.members.contains( p) || p.etc["wardrobeReady"]) return;
+    if( !p || !stat.members.contains( p)) return;
+    if( !p.etc["wardrobeMaskLock"]){
+        p.etc.wardrobeMaskLock <- true;
+        foreach( slot, item in p.equips){
+            if( item && !this.canWearCostume(p, item.data)){
+                stat.addItem(item);
+                p.setEquip(slot, null);
+            }
+        }
+    }
+    this.migrateMitsueMasks(p);
+    if( p.etc["wardrobeReady"]) return;
     p.etc.wardrobeReady <- true;
     if( this.disguise( p)){ if( this.disguise(p) == "shinobi" && !p.equips[2]) this.fitDisguiseHead(p,"shinobi"); return; }
-    local old = p.equips[4];
-    if( old && old.dataid == "A174") p.setEquip( 4, null);
+    foreach( slot in [4, 1]){
+        local old = p.equips[slot];
+        if( old && old.dataid == "A174") p.setEquip( slot, null);
+    }
     this.takeDisguise( "A180", "A184");
     if( ::rpgvar["G839"]) this.takeDisguise( "A181", "A185");
     if( ::rpgvar["G849"]) this.takeDisguise( "A182", "A186");

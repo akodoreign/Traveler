@@ -24,6 +24,7 @@ class RokuganEnvironmentKit {
     windCalmed = false;
     leafDrift = null;
     portcullises = null;
+    storyPlacements = null;
 
     constructor(target, def) {
         stage = target;
@@ -46,6 +47,13 @@ class RokuganEnvironmentKit {
         windStreaks = [];
         leafDrift = [];
         portcullises = [];
+        storyPlacements = [];
+        foreach(row in def["storyPlacements"] || []){
+            local pose=row.pose;
+            local object=add(pose[0],pose[1],pose[2],pose[3],pose[4],pose[5]);
+            storyPlacements.append([object,row.reqs,row["unless"],null]);
+        }
+        syncStoryPlacements();
         local gateRows=def["portcullises"] || [];
         local gateBitmap=length(gateRows) ? stage.bw.bmp : null;
         if(length(gateRows) && !gateBitmap)
@@ -247,6 +255,16 @@ class RokuganEnvironmentKit {
         }
     }
 
+    function syncStoryPlacements() {
+        foreach(entry in storyPlacements){
+            local visible=!!::reqchk(entry[1]);
+            if(entry[2]) visible=!visible;
+            if(entry[3]==visible) continue;
+            entry[0].setVisible(visible);
+            entry[3]=visible;
+        }
+    }
+
     function syncPortcullises(ms) {
         foreach(entry in portcullises){
             local row=entry[1], portal=stage.getEvent(row.event);
@@ -303,6 +321,7 @@ class RokuganEnvironmentKit {
         syncWind();
         updateLeaves();
         syncPortcullises(accumulator);
+        syncStoryPlacements();
         accumulator = 0;
         if(water){
             local frame = int(seconds*length(waterTextures)/waterSeconds) % length(waterTextures);

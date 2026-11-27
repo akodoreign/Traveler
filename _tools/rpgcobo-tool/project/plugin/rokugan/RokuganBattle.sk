@@ -339,8 +339,28 @@ local log( s){ if( LOG) printf( "[RT] %S\n", s); }
 		return null;
 	}
 
+	function coverChitosa( cmd){
+		local b = ::rpgstage["battle"];
+		if( !b || !cmd.skill || cmd.skill["skilltype"] != "attack" ||
+		    !cmd.dsts || length(cmd.dsts) != 1 || cmd.dsts[0].dataid != "E953") return;
+		foreach( guard in b.enemies){
+			if( !guard || !guard.data["rt_cove_yojimbo"] || guard.isDefeated() ||
+			    !guard.isCommandable() || guard.hasCondition(SUKI_COND)) continue;
+			local st = state(guard);
+			if( st["coveCoverTurn"] == b.turn) continue;
+			st.coveCoverTurn <- b.turn;
+			cmd.dsts = [guard];
+			local actor = b.getChara3D(guard);
+			if( actor) actor.anime2({id="guard"});
+			pop(guard, "A SINGLE LIFE", 0xffd292ff);
+			log("%S intercepts %S's attack for Chitosa (A Single Life)" % (guard.name, cmd.src.name));
+			return;
+		}
+	}
+
 	function onPreCommand( cmd){
 		local pc = cmd.src;
+		if( pc instanceof ::RPGPlayer) coverChitosa(cmd);
 		if( pc instanceof ::RPGEnemy){
 			applyTaunt( cmd);
 			local b = ::rpgstage["battle"];

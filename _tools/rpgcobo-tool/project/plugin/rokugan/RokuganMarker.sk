@@ -66,6 +66,14 @@
 	//	(whose road: the first traveler in the party - Formation can put a companion in slot 1)
 	local pid = ("journalLead" in this) ? this.journalLead() : null;
 	if( !pid){ local lead = ::rpgstat.members.find( @( v) v); pid = lead ? lead.dataid : null; }
+	if( pid == "P101" && ::rpgvar["G1760"] && !::rpgvar["G392"] && ("M222" in road.dist)){
+		local targets = this.MK_COVE_REPAIR;
+		if( !::rpgvar["G1761"]) return targets[0];
+		foreach( i, flag in ["G1762","G1763","G1764"]){
+			if( !::rpgvar[flag]) return targets[i+1];
+		}
+		return targets[::rpgvar["G1765"] ? 0 : 4];
+	}
 	local best = null, bs = -1, bd = 9999;
 	foreach( pass in [0, 1]){											//	(an "opener" - what opens a shut door on
 	if( best) break;													//	the way - only when no story beat is due)

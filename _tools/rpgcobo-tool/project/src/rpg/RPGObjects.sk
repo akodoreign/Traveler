@@ -1472,7 +1472,7 @@ class RPGState extends Serializable
 			}
 		}else{
 			foreach( i, v in list){
-				if( v.dataid == itemid){
+				if( v && v.dataid == itemid){
 					list[i] = null;
 					if( --n <= 0) break;
 				}
