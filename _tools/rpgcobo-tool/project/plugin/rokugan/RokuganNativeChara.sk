@@ -680,6 +680,13 @@ local nativePicture = RokuganNativePicture;
 
 class RokuganNativeFoe extends RokuganNativePicture
 {
+	function startBattleStance(){
+		super.startBattleStance();
+		// These models face the party but show their backs to the battle camera.
+		if( nativeKey == "EP101" || nativeKey == "EP120" || nativeKey == "EP170" || nativeKey == "EP440")
+			nativeBody.rot.setHPB( Math.HPI * 1.5, 0.0, 0.0);
+	}
+
 	function setFoe( pc, key, spec, path, castKey=null){
 		battleIdleClip = spec["human"] ? "fight" : "stand";
 		creatureReady = !spec["human"];

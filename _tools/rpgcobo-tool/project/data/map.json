@@ -458859,7 +458859,7 @@
 		"size": [
 			132,
 			64,
-			67
+			80
 		],
 		"vs": 23,
 		"weather": {
@@ -870585,8 +870585,8 @@
 				"role": "custom",
 				"mdlid": "CE000",
 				"pos": [
-					43,
-					10,
+					42,
+					3,
 					26,
 					2
 				],
@@ -873103,7 +873103,7 @@
 		"reverbid": "plain",
 		"rsetid": "rt_hd2d_cave",
 		"size": [
-			164,
+			226,
 			64,
 			60
 		],
@@ -876108,7 +876108,7 @@
 		"reverbid": "plain",
 		"rsetid": "rt_hd2d_cave",
 		"size": [
-			164,
+			226,
 			64,
 			60
 		],
@@ -879594,7 +879594,7 @@
 		"reverbid": "plain",
 		"rsetid": "rt_hd2d_cave",
 		"size": [
-			154,
+			216,
 			64,
 			82
 		],

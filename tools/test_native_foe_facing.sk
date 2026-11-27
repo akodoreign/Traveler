@@ -1,0 +1,25 @@
+// Run in a battle containing E102, E106, E302, E483 and E250.
+local battle = ::rpgstage["battle"];
+if( !battle) throw "Facing fixture requires a battle";
+local corrected = ["EP101", "EP120", "EP440", "EP170"];
+local seen = {};
+foreach( enemy in battle.enemies){
+	local actor = battle.getChara3D( enemy);
+	local key = enemy.data.mdlid;
+	local expected = corrected.contains( key) ? Math.HPI * 1.5 : Math.HPI;
+	local actualHPB = [0.0, 0.0, 0.0], expectedHPB = [0.0, 0.0, 0.0];
+	actor.nativeBody.rot.getHPB( actualHPB);
+	Quaternion().setHPB( expected, 0.0, 0.0).getHPB( expectedHPB);
+	if( Math.abs( actualHPB[0] - expectedHPB[0]) > 0.001) throw "Wrong battle facing: " .. key;
+	if( !actor.nativeBody.motion || !actor.anime2( #{id="slash1"}) || !actor.tgtview)
+		throw "Foe cannot animate or be targeted: " .. key;
+	seen[key] <- true;
+}
+foreach( key in ["EP101", "EP120", "EP440", "EP170", "EP436"])
+	if( !seen[key]) throw "Missing facing fixture: " .. key;
+local field = ::Rokugan.createNativeFoe( {mdlid="EP101"} );
+local fieldHPB = [0.0, 0.0, 0.0], defaultHPB = [0.0, 0.0, 0.0];
+field.nativeBody.rot.getHPB( fieldHPB);
+Quaternion().setHPB( Math.HPI, 0.0, 0.0).getHPB( defaultHPB);
+if( Math.abs( fieldHPB[0] - defaultHPB[0]) > 0.001) throw "Field facing changed";
+printf( "[NATIVE FOE FACING] Battle angles, animations, targets and field facing passed\n");

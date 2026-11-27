@@ -24891,6 +24891,142 @@ def rebuild_nezumi_nests(m, ev):
     m.blk[floor] = np.where(lanes[floor], DIRT, CAVE_FLOOR)
 
 
+def rebuild_nezumi_painted_eggs(m, ev):
+    if (m.w, m.d) != (164, 60) or m.hgt[40,130] != 2:
+        raise ValueError("The painted Egg Cave baseline changed; review its expansion")
+    if ev.ev["#10#"]["pos"] != [43, 10, 26, 2] or m.hgt[26,42] != 2:
+        raise ValueError("The cracked wall interaction changed; review its approach")
+    ev.ev["#10#"]["pos"] = [42, 3, 26, 2]
+    old_width = m.w
+    m.w += 62
+    m.hgt = np.pad(m.hgt, ((0, 0), (0, m.w-old_width)), constant_values=16)
+    m.blk = np.pad(m.blk, ((0, 0), (0, m.w-old_width)), constant_values=CAVE_WALL)
+    walls = m.hgt > 3
+    m.hgt[walls] = np.maximum(m.hgt[walls], 16)
+    zz, xx = np.indices(m.hgt.shape)
+    lanes = np.zeros(m.hgt.shape, dtype=bool)
+    routes = (
+        ((130,40),(143,40),(154,35),(165,28),(178,26),(191,30),(198,38)),
+        ((198,38),(190,46),(176,48),(162,44),(154,35)),
+        ((178,26),(183,17),(193,13),(204,17)),
+    )
+    for path in routes:
+        for (ax,az),(bx,bz) in zip(path,path[1:]):
+            dx,dz = bx-ax,bz-az
+            t = np.clip(((xx-ax)*dx+(zz-az)*dz)/(dx*dx+dz*dz), 0., 1.)
+            lanes |= (xx-ax-t*dx)**2 + (zz-az-t*dz)**2 <= 4.5**2
+    floor = lanes.copy()
+    for x,z,rx,rz in ((153,36,9,7),(176,27,11,8),(196,38,10,8),
+                      (177,46,12,8),(201,16,9,7)):
+        wobble = .06*np.sin(xx*.29+zz*.48) + .04*np.cos(xx*.51-zz*.19)
+        floor |= ((xx-x)/rx)**2 + ((zz-z)/rz)**2 < 1.+wobble
+    floor &= (xx >= 130) & ~((xx < old_width) & (m.hgt <= 3))
+    m.hgt[floor] = 2
+    m.blk[floor] = np.where(lanes[floor], DIRT, CAVE_FLOOR)
+
+
+def rebuild_nezumi_armour(m, ev):
+    if (m.w, m.d) != (164, 60) or m.hgt[40,130] != 2:
+        raise ValueError("The armour Egg Cave baseline changed; review its expansion")
+    old_width = m.w
+    m.w += 62
+    m.hgt = np.pad(m.hgt, ((0, 0), (0, m.w-old_width)), constant_values=16)
+    m.blk = np.pad(m.blk, ((0, 0), (0, m.w-old_width)), constant_values=CAVE_WALL)
+    walls = m.hgt > 3
+    m.hgt[walls] = np.maximum(m.hgt[walls], 16)
+    zz, xx = np.indices(m.hgt.shape)
+    lanes = np.zeros(m.hgt.shape, dtype=bool)
+    routes = (
+        ((130,40),(144,40),(157,39),(170,33),(184,31),(196,23),(205,21)),
+        ((157,39),(166,47),(179,49),(192,45),(201,36),(196,23)),
+        ((170,33),(172,21),(179,13),(191,12),(205,21)),
+    )
+    for path in routes:
+        for (ax,az),(bx,bz) in zip(path,path[1:]):
+            dx,dz = bx-ax,bz-az
+            t = np.clip(((xx-ax)*dx+(zz-az)*dz)/(dx*dx+dz*dz), 0., 1.)
+            lanes |= (xx-ax-t*dx)**2 + (zz-az-t*dz)**2 <= 4.5**2
+    floor = lanes.copy()
+    for x,z,rx,rz in ((153,40,9,7),(171,32,10,8),(196,23,10,8),
+                      (179,47,11,8),(185,14,10,7)):
+        wobble = .06*np.sin(xx*.29+zz*.48) + .04*np.cos(xx*.51-zz*.19)
+        floor |= ((xx-x)/rx)**2 + ((zz-z)/rz)**2 < 1.+wobble
+    floor &= (xx >= 130) & ~((xx < old_width) & (m.hgt <= 3))
+    m.hgt[floor] = 2
+    m.blk[floor] = np.where(lanes[floor], DIRT, CAVE_FLOOR)
+
+
+def rebuild_nezumi_altar(m, ev):
+    if (m.w, m.d) != (154, 82) or m.hgt[36,107] != 2:
+        raise ValueError("The altar Egg Cave baseline changed; review its expansion")
+    old_width = m.w
+    m.w += 62
+    m.hgt = np.pad(m.hgt, ((0, 0), (0, m.w-old_width)), constant_values=16)
+    m.blk = np.pad(m.blk, ((0, 0), (0, m.w-old_width)), constant_values=CAVE_WALL)
+    walls = m.hgt > 3
+    m.hgt[walls] = np.maximum(m.hgt[walls], 16)
+    zz, xx = np.indices(m.hgt.shape)
+    lanes = np.zeros(m.hgt.shape, dtype=bool)
+    routes = (
+        ((107,36),(120,36),(135,31),(150,28),(165,32),(179,41),(195,40)),
+        ((150,28),(155,17),(170,13),(186,19),(195,28),(195,40)),
+        ((165,32),(164,48),(174,58),(190,61),(201,51),(195,40)),
+    )
+    for path in routes:
+        for (ax,az),(bx,bz) in zip(path,path[1:]):
+            dx,dz = bx-ax,bz-az
+            t = np.clip(((xx-ax)*dx+(zz-az)*dz)/(dx*dx+dz*dz), 0., 1.)
+            lanes |= (xx-ax-t*dx)**2 + (zz-az-t*dz)**2 <= 4.5**2
+    floor = lanes.copy()
+    for x,z,rx,rz in ((130,33,10,7),(151,28,11,8),(173,16,11,8),
+                      (185,40,12,8),(181,58,12,9),(199,51,9,7)):
+        wobble = .06*np.sin(xx*.29+zz*.48) + .04*np.cos(xx*.51-zz*.19)
+        floor |= ((xx-x)/rx)**2 + ((zz-z)/rz)**2 < 1.+wobble
+    floor &= (xx >= 107) & ~((xx < old_width) & (m.hgt <= 3))
+    m.hgt[floor] = 2
+    m.blk[floor] = np.where(lanes[floor], DIRT, CAVE_FLOOR)
+
+
+def rebuild_harbour_tunnels(m, ev):
+    depth = 80
+    zz, xx = np.indices((depth, m.w))
+    route = np.zeros((depth, m.w), dtype=bool)
+    segments = (
+        ((29,21),(43,21),(59,19),(80,22),(103,19),(119,24),(130,33)),
+        ((59,19),(63,13),(67,8)),
+        ((43,21),(44,38),(64,44)),
+    )
+    for path in segments:
+        for (ax,az),(bx,bz) in zip(path,path[1:]):
+            dx,dz=bx-ax,bz-az
+            t=np.clip(((xx-ax)*dx+(zz-az)*dz)/(dx*dx+dz*dz),0.,1.)
+            route |= (xx-ax-t*dx)**2+(zz-az-t*dz)**2 <= 6.5**2
+    floor=route.copy()
+    for x,z,rx,rz in ((35,21,13,12),(58,19,16,16),(67,8,9,7),
+                       (80,22,19,17),(103,19,16,14),(121,28,12,10),
+                       (52,31,8,7),(86,34,8.5,7.5)):
+        irregular=.07*np.sin(xx*.45+zz*.66)+.04*np.cos(xx*.6-zz*.35)
+        floor |= ((xx-x)/rx)**2+((zz-z)/rz)**2 < 1.+irregular
+    important=np.zeros_like(floor)
+    for key in ("#1#","#2#","#3#","#4#","#5#","#6#","#7#","#8#","#81#","#82#","#83#"):
+        x,y,z,d=ev.ev[key]["pos"]
+        assert y==3, (key,y)
+        important |= (xx-x)**2+(zz-z)**2 <= 5**2
+    floor |= important
+    pools=(((xx-52.)/5.5)**2+((zz-31.)/4.)**2 < 1.)
+    pools |= (((xx-86.)/6.)**2+((zz-34.)/4.5)**2 < 1.)
+    pools &= floor & ~route & ~important
+    height=np.full((depth, m.w), 16, dtype=np.int32)
+    m.d=depth
+    m.hgt=np.where(floor,2,height).astype(np.int32)
+    m.blk=np.where(floor,CAVE_FLOOR,STONE).astype(np.int32)
+    m.blk[route]=DIRT
+    m.blk[pools]=WATER
+    m.hgt[pools]=1
+    m.objs=[]
+    m.walls=[]
+
+
 def make(i):
     if not DOOR_EV or ("M141", "castle") not in DOOR_EV:   # portals reference other maps' door ids
         wall_garrison()
@@ -25138,6 +25274,14 @@ def make(i):
         rebuild_under_dojo(m, ev)
     if i in ('M130',):
         rebuild_nezumi_nests(m, ev)
+    if i in ('M131',):
+        rebuild_nezumi_painted_eggs(m, ev)
+    if i in ('M132',):
+        rebuild_nezumi_armour(m, ev)
+    if i in ('M133',):
+        rebuild_nezumi_altar(m, ev)
+    if i in ('M340',):
+        rebuild_harbour_tunnels(m, ev)
     return m, ev
 
 
