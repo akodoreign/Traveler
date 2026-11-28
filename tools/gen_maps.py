@@ -25071,6 +25071,30 @@ def raise_regional_cave_walls(m):
     m.hgt[m.blk == STONE] = np.maximum(m.hgt[m.blk == STONE], 16)
 
 
+"""Fit the Road West path to its original waypoints and portal thresholds."""
+
+def kakita_road_center(x):
+    if x < 24:
+        t = x / 24
+    elif x > 147:
+        t = (171 - x) / 24
+    else:
+        return 19
+    return round(28 - 9 * t*t * (3 - 2*t))
+
+
+def fit_kakita_road(gm, world):
+    # The studio road was straight even where its edge portals were set back.
+    # Keep both event volumes and join their centers with a traversable grade.
+    road = world.blk == gm.ROAD
+    world.blk[road] = gm.GRASS
+    for x in range(world.w):
+        z = kakita_road_center(x)
+        world.rect(x, z-2, 1, 5, gm.ROAD, 3)
+        for edge in (z-3,z+3):
+            world.hgt[edge, x] = min(4, int(world.hgt[edge, x]))
+
+
 def make(i):
     if not DOOR_EV or ("M141", "castle") not in DOOR_EV:   # portals reference other maps' door ids
         wall_garrison()
@@ -25330,6 +25354,8 @@ def make(i):
         rebuild_mieko_cellar(m, ev)
     if i in ("M482", "M483", "M484", "M485"):
         raise_regional_cave_walls(m)
+    if i == "M201":
+        fit_kakita_road(sys.modules[__name__], m)
     return m, ev
 
 

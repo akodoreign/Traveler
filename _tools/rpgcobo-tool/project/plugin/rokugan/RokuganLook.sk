@@ -262,6 +262,7 @@ local isFieldNpc = function( actor, data){	//	("local function" does not compile
 		}
 	}
 	actor.setFieldNpcScale( FIELD_NPC_SCALE);
+	if( actor["enableFieldFidgets"] ) actor.enableFieldFidgets();
 	if( storyLook && actor["nativeBodyTemplate"] && ::getResource( sideStoryBadgePath))
 		addSideStoryBadge( actor);
 	return actor;

@@ -9,6 +9,10 @@ local fidgetRoot = ROOT .. "fidget/";
 local fidgetIndex = ::getResource( fidgetRoot .. "index.json");
 local fidgetData = fidgetIndex ? decodeJSON( fidgetIndex.loadData()) : null;
 local fidgetRandom = Random( skGetTime() ^ 5330899);
+local fieldFidgetRoot = ROOT .. "field_fidget/";
+local fieldFidgetIndex = ::getResource( fieldFidgetRoot .. "index.json");
+local fieldFidgetData = fieldFidgetIndex ? decodeJSON( fieldFidgetIndex.loadData()) : null;
+if( !fieldFidgetData ) printf( "[RT] Missing field fidget metadata: %Sindex.json\n", fieldFidgetRoot );
 local foeFidgetRoot = "/resource/native_foe/fidget/";
 local foeFidgetIndex = ::getResource( foeFidgetRoot .. "index.json");
 local foeFidgetFamilies = foeFidgetIndex ? decodeJSON( foeFidgetIndex.loadData()) : {};
@@ -147,6 +151,114 @@ class RokuganNativePicture extends RPG3DPicture
 	battleReadyMotion = null;
 	battleIdleClip = "aimw";
 	inBattleStance = false;
+	fieldFidget = null;
+
+	function enableFieldFidgets(){
+		if( !nativeBodyTemplate || !fieldFidgetData ) return;
+		fieldFidget = { delay=fidgetRandom( 20000.0, 60000.0), layer=null, motion=null,
+			phase=null, fan=null, hold=0.0, last=null, idle="stand" };
+	}
+
+	function fieldFidgetClip( name, loop=false ){
+		local state = fieldFidget, clip = fieldFidgetData.clips[name];
+		if( !clip ){
+			printf( "[RT] Missing field fidget clip %S for %S\n", name, nativeKey );
+			return false;
+		}
+		animemap["_field_fidget"] <- { st=clip.st, en=clip.en, spd=clip.spd, loop=loop, replay=true };
+		local layer = anime2( #{id="_field_fidget"} );
+		if( !layer ) return false;
+		state.phase = name;
+		state.layer = layer;
+		return true;
+	}
+
+	function finishFieldFidget(){
+		if( !fieldFidget ) return;
+		if( fieldFidget.fan ) fieldFidget.fan.setVisible( false );
+		fieldFidget.layer = fieldFidget.phase = null;
+		fieldFidget.delay = fidgetRandom( 30000.0, 90000.0 );
+	}
+
+	function updateFieldFidget( dt ){
+		local state = fieldFidget;
+		if( !state || !event || !::rpgstage ) return;
+		local stage = ::rpgstage, page = event["page"];
+		local idle = page && (page["standani"] || event.data["standani"]);
+		local blocked = stage["battle"] || stage.mainevent || !visible ||
+			(idle && !["stand", "stand_f", "stand_b"].contains( idle.id )) ||
+			(mainaction && mainaction["mvfunc"]);
+		local layer = animlayers.layers[0];
+		if( state.layer ){
+			if( blocked || layer != state.layer ){
+				local restore = layer == state.layer;
+				finishFieldFidget();
+				if( restore ) anime2( #{id=state.idle} );
+				return;
+			}
+			if( state.fan ){
+				local clip = fieldFidgetData.clips[state.phase];
+				local progress = (layer.frametime - clip.st) / (clip.en - clip.st);
+				local shown = state.phase == "fan_hold" ||
+					(state.phase == "fan_up" && progress >= .35) ||
+					(state.phase == "fan_down" && progress < .65);
+				state.fan.setVisible( visible && shown );
+			}
+			if( state.phase == "fan_hold" ){
+				state.hold -= dt;
+				if( state.hold <= 0.0 && !fieldFidgetClip( "fan_down" ) ){
+					finishFieldFidget();
+					anime2( #{id=state.idle} );
+				}
+			}else if( !layer.animating ){
+				if( state.phase == "fan_up" ){
+					state.hold = fidgetRandom( 120000.0, 180000.0 );
+					if( !fieldFidgetClip( "fan_hold", true ) ){
+						finishFieldFidget();
+						anime2( #{id=state.idle} );
+					}
+				}else{
+					finishFieldFidget();
+					anime2( #{id=state.idle} );
+				}
+			}
+			return;
+		}
+		if( blocked || !layer || !["stand", "stand_f", "stand_b"].contains( layer["id"] ) ) return;
+		state.delay -= dt;
+		if( state.delay > 0.0 ) return;
+		if( !state.motion ){
+			local resource = ::getResource( fieldFidgetRoot .. "field.mot" );
+			if( !resource ){
+				printf( "[RT] Missing field fidget motion for %S\n", nativeKey );
+				fieldFidget = null;
+				return;
+			}
+			state.motion = ::getMotionData( resource );
+			if( !state.motion ){
+				printf( "[RT] Failed to load field fidget motion for %S\n", nativeKey );
+				fieldFidget = null;
+				return;
+			}
+		}
+		local choices = ["look", "shoulders", "sleeve", "hands"];
+		if( nativeBodyTemplate.indexOf( "female" ) >= 0 ) choices .. "fan_up";
+		else if( nativeBodyTemplate.indexOf( "male" ) >= 0 ) choices .. "belt";
+		if( state.last ) choices = choices.filter( @( name) name != state.last );
+		local name = choices[fidgetRandom( 0, length( choices ))];
+		if( name == "fan_up" && !state.fan ){
+			if( !::getResource( fieldFidgetRoot .. "fan.pm" ) || !::getResource( fieldFidgetRoot .. "fan.mdl" ) ){
+				printf( "[RT] Missing field fidget fan for %S\n", nativeKey );
+				fieldFidget = null;
+				return;
+			}
+			state.fan = addNativePart( fieldFidgetRoot .. "fan" );
+			state.fan.setVisible( false );
+		}
+		state.last = name;
+		state.idle = layer.id;
+		if( !fieldFidgetClip( name ) ) finishFieldFidget();
+	}
 
 	function startBattleStance(){
 		inBattleStance = true;
@@ -221,7 +333,7 @@ class RokuganNativePicture extends RPG3DPicture
 		view.animap = spec.animap;
 		setPicture( view);
 		local person = modularPerson( key);
-		local skinShade = (key == "trav_sayo" || key == "trav_mitsue") ? 0 : 3;
+		local skinShade = (key == "trav_sayo" || key == "trav_mitsue" || key == "trav_rensei" || key == "trav_gendo" || key == "side_yosai") ? 0 : 3;
 		nativeBody = nativeLighting( SK3DObject( person ? HUMAN .. key .. ".pm" : ROOT .. key .. "_body.pm"), skinShade);
 		nativeBody.animlayers = null;
 		if( person){
@@ -542,6 +654,8 @@ class RokuganNativePicture extends RPG3DPicture
 			motion = ::getMotionData( ::getResource( kakitaVoidPath));
 		}else if( request.id == "_battle_fidget"){
 			motion = fidgetMotion;
+		}else if( request.id == "_field_fidget" && fieldFidget){
+			motion = fieldFidget.motion;
 		}else if( battleReadyMotion && request.id == battleIdleClip){
 			motion = battleReadyMotion;
 			request = clone request;
@@ -550,6 +664,7 @@ class RokuganNativePicture extends RPG3DPicture
 		local layers = animlayers.layers, previous = layers[0], fading = layers[1];
 		local layer = super.anime2( request);
 		if( !layer || layer == previous) return layer;
+		if( fieldFidget && fieldFidget.layer && request.id != "_field_fidget" ) finishFieldFidget();
 		nativeRiseLayer = request.id == "_defeat_rise" ? layer : null;
 		if( fidgetLayer && layer != fidgetLayer) finishBattleFidget();
 		if( motion) layer.partsmap = motion.partsmap;
@@ -637,6 +752,7 @@ class RokuganNativePicture extends RPG3DPicture
 			if( rpgobj && !rpgobj.isDead()) anime2( #{id="stand"});
 		}
 		updateBattleFidget( dt);
+		updateFieldFidget( dt);
 		return super.update( dt, pmatdirty);
 	}
 
@@ -662,6 +778,11 @@ class RokuganNativePicture extends RPG3DPicture
 		if( nativeDecals) foreach( decal in nativeDecals) decal.setVisible( b);
 		if( nativeOrnaments) foreach( piece in nativeOrnaments) piece.setVisible( b);
 		if( fidgetSpec || fidgetProps) setBattleFidgetProps( fidgetLayer ? (fidgetLayer.frametime - fidgetSpec.st) / (fidgetSpec.en - fidgetSpec.st) : -1.0);
+		if( !b && fieldFidget && fieldFidget.layer ){
+			local restore = animlayers.layers[0] == fieldFidget.layer;
+			finishFieldFidget();
+			if( restore ) anime2( #{id=fieldFidget.idle} );
+		}else if( !b && fieldFidget && fieldFidget.fan ) fieldFidget.fan.setVisible( false );
 	}
 }
 

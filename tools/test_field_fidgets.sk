@@ -1,0 +1,73 @@
+// Run with -map M315 and -rtbot "wait,1500|evalf,PATH" in a test profile.
+local actors = {};
+foreach( e in ::rpgstage.events ){
+	local actor = e["rp3d"];
+	if( actor && actor["fieldFidget"] ) actors[actor.nativeBodyTemplate] <- actor;
+}
+foreach( body in ["shared_male", "shared_female"] ){
+	if( !(body in actors) ) throw Exception( "Missing test NPC: " .. body );
+	local actor = actors[body], state = actor.fieldFidget, seen = {}, previous = null;
+	for( local i = 0; i < 80; i++ ){
+		actor.anime2( #{id="stand"} );
+		state.delay = 0;
+		actor.updateFieldFidget( 1.0 );
+		if( !state.layer ) throw Exception( "Gesture did not start: " .. body );
+		if( state.last == previous ) throw Exception( "Gesture immediately repeated: " .. body );
+		previous = state.last;
+		seen[state.last] <- true;
+		actor.anime2( #{id="walk"} );
+		if( state.layer || state.phase || (state.fan && state.fan.visible) )
+			throw Exception( "Movement did not interrupt gesture: " .. body );
+	}
+	foreach( id in ["look", "shoulders", "sleeve", "hands", body == "shared_female" ? "fan_up" : "belt"] ){
+		if( !(id in seen) ) throw Exception( "Gesture was not selected: " .. id );
+	}
+	if( (body == "shared_female" && "belt" in seen) || (body == "shared_male" && "fan_up" in seen) )
+		throw Exception( "Wrong gesture pool: " .. body );
+	local page = actor.event.page, oldStand = page["standani"];
+	foreach( id in ["stand", "stand_f", "stand_b"] ){
+		page.standani <- #{id=id};
+		actor.anime2( #{id=id} );
+		local previousIdle = actor.animlayers.layers[0].id;
+		state.delay = 0;
+		actor.updateFieldFidget( 1.0 );
+		if( !state.layer ) throw Exception( "Idle variant did not start gesture: " .. id );
+		actor.setVisible( false );
+		if( actor.animlayers.layers[0].id != previousIdle )
+			throw Exception( "Gesture did not restore idle variant: " .. id );
+		actor.setVisible( true );
+		state.delay = 0;
+		actor.updateFieldFidget( 1.0 );
+		if( !state.layer || !actor.fieldFidgetClip( "look" ) )
+			throw Exception( "Could not start completion probe: " .. id );
+		state.layer.animating = false;
+		actor.updateFieldFidget( 1.0 );
+		if( state.layer || actor.animlayers.layers[0].id != previousIdle )
+			throw Exception( "Completed gesture did not restore idle variant: " .. id );
+	}
+	page.standani <- #{id="sit"};
+	state.delay = 0;
+	actor.updateFieldFidget( 1.0 );
+	if( state.layer ) throw Exception( "Gesture started over an authored pose" );
+	page.standani <- oldStand;
+	actor.anime2( #{id="walk"} );
+	state.delay = 0;
+	actor.updateFieldFidget( 1.0 );
+	if( state.layer ) throw Exception( "Gesture started while walking: " .. body );
+	actor.anime2( #{id="stand"} );
+	state.delay = 100.0;
+	local waited = 0;
+	while( !state.layer && waited < 8000 ){ sleep( 200 ); waited += 200; }
+	if( !state.layer ){
+		printf( "[NPC FIDGET] timer blocked %S delay=%S layer=%S visible=%S event=%S move=%S\n",
+			body, state.delay, actor.animlayers.layers[0]["id"], actor.visible, !!::rpgstage.mainevent,
+			!!(actor.mainaction && actor.mainaction["mvfunc"]) );
+		throw Exception( "Timer did not start gesture: " .. body );
+	}
+	actor.setVisible( false );
+	if( state.layer || state.phase || (state.fan && state.fan.visible) )
+		throw Exception( "Hiding did not interrupt gesture: " .. body );
+	actor.setVisible( true );
+	actor.anime2( #{id="stand"} );
+	printf( "[NPC FIDGET] passed %S\n", body );
+}

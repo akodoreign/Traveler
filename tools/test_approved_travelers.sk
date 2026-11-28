@@ -1,0 +1,25 @@
+// Run in a pack-first review profile with the approved tailoring defaults.
+local actors = [
+	["P101", "trav_rensei", "A100", "trav_rensei_A100_4k"],
+	["P102", "trav_gendo", "A100", "trav_gendo_A100_4k"],
+	["P132", "side_yosai", "A111", "side_yosai_A111_4k"]
+];
+foreach( row in actors ){
+	local player = ::rpgstat.playermap[row[0]];
+	local slot = player.getEquipableSlot( row[2] );
+	if( slot < 0 ) throw Exception( "Cannot equip review outfit: " .. row[0] );
+	local old = player.equips[slot];
+	player.setEquip( slot, RPGObject.create( row[2] ) );
+	local actor = RPG3DObject.create3DObject( { mdlid=player.data.mdlid, rt_wearer=player } );
+	player.setEquip( slot, old );
+	if( !actor || actor.nativeKey != row[1] || !actor.nativeBody ||
+		length( actor.nativeBody.bones ) != 50 || !actor.nativeFace ||
+		!actor.nativeOutfit || actor.nativeTailoring != row[3] )
+		throw Exception( "Approved traveler did not load: " .. row[0] );
+	foreach( part in [actor.nativeFace, actor.nativeOutfit] )
+		foreach( bone in part.mesh.bones )
+			if( !bone ) throw Exception( "Unbound approved traveler part: " .. row[0] );
+	foreach( motion in ["stand", "walk", "fight"] )
+		if( !actor.anime2( #{id=motion} ) ) throw Exception( "Missing motion " .. motion .. ": " .. row[0] );
+	printf( "[APPROVED TRAVELER] %S %S rig, outfit and motions loaded\n", row[0], row[3] );
+}

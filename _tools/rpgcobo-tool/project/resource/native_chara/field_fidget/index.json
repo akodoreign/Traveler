@@ -1,0 +1,12 @@
+{
+  "clips": {
+    "look": {"st": 0, "en": 72, "spd": 24},
+    "shoulders": {"st": 73, "en": 145, "spd": 24},
+    "sleeve": {"st": 146, "en": 218, "spd": 24},
+    "hands": {"st": 219, "en": 291, "spd": 24},
+    "belt": {"st": 292, "en": 364, "spd": 24},
+    "fan_up": {"st": 365, "en": 437, "spd": 24},
+    "fan_hold": {"st": 438, "en": 510, "spd": 24},
+    "fan_down": {"st": 511, "en": 583, "spd": 24}
+  }
+}
